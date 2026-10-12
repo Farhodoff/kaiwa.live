@@ -37,8 +37,8 @@ export function isMidSentenceConjunction(text: string, lang: 'en' | 'ja'): boole
   if (!trimmed) return false;
 
   if (lang === 'ja') {
-    // Te-form, connective particles, conditionals, hesitation markers & thinking fillers
-    return /(て|で|から|ので|けど|けれど|けれども|が|たら|なら|ば|のに|し|とか|たり|と|に|を|は|ええと|えーと|あのー|あの|そのー|その|まあ|うーん|えっと|なんか)$/.test(
+    // Te-form, connective particles, conditionals, polite and casual connectors, hesitation markers & thinking fillers
+    return /(て|で|から|ので|けど|けれど|けれども|が|たら|なら|ば|のに|し|とか|たり|と|に|を|は|ても|でも|たりして|かな|かしら|というか|じゃなくて|ですが|ですから|なので|だけど|てさ|でさ|ええと|えーと|あのー|あの|そのー|その|まあ|うーん|えっと|なんか|ほら|じゃあ|えー)$/.test(
       trimmed,
     );
   }
@@ -59,7 +59,7 @@ export function isSentenceTerminal(text: string, lang: 'en' | 'ja'): boolean {
   if (lang === 'ja') {
     return (
       /[。！？\n]$/.test(trimmed) ||
-      /(です|ます|した|でした|ません|ね|よ|か|よね|でしょうか|とおもいます|とおもいました|だ|だった|んだ)$/.test(
+      /(です|ます|した|でした|ません|ね|よ|か|よね|ですよ|ですね|ましたね|ましたよ|ませんね|ませんでした|てください|てくださいね|てくれますか|てほしい|ましょう|たいです|なんです|わけです|はずです|つもりです|でしょうか|とおもいます|とおもいました|だ|だった|んだ)$/.test(
         trimmed,
       )
     );
@@ -371,7 +371,7 @@ export const useSpeechRecognition = ({
     if (!SpeechRecognition) {
       setIsSupported(false);
       setError(
-        "Sizning brauzeringiz ovoz yozishni qo'llab-quvvatlamaydi. Iltimos Chrome yoki Edge brauzeridan foydalaning.",
+        'Brauzeringizda avtomatik ovoz tanish (Web Speech) mavjud emas. Matn kiritish orqali ham muloqotni davom ettirishingiz mumkin.',
       );
       return;
     }
