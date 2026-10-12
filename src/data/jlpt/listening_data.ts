@@ -3530,7 +3530,6 @@ export const JLPT_LISTENING_QUESTIONS: JlptListeningQuestion[] = [
     id: 87,
     level: 'N2',
     type: 'task',
-    audioUrl: '/audio/choukai/n2/n2_track_87.mp3',
     titleUz: 'Kompaniya mahsulot taqdimotiga tayyorgarlik',
     script:
       'オフィスで課長と女性社員が、来週の取引先へのプレゼンについて話しています。女性社員はこの後、まず何をしなければなりませんか？\n女：課長、来週の新規エコ素材の企画提案書、一通り出来上がりましたのでご確認いただけますか。\n男：うん、全体の構成はすごく論理的でいいね。ただ、競合他社との価格比較データの部分が少し前年度の古い数字のままになっているみたいだ。\n女：あ、申し訳ありません。最新の市場調査レポートの数値を反映させるのを忘れていました。\n男：そうだね。あと、プレゼンの導入部分のスライド順序も少し変えたいけど、それはデータが揃ってからでいいよ。まずはその最新の市場価格データを更新して差し替えてくれるかい？デザインのブラッシュアップはその後で一緒に見よう。\n女：承知いたしました。すぐに最新レポートを確認して修正いたします。',
@@ -3558,7 +3557,6 @@ export const JLPT_LISTENING_QUESTIONS: JlptListeningQuestion[] = [
     id: 88,
     level: 'N2',
     type: 'point',
-    audioUrl: '/audio/choukai/n2/n2_track_88.mp3',
     titleUz: "Ekologik qadoq va iste'molchilar xulq-atvori",
     script:
       'テレビでアナウンサーが、食品メーカーの環境対策について専門家にインタビューしています。消費者がやや割高なエコ包装商品を選ぶ最大の理由は何ですか？\nアナウンサー：最近、脱プラスチックを目指して紙製や生分解性プラスチックの包装を採用する企業が増えていますね。一般的にコストが1割ほど高くなるそうですが、売れ行きは好調だと伺いました。\n専門家：ええ。以前は「環境に良くても高いなら買わない」という意見が主流でしたが、最近の調査では意識が大きく変化しています。特に若い世代やファミリー層を中心に、「日々の買い物を通じて環境保護に貢献している」という実感や満足感が得られることが、購入を後押しする決定打となっているのです。もちろんパッケージの見た目のナチュラルさや企業イメージへの共感もありますが、自己肯定感や社会的責任を果たしているという納得感が一番の購買動機ですね。',
@@ -3587,7 +3585,6 @@ export const JLPT_LISTENING_QUESTIONS: JlptListeningQuestion[] = [
     id: 89,
     level: 'N1',
     type: 'task',
-    audioUrl: '/audio/choukai/n1/n1_track_89.mp3',
     titleUz: 'Kiberxavfsizlik insidenti va inqirozli boshqaruv',
     script:
       'IT企業の緊急危機管理対策本部で、役員とセキュリティ担当チーフが話しています。担当チーフはこの後、公表前にまず何に着手しなければなりませんか？\n役員：先ほど検知されたクラウド基盤への不正アクセスインシデントの件だが、顧客情報の漏洩懸念について報道関係へのブリーフィングをどう進めるべきか。\nチーフ：はい。現時点で侵入経路となった脆弱性のパッチ適用と外部ネットワークからの当該サーバの隔離は完了しております。速やかなプレスリリースが求められますが、影響範囲の特定、すなわちどのデータが持ち出された痕跡があるかのログフォレンジック解析を完了させ、被害実態を確定させることが最優先です。\n役員：被害規模の数字が曖昧なまま会見を開けば、市場の不信感を招くからね。\nチーフ：おっしゃる通りです。再発防止策の策定や被害顧客への個別補償の検討も並行して進めますが、まずは詳細なログ解析による漏洩実態の特定を完遂させ、その確証を報告書にまとめます。\n役員：分かった。急ぎ取りかかってくれたまえ。',
@@ -3616,7 +3613,6 @@ export const JLPT_LISTENING_QUESTIONS: JlptListeningQuestion[] = [
     id: 90,
     level: 'N1',
     type: 'summary',
-    audioUrl: '/audio/choukai/n1/n1_track_90.mp3',
     titleUz: 'Hududiy qayta tiklanish va aholi migratsiyasi falsafasi',
     script:
       '地域経済学のシンポジウムで、大学教授が過疎地域の再生政策について基調講演を行っています。\n教授：従来の過疎対策は、工場誘致や大規模公共事業など、都市部の資本に依存した「外部活力の注入」が中心でした。しかし人口減少社会が本格化する中で、そうした画一的な振興策はもはや持続可能ではありません。真の地域創生とは、単に転入者数を競う頭数主義ではなく、その土地固有の自然資源や文化的土着性に根ざした「関係人口」の創出にあります。定住に固執せず、複業やリモートワークを通じて地域と重層的に関わり続ける人々を育むこと、すなわち自律分散的なコミュニティの生態系を再構築することこそが、今後の地方再生の根幹をなす理念なのです。',
@@ -3644,7 +3640,6 @@ export const JLPT_LISTENING_QUESTIONS: JlptListeningQuestion[] = [
     id: 91,
     level: 'N1',
     type: 'quick',
-    audioUrl: '/audio/choukai/n1/n1_track_91.mp3',
     titleUz: 'Biznesda taklifni xushmuomalalik bilan rad etish (Keigo)',
     script:
       '男性：先般ご提案申し上げました新規共同プロジェクトの件、前向きにご検討いただけておりますでしょうか。',
@@ -3672,7 +3667,6 @@ export const JLPT_LISTENING_QUESTIONS: JlptListeningQuestion[] = [
     id: 92,
     level: 'N1',
     type: 'point',
-    audioUrl: '/audio/choukai/n1/n1_track_92.mp3',
     titleUz: 'Kognitiv neyrobiologiya va qaror qabul qilish mexanizmi',
     script:
       '学術フォーラムで、認知心理学の研究者が「直感と論理的推論」について発表しています。研究者によると、熟練のチェス棋士が瞬時に最善手を見出せる最大の要因は何ですか？\n研究者：熟練のチェス棋士や医師の診断プロセスをfMRIで観察すると、興味深い現象が確認されます。彼らは膨大な選択肢を網羅的に論理計算しているのではなく、過去の膨大な経験を通じて脳の大脳基底核や前頭前野に蓄積された「パターンの直感的照合」を無意識下で行っています。思考の堂々巡りを排除し、状況を一目見ただけで無関係な何千もの悪手を瞬時に枝刈りして、最善の数手に絞り込む認知のチャンキング能力こそが、卓越した直感的意思決定を可能にしているのです。',
@@ -3726,22 +3720,46 @@ export function parseScriptIntoDialogueLines(script: string): DialogueLine[] {
       text = parts.slice(1).join(':').trim();
     }
 
-    if (['男', '男の人', '男性', '息子', '彼', '山田', '田中', '鈴木'].includes(speaker)) {
+    if (
+      [
+        '男',
+        '男の人',
+        '男性',
+        '息子',
+        '彼',
+        '山田',
+        '田中',
+        '鈴木',
+        '課長',
+        '部長',
+        '社長',
+        '役員',
+        'チーフ',
+      ].includes(speaker)
+    ) {
       gender = 'male';
-      speakerRoleUz = 'Erkak';
-    } else if (['女', '女の人', '女性', '母', '母親', '彼女', '佐藤'].includes(speaker)) {
+      speakerRoleUz = 'Erkak / Xodim';
+    } else if (
+      ['女', '女の人', '女性', '母', '母親', '彼女', '佐藤', '女性社員'].includes(speaker)
+    ) {
       gender = 'female';
       speakerRoleUz = 'Ayol';
-    } else if (['先生', '教授', '講師'].includes(speaker)) {
+    } else if (
+      ['先生', '教授', '講師', '専門家', '研究者', '学者', '有識者', '医師', '医者'].includes(
+        speaker,
+      )
+    ) {
       gender = 'male';
-      speakerRoleUz = "O'qituvchi";
+      speakerRoleUz = "Mutaxassis / O'qituvchi";
     } else if (['学生', '生徒'].includes(speaker)) {
       gender = 'neutral';
       speakerRoleUz = 'Talaba';
-    } else if (['店員', '店長', '係員', '係の人', 'フロント', '薬剤師'].includes(speaker)) {
+    } else if (
+      ['店員', '店長', '係員', '係の人', 'フロント', '薬剤師', '看護師'].includes(speaker)
+    ) {
       gender = 'neutral';
       speakerRoleUz = 'Xodim / Sotuvchi';
-    } else if (['アナウンサー', 'アナウンス'].includes(speaker)) {
+    } else if (['アナウンサー', 'アナウンス', '司会', 'リポーター'].includes(speaker)) {
       gender = 'neutral';
       speakerRoleUz = "E'lon / Diktor";
     } else if (speaker === 'あなた') {

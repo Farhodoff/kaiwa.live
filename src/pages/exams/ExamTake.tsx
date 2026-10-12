@@ -28,78 +28,50 @@ const BUILTIN_EXAMS: Record<
     questionsBySection: Record<string, any[]>;
   }
 > = {
-  exam_ielts_academic_1: {
+  exam_jlpt_n1_1: {
     exam: {
-      id: 'exam_ielts_academic_1',
-      title: 'IELTS Academic Full Mock Test #1',
-      type: 'IELTS (Academic)',
-      description: 'Full Reading, Listening, Writing & Speaking simulation test',
+      id: 'exam_jlpt_n1_1',
+      title: 'JLPT N1 Official Practice Exam',
+      type: 'JLPT N1',
+      description: 'N1 言語知識・読解 (Academic & High-Register Reading Comprehension)',
     },
     sections: [
       {
-        id: 'sec_ielts_read_1',
-        exam_id: 'exam_ielts_academic_1',
-        title: 'Reading Passage 1: The Renewable Energy Revolution',
+        id: 'sec_n1_dokkai_1',
+        exam_id: 'exam_jlpt_n1_1',
+        title: 'N1 言語知識・読解 (Reading Comprehension)',
         type: 'Reading',
         order_index: 1,
-        content: `Renewable energy resources have expanded exponentially over the past two decades. Solar and wind power technologies have witnessed a dramatic plunge in manufacturing costs, making green energy competitive with traditional fossil fuel power plants.\n\nCountries worldwide are setting ambitious targets to transition towards net-zero carbon emissions by 2050. However, integrating intermittent power sources into existing national electrical grids poses major technological challenges. Advanced grid-scale battery storage and decentralized microgrid systems are proving crucial in addressing this variability.`,
-      },
-      {
-        id: 'sec_ielts_write_1',
-        exam_id: 'exam_ielts_academic_1',
-        title: 'Writing Task 2: Academic Essay',
-        type: 'Writing',
-        order_index: 2,
-        content:
-          'Some experts believe that governments should spend money on space exploration, while others think this money should be used for public services like healthcare and education. Discuss both views and give your opinion.',
-      },
-      {
-        id: 'sec_ielts_speak_1',
-        exam_id: 'exam_ielts_academic_1',
-        title: 'Speaking Part 2: Cue Card Practice',
-        type: 'Speaking',
-        order_index: 3,
-        content:
-          'Describe an important achievement in your academic or professional life. You should say: what it was, when it happened, how you achieved it, and explain why it was so meaningful to you.',
+        content: `科学技術の飛躍的進歩は、人間の生活様式のみならず精神構造や倫理観にも抜本的な変容を迫っている。とりわけ情報テクノロジーと生体医工学の融合は、従来アプリオリに自明とされてきた「人間存在の境界」そのものを揺るがしつつある。\n\n我々はいまや、技術の利便性に身を委ねるだけでなく、それがもたらす実存的危機の淵源を直視し、多元的な対話を通じて新たな規範を構築せざるを得ない段階に立たされている。`,
       },
     ],
     questionsBySection: {
-      sec_ielts_read_1: [
+      sec_n1_dokkai_1: [
         {
-          id: 'q_ielts_1',
-          section_id: 'sec_ielts_read_1',
-          question_text: 'What has made solar and wind energy competitive with fossil fuels?',
+          id: 'q_n1_1',
+          section_id: 'sec_n1_dokkai_1',
+          question_text: '筆者が指摘する「技術の進歩がもたらす影響」として最も適切なものはどれか。',
           options: [
-            'Higher government subsidies',
-            'Plunge in manufacturing costs',
-            'Shortage of coal and oil',
-            'Public protests',
+            '人間の生活様式を便利にするにとどまる',
+            '人間存在の境界や倫理観に根本的な変容を迫っている',
+            '科学と哲学の完全な分離をもたらした',
+            '人間の精神構造を平穏にした',
           ],
-          correct_answer: 'Plunge in manufacturing costs',
+          correct_answer: '人間存在の境界や倫理観に根本的な変容を迫っている',
           order_index: 1,
         },
         {
-          id: 'q_ielts_2',
-          section_id: 'sec_ielts_read_1',
-          question_text:
-            'By which target year are many countries striving for net-zero carbon emissions?',
-          options: ['2030', '2040', '2050', '2060'],
-          correct_answer: '2050',
-          order_index: 2,
-        },
-        {
-          id: 'q_ielts_3',
-          section_id: 'sec_ielts_read_1',
-          question_text:
-            'What is essential to address the variability of intermittent power sources?',
+          id: 'q_n1_2',
+          section_id: 'sec_n1_dokkai_1',
+          question_text: '文中の「〜ざるを得ない」と同じ語法のニュアンスとして適切なものはどれか。',
           options: [
-            'Building more coal plants',
-            'Grid-scale battery storage',
-            'Reducing domestic energy use',
-            'Increasing oil exports',
+            '義務として強制される',
+            '状況から判断してそうするより他に道がない',
+            '自分の意志で喜んで選択する',
+            '将来的に可能性が残されている',
           ],
-          correct_answer: 'Grid-scale battery storage',
-          order_index: 3,
+          correct_answer: '状況から判断してそうするより他に道がない',
+          order_index: 2,
         },
       ],
     },
@@ -331,9 +303,11 @@ export const ExamTake: React.FC = () => {
         return;
       }
 
+      const resolvedId = id === 'exam_ielts_academic_1' ? 'exam_jlpt_n1_1' : id;
+
       // Check built-in exams first
-      if (BUILTIN_EXAMS[id]) {
-        const builtIn = BUILTIN_EXAMS[id];
+      if (BUILTIN_EXAMS[resolvedId]) {
+        const builtIn = BUILTIN_EXAMS[resolvedId];
         setExam(builtIn.exam);
         setSections(builtIn.sections);
         if (builtIn.sections.length > 0) {
@@ -347,14 +321,14 @@ export const ExamTake: React.FC = () => {
         const { data: examData, error: examErr } = await supabase
           .from('exams')
           .select('*')
-          .eq('id', id)
+          .eq('id', resolvedId)
           .single();
         if (examErr || !examData) {
           // Fallback to built-in JLPT exam if unknown
           const fallback =
             BUILTIN_EXAMS['exam_jlpt_n5_1'] ||
             BUILTIN_EXAMS['exam_jlpt_n3_1'] ||
-            BUILTIN_EXAMS['exam_ielts_academic_1'];
+            BUILTIN_EXAMS['exam_jlpt_n1_1'];
           setExam(fallback.exam);
           setSections(fallback.sections);
           if (fallback.sections.length > 0) {
@@ -365,7 +339,7 @@ export const ExamTake: React.FC = () => {
           const { data: sectionsData } = await supabase
             .from('exam_sections')
             .select('*')
-            .eq('exam_id', id)
+            .eq('exam_id', resolvedId)
             .order('order_index', { ascending: true });
 
           setSections(sectionsData || []);
@@ -378,7 +352,7 @@ export const ExamTake: React.FC = () => {
         const fallback =
           BUILTIN_EXAMS['exam_jlpt_n5_1'] ||
           BUILTIN_EXAMS['exam_jlpt_n3_1'] ||
-          BUILTIN_EXAMS['exam_ielts_academic_1'];
+          BUILTIN_EXAMS['exam_jlpt_n1_1'];
         setExam(fallback.exam);
         setSections(fallback.sections);
         if (fallback.sections.length > 0) {

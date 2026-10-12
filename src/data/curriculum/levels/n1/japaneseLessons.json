@@ -1172,21 +1172,27 @@
               "question": "教授[きょうじゅ]「従来[じゅうらい]の 経済学[けいざいがく]では 人間[にんげん]の 合理的[ごうりてき]な 判断[はんだん]を 前提[ぜんてい]としてきた。しかし 行動[こうどう]経済学[けいざいがく]の 台頭[たいとう]に （　　）、心理的[しんりてき]バイアスが 意思[いし]決定[けってい]に 及[およ]ぼす 影響[えいきょう]が 明[あき]らかに された。」",
               "options": ["伴[ともな]って", "かけて", "かぎって", "ぬきにして"],
               "correctAnswerIndex": 0,
-              "explanation": "〜に伴って: Xulq-atvor iqtisodiyotining yuzaga chiqishi ortidan qaror qabul qilishdagi psixologik omillar oydinlashdi."
+              "explanation": "〜に伴って: Xulq-atvor iqtisodiyotining yuzaga chiqishi ortidan qaror qabul qilishdagi psixologik omillar oydinlashdi.",
+              "audioUrl": "/audio/choukai/n1/n1_lecture_l08.mp3",
+              "audioTitle": "N1 Track 08: Ilmiy Ma'ruza"
             },
             {
               "id": "ja-n1-u2-l3-q2",
               "question": "学術[がくじゅつ]講義[こうぎ]：「今回[こんかい]の 実証[じっしょう]実験[じっけん]に より、長年[ながねん] 支持[しじ]されてきた 定説[ていせつ]は 覆[くつがえ]され（　　）。」",
               "options": ["るっこない", "ざるを得ない", "るわけにはいかない", "るに相違ない"],
               "correctAnswerIndex": 1,
-              "explanation": "〜ざるを得ない: Ilmiy tajriba natijasida yillardan buyon qabul qilingan nazariya rad etilishidan boshqa chora qolmadi."
+              "explanation": "〜ざるを得ない: Ilmiy tajriba natijasida yillardan buyon qabul qilingan nazariya rad etilishidan boshqa chora qolmadi.",
+              "audioUrl": "/audio/choukai/n1/n1_track_10.mp3",
+              "audioTitle": "N1 Track 10: Akademik Muhokama"
             },
             {
               "id": "ja-n1-u2-l3-q3",
               "question": "講師[こうし]「新[あたら]しい パラダイムの 提唱[ていしょう]は、既存[きぞん]の 学説[がくせつ]との （　　）を 恐[おそ]れずに 議論[ぎろん]を 深[ふか]めるべきだ。」",
               "options": ["脆弱[ぜいじゃく]", "隠蔽[いんぺい]", "軋轢[あつれき]", "憂慮[ゆうりょ]"],
               "correctAnswerIndex": 2,
-              "explanation": "軋轢（あつれき）: Fikrlar toʻqnashuvi, nizo yoki kelishmovchilikdan choʻchimagan holda ilmiy bahs yuritish."
+              "explanation": "軋轢（あつれき）: Fikrlar toʻqnashuvi, nizo yoki kelishmovchilikdan choʻchimagan holda ilmiy bahs yuritish.",
+              "audioUrl": "/audio/choukai/n1/n1_track_20.mp3",
+              "audioTitle": "N1 Track 20: Tadqiqot Tahlili"
             },
             {
               "id": "ja-n1-u2-l3-q4",
@@ -1198,7 +1204,9 @@
                 "基礎[きそ]研究[けんきゅう]の 強化[きょうか]"
               ],
               "correctAnswerIndex": 3,
-              "explanation": "〜にほかなりません: Ikki olimning yakdil fikri aynan fundamental tadqiqotlarni kuchaytirish zarurligidan boshqa narsa emas."
+              "explanation": "〜にほかなりません: Ikki olimning yakdil fikri aynan fundamental tadqiqotlarni kuchaytirish zarurligidan boshqa narsa emas.",
+              "audioUrl": "/audio/choukai/n1/n1_track_42.mp3",
+              "audioTitle": "N1 Track 42: Tezis Sintezi"
             }
           ]
         }
@@ -3080,14 +3088,18 @@
                 "曖昧[あいまい]"
               ],
               "correctAnswerIndex": 0,
-              "explanation": "抜本的（ばっぽんてき）: Tubdan, ildizidan yangilovchi islohot («抜本的な改革»)."
+              "explanation": "抜本的（ばっぽんてき）: Tubdan, ildizidan yangilovchi islohot («抜本的な改革»).",
+              "audioUrl": "/audio/choukai/n1/n1_dialogue_l20.mp3",
+              "audioTitle": "N1 Track 20: Integratsion Dialog"
             },
             {
               "id": "ja-n1-u4-l5-q2",
               "question": "男[おとこ]「今回[こんかい]の 共同[きょうどう]開発[かいはつ]、相手先[あいてさき]の 条件[じょうけん]を 飲[の]むべきでしょうか。」女[おんな]「多少[たしょう]の 譲歩[じょうほ]は （　　）が、主導権[しゅどうけん]を 渡[わた]す わけにはいきません。」",
               "options": ["やぶさかではない", "いたしかねる", "かねない", "するっこない"],
               "correctAnswerIndex": 0,
-              "explanation": "やぶさかではない: «...qilishga qarshi emasmiz / bajonidil rozi boʻlish mumkin» — muzokaralardagi diplomatik ifoda."
+              "explanation": "やぶさかではない: «...qilishga qarshi emasmiz / bajonidil rozi boʻlish mumkin» — muzokaralardagi diplomatik ifoda.",
+              "audioUrl": "/audio/choukai/n1/n1_track_45.mp3",
+              "audioTitle": "N1 Track 45: Ekspertlar Bahsi"
             },
             {
               "id": "ja-n1-u4-l5-q3",
@@ -3099,7 +3111,9 @@
                 "隠蔽[いんぺい]する"
               ],
               "correctAnswerIndex": 2,
-              "explanation": "事前に講じるに越したことはない: Xavflarning oldini olish choralarini oldindan koʻrib qoʻyganga hech narsa yetmaydi."
+              "explanation": "事前に講じるに越したことはない: Xavflarning oldini olish choralarini oldindan koʻrib qoʻyganga hech narsa yetmaydi.",
+              "audioUrl": "/audio/choukai/n1/n1_track_46.mp3",
+              "audioTitle": "N1 Track 46: Jamiyat va Qaror"
             },
             {
               "id": "ja-n1-u4-l5-q4",
@@ -3111,7 +3125,9 @@
                 "大[おお]きな 隔[へだ]たり"
               ],
               "correctAnswerIndex": 3,
-              "explanation": "大きな隔たり（へだたり）: Ikki tomon talabi oʻrtasida yengib boʻlmas ulkan jarlik/tafovut mavjud."
+              "explanation": "大きな隔たり（へだたり）: Ikki tomon talabi oʻrtasida yengib boʻlmas ulkan jarlik/tafovut mavjud.",
+              "audioUrl": "/audio/choukai/n1/n1_track_77.mp3",
+              "audioTitle": "N1 Track 77: Boshqaruv Munozarasi"
             }
           ]
         }

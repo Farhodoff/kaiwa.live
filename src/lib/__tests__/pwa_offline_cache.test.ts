@@ -24,6 +24,7 @@ describe('PWA Workbox Runtime Caching & Offline Resilience', () => {
     expect(cacheNames).toContain('dicebear-avatar-cache');
     expect(cacheNames).toContain('audio-assets-cache');
     expect(cacheNames).toContain('supabase-audio-cache');
+    expect(cacheNames).toContain('tts-api-cache');
   });
 
   describe('KanjiVG Stroke Order SVGs (kanjivg-svg-cache)', () => {
@@ -99,6 +100,35 @@ describe('PWA Workbox Runtime Caching & Offline Resilience', () => {
     it('supports opaque responses (status 0) from CDNs', () => {
       expect(audioRule?.options?.cacheableResponse?.statuses).toContain(0);
       expect(audioRule?.options?.cacheableResponse?.statuses).toContain(200);
+    });
+  });
+
+  describe('Local Choukai & Audio Assets (audio-assets-cache)', () => {
+    const localAudioRule = findRuleByCacheName('audio-assets-cache');
+
+    it('uses CacheFirst with capacity for at least 350 audio tracks', () => {
+      expect(localAudioRule).toBeDefined();
+      expect(localAudioRule?.handler).toBe('CacheFirst');
+      expect(localAudioRule?.options?.expiration?.maxEntries).toBeGreaterThanOrEqual(350);
+    });
+
+    it('matches MP3, WAV, OGG, and M4A audio files', () => {
+      const pattern = localAudioRule?.urlPattern as RegExp;
+      expect(pattern.test('/audio/choukai/n3/01%20Track%201.mp3')).toBe(true);
+      expect(pattern.test('/audio/choukai/n2/Track01.mp3')).toBe(true);
+      expect(pattern.test('/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_001.mp3')).toBe(true);
+    });
+  });
+
+  describe('TTS Audio API Cache (tts-api-cache)', () => {
+    const ttsRule = findRuleByCacheName('tts-api-cache');
+
+    it('uses CacheFirst with query parameter support', () => {
+      expect(ttsRule).toBeDefined();
+      expect(ttsRule?.handler).toBe('CacheFirst');
+      const pattern = ttsRule?.urlPattern as RegExp;
+      expect(pattern.test('/api/tts?text=test&lang=ja')).toBe(true);
+      expect(pattern.test('/api/tts')).toBe(true);
     });
   });
 

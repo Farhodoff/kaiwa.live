@@ -92,4 +92,25 @@ describe('IncrementalReplyExtractor', () => {
 
     expect(emitted).toEqual(['はい、行きましょう']);
   });
+
+  it('extracts long Japanese clauses at commas for sub-400ms time-to-first-audio', () => {
+    const emitted: string[] = [];
+    const onSentence = vi.fn((sentence: string) => {
+      emitted.push(sentence);
+    });
+
+    const extractor = new IncrementalReplyExtractor(true, onSentence);
+
+    const tokens = [
+      '{"reply": "明日の会議の準備についてですが、',
+      '資料はもう確認されましたか。"}',
+    ];
+
+    for (const token of tokens) {
+      extractor.feed(token);
+    }
+    extractor.flush();
+
+    expect(emitted).toEqual(['明日の会議の準備についてですが、', '資料はもう確認されましたか。']);
+  });
 });

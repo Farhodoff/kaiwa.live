@@ -135,6 +135,22 @@ export const JlptListeningMockPage: React.FC = () => {
     };
   }, []);
 
+  // Predictive background audio preloading for the next 2 questions
+  useEffect(() => {
+    if (step !== 'test' || activeQuestions.length === 0) return;
+    const candidates = [currentQIdx + 1, currentQIdx + 2];
+    candidates.forEach((idx) => {
+      if (idx < activeQuestions.length) {
+        const nextQ = activeQuestions[idx];
+        if (nextQ?.audioUrl && !nextQ.audioUrl.includes('soundhelix.com')) {
+          const preAudio = new Audio();
+          preAudio.preload = 'auto';
+          preAudio.src = resolveAudioUrl(nextQ.audioUrl);
+        }
+      }
+    });
+  }, [step, currentQIdx, activeQuestions]);
+
   const formatTime = (secs: number) => {
     const m = Math.floor(secs / 60);
     const s = secs % 60;
@@ -323,12 +339,13 @@ export const JlptListeningMockPage: React.FC = () => {
         console.warn('[Choukai] Audio load failed, falling back to TTS dialogue synthesis');
         playTtsDialogue(q);
       };
-      audio.play().catch(() => {
-        setIsPlaying(false);
-        toast({
-          title: 'Ijro etilmadi',
-          description: 'Audio avtomatik ijro etilmadi. Tugmani qayta bosing.',
-        });
+      audio.play().catch((err: any) => {
+        if (err?.name === 'AbortError') return;
+        console.warn(
+          '[Choukai] Audio playback rejected, falling back to TTS dialogue synthesis:',
+          err,
+        );
+        playTtsDialogue(q);
       });
       return;
     }
@@ -905,14 +922,25 @@ export const JlptListeningMockPage: React.FC = () => {
                       <Volume2 size={22} />
                     </div>
                     <div>
-                      <h4 className="text-xs font-black text-foreground sm:text-sm">
-                        {isUsingTts
-                          ? 'Listening Audio Track (Multi-Speaker TTS)'
-                          : 'Listening Audio Track (JLPT Studio CD)'}
-                      </h4>
+                      <div className="flex items-center gap-2">
+                        <h4 className="text-xs font-black text-foreground sm:text-sm">
+                          Listening Audio Track
+                        </h4>
+                        <span
+                          className={`inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[10px] font-bold ${
+                            isUsingTts
+                              ? 'border border-amber-500/30 bg-amber-500/10 text-amber-600 dark:text-amber-400'
+                              : 'border border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
+                          }`}
+                        >
+                          {isUsingTts ? '🤖 AI Sinxron Nutq' : '🎧 Studiya Audiosi'}
+                        </span>
+                      </div>
                       <p className="text-[11px] text-muted-foreground">
                         {isPlaying
-                          ? 'Tinglash davom etmoqda... Diqqat bilan eshiting'
+                          ? isUsingTts
+                            ? 'AI suxandonlar dialogi ijro etilmoqda...'
+                            : 'Haqiqiy studiya audiosi ijro etilmoqda...'
                           : 'Tinglash uchun Ijro etish (Play) tugmasini bosing'}
                       </p>
                     </div>

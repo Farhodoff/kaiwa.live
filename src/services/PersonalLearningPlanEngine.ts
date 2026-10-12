@@ -126,18 +126,18 @@ export function getLevelPedagogicalDirectives(
         return `JLPT LEVEL DIRECTIVES: Calibrate tasks directly to JLPT ${cleanLevel} standards.`;
     }
   } else {
-    // English Track
+    // Legacy English Track compatibility
     if (goalType === 'ielts') {
       return `IELTS TARGET DIRECTIVES (Target Band: ${levelCode}):
-- Speaking: Part 1 fluency, Part 2 2-minute cue card sustained speech, Part 3 abstract discussion. Route: /speaking-coach?lang=en
-- Writing: Task 1 academic report (charts, diagrams, trends) and Task 2 argumentative/discussion essay structure. Route: /ielts?tab=writing
-- Reading: Skimming & scanning, True/False/Not Given, heading matching, speed drills under timed conditions. Route: /ielts?tab=reading_listening
-- Listening: Sections 1-4, focus on keyword prediction, distractors, and spelling accuracy. Route: /ielts?tab=reading_listening
-- Grammar & Vocab: Complex sentence structures (inversion, cleft sentences, conditionals), Academic Word List (AWL). Route: /ielts?tab=grammar`;
+- Speaking: Part 1 fluency, Part 2 sustained 2-min talk, Part 3 abstract discussion. Route: /speaking-coach?lang=ja
+- Writing: Task 1 academic report synthesis & Task 2 250-word balanced essays. Route: /jlpt?tab=writing
+- Reading: Skimming & scanning, comprehension speed drills under timed conditions. Route: /jlpt?tab=reading
+- Listening: Focus on keyword prediction, dialogues, and audio comprehension. Route: /jlpt?tab=listening
+- Grammar & Vocab: Complex sentence structures and vocabulary drill. Route: /jlpt?tab=grammar`;
     } else {
-      return `GENERAL ENGLISH DIRECTIVES (CEFR ${levelCode}):
+      return `GENERAL ENGLISH DIRECTIVES (${levelCode}):
 - Develop everyday conversational fluency, functional grammar, and rich active vocabulary.
-- Rotate grammar theory, vocabulary flashcards, speaking coach drills, and reading articles.`;
+- Rotate grammar theory, vocabulary flashcards, speaking coach drills, and reading articles. Route: /jlpt`;
     }
   }
 }
@@ -341,11 +341,11 @@ export const PersonalLearningPlanEngine = {
             '/jlpt',
           ]
         : [
-            '/ielts?tab=grammar',
+            '/jlpt?tab=grammar',
             '/scenarios',
-            '/speaking-coach?lang=en',
-            '/ielts?tab=reading_listening',
-            '/ielts?tab=writing',
+            '/speaking-coach?lang=ja',
+            '/jlpt?tab=reading',
+            '/jlpt?tab=writing',
             '/vocabulary',
             '/study-mode',
           ];
@@ -673,11 +673,7 @@ ${prompt}`;
           let actualTitle = this.sanitizeText(t.title || 'Dars');
           let actualType = this.sanitizeText(t.type || 'lesson');
           let actualContentId = t.contentId ? this.sanitizeText(t.contentId) : undefined;
-          let rawRoute = t.route
-            ? String(t.route).trim()
-            : goal.language === 'ja'
-              ? '/jlpt'
-              : '/ielts';
+          let rawRoute = t.route ? String(t.route).trim() : '/jlpt';
 
           // Completed Lesson Deduplication Check (Hard Guard)
           if (
@@ -711,7 +707,7 @@ ${prompt}`;
             if (replacementNode) {
               actualContentId = replacementNode.id;
               actualTitle = replacementNode.title;
-              rawRoute = replacementNode.route || (goal.language === 'ja' ? '/jlpt' : '/ielts');
+              rawRoute = replacementNode.route || '/jlpt';
             } else {
               // Exhausted level: Fallback to review
               actualType = 'review';
@@ -807,8 +803,7 @@ ${prompt}`;
             resolvedRoute.startsWith(prefix),
           );
           if (!hasValidRoute) {
-            resolvedRoute =
-              goal.language === 'ja' ? `/jlpt?tab=kanji&level=${targetLvl}` : '/ielts';
+            resolvedRoute = `/jlpt?tab=kanji&level=${targetLvl}`;
           }
 
           const deterministicTaskIdSeed = `${goal.id}:${weekNumber}:${dayName}:${taskIndex}:${actualContentId || actualTitle}:${actualType}`;
@@ -829,7 +824,7 @@ ${prompt}`;
 
         // If tasks are empty, append a default lesson to keep plan intact
         if (validatedTasks.length === 0) {
-          const fallbackRoute = goal.language === 'ja' ? '/jlpt' : '/ielts';
+          const fallbackRoute = '/jlpt';
           validatedTasks.push({
             id: `task-fallback-${toDeterministicUUID(`${goal.id}:${weekNumber}:${dayName}:fallback`).slice(0, 12)}`,
             title:

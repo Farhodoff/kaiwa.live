@@ -138,11 +138,11 @@ export const AdaptivePlanService = {
         pool.push({
           id: 'enrichment-speaking-en',
           type: 'speaking',
-          title: 'IELTS Speaking Examiner Session',
-          reason: 'Real imtihon formatida ovozli muloqot simulyatsiyasi.',
+          title: 'AI bilan jonli muloqot',
+          reason: 'Ovozli muloqot amaliyoti va talaffuzni mustahkamlash.',
           estimatedMinutes: 10,
           priority: 60,
-          route: '/speaking-coach?lang=en',
+          route: '/speaking-coach?lang=ja',
           isCompleted: false,
         });
       }
@@ -175,12 +175,12 @@ export const AdaptivePlanService = {
 
     // 5. Fallback if pool is empty
     if (pool.length === 0) {
-      const fallbackRoute = isJa ? '/jlpt' : '/ielts';
+      const fallbackRoute = '/jlpt';
       pool.push({
         id: 'fallback-action',
         type: 'lesson',
-        title: isJa ? "Yapon tili mashg'ulotlari" : 'English Study Session',
-        reason: isJa ? "Kunlik reja bo'yicha darslar." : 'Daily curriculum progression.',
+        title: "Yapon tili mashg'ulotlari",
+        reason: "Kunlik reja bo'yicha darslar.",
         estimatedMinutes: totalMinutes,
         priority: 50,
         route: fallbackRoute,

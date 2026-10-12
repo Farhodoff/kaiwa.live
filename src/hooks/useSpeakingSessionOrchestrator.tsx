@@ -174,6 +174,37 @@ export function useSpeakingSessionOrchestrator({
     }
   }, [language, persona, activeScenario]);
 
+  // Dynamically calibrate speech tempo based on Persona & JLPT Target Level
+  useEffect(() => {
+    try {
+      const manualSpeed =
+        typeof window !== 'undefined' ? localStorage.getItem('speaking_coach_manual_speed') : null;
+      if (manualSpeed) return;
+
+      let baseline = 0.95;
+      if (persona === 'roast') {
+        baseline = 1.05; // Sharp, brisk drill master tempo
+      } else if (persona === 'gentle') {
+        baseline = 0.85; // Relaxed, patient cadence
+      } else if (persona === 'ielts' || persona === 'interview') {
+        baseline = 0.95; // Balanced, professional cadence
+      } else if (persona === 'travel') {
+        baseline = 0.9; // Clear, friendly cadence
+      } else if (persona === 'casual') {
+        baseline = 1.0; // Everyday natural speed
+      }
+
+      // Gentle easing for beginner JLPT levels (N5/N4) so mora sounds are distinct
+      if (targetJlptLevel === 'N5' && baseline > 0.88) {
+        baseline = 0.88;
+      } else if (targetJlptLevel === 'N4' && baseline > 0.92) {
+        baseline = 0.92;
+      }
+
+      setSpeechSpeed(baseline);
+    } catch {}
+  }, [persona, targetJlptLevel, setSpeechSpeed]);
+
   const handleSendUserText = useCallback(
     async (text: string) => {
       const cleanText = (text || '').trim();
