@@ -123,46 +123,31 @@
           "questions": [
             {
               "id": "ja-n1-u1-l1-q1",
-              "question": "「たとえ 誰[だれ]であろうと」ning ma'nosi:",
-              "options": [
-                "Hech kim",
-                "Kim bo'lishidan qat'i nazar",
-                "Faqat bitta kishi",
-                "O'sha kishi"
-              ],
-              "correctAnswerIndex": 1,
-              "explanation": "No matter who it is."
+              "question": "「たとえ 国王[こくおう]（　　）、法[ほう]の 支配[しはい]から 逃[逃]れることは 許[ゆる]されない。」",
+              "options": ["であろうと", "であれど", "であれば", "であっても"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜であろうと: «Kim boʻlishidan qatʼi nazar, hatto shoh boʻlsa ham» — oliy darajadagi rasmiy yon bosish (concession)."
             },
             {
               "id": "ja-n1-u1-l1-q2",
-              "question": "「〜であれ〜であれ」qo'shaloq shakli nimani bildiradi?",
-              "options": ["Faqat B", "Hech biri", "A bo'lsin, B bo'lsin", "Faqat A"],
-              "correctAnswerIndex": 2,
-              "explanation": "Whether A or B."
+              "question": "「理由[りゆう]が （　　）、他人[たにん]の 命[いのち]を 奪[うば]う 行為[こうい]は 断[だん]じて 許[ゆる]されない。」",
+              "options": ["あっては", "何[なに]であれ", "ありながら", "あるべく"],
+              "correctAnswerIndex": 1,
+              "explanation": "何であれ（なんであれ）: «Har qanday sabab boʻlishidan qatʼi nazar»."
             },
             {
               "id": "ja-n1-u1-l1-q3",
-              "question": "«Qanday sabab bo'lishidan qat'i nazar qotillik jinoyatdir»:",
-              "options": [
-                "理由[りゆう]が あるから",
-                "理由[りゆう]です",
-                "理由[りゆう]なら",
-                "いかなる 理由[りゆう]であれ、殺人[さつじん]は 犯罪[はんざい]で ある"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Ikanaru riyuu de are."
+              "question": "「晴天[せいてん]（　　） 雨天[うてん]（　　）、予定[よてい]通[どお]り 記念[きねん]式典[しきてん]を 行[おこな]います。」",
+              "options": ["であれ／であれ", "につけ／につけ", "といい／といい", "なり／なり"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜であれ〜であれ: «A boʻladimi yoki B boʻladimi, baribir...» — har ikki holatda ham qaror oʻzgarmasligini bildiradi."
             },
             {
               "id": "ja-n1-u1-l1-q4",
-              "question": "〜であれ konstruksiyasi qaysi uslubga mansub?",
-              "options": [
-                "Bungo / Oliy adabiy-rasmiy yapon tili",
-                "Bolalar tili",
-                "Ko'cha slengi",
-                "SMS tili"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "High literary / Classical register."
+              "question": "「いかなる 困難[こんなん]な 状況[じょうきょう]（　　）、最後[さいご]まで 希望[きぼう]を 捨[す]ててはならない。」",
+              "options": ["にしては", "にあっては", "に際して", "であろうと"],
+              "correctAnswerIndex": 3,
+              "explanation": "〜であろうと: Har qancha mushkul vaziyat boʻlmasin, umidni aslo boy bermaslik kerak."
             }
           ]
         }
@@ -285,51 +270,31 @@
           "questions": [
             {
               "id": "ja-n1-u1-l2-q1",
-              "question": "「警察官[けいさつかん]にあるまじき 行為[こうい]」ning ma'nosi:",
-              "options": [
-                "Politsiya boshlig'i",
-                "Yaxshi ish",
-                "Politsiyachi uchun mutlaqo yarashmaydigan, nomaqbul xatti-harakat",
-                "Maosh"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Unforgivable/unbecoming conduct for a police officer."
+              "question": "「国[くに]の 舵[かじ]取[と]りを 担[にな]う 政治家[せいじか]（　　）、私利[しり]私欲[しよく]を 捨[す]てて 公共[こうきょう]の 利益[りえき]に 尽[つ]くすべきだ。」",
+              "options": ["たるもの", "まじき", "ならでは", "をおいて"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜たるもの: «...dek yuksak maqom egasi boʻlgan shaxs» (siyosatchi oʻz shaxsiy manfaatidan kechib xalqqa xizmat qilishi lozim)."
             },
             {
               "id": "ja-n1-u1-l2-q2",
-              "question": "「たるもの」ning grammatik kelib chiqishi qaysi manbaga borib taqaladi?",
-              "options": [
-                "Zamonaviy sleng",
-                "Mumtoz yapon tili bog'lovchi sifati",
-                "Xitoycha raqamlar",
-                "Inglizcha o'zlashma"
-              ],
+              "question": "「人命[じんめい]を 預[あず]かる 医師[いし]として、ある（　　） 無責任[むせきにん]な 態度[たいど]だ。」",
+              "options": ["べからざる", "まじき", "たる", "べき"],
               "correctAnswerIndex": 1,
-              "explanation": "Classical bungo auxiliary verb tari -> taru."
+              "explanation": "あるまじき: «Oʻsha maqomdagi kishiga mutlaqo yarashmaydigan / aslo yoʻl qoʻyib boʻlmaydigan» (shifokorga mutlaqo toʻgʻri kelmaydigan masʼuliyatsizlik)."
             },
             {
               "id": "ja-n1-u1-l2-q3",
-              "question": "«Rahbar shaxs har doim sovuqqon bo'lishi kerak»:",
-              "options": [
-                "指導者[しどうしゃ]たるもの、常[つね]に 冷静[れいせい]で あるべきだ",
-                "指導者[しどうしゃ]なら",
-                "指導者[しどうしゃ]です",
-                "指導者[しどうしゃ]だから"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Shidousha taru mono."
+              "question": "「市民[しみん]の 安全[あんぜん]を 守[まも]るべき 警察官[けいさつかん]に （　　） 収賄[しゅうわい]事件[じけん]が 発覚[はっかく]した。」",
+              "options": ["たる", "あっての", "あるまじき", "ならざる"],
+              "correctAnswerIndex": 2,
+              "explanation": "警察官にあるまじき: Politsiyachidek masʼul xodimga aslo munosib boʻlmagan poraxoʻrlik jinoyati."
             },
             {
               "id": "ja-n1-u1-l2-q4",
-              "question": "「許[ゆる]すまじき 暴挙[ぼうきょ]」nimani anglatadi?",
-              "options": [
-                "Kichik hazil",
-                "Ruxsat berilgan ish",
-                "Bayram tantanasi",
-                "Mutlaqo kechirib bo'lmas vahshiylik / zo'ravonlik"
-              ],
+              "question": "「教育者[きょういくしゃ]（　　）、常[つね]に 生徒[せいと]の 模範[もはん]となる 行動[こうどう]を 心[こころ]がけねばならない。」",
+              "options": ["まじき", "をおいて", "ならで", "たる者[もの]"],
               "correctAnswerIndex": 3,
-              "explanation": "Unpardonable atrocity / outrageous act."
+              "explanation": "教育者たる者: Murabbiy / pedagog maqomidagi inson doimo oʻquvchilariga namuna boʻlishi zarur."
             }
           ]
         }
@@ -452,51 +417,31 @@
           "questions": [
             {
               "id": "ja-n1-u1-l3-q1",
-              "question": "«Bu loyihani boshqarishga sizdan boshqa hech kim mos kelmaydi»:",
-              "options": [
-                "あなたなら",
-                "あなたです",
-                "あなただから",
-                "このプロジェクトの リーダーは、あなたをおいて他[ほか]に いません"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Anata o oite hoka ni imasen."
+              "question": "「この 繊細[せんさい]かつ 優雅[ゆうが]な 伝統[でんとう]工芸[こうげい]は、熟練[じゅくれん]の 職人[しょくにん]（　　）の 技[わざ]だ。」",
+              "options": ["ならでは", "をおいて", "にあって", "にかまけて"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜ならでは: «Faqat va faqat ...gagina xos / uning oʻzigagina xos mahorat»."
             },
             {
               "id": "ja-n1-u1-l3-q2",
-              "question": "「〜ならでは」ifodasi ko'pincha qanday ma'noda qo'llaniladi?",
-              "options": [
-                "Birovning yoki biror joyning o'ta yuqori ijobiy, tengi yo'q xususiyatini maqtashda",
-                "Kechirim so'rashda",
-                "Salbiy tanqid qilishda",
-                "Vaqtni belgilashda"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Praising unique, irreplaceable positive qualities."
+              "question": "「今回[こんかい]の 難関[なんかん]プロジェクトを 成功[せいこう]に 導[みちび]ける 人材[じんざい]は、彼[かれ]（　　） 他[ほか]に いない。」",
+              "options": ["ならでは", "をおいて", "にとどまらず", "にかかわらず"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜をおいて他にない: «Undan boshqa hech kim yoʻq / tanlov faqat u»."
             },
             {
               "id": "ja-n1-u1-l3-q3",
-              "question": "「プロならではの 視点[してん]」ning ma'nosi:",
-              "options": [
-                "Havasmand fikri",
-                "Kitob narxi",
-                "Faqat haqiqiy professionalgagina xos bo'lgan chuqur nuqtai nazar",
-                "Oddiy xato"
-              ],
+              "question": "「地元[じもと]の 新鮮[しんせん]な 食材[しょくざい]を 活[い]かした、この 土地[とち]（　　）の 郷土[きょうど]料理[りょうり]を 堪能[たんのう]した。」",
+              "options": ["をおいて", "にとって", "ならでは", "にかぎって"],
               "correctAnswerIndex": 2,
-              "explanation": "Insight unique only to a seasoned professional."
+              "explanation": "この土地ならでは: Faqatgina ushbu hududgagina xos betakror milliy taom."
             },
             {
               "id": "ja-n1-u1-l3-q4",
-              "question": "「大役[たいやく]を 果[は]たす」ning ma'nosi:",
-              "options": [
-                "Ulkan mas'uliyatli vazifani muvaffaqiyatli bajarmoq",
-                "Uyga ketmoq",
-                "Kasal bo'lmoq",
-                "Vazifadan qochmoq"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Fulfill a momentous responsibility."
+              "question": "「世界[せかい]平和[へいわ]の 実現[じつげん]には、対話[たいわ]と 相互[そうご]理解[りかい]（　　） 解決[かいけつ]の 道[みち]は ない。」",
+              "options": ["ならでは", "をはじめ", "にひきかえ", "をおいて"],
+              "correctAnswerIndex": 3,
+              "explanation": "〜をおいて道はない: Muloqot va oʻzaro tushunishdan oʻzga najot / yechim yoʻli yoʻq."
             }
           ]
         }
@@ -619,51 +564,31 @@
           "questions": [
             {
               "id": "ja-n1-u1-l4-q1",
-              "question": "«Bu imtihon varaqasi xatolarga to'la»:",
-              "options": [
-                "この答案[とうあん]は 間違[まちが]いだらけだ",
-                "間違[まちが]いずくめだ",
-                "間違[まちが]いです",
-                "間違[まちが]いまみれだ"
-              ],
+              "question": "「今年[ことし]は 娘[むすめ]の 難関[なんかん]校[こう]合格[ごうかく]や 昇進[しょうしん]など、めでたい こと（　　）の 年[とし]だった。」",
+              "options": ["ずくめ", "まみれ", "だらけ", "きり"],
               "correctAnswerIndex": 0,
-              "explanation": "Machigai-darake."
+              "explanation": "〜ずくめ: Yaxshi voqealar yoki xushxabarlar ketma-ket yogʻilishi («quvonchli voqealarga toʻla»)."
             },
             {
               "id": "ja-n1-u1-l4-q2",
-              "question": "「異例[いれい]ずくめの 人事[じんじ]」ning ma'nosi:",
-              "options": [
-                "Oddiy ish",
-                "Kechikkan ish",
-                "Ishdan bo'shatish",
-                "Faqat g'ayrioddiy, kutilmagan qarorlardan iborat bo'lgan tayinlov"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Appointments packed with unprecedented exceptions."
+              "question": "「大雨[おおあめ]の 中[なか]、被災地[ひさいち]の 救助[きゅうじょ]隊員[たいいん]たちは 泥[どろ]（　　）になって 活動[かつどう]した。」",
+              "options": ["ずくめ", "まみれ", "だらけ", "ぐるみ"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜まみれ: Butun vujud yopishqoq/iflos narsaga (loy, qon, ter, chang) belanishi («loyga belangancha»)."
             },
             {
               "id": "ja-n1-u1-l4-q3",
-              "question": "〜まみれ qaysi so'zlar bilan eng ko'p ishlatiladi?",
-              "options": [
-                "血[ち], 汗[あせ], 泥[どろ], 油[あぶら]",
-                "Quvonch, kulgi",
-                "Kitob, qalam",
-                "Poyezd, mashina"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Blood, sweat, mud, grease contamination."
+              "question": "「数年[すうねん]間[かん] 放置[ほうち]されていた 空[あ]き家[や]は、埃[ほこり]と ごみ（　　）で 足[あし]の 踏[ふ]み場[ば]も なかった。」",
+              "options": ["ずくめ", "まみれ", "だらけ", "きり"],
+              "correctAnswerIndex": 2,
+              "explanation": "〜だらけ: Biror makon noxush narsalar (axlat, xatolar, qarzlar) ga toʻlib-toshgan holati."
             },
             {
               "id": "ja-n1-u1-l4-q4",
-              "question": "«Qora kiyingan sirli kishi»:",
-              "options": [
-                "黒[くろ]の 男[おとこ]",
-                "黒[くろ]ずくめの 男[おとこ]",
-                "黒[くろ]まみれの 男[おとこ]",
-                "黒[くろ]だらけの 男[おとこ]"
-              ],
-              "correctAnswerIndex": 1,
-              "explanation": "Kuro-zukume no otoko."
+              "question": "「黒[くろ]（　　）の 衣装[いしょう]に 身[み]を 包[つつ]んだ 謎[なぞ]の 人物[じんぶつ]が、暗闇[くらやみ]へと 消[き]えていった。」",
+              "options": ["まみれ", "だらけ", "ばかり", "ずくめ"],
+              "correctAnswerIndex": 3,
+              "explanation": "黒ずくめ（くろずくめ）: Butkul boshdan-oyoq qora kiyingan (rang yoki kiyimdagi yaxlitlik)."
             }
           ]
         }
@@ -793,51 +718,31 @@
           "questions": [
             {
               "id": "ja-n1-u1-l5-q1",
-              "question": "「〜に他[ほか]ならない」grammatikasi nimani anglatadi?",
-              "options": [
-                "Boshqa narsadir",
-                "Inkor qiladi",
-                "Aynan ... ning o'zidir / ... dan boshqa narsa emasdir",
-                "O'xshamaydi"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Is nothing other than..."
+              "question": "「人間[にんげん]の 認識[にんしき]の 限界[げんかい]を 探究[たんきゅう]する 営[いとな]みは、哲学[てつがく]の 根源[こんげん]に （　　）。」",
+              "options": ["他[ほか]ならない", "すぎない", "およばない", "あたらない"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜に他ならない: Inson ongi chegaralarini oʻrganish aynan falsafaning tub ildizidan boshqa narsa emas."
             },
             {
               "id": "ja-n1-u1-l5-q2",
-              "question": "「自明[じめい]と見なす」so'zining ma'nosi:",
-              "options": [
-                "O'z-o'zidan ravshan, shubhasiz haqiqat deb hisoblamoq",
-                "Eski deb bilmoq",
-                "Kasal deb bilmoq",
-                "Tushunarsiz deb bilmoq"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Regard as self-evident."
+              "question": "「日常[にちじょう]言語[げんご]の 構造[こうぞう]を 自明[じめい]な ものと （　　）、その 背後[はいご]に 潜[ひそ]む 思考[しこう]の 枠組[わくぐ]みを 疑[うたが]うべきだ。」",
+              "options": ["せずとも", "見[み]なすことなく", "するがゆえに", "したところで"],
+              "correctAnswerIndex": 1,
+              "explanation": "見なすことなく: Kundalik til tuzilishini «oʻz-oʻzidan ravshan» deb hisoblab qoʻymasdan, uning ortidagi fikrlash tizimini tahlil qilish kerak."
             },
             {
               "id": "ja-n1-u1-l5-q3",
-              "question": "「〜がゆえに (Ga yue ni)」nimani bildiradi?",
-              "options": [
-                "... bilan birga",
-                "... qilgach",
-                "... qaramasdan",
-                "... bo'lganligi sababli"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Because of / On account of (Classical bungo)."
+              "question": "「高度[こうど]な 知性[ちせい]を 有[ゆう]するが（　　）、人間[にんげん]は 自[みずか]らの 存在[そんざい]理由[りゆう]に ついて 深[ふか]く 苦悩[くのう]する。」",
+              "options": ["あまり", "ゆえに", "ばかりに", "末[すえ]に"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜がゆえに: Yuksak zakovatga ega boʻlgani bois / aynan shu sababli inson oʻz vujudining maʼnosi ustida iztirob chekadi."
             },
             {
               "id": "ja-n1-u1-l5-q4",
-              "question": "JLPT N1 Dokkai bo'limi kimlar uchun mo'ljallangan?",
-              "options": [
-                "Faqat sayyohlar",
-                "Boshlang'ich talabalar",
-                "Yapon tilida magistratura/doktorantura dissertatsiyalarini va falsafiy adabiyotlarni erkin tahlil qila oluvchilar uchun",
-                "Bolalar"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Doctoral-level academic treatises & high philosophy."
+              "question": "「真理[しんり]の 探求[たんきゅう]とは、固定[こてい]観念[かんねん]を （　　） 批判的[ひはんてき]に 検証[けんしょう]し直[なお]す 過程[かてい]である。」",
+              "options": ["めぐって", "基[もと]づいて", "通[とお]して", "排[はい]して"],
+              "correctAnswerIndex": 3,
+              "explanation": "排して（はいして）: Qoliplashgan aqidalarni bir chetga surib / chetlab tanqidiy qayta koʻrib chiqish."
             }
           ]
         }
@@ -964,41 +869,31 @@
           "questions": [
             {
               "id": "ja-n1-u2-l1-q1",
-              "question": "«Fikrlardagi kelishmovchilik / nomuvofiqlik» oliy kanjisi qaysi?",
-              "options": ["齟齬[そご]", "曖昧[あいまい]", "葛藤[かっとう]", "乖離[かいり]"],
+              "question": "「双方[そうほう]の 認識[にんしき]の 間[あいだ]に 大[おお]きな （　　）が 生[しょう]じ、契約[けいやく]交渉[こうしょう]は 難航[なんこう]した。」",
+              "options": ["齟齬[そご]", "乖離[かいり]", "葛藤[かっとう]", "隠蔽[いんぺい]"],
               "correctAnswerIndex": 0,
-              "explanation": "«齟齬[そご]» — fikrlar, qarashlar yoki tomonlar o‘rtasidagi nomuvofiqlik va kelishmovchilikni anglatadi."
+              "explanation": "齟齬（そご）: Fikrlashdagi nomuvofiqlik yoki uzilish («双方の認識の齟齬» = ikki tomon tushunchasidagi nomuvofiqlik)."
             },
             {
               "id": "ja-n1-u2-l1-q2",
-              "question": "「曖昧[あいまい]な 態度[たいど]」ning ma'nosi:",
-              "options": [
-                "Aniq javob",
-                "Mavhum, noaniq va ikkilangan pozitsiya",
-                "Quvonch",
-                "Qat'iy qaror"
-              ],
+              "question": "「理想[りそう]と 現実[げんじつ]が あまりにも （　　）しており、現場[げんば]の 職員[しょくいん]に 疲労[ひろう]が 蓄積[ちくせき]している。」",
+              "options": ["矛盾[むじゅん]", "乖離[かいり]", "曖昧[あいまい]", "脆弱[ぜいじゃく]"],
               "correctAnswerIndex": 1,
-              "explanation": "Ambiguous / evasive attitude."
+              "explanation": "乖離（かいり）: Oʻrtada ulkan darz ketishi / butkul uzoqlashib ketish («oradagi katta tafovut»)."
             },
             {
               "id": "ja-n1-u2-l1-q3",
-              "question": "«Paradoks / O'zaro ziddiyat» kanjisi qaysi?",
-              "options": ["乖離[かいり]", "齟齬[そご]", "矛盾[むじゅん]", "葛藤[かっとう]"],
+              "question": "「会社[かいしゃ]の 利益[りえき]と 個人[こじん]の 良心[りょうしん]との 間[あいだ]で、激[はげ]しい 心[こころ]の （　　）を 経験[けいけん]した。」",
+              "options": ["齟齬[そご]", "覇権[はけん]", "葛藤[かっとう]", "隠蔽[いんぺい]"],
               "correctAnswerIndex": 2,
-              "explanation": "矛盾 (Mujun)."
+              "explanation": "葛藤（かっとう）: Ichki ruhiy ziddiyat, ikkilanish yoki kurash."
             },
             {
               "id": "ja-n1-u2-l1-q4",
-              "question": "「自己[じこ]矛盾[むじゅん]」nimani anglatadi?",
-              "options": [
-                "O'zini maqtash",
-                "O'zini yo'qotish",
-                "O'zini sevish",
-                "O'z-o'zini inkor qiluvchi ichki ziddiyat"
-              ],
+              "question": "「彼[かれ]の 主張[しゅちょう]は 最初[さいしょ]と 最後[さいご]で 論理的[ろんりてき]な （　　）を きたしている。」",
+              "options": ["憂慮[ゆうりょ]", "諮問[しもん]", "乖離[かいり]", "矛盾[むじゅん]"],
               "correctAnswerIndex": 3,
-              "explanation": "Self-contradiction."
+              "explanation": "矛盾（むじゅん）: Mantiqiy qarama-qarshilik / paradoks («oʻz soʻziga zid chiqish»)."
             }
           ]
         }
@@ -1120,46 +1015,31 @@
           "questions": [
             {
               "id": "ja-n1-u2-l2-q1",
-              "question": "«Dunyo gegemonligi / Siyosiy ustunlik» kanjisi qaysi?",
-              "options": ["隠蔽[いんぺい]", "脆弱[ぜいじゃく]", "諮問[しもん]", "覇権[はけん]"],
-              "correctAnswerIndex": 3,
-              "explanation": "覇権 (Haken)."
+              "question": "「大国[たいこく]間[かん]による ハイテク分野[ぶんや]の （　　）争[あらそ]いが、国際[こくさい]秩序[ちじょ]を 揺[ゆ]るがしている。」",
+              "options": ["覇権[はけん]", "憂慮[ゆうりょ]", "脆弱[ぜいじゃく]", "諮問[しもん]"],
+              "correctAnswerIndex": 0,
+              "explanation": "覇権（はけん）: Ustunlik / gegemoniya («texnologik sohadagi gegemonlik kurashi»)."
             },
             {
               "id": "ja-n1-u2-l2-q2",
-              "question": "「諮問[しもん]機関[きかん]」so'zining ma'nosi:",
-              "options": [
-                "Kasalxona",
-                "Maktab",
-                "Maslahat beruvchi ekspert kengashi / Maslahat organi",
-                "Sud binosi"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Advisory council / Consultative body."
+              "question": "「サプライチェーンの （　　）性が 露呈[ろてい]し、部品[ぶひん]の 調達[ちょうたつ]が 滞[とどこお]った。」",
+              "options": ["隠蔽[いんぺい]", "脆弱[ぜいじゃく]", "曖昧[あいまい]", "矛盾[むじゅん]"],
+              "correctAnswerIndex": 1,
+              "explanation": "脆弱性（ぜいじゃくせい）: Zaiflik, moʻrtlik («taʼminot zanjirining zaif tomoni oshkor boʻldi»)."
             },
             {
               "id": "ja-n1-u2-l2-q3",
-              "question": "«Kiber-xavfsizlikdagi zaiflik»:",
-              "options": [
-                "セキュリティです",
-                "セキュリティの 脆弱[ぜいじゃく]性",
-                "セキュリティの 憂慮[ゆうりょ]",
-                "セキュリティの 覇権[はけん]"
-              ],
-              "correctAnswerIndex": 1,
-              "explanation": "Security vulnerability (Zeijakusei)."
+              "question": "「気候[きこう]変動[へんどう]が 食料[しょくりょう]生産[せいさん]に 与[あた]える 壊滅的[かいめつてき]な 影響[えいきょう]が 深[ふか]く （　　）されている。」",
+              "options": ["隠蔽[いんぺい]", "諮問[しもん]", "憂慮[ゆうりょ]", "葛藤[かっとう]"],
+              "correctAnswerIndex": 2,
+              "explanation": "憂慮（ゆうりょ）: Chuqur xavotir yoki tashvishga tushish («chuqur xavotir bildirilmoqda»)."
             },
             {
               "id": "ja-n1-u2-l2-q4",
-              "question": "「隠蔽[いんぺい]工作[こうさく]」nimani bildiradi?",
-              "options": [
-                "Dalillarni yashirish va jamoatchilikni chalg'itish harakati",
-                "Yangi qurilish",
-                "Qonun qabul qilish",
-                "Diplomatik uchrashuv"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Cover-up operation."
+              "question": "「首相[しゅしょう]は 税制[ぜいせい]改革[かいかく]の 具体策[ぐたいさく]について、専門家[せんもんか]会議[かいぎ]に （　　）した。」",
+              "options": ["隠蔽[いんぺい]", "憂慮[ゆうりょ]", "覇権[はけん]", "諮問[しもん]"],
+              "correctAnswerIndex": 3,
+              "explanation": "諮問（しもん）: Davlat darajasida mutaxassislar kengashiga rasmiy maslahat soʻrab murojaat qilish."
             }
           ]
         }
@@ -1289,59 +1169,36 @@
           "questions": [
             {
               "id": "ja-n1-u2-l3-q1",
-              "question": "N1 Choukai da professor qarama-qarshi nazariyalarni solishtirganda qaysi ko'nikma talab etiladi?",
-              "options": [
-                "Xonadan chiqib ketish",
-                "Faqat birinchi gapni eshitish",
-                "Har bir gipotezaning dalillarini tezda qayd qilib, yakuniy sintezni topish",
-                "Lug'at varaqlash"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Rapid conceptual synthesis & hypothesis contrast.",
-              "audioUrl": "/audio/choukai/n1/n1_lecture_l08.mp3",
-              "audioTitle": "N1 Track 08: Ilmiy Ma'ruza"
+              "question": "教授[きょうじゅ]「従来[じゅうらい]の 経済学[けいざいがく]では 人間[にんげん]の 合理的[ごうりてき]な 判断[はんだん]を 前提[ぜんてい]としてきた。しかし 行動[こうどう]経済学[けいざいがく]の 台頭[たいとう]に （　　）、心理的[しんりてき]バイアスが 意思[いし]決定[けってい]に 及[およ]ぼす 影響[えいきょう]が 明[あき]らかに された。」",
+              "options": ["伴[ともな]って", "かけて", "かぎって", "ぬきにして"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜に伴って: Xulq-atvor iqtisodiyotining yuzaga chiqishi ortidan qaror qabul qilishdagi psixologik omillar oydinlashdi."
             },
             {
               "id": "ja-n1-u2-l3-q2",
-              "question": "「仮説[かせつ]を 検証[けんしょう]する」ning ma'nosi:",
-              "options": [
-                "Gipotezadan qochmoq",
-                "Darsdan qochmoq",
-                "Gipotezani o'chirib tashlamoq",
-                "Ilmiy gipotezani amalda tekshirib tasdiqlamoq"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Verify/test a hypothesis.",
-              "audioUrl": "/audio/choukai/n1/n1_track_10.mp3",
-              "audioTitle": "N1 Track 10: Akademik Muhokama"
+              "question": "学術[がくじゅつ]講義[こうぎ]：「今回[こんかい]の 実証[じっしょう]実験[じっけん]に より、長年[ながねん] 支持[しじ]されてきた 定説[ていせつ]は 覆[くつがえ]され（　　）。」",
+              "options": ["るっこない", "ざるを得ない", "るわけにはいかない", "るに相違ない"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜ざるを得ない: Ilmiy tajriba natijasida yillardan buyon qabul qilingan nazariya rad etilishidan boshqa chora qolmadi."
             },
             {
               "id": "ja-n1-u2-l3-q3",
-              "question": "N1 Choukai testida savol qachon aytiladi?",
-              "options": [
-                "Uzoq ma'ruza matni to'liq tugagandan so'nggina aytiladi",
-                "Hech qachon aytilmaydi",
-                "Matndan oldin aytiladi",
-                "Boshida ekranda yoziladi"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Question is asked ONLY after the full monologue concludes.",
-              "audioUrl": "/audio/choukai/n1/n1_track_20.mp3",
-              "audioTitle": "N1 Track 20: Tadqiqot Tahlili"
+              "question": "講師[こうし]「新[あたら]しい パラダイムの 提唱[ていしょう]は、既存[きぞん]の 学説[がくせつ]との （　　）を 恐[おそ]れずに 議論[ぎろん]を 深[ふか]めるべきだ。」",
+              "options": ["脆弱[ぜいじゃく]", "隠蔽[いんぺい]", "軋轢[あつれき]", "憂慮[ゆうりょ]"],
+              "correctAnswerIndex": 2,
+              "explanation": "軋轢（あつれき）: Fikrlar toʻqnashuvi, nizo yoki kelishmovchilikdan choʻchimagan holda ilmiy bahs yuritish."
             },
             {
               "id": "ja-n1-u2-l3-q4",
-              "question": "«パラダイムシフト (Paradigm Shift)» nimani anglatadi?",
+              "question": "司会[しかい]「A教授[きょうじゅ]と B教授[きょうじゅ]の 共通[きょうつう]する 結論[けつろん]は （　　）に ほかなりません。」",
               "options": [
-                "Kompyuter klaviaturasi",
-                "Yangi poyezd",
-                "Ilmiy tafakkur va asosiy dunyoqarashning tubdan inqilobiy o'zgarishi",
-                "Oddiy xato"
+                "規制[きせい]の 緩和[かんわ]",
+                "予算[よさん]の 削減[さくげん]",
+                "実験[じっけん]の 中止[ちゅうし]",
+                "基礎[きそ]研究[けんきゅう]の 強化[きょうか]"
               ],
-              "correctAnswerIndex": 2,
-              "explanation": "Fundamental paradigm shift.",
-              "audioUrl": "/audio/choukai/n1/n1_track_42.mp3",
-              "audioTitle": "N1 Track 42: Tezis Sintezi"
+              "correctAnswerIndex": 3,
+              "explanation": "〜にほかなりません: Ikki olimning yakdil fikri aynan fundamental tadqiqotlarni kuchaytirish zarurligidan boshqa narsa emas."
             }
           ]
         }
@@ -1463,46 +1320,41 @@
           "questions": [
             {
               "id": "ja-n1-u2-l4-q1",
-              "question": "「〜の 賜物[たまもの]」nimani anglatadi?",
+              "question": "「いかなる 名誉[めいよ]や 地位[ちい]を 得[え]ようと、健康[けんこう]を 害[がい]しては （　　）も ない。」",
               "options": [
-                "Sovg'a qutisi",
-                "Mashaqqatli mehnatning oliy mevasi / Natijasi",
-                "Yomon oqibat",
-                "Tasodif"
+                "元[もと]も子[こ]",
+                "非[ひ]の 打[う]ち所[どころ]",
+                "右[みぎ]に 出[で]る者[もの]",
+                "後[あと]の 祭[まつ]り"
               ],
-              "correctAnswerIndex": 1,
-              "explanation": "Fruit / Blessed outcome of great toil."
+              "correctAnswerIndex": 0,
+              "explanation": "元も子もない（もともこもない）: Hammasini boy berish / butkul barbod boʻlish («sogʻlik ketgach, boylikning sariq chaqalik foydasi qolmaydi»)."
             },
             {
               "id": "ja-n1-u2-l4-q2",
-              "question": "「一概[いちがい]に〜とは 言[い]えない」ning ma'nosi:",
-              "options": [
-                "Barchasini bir xil deb umumlashtirib bo'lmaydi",
-                "Albatta shunday",
-                "Hech qachon bo'lmaydi",
-                "To'g'ri gap"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Cannot generalize sweepingly."
+              "question": "「国際[こくさい]的な 金融[きんゆう]危機[きき]の 影響[えいきょう]に （　　）、国内[こくない]の 設備[せつび]投資[とうし]は 凍結[とうけつ]された。」",
+              "options": ["かけて", "かんがみ", "おいて", "かぎり"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜に鑑み（かんがみ）: Dunyo moliyaviy inqirozining jiddiy oqibatlarini inobatga olgan holda."
             },
             {
               "id": "ja-n1-u2-l4-q3",
-              "question": "«JLPT N1 umumiy sertifikat balining o'tish chegarasi qancha?»",
-              "options": ["50 ball", "180 ball", "90 ball", "100 / 180 ball"],
-              "correctAnswerIndex": 3,
-              "explanation": "100/180 overall with 19/60 sectional minimums."
+              "question": "「不祥事[ふしょうじ]の 責任[せきにん]を 取[と]り、代表[だいひょう]取締役[とりしまりやく]を 辞任[じにん]（　　）。」",
+              "options": [
+                "するきらいがある",
+                "せざるをえなかった",
+                "するまでもない",
+                "しかねなかった"
+              ],
+              "correctAnswerIndex": 1,
+              "explanation": "〜せざるを得なかった: Jamiyat oldidagi javobgarlik sababli isteʼfo berishdan oʻzga chora qolmagan."
             },
             {
               "id": "ja-n1-u2-l4-q4",
-              "question": "「余儀[よぎ]なく される」nimani bildiradi?",
-              "options": [
-                "Vaziyat taqozosi bilan majburan shunday yo'l tutishga majbur bo'lmoq",
-                "Rad etmoq",
-                "Dam olmoq",
-                "Xursand bo'lmoq"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Forced / Constrained inevitably."
+              "question": "「彼[かれ]の 類[たぐ]いまれなる 才能[さいのう]と 努力[どりょく]を （　　）、この 大事業[だいじぎょう]の 成功[せいこう]は あり得[え]なかった。」",
+              "options": ["ならでは", "にかまけて", "をはじめ", "をおいて"],
+              "correctAnswerIndex": 3,
+              "explanation": "〜をおいて他にない: Uning tengsiz isteʼdodi va mehnatidan boshqa hech narsa bu muvaffaqiyatni yarata olmasdi."
             }
           ]
         }
@@ -1625,46 +1477,36 @@
           "questions": [
             {
               "id": "ja-n1-u2-l5-q1",
-              "question": "「時代[じだい]の 変遷[へんせん]」dagi 変遷 nimani anglatadi?",
-              "options": [
-                "Davrlarning almashinuvi / Tarixiy evrilish",
-                "Kitob o'qish",
-                "Quyosh chiqishi",
-                "Bitta kun"
-              ],
+              "question": "「時代[じだい]の 変遷[へんせん]に （　　）、言葉[ことば]の 意味[いみ]や 用法[ようほう]も 刻々[こっこく]と 変化[へんか]する。」",
+              "options": ["ともなって", "かぎって", "ぬきにして", "かけて"],
               "correctAnswerIndex": 0,
-              "explanation": "Historical vicissitudes / Transitions of eras."
+              "explanation": "〜に伴って: Zamonlar almashinuvi bilan uzviy bogʻliq ravishda soʻzlarning maʼno va qoʻllanishi ham muttasil oʻzgaradi."
             },
             {
               "id": "ja-n1-u2-l5-q2",
-              "question": "「真理[しんり]は 不変[ふへん]で ある」ning ma'nosi:",
-              "options": [
-                "Haqiqat yo'q",
-                "Haqiqat yangidir",
-                "Haqiqat o'zgarmas va boqiydir",
-                "Haqiqat yolg'ondir"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Truth is immutable."
+              "question": "「一国[いっこく]の 首脳[しゅのう]（　　）、軽率[けいそつ]な 発言[はつげん]で 国益[こくえき]を 損[そこ]なうような ことが あってはならない。」",
+              "options": ["まじき", "たるもの", "ならでは", "をおいて"],
+              "correctAnswerIndex": 1,
+              "explanation": "一国の首脳たるもの: Bir davlat rahbari maqomidagi shaxs oʻylamay gapirib davlat manfaatiga putur yetkazmasligi darkor."
             },
             {
               "id": "ja-n1-u2-l5-q3",
-              "question": "Yapon tili bo'yicha JLPT tizimidagi eng yuqori oliy daraja qaysi?",
-              "options": ["JLPT N1", "JLPT N5", "JLPT N2", "CEFR B2"],
-              "correctAnswerIndex": 0,
-              "explanation": "JLPT N1 oliy darajadagi sintaktik va leksik qoidalarga asoslangan to‘g‘ri javob."
+              "question": "「長年[ながねん]の 懸案[けんあん]であった 条約[じょうやく]の 締結[ていけつ]を （　　）、両国[りょうこく]関係[かんけい]は 新[あら]たな 局面[きょくめん]を 迎[むか]えた。」",
+              "options": ["めぐって", "先立[さきだ]って", "契機[けいき]に", "沿[そ]って"],
+              "correctAnswerIndex": 2,
+              "explanation": "〜を契機に: Bitimning imzolanishi ikki mamlakat aloqalarida yangi davr boshlanishiga katta burilish nuqtasi boʻldi."
             },
             {
               "id": "ja-n1-u2-l5-q4",
-              "question": "JLPT N1 sertifikati qanday huquqiy va akademik maqom beradi?",
+              "question": "「司法[しほう]の 公正[こうせい]さを 揺[ゆ]るがすような 行為[こうい]は、法治[ほうち]国家[こっか]において 断[だん]じて （　　）。」",
               "options": [
-                "Faqat muzeyga kirish chiptasi",
-                "Hech qanday imtiyoz bermaydi",
-                "Faqat do'konda chegirma",
-                "Yaponiyada shifokorlik litsenziyasi, oliy davlat xizmati, universitet professori va doimiy rezidentlik ballarida eng yuqori imtiyoz beradi"
+                "許[ゆる]すまじきことだ",
+                "許[ゆる]すべからざるものだ",
+                "許[ゆる]すにたえない",
+                "許[ゆる]さざるを得ない"
               ],
-              "correctAnswerIndex": 3,
-              "explanation": "Highest legal, medical, academic & immigration status advantages."
+              "correctAnswerIndex": 0,
+              "explanation": "〜あるまじき／許すまじき: Adolat tamoyilini buzuvchi harakat huquqiy davlatda aslo kechirib boʻlmas jinoyatdir."
             }
           ]
         }
@@ -2602,46 +2444,36 @@
           "questions": [
             {
               "id": "ja-n1-u4-l1-q1",
-              "question": "N1 Dokkaida muallif pozitsiyasini aniqlovchi kalit ibora:",
-              "options": [
-                "「かもしれない」",
-                "「そうです」",
-                "「でしょう」",
-                "「〜にほかならない」 / 「〜と考えられる」"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Ni hokaranarai / to kangaerareru."
+              "question": "「言語[げんご]は 単[たん]なる 伝達[でんたつ]ツールに （　　）、人間[にんげん]の 思考[しこう]の 枠組[わくぐ]みそのものを 規定[きてい]している。」",
+              "options": ["すぎず", "およばず", "かぎらず", "相違[そうい]なく"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜にすぎず: Til shunchaki axborot yetkazish vositasi boʻlibgina qolmay, tafakkurning oʻzini shakllantiradi."
             },
             {
               "id": "ja-n1-u4-l1-q2",
-              "question": "論説文[ろんせつぶん]において「〜に ほかならない」の 役割[やくわり]は？",
-              "options": [
-                "Muallif o'zining qat'iy asosiy xulosasini ta'kidlash",
-                "Mavzudan butunlay chalg'ish",
-                "Boshqalarning fikrini inkor qilish",
-                "Vaziyatning noaniqligini ko'rsatish"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "«〜にほかならない» matnda muallifning xulosasini («aynan shuning o'zi, boshqa narsa emas») qat'iy belgilaydi."
+              "question": "「近代[きんだい]合理主義[ごうりしゅぎ]の 限界[げんかい]が 指摘[してき]される（　　）、東洋[とうよう]思想[しそう]への 関心[かんしん]が 再[ふたた]び 高[たか]まりを見せている。」",
+              "options": ["あまり", "一方で[いっぽうで]", "ばかりに", "末[すえ]に"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜一方で: Ratsionalizmning cheklanganligi koʻrsatib oʻtilishi bilan bir qatorda («ikkinchi tomondan»), sharq falsafasiga qiziqish ortmoqda."
             },
             {
               "id": "ja-n1-u4-l1-q3",
-              "question": "「言語[げんご]は 単なる[たんなる] 伝達[でんたつ] ツールに（　　）、思考[しこう]の 枠組み[わくぐみ]そのものである」に入るのは？",
-              "options": ["かぎらず", "とどまらず", "おいて", "いたって"],
-              "correctAnswerIndex": 1,
-              "explanation": "«〜にとどまらず» (faqat ... bilan cheklanib qolmasdan) kengroq fanning mohiyatini ochishda xizmat qiladi."
+              "question": "「主観[しゅかん]と 客観[きゃっかん]の 二項[にこう]対立[たいりつ]を （　　）、新たな 認識論[にんしきろん]の 構築[こうちく]が 模索[もさく]されている。」",
+              "options": ["基[もと]づいて", "応[おう]じて", "乗り越[のりこ]えて", "通[とお]して"],
+              "correctAnswerIndex": 2,
+              "explanation": "乗り越えて: Subyektiv va obyektiv qarama-qarshilikni yengib oʻtgan holda yangi epistemologik yondashuv qidirilmoqda."
             },
             {
               "id": "ja-n1-u4-l1-q4",
-              "question": "N1 Dokkai matnlarida muallif pozitsiyasini ko'rsatuvchi kalit so'z qaysi?",
+              "question": "「筆者[ひっしゃ]の 主張[しゅちょう]の 核心[かくしん]は、人間[にんげん]の 理性[りせい]への 過信[かしん]に 対[たい]する （　　）に ほかならない。」",
               "options": [
-                "おはようございます",
-                "昨日、私は",
-                "しかしながら / 筆者は〜と考える",
-                "おそらく雨でしょう"
+                "賛同[さんどう]",
+                "賞賛[しょうさん]",
+                "妥協[だきょう]",
+                "警鐘[けいしょう]"
               ],
-              "correctAnswerIndex": 2,
-              "explanation": "«しかしながら», «要するに», «〜と考える» jumlalari muallifning markaziy tezisini ifodalaydi."
+              "correctAnswerIndex": 3,
+              "explanation": "警鐘（けいしょう）: Muallif fikrining asosi inson aqliga ortiqcha bino qoʻyish xavfidan ogohlantirishdan boshqa narsa emas."
             }
           ]
         }
@@ -3240,59 +3072,46 @@
           "questions": [
             {
               "id": "ja-n1-u4-l5-q1",
-              "question": "N1 Chokkai imtihonida 「現状維持すら危うい」 ning ma'nosi:",
+              "question": "対談[たいだん]：A氏[し]「現状[げんじょう]の ビジネスモデルを 固執[こしつ]していては、企業[きぎょう]の 存続[そんぞく]すら 危[あや]うい。」B氏[し]「ええ、時代[じだい]の 潮流[ちょうりゅう]を 見据[みす]えた （　　）な 改革[かいかく]が 急務[きゅうむ]ですね。」",
               "options": [
-                "Zo'r",
-                "Juda tinch",
-                "Yo'q",
-                "Hozirgi holatni saqlab qolish ham xavf ostida"
+                "抜本的[ばっぽんてき]",
+                "形式的[けいしきてき]",
+                "一時的[いちじてき]",
+                "曖昧[あいまい]"
               ],
-              "correctAnswerIndex": 3,
-              "explanation": "Hozirgi holatni saqlash ham xavf ostida.",
-              "audioUrl": "/audio/choukai/n1/n1_dialogue_l20.mp3",
-              "audioTitle": "N1 Track 20: Integratsion Dialog"
+              "correctAnswerIndex": 0,
+              "explanation": "抜本的（ばっぽんてき）: Tubdan, ildizidan yangilovchi islohot («抜本的な改革»)."
             },
             {
               "id": "ja-n1-u4-l5-q2",
-              "question": "JLPT N1 Choukai (統合理解) da asosiy talab nima?",
-              "options": [
-                "Bir nechta shaxslar fikrini taqqoslash va umumiy xulosani ilg'ash",
-                "Faqat birinchi jumlani eslab qolish",
-                "Savolni eshitmasdan javob berish",
-                "So'zlarning alifbodagi o'rnini topish"
-              ],
+              "question": "男[おとこ]「今回[こんかい]の 共同[きょうどう]開発[かいはつ]、相手先[あいてさき]の 条件[じょうけん]を 飲[の]むべきでしょうか。」女[おんな]「多少[たしょう]の 譲歩[じょうほ]は （　　）が、主導権[しゅどうけん]を 渡[わた]す わけにはいきません。」",
+              "options": ["やぶさかではない", "いたしかねる", "かねない", "するっこない"],
               "correctAnswerIndex": 0,
-              "explanation": "N1 Tougou Rikai bo'limida bir necha kishi bahslashgan munozaradan har birining pozitsiyasini ajrata bilish sinovdan o'tkaziladi.",
-              "audioUrl": "/audio/choukai/n1/n1_track_45.mp3",
-              "audioTitle": "N1 Track 45: Ekspertlar Bahsi"
+              "explanation": "やぶさかではない: «...qilishga qarshi emasmiz / bajonidil rozi boʻlish mumkin» — muzokaralardagi diplomatik ifoda."
             },
             {
               "id": "ja-n1-u4-l5-q3",
-              "question": "N1 eshitish mashqlarida «〜に越したことはない» iborasining ma'nosi:",
+              "question": "講師[こうし]「危機[きき]管理[かんり]においては、想定[そうてい]しうる リスクの 対策[たいさく]を （　　）に 越[こ]したことはありません。」",
               "options": [
-                "... qilish mutlaqo man etiladi",
-                "... dan yaxshisi yo'q, ... bo'lgani eng ma'quli",
-                "... ga ehtiyoj yo'q",
-                "... o'tib ketgandan so'ng"
+                "後回[あとまわ]しにする",
+                "無視[むし]する",
+                "事前[じぜん]に講[こう]じる",
+                "隠蔽[いんぺい]する"
               ],
-              "correctAnswerIndex": 1,
-              "explanation": "«〜に越したことはない» — «〜が一番いい» (eng afzali shu) degan ma'noni anglatadi.",
-              "audioUrl": "/audio/choukai/n1/n1_track_46.mp3",
-              "audioTitle": "N1 Track 46: Jamiyat va Qaror"
+              "correctAnswerIndex": 2,
+              "explanation": "事前に講じるに越したことはない: Xavflarning oldini olish choralarini oldindan koʻrib qoʻyganga hech narsa yetmaydi."
             },
             {
               "id": "ja-n1-u4-l5-q4",
-              "question": "Muzokaralarda «やぶさかではない» deyilganda qanday ma'no nazarda tutiladi?",
+              "question": "コメンテーター「両者[りょうしゃ]の 主張[しゅちょう]には （　　）が あり、歩[あゆ]み寄[よ]りの 余地[よち]は 極[きわ]めて 小[ちい]さいと 言[い]わざるを得ません。」",
               "options": [
-                "Hech qachon rozi bo'lmayman",
-                "Vaqtim yo'q",
-                "Jon deb, bajonidil bajarishga tayyorman",
-                "Shartlaringiz juda og'ir"
+                "共通点[きょうつうてん]",
+                "合意[ごうい]",
+                "妥協[だきょう]",
+                "大[おお]きな 隔[へだ]たり"
               ],
-              "correctAnswerIndex": 2,
-              "explanation": "«〜するにやぶさかではない» — qadimgi yapon tilidan saqlanib qolgan rasmiy ibora bo'lib, «jon deb qilaman» degani.",
-              "audioUrl": "/audio/choukai/n1/n1_track_77.mp3",
-              "audioTitle": "N1 Track 77: Boshqaruv Munozarasi"
+              "correctAnswerIndex": 3,
+              "explanation": "大きな隔たり（へだたり）: Ikki tomon talabi oʻrtasida yengib boʻlmas ulkan jarlik/tafovut mavjud."
             }
           ]
         }
@@ -3906,46 +3725,36 @@
           "questions": [
             {
               "id": "ja-n1-u5-l4-q1",
-              "question": "「彼[かれ]を _______ 他[ほか]に この 重職[じゅうしょく]を 果[は]たせる 者[もの]は いない。」",
-              "options": ["にして", "をもって", "をめぐって", "をおいて"],
-              "correctAnswerIndex": 3,
-              "explanation": "O oite = undan bo'lak yo'q."
+              "question": "「世界[せかい]経済[けいざい]の 不確実性[ふかくじつせい]が 増[ま]す中[なか]、リスク管理[かんり]の 徹底[てってい]が （　　） 求[もと]められている。」",
+              "options": [
+                "これまで 以上[いじょう]に",
+                "今更[いまさら]ながら",
+                "ともすると",
+                "あながち"
+              ],
+              "correctAnswerIndex": 0,
+              "explanation": "これまで以上に: Hozirgi noaniqlik davrida xavf-xatarlarni boshqarish har qachongidan ham zarurdir."
             },
             {
               "id": "ja-n1-u5-l4-q2",
-              "question": "JLPT N1 imtihonida vaqtni taqsimlashning eng muhim qoidasi qaysi?",
-              "options": [
-                "Goi va Bunpou qismini tezkor ishlab, Dokkai uchun kamida 65-70 daqiqa vaqt zaxirasi qoldirish",
-                "Bitta qiyin savol ustida 20 daqiqa o'ylash",
-                "Dokkai matnlarini o'qimasdan tavakkal belgilash",
-                "Faqat tinglash qismiga tayyorlanish"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "N1 testida Moji/Goi/Bunpou qismini 40-45 daqiqada yakunlab, murakkab uzun matnlarga ko'p vaqt ajratish hal qiluvchi strategiyadir."
+              "question": "「東京[とうきょう]本社[ほんしゃ]の 刷新[さっしん]を （　　）、全国[ぜんこく]の 支社[ししゃ]でも 業務[ぎょうむ]改革[かいかく]が 順次[じゅんじ] 始[はじ]まった。」",
+              "options": ["ぬきにして", "皮切り[かわきり]に", "かぎりに", "契機[けいき]にして"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜を皮切りに: Tokio bosh idorasidagi islohot boshlanishi boʻlib, butun mamlakat filiallarida yangilanish start oldi."
             },
             {
               "id": "ja-n1-u5-l4-q3",
-              "question": "«〜を皮切りに[かわきりに]» iborasi qanday ma'noni ifodalaydi?",
-              "options": [
-                "Ishni butunlay to'xtatish",
-                "Biror voqeani boshlang'ich nuqta qilib, ketma-ket bir xil harakatlar boshlanib ketishi",
-                "Terini kesib olish",
-                "Mavsum tugashi"
-              ],
-              "correctAnswerIndex": 1,
-              "explanation": "«東京公演を皮切りに全国ツアーが始まった» (Tokiodan boshlanib butun mamlakat bo'ylab davom etdi)."
+              "question": "「日頃[ひごろ]の 雑務[ざつむ]に （　　）、長期[ちょうき]的な 経営[けいえい]ビジョンの 策定[さくてい]が 疎[おろそ]かになっていた。」",
+              "options": ["かぎって", "こめて", "かまけて", "おいて"],
+              "correctAnswerIndex": 2,
+              "explanation": "〜にかまけて: Kundalik mayda-chuyda ishlarga oʻralashib qolib («chalgʻib»), uzoq muddatli rejalarni eʼtibordan chetda qoldirgan."
             },
             {
               "id": "ja-n1-u5-l4-q4",
-              "question": "«〜にかまけて» grammatikasining salbiy ma'nosi:",
-              "options": [
-                "Bir vaqtning o'zida ikkala ishni a'lo darajada bajarish",
-                "Dam olish kunini xushchaqchaq o'tkazish",
-                "Bir ish bilan haddan tashqari band bo'lib, bajarishi lozim bo'lgan boshqa muhim vazifani e'tiborsiz qoldirish",
-                "Do'stlariga doimo yordam berish"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "«忙しさにかまけて親への連絡を怠る» (Bandlikka chalg'ib ota-onasiga qo'ng'iroq qilishni unutmoq)."
+              "question": "「彼[かれ]の 誠実[せいじつ]な 人柄[ひとがら]を （　　） 他[ほか]に、この 紛争[ふんそう]の 仲裁[ちゅうさい]を 託[たく]せる 者[もの]は いない。」",
+              "options": ["ならでは", "にあって", "をよそに", "をおいて"],
+              "correctAnswerIndex": 3,
+              "explanation": "〜をおいて他にない: Uning halol va samimiy fazilatidan oʻzga bu nizoga vositachilik qila oladigan shaxs yoʻq."
             }
           ]
         }
@@ -4736,51 +4545,51 @@
           "questions": [
             {
               "id": "ja-n1-u6-l4-q1",
-              "question": "Rasmiy e'londa «定員になり次第、締め切らせていただきます» deb yozilgan bo'lsa, bu nimani anglatadi?",
+              "question": "【公募[こうぼ]研究[けんきゅう] 応募[おうぼ]要項[ようこう]】「書類[しょるい]に 不備[ふび]が ある 申請[しんせい]は 受理[じゅり]いたしかねます。」この記述の 意味として 最も 適切なものは どれか。",
               "options": [
-                "Belgilangan qabul kvotasi to'lishi bilanoq arizalar qabul qilish to'xtatiladi",
-                "Muddat tugaguncha qancha odam kelsa ham qabul qilinadi",
-                "Ertaga hamma uchun bepul bo'ladi",
-                "Qabul hech qachon yopilmaydi"
+                "必要書類や記入事項に欠陥がある場合は、申請を受け付けない",
+                "書類が不備であっても、後から追完すれば必ず受理される",
+                "提出期限前であれば、どのような書類でも受け付ける",
+                "不備の有無にかかわらず、全ての申請を厳正に審査する"
               ],
               "correctAnswerIndex": 0,
-              "explanation": "«〜次第[しだい]» bu yerda «bo'lishi bilanoq darhol» ma'nosida ishlatilgan."
+              "explanation": "「受理いたしかねます」: Hujjatlarda kamchilik yoki yetishmovchilik boʻlsa, ariza mutlaqo qabul qilinmaydi."
             },
             {
               "id": "ja-n1-u6-l4-q2",
-              "question": "«該当者[がいとうしゃ]なし» degani nima?",
+              "question": "【選考[せんこう]結果[けっか] 発表[はっぴょう]】「厳正[げんせい]なる 審査[しんさ]の 結果[けっか]、今年度[こんねんど]の 該当者[がいとうしゃ]は なしと 決定[けってい]いたしました。」この文が 意味する ことは 何か。",
               "options": [
-                "Hamma qabul qilindi",
-                "Talablarga mos keladigan hech bir shaxs yo'q",
-                "G'oliblar ro'yxati e'lon qilindi",
-                "Imtihon topshiruvchilar soni ko'p"
+                "応募者全員が採用基準を満たした",
+                "基準を満たす適切な候補者が一人もいなかった",
+                "選考基準が途中で変更されたため全員不合格となった",
+                "結果の発表が来年度に見送られた"
               ],
               "correctAnswerIndex": 1,
-              "explanation": "«該当[がいとう]» shartlarga tushish degani, ya'ni hech kim shartga mos kelmadi."
+              "explanation": "「該当者なし」: Belgilangan oliy mezon va talablarga javob beradigan munosib nomzod topilmadi."
             },
             {
               "id": "ja-n1-u6-l4-q3",
-              "question": "«不備[ふび]が ある 申請[しんせい]は 受理[じゅり]いたしかねます»の意味は？",
+              "question": "【施設[しせつ]利用[りよう] 規約[きやく]】「特記[とっき]事項[じこう]：深夜[しんや]（22時[にじゅうにじ]以降[いこう]）の 音響[おんきょう]機器[きき]の 使用[しよう]は 固[かた]く お断[ことわ]りいたします。」利用者が 守るべき ルールは どれか。",
               "options": [
-                "Barcha arizalar zudlik bilan qabul qilinadi",
-                "Hujjat topshirish ixtiyoriy",
-                "Kamchiligi bo'lgan arizalarni qabul qila olmaymiz",
-                "Ariza to'lovi bekor qilindi"
+                "22時以降は音響機器の音量を小さくすれば使用できる",
+                "事前の許可があれば深夜でも楽器を演奏できる",
+                "夜22時を過ぎたら、音響機器を一切使用してはならない",
+                "深夜の利用については別料金を支払えば免除される"
               ],
               "correctAnswerIndex": 2,
-              "explanation": "«〜いたしかねます» keigo shaklida muloyim rad etishni bildiradi («qabul qila olmaymiz»)."
+              "explanation": "「固くお断りいたします」: Qatʼiyan taqiqlanadi (soat 22:00 dan soʻng audio apparaturalarni ishlatish mutlaqo man etiladi)."
             },
             {
               "id": "ja-n1-u6-l4-q4",
-              "question": "«特記[とっき]事項[じこう]» degani nima?",
+              "question": "【展示会[てんじかい] 入場[にゅうじょう]規定[きてい]】「招待状[しょうたいじょう]を ご持参[じさん]でない お客様[きゃくさま]に つきましては、当日[とうじつ]入場料[にゅうじょうりょう]を （　　）。」",
               "options": [
-                "Keraksiz ma'lumotlar",
-                "Kompaniya logotipi",
-                "Manzil va telefon raqam",
-                "Alohida eslatib o'tilishi shart bo'lgan muhim maxsus bandlar"
+                "免除[めんじょ]いたします",
+                "返金[へんきん]いたしかねます",
+                "お支払[しはら]い申[もう]し上[あ]げます",
+                "申[もう]し受[う]けます"
               ],
               "correctAnswerIndex": 3,
-              "explanation": "«特記事項» shartnomadagi eng muhim maxsus shartlardir."
+              "explanation": "申し受けます（もうしうけます）: Taklifnomasi boʻlmagan mehmonlardan kirish toʻlovi undiriladi / olinadi."
             }
           ]
         }

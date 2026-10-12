@@ -131,57 +131,42 @@
           "questions": [
             {
               "id": "ja-n3-u1-l1-q1",
-              "question": "«Meiwaku no Ukemi» yapon tilida qanday holatni ifodalaydi?",
-              "options": [
-                "Juda xursand bo'lganini",
-                "Ruxsat berilganini",
-                "Hech narsa sodir bo'lmaganini",
-                "Boshqa birovning yoki tabiatning harakati natijasida gapiruvchi noqulaylik yoki zarar ko'rganini"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Suffering/inconvenience caused to speaker."
+              "question": "「満員[まんいん]電車[でんしゃ]の 中[なか]で、誰[だれ]かに 足[あし]を （　　） 痛[いた]かった。」",
+              "options": ["踏[ふ]まれて", "踏[ふ]んで", "踏[ふ]ませて", "踏[ふ]まされて"],
+              "correctAnswerIndex": 0,
+              "explanation": "迷惑の受身 (Zararlanish majhuli): Birov oyogʻimni bosib olgani sababli zararlanganda: 「踏まれて」."
             },
             {
               "id": "ja-n3-u1-l1-q2",
-              "question": "「犬[いぬ]に 手[て]を 噛[か]まれました」ning ma'nosi:",
-              "options": [
-                "Kuchuk qo'limni tishlab oldi",
-                "Kuchuk sotib oldim",
-                "Kuchukni tishladim",
-                "Kuchuk yo'q"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Kamaremashita (kuchuk tishlab oldi)."
+              "question": "「道[みち]を 歩[ある]いている とき、知[し]らない 人[ひと]に 声[こえ]を （　　）。」",
+              "options": ["かけた", "かけられた", "かけさせた", "かけさせられた"],
+              "correctAnswerIndex": 1,
+              "explanation": "Majhul nisbat: Birov menga gap qotganda: 「声をかけられた」."
             },
             {
               "id": "ja-n3-u1-l1-q3",
-              "question": "「する」fe'lining majhul (passive) shakli:",
-              "options": ["すれる", "さられる", "される", "しられる"],
+              "question": "「この 歴史的[れきしてき]な 寺[てら]は、約[やく] 600年[ろっぴゃくねん]前[まえ]に （　　）。」",
+              "options": ["建[た]てた", "建[た]てさせた", "建[た]てられた", "建[た]てさせられた"],
               "correctAnswerIndex": 2,
-              "explanation": "«される» — guruh 1 fe’llarining qisqargan majhul (ukemi) so‘zlashuv shakli."
+              "explanation": "Tarixiy obidalar qurilishi majhul nisbatda aytiladi: 「建てられた」."
             },
             {
               "id": "ja-n3-u1-l1-q4",
-              "question": "Tarixiy kashfiyotlar va binolar qurilishi qaysi nisbatda aytiladi?",
-              "options": [
-                "To'g'ridan-to'g'ri majhul nisbatda",
-                "Te-form",
-                "Buyruq shaklida",
-                "Xohish shaklida"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Direct passive for historical facts."
+              "question": "「突然[とつぜん] 雨[あめ]に （　　）、服[ふく]が びしょ濡[ぬ]れに なった。」",
+              "options": ["降[ふ]って", "降[ふ]らせて", "降[ふ]らされて", "降[ふ]られて"],
+              "correctAnswerIndex": 3,
+              "explanation": "Yomgʻirda qolib noqulaylikka uchrash: 「雨に降られて」."
             },
             {
               "id": "ja-n3-u1-l1-q5",
-              "question": "電車[でんしゃ]の 中[なか]で 知[し]らない 人[ひと]に 足[あし]を （　）。",
+              "question": "「電車[でんしゃ]の 中[なか]で 知[し]らない 人[ひと]に 足[あし]を （　　）。」",
               "options": [
-                "踏[ふ]みました",
                 "踏[ふ]まれました",
+                "踏[ふ]みました",
                 "踏[ふ]かせました",
                 "踏[ふ]んでいました"
               ],
-              "correctAnswerIndex": 1,
+              "correctAnswerIndex": 0,
               "explanation": "Poyezdda notanish odam oyogʻimni bosib oldi (meiwaku ukemi — noqulaylik majhuli: 踏まれる)."
             },
             {
@@ -193,35 +178,35 @@
             },
             {
               "id": "ja-n3-u1-l1-q7",
-              "question": "この お寺[てら]は 約[やく]500年[ねん]前[まえ]に （　）。",
+              "question": "「この お寺[てら]は 約[やく]500年[ねん]前[まえ]に （　　）。」",
               "options": [
-                "建[た]てられた",
                 "建[た]てさせた",
                 "建[た]てておいた",
+                "建[た]てられた",
                 "建[た]ててしまった"
               ],
-              "correctAnswerIndex": 0,
+              "correctAnswerIndex": 2,
               "explanation": "Tarixiy obidalar yoki kashfiyotlar toʻgʻridan-toʻgʻri majhulda ifodalanadi: 建[た]てられた (qurilgan)."
             },
             {
               "id": "ja-n3-u1-l1-q8",
-              "question": "雨[あめ]に （　） 服[ふく]が びしょ濡[ぬ]れに なってしまいました。",
-              "options": ["降[ふ]って", "降[ふ]られて", "降[ふ]らせて", "降[ふ]りて"],
-              "correctAnswerIndex": 1,
+              "question": "「雨[あめ]に （　　） 服[ふく]が びしょ濡[ぬ]れに なってしまいました。」",
+              "options": ["降[ふ]って", "降[ふ]らせて", "降[ふ]りて", "降[ふ]られて"],
+              "correctAnswerIndex": 3,
               "explanation": "Yomgʻir yogʻib noqulay ahvolda qolish: 雨に降られる (Ame ni furarete)."
             },
             {
               "id": "ja-n3-u1-l1-q9",
-              "question": "先生[せんせい]に 名前[なまえ]を （　）、返事[へんじ]を しました。",
-              "options": ["呼[よ]ばせて", "呼[よ]ばれて", "呼[よ]んでいて", "呼[よ]ばさせて"],
-              "correctAnswerIndex": 1,
+              "question": "「先生[せんせい]に 名前[なまえ]を （　　）、返事[へんじ]を しました。」",
+              "options": ["呼[よ]ばれて", "呼[よ]ばせて", "呼[よ]んでいて", "呼[よ]ばさせて"],
+              "correctAnswerIndex": 0,
               "explanation": "Ustoz tomonidan chaqirilib: 呼ばれて (Yobarete)."
             },
             {
               "id": "ja-n3-u1-l1-q10",
-              "question": "日記[にっき]を 妹[いもうと]に （　）、とても 恥[は]ずかしかったです。",
-              "options": ["読[よ]ませて", "見[み]せて", "読[よ]まれて", "書[か]かされて"],
-              "correctAnswerIndex": 2,
+              "question": "「日記[にっき]を 妹[いもうと]に （　　）、とても 恥[は]ずかしかったです。」",
+              "options": ["読[よ]ませて", "読[よ]まれて", "見[み]せて", "書[か]かされて"],
+              "correctAnswerIndex": 1,
               "explanation": "Kundalikni singlisi oʻqib qoʻyib noqulay vaziyatga tushgan: 読まれて (Yomarete)."
             }
           ]
@@ -357,92 +342,82 @@
           "questions": [
             {
               "id": "ja-n3-u1-l2-q1",
-              "question": "«Ota bolasiga sabzavot yedirdi» jumlasi qaysi?",
-              "options": [
-                "子供[こども]が 食[た]べました",
-                "父[ちち]は 子供[こども]に 野菜[やさい]を 食[た]べさせました",
-                "野菜[やさい]です",
-                "父[ちち]は 野菜[やさい]を 食[た]べました"
-              ],
-              "correctAnswerIndex": 1,
-              "explanation": "Tabesasemashita (yedirdi/ruxsat berdi)."
+              "question": "「母[はは]は 弟[おとうと]に 毎日[まいにち] 野菜[やさい]を （　　）います。」",
+              "options": ["食[た]べさせて", "食[た]べられて", "食[た]べて", "食[た]べさせられて"],
+              "correctAnswerIndex": 0,
+              "explanation": "Orttirma nisbat (Causative): Birovga biror ish qildirganda: 「食べさせて」."
             },
             {
               "id": "ja-n3-u1-l2-q2",
-              "question": "「来[く]る」fe'lining orttirma (shieki) shakli:",
-              "options": ["こさせる", "きさせる", "くらせる", "かさせる"],
-              "correctAnswerIndex": 0,
-              "explanation": "«来[こ]させる» — «来[く]る» fe’lining orttirma (shieki) grammatik shakli."
+              "question": "「先生[せんせい]は 学生[がくせい]に 難[むずか]しい 作文[さくぶん]を （　　）。」",
+              "options": ["書[か]いた", "書[か]かせた", "書[か]かれた", "書[か]かせられた"],
+              "correctAnswerIndex": 1,
+              "explanation": "Oʻqituvchi talabalarga insho yozdirdi: 「書かせた」."
             },
             {
               "id": "ja-n3-u1-l2-q3",
-              "question": "«Bugun meni biroz erta ketishimga ruxsat bering»:",
-              "options": [
-                "早[はや]く 帰[かえ]ってください",
-                "早[はや]く 帰[かえ]ります",
-                "帰[かえ]るな",
-                "今日[きょう]、早[はや]く 帰[かえ]らせて いただけませんか"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Kaerasete itadakemasen ka."
+              "question": "「部長[ぶちょう]、体調[たいちょう]が 悪[わる]いので、今日[きょう]は 早[はや]く 帰[かえ]ら（　　）ください。」",
+              "options": ["れて", "されて", "せて", "して"],
+              "correctAnswerIndex": 2,
+              "explanation": "Ijozat soʻrashda: 「帰らせてください」 (ketishimga ruxsat bering)."
             },
             {
               "id": "ja-n3-u1-l2-q4",
-              "question": "「読[よ]む」fe'lining orttirma shakli:",
-              "options": ["読[よ]す", "読[よ]まれる", "読[よ]ませる", "読[よ]みさせる"],
-              "correctAnswerIndex": 2,
-              "explanation": "«読[よ]ませる» — «読[よ]む» fe’lining orttirma (shieki) grammatik shakli."
+              "question": "「父[ちち]は 私[わたし]に 好[す]きな ピアノを 習[なら]わ（　　）くれた。」",
+              "options": ["れて", "されて", "して", "せて"],
+              "correctAnswerIndex": 3,
+              "explanation": "Ruxsat berib yordam qilish: 「習わせてくれた」."
             },
             {
               "id": "ja-n3-u1-l2-q5",
-              "question": "子[こ]どもに 毎日[まいにち] 野菜[やさい]を （　） います。",
+              "question": "「子[こ]どもに 毎日[まいにち] 野菜[やさい]を （　　） います。」",
               "options": [
-                "食[た]べられて",
                 "食[た]べさせて",
+                "食[た]べられて",
                 "食[た]べさせておいて",
                 "食[た]べられてしまって"
               ],
-              "correctAnswerIndex": 1,
+              "correctAnswerIndex": 0,
               "explanation": "Bolaga sabzavot yedirmoq (orttirma nisbat: 食べさせる)."
             },
             {
               "id": "ja-n3-u1-l2-q6",
               "question": "「行[い]く」feʼlining orttirma (shieki) shakli qaysi?",
-              "options": ["行[い]かせる", "行[い]かれる", "行[い]かさせる", "行[い]きさせる"],
-              "correctAnswerIndex": 0,
+              "options": ["行[い]かれる", "行[い]かせる", "行[い]かさせる", "行[い]きさせる"],
+              "correctAnswerIndex": 1,
               "explanation": "1-guruh feʼllarida -u tovushi -aseru ga oʻzgaradi: 行く -> 行かせる."
             },
             {
               "id": "ja-n3-u1-l2-q7",
-              "question": "部長[ぶちょう]、その 仕事[しごと]は 私[わたし]に （　） ください。",
-              "options": ["やられて", "やらされて", "やっておいて", "やらせて"],
-              "correctAnswerIndex": 3,
+              "question": "「部長[ぶちょう]、その 仕事[しごと]は 私[わたし]に （　　） ください。」",
+              "options": ["やられて", "やらされて", "やらせて", "やっておいて"],
+              "correctAnswerIndex": 2,
               "explanation": "Oʻziga ruxsat soʻrash: 〜(さ)せてください (Menga bajartiring/ruxsat bering)."
             },
             {
               "id": "ja-n3-u1-l2-q8",
-              "question": "父[ちち]は 私[わたし]に ピアノを （　） くれました。",
-              "options": ["習[なら]われて", "習[なら]わされて", "習[なら]わせて", "習[なら]って"],
-              "correctAnswerIndex": 2,
+              "question": "「父[ちち]は 私[わたし]に ピアノを （　　） くれました。」",
+              "options": ["習[なら]われて", "習[なら]わされて", "習[なら]って", "習[なら]わせて"],
+              "correctAnswerIndex": 3,
               "explanation": "Ruxsat berib imkoniyat yaratish: 習わせてくれました (Oʻrganishimga ruxsat berdilar)."
             },
             {
               "id": "ja-n3-u1-l2-q9",
-              "question": "先生[せんせい]は 学生[がくせい]を 教室[きょうしつ]の 前[まえ]に （　）。",
+              "question": "「先生[せんせい]は 学生[がくせい]を 教室[きょうしつ]の 前[まえ]に （　　）。」",
               "options": [
-                "立[た]たれました",
                 "立[た]たせました",
+                "立[た]たれました",
                 "立[た]たさせました",
                 "立[た]ちました"
               ],
-              "correctAnswerIndex": 1,
+              "correctAnswerIndex": 0,
               "explanation": "Talabani doska oldiga turgʻazib qoʻydi: 立たせました (Tatase-mashita)."
             },
             {
               "id": "ja-n3-u1-l2-q10",
-              "question": "遅[おく]れて みんなを （　） しまいました。",
-              "options": ["待[ま]たせて", "待[ま]たされて", "待[ま]たさせて", "待[ま]たれ"],
-              "correctAnswerIndex": 0,
+              "question": "「遅[おく]れて みんなを （　　） しまいました。」",
+              "options": ["待[ま]たされて", "待[ま]たせて", "待[ま]たさせて", "待[ま]たれ"],
+              "correctAnswerIndex": 1,
               "explanation": "Boshqalarni kuttirib qoʻymoq (harakat qildirmoq): 待たせる (Mataseru)."
             }
           ]
@@ -582,66 +557,56 @@
           "questions": [
             {
               "id": "ja-n3-u1-l3-q1",
-              "question": "「母[はは]に 部屋[へや]を 掃除[そうじ]させられました」ning ma'nosi:",
-              "options": [
-                "Onam xonani tozaladilar",
-                "Xonani tozalamadim",
-                "Onam tomonidan xonani tozalashga majbur bo'ldim",
-                "Xona toza"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Forced to clean the room by mother."
+              "question": "「嫌[いや]な ことだったが、上司[じょうし]に 残業[ざんぎょう]を （　　）。」",
+              "options": ["させられた", "させた", "された", "した"],
+              "correctAnswerIndex": 0,
+              "explanation": "Majburlanish (Causative-Passive): Xohlamasa ham majburan bajarganda: 「させられた」."
             },
             {
               "id": "ja-n3-u1-l3-q2",
-              "question": "Guruh 1 fe'llarida 〜させられる ning so'zlashuvdagi qisqartma shakli qaysi?",
-              "options": ["〜ておく", "〜される", "〜てある", "〜てしまう"],
+              "question": "「飲[の]み会[かい]で 無理[むり]に お酒[さけ]を （　　）、本当[ほんとう]に 困[こま]った。」",
+              "options": ["飲[の]ませて", "飲[の]まされて", "飲[の]まれて", "飲[の]んで"],
               "correctAnswerIndex": 1,
-              "explanation": "〜される (nomasareru)."
+              "explanation": "Majburan ichirilganda: 「飲まされて」."
             },
             {
               "id": "ja-n3-u1-l3-q3",
-              "question": "«Xohlamasam ham achchiq narsa yeyishga majbur bo'ldim»:",
-              "options": [
-                "嫌[いや]だったが、辛[から]い 物[もの]を 食[た]べさせられました",
-                "辛[から]い 物[もの]が 好[す]きです",
-                "食[た]べたい",
-                "辛[から]い 物[もの]を 食[た]べました"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Tabesaseraremashita."
+              "question": "「子供[こども]の 頃[ころ]、毎日[まいにち] 2時間[にじかん] ピアノを 練習[れんしゅう]（　　）。」",
+              "options": ["させた", "した", "させられた", "された"],
+              "correctAnswerIndex": 2,
+              "explanation": "Majburlangan bolalik tajribasi: 「練習させられた」."
             },
             {
               "id": "ja-n3-u1-l3-q4",
-              "question": "「する」fe'lining causative-passive shakli:",
-              "options": ["すれられる", "される", "しらされる", "させられる"],
+              "question": "「試合[しあい]に 負[ま]けて、グラウンドを 10周[じゅっしゅう] 走[はし]ら（　　）。」",
+              "options": ["せた", "れた", "した", "された"],
               "correctAnswerIndex": 3,
-              "explanation": "Saserareru."
+              "explanation": "1-guruh feʼllarida qisqargan shakl: 走らされた (yugurishga majbur boʻldim)."
             },
             {
               "id": "ja-n3-u1-l3-q5",
               "question": "「飲[の]む」feʼlining orttirma-majhul (shieki-ukemi) qisqa shakli qaysi?",
-              "options": ["飲[の]まれる", "飲[の]ませる", "飲[の]まされる", "飲[の]みさせられる"],
-              "correctAnswerIndex": 2,
+              "options": ["飲[の]まされる", "飲[の]まれる", "飲[の]ませる", "飲[の]みさせられる"],
+              "correctAnswerIndex": 0,
               "explanation": "1-guruhda -masareru qisqartmasi ishlatiladi: 飲ませられる -> 飲まされる."
             },
             {
               "id": "ja-n3-u1-l3-q6",
-              "question": "親[おや]に 好[す]きではない 塾[じゅく]へ （　）。",
+              "question": "「親[おや]に 好[す]きではない 塾[じゅく]へ （　　）。」",
               "options": ["行[い]かれた", "行[い]かされた", "行[い]かせた", "行[い]ってしまった"],
               "correctAnswerIndex": 1,
               "explanation": "Ota-ona majburlab toʻgarakka yubordi: 行かされた (Ikasareta)."
             },
             {
               "id": "ja-n3-u1-l3-q7",
-              "question": "悪[わる]いことを していないのに、謝[あやま]るよう （　）。",
+              "question": "「悪[わる]いことを していないのに、謝[あやま]るよう （　　）。」",
               "options": [
-                "謝[あやま]らせられた",
                 "言[い]われた",
                 "謝[あやま]られた",
+                "謝[あやま]らせられた",
                 "謝[あやま]らせた"
               ],
-              "correctAnswerIndex": 0,
+              "correctAnswerIndex": 2,
               "explanation": "Kechirim soʻrashga majbur qilindi: 謝らせられた (Ayamaraserareta)."
             },
             {
@@ -658,19 +623,19 @@
             },
             {
               "id": "ja-n3-u1-l3-q9",
-              "question": "試合[しあい]に 負[ま]けて、グラウンドを 10周[じゅっしゅう] （　）。",
+              "question": "「試合[しあい]に 負[ま]けて、グラウンドを 10周[じゅっしゅう] （　　）。」",
               "options": [
+                "走[はし]らされた",
                 "走[はし]られた",
                 "走[はし]らせた",
-                "走[はし]らされた",
                 "走[はし]りおわった"
               ],
-              "correctAnswerIndex": 2,
+              "correctAnswerIndex": 0,
               "explanation": "Murabbiy tomonidan 10 marta yugurtirildi: 走らされた (Hashirasareta)."
             },
             {
               "id": "ja-n3-u1-l3-q10",
-              "question": "彼[かれ]の 素晴[すば]らしい 演奏[えんそう]に 心[こころ]から （　）。",
+              "question": "「彼[かれ]の 素晴[すば]らしい 演奏[えんそう]に 心[こころ]から （　　）。」",
               "options": [
                 "感動[かんどう]された",
                 "感動[かんどう]させられた",
@@ -808,57 +773,47 @@
           "questions": [
             {
               "id": "ja-n3-u1-l4-q1",
-              "question": "«Darsdan oldin yangi kanjilarni yodlab qo'yaman» jumlasi qaysi?",
-              "options": [
-                "授業[じゅぎょう]の 前[まえ]に 漢字[かんじ]を 覚[おぼ]えて おきます",
-                "漢字[かんじ]を 覚[おぼ]えました",
-                "漢字[かんじ]が 覚[おぼ]えて あります",
-                "漢字[かんじ]です"
-              ],
+              "question": "「授業[じゅぎょう]の 前[まえ]に、新[あたら]しい 漢字[かんじ]を 予習[よしゅう]して （　　）。」",
+              "options": ["おきます", "あります", "います", "しまいます"],
               "correctAnswerIndex": 0,
-              "explanation": "Oboete okimasu (oldindan tayyorgarlik)."
+              "explanation": "Oldindan tayyorgarlik koʻrib qoʻyish: 「〜ておく」 (予習しておきます)."
             },
             {
               "id": "ja-n3-u1-l4-q2",
-              "question": "〜てある qaysi turdagi fe'llar bilan ishlatiladi?",
-              "options": [
-                "Faqat inkor shaklda",
-                "Faqat o'timli fe'llar bilan va egaga が qo'yiladi",
-                "Faqat harakat fe'llari",
-                "Sifatlar bilan"
-              ],
+              "question": "「教室[きょうしつ]の 黒板[こくばん]に 今日[きょう]の 予定[よてい]が 書[か]いて （　　）。」",
+              "options": ["おきます", "あります", "います", "しまいます"],
               "correctAnswerIndex": 1,
-              "explanation": "Transitive verbs with ga."
+              "explanation": "Maqsadli harakatdan keyingi natijaviy holat: 「〜てある」 (書いてあります)."
             },
             {
               "id": "ja-n3-u1-l4-q3",
-              "question": "So'zlashuvda「〜ておく」qanday qisqaradi?",
-              "options": ["〜なきゃ", "〜てる", "〜とく", "〜ちゃう"],
+              "question": "「旅行[りょこう]の 前[まえ]に、ホテルを （　　）おこう。」",
+              "options": [
+                "予約[よやく]ある",
+                "予約[よやく]され",
+                "予約[よやく]して",
+                "予約[よやく]し"
+              ],
               "correctAnswerIndex": 2,
-              "explanation": "«〜ておく» ning og‘zaki nutqda qisqargan shakli «〜とく» bo‘lib keladi."
+              "explanation": "Feʼlning te-shakli + おく: 「予約しておこう」."
             },
             {
               "id": "ja-n3-u1-l4-q4",
-              "question": "「そのままに して おいて ください」ning ma'nosi:",
-              "options": [
-                "Tezda tozalang",
-                "Yig'ishtiring",
-                "Buzib tashlang",
-                "Shundayligicha qoldiring"
-              ],
+              "question": "「その 資料[しりょう]は まだ 使[つか]うから、片付[かたづ]けないで そのままに して （　　）ください。」",
+              "options": ["あって", "いって", "きて", "おいて"],
               "correctAnswerIndex": 3,
-              "explanation": "Leave it as it is."
+              "explanation": "Holatni oʻzgarishsiz qoldirish: 「しておいてください」."
             },
             {
               "id": "ja-n3-u1-l4-q5",
-              "question": "会議[かいぎ]の 前[まえ]に 資料[しりょう]を コピーして （　）。",
-              "options": ["あります", "おきます", "しまいます", "みます"],
-              "correctAnswerIndex": 1,
+              "question": "「会議[かいぎ]の 前[まえ]に 資料[しりょう]を コピーして （　　）。」",
+              "options": ["おきます", "あります", "しまいます", "みます"],
+              "correctAnswerIndex": 0,
               "explanation": "Kelgusi qulaylik uchun oldindan tayyorlab qoʻyish: 〜ておく (Kopiya qilib qoʻyaman)."
             },
             {
               "id": "ja-n3-u1-l4-q6",
-              "question": "壁[かべ]に きれいな 絵[え]が 掛[か]けて （　）。",
+              "question": "「壁[かべ]に きれいな 絵[え]が 掛[か]けて （　　）。」",
               "options": ["おきます", "あります", "います", "しまいます"],
               "correctAnswerIndex": 1,
               "explanation": "Kimdir maqsadli ilib qoʻygan va hozir tayyor turibdi: 〜てある (Kake te aru)."
@@ -866,34 +821,34 @@
             {
               "id": "ja-n3-u1-l4-q7",
               "question": "「〜ておく」ning ogʻzaki soʻzlashuvdagi qisqargan shakli qaysi?",
-              "options": ["〜ちゃう", "〜とく", "〜きゃ", "〜とる"],
-              "correctAnswerIndex": 1,
+              "options": ["〜ちゃう", "〜きゃ", "〜とく", "〜とる"],
+              "correctAnswerIndex": 2,
               "explanation": "〜ておく soʻzlashuvda 〜とく ga qisqaradi (masalan: 買っておく -> 買っとく)."
             },
             {
               "id": "ja-n3-u1-l4-q8",
               "question": "窓[まど]が 開[あ]けて あります。なぜ「開[あ]いて います」ではなく「開[あ]けて あります」なのか？",
               "options": [
-                "Birov shamollatish maqsadi bilan ataylab ochib qoʻygan holat boʻlgani uchun",
                 "Shamolda oʻz-oʻzidan ochilib ketgani uchun",
                 "Hozir deraza yopiq boʻlgani uchun",
-                "Deraza singanligi uchun"
+                "Deraza singanligi uchun",
+                "Birov shamollatish maqsadi bilan ataylab ochib qoʻygan holat boʻlgani uchun"
               ],
-              "correctAnswerIndex": 0,
+              "correctAnswerIndex": 3,
               "explanation": "〜てある oʻtimsiz feʼl (開く) emas, oʻtimli feʼl (開ける) bilan maqsadli bajarilgan natijani bildiradi."
             },
             {
               "id": "ja-n3-u1-l4-q9",
-              "question": "旅行[りょこう]に 行[い]く 前[まえ]に 天気[てんき]予報[よほう]を （　） おこう。",
+              "question": "「旅行[りょこう]に 行[い]く 前[まえ]に 天気[てんき]予報[よほう]を （　　） おこう。」",
               "options": ["調[しら]べて", "調[しら]べられて", "調[しら]べた", "調[しら]べ"],
               "correctAnswerIndex": 0,
               "explanation": "Oldindan oʻrganib qoʻymoq: 調べておく (Shirabete oku)."
             },
             {
               "id": "ja-n3-u1-l4-q10",
-              "question": "パーティーの 準備[じゅんび]は もう ぜんぶ （　） あります。",
-              "options": ["して", "おいて", "されて", "し"],
-              "correctAnswerIndex": 0,
+              "question": "「パーティーの 準備[じゅんび]は もう ぜんぶ （　　） あります。」",
+              "options": ["おいて", "して", "されて", "し"],
+              "correctAnswerIndex": 1,
               "explanation": "Tayyor qilib qoʻyilgan holat: してある (Shite aru)."
             }
           ]
@@ -1029,50 +984,35 @@
           "questions": [
             {
               "id": "ja-n3-u1-l5-q1",
-              "question": "「宿題[しゅくだい]を 忘[わす]れちゃった！」dagi «chatta» qaysi iboraning so'zlashuv shakli?",
-              "options": [
-                "忘[わす]れて しまいました",
-                "忘[わす]れて あります",
-                "忘[わす]れない",
-                "忘[わす]れて おきました"
-              ],
+              "question": "「大事[だいじ]な 財布[さいふ]を 電車[でんしゃ]の 中[なか]に （　　）しまいました。」",
+              "options": ["忘[わす]れて", "忘[わす]れ", "忘[わす]れる", "忘[わす]れた"],
               "correctAnswerIndex": 0,
-              "explanation": "Wasurete shimaimashita."
+              "explanation": "〜てしまう: Afsus va nadomat ifodasi: 「忘れてしまいました」."
             },
             {
               "id": "ja-n3-u1-l5-q2",
-              "question": "«Bugun barcha vazifalarni tugatib qo'ymoqchiman»:",
-              "options": [
-                "仕事[しごと]が あります",
-                "仕事[しごと]を します",
-                "仕事[しごと]です",
-                "今日[きょう]の 仕事[しごと]を 全部[ぜんぶ] やって しまいたいです"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Yatte shimaitai desu."
+              "question": "「ケーキが とても 美味[おい]しくて、一人[ひとり]で 全部[ぜんぶ] （　　）ちゃった。」",
+              "options": ["食[た]べる", "食[た]べ", "食[た]べて", "食[た]べた"],
+              "correctAnswerIndex": 1,
+              "explanation": "Ogʻzaki tilda 〜てしまう -> ちゃう: 食べちゃう -> 「食べちゃった」."
             },
             {
               "id": "ja-n3-u1-l5-q3",
-              "question": "「飲[の]んで しまう」so'zlashuvda nima bo'ladi?",
-              "options": ["飲[の]んちゃう", "飲[の]んてる", "飲[の]んじゃう", "飲[の]みとく"],
+              "question": "「今日[きょう]中[じゅう]に この 仕事[しごと]を 全部[ぜんぶ] やって （　　）たい。」",
+              "options": ["おき", "あり", "しまい", "み"],
               "correctAnswerIndex": 2,
-              "explanation": "«〜でしまう» ning norasmiy so‘zlashuvdagi qisqargan varianti «〜んじゃう» hisoblanadi."
+              "explanation": "Toʻliq nihoyasiga yetkazish xohishi: 「やってしまいたい」."
             },
             {
               "id": "ja-n3-u1-l5-q4",
-              "question": "«Kassani yo'qotib qo'ydim»:",
-              "options": [
-                "傘[かさ]を 買[か]います",
-                "傘[かさ]を 無[な]くして しまいました",
-                "傘[かさ]です",
-                "傘[かさ]が あります"
-              ],
-              "correctAnswerIndex": 1,
-              "explanation": "Nakushite shimaimashita."
+              "question": "「大切[たいせつ]な 書類[しょるい]を うっかり （　　）しまいました。」",
+              "options": ["なくし", "なくす", "なくした", "なくして"],
+              "correctAnswerIndex": 3,
+              "explanation": "Yoʻqotib qoʻymoq: 「なくしてしまいました」."
             },
             {
               "id": "ja-n3-u1-l5-q5",
-              "question": "電車[でんしゃ]の 中[なか]に かさを 忘[わす]れて （　）。",
+              "question": "「電車[でんしゃ]の 中[なか]に かさを 忘[わす]れて （　　）。」",
               "options": ["しまいました", "おきました", "ありました", "みました"],
               "correctAnswerIndex": 0,
               "explanation": "Unutib qoldirib afsuslanish: 忘れてしまいました (Wasurete shimaimashita)."
@@ -1080,36 +1020,36 @@
             {
               "id": "ja-n3-u1-l5-q6",
               "question": "「飲[の]んでしまう」ning soʻzlashuv tilidagi qisqartmasi qaysi?",
-              "options": ["飲[の]んじゃ", "飲[の]んどく", "飲[の]んちゃう", "飲[の]んじゃう"],
-              "correctAnswerIndex": 3,
+              "options": ["飲[の]んじゃ", "飲[の]んじゃう", "飲[の]んどく", "飲[の]んちゃう"],
+              "correctAnswerIndex": 1,
               "explanation": "-nde shimau soʻzlashuvda -njau ga aylanadi: 飲んでしまう -> 飲んじゃう."
             },
             {
               "id": "ja-n3-u1-l5-q7",
-              "question": "今日[きょう]中[じゅう]に この 本[ほん]を 全部[ぜんぶ] （　） しまいたい。",
+              "question": "「今日[きょう]中[じゅう]に この 本[ほん]を 全部[ぜんぶ] （　　） しまいたい。」",
               "options": ["読[よ]み", "読[よ]まれて", "読[よ]んで", "読[よ]ませて"],
               "correctAnswerIndex": 2,
               "explanation": "Toʻliq tugatish istagi: 読んでしまいたい (Yonde shimaitai)."
             },
             {
               "id": "ja-n3-u1-l5-q8",
-              "question": "大切[たいせつ]な 書類[しょるい]を （　） しまいました。",
-              "options": ["失[な]くした", "失[な]くして", "失[な]くす", "失[な]くさなくて"],
-              "correctAnswerIndex": 1,
+              "question": "「大切[たいせつ]な 書類[しょるい]を （　　） しまいました。」",
+              "options": ["失[な]くした", "失[な]くす", "失[な]くさなくて", "失[な]くして"],
+              "correctAnswerIndex": 3,
               "explanation": "Yoʻqotib qoʻymoq (afsuslanish): なくしてしまう (Nakushite shimau)."
             },
             {
               "id": "ja-n3-u1-l5-q9",
-              "question": "宿題[しゅくだい]は もう やって （　） から、遊[あそ]びに 行[い]こう。",
+              "question": "「宿題[しゅくだい]は もう やって （　　） から、遊[あそ]びに 行[い]こう。」",
               "options": ["しまった", "おいた", "あった", "みた"],
               "correctAnswerIndex": 0,
               "explanation": "Toʻliq bajarib boʻlganlik (kanryou): やってしまったから (Yatte shimatta kara)."
             },
             {
               "id": "ja-n3-u1-l5-q10",
-              "question": "ケーキが 美味[おい]しくて、一人[ひとり]で 全部[ぜんぶ] 食[た]べ （　）。",
-              "options": ["といた", "ちゃいそう", "てあった", "ちゃった"],
-              "correctAnswerIndex": 3,
+              "question": "「ケーキが 美味[おい]しくて、一人[ひとり]で 全部[ぜんぶ] 食[た]べ （　　）。」",
+              "options": ["といた", "ちゃった", "ちゃいそう", "てあった"],
+              "correctAnswerIndex": 1,
               "explanation": "Soʻzlashuv tilida yeb qoʻydim: 食べちゃった (Tabechatta)."
             }
           ]
@@ -1245,82 +1185,72 @@
           "questions": [
             {
               "id": "ja-n3-u2-l1-q1",
-              "question": "Kompaniya qoidasi yoki boshliqning qarori bilan biror o'zgarish bo'lsa qaysi biri ishlatiladi?",
-              "options": ["〜つもりです", "〜ことに しました", "〜ことに なりました", "〜たいです"],
-              "correctAnswerIndex": 2,
-              "explanation": "Koto ni narimashita (external decision)."
+              "question": "「健康[けんこう]の ため、毎朝[まいあさ] 30分[さんじゅっぷん] 走[はし]る （　　）。」 (Oʻzim qaror qildim)",
+              "options": ["ことにした", "ことになった", "ようにした", "わけにした"],
+              "correctAnswerIndex": 0,
+              "explanation": "Oʻz shaxsiy irodasi bilan qaror qilish: 「〜ことにする」 (走ることにした)."
             },
             {
               "id": "ja-n3-u2-l1-q2",
-              "question": "「法律[ほうりつ]で そういう ことに なっている」ning ma'nosi:",
-              "options": [
-                "Qonun yo'q",
-                "Qonun o'zgardi",
-                "O'zim shunday qildim",
-                "Qonun bo'yicha shunday belgilangan"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Established rule by law."
+              "question": "「会社[かいしゃ]の 方針[ほうしん]で、来月[らいげつ]から 大阪[おおさか]へ 転勤[てんきん]する （　　）。」",
+              "options": ["ことにした", "ことになった", "ようにした", "わけになった"],
+              "correctAnswerIndex": 1,
+              "explanation": "Boshqa tashkilot yoki qoida asosida hal boʻlish: 「〜ことになる」."
             },
             {
               "id": "ja-n3-u2-l1-q3",
-              "question": "«Har kuni ertalab 6:00 da turishni odat qildim»:",
-              "options": [
-                "毎朝[まいあさ] 6時[ろくじ]に 起[お]きる ことに しています",
-                "起[お]きない",
-                "6時[ろくじ]です",
-                "6時[ろくじ]に 起[お]きます"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Koto ni shite imasu (shaxsiy doimiy odat)."
+              "question": "「夜[よる] 9時[くじ]以降[いこう]は スマホを 見[み]ない （　　）している。」",
+              "options": ["ように", "わけに", "ことに", "ために"],
+              "correctAnswerIndex": 2,
+              "explanation": "Doimiy odat qilib belgilash: 「〜ことにしている」."
             },
             {
               "id": "ja-n3-u2-l1-q4",
-              "question": "〜ことにする dan oldin fe'l qaysi shaklda keladi?",
-              "options": ["Masu shakli", "Ta shakli", "Lug'at shakli yoki Nai shakli", "Te shakli"],
-              "correctAnswerIndex": 2,
-              "explanation": "Dictionary / Nai form."
+              "question": "「法律[ほうりつ]が 改正[かいせい]され、来年[らいねん]から 消費税[しょうひぜい]が 上[あ]がる （　　）。」",
+              "options": ["ことにした", "ようにした", "はずになった", "ことになった"],
+              "correctAnswerIndex": 3,
+              "explanation": "Davlat qarori bilan belgilangan qoida: 「〜ことになった」."
             },
             {
               "id": "ja-n3-u2-l1-q5",
-              "question": "来月[らいげつ]から 東京[とうきょう]本社[ほんしゃ]へ 転勤[てんきん]する （　）。",
-              "options": ["ことにした", "ことになった", "ようにした", "はずだ"],
-              "correctAnswerIndex": 1,
+              "question": "「来月[らいげつ]から 東京[とうきょう]本社[ほんしゃ]へ 転勤[てんきん]する （　　）。」",
+              "options": ["ことになった", "ことにした", "ようにした", "はずだ"],
+              "correctAnswerIndex": 0,
               "explanation": "Kompaniya buyrugʻi yoki tashqi qaror bilan koʻchirilish: 〜ことになる (Koto ni natta)."
             },
             {
               "id": "ja-n3-u2-l1-q6",
-              "question": "健康[けんこう]の ために、毎日[まいにち] 走[はし]る （　） います。",
-              "options": ["ことに して", "ことに なって", "ように なって", "ために して"],
-              "correctAnswerIndex": 0,
+              "question": "「健康[けんこう]の ために、毎日[まいにち] 走[はし]る （　　） います。」",
+              "options": ["ことに なって", "ことに して", "ように なって", "ために して"],
+              "correctAnswerIndex": 1,
               "explanation": "Oʻz ixtiyori bilan odatga aylantirish qarori: 〜ことにしている (Koto ni shite iru)."
             },
             {
               "id": "ja-n3-u2-l1-q7",
-              "question": "法律[ほうりつ]で、20歳[はたち]未満[みまん]は お酒[さけ]を 飲[の]んでは いけない （　）。",
-              "options": ["ことにしている", "ことになっている", "ようにしている", "わけではない"],
-              "correctAnswerIndex": 1,
+              "question": "「法律[ほうりつ]で、20歳[はたち]未満[みまん]は お酒[さけ]を 飲[の]んでは いけない （　　）。」",
+              "options": ["ことにしている", "ようにしている", "ことになっている", "わけではない"],
+              "correctAnswerIndex": 2,
               "explanation": "Qoida, qonun yoki ijtimoiy kelishuv: 〜ことになっている (Koto ni natte iru)."
             },
             {
               "id": "ja-n3-u2-l1-q8",
-              "question": "高[たか]すぎるので、この パソコンは 買[か]わない （　）。",
-              "options": ["ことにした", "ことになった", "ようになった", "ようにした"],
-              "correctAnswerIndex": 0,
+              "question": "「高[たか]すぎるので、この パソコンは 買[か]わない （　　）。」",
+              "options": ["ことになった", "ようになった", "ようにした", "ことにした"],
+              "correctAnswerIndex": 3,
               "explanation": "Shaxsiy xarid qarori: 買わないことにした (Koto ni shita)."
             },
             {
               "id": "ja-n3-u2-l1-q9",
-              "question": "来週[らいしゅう]の 会議[かいぎ]は 中止[ちゅうし]に （　）。",
-              "options": ["することにした", "なることになった", "なった", "することになった"],
-              "correctAnswerIndex": 1,
+              "question": "「来週[らいしゅう]の 会議[かいぎ]は 中止[ちゅうし]に （　　）。」",
+              "options": ["なることになった", "することにした", "なった", "することになった"],
+              "correctAnswerIndex": 0,
               "explanation": "Yigʻilish bekor boʻlishi rasman belgilandi: 中止になることになった."
             },
             {
               "id": "ja-n3-u2-l1-q10",
               "question": "「〜ことにする」oldidan feʼl qaysi shaklda keladi?",
-              "options": ["Lugʻat shakli yoki Nai shakli", "Masu shakli", "Te shakli", "Ta shakli"],
-              "correctAnswerIndex": 0,
+              "options": ["Masu shakli", "Lugʻat shakli yoki Nai shakli", "Te shakli", "Ta shakli"],
+              "correctAnswerIndex": 1,
               "explanation": "Feʼlning oddiy hozirgi zamon shakllari: V-lugʻat / V-nai + ことにする."
             }
           ]
@@ -1451,62 +1381,42 @@
           "questions": [
             {
               "id": "ja-n3-u2-l2-q1",
-              "question": "«〜ように» va «〜ために» o'rtasidagi farq nima?",
-              "options": [
-                "Ikkisi ham taqiq",
-                "Hech qanday farq yo'q",
-                "〜ように imkoniyat va inkor fe'llar bilan, 〜ために esa irodaviy harakat bilan keladi",
-                "Birinchisi o'tgan zamon"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "You ni is for potential/non-volitional/negative states."
+              "question": "「風邪[かぜ]を ひかない（　　）、毎日[まいにち] 手洗[てあら]いを 徹底[てってい]しています。」",
+              "options": ["ように", "ために", "ようにして", "ことに"],
+              "correctAnswerIndex": 0,
+              "explanation": "Salbiy holat yuz bermasligi maqsadi: 「〜ないように」 (shamollab qolmaslik uchun)."
             },
             {
               "id": "ja-n3-u2-l2-q2",
-              "question": "«Har kuni yaponcha yangiliklarni ko'rishga tirishyapman»:",
-              "options": [
-                "ニュースを 見[み]ました",
-                "毎日[まいにち] 日本[にほん]の ニュースを 見[み]る ように しています",
-                "ニュースを 見[み]る 予定[よてい]です",
-                "ニュースです"
-              ],
+              "question": "「日本[にほん]の 新聞[しんぶん]が 読[よ]める（　　）、毎日[まいにち] 漢字[かんじ]を 練習[れんしゅう]しています。」",
+              "options": ["ために", "ように", "ようにして", "ことに"],
               "correctAnswerIndex": 1,
-              "explanation": "Miru you ni shite imasu."
+              "explanation": "Qobiliyat (Kanoukei) bilan maqsad: 「読めるように」 (oʻqiy oladigan boʻlish uchun)."
             },
             {
               "id": "ja-n3-u2-l2-q3",
-              "question": "«Yaxshi eshitilishi uchun balandroq gapiring»:",
-              "options": [
-                "よく 聞[き]こえる ように、大[おお]きな 声[こえ]で 話[はな]してください",
-                "聞[き]く ために",
-                "聞[き]こえる ように します",
-                "話[はな]すな"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Kikoeru you ni (eshitilishi uchun)."
+              "question": "「健康[けんこう]の ために、油[あぶら]っこい 物[もの]は 食[た]べない（　　） しています。」",
+              "options": ["ために", "ことに", "ように", "わけに"],
+              "correctAnswerIndex": 2,
+              "explanation": "Har kungi ongli harakat/odat: 「〜ようにしている」."
             },
             {
               "id": "ja-n3-u2-l2-q4",
-              "question": "Shifokor bemorga «Iltimos, doringizni unutmang» deb maslahat berganda nima deydi?",
-              "options": [
-                "薬[くすり]を 買[か]う",
-                "薬[くすり]です",
-                "薬[くすり]を 飲[の]まないで",
-                "薬[くすり]を 忘[わす]れない ように して ください"
-              ],
+              "question": "「後[うし]ろの 席[せき]の 人[ひと]にも 聞[き]こえる（　　）、マイクを 使[つか]ってください。」",
+              "options": ["ために", "ことに", "わけに", "ように"],
               "correctAnswerIndex": 3,
-              "explanation": "Wasurenai you ni shite kudasai."
+              "explanation": "Boshqalarga eshitilishi uchun: 「聞こえるように」."
             },
             {
               "id": "ja-n3-u2-l2-q5",
-              "question": "風邪[かぜ]を ひかない （　）、温[あたた]かい 服[ふく]を 着[き]ます。",
-              "options": ["ために", "ようにして", "ように", "ことになって"],
-              "correctAnswerIndex": 2,
+              "question": "「風邪[かぜ]を ひかない （　　）、温[あたた]かい 服[ふく]を 着[き]ます。」",
+              "options": ["ように", "ために", "ようにして", "ことになって"],
+              "correctAnswerIndex": 0,
               "explanation": "Salbiy oqibatning oldini olish maqsadi (feʼl inkorida): 〜ように (Shamolab qolmaslik uchun)."
             },
             {
               "id": "ja-n3-u2-l2-q6",
-              "question": "忘[わす]れないように、手帳[てちょう]に メモを （　）。",
+              "question": "「忘[わす]れないように、手帳[てちょう]に メモを （　　）。」",
               "options": [
                 "書[か]くことになりました",
                 "書[か]くようにしています",
@@ -1518,23 +1428,23 @@
             },
             {
               "id": "ja-n3-u2-l2-q7",
-              "question": "後ろの 人[ひと]にも よく （　）ように、大[おお]きな 声[こえ]で 話[はな]してください。",
-              "options": ["聞[き]こえる", "聞[き]く", "聞[き]こえて", "聞[き]かない"],
-              "correctAnswerIndex": 0,
+              "question": "「後ろの 人[ひと]にも よく （　　）ように、大[おお]きな 声[こえ]で 話[はな]してください。」",
+              "options": ["聞[き]く", "聞[き]こえて", "聞[き]こえる", "聞[き]かない"],
+              "correctAnswerIndex": 2,
               "explanation": "〜ように dan oldin imkoniyat yoki oʻz-oʻzidan sodir boʻluvchi feʼl keladi: 聞こえる (eshitilishi uchun)."
             },
             {
               "id": "ja-n3-u2-l2-q8",
-              "question": "夜[よる]は 甘[あま]い ものを 食[た]べない （　） 努力[どりょく]して います。",
+              "question": "「夜[よる]は 甘[あま]い ものを 食[た]べない （　　） 努力[どりょく]して います。」",
               "options": ["ために", "ことに", "はずで", "ように"],
               "correctAnswerIndex": 3,
               "explanation": "Harakat qilmoq: 〜ないように努力する."
             },
             {
               "id": "ja-n3-u2-l2-q9",
-              "question": "早[はや]く 日本語[にほんご]が 上手[じょうず]に （　）ように、毎日[まいにち] 練習[れんしゅう]します。",
-              "options": ["なって", "なりたい", "なる", "ならせる"],
-              "correctAnswerIndex": 2,
+              "question": "「早[はや]く 日本語[にほんご]が 上手[じょうず]に （　　）ように、毎日[まいにち] 練習[れんしゅう]します。」",
+              "options": ["なる", "なって", "なりたい", "ならせる"],
+              "correctAnswerIndex": 0,
               "explanation": "〜ように oldidan nofaol oʻzgarish feʼli keladi: 上手になるように."
             },
             {
@@ -1677,82 +1587,72 @@
           "questions": [
             {
               "id": "ja-n3-u2-l3-q1",
-              "question": "«Ob-havo ma'lumotiga ko'ra, ertaga qor yog'armish»:",
-              "options": [
-                "雪[ゆき]です",
-                "雪[ゆき]が 降[ふ]りました",
-                "雪[ゆき]が 降[ふ]りそうです",
-                "天気[てんき]予報[よほう]に よると、明日[あした] 雪[ゆき]が 降[ふ]るそうです"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Furu sou desu (hearsay)."
+              "question": "「天気[てんき]予報[よほう]に よると、明日[あした]は 全国[ぜんこく]的[てき]に 雨[あめ]が （　　）そうです。」 (Eshitish / Xabar)",
+              "options": ["降[ふ]る", "降[ふ]り", "降[ふ]って", "降[ふ]った"],
+              "correctAnswerIndex": 0,
+              "explanation": "Eshitgan xabar (Hearsay): Oddiy shakl (Futsuukei) + そうだ: 「降るそうです」."
             },
             {
               "id": "ja-n3-u2-l3-q2",
-              "question": "「いい (yaxshi)」sifatining ko'rinish (taxmin) shakli nima bo'ladi?",
-              "options": ["いいそう", "よいそう", "よさそう", "いくそう"],
-              "correctAnswerIndex": 2,
-              "explanation": "Istisno: よさそう (Yosasou)."
+              "question": "「空[そら]が 暗[くら]くなってきて、今[いま]にも 雨[あめ]が （　　）そうだ。」 (Koʻrinish)",
+              "options": ["降[ふ]る", "降[ふ]り", "降[ふ]って", "降[ふ]った"],
+              "correctAnswerIndex": 1,
+              "explanation": "Tashqi koʻrinish (Conjecture): Masu-negizi + そうだ: 「降りそうだ」 (yogʻadigandek tuyulmoqda)."
             },
             {
               "id": "ja-n3-u2-l3-q3",
-              "question": "「彼[かれ]は 元気[げんき]そうだ」ning ma'nosi:",
-              "options": ["U ketdi", "U tetik / sog'lom ko'rinyapti", "U kasal", "U keldi"],
-              "correctAnswerIndex": 1,
-              "explanation": "Genkisou da (tetik ko'rinadi)."
+              "question": "「この 料理[りょうり]は とても （　　）そうに見える。」",
+              "options": ["おいしい", "おいしくて", "おいし", "おいしかった"],
+              "correctAnswerIndex": 2,
+              "explanation": "I-sifat koʻrinishida い tushadi: おいしい -> 「おいしそう」."
             },
             {
               "id": "ja-n3-u2-l3-q4",
-              "question": "«Kimo-shakl + sou ni mo nai» nimani bildiradi?",
-              "options": [
-                "Hech ham sodir bo'ladiganga o'xshamaydi",
-                "Darhol bo'ladi",
-                "Bo'lmoqchi",
-                "Bo'lib o'tdi"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Unlikely to happen."
+              "question": "「友達[ともだち]の 話[はなし]では、あの 店[みせ]の ケーキは とても （　　）そうです。」",
+              "options": ["おいし", "おいしくて", "おいしさ", "おいしい"],
+              "correctAnswerIndex": 3,
+              "explanation": "Eshitgan gapni yetkazishda sifat oʻzgarmaydi: 「おいしいそうです」."
             },
             {
               "id": "ja-n3-u2-l3-q5",
-              "question": "天気[てんき]予報[よほう]に よると、明日[あした]は 雨[あめ]が （　）そうです。",
-              "options": ["降[ふ]り", "降[ふ]った", "降[ふ]りそう", "降[ふ]る"],
-              "correctAnswerIndex": 3,
+              "question": "「天気[てんき]予報[よほう]に よると、明日[あした]は 雨[あめ]が （　　）そうです。」",
+              "options": ["降[ふ]る", "降[ふ]り", "降[ふ]った", "降[ふ]りそう"],
+              "correctAnswerIndex": 0,
               "explanation": "Manbaga asoslangan mish-mish/xabar (Hearsay): Feʼl oddiy zamon (降る) + そうだ."
             },
             {
               "id": "ja-n3-u2-l3-q6",
-              "question": "今[いま]にも 雨[あめ]が （　）そうです。傘[かさ]を 持[も]って 行[い]きましょう。",
-              "options": ["降[ふ]る", "降[ふ]った", "降[ふ]り", "降[ふ]らない"],
-              "correctAnswerIndex": 2,
+              "question": "「今[いま]にも 雨[あめ]が （　　）そうです。傘[かさ]を 持[も]って 行[い]きましょう。」",
+              "options": ["降[ふ]る", "降[ふ]り", "降[ふ]った", "降[ふ]らない"],
+              "correctAnswerIndex": 1,
               "explanation": "Koʻrinish/darhol sodir boʻlish alomati: Feʼl masu oʻzagi (降り) + そうだ."
             },
             {
               "id": "ja-n3-u2-l3-q7",
-              "question": "この ケーキ、とても （　）そうですね。",
-              "options": ["おいしい", "おいし", "おいしくて", "おいしかった"],
-              "correctAnswerIndex": 1,
+              "question": "「この ケーキ、とても （　　）そうですね。」",
+              "options": ["おいしい", "おいしくて", "おいし", "おいしかった"],
+              "correctAnswerIndex": 2,
               "explanation": "I-sifat koʻrinishida oxirgi -i tushib qoladi: おいし + そう."
             },
             {
               "id": "ja-n3-u2-l3-q8",
               "question": "「よさそうだ」qaysi soʻzning koʻrinish shakli?",
-              "options": ["いい", "よくない", "よかった", "よる"],
-              "correctAnswerIndex": 0,
+              "options": ["よくない", "よかった", "よる", "いい"],
+              "correctAnswerIndex": 3,
               "explanation": "いい (yoi) sifatining koʻrinish shakli istisno tariqasida よさそうだ boʻladi."
             },
             {
               "id": "ja-n3-u2-l3-q9",
-              "question": "田中[たなか]さんは 来月[らいげつ] 結婚[けっこん]する （　）。お祝い[いわい]を しましょう。",
-              "options": ["そうだとして", "そうに", "そうだそうだ", "そうだ"],
-              "correctAnswerIndex": 3,
+              "question": "「田中[たなか]さんは 来月[らいげつ] 結婚[けっこん]する （　　）。お祝い[いわい]を しましょう。」",
+              "options": ["そうだ", "そうだとして", "そうに", "そうだそうだ"],
+              "correctAnswerIndex": 0,
               "explanation": "Eshitilgan yangilik (Hearsay): 結婚するそうだ."
             },
             {
               "id": "ja-n3-u2-l3-q10",
-              "question": "荷物[にもつ]が 重[おも]くて、ひもが （　）そうだ。",
-              "options": ["切[き]る", "切[き]れた", "切[き]れ", "切[き]れる"],
-              "correctAnswerIndex": 2,
+              "question": "「荷物[にもつ]が 重[おも]くて、ひもが （　　）そうだ。」",
+              "options": ["切[き]る", "切[き]れ", "切[き]れた", "切[き]れる"],
+              "correctAnswerIndex": 1,
               "explanation": "Uzilay deb turibdi (xavfli koʻrinish): 切れそうだ (Kire-sou da)."
             }
           ]
@@ -1883,78 +1783,63 @@
           "questions": [
             {
               "id": "ja-n3-u3-l4-q1",
-              "question": "Qaysi grammatik ifoda faqat salbiy tanqid va norozilik ohangiga ega?",
-              "options": ["〜くせに", "〜のに", "〜ても", "〜わりに"],
+              "question": "「この レストランは 値段[ねだん]が 高[たか]い（　　）、味[あじ]は 普通[ふつう]だった。」",
+              "options": ["わりに", "くせに", "ために", "せいで"],
               "correctAnswerIndex": 0,
-              "explanation": "〜くせに (Kuseni)."
+              "explanation": "〜わりに: Kutilgan nisbatga toʻgʻri kelmaslik («narxi qimmatligiga nisbatan mazasi oddiy edi»)."
             },
             {
               "id": "ja-n3-u2-l4-q2",
-              "question": "«O'zi puli yo'q bo'la turib qimmatbaho mashina sotib oldi (norozilik)»:",
-              "options": [
-                "お金[かね]が ない から",
-                "お金[かね]です",
-                "お金[かね]が ない わりに",
-                "お金[かね]が ない くせに、高級車[こうきゅうしゃ]を 買[か]った"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Nai kuseni."
+              "question": "「彼[かれ]は 自分[じぶん]では 何[なに]も しない（　　）、人[ひと]の やり方[かた]に 文句[もんく]ばかり 言[い]う。」",
+              "options": ["わりに", "くせに", "ために", "おかげで"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜くせに: Salbiy tanqid va gʻazab ohangida («oʻzi hech narsa qilmay turib, tanqid qiladi»)."
             },
             {
               "id": "ja-n3-u2-l4-q3",
-              "question": "Ot bilan «warini» qanday ulanadi?",
-              "options": [
-                "Ot + な + わりに",
-                "Ot + わりに",
-                "Ot + の + わりに",
-                "Ot + だ + わりに"
-              ],
+              "question": "「彼女[かのじょ]は 年齢[ねんれい]の （　　）、とても 若[わか]く 見[み]える。」",
+              "options": ["くせに", "ために", "わりに", "ように"],
               "correctAnswerIndex": 2,
-              "explanation": "Ot + の + わりに."
+              "explanation": "Ot bilan ulanish: 「名詞 + のわりに」 (yoshiga nisbatan ancha yosh koʻrinadi)."
             },
             {
               "id": "ja-n3-u2-l4-q4",
-              "question": "«Katta yoshda bo'lishiga qaramay yosh ko'rinadi»:",
-              "options": [
-                "年[とし]だから",
-                "年[とし]の わりに 若[わか]く 見[み]える",
-                "年[とし]の くせに",
-                "年[とし]です"
-              ],
-              "correctAnswerIndex": 1,
-              "explanation": "Toshi no warini."
+              "question": "「お金[かね]が 全然[ぜんぜん] ない（　　）、高級[こうきゅう]な 時計[とけい]を 買[か]った。」",
+              "options": ["わりに", "ために", "せいで", "くせに"],
+              "correctAnswerIndex": 3,
+              "explanation": "Qilmishiga norozilik bilan tanqid: 「ないくせに」."
             },
             {
               "id": "ja-n3-u2-l4-q5",
-              "question": "彼[かれ]は お金[かね]が ない （　）、いつも 高[たか]い 服[ふく]ばかり 買[か]っている。",
+              "question": "「彼[かれ]は お金[かね]が ない （　　）、いつも 高[たか]い 服[ふく]ばかり 買[か]っている。」",
               "options": ["くせに", "わりに", "反面[はんめん]", "せいで"],
               "correctAnswerIndex": 0,
               "explanation": "Salbiy tanqid va ayblov ohangida zidlik: 〜くせに (Pulim yoʻq deganiga qaramay/nosamimiy)."
             },
             {
               "id": "ja-n3-u2-l4-q6",
-              "question": "この レストランは 値段[ねだん]が 高[たか]い （　）、味[あじ]は 普通[ふつう]だ。",
-              "options": ["くせに", "ために", "せいで", "わりに"],
-              "correctAnswerIndex": 3,
+              "question": "「この レストランは 値段[ねだん]が 高[たか]い （　　）、味[あじ]は 普通[ふつう]だ。」",
+              "options": ["くせに", "わりに", "ために", "せいで"],
+              "correctAnswerIndex": 1,
               "explanation": "Xolisona kutuv mezoniga mos kelmaslik: 〜わりに(は) (Narxi qimmatligiga yarasha emas)."
             },
             {
               "id": "ja-n3-u2-l4-q7",
-              "question": "子[こ]どもの （　）、大人[おとな]のような 意見[いけん]を 言[い]う。",
+              "question": "「子[こ]どもの （　　）、大人[おとな]のような 意見[いけん]を 言[い]う。」",
               "options": ["くせに", "わりに", "わりには", "だけで"],
               "correctAnswerIndex": 2,
               "explanation": "Kutilgandan yaxshiroq/yetukroq natija: 子どものわりには (Bola boʻlishiga qaramasdan)."
             },
             {
               "id": "ja-n3-u2-l4-q8",
-              "question": "自分[じぶん]では 何[なに]も やらない （　）、文句[もんく]ばかり 言[い]う。",
-              "options": ["わりに", "くせに", "反面", "ために"],
-              "correctAnswerIndex": 1,
+              "question": "「自分[じぶん]では 何[なに]も やらない （　　）、文句[もんく]ばかり 言[い]う。」",
+              "options": ["わりに", "反面", "ために", "くせに"],
+              "correctAnswerIndex": 3,
               "explanation": "Birovning gʻalati xulqini jahl yoki tanqid bilan aytganda: 〜くせに."
             },
             {
               "id": "ja-n3-u2-l4-q9",
-              "question": "彼[かれ]は 年齢[ねんれい]の （　） 若[わか]く 見[み]える。",
+              "question": "「彼[かれ]は 年齢[ねんれい]の （　　） 若[わか]く 見[み]える。」",
               "options": ["わりに", "くせに", "せいで", "おかげで"],
               "correctAnswerIndex": 0,
               "explanation": "Yoshiga nisbatan yosh koʻrinish: 年齢のわりに (Nenrei no wari ni)."
@@ -1964,11 +1849,11 @@
               "question": "「〜くせに」konstruksiyasining eng muhim qoidasi qaysi?",
               "options": [
                 "Faqat ob-havo haqida gapirganda ishlatiladi",
+                "Gapiruvchi oʻziga nisbatan bu soʻzni qoʻllay olmaydi (faqat boshqalarni tanqid qilishda ishlatiladi)",
                 "Faqat minnatdorchilik bildirishda aytiladi",
-                "Faqat yozma adabiy tilda qoʻllanadi",
-                "Gapiruvchi oʻziga nisbatan bu soʻzni qoʻllay olmaydi (faqat boshqalarni tanqid qilishda ishlatiladi)"
+                "Faqat yozma adabiy tilda qoʻllanadi"
               ],
-              "correctAnswerIndex": 3,
+              "correctAnswerIndex": 1,
               "explanation": "〜くせに da ayblov/tanqid maʼnosi boʻlgani sababli, inson oʻzining xatti-harakatiga bu grammatikani qoʻllay olmaydi."
             }
           ]
@@ -2091,26 +1976,21 @@
           "questions": [
             {
               "id": "ja-n3-u2-l5-q1",
-              "question": "Matnda masofaviy ishlashning qanday kamchiligi (kadai) keltirilgan?",
-              "options": [
-                "Kompyuterlar yetishmasligi",
-                "Xodimlar o'rtasida muloqot kamayishi va yangi xodimlarni o'rgatish qiyinlashuvi",
-                "Elektr toki o'chib qolishi",
-                "Odamlar uxlayverishi"
-              ],
-              "correctAnswerIndex": 1,
-              "explanation": "Muloqot kamayishi va yangi xodimlarni o'rgatish qiyinlashuvi."
+              "question": "【長文[ちょうぶん]読解[どっかい]】「テレワークの 導入[どうにゅう]に より、通勤[つうきん]時間[じかん]の 削減[さくげん]が 実現[じつげん]した（　　）、社員[しゃいん]同士[どうし]の コミュニケーション不足[ぶそく]が 課題[かだい]となっている。」",
+              "options": ["反面[はんめん]", "せいで", "おかげで", "ために"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜反面: Bir tomondan qulaylik bergani bilan, ikkinchi tomondan muloqot yetishmovchiligi yuzaga keldi."
             },
             {
               "id": "ja-n3-u2-l5-q2",
               "question": "「一方[いっぽう]で」bog'lovchisining ma'nosi:",
               "options": [
-                "Boshqa tomondan esa / Shu bilan birga",
                 "Shuning uchun",
+                "Boshqa tomondan esa / Shu bilan birga",
                 "Avval",
                 "Chunki"
               ],
-              "correctAnswerIndex": 0,
+              "correctAnswerIndex": 1,
               "explanation": "On the other hand (boshqa tomondan)."
             },
             {
@@ -2119,37 +1999,37 @@
               "options": [
                 "Chet elga xizmat safari",
                 "Dam olish kuni",
-                "Ofisda tunab qolish",
-                "Uydan turib ishlash"
+                "Uydan turib ishlash",
+                "Ofisda tunab qolish"
               ],
-              "correctAnswerIndex": 3,
+              "correctAnswerIndex": 2,
               "explanation": "Uydan ishlash."
             },
             {
               "id": "ja-n3-u2-l5-q4",
               "question": "「満員[まんいん]電車[でんしゃ]」so'zidagi 満員 nimani bildiradi?",
-              "options": ["Buzilgan", "Bo'm-bo'sh", "Odamga liq to'la / Tiqilinch", "Tez yurar"],
-              "correctAnswerIndex": 2,
+              "options": ["Buzilgan", "Bo'm-bo'sh", "Tez yurar", "Odamga liq to'la / Tiqilinch"],
+              "correctAnswerIndex": 3,
               "explanation": "Full of people / Packed."
             },
             {
               "id": "ja-n3-u2-l5-q5",
               "question": "日本[にほん]の 職場[しょくば]における「報・連・相（ほうれんそう）」の「相」とは 何[なん]のことか？",
-              "options": ["掃除[そうじ]", "相談[そうだん]", "相撲[すもう]", "相互[そうご]"],
-              "correctAnswerIndex": 1,
+              "options": ["相談[そうだん]", "掃除[そうじ]", "相撲[すもう]", "相互[そうご]"],
+              "correctAnswerIndex": 0,
               "explanation": "Horenso: 報告 (Hisobot), 連絡 (Bogʻlanish), 相談 (Maslahat)."
             },
             {
               "id": "ja-n3-u2-l5-q6",
-              "question": "残業[ざんぎょう]を 減[へ]らす ために、企業[きぎょう]が 進[すす]めている 取[と]り組[く]みは 何[なに]か？",
+              "question": "【長文[ちょうぶん]読解[どっかい]】「企業[きぎょう]が 残業[ざんぎょう]を 減[へ]らす ために 最[もっと]も 重視[じゅうし]している 取[と]り組[く]みは （　　）である。」",
               "options": [
-                "定時[ていじ]退社[たいしゃ]の 推進[すいしん]",
-                "給料[きゅうりょう]の 削減[さくげん]",
-                "有給[ゆうきゅう]休暇[きゅうか]の 廃止[はいし]",
-                "勤務[きんむ]時間[じかん]の 延長[えんちょう]"
+                "基本給[きほんきゅう]の 削減[さくげん]",
+                "業務[ぎょうむ]の 効率[こうりつ]化",
+                "オフィス面積[めんせき]の 縮小[しゅくしょう]",
+                "採用[さいよう]の 中止[ちゅうし]"
               ],
-              "correctAnswerIndex": 0,
-              "explanation": "Ortiqcha ishni kamaytirish uchun vaqtida ketish (Teiji taisha suishin) joriy qilinadi."
+              "correctAnswerIndex": 1,
+              "explanation": "Ish vaqtidan tashqari ishlashni kamaytirishning asosi — ish jarayonini samarali tashkil etish (業務の効率化)."
             },
             {
               "id": "ja-n3-u2-l5-q7",
@@ -2157,10 +2037,10 @@
               "options": [
                 "無給[むきゅう]の 休[やす]み",
                 "病気[びょうき]の 時[とき]だけの 休[やす]み",
-                "週末[しゅうまつ]の 休[やす]み",
-                "給料[きゅうりょう]が 出[で]る 休[やす]み"
+                "給料[きゅうりょう]が 出[で]る 休[やす]み",
+                "週末[しゅうまつ]の 休[やす]み"
               ],
-              "correctAnswerIndex": 3,
+              "correctAnswerIndex": 2,
               "explanation": "Yuukyuu kyuuka — xodimga haq toʻlanadigan qonuniy mehnat taʼtili."
             },
             {
@@ -2169,35 +2049,35 @@
               "options": [
                 "全員[ぜんいん]の 給料[きゅうりょう]が 2倍[ばい]に なったこと",
                 "会社[かいしゃ]が なくなったこと",
-                "通勤[つうきん]の ストレスが 減[へ]ったこと",
-                "日本語[にほんご]が 不要[ふよう]に なったこと"
+                "日本語[にほんご]が 不要[ふよう]に なったこと",
+                "通勤[つうきん]の ストレスが 減[へ]ったこと"
               ],
-              "correctAnswerIndex": 2,
+              "correctAnswerIndex": 3,
               "explanation": "Masofaviy ish (Telework) poyezdlardagi tirband qatnov (Tsuukin) stressini kamaytiradi."
             },
             {
               "id": "ja-n3-u2-l5-q9",
               "question": "ビジネスメールで「お世話[せわ]に なっております」を 書[か]く タイミングは？",
               "options": [
-                "メールの 一番[いちばん] 最後[さいご]",
                 "メールの 冒頭[ぼうとう]（挨拶[あいさつ]）",
+                "メールの 一番[いちばん] 最後[さいご]",
                 "添付[てんぷ]ファイルの中",
                 "件名[けんめい]（タイトル）"
               ],
-              "correctAnswerIndex": 1,
+              "correctAnswerIndex": 0,
               "explanation": "Ish yozishmalarida har bir xat boshida salomlashish odobi sifatida yoziladi."
             },
             {
               "id": "ja-n3-u2-l5-q10",
-              "question": "同僚[どうりょう]が 先[さき]に 帰[かえ]る 際[さい]、何[なに]と 声[こえ]を かけますか？",
+              "question": "【職場[しょくば]の 挨拶[あいさつ]】「同僚[どうりょう]が 先[さき]に 帰宅[きたく]する 際[さい]、何[なに]と 声[こえ]を かけますか。」",
               "options": [
+                "ご苦労[くろう]様[さま]でした",
                 "お疲[つか]れ様[さま]でした",
-                "ごちそうさまでした",
-                "さようなら",
-                "お大事[だいじ]に"
+                "お大事[だいじ]に",
+                "失礼[しつれい]します"
               ],
-              "correctAnswerIndex": 0,
-              "explanation": "Hamkasb ishdan ketayotganda munosib mehnat ehtiromi: お疲れ様でした (Otsukaresama deshita)."
+              "correctAnswerIndex": 1,
+              "explanation": "Hamkasbga nisbatan odobli soʻz: 「お疲れ様でした」."
             }
           ]
         }
@@ -2339,62 +2219,47 @@
           "questions": [
             {
               "id": "ja-n3-u3-l1-q1",
-              "question": "Mijozga «Ushbu hujjatni ko'rdingizmi?» deb qanday so'raladi?",
-              "options": [
-                "この資料[しりょう]を 拝見[はいけん]しましたか",
-                "資料[しりょう]です",
-                "この資料[しりょう]を ご覧[らん]に なりましたか",
-                "この資料[しりょう]を 見[み]ましたか"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Goran ni narimashita ka (Sonkeigo)."
+              "question": "「社長[しゃちょう]は もう お帰[かえ]りに （　　）ました。」",
+              "options": ["なり", "し", "いたし", "申[もう]し"],
+              "correctAnswerIndex": 0,
+              "explanation": "Hurmat shakli (Sonkeigo): 「お＋feʼl negizi＋になる」 (お帰りになりました)."
             },
             {
               "id": "ja-n3-u3-l2-q2",
-              "question": "«Bilmoq (Shitte iru)» fe'lining Sonkeigo shakli:",
+              "question": "「先生[せんせい]、この 資料[しりょう]を もう （　　）ましたか。」",
               "options": [
-                "存[ぞん]じて おります",
-                "ご存[ぞん]じです",
-                "知[し]っています",
-                "分[わ]かります"
+                "拝読[はいどく]し",
+                "ご覧[らん]になり",
+                "申[もう]し上[あ]げ",
+                "存[ぞん]じ"
               ],
               "correctAnswerIndex": 1,
-              "explanation": "Gozonji desu."
+              "explanation": "Oʻqituvchining koʻrish harakatiga nisbatan Sonkeigo: 「ご覧になりましたか」."
             },
             {
               "id": "ja-n3-u3-l1-q3",
-              "question": "Sonkeigo qachon ishlatilishi mutlaqo XATO hisoblanadi?",
-              "options": [
-                "O'zining yoki o'z oilasining harakatiga nisbatan ishlatilganda",
-                "Mijozga nisbatan",
-                "Kompaniya prezidentiga nisbatan",
-                "Ustozga nisbatan"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "O'z harakatiga Sonkeigo qo'llab bo'lmaydi."
+              "question": "「お客様[きゃくさま]、どちらへ （　　）ますか。」",
+              "options": ["参[まい]り", "お伺[うかが]いし", "いらっしゃい", "申[もう]し"],
+              "correctAnswerIndex": 2,
+              "explanation": "Mijozning borishi / kelishi uchun Sonkeigo: 「いらっしゃいます」."
             },
             {
               "id": "ja-n3-u3-l1-q4",
-              "question": "「何[なに]を なさいますか」ning ma'nosi:",
-              "options": [
-                "Qayerga bordingiz?",
-                "Nima yedingiz?",
-                "Kim keldi?",
-                "Nima qilasiz? / Nima buyurasiz?"
-              ],
+              "question": "「部長[ぶちょう]が 新[あたら]しい 提案[ていあん]を （　　）ました。」",
+              "options": ["申[もう]し", "拝見[はいけん]し", "伺[うかが]い", "おっしゃい"],
               "correctAnswerIndex": 3,
-              "explanation": "Nima qilasiz? (Suru -> Nasaru)."
+              "explanation": "Gapirish feʼlining Sonkeigo shakli: 「おっしゃいました」."
             },
             {
               "id": "ja-n3-u3-l1-q5",
-              "question": "社長[しゃちょう]は もう お帰[かえ]りに （　）。",
-              "options": ["しました", "いたしましました", "なりました", "申[もう]しました"],
-              "correctAnswerIndex": 2,
+              "question": "「社長[しゃちょう]は もう お帰[かえ]りに （　　）。」",
+              "options": ["なりました", "しました", "いたしましました", "申[もう]しました"],
+              "correctAnswerIndex": 0,
               "explanation": "Hurmat shakli (Sonkeigo): お + Feʼl oʻzagi + になる (Okaeri ni narimashita)."
             },
             {
               "id": "ja-n3-u3-l1-q6",
-              "question": "先生[せんせい]、この 本[ほん]を もう （　）か。",
+              "question": "「先生[せんせい]、この 本[ほん]を もう （　　）か。」",
               "options": [
                 "拝見[はいけん]しました",
                 "ご覧[らん]に なりました",
@@ -2406,33 +2271,33 @@
             },
             {
               "id": "ja-n3-u3-l1-q7",
-              "question": "お客様[きゃくさま]、お飲[の]み物[もの]は 何[なに]を （　）か。",
+              "question": "「お客様[きゃくさま]、お飲[の]み物[もの]は 何[なに]を （　　）か。」",
               "options": [
-                "召[め]し上[あ]がります",
                 "頂[いただ]きます",
                 "参[まい]ります",
+                "召[め]し上[あ]がります",
                 "申[もう]されます"
               ],
-              "correctAnswerIndex": 0,
+              "correctAnswerIndex": 2,
               "explanation": "Yemoq/ichmoq feʼlining sonkeigo shakli: 召し上がる (Meshiagaru)."
             },
             {
               "id": "ja-n3-u3-l1-q8",
-              "question": "部長[ぶちょう]は 会議[かいぎ]室[しつ]に （　）。",
+              "question": "「部長[ぶちょう]は 会議[かいぎ]室[しつ]に （　　）。」",
               "options": ["おります", "まいります", "いただきます", "いらっしゃいます"],
               "correctAnswerIndex": 3,
               "explanation": "Boʻlmoq (いる) feʼlining sonkeigo shakli: いらっしゃる (Irassharu)."
             },
             {
               "id": "ja-n3-u3-l1-q9",
-              "question": "鈴木[すずき]様[さま]は 明日[あした] （　）予定[よてい]です。",
+              "question": "「鈴木[すずき]様[さま]は 明日[あした] （　　）予定[よてい]です。」",
               "options": [
+                "お越[こ]しに なる",
                 "参[まい]る",
                 "申[もう]し上[あ]げる",
-                "お越[こ]しに なる",
                 "伺[うかが]う"
               ],
-              "correctAnswerIndex": 2,
+              "correctAnswerIndex": 0,
               "explanation": "Kelmoq (来る) feʼlining oliy hurmat shakli: お越しになる (Okoshi ni naru)."
             },
             {
@@ -2579,98 +2444,88 @@
           "questions": [
             {
               "id": "ja-n3-u3-l2-q1",
-              "question": "Mijozga o'zingizni tanishtirayotganda qaysi iborani qo'llaysiz?",
-              "options": ["〜と おっしゃいます", "〜です", "〜と 言[い]う", "〜と 申[もう]します"],
-              "correctAnswerIndex": 3,
-              "explanation": "〜と 申します (Kenjougo)."
+              "question": "「明日[あした] 10時[じゅうじ]に 貴社[きしゃ]へ （　　）。」",
+              "options": [
+                "伺[うかが]います",
+                "いらっしゃいます",
+                "お越[こ]しになります",
+                "行[い]かれます"
+              ],
+              "correctAnswerIndex": 0,
+              "explanation": "Kamtarona borish feʼli (Kenjougo): 「伺います（うかがいます）」."
             },
             {
               "id": "ja-n3-u3-l2-q2",
-              "question": "«Hujjatni qabul qilib oldim / ko'rib chiqdim» kamtarona shakli:",
-              "options": [
-                "ご覧[らん]に なりました",
-                "見[み]ました",
-                "拝見[はいけん]いたしました",
-                "見[み]てください"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Haiken itashimashita."
+              "question": "「先生[せんせい]の 新[あたら]しい ご著書[ちょしょ]を （　　）ました。」",
+              "options": ["お読[よ]みになり", "拝読[はいどく]し", "ご覧[らん]になり", "おっしゃい"],
+              "correctAnswerIndex": 1,
+              "explanation": "Oʻzining oʻqish harakatini kamtarona aytganda: 「拝読しました（はいどくしました）」."
             },
             {
               "id": "ja-n3-u3-l2-q3",
-              "question": "Telefon orqali mijozga o'z boshlig'ingiz (Tanaka) haqida gapirganda qaysi biri to'g'ri?",
-              "options": [
-                "Tanaka-sensei wa...",
-                "Tanaka san emas, shunchaki «Tanaka wa tadaima gaishutsu shite orimasu» deyish",
-                "Tanaka-san ga ikimashita",
-                "Tanaka-sama wa irasshaimasu"
-              ],
-              "correctAnswerIndex": 1,
-              "explanation": "Uchi-soto qoidasi bo'yicha o'z boshlig'iga san/sama qo'shilmaydi va Kenjougo qo'llaniladi."
+              "question": "「私[わたし]から 部長[ぶちょう]に （　　）ます。」",
+              "options": ["おっしゃい", "ご覧[らん]になり", "申[もう]し上[あ]げ", "いらっしゃい"],
+              "correctAnswerIndex": 2,
+              "explanation": "Aytish feʼlining kamtarona shakli: 「申し上げます」."
             },
             {
               "id": "ja-n3-u3-l2-q4",
-              "question": "「ただいま お茶[ちゃ]を お持[も]ちします」dagi お〜します nimani bildiradi?",
-              "options": ["Kenjougo", "Sonkeigo", "Taqiq", "Buyruq"],
-              "correctAnswerIndex": 0,
-              "explanation": "お+Masu+suru = Kenjougo."
+              "question": "「お荷物[にもつ]を （　　）しましょうか。」",
+              "options": ["お持[も]ちになり", "持[も]たれ", "ご持参[じさん]なさ", "お持[も]ち"],
+              "correctAnswerIndex": 3,
+              "explanation": "Birovga xizmat koʻrsatishdagi Kenjougo: 「お持ちしましょうか」."
             },
             {
               "id": "ja-n3-u3-l2-q5",
-              "question": "私[わたし]が 社長[しゃちょう]に 資料[しりょう]を お渡[わた]し （　）。",
-              "options": ["になります", "くださいます", "いらっしゃいます", "します"],
-              "correctAnswerIndex": 3,
+              "question": "「私[わたし]が 社長[しゃちょう]に 資料[しりょう]を お渡[わた]し （　　）。」",
+              "options": ["します", "になります", "くださいます", "いらっしゃいます"],
+              "correctAnswerIndex": 0,
               "explanation": "Kamtarlik (Kenjougo): お + Feʼl oʻzagi + する/いたします (Owatashi shimasu)."
             },
             {
               "id": "ja-n3-u3-l2-q6",
-              "question": "明日[あした] 10時[じゅうじ]に 御社[おんしゃ]へ （　）。",
+              "question": "「明日[あした] 10時[じゅうじ]に 御社[おんしゃ]へ （　　）。」",
               "options": [
                 "いらっしゃいます",
-                "お越[こ]しになります",
                 "伺[うかが]います",
+                "お越[こ]しになります",
                 "なさいます"
               ],
-              "correctAnswerIndex": 2,
+              "correctAnswerIndex": 1,
               "explanation": "Birovning huzuriga bormoq/tashrif buyurmoq kamtarlikda: 伺う (Ukagau)."
             },
             {
               "id": "ja-n3-u3-l2-q7",
-              "question": "私[わたし]は 田中[たなか]と （　）。よろしくお願[ねが]いいたします。",
-              "options": ["おっしゃいます", "申[もう]します", "いらっしゃいます", "なさいます"],
-              "correctAnswerIndex": 1,
+              "question": "「私[わたし]は 田中[たなか]と （　　）。よろしくお願[ねが]いいたします。」",
+              "options": ["おっしゃいます", "いらっしゃいます", "申[もう]します", "なさいます"],
+              "correctAnswerIndex": 2,
               "explanation": "Oʻz ismini aytganda kamtarlik bilan: 申します (Moushimasu)."
             },
             {
               "id": "ja-n3-u3-l2-q8",
-              "question": "先生[せんせい]から 推薦[すいせん]状[じょう]を （　）。",
-              "options": ["いただきました", "くださいました", "さしあげました", "めしあがりました"],
-              "correctAnswerIndex": 0,
+              "question": "「先生[せんせい]から 推薦[すいせん]状[じょう]を （　　）。」",
+              "options": ["くださいました", "さしあげました", "めしあがりました", "いただきました"],
+              "correctAnswerIndex": 3,
               "explanation": "Hurmatli shaxsdan qabul qilib olmoq (Morau ning kenjougo shakli): いただく (Itadaku)."
             },
             {
               "id": "ja-n3-u3-l2-q9",
-              "question": "メールを （　）ので、ご返信[へんしん]いたしました。",
+              "question": "「メールを （　　）ので、ご返信[へんしん]いたしました。」",
               "options": [
+                "拝読[はいどく]しました",
                 "お読[よ]みに なりました",
                 "ご覧[らん]に なりました",
-                "読[よ]まれました",
-                "拝読[はいどく]しました"
+                "読[よ]まれました"
               ],
-              "correctAnswerIndex": 3,
+              "correctAnswerIndex": 0,
               "explanation": "Birovning xatini ehtirom bilan oʻqib chiqdim (kamtarlik): 拝読する (Haidoku suru)."
             },
             {
               "id": "ja-n3-u3-l2-q10",
-              "question": "自分[じぶん]の 家族[かぞく]の ことについて 取引[とりひき]先[さき]に 話[はな]す 時[とき]、どちらを 使[つか]うか？",
-              "options": [
-                "尊敬語[そんけいご]",
-                "タメ口[ぐち]",
-                "謙譲語[けんじょうご]",
-                "命令形[めいれいけい]"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Tashqi hamkorlar bilan suhbatda oʻz oilasi va oʻz kompaniyasi vakillari haqida kenjougo (kamtarlik) qoʻllanadi."
+              "question": "社外[しゃがい]の 取引先[とりひきさき]に 対[たい]して：「父[ちち]は ただいま 外出[がいしゅつ]して （　　）。」",
+              "options": ["いらっしゃいます", "おります", "おいでになります", "なさいます"],
+              "correctAnswerIndex": 1,
+              "explanation": "Tashqi mijozga oʻz oila aʼzosi haqida gapirganda kamtarona Kenjougo: 「おります」."
             }
           ]
         }
@@ -2799,35 +2654,30 @@
           "questions": [
             {
               "id": "ja-n3-u3-l3-q1",
-              "question": "«Siyosat» kanjisi qaysi?",
-              "options": ["政治[せいじ]", "経済[けいざい]", "影響[えいきょう]", "関係[かんけい]"],
+              "question": "「国[くに]の （　　）を 動[うご]かす リーダーを 選[えら]ぶ 選挙[せんきょ]が 行[おこな]われた。」",
+              "options": ["政治[せいじ]", "経済[けいざい]", "関係[かんけい]", "相談[そうだん]"],
               "correctAnswerIndex": 0,
-              "explanation": "政治 (Seiji)."
+              "explanation": "政治（せいじ）: Siyosat («davlat siyosatini boshqaruvchi»)."
             },
             {
               "id": "ja-n3-u3-l3-q2",
-              "question": "「関係[かんけい]が ある」ning ma'nosi:",
-              "options": [
-                "Iqtisodiyot o'sdi",
-                "Ta'sir yo'q",
-                "Siyosatchi",
-                "Aloqadorlik / Munosabat bor"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Aloqador / Munosabati bor."
+              "question": "「物価[ぶっか]の 上昇[じょうしょう]が 国民[こくみん]の 生活[せいかつ]に 大[おお]きな （　　）を 与[あた]えている。」",
+              "options": ["関係[かんけい]", "影響[えいきょう]", "相談[そうだん]", "政治[せいじ]"],
+              "correctAnswerIndex": 1,
+              "explanation": "影響（えいきょう）: Taʼsir («katta taʼsir koʻrsatmoqda»)."
             },
             {
               "id": "ja-n3-u3-l3-q3",
-              "question": "«Ta'sir ko'rsatmoq» iyeroglifi qaysi?",
-              "options": ["相談[そうだん]", "約束[やくそく]", "影響[えいきょう]", "案内[あんない]"],
+              "question": "「環境[かんきょう]汚染[おせん]が 生態系[せいたいけい]に 深刻[しんこく]な （　　）を 与[あた]えている。」",
+              "options": ["政治[せいじ]", "相談[そうだん]", "影響[えいきょう]", "関係[かんけい]"],
               "correctAnswerIndex": 2,
-              "explanation": "影響 (Eikyou)."
+              "explanation": "影響（えいきょう）: Salbiy taʼsir oʻtkazmoqda."
             },
             {
               "id": "ja-n3-u3-l3-q4",
               "question": "「係員[かかりいん]」so'zining ma'nosi:",
-              "options": ["Talaba", "Mas'ul xodim / Navbatchi", "Mijoz", "Prezident"],
-              "correctAnswerIndex": 1,
+              "options": ["Talaba", "Mijoz", "Prezident", "Mas'ul xodim / Navbatchi"],
+              "correctAnswerIndex": 3,
               "explanation": "Kakariin — Mas'ul xodim."
             },
             {
@@ -2839,9 +2689,9 @@
             },
             {
               "id": "ja-n3-u3-l3-q6",
-              "question": "物価[ぶっか]の 上昇[じょうしょう]が 国民[こくみん]の 生活[せいかつ]に 大[おお]きな （　）を 与[あた]えた。",
-              "options": ["関係[かんけい]", "政治[せいじ]", "相談[そうだん]", "影響[えいきょう]"],
-              "correctAnswerIndex": 3,
+              "question": "「物価[ぶっか]の 上昇[じょうしょう]が 国民[こくみん]の 生活[せいかつ]に 大[おお]きな （　　）を 与[あた]えた。」",
+              "options": ["関係[かんけい]", "影響[えいきょう]", "政治[せいじ]", "相談[そうだん]"],
+              "correctAnswerIndex": 1,
               "explanation": "Taʼsir koʻrsatmoq: 影響を与える (Eikyou o ataeru)."
             },
             {
@@ -2853,9 +2703,9 @@
             },
             {
               "id": "ja-n3-u3-l3-q8",
-              "question": "問題[もんだい]が 生[しょう]じたので、上司[じょうし]に （　）した。",
-              "options": ["判断[はんだん]", "相談[そうだん]", "影響[えいきょう]", "政治[せいじ]"],
-              "correctAnswerIndex": 1,
+              "question": "「問題[もんだい]が 生[しょう]じたので、上司[じょうし]に （　　）した。」",
+              "options": ["判断[はんだん]", "影響[えいきょう]", "政治[せいじ]", "相談[そうだん]"],
+              "correctAnswerIndex": 3,
               "explanation": "Maslahatlashmoq: 相談する (Soudan suru)."
             },
             {
@@ -2867,9 +2717,9 @@
             },
             {
               "id": "ja-n3-u3-l3-q10",
-              "question": "両国[りょうこく]の 間[あいだ]で 新[あたら]しい 貿易[ぼうえき]（　）が 結[むす]ばれた。",
-              "options": ["政治[せいじ]", "経済[けいざい]", "相談[そうだん]", "条約[じょうやく]"],
-              "correctAnswerIndex": 3,
+              "question": "「両国[りょうこく]の 間[あいだ]で 新[あたら]しい 貿易[ぼうえき]（　　）が 結[むす]ばれた。」",
+              "options": ["政治[せいじ]", "条約[じょうやく]", "経済[けいざい]", "相談[そうだん]"],
+              "correctAnswerIndex": 1,
               "explanation": "Shartnoma/bitim tuzildi: 条約を結ぶ (Jouyaku o musubu)."
             }
           ]
@@ -2999,29 +2849,24 @@
           "questions": [
             {
               "id": "ja-n3-u3-l4-q1",
-              "question": "«Zarar / Talafot» kanjisi qaysi?",
-              "options": ["経済[けいざい]", "被害[ひがい]", "案内[あんない]", "政治[せいじ]"],
-              "correctAnswerIndex": 1,
-              "explanation": "被害 (Higai)."
+              "question": "「台風[たいふう]に より、各地[かくち]で 甚大[じんだい]な （　　）が 出[で]た。」",
+              "options": ["被害[ひがい]", "変化[へんか]", "気温[きおん]", "地震[じしん]"],
+              "correctAnswerIndex": 0,
+              "explanation": "被害（ひがい）: Talafot, zarar («ulkan zarar yetdi»)."
             },
             {
               "id": "ja-n3-u3-l4-q2",
-              "question": "「気温[きおん]が 下[さ]がる」ning ma'nosi:",
-              "options": [
-                "Havo harorati tushmoqda",
-                "Harorat ko'tarilmoqda",
-                "Yomg'ir yog'di",
-                "Zilzila bo'ldi"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Harorat pasaymoqda."
+              "question": "「昨日[きのう]の 夜[よる]、震度[しんど] 3の （　　）が 発生[はっせい]した。」",
+              "options": ["台風[たいふう]", "地震[じしん]", "被害[ひがい]", "気温[きおん]"],
+              "correctAnswerIndex": 1,
+              "explanation": "地震（じしん）: Zilzila."
             },
             {
               "id": "ja-n3-u3-l4-q3",
-              "question": "«Zilzila» so'zining to'g'ri kanjisi va o'qilishi:",
-              "options": ["自信[じしん]", "自身[じしん]", "時針[じしん]", "地震[じしん]"],
-              "correctAnswerIndex": 3,
-              "explanation": "地震 (Jishin)."
+              "question": "「日本[にほん]は 世界[せかい]の中[なか]でも （　　）が 多[おお]い 国[くに]の 一[ひと]つだ。」",
+              "options": ["変化[へんか]", "気温[きおん]", "地震[じしん]", "台風[たいふう]"],
+              "correctAnswerIndex": 2,
+              "explanation": "地震（じしん）: Zilzila."
             },
             {
               "id": "ja-n3-u3-l4-q4",
@@ -3029,52 +2874,52 @@
               "options": [
                 "Tayfun to'xtadi",
                 "Shamol yo'q",
-                "Tayfun sababli yetkazilgan talafot",
-                "Yangi ob-havo"
+                "Yangi ob-havo",
+                "Tayfun sababli yetkazilgan talafot"
               ],
-              "correctAnswerIndex": 2,
+              "correctAnswerIndex": 3,
               "explanation": "Damage caused by typhoon."
             },
             {
               "id": "ja-n3-u3-l4-q5",
               "question": "「地震」ning toʻgʻri oʻqilishi qaysi?",
-              "options": ["ちしん", "じしん", "じし", "ちじん"],
-              "correctAnswerIndex": 1,
+              "options": ["じしん", "ちしん", "じし", "ちじん"],
+              "correctAnswerIndex": 0,
               "explanation": "地震 = じしん (Zilzila)."
             },
             {
               "id": "ja-n3-u3-l4-q6",
-              "question": "大雨[おおあめ]に より、各地[かくち]で 甚大[じんだい]な （　）が 出[で]た。",
-              "options": ["被害[ひがい]", "変化[へんか]", "気温[きおん]", "台風[たいふう]"],
-              "correctAnswerIndex": 0,
+              "question": "「大雨[おおあめ]に より、各地[かくち]で 甚大[じんだい]な （　　）が 出[で]た。」",
+              "options": ["変化[へんか]", "被害[ひがい]", "気温[きおん]", "台風[たいふう]"],
+              "correctAnswerIndex": 1,
               "explanation": "Zarar, ziyon: 被害が出る (Higai ga deru)."
             },
             {
               "id": "ja-n3-u3-l4-q7",
               "question": "「気温」kanjisining maʼnosi nima?",
-              "options": ["Suv harorati", "Shamol tezligi", "Havo namligi", "Havo harorati"],
-              "correctAnswerIndex": 3,
+              "options": ["Suv harorati", "Shamol tezligi", "Havo harorati", "Havo namligi"],
+              "correctAnswerIndex": 2,
               "explanation": "気温 (Kion) = Havo harorati."
             },
             {
               "id": "ja-n3-u3-l4-q8",
-              "question": "大型[おおがた]の （　）が 日本[にほん]列島[れっとう]に 近[ちか]づいて います。",
-              "options": ["被害[ひがい]", "変化[へんか]", "台風[たいふう]", "気温[きおん]"],
-              "correctAnswerIndex": 2,
+              "question": "「大型[おおがた]の （　　）が 日本[にほん]列島[れっとう]に 近[ちか]づいて います。」",
+              "options": ["被害[ひがい]", "変化[へんか]", "気温[きおん]", "台風[たいふう]"],
+              "correctAnswerIndex": 3,
               "explanation": "Tayfun, toʻfon yaqinlashmoqda: 台風 (Taifuu)."
             },
             {
               "id": "ja-n3-u3-l4-q9",
-              "question": "季節[きせつ]の （　）に 注意[ちゅうい]して 体調[たいちょう]を 管理[かんり]する。",
-              "options": ["地震[じしん]", "変化[へんか]", "被害[ひがい]", "津波[つなみ]"],
-              "correctAnswerIndex": 1,
+              "question": "「季節[きせつ]の （　　）に 注意[ちゅうい]して 体調[たいちょう]を 管理[かんり]する。」",
+              "options": ["変化[へんか]", "地震[じしん]", "被害[ひがい]", "津波[つなみ]"],
+              "correctAnswerIndex": 0,
               "explanation": "Fasl almashinuvi/oʻzgarishi: 変化 (Henka)."
             },
             {
               "id": "ja-n3-u3-l4-q10",
               "question": "「洪水」ning toʻgʻri oʻqilishi qaysi?",
-              "options": ["こうずい", "おおみず", "こうすい", "ごうずい"],
-              "correctAnswerIndex": 0,
+              "options": ["おおみず", "こうずい", "こうすい", "ごうずい"],
+              "correctAnswerIndex": 1,
               "explanation": "洪水 = こうずい (Suv toshqini)."
             }
           ]
@@ -3215,29 +3060,29 @@
           "questions": [
             {
               "id": "ja-n3-u3-l5-q1",
-              "question": "Boshliq:「この企画書、目を通しておいてくれた？」 Sizning javobingiz:",
+              "question": "「A: 「山田[やまだ]さん、明日[あした]の 会議[かいぎ]の 資料[しりょう]、手伝[てつだ]ってもらえない？」\nB: 「（　　）。」」",
               "options": [
-                "いいえ、見[み]てください。",
-                "どういたしまして。",
-                "はい、先ほど 拝見[はいけん]いたしました。",
-                "はい、目[め]が 痛[いた]いです。"
+                "ええ、喜[よろこ]んで 手伝[てつだ]いますよ",
+                "手伝[てつだ]ってもらいませんでした",
+                "手伝[てつだ]うつもりは ありません",
+                "手伝[てつだ]えませんでした"
               ],
-              "correctAnswerIndex": 2,
-              "explanation": "Hai, sakihodo haiken itashimashita (Kenjougo).",
+              "correctAnswerIndex": 0,
+              "explanation": "Tezkor javob: Yordam soʻralganda «Bajonidil yordamlashaman»: 「ええ、喜んで手伝いますよ」.",
               "audioUrl": "/audio/choukai/n3/44 Track 44.mp3",
               "audioTitle": "N3 Track 44: 即時応答 1"
             },
             {
               "id": "ja-n3-u3-l5-q2",
-              "question": "Hamkasb:「会議の準備、手伝おうか。」 Sizning javobingiz:",
+              "question": "「A: 「この 書類[しょるい]、今日[きょう]中[じゅう]に 出[だ]さなきゃ いけないの？」\nB: 「（　　）。」」",
               "options": [
-                "手伝[てつだ]っては いけません。",
-                "助[たす]かるよ、お願[ねが]いできる？",
-                "さようなら。",
-                "はい、手伝[てつだ]いましょう。"
+                "出[だ]さなくても よかったよ",
+                "うん、5時[ごじ]までに 出[だ]してね",
+                "出[だ]したほうが いいよ",
+                "出[だ]すつもりは ないよ"
               ],
               "correctAnswerIndex": 1,
-              "explanation": "Tasukaru yo, onegai dekiru?",
+              "explanation": "Bugun topshirish shartmi deganda: «Ha, soat 17:00 gacha topshir»: 「うん、5時までに出してね」.",
               "audioUrl": "/audio/choukai/n3/45 Track 45.mp3",
               "audioTitle": "N3 Track 45: 即時応答 2"
             },
@@ -3245,22 +3090,27 @@
               "id": "ja-n3-u3-l5-q3",
               "question": "Xo'jayin:「悪いけど、コピー頼める？」 Sizning javobingiz:",
               "options": [
-                "かしこまりました。すぐ やります。",
                 "ごちそうさま。",
                 "ダメです。",
+                "かしこまりました。すぐ やります。",
                 "コピーが あります。"
               ],
-              "correctAnswerIndex": 0,
+              "correctAnswerIndex": 2,
               "explanation": "Kashikomarimashita. Sugu yarimasu.",
               "audioUrl": "/audio/choukai/n3/48 Track 48.mp3",
               "audioTitle": "N3 Track 48: 即時応答 3"
             },
             {
               "id": "ja-n3-u3-l5-q4",
-              "question": "Sokuji Outou bo'limida bitta savolga javob berish uchun qancha soniya vaqt beriladi?",
-              "options": ["2 daqiqa", "10 daqiqa", "Vaqt chegarasiz", "Faqat 3-5 soniya"],
+              "question": "会話[かいわ]：A「この レポート、明日[あした]までに 出[だ]さないと いけない？」\nB「（　　）。」",
+              "options": [
+                "出[だ]さなくても よかったよ",
+                "出[だ]したほうが よかったよ",
+                "出[だ]すつもりは ないよ",
+                "うん、明日[あした]の 17時[じゅうしちじ]までだよ"
+              ],
               "correctAnswerIndex": 3,
-              "explanation": "3-5 seconds instant response.",
+              "explanation": "Toʻgʻri dialog javobi: 「うん、明日の17時までだよ」.",
               "audioUrl": "/audio/choukai/n3/55 Track 55.mp3",
               "audioTitle": "N3 Track 55: 即時応答 4"
             },
@@ -3268,12 +3118,12 @@
               "id": "ja-n3-u3-l5-q5",
               "question": "「この 書類[しょるい]、今日[きょう]中[じゅう]に 出[だ]さないと いけない？」に対する 最適[さいてき]な 応答[おうとう]は？",
               "options": [
+                "うん、今日[きょう]中[じゅう]に 出[だ]さなきゃ だめだよ。",
                 "いいえ、昨日[きのう] 出[だ]したよ。",
                 "じゃあ、出[だ]さなくても いいよ。",
-                "うん、今日[きょう]中[じゅう]に 出[だ]さなきゃ だめだよ。",
                 "明日[あした] 出[だ]しました。"
               ],
-              "correctAnswerIndex": 2,
+              "correctAnswerIndex": 0,
               "explanation": "Bugun topshirish shartmi savoliga: ha, bugun topshirmasang boʻlmaydi (出さなきゃだめだよ)."
             },
             {
@@ -3292,12 +3142,12 @@
               "id": "ja-n3-u3-l5-q7",
               "question": "「ちょっと 手[て]を 貸[か]して もらえない？」に対する 適切[てきせつ]な 返事[へんじ]は？",
               "options": [
-                "いいよ、何[なに]を 手伝[てつだ]えば いい？",
                 "手[て]は ありません。",
                 "どうぞ お貸[か]しください。",
+                "いいよ、何[なに]を 手伝[てつだ]えば いい？",
                 "貸[か]したことが あります。"
               ],
-              "correctAnswerIndex": 0,
+              "correctAnswerIndex": 2,
               "explanation": "Qoʻl berib yordamlashib yubora olmaysanmi: Mayli, nimada yordamlashay? (何を手伝えばいい？)."
             },
             {
@@ -3316,25 +3166,25 @@
               "id": "ja-n3-u3-l5-q9",
               "question": "「鈴木[すずき]さん、急[いそ]ぎの 仕事[しごと]が 入[はい]っちゃったんだけど、手伝[てつだ]える？」に対する 返答[へんとう]：",
               "options": [
+                "すみません、今[いま] 手[て]が 離[はな]せなくて…",
                 "ぜんぜん 忙[いそが]しくないです。",
                 "手伝[てつだ]わせてくださいました。",
-                "すみません、今[いま] 手[て]が 離[はな]せなくて…",
                 "急[いそ]ぎではありません。"
               ],
-              "correctAnswerIndex": 2,
+              "correctAnswerIndex": 0,
               "explanation": "Uzrli sabab bilan yordam berolmaslik: 今手が離せなくて (Hozir qoʻlim boʻshamayapti)."
             },
             {
               "id": "ja-n3-u3-l5-q10",
-              "question": "即時[そくじ]応答[おうとう]（Sokuji outou）問題[もんだい]を 解[と]く 際[さい]の 鉄則[てっそく]は？",
+              "question": "会話[かいわ]：A「コーヒーの おかわりは いかがですか。」\nB「（　　）。」",
               "options": [
-                "全[すべ]ての 選択肢[せんたくし]の 漢字[かんじ]を 書[か]いてみること",
-                "相手[あいて]の 発話[はつわ]の 意図[いと]（依頼[いらい]・感謝[かんしゃ]・謝罪[しゃざい]・質問[しつもん]）を 瞬時[しゅんじ]に 見極[みきわ]めること",
-                "5分[ごふん]間[かん] 考[かんが]えてから 答[こた]えること",
-                "長[なが]い 選択肢[せんたくし]だけを 選[えら]ぶこと"
+                "はい、もう 結構[けっこう]です",
+                "いいえ、もう 結構[けっこう]です",
+                "いいえ、いただきます",
+                "どういたしまして"
               ],
               "correctAnswerIndex": 1,
-              "explanation": "Sokuji outou: Suhbatdoshning maqsadi (iltimos, minnatdorchilik, uzr, savol)ni darhol anglab toʻgʻri reaksiyani tanlash kerak."
+              "explanation": "Xushmuomala rad etish: 「いいえ、もう結構です」."
             }
           ]
         }
@@ -3464,75 +3314,65 @@
           "questions": [
             {
               "id": "ja-n3-u4-l1-q1",
-              "question": "Bitta hodisaning ham yaxshi, ham yomon tomonini ochib berishda qaysi biri ishlatiladi?",
-              "options": ["〜から", "〜ため", "〜に対[たい]して", "〜反面[はんめん]"],
-              "correctAnswerIndex": 3,
-              "explanation": "〜反面 (On the other hand / Flip side)."
+              "question": "「兄[あに]は 外向[がいこう]的なの（　　）、弟[おとうと]は 内気[うちき]で 静[しず]かだ。」",
+              "options": ["に対[たい]して", "に反[はん]して", "のわりに", "のくせに"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜に対して: Ikki shaxs yoki hodisani qiyoslash: «akasi ochiqkoʻngil boʻlganiga nisbatan, ukasi tortinchoq»."
             },
             {
               "id": "ja-n3-u4-l1-q2",
-              "question": "«Katta shaharlar qulay bo'lgani bilan, yashash narxi qimmat»:",
-              "options": [
-                "都会[とかい]は 便利[べんり]な 対[たい]して",
-                "都会[とかい]です",
-                "都会[とかい]は 便利[べんり]な 反面[はんめん]、生活[せいかつ]費[ひ]が 高[たか]い",
-                "都会[とかい]だから"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Benri na hanmen."
+              "question": "「都会[とかい]の 暮らし[くらし]は 便利[べんり]な（　　）、生活費[せいかつひ]が 高[たか]い。」",
+              "options": ["わりに", "反面[はんめん]", "くせに", "せいで"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜反面: Bir hodisaning ikkinchi qarama-qarshi tomoni: «qulay boʻlgani bilan, boshqa tomondan yashash narxi qimmat»."
             },
             {
               "id": "ja-n3-u4-l1-q3",
-              "question": "«Erkaklar soni ko'payganiga nisbatan ayollar soni kamaydi»:",
-              "options": [
-                "増[ふ]えた から",
-                "男性[だんせい]が 増[ふ]えたのに 対[たい]して、女性[じょせい]は 減[へ]った",
-                "増[ふ]えた 反面[はんめん]",
-                "増[ふ]えた"
-              ],
-              "correctAnswerIndex": 1,
-              "explanation": "Fueta no ni taishite (ikkala toifani solishtirish)."
+              "question": "「若[わか]い人[ひと]の 投票[とうひょう]率[りつ]が 低[ひく]いの（　　）、高齢者[こうれいしゃ]は 高[たか]い。」",
+              "options": ["反面[はんめん]", "のせいで", "に対[たい]して", "のおかげで"],
+              "correctAnswerIndex": 2,
+              "explanation": "Statistik qiyoslash: 「〜に対して」."
             },
             {
               "id": "ja-n3-u4-l1-q4",
-              "question": "「内気[うちき]な」so'zining ma'nosi:",
-              "options": ["Tortinchoq / Kamgap", "Kirishimli", "Xushchaqchaq", "Jizzaki"],
-              "correctAnswerIndex": 0,
-              "explanation": "Uchiki na — Tortinchoq."
+              "question": "「この 薬[くすり]は 効果[こうか]が 高[たか]い（　　）、副作用[ふくさよう]も 強[つよ]い。」",
+              "options": ["わりに", "せいで", "くせに", "反面[はんめん]"],
+              "correctAnswerIndex": 3,
+              "explanation": "«Samaradorligi yuqori boʻlgani bilan, nojoʻya taʼsiri ham kuchli»: 「反面」."
             },
             {
               "id": "ja-n3-u4-l1-q5",
-              "question": "兄[あに]が 外向[がいこう]的[てき]な （　）、弟[おとうと]は 内向[ないこう]的[てき]で 静[しず]かだ。",
-              "options": ["反面[はんめん]", "せいで", "おかげで", "のに対[たい]して"],
-              "correctAnswerIndex": 3,
+              "question": "「兄[あに]が 外向[がいこう]的[てき]な （　　）、弟[おとうと]は 内向[ないこう]的[てき]で 静[しず]かだ。」",
+              "options": ["のに対[たい]して", "反面[はんめん]", "せいで", "おかげで"],
+              "correctAnswerIndex": 0,
               "explanation": "Ikki xil shaxs yoki obyektni qiyosiy taqqoslash: 〜に対して (Aksincha, nisbatan)."
             },
             {
               "id": "ja-n3-u4-l1-q6",
-              "question": "この マンションは 駅[えき]に 近[ちか]くて 便利[べんり]な （　）、家賃[やちん]が 高[たか]い。",
-              "options": ["に対して", "によって", "反面[はんめん]", "ばかりに"],
-              "correctAnswerIndex": 2,
+              "question": "「この マンションは 駅[えき]に 近[ちか]くて 便利[べんり]な （　　）、家賃[やちん]が 高[たか]い。」",
+              "options": ["に対して", "反面[はんめん]", "によって", "ばかりに"],
+              "correctAnswerIndex": 1,
               "explanation": "Ayni bir narsaning ikki xil (ijobiy va salbiy) jihatini ifodalash: 〜反面 (Boshqa tomondan qaraganda)."
             },
             {
               "id": "ja-n3-u4-l1-q7",
-              "question": "都市[とし]部[ぶ]で 人口[じんこう]が 増[ふ]えている （　）、地方[ちほう]では 過疎[かそ]化[か]が 進[すす]んでいる。",
-              "options": ["反面", "のに対[たい]して", "せいで", "おかげで"],
-              "correctAnswerIndex": 1,
+              "question": "「都市[とし]部[ぶ]で 人口[じんこう]が 増[ふ]えている （　　）、地方[ちほう]では 過疎[かそ]化[か]が 進[すす]んでいる。」",
+              "options": ["反面", "せいで", "のに対[たい]して", "おかげで"],
+              "correctAnswerIndex": 2,
               "explanation": "Ikki hududiy vaziyatni qarama-qarshi qoʻyish: 〜のに対して."
             },
             {
               "id": "ja-n3-u4-l1-q8",
-              "question": "一人[ひとり]暮[ぐ]らしは 自由[じゆう]な （　）、寂[さび]しさを 感[かん]じる ことも ある。",
-              "options": ["反面[はんめん]", "に対して", "ばかりか", "によって"],
-              "correctAnswerIndex": 0,
+              "question": "「一人[ひとり]暮[ぐ]らしは 自由[じゆう]な （　　）、寂[さび]しさを 感[かん]じる ことも ある。」",
+              "options": ["に対して", "ばかりか", "によって", "反面[はんめん]"],
+              "correctAnswerIndex": 3,
               "explanation": "Yakka yashash erkin boʻlishining teskari tomoni — yolgʻizlik: 自由な反面."
             },
             {
               "id": "ja-n3-u4-l1-q9",
-              "question": "女性[じょせい]の 賛成[さんせい]が 多[おお]かったの （　）、男性[だんせい]は 反対[はんたい]が 多[おお]かった。",
-              "options": ["反面", "せいで", "ために", "に対[たい]して"],
-              "correctAnswerIndex": 3,
+              "question": "「女性[じょせい]の 賛成[さんせい]が 多[おお]かったの （　　）、男性[だんせい]は 反対[はんたい]が 多[おお]かった。」",
+              "options": ["に対[たい]して", "反面", "せいで", "ために"],
+              "correctAnswerIndex": 0,
               "explanation": "Ayollar maʼqullaganiga qaramasdan/nisbatan: 〜のに対して."
             },
             {
@@ -3540,11 +3380,11 @@
               "question": "「〜に対して」va「〜反面」ning asosiy farqi qaysi javobda toʻgʻri koʻrsatilgan?",
               "options": [
                 "〜反面 faqat insonlarga, 〜に対して esa narsalarga ishlatiladi",
-                "Ikkalasi ham faqat salbiy sabab bildiradi",
                 "〜に対して ikki xil narsani taqqoslaydi, 〜反面 esa ayni bitta narsaning ikki qarama-qarshi tomonini bildiradi",
+                "Ikkalasi ham faqat salbiy sabab bildiradi",
                 "Hech qanday farq mavjud emas"
               ],
-              "correctAnswerIndex": 2,
+              "correctAnswerIndex": 1,
               "explanation": "〜に対して 2 ta alohida subyektni qiyoslaydi, 〜反面 esa bitta subyektning ikki qarama-qarshi yuzini (tangadek) koʻrsatadi."
             }
           ]
@@ -3675,87 +3515,72 @@
           "questions": [
             {
               "id": "ja-n3-u4-l2-q1",
-              "question": "Ijobiy natija va minnatdorchilik bildirishda qaysi biri ishlatiladi?",
-              "options": ["〜おかげで", "〜せいで", "〜わりに", "〜くせに"],
+              "question": "「先生[せんせい]の 熱心[ねっしん]な 指導[しどう]の （　　）、JLPT N3に 合格[ごうかく]できた。」",
+              "options": ["おかげで", "せいで", "ために", "によって"],
               "correctAnswerIndex": 0,
-              "explanation": "〜おかげで (Thanks to / Sharofati bilan)."
+              "explanation": "〜おかげで: Ijobiy minnatdorchilik sababi: «ustozimning mehnati sharofati bilan»."
             },
             {
               "id": "ja-n3-u4-l2-q2",
-              "question": "«Ustozimning yordami sharofati bilan imtihondan o'tdim»:",
-              "options": [
-                "先生[せんせい]に よって",
-                "先生[せんせい]です",
-                "先生[せんせい]の せいで",
-                "先生[せんせい]の おかげで、試験[しけん]に 合格[ごうかく]しました"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Sensei no okage de."
+              "question": "「睡眠[すいみん]不足[ぶそく]の （　　）、一日[いちにち]中[じゅう] 集中[しゅうちゅう]できなかった。」",
+              "options": ["おかげで", "せいで", "によって", "わりに"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜せいで: Salbiy oqibat sababi: «uyqusizlik dastidan»."
             },
             {
               "id": "ja-n3-u4-l2-q3",
-              "question": "「人[ひと]によって 考[かんが]え方[かた]が 違[ちが]う」dagi 〜によって nimani bildiradi?",
-              "options": [
-                "Salbiy ayblov",
-                "Minnatdorchilik",
-                "Turli-tumanlik (... ga qarab har xil)",
-                "Taqiq"
-              ],
+              "question": "「台風[たいふう]に （　　）、交通[こうつう]機関[きかん]が 大[おお]きく 乱[みだ]れた。」",
+              "options": ["おかげで", "せいで", "よって", "つれて"],
               "correctAnswerIndex": 2,
-              "explanation": "Depends on the person."
+              "explanation": "〜によって: Tabiiy sabab oqibatida: 「台風によって」."
             },
             {
               "id": "ja-n3-u4-l2-q4",
-              "question": "«Uyqusizlik dastidan boshim og'riyapti»:",
-              "options": [
-                "寝不足[ねぶそく]の おかげで",
-                "寝不足[ねぶそく]の せいで、頭[あたま]が 痛[いた]い",
-                "寝不足[ねぶそく]なら",
-                "寝不足[ねぶそく]です"
-              ],
-              "correctAnswerIndex": 1,
-              "explanation": "Nebusoku no sei de."
+              "question": "「インターネットの 発展[はってん]に （　　）、世界[せかい]の 距離[きょり]が 近[ちか]くなった。」",
+              "options": ["せいで", "おかげで", "わりに", "よって"],
+              "correctAnswerIndex": 3,
+              "explanation": "Vositani ifodalovchi sabab: 「発展によって」."
             },
             {
               "id": "ja-n3-u4-l2-q5",
-              "question": "台風[たいふう]に （　）、電車[でんしゃ]が 止[と]まって しまいました。",
+              "question": "「台風[たいふう]に （　　）、電車[でんしゃ]が 止[と]まって しまいました。」",
               "options": ["よって", "ついて", "対して", "関して"],
               "correctAnswerIndex": 0,
               "explanation": "Sabab/omil: 〜によって (Tayfun tufayli/sababli)."
             },
             {
               "id": "ja-n3-u4-l2-q6",
-              "question": "彼[かれ]の 遅刻[ちこく]の （　）、チーム全体[ぜんたい]が 迷惑[めいわく]を 被[こうむ]った。",
-              "options": ["おかげで", "ために", "わりには", "せいで"],
-              "correctAnswerIndex": 3,
+              "question": "「彼[かれ]の 遅刻[ちこく]の （　　）、チーム全体[ぜんたい]が 迷惑[めいわく]を 被[こうむ]った。」",
+              "options": ["おかげで", "せいで", "ために", "わりには"],
+              "correctAnswerIndex": 1,
               "explanation": "Salbiy oqibatga sabab boʻlgan shaxs yoki omilni ayblash: 〜せいで (Uning kechikishi dastidan)."
             },
             {
               "id": "ja-n3-u4-l2-q7",
-              "question": "先生[せんせい]の 分[わ]かりやすい 指導[しどう]の （　）、合格[ごうかく]できました。",
+              "question": "「先生[せんせい]の 分[わ]かりやすい 指導[しどう]の （　　）、合格[ごうかく]できました。」",
               "options": ["せいで", "くせに", "おかげで", "ばかりで"],
               "correctAnswerIndex": 2,
               "explanation": "Ijobiy natija va minnatdorchilik sababi: 〜おかげで (Ustozning tushuntirishi sharofati bilan)."
             },
             {
               "id": "ja-n3-u4-l2-q8",
-              "question": "インターネットの 普及[ふきゅう]に （　）、世界中[せかいじゅう]の 情報[じょうほう]が 瞬時[しゅんじ]に 得[え]られる。",
-              "options": ["対して", "よって", "反面", "くせに"],
-              "correctAnswerIndex": 1,
+              "question": "「インターネットの 普及[ふきゅう]に （　　）、世界中[せかいじゅう]の 情報[じょうほう]が 瞬時[しゅんじ]に 得[え]られる。」",
+              "options": ["対して", "反面", "くせに", "よって"],
+              "correctAnswerIndex": 3,
               "explanation": "Vosita/usul (Means): 〜によって (Internet ommalashuvi vositasida)."
             },
             {
               "id": "ja-n3-u4-l2-q9",
-              "question": "人[ひと]に （　）、考[かんが]え方[かた]は さまざまだ。",
+              "question": "「人[ひと]に （　　）、考[かんが]え方[かた]は さまざまだ。」",
               "options": ["よって", "せいで", "おかげで", "反面"],
               "correctAnswerIndex": 0,
               "explanation": "Farqlanish, xilma-xillik: 人によって (Odamiga qarab/har kimda har xil)."
             },
             {
               "id": "ja-n3-u4-l2-q10",
-              "question": "寝坊[ねぼう]した （　）、大事[だいじ]な 面接[めんせつ]に 遅[おく]れてしまった。",
-              "options": ["おかげで", "わりに", "反面", "せいで"],
-              "correctAnswerIndex": 3,
+              "question": "「寝坊[ねぼう]した （　　）、大事[だいじ]な 面接[めんせつ]に 遅[おく]れてしまった。」",
+              "options": ["おかげで", "せいで", "わりに", "反面"],
+              "correctAnswerIndex": 1,
               "explanation": "Salbiy hodisaga sababchi boʻlish: 寝坊したせいで (Uxlab qolganim kasofatiga)."
             }
           ]
@@ -3886,92 +3711,77 @@
           "questions": [
             {
               "id": "ja-n3-u4-l3-q1",
-              "question": "«Fe'lning Ta-shakli + ばかり (Ta bakari)» nimani bildiradi?",
-              "options": [
-                "Hech qachon qilmaslikni",
-                "Hozirgina biror ishni bajarib bo'lganlikni",
-                "Faqat o'yin o'ynashni",
-                "Kelasi zamonni"
-              ],
-              "correctAnswerIndex": 1,
-              "explanation": "Ta bakari = Just finished doing."
+              "question": "「彼[かれ]は 勉強[べんきょう]も せずに、ゲーム（　　） している。」",
+              "options": ["ばかり", "だけ", "のみ", "ほど"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜ばかり: Doimo faqat bitta noxush ish bilan band boʻlish: 「ゲームばかりしている」."
             },
             {
               "id": "ja-n3-u4-l3-q2",
-              "question": "「日本[にほん]に 来[き]た ばかりです」ning ma'nosi:",
-              "options": [
-                "Yaponiyaga hozirgina (yaqindagina) keldim",
-                "Yaponiyaga bormoqchiman",
-                "Yaponiyaga ko'p bordim",
-                "Yaponiyada yashamayman"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Just arrived in Japan."
+              "question": "「先月[せんげつ] 日本[にほん]に （　　）ばかりなので、まだ 土地[とち]勘[かん]が ありません。」",
+              "options": ["来[く]る", "来[き]た", "来[き]て", "来[こ]ない"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜たばかり: Biror voqea yaqindagina yuz berganini bildiradi: 「来たばかり」."
             },
             {
               "id": "ja-n3-u4-l3-q3",
-              "question": "«Faqat bitta savolga javob bera olmadim (neytral fakt)»:",
-              "options": [
-                "1問[いちもん]です",
-                "1問[いちもん]くせに",
-                "1問[いちもん]ばかり",
-                "1問[いちもん]だけ 答[こた]えられなかった"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "1-mon dake (neytral chegara)."
+              "question": "「試験[しけん]で 1問[いちもん] （　　） 間違[まちが]えて、98点[きゅうじゅうはちてん]だった。」",
+              "options": ["ばかり", "のみ", "だけ", "ほど"],
+              "correctAnswerIndex": 2,
+              "explanation": "Faktik cheklov: «Faqat bitta savoldan xato qilib»: 「1問だけ」."
             },
             {
               "id": "ja-n3-u4-l3-q4",
-              "question": "Rasmiy yozma tilda «dake» o'rniga qaysi so'z ishlatiladi?",
-              "options": ["〜ほど", "〜くらい", "〜のみ", "〜ばかり"],
-              "correctAnswerIndex": 2,
-              "explanation": "〜のみ (Formal written \"only\")."
+              "question": "「この 施設[しせつ]は 会員[かいいん]（　　） 利用[りよう]可能です。」",
+              "options": ["ばかり", "ほど", "くらい", "のみ"],
+              "correctAnswerIndex": 3,
+              "explanation": "Rasmiy cheklov: 「会員のみ」 (faqat aʼzolar uchun)."
             },
             {
               "id": "ja-n3-u4-l3-q5",
-              "question": "弟[おとうと]は 勉強[べんきょう]しないで、ゲーム（　） している。",
-              "options": ["だけ", "ばかり", "のみ", "ほど"],
-              "correctAnswerIndex": 1,
+              "question": "「弟[おとうと]は 勉強[べんきょう]しないで、ゲーム（　　） している。」",
+              "options": ["ばかり", "だけ", "のみ", "ほど"],
+              "correctAnswerIndex": 0,
               "explanation": "Faqat bir xil nojoʻya ishni takrorlayverish: 〜ばかりしている (Faqat oʻyin oʻynagani-oʻynagan)."
             },
             {
               "id": "ja-n3-u4-l3-q6",
-              "question": "本日[ほんじつ]は 関係[かんけい]者[しゃ]（　） ご入場[にゅうじょう]いただけます。",
-              "options": ["のみ", "ばかり", "だけしか", "ほど"],
-              "correctAnswerIndex": 0,
+              "question": "「本日[ほんじつ]は 関係[かんけい]者[しゃ]（　　） ご入場[にゅうじょう]いただけます。」",
+              "options": ["ばかり", "のみ", "だけしか", "ほど"],
+              "correctAnswerIndex": 1,
               "explanation": "Rasmiy yozma eʼlonlarda qatʼiy cheklov: 〜のみ (Faqatgina mutasaddilar uchun)."
             },
             {
               "id": "ja-n3-u4-l3-q7",
-              "question": "財布[さいふ]の 中[なか]に 100円[えん]（　） 残[のこ]っていない。",
-              "options": ["だけ", "ばかり", "のみ", "しか"],
-              "correctAnswerIndex": 3,
+              "question": "「財布[さいふ]の 中[なか]に 100円[えん]（　　） 残[のこ]っていない。」",
+              "options": ["だけ", "ばかり", "しか", "のみ"],
+              "correctAnswerIndex": 2,
               "explanation": "Inkor bilan birga keladigan cheklov: 〜しか…ない (100 yendan boshqa qolmadi)."
             },
             {
               "id": "ja-n3-u4-l3-q8",
-              "question": "彼[かれ]は 肉[にく]（　） 食[た]べて、野菜[やさい]を まったく 食[た]べない。",
-              "options": ["のみ", "ほど", "ばかり", "くらい"],
-              "correctAnswerIndex": 2,
+              "question": "「彼[かれ]は 肉[にく]（　　） 食[た]べて、野菜[やさい]を まったく 食[た]べない。」",
+              "options": ["のみ", "ほど", "くらい", "ばかり"],
+              "correctAnswerIndex": 3,
               "explanation": "Haddan ziyod bir narsaga ruju qoʻyish: 肉ばかり食べて (Faqat goʻsht yeydi)."
             },
             {
               "id": "ja-n3-u4-l3-q9",
-              "question": "ご飯[はん]を 食[た]べた（　）なのに、もう お腹[なか]が すいた。",
-              "options": ["だけ", "ばかり", "のみ", "ところ"],
-              "correctAnswerIndex": 1,
+              "question": "「ご飯[はん]を 食[た]べた（　　）なのに、もう お腹[なか]が すいた。」",
+              "options": ["ばかり", "だけ", "のみ", "ところ"],
+              "correctAnswerIndex": 0,
               "explanation": "Yaqindagina bajarilgan harakat hissi: V-ta + ばかり (Hozirgina ovqatlangan boʻlsam ham)."
             },
             {
               "id": "ja-n3-u4-l3-q10",
               "question": "「〜ばかり」va「〜だけ」ning asosiy farqi nima?",
               "options": [
-                "〜ばかり koʻpincha haddan oshiq takrorlanish va tanqid ohangiga ega boʻladi, 〜だけ esa xolis miqdoriy chegarani bildiradi",
                 "〜だけ faqat oziq-ovqat bilan ishlatiladi",
+                "〜ばかり koʻpincha haddan oshiq takrorlanish va tanqid ohangiga ega boʻladi, 〜だけ esa xolis miqdoriy chegarani bildiradi",
                 "〜ばかり faqat bir marta qilinadigan ishlar bilan keladi",
                 "Hech qanday farqi yoʻq"
               ],
-              "correctAnswerIndex": 0,
+              "correctAnswerIndex": 1,
               "explanation": "〜ばかり ortiqcha meʼyordan oshish va koʻpincha norozilik ohangini bildiradi, 〜だけ esa aniq chegaralash."
             }
           ]
@@ -4116,15 +3926,15 @@
           "questions": [
             {
               "id": "ja-n3-u4-l4-q1",
-              "question": "JLPT Dokkai savollarida muallifning fikri ko'pincha abzasning qaysi qismida ifodalanadi?",
+              "question": "【短文[たんぶん]読解[どっかい]】「SNSの 普及[ふきゅう]に 伴[ともな]い、手紙[てがみ]を 書[か]く 機会[きかい]は 著[いちじる]しく （　　）。」",
               "options": [
-                "Eng birinchi so'zida",
-                "Faqat sarlavhada",
-                "Matnning eng oxirgi xulosa qismida (〜と考える, 〜べきだ, 〜ではないだろうか)",
-                "Faqat qavs ichida"
+                "減少[げんしょう]した",
+                "増加[ぞうか]した",
+                "変化[へんか]しなかった",
+                "不要[ふよう]になった"
               ],
-              "correctAnswerIndex": 2,
-              "explanation": "Conclusion at end of text."
+              "correctAnswerIndex": 0,
+              "explanation": "Xat yozish imkoniyati sezilarli darajada kamaydi (減少した)."
             },
             {
               "id": "ja-n3-u4-l4-q2",
@@ -4140,15 +3950,15 @@
             },
             {
               "id": "ja-n3-u4-l4-q3",
-              "question": "«SNS tufayli qaysi imkoniyat kamaydi?»",
+              "question": "【読解[どっかい]】「筆者[ひっしゃ]が 本文[ほんぶん]で 最[もっと]も 伝[つた]えたい ことは （　　）である。」",
               "options": [
-                "Suhbatdoshning yuz ifodasi va ovoz ohangini his qilish imkoniyati",
-                "Xabar yuborish",
-                "Rasm yuborish",
-                "Matn yozish"
+                "SNSの 利用[りよう]禁止[きんし]",
+                "スマートフォンの 廃棄[はいき]",
+                "対面[たいめん]対話[たいわ]の 重要性[じゅうようせい]",
+                "手紙[てがみ]の 義務[ぎむ]化"
               ],
-              "correctAnswerIndex": 0,
-              "explanation": "Facial expressions & voice tone cues."
+              "correctAnswerIndex": 2,
+              "explanation": "Matnning bosh xulosasi: yuzma-yuz muloqotning ahamiyati."
             },
             {
               "id": "ja-n3-u4-l4-q4",
@@ -4161,12 +3971,12 @@
               "id": "ja-n3-u4-l4-q5",
               "question": "中編[ちゅうへん]読解[どっかい]で「筆者[ひっしゃ]の 最[もっと]も 言[い]いたいこと」は 通常[つうじょう] どこに 書[か]かれているか？",
               "options": [
+                "文章[ぶんしょう]の 最後[さいご]の 段落[だんらく]（結末[けつまつ]）",
                 "文章[ぶんしょう]の 最初[さいしょ]の 1行[ぎょう]目[め]だけ",
                 "挿絵[さしえ]の 説明[せつめい]",
-                "文章[ぶんしょう]の 最後[さいご]の 段落[だんらく]（結末[けつまつ]）",
                 "選択肢[せんたくし]の中"
               ],
-              "correctAnswerIndex": 2,
+              "correctAnswerIndex": 0,
               "explanation": "Muallifning yakuniy xulosasi va asosiy fikri koʻpincha matnning oxirgi xulosa qismida keladi."
             },
             {
@@ -4185,12 +3995,12 @@
               "id": "ja-n3-u4-l4-q7",
               "question": "文章[ぶんしょう]中[ちゅう]の「これ」「それ」などの 指示[しじ]語[ご]が 指[さ]す 内容[ないよう]を 探[さが]す コツは？",
               "options": [
-                "直前[ちょくぜん]の 文[ぶん]や フレーズに 注目[ちゅうもく]して 前後[ぜんご]の 文脈[ぶんみゃく]を 照合[しょうごう]する",
                 "次[つぎ]の ページを 探[さが]す",
                 "自分[じぶん]の 想像[そうぞう]で 決[き]める",
+                "直前[ちょくぜん]の 文[ぶん]や フレーズに 注目[ちゅうもく]して 前後[ぜんご]の 文脈[ぶんみゃく]を 照合[しょうごう]する",
                 "一番[いちばん] 難[むずか]しい 漢字[かんじ]を 選[えら]ぶ"
               ],
-              "correctAnswerIndex": 0,
+              "correctAnswerIndex": 2,
               "explanation": "Korsatkich olmoshlari (Kore, Sore) deyarli doim oʻzidan oldingi jumlada tilga olingan tushunchaga ishora qiladi."
             },
             {
@@ -4207,15 +4017,15 @@
             },
             {
               "id": "ja-n3-u4-l4-q9",
-              "question": "読解[どっかい]の 設問[せつもん]に 答[こた]える 際[さい]、一番[いちばん] やってはいけないことは？",
+              "question": "【読解[どっかい]】「『デジタル社会[しゃかい]における 孤独[こどく]』について、本文[ほんぶん]の 記述[きじゅつ]と 一致[いっち]するものは （　　）。」",
               "options": [
-                "本文[ほんぶん]の キーワードを 探[さが]すこと",
-                "段落[だんらく]ごとに 整理[せいり]すること",
-                "本文[ほんぶん]に 書[か]かれていない 自分[じぶん]の 先入観[せんにゅうかん]や 常識[じょうしき]だけで 判断[はんだん]すること",
-                "制限[せいげん]時間[じかん]を 意識[いしき]すること"
+                "つながりが 増[ふ]えたように 見[み]えて、孤立[こりつ]を 感[かん]じる 人[ひと]も 多[おお]い",
+                "SNSを 使[つか]えば 誰[だれ]でも 幸福[こうふく]になれる",
+                "現代人[げんだいじん]には 孤独[こどく]は 一切[いっさい] 存在[そんざい]しない",
+                "インターネットは 人間[にんげん]関係[かんけい]を 完璧[かんぺき]にした"
               ],
-              "correctAnswerIndex": 2,
-              "explanation": "Matn oʻqishda shaxsiy qarash emas, aynan matnda yozilgan fakt va muallif fikriga tayanish shart."
+              "correctAnswerIndex": 0,
+              "explanation": "Matn mazmuniga toʻliq mos keluvchi variant."
             },
             {
               "id": "ja-n3-u4-l4-q10",
@@ -4357,80 +4167,65 @@
           "questions": [
             {
               "id": "ja-n3-u4-l5-q1",
-              "question": "«Kattalarga hurmat ko'rsatish insoniy burchdir»:",
-              "options": [
-                "敬[うやま]う",
-                "敬[うやま]うわけだ",
-                "敬[うやま]うはずだ",
-                "年上[としうえ]の 人[ひと]を 敬[うやま]うべきだ"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Uyamau beki da (burch/axloqiy talab)."
+              "question": "「真面目[まじめ]な 彼[かれ]の ことだから、時間[じかん]通[どお]りに （　　）はずだ。」",
+              "options": ["来[く]る", "来[こ]ない", "来[き]て", "来[き]た"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜はずだ: Mantiqiy ishonch («oʻz vaqtida kelishi aniq»)."
             },
             {
               "id": "ja-n3-u4-l5-q2",
-              "question": "「する」fe'lining 〜べき shakli qaysi?",
-              "options": ["させべきだ", "したべきだ", "すべきだ (yoki するべきだ)", "すべくだ"],
-              "correctAnswerIndex": 2,
-              "explanation": "Subeki da / Suru beki da."
+              "question": "「約束[やくそく]の 時間[じかん]は 必[かなら]ず 守[まも]る （　　）。」",
+              "options": ["はずだ", "べきだ", "わけだ", "ものだ"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜べきだ: Axloqiy va ijtimoiy burch: «albatta rioya qilish lozim»."
             },
             {
               "id": "ja-n3-u4-l5-q3",
-              "question": "«Bunday bo'lishi mutlaqo mumkin emas!» qat'iy inkor qaysi?",
-              "options": [
-                "〜ないそうだ",
-                "〜はずが ない / 〜わけが ない",
-                "〜ないべきだ",
-                "〜ないだろう"
-              ],
-              "correctAnswerIndex": 1,
-              "explanation": "Hazu ga nai / Wake ga nai."
+              "question": "「エアコンが 消[き]えていたのか。道理[どうり]で 部屋[へや]が 暑[あつ]い （　　）。」",
+              "options": ["はずだ", "べきだ", "わけだ", "ことだ"],
+              "correctAnswerIndex": 2,
+              "explanation": "〜わけだ: Sabab oydinlashganda: «shuning uchun ham xona issiq ekan-da»."
             },
             {
               "id": "ja-n3-u4-l5-q4",
-              "question": "「暑[あつ]いわけだ。38度[さんじゅうはちど]も ある」ning ma'nosi:",
-              "options": [
-                "Issiq bo'lmay iloji yo'qda, harorat 38 daraja ekanku!",
-                "Issiq emas",
-                "Harorat yo'q",
-                "Sovuq bo'lishi kerak"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "No wonder it is so hot!"
+              "question": "「彼[かれ]が 約束[やくそく]を 破[やぶ]る（　　）が ない。信用[しんよう]できる 人[ひと]だ。」",
+              "options": ["べき", "わけ", "もの", "はず"],
+              "correctAnswerIndex": 3,
+              "explanation": "〜はずがない: Mutlaqo asossiz ekani: «vaʼdasini buzishi mumkin emas»."
             },
             {
               "id": "ja-n3-u4-l5-q5",
-              "question": "田中[たなか]さんは 日本[にほん]に 10年[じゅうねん]も 住[す]んでいたから、日本語[にほんご]が 上手[じょうず]な （　）。",
-              "options": ["べきだ", "ことだ", "ものだ", "はずだ"],
-              "correctAnswerIndex": 3,
+              "question": "「田中[たなか]さんは 日本[にほん]に 10年[じゅうねん]も 住[す]んでいたから、日本語[にほんご]が 上手[じょうず]な （　　）。」",
+              "options": ["はずだ", "べきだ", "ことだ", "ものだ"],
+              "correctAnswerIndex": 0,
               "explanation": "Yetarli asosga tayangan mantiqiy ishonch/kutilma: 〜はずだ (Yaxshi bilishi aniq/kerak)."
             },
             {
               "id": "ja-n3-u4-l5-q6",
-              "question": "約束[やくそく]の 時間[じかん]は 守[まも]る （　）。遅[おく]れては いけない。",
-              "options": ["はずだ", "わけだ", "べきだ", "つもりだ"],
-              "correctAnswerIndex": 2,
+              "question": "「約束[やくそく]の 時間[じかん]は 守[まも]る （　　）。遅[おく]れては いけない。」",
+              "options": ["はずだ", "べきだ", "わけだ", "つもりだ"],
+              "correctAnswerIndex": 1,
               "explanation": "Axloqiy burch, ijtimoiy qoida yoki masʼuliyat: 〜べきだ (Vaqtni saqlash lozim/shart)."
             },
             {
               "id": "ja-n3-u4-l5-q7",
-              "question": "エアコンが ついていなかったのか。道理[どうり]で 部屋[へや]が 暑[あつ]い （　）。",
-              "options": ["はずだ", "わけだ", "べきだ", "ことだ"],
-              "correctAnswerIndex": 1,
+              "question": "「エアコンが ついていなかったのか。道理[どうり]で 部屋[へや]が 暑[あつ]い （　　）。」",
+              "options": ["はずだ", "べきだ", "わけだ", "ことだ"],
+              "correctAnswerIndex": 2,
               "explanation": "Sababi maʼlum boʻlib, shuning uchun shunday ekan-da deb tushunish: 〜わけだ (Shuning uchun issiq ekanda)."
             },
             {
               "id": "ja-n3-u4-l5-q8",
-              "question": "学生[がくせい]は もっと 勉強[べんきょう]す （　）。",
-              "options": ["べきだ", "はずだ", "わけだ", "そうだ"],
-              "correctAnswerIndex": 0,
+              "question": "「学生[がくせい]は もっと 勉強[べんきょう]す （　　）。」",
+              "options": ["はずだ", "わけだ", "そうだ", "べきだ"],
+              "correctAnswerIndex": 3,
               "explanation": "Suru feʼli bilan odob/burch: すべきだ (Bajarmogʻi lozim)."
             },
             {
               "id": "ja-n3-u4-l5-q9",
-              "question": "鍵[かぎ]を 掛[か]けた （　）なのに、ドアが 開[あ]いている。おかしいな。",
-              "options": ["わけ", "べき", "もの", "はず"],
-              "correctAnswerIndex": 3,
+              "question": "「鍵[かぎ]を 掛[か]けた （　　）なのに、ドアが 開[あ]いている。おかしいな。」",
+              "options": ["はず", "わけ", "べき", "もの"],
+              "correctAnswerIndex": 0,
               "explanation": "Qulflagan boʻlishim aniq edi-ku (kutilmaga zid holat): 掛[か]けたはずなのに."
             },
             {
@@ -4438,11 +4233,11 @@
               "question": "「〜わけがない」の意味[いみ]として 最適[さいてき]なものは？",
               "options": [
                 "〜かもしれない",
-                "〜したほうがいい",
                 "絶対に 〜のはずがない",
+                "〜したほうがいい",
                 "〜のはずだ"
               ],
-              "correctAnswerIndex": 2,
+              "correctAnswerIndex": 1,
               "explanation": "〜わけがない qatʼiy inkor: Hech qanaqasiga bunday boʻlishi mumkin emas."
             }
           ]
@@ -4572,30 +4367,30 @@
           "questions": [
             {
               "id": "ja-n3-u5-l1-q1",
-              "question": "«Laboratoriya tajribasi / Eksperiment» kanjisi qaysi?",
-              "options": ["実験[じっけん]", "研究[けんきゅう]", "発明[はつめい]", "科学[かがく]"],
+              "question": "「大学[だいがく]の 研究[けんきゅう]室[しつ]で 新薬[しんやく]の （　　）を 行[おこな]っている。」",
+              "options": ["実験[じっけん]", "発明[はつめい]", "科学[かがく]", "技術[ぎじゅつ]"],
               "correctAnswerIndex": 0,
-              "explanation": "実験 (Jikken)."
+              "explanation": "実験（じっけん）: Ilmiy tajriba / eksperiment."
             },
             {
               "id": "ja-n3-u5-l1-q2",
               "question": "「研究[けんきゅう]者[しゃ]」so'zining ma'nosi:",
-              "options": ["Boshliq", "Talaba", "Shifokor", "Tadqiqotchi / Olim"],
-              "correctAnswerIndex": 3,
+              "options": ["Boshliq", "Tadqiqotchi / Olim", "Talaba", "Shifokor"],
+              "correctAnswerIndex": 1,
               "explanation": "Kenkyuusha — Tadqiqotchi."
             },
             {
               "id": "ja-n3-u5-l1-q3",
-              "question": "«Kashfiyot (yangi narsani topish)» kanjisi qaysi?",
-              "options": ["発明[はつめい]", "出発[しゅっぱつ]", "発見[はっけん]", "発展[はってん]"],
+              "question": "「エジソンは 生涯[しょうがい]で 1000件[いっせんけん]以上[いじょう]の （　　）を 行[おこな]った。」",
+              "options": ["実験[じっけん]", "研究[けんきゅう]", "発明[はつめい]", "科学[かがく]"],
               "correctAnswerIndex": 2,
-              "explanation": "発見 (Hakken)."
+              "explanation": "発明（はつめい）: Ixtiro / kashfiyot."
             },
             {
               "id": "ja-n3-u5-l1-q4",
               "question": "「発展[はってん]する」ning ma'nosi:",
-              "options": ["Boshlanmoq", "Rivojlanmoq / Taraqqiy etmoq", "Tugamoq", "Kasal bo'lmoq"],
-              "correctAnswerIndex": 1,
+              "options": ["Boshlanmoq", "Tugamoq", "Kasal bo'lmoq", "Rivojlanmoq / Taraqqiy etmoq"],
+              "correctAnswerIndex": 3,
               "explanation": "Hatten suru — Rivojlanmoq."
             },
             {
@@ -4607,14 +4402,14 @@
             },
             {
               "id": "ja-n3-u5-l1-q6",
-              "question": "大学[だいがく]の 研究[けんきゅう]室[しつ]で 新薬[しんやく]の （　）を 行[おこな]う。",
-              "options": ["科学[かがく]", "発明[はつめい]", "技術[ぎじゅつ]", "実験[じっけん]"],
-              "correctAnswerIndex": 3,
+              "question": "「大学[だいがく]の 研究[けんきゅう]室[しつ]で 新薬[しんやく]の （　　）を 行[おこな]う。」",
+              "options": ["科学[かがく]", "実験[じっけん]", "発明[はつめい]", "技術[ぎじゅつ]"],
+              "correctAnswerIndex": 1,
               "explanation": "Laboratoriyada sinov/tajriba oʻtkazish: 実験を行う (Jikken o okonau)."
             },
             {
               "id": "ja-n3-u5-l1-q7",
-              "question": "エジソンは 多[おお]くの 画期的[かっきてき]な （　）を 残[のこ]した。",
+              "question": "「エジソンは 多[おお]くの 画期的[かっきてき]な （　　）を 残[のこ]した。」",
               "options": ["実験[じっけん]", "科学[かがく]", "発明[はつめい]", "研究[けんきゅう]"],
               "correctAnswerIndex": 2,
               "explanation": "Ixtiro: 発明 (Hatsumei)."
@@ -4622,13 +4417,13 @@
             {
               "id": "ja-n3-u5-l1-q8",
               "question": "「論文」ning toʻgʻri oʻqilishi va maʼnosi:",
-              "options": ["ろんもん", "ろんぶん", "らんぶん", "りんぶん"],
-              "correctAnswerIndex": 1,
+              "options": ["ろんもん", "らんぶん", "りんぶん", "ろんぶん"],
+              "correctAnswerIndex": 3,
               "explanation": "論文 = ろんぶん (Ilmiy maqola, dissertatsiya)."
             },
             {
               "id": "ja-n3-u5-l1-q9",
-              "question": "AI技術[ぎじゅつ]の 進歩[しんぽ]は （　）の 発展[はってん]に 大[おお]きく 貢献[こうけん]している。",
+              "question": "「AI技術[ぎじゅつ]の 進歩[しんぽ]は （　　）の 発展[はってん]に 大[おお]きく 貢献[こうけん]している。」",
               "options": ["科学[かがく]", "発明[はつめい]", "実験[じっけん]", "論文[ろんぶん]"],
               "correctAnswerIndex": 0,
               "explanation": "Fan rivoji: 科学の発展 (Kagaku no hatten)."
@@ -4636,8 +4431,8 @@
             {
               "id": "ja-n3-u5-l1-q10",
               "question": "「研究」kanjisining oʻqilishi qaysi?",
-              "options": ["けんきゅ", "げんきゅう", "がんきゅう", "けんきゅう"],
-              "correctAnswerIndex": 3,
+              "options": ["けんきゅ", "けんきゅう", "げんきゅう", "がんきゅう"],
+              "correctAnswerIndex": 1,
               "explanation": "研究 = けんきゅう (Tadqiqot, ilmiy izlanish)."
             }
           ]
@@ -4777,97 +4572,92 @@
           "questions": [
             {
               "id": "ja-n3-u5-l2-q1",
-              "question": "«Hayajonlanmoq / Asabiylashmoq» kanjisi qaysi?",
-              "options": ["苦痛[くつう]", "緊張[きんちょう]", "安心[あんしん]", "感情[かんじょう]"],
-              "correctAnswerIndex": 1,
-              "explanation": "緊張 (Kinchou)."
+              "question": "「就職[しゅうしょく]試験[しけん]の 面接[めんせつ]で とても （　　）した。」",
+              "options": ["緊張[きんちょう]", "感情[かんじょう]", "複雑[ふくざつ]", "苦痛[くつう]"],
+              "correctAnswerIndex": 0,
+              "explanation": "緊張（きんちょう）: Hayajon / asabiylashish."
             },
             {
               "id": "ja-n3-u5-l2-q2",
               "question": "「感情[かんじょう]を 抑[おさ]える」ning ma'nosi:",
               "options": [
-                "Hissiyotlarni jilovlamoq / Bosiq bo'lmoq",
                 "Yig'lamoq",
+                "Hissiyotlarni jilovlamoq / Bosiq bo'lmoq",
                 "Kulmoq",
                 "Xafa bo'lmoq"
               ],
-              "correctAnswerIndex": 0,
+              "correctAnswerIndex": 1,
               "explanation": "Hissiyotlarni jilovlash."
             },
             {
               "id": "ja-n3-u5-l2-q3",
-              "question": "«Murakkab» (Fukuzatsu) ning antonimi qaysi?",
-              "options": [
-                "緊張[きんちょう]",
-                "安心[あんしん]",
-                "心配[しんぱい]",
-                "単純[たんじゅん]"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Tanjun (oddiy)."
+              "question": "「この パソコンの 操作[そうさ]は （　　）で、初心者[しょしんしゃ]でも すぐに 使[つか]える。」",
+              "options": ["複雑[ふくざつ]", "緊張[きんちょう]", "単純[たんじゅん]", "苦痛[くつう]"],
+              "correctAnswerIndex": 2,
+              "explanation": "単純（たんじゅん）: Oddiy / sodda."
             },
             {
               "id": "ja-n3-u5-l2-q4",
               "question": "「苦痛[くつう]」so'zidagi 痛 nimani bildiradi?",
-              "options": ["Balandlik", "Quvonch", "Og'riq / Azob", "Hayajon"],
-              "correctAnswerIndex": 2,
+              "options": ["Balandlik", "Quvonch", "Hayajon", "Og'riq / Azob"],
+              "correctAnswerIndex": 3,
               "explanation": "Og'riq / Azob."
             },
             {
               "id": "ja-n3-u5-l2-q5",
-              "question": "面接[めんせつ]の 前[まえ]で とても （　）して 手[て]が 震[ふる]えた。",
-              "options": ["感情[かんじょう]", "緊張[きんちょう]", "複雑[ふくざつ]", "苦痛[くつう]"],
-              "correctAnswerIndex": 1,
+              "question": "「面接[めんせつ]の 前[まえ]で とても （　　）して 手[て]が 震[ふる]えた。」",
+              "options": ["緊張[きんちょう]", "感情[かんじょう]", "複雑[ふくざつ]", "苦痛[くつう]"],
+              "correctAnswerIndex": 0,
               "explanation": "Hayajonlanmoq, asabiylashmoq: 緊張する (Kinchou suru)."
             },
             {
               "id": "ja-n3-u5-l2-q6",
-              "question": "この 問題[もんだい]は （　）そうに 見[み]えて、実[じつ]は とても 簡単[かんたん]だ。",
+              "question": "「この 問題[もんだい]は （　　）そうに 見[み]えて、実[じつ]は とても 簡単[かんたん]だ。」",
               "options": [
-                "複雑[ふくざつ]",
                 "単純[たんじゅん]",
+                "複雑[ふくざつ]",
                 "緊張[きんちょう]",
                 "感情[かんじょう]"
               ],
-              "correctAnswerIndex": 0,
+              "correctAnswerIndex": 1,
               "explanation": "Murakkab, chigal: 複雑 (Fukuzatsu)."
             },
             {
               "id": "ja-n3-u5-l2-q7",
               "question": "「単純」ning antonimi (qarama-qarshi maʼnoli soʻzi) qaysi?",
-              "options": ["簡単[かんたん]", "明確[めいかく]", "平易[へいい]", "複雑[ふくざつ]"],
-              "correctAnswerIndex": 3,
+              "options": ["簡単[かんたん]", "明確[めいかく]", "複雑[ふくざつ]", "平易[へいい]"],
+              "correctAnswerIndex": 2,
               "explanation": "Oddiy (単純) ning aksi — murakkab (複雑)."
             },
             {
               "id": "ja-n3-u5-l2-q8",
-              "question": "人間[にんげん]は さまざまな （　）を 表情[ひょうじょう]に 表[あらわ]す。",
+              "question": "「人間[にんげん]は さまざまな （　　）を 表情[ひょうじょう]に 表[あらわ]す。」",
               "options": [
                 "苦痛[くつう]",
                 "緊張[きんちょう]",
-                "感情[かんじょう]",
-                "単純[たんじゅん]"
+                "単純[たんじゅん]",
+                "感情[かんじょう]"
               ],
-              "correctAnswerIndex": 2,
+              "correctAnswerIndex": 3,
               "explanation": "Hissiyotlar: 感情 (Kanjou)."
             },
             {
               "id": "ja-n3-u5-l2-q9",
               "question": "「苦痛」ning toʻgʻri oʻqilishi qaysi?",
-              "options": ["にがつう", "くつう", "くとう", "にがとう"],
-              "correctAnswerIndex": 1,
+              "options": ["くつう", "にがつう", "くとう", "にがとう"],
+              "correctAnswerIndex": 0,
               "explanation": "苦痛 = くつう (Ogʻriq, azob)."
             },
             {
               "id": "ja-n3-u5-l2-q10",
-              "question": "長[なが]い 治療[ちりょう]の （　）に 耐[た]えて、ついに 完治[かんち]した。",
+              "question": "「長[なが]い 治療[ちりょう]の （　　）に 耐[た]えて、ついに 完治[かんち]した。」",
               "options": [
-                "苦痛[くつう]",
                 "感情[かんじょう]",
+                "苦痛[くつう]",
                 "緊張[きんちょう]",
                 "単純[たんじゅん]"
               ],
-              "correctAnswerIndex": 0,
+              "correctAnswerIndex": 1,
               "explanation": "Davolanish azobi/ogʻrigʻiga chidab: 苦痛に耐えて (Kutsuu ni taete)."
             }
           ]
@@ -4998,75 +4788,65 @@
           "questions": [
             {
               "id": "ja-n3-u5-l3-q1",
-              "question": "Tabiiy qonuniyatlar (Masalan: Bahor kelsa gullar ochiladi) uchun qaysi biri eng mos?",
-              "options": ["〜なら", "〜ても", "〜と", "〜たい"],
-              "correctAnswerIndex": 2,
-              "explanation": "〜と (Tabiiy muqarrar oqibat)."
+              "question": "「春[はる]に （　　）と、桜[さくら]の 花[はな]が 咲[さ]きます。」 (Tabiiy qonuniyat)",
+              "options": ["なる", "なった", "なれば", "なったら"],
+              "correctAnswerIndex": 0,
+              "explanation": "Tabiiy qonuniyatlar uchun 「〜と」 qoʻllaniladi: 「春になると」."
             },
             {
               "id": "ja-n3-u5-l3-q2",
-              "question": "«Derazani ochib qarasam, qor yog'ayotgan ekan (kutilmagan kashfiyot)»:",
-              "options": [
-                "開[あ]けるなら",
-                "窓[まど]を 開[あ]けたら、雪[ゆき]が 降[ふ]っていた",
-                "開[あ]ければ 雪[ゆき]",
-                "窓[まど]を 開[あ]けると 雪[ゆき]"
-              ],
+              "question": "「窓[まど]を 開[あ]けたら、外[そと]で 雪[ゆき]が （　　）いた。」 (Kutilmagan kashfiyot)",
+              "options": ["降[ふ]る", "降[ふ]って", "降[ふ]れば", "降[ふ]ったら"],
               "correctAnswerIndex": 1,
-              "explanation": "Aketara (o'tmishdagi kutilmagan kashfiyot)."
+              "explanation": "Derazani ochsam, qor yogʻayotgan ekan: 「降っていた」."
             },
             {
               "id": "ja-n3-u5-l3-q3",
-              "question": "Qaysi shart shaklidan keyin buyruq yoki taklif kela OLMAYDI?",
-              "options": ["〜と", "〜なら", "〜ば", "〜たら"],
-              "correctAnswerIndex": 0,
-              "explanation": "〜と cannot be followed by volition/command."
+              "question": "「もし 時間[じかん]が （　　）ば、一緒[いっしょ]に お茶[ちゃ]を 飲[の]みませんか。」",
+              "options": ["ある", "あった", "あれ", "あっても"],
+              "correctAnswerIndex": 2,
+              "explanation": "Aru feʼlining ba-sharti: 「あれば」."
             },
             {
               "id": "ja-n3-u5-l3-q4",
-              "question": "«Arzon bo'lsa sotib olaman» (ba shakli):",
-              "options": [
-                "安[やす]いなら",
-                "安[やす]いと 買[か]う",
-                "安[やす]い",
-                "安[やす]ければ 買[か]います"
-              ],
+              "question": "「右[みぎ]へ （　　）と、郵便局[ゆうびんきょく]が 見[み]えてきます。」",
+              "options": ["曲[ま]がった", "曲[ま]がれば", "曲[ま]がったら", "曲[ま]がる"],
               "correctAnswerIndex": 3,
-              "explanation": "Yasukereba kaimasu."
+              "explanation": "〜と: Yoʻl koʻrsatishdagi tabiiy oqibat: 「右へ曲がると」."
             },
             {
               "id": "ja-n3-u5-l3-q5",
-              "question": "春[はる]に （　）、桜[さくら]が 咲[さ]きます。",
-              "options": ["なったら", "なれば", "なると", "なるなら"],
-              "correctAnswerIndex": 2,
+              "question": "「春[はる]に （　　）、桜[さくら]が 咲[さ]きます。」",
+              "options": ["なると", "なったら", "なれば", "なるなら"],
+              "correctAnswerIndex": 0,
               "explanation": "Tabiiy qonuniyat va muqarrar hodisalarda: 〜と (Bahor kelishi bilan)."
             },
             {
               "id": "ja-n3-u5-l3-q6",
-              "question": "日本[にほん]へ （　）、富士山[ふじさん]に 登[のぼ]って みたい。",
+              "question": "「日本[にほん]へ （　　）、富士山[ふじさん]に 登[のぼ]って みたい。」",
               "options": ["行[い]くと", "行[い]ったら", "行[い]けば", "行[い]くなら"],
               "correctAnswerIndex": 1,
               "explanation": "Harakat ketma-ketligi va kelgusi istak (tai): 〜たら eng tabiiy va koʻp qirrali shart shaklidir."
             },
             {
               "id": "ja-n3-u5-l3-q7",
-              "question": "安[やす]（　）、たくさん 買[か]いたいです。",
-              "options": ["ければ", "いなら", "いと", "くたら"],
-              "correctAnswerIndex": 0,
+              "question": "「安[やす]（　　）、たくさん 買[か]いたいです。」",
+              "options": ["いなら", "いと", "ければ", "くたら"],
+              "correctAnswerIndex": 2,
               "explanation": "I-sifat shart shakli: 安い -> 安ければ (Arzon boʻlsa)."
             },
             {
               "id": "ja-n3-u5-l3-q8",
-              "question": "「パソコンを 買[か]う（　）、秋葉原[あきはばら]が いいですよ。」",
+              "question": "「パソコンを 買[か]う（　　）、秋葉原[あきはばら]が いいですよ。」",
               "options": ["たら", "と", "ば", "なら"],
               "correctAnswerIndex": 3,
               "explanation": "Suhbatdoshning niyatiga maslahat berish: 〜なら (Sotib olmoqchi boʻlsangiz)."
             },
             {
               "id": "ja-n3-u5-l3-q9",
-              "question": "この ボタンを （　）と、おつりが 出[で]て きます。",
-              "options": ["押[お]して", "押[お]した", "押[お]す", "押[お]せ"],
-              "correctAnswerIndex": 2,
+              "question": "「この ボタンを （　　）と、おつりが 出[で]て きます。」",
+              "options": ["押[お]す", "押[お]して", "押[お]した", "押[お]せ"],
+              "correctAnswerIndex": 0,
               "explanation": "Mexanizm va avtomatika harakatlarida: Lugʻat shakl + と (Bosishi bilanoq)."
             },
             {
@@ -5212,97 +4992,92 @@
           "questions": [
             {
               "id": "ja-n3-u5-l4-q1",
-              "question": "Gazeta va rasmiy hisobotlarda qaysi uslub qo'llaniladi?",
-              "options": ["です・ます調", "くだけた話し言葉", "ギャル文字", "である調"],
-              "correctAnswerIndex": 3,
-              "explanation": "«〜である» shakli akademik va ilmiy rasmiy maqolalarda qo‘llanuvchi qat’iy uslubdir."
+              "question": "「報告書[ほうこくしょ]や 論文[ろんぶん]などの 学術的[がくじゅつてき]な 文章[ぶんしょう]は、（　　）調[ちょう]で 書[か]かれる。」",
+              "options": ["である", "です・ます", "だよね", "でござる"],
+              "correctAnswerIndex": 0,
+              "explanation": "Rasmiy ilmiy uslub: 「である」 uslubi."
             },
             {
               "id": "ja-n3-u5-l4-q2",
               "question": "「ではない」ning o'tgan zamon rasmiy yozma shakli:",
               "options": [
                 "ではないでした",
-                "じゃない",
                 "ではなかった / であたらなかった",
+                "じゃない",
                 "でしたない"
               ],
-              "correctAnswerIndex": 2,
+              "correctAnswerIndex": 1,
               "explanation": "Dewa nakatta."
             },
             {
               "id": "ja-n3-u5-l4-q3",
-              "question": "«Ushbu tadqiqot natijasi quyidagicha»:",
-              "options": [
-                "結果[けっか]だ",
-                "研究[けんきゅう]の 結果[けっか]は 次[つぎ]の 通[とお]りで ある",
-                "結果[けっか]でした",
-                "結果[けっか]は 次[つぎ]です"
-              ],
-              "correctAnswerIndex": 1,
-              "explanation": "Tsugi no toori de aru."
+              "question": "「実験[じっけん]の 結果[けっか]は 以下[いか]の 通[とお]り（　　）。」 (Formal hisobot)",
+              "options": ["でしたよ", "ですもん", "である", "だね"],
+              "correctAnswerIndex": 2,
+              "explanation": "Rasmiy yozma uslub: 「以下の通りである」."
             },
             {
               "id": "ja-n3-u5-l4-q4",
-              "question": "JLPT N3 Dokkai matnlarining aksariyati qaysi uslubda yozilgan bo'ladi?",
+              "question": "「JLPT N3の 読解[どっかい]文[ぶん]に 最[もっと]も 多[おお]く 用[もち]いられる 文体[ぶんたい]は （　　）である。」",
               "options": [
-                "Oddiy yozma (だ・である) uslubida",
-                "Faqat bolalar tilida",
-                "Inglizcha",
-                "Katakana bilan"
+                "敬体[けいたい]（です・ます調）",
+                "口語体[こうごたい]",
+                "古文[こぶん]",
+                "普通体[ふつうたい]（だ・である調）"
               ],
-              "correctAnswerIndex": 0,
-              "explanation": "だ・である style."
+              "correctAnswerIndex": 3,
+              "explanation": "Dokkai matnlari asosan Futsuutai (da/dearu) uslubida yoziladi."
             },
             {
               "id": "ja-n3-u5-l4-q5",
               "question": "論文[ろんぶん]や レポートで「〜です・〜ます」の 代[か]わりに 最[もっと]も 適[てき]した 文末[ぶんまつ]は？",
-              "options": ["〜じゃん", "〜だよ", "〜でございます", "〜である / 〜だ"],
-              "correctAnswerIndex": 3,
+              "options": ["〜である / 〜だ", "〜じゃん", "〜だよ", "〜でございます"],
+              "correctAnswerIndex": 0,
               "explanation": "Akademik va rasmiy maqolalarda da/de aru uslubi (だ・である調) qoʻllanadi."
             },
             {
               "id": "ja-n3-u5-l4-q6",
               "question": "「とても」の レポート用[よう]の 改[あらた]まった 表現[ひょうげん]は？",
-              "options": ["めっちゃ", "すっごく", "極[きわ]めて / 非常[ひじょう]に", "かなり"],
-              "correctAnswerIndex": 2,
+              "options": ["めっちゃ", "極[きわ]めて / 非常[ひじょう]に", "すっごく", "かなり"],
+              "correctAnswerIndex": 1,
               "explanation": "Rasmiy yozma tilda \"juda\" soʻzi: 極めて (Kiwamete) yoki 非常に (Hijou ni)."
             },
             {
               "id": "ja-n3-u5-l4-q7",
               "question": "「だから」の アカデミックな 接続[せつぞく]詞[し]は？",
-              "options": ["でも", "したがって / それゆえに", "だけど", "それでね"],
-              "correctAnswerIndex": 1,
+              "options": ["でも", "だけど", "したがって / それゆえに", "それでね"],
+              "correctAnswerIndex": 2,
               "explanation": "Ilmiy matnlarda \"shuning uchun\" bogʻlovchisi: したがって (Shitagatte)."
             },
             {
               "id": "ja-n3-u5-l4-q8",
               "question": "「考[かんが]えられます」を である調[ちょう]に 直[なお]すと？",
               "options": [
-                "考[かんが]えられる",
                 "考[かんが]えるである",
                 "考[かんが]えらである",
-                "考[かんが]えるだ"
+                "考[かんが]えるだ",
+                "考[かんが]えられる"
               ],
-              "correctAnswerIndex": 0,
+              "correctAnswerIndex": 3,
               "explanation": "Feʼlning oddiy zamon shakli (Futsuutai): 考えられる."
             },
             {
               "id": "ja-n3-u5-l4-q9",
-              "question": "公式[こうしき]な 報告[ほうこく]書[しょ]で 避[さ]けるべき 言葉[ことば]遣[づか]いは？",
+              "question": "「公式[こうしき]な 論文[ろんぶん]で 『〜と 思[おも]う』の 代[か]わりに 用[もち]いる 表現[ひょうげん]は （　　）である。」",
               "options": [
-                "受身形[うけみけい]",
-                "専門[せんもん]用語[ようご]",
-                "漢字[かんじ]表記[ひょうき]",
-                "口語[こうご]表現[ひょうげん]（〜ちゃう、〜しちゃった）"
+                "〜と考[かんが]えられる",
+                "〜と思[おも]っちゃう",
+                "〜だろうね",
+                "〜だといいな"
               ],
-              "correctAnswerIndex": 3,
-              "explanation": "Rasmiy hujjatlarda ogʻzaki soʻzlashuv qisqartmalari (〜ちゃう) qatʼiyan ishlatilmaydi."
+              "correctAnswerIndex": 0,
+              "explanation": "Ilmiy matnda: 「〜と考えられる」."
             },
             {
               "id": "ja-n3-u5-l4-q10",
               "question": "「しかし」と 同じ[おなじ] 逆接[ぎゃくせつ]の 改[あらた]まった 論文[ろんぶん]表現[ひょうげん]は？",
-              "options": ["でもさ", "だけど", "だが / しかしながら", "なのにね"],
-              "correctAnswerIndex": 2,
+              "options": ["でもさ", "だが / しかしながら", "だけど", "なのにね"],
+              "correctAnswerIndex": 1,
               "explanation": "Yozma ilmiy tilda ammo/biroq: だが yoki しかしながら."
             }
           ]
@@ -5438,26 +5213,21 @@
           "questions": [
             {
               "id": "ja-n3-u5-l5-q1",
-              "question": "Qiyosiy Dokkai topshiriqlarida eng muhim ko'nikma nima?",
-              "options": [
-                "A va B matnlarining o'xshash va farqli tomonlarini solishtirib xulosalash",
-                "Tezroq sahifani yopish",
-                "Faqat bitta matnni o'qish",
-                "Matnni yodlab olish"
-              ],
+              "question": "【統合[とうごう]読解[どっかい]】「A氏[し]は 経済的[けいざいてき]な メリットを 主張[しゅちょう]する（　　）、B氏[し]は 環境[かんきょう]負荷[ふか]を 懸念[けねん]している。」",
+              "options": ["一方で[いっぽうで]", "あまり", "ばかりに", "末[すえ]に"],
               "correctAnswerIndex": 0,
-              "explanation": "Synthesizing commonalities & divergences."
+              "explanation": "〜一方で: Ikki tomonning qarashlarini solishtirish."
             },
             {
               "id": "ja-n3-u5-l5-q2",
               "question": "「共通[きょうつう]している」so'zining ma'nosi:",
               "options": [
                 "Kichik bo'lgan",
+                "Umumiy / Bir xil bo'lgan",
                 "Farqli bo'lgan",
-                "Eski bo'lgan",
-                "Umumiy / Bir xil bo'lgan"
+                "Eski bo'lgan"
               ],
-              "correctAnswerIndex": 3,
+              "correctAnswerIndex": 1,
               "explanation": "Common to both."
             },
             {
@@ -5474,34 +5244,39 @@
             },
             {
               "id": "ja-n3-u5-l5-q4",
-              "question": "JLPT N3 imtihonida Dokkai bo'limi umumiy ballning qancha qismini tashkil etadi?",
-              "options": ["180 ball", "60 ball", "5 ball", "10 ball"],
-              "correctAnswerIndex": 1,
-              "explanation": "Substantial weighted portion of exam."
+              "question": "【統合[とうごう]読解[どっかい]】「二[ふた]つの 文章[ぶんしょう]に 共通[きょうつう]する 課題[かだい]は （　　）である。」",
+              "options": [
+                "開発[かいはつ]の 即時[そくじ]中止[ちゅうし]",
+                "全[すべ]ての 工場[こうじょう]の 閉鎖[へいさ]",
+                "海外[かいがい]への 移住[いじゅう]",
+                "持続[じぞく]可能[かのう]な 発展[はってん]の 模索[もさく]"
+              ],
+              "correctAnswerIndex": 3,
+              "explanation": "Matnlardagi umumiy xulosa."
             },
             {
               "id": "ja-n3-u5-l5-q5",
-              "question": "複数[ふくすう]の 文章[ぶんしょう]を 比[くら]べて 読[よ]む（統合[とうごう]読解[どっかい]）時[とき]の 最重要[さいじゅうよう]ポイントは？",
+              "question": "【統合[とうごう]読解[どっかい]】「A文[ぶん]と B文[ぶん]の 意見[いけん]が 最[もっと]も 食[く]い違[ちが]っている 点[てん]は （　　）である。」",
               "options": [
-                "両者[りょうしゃ]の「共通[きょうつう]点[てん]」と「相違[そうい]点[てん]（意見[いけん]の 食[く]い違[ちが]い）」を 整理[せいり]すること",
-                "漢字[かんじ]の 多[おお]い 文章[ぶんしょう]だけを 信[しん]じること",
-                "最初[さいしょ]の 文章[ぶんしょう]だけを 読[よ]むこと",
-                "時間[じかん]を 気[き]にせず 読[よ]むこと"
+                "導入[どうにゅう]時期[じき]の 緊急性[きんきゅうせい]",
+                "参加者[さんかしゃ]の 人数[にんずう]",
+                "予算[よさん]の 金額[きんがく]",
+                "実施[じっし]場所[ばしょ]"
               ],
               "correctAnswerIndex": 0,
-              "explanation": "Qiyosiy oʻqishda ikki matn oʻrtasidagi oʻxshashlik va qarama-qarshi farqli fikrlarni ajratib olish zarur."
+              "explanation": "Qarama-qarshi fikrlar solishtirilgan nuqta."
             },
             {
               "id": "ja-n3-u5-l5-q6",
-              "question": "A文[ぶん]と B文[ぶん]の 両方[りょうほう]に 共通[きょうつう]する 主題[しゅだい]を 答[こた]える 問題[もんだい]の 解[と]き方[かた]は？",
+              "question": "【統合[とうごう]読解[どっかい]】「著者[ちょしゃ]が 最[もっと]も 強調[きょうちょう]したい 提言[ていげん]は （　　）に ほかならない。」",
               "options": [
-                "A文[ぶん]の 1文[ぶん]目[め]だけを 選[えら]ぶ",
-                "B文[ぶん]の 筆者[ひっしゃ]の 年齢[ねんれい]を 調[しら]べる",
-                "関係[かんけい]ない 文[ぶん]を 選[えら]ぶ",
-                "両方[りょうほう]の 文章[ぶんしょう]に 何度[なんど]も 登場[とうじょう]する キーワードに 着目[ちゃくもく]する"
+                "税率[ぜいりつ]の 引き上[ひきあ]げ",
+                "産学[さんがく]連携[れんけい]の 推進[すいしん]",
+                "輸出[ゆしゅつ]の 禁止[きんし]",
+                "休日[きゅうじつ]の 削減[さくげん]"
               ],
-              "correctAnswerIndex": 3,
-              "explanation": "Ikkala matnda ham takrorlanayotgan kalit soʻz va umumiy muammoga eʼtibor beriladi."
+              "correctAnswerIndex": 1,
+              "explanation": "〜にほかならない: Aynan shundan boshqa narsa emas."
             },
             {
               "id": "ja-n3-u5-l5-q7",
@@ -5517,15 +5292,15 @@
             },
             {
               "id": "ja-n3-u5-l5-q8",
-              "question": "グラフや 図表[ずひょう]が 付[つ]いた 読解[どっかい]で、最初[さいしょ]に 見[み]るべき 場所[ばしょ]は？",
+              "question": "【図表[ずひょう]読解[どっかい]】「グラフから 読[よ]み取[と]れる 傾向[けいこう]として 正[ただ]しいものは （　　）である。」",
               "options": [
-                "色[いろ]の ついた 部分[ぶぶん]だけ",
-                "タイトルと 縦軸[たてじく]・横軸[よこじく]の 単位[たんい]",
-                "一番[いちばん] 小[ちい]さい 数字[すうじ]",
-                "印刷[いんさつ]の 日付[ひづけ]"
+                "利用者[りようしゃ]は 毎年[まいとし] 減少[げんしょう]している",
+                "どの 年代[ねんだい]も 全[まった]く 変化[へんか]がない",
+                "高齢者[こうれいしゃ]の 利用者[りようしゃ]が ゼロである",
+                "年々[ねんねん]、若年層[じゃくねんそう]の 利用者[りようしゃ]が 増加[ぞうか]している"
               ],
-              "correctAnswerIndex": 1,
-              "explanation": "Jadvalli matnlarda eng avval sarlavha va grafik oʻqlarining oʻlchov birliklari tekshiriladi."
+              "correctAnswerIndex": 3,
+              "explanation": "Grafikdan koʻrinib turgan tendensiya."
             },
             {
               "id": "ja-n3-u5-l5-q9",
@@ -5541,15 +5316,15 @@
             },
             {
               "id": "ja-n3-u5-l5-q10",
-              "question": "長文[ちょうぶん]読解[どっかい]の 時間[じかん]配分[はいぶん]で 理想[りそう]的[てき]な 戦略[せんりゃく]は？",
+              "question": "【長文[ちょうぶん]読解[どっかい]】「文章[ぶんしょう]の 全体[ぜんたい]の 要旨[ようし]として 最[もっと]も 適切[てきせつ]なものは （　　）である。」",
               "options": [
-                "最後[さいご]まで 何度[なんど]も 全文[ぜんぶん]を 音読[おんどく]する",
-                "辞書[じしょ]を 想像[そうぞう]して 止[と]まる",
-                "勘[かん]で 全[すべ]て マークする",
-                "まず 設問[せつもん]に 目[め]を 通[とお]してから 本文[ほんぶん]の 該当[がいとう]箇所[かしょ]を 探[さが]す（スキャニング）"
+                "伝統[でんとう]の 全[すべ]てを 否定[ひてい]すべきである",
+                "多様性[たようせい]を 認[みと]め合[あ]う 社会[しゃかい]の 実現[じつげん]が 急務[きゅうむ]である",
+                "テクノロジーを 全面[ぜんめん]的[てき]に 排除[はいじょ]すべきである",
+                "個人の 自由[じゆう]を 制限[せいげん]すべきである"
               ],
-              "correctAnswerIndex": 3,
-              "explanation": "Avval savolni koʻrib olib, soʻng matndan kerakli javob qismini maqsadli qidirish eng samarali usuldir."
+              "correctAnswerIndex": 1,
+              "explanation": "Maqolaning umumiy gʻoyasi."
             }
           ]
         }
@@ -5689,131 +5464,131 @@
           "questions": [
             {
               "id": "ja-n3-u6-l1-q1",
-              "question": "Gaiyou Rikai savollarida nima so'raladi?",
+              "question": "【聴解[ちょうかい]】「会話[かいわ]の 中[なか]で、男[おとこ]の 人[ひと]が 最[もっと]も 伝[つた]えたい ことは （　　）である。」",
               "options": [
-                "Har bir so'zning imlosi",
-                "Nutqning asosiy mavzusi va maqsadi",
-                "Muallifning tug'ilgan sanasi",
-                "Poyezd chiptasi narxi"
+                "新[あたら]しい 提案[ていあん]への 賛同[さんどう]",
+                "計画[けいかく]の 白紙[はくし]撤回[てっかい]",
+                "来週[らいしゅう]の 会議[かいぎ]の 中止[ちゅうし]",
+                "他社[たしゃ]への 転職[てんしょく]"
               ],
-              "correctAnswerIndex": 1,
-              "explanation": "Overall main theme & speaker stance.",
+              "correctAnswerIndex": 0,
+              "explanation": "Choukai savolidagi asosiy maqsad.",
               "audioUrl": "/audio/choukai/n3/04 Track 4.mp3",
               "audioTitle": "N3 Track 04: 概要理解 1"
             },
             {
               "id": "ja-n3-u6-l1-q2",
-              "question": "Spiker «つまり (Tsumari)...» yoki «要するに (Yousuru ni)...» desa, nima aytiladi?",
+              "question": "【聴解[ちょうかい]】「話[はな]し手[て]が 『要[よう]するに』と 言[い]った 後[あと]に 続[つづ]く 内容[ないよう]は （　　）である。」",
               "options": [
-                "O'z fikrining yakuniy xulosasi va asosiy mazmuni",
-                "Yangi mavzuga o'tish",
-                "Kechirim so'rash",
-                "Salomlashish"
+                "単[たん]なる 冗談[じょうだん]",
+                "全体[ぜんたい]の 最重要[さいじゅうよう]な 結論[けつろん]",
+                "過去[かこ]の 失敗[しっぱい]談[だん]",
+                "無関係[むかんけい]な 話題[わだい]"
               ],
-              "correctAnswerIndex": 0,
-              "explanation": "Core summary statement.",
+              "correctAnswerIndex": 1,
+              "explanation": "「要するに」 dan keyin asosiy xulosa keladi.",
               "audioUrl": "/audio/choukai/n3/05 Track 5.mp3",
               "audioTitle": "N3 Track 05: 概要理解 2"
             },
             {
               "id": "ja-n3-u6-l1-q3",
-              "question": "N3 Choukai paytida yozib borish (memo qilish) ruxsat etiladimi?",
+              "question": "【聴解[ちょうかい]】「講義[こうぎ]を 聴[き]いて、学生[がくせい]が この 後[あと] まず すべき ことは （　　）である。」",
               "options": [
-                "Faqat barmoq bilan chiziladi",
-                "Faqat dastro'molga yozish mumkin",
-                "Taqiqlanadi",
-                "Ha, test kitobchasiga xohlagancha qaydlar yozib borish mumkin"
+                "教室[きょうしつ]を 出[で]る",
+                "友達[ともだち]に 電話[でんわ]する",
+                "アンケートを 記入[きにゅう]する",
+                "教科書[きょうかしょ]を 買[か]う"
               ],
-              "correctAnswerIndex": 3,
-              "explanation": "Taking notes in test booklet is allowed.",
+              "correctAnswerIndex": 2,
+              "explanation": "Talabaning keyingi qiladigan birinchi vazifasi.",
               "audioUrl": "/audio/choukai/n3/06 Track 6.mp3",
               "audioTitle": "N3 Track 06: 概要理解 3"
             },
             {
               "id": "ja-n3-u6-l1-q4",
-              "question": "«最も 伝[つた]えたい こと» nimani bildiradi?",
+              "question": "【聴解[ちょうかい]】「留守番[るすばん]電話[でんわ]の 用件[ようけん]は （　　）に ついてである。」",
               "options": [
-                "Kechagi xabar",
-                "Ob-havo",
-                "Eng yetkazmoqchi bo'lgan asosiy fikr",
-                "Eng sirli gap"
+                "商品の 注文[ちゅうもん]取り消し",
+                "代金[だいきん]の 催促[さいそく]",
+                "道[みち]案内[あんない]",
+                "面談[めんだん]の 日時[にちじ]の 変更[へんこう]"
               ],
-              "correctAnswerIndex": 2,
-              "explanation": "Primary message intended by speaker.",
+              "correctAnswerIndex": 3,
+              "explanation": "Ovozli xabardagi asosiy mavzu.",
               "audioUrl": "/audio/choukai/n3/07 Track 7.mp3",
               "audioTitle": "N3 Track 07: 概要理解 4"
             },
             {
               "id": "ja-n3-u6-l1-q5",
-              "question": "概要[がいよう]理解[りかい]（Gaiyou rikai）問題[もんだい]の 最大[さいだい]の 特徴[とくちょう]は？",
+              "question": "【聴解[ちょうかい]】「女[おんな]の 人[ひと]が 困[こま]っている 理由[りゆう]は （　　）からである。」",
               "options": [
-                "絵[え]を 見[み]て 答[こた]えること",
-                "問題[もんだい]用紙[ようし]に 質問[しつもん]も 選択肢[せんたくし]も 書[か]いておらず、全[すべ]て 音声[おんせい]で 流[なが]れること",
-                "文字[もじ]を 書[か]く 試験[しけん]であること",
-                "音楽[おんがく]を 聴[き]くこと"
+                "鍵[かぎ]を 紛失[ふんしつ]した",
+                "財布[さいふ]を 忘[わす]れた",
+                "電車[でんしゃ]に 乗[の]り遅[おく]れた",
+                "雨[あめ]が 降[ふ]ってきた"
               ],
-              "correctAnswerIndex": 1,
-              "explanation": "Gaiyou rikai boʻlimida savol va variantlar qogʻozda yozilmaydi, barchasi audio orqali eshittiriladi."
+              "correctAnswerIndex": 0,
+              "explanation": "Ayolning bezovtalanish sababi."
             },
             {
               "id": "ja-n3-u6-l1-q6",
               "question": "話[はな]し手[て]が 最[もっと]も 伝[つた]えたい「テーマ」を つかむ 際[さい]の キーフレーズは？",
               "options": [
-                "「一番[いちばん] 大切[たいせつ]なのは〜」「私[わたし]が 言[い]いたいのは〜」",
                 "「こんにちは」",
+                "「一番[いちばん] 大切[たいせつ]なのは〜」「私[わたし]が 言[い]いたいのは〜」",
                 "「では、また」",
                 "「失礼[しつれい]します」"
               ],
-              "correctAnswerIndex": 0,
+              "correctAnswerIndex": 1,
               "explanation": "Gapiruvchining asosiy muddaosi koʻpincha \"eng muhimi...\", \"aytmoqchi boʻlganim...\" kabi iboralar ortidan keladi."
             },
             {
               "id": "ja-n3-u6-l1-q7",
-              "question": "留守番[るすばん]電話[でんわ]の メッセージで 最優先[さいゆうせん]で 聞[き]き取[と]るべき 情報[じょうほう]は？",
+              "question": "【聴解[ちょうかい]】「店員[てんいん]の 説明[せつめい]に よると、セール品[ひん]の 返品[へんぴん]は （　　）。」",
               "options": [
-                "電話[でんわ]代[だい]",
-                "今日[きょう]の 天気[てんき]",
-                "相手[あいて]の 趣味[しゅみ]",
-                "誰[だれ]が、何[なに]の 用件[ようけん]で、次[つぎ]に 何[なに]を してほしいのか"
+                "いつでも 可能[かのう]である",
+                "1ヶ月[いっかげつ]以内[いない]なら 可能[かのう]",
+                "一切[いっさい] 受[う]け付[つ]けていない",
+                "半額[はんがく]返金[へんきん]される"
               ],
-              "correctAnswerIndex": 3,
-              "explanation": "Kim, qanday masala yuzasidan va keyingi qadam sifatida nima qilish kerakligini ilgʻab olish zarur."
+              "correctAnswerIndex": 2,
+              "explanation": "Chegirmadagi tovarlar qaytarib olinmaydi."
             },
             {
               "id": "ja-n3-u6-l1-q8",
-              "question": "音声[おんせい]を 聴[き]きながら メモを 取[と]る 際[さい]の 賢[かしこ]い コツは？",
+              "question": "【聴解[ちょうかい]】「ニュースで 伝[つた]えている 主[おも]な 出来事[できごと]は （　　）である。」",
               "options": [
-                "聞こえた 日本語[にほんご]を 漢字[かんじ]で 全文[ぜんぶん] 書[か]き留[と]める",
-                "何[なに]も 書[か]かずに 目[め]を つぶる",
-                "重要[じゅうよう]な 名詞[めいし]、数字[すうじ]、接続[せつぞく]詞[し]（しかし・だから）だけを 記号[きごう]や 略語[りゃくご]で 書[か]く",
-                "絵[え]を 描[えが]く"
+                "運賃[うんちん]の 値上[ねあ]げ",
+                "終電[しゅうでん]の 繰[く]り上[あ]げ",
+                "ストライキの 実施[じっし]",
+                "新[あたら]しい 路線[ろせん]の 開通[かいつう]"
               ],
-              "correctAnswerIndex": 2,
-              "explanation": "Faqat muhim kalit soʻzlar, sonlar va bogʻlovchilarni qisqacha belgilab borish eslab qolishni osonlashtiradi."
+              "correctAnswerIndex": 3,
+              "explanation": "Yangiliklar xabarining bosh mavzusi."
             },
             {
               "id": "ja-n3-u6-l1-q9",
               "question": "話[はな]しの 途中[とちゅう]で「実は（じつは）」が 聞[き]こえたら、何[なに]を 警戒[けいかい]すべきか？",
               "options": [
-                "話[はな]しが 終[お]わること",
                 "それまでの 前置[まえお]きとは 異[こと]なる、本当[ほんとう]の 本音[ほんね]や 変更[へんこう]点[てん]が 語[かた]られること",
+                "話[はな]しが 終[お]わること",
                 "嘘[うそ]を ついていること",
                 "音楽[おんがく]が 鳴[な]ること"
               ],
-              "correctAnswerIndex": 1,
+              "correctAnswerIndex": 0,
               "explanation": "「実は」 (Aslida...) dan keyin gapning haqiqiy tub mohiyati va kutilmagan oʻzgarish eʼlon qilinadi."
             },
             {
               "id": "ja-n3-u6-l1-q10",
-              "question": "聴解[ちょうかい]で 1問[もん] 聞[き]き逃[のが]してしまった 時[とき]の 最善[さいぜん]の 対処[たいしょ]法[ほう]は？",
+              "question": "【聴解[ちょうかい]】「二[ふた]人[り]の 会話[かいわ]から、最終的[さいしゅうてき]な 決定[けってい]事項[じこう]は （　　）となった。」",
               "options": [
-                "すっぱり 諦[あきら]めて 直感[ちょっかん]で マークし、次[つぎ]の 問題[もんだい]の 音声[おんせい]に 集中[しゅうちゅう]する",
-                "その 問題[もんだい]を 考[かんが]え続[つづ]けて 3問[もん] 聞[き]き逃[のが]す",
-                "試験[しけん]官[かん]に もう 一度[いちど] 再生[さいせい]を 頼[たの]む",
-                "テストを やめる"
+                "B案を採用する",
+                "A案[あん]を 採用[さいよう]する",
+                "両方[りょうほう]とも 却下[きゃっか]する",
+                "結論[けつろん]を 保留[ほりゅう]する"
               ],
-              "correctAnswerIndex": 0,
-              "explanation": "Oʻtgan savolga chalgʻimay darhol keyingi savolga diqqatni qaratish imtihonning oltin qoidasidir."
+              "correctAnswerIndex": 1,
+              "explanation": "Yakuniy qaror."
             }
           ]
         }
@@ -5944,15 +5719,10 @@
           "questions": [
             {
               "id": "ja-n3-u6-l2-q1",
-              "question": "Yulduzcha savollarini yechishda eng samarali dastlabki qadam nima?",
-              "options": [
-                "Hamma javobni 1 deb belgilash",
-                "Faqat oxirgi so'zni o'qish",
-                "Bir-biriga grammatik bog'lanadigan juftliklarni (chunk) birlashtirib olish",
-                "Tavakkal qilish"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Find grammatical chunks & collocational pairs."
+              "question": "健康[けんこう]の ため、毎日[まいにち] ［ 1. ように 2. 野菜[やさい]を 3. 食[た]べる 4. たくさん ］ ★ しています。★に入るのはどれですか。",
+              "options": ["1", "2", "3", "4"],
+              "correctAnswerIndex": 0,
+              "explanation": "並べ替え: 「たくさん 野菜を 食べる ように しています」 -> 4 2 3 1. ★は 1."
             },
             {
               "id": "ja-n3-u6-l2-q2",
@@ -5968,42 +5738,42 @@
             },
             {
               "id": "ja-n3-u6-l2-q3",
-              "question": "N3 imtihonida nechta yulduzcha (*) savoli tushadi?",
-              "options": ["Har yili 5 ta savol", "100 ta", "50 ta", "1 ta"],
-              "correctAnswerIndex": 0,
-              "explanation": "5 questions in Bunpou section."
+              "question": "どんなに ［ 1. あきらめないで 2. つらく 3. 頑張[がんば]る 4. ても ］ ★ つもりだ。★に入るのはどれですか。",
+              "options": ["2", "3", "1", "4"],
+              "correctAnswerIndex": 2,
+              "explanation": "並べ替え: 「つらく ても あきらめないで 頑張る つもりだ」 -> 2 4 1 3. ★は 1."
             },
             {
               "id": "ja-n3-u6-l2-q4",
-              "question": "Agar variantda «Ot + にとって» bo'lsa, u qanday ma'no beradi?",
-              "options": ["... haqida", "... dan", "... bilan birga", "... uchun / ... nazarida"],
+              "question": "私[わたし]に ［ 1. 家族[かぞく]が 2. 何[なに]よりも 3. とって 4. 大切[たいせつ]なのは ］ ★ ものだ。★に入るのはどれですか。",
+              "options": ["2", "3", "4", "1"],
               "correctAnswerIndex": 3,
-              "explanation": "From the standpoint of."
+              "explanation": "並べ替え: 「私にとって 何よりも 大切なのは 家族だ」 -> 3 2 4 1. ★は 1."
             },
             {
               "id": "ja-n3-u6-l2-q5",
-              "question": "星[ほし]印[じるし]（★）問題[もんだい]で 正[ただ]しい 順番[じゅんばん]に 並[なら]べ替[か]える 基本[きほん]手順[てじゅん]は？",
+              "question": "「星[ほし]印[じるし]（★）問題[もんだい]で 正[ただ]しい 順番[じゅんばん]に 並[なら]べ替[か]える 基本[きほん]手順[てじゅん]は？」",
               "options": [
+                "意味[いみ]の つながる 2語[ご]の ペア（コロケーション）を まず 作[つく]ること",
                 "長[なが]い 単語[たんご]から 順[じゅん]に 並[なら]べる",
                 "あいうえお順[じゅん]に 並[なら]べる",
-                "意味[いみ]の つながる 2語[ご]の ペア（コロケーション）を まず 作[つく]ること",
                 "適当[てきとう]に 並[なら]べる"
               ],
-              "correctAnswerIndex": 2,
+              "correctAnswerIndex": 0,
               "explanation": "Yulduzcha testlarida bir-biriga bogʻlanuvchi 2 ta soʻz birikmasini (juftlikni) topib olish jumboqni tez yechadi."
             },
             {
               "id": "ja-n3-u6-l2-q6",
-              "question": "健康[けんこう]の ため、毎日[まいにち] ［ 1. ように 2. 野菜[やさい]を 3. 食[た]べる 4. たくさん ］ ★ しています。★に入るのは？",
+              "question": "「健康[けんこう]の ため、毎日[まいにち] ［ 1. ように 2. 野菜[やさい]を 3. 食[た]べる 4. たくさん ］ ★ しています。★に入るのは？」",
               "options": ["2", "1", "3", "4"],
               "correctAnswerIndex": 1,
               "explanation": "Toʻgʻri tartib: 野菜を(2) たくさん(4) 食べる(3) ように(1) しています. Demak, ★ oʻrnida 1 (ように) turadi."
             },
             {
               "id": "ja-n3-u6-l2-q7",
-              "question": "どんなに ［ 1. あきらめないで 2. つらく 3. 頑張[がんば]る 4. ても ］ ★ つもりだ。★に入るのは？",
-              "options": ["1", "2", "3", "4"],
-              "correctAnswerIndex": 0,
+              "question": "「どんなに ［ 1. あきらめないで 2. つらく 3. 頑張[がんば]る 4. ても ］ ★ つもりだ。★に入るのは？」",
+              "options": ["2", "3", "1", "4"],
+              "correctAnswerIndex": 2,
               "explanation": "Toʻgʻri tartib: つらく(2) ても(4) あきらめないで(1) 頑張る(3) つもりだ. Demak, 3-oʻrindagi ★ da 1 turadi."
             },
             {
@@ -6020,9 +5790,9 @@
             },
             {
               "id": "ja-n3-u6-l2-q9",
-              "question": "雨[あめ]が ［ 1. 中止[ちゅうし]に 2. 降[ふ]った 3. なった 4. ために ］ 試合[しあい]が ★ 。★に入るのは？",
-              "options": ["2", "3", "1", "4"],
-              "correctAnswerIndex": 2,
+              "question": "「雨[あめ]が ［ 1. 中止[ちゅうし]に 2. 降[ふ]った 3. なった 4. ために ］ 試合[しあい]が ★ 。★に入るのは？」",
+              "options": ["1", "2", "3", "4"],
+              "correctAnswerIndex": 0,
               "explanation": "Toʻgʻri tartib: 降った(2) ために(4) 試合が 中止に(1) なった(3). 3-oʻrindagi ★ da 1 (中止に) keladi."
             },
             {
@@ -6170,113 +5940,103 @@
           "questions": [
             {
               "id": "ja-n3-u6-l3-q1",
-              "question": "Biznes qo'ng'iroqlarida «もしもし (Moshimoshi)» deyish nima uchun taqiqlanadi?",
+              "question": "電話[でんわ]応対[おうたい]：A「お電話[でんわ] ありがとうございます。〇〇商事[しょうじ]で ございます。」B「（　　）。ABCの 田中[たなか]で ございます。」",
               "options": [
-                "Farqi yo'q",
-                "Chunki bu eshitilmaydi",
-                "Chunki bu inglizcha so'z",
-                "Chunki bu norasmiy, do'stona ibora bo'lib, biznesda qo'pol hisoblanadi"
+                "いつも お世話[せわ]になっております",
+                "もしもし",
+                "こんにちは",
+                "失礼[しつれい]します"
               ],
-              "correctAnswerIndex": 3,
-              "explanation": "Moshimoshi is too casual for professional business."
+              "correctAnswerIndex": 0,
+              "explanation": "Biznes qoʻngʻiroqlarida «Moshimoshi» oʻrniga: 「いつもお世話になっております」."
             },
             {
               "id": "ja-n3-u6-l3-q2",
-              "question": "«Boshlig'im boshqa qo'ng'iroqda gaplashmoqda» kamtarona qanday tushuntiriladi?",
-              "options": [
-                "電話[でんわ]が あります",
-                "忙[いそが]しいです",
-                "ただいま 別[べつ]の 電話[でんわ]に 出[で]て おります",
-                "田中[たなか]さんは 話[はな]しています"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Tadaima betsu no denwa ni dete orimasu."
+              "question": "電話[でんわ]：A「山田[やまだ]部長[ぶちょう]は いらっしゃいますか。」B「あいにく 山田[やまだ]は 他[ほか]の 電話[でんわ]に （　　）おります。」",
+              "options": ["話[はな]して", "出[で]て", "いらっしゃって", "おいでになって"],
+              "correctAnswerIndex": 1,
+              "explanation": "Boshqa telefonda gaplashayotganini aytganda: 「他の電話に出ております」."
             },
             {
               "id": "ja-n3-u6-l3-q3",
-              "question": "Suhbat oxirida go'shakni qo'yishdan oldin aytiladigan ibora:",
-              "options": ["バイバイ", "失礼[しつれい]いたします", "さようなら", "おやすみ"],
-              "correctAnswerIndex": 1,
-              "explanation": "Shitsurei itashimasu."
+              "question": "電話[でんわ]：A「それでは、明日[あした]の 14時[じゅうよじ]に よろしく お願[ねが]いいたします。」B「承知[しょうち]いたしました。それでは （　　）。」",
+              "options": ["バイバイ", "さようなら", "失礼[しつれい]いたします", "じゃあまた"],
+              "correctAnswerIndex": 2,
+              "explanation": "Biznes qoʻngʻirogʻini yakunlab goʻshakni qoʻyishdan avval: 「失礼いたします」."
             },
             {
               "id": "ja-n3-u6-l3-q4",
-              "question": "«Kechirasiz, biroz ovozingiz uzoqdan kelmoqda (yaxshi eshitilmayapti)»:",
-              "options": [
-                "恐[おそ]れ入[い]りますが、少[すこ]し お電話[でんわ]が 遠[とお]いようでございます",
-                "聞[き]こえない",
-                "声[こえ]が 小[ちい]さい",
-                "大[おお]きな 声[こえ]で 話[はな]せ"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Odenwa ga tooi you de gozaimasu."
+              "question": "電話[でんわ]：「恐[おそ]れ入[い]りますが、少々[しょうしょう] お電話[でんわ]が （　　）ようですが。」 (Yaxshi eshitilmayapti)",
+              "options": ["うるさい", "小[ちい]さい", "見[み]えない", "遠[とお]い"],
+              "correctAnswerIndex": 3,
+              "explanation": "Ovoz uzoqdan va noaniq kelganda odobli ibora: 「お電話が遠いようですが」."
             },
             {
               "id": "ja-n3-u6-l3-q5",
-              "question": "電話[でんわ]を かけて 相手[あいて]が 出[で]た 際[さい]、最初[さいしょ]に 言[い]う 言葉[ことば]は？",
+              "question": "電話[でんわ]応対[おうたい]：A「〇〇株式会社[かぶしきがいしゃ]の 田中[たなか]様[さま]で いらっしゃいますね。」B「（　　）。」",
               "options": [
-                "もしもし、誰[だれ]ですか？",
-                "用事[ようじ]が あります。",
-                "今[いま] 忙[いそが]しいですか？",
-                "いつも お世話[せわ]に なっております。〇〇社[しゃ]の 田中[たなか]で ございます。"
+                "はい、左様[さよう]で ございます",
+                "はい、そうですわ",
+                "うん、そうだよ",
+                "はい、わたしです"
               ],
-              "correctAnswerIndex": 3,
-              "explanation": "Yapon biznes qoʻngʻirogʻi har doim \"Osewa ni natte orimasu. ...shaning Falonchisiman\" deb boshlanadi."
+              "correctAnswerIndex": 0,
+              "explanation": "Biznes telefonida tasdiqlash: 「はい、左様でございます」."
             },
             {
               "id": "ja-n3-u6-l3-q6",
-              "question": "担当[たんとう]者[しゃ]が 外出[がいしゅつ]中の 際[さい]、同僚[どうりょう]として 適切[てきせつ]な 返答[へんとう]は？",
+              "question": "電話[でんわ]応対[おうたい]：A「佐藤[さとう]は ただいま 席[せき]を 外[はず]しております。（　　）。」",
               "options": [
-                "山田[やまだ]さんはいません。切[き]りますね。",
-                "どこかへ 行[い]きました。",
-                "あいにく 山田[やまだ]は 外出[がいしゅつ]しております。戻[もど]り次第[しだい]、折[お]り返[かえ]し お電話[でんわ]させましょうか。",
-                "山田[やまだ]部長[ぶちょう]様[さま]は お出[で]かけに なられました。"
+                "待[ま]ってください",
+                "戻[もど]り次第[しだい]、お電話[でんわ] 差[さ]し上[あ]げましょうか",
+                "明日[あした] かけてください",
+                "知[し]りません"
               ],
-              "correctAnswerIndex": 2,
-              "explanation": "Xodim tashqarida boʻlsa, qaytib kelishi bilan telefon qilishini taklif etish xushmuomala standartdir."
+              "correctAnswerIndex": 1,
+              "explanation": "Boshliq oʻrnida boʻlmaganda taklif: 「戻り次第、お電話差し上げましょうか」."
             },
             {
               "id": "ja-n3-u6-l3-q7",
-              "question": "相手[あいて]の 名前[なまえ]を もう 一度[いちど] 確認[かくにん]したい 時[とき]の 丁寧[ていねい]な 表現[ひょうげん]は？",
+              "question": "電話[でんわ]応対[おうたい]：「恐[おそ]れ入[い]りますが、お名前[なまえ]を もう 一度[いちど] （　　）でしょうか。」",
               "options": [
-                "名前[なまえ]を もう 一回[いっかい] 言[い]え。",
-                "恐[おそ]れ入[い]りますが、もう 一度[いちど] お名前[なまえ]を 伺[うかが]っても よろしいでしょうか。",
-                "聞[き]こえなかったよ。",
-                "名前[なまえ]は何[なに]？"
+                "言[い]ってくれる",
+                "申[もう]し上[あ]げて",
+                "お伺[うかが]いしても よろしい",
+                "聞[き]きなさい"
               ],
-              "correctAnswerIndex": 1,
-              "explanation": "Kechirasiz, ismingizni yana bir bor eshitsam boʻladimi: 恐れ入りますが、もう一度お名前を伺ってもよろしいでしょうか."
+              "correctAnswerIndex": 2,
+              "explanation": "Ismini qayta soʻrashda: 「お伺いしてもよろしいでしょうか」."
             },
             {
               "id": "ja-n3-u6-l3-q8",
-              "question": "約束[やくそく]の 日時[にちじ]を 変更[へんこう]したい 際[さい]の 丁重[ていちょう]な 依頼[いらい]は？",
+              "question": "電話[でんわ]応対[おうたい]：「あいにく その 日時[にちじ]は 先約[せんやく]が ございまして、別[べつ]の 日[ひ]に （　　）幸[さいわ]いです。」",
               "options": [
-                "大変[たいへん] 恐縮[きょうしゅく]ですが、お打[う]ち合[あ]わせの 日時[にちじ]を ご変更[へんこう]いただくことは 可能[かのう]でしょうか。",
-                "日[ひ]を 変[か]えて ください。",
-                "明日[あした]は 行[い]けません。",
-                "勝手[かって]に 変[か]えます。"
+                "変[か]えてくれれば",
+                "変更[へんこう]しなさい",
+                "変[か]えないと",
+                "ご変更[へんこう]いただけますと"
               ],
-              "correctAnswerIndex": 0,
-              "explanation": "Uchrashuv vaqtini oʻzgartirishni soʻrashda: 大変恐縮ですが、日時をご変更いただくことは可能でしょうか."
+              "correctAnswerIndex": 3,
+              "explanation": "Vaqtni oʻzgartirishni soʻrashda: 「ご変更いただけますと幸いです」."
             },
             {
               "id": "ja-n3-u6-l3-q9",
-              "question": "電話[でんわ]を 切[き]る 際[さい]の 決[き]まり文句[もんく]は？",
-              "options": ["さようなら", "じゃあね", "バイバイ", "失礼[しつれい]いたします"],
-              "correctAnswerIndex": 3,
-              "explanation": "Rasmiy suhbat yakunida: 失礼いたします (Shitsurei itashimasu)."
+              "question": "電話[でんわ]応対[おうたい]：通話[つうわ]の 最後[さいご]に 受話器[じゅわき]を 置[お]く 際[さい]の 正[ただ]しい マナーは （　　）である。",
+              "options": [
+                "相手[あいて]が 切[き]ったのを 確認[かくにん]してから 静[しず]かに 置[お]く",
+                "挨拶[あいさつ]が 終[お]わったら すぐに 勢[いきお]いよく 切[き]る",
+                "どちらが 先[さき]に 切[き]っても 関係[かんけい]ない",
+                "大きな 音[おと]を 立[た]てて 切[き]る"
+              ],
+              "correctAnswerIndex": 0,
+              "explanation": "Telefon etiketi: suhbatdosh goʻshakni qoʻyganini kutib, muloyimlik bilan qoʻyish."
             },
             {
               "id": "ja-n3-u6-l3-q10",
-              "question": "電話[でんわ]を 切[き]る 時[とき]のマナーとして 正[ただ]しいものは？",
-              "options": [
-                "話[はな]し終[お]わったら すぐに ガチャリと 切[き]る",
-                "相手[あいて]より 先[さき]に 大[おお]きな 音[おと]を 立[た]てて 切[き]る",
-                "電話[でんわ]を かけてきた 相手[あいて]（または お客様[きゃくさま]）が 切[き]ったのを 確認[かくにん]してから 静[しず]かに 切[き]る",
-                "何[なに]も 言[い]わずに 切[き]る"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Yapon biznes odobiga koʻra, mijoz yoki qoʻngʻiroq qilgan tomon goʻshakni qoʻygach, muloyimlik bilan qoʻyiladi."
+              "question": "電話[でんわ]応対[おうたい]：「それでは、明日[あした] お伺[うかが]いいたします。（　　）。」",
+              "options": ["ごめんください", "失礼[しつれい]いたします", "さようなら", "じゃあね"],
+              "correctAnswerIndex": 1,
+              "explanation": "Qoʻngʻiroq yakunida: 「失礼いたします」."
             }
           ]
         }
@@ -6417,36 +6177,36 @@
             {
               "id": "ja-n3-u6-l4-q2",
               "question": "「彼[かれ]は まるで 日本人[にほんじん]の _______ 上手[じょうず]に 話[はな]す。」",
-              "options": ["そうに", "らしい", "ために", "ように"],
-              "correctAnswerIndex": 3,
+              "options": ["そうに", "ように", "らしい", "ために"],
+              "correctAnswerIndex": 1,
               "explanation": "Marude Nihonjin no you ni (xuddi yapondek)."
             },
             {
               "id": "ja-n3-u6-l4-q3",
-              "question": "«Har bir bo'limdan minimal qancha ball to'plash shart?»",
-              "options": ["50 ball", "60 ball", "19 ball", "0 ball"],
+              "question": "「彼[かれ]は どんな 困難[こんなん]にも （　　） 耐[た]え抜[ぬ]いた。」",
+              "options": ["くじけて", "くじけるなら", "くじけずに", "くじけた"],
               "correctAnswerIndex": 2,
-              "explanation": "Sectional benchmark is 19/60."
+              "explanation": "くじけずに: Hech bir qiyinchilikka taslim boʻlmasdan («suxan boʻlmay bardosh berdi»)."
             },
             {
               "id": "ja-n3-u6-l4-q4",
               "question": "「試験[しけん]の 結果[けっか]を 楽[たの]しみに して _______。」",
-              "options": ["なさいます", "おります", "いらっしゃいます", "ごらんになります"],
-              "correctAnswerIndex": 1,
+              "options": ["なさいます", "いらっしゃいます", "ごらんになります", "おります"],
+              "correctAnswerIndex": 3,
               "explanation": "Tanoshimi ni shite orimasu."
             },
             {
               "id": "ja-n3-u6-l4-q5",
-              "question": "【語彙[ごい]】彼[かれ]は どんな 困難[こんなん]にも （　） 耐[た]え抜[ぬ]いた。",
+              "question": "【語彙[ごい]】彼[かれ]は どんな 困難[こんなん]にも （　　） 耐[た]え抜[ぬ]いた。",
               "options": ["じっと", "さらさら", "ぎっしり", "ぺらぺら"],
               "correctAnswerIndex": 0,
               "explanation": "Ogʻriq yoki qiyinchilikka chidab, sabr bilan qimirlamay turish: じっと耐える."
             },
             {
               "id": "ja-n3-u6-l4-q6",
-              "question": "【文法[ぶんぽう]】夜[よる] 遅[おそ]く コーヒーを 飲[の]んだ （　）、全然[ぜんぜん] 眠[ねむ]れなかった。",
-              "options": ["おかげで", "反面", "くせに", "せいで"],
-              "correctAnswerIndex": 3,
+              "question": "【文法[ぶんぽう]】夜[よる] 遅[おそ]く コーヒーを 飲[の]んだ （　　）、全然[ぜんぜん] 眠[ねむ]れなかった。",
+              "options": ["おかげで", "せいで", "反面", "くせに"],
+              "correctAnswerIndex": 1,
               "explanation": "Uxlay olmaslik kabi noxush natijaga sabab: 飲んだせいで."
             },
             {
@@ -6458,28 +6218,28 @@
             },
             {
               "id": "ja-n3-u6-l4-q8",
-              "question": "【文法[ぶんぽう]】この 仕事[しごと]は 経験[けいけん]の 有無[うむ]を （　）、誰[だれ]でも 応募[おうぼ]できる。",
-              "options": ["込[こ]めて", "問[と]わず", "通[つう]じて", "めぐって"],
-              "correctAnswerIndex": 1,
+              "question": "【文法[ぶんぽう]】この 仕事[しごと]は 経験[けいけん]の 有無[うむ]を （　　）、誰[だれ]でも 応募[おうぼ]できる。",
+              "options": ["込[こ]めて", "通[つう]じて", "めぐって", "問[と]わず"],
+              "correctAnswerIndex": 3,
               "explanation": "Qatʼiy nazar, farqsiz: 〜を問わず (Oʻtmish tajribasi bormi-yoʻqmi qatʼiy nazar)."
             },
             {
               "id": "ja-n3-u6-l4-q9",
-              "question": "【語彙[ごい]】新[あたら]しい 職場[しょくば]の 環境[かんきょう]に ようやく （　）きた。",
+              "question": "【語彙[ごい]】新[あたら]しい 職場[しょくば]の 環境[かんきょう]に ようやく （　　）きた。",
               "options": ["慣[な]れて", "飽[あ]きて", "疲[つか]れて", "忘[わす]れて"],
               "correctAnswerIndex": 0,
               "explanation": "Koʻnikib qolmoq: 慣れてきた (Narete kita)."
             },
             {
               "id": "ja-n3-u6-l4-q10",
-              "question": "【敬語[けいご]】先生[せんせい]、研究[けんきゅう]室[しつ]へ 何時[なんじ]ごろ （　）でしょうか。",
+              "question": "【敬語[けいご]】先生[せんせい]、研究[けんきゅう]室[しつ]へ 何時[なんじ]ごろ （　　）でしょうか。",
               "options": [
                 "いらっしゃっても よろしい",
+                "伺[うかが]っても よろしい",
                 "召[め]し上[あ]がっても よろしい",
-                "おっしゃっても よろしい",
-                "伺[うかが]っても よろしい"
+                "おっしゃっても よろしい"
               ],
-              "correctAnswerIndex": 3,
+              "correctAnswerIndex": 1,
               "explanation": "Oʻzi ustozning huzuriga bormoqchi (kenjougo): 伺ってもよろしいでしょうか (Tashrif buyursam boʻladimi?)."
             }
           ]
@@ -6616,55 +6376,60 @@
             {
               "id": "ja-n3-u6-l5-q1",
               "question": "「社長[しゃちょう]は ゴルフを _______。」 (Prezident harakatini ulug'lash)",
-              "options": ["されます", "なさいます", "いたします", "ゴルフだ"],
-              "correctAnswerIndex": 1,
+              "options": ["なさいます", "されます", "いたします", "ゴルフだ"],
+              "correctAnswerIndex": 0,
               "explanation": "Nasaimasu (Sonkeigo)."
             },
             {
               "id": "ja-n3-u6-l5-q2",
               "question": "「あの人[ひと]が そんな 嘘[うそ]を つく _______。」 (Mantiqan mutlaqo imkonsiz)",
-              "options": ["はずが ない", "はずだ", "そうだ", "べきだ"],
-              "correctAnswerIndex": 0,
+              "options": ["はずだ", "はずが ない", "そうだ", "べきだ"],
+              "correctAnswerIndex": 1,
               "explanation": "Hazu ga nai."
             },
             {
               "id": "ja-n3-u6-l5-q3",
               "question": "「雨[あめ]が 降[ふ]って きた _______、傘[かさ]を 差[さ]した。」",
-              "options": ["くせに", "反面", "のに", "ので"],
-              "correctAnswerIndex": 3,
+              "options": ["くせに", "反面", "ので", "のに"],
+              "correctAnswerIndex": 2,
               "explanation": "Futte kita node."
             },
             {
               "id": "ja-n3-u6-l5-q4",
-              "question": "JLPT N3 darajasidan so'ng qaysi yuqori darajaga o'tiladi?",
-              "options": ["JLPT N1", "N4", "JLPT N2", "C1"],
-              "correctAnswerIndex": 2,
-              "explanation": "JLPT N3 darajasini to‘liq o‘zlashtirib, N2 bosqichiga tayyorlikni ko‘rsatuvchi to‘g‘ri javob."
+              "question": "「長年[ながねん]の 夢[ゆめ]だった 留学[りゅうがく]が ついに （　　）ことになった。」",
+              "options": [
+                "実現[じつげん]した",
+                "実現[じつげん]して",
+                "実現[じつげん]し",
+                "実現[じつげん]する"
+              ],
+              "correctAnswerIndex": 3,
+              "explanation": "〜ことになる: 「実現することになった」 (amalga oshadigan boʻldi)."
             },
             {
               "id": "ja-n3-u6-l5-q5",
               "question": "【N3総[そう]仕上げ】JLPT N3 合格[ごうかく]に 最[もっと]も 必要[ひつよう]な 力[ちから]は 何[なに]か？",
               "options": [
-                "辞書[じしょ]を 丸暗記[まるあんき]する 力[ちから]",
                 "日常[にちじょう]的[てき]な 場面[ばめん]で 使[つか]われる 日本語[にほんご]を ある程度[ていど] 理解[りかい]し、自然[しぜん]に 読[よ]み書[か]き・会話[かいわ]ができる 力[ちから]",
+                "辞書[じしょ]を 丸暗記[まるあんき]する 力[ちから]",
                 "英語[えいご]の 翻訳[ほんやく]力[りょく]",
                 "早口[はやくち]で 話[はな]す 力[ちから]"
               ],
-              "correctAnswerIndex": 1,
+              "correctAnswerIndex": 0,
               "explanation": "JLPT N3 standarti: Kundalik hayotiy vaziyatlarda yapon tilini maʼlum darajada mustaqil tushunish va qoʻllay olish."
             },
             {
               "id": "ja-n3-u6-l5-q6",
-              "question": "【総合[そうごう]文法[ぶんぽう]】彼[かれ]は 忙[いそが]しい （　）、いつも 私[わたし]の 相談[そうだん]に 乗[の]ってくれる。",
-              "options": ["にもかかわらず", "せいで", "ばかりに", "反面[はんめん]"],
-              "correctAnswerIndex": 0,
+              "question": "【総合[そうごう]文法[ぶんぽう]】彼[かれ]は 忙[いそが]しい （　　）、いつも 私[わたし]の 相談[そうだん]に 乗[の]ってくれる。",
+              "options": ["せいで", "にもかかわらず", "ばかりに", "反面[はんめん]"],
+              "correctAnswerIndex": 1,
               "explanation": "Qaramasdan (kutilganiga teskari mehmondoʻstlik): 〜にもかかわらず."
             },
             {
               "id": "ja-n3-u6-l5-q7",
-              "question": "【総合[そうごう]語彙[ごい]】長年[ながねん]の 夢[ゆめ]だった JLPT N3 合格[ごうかく]を ついに （　）した。",
-              "options": ["緊張[きんちょう]", "被害[ひがい]", "苦痛[くつう]", "達成[たっせい]"],
-              "correctAnswerIndex": 3,
+              "question": "【総合[そうごう]語彙[ごい]】長年[ながねん]の 夢[ゆめ]だった JLPT N3 合格[ごうかく]を ついに （　　）した。",
+              "options": ["緊張[きんちょう]", "被害[ひがい]", "達成[たっせい]", "苦痛[くつう]"],
+              "correctAnswerIndex": 2,
               "explanation": "Maqsadga erishmoq: 達成する (Tassei suru)."
             },
             {
@@ -6673,29 +6438,29 @@
               "options": [
                 "ひらがなの 練習[れんしゅう]",
                 "カタカナの 単語[たんご]だけ",
-                "ビジネスや 社会[しゃかい]的[てき]・抽象[ちゅうしょう]的[てき]な 論説[ろんせつ]文[ぶん]の 読解[どっかい]と 高度[こうど]な 敬語[けいご]・表現[ひょうげん]",
-                "挨拶[あいさつ]の 復習[ふくしゅう]"
+                "挨拶[あいさつ]の 復習[ふくしゅう]",
+                "ビジネスや 社会[しゃかい]的[てき]・抽象[ちゅうしょう]的[てき]な 論説[ろんせつ]文[ぶん]の 読解[どっかい]と 高度[こうど]な 敬語[けいご]・表現[ひょうげん]"
               ],
-              "correctAnswerIndex": 2,
+              "correctAnswerIndex": 3,
               "explanation": "N2 darajasida ijtimoiy, ilmiy va ishbilarmonlik mavzularidagi chuqur tahliliy matnlar hamda murakkab sintaksis oʻrganiladi."
             },
             {
               "id": "ja-n3-u6-l5-q9",
               "question": "【総合[そうごう]漢字[かんじ]】「維持[いじ]」ning toʻgʻri maʼnosi va oʻqilishi qaysi?",
-              "options": ["ゆじ", "いじ", "いし", "いぢ"],
-              "correctAnswerIndex": 1,
+              "options": ["いじ", "ゆじ", "いし", "いぢ"],
+              "correctAnswerIndex": 0,
               "explanation": "維持 = いじ (Mavjud sifat yoki darajani barqaror saqlamoq)."
             },
             {
               "id": "ja-n3-u6-l5-q10",
               "question": "【修了[しゅうりょう]判定[はんてい]】「千里[せんり]の 道[みち]も 一歩[いっぽ]から」ということわざが 示[しめ]す 精神[せいしん]は？",
               "options": [
-                "どんなに 大[おお]きな 目標[もくひょう]（N1合格[ごうかく]など）でも、毎日[まいにち]の 地道[じみち]な 1課[か]ずつの 積[つ]み重[かさ]ねが 成功[せいこう]につながる",
                 "急[いそ]いで 走[はし]らなければ ならない",
+                "どんなに 大[おお]きな 目標[もくひょう]（N1合格[ごうかく]など）でも、毎日[まいにち]の 地道[じみち]な 1課[か]ずつの 積[つ]み重[かさ]ねが 成功[せいこう]につながる",
                 "歩[ある]くのを やめること",
                 "一人[ひとり]だけで 勉強[べんきょう]すること"
               ],
-              "correctAnswerIndex": 0,
+              "correctAnswerIndex": 1,
               "explanation": "\"Ming chaqirimlik yoʻl ham birinchi qadamdan boshlanadi\" — har kuni qilinadigan kichik va muntazam oʻrganish buyuk choʻqqilarga yetaklaydi."
             }
           ]

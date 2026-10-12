@@ -124,51 +124,36 @@
           "questions": [
             {
               "id": "ja-n2-u1-l1-q1",
-              "question": "«〜に伴って (Ni tomonatte)» ko'proq qaysi sohalarda qo'llaniladi?",
+              "question": "「山[やま]の 頂上[ちょうじょう]に （　　）、気温[きおん]が だんだん 下[さ]がってきた。」",
               "options": [
-                "Faqat xarid qilganda",
-                "Faqat oshxonada ovqat pishirganda",
-                "Ijtimoiy, iqtisodiy va keng ko'lamli tizimli o'zgarishlarda",
-                "Faqat ob-havoda"
+                "近[ちか]づくにつれて",
+                "近[ちか]づくことに",
+                "近[ちか]づくどころか",
+                "近[ちか]づくあげく"
               ],
-              "correctAnswerIndex": 2,
-              "explanation": "Used for large-scale societal/macro-events."
+              "correctAnswerIndex": 0,
+              "explanation": "〜につれて: Biror harakat yoki jarayon davom etgan sari (togʻ choʻqqisiga yaqinlashgan sari), boshqa bir oʻzgarish tabiiy ravishda yuz berishini ifodalaydi."
             },
             {
               "id": "ja-n2-u1-l1-q2",
-              "question": "「時間[じかん]の 経過[けいか]に したがって」ning ma'nosi:",
-              "options": [
-                "Vaqt to'xtaganda",
-                "Vaqt o'tishi bilan birga / Vaqt o'tgani sari",
-                "Vaqt yo'qligida",
-                "Vaqt yetmaganda"
-              ],
+              "question": "「時間[じかん]の 経過[けいか]に （　　）、事件[じけん]の 詳[くわ]しい 状況[じょうきょう]が 明[あき]らかになってきた。」",
+              "options": ["はんして", "したがって", "かぎって", "とおして"],
               "correctAnswerIndex": 1,
-              "explanation": "As time elapsed / With the passage of time."
+              "explanation": "〜にしたがって: Vaqt oʻtishi bilan / vaqt oʻtgan sari holat asta-sekin oydinlashib borishini bildiradi."
             },
             {
               "id": "ja-n2-u1-l1-q3",
-              "question": "«Tog' cho'qqisiga ko'tarilgan sari havo soviy boshladi»:",
-              "options": [
-                "山[やま]の 頂上[ちょうじょう]に 近[ちか]づくにつれて、寒[さむ]く なってきた",
-                "山[やま]が あるから",
-                "山[やま]です",
-                "山[やま]に 行[い]くから"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Chikadzuku ni tsurete."
+              "question": "「人口[じんこう]の 増加[ぞうか]に （　　）、都市[とし]の 住宅[じゅうたく]問題[もんだい]が 深刻[しんこく]化している。」",
+              "options": ["際[さい]して", "抜[ぬ]きで", "伴[ともな]って", "基[もと]づいて"],
+              "correctAnswerIndex": 2,
+              "explanation": "〜に伴って: A hodisasi (aholi koʻpayishi) yuz berishi bilan birga unga bogʻliq ravishda B yirik oʻzgarish (uy-joy tanqisligi) yuzaga kelishini ifodalaydi."
             },
             {
               "id": "ja-n2-u1-l1-q4",
-              "question": "〜につれて dan oldin fe'l qaysi shaklda bo'ladi?",
-              "options": [
-                "O'tgan zamon ta shakli",
-                "Nai shakli",
-                "Masu shakli",
-                "O'zgarishni bildiruvchi fe'lning lug'at shakli"
-              ],
+              "question": "「社長[しゃちょう]の 指示[しじ]に （　　）、新[あたら]しい 業務[ぎょうむ]計画[けいかく]を 進[すす]めてください。」",
+              "options": ["つれて", "こめて", "あって", "したがって"],
               "correctAnswerIndex": 3,
-              "explanation": "Change verb in Dictionary form."
+              "explanation": "Koʻrsatma, qoida yoki buyruqqa amal qilish («binoan / koʻra») maʼnosida faqat 「〜にしたがって」 qoʻllaniladi, 「〜につれて」 bu oʻrinda ishlatilmaydi."
             }
           ]
         }
@@ -295,51 +280,31 @@
           "questions": [
             {
               "id": "ja-n2-u1-l2-q1",
-              "question": "«Mijozning talabiga mos ravishda xizmat ko'rsatish»:",
-              "options": [
-                "要望[ようぼう]に基[もと]づいて",
-                "要望[ようぼう]です",
-                "要望[ようぼう]に沿[そ]って",
-                "お客様[きゃくさま]の 要望[ようぼう]に応[おう]じて サービスを 提供[ていきょう]する"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Youbou ni oujite (talabga mos ravishda)."
+              "question": "「当店[とうてん]では、お客様[きゃくさま]の ご予算[よさん]や ご希望[きぼう]に （　　） プランを 調整[ちょうせい]いたします。」",
+              "options": ["応[おう]じて", "沿[そ]って", "対[たい]して", "通[つう]じて"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜に応じて: Har xil ehtiyoj, talab yoki byudjetga moslab («mos ravishda») xizmat koʻrsatish."
             },
             {
               "id": "ja-n2-u1-l2-q2",
-              "question": "«Kompaniya siyosatiga amal qilgan holda harakat qilish»:",
-              "options": [
-                "会社[かいしゃ]の 方針[ほうしん]に沿[そ]って 行動[こうどう]する",
-                "方針[ほうしん]に基[もと]づいて",
-                "方針[ほうしん]に応[おう]じて",
-                "方針[ほうしん]です"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Houshin ni sotte (yo'nalishga amal qilgan holda)."
+              "question": "「新入[しんにゅう]社員[しゃいん]は、会社[かいしゃ]の 指針[ししん]に （　　） 業務[ぎょうむ]を 進[すす]めてください。」",
+              "options": ["かけて", "沿[そ]って", "つれて", "こめて"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜に沿って: Belgilangan reja, qoʻllanma yoki asosiy siyosat yoʻnalishidan chetga chiqmagan holda amal qilish."
             },
             {
               "id": "ja-n2-u1-l2-q3",
-              "question": "「経験[けいけん]や 能力[のうりょく]に応[おう]じて 給与[きゅうよ]を 決定[けってい]する」ning ma'nosi:",
-              "options": [
-                "Hamma bir xil maosh oladi",
-                "Maosh berilmaydi",
-                "Tajriba va qobiliyatga mos ravishda maoshni belgilash",
-                "Tajriba kerak emas"
-              ],
+              "question": "「長年[ながねん]の 調査[ちょうさ]データに （　　） 書[か]かれた、非常[ひじょう]に 信頼[しんらい]できる 論文[ろんぶん]だ。」",
+              "options": ["したがって", "おいて", "基[もと]づいて", "際[さい]して"],
               "correctAnswerIndex": 2,
-              "explanation": "Salary determined according to experience & ability."
+              "explanation": "〜に基づいて: Aniq dalillar, faktlar yoki maʼlumotlar bazasiga asoslangan holda."
             },
             {
               "id": "ja-n2-u1-l2-q4",
-              "question": "«Xaritaga qarab daryo bo'ylab yurish»:",
-              "options": [
-                "川[かわ]に沿[そ]って 歩[ある]く",
-                "川[かわ]です",
-                "川[かわ]に基[もと]づいて",
-                "川[かわ]に応[おう]じて"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Kawa ni sotte (daryo yoqalab)."
+              "question": "「川[かわ]の 流[なが]れに （　　） 歩[ある]いていくと、小[ちい]さな 村[むら]が 見[み]えてきた。」",
+              "options": ["応[おう]じて", "向[む]けて", "基[もと]づいて", "沿[そ]って"],
+              "correctAnswerIndex": 3,
+              "explanation": "Yoʻl, daryo yoki chiziq boʻylab harakatlanishda 「〜に沿って」 (boʻylab) ishlatiladi."
             }
           ]
         }
@@ -467,51 +432,36 @@
           "questions": [
             {
               "id": "ja-n2-u1-l3-q1",
-              "question": "Mijozga «Hozir bu savolga aniq javob bera olmayman (psixologik/rasmiy rad etish)»:",
-              "options": [
-                "ただいま お答[こた]えしかねます",
-                "答[こた]えない",
-                "答[こた]えるな",
-                "お答[こた]えしかねない"
-              ],
+              "question": "「申[もう]し訳[わけ]ございませんが、個人[こじん]情報[じょうほう]に 関[かん]する ご質問[しつもん]には お答[こた]え（　　）。」",
+              "options": ["しかねます", "かねないです", "がちです", "っぽいです"],
               "correctAnswerIndex": 0,
-              "explanation": "Okotaeshikanemasu (Kenjougo refusal)."
+              "explanation": "〜かねる (しかねます): Rasmiy va xushmuomala tarzda «vaziyat/masʼuliyat yuzasidan qila olmayman» deb rad etish."
             },
             {
               "id": "ja-n2-u1-l3-q2",
-              "question": "「あの男[おとこ]なら そんな 悪事[あくじ]も やりかねない」ning ma'nosi:",
-              "options": [
-                "U hech qachon yomonlik qilmaydi",
-                "U yaxshi inson",
-                "U ketdi",
-                "Agar u bo'lsa, shunday yomonlikni ham bemalol qilib qo'yishi mumkin"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Capable of committing bad deeds."
+              "question": "「連日[れんじつ]の 残業[ざんぎょう]で 疲[つか]れが たまっているから、このままだと 病気[びょうき]に （　　）。」",
+              "options": ["なりかねる", "なりかねない", "なるっこない", "なり気味[ぎみ]だ"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜かねない: Salbiy oqibat yoki xavfli holat yuz berishi mumkinligini («kasal boʻlib qolishi hech gap emas») bildiradi."
             },
             {
               "id": "ja-n2-u1-l3-q3",
-              "question": "〜かねない qaysi holatlarda ishlatiladi?",
-              "options": [
-                "Faqat salbiy, xavfli, fojiali oqibatlarning sodir bo'lish xavfida",
-                "Faqat xursandchilikda",
-                "Sovg'a berishda",
-                "O'tgan zamonda"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Strictly negative/dangerous risks."
+              "question": "「その 件[けん]につきましては、私[わたし]の 立場[たちば]からは 賛成[さんせい]（　　）。」",
+              "options": ["しかねない", "しっこない", "しかねます", "しがちです"],
+              "correctAnswerIndex": 2,
+              "explanation": "Oʻz mavqei yoki vakolati tufayli «qoʻshila olmayman / maʼqullay olmayman» deb odob bilan aytish: 「賛成しかねます」."
             },
             {
               "id": "ja-n2-u1-l3-q4",
-              "question": "«Charchoq to'planib kelsa, kasal bo'lib qolish xavfi bor»:",
+              "question": "「あんな スピードで 運転[うんてん]していたら、大事故[だいじこ]を （　　）。」",
               "options": [
-                "病気[びょうき]です",
-                "過労[かろう]で 病気[びょうき]に なりかねない",
-                "病気[びょうき]に なりかねる",
-                "病気[びょうき]に なった"
+                "起[お]こしかねる",
+                "起[お]こすっこない",
+                "起[お]こしそうもない",
+                "起[お]こしかねない"
               ],
-              "correctAnswerIndex": 1,
-              "explanation": "Fe'lning ます-o'zagi + かねない: «Kasal bo'lib qolish xavfi bor» (Byouki ni narikanenai)."
+              "correctAnswerIndex": 3,
+              "explanation": "Xavfli harakat ortidan fojia yuz berish ehtimolini taʼkidlash: 「大事故を起こしかねない」."
             }
           ]
         }
@@ -639,46 +589,31 @@
           "questions": [
             {
               "id": "ja-n2-u1-l4-q1",
-              "question": "「言[い]いっこない」nimani anglatadi?",
-              "options": [
-                "Darhol aytadi",
-                "Aytmoqchi",
-                "Aslo aytmaydi / Aytishi mutlaqo imkonsiz",
-                "Aytgan edi"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Absolutely won't say."
+              "question": "「こんな 難[むずか]しい 本[ほん]、たった 1日[いちにち]で 全部[ぜんぶ] 読[よ]め（　　）よ。」",
+              "options": ["っこない", "かねない", "そうもない", "がちだ"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜っこない: «Mutlaqo imkonsiz, aslo qilib boʻlmaydi» degan kuchli subyektiv ishonch."
             },
             {
               "id": "ja-n2-u1-l4-q2",
-              "question": "「悲[かな]しげな 目[め]」dagi 〜げ nimani bildiradi?",
-              "options": ["G'amginlik hissi sezilib turgan", "Ko'k", "Baland", "Juda xursand"],
-              "correctAnswerIndex": 0,
-              "explanation": "Looking sorrowful/sad."
+              "question": "「彼[かれ]は 何[なに]か 言[い]い（　　）な 表情[ひょうじょう]で、こちらを じっと 見[み]つめていた。」",
+              "options": ["っこない", "たげ", "っぽい", "がち"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜げ (言いたげ): Tashqi qiyofasidan biror narsani aytmoqchi boʻlib turgandek tuyulish («aytadigandek ifoda bilan»)."
             },
             {
               "id": "ja-n2-u1-l4-q3",
-              "question": "「自信[じしん]ありげに」ning ma'nosi:",
-              "options": [
-                "Shoshib",
-                "Hech narsa bilmay",
-                "Qo'rqib",
-                "O'ziga ishonchi yaqqol sezilib turgan holda"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "With an apparent air of confidence."
+              "question": "「彼[かれ]が 走[はし]るのが どんなに 速[はや]くても、新幹線[しんかんせん]に 勝[か]て（　　）。」",
+              "options": ["るはずだ", "るかもしれない", "っこない", "るにちがいない"],
+              "correctAnswerIndex": 2,
+              "explanation": "Inson poyezddan oʻzib ketishi mutlaqo imkonsiz: 「勝てっこない」."
             },
             {
               "id": "ja-n2-u1-l4-q4",
-              "question": "〜っこない qaysi uslubda ko'proq qo'llaniladi?",
-              "options": [
-                "Faqat kompyuter dasturlarida",
-                "Faqat qonun hujjatlarida",
-                "Og'zaki so'zlashuvda qat'iy shaxsiy ishonchni bildirishda",
-                "Katakana matnlarida"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Strong conversational emphasis of impossibility."
+              "question": "「子[こ]どもたちは 自慢[じまん]（　　）に、自分[じぶん]が 作[つく]った ロボットを 見[み]せてくれた。」",
+              "options": ["っぽい", "がち", "ぎみ", "げ"],
+              "correctAnswerIndex": 3,
+              "explanation": "〜げに: Biror hissiyotni namoyon qilgan qiyofada («faxrlangan/maqtanchoq qiyofada» -> 「自慢げに」)."
             }
           ]
         }
@@ -810,51 +745,31 @@
           "questions": [
             {
               "id": "ja-n2-u1-l5-q1",
-              "question": "「単[たん]なる〜に留[とど]まらず」nimani anglatadi?",
-              "options": [
-                "Faqatgina ... bilan cheklanib qolmasdan",
-                "Faqat bitta narsa bo'lib",
-                "To'xtab qolib",
-                "Boshlanib"
-              ],
+              "question": "「AIの 導入[どうにゅう]に （　　）、従来[じゅうらい]の 雇用[こよう]形態[けいたい]が 大[おお]きく 変[か]わりつつある。」",
+              "options": ["伴[ともな]って", "かぎって", "ぬきにして", "かけて"],
               "correctAnswerIndex": 0,
-              "explanation": "Not limited merely to..."
+              "explanation": "〜に伴って: AI texnologiyalarining kirib kelishi bilan birga bandlik shakllarida katta oʻzgarish yuz bermoqda."
             },
             {
               "id": "ja-n2-u1-l5-q2",
-              "question": "「〜あまり」grammatikasi nimani bildiradi?",
-              "options": [
-                "Qimmat bo'lgani uchun",
-                "Haddan tashqari ko'p bo'lganligi natijasida",
-                "Vaqt o'tgach",
-                "Oz bo'lgani uchun"
-              ],
+              "question": "「技術[ぎじゅつ]の 進歩[しんぽ]は 著[いちじる]しい（　　）、倫理的[りんりてき]な 議論[ぎろん]は まだ 追[お]いついていない。」",
+              "options": ["ばかりに", "ものの", "あげくに", "だけに"],
               "correctAnswerIndex": 1,
-              "explanation": "Excessive degree leading to negative result."
+              "explanation": "〜ものの: «...boʻlsa hamki / haqiqat boʻlgani bilan» — texnologiya rivojlangan boʻlsa-da, axloqiy bahslar hali yetib bormagan."
             },
             {
               "id": "ja-n2-u1-l5-q3",
-              "question": "「洞察力[どうさつりょく]」so'zining ma'nosi:",
-              "options": [
-                "Ko'rish qobiliyati",
-                "Eshitish",
-                "Ichki mohiyatni ko'ra bilish / Zukkolik / Fikr tiniqligi",
-                "Tez yugurish"
-              ],
+              "question": "「筆者[ひっしゃ]は、AIの 活用[かつよう]について どのような 姿勢[しせい]を 示[しめ]しているか。『利便性[りべんせい]を 追求[ついきゅう]する（　　）、人間[にんげん]の 尊厳[そんげん]を 見失[みうしな]ってはならない』」",
+              "options": ["反面[はんめん]", "あまり", "一方で[いっぽうで]", "末[すえ]に"],
               "correctAnswerIndex": 2,
-              "explanation": "Insight / Discernment."
+              "explanation": "〜一方で: Qulaylikka intilish bilan bir qatorda («ikkinchi tomondan»), inson qadr-qimmatini yoʻqotmaslik zarur."
             },
             {
               "id": "ja-n2-u1-l5-q4",
-              "question": "JLPT N2 Dokkai tahririyat matnlarida qanday mavzular eng ko'p tushadi?",
-              "options": [
-                "Bolalar ertaklari",
-                "Ob-havo jadvallari",
-                "Ovqat retseptlari",
-                "Zamonaviy jamiyat muammolari, fan-texnika etikasi, psixologiya va tilshunoslik"
-              ],
+              "question": "「社会[しゃかい]の ルールに （　　） AIの 開発[かいはつ]を 進[すす]めることが、今[いま] 最[もっと]も 求[もと]められている。」",
+              "options": ["際[さい]して", "応[おう]じて", "通[つう]じて", "沿[そ]って"],
               "correctAnswerIndex": 3,
-              "explanation": "Societal dilemmas, science ethics, psychology."
+              "explanation": "〜に沿って: Jamiyat qoidalari va meʼyorlariga mos ravishda / chetga chiqmagan holda AI ni rivojlantirish."
             }
           ]
         }
@@ -982,51 +897,46 @@
           "questions": [
             {
               "id": "ja-n2-u2-l1-q1",
-              "question": "Biznes xatlarida «Xursand bo'lardik / Mamnuniyat deb bilardik» qanday yoziladi?",
+              "question": "「新[あたら]しい 企画[きかく]の 概要[がいよう]について、ご説明[せつめい]（　　）。」",
               "options": [
-                "うれしいです",
-                "いいです",
-                "楽[たの]しいです",
-                "幸[さいわ]いに 存[ぞん]じます"
+                "申[もう]し上[あ]げます",
+                "存[ぞん]じます",
+                "なさいます",
+                "おっしゃいます"
               ],
-              "correctAnswerIndex": 3,
-              "explanation": "Saiwai ni zonjimasu."
+              "correctAnswerIndex": 0,
+              "explanation": "〜申し上げます: Boshqa tomonga nisbatan ehtirom koʻrsatib biror harakatni bajarishda («tushuntirib berishga ijozat bergaysiz»)."
             },
             {
               "id": "ja-n2-u2-l1-q2",
-              "question": "「ご査収[さしゅう]ください」ning ma'nosi:",
-              "options": [
-                "Xat yozing",
-                "Qaytaring",
-                "Iltimos, hujjatlarni tekshirib qabul qilib oling",
-                "Iltimos, pul to'lang"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Please inspect and accept the enclosed documents."
+              "question": "「皆様[みなさま]の ご健勝[けんしょう]を 心[こころ]より お祈[いの]り（　　）。」",
+              "options": ["なさいます", "申[もう]し上[あ]げます", "存[ぞん]じます", "いただきます"],
+              "correctAnswerIndex": 1,
+              "explanation": "Biznes xatining yakunida tilak bildirishda standart Keigo iborasi: 「心よりお祈り申し上げます」."
             },
             {
               "id": "ja-n2-u2-l1-q3",
-              "question": "«Hurmat bilan ma'lum qilamiz»:",
+              "question": "「ご提案[ていあん]の 件[けん]、弊社[へいしゃ]としても 大変[たいへん] ありがたく （　　）。」",
               "options": [
-                "案内[あんない]だ",
-                "ご案内[あんない] 申[もう]し上[あ]げます",
-                "教[おし]えます",
-                "言[い]います"
+                "申[もう]し上[あ]げます",
+                "おっしゃいます",
+                "存[ぞん]じます",
+                "ご覧[らん]に入[い]れます"
               ],
-              "correctAnswerIndex": 1,
-              "explanation": "Goannai moushiagemasu."
+              "correctAnswerIndex": 2,
+              "explanation": "〜存じます: «...deb bilamiz / deb hisoblaymiz» (思う feʼlining kamtarona shakli)."
             },
             {
               "id": "ja-n2-u2-l1-q4",
-              "question": "N2 darajasida Keigo qanchalik chuqur tekshiriladi?",
+              "question": "「近日[きんじつ]中[ちゅう]に 担当者[たんとうしゃ]より ご連絡[れんらく]（　　）ので、よろしく お願[ねが]いいたします。」",
               "options": [
-                "Mukammal biznes email yozishmalari, xatolar tuzatish va ierarxik ehtirom nuanslari darajasida",
-                "Faqat desu/masu darajasida",
-                "Faqat salomlashish",
-                "Tekshirilmaydi"
+                "なさいます",
+                "おっしゃいます",
+                "申[もう]しあげます",
+                "差[さ]し上[あ]げます"
               ],
-              "correctAnswerIndex": 0,
-              "explanation": "Thorough business email & hierarchical nuance mastery."
+              "correctAnswerIndex": 3,
+              "explanation": "Mijozga «aloqaga chiqamiz / xabar qilamiz» deb aytishda: 「ご連絡差し上げます」."
             }
           ]
         }
@@ -1153,46 +1063,31 @@
           "questions": [
             {
               "id": "ja-n2-u2-l2-q1",
-              "question": "«Ziyonni qoplamoq / Zararni to'lamoq»:",
-              "options": [
-                "景気[けいき]が いい",
-                "融資[ゆうし]する",
-                "損害[そんがい]を 賠償[ばいしょう]する",
-                "契約[けいやく]する"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Songai o baishou suru."
+              "question": "「銀行[ぎんこう]から 新規[しんき]事業[じぎょう]のための （　　）を 受[う]けることが 決定[けってい]した。」",
+              "options": ["融資[ゆうし]", "契約[けいやく]", "損害[そんがい]", "義務[ぎむ]"],
+              "correctAnswerIndex": 0,
+              "explanation": "融資（ゆうし）: Bankdan biznes uchun kredit/mablagʻ ajratilishi («moliyalashtirish»)."
             },
             {
               "id": "ja-n2-u2-l2-q2",
-              "question": "「不景気[ふけいき]」so'zining ma'nosi:",
-              "options": [
-                "Boylik",
-                "Bozor yopilishi",
-                "Katta daromad",
-                "Iqtisodiy tanazzul / Inqiroz"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Economic recession / slump."
+              "question": "「消費[しょうひ]が 落[お]ち込[こ]み、国[くに]の （　　）が 急速[きゅうそく]に 悪化[あっか]している。」",
+              "options": ["損害[そんがい]", "景気[けいき]", "融資[ゆうし]", "義務[ぎむ]"],
+              "correctAnswerIndex": 1,
+              "explanation": "景気（けいき）: Iqtisodiy holat / konʼyunktura («景気の悪化» = iqtisodiy pasayish)."
             },
             {
               "id": "ja-n2-u2-l2-q3",
-              "question": "«Majburiyat / Burch» kanjisi qaysi?",
-              "options": ["義務[ぎむ]", "判断[はんだん]", "責任[せきにん]", "権利[けんり]"],
-              "correctAnswerIndex": 0,
-              "explanation": "義務[ぎむ] (Gimu) — qonuniy yoki axloqiy burch, majburiyat ma'nosini anglatadi."
+              "question": "「台風[たいふう]の 影響[えいきょう]で、農作物[のうさくぶつ]に 甚大[じんだい]な （　　）が 出[で]た。」",
+              "options": ["契約[けいやく]", "融資[ゆうし]", "損害[そんがい]", "義務[ぎむ]"],
+              "correctAnswerIndex": 2,
+              "explanation": "損害（そんがい）: Talafot, zarar yoki ziyon («甚大な損害» = ulkan zarar)."
             },
             {
               "id": "ja-n2-u2-l2-q4",
-              "question": "「投資[とうし]」so'zining ma'nosi:",
-              "options": [
-                "Pul yo'qotish",
-                "Soliq",
-                "Investitsiya / Sarmoya kiritish",
-                "Kredit olish"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Toushi — Investitsiya."
+              "question": "「国民[こくみん]には 税金[ぜいきん]を 納[おさ]める （　　）が ある。」",
+              "options": ["損害[そんがい]", "景気[けいき]", "融資[ゆうし]", "義務[ぎむ]"],
+              "correctAnswerIndex": 3,
+              "explanation": "義務（ぎむ）: Majburiyat, burch («soliq toʻlash majburiyati»)."
             }
           ]
         }
@@ -1320,51 +1215,31 @@
           "questions": [
             {
               "id": "ja-n2-u2-l3-q1",
-              "question": "「する」fe'lining 〜ざるを得ない shakli qaysi?",
-              "options": [
-                "されざるを得ない",
-                "せざるを得[え]ない",
-                "しざるを得ない",
-                "すざるを得ない"
-              ],
-              "correctAnswerIndex": 1,
-              "explanation": "Istisno: せざるを得ない."
+              "question": "「証拠[しょうこ]が これだけ 揃[そろ]っている 以上[いじょう]、彼[かれ]の 意見[いけん]を 認[みと]め（　　）。」",
+              "options": ["ざるを得[え]ない", "わけにはいかない", "っこない", "かねない"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜ざるを得ない: Xohlamasa ham vaziyat talabiga koʻra «tan olishdan boshqa chora yoʻq»."
             },
             {
               "id": "ja-n2-u2-l3-q2",
-              "question": "«Boshliqning buyrug'iga bo'ysunishdan o'zga chora yo'q»:",
-              "options": [
-                "上司[じょうし]の 命令[めいれい]に 従[したが]わざるを得ない",
-                "従[したが]うわけには いかない",
-                "従[したが]うはずだ",
-                "従[したが]う"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Shitagainikui -> Shitagawa zaru o enai."
+              "question": "「大事[だいじ]な 会議[かいぎ]の 途中[とちゅう]なので、今[いま] 電話[でんわ]に 出[で]る（　　）。」",
+              "options": ["ざるを得ない", "わけにはいかない", "かねない", "そうもない"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜わけにはいかない: Ijtimoiy yoki axloqiy sababga koʻra «telefonni koʻtara olmayman / mumkin emas»."
             },
             {
               "id": "ja-n2-u2-l3-q3",
-              "question": "「車[くるま]を 運転[うんてん]するから、お酒[さけ]を 飲[の]むわけには いかない」ning ma'nosi:",
-              "options": [
-                "Spirtli ichimlik ichishim shart",
-                "Mashinam yo'q",
-                "Spirtli ichimlik yaxshi",
-                "Mashina haydashim kerakligi sababli, ichishga haqqim yo'q"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Cannot drink because I will drive."
+              "question": "「悪天候[あくてんこう]のため、今日[きょう]の 飛行機[ひこうき]の 運行[うんこう]は 中止[ちゅうし]せ（　　）。」",
+              "options": ["ないわけにはいかない", "るっこない", "ざるを得ない", "かねる"],
+              "correctAnswerIndex": 2,
+              "explanation": "「する」 feʼlining shakli: 「せざるを得ない」 (toʻxtatishga majbur boʻlmoq)."
             },
             {
               "id": "ja-n2-u2-l3-q4",
-              "question": "〜ざるを得ない qanday hissiyotni ifodalaydi?",
-              "options": [
-                "Ich-ichidan xohlamaslik, ammo noilojlikdan majbur bo'lish",
-                "Hech qanday qiziqish yo'qligi",
-                "Befarqlik",
-                "Ulkan xursandchilik"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Reluctant inevitability."
+              "question": "「明日[あした]は 大切[たいせつ]な 試験[しけん]が あるから、今夜[こんや]は 夜更[よふ]かしする（　　）。」",
+              "options": ["ざるを得ない", "かねない", "っこない", "わけにはいかない"],
+              "correctAnswerIndex": 3,
+              "explanation": "Ertaga muhim imtihon borligi sababli kechasi bekorga uxlab qolmasdan oʻtirishga haqqi yoʻq: 「夜更かしするわけにはいかない」."
             }
           ]
         }
@@ -1502,59 +1377,36 @@
           "questions": [
             {
               "id": "ja-n2-u2-l4-q1",
-              "question": "経営者が成功の決定的要因として挙げているのは何ですか？",
-              "audioUrl": "/audio/choukai/n2/Track03.mp3",
-              "audioTitle": "N2 Track 03 — Mijozlarga tezkor e’tibor",
-              "options": [
-                "莫大な広告宣伝費",
-                "圧倒的に安い価格",
-                "顧客の不満に即座に対応するアフターフォロー",
-                "AIによる無人対応"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Hal qiluvchi omil — mijoz shikoyatlariga 24 soat ichida bevosita javob berish."
+              "question": "会話[かいわ]：男[おとこ]「売上[うりあげ]を 伸[の]ばすには、広告[こうこく]を 増[ふ]やすべきでしょうか。」女[おんな]「広告[こうこく]も 大切[たいせつ]ですが、まず 既存[きぞん]の お客様[きゃくさま]の サポートを 充実[じゅうじつ]させる （　　）ですよ。」",
+              "options": ["べき", "っこない", "かねない", "ざるを得ない"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜べきだ: «...qilish lozim / toʻgʻri yoʻl shu» degan mantiqiy maslahat."
             },
             {
               "id": "ja-n2-u2-l4-q2",
-              "question": "最も成果を上げた施策は何ですか？",
-              "audioUrl": "/audio/choukai/n2/Track05.mp3",
-              "audioTitle": "N2 Track 05 — Mahalliy iqtisodiyotni jonlantirish",
+              "question": "男[おとこ]「今回[こんかい]の 開発[かいはつ]プロジェクト、期日[きじつ]までに 間[ま]に合[あ]いそう？」女[おんな]「仕様[しよう]の 変更[へんこう]が 多[おお]くて、予定[よてい]通[どお]りには （　　）わ。」",
               "options": [
-                "地場産品と大都市レストランとの直接提携によるブランド化",
-                "大型ショッピングモールの誘致",
-                "若年層への現金給付",
-                "免税店の設置"
+                "終[お]わりかねない",
+                "終[お]わりそうもない",
+                "終[お]わらざるを得ない",
+                "終[お]わるべきだ"
               ],
-              "correctAnswerIndex": 0,
-              "explanation": "Mahalliy mahsulotlarni poytaxt restoranlari bilan bog‘lab brendlash eng katta natija bergan."
+              "correctAnswerIndex": 1,
+              "explanation": "〜そうもない: «Tugaydigan koʻrinmaydi / ehtimoli juda kam»."
             },
             {
               "id": "ja-n2-u2-l4-q3",
-              "question": "新パッケージに採用された工夫は何ですか？",
-              "audioUrl": "/audio/choukai/n2/Track08.mp3",
-              "audioTitle": "N2 Track 08 — Ekologik qadoqlash",
-              "options": [
-                "植物性耐水コーティング",
-                "アルミ箔の二重構造",
-                "ガラス容器への切り替え",
-                "防腐剤の増量"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Shakarqamish chiqindisidan tayyorlangan o‘simlik asosidagi suvga chidamli qoplama ishlatilgan."
+              "question": "女[おんな]「新[あたら]しい パッケージの デザイン、どれが いいと 思[おも]う？」男[おとこ]「若[わか]い 世代[せだい]の ニーズに （　　）、この シンプルな A案[あん]が 一番[いちばん]だね。」",
+              "options": ["基[もと]づいて", "際[さい]して", "応[おう]じて", "伴[ともな]って"],
+              "correctAnswerIndex": 2,
+              "explanation": "〜に応じて: Yosh avlod talabiga/ehtiyojiga mos ravishda («ニーズに応じて»)."
             },
             {
               "id": "ja-n2-u2-l4-q4",
-              "question": "生徒は発表スライドをどう変更しますか？",
-              "audioUrl": "/audio/choukai/n2/Track09.mp3",
-              "audioTitle": "N2 Track 09 — Taqdimot slaydlarini yangilash",
-              "options": [
-                "フォントを拡大し色のコントラストを強める",
-                "スライドを半分に減らす",
-                "データを写真に置き換える",
-                "英語の要約を追加する"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Shrift kamida 24 punktga kattalashtirilib, rang kontrasti kuchaytiriladi."
+              "question": "先輩[せんぱい]「発表[はっぴょう]の スライド、文字[もじ]が 多[おお]すぎて 読[よ]みにくいよ。」後輩[こうはい]「すみません。グラフや 図[ず]を （　　） 直[なお]します。」",
+              "options": ["通[とお]して", "限[かぎ]って", "基[もと]づいて", "中心[ちゅうしん]に"],
+              "correctAnswerIndex": 3,
+              "explanation": "〜を中心に: Grafika va rasmlarni asosiy oʻringa qoʻygan holda qayta tuzatish."
             }
           ]
         }
@@ -1688,36 +1540,31 @@
           "questions": [
             {
               "id": "ja-n2-u2-l5-q1",
-              "question": "「事故[じこ]の 原因[げんいん]を 究明[きゅうめい]せざるを _______。」",
-              "options": ["いかない", "ならない", "かねない", "得[え]ない"],
-              "correctAnswerIndex": 3,
-              "explanation": "Kyuumei sezaru o enai."
+              "question": "「事故[じこ]の 原因[げんいん]を 究明[きゅうめい]するために、調査[ちょうさ]委員会[いいんかい]を 設置[せっち]せ（　　）。」",
+              "options": ["ざるを得ない", "わけにはいかない", "っこない", "かねない"],
+              "correctAnswerIndex": 0,
+              "explanation": "「せざるを得ない」: Baxtsiz hodisa sabablarini aniqlash uchun komissiya tuzishdan boshqa chora qolmadi."
             },
             {
               "id": "ja-n2-u2-l5-q2",
-              "question": "「お忙[いそが]しい ところ 恐[おそ]れ入[い]りますが、資料[しりょう]を ご確認[かくにん] _______。」",
-              "options": ["いただけますでしょうか", "しろ", "いたす", "ください"],
-              "correctAnswerIndex": 0,
-              "explanation": "Itadakemasu deshou ka."
+              "question": "「お忙[いそが]しい ところ 恐[おそ]れ入[い]りますが、企画書[きかくしょ]を ご確認[かくにん]（　　）幸[さいわ]いです。」",
+              "options": ["いたして", "いただけますと", "なさって", "存[ぞん]じて"],
+              "correctAnswerIndex": 1,
+              "explanation": "「ご確認いただけますと幸いです」: Xat yoki maktubda «koʻrib bersangiz bagʻoyat minnatdor boʻlardik» degan muloyim soʻrov."
             },
             {
               "id": "ja-n2-u2-l5-q3",
-              "question": "「景気[けいき]の 変動[へんどう]に _______、生産[せいさん]計画[けいかく]を 変更[へんこう]する。」",
-              "options": ["ついて", "伴[ともな]って / 応[おう]じて", "とって", "対[たい]して"],
-              "correctAnswerIndex": 1,
-              "explanation": "Oujite / Tomonatte."
+              "question": "「景気[けいき]の 変動[へんどう]に （　　）、生産[せいさん]計画[けいかく]を 柔軟[じゅうなん]に 見直[みなお]す 必要[ひつよう]がある。」",
+              "options": ["対[たい]して", "際[さい]して", "応[おう]じて", "基[もと]づいて"],
+              "correctAnswerIndex": 2,
+              "explanation": "〜に応じて: Bozor konʼyunkturasining oʻzgarishiga mos ravishda ishlab chiqarish rejasini yangilash."
             },
             {
               "id": "ja-n2-u2-l5-q4",
-              "question": "「状況に応じて対応を変える」 jumlasidagi 「に応じて」 qanday ma’noni bildiradi?",
-              "options": [
-                "Vaziyatga mos ravishda",
-                "Vaziyatga qaramay",
-                "Vaziyatdan oldin",
-                "Faqat vaziyat sababli"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "〜に応じて talab, holat yoki vaziyatga mos ravishda o‘zgarishni bildiradi."
+              "question": "「会社[かいしゃ]の 秘密[ひみつ]に 属[ぞく]する 内容[ないよう]ですので、他言[たごん]する（　　）。」",
+              "options": ["ざるを得ない", "っこない", "かねない", "わけにはいかない"],
+              "correctAnswerIndex": 3,
+              "explanation": "Kompaniya siri boʻlgani uchun boshqalarga aytib qoʻyishga mutlaqo haqqimiz yoʻq: 「他言するわけにはいかない」."
             }
           ]
         }
@@ -1844,46 +1691,31 @@
           "questions": [
             {
               "id": "ja-n2-u3-l1-q1",
-              "question": "「今回[こんかい]の 成功[せいこう]は、運[うん]が よかった_______。」",
-              "options": ["に相違[そうい]ない", "にすぎない", "にほかならない", "にかぎらない"],
-              "correctAnswerIndex": 1,
-              "explanation": "〜にすぎない: «Shunchaki omad kulib boqqani xolos / bundan ortiq emas». Kamtarlik yoki cheklov bildiradi."
+              "question": "「彼[かれ]が 言[い]っていることは、単[たん]なる 言[い]い訳[わけ]に （　　）。」",
+              "options": ["すぎない", "相違[そうい]ない", "限[かぎ]らない", "ほかならない"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜にすぎない: «Shunchaki ...dan ortiq emas / arzimagan narsa»."
             },
             {
               "id": "ja-n2-u3-l1-q2",
-              "question": "「彼[かれ]が 言[い]っていることは、単[たん]なる 言[い]い訳[わけ]に すぎない。」 jumlasining to'g'ri tarjimasi qaysi?",
-              "options": [
-                "U aytayotgan gaplar shunchaki oddiy bahonadan boshqa narsa emas.",
-                "U o'z qilmishini oqlash uchun hech qanday bahona topa olmadi.",
-                "Uning aytgan barcha fikrlari to'liq haqiqat ekanligi isbotlandi.",
-                "U bu safar bahona qilish o'rniga to'g'ridan-to'g'ri uzr so'radi."
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "«単なる〜にすぎない» birikmasi «shunchaki ...dan iborat xolos, hech qanday ortiqcha mohiyatga ega emas» ma'nosini anglatadi."
+              "question": "「私[わたし]は 自分[じぶん]の 義務[ぎむ]を 果[は]たしたに （　　）、特別[とくべつ]な ことは 何[なに]も していません。」",
+              "options": ["ほかならない", "すぎず", "相違[そうい]なく", "限[かぎ]らず"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜にすぎず: «Faqat oʻz burchimni bajardim, xolos» degan kamtarlik ifodasi."
             },
             {
               "id": "ja-n2-u3-l1-q3",
-              "question": "「〜にすぎない」 grammatik konstruksiyasi qanday ottenkaga ega?",
-              "options": [
-                "Katta miqyosli voqea-hodisani favqulodda ulug'lash",
-                "Kelajakda yuz berishi muqarrar bo'lgan reja",
-                "Boshqalarga nisbatan qat'iy majburiyat yuklash",
-                "Ortiqcha baho bermaslik, past yoki oddiy darajada cheklash"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "〜にすぎない qoidasi hodisaga ortiqcha baho bermasdan, uning darajasi oddiy va cheklangan ekanini bildiradi."
+              "question": "「今回[こんかい]の 成功[せいこう]は、大[おお]きな 目標[もくひょう]の ほんの 第一歩[だいいっぽ]に （　　）。」",
+              "options": ["違[ちが]いない", "決[き]まっている", "すぎない", "あたらない"],
+              "correctAnswerIndex": 2,
+              "explanation": "Katta maqsad yoʻlidagi arzimagan birinchi qadamdan iborat ekanini taʼkidlash."
             },
             {
               "id": "ja-n2-u3-l1-q4",
-              "question": "Fe'llar bilan birikganda 「〜にすぎない」 oldidan qaysi shakl qo'llaniladi?",
-              "options": [
-                "Fe'lning Te-shakli",
-                "Fe'lning Masu-o'zagi",
-                "Fe'lning oddiy (Futsuukei / Lug'at) shakli",
-                "Fe'lning Buyruq shakli"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "〜にすぎない konstruksiyasi fe'l, i-sifat, na-sifat va otlarning oddiy (Futsuukei) shakli bilan bog'lanadi (masalan: 見たにすぎない, ほんの一例にすぎない)."
+              "question": "「噂[うわさ]は 噂[うわさ]に （　　）、公式[こうしき]な 発表[はっぴょう]を 待[ま]つべきだ。」",
+              "options": ["およばない", "たえない", "かぎらない", "すぎず"],
+              "correctAnswerIndex": 3,
+              "explanation": "Mish-mish shunchaki mish-mishdan nariga oʻtmasligini bildirish."
             }
           ]
         }
@@ -2010,41 +1842,31 @@
           "questions": [
             {
               "id": "ja-n2-u3-l2-q1",
-              "question": "「親[おや]の 遺産[いさん] 相続[そうぞく]を _______、兄弟[きょうだい]間[かん]で 裁判[さいばん]沙汰[ざた]の 争[あらそ]いが 起[お]きた。」",
-              "options": ["通[つう]じて", "こめて", "めぐって", "基[もと]づいて"],
-              "correctAnswerIndex": 2,
-              "explanation": "〜をめぐって: «...atrofida / ...masalasida nizolashmoq». Meros taqsimoti atrofida aka-uka o'rtasida nizo kelib chiqdi."
+              "question": "「遺産[いさん]の 相続[そうぞく]を （　　）、親族[しんぞく]の 間[あいだ]で 激[はげ]しい 争[あらそ]いが 起[お]こった。」",
+              "options": ["めぐって", "通[つう]じて", "こめて", "沿[そ]って"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜をめぐって: Biror masala yoki nizo atrofida («meros masalasi ustida / boʻyicha»)."
             },
             {
               "id": "ja-n2-u3-l2-q2",
-              "question": "「新空港[しんくうこう]の 建設[けんせつ]地[ち]を _______ 議論[ぎろん]が 長年[ながねん] 続[つづ]いている。」 jumlasida Ot oldida qaysi shakl mos keladi?",
-              "options": ["めぐる", "めぐっての", "めぐりながら", "めぐらせた"],
-              "correctAnswerIndex": 0,
-              "explanation": "Otni aniqlab kelganda «〜をめぐる + Ot» shakli ishlatiladi (新空港の建設地をめぐる議論)."
+              "question": "「消費税[しょうひぜい]の 増税[ぞうぜい]を （　　）、国会[こっかい]で 深夜[しんや]まで 議論[ぎろん]が 続[つづ]いた。」",
+              "options": ["もとにして", "めぐって", "かねて", "際[さい]して"],
+              "correctAnswerIndex": 1,
+              "explanation": "Soliq stavkasini oshirish mavzusi atrofida bahs-munozara olib borilishi."
             },
             {
               "id": "ja-n2-u3-l2-q3",
-              "question": "「〜をめぐって」 konstruksiyasi qaysi kontekstda qo'llanilishi TO'G'RI KELMAYDI?",
-              "options": [
-                "Yolg'iz bir kishining o'z ichidagi shaxsiy rejalari va fikrlarida",
-                "Ko'pchilik yoki bir necha guruhlar o'rtasidagi fikrlar to'qnashuvida",
-                "Kompaniyalar o'rtasida patent huquqi atrofidagi sud nizolarida",
-                "Siyosatchilar o'rtasida yangi qonun loyihasi atrofidagi bahslarda"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "〜をめぐって doimo ko'pchilik (ikki yoki undan ortiq tomon) o'rtasidagi bahs, qarama-qarshilik yoki munozaraga nisbatan ishlatiladi. Yolg'iz odamning shaxsiy harakatiga ishlatilmaydi."
+              "question": "「空港[くうこう]の 建設[けんせつ]用地[ようち]を （　　） 対立[たいりつ]が、何十[なんじゅう]年[ねん]も 続[つづ]いている。」",
+              "options": ["とおして", "こめて", "めぐる", "応[おう]じた"],
+              "correctAnswerIndex": 2,
+              "explanation": "Otni aniqlovchi holatda: 「〜をめぐる + Ot」 (aeroport yer maydoni ustidagi qarama-qarshilik)."
             },
             {
               "id": "ja-n2-u3-l2-q4",
-              "question": "「環境[かんきょう]保護[ほご]の 規制[きせい]を めぐる 対立[たいりつ]が 深刻[しんこく]化している。」 jumlasining to'g'ri ma'nosi:",
-              "options": [
-                "Atrof-muhitni muhofaza qilish uchun barcha tomonlar kelishuvga erishdilar.",
-                "Ekologik vaziyat yaxshilangani tufayli barcha cheklovlar bekor qilindi.",
-                "Atrof-muhit muhofazasi qoidalari atrofidagi qarama-qarshilik keskinlashmoqda.",
-                "Tabiatni himoya qilishga oid yangi qonun bir ovozdan qabul qilindi."
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "To'g'ri tarjima: «Atrof-muhit muhofazasi qoidalari atrofidagi qarama-qarshilik keskinlashmoqda»."
+              "question": "「新[あたら]しい 環境[かんきょう]政策[せいさく]を （　　）、専門家[せんもんか]の 間[あいだ]でも 意見[いけん]が 分[わ]かれている。」",
+              "options": ["おいて", "限[かぎ]って", "基[もと]づいて", "めぐって"],
+              "correctAnswerIndex": 3,
+              "explanation": "Yangi ekologik siyosat borasida mutaxassislar fikri ikkiga boʻlingan."
             }
           ]
         }
@@ -2171,46 +1993,31 @@
           "questions": [
             {
               "id": "ja-n2-u3-l3-q1",
-              "question": "「新[あたら]しい 事業[じぎょう]を 開始[かいし]する_______、関係[かんけい]各社[かくしゃ]の 皆様[みなさま]に 厚[あつ]く 御礼[おんれい]申[もう]し上[あ]げます。」",
-              "options": ["につれて", "をはじめ", "に際[さい]して", "をとわず"],
-              "correctAnswerIndex": 2,
-              "explanation": "〜に際して (ni saishite): Yangi biznesni boshlash munosabati bilan / arafasida hamkorlarga minnatdorchilik bildirish."
+              "question": "「新店舗[しんてんぽ]の オープンに （　　）、記念[きねん]セールを 開催[かいさい]いたします。」",
+              "options": ["際[さい]して", "応[おう]じて", "基[もと]づいて", "つれて"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜に際して: Rasmiy tadbir yoki muhim marosim arafasida/munosabati bilan."
             },
             {
               "id": "ja-n2-u3-l3-q2",
-              "question": "「〜に際して」 birikmasi qaysi uslubiy darajaga xos va nimalarga nisbatan qo'llaniladi?",
-              "options": [
-                "Faqat kichik yoshdagi bolalar bilan kundalik o'yinda",
-                "Rasmiy marosim, tantanali tadbirlar, shartnoma yoki muhim hayotiy bosqichlarga",
-                "Kutilmagan salbiy avariya va tabiiy ofatlarga",
-                "Faqat do'stlar davrasidagi hazil-mutoyiba suhbatlariga"
-              ],
+              "question": "「契約[けいやく]を 締結[ていけつ]するに （　　）、いくつか 確認[かくにん]しておきたい 点[てん]が ございます。」",
+              "options": ["ともなって", "際[さい]して", "おいて", "かけて"],
               "correctAnswerIndex": 1,
-              "explanation": "〜に際して rasmiy va tantanali tilda to'y, shartnoma tuzish, chet elga jo'nab ketish kabi muhim voqealar arafasida ishlatiladi."
+              "explanation": "Shartnomani imzolashdan oldin («shartnoma tuzish arafasida»)."
             },
             {
               "id": "ja-n2-u3-l3-q3",
-              "question": "「お申込[もうしこ]みに 際[さい]しては、本人[ほんにん]確認[かくにん]書類[しょるい]の 提示[ていじ]が 必要[ひつよう]となります。」 jumlasining ma'nosi:",
-              "options": [
-                "Ariza topshirish vaqtida shaxsni tasdiqlovchi hujjatni taqdim etish talab etiladi.",
-                "Arizangiz qabul qilingandan so'ng hujjatlarni pochtadan yuborsangiz yetarli.",
-                "Shaxsni tasdiqlovchi hujjatsiz ham to'g'ridan-to'g'ri ro'yxatdan o'tsa bo'ladi.",
-                "Arizani bekor qilish uchun maxsus hujjat topshirish shart emas."
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "«Ariza topshirish chog'ida / jarayonida shaxsni tasdiqlovchi hujjat ko'rsatish talab qilinadi»."
+              "question": "「海外[かいがい]留学[りゅうがく]に （　　）、ビザの 取得[しゅとく]手続[てつづ]きを 確認[かくにん]した。」",
+              "options": ["沿[そ]って", "基[もと]づいて", "際[さい]して", "通[つう]じて"],
+              "correctAnswerIndex": 2,
+              "explanation": "Chet elga oʻqishga joʻnab ketish arafasida hujjatlarni rasmiylashtirish."
             },
             {
               "id": "ja-n2-u3-l3-q4",
-              "question": "Fe'llarga bog'langanda 「〜に際して」 qaysi grammatik shaklni talab qiladi?",
-              "options": [
-                "Fe'lning Ta-shakli (O'tgan zamon)",
-                "Fe'lning Te-shakli",
-                "Fe'lning Masu-o'zagi",
-                "Fe'lning Lug'at (Jisho) shakli"
-              ],
+              "question": "「開会[かいかい]に （　　）、主催者[しゅさいしゃ]より 一言[ひとこと] ご挨拶[あいさつ]を 申[もう]し上[あ]げます。」",
+              "options": ["よって", "関[かん]して", "向[む]けて", "際[さい]して"],
               "correctAnswerIndex": 3,
-              "explanation": "Fe'lning Lug'at shakli + に際して (masalan: 契約を結ぶに際して, 出発するに際して)."
+              "explanation": "Tadbirning ochilish marosimi munosabati bilan soʻz berilishi."
             }
           ]
         }
@@ -2350,46 +2157,31 @@
           "questions": [
             {
               "id": "ja-n2-u3-l4-q1",
-              "question": "「〜ものの」 qanday munosabatni ifodalaydi?",
-              "options": [
-                "Sabab va tabiiy natija",
-                "Fakt va unga zid natija",
-                "Maqsad va vosita",
-                "Vaqt ketma-ketligi"
-              ],
-              "correctAnswerIndex": 1,
-              "explanation": "〜ものの birinchi faktni tan oladi, ikkinchi qismda esa zid natijani beradi."
+              "question": "「給料[きゅうりょう]は 上[あ]がった（　　）、物価[ぶっか]の 高騰[こうとう]で 生活[せいかつ]は 楽[らく]にならない。」",
+              "options": ["ものの", "ばかりに", "どころか", "だけに"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜ものの: Oylik oshgani bilan, narxlar koʻtarilgani sabab turmush yengillashmadi."
             },
             {
               "id": "ja-n2-u3-l4-q2",
-              "question": "「準備[じゅんび]したものの、緊張[きんちょう]して 話[はな]せなかった。」 ma’nosi qaysi?",
-              "options": [
-                "Tayyorlanganim uchun yaxshi gapirdim.",
-                "Tayyorlanmagan bo‘lsam ham gapirdim.",
-                "Tayyorlangan bo‘lsam-da, hayajondan gapira olmadim.",
-                "Gapirishdan oldin tayyorlandim."
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Tayyorgarlik faktiga zid ravishda gapira olmaslik yuz berdi."
+              "question": "「春[はる]とは （　　）、朝晩[あさばん]は まだ 真冬[まふゆ]のように 冷[ひ]え込[こ]む。」",
+              "options": ["いうものの", "いったものの", "いってから", "いわないまでも"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜とはいうものの: Bahor kirib kelgan boʻlsa hamki («deb aytilgani bilan»), ertalab va kechqurun qishdek sovuq."
             },
             {
               "id": "ja-n2-u3-l4-q3",
-              "question": "Rasmiyroq ot birikmasini tanlang: 「専門家[せんもんか]（　）、判断[はんだん]を 誤[あやま]ることもある。」",
-              "options": ["であるものの", "なものの", "にものの", "をものの"],
-              "correctAnswerIndex": 0,
-              "explanation": "Ot bilan rasmiy shaklda N + であるものの ishlatiladi."
+              "question": "「車[くるま]の 免許[めんきょ]は 取[と]った（　　）、まだ 怖[こわ]くて 一度[いちど]も 運転[うんてん]していない。」",
+              "options": ["からには", "あげく", "ものの", "末[すえ]に"],
+              "correctAnswerIndex": 2,
+              "explanation": "Prava olgan boʻlsa-da («fakt mavjud, ammo kutilgan natija yoʻq»), hali biror marta haydamagan."
             },
             {
               "id": "ja-n2-u3-l4-q4",
-              "question": "「普及したとはいうものの」 iborasining eng yaqin ma’nosi qaysi?",
-              "options": [
-                "Keng tarqalgani sababli",
-                "Keng tarqalishidan oldin",
-                "Keng tarqaldi deyilsa-da",
-                "Keng tarqalishi bilan birga"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "〜とはいうものの — “shunday deyilsa-da” ma’nosini beradi."
+              "question": "「景気[けいき]は 回復[かいふく]しつつあるとは （　　）、中小[ちゅうしょう]企業[きぎょう]の 経営[けいえい]は 依然[いぜん]として 厳[きび]しい。」",
+              "options": ["するものの", "なるものの", "おもうものの", "いうものの"],
+              "correctAnswerIndex": 3,
+              "explanation": "Iqtisodiyot tiklanmoqda deb aytilsa-da, kichik va oʻrta biznesning ahvoli hanuz ogʻir."
             }
           ]
         }
@@ -2516,41 +2308,31 @@
           "questions": [
             {
               "id": "ja-n2-u3-l5-q1",
-              "question": "「彼[かれ]が 難関[なんかん]試験[しけん]に 合格[ごうかく]できたのは、日々[ひび]の 弛[たゆ]まぬ 努力[どりょく]の 成果[せいか]_______。」",
-              "options": ["にほかならない", "にすぎない", "っこない", "かねない"],
+              "question": "「彼[かれ]が 今回[こんかい]の 大会[たいかい]で 優勝[ゆうしょう]できたのは、日々[ひび]の 弛[たゆ]まぬ 努力[どりょく]の 結果[けっか]に （　　）。」",
+              "options": ["ほかならない", "すぎない", "相違[そうい]ない", "限[かぎ]らない"],
               "correctAnswerIndex": 0,
-              "explanation": "〜にほかならない: «...dan boshqa narsa emas / aynan ...dir». Qat'iy xulosa va sababni tasdiqlaydi."
+              "explanation": "〜にほかならない: «Aynan ...dan boshqa narsa emas» (uning gʻalabasi tinimsiz mehnati mahsulidir)."
             },
             {
               "id": "ja-n2-u3-l5-q2",
-              "question": "「親[おや]が 子[こ]どもを 厳[きび]しく 叱[しか]るのは、愛情[あいじょう]があるから_______。」",
-              "options": ["にすぎない", "にほかならない", "にきまっている", "に相違ない"],
+              "question": "「親[おや]が 子[こ]どもを 厳[きび]しく 叱[しか]るのは、子[こ]どもの 将来[しょうらい]を 心配[しんぱい]しているからに （　　）。」",
+              "options": ["およばない", "ほかならない", "あたらない", "すぎない"],
               "correctAnswerIndex": 1,
-              "explanation": "Ota-ona farzandini qattiq tergashi aynan unga bo'lgan mehr-muhabbat sabablidir (aijou ga aru kara ni hokanaranai)."
+              "explanation": "Ota-ona bolasini qattiq tergashining asl sababi — uning kelajagidan xavotirlanishidir."
             },
             {
               "id": "ja-n2-u3-l5-q3",
-              "question": "「〜にほかならない」 bilan 「〜にすぎない」 o'rtasidagi farq nima?",
-              "options": [
-                "Ikkalasi ham mutlaqo bir xil ma'noda va bir-birining o'rnini to'liq bosadi.",
-                "«〜にほかならない» faqat salbiy oqibatlarga, «〜にすぎない» esa faqat ijobiy hodisalarga ishlatiladi.",
-                "«〜にほかならない» haqiqiy tub sababni kuchli tasdiqlaydi; «〜にすぎない» esa hodisani pastroq, oddiyroq deb cheklaydi.",
-                "«〜にほかならない» faqat so'zlashuv tilida, «〜にすぎない» faqat qonun matnlarida keladi."
-              ],
+              "question": "「地球[ちきゅう]温暖[おんだん]化の 進行[しんこう]は、人間[にんげん]の 行動[こうどう]が もたらした 結果[けっか]に （　　）。」",
+              "options": ["決[き]まっている", "違[ちが]いない", "ほかならない", "かぎる"],
               "correctAnswerIndex": 2,
-              "explanation": "〜にほかならない haqiqiy yagona tub sababni («aynan shu sababli») qat'iy ko'rsatadi. 〜にすぎない esa («shunchaki ... xolos») darajani pasaytiradi."
+              "explanation": "Global isish inson faoliyatining oqibati ekaniga qatʼiy xulosa."
             },
             {
               "id": "ja-n2-u3-l5-q4",
-              "question": "「このプロジェクトの 成功[せいこう]は、チーム全員[ぜんいん]の 結束[けっそく]の 結果[けっか]に ほかならない。」 jumlasining to'g'ri ma'nosi:",
-              "options": [
-                "Loyiha muvaffaqiyati butun jamoaning ahilligi va jipsligi natijasidan boshqa narsa emas.",
-                "Jamoa birlasha olmagan bo'lsa ham, tasodifan loyihada g'alaba qozonildi.",
-                "Loyiha muvaffaqiyatiga shunchaki omad kulib boqqani sabab bo'ldi xolos.",
-                "Jamoa a'zolari kelishmovchilik tufayli loyihani yarim yo'lda qoldirdilar."
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "To'g'ri tarjima: «Loyiha muvaffaqiyati butun jamoaning ahilligi va jipsligi natijasidan boshqa narsa emas»."
+              "question": "「今回[こんかい]の 成功[せいこう]は、チーム全員[ぜんいん]の 協力[きょうりょく]が あったからに （　　）。」",
+              "options": ["すぎない", "たえない", "およばない", "ほかならない"],
+              "correctAnswerIndex": 3,
+              "explanation": "Ushbu muvaffaqiyat jamoaning hamjihatligi tufaylidir va boshqa hech narsa emas."
             }
           ]
         }
@@ -2683,51 +2465,36 @@
           "questions": [
             {
               "id": "ja-n2-u4-l1-q1",
-              "question": "N2 Dokkai ilmiy-texnik matnlarida muallifning xulosaviy pozitsiyasini qaysi jumlalardan tezkor aniqlash mumkin?",
+              "question": "「新[あたら]しい 省[しょう]エネ技術[ぎじゅつ]を （　　）、二酸化[にさんか]炭素[たんそ]の 排出量[はいしゅつりょう]を 大幅[おおはば]に 削減[さくげん]した。」",
               "options": [
-                "Faqat matn boshidagi kirish statistikasi va tarixiy sanalardan",
-                "Matndagi barcha chet eldan kirib kelgan katakana so'zlardan",
-                "Xatboshilar oxiridagi 「〜と考えられる」「〜ではないだろうか」 kabi xulosalardan",
-                "Faqat matnda tilga olingan salbiy hodisalar ro'yxatidan"
+                "駆使[くし]して",
+                "配慮[はいりょ]して",
+                "遠慮[えんりょ]して",
+                "断念[だんねん]して"
               ],
-              "correctAnswerIndex": 2,
-              "explanation": "Yapon publitsistik matnlarida muallif asosiy g'oyasini matn yoki abzas oxirida «〜と考えられる» yoki «〜ではないだろうか» orqali bayon etadi."
+              "correctAnswerIndex": 0,
+              "explanation": "駆使する（くしする）: Ilgʻor texnologiyalardan toʻliq va unumli foydalanish."
             },
             {
               "id": "ja-n2-u4-l1-q2",
-              "question": "「脱炭素[だつたんそ]社会[しゃかい]の 実現[じつげん]には、再生[さいせい]可能[かのう]エネルギーの 普及[ふきゅう]が 不可欠[ふかけつ]である。」 jumlasining ma'nosi:",
-              "options": [
-                "Uglerodsiz (kam uglerodli) jamiyatni amalga oshirishda qayta tiklanuvchi energiya ommalashuvi o'ta muhimdir.",
-                "Qayta tiklanuvchi energiya qimmat bo'lgani uchun an'anaviy ko'mirdan foydalanishni kuchaytirish zarur.",
-                "Iqtisodiy o'sishni saqlash uchun ekologik qoidalarni vaqtincha to'xtatish taklif etilmoqda.",
-                "Uglerod chiqindilarini nazorat qilish faqat chet el davlatlarining majburiyati hisoblanadi."
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "«Datsutanso shakai» — uglerodsiz jamiyat; «saisei kanou enerugii» — qayta tiklanuvchi energiya; «fukaketsu» — ajralmas, o'ta zarur."
+              "question": "「脱炭素[だつたんそ]社会[しゃかい]の 実現[じつげん]には、再生[さいせい]可能[かのう]エネルギーの 普及[ふきゅう]が （　　）である。」",
+              "options": ["不要[ふよう]", "不可欠[ふかけつ]", "不利[ふり]", "不便[ふべん]"],
+              "correctAnswerIndex": 1,
+              "explanation": "不可欠（ふかけつ）: Mutlaqo zarur va ajralmas shart («qayta tiklanuvchi energiya zarurdir»)."
             },
             {
               "id": "ja-n2-u4-l1-q3",
-              "question": "Dokkai matnlarida 「一方で (Ippou de)」 bog'lovchisi qanday mantiqiy vazifani bajaradi?",
-              "options": [
-                "Oldingi fikrni takrorlab, bir xil dalillarni sanash",
-                "Mavzuning ikkinchi, qarama-qarshi yoki muqobil tomonini qiyoslash",
-                "Voqeaning xronologik yakunini e'lon qilish",
-                "Boshqa shaxsga nisbatan hurmat va minnatdorchilik bildirish"
-              ],
-              "correctAnswerIndex": 1,
-              "explanation": "«一方で» — boshqa tomondan / aksincha, bir mavzuning ikkinchi qarama-qarshi tomonini qiyoslashda ishlatiladi."
+              "question": "「経済[けいざい]の 発展[はってん]を 目指[めざ]す（　　）、自然[しぜん]環境[かんきょう]の 保護[ほご]にも 力[ちから]を 入[い]れなければならない。」",
+              "options": ["末[すえ]に", "あまり", "一方で[いっぽうで]", "ばかりに"],
+              "correctAnswerIndex": 2,
+              "explanation": "〜一方で: Iqtisodiyotni rivojlantirishga intilish barobarida («ikkinchi tomondan»), tabiatni asrash lozim."
             },
             {
               "id": "ja-n2-u4-l1-q4",
-              "question": "「省[しょう]エネ技術[ぎじゅつ]を 駆使[くし]する」 iborasidagi 「駆使[くし]する」 ning ma'nosi:",
-              "options": [
-                "Energiya tejovchi texnologiyalardan to'liq va mohirlik bilan foydalanmoq",
-                "Eski jihozlarni chiqindiga tashlab yubormoq",
-                "Texnologiyaning nosozligi tufayli ishni to'xtatmoq",
-                "Yangi usullarni sinovdan o'tkazishdan bosh tortmoq"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "駆使する (kushi suru) — mavjud imkoniyat yoki texnologiyani to'liq o'zlashtirib, mohirona ishga solmoq."
+              "question": "「海洋[かいよう]プラスチック ごみ問題[もんだい]は、生態系[せいたいけい]に 深刻[しんこく]な 影響[えいきょう]を （　　）つつある。」",
+              "options": ["うけ", "もとめ", "かさね", "およぼし"],
+              "correctAnswerIndex": 3,
+              "explanation": "「影響を及ぼす（およぼす）」: Salbiy taʼsir oʻtkazmoq («ekotizimga jiddiy taʼsir koʻrsatmoqda»)."
             }
           ]
         }
@@ -2854,46 +2621,31 @@
           "questions": [
             {
               "id": "ja-n2-u4-l2-q1",
-              "question": "「新製品[しんせいひん]の 発売[はつばい]に _______、関係者[かんけいしゃ]向[む]けの 発表会[はっぴょうかい]が 行[おこな]われた。」",
-              "options": ["伴[ともな]って", "応[おう]じて", "先立[さきだ]って", "際[さい]して"],
-              "correctAnswerIndex": 2,
-              "explanation": "〜に先立って (ni sakadatte): Yangi mahsulot sotuvga chiqishidan OLDIN maxsus taqdimot o'tkazildi."
+              "question": "「新製品[しんせいひん]の 発売[はつばい]に （　　）、関係者[かんけいしゃ]向[む]けの 先行[せんこう]発表会[はっぴょうかい]が 行[おこな]われた。」",
+              "options": ["先立[さきだ]って", "応[おう]じて", "基[もと]づいて", "伴[ともな]って"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜に先立って: Katta loyiha yoki savdoga chiqarishdan oldin («oldindan / arafasida»)."
             },
             {
               "id": "ja-n2-u4-l2-q2",
-              "question": "「〜に先立って」 va 「〜に際して」 o'rtasidagi vaqtinchalik farq nimada?",
-              "options": [
-                "«〜に先立って» asosiy tadbirdan OLDIN tayyorgarlik ko'rishni bildiradi; «〜に際して» esa tadbir boshlanishi arafasida yoki vaqtida ishlatiladi.",
-                "«〜に先立って» faqat o'tmish zamonda, «〜に際して» esa faqat kelasi zamonda ishlatiladi.",
-                "«〜に先立って» faqat norasmiy so'zlashuvda, «〜に際して» esa faqat she'riyatda qo'llaniladi.",
-                "Hech qanday farqi yo'q, xohlagan joyda erkin almashtirib ishlatiladi."
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "«〜に先立って» (oldindan / tayyorgarlik ko'rib) hodisadan oldingi bosqichga urg'u beradi. «〜に際して» esa hodisa paytida/munosabati bilan keladi."
+              "question": "「映画[えいが]の 公開[こうかい]に （　　）、監督[かんとく]と 主演[しゅえん]俳優[はいゆう]による 記者[きしゃ]会見[かいけん]が 開[ひら]かれた。」",
+              "options": ["こめて", "先立[さきだ]って", "したがって", "とおして"],
+              "correctAnswerIndex": 1,
+              "explanation": "Film namoyish etilishidan oldin matbuot anjumani oʻtkazildi."
             },
             {
               "id": "ja-n2-u4-l2-q3",
-              "question": "「首脳[しゅのう]会談[かいだん]に 先立[さきだ]ち、実務者[じつむしゃ]協議[きょうぎ]が 開[ひら]かれた。」 jumlasining to'g'ri tarjimasi:",
-              "options": [
-                "Sammit bekor qilinganligi sababli barcha ishchi uchrashuvlar to'xtatildi.",
-                "Davlat rahbarlari uchrashuvidan oldin mutaxassislar (ishchi guruh) muzokaralari o'tkazildi.",
-                "Rahbarlar sammiti yakunlangach, rasmiy matbuot anjumani e'lon qilindi.",
-                "Muzokaralar davomida hech qanday ijobiy natijaga erishilmadi."
-              ],
-              "correctAnswerIndex": 1,
-              "explanation": "Shunou kaidan (Davlat rahbarlari sammiti) dan oldin amaliy ishchi guruh muzokaralari o'tkazildi."
+              "question": "「工事[こうじ]の 開始[かいし]に （　　）、近隣[きんりん]住民[じゅうみん]への 説明会[せつめいかい]を 実施[じっし]した。」",
+              "options": ["めぐって", "沿[そ]って", "先立[さきだ]って", "関[かん]して"],
+              "correctAnswerIndex": 2,
+              "explanation": "Qurilish boshlanishidan avval aholiga tushuntirish ishlari olib borildi."
             },
             {
               "id": "ja-n2-u4-l2-q4",
-              "question": "「〜に先立つ」 birikmasi bevosita qaysi so'z turkumi oldidan keladi?",
-              "options": [
-                "Ot (Noun) oldidan (masalan: 本番に先立つリハーサル)",
-                "Faqat inkor qo'shimchasi 「ない」 oldidan",
-                "Fe'lning buyruq shakli oldidan",
-                "Faqat sifatdosh oldidan"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "«〜に先立つ + Noun» shaklida otni aniqlab keladi (masalan: 開会に先立つ諸注意)."
+              "question": "「国際[こくさい]会議[かいぎ]の 開催[かいさい]に （　　）、警備[けいび]体制[たいせい]が 大幅[おおはば]に 強化[きょうか]された。」",
+              "options": ["よって", "際[さい]して", "向[む]けて", "先立[さきだ]って"],
+              "correctAnswerIndex": 3,
+              "explanation": "Xalqaro anjuman boshlanishidan avval xavfsizlik choralari kuchaytirildi."
             }
           ]
         }
@@ -3020,46 +2772,31 @@
           "questions": [
             {
               "id": "ja-n2-u4-l3-q1",
-              "question": "「海外[かいがい]留学[りゅうがく]を _______、彼[かれ]の 視野[しや]は 大[おお]きく 広[ひろ]がった。」",
-              "options": ["めぐって", "契機[けいき]に", "ぬいて", "かねて"],
-              "correctAnswerIndex": 1,
-              "explanation": "〜を契機に: «...turtki bo'lib / ...munosabati bilan». Xorijda o'qish uning dunyoqarashi kengayishiga katta turtki bo'ldi."
+              "question": "「大病[たいびょう]を 患[わずら]ったことを （　　）、健康[けんこう]管理[かんり]の 大切[たいせつ]さを 痛感[つうかん]した。」",
+              "options": ["契機[けいき]に", "先立[さきだ]って", "ぬきにして", "とおして"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜を契機に: Katta burilish nuqtasi boʻlgan voqea turtkisi bilan («ogʻir kasallikni boshdan kechirishi sabab boʻlib»)."
             },
             {
               "id": "ja-n2-u4-l3-q2",
-              "question": "「〜を契機に」 bilan 「〜をきっかけに」 uslubiy jihatdan qanday farqlanadi?",
-              "options": [
-                "«〜を契機に» rasmiyroq va yozma uslubda yirik ijtimoiy yoki hayotiy burilishlarga ishlatiladi; «〜をきっかけに» esa so'zlashuvda ham keng qo'llaniladi.",
-                "«〜を契機に» faqat kichik tasodiflarga, «〜をきっかけに» esa davlat miqyosidagi hodisalarga ishlatiladi.",
-                "«〜を契機に» faqat salbiy fojealarga, «〜をきっかけに» esa xursandchilikka ishlatiladi.",
-                "Ikkalasi o'rtasida hech qanday uslubiy farq mavjud emas."
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Keiki (契機) rasmiy va yozma nutqda jamiyat, iqtisodiyot yoki kishining hayotidagi katta burilish nuqtalariga ishlatiladi."
+              "question": "「海外[かいがい]旅行[りょこう]を （　　）、外国語[がいこくご]の 学習[がくしゅう]を 本格的[ほんかくてき]に 始[はじ]めた。」",
+              "options": ["めぐって", "契機[けいき]に", "沿[そ]って", "こめて"],
+              "correctAnswerIndex": 1,
+              "explanation": "Chet elga sayohat qilish turtki boʻlib, chet tilini jiddiy oʻrganishga kirishdi."
             },
             {
               "id": "ja-n2-u4-l3-q3",
-              "question": "「都市[とし]再開発[さいかいはつ]を 契機[けいき]として、地域[ちいき]経済[けいざい]が 再[ふたた]び 活性[かっせい]化し始[はじ]めた。」 jumlasining to'g'ri ma'nosi:",
-              "options": [
-                "Shaharni qayta qurish sababli barcha do'konlar faoliyati butunlay to'xtatildi.",
-                "Qayta rejalashtirish ishlari kutilgan natijani bermay, iqtisodiy inqirozga olib keldi.",
-                "Shaharni qayta obod qilish loyihasi turtki bo'lib, mintaqa iqtisodiyoti qayta jonlana boshladi.",
-                "Hudud iqtisodiyoti pasayganligi tufayli qurilish loyihasi bekor qilindi."
-              ],
+              "question": "「オリンピックの 開催[かいさい]を （　　）、都市[とし]の インフラ整備[せいび]が 一気[いっき]に 進[すす]んだ。」",
+              "options": ["基[もと]づいて", "際[さい]して", "契機[けいき]に", "応[おう]じて"],
               "correctAnswerIndex": 2,
-              "explanation": "Shaharni qayta rivojlantirish dasturi turtki bo'lib (keiki to shite), mahalliy iqtisodiyot faollashdi."
+              "explanation": "Olimpiada oʻtkazilishi shahardagi infratuzilma yangilanishiga turtki boʻldi."
             },
             {
               "id": "ja-n2-u4-l3-q4",
-              "question": "「〜を契機に」 oldidan asosan qaysi so'z turkumi keladi?",
-              "options": [
-                "Ot (Noun) yoki Fe'lning oddiy shakli + こと",
-                "Faqat Masu-o'zak",
-                "Faqat I-sifatlar",
-                "Fe'lning buyruq shakli"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Ot + を契機に / を契機として (masalan: 転職を契機に, 震災を契機として)."
+              "question": "「定年[ていねん]退職[たいしょく]を （　　）、田舎[いなか]へ 移住[いじゅう]して 農業[のうぎょう]を 始[はじ]める 人[ひと]が 増[ふ]えている。」",
+              "options": ["伴[ともな]って", "したがって", "対[たい]して", "契機[けいき]に"],
+              "correctAnswerIndex": 3,
+              "explanation": "Pensiyaga chiqish qishloqqa koʻchib dehqonchilik qilish uchun qulay imkoniyat/turtki boʻldi."
             }
           ]
         }
@@ -3186,46 +2923,31 @@
           "questions": [
             {
               "id": "ja-n2-u4-l4-q1",
-              "question": "「長年[ながねん]の 感謝[かんしゃ]の 気持[きも]ちを _______、特製[とくせい]の アルバムを 贈[おく]った。」",
-              "options": ["こめて", "めぐって", "通[つう]じて", "際[さい]して"],
+              "question": "「感謝[かんしゃ]の 気持[きも]ちを （　　） 編[あ]んだ セーターを、母[はは]の 日[ひ]に プレゼントした。」",
+              "options": ["込[こ]めて", "沿[そ]って", "通[つう]じて", "めぐって"],
               "correctAnswerIndex": 0,
-              "explanation": "〜を込めて: «...tuyg'usi / mehri bilan bag'ishlab». Ko'p yillik minnatdorchilik tuyg'usi bilan sovg'a qilindi."
+              "explanation": "〜を込めて: Minnatdorlik, muhabbat yoki duoni butun qalb bilan singdirgan holda («minnatdorlik hissi bilan toʻqilgan»)."
             },
             {
               "id": "ja-n2-u4-l4-q2",
-              "question": "「〜を込めて」 grammatik birikmasi bilan qanday tushunchalar birga keladi?",
-              "options": [
-                "Faqat sonlar va aniq metraj o'lchovlari (kg, km, litr)",
-                "Faqat salbiy haqoratli so'zlar",
-                "Tuyg'u, his-hayajon va tilak bildiruvchi so'zlar: 愛[あい], 祈[いの]り, 願[ねが]い, 心[こころ], 感謝[かんしゃ]",
-                "Faqat ob-havo va tabiiy ofatlar"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "〜を込めて ichki samimiy hissiyot, duo, tilak va minnatdorchilik so'zlari bilan birikadi (masalan: 愛をこめて, 祈りを込めて)."
+              "question": "「平和[へいわ]への 祈[いの]りを （　　）、市民[しみん]たちが 千羽鶴[せんばづる]を 折[お]った。」",
+              "options": ["応[おう]じて", "込[こ]めて", "先立[さきだ]って", "契機[けいき]に"],
+              "correctAnswerIndex": 1,
+              "explanation": "Tinchlik uchun tilak va duolarni singdirgan holda turnalar yasadilar."
             },
             {
               "id": "ja-n2-u4-l4-q3",
-              "question": "「心[こころ]を こめた 手作[てづく]りの 料理[りょうり]」 ning to'g'ri o'zbekcha ma'nosi:",
-              "options": [
-                "Restorandan shoshilinch olib kelingan qimmatbaho taom",
-                "Chin qalb qo'ri va samimiy mehr bilan tayyorlangan uy taomi",
-                "Retseptsiz tasodifan pishirib qo'yilgan yegulik",
-                "Mehmonlar kelmagani sababli sovib qolgan taom"
-              ],
-              "correctAnswerIndex": 1,
-              "explanation": "Kokoro o kometa — chin qalb qo'ri va mehr bilan tayyorlangan."
+              "question": "「子[こ]どもの 健[すこ]やかな 成長[せいちょう]への 願い[ねがい]を （　　）、手作[てづく]りの 料理[りょうり]を 振[ふ]る舞[ま]った。」",
+              "options": ["基[もと]づいて", "際[さい]して", "込[こ]めて", "したがって"],
+              "correctAnswerIndex": 2,
+              "explanation": "Farzandning sogʻlom oʻsishi haqidagi ezgu tilaklarni jo qilib taom tayyorlash."
             },
             {
               "id": "ja-n2-u4-l4-q4",
-              "question": "Quyidagi jumlalardan qaysi biri grammatik va ma'naviy jihatdan eng to'g'ri tuzilgan?",
-              "options": [
-                "雨[あめ]の 心配[しんぱい]を こめて、傘[かさ]を 持[も]ち歩[ある]いた。",
-                "宿題[しゅくだい]の 期限[きげん]を こめて、先生[せんせい]に 謝[あやま]った。",
-                "電車[でんしゃ]の 時間[じかん]を こめて、駅[えき]まで 走[はし]った。",
-                "平和[へいわ]への 祈[いの]りを こめて、千羽鶴[せんばづる]を 折[お]った。"
-              ],
+              "question": "「長年[ながねん] お世話[せわ]になった 恩師[おんし]へ、心[こころ]を （　　） 手紙[てがみ]を 書[か]いた。」",
+              "options": ["めぐって", "よって", "つれて", "込[こ]めて"],
               "correctAnswerIndex": 3,
-              "explanation": "«Heiwa e no inori o komete» (Tinchlik tilab / duosi bilan) — yapon tilida to'g'ri va nafis N2 iborasi."
+              "explanation": "Ustoziga butun mehrini qogʻozga tushirgan holda xat yozdi («心を込めて»)."
             }
           ]
         }
@@ -3363,59 +3085,41 @@
           "questions": [
             {
               "id": "ja-n2-u4-l5-q1",
-              "question": "講師は面接で最も重視されるのは何だと言っていますか？",
-              "audioUrl": "/audio/choukai/n2/Track02.mp3",
-              "audioTitle": "N2 Track 02 — Suhbatdagi eng muhim qobiliyat",
+              "question": "会話[かいわ]：男[おとこ]「山田[やまだ]さん、明日[あした]の プレゼン、準備[じゅんび]は 万全[ばんぜん]？」女[おんな]「ええ、資料[しりょう]は （　　）、あとは リハーサルだけです。」",
               "options": [
-                "資格の数",
-                "長く話す流暢さ",
-                "質問の意図を理解して的確に答える力",
-                "有名大学の成績"
+                "出来[でき]上[あ]がったものの",
+                "出来[でき]上[あ]がらないばかりに",
+                "出来[でき]上[あ]がるっこないし",
+                "出来[でき]上[あ]がったきり"
               ],
-              "correctAnswerIndex": 2,
-              "explanation": "Ma’ruzachi savol niyatini aniq tushunib, lo‘nda javob berishni eng muhim deb aytadi."
+              "correctAnswerIndex": 0,
+              "explanation": "〜ものの: «Materiallar tayyor boʻlsa-da, faqat repetitsiya qoldi»."
             },
             {
               "id": "ja-n2-u4-l5-q2",
-              "question": "男の人は、新しい企画を進める上でまず何をすべきだと考えていますか？",
-              "audioUrl": "/audio/choukai/n2/Track04.mp3",
-              "audioTitle": "N2 Track 04 — Jamoaviy loyihada kelishuv",
-              "options": [
-                "他の部署と意見交換を行う",
-                "直ちに予算の承認を申請する",
-                "アンケートの項目を削る",
-                "広報用のポスターを作成する"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Yig'ilishda erkak kishi loyihani boshlashdan oldin boshqa bo'limlar bilan fikr almashish va hamkorlikni yo'lga qo'yish zarurligini ta'kidlaydi."
+              "question": "上司[じょうし]「今回[こんかい]の クレームの 件[けん]、直接[ちょくせつ] 伺[うかが]って 謝罪[しゃざい]すべきじゃないか？」部下[ぶか]「はい、誠心[せいしん]誠意[せいい] （　　） ご対応[たいおう]いたします。」",
+              "options": ["応[おう]じて", "心[こころ]を込[こ]めて", "基[もと]づいて", "めぐって"],
+              "correctAnswerIndex": 1,
+              "explanation": "Butun samimiyat bilan kechirim soʻrab xizmat koʻrsatish: 「心を込めて」."
             },
             {
               "id": "ja-n2-u4-l5-q3",
-              "question": "紙製容器の欠点をどのように解決しましたか？",
-              "audioUrl": "/audio/choukai/n2/Track08.mp3",
-              "audioTitle": "N2 Track 08 — Ekologik mahsulot ishlab chiqish",
-              "options": [
-                "植物性耐水コーティングを施した",
-                "アルミ箔を二重にした",
-                "ガラス容器に変えた",
-                "防腐剤を増やした"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Qog‘oz idishning namlikka chidamsizligi o‘simlik asosidagi suvga chidamli qoplama bilan hal qilingan."
+              "question": "女[おんな]「この パソコン、最近[さいきん] 動作[どうさ]が 重[おも]くて 困[こま]ってるの。」男[おとこ]「OSの アップデートに （　　）、メモリの 容量[ようりょう]が 不足[ふそく]しているのかもね。」",
+              "options": ["際[さい]して", "関[かん]して", "伴[ともな]って", "先立[さきだ]って"],
+              "correctAnswerIndex": 2,
+              "explanation": "〜に伴って: Tizim yangilanishi bilan birga xotira yetmayotgan boʻlishi mumkin."
             },
             {
               "id": "ja-n2-u4-l5-q4",
-              "question": "教授が最も問題だと指摘したのは何ですか？",
-              "audioUrl": "/audio/choukai/n2/Track09.mp3",
-              "audioTitle": "N2 Track 09 — Taqdimotga tayyorgarlik",
+              "question": "取引先[とりひきさき]「それでは、明日[あした]の 14時[じゅうよじ]に 御社[おんしゃ]へ お伺[うかが]いいたします。」社員[しゃいん]「かしこまりました。お気[き]をつけて （　　）。」",
               "options": [
-                "グラフの文字が小さく配色も見にくいこと",
-                "スライドが多すぎること",
-                "実験データがないこと",
-                "英語要約がないこと"
+                "参[まい]ってください",
+                "申[もう]し上[あ]げてください",
+                "ご覧[らん]になってください",
+                "お越[こ]しください"
               ],
-              "correctAnswerIndex": 0,
-              "explanation": "Professor grafik matni kichikligi va rang kontrasti yetarli emasligini ta’kidlaydi."
+              "correctAnswerIndex": 3,
+              "explanation": "Mijozga «ehtiyot boʻlib yetib keling» deyishda muloyim Sonkeigo: 「お越しください」."
             }
           ]
         }
@@ -3543,41 +3247,51 @@
           "questions": [
             {
               "id": "ja-n2-u5-l1-q1",
-              "question": "「大企業[だいきぎょう]が 新規[しんき]事業[じぎょう]を 立[た]ち上[あ]げる。」 jumlasidagi 「企」 va 「業」 kanjilarining ma'nosi:",
+              "question": "「業績[ぎょうせき]好調[こうちょう]につき、来年度[らいねんど]は 新卒[しんそつ]の （　　）人数[にんずう]を 増[ふ]やす 方針[ほうしん]だ。」",
               "options": [
-                "Rejalashtirish va tijoriy kasbiy faoliyat / biznes",
-                "Tibbiyot va kasalliklar muolajasi",
-                "Shaharsozlik va yo'l infratuzilmasi",
-                "Tabiiy ofatlar va ekologik muhofaza"
+                "採用[さいよう]",
+                "企業[きぎょう]",
+                "転職[てんしょく]",
+                "休業[きゅうぎょう]"
               ],
               "correctAnswerIndex": 0,
-              "explanation": "企 (kikaku / kigyou — reja, tashabbus) va 業 (sangyou / jigyou — kasb, biznes, sanoat)."
+              "explanation": "採用（さいよう）: Xodimlarni ishga qabul qilish («採用人数» = qabul qilinuvchilar soni)."
             },
             {
               "id": "ja-n2-u5-l1-q2",
-              "question": "Kompaniyaga «Yangi xodimlarni ishga qabul qilish» qaysi so'z bilan ifodalanadi?",
-              "options": ["採点[さいてん]", "採用[さいよう]", "採集[さいしゅう]", "採掘[さいくつ]"],
+              "question": "「IT技術[ぎじゅつ]を 駆使[くし]した 新[あたら]しい サービスを 提供[ていきょう]する （　　）が 注目[ちゅうもく]されている。」",
+              "options": [
+                "就職[しゅうしょく]",
+                "企業[きぎょう]",
+                "採点[さいてん]",
+                "失業[しつぎょう]"
+              ],
               "correctAnswerIndex": 1,
-              "explanation": "採用 (saiyou) — xodimlarni saralab ishga qabul qilish. 採 (tanlamoq) + 用 (ishlatmoq)."
+              "explanation": "企業（きぎょう）: Korxona / kompaniya."
             },
             {
               "id": "ja-n2-u5-l1-q3",
-              "question": "「求職[きゅうしょく]中[ちゅう]の 人[ひと]を 対象[たいしょう]に 職業[しょくぎょう]訓練[くんれん]を 実施[じっし]する。」 jumlasidagi 「職」 ning ma'nosi:",
+              "question": "「自分[じぶん]の スキルや 経験[けいけん]を 生[い]かせる （　　）を 見[み]つけるために、面談[めんだん]を 行[おこな]った。」",
               "options": [
-                "Dam olish maskani va sayohat marshruti",
-                "Sud jarayoni va qonuniy jarimalar",
-                "Kasb, mehnat vazifasi yoki mutaxassislik",
-                "Bank hisob raqami va kredit foizi"
+                "企画[きかく]",
+                "残業[ざんぎょう]",
+                "職業[しょくぎょう]",
+                "採集[さいしゅう]"
               ],
               "correctAnswerIndex": 2,
-              "explanation": "職 (shoku) — kasb, mutaxassislik, xizmat vazifasi (shokugyou, kyuushoku, shokuba)."
+              "explanation": "職業（しょくぎょう）: Kasb-hunar («mos kasbni topish»)."
             },
             {
               "id": "ja-n2-u5-l1-q4",
-              "question": "「新[あたら]しい 企画[きかく]を 提案[ていあん]する」 jumlasidagi 「企画」 so'zining to'g'ri o'qilishi qaysi?",
-              "options": ["Kiga", "Kikaku", "Tekaku", "Shikaku"],
-              "correctAnswerIndex": 1,
-              "explanation": "企画 — きかく (Kikaku) — loyiha, reja, tashabbus."
+              "question": "「市場[しじょう]の ニーズを 分析[ぶんせき]し、新製品[しんせいひん]の （　　）を 書[か]き上[あ]げた。」",
+              "options": [
+                "退職[たいしょく]",
+                "産業[さんぎょう]",
+                "採用[さいよう]",
+                "企画書[きかくしょ]"
+              ],
+              "correctAnswerIndex": 3,
+              "explanation": "企画書（きかくしょ）: Loyiha yoki taklif hujjati."
             }
           ]
         }
@@ -3705,51 +3419,31 @@
           "questions": [
             {
               "id": "ja-n2-u5-l2-q1",
-              "question": "「憲法[けんぽう]」 va 「法律[ほうりつ]」 so'zlaridagi 「法」 va 「律」 kanjilarining ma'nosi:",
-              "options": [
-                "Konstitutsiya va davlat qonunchiligi, huquqiy tartib-qoidalar",
-                "Xalqaro valyuta kursi va bank operatsiyalari",
-                "Oziq-ovqat mahsulotlari sifat nazorati",
-                "San'at asarlari ko'rgazmasi mezonlari"
-              ],
+              "question": "「個人[こじん]情報[じょうほう]の 流出[りゅうしゅつ]を 防[ふせ]ぐため、厳格[げんかく]な 社内[しゃない]（　　）を 定[さだ]めた。」",
+              "options": ["規定[きてい]", "政権[せいけん]", "憲法[けんぽう]", "法律[ほうりつ]"],
               "correctAnswerIndex": 0,
-              "explanation": "法 (qonun, usul) va 律 (me'yor, huquqiy qoida). Davlatning oliy qonunlariga oid kanjilar."
+              "explanation": "規定（きてい）: Qoida, meʼyor, nizom («社内規定» = korxona ichki tartib-qoidasi)."
             },
             {
               "id": "ja-n2-u5-l2-q2",
-              "question": "«Kompaniya ichki tartib-qoidasi yoki nizomi» qaysi so'z bilan ifodalanadi?",
-              "options": [
-                "規模[きぼ]",
-                "気配[けはい]",
-                "機転[きてん]",
-                "規定[きてい] / 規約[きやく]"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "規定 (kitei) — qoida, nizom; 規約 (kiyaku) — ichki kelishuv qoidalari. 規 kanjisi standart va tartibni bildiradi."
+              "question": "「少子化[しょうしか]に 歯止[はど]めを かけるための 新[あたら]しい 子育[こそだ]て （　　）が 発表[はっぴょう]された。」",
+              "options": ["規準[きじゅん]", "政策[せいさく]", "規律[きりつ]", "文法[ぶんぽう]"],
+              "correctAnswerIndex": 1,
+              "explanation": "政策（せいさく）: Siyosat, davlat chorasi («bolalarni qoʻllab-quvvatlash siyosati»)."
             },
             {
               "id": "ja-n2-u5-l2-q3",
-              "question": "「政策[せいさく]の 転換[てんかん]が 求[もと]められる。」 jumlasidagi 「政」 kanjisi nimani bildiradi?",
-              "options": [
-                "Qishloq xo'jaligi ekinlari parvarishi",
-                "Davlat boshqaruvi va siyosiy qarorlar",
-                "Harbiy mashg'ulotlar va mudofaa",
-                "Shaxsiy avtomobil boshqaruvi"
-              ],
-              "correctAnswerIndex": 1,
-              "explanation": "政 (sei / matsuri) — davlat siyosati va boshqaruvi (seisaku, seiji, seifu)."
+              "question": "「いかなる 理由[りゆう]が あっても、（　　）に 違反[いはん]する 行為[こうい]は 許[ゆる]されない。」",
+              "options": ["政治[せいじ]", "定規[じょうぎ]", "法律[ほうりつ]", "政党[せいとう]"],
+              "correctAnswerIndex": 2,
+              "explanation": "法律（ほうりつ）: Qonun («qonunni buzish harakati qabul qilinmaydi»)."
             },
             {
               "id": "ja-n2-u5-l2-q4",
-              "question": "「法律[ほうりつ]に 違反[いはん]する 行為[こうい]」 birikmasining o'zbekcha ma'nosi:",
-              "options": [
-                "Qonuniy me'yorlarga to'la rioya qilish",
-                "Yangi qonun qabul qilish bo'yicha ovoz berish",
-                "Qonun talablariga zid bo'lgan qonunbuzarlik harakati",
-                "Eski farmonlarning muddatini uzaytirish"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "法律に違反する (houritsu ni ihan suru) — qonunni buzmoq, qonunga zid harakat qilmoq."
+              "question": "「国[くに]の 最高[さいこう]法規[ほうき]である （　　）の 改正[かいせい]について、活発[かっぱつ]な 議論[ぎろん]が なされている。」",
+              "options": ["規則[きそく]", "規約[きやく]", "政策[せいさく]", "憲法[けんぽう]"],
+              "correctAnswerIndex": 3,
+              "explanation": "憲法（けんぽう）: Konstitutsiya («davlatning oliy qonuni»)."
             }
           ]
         }
@@ -3882,36 +3576,51 @@
           "questions": [
             {
               "id": "ja-n2-u5-l3-q1",
-              "question": "「困難[こんなん]を 乗[の]り越[こ]えて、42キロの マラソンを 最後[さいご]まで _______。」 (Qiyinchilikka qaramay sabr bilan oxiriga yetkazdi)",
-              "options": ["走り抜いた", "走り直した", "使い切った", "走り終えた"],
+              "question": "「途中[とちゅう]で 何度[なんど]も くじけそうになったが、最後[さいご]まで （　　）。」",
+              "options": [
+                "走[はし]り抜[ぬ]いた",
+                "走[はし]り直[なお]した",
+                "走[はし]り終[お]えた",
+                "走[はし]り切[き]れた"
+              ],
               "correctAnswerIndex": 0,
-              "explanation": "〜抜く (nuku): Azob yoki qiyinchiliklarga bardosh berib, oxirigacha yetkazmoq (hashirinuku)."
+              "explanation": "〜抜く（ぬく）: Qiyinchiliklarga qaramay oxirigacha chidab yetib borish («yugurib yakunladi»)."
             },
             {
               "id": "ja-n2-u5-l3-q2",
-              "question": "「誤字[ごじ]や 脱字[だつじ]が 多[おお]かったので、論文[ろんぶん]を 最初[さいしょ]から _______。」 (Qaytadan yozib chiqdim)",
-              "options": ["書き抜いた", "書き直した", "使い切った", "読み終えた"],
+              "question": "「文章[ぶんしょう]に 誤字[ごじ]が 多[おお]かったので、最初[さいしょ]から （　　）。」",
+              "options": [
+                "書[か]き切[き]った",
+                "書[か]き直[なお]した",
+                "書[か]き抜[ぬ]いた",
+                "書[か]き終[お]えた"
+              ],
               "correctAnswerIndex": 1,
-              "explanation": "〜直す (naosu): Xatoni to'g'rilab yoki yangitdan qayta bajarmoq (kakinaosu)."
+              "explanation": "〜直す（なおす）: Xatoni toʻgʻrilash uchun boshidan qayta bajarish («qayta yozdi»)."
             },
             {
               "id": "ja-n2-u5-l3-q3",
-              "question": "「給料[きゅうりょう]を 1週間[いっしゅうかん]で 全[すべ]て _______。」 (Bor pulni to'liq sarflab, qoldirmadi)",
-              "options": ["使い抜いた", "使い直した", "使い切った", "使い終えた"],
+              "question": "「マラソンを 完走[かんそう]した 後[あと]は、体力[たいりょく]を すっかり （　　） 動[うご]けなかった。」",
+              "options": [
+                "使[つか]い直[なお]して",
+                "使[つか]い抜[ぬ]いて",
+                "使[つか]い果[は]たして",
+                "使[つか]い終[お]えて"
+              ],
               "correctAnswerIndex": 2,
-              "explanation": "〜切る (kiru): Bor narsani 100% to'liq sarflamoq yoki tamom qilmoq (tsukaikiru)."
+              "explanation": "〜果たす（はたす） / 〜切る: Quvvatni butunlay sarflab tugatish («butkul holdan toydi»)."
             },
             {
               "id": "ja-n2-u5-l3-q4",
-              "question": "Qo'shma fe'llar (Fukugoudoushi) yasalganda birinchi fe'l qaysi shaklda bo'ladi?",
+              "question": "「何百[なんびゃく]ページも ある 長編[ちょうへん]小説[しょうせつ]を、ついに 1週間[いっしゅうかん]で （　　）。」",
               "options": [
-                "Fe'lning Te-shakli",
-                "Fe'lning Lug'at shakli",
-                "Fe'lning Ta-shakli",
-                "Fe'lning Masu-o'zagi"
+                "読[よ]み抜[ぬ]いた",
+                "読[よ]み直[なお]した",
+                "読[よ]み切[き]った",
+                "読[よ]み終[お]えた"
               ],
               "correctAnswerIndex": 3,
-              "explanation": "Qo'shma fe'llar birinchi fe'lning ます-o'zagi (Masu-stem) ga ikkinchi fe'lni qo'shish orqali yasaladi (masalan: 書き＋直す＝書き直す)."
+              "explanation": "〜終える（おえる）: Uzoq jarayonni toʻliq nihoyasiga yetkazish («oʻqib tugatdi»)."
             }
           ]
         }
@@ -4357,51 +4066,51 @@
           "questions": [
             {
               "id": "ja-n2-u6-l1-q1",
-              "question": "Mijoz kompaniyasiga borishda o'zingizning harakatingiz uchun qaysi Kamtarinlik (Kenjougo) iborasi to'g'ri?",
+              "question": "「明日[あした]、午後[ごご] 2時[にじ]に 貴社[きしゃ]の オフィスへ （　　）。」",
               "options": [
-                "明日[あす]、御社[おんしゃ]に いらっしゃいます",
-                "明日[あす]、御社[おんしゃ]に 伺[うかが]います / 参[まい]ります",
-                "明日[あす]、御社[おんしゃ]に お越[こ]しになります",
-                "明日[あす]、御社[おんしゃ]に お見[み]えになります"
+                "伺[うかが]います",
+                "いらっしゃいます",
+                "お越[こ]しになります",
+                "ご案内[あんない]なさいます"
               ],
-              "correctAnswerIndex": 1,
-              "explanation": "O'z harakatingizni pasaytirib aytganda 伺う (ukagau) yoki 参る (mairu) ishlatiladi. いらっしゃる va お越しになる esa suhbatdoshni ulug'lovchi Sonkeigodir."
+              "correctAnswerIndex": 0,
+              "explanation": "Oʻz harakatini mijoz oldida kamtarlik bilan aytganda: 「伺います」（うかがいます） yoki 「参ります」."
             },
             {
               "id": "ja-n2-u6-l1-q2",
-              "question": "Boshliqning fikrini xushmuomalalik bilan boshqalarga aytganda qaysi hurmat fe'li ishlatiladi: 「部長[ぶちょう]が そう _______。」",
+              "question": "「部長[ぶちょう]、先日[せんじつ] お送[おく]りした 企画書[きかくしょ]は もう （　　）でしょうか。」",
               "options": [
-                "申[もう]しました",
-                "伺[うかが]いました",
-                "おっしゃいました",
-                "申[もう]し上[あ]げました"
+                "拝見[はいけん]しました",
+                "ご覧[らん]になりました",
+                "申[もう]し上[あ]げました",
+                "存[ぞん]じました"
               ],
-              "correctAnswerIndex": 2,
-              "explanation": "Boshliqning (hurmatli shaxsning) so'zlashi uchun Sonkeigo: おっしゃる (ossharu). 申す va 申し上げる esa o'zingiz gapirganingizda ishlatiladi."
+              "correctAnswerIndex": 1,
+              "explanation": "Boshliqning harakatiga nisbatan hurmat feʼli (Sonkeigo): 「ご覧になりましたか」."
             },
             {
               "id": "ja-n2-u6-l1-q3",
-              "question": "Mijozga «Ushbu reja hujjatini ko'rib chiqdingizmi?» deb so'rashda qaysi biri to'g'ri?",
+              "question": "「取引先[とりひきさき]の 田中[たなか]様[さま]が （　　）。応接室[おうせつしつ]へ ご案内[あんない]してください。」",
               "options": [
-                "こちらの 企画書[きかくしょ]を 拝見[はいけん]しましたでしょうか",
-                "こちらの 企画書[きかくしょ]を 見[み]ましたでしょうか",
-                "こちらの 企画書[きかくしょ]を お見[み]せになりましたでしょうか",
-                "こちらの 企画書[きかくしょ]を ご覧[らん]に なりましたでしょうか"
+                "参[まい]りました",
+                "拝見[はいけん]しました",
+                "お見[み]えになりました",
+                "申[もう]しました"
               ],
-              "correctAnswerIndex": 3,
-              "explanation": "Suhbatdoshning ko'rishi uchun Sonkeigo: ご覧になる (goran ni naru). 拝見する (haiken suru) esa o'zingiz ko'rishingizda ishlatiladigan Kenjougodir."
+              "correctAnswerIndex": 2,
+              "explanation": "Mijoz kelganini aytganda eng muloyim hurmat ifodasi: 「お見えになりました」 yoki 「いらっしゃいました」."
             },
             {
               "id": "ja-n2-u6-l1-q4",
-              "question": "O'z kompaniyangiz direktori (rahbari) haqida tashqi mijozga gapirganda qaysi qoida amal qiladi?",
+              "question": "社外[しゃがい]の 取引先[とりひきさき]に 対[たい]して：「社長[しゃちょう]の 山田[やまだ]は、ただいま 席[せき]を （　　）おります。」",
               "options": [
-                "Tashqi mijoz oldida o'z kompaniyangiz vakili (hatto direktor bo'lsa ham) «uchi» (ichki doira) hisoblanadi va unga nisbatan Sonkeigo qo'llanilmaydi.",
-                "Doimo o'z direktoringiz ismiga «-san» qo'shib, uni maksimal darajada ulug'lash shart.",
-                "Direktor har doim mijozdan yuqori turgani uchun unga Sonkeigo ishlatiladi.",
-                "Tashqi muloqotda Keigo qoidalarining hech qaysisi talab qilinmaydi."
+                "お外[はず]しになって",
+                "いらっしゃって",
+                "おいでになって",
+                "外[はず]して"
               ],
-              "correctAnswerIndex": 0,
-              "explanation": "Yapon biznes etikasida «Uchi-Soto» (ichki-tashqi) qoidasi bo'yicha tashqi mijozga o'z rahbari haqida gapirganda ham kamtarinlik (Kenjougo) qo'llanadi."
+              "correctAnswerIndex": 3,
+              "explanation": "Tashqi mijozga oʻz kompaniyasi xodimi (hatto prezidenti boʻlsa ham) haqida gapirganda kamtarlik bilan 「外しております」 deyiladi."
             }
           ]
         }
@@ -4528,41 +4237,36 @@
           "questions": [
             {
               "id": "ja-n2-u6-l2-q1",
-              "question": "「台風[たいふう]の 接近[せっきん]により、今日[きょう]の 試合[しあい]は 中止[ちゅうし]_______。」",
-              "options": ["するにすぎない", "せざるを得ない", "しっこない", "しかねる"],
-              "correctAnswerIndex": 1,
-              "explanation": "〜ざるを得ない: «...qilishdan boshqa chora yo'q / noiloj majburmiz». Tayfun tufayli o'yinni bekor qilishga majbur bo'lindi."
+              "question": "「台風[たいふう]の 接近[せっきん]により、今日[きょう]の 試合[しあい]は 中止[ちゅうし]せ（　　）。」",
+              "options": ["ざるを得なかった", "っこなかった", "かねなかった", "そうもなかった"],
+              "correctAnswerIndex": 0,
+              "explanation": "Toʻfon yaqinlashgani sabab oʻyinni bekor qilishga majbur boʻlindi: 「中止せざるを得なかった」."
             },
             {
               "id": "ja-n2-u6-l2-q2",
-              "question": "「十分[じゅうぶん]な 休息[きゅうそく]を とらずに 働[はたら]き続[つづ]ければ、体調[たいちょう]を _______。」 (Salbiy xavf bor)",
+              "question": "「十分[じゅうぶん]な 休息[きゅうそく]を とらずに 働[はたら]き続[つづ]ければ、体調[たいちょう]を （　　）。」",
               "options": [
                 "崩[くず]しかねる",
-                "崩[くず]しっこない",
                 "崩[くず]しかねない",
-                "崩[くず]すにすぎない"
+                "崩[くず]すっこない",
+                "崩[くず]しそうもない"
               ],
-              "correctAnswerIndex": 2,
-              "explanation": "〜かねない: salbiy xatar yoki ehtimol mavjudligini bildiradi (taichou o kuzushikanenai — sog'lig'ini yo'qotib qo'yish xavfi bor)."
+              "correctAnswerIndex": 1,
+              "explanation": "〜かねない: Dam olmasdan ishlayversa, salomatligini buzib qoʻyish xavfi bor."
             },
             {
               "id": "ja-n2-u6-l2-q3",
-              "question": "「こんな 膨大[ぼうだい]な 量[りょう]の データ、たった 1人[ひとり]で 1日[ついたち]で _______。」 (Mutlaqo ilojsiz)",
-              "options": [
-                "処理[しょり]しっこない",
-                "処理[しょり]しかねない",
-                "処理[しょり]するにほかならない",
-                "処理[しょり]せざるを得ない"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "〜っこない: «Mutlaqo qila olmaydi / iloji yo'q» degan qat'iy inkor (shorishikkonai)."
+              "question": "「こんな 膨大[ぼうだい]な データ、たった 1人[ひとり]で 1日[いちにち]で 処理[しょり]でき（　　）よ。」",
+              "options": ["かねない", "るはずだ", "っこない", "ざるを得ない"],
+              "correctAnswerIndex": 2,
+              "explanation": "〜っこない: Bunday ulkan maʼlumotni yolgʻiz oʻzi bir kunda qayta ishlashi mutlaqo imkonsiz."
             },
             {
               "id": "ja-n2-u6-l2-q4",
-              "question": "「新[あたら]しい 労働[ろうどう]基準[きじゅん]の 導入[どうにゅう]を _______、労使[ろうし]間[かん]で 激[はげ]しい 交渉[こうしょう]が 行[おこな]われた。」",
-              "options": ["こめて", "もとづいて", "そって", "めぐって"],
+              "question": "「新[あたら]しい 労働[ろうどう]基準[きじゅん]の 導入[どうにゅう]を （　　）、労使[ろうし]間[かん]で 激[はげ]しい 交渉[こうしょう]が 行[おこな]われた。」",
+              "options": ["こめて", "とおして", "基[もと]づいて", "めぐって"],
               "correctAnswerIndex": 3,
-              "explanation": "〜をめぐって: Yangi mehnat me'yori masalasi atrofida ish beruvchi va ishchilar o'rtasida muzokara bo'ldi."
+              "explanation": "〜をめぐって: Yangi mehnat standartlari mavzusi atrofida tomonlar muzokara olib bordi."
             }
           ]
         }
@@ -4690,51 +4394,46 @@
           "questions": [
             {
               "id": "ja-n2-u6-l3-q1",
-              "question": "JLPT N2 \"Jouhou Kensaku\" (Axborot qidirish) topshirig'ini samarali bajarishning eng to'g'ri strategiyasi qaysi?",
-              "options": [
-                "Avval savol va undagi asosiy mezonlarni (shaxs toifasi, muddat, shartlar) o'qib, so'ng jadvaldan aynan shu joyni qidirish",
-                "Avval butun matn va jadvaldagi har bir so'zni boshidan oxirigacha sinchiklab tarjima qilish",
-                "Faqat sahifadagi rasmlarga qarab taxminiy javobni belgilash",
-                "Savolni o'qimasdan turib faqat eng oxirgi qatordagi raqamlarni solishtirish"
-              ],
+              "question": "【市民[しみん]プール 案内[あんない]】「土日[どにち]・祝日[しゅくじつ]は 利用料[りようりょう]が 2割[わり]増[ま]しとなります。」平日の利用料が 500円の場合、日曜日の利用料はいくらですか。",
+              "options": ["600円", "520円", "700円", "400円"],
               "correctAnswerIndex": 0,
-              "explanation": "Axborot qidirishda vaqt tejash uchun avval savol talabi aniqlanadi, so'ng jadvaldan tegishli ustun va satr skaner qilinadi."
+              "explanation": "2割増し（にわりまし）: 20% qimmatlashish degani. 500円 + (500 × 0.2 = 100円) = 600円."
             },
             {
               "id": "ja-n2-u6-l3-q2",
-              "question": "E'lon va jadvallardagi 「※」 (Kome-jirushi) yoki 「（注）」 belgisi ostidagi yozuvlar nimani bildiradi?",
+              "question": "【セミナー 案内[あんない]】「定員[ていいん]（50名[めい]）に 達[たっ]し次第[しだい]、締[し]め切[き]らせていただきます。」この文の意味として正しいものはどれですか。",
               "options": [
-                "Hech qanday ahamiyatsiz bosmaxona xatolarini",
-                "Muhim istisnolar, qo'shimcha to'lov shartlari yoki maxsus eslatmalarni",
-                "Faqat kitob muallifining shaxsiy imzosini",
-                "Tadbirning keyingi yilga ko'chirilganini"
+                "50名が集まらなくても、期限が来たら締め切る",
+                "申込者が50名になった時点で、受付を終了する",
+                "50名を超えても、希望者全員が参加できる",
+                "締め切り期日までは、何名でも受け付ける"
               ],
               "correctAnswerIndex": 1,
-              "explanation": "JLPT da to'g'ri javob ko'pincha jadval ostidagi «※» yoki «注» izohlariga (istisnolarga) yashiringan bo'ladi."
+              "explanation": "「〜次第、締め切る」: Belgilangan 50 kishilik kvota toʻlishi bilan yangi arizalarni qabul qilish toʻxtatiladi."
             },
             {
               "id": "ja-n2-u6-l3-q3",
-              "question": "«Talabalar uchun 20% chegirma, biroq dam olish kunlari bu chegirma amal qilmaydi» shartida shanba kuni kelgan talaba qanday to'laydi?",
+              "question": "【配送[はいそう]案内[あんない]】「※沖縄[おきなわ]・離島[りとう]を 除[のぞ]き、全国[ぜんこく]一律[いちりつ] 送料無料[そうりょうむりょう]。」この記述から分かることは何ですか。",
               "options": [
-                "20% chegirmali narxda",
-                "To'liq (odatiy) narxda",
-                "Tekin (0 yen)",
-                "50% chegirmada"
+                "日本全国どこでも絶対に無料である",
+                "離島のみ送料無料で、本州は有料である",
+                "沖縄や離島へ送る場合は、別途送料がかかる",
+                "海外への発送も一律無料である"
               ],
-              "correctAnswerIndex": 1,
-              "explanation": "Istisnoga e'tibor bering: dam olish kunlari chegirma berilmaydi, demak shanba kuni to'liq to'lanadi."
+              "correctAnswerIndex": 2,
+              "explanation": "「〜を除き」: Okinava va uzoq orollardan tashqari barcha joyga bepul, yaʼni Okinavaga alohida haq toʻlanadi."
             },
             {
               "id": "ja-n2-u6-l3-q4",
-              "question": "E'londa 「定員[ていいん]に 達[たっ]し 次第[しだい]、締[し]め切[き]らせていただきます」 deb yozilgan bo'lsa, bu nima degani?",
+              "question": "【ホテル 予約[よやく]】「宿泊[しゅくはく]日[び]の 3日前[みっかまえ]までの キャンセルは 無料[むりょう]。前日[ぜんじつ]は 50%、当日[とうじつ]は 100%。」前日にキャンセルした場合、どうなりますか。",
               "options": [
-                "Belgilangan muddat kelsa ham qabul davom etadi.",
-                "Ro'yxatdan o'tganlar soni belgilangan me'yorga yetishi bilanoq qabul to'xtatiladi.",
-                "Qatnashuvchilar qancha ko'p bo'lsa, to'lov shuncha arzonlashadi.",
-                "Arizalar faqat qog'oz shaklida qabul qilinadi."
+                "料金を全額支払わなければならない",
+                "キャンセル料は一切かからない",
+                "キャンセル料として半額（50%）を支払う",
+                "宿泊料金の20%だけ返金される"
               ],
-              "correctAnswerIndex": 1,
-              "explanation": "〜次第 (shidai): belgilangan odam soni to'lishi bilanoq darhol yopiladi."
+              "correctAnswerIndex": 2,
+              "explanation": "「前日は50%」: Belgilangan kundan bir kun oldin bekor qilinganda xona narxining yarmi jarima sifatida toʻlanadi."
             }
           ]
         }
@@ -4858,41 +4557,36 @@
           "questions": [
             {
               "id": "ja-n2-u6-l4-q1",
-              "question": "「長年[ながねん]の 夢[ゆめ]が ついに 実現[じつげん]した。これまでの 弛[たゆ]まぬ 苦労[くろう]が 報[むく]われた_______。」",
-              "options": ["にすぎない", "っこない", "にほかならない", "ざるを得ない"],
-              "correctAnswerIndex": 2,
-              "explanation": "〜にほかならない: Mehnat mevasini berganidan boshqa narsa emas (aniq asosiy sababni ko'rsatadi)."
+              "question": "「長年[ながねん]の 夢[ゆめ]が ついに 実現[じつげん]した。これまでの 苦労[くろう]が 報[むく]われた結果[けっか]に （　　）。」",
+              "options": ["ほかならない", "すぎない", "限[かぎ]らない", "相違[そうい]ない"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜にほかならない: «Shubhasiz chekkan zahmatlarining samarasidir»."
             },
             {
               "id": "ja-n2-u6-l4-q2",
-              "question": "「プロの 棋士[きし]に 素人[しろうと]の 私[わたし]が _______。」 (Mutlaqo yuta olmayman, ilojsiz)",
-              "options": [
-                "勝[か]ちっこない",
-                "勝[か]ちかねない",
-                "勝[か]つにほかならない",
-                "勝[か]たざるを得ない"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "〜っこない: «Mutlaqo uddalay olmaydi / yuta olmasligi aniq» (Kachikkonai)."
+              "question": "「プロの 棋士[きし]に 素人[しろうと]の 私[わたし]が 勝[か]て（　　）よ。」",
+              "options": ["るはずだ", "っこない", "かねない", "るべきだ"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜っこない: Havaskor shaxmat ustasini yutishi mutlaqo imkonsiz."
             },
             {
               "id": "ja-n2-u6-l4-q3",
-              "question": "「新[あたら]しい 法律[ほうりつ]の 施行[しこう]に _______、全国[ぜんこく]で 説明会[せつめいかい]が 開催[かいさい]された。」",
-              "options": ["契機[けいき]に", "先立[さきだ]って", "こめて", "反[はん]して"],
-              "correctAnswerIndex": 1,
-              "explanation": "〜に先立って: Yangi qonun kuchga kirishidan OLDIN tushuntirish yig'ilishlari o'tkazildi."
+              "question": "「新[あたら]しい 法律[ほうりつ]の 施行[しこう]に （　　）、全国[ぜんこく]で 説明会[せつめいかい]が 開催[かいさい]された。」",
+              "options": ["応[おう]じて", "基[もと]づいて", "先立[さきだ]って", "通[つう]じて"],
+              "correctAnswerIndex": 2,
+              "explanation": "〜に先立って: Qonun kuchga kirishidan avval tushuntirish yigʻilishlari oʻtkazildi."
             },
             {
               "id": "ja-n2-u6-l4-q4",
-              "question": "「お忙[いそが]しい ところ 誠[まこと]に 恐[おそ]れ入[い]りますが、ご査収[さしゅう]の ほど よろしく _______。」",
+              "question": "「お忙[いそが]しい ところ 誠[まこと]に 恐[おそ]れ入[い]りますが、ご査収[さしゅう]の ほど よろしく （　　）。」",
               "options": [
+                "お願[ねが]いなさいます",
+                "申[もう]し上[あ]げます",
                 "存[ぞん]じます",
-                "お願[ねが]い いただきます",
-                "申[もう]し伝[つた]えます",
-                "お願[ねが]い 申[もう]し上[あ]げます"
+                "お願[ねが]い申[もう]し上[あ]げます"
               ],
               "correctAnswerIndex": 3,
-              "explanation": "Rasmiy biznes xatlarida eng oliy ehtiromli yakun: よろしくお願い申し上げます (yoroshiku onegai moushiagemasu)."
+              "explanation": "Xat yakunida tekshirib qabul qilib olishni iltimos qilish: 「よろしくお願い申し上げます」."
             }
           ]
         }
@@ -5024,51 +4718,41 @@
           "questions": [
             {
               "id": "ja-n2-u6-l5-q1",
-              "question": "「毎日[まいにち]の 継続[けいぞく]した 学習[がくしゅう]によって、語学力[ごがくりょく]が _______ 向上[こうじょう]した。」",
+              "question": "「毎日[まいにち]の 継続[けいぞく]した 学習[がくしゅう]によって、語学力[ごがくりょく]が （　　） 向上[こうじょう]した。」",
               "options": [
+                "着実[ちゃくじつ]に",
                 "曖昧[あいまい]に",
-                "飛躍[ひやく]的[てき]に",
-                "安易[あんい]に",
-                "漠然[ばくぜん]と"
+                "急激[きゅうげき]に",
+                "慎重[しんちょう]に"
               ],
-              "correctAnswerIndex": 1,
-              "explanation": "«飛躍的（ひやくてき）に向上した» — mislsiz darajada, sakrashdek ulkan hajmda yuksaldi/o'sdi."
+              "correctAnswerIndex": 0,
+              "explanation": "着実に（ちゃくじつに）: Qadamma-qadam, mustahkam tarzda oʻsish («barqaror yuksaldi»)."
             },
             {
               "id": "ja-n2-u6-l5-q2",
-              "question": "「未知[みち]の 分野[ぶんや]に 対[たい]する _______ を 失[うしな]わずに、常[つね]に 新[あたら]しい 知識[ちしき]を 吸収[きゅうしゅう]する。」",
-              "options": [
-                "探求[たんきゅう]心",
-                "違和感[いわかん]",
-                "妥協[だきょう]",
-                "嫌悪感[けんおかん]"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "«探求心（たんきゅうしん）を失わずに» — izlanuvchanlik va yangi bilimlarga intilish tuyg'usini yo'qotmagan holda."
+              "question": "「未知[みち]の 分野[ぶんや]に 対[たい]する （　　）を 失[うしな]わずに、常[つね]に 新[あたら]しい 知識[ちしき]を 吸収[きゅうしゅう]する。」",
+              "options": ["妥協[だきょう]", "好奇心[こうきしん]", "損害[そんがい]", "義務[ぎむ]"],
+              "correctAnswerIndex": 1,
+              "explanation": "好奇心（こうきしん）: Qiziquvchanlik, yangi bilimga intilish tuygʻusi."
             },
             {
               "id": "ja-n2-u6-l5-q3",
-              "question": "「彼[かれ]の 成功[せいこう]は、単[たん]なる 運[うん]などではなく、日頃[ひごろ]の 努力[どりょく]の _______。」",
-              "options": [
-                "理由[りゆう]にすぎない",
-                "結果[けっか]にほかならない",
-                "原因[げんいん]にちがいない",
-                "証拠[しょうこ]にすぎない"
-              ],
-              "correctAnswerIndex": 1,
-              "explanation": "Kekka ni hokanaranai — aynan kundalik to'xtovsiz mehnat natijasidan boshqa narsa emas."
+              "question": "「彼[かれ]の 成功[せいこう]は、単[たん]なる 運[うん]などではなく、日頃[ひごろ]の 努力[どりょく]の （　　）。」",
+              "options": ["せいにちがいない", "あまりだ", "たまものにほかならない", "あげくだ"],
+              "correctAnswerIndex": 2,
+              "explanation": "〜の賜物（たまもの）にほかならない: Aynan doimiy saʼy-harakatning mevasidir."
             },
             {
               "id": "ja-n2-u6-l5-q4",
-              "question": "「いくら 謝[あやま]られたところで、今回[こんかい]の 損害[そんがい]は _______。」 (Kechirim so'ragan bilan ish bitmaydi)",
+              "question": "「いくら 謝[あやま]られたところで、今回[こんかい]の 損害[そんがい]は （　　）。」",
               "options": [
-                "許[ゆる]すにすぎない",
-                "許[ゆる]しかねない",
-                "許[ゆる]せるわけがない",
-                "許[ゆる]すっこない"
+                "償[つぐな]いかねる",
+                "償[つぐな]うっこない",
+                "償[つぐな]いかねない",
+                "償[つぐな]いきれるものではない"
               ],
-              "correctAnswerIndex": 2,
-              "explanation": "〜わけがない: «Aslo mumkin emas / aslo kechirib bo'lmaydi» (Yuruseru wake ga nai)."
+              "correctAnswerIndex": 3,
+              "explanation": "〜きれるものではない: Qanchalik uzr soʻralmasin, yetkazilgan talafotni shunchaki qoplab boʻlmaydi."
             }
           ]
         }
