@@ -50,6 +50,7 @@ import {
   SectionKey,
 } from '../utils/jlptExamTiming';
 import { resolveAudioUrl } from '../utils/audioUrl';
+import { speakJapaneseText, stopAllAudio } from '../utils/audioTts';
 
 const DRAFT_EXAM_STORAGE_KEY = 'jlpt_mock_exam_draft_v1';
 
@@ -151,6 +152,7 @@ export const JlptMockExamPage: React.FC = () => {
 
   // Audio Playback
   const [isPlaying, setIsPlaying] = useState(false);
+  const [playingAudioId, setPlayingAudioId] = useState<number | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // AI Diagnostic Report State
@@ -164,6 +166,30 @@ export const JlptMockExamPage: React.FC = () => {
   const knowledgeQuestions = levelQuestions.filter((q) => q.section === 'knowledge');
   const readingQuestions = levelQuestions.filter((q) => q.section === 'reading');
   const listeningQuestions = levelQuestions.filter((q) => q.section === 'listening');
+
+  // Audio cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+      stopAllAudio();
+    };
+  }, []);
+
+  // Background audio preloading when activeSection is 'listening'
+  useEffect(() => {
+    if (step === 'exam' && activeSection === 'listening') {
+      listeningQuestions.forEach((q) => {
+        if (q.audioUrl && !q.audioUrl.includes('soundhelix.com')) {
+          const preAudio = new Audio();
+          preAudio.preload = 'auto';
+          preAudio.src = resolveAudioUrl(q.audioUrl);
+        }
+      });
+    }
+  }, [step, activeSection, listeningQuestions]);
 
   // Timer Effect (handles both official sectioned timer and practice single timer)
   useEffect(() => {
@@ -188,7 +214,9 @@ export const JlptMockExamPage: React.FC = () => {
 
   const handleSectionTimeExpired = () => {
     if (audioRef.current) audioRef.current.pause();
+    stopAllAudio();
     setIsPlaying(false);
+    setPlayingAudioId(null);
 
     const nextSec = getNextSectionKey(level, activeSection);
     if (nextSec) {
@@ -228,7 +256,9 @@ export const JlptMockExamPage: React.FC = () => {
   const handleConfirmAdvanceSection = () => {
     setShowSectionTransitionModal(false);
     if (audioRef.current) audioRef.current.pause();
+    stopAllAudio();
     setIsPlaying(false);
+    setPlayingAudioId(null);
 
     const nextSec = getNextSectionKey(level, activeSection);
     if (nextSec) {
@@ -421,16 +451,24 @@ export const JlptMockExamPage: React.FC = () => {
     setUserAnswers((prev) => ({ ...prev, [qId]: optionIdx }));
   };
 
-  // Listening Audio with Native Audio Player (NO synthetic TTS fallback)
-  const handlePlayAudio = (url?: string, _script?: string) => {
-    if (isPlaying) {
+  // Listening Audio with Native Audio Player and Seamless Fallback
+  const handlePlayAudio = (qId: number, url?: string, _script?: string) => {
+    if (isPlaying && playingAudioId === qId) {
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
       }
+      stopAllAudio();
       setIsPlaying(false);
+      setPlayingAudioId(null);
       return;
     }
+
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current = null;
+    }
+    stopAllAudio();
 
     if (url && url.trim() !== '' && !url.includes('soundhelix.com')) {
       try {
@@ -440,34 +478,67 @@ export const JlptMockExamPage: React.FC = () => {
           .play()
           .then(() => {
             setIsPlaying(true);
+            setPlayingAudioId(qId);
           })
           .catch((err) => {
-            console.warn('Audio play failed:', err);
+            if (err?.name === 'AbortError') return;
+            console.warn('Audio play failed, falling back to speech synthesis:', err);
+            if (_script && _script.trim()) {
+              setIsPlaying(true);
+              setPlayingAudioId(qId);
+              speakJapaneseText(_script);
+              toast({
+                title: 'AI Ovozli Fallback',
+                description: 'Audio trek yuklanmadi, matn sinxron o‘qib berilmoqda.',
+              });
+            } else {
+              setIsPlaying(false);
+              setPlayingAudioId(null);
+              toast({
+                title: 'Audio xatosi',
+                description: 'Ushbu audio trekni ijro etib bo‘lmadi.',
+                variant: 'destructive',
+              });
+            }
+          });
+        audio.onended = () => {
+          setIsPlaying(false);
+          setPlayingAudioId(null);
+        };
+        audio.onerror = () => {
+          console.warn('Audio load error, falling back to speech synthesis');
+          if (_script && _script.trim()) {
+            setIsPlaying(true);
+            setPlayingAudioId(qId);
+            speakJapaneseText(_script);
+            toast({
+              title: 'AI Ovozli Fallback',
+              description: 'Audio trek yuklanmadi, matn sinxron o‘qib berilmoqda.',
+            });
+          } else {
             setIsPlaying(false);
+            setPlayingAudioId(null);
             toast({
               title: 'Audio xatosi',
-              description: 'Ushbu audio trekni ijro etib bo‘lmadi.',
+              description: 'Audio trekni yuklab bo‘lmadi.',
               variant: 'destructive',
             });
-          });
-        audio.onended = () => setIsPlaying(false);
-        audio.onerror = () => {
-          setIsPlaying(false);
-          toast({
-            title: 'Audio xatosi',
-            description: 'Audio trekni yuklab bo‘lmadi.',
-            variant: 'destructive',
-          });
+          }
         };
       } catch {
         setIsPlaying(false);
+        setPlayingAudioId(null);
       }
+    } else if (_script && _script.trim()) {
+      setIsPlaying(true);
+      setPlayingAudioId(qId);
+      speakJapaneseText(_script);
     } else {
       setIsPlaying(false);
+      setPlayingAudioId(null);
       toast({
         title: 'Audio mavjud emas',
-        description:
-          'Ushbu savol uchun haqiqiy studiya audiosi biriktirilmagan. Sun’iy TTS ovozi ishlatilmaydi.',
+        description: 'Ushbu savol uchun audio yoki skript topilmadi.',
       });
     }
   };
@@ -475,11 +546,11 @@ export const JlptMockExamPage: React.FC = () => {
   const handleSubmitExam = async () => {
     if (audioRef.current) {
       audioRef.current.pause();
+      audioRef.current = null;
     }
-    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-    }
+    stopAllAudio();
     setIsPlaying(false);
+    setPlayingAudioId(null);
     setIsTimerRunning(false);
     try {
       if (typeof localStorage !== 'undefined') {
@@ -664,6 +735,7 @@ export const JlptMockExamPage: React.FC = () => {
         <button
           onClick={() => {
             if (audioRef.current) audioRef.current.pause();
+            stopAllAudio();
             navigate('/jlpt');
           }}
           className="rounded-xl border border-border p-2.5 text-muted-foreground transition-all hover:bg-muted hover:text-foreground"
@@ -1316,12 +1388,22 @@ export const JlptMockExamPage: React.FC = () => {
                         />
                         <span>{flaggedQuestions.has(q.id) ? 'Belgilandi ⭐' : 'Belgilash'}</span>
                       </button>
-                      <button
-                        onClick={() => handlePlayAudio(q.audioUrl, q.script)}
-                        className="flex cursor-pointer items-center gap-1.5 rounded-xl bg-rose-500 px-3 py-1.5 text-xs font-extrabold text-white shadow transition-all hover:bg-rose-600"
-                      >
-                        <Volume2 size={15} /> {isPlaying ? "Audio to'xtatish" : 'Audio eshitish'} 🎧
-                      </button>
+                      {(() => {
+                        const isThisPlaying = isPlaying && playingAudioId === q.id;
+                        return (
+                          <button
+                            onClick={() => handlePlayAudio(q.id, q.audioUrl, q.script)}
+                            className={`flex cursor-pointer items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-extrabold text-white shadow transition-all ${
+                              isThisPlaying
+                                ? 'animate-pulse bg-amber-600 hover:bg-amber-700'
+                                : 'bg-rose-500 hover:bg-rose-600'
+                            }`}
+                          >
+                            <Volume2 size={15} />{' '}
+                            {isThisPlaying ? "Audio to'xtatish" : 'Audio eshitish'} 🎧
+                          </button>
+                        );
+                      })()}
                     </div>
                   </div>
 
