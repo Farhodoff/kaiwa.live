@@ -3377,12 +3377,17 @@
             },
             {
               "id": "ja-n2-u4-l5-q2",
-              "question": "経営者が成功の決定的要因として挙げているのは何ですか？",
-              "audioUrl": "/audio/choukai/n2/Track03.mp3",
-              "audioTitle": "N2 Track 03 — Biznes muvaffaqiyati",
-              "options": ["広告費", "低価格", "迅速で徹底したアフターフォロー", "完全無人対応"],
-              "correctAnswerIndex": 2,
-              "explanation": "Mijoz shikoyatlariga tezkor va bevosita munosabat bildirish hal qiluvchi omil bo‘lgan."
+              "question": "男の人は、新しい企画を進める上でまず何をすべきだと考えていますか？",
+              "audioUrl": "/audio/choukai/n2/Track04.mp3",
+              "audioTitle": "N2 Track 04 — Jamoaviy loyihada kelishuv",
+              "options": [
+                "他の部署と意見交換を行う",
+                "直ちに予算の承認を申請する",
+                "アンケートの項目を削る",
+                "広報用のポスターを作成する"
+              ],
+              "correctAnswerIndex": 0,
+              "explanation": "Yig'ilishda erkak kishi loyihani boshlashdan oldin boshqa bo'limlar bilan fikr almashish va hamkorlikni yo'lga qo'yish zarurligini ta'kidlaydi."
             },
             {
               "id": "ja-n2-u4-l5-q3",
@@ -5019,17 +5024,27 @@
           "questions": [
             {
               "id": "ja-n2-u6-l5-q1",
-              "question": "「事故[じこ]の 原因[げんいん]を 究明[きゅうめい]せざるを _______。」",
-              "options": ["かねない", "得[え]ない", "いかない", "ならない"],
+              "question": "「毎日[まいにち]の 継続[けいぞく]した 学習[がくしゅう]によって、語学力[ごがくりょく]が _______ 向上[こうじょう]した。」",
+              "options": [
+                "曖昧[あいまい]に",
+                "飛躍[ひやく]的[てき]に",
+                "安易[あんい]に",
+                "漠然[ばくぜん]と"
+              ],
               "correctAnswerIndex": 1,
-              "explanation": "Kyuumei sezaru o enai (oydinlashtirishdan o'zga chora yo'q)."
+              "explanation": "«飛躍的（ひやくてき）に向上した» — mislsiz darajada, sakrashdek ulkan hajmda yuksaldi/o'sdi."
             },
             {
               "id": "ja-n2-u6-l5-q2",
-              "question": "「景気[けいき]の 変動[へんどう]に _______、生産[せいさん]計画[けいかく]を 柔軟[じゅうなん]に 変更[へんこう]する。」",
-              "options": ["対[たい]して", "とって", "伴[ともな]って / 応[おう]じて", "ついて"],
-              "correctAnswerIndex": 2,
-              "explanation": "Tomonatte / Oujite (mos ravishda / mutanosib holda)."
+              "question": "「未知[みち]の 分野[ぶんや]に 対[たい]する _______ を 失[うしな]わずに、常[つね]に 新[あたら]しい 知識[ちしき]を 吸収[きゅうしゅう]する。」",
+              "options": [
+                "探求[たんきゅう]心",
+                "違和感[いわかん]",
+                "妥協[だきょう]",
+                "嫌悪感[けんおかん]"
+              ],
+              "correctAnswerIndex": 0,
+              "explanation": "«探求心（たんきゅうしん）を失わずに» — izlanuvchanlik va yangi bilimlarga intilish tuyg'usini yo'qotmagan holda."
             },
             {
               "id": "ja-n2-u6-l5-q3",

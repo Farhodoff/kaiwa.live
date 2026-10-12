@@ -67,7 +67,7 @@ describe('LessonPlayerPage', () => {
     expect(screen.getAllByText(/Perseverance/i).length).toBeGreaterThan(0);
   });
 
-  it('navigates from Learn to Practice step and enables checking answers', async () => {
+  it('navigates from Learn to Practice step and enables seamless answer selection and review', async () => {
     render(
       <MemoryRouter initialEntries={['/lesson/ja-n3-u1-l1']}>
         <Routes>
@@ -83,14 +83,24 @@ describe('LessonPlayerPage', () => {
     // Now in Practice step (real curriculum content)
     expect(screen.getByText(/To'g'ri majhul nisbat shaklini tanlang/i)).toBeInTheDocument();
 
-    // Select the first (correct) option
+    // Select the first option for Exercise 1
     const optionA = screen.getByText(/誰/);
     fireEvent.click(optionA);
 
-    const checkBtn = screen.getByRole('button', { name: /Javobni Tekshirish/i });
-    fireEvent.click(checkBtn);
+    // Advance to Exercise 2 via Davom etish button
+    const continueBtn = screen.getByRole('button', { name: /Davom etish/i });
+    fireEvent.click(continueBtn);
 
-    expect(screen.getByText(/To'g'ri javob!/i)).toBeInTheDocument();
+    // Select option for Exercise 2
+    const optButtons = screen.getAllByRole('button').filter((b) => b.textContent?.includes('A'));
+    expect(optButtons.length).toBeGreaterThan(0);
+    fireEvent.click(optButtons[0]);
+
+    // Click Natijalarni Ko'rish
+    const finishBtn = screen.getByRole('button', { name: /Natijalarni Ko'rish/i });
+    fireEvent.click(finishBtn);
+
+    expect(screen.getByText(/Mashqlar Tahlili va To'g'ri Javoblar/i)).toBeInTheDocument();
   });
 
   it('displays error UI when invalid lessonId is provided', () => {
