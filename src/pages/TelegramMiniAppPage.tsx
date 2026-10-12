@@ -79,7 +79,7 @@ export const TelegramMiniAppPage: React.FC = () => {
       icon: BookOpen,
       color: 'from-blue-500 to-indigo-600',
       badge: targetLevel,
-      route: '/curriculum',
+      route: '/jlpt?tab=lessons',
     },
     {
       id: 'flashcards',
@@ -88,7 +88,7 @@ export const TelegramMiniAppPage: React.FC = () => {
       icon: Layers,
       color: 'from-amber-500 to-orange-600',
       badge: '5 daq',
-      route: '/decks',
+      route: '/flashcards',
     },
     {
       id: 'speaking',

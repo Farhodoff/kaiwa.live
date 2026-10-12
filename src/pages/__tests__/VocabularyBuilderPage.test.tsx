@@ -44,24 +44,24 @@ describe('VocabularyBuilderPage Component', () => {
 
     expect(screen.getByText(/Smart Vocabulary Builder/i)).toBeInTheDocument();
     expect(screen.getByPlaceholderText(/So'z kiritib Enter bosing/i)).toBeInTheDocument();
-    expect(screen.getByText('paramount (C1)')).toBeInTheDocument();
+    expect(screen.getByText('勉強 (N5)')).toBeInTheDocument();
   });
 
   it('performs AI search when sample button is clicked', async () => {
     const mockResponse = JSON.stringify({
-      word: 'paramount',
-      language: 'en',
-      phonetic: '/ˈpær.ə.maʊnt/',
-      level: 'C1',
-      partOfSpeech: 'adjective',
-      uzbekTranslation: 'eng muhim, asosiy',
-      definition: 'More important than anything else.',
-      synonyms: ['supreme', 'chief'],
-      collocations: ['paramount importance'],
+      word: '約束',
+      language: 'ja',
+      phonetic: 'やくそく (yakusoku)',
+      level: 'N4',
+      partOfSpeech: 'noun / suru-verb',
+      uzbekTranslation: "va'da, kelishuv",
+      definition: 'Kelajakda bajarishga berilgan so‘z yoki ahd.',
+      synonyms: ['契り', '契機'],
+      collocations: ['約束を守る'],
       examples: [
         {
-          sentence: 'Health is of paramount importance.',
-          translation: 'Salomatlik eng muhim ahamiyatga ega.',
+          sentence: '友達と約束を守りました。',
+          translation: 'Do‘stim bilan bergan va’dani bajardim.',
         },
       ],
     });
@@ -72,16 +72,16 @@ describe('VocabularyBuilderPage Component', () => {
       render(<VocabularyBuilderPage />);
     });
 
-    const sampleBtn = screen.getByText('paramount (C1)');
+    const sampleBtn = screen.getByText('約束 (N4)');
     await act(async () => {
       fireEvent.click(sampleBtn);
     });
 
     await waitFor(() => {
-      expect(screen.getByText(/eng muhim, asosiy/i)).toBeInTheDocument();
+      expect(screen.getByText(/va'da, kelishuv/i)).toBeInTheDocument();
     });
 
-    expect(screen.getByText(/Health is of paramount importance/i)).toBeInTheDocument();
+    expect(screen.getByText(/友達と約束を守りました。/i)).toBeInTheDocument();
   });
 
   it("creates flashcard when Fleshkartalarga Qo'shish button is clicked", async () => {

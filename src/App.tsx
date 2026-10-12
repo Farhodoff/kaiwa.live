@@ -333,6 +333,10 @@ const App: React.FC = () => {
                       <Route path="minna" element={<Navigate to="/jlpt?tab=lessons" replace />} />
                       <Route path="lessons" element={<Navigate to="/jlpt?tab=lessons" replace />} />
                       <Route
+                        path="curriculum"
+                        element={<Navigate to="/jlpt?tab=lessons" replace />}
+                      />
+                      <Route
                         path="jlpt/lessons"
                         element={<Navigate to="/jlpt?tab=lessons" replace />}
                       />

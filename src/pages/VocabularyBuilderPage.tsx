@@ -146,24 +146,15 @@ export const VocabularyBuilderPage: React.FC = () => {
   const [history, setHistory] = useState<VocabWordDetails[]>(() => [BUILTIN_VOCAB_DB['維持']]);
   const [savedWords, setSavedWords] = useState<VocabWordDetails[]>([]);
 
-  const SAMPLE_WORDS =
-    !isSuper || primaryLanguage === 'ja'
-      ? [
-          { label: '勉強 (N5)', query: '勉強' },
-          { label: '維持 (N2)', query: '維持' },
-          { label: '習慣 (N3)', query: '習慣' },
-          { label: '挑戦 (N2)', query: '挑戦' },
-          { label: '継続 (N1)', query: '継続' },
-          { label: '成長 (N3)', query: '成長' },
-        ]
-      : [
-          { label: 'paramount (C1)', query: 'paramount' },
-          { label: 'ubiquitous (C2)', query: 'ubiquitous' },
-          { label: 'resilient (B2)', query: 'resilient' },
-          { label: 'pragmatic (C1)', query: 'pragmatic' },
-          { label: 'perseverance (C1)', query: 'perseverance' },
-          { label: 'meticulous (C2)', query: 'meticulous' },
-        ];
+  const SAMPLE_WORDS = [
+    { label: '勉強 (N5)', query: '勉強' },
+    { label: '約束 (N4)', query: '約束' },
+    { label: '習慣 (N3)', query: '習慣' },
+    { label: '維持 (N2)', query: '維持' },
+    { label: '挑戦 (N2)', query: '挑戦' },
+    { label: '継続 (N1)', query: '継続' },
+    { label: '妥協 (N1)', query: '妥協' },
+  ];
 
   useEffect(() => {
     // Load from localStorage as fallback
