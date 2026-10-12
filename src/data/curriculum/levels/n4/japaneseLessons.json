@@ -243,51 +243,31 @@
           "questions": [
             {
               "id": "ja-n4-u1-l2-q1",
-              "question": "«Iltimos, biroz kuting» jumlasi qaysi?",
-              "options": [
-                "少[すこ]し 待[ま]ちます",
-                "待[ま]ちましょう",
-                "少[すこ]し 待[ま]って ください",
-                "待[ま]たないで"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Matte kudasai."
+              "question": "「すみませんが、少[すこ]し （　　）ください。」",
+              "options": ["待[ま]って", "待[ま]ち", "待[ま]つ", "待[ま]たない"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜てください: Iltimos shaklida feʼlning te-shakli qoʻllaniladi: 「待ってください」."
             },
             {
               "id": "ja-n4-u1-l2-q2",
-              "question": "「ゆっくり 話[はな]して ください」ning ma'nosi:",
-              "options": [
-                "Iltimos, sekinroq gapiring",
-                "Yozing",
-                "Gapirmang",
-                "Iltimos, tezroq gapiring"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Sekinroq gapiring."
+              "question": "「受付[うけつけ]で パスポートを （　　）ください。」",
+              "options": ["見[み]せる", "見[み]せて", "見[み]せます", "見[み]せた"],
+              "correctAnswerIndex": 1,
+              "explanation": "Koʻrsating deb iltimos qilganda: 「見せてください」."
             },
             {
               "id": "ja-n4-u1-l2-q3",
-              "question": "«Iltimos, pasportingizni ko'rsating»:",
-              "options": [
-                "パスポートが あります",
-                "パスポートを 出[で]ます",
-                "パスポートを 見[み]ます",
-                "パスポートを 見[み]せて ください"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Misete kudasai."
+              "question": "「ここにお名前[なまえ]と ご住所[じゅうしょ]を （　　）ください。」",
+              "options": ["書[か]き", "書[か]く", "書[か]いて", "書[か]かない"],
+              "correctAnswerIndex": 2,
+              "explanation": "Yozish iltimosi: 「書いてください」."
             },
             {
               "id": "ja-n4-u1-l2-q4",
-              "question": "Rasmiy kishilarga buyruq bermaslik uchun «kudasai» o'rniga yanada muloyimroq qaysi ibora ishlatiladi?",
-              "options": [
-                "〜てくれ",
-                "〜ろ",
-                "〜て いただけませんか / お願[ねが]いできますか",
-                "〜ます"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "〜te itadakemasen ka."
+              "question": "「お荷物[にもつ]が 重[おも]そうですね。お持[も]ち（　　）か。」",
+              "options": ["します", "したい", "でした", "しましょう"],
+              "correctAnswerIndex": 3,
+              "explanation": "Birovga yordam taklif qilganda muloyim ibora: 「お持ちしましょうか」."
             }
           ]
         }
@@ -405,41 +385,31 @@
           "questions": [
             {
               "id": "ja-n4-u1-l3-q1",
-              "question": "«Bu yerda mashina to'xtatish taqiqlanadi» jumlasi qaysi?",
-              "options": [
-                "ここに 車[くるま]を 止[と]めては いけません",
-                "ここに 車[くるま]を 止[と]めても いいです",
-                "車[くるま]が あります",
-                "車[くるま]を 止[と]めます"
-              ],
+              "question": "「ここで 車[くるま]を （　　）は いけません。」",
+              "options": ["止[と]めて", "止[と]め", "止[と]める", "止[と]めない"],
               "correctAnswerIndex": 0,
-              "explanation": "Tomete wa ikemasen (taqiq)."
+              "explanation": "〜てはいけません: Qatʼiyan taqiqlash («mashina toʻxtatish taqiqlanadi»)."
             },
             {
               "id": "ja-n4-u1-l3-q2",
-              "question": "「テレビを 見[み]ても いいですか」— «はい、_______。»",
-              "options": ["見[み]てください", "いいですよ", "いけません", "見[み]ませんでした"],
+              "question": "「試験[しけん]の とき、辞書[じしょ]を （　　）は いけません。」",
+              "options": ["使[つか]う", "使[つか]って", "使[つか]い", "使[つか]わない"],
               "correctAnswerIndex": 1,
-              "explanation": "Ii desu yo."
+              "explanation": "Imtihon paytida lugʻatdan foydalanish taqiqlanadi: 「使ってはいけません」."
             },
             {
               "id": "ja-n4-u1-l3-q3",
-              "question": "«Imtihon paytida lug'atdan foydalanish mumkin emas»:",
-              "options": [
-                "辞書[じしょ]を 使[つか]います",
-                "辞書[じしょ]です",
-                "試験[しけん]中[ちゅう] 辞書[じしょ]を 使[つか]っては いけません",
-                "辞書[じしょ]を 使[つか]っても いいです"
-              ],
+              "question": "A: 「写真[しゃしん]を （　　）も いいですか。」\nB: 「ええ、どうぞ。」",
+              "options": ["撮[と]る", "撮[と]り", "撮[と]って", "撮[と]った"],
               "correctAnswerIndex": 2,
-              "explanation": "Tsukatte wa ikemasen."
+              "explanation": "〜てもいいですか: Ruxsat soʻrash formasi: 「撮ってもいいですか」."
             },
             {
               "id": "ja-n4-u1-l3-q4",
-              "question": "「てはいけません」dagi «は» qanday talaffuz qilinadi?",
-              "options": ["Ha", "E", "He", "Wa"],
+              "question": "「美術館[びじゅつかん]の 中[なか]では 大声[おおごえ]で （　　）は いけません。」",
+              "options": ["話[はな]す", "話[はな]し", "話[はな]した", "話[はな]して"],
               "correctAnswerIndex": 3,
-              "explanation": "Yuklama sifatida «wa» o'qiladi."
+              "explanation": "Baland ovozda gaplashish taqiqlanadi: 「話してはいけません」."
             }
           ]
         }
@@ -556,51 +526,36 @@
           "questions": [
             {
               "id": "ja-n4-u1-l4-q1",
-              "question": "«Toshkentda yashayman» to'g'ri yaponcha jumlasi qaysi?",
-              "options": [
-                "タシケントで 住[す]む",
-                "タシケントへ 住[す]みました",
-                "タシケントに 住[す]みます",
-                "タシケントに 住[す]んでいます"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Ni sunde imasu."
+              "question": "「私[わたし]は 今[いま] タシケントに （　　）います。」",
+              "options": ["住[す]んで", "住[す]み", "住[す]む", "住[す]んだ"],
+              "correctAnswerIndex": 0,
+              "explanation": "Yashash davomiy holat boʻlgani uchun: 「住んでいます」."
             },
             {
               "id": "ja-n4-u1-l4-q2",
-              "question": "「今[いま]、何[なに]を していますか」ning ma'nosi:",
+              "question": "A: 「田中[たなか]さんは （　　）いますか。」\nB: 「はい、2年[にねん]前[まえ]に 結婚[けっこん]しました。」",
               "options": [
-                "Ertaga nima qilasiz?",
-                "Kecha nima qildingiz?",
-                "Hozir nima qilyapsiz?",
-                "Qayerdasiz?"
+                "結婚[けっこん]し",
+                "結婚[けっこん]して",
+                "結婚[けっこん]する",
+                "結婚[けっこん]した"
               ],
-              "correctAnswerIndex": 2,
-              "explanation": "Hozir nima qilyapsiz?"
+              "correctAnswerIndex": 1,
+              "explanation": "Oilaviy holat natijaviy holat (resultant state) sifatida 「〜ている」 bilan ifodalanadi: 「結婚しています」."
             },
             {
               "id": "ja-n4-u1-l4-q3",
-              "question": "«Uylanganman / Turmush qurganman» qanday aytiladi?",
-              "options": [
-                "結婚[けっこん]します",
-                "結婚[けっこん]しています",
-                "結婚[けっこん]",
-                "結婚[けっこん]でした"
-              ],
-              "correctAnswerIndex": 1,
-              "explanation": "Kekkon shite imasu."
+              "question": "「弟[おとうと]は 部屋[へや]で ゲームを （　　）います。」",
+              "options": ["し", "する", "して", "した"],
+              "correctAnswerIndex": 2,
+              "explanation": "Ayni paytda davom etayotgan harakat: 「しています」."
             },
             {
               "id": "ja-n4-u1-l4-q4",
-              "question": "「ドアが 開[あ]いています」nimani bildiradi?",
-              "options": [
-                "Eshik ochiq turibdi",
-                "Eshik yopiq",
-                "Eshik buzilgan",
-                "Eshikni kimdir ochyapti"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Eshik ochiq holatda turibdi."
+              "question": "「山田[やまだ]さんは 眼鏡[めがね]を （　　）います。」",
+              "options": ["かけ", "かける", "かけた", "かけて"],
+              "correctAnswerIndex": 3,
+              "explanation": "Koʻzoynak taqib yurgan holat: 「眼鏡をかけています」."
             }
           ]
         }
@@ -713,51 +668,31 @@
           "questions": [
             {
               "id": "ja-n4-u1-l5-q1",
-              "question": "«Pulni kiritgandan so'ng tugmani bosing» jumlasi qaysi?",
-              "options": [
-                "お金[かね]が あります",
-                "ボタンを 押[お]してから お金[かね]",
-                "お金[かね]を 入[い]れてから、ボタンを 押[お]してください",
-                "お金[かね]を 入[い]れます ボタン"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Irete kara, botan o oshite kudasai."
+              "question": "「お金[かね]を （　　）から、ボタンを 押[お]してください。」",
+              "options": ["入[い]れて", "入[い]れ", "入[い]れる", "入[い]れた"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜てから: «A ni qilgandan keyin / qilib boʻlgach»: 「入れてから」."
             },
             {
               "id": "ja-n4-u1-l5-q2",
-              "question": "「〜てから」va «〜から (sabab)» farqi nima?",
-              "options": [
-                "Farqi yo'q",
-                "Ikkisi ham taqiq",
-                "Birinchisi savol bildiradi",
-                "Fe'lning て-shakli + から = ketma-ketlik (\"qilgach\"); Darak gap + から = sabab (\"chunki\")"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Te-form + kara = ketma-ketlik."
+              "question": "「ごはんを （　　） あとで、この 薬[くすり]を 飲[の]んでください。」",
+              "options": ["食[た]べる", "食[た]べた", "食[た]べて", "食[た]べ"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜たあとで: Feʼlning oʻtgan zamon shakli bilan qoʻllaniladi: 「食べたあとで」."
             },
             {
               "id": "ja-n4-u1-l5-q3",
-              "question": "「家[うち]へ 帰[かえ]ってから、何[なに]を しますか」ning ma'nosi:",
-              "options": [
-                "Uyga qaytgach nima qilasiz?",
-                "Uyda kim bor?",
-                "Uyga qachon borasiz?",
-                "Uyga qaytmang"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Uyga qaytgach nima qilasiz?"
+              "question": "「手[て]を （　　）から、食事[しょくじ]を 始[はじ]めましょう。」",
+              "options": ["洗[あら]う", "洗[あら]い", "洗[あら]って", "洗[あら]った"],
+              "correctAnswerIndex": 2,
+              "explanation": "Qoʻlni yuvgach: 「洗ってから」."
             },
             {
               "id": "ja-n4-u1-l5-q4",
-              "question": "«Ta-form + あとで (ato de)» ham qaysi ma'noda keladi?",
-              "options": [
-                "... qilmasdan oldin",
-                "... qilgisi kelganda",
-                "... qilgandan so'ng",
-                "... qilayotgan paytda"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "After doing (qilgandan keyin)."
+              "question": "「仕事[しごと]が （　　） あとで、飲[の]みに 行[い]きませんか。」",
+              "options": ["終[お]わる", "終[お]わり", "終[お]わって", "終[お]わった"],
+              "correctAnswerIndex": 3,
+              "explanation": "Ish tugaganidan soʻng: 「終わったあとで」."
             }
           ]
         }
@@ -874,36 +809,31 @@
           "questions": [
             {
               "id": "ja-n4-u2-l1-q1",
-              "question": "「話[はな]します (gapirmoq)」fe'lining ない-shakli qaysi?",
-              "options": ["話[はな]わらい", "話[はな]さない", "話[はな]しない", "話[はな]せない"],
-              "correctAnswerIndex": 1,
-              "explanation": "Hanasanai."
+              "question": "「危[あぶ]ないですから、ここに （　　）で ください。」",
+              "options": ["入[はい]らない", "入[はい]る", "入[はい]って", "入[はい]り"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜ないでください: Feʼlning nai-formasi qoʻyiladi: 「入らないでください」."
             },
             {
               "id": "ja-n4-u2-l1-q2",
-              "question": "「来[き]ます (kelmoq)」ning istisno ない-shakli:",
-              "options": ["こない", "きない", "くらない", "かない"],
-              "correctAnswerIndex": 0,
-              "explanation": "Konai."
+              "question": "「明日[あした]は 試験[しけん]ですから、遅刻[ちこく]（　　）で ください。」",
+              "options": ["しなく", "しない", "して", "する"],
+              "correctAnswerIndex": 1,
+              "explanation": "Suru feʼlining nai-formasi: 「遅刻しないでください」."
             },
             {
               "id": "ja-n4-u2-l1-q3",
-              "question": "«Bu yerga kirmang, iltimos»:",
-              "options": [
-                "ここに 入[はい]って ください",
-                "入[はい]りません",
-                "入[はい]るな",
-                "ここに 入[はい]らないで ください"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Hairanaide kudasai."
+              "question": "「パスポートを （　　）で くださいね。」 (Yoʻqotib qoʻymang)",
+              "options": ["なくす", "なくして", "なくさない", "なくさな"],
+              "correctAnswerIndex": 2,
+              "explanation": "Nai-forma: 「なくさないでください」."
             },
             {
               "id": "ja-n4-u2-l1-q4",
-              "question": "「買[か]います」ning ない-shakli:",
-              "options": ["買[か]わない", "買[か]かない", "買[か]いない", "買[か]あない"],
-              "correctAnswerIndex": 0,
-              "explanation": "Kawanai."
+              "question": "「名前[なまえ]を 書[か]くのを （　　）で ください。」",
+              "options": ["忘[わす]れる", "忘[わす]れて", "忘[わす]れ", "忘[わす]れない"],
+              "correctAnswerIndex": 3,
+              "explanation": "Unutmang deb iltimos qilganda: 「忘れないでください」."
             }
           ]
         }
@@ -1021,51 +951,31 @@
           "questions": [
             {
               "id": "ja-n4-u2-l2-q1",
-              "question": "«Kimononi kiyib ko'rganman» jumlasi qaysi?",
-              "options": [
-                "着物[きもの]を 着[き]たことが あります",
-                "着物[きもの]です",
-                "着物[きもの]を 着[き]たいです",
-                "着物[きもの]を 着[き]ます"
-              ],
+              "question": "「日本[にほん]の 着物[きもの]を （　　）ことが ありますか。」",
+              "options": ["着[き]た", "着[き]る", "着[き]て", "着[き]ます"],
               "correctAnswerIndex": 0,
-              "explanation": "Kita koto ga arimasu."
+              "explanation": "〜たことがある: Hayotiy tajriba oʻtgan zamon (Ta-forma) bilan yasaladi: 「着たことがある」."
             },
             {
               "id": "ja-n4-u2-l2-q2",
-              "question": "「一度[いちど]も スキーを したことが ありません」ning ma'nosi:",
-              "options": [
-                "Har yili chang'i uchaman",
-                "Chang'i qimmat",
-                "Biror marta ham chang'i uchmaganman",
-                "Chang'i uchishni xohlayman"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Biror marta ham uchmaganman."
+              "question": "「富士山[ふじさん]に 一度[いちど]も （　　）ことが ありません。」",
+              "options": ["登[のぼ]る", "登[のぼ]った", "登[のぼ]って", "登[のぼ]り"],
+              "correctAnswerIndex": 1,
+              "explanation": "Togʻga chiqmaganlik tajribasi: 「登ったことがありません」."
             },
             {
               "id": "ja-n4-u2-l2-q3",
-              "question": "Ta-shakl qanday hosil qilinadi?",
-              "options": [
-                "Te-shakldagi «te» o'rniga «ta», «de» o'rniga «da» qo'yish orqali (masalan itte -> itta)",
-                "Lug'at shakliga ta qo'shish",
-                "Faqat maseni olib tashlash orqali",
-                "O'zgarmaydi"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Te-shakl bilan bir xil qoidada ta/da bo'ladi."
+              "question": "「この 映画[えいが]は 前[まえ]に 一度[いちど] （　　）ことが あります。」",
+              "options": ["見[み]る", "見[み]て", "見[み]た", "見[み]ます"],
+              "correctAnswerIndex": 2,
+              "explanation": "Oldin koʻrganlik tajribasi: 「見たことがあります」."
             },
             {
               "id": "ja-n4-u2-l2-q4",
-              "question": "«Bu film ko'rganman»:",
-              "options": [
-                "映画[えいが]を 見[み]ます",
-                "映画[えいが]が あります",
-                "映画[えいが]を 見[み]て",
-                "この映画[えいが]を 見[み]たことが あります"
-              ],
+              "question": "「生[なま]の 魚[さかな]を （　　）ことが ありますか。」",
+              "options": ["食[た]べる", "食[た]べて", "食[た]べ", "食[た]べた"],
               "correctAnswerIndex": 3,
-              "explanation": "Mita koto ga arimasu."
+              "explanation": "Xom baliq yeb koʻrganmisiz: 「食べたことがありますか」."
             }
           ]
         }
@@ -1183,46 +1093,31 @@
           "questions": [
             {
               "id": "ja-n4-u2-l3-q1",
-              "question": "«Sport turlari orasida futbol eng qiziqarlisi»:",
-              "options": [
-                "サッカーのほうが スポーツより 面白[おもしろ]いです",
-                "サッカーが スポーツです",
-                "スポーツは サッカー",
-                "スポーツの 中[なか]で サッカーが 一番[いちばん] 面白[おもしろ]いです"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Supootsu no naka de sakkaa ga ichiban..."
+              "question": "「スポーツの 中[なか]で サッカー（　　） 一番[いちばん] おもしろいです。」",
+              "options": ["が", "より", "のほう", "で"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜の中で〜が一番: Biror guruh ichida eng yuqori narsa 「が」 yuklamasi bilan belgilanadi."
             },
             {
               "id": "ja-n4-u2-l3-q2",
-              "question": "「日本[にほん]と ウズベキスタンと どちらが 広[ひろ]いですか」ning ma'nosi:",
-              "options": [
-                "Yaponiya va O'zbekistondan qaysi biri kattaroq (kengroq)?",
-                "O'zbekiston qanday davlat?",
-                "Ikkisi bir xilmi?",
-                "Yaponiya qayerda?"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Dochira ga hiroi desu ka (qaysi biri kengroq?)."
+              "question": "「新幹線[しんかんせん]は 飛行機[ひこうき]（　　） 便利[べんり]ですか。」\n「いいえ、飛行機[ひこうき]の ほうが 便利[べんり]です。」",
+              "options": ["のほう", "より", "が", "で"],
+              "correctAnswerIndex": 1,
+              "explanation": "Taqqoslashda ikkinchi tomon oldiga 「より」 qoʻyiladi: 「飛行機より」."
             },
             {
               "id": "ja-n4-u2-l3-q3",
-              "question": "Ikkita narsani taqqoslashda «qaysi biri?» so'rog'i qanday beriladi?",
-              "options": ["どれ", "どちら", "だれ", "どこ"],
-              "correctAnswerIndex": 1,
-              "explanation": "2 ta narsa uchun: どちら (Dochira)."
+              "question": "A: 「コーヒーと 紅茶[こうちゃ]と、どちらが 好[す]きですか。」\nB: 「どちら（　　） 好[す]きです。」",
+              "options": ["が", "より", "も", "で"],
+              "correctAnswerIndex": 2,
+              "explanation": "«Ikkalasi ham yoqadi» javobi: 「どちらも好きです」."
             },
             {
               "id": "ja-n4-u2-l3-q4",
-              "question": "«Ikkalasi ham yoqadi» javobi qaysi?",
-              "options": [
-                "どれも 好[す]きです",
-                "どちらが 好[す]きです",
-                "どちらも 好[す]きです",
-                "一番[いちばん] 好[す]きです"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Dochira mo suki desu."
+              "question": "「夏[なつ]と 冬[ふゆ]と、どちら（　　） 好[す]きですか。」",
+              "options": ["より", "で", "を", "が"],
+              "correctAnswerIndex": 3,
+              "explanation": "Ikkitadan birini tanlash soʻrogʻi: 「どちらが好きですか」."
             }
           ]
         }
@@ -1335,41 +1230,31 @@
           "questions": [
             {
               "id": "ja-n4-u2-l4-q1",
-              "question": "«Poyabzalingizni yechmasangiz ham bo'ladi» jumlasi qaysi?",
-              "options": [
-                "靴[くつ]を 脱[ぬ]がなくても いいです",
-                "靴[くつ]を 脱[ぬ]いで ください",
-                "靴[くつ]を 脱[ぬ]がなければ なりません",
-                "靴[くつ]を 脱[ぬ]ぎません"
-              ],
+              "question": "「部屋[へや]に 入[はい]る 時[とき]、靴[くつ]を （　　）ても いいです。」",
+              "options": ["脱[ぬ]がなっ", "脱[ぬ]い", "脱[ぬ]ぐ", "脱[ぬ]ぎ"],
               "correctAnswerIndex": 0,
-              "explanation": "Nuganakutemo ii desu."
+              "explanation": "〜なくてもいい: Majburiyatsizlik («yechmasangiz ham boʻladi») — 脱がない -> 脱がなくてもいい."
             },
             {
               "id": "ja-n4-u2-l4-q2",
-              "question": "So'zlashuvda「〜なければならない」qanday qisqaradi?",
-              "options": ["〜ないで", "〜ます", "〜てもいい", "〜なきゃ (Nakya) / 〜なくちゃ"],
-              "correctAnswerIndex": 3,
-              "explanation": "Nakya / Nakucha."
+              "question": "「明日[あした]までに この レポートを （　　）ければ なりません。」",
+              "options": ["出[だ]す", "出[だ]さな", "出[だ]して", "出[だ]し"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜なければならない: Majburiyat shakli — 出さない -> 出さなければならない."
             },
             {
               "id": "ja-n4-u2-l4-q3",
-              "question": "«Pasport olib kelishim shartmi?» so'rovi qaysi?",
-              "options": [
-                "パスポートを 見[み]ますか",
-                "パスポートです",
-                "パスポートを 持[も]って 来[こ]なければ なりませんか",
-                "パスポートが ありますか"
-              ],
+              "question": "A: 「明日[あした] パスポートを 持[も]って （　　）ければ なりませんか。」\nB: 「いいえ、持[も]って 来[こ]なくても いいですよ。」",
+              "options": ["来[く]る", "来[き]て", "来[こ]な", "来[き]ます"],
               "correctAnswerIndex": 2,
-              "explanation": "Motte konakereba narimasen ka."
+              "explanation": "Kuru feʼlining nai-form negizi: 「来ない（こない）」 -> 「持って来なければなりませんか」."
             },
             {
               "id": "ja-n4-u2-l4-q4",
-              "question": "「払[はら]わなくても いいです」ning ma'nosi:",
-              "options": ["To'lay olmayman", "To'lamasa ham bo'ladi", "To'lash shart", "To'ladim"],
-              "correctAnswerIndex": 1,
-              "explanation": "Harawanakutemo ii desu — To'lamasa ham bo'ladi."
+              "question": "「日曜日[にちようび]ですから、早起[はやお]き（　　）ても いいです。」",
+              "options": ["し", "する", "した", "しなく"],
+              "correctAnswerIndex": 3,
+              "explanation": "Suru feʼlining inkor ruxsat shakli: 「しなくてもいい」."
             }
           ]
         }
@@ -1487,46 +1372,41 @@
           "questions": [
             {
               "id": "ja-n4-u2-l5-q1",
-              "question": "Kutubxonaning dam olish kuni qachon?",
-              "options": [
-                "毎週[まいしゅう] 日曜日[にちようび]",
-                "毎週[まいしゅう] 月曜日[げつようび]",
-                "Dam olish kuni yo'q",
-                "毎週[まいしゅう] 水曜日[すいようび]"
-              ],
+              "question": "【図書館[としょかん] 案内[あんない]】「休館[きゅうかん]日[び]：毎月[まいつき] 第1[だいいち]月曜日[げつようび]（祝日[しゅくじつ]の 場合[ばあい]は 翌日[よくじつ]）」\n問[とい]1：図書館[としょかん]の 休[やす]みは いつですか。",
+              "options": ["毎週月曜日", "毎月第1月曜日", "土曜日と日曜日", "祝日のみ"],
               "correctAnswerIndex": 1,
-              "explanation": "Har haftaning dushanbasi."
+              "explanation": "Eʼlonga koʻra: 「毎月第1月曜日」."
             },
             {
               "id": "ja-n4-u2-l5-q2",
-              "question": "Bir kishi ko'pi bilan nechta kitobni qancha muddatga olishi mumkin?",
-              "options": [
-                "2 ta kitobni 5 kunga",
-                "10 ta kitobni 1 oyga",
-                "5 ta kitobni 2 haftaga",
-                "1 ta kitobni 1 yilga"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "5冊まで、2週間."
+              "question": "【貸出[かしだし] 規定[きてい]】「貸出[かしだし]は 1人[ひとり] 5冊[ごさつ]まで、期間[きかん]は 2週間[にしゅうかん]です。」\n問[とい]2：1人[ひとり] 何冊[なんさつ]まで 借[か]りられますか。",
+              "options": ["3冊まで", "5冊[ごさつ]まで", "10冊まで", "制限なし"],
+              "correctAnswerIndex": 1,
+              "explanation": "Eʼlonga koʻra: 「5冊まで」."
             },
             {
               "id": "ja-n4-u2-l5-q3",
-              "question": "Kitobni o'z vaqtida qaytarmasa nima bo'ladi?",
+              "question": "【質問[しつもん]3】「本[ほん]を 2週間[にしゅうかん]以上[いじょう] 返[かえ]さなかった 場合[ばあい]、どうなりますか。」",
               "options": [
-                "Kutubxonadan haydaladi",
-                "Hech narsa bo'lmaydi",
-                "Jarima to'laydi",
-                "Yangi kitob ololmaydi"
+                "お金を払う",
+                "本を買う",
+                "新[あたら]しい 本[ほん]が 借[か]りられなくなる",
+                "警察に連絡される"
               ],
-              "correctAnswerIndex": 3,
-              "explanation": "Yangi kitob ololmaydi."
+              "correctAnswerIndex": 2,
+              "explanation": "Qoidaga muvofiq yangi kitob qarzga berilishi toʻxtatiladi."
             },
             {
               "id": "ja-n4-u2-l5-q4",
-              "question": "JLPT N4 Dokkai bo'limida bunday ma'lumot qidirish topshirig'i nima deb ataladi?",
-              "options": ["情報検索[じょうほうけんさく]", "Insho", "Tinglash", "Grammatika"],
-              "correctAnswerIndex": 0,
-              "explanation": "Information retrieval."
+              "question": "【質問[しつもん]4】「利用[りよう]カードを 作[つく]る 時[とき]に 必要[ひつよう]な ものは どれですか。」",
+              "options": [
+                "写真だけ",
+                "お金",
+                "本",
+                "身分[みぶん]証明書[しょうめいしょ]（保険証[ほけんしょう]など）"
+              ],
+              "correctAnswerIndex": 3,
+              "explanation": "Kutubxona kartochkasini ochish uchun shaxsni tasdiqlovchi hujjat zarur."
             }
           ]
         }
@@ -1638,41 +1518,31 @@
           "questions": [
             {
               "id": "ja-n4-u3-l1-q1",
-              "question": "«Yapon tilida erkin gaplasha olaman» jumlasi qaysi?",
-              "options": [
-                "日本語[にほんご]が 上手[じょうず]に 話[はな]せます",
-                "日本語[にほんご]を 話[はな]します",
-                "日本語[にほんご]が 話[はな]したい",
-                "日本語[にほんご]です"
-              ],
+              "question": "「私[わたし]は 日本語[にほんご]の 新聞[しんぶん]が （　　）。」 (Oʻqiy olaman)",
+              "options": ["読[よ]めます", "読[よ]みます", "読[よ]んで", "読[よ]もう"],
               "correctAnswerIndex": 0,
-              "explanation": "Nihongo ga hanasemasu."
+              "explanation": "1-guruh feʼllari qobiliyat shaklida (Kanoukei): 読みます -> 「読めます」."
             },
             {
               "id": "ja-n4-u3-l1-q2",
-              "question": "「食[た]べます (2-guruh)」ning imkoniyat shakli:",
-              "options": ["食[た]べれます", "食[た]べます", "食[た]べれる", "食[た]べられます"],
-              "correctAnswerIndex": 3,
-              "explanation": "Taberareru."
+              "question": "「この 漢字[かんじ]を （　　）ことが できますか。」",
+              "options": ["書[か]きます", "書[か]く", "書[か]いて", "書[か]いた"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜ことができる: Lugʻat shakli + ことができる."
             },
             {
               "id": "ja-n4-u3-l1-q3",
-              "question": "«Kanjini o'qiy olmaysizmi?» so'rovi:",
-              "options": [
-                "漢字[かんじ]が 読[よ]めませんか",
-                "漢字[かんじ]が 読[よ]みたいですか",
-                "漢字[かんじ]を 読[よ]むな",
-                "漢字[かんじ]を 読[よ]みませんか"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Yomemasen ka."
+              "question": "「辛[から]い 料理[りょうり]が （　　）ますか。」 (Yeya olasizmi)",
+              "options": ["食[た]べ", "食[た]ばれ", "食[た]べられ", "食[た]べり"],
+              "correctAnswerIndex": 2,
+              "explanation": "2-guruh feʼllari qobiliyat shaklida: 食べます -> 「食べられます」."
             },
             {
               "id": "ja-n4-u3-l1-q4",
-              "question": "「する」fe'lining imkoniyat shakli nima bo'ladi?",
-              "options": ["される", "できる", "しられる", "すれる"],
-              "correctAnswerIndex": 1,
-              "explanation": "Dekiru."
+              "question": "「一人[ひとり]で 日本[にほん]へ （　　）ますか。」 (Kela olasizmi)",
+              "options": ["来[き]られ", "来[く]られ", "来[き]れ", "来[こ]られ"],
+              "correctAnswerIndex": 3,
+              "explanation": "Kuru feʼlining qobiliyat shakli: 「来られます（こられます）」."
             }
           ]
         }
@@ -1791,46 +1661,31 @@
           "questions": [
             {
               "id": "ja-n4-u3-l2-q1",
-              "question": "Birov menga biror yaxshilik qilib berganda qaysi tuzilma ishlatiladi?",
-              "options": ["〜て あげました", "〜ないで", "〜て くれました", "〜て ください"],
-              "correctAnswerIndex": 2,
-              "explanation": "〜te kuremashita (menga qilib berdi)."
+              "question": "「母[はは]の 日[ひ]に、母[はは]に きれいな 花[はな]を （　　）。」",
+              "options": ["あげました", "もらいました", "くれました", "いただきました"],
+              "correctAnswerIndex": 0,
+              "explanation": "Birovga oʻzi sovgʻa qilganda: 「あげました」."
             },
             {
               "id": "ja-n4-u3-l2-q2",
-              "question": "«Men onamga gul sovg'a qildim» jumlasi qaysi?",
-              "options": [
-                "母[はは]に 花[はな]を あげました",
-                "花[はな]を もらいました",
-                "母[はな]が 花[はな]を くれました",
-                "花[はな]です"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Haha ni hana o agemashita."
+              "question": "「誕生[たんじょう]日[び]に 友達[ともだち]が 私[わたし]に 時計[とけい]を （　　）。」",
+              "options": ["あげました", "くれました", "もらいました", "やりました"],
+              "correctAnswerIndex": 1,
+              "explanation": "Boshqa kishi menga sovgʻa berganda: 「くれました」."
             },
             {
               "id": "ja-n4-u3-l2-q3",
-              "question": "«Do'stimdan soat oldim (do'stim menga sovg'a qildi)»:",
-              "options": [
-                "友達[ともだち]に 時計[とけい]を あげました",
-                "時計[とけい]です",
-                "時計[とけい]を 買[か]いました",
-                "友達[ともだち]に 時計[とけい]を もらいました"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Tomodachi ni tokei o moraimashita."
+              "question": "「先生[せんせい]に 日本[にほん]の 本[ほん]を （　　）。」 (Qabul qilib oldim)",
+              "options": ["あげました", "くれました", "いただきました", "やりました"],
+              "correctAnswerIndex": 2,
+              "explanation": "Hurmatli shaxsdan minnatdorlik bilan qabul qilganda: 「いただきました」 (yoki もらいました)."
             },
             {
               "id": "ja-n4-u3-l2-q4",
-              "question": "«Ustozim menga yapon tilini o'rgatib berdilar»:",
-              "options": [
-                "先生[せんせい]を 教[おし]えました",
-                "日本語[にほんご]です",
-                "先生[せんせい]が 日本語[にほんご]を 教[おし]えて くれました",
-                "先生[せんせい]に 教[おし]えて あげました"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Oshiete kuremashita."
+              "question": "「田中[たなか]さんが 私[わたし]の 荷物[にもつ]を 運[はこ]んで （　　）。」",
+              "options": ["あげました", "もらいました", "やりました", "くれました"],
+              "correctAnswerIndex": 3,
+              "explanation": "Birov mening foydamga ish qilib berganda: 「〜てくれました」."
             }
           ]
         }
@@ -1938,36 +1793,31 @@
           "questions": [
             {
               "id": "ja-n4-u3-l3-q1",
-              "question": "«Kelasi yil» kanjisi qaysi?",
-              "options": ["来年[らいねん]", "去年[きょねん]", "毎年[まいとし]", "今年[ことし]"],
+              "question": "「（　　） 日本[にほん]へ 留学[りゅうがく]する 予定[よてい]です。」 (Kelasi yil)",
+              "options": ["来年[らいねん]", "去年[きょねん]", "今年[ことし]", "毎日[まいにち]"],
               "correctAnswerIndex": 0,
-              "explanation": "来年 (Rainen)."
+              "explanation": "Kelasi yil kanjisi: 「来年（らいねん）」."
             },
             {
               "id": "ja-n4-u3-l3-q2",
-              "question": "「見学[けんがく]」so'zining ma'nosi:",
-              "options": [
-                "Kitob o'qish",
-                "Ekskursiya / Ko'rib o'rganish",
-                "Xarid qilish",
-                "Uyga qaytish"
-              ],
+              "question": "「デパートで 新[あたら]しい 服[ふく]を （　　）ました。」 (Sotib oldim)",
+              "options": ["帰[かえ]り", "買[か]い", "行[い]き", "見[み]"],
               "correctAnswerIndex": 1,
-              "explanation": "Kengaku — Ko'rib o'rganish."
+              "explanation": "Sotib olmoq: 「買い（かい）」."
             },
             {
               "id": "ja-n4-u3-l3-q3",
-              "question": "«Sotib olmoq» kanjisi qaysi?",
-              "options": ["聞", "帰", "買", "書"],
+              "question": "「毎日[まいにち] ノートに 漢字[かんじ]を （　　）ています。」 (Yozmoqdaman)",
+              "options": ["読[よ]ん", "見[み]", "書[か]い", "聞[き]い"],
               "correctAnswerIndex": 2,
-              "explanation": "買 (Kau)."
+              "explanation": "Yozmoq kanjisi: 「書いて（かいて）」."
             },
             {
               "id": "ja-n4-u3-l3-q4",
-              "question": "「図書館[としょかん]」so'zidagi 書 nimani bildiradi?",
-              "options": ["Eshik", "Oyna", "Bino", "Kitob / Yozuv"],
+              "question": "「仕事[しごと]が 終[お]わったら、すぐ うちへ （　　）ます。」 (Qaytaman)",
+              "options": ["行[い]き", "来[き]", "買[か]い", "帰[かえ]り"],
               "correctAnswerIndex": 3,
-              "explanation": "Kitob / Yozuv."
+              "explanation": "Qaytmoq kanjisi: 「帰り（かえり）」."
             }
           ]
         }
@@ -2075,41 +1925,31 @@
           "questions": [
             {
               "id": "ja-n4-u3-l4-q1",
-              "question": "«Kompaniya xodimi» yapon kanjisida qanday yoziladi?",
-              "options": [
-                "学生[がくせい]",
-                "駅員[えきいん]",
-                "先生[せんせい]",
-                "会社員[かいしゃいん]"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Kaishain."
+              "question": "「山田[やまだ]さんは 大[おお]きな 貿易[ぼうえき]（　　）に 勤[つと]めています。」 (Kompaniya)",
+              "options": ["会社[かいしゃ]", "学校[がっこう]", "病院[びょういん]", "駅[えき]"],
+              "correctAnswerIndex": 0,
+              "explanation": "Kompaniya: 「会社（かいしゃ）」."
             },
             {
               "id": "ja-n4-u3-l4-q2",
-              "question": "「多[おお]い」kanjisining ma'nosi:",
-              "options": ["Katta", "Kichik", "Ko'p", "Oz"],
-              "correctAnswerIndex": 2,
-              "explanation": "Ooi — Ko'p."
+              "question": "「（　　）の 前[まえ]で 友達[ともだち]と 待[ま]ち合[あ]わせを しました。」 (Bekat / Vokzal)",
+              "options": ["店[みせ]", "駅[えき]", "高[たか]", "新[しん]"],
+              "correctAnswerIndex": 1,
+              "explanation": "Bekat: 「駅（えき）」."
             },
             {
               "id": "ja-n4-u3-l4-q3",
-              "question": "«Do'kon / Magazin» kanjisi qaysi?",
-              "options": ["会", "店", "駅", "社"],
-              "correctAnswerIndex": 1,
-              "explanation": "店 (Mise)."
+              "question": "「駅前[えきまえ]の この （　　）は、安[やす]くて 美味[おい]しいです。」 (Doʻkon)",
+              "options": ["社[しゃ]", "会[かい]", "店[みせ]", "古[ふる]"],
+              "correctAnswerIndex": 2,
+              "explanation": "Doʻkon: 「店（みせ）」."
             },
             {
               "id": "ja-n4-u3-l4-q4",
-              "question": "「駅前[えきまえ]」so'zining ma'nosi:",
-              "options": [
-                "Vokzal qarshisi / Vokzal oldi maydoni",
-                "Vokzal ichi",
-                "Poyezd",
-                "Chipta"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Vokzal oldi maydoni."
+              "question": "「この パソコンは （　　）ですが、とても 性能[せいのう]が いいです。」 (Qimmat)",
+              "options": ["安[やす]い", "少[すく]ない", "多[おお]い", "高[たか]い"],
+              "correctAnswerIndex": 3,
+              "explanation": "Qimmat / baland kanjisi: 「高い（たかい）」."
             }
           ]
         }
@@ -2227,46 +2067,36 @@
           "questions": [
             {
               "id": "ja-n4-u3-l5-q1",
-              "question": "«Keyingi bekat» yapon tilida qanday e'lon qilinadi?",
-              "options": ["後[うし]ろは", "前[まえ]は", "次[つぎ]は ...", "終[お]わりは"],
-              "correctAnswerIndex": 2,
-              "explanation": "Tsugi wa..."
+              "question": "車内[しゃない]アナウンス：「まもなく 新宿[しんじゅく]です。お降[お]りの お客様[きゃくさま]は （　　）ドアから お降[お]りください。」",
+              "options": ["右側[みぎがわ]の", "前[まえ]の", "上[うえ]の", "後[うし]ろの"],
+              "correctAnswerIndex": 0,
+              "explanation": "Poyezd eʼlonlarida: «Oʻng tomondagi eshik ochiladi» -> 「右側のドア」."
             },
             {
               "id": "ja-n4-u3-l5-q2",
-              "question": "「ドアが 閉[し]まります、ご注意[ちゅうい]ください」ning ma'nosi:",
-              "options": [
-                "Poyezd to'xtadi",
-                "Poyezd buzildi",
-                "Eshiklar ochildi",
-                "Eshiklar yopilmoqda, ehtiyot bo'ling"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Eshiklar yopilmoqda."
+              "question": "A: 「東京[とうきょう]行[ゆ]きの 電車[でんしゃ]は （　　）番線[ばんせん]ですか。」\nB: 「3番線[さんばんせん]ですよ。」",
+              "options": ["いくら", "何[なん]", "どこ", "だれ"],
+              "correctAnswerIndex": 1,
+              "explanation": "Platforma raqami soʻrogʻi: 「何番線（なんばんせん）」."
             },
             {
               "id": "ja-n4-u3-l5-q3",
-              "question": "«Qaysi platformadan poyezd jo'naydi?» so'rog'i qaysi?",
-              "options": [
-                "何番線[なんばんせん]から 発車[はっしゃ]しますか",
-                "切符[きっぷ]が ありますか",
-                "駅[えき]は どこですか",
-                "電車[でんしゃ]は いくらですか"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Nanbansen kara hassha shimasu ka."
+              "question": "ホームアナウンス：「危[あぶ]ないですから、黄色[きいろ]い 点字[てんじ]ブロックの （　　）まで お下[さ]がりください。」",
+              "options": ["外側[そとがわ]", "上[うえ]", "内側[うちがわ]", "下[した]"],
+              "correctAnswerIndex": 2,
+              "explanation": "Xavfsizlik eʼloni: «Sariq chiziq ichkarisiga chekining» -> 「内側までお下がりください」."
             },
             {
               "id": "ja-n4-u3-l5-q4",
-              "question": "「急行[きゅうこう] (Kyuukou)」qanday poyezd turi?",
+              "question": "車掌[しゃしょう]：「お忘[わす]れ物[もの]の ないよう、お気[き]をつけて （　　）。」",
               "options": [
-                "Oddiy har bekatda to'xtaydigan poyezd",
-                "Eski poyezd",
-                "Ekspress / Tez yurar poyezd",
-                "Yuk poyezdi"
+                "お降[お]りください",
+                "お乗[の]りください",
+                "お話[はな]しください",
+                "ご覧[らん]ください"
               ],
-              "correctAnswerIndex": 2,
-              "explanation": "Tez yurar ekspress."
+              "correctAnswerIndex": 0,
+              "explanation": "Poyezddan tushayotganda: 「お降りください」."
             }
           ]
         }
@@ -2379,46 +2209,36 @@
           "questions": [
             {
               "id": "ja-n4-u4-l1-q1",
-              "question": "«Universitetga kirmaslik niyatidaman» inkor niyat jumlasi qaysi?",
+              "question": "「大学[だいがく]を 卒業[そつぎょう]したら、日本[にほん]の 会社[かいしゃ]に （　　）つもりです。」",
               "options": [
-                "大学[だいがく]に 入[はい]る つもりではありません",
-                "大学[だいがく]に 入[はい]りません",
-                "大学[だいがく]です",
-                "大学[だいがく]に 入[はい]らない つもりです"
+                "就職[しゅうしょく]する",
+                "就職[しゅうしょく]して",
+                "就職[しゅうしょく]した",
+                "就職[しゅうしょく]します"
               ],
-              "correctAnswerIndex": 3,
-              "explanation": "Hairanai tsumori desu."
+              "correctAnswerIndex": 0,
+              "explanation": "〜つもりです: Niyat bildirishda feʼlning lugʻat shakli (Jishokei) qoʻyiladi."
             },
             {
               "id": "ja-n4-u4-l1-q2",
-              "question": "«Majlis soat 14:00 da boshlanishi rejalashtirilgan»:",
-              "options": [
-                "会議[かいぎ]は 14時[じゅうよじ]に 始[はじ]まる 予定[よてい]です",
-                "会議[かいぎ]が あります",
-                "会議[かいぎ]です",
-                "会議[かいぎ]は 14時[じゅうよじ]に 始[はじ]まりました"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Hajimaru yotei desu."
+              "question": "「会議[かいぎ]は 明日[あした]の 14時[じゅうよじ]から （　　）予定[よてい]です。」",
+              "options": ["始[はじ]まり", "始[はじ]まる", "始[はじ]まって", "始[はじ]まった"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜予定です: Rejalashtirilgan ishlar uchun feʼlning lugʻat shakli qoʻyiladi."
             },
             {
               "id": "ja-n4-u4-l1-q3",
-              "question": "〜つもり dan oldin fe'l qaysi shaklda keladi?",
-              "options": ["Masu shaklida", "Oddiy lug'at shaklida", "Ta-shaklida", "Te-shaklida"],
-              "correctAnswerIndex": 1,
-              "explanation": "Jisho-kei / Nai-kei."
+              "question": "「今年[ことし]は 国[くに]へ （　　）つもりです。」 (Qaytmaslik niyatidaman)",
+              "options": ["帰[かえ]る", "帰[かえ]って", "帰[かえ]らない", "帰[かえ]った"],
+              "correctAnswerIndex": 2,
+              "explanation": "Inkor niyatda feʼlning nai-formasi ishlatiladi: 「帰らないつもりです」."
             },
             {
               "id": "ja-n4-u4-l1-q4",
-              "question": "Boshqa birovga yoki xo'jayinga «〜つもりですか» deb so'rash nima uchun noo'rin?",
-              "options": [
-                "Chunki bu faqat bolalarga aytiladi",
-                "Chunki bu grammatik xato",
-                "Chunki bu shaxsiy niyatni tergov qilgandek eshitiladi; uning o'rniga 〜ご予定ですか ishlatiladi",
-                "Farqi yo'q"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Uncourteous tone; use yotei instead."
+              "question": "「出張[しゅっちょう]は 1週間[いっしゅうかん]の （　　）です。」",
+              "options": ["つもり", "はず", "わけ", "予定[よてい]"],
+              "correctAnswerIndex": 3,
+              "explanation": "Otlardan keyin reja: 「名詞 + の予定です」."
             }
           ]
         }
@@ -2667,46 +2487,31 @@
           "questions": [
             {
               "id": "ja-n4-u4-l3-q1",
-              "question": "Xo'jayin yoki mijozga kech qolish sababini tushuntirganda qaysi biri ko'proq xushmuomala hisoblanadi?",
-              "options": ["〜から", "〜ので", "〜し", "〜けど"],
-              "correctAnswerIndex": 1,
-              "explanation": "〜node (muloyim va ob'ektiv)."
+              "question": "「電車[でんしゃ]の 事故[じこ]が （　　）ので、会議[かいぎ]に 遅[おく]れました。」",
+              "options": ["あった", "ある", "あって", "あり"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜ので: Xushmuomala sabab ifodasi oldidan oddiy shakl (Futsuukei): 「事故があったので」."
             },
             {
               "id": "ja-n4-u4-l3-q2",
-              "question": "Ot bilan «node» qanday qo'shiladi?",
-              "options": [
-                "Ot + だ + ので",
-                "Ot + の + ので",
-                "Ot + な + ので (Masalan: 病気[びょうき]なので)",
-                "Ot + ので"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Ot + な + node."
+              "question": "「明日[あした]は 休み[やすみ]（　　）ので、ゆっくり 寝[ね]ます。」",
+              "options": ["だ", "な", "に", "で"],
+              "correctAnswerIndex": 1,
+              "explanation": "Otlar va Na-sifatlar bilan 「ので」 qoʻshilganda 「な」 olinadi: 「休みなので」."
             },
             {
               "id": "ja-n4-u4-l3-q3",
-              "question": "«Xavfli bo'lgani uchun tegmang!» jumlasi qaysi?",
-              "options": [
-                "危[あぶ]ない",
-                "触[さわ]るな",
-                "危[あぶ]ないですから、触[さわ]って",
-                "危[あぶ]ないですから、触[さわ]らないで ください"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Abunai desu kara, sawaranaide kudasai."
+              "question": "「危[あぶ]ない（　　）、機械[きかい]に 触[さわ]らないで ください！」",
+              "options": ["ので", "のに", "から", "でも"],
+              "correctAnswerIndex": 2,
+              "explanation": "Buyruq yoki ogohlantirish jumlalarida shaxsiy sabab 「から」 ishlatiladi."
             },
             {
               "id": "ja-n4-u4-l3-q4",
-              "question": "「用事[ようじ]が あるので、失礼[しつれい]します」ning ma'nosi:",
-              "options": [
-                "Zarur ishim borligi sababli, ruxsatingiz bilan ketaman",
-                "Boshim og'riyapti",
-                "Kechikdim",
-                "Ishim yo'q"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Zarur ishim borligi sababli ketaman."
+              "question": "「頭[あたま]が 痛[いた]い（　　）、今日[きょう]は 早[はや]く 帰[かえ]っても いいですか。」",
+              "options": ["でも", "のに", "からには", "ので"],
+              "correctAnswerIndex": 3,
+              "explanation": "Boshliqdan ruxsat soʻrashda xushmuomala sabab 「ので」 maʼqul."
             }
           ]
         }
@@ -2823,51 +2628,31 @@
           "questions": [
             {
               "id": "ja-n4-u4-l4-q1",
-              "question": "«Uyga yetib borgach, qo'lingizni yuving» jumlasi qaysi?",
-              "options": [
-                "手[て]を 洗[あら]います",
-                "家[うち]です",
-                "家[うち]に 着[つ]いたら、手[て]を 洗[あら]って ください",
-                "家[うち]に 着[つ]く 手[て]"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "Tsukitara, te o aratte kudasai."
+              "question": "「うちへ （　　）たら、すぐ 手[て]を 洗[あら]ってください。」",
+              "options": ["帰[かえ]っ", "帰[かえ]る", "帰[かえ]り", "帰[かえ]ら"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜たら: Feʼlning oʻtgan zamon ta-shakli negiziga ulanadi: 帰った -> 「帰ったら」."
             },
             {
               "id": "ja-n4-u4-l4-q2",
-              "question": "「安[やす]かったら、買[か]います」ning ma'nosi:",
-              "options": [
-                "Arzon emas",
-                "Agar arzon bo'lsa, sotib olaman",
-                "Qimmat bo'lsa ham olaman",
-                "Sotib olmadim"
-              ],
+              "question": "「安[やす]（　　）ば、新[あたら]しい パソコンを 買[か]いたいです。」",
+              "options": ["かったら", "けれ", "くて", "い"],
               "correctAnswerIndex": 1,
-              "explanation": "Yasukattara, kaimasu."
+              "explanation": "I-sifatlarning ba-sharti: い tushib 「〜ければ」 qoʻshiladi: 安い -> 「安ければ」."
             },
             {
               "id": "ja-n4-u4-l4-q3",
-              "question": "«〜ば (ba)» shart shakli ko'proq qaysi vaziyatda ishlatiladi?",
-              "options": [
-                "Umumiy tabiiy shart-sharoit va maslahatda (masalan: 安ければ = arzon bo'lsa)",
-                "Faqat o'tmishda",
-                "Faqat taqiqda",
-                "Faqat salomlashganda"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "General conditional/advice."
+              "question": "「分[わ]からない ことが （　　）ば、いつでも 質問[しつもん]してください。」",
+              "options": ["ある", "あって", "あれ", "あった"],
+              "correctAnswerIndex": 2,
+              "explanation": "「ある」 feʼlining ba-sharti: 「あれば」."
             },
             {
               "id": "ja-n4-u4-l4-q4",
-              "question": "«Tushunmasangiz, so'rang»:",
-              "options": [
-                "分[わ]かりますから 聞[き]く",
-                "分[わ]からない",
-                "聞[き]かないで",
-                "分[わ]からなかったら、聞[き]いて ください"
-              ],
+              "question": "「明日[あした] 雨[あめ]が （　　）たら、試合[しあい]は 中止[ちゅうし]です。」",
+              "options": ["降[ふ]る", "降[ふ]り", "降[ふ]って", "降[ふ]っ"],
               "correctAnswerIndex": 3,
-              "explanation": "Wakaranakattara, kiite kudasai."
+              "explanation": "Furimashita -> 降った -> 「降ったら」."
             }
           ]
         }
@@ -2984,41 +2769,31 @@
           "questions": [
             {
               "id": "ja-n4-u4-l5-q1",
-              "question": "Ustoz qachongacha javob berishlari kerak?",
-              "options": [
-                "Dushanbagacha",
-                "Javob shart emas",
-                "Yakshanbagacha",
-                "Juma kunigacha (金曜日までに)"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Kinyoubi made ni."
+              "question": "【先生[せんせい]への 手紙[てがみ]】「田中[たなか]先生[せんせい]、お元気[げんき]ですか。毎日[まいにち] 暑[あつ]い 日[ひ]が 続[つづ]いて おりますが、いかが お過[す]ごしでしょうか。」\n問[とい]1：手紙[てがみ]の 始[はじ]まりの 挨拶[あいさつ]として 適切[てきせつ]な 季節[きせつ]は いつですか。",
+              "options": ["夏[なつ]", "冬[ふゆ]", "春[はる]", "秋[あき]"],
+              "correctAnswerIndex": 0,
+              "explanation": "«毎日暑い日» (har kuni issiq kunlar) ifodasidan yoz fasli ekani ayon boʻladi."
             },
             {
               "id": "ja-n4-u4-l5-q2",
-              "question": "Xatni kim yozgan?",
-              "options": ["Ali (アリ)", "Kutubxonachi", "Shifokor", "Tanaka san"],
-              "correctAnswerIndex": 0,
-              "explanation": "Ali yori."
+              "question": "【手紙[てがみ]の 結[むす]び】「それでは、先生[せんせい]も お体[からだ]に 気[き]をつけて （　　）。」",
+              "options": ["ください", "お過[す]ごしください", "いらっしゃいます", "なさいます"],
+              "correctAnswerIndex": 1,
+              "explanation": "Xat oxirida salomatlik tilash: 「お体に気をつけてお過ごしください」."
             },
             {
               "id": "ja-n4-u4-l5-q3",
-              "question": "「都合[つごう]が よかったら」nimani anglatadi?",
-              "options": [
-                "Vaqtingiz bo'lmasa ham",
-                "Pulingiz bo'lsa",
-                "Agar vaqtingiz to'g'ri kelsa / Imkoningiz bo'lsa",
-                "Kechikmasangiz"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "If convenient for you."
+              "question": "【質問[しつもん]3】「手紙[てがみ]の 最後[さいご]に 自分[じぶん]の 名前[なまえ]の 後[あと]に 付[つ]ける 言葉[ことば]は どれですか。」",
+              "options": ["より", "から", "まで", "へ"],
+              "correctAnswerIndex": 0,
+              "explanation": "Xat oxirida muallif nomidan keyin: 「〜より」 (Dan / ...tomonidan)."
             },
             {
               "id": "ja-n4-u4-l5-q4",
-              "question": "Xat oxiridagi «〜より» nimani bildiradi?",
-              "options": ["Kim tomonidan yozilganligini", "Sana", "Salomlashish", "Iltimos"],
-              "correctAnswerIndex": 0,
-              "explanation": "From [Sender]."
+              "question": "【質問[しつもん]4】「手紙[てがみ]の 宛名[あてな]（受[う]け取[と]る 人[ひと]）の 後[あと]に 付[つ]ける 敬称[けいしょう]は どれですか。」",
+              "options": ["ちゃん", "くん", "様[さま]", "どの"],
+              "correctAnswerIndex": 2,
+              "explanation": "Rasmiy maktubda oluvchi ismidan keyin ehtirom qoʻshimchasi: 「様（さま）」."
             }
           ]
         }
@@ -3127,46 +2902,31 @@
           "questions": [
             {
               "id": "ja-n4-u5-l1-q1",
-              "question": "「母[はは]からの プレゼント」ning ma'nosi:",
-              "options": [
-                "Onamdan kelgan sovg'a",
-                "Onamning do'koni",
-                "Onam bilan",
-                "Onamga berilgan sovg'a"
-              ],
+              "question": "「この 店[みせ]（　　） クレジットカードは 使[つか]えません。」",
+              "options": ["では", "には", "とも", "からの"],
               "correctAnswerIndex": 0,
-              "explanation": "Present from mother."
+              "explanation": "〜では: Holat taʼkidlanganda joy yuklamasiga taʼkid yuklamasi qoʻshiladi: 「この店では」."
             },
             {
               "id": "ja-n4-u5-l1-q2",
-              "question": "«Bu do'konda esa kredit karta ishlatib bo'lmaydi»:",
-              "options": [
-                "この店[みせ]には カード",
-                "この店[みせ]を カード",
-                "この店[みせ]です",
-                "この店[みせ]では カードが 使[つか]えません"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Mise de wa (bu do'konda esa)."
+              "question": "「今日[きょう]は 忙[いそが]しくて、だれ（　　） 話[はな]しませんでした。」",
+              "options": ["では", "とも", "には", "へは"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜とも: «Hech kim bilan ham gaplashmadim» -> 「だれとも」."
             },
             {
               "id": "ja-n4-u5-l1-q3",
-              "question": "「何時[なんじ]から 何時[なんじ]までですか」ning ma'nosi:",
-              "options": ["Soat nechadan soat nechagacha?", "Qayerda?", "Necha pul?", "Kim bilan?"],
-              "correctAnswerIndex": 0,
-              "explanation": "From what time to what time?"
+              "question": "「私[わたし]（　　） その 計画[けいかく]は 難[むずか]しすぎます。」",
+              "options": ["では", "とも", "には", "からの"],
+              "correctAnswerIndex": 2,
+              "explanation": "〜には: «Mening nazarimda / men uchun» -> 「私には」."
             },
             {
               "id": "ja-n4-u5-l1-q4",
-              "question": "«Kim bilan ham gaplashmadi» jumlasi qaysi?",
-              "options": [
-                "誰[だれ]です",
-                "誰[だれ]とも 話[はな]しませんでした",
-                "誰[だれ]かと 話[はな]しました",
-                "誰[だれ]でも 話[はな]す"
-              ],
-              "correctAnswerIndex": 1,
-              "explanation": "Dare to mo hanashimasen deshita."
+              "question": "「海外[かいがい]（　　） 留学生[りゅうがくせい]が たくさん います。」",
+              "options": ["では", "とも", "には", "からの"],
+              "correctAnswerIndex": 3,
+              "explanation": "〜からの: Chet eldan kelgan talabalar: 「海外からの留学生」."
             }
           ]
         }
@@ -3279,46 +3039,41 @@
           "questions": [
             {
               "id": "ja-n4-u5-l2-q1",
-              "question": "«Kuniga uch mahal ovqatdan keyin iching»:",
-              "options": [
-                "1日[いちにち] 1回[いっかい]",
-                "飲[の]まないで",
-                "1日[いちにち] 3回[さんかい] 毎食後[まいしょくご]に 飲[の]んで ください",
-                "薬[くすり]を 買[か]います"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "1-nichi 3-kai maishokugo ni..."
+              "question": "「この 薬[くすり]は 毎食[まいしょく]後[ご]に 1日[いちにち] 3回[さんかい] （　　）ください。」",
+              "options": ["飲[の]んで", "飲[の]み", "飲[の]む", "飲[の]まない"],
+              "correctAnswerIndex": 0,
+              "explanation": "Dori ichish iltimosi: 「飲んでください」."
             },
             {
               "id": "ja-n4-u5-l2-q2",
-              "question": "Bemorga «Sog'ayib keting / O'zingizni ehtiyot qiling» deb nima deyiladi?",
+              "question": "A: 「昨日[きのう]から 熱[ねつ]が あって、喉[のど]も 痛[いた]いんです。」\nB: 「それは 大変[たいへん]ですね。どうぞ （　　）。」",
               "options": [
+                "お気[き]をつけて",
                 "お大事[だいじ]に",
-                "ごちそうさま",
-                "いただきます",
-                "おめでとうございます"
+                "お願[ねが]いします",
+                "ごめんなさい"
               ],
-              "correctAnswerIndex": 0,
-              "explanation": "Odaiji ni — Tezroq sog'aying."
+              "correctAnswerIndex": 1,
+              "explanation": "Bemorga «Sogʻayib keting / Oʻzingizni ehtiyot qiling»: 「お大事に」."
             },
             {
               "id": "ja-n4-u5-l2-q3",
-              "question": "「頭[あたま]が ズキズキ 痛[いた]みます」ning ma'nosi:",
-              "options": [
-                "Qornim to'ydi",
-                "Ko'zim ko'ryapti",
-                "Boshim yaxshi",
-                "Boshim loqillab qattiq og'riyapti"
-              ],
-              "correctAnswerIndex": 3,
-              "explanation": "Loqillab og'riyapti (Zukizuki)."
+              "question": "「熱[ねつ]が ありますから、今日[きょう]は お風呂[ふろ]に （　　）で ください。」",
+              "options": ["入[はい]る", "入[はい]って", "入[はい]らない", "入[はい]り"],
+              "correctAnswerIndex": 2,
+              "explanation": "Shifokor tavsiyasi: 「入らないでください」 (hammomga tushmang)."
             },
             {
               "id": "ja-n4-u5-l2-q4",
-              "question": "«Shifoxona» kanjisi qaysi?",
-              "options": ["駅[えき]", "大学[だいがく]", "病院[びょういん]", "神社[じんじゃ]"],
-              "correctAnswerIndex": 2,
-              "explanation": "病院 (Byouin)."
+              "question": "「体調[たいちょう]が 悪[わる]いので、午後[ごご] （　　）へ 行[い]きます。」 (Shifoxona)",
+              "options": [
+                "学校[がっこう]",
+                "銀行[ぎんこう]",
+                "郵便局[ゆうびんきょく]",
+                "病院[びょういん]"
+              ],
+              "correctAnswerIndex": 3,
+              "explanation": "Shifoxona: 「病院（びょういん）」."
             }
           ]
         }
@@ -3435,41 +3190,31 @@
           "questions": [
             {
               "id": "ja-n4-u5-l3-q1",
-              "question": "«まず (Mazu)» so'zining ma'nosi nima?",
-              "options": ["Birinchi navbatda / Dastlab", "Oxirida", "Hech qachon", "Tezda"],
+              "question": "会話[かいわ]：男[おとこ]「明日[あした]の 会議[かいぎ]の 準備[じゅんび]、何[なに]から 始[はじ]めましょうか。」女[おんな]「（　　） 資料[しりょう]を コピーしてください。」",
+              "options": ["まず", "やっぱり", "たぶん", "きっと"],
               "correctAnswerIndex": 0,
-              "explanation": "Mazu — Dastlab / Avval."
+              "explanation": "Birinchi navbatdagi ishni belgilashda: 「まず」 (Avvalo)."
             },
             {
               "id": "ja-n4-u5-l3-q2",
-              "question": "Qahramon boshqa narsani rejalashtirib, keyin «やっぱり (yappari)...» desa, nima sodir bo'ladi?",
-              "options": [
-                "Hech narsa",
-                "U o'z fikrini o'zgartirib yakuniy qarorga kelganini bildiradi",
-                "Poyezd kechikkanini bildiradi",
-                "Uxlab qolganini bildiradi"
-              ],
+              "question": "女[おんな]「新幹線[しんかんせん]で 行[い]く つもりでしたが、（　　） 飛行機[ひこうき]に します。」",
+              "options": ["まず", "やっぱり", "けっして", "ぜんぜん"],
               "correctAnswerIndex": 1,
-              "explanation": "Yappari indicates decision/shift."
+              "explanation": "Fikrni oʻzgartirib «Harqalay / baribir samolyotda boraman»: 「やっぱり」."
             },
             {
               "id": "ja-n4-u5-l3-q3",
-              "question": "N4 Choukai bo'limida savol varaqa ustida yozilgan bo'ladimi yoki faqat audioda aytiladimi?",
-              "options": [
-                "Faqat kanji bo'ladi",
-                "Hech narsa berilmaydi",
-                "Savol va variantlar audioda ham aytiladi, ba'zi savollarda rasmlar bo'ladi",
-                "Faqat yozma bo'ladi"
-              ],
+              "question": "男[おとこ]「課長[かちょう]、この 後[あと] 何[なに]を すれば よろしいでしょうか。」課長[かちょう]「この 荷物[にもつ]を （　　）から、休[やす]んで いいよ。」",
+              "options": ["運[はこ]ぶ", "運[はこ]んだ", "運[はこ]んで", "運[はこ]び"],
               "correctAnswerIndex": 2,
-              "explanation": "Both audio & visual sheets."
+              "explanation": "〜てから: «Yukni tashigandan keyin dam ol»."
             },
             {
               "id": "ja-n4-u5-l3-q4",
-              "question": "«この後[あと] (Kono ato)» nimani bildiradi?",
-              "options": ["Kecha", "O'tgan yili", "Ertalab", "Bundan so'ng / Shu suhbatdan keyin"],
+              "question": "案内[あんない]：「試験[しけん]の 説明[せつめい]が （　　）後[あと]で、問題[もんだい]を 開[ひら]いてください。」",
+              "options": ["終[お]わる", "終[お]わり", "終[お]わって", "終[お]わった"],
               "correctAnswerIndex": 3,
-              "explanation": "After this."
+              "explanation": "〜たあとで: Tushuntirish tugaganidan keyin oching: 「終わった後で」."
             }
           ]
         }
@@ -3581,46 +3326,31 @@
           "questions": [
             {
               "id": "ja-n4-u5-l4-q1",
-              "question": "「寒[さむ]く なりました」nimani bildiradi?",
-              "options": ["Sovuq emas", "Sovuq bo'ladi", "Issiq bo'ldi", "Sovuq bo'lib qoldi"],
-              "correctAnswerIndex": 3,
-              "explanation": "Samuku narimashita (o'zgarish)."
+              "question": "「空[そら]が 暗[くら]くなってきました。雨[あめ]が 降[ふ]る（　　）。」",
+              "options": ["かもしれない", "はずがない", "っこない", "にすぎない"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜かもしれない: Ehtimollik bildirish («yogʻishi ham mumkin»)."
             },
             {
               "id": "ja-n4-u5-l4-q2",
-              "question": "「テレビを 見[み]ながら ご飯[はん]を 食[た]べます」dagi 〜ながら nimani bildiradi?",
-              "options": [
-                "Ovqat yemaslik",
-                "Faqat televizor ko'rish",
-                "Bir vaqtda ikkita ishni bajarish",
-                "Televizor yo'qligi"
-              ],
-              "correctAnswerIndex": 2,
-              "explanation": "While doing (bir vaqtda)."
+              "question": "「彼[かれ]は 毎日[まいにち] 練習[れんしゅう]しているから、明日[あした]の 試合[しあい]に （　　）はずだ。」",
+              "options": ["勝[か]て", "勝[か]つ", "勝[か]った", "勝[か]ち"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜はずだ: Mantiqiy ishonch — feʼlning oddiy shakli bilan: 「勝つはずだ」."
             },
             {
               "id": "ja-n4-u5-l4-q3",
-              "question": "«Yomg'ir yog'ishi mumkin» ehtimol jumlasi qaysi?",
-              "options": [
-                "雨[あめ]が 降[ふ]ります",
-                "雨[あめ]が 降[ふ]るかも しれません",
-                "雨[あめ]です",
-                "雨[あめ]が 降[ふ]らない"
-              ],
-              "correctAnswerIndex": 1,
-              "explanation": "Furu kamo shiremasen."
+              "question": "「約束[やくそく]の 時間[じかん]に 遅[おく]れない（　　）、タクシーで 行[い]きます。」",
+              "options": ["ために", "ので", "ように", "から"],
+              "correctAnswerIndex": 2,
+              "explanation": "〜ように: Maqsad ifodasi (kechikmaslik uchun): 「遅れないように」."
             },
             {
               "id": "ja-n4-u5-l4-q4",
-              "question": "「部屋[へや]を 明[あか]るく します」dagi 〜くします nimani bildiradi?",
-              "options": [
-                "Xonani yorug' qilaman",
-                "Xona yorug' emas",
-                "Xona yo'q",
-                "Xona qorong'i"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "To make something bright."
+              "question": "「この 本[ほん]は 難[むずか]しすぎて、全問[ぜんもん] 解[と]くのは （　　）です。」",
+              "options": ["かんたん", "べんり", "にがて", "無理[むり]"],
+              "correctAnswerIndex": 3,
+              "explanation": "Barcha savollarni yechish ilojsiz: 「無理です」."
             }
           ]
         }
@@ -3729,31 +3459,31 @@
           "questions": [
             {
               "id": "ja-n4-u5-l5-q1",
-              "question": "「先生[せんせい]が 面白[おもしろ]い本[ほん]を 貸[か]して _______。」",
-              "options": ["もらいました", "貸[か]した", "くれました", "あげました"],
-              "correctAnswerIndex": 2,
-              "explanation": "Kashite kuremashita (ustoz qarzga berdi)."
+              "question": "「雨[あめ]が （　　）そうだから、傘[かさ]を 持[も]って 行[い]きましょう。」",
+              "options": ["降[ふ]り", "降[ふ]る", "降[ふ]って", "降[ふ]った"],
+              "correctAnswerIndex": 0,
+              "explanation": "〜そうだ (koʻrinishidan): Feʼlning masu-negizi bilan qoʻshiladi: 降りそう."
             },
             {
               "id": "ja-n4-u5-l5-q2",
-              "question": "「明日[あした]までに この仕事[しごと]を 終[お]わらせなければ _______。」",
-              "options": ["いいです", "ない", "なります", "なりません"],
-              "correctAnswerIndex": 3,
-              "explanation": "Owarasenakereba narimasen."
+              "question": "「田中[たなか]さんは もう すぐ （　　）はずです。」",
+              "options": ["来[く]れば", "来[く]る", "来[き]て", "来[こ]ない"],
+              "correctAnswerIndex": 1,
+              "explanation": "〜はずだ: Mantiqiy ishonch — feʼlning oddiy shakli bilan: 「来るはずです」."
             },
             {
               "id": "ja-n4-u5-l5-q3",
-              "question": "「漢字[かんじ]を 書[か]く ことが _______。」",
-              "options": ["できます", "あります", "します", "います"],
-              "correctAnswerIndex": 0,
-              "explanation": "Kaku koto ga dekimasu."
+              "question": "「時間[じかん]が （　　）ても、あきらめないで 最後[さいご]まで 頑張[がんば]ろう。」",
+              "options": ["なく", "ない", "なかっ", "なし"],
+              "correctAnswerIndex": 2,
+              "explanation": "〜ても: Nai-formanning temo shakli: ない -> 「なくても」."
             },
             {
               "id": "ja-n4-u5-l5-q4",
-              "question": "JLPT N4 darajasini bitiruvchisi qaysi keyingi darajaga o'tadi?",
-              "options": ["JLPT N1", "IELTS 7.0", "JLPT N3", "A1"],
-              "correctAnswerIndex": 2,
-              "explanation": "JLPT N3."
+              "question": "「明日[あした]までに この 本[ほん]を 読[よ]んで （　　）ます。」 (Toʻliq oʻqib qoʻymoq)",
+              "options": ["あり", "み", "い", "しまい"],
+              "correctAnswerIndex": 3,
+              "explanation": "〜てしまう: Biror harakatni butunlay tugatib qoʻyish: 「読んでしまいます」."
             }
           ]
         }
