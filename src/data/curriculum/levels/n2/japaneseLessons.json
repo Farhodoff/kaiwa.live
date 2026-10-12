@@ -1380,7 +1380,9 @@
               "question": "会話[かいわ]：男[おとこ]「売上[うりあげ]を 伸[の]ばすには、広告[こうこく]を 増[ふ]やすべきでしょうか。」女[おんな]「広告[こうこく]も 大切[たいせつ]ですが、まず 既存[きぞん]の お客様[きゃくさま]の サポートを 充実[じゅうじつ]させる （　　）ですよ。」",
               "options": ["べき", "っこない", "かねない", "ざるを得ない"],
               "correctAnswerIndex": 0,
-              "explanation": "〜べきだ: «...qilish lozim / toʻgʻri yoʻl shu» degan mantiqiy maslahat."
+              "explanation": "〜べきだ: «...qilish lozim / toʻgʻri yoʻl shu» degan mantiqiy maslahat.",
+              "audioUrl": "/audio/choukai/n2/Track03.mp3",
+              "audioTitle": "N2 Track 03 — Mijozlarga tezkor e’tibor"
             },
             {
               "id": "ja-n2-u2-l4-q2",
@@ -1392,21 +1394,27 @@
                 "終[お]わるべきだ"
               ],
               "correctAnswerIndex": 1,
-              "explanation": "〜そうもない: «Tugaydigan koʻrinmaydi / ehtimoli juda kam»."
+              "explanation": "〜そうもない: «Tugaydigan koʻrinmaydi / ehtimoli juda kam».",
+              "audioUrl": "/audio/choukai/n2/Track05.mp3",
+              "audioTitle": "N2 Track 05 — Mahalliy iqtisodiyotni jonlantirish"
             },
             {
               "id": "ja-n2-u2-l4-q3",
               "question": "女[おんな]「新[あたら]しい パッケージの デザイン、どれが いいと 思[おも]う？」男[おとこ]「若[わか]い 世代[せだい]の ニーズに （　　）、この シンプルな A案[あん]が 一番[いちばん]だね。」",
               "options": ["基[もと]づいて", "際[さい]して", "応[おう]じて", "伴[ともな]って"],
               "correctAnswerIndex": 2,
-              "explanation": "〜に応じて: Yosh avlod talabiga/ehtiyojiga mos ravishda («ニーズに応じて»)."
+              "explanation": "〜に応じて: Yosh avlod talabiga/ehtiyojiga mos ravishda («ニーズに応じて»).",
+              "audioUrl": "/audio/choukai/n2/Track08.mp3",
+              "audioTitle": "N2 Track 08 — Ekologik qadoqlash"
             },
             {
               "id": "ja-n2-u2-l4-q4",
               "question": "先輩[せんぱい]「発表[はっぴょう]の スライド、文字[もじ]が 多[おお]すぎて 読[よ]みにくいよ。」後輩[こうはい]「すみません。グラフや 図[ず]を （　　） 直[なお]します。」",
               "options": ["通[とお]して", "限[かぎ]って", "基[もと]づいて", "中心[ちゅうしん]に"],
               "correctAnswerIndex": 3,
-              "explanation": "〜を中心に: Grafika va rasmlarni asosiy oʻringa qoʻygan holda qayta tuzatish."
+              "explanation": "〜を中心に: Grafika va rasmlarni asosiy oʻringa qoʻygan holda qayta tuzatish.",
+              "audioUrl": "/audio/choukai/n2/Track09.mp3",
+              "audioTitle": "N2 Track 09 — Taqdimot slaydlarini yangilash"
             }
           ]
         }
@@ -3093,21 +3101,27 @@
                 "出来[でき]上[あ]がったきり"
               ],
               "correctAnswerIndex": 0,
-              "explanation": "〜ものの: «Materiallar tayyor boʻlsa-da, faqat repetitsiya qoldi»."
+              "explanation": "〜ものの: «Materiallar tayyor boʻlsa-da, faqat repetitsiya qoldi».",
+              "audioUrl": "/audio/choukai/n2/Track02.mp3",
+              "audioTitle": "N2 Track 02 — Suhbatdagi eng muhim qobiliyat"
             },
             {
               "id": "ja-n2-u4-l5-q2",
               "question": "上司[じょうし]「今回[こんかい]の クレームの 件[けん]、直接[ちょくせつ] 伺[うかが]って 謝罪[しゃざい]すべきじゃないか？」部下[ぶか]「はい、誠心[せいしん]誠意[せいい] （　　） ご対応[たいおう]いたします。」",
               "options": ["応[おう]じて", "心[こころ]を込[こ]めて", "基[もと]づいて", "めぐって"],
               "correctAnswerIndex": 1,
-              "explanation": "Butun samimiyat bilan kechirim soʻrab xizmat koʻrsatish: 「心を込めて」."
+              "explanation": "Butun samimiyat bilan kechirim soʻrab xizmat koʻrsatish: 「心を込めて」.",
+              "audioUrl": "/audio/choukai/n2/Track04.mp3",
+              "audioTitle": "N2 Track 04 — Jamoaviy loyihada kelishuv"
             },
             {
               "id": "ja-n2-u4-l5-q3",
               "question": "女[おんな]「この パソコン、最近[さいきん] 動作[どうさ]が 重[おも]くて 困[こま]ってるの。」男[おとこ]「OSの アップデートに （　　）、メモリの 容量[ようりょう]が 不足[ふそく]しているのかもね。」",
               "options": ["際[さい]して", "関[かん]して", "伴[ともな]って", "先立[さきだ]って"],
               "correctAnswerIndex": 2,
-              "explanation": "〜に伴って: Tizim yangilanishi bilan birga xotira yetmayotgan boʻlishi mumkin."
+              "explanation": "〜に伴って: Tizim yangilanishi bilan birga xotira yetmayotgan boʻlishi mumkin.",
+              "audioUrl": "/audio/choukai/n2/Track08.mp3",
+              "audioTitle": "N2 Track 08 — Ekologik mahsulot ishlab chiqish"
             },
             {
               "id": "ja-n2-u4-l5-q4",
@@ -3119,7 +3133,9 @@
                 "お越[こ]しください"
               ],
               "correctAnswerIndex": 3,
-              "explanation": "Mijozga «ehtiyot boʻlib yetib keling» deyishda muloyim Sonkeigo: 「お越しください」."
+              "explanation": "Mijozga «ehtiyot boʻlib yetib keling» deyishda muloyim Sonkeigo: 「お越しください」.",
+              "audioUrl": "/audio/choukai/n2/Track09.mp3",
+              "audioTitle": "N2 Track 09 — Taqdimotga tayyorgarlik"
             }
           ]
         }
