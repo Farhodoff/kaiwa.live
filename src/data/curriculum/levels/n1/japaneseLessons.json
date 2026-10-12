@@ -4068,46 +4068,46 @@
           "questions": [
             {
               "id": "ja-n1-u5-l5-q1",
-              "question": "「時代[じだい]の 変遷[へんせん]」dagi 変遷 nimani anglatadi?",
+              "question": "「日本[にほん]語[ご]学習[がくしゅう]における 最高[さいこう]の 金字塔[きんじとう]を 打[う]ち立[た]てた。」dagi 「金字塔」 so'zining ma'nosi qaysi?",
               "options": [
-                "Bitta kun",
-                "Kitob o'qish",
-                "Davrlarning almashinuvi / Tarixiy evrilish",
-                "Quyosh chiqishi"
+                "Kichik boshlang'ich qadam",
+                "Tarixda qoladigan buyuk cho'qqi va mislsiz yutuq",
+                "Kutilmagan xatolik va muvaffaqiyatsizlik",
+                "Vaqtinchalik sinov"
               ],
-              "correctAnswerIndex": 2,
-              "explanation": "Historical vicissitudes / Transitions of eras."
+              "correctAnswerIndex": 1,
+              "explanation": "「金字塔（きんじとう）」 so'zi piramida yoki tarixdagi eng yuksak, unutilmas buyuk yutuq va cho'qqi ma'nosini bildiradi."
             },
             {
               "id": "ja-n1-u5-l5-q2",
-              "question": "「真理[しんり]は 不変[ふへん]で ある」ning ma'nosi:",
-              "options": [
-                "Haqiqat o'zgarmas va boqiydir",
-                "Haqiqat yangidir",
-                "Haqiqat yolg'ondir",
-                "Haqiqat yo'q"
-              ],
-              "correctAnswerIndex": 0,
-              "explanation": "Truth is immutable."
+              "question": "Quyidagi jumlada qoldirilgan to'g'ri iborani tanlang: 「合格[ごうかく]後[ご]も 慢心[まんしん]することなく、日々[ひび] _______ を 重[かさ]ねている。」",
+              "options": ["妥協[だきょう]", "研鑽[けんさん]", "躊躇[ちゅうちょ]", "困惑[こんわく]"],
+              "correctAnswerIndex": 1,
+              "explanation": "«研鑽（けんさん）を積む / 重ねる» iborasi ilm va mahoratni tinimsiz charxlab, o'rganishda davom etishni anglatadi."
             },
             {
               "id": "ja-n1-u5-l5-q3",
-              "question": "Yapon tili bo'yicha JLPT tizimidagi eng yuqori oliy daraja qaysi?",
-              "options": ["JLPT N5", "CEFR B2", "JLPT N2", "JLPT N1"],
-              "correctAnswerIndex": 3,
-              "explanation": "JLPT N1 oliy darajadagi sintaktik va leksik qoidalarga asoslangan to‘g‘ri javob."
+              "question": "「伝統[でんとう]芸能[げいのう]の 真髄[しんずい]を 極[きわ]める」dagi 「真髄」 ning ma'nodosh varianti qaysi?",
+              "options": [
+                "本質[ほんしつ]・核心[かくしん] (Asl mohiyat va mag'zi)",
+                "外見[がいけん]・表面[ひょうめん] (Tashqi ko'rinish)",
+                "序論[じょろん]・初歩[しょほ] (Boshlang'ich kirish)",
+                "失敗[しっぱい]・欠陥[けっかん] (Nuqson va xato)"
+              ],
+              "correctAnswerIndex": 0,
+              "explanation": "「真髄（しんずい）」 san'at, madaniyat yoki fanning asl chuqur mohiyati va mag'zini (本質・真理) bildiradi."
             },
             {
               "id": "ja-n1-u5-l5-q4",
-              "question": "Tabriklaymiz! Siz Yapon Tili Bo'yicha Barcha O'quv Dasturini Oliy Natija Bilan Bitirdingiz.",
+              "question": "「業界[ぎょうかい]の 先駆[せんく]者として、新[あたら]しい 時代[じだい]を 切[き]り拓[ひら]く。」 jumlasidagi 「先駆者」 nimani anglatadi?",
               "options": [
-                "Bosh Sahifaga Qaytish",
-                "Darslarni Takrorlash",
-                "Sertifikatni Qabul Qilish",
-                "Chiqish"
+                "Ortda qoluvchi kuzatuvchi",
+                "Boshqalarga yo'l ko'rsatib, birinchi bo'lib yo'l ochgan peshqadam / kashshof",
+                "Vaqtinchalik yordamchi xodim",
+                "Qaror qabul qilishda ikkilanuvchi shaxs"
               ],
-              "correctAnswerIndex": 2,
-              "explanation": "Grand Master Certificate Awarded."
+              "correctAnswerIndex": 1,
+              "explanation": "「先駆者（せんくしゃ）」 — yangi soha yoki davrda birinchilardan bo'lib yo'l ochib bergan peshqadam, yetakchidir."
             }
           ]
         }

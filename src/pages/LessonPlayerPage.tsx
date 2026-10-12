@@ -598,6 +598,7 @@ export const LessonPlayerPage: React.FC = () => {
                 instructions={currentStep.practiceData.instructions}
                 exercises={currentStep.practiceData.exercises}
                 onIncorrectAnswer={handlePracticeIncorrectAnswer}
+                onNextStep={handleNextStep}
               />
             )}
 

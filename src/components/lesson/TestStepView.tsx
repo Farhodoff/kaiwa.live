@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { Award, CheckCircle2, XCircle, ChevronRight, RotateCcw, Headphones } from 'lucide-react';
 import { TestQuestion } from '../../types/lesson';
 import { FuriganaText, FuriganaMode } from '../jlpt/FuriganaText';
@@ -66,12 +66,44 @@ export const TestStepView: React.FC<TestStepViewProps> = ({
     return currentQuestion.options.every((opt) => opt.length <= 24 && !opt.includes('\n'));
   }, [currentQuestion]);
 
+  const autoAdvanceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (autoAdvanceTimerRef.current) {
+        clearTimeout(autoAdvanceTimerRef.current);
+      }
+    };
+  }, []);
+
   const handleSelectOption = (optionIdx: number) => {
     if (isCompleted) return;
     setSelectedAnswers((prev) => ({
       ...prev,
       [currentIdx]: optionIdx,
     }));
+
+    if (autoAdvanceTimerRef.current) {
+      clearTimeout(autoAdvanceTimerRef.current);
+    }
+
+    autoAdvanceTimerRef.current = setTimeout(() => {
+      if (currentIdx < totalQuestions - 1) {
+        setCurrentIdx((prev) => prev + 1);
+      }
+    }, 320);
+  };
+
+  const handlePrevQuestion = () => {
+    if (autoAdvanceTimerRef.current) clearTimeout(autoAdvanceTimerRef.current);
+    setCurrentIdx((prev) => Math.max(0, prev - 1));
+  };
+
+  const handleNextQuestion = () => {
+    if (autoAdvanceTimerRef.current) clearTimeout(autoAdvanceTimerRef.current);
+    if (currentIdx < totalQuestions - 1) {
+      setCurrentIdx((prev) => prev + 1);
+    }
   };
 
   const handleFinishTest = () => {
@@ -255,7 +287,7 @@ export const TestStepView: React.FC<TestStepViewProps> = ({
           {/* Footer Nav Controls */}
           <div className="flex items-center justify-between gap-2.5 pt-2 sm:gap-3">
             <button
-              onClick={() => setCurrentIdx((prev) => Math.max(0, prev - 1))}
+              onClick={handlePrevQuestion}
               disabled={currentIdx === 0}
               className="h-11 cursor-pointer touch-manipulation select-none rounded-xl border border-border px-3.5 text-xs font-bold text-muted-foreground hover:text-foreground active:scale-95 disabled:cursor-not-allowed disabled:opacity-30 sm:px-4 sm:text-sm"
             >
@@ -264,7 +296,7 @@ export const TestStepView: React.FC<TestStepViewProps> = ({
 
             {currentIdx < totalQuestions - 1 ? (
               <button
-                onClick={() => setCurrentIdx((prev) => prev + 1)}
+                onClick={handleNextQuestion}
                 disabled={selectedAnswers[currentIdx] === undefined}
                 className="flex h-11 flex-1 cursor-pointer touch-manipulation select-none items-center justify-center gap-2 rounded-xl bg-primary px-4 text-xs font-bold text-primary-foreground shadow-md transition-all hover:opacity-90 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 sm:h-12 sm:text-sm"
               >
