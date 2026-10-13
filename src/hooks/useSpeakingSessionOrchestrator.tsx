@@ -587,14 +587,10 @@ export function useSpeakingSessionOrchestrator({
         : vocab.word;
 
       let back = '';
-      if (isJa) {
-        if (uzbekMeaning && englishMeaning) {
-          back = `📌 O'zbekcha: ${uzbekMeaning}\n🌐 English: ${englishMeaning}`;
-        } else if (uzbekMeaning) {
-          back = `📌 Ma'nosi: ${uzbekMeaning}`;
-        } else {
-          back = `📌 Ma'nosi: ${vocab.meaning}`;
-        }
+      if (uzbekMeaning && englishMeaning) {
+        back = `📌 O'zbekcha: ${uzbekMeaning}\n🌐 English: ${englishMeaning}`;
+      } else if (uzbekMeaning) {
+        back = `📌 O'zbekcha: ${uzbekMeaning}`;
       } else {
         back = `📌 Ma'nosi: ${vocab.meaning}`;
       }

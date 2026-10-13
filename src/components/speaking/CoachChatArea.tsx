@@ -109,6 +109,23 @@ export const CoachChatArea: React.FC<CoachChatAreaProps> = ({
     }
   };
 
+  const handleSaveAllVocab = async (vocabList: CoachVocabularyItem[]) => {
+    if (!onAddVocabulary) return;
+    for (const vocab of vocabList) {
+      const isSaved =
+        addedVocabs.has(vocab.word.trim()) ||
+        (flashcards && flashcards.some((f) => f.front.includes(vocab.word.trim())));
+      if (!isSaved) {
+        try {
+          const result = await onAddVocabulary(vocab);
+          if (result !== false) {
+            setAddedVocabs((prev) => new Set(prev).add(vocab.word.trim()));
+          }
+        } catch {}
+      }
+    }
+  };
+
   if (chatHistory.length === 0 && !isLiveSession) return null;
 
   return (
@@ -225,101 +242,177 @@ export const CoachChatArea: React.FC<CoachChatAreaProps> = ({
 
               {/* Vocabulary Recommendations */}
               {msg.role === 'assistant' && msg.vocabulary && msg.vocabulary.length > 0 && (
-                <div className="mt-2.5 space-y-1.5 border-t border-border/50 pt-2">
-                  <div className="flex items-center justify-between gap-1 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
-                    <span>
-                      {language === 'ja'
-                        ? '🧠 おすすめ単語・表現（単語帳）:'
-                        : "🧠 Yangi Lug'atlar (Fleshkarta):"}
+                <div className="mt-3 space-y-2 border-t border-border/60 pt-2.5">
+                  <div className="flex flex-wrap items-center justify-between gap-1.5 text-[11px] font-bold tracking-wider text-muted-foreground">
+                    <span className="flex items-center gap-1.5 font-semibold text-foreground">
+                      <span>🧠</span>
+                      <span>
+                        {language === 'ja'
+                          ? `おすすめ単語・表現 (${msg.vocabulary.length} ta tavsiya):`
+                          : `Tavsiya etilgan so'zlar (${msg.vocabulary.length} ta):`}
+                      </span>
                     </span>
-                    <button
-                      type="button"
-                      onClick={() => navigate('/decks')}
-                      className="inline-flex cursor-pointer items-center gap-1 rounded-md px-1.5 py-0.5 text-[10px] font-bold text-amber-500 transition-colors hover:bg-amber-500/10 hover:text-amber-400"
-                      title="Speaking fleshkartalariga o'tish"
-                    >
-                      <span>🎙️ Lug'atlarim</span>
-                      <ArrowRight size={10} />
-                    </button>
+                    <div className="flex items-center gap-1.5">
+                      {onAddVocabulary &&
+                        (() => {
+                          const unsavedCount = msg.vocabulary.filter(
+                            (v) =>
+                              !addedVocabs.has(v.word.trim()) &&
+                              !(
+                                flashcards &&
+                                flashcards.some((f) => f.front.includes(v.word.trim()))
+                              ),
+                          ).length;
+                          return unsavedCount > 0 ? (
+                            <button
+                              type="button"
+                              onClick={() => handleSaveAllVocab(msg.vocabulary!)}
+                              className="inline-flex cursor-pointer items-center gap-1 rounded-md bg-primary/10 px-2 py-0.5 text-[10px] font-bold text-primary transition-colors hover:bg-primary/20 active:scale-95"
+                              title="Barcha so'zlarni fleshkartaga saqlash"
+                            >
+                              <Plus size={10} />
+                              <span>Hammasini saqlash ({unsavedCount})</span>
+                            </button>
+                          ) : (
+                            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-500">
+                              <Check size={10} />
+                              <span>Barchasi saqlandi</span>
+                            </span>
+                          );
+                        })()}
+                      <button
+                        type="button"
+                        onClick={() => navigate('/decks')}
+                        className="inline-flex cursor-pointer items-center gap-1 rounded-md px-1.5 py-0.5 text-[10px] font-bold text-amber-500 transition-colors hover:bg-amber-500/10 hover:text-amber-400"
+                        title="Speaking fleshkartalariga o'tish"
+                      >
+                        <span>🎙️ Lug'atlarim</span>
+                        <ArrowRight size={10} />
+                      </button>
+                    </div>
                   </div>
-                  <div className="flex flex-wrap gap-2">
+
+                  {/* Sequential Numbered Vocabulary List */}
+                  <div className="space-y-2 pt-1">
                     {msg.vocabulary.map((vocab, vIdx) => {
                       const isSaved =
                         addedVocabs.has(vocab.word.trim()) ||
                         (flashcards && flashcards.some((f) => f.front.includes(vocab.word.trim())));
+
+                      // Extract Uzbek meaning & English explanation
+                      const rawMeaning = (vocab.meaning || '').trim();
+                      const parenMatch = rawMeaning.match(/^(.*?)\s*[([](.*)[)\]]$/);
+                      const bulletMatch = rawMeaning.match(/^(.*?)\s*[•|/]\s*(.*)$/);
+                      let uzbekPart = rawMeaning;
+                      let secondaryPart = '';
+
+                      if (parenMatch) {
+                        uzbekPart = parenMatch[1].trim();
+                        secondaryPart = parenMatch[2].trim();
+                      } else if (bulletMatch) {
+                        uzbekPart = bulletMatch[1].trim();
+                        secondaryPart = bulletMatch[2].trim();
+                      }
+
                       return (
                         <div
                           key={vIdx}
-                          className={`inline-flex items-center gap-2 rounded-xl border px-2.5 py-1.5 text-xs transition-all ${
+                          className={`flex flex-col gap-1.5 rounded-xl border p-2.5 text-xs transition-all ${
                             isSaved
-                              ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400 shadow-xs'
-                              : 'border-border bg-muted/80 text-foreground shadow-xs hover:border-primary/50'
+                              ? 'border-emerald-500/30 bg-emerald-500/5 text-foreground shadow-xs'
+                              : 'border-border bg-muted/60 text-foreground shadow-xs hover:border-primary/40'
                           }`}
                         >
-                          <div className="flex items-baseline gap-1">
-                            <span className="font-bold text-foreground">{vocab.word}</span>
-                            {vocab.reading && (
-                              <span className="font-mono text-[10px] text-muted-foreground">
-                                ({vocab.reading})
+                          <div className="flex flex-wrap items-center justify-between gap-1.5">
+                            <div className="flex flex-wrap items-center gap-1.5">
+                              {/* Sequence index badge */}
+                              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/15 text-[10px] font-extrabold text-primary">
+                                {vIdx + 1}
                               </span>
-                            )}
-                            <button
-                              type="button"
-                              onClick={() => speakText(vocab.reading || vocab.word)}
-                              className="flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-amber-400"
-                              title="So'z talaffuzini tinglash"
-                              aria-label="So'z talaffuzini tinglash"
-                            >
-                              <Volume2 size={16} />
-                            </button>
-                          </div>
-                          <span className="text-[11px] text-muted-foreground">
-                            • {vocab.meaning}
-                          </span>
-
-                          {onInspectPitch && language === 'ja' && (
-                            <button
-                              type="button"
-                              onClick={() => onInspectPitch(vocab.word, vocab.reading)}
-                              className="inline-flex min-h-[44px] cursor-pointer items-center gap-1 rounded-lg border border-primary/25 bg-primary/10 px-2.5 text-[10px] font-bold text-primary transition-all hover:bg-primary/20 hover:shadow-xs active:scale-95"
-                              title="Yapon tili ohangi (Pitch Accent) grafigini ko'rish"
-                            >
-                              <TrendingUp size={11} />
-                              <span>Pitch</span>
-                            </button>
-                          )}
-
-                          {onAddVocabulary && (
-                            <button
-                              type="button"
-                              onClick={() => handleVocabClick(vocab)}
-                              className={`inline-flex min-h-[44px] cursor-pointer items-center gap-1 rounded-lg px-2.5 text-[11px] font-bold transition-all ${
-                                isSaved
-                                  ? 'cursor-default bg-emerald-600 text-white'
-                                  : 'bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 active:scale-95'
-                              }`}
-                              title={
-                                isSaved
-                                  ? language === 'ja'
-                                    ? '単語帳に保存済み'
-                                    : 'Fleshkartaga saqlangan'
-                                  : language === 'ja'
-                                    ? '単語帳に追加'
-                                    : "Fleshkartaga qo'shish"
-                              }
-                            >
-                              {isSaved ? (
-                                <>
-                                  <Check size={12} className="shrink-0" />
-                                  <span>{language === 'ja' ? '保存済み' : 'Saqlandi'}</span>
-                                </>
-                              ) : (
-                                <>
-                                  <Plus size={12} className="shrink-0" />
-                                  <span>{language === 'ja' ? '追加' : "Qo'shish"}</span>
-                                </>
+                              <span className="text-sm font-bold text-foreground">
+                                {vocab.word}
+                              </span>
+                              {vocab.reading && (
+                                <span className="rounded-md border border-border/50 bg-background/80 px-1.5 py-0.5 font-mono text-[11px] text-muted-foreground">
+                                  【{vocab.reading}】
+                                </span>
                               )}
-                            </button>
+                              <button
+                                type="button"
+                                onClick={() => speakText(vocab.reading || vocab.word)}
+                                className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-amber-400"
+                                title="So'z talaffuzini tinglash"
+                                aria-label="So'z talaffuzini tinglash"
+                              >
+                                <Volume2 size={14} />
+                              </button>
+                              {onInspectPitch && language === 'ja' && (
+                                <button
+                                  type="button"
+                                  onClick={() => onInspectPitch(vocab.word, vocab.reading)}
+                                  className="inline-flex h-7 cursor-pointer items-center gap-1 rounded-md border border-primary/25 bg-primary/10 px-2 text-[10px] font-bold text-primary transition-all hover:bg-primary/20 hover:shadow-xs active:scale-95"
+                                  title="Yapon tili ohangi (Pitch Accent) grafigini ko'rish"
+                                >
+                                  <TrendingUp size={11} />
+                                  <span>Pitch</span>
+                                </button>
+                              )}
+                            </div>
+
+                            {onAddVocabulary && (
+                              <button
+                                type="button"
+                                onClick={() => handleVocabClick(vocab)}
+                                className={`inline-flex min-h-[30px] cursor-pointer items-center gap-1 rounded-lg px-2.5 py-1 text-[11px] font-bold transition-all ${
+                                  isSaved
+                                    ? 'cursor-default border border-emerald-500/30 bg-emerald-500/15 text-emerald-600 dark:text-emerald-400'
+                                    : 'bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 active:scale-95'
+                                }`}
+                                title={
+                                  isSaved
+                                    ? language === 'ja'
+                                      ? '単語帳に保存済み'
+                                      : 'Fleshkartaga saqlangan'
+                                    : language === 'ja'
+                                      ? '単語帳に追加'
+                                      : "Fleshkartaga qo'shish"
+                                }
+                              >
+                                {isSaved ? (
+                                  <>
+                                    <Check size={12} className="shrink-0" />
+                                    <span>{language === 'ja' ? '保存済み' : 'Saqlandi'}</span>
+                                  </>
+                                ) : (
+                                  <>
+                                    <Plus size={12} className="shrink-0" />
+                                    <span>{language === 'ja' ? '追加' : 'Fleshkarta'}</span>
+                                  </>
+                                )}
+                              </button>
+                            )}
+                          </div>
+
+                          {/* Sequential Uzbek translation line */}
+                          <div className="flex items-start gap-1.5 pl-6 text-[12px] sm:pl-7">
+                            <span className="shrink-0 font-semibold text-emerald-600 dark:text-emerald-400">
+                              🇺🇿 O'zbekcha:
+                            </span>
+                            <span className="font-medium text-foreground">
+                              {uzbekPart}
+                              {secondaryPart && (
+                                <span className="ml-1 text-[11px] font-normal text-muted-foreground">
+                                  ({secondaryPart})
+                                </span>
+                              )}
+                            </span>
+                          </div>
+
+                          {/* Contextual example sentence if available */}
+                          {vocab.example && vocab.example.trim() && (
+                            <div className="pl-6 text-[11px] text-muted-foreground sm:pl-7">
+                              <span className="italic">💬 Misol: 「{vocab.example.trim()}」</span>
+                            </div>
                           )}
                         </div>
                       );

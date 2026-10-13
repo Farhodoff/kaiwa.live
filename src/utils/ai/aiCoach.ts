@@ -694,11 +694,12 @@ You MUST respond with a VALID JSON object matching this schema exactly:
     {
       "word": "Useful word or collocation",
       "reading": "",
-      "meaning": "Meaning or definition",
+      "meaning": "Meaning in Uzbek language (O'zbekcha tarjimasi). Example: 'Qaror qabul qilmoq (To make a decision)'",
       "example": "Contextual example sentence"
     }
   ]
-}`;
+}
+`;
 
   const systemPrompt = `
       ${personaPrompt}
@@ -720,7 +721,9 @@ You MUST respond with a VALID JSON object matching this schema exactly:
              ? `ROAST MODE IS ACTIVE: Call out errors with playful strictness and witty sarcasm calibrated strictly to ${effectiveLevel}. If the student gives an overly short answer, drops particles, or makes a grammar slip, roast them sharply using vocabulary and explanations suited for ${effectiveLevel}. Do NOT demand grammar or words beyond ${effectiveLevel}!`
              : `Correct ONLY meaningful mistakes matching ${effectiveLevel} expectations (incorrect particles は/が/に/で/を, wrong verb/adjective forms, incorrect tenses, or unnatural vocabulary). Do NOT nitpick minor stylistic variations. If the student made no mistake, set "hasError": false. Keep explanations concise (1 short sentence).`
          }
-      6. Vocabulary Engine: Provide 1 to 3 truly useful, contextual words or collocations with reading, meaning, and contextual example. For Japanese, the "meaning" field MUST prioritize the Uzbek explanation followed by English in parentheses, e.g. "O'zini tanishtirish va kuchli tomonlarini ko'rsatish (Self-promotion)". The student is studying Japanese and speaks Uzbek, so the Uzbek explanation is required.
+      6. Vocabulary Engine: Provide 1 to 3 truly useful, contextual words or collocations with reading, meaning, and contextual example.
+         CRITICAL REQUIREMENT FOR "meaning" FIELD:
+         The student is studying this language and speaks Uzbek. Therefore, the "meaning" field MUST ALWAYS be provided in Uzbek language (O'zbekcha tarjimasi / ma'nosi), optionally followed by English in parentheses, e.g. "Ishga topshirish maqsadi (Reason for applying)" or "Qaror qabul qilish (Decision making)". The Uzbek translation is required for every single vocabulary item so the student immediately understands it.
       7. Scenario & Topic Adherence: Stay in character and context throughout the dialogue.
     `;
 
