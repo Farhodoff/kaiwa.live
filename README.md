@@ -81,6 +81,99 @@ A full-stack, AI-powered **Japanese Language (JLPT N5 – N1 & 0-Level Beginners
 
 ---
 
+## 🏛️ Tizim Arxitekturasi (System Architecture)
+
+Quyidagi diagrammada **Nihongo Talk** platformasining ko'p qatlamli (Multi-Tier) arxitekturasi, klient-tomon dvigatellari, real-vaqt muloqot tizimi, AI tahlil oqimi hamda Supabase ma'lumotlar bazasi bilan integratsiyasi aks ettirilgan:
+
+```mermaid
+flowchart TD
+    %% Styling and Theme Classes
+    classDef client fill:#0F172A,stroke:#38BDF8,stroke-width:2px,color:#F8FAFC
+    classDef engine fill:#1E293B,stroke:#818CF8,stroke-width:2px,color:#F8FAFC
+    classDef edge fill:#1E1E38,stroke:#F43F5E,stroke-width:2px,color:#F8FAFC
+    classDef ai fill:#2E1065,stroke:#C084FC,stroke-width:2px,color:#F8FAFC
+    classDef data fill:#064E3B,stroke:#34D399,stroke-width:2px,color:#F8FAFC
+    classDef collab fill:#451A03,stroke:#FBBF24,stroke-width:2px,color:#F8FAFC
+
+    subgraph ClientLayer["🖥️ Foydalanuvchi Qatlami (Clients & Presentation)"]
+        WebApp["🌐 Web Platform<br/>(React 18 + Vite + Tailwind CSS)"]:::client
+        TWA["📱 Telegram Mini App (TWA)<br/>(Telegram WebApp SDK)"]:::client
+        PWA["⚡ PWA & Offline Engine<br/>(Service Workers + Cache API)"]:::client
+        KanjiCanvas["✍️ Interactive Kanji Canvas<br/>(SVG Stroke Order & Drawing)"]:::client
+    end
+
+    subgraph ClientEngines["⚙️ Klient-tomon Dvigatellar (Client-Side Engines)"]
+        SpeechEngine["🎙️ Web Speech API Engine<br/>(STT Ovoz Tanish & TTS Qayta Eshitish)"]:::engine
+        SM2["⚡ Anki SM-2 Spaced Repetition<br/>(Optimal Takrorlash Algoritmi)"]:::engine
+        WorkerSearch["🔍 Web Worker Instant Search<br/>(5,000+ So'z va Grammatika Bazasini Qidirish)"]:::engine
+        RoadmapCalc["🗺️ Adaptive Roadmap Engine<br/>(Next Best Action & Imtihon Kalkulyatori)"]:::engine
+    end
+
+    subgraph EdgeServices["🛡️ Serverless & Edge Qatlami (Vercel & Edge Functions)"]
+        VercelAPI["⚡ Vercel Edge API<br/>(/api/deepseek, /api/sakubun-evaluate)"]:::edge
+        TelegramWebhook["🤖 Telegram Bot Webhook<br/>(Daily Dispatch & Group Battle)"]:::edge
+        SupabaseEdge["🚀 Supabase Edge Functions<br/>(XP hisoblash & AI proxy)"]:::edge
+    end
+
+    subgraph AIServices["🤖 Sun'iy Intellekt Qatlami (AI Sensei Core)"]
+        DeepSeek["🧠 DeepSeek Reasoner & Chat<br/>(Yuki Sensei Jonli Muloqot & Grammatika Tahlili)"]:::ai
+        Gemini["✨ Google Gemini 2.0<br/>(Zaxira & Keng Qamrovli AI Konteksti)"]:::ai
+        SakubunAI["📝 Sakubun Essay Evaluator<br/>(Insho Tekshirish & JLPT Mezonlari)"]:::ai
+    end
+
+    subgraph CollabTier["👥 Real-Time & Hamkorlik Qatlami"]
+        WebRTC["📡 WebRTC P2P Mesh<br/>(Audio & Video Jonli Dars Xonasi)"]:::collab
+        TLDraw["🎨 tldraw Shared Whiteboard<br/>(Cheksiz Onlayn Hamkorlik Doskasi)"]:::collab
+    end
+
+    subgraph DataLayer["🗄️ Ma'lumotlar Bazasi & Xavfsizlik (Supabase)"]
+        SupaAuth["🔐 Supabase Auth<br/>(JWT, OAuth & Telegram Auth)"]:::data
+        SupaDB[("🐘 PostgreSQL (Supabase DB)<br/>RLS Qoidalari & To'liq Indekslangan Baza")]:::data
+        SupaRealtime["🔄 Supabase Realtime<br/>(Jonli XP, Reyting va Sessiya Sinxronizatsiyasi)"]:::data
+    end
+
+    %% Oqim Bog'lanishlari
+    WebApp --> SpeechEngine
+    WebApp --> SM2
+    WebApp --> KanjiCanvas
+    WebApp --> WorkerSearch
+    WebApp --> RoadmapCalc
+    TWA --> WebApp
+    PWA -.-> WebApp
+
+    %% Hamkorlik
+    WebApp <--> WebRTC
+    WebApp <--> TLDraw
+
+    %% Edge & API
+    SpeechEngine --> VercelAPI
+    WebApp --> VercelAPI
+    TWA --> TelegramWebhook
+    RoadmapCalc --> SupabaseEdge
+
+    %% AI Pipeline
+    VercelAPI --> DeepSeek
+    VercelAPI --> Gemini
+    VercelAPI --> SakubunAI
+    SupabaseEdge --> DeepSeek
+
+    %% Ma'lumotlar oqimi
+    WebApp <--> SupaAuth
+    VercelAPI <--> SupaDB
+    SupabaseEdge <--> SupaDB
+    WebApp <--> SupaRealtime
+    TelegramWebhook <--> SupaDB
+```
+
+### 🔄 Asosiy Ma'lumotlar Oqimi (Data Flow)
+
+1. **Ovozli Muloqot (AI Kaiwa):** Foydalanuvchi ovozi Web Speech API orqali matnga aylantiriladi (STT) $\rightarrow$ Vercel Edge API orqali DeepSeek Reasoner modeliga yuboriladi $\rightarrow$ Yuki Sensei kontekstida javob va grammatik tavsiyalar olinadi $\rightarrow$ TTS orqali tabiiy yapon ovozi bilan ijro etiladi.
+2. **Interval Takrorlash (SM-2):** Kartochkalar holati (Interval, Repetitions, Ease Factor) to'g'ridan-to'g'ri klient dvigatelida hisoblanadi va Supabase PostgreSQL bazasiga asinxron sinxronlanadi.
+3. **Jonli O'quv Xonasi (Study Room):** P2P WebRTC tarmog'i orqali o'quvchilar video/audio muloqot qiladilar, `tldraw` orqali kanji va mashqlarni bir vaqtda umumiy doskada bajara oladilar.
+4. **Telegram TWA Integratsiyasi:** Telegram ichidan kirgan foydalanuvchilar maxsus sessiya orqali avtomatik aniqlanib, shaxsiy progress saqlanadi.
+
+---
+
 ## 🚀 O'rnatish va Ishga Tushirish (Quick Start)
 
 ### 1. Repozitoriyani klonlash va paketlarni o'rnatish:
