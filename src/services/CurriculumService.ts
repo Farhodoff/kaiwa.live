@@ -1091,4 +1091,30 @@ export const CurriculumService = {
   getCourse(language: SupportedLanguage): CurriculumCourse {
     return language === 'ja' ? this.getJapaneseCurriculum() : this.getEnglishCurriculum();
   },
+
+  /**
+   * Get Course annotated with adaptive difficulty metrics based on user performance.
+   * Backward-compatible with CurriculumCourse interface.
+   */
+  async getAdaptiveCurriculum(
+    language: SupportedLanguage,
+    performance?: import('../types/adaptiveDifficulty').UserPerformanceData,
+  ): Promise<CurriculumCourse> {
+    const { AdaptiveDifficultyEngine } = await import('./AdaptiveDifficultyEngine');
+    return AdaptiveDifficultyEngine.getDecoratedCurriculum(language, performance);
+  },
+
+  /**
+   * Get the next optimal lesson based on real-time performance metrics and AI predictions.
+   */
+  async getAdaptiveNextLesson(
+    language: SupportedLanguage,
+    performance: import('../types/adaptiveDifficulty').UserPerformanceData,
+  ): Promise<import('../types/adaptiveDifficulty').AdaptiveLessonRecommendation> {
+    const { AdaptiveDifficultyEngine } = await import('./AdaptiveDifficultyEngine');
+    return AdaptiveDifficultyEngine.getOptimalNextLesson({
+      ...performance,
+      language,
+    });
+  },
 };
