@@ -84,17 +84,19 @@ describe('LessonPlayerPage', () => {
     expect(screen.getByText(/To'g'ri majhul nisbat shaklini tanlang/i)).toBeInTheDocument();
 
     // Select the first option for Exercise 1
-    const optionA = screen.getByText(/誰/);
-    fireEvent.click(optionA);
+    const optButtons1 = screen.getAllByRole('button').filter((b) => b.textContent?.includes('A'));
+    expect(optButtons1.length).toBeGreaterThan(0);
+    fireEvent.click(optButtons1[0]);
 
-    // Advance to Exercise 2 via Davom etish button
-    const continueBtn = screen.getByRole('button', { name: /Davom etish/i });
-    fireEvent.click(continueBtn);
-
-    // Select option for Exercise 2
-    const optButtons = screen.getAllByRole('button').filter((b) => b.textContent?.includes('A'));
-    expect(optButtons.length).toBeGreaterThan(0);
-    fireEvent.click(optButtons[0]);
+    // Advance through exercises until reaching the final finish button
+    while (screen.queryByRole('button', { name: /Davom etish/i })) {
+      const continueBtn = screen.getByRole('button', { name: /Davom etish/i });
+      fireEvent.click(continueBtn);
+      const optButtons = screen.getAllByRole('button').filter((b) => b.textContent?.includes('A'));
+      if (optButtons.length > 0) {
+        fireEvent.click(optButtons[0]);
+      }
+    }
 
     // Click Natijalarni Ko'rish
     const finishBtn = screen.getByRole('button', { name: /Natijalarni Ko'rish/i });

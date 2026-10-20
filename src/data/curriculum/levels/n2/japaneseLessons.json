@@ -1852,14 +1852,6 @@
               ],
               "correctAnswer": 2,
               "explanation": "「手順」 (tejun) so'zi o'zbek tilida \"Ketma-ketlik, ish jarayoni bosqichlari\" ma'nosini bildiradi."
-            },
-            {
-              "id": "ja-n2-u2-l4-ex-8",
-              "type": "multiple-choice",
-              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
-              "options": ["で", "を", "に", "と"],
-              "correctAnswer": 1,
-              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -4173,14 +4165,6 @@
               ],
               "correctAnswer": 2,
               "explanation": "「必然」 (hitsuzen) so'zi o'zbek tilida \"Muqarrarlik, tabiiy zarurat\" ma'nosini bildiradi."
-            },
-            {
-              "id": "ja-n2-u4-l5-ex-8",
-              "type": "multiple-choice",
-              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
-              "options": ["と", "から", "を", "で"],
-              "correctAnswer": 2,
-              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -5482,14 +5466,6 @@
               ],
               "correctAnswer": 0,
               "explanation": "「概要を 掴む」 (gaiyou o tsukamu) so'zi o'zbek tilida \"Umumiy mazmunni anglab olmoq\" ma'nosini bildiradi."
-            },
-            {
-              "id": "ja-n2-u6-l1-ex-8",
-              "type": "multiple-choice",
-              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
-              "options": ["は", "が", "を", "に"],
-              "correctAnswer": 2,
-              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -5706,14 +5682,6 @@
               ],
               "correctAnswer": 3,
               "explanation": "「文脈」 (bunmyaku) so'zi o'zbek tilida \"Matn konteksti, mazmuniy oqim\" ma'nosini bildiradi."
-            },
-            {
-              "id": "ja-n2-u6-l2-ex-8",
-              "type": "multiple-choice",
-              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
-              "options": ["と", "に", "は", "を"],
-              "correctAnswer": 3,
-              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -5916,14 +5884,6 @@
               ],
               "correctAnswer": 1,
               "explanation": "「商談」 (shoudan) so'zi o'zbek tilida \"Biznes muzokaralari, savdo-sotiq kelishuvi\" ma'nosini bildiradi."
-            },
-            {
-              "id": "ja-n2-u6-l3-ex-8",
-              "type": "multiple-choice",
-              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
-              "options": ["を", "と", "で", "は"],
-              "correctAnswer": 0,
-              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -6132,14 +6092,6 @@
               ],
               "correctAnswer": 0,
               "explanation": "「語彙力」 (goiryoku) so'zi o'zbek tilida \"Lugʻat boyligi\" ma'nosini bildiradi."
-            },
-            {
-              "id": "ja-n2-u6-l4-ex-8",
-              "type": "multiple-choice",
-              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
-              "options": ["を", "は", "から", "で"],
-              "correctAnswer": 0,
-              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -6346,14 +6298,6 @@
               ],
               "correctAnswer": 2,
               "explanation": "「飛躍的な」 (hiyokuteki na) so'zi o'zbek tilida \"Sakrashdek tezkor, ulkan, mislsiz\" ma'nosini bildiradi."
-            },
-            {
-              "id": "ja-n2-u6-l5-ex-8",
-              "type": "multiple-choice",
-              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
-              "options": ["から", "が", "と", "を"],
-              "correctAnswer": 3,
-              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
