@@ -160,9 +160,8 @@ export const JlptMockExamPage: React.FC = () => {
   const [mistakes, setMistakes] = useState<ExamQuestionAnswer[]>([]);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
 
-  // Questions from active loaded exam (or fallback)
-  const levelQuestions: ExamQuestion[] =
-    activeExam?.questions || JLPT_MOCK_EXAM_DATA[level] || JLPT_MOCK_EXAM_DATA['N5'];
+  // Questions from active loaded exam (strictly for the selected level)
+  const levelQuestions: ExamQuestion[] = activeExam?.questions || JLPT_MOCK_EXAM_DATA[level] || [];
   const knowledgeQuestions = levelQuestions.filter((q) => q.section === 'knowledge');
   const readingQuestions = levelQuestions.filter((q) => q.section === 'reading');
   const listeningQuestions = levelQuestions.filter((q) => q.section === 'listening');
@@ -378,6 +377,16 @@ export const JlptMockExamPage: React.FC = () => {
         selectedExamId || `builtin_${level.toLowerCase()}`,
         level,
       );
+
+      const loadedQuestions = examData?.questions || JLPT_MOCK_EXAM_DATA[level] || [];
+      if (loadedQuestions.length === 0) {
+        toast({
+          variant: 'destructive',
+          title: '❌ Savollar topilmadi',
+          description: `${level} darajasi uchun imtihon savollari bazada mavjud emas. Boshqa darajaga yashirincha o'tish cheklangan.`,
+        });
+        return;
+      }
       setActiveExam(examData);
 
       // Check for valid existing draft for this level
@@ -440,8 +449,15 @@ export const JlptMockExamPage: React.FC = () => {
         setTimeLeft(restoredTimeLeft ?? examData.timeLimitSeconds);
       }
       setIsTimerRunning(true);
-    } catch (err) {
+    } catch (err: any) {
       console.error('Failed to load exam:', err);
+      toast({
+        variant: 'destructive',
+        title: '❌ Imtihonni yuklashda xatolik',
+        description:
+          err?.message ||
+          `${level} darajasidagi imtihonni yuklab bo'lmadi. Iltimos, qaytadan urinib ko'ring.`,
+      });
     } finally {
       setIsStartingExam(false);
     }
@@ -614,6 +630,13 @@ export const JlptMockExamPage: React.FC = () => {
       }
     } catch (e) {
       console.warn('Failed to record mistakes to MistakeVaultService:', e);
+    }
+
+    // Record question IDs to ensure no-repeat logic in subsequent dynamic exams
+    try {
+      ExamService.recordAnsweredQuestions(levelQuestions.map((q) => q.id));
+    } catch (e) {
+      console.warn('Failed to record answered questions in ExamService:', e);
     }
 
     // Calculate official JLPT score report with sectional cutoffs

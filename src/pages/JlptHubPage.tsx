@@ -10,6 +10,7 @@ import {
   ChevronUp,
   Sparkles,
   BookMarked,
+  Layers,
 } from 'lucide-react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useStudyData } from '../context/StudyPlannerContext';
@@ -38,6 +39,11 @@ const JlptMockExamPage = lazyWithRetry(() =>
 const JlptMistakeNotebook = lazyWithRetry(() =>
   import('../components/jlpt/JlptMistakeNotebook').then((m) => ({
     default: m.JlptMistakeNotebook,
+  })),
+);
+const JlptSkillMatrixView = lazyWithRetry(() =>
+  import('../components/analytics/JlptSkillMatrixView').then((m) => ({
+    default: m.JlptSkillMatrixView,
   })),
 );
 
@@ -260,6 +266,17 @@ export const JlptHubPage: React.FC = () => {
           </button>
 
           <button
+            onClick={() => handleTabChange('matrix')}
+            className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-2 whitespace-nowrap rounded-xl px-3.5 py-2.5 text-xs font-bold transition-all active:scale-95 ${
+              activeTab === 'matrix'
+                ? 'scale-[1.02] bg-primary text-primary-foreground shadow-xs'
+                : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
+            }`}
+          >
+            <Layers size={15} /> {language === 'ja' ? '🎯 スキルマトリクス' : '🎯 Skill Matrix'}
+          </button>
+
+          <button
             onClick={() => navigate('/flashcards')}
             className="flex shrink-0 cursor-pointer touch-manipulation select-none items-center gap-2 whitespace-nowrap rounded-xl border border-dashed border-border px-3.5 py-2.5 text-xs font-bold text-muted-foreground transition-all hover:border-primary/40 hover:text-foreground active:scale-95"
           >
@@ -381,6 +398,13 @@ export const JlptHubPage: React.FC = () => {
         {activeTab === 'mistakes' && (
           <div className="animate-in fade-in">
             <JlptMistakeNotebook />
+          </div>
+        )}
+
+        {/* Tab 9: Skill Matrix (7 Ko'nikmalar Matritsasi) */}
+        {activeTab === 'matrix' && (
+          <div className="animate-in fade-in">
+            <JlptSkillMatrixView />
           </div>
         )}
       </Suspense>

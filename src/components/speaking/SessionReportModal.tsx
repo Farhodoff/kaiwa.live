@@ -279,57 +279,83 @@ export const SessionReportModal: React.FC<SessionReportModalProps> = ({
                   </div>
                 </div>
 
-                {/* 4 Criteria Breakdown Cards */}
-                <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-                  <div className="rounded-2xl border border-blue-500/20 bg-blue-500/10 p-4 text-center">
+                {/* 6 Rubric Criteria Breakdown Cards */}
+                <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 md:grid-cols-6">
+                  <div className="rounded-2xl border border-blue-500/20 bg-blue-500/10 p-3 text-center">
                     <span className="mb-1 block text-[10px] font-extrabold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-                      📚 Lexical (30%)
+                      📚 Lexical
                     </span>
-                    <div className="text-2xl font-black text-gray-900 dark:text-white">
+                    <div className="text-xl font-black text-gray-900 dark:text-white">
                       {(report.lexical_score || 7.0).toFixed(1)}{' '}
-                      <span className="text-xs font-normal text-gray-400">/ 9.0</span>
+                      <span className="text-[10px] font-normal text-gray-400">/ 9.0</span>
                     </div>
-                    <span className="mt-1 block text-[10px] text-gray-500 dark:text-gray-400">
+                    <span className="mt-0.5 block text-[10px] text-gray-500 dark:text-gray-400">
                       So'z boyligi
                     </span>
                   </div>
 
-                  <div className="rounded-2xl border border-purple-500/20 bg-purple-500/10 p-4 text-center">
+                  <div className="rounded-2xl border border-purple-500/20 bg-purple-500/10 p-3 text-center">
                     <span className="mb-1 block text-[10px] font-extrabold uppercase tracking-wider text-purple-600 dark:text-purple-400">
-                      ⚖️ Grammar (30%)
+                      ⚖️ Grammar
                     </span>
-                    <div className="text-2xl font-black text-gray-900 dark:text-white">
+                    <div className="text-xl font-black text-gray-900 dark:text-white">
                       {(report.grammar_score || 7.0).toFixed(1)}{' '}
-                      <span className="text-xs font-normal text-gray-400">/ 9.0</span>
+                      <span className="text-[10px] font-normal text-gray-400">/ 9.0</span>
                     </div>
-                    <span className="mt-1 block text-[10px] text-gray-500 dark:text-gray-400">
+                    <span className="mt-0.5 block text-[10px] text-gray-500 dark:text-gray-400">
                       Grammatika
                     </span>
                   </div>
 
-                  <div className="rounded-2xl border border-indigo-500/20 bg-indigo-500/10 p-4 text-center">
+                  <div className="rounded-2xl border border-indigo-500/20 bg-indigo-500/10 p-3 text-center">
                     <span className="mb-1 block text-[10px] font-extrabold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
-                      🗣️ Fluency (25%)
+                      🗣️ Fluency
                     </span>
-                    <div className="text-2xl font-black text-gray-900 dark:text-white">
+                    <div className="text-xl font-black text-gray-900 dark:text-white">
                       {(report.fluency_score || 7.0).toFixed(1)}{' '}
-                      <span className="text-xs font-normal text-gray-400">/ 9.0</span>
+                      <span className="text-[10px] font-normal text-gray-400">/ 9.0</span>
                     </div>
-                    <span className="mt-1 block text-[10px] text-gray-500 dark:text-gray-400">
+                    <span className="mt-0.5 block text-[10px] text-gray-500 dark:text-gray-400">
                       Ravonlik
                     </span>
                   </div>
 
-                  <div className="rounded-2xl border border-pink-500/20 bg-pink-500/10 p-4 text-center">
+                  <div className="rounded-2xl border border-pink-500/20 bg-pink-500/10 p-3 text-center">
                     <span className="mb-1 block text-[10px] font-extrabold uppercase tracking-wider text-pink-600 dark:text-pink-400">
-                      🎙️ Accent (15%)
+                      🎙️ Accent
                     </span>
-                    <div className="text-2xl font-black text-gray-900 dark:text-white">
+                    <div className="text-xl font-black text-gray-900 dark:text-white">
                       {(report.pronunciation_score || 7.5).toFixed(1)}{' '}
-                      <span className="text-xs font-normal text-gray-400">/ 9.0</span>
+                      <span className="text-[10px] font-normal text-gray-400">/ 9.0</span>
                     </div>
-                    <span className="mt-1 block text-[10px] text-gray-500 dark:text-gray-400">
+                    <span className="mt-0.5 block text-[10px] text-gray-500 dark:text-gray-400">
                       Talaffuz
+                    </span>
+                  </div>
+
+                  <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-center">
+                    <span className="mb-1 block text-[10px] font-extrabold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                      ✨ Nuance
+                    </span>
+                    <div className="text-xl font-black text-gray-900 dark:text-white">
+                      {(report.naturalness_score || 7.5).toFixed(1)}{' '}
+                      <span className="text-[10px] font-normal text-gray-400">/ 9.0</span>
+                    </div>
+                    <span className="mt-0.5 block text-[10px] text-gray-500 dark:text-gray-400">
+                      Tabiiylik
+                    </span>
+                  </div>
+
+                  <div className="rounded-2xl border border-amber-500/20 bg-amber-500/10 p-3 text-center">
+                    <span className="mb-1 block text-[10px] font-extrabold uppercase tracking-wider text-amber-600 dark:text-amber-400">
+                      ⏱️ Pauses
+                    </span>
+                    <div className="text-xl font-black text-gray-900 dark:text-white">
+                      {(report.hesitation_score || 7.5).toFixed(1)}{' '}
+                      <span className="text-[10px] font-normal text-gray-400">/ 9.0</span>
+                    </div>
+                    <span className="mt-0.5 block text-[10px] text-gray-500 dark:text-gray-400">
+                      Duduqlanishsiz
                     </span>
                   </div>
                 </div>

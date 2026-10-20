@@ -100,6 +100,102 @@
               "options": ["食事[しょくじ]", "運転[うんてん]", "散歩[さんぽ]", "おはようございます"],
               "correctAnswer": 3,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"おはようございます\" (Xayrli tong)."
+            },
+            {
+              "id": "ja-n5-u1-l1-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）、田中さん。」",
+              "options": ["さようなら", "ありがとう", "おはようございます", "こんにちは"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「こんにちは」 (Konnichiwa) — \"Assalomu alaykum / Xayrli kun\". Gapning to'liq ma'nosi: \"Assalomu alaykum, Tanaka san.\"."
+            },
+            {
+              "id": "ja-n5-u1-l1-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「先生、（　　）。」",
+              "options": ["こんにちは", "おはようございます", "さようなら", "ありがとう"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「おはようございます」 (Ohayou gozaimasu) — \"Xayrli tong\". Gapning to'liq ma'nosi: \"Ustoz, xayrli tong.\"."
+            },
+            {
+              "id": "ja-n5-u1-l1-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「どうも （　　）。」",
+              "options": ["おはようございます", "こんにちは", "ありがとう", "さようなら"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「ありがとう」 (Arigatou) — \"Rahmat\". Gapning to'liq ma'nosi: \"Katta rahmat.\"."
+            },
+            {
+              "id": "ja-n5-u1-l1-ex-6",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「みなさん、（　　）。」",
+              "options": ["こんにちは", "さようなら", "ありがとう", "おはようございます"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「さようなら」 (Sayounara) — \"Xayr\". Gapning to'liq ma'nosi: \"Hammamizga xayr.\"."
+            },
+            {
+              "id": "ja-n5-u1-l1-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「こんにちは」 (Konnichiwa) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Xayrli tong", "Rahmat", "Assalomu alaykum / Xayrli kun", "Xayr"],
+              "correctAnswer": 2,
+              "explanation": "「こんにちは」 (Konnichiwa) so'zi o'zbek tilida \"Assalomu alaykum / Xayrli kun\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u1-l1-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「こんにち（　　）、田中さん。」",
+              "options": ["で", "は", "から", "を"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「は」 zarrachasi to'g'ri keladi. Butun jumla: 「こんにちは、田中さん。」 (Assalomu alaykum, Tanaka san.)."
+            },
+            {
+              "id": "ja-n5-u1-l1-ex-9",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）、田中さん。」",
+              "options": ["さようなら", "ありがとう", "おはようございます", "こんにちは"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「こんにちは」 (Konnichiwa) — \"Assalomu alaykum / Xayrli kun\". Gapning to'liq ma'nosi: \"Assalomu alaykum, Tanaka san.\"."
+            },
+            {
+              "id": "ja-n5-u1-l1-ex-10",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「先生、（　　）。」",
+              "options": ["こんにちは", "おはようございます", "さようなら", "ありがとう"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「おはようございます」 (Ohayou gozaimasu) — \"Xayrli tong\". Gapning to'liq ma'nosi: \"Ustoz, xayrli tong.\"."
+            },
+            {
+              "id": "ja-n5-u1-l1-ex-11",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「どうも （　　）。」",
+              "options": ["おはようございます", "こんにちは", "ありがとう", "さようなら"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「ありがとう」 (Arigatou) — \"Rahmat\". Gapning to'liq ma'nosi: \"Katta rahmat.\"."
+            },
+            {
+              "id": "ja-n5-u1-l1-ex-12",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「みなさん、（　　）。」",
+              "options": ["こんにちは", "さようなら", "ありがとう", "おはようございます"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「さようなら」 (Sayounara) — \"Xayr\". Gapning to'liq ma'nosi: \"Hammamizga xayr.\"."
+            },
+            {
+              "id": "ja-n5-u1-l1-ex-13",
+              "type": "multiple-choice",
+              "prompt": "「こんにちは」 (Konnichiwa) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Xayrli tong", "Rahmat", "Assalomu alaykum / Xayrli kun", "Xayr"],
+              "correctAnswer": 2,
+              "explanation": "「こんにちは」 (Konnichiwa) so'zi o'zbek tilida \"Assalomu alaykum / Xayrli kun\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u1-l1-ex-14",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「こんにち（　　）、田中さん。」",
+              "options": ["で", "は", "から", "を"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「は」 zarrachasi to'g'ri keladi. Butun jumla: 「こんにちは、田中さん。」 (Assalomu alaykum, Tanaka san.)."
             }
           ]
         }
@@ -242,6 +338,112 @@
               "options": ["パン", "散歩[さんぽ]", "食事[しょくじ]", "運転[うんてん]"],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"パン\" (Non (portugalcha pão))."
+            },
+            {
+              "id": "ja-n5-u1-l2-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）を 飲みます。」",
+              "options": ["テレビ", "ホテル", "パン", "コーヒー"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「コーヒー」 (Koohii) — \"Qahva (Coffee)\". Gapning to'liq ma'nosi: \"Qahva ichaman.\"."
+            },
+            {
+              "id": "ja-n5-u1-l2-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「朝ごはんに （　　）を 食べます。」",
+              "options": ["パン", "ホテル", "コーヒー", "テレビ"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「パン」 (Pan) — \"Non (portugalcha pão)\". Gapning to'liq ma'nosi: \"Nonushtaga non yeyman.\"."
+            },
+            {
+              "id": "ja-n5-u1-l2-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）を 見ます。」",
+              "options": ["パン", "コーヒー", "ホテル", "テレビ"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「テレビ」 (Terebi) — \"Televizor\". Gapning to'liq ma'nosi: \"Televizor ko'raman.\"."
+            },
+            {
+              "id": "ja-n5-u1-l2-ex-6",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）に 泊まります。」",
+              "options": ["コーヒー", "ホテル", "テレビ", "パン"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「ホテル」 (Hoteru) — \"Mehmonxona (Hotel)\". Gapning to'liq ma'nosi: \"Mehmonxonada tunayman.\"."
+            },
+            {
+              "id": "ja-n5-u1-l2-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「コーヒー」 (Koohii) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Televizor",
+                "Mehmonxona (Hotel)",
+                "Non (portugalcha pão)",
+                "Qahva (Coffee)"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「コーヒー」 (Koohii) so'zi o'zbek tilida \"Qahva (Coffee)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u1-l2-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「コーヒー（　　） 飲みます。」",
+              "options": ["を", "と", "から", "で"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「コーヒーを 飲みます。」 (Qahva ichaman.)."
+            },
+            {
+              "id": "ja-n5-u1-l2-ex-9",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）を 飲みます。」",
+              "options": ["テレビ", "ホテル", "パン", "コーヒー"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「コーヒー」 (Koohii) — \"Qahva (Coffee)\". Gapning to'liq ma'nosi: \"Qahva ichaman.\"."
+            },
+            {
+              "id": "ja-n5-u1-l2-ex-10",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「朝ごはんに （　　）を 食べます。」",
+              "options": ["パン", "ホテル", "コーヒー", "テレビ"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「パン」 (Pan) — \"Non (portugalcha pão)\". Gapning to'liq ma'nosi: \"Nonushtaga non yeyman.\"."
+            },
+            {
+              "id": "ja-n5-u1-l2-ex-11",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）を 見ます。」",
+              "options": ["パン", "コーヒー", "ホテル", "テレビ"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「テレビ」 (Terebi) — \"Televizor\". Gapning to'liq ma'nosi: \"Televizor ko'raman.\"."
+            },
+            {
+              "id": "ja-n5-u1-l2-ex-12",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）に 泊まります。」",
+              "options": ["コーヒー", "ホテル", "テレビ", "パン"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「ホテル」 (Hoteru) — \"Mehmonxona (Hotel)\". Gapning to'liq ma'nosi: \"Mehmonxonada tunayman.\"."
+            },
+            {
+              "id": "ja-n5-u1-l2-ex-13",
+              "type": "multiple-choice",
+              "prompt": "「コーヒー」 (Koohii) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Televizor",
+                "Mehmonxona (Hotel)",
+                "Non (portugalcha pão)",
+                "Qahva (Coffee)"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「コーヒー」 (Koohii) so'zi o'zbek tilida \"Qahva (Coffee)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u1-l2-ex-14",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「コーヒー（　　） 飲みます。」",
+              "options": ["を", "と", "から", "で"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「コーヒーを 飲みます。」 (Qahva ichaman.)."
             }
           ]
         }
@@ -378,6 +580,112 @@
               "options": ["散歩[さんぽ]", "運転[うんてん]", "学生[がくせい]", "食事[しょくじ]"],
               "correctAnswer": 2,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"学生[がくせい]\" (Talaba / O'quvchi)."
+            },
+            {
+              "id": "ja-n5-u1-l3-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）は アリです。」",
+              "options": ["私", "先生", "電車", "学生"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「私」 (Watashi) — \"Men\". Gapning to'liq ma'nosi: \"Men Aliman.\"."
+            },
+            {
+              "id": "ja-n5-u1-l3-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「彼は （　　）です。」",
+              "options": ["学生", "私", "飛行機", "先生"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「学生」 (Gakusei) — \"Talaba / O'quvchi\". Gapning to'liq ma'nosi: \"U talabadir.\"."
+            },
+            {
+              "id": "ja-n5-u1-l3-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「田中（　　）。」",
+              "options": ["学生", "勉強します", "先生", "私"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「先生」 (Sensei) — \"O'qituvchi / Ustoz\". Gapning to'liq ma'nosi: \"Tanaka ustoz.\"."
+            },
+            {
+              "id": "ja-n5-u1-l3-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「私」 (Watashi) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Talaba / O'quvchi", "O'qituvchi / Ustoz", "Men", "Qahva (Coffee)"],
+              "correctAnswer": 2,
+              "explanation": "「私」 (Watashi) so'zi o'zbek tilida \"Men\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u1-l3-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「学生」 (Gakusei) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Talaba / O'quvchi",
+                "Oʻrganmoq, dars qilmoq",
+                "O'qituvchi / Ustoz",
+                "Men"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「学生」 (Gakusei) so'zi o'zbek tilida \"Talaba / O'quvchi\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u1-l3-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「私は アリ（　　）す。」",
+              "options": ["で", "と", "は", "を"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「で」 zarrachasi to'g'ri keladi. Butun jumla: 「私は アリです。」 (Men Aliman.)."
+            },
+            {
+              "id": "ja-n5-u1-l3-ex-9",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）は アリです。」",
+              "options": ["私", "先生", "電車", "学生"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「私」 (Watashi) — \"Men\". Gapning to'liq ma'nosi: \"Men Aliman.\"."
+            },
+            {
+              "id": "ja-n5-u1-l3-ex-10",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「彼は （　　）です。」",
+              "options": ["学生", "私", "飛行機", "先生"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「学生」 (Gakusei) — \"Talaba / O'quvchi\". Gapning to'liq ma'nosi: \"U talabadir.\"."
+            },
+            {
+              "id": "ja-n5-u1-l3-ex-11",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「田中（　　）。」",
+              "options": ["学生", "勉強します", "先生", "私"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「先生」 (Sensei) — \"O'qituvchi / Ustoz\". Gapning to'liq ma'nosi: \"Tanaka ustoz.\"."
+            },
+            {
+              "id": "ja-n5-u1-l3-ex-12",
+              "type": "multiple-choice",
+              "prompt": "「私」 (Watashi) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Talaba / O'quvchi", "O'qituvchi / Ustoz", "Men", "Qahva (Coffee)"],
+              "correctAnswer": 2,
+              "explanation": "「私」 (Watashi) so'zi o'zbek tilida \"Men\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u1-l3-ex-13",
+              "type": "multiple-choice",
+              "prompt": "「学生」 (Gakusei) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Talaba / O'quvchi",
+                "Oʻrganmoq, dars qilmoq",
+                "O'qituvchi / Ustoz",
+                "Men"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「学生」 (Gakusei) so'zi o'zbek tilida \"Talaba / O'quvchi\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u1-l3-ex-14",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「私は アリ（　　）す。」",
+              "options": ["で", "と", "は", "を"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「で」 zarrachasi to'g'ri keladi. Butun jumla: 「私は アリです。」 (Men Aliman.)."
             }
           ]
         }
@@ -515,6 +823,102 @@
               "options": ["傘[かさ]", "食事[しょくじ]", "運転[うんてん]", "散歩[さんぽ]"],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"傘[かさ]\" (Soyabon)."
+            },
+            {
+              "id": "ja-n5-u1-l4-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日（　　）語の 本。」",
+              "options": ["傘", "友達", "本", "勉強します"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「本」 (Hon) — \"Kitob\". Gapning to'liq ma'nosi: \"Yapon tili kitobi.\"."
+            },
+            {
+              "id": "ja-n5-u1-l4-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「これ は （　　）です。」",
+              "options": ["大人", "本", "友達", "傘"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「傘」 (Kasa) — \"Soyabon\". Gapning to'liq ma'nosi: \"Bu soyabondir.\"."
+            },
+            {
+              "id": "ja-n5-u1-l4-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）と 図書館へ 行きます。」",
+              "options": ["電車", "傘", "本", "友達"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「友達」 (Tomodachi) — \"Doʻst\". Gapning to'liq ma'nosi: \"Doʻstim bilan kutubxonaga boraman.\"."
+            },
+            {
+              "id": "ja-n5-u1-l4-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「本」 (Hon) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Soyabon", "Doʻst", "Har kuni", "Kitob"],
+              "correctAnswer": 3,
+              "explanation": "「本」 (Hon) so'zi o'zbek tilida \"Kitob\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u1-l4-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「傘」 (Kasa) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Doʻst", "Ustoz / O'qituvchi", "Kitob", "Soyabon"],
+              "correctAnswer": 3,
+              "explanation": "「傘」 (Kasa) so'zi o'zbek tilida \"Soyabon\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u1-l4-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「これ （　　） 傘です。」",
+              "options": ["に", "は", "から", "と"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「は」 zarrachasi to'g'ri keladi. Butun jumla: 「これ は 傘です。」 (Bu soyabondir.)."
+            },
+            {
+              "id": "ja-n5-u1-l4-ex-9",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日（　　）語の 本。」",
+              "options": ["傘", "友達", "本", "勉強します"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「本」 (Hon) — \"Kitob\". Gapning to'liq ma'nosi: \"Yapon tili kitobi.\"."
+            },
+            {
+              "id": "ja-n5-u1-l4-ex-10",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「これ は （　　）です。」",
+              "options": ["大人", "本", "友達", "傘"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「傘」 (Kasa) — \"Soyabon\". Gapning to'liq ma'nosi: \"Bu soyabondir.\"."
+            },
+            {
+              "id": "ja-n5-u1-l4-ex-11",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）と 図書館へ 行きます。」",
+              "options": ["電車", "傘", "本", "友達"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「友達」 (Tomodachi) — \"Doʻst\". Gapning to'liq ma'nosi: \"Doʻstim bilan kutubxonaga boraman.\"."
+            },
+            {
+              "id": "ja-n5-u1-l4-ex-12",
+              "type": "multiple-choice",
+              "prompt": "「本」 (Hon) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Soyabon", "Doʻst", "Har kuni", "Kitob"],
+              "correctAnswer": 3,
+              "explanation": "「本」 (Hon) so'zi o'zbek tilida \"Kitob\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u1-l4-ex-13",
+              "type": "multiple-choice",
+              "prompt": "「傘」 (Kasa) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Doʻst", "Ustoz / O'qituvchi", "Kitob", "Soyabon"],
+              "correctAnswer": 3,
+              "explanation": "「傘」 (Kasa) so'zi o'zbek tilida \"Soyabon\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u1-l4-ex-14",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「これ （　　） 傘です。」",
+              "options": ["に", "は", "から", "と"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「は」 zarrachasi to'g'ri keladi. Butun jumla: 「これ は 傘です。」 (Bu soyabondir.)."
             }
           ]
         }
@@ -651,6 +1055,112 @@
               "options": ["散歩[さんぽ]", "運転[うんてん]", "食事[しょくじ]", "車[くるま]"],
               "correctAnswer": 3,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"車[くるま]\" (Mashina)."
+            },
+            {
+              "id": "ja-n5-u1-l5-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）、アリです。」",
+              "options": ["車", "初めまして", "一人", "毎日"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「初めまして」 (Hajimemashite) — \"Tanishganimdan xursandman\". Gapning to'liq ma'nosi: \"Tanishganimdan xursandman, men Aliman.\"."
+            },
+            {
+              "id": "ja-n5-u1-l5-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「父の （　　）。」",
+              "options": ["電車", "車", "毎日", "初めまして"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「車」 (Kuruma) — \"Mashina\". Gapning to'liq ma'nosi: \"Otamning mashinasi.\"."
+            },
+            {
+              "id": "ja-n5-u1-l5-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 朝６時に 起きます。」",
+              "options": ["勉強します", "初めまして", "車", "毎日"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「毎日」 (Mainichi) — \"Har kuni\". Gapning to'liq ma'nosi: \"Har kuni ertalab soat 6 da uygʻonaman.\"."
+            },
+            {
+              "id": "ja-n5-u1-l5-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「初めまして」 (Hajimemashite) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Mashina", "O'qituvchi / Ustoz", "Har kuni", "Tanishganimdan xursandman"],
+              "correctAnswer": 3,
+              "explanation": "「初めまして」 (Hajimemashite) so'zi o'zbek tilida \"Tanishganimdan xursandman\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u1-l5-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「車」 (Kuruma) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Mashina",
+                "Har kuni",
+                "Oʻrganmoq, dars qilmoq",
+                "Tanishganimdan xursandman"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「車」 (Kuruma) so'zi o'zbek tilida \"Mashina\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u1-l5-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「初めまして、アリ（　　）す。」",
+              "options": ["で", "は", "に", "を"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「で」 zarrachasi to'g'ri keladi. Butun jumla: 「初めまして、アリです。」 (Tanishganimdan xursandman, men Aliman.)."
+            },
+            {
+              "id": "ja-n5-u1-l5-ex-9",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）、アリです。」",
+              "options": ["車", "初めまして", "一人", "毎日"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「初めまして」 (Hajimemashite) — \"Tanishganimdan xursandman\". Gapning to'liq ma'nosi: \"Tanishganimdan xursandman, men Aliman.\"."
+            },
+            {
+              "id": "ja-n5-u1-l5-ex-10",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「父の （　　）。」",
+              "options": ["電車", "車", "毎日", "初めまして"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「車」 (Kuruma) — \"Mashina\". Gapning to'liq ma'nosi: \"Otamning mashinasi.\"."
+            },
+            {
+              "id": "ja-n5-u1-l5-ex-11",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 朝６時に 起きます。」",
+              "options": ["勉強します", "初めまして", "車", "毎日"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「毎日」 (Mainichi) — \"Har kuni\". Gapning to'liq ma'nosi: \"Har kuni ertalab soat 6 da uygʻonaman.\"."
+            },
+            {
+              "id": "ja-n5-u1-l5-ex-12",
+              "type": "multiple-choice",
+              "prompt": "「初めまして」 (Hajimemashite) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Mashina", "O'qituvchi / Ustoz", "Har kuni", "Tanishganimdan xursandman"],
+              "correctAnswer": 3,
+              "explanation": "「初めまして」 (Hajimemashite) so'zi o'zbek tilida \"Tanishganimdan xursandman\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u1-l5-ex-13",
+              "type": "multiple-choice",
+              "prompt": "「車」 (Kuruma) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Mashina",
+                "Har kuni",
+                "Oʻrganmoq, dars qilmoq",
+                "Tanishganimdan xursandman"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「車」 (Kuruma) so'zi o'zbek tilida \"Mashina\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u1-l5-ex-14",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「初めまして、アリ（　　）す。」",
+              "options": ["で", "は", "に", "を"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「で」 zarrachasi to'g'ri keladi. Butun jumla: 「初めまして、アリです。」 (Tanishganimdan xursandman, men Aliman.)."
             }
           ]
         }
@@ -783,6 +1293,102 @@
               "options": ["食事[しょくじ]", "運転[うんてん]", "駅[えき]", "散歩[さんぽ]"],
               "correctAnswer": 2,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"駅[えき]\" (Vokzal / Stansiya)."
+            },
+            {
+              "id": "ja-n5-u2-l1-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）へ 行きます。」",
+              "options": ["駅", "大切", "ほしい", "学校"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「学校」 (Gakkou) — \"Maktab\". Gapning to'liq ma'nosi: \"Maktabga boraman.\"."
+            },
+            {
+              "id": "ja-n5-u2-l1-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）は どこですか。」",
+              "options": ["大切", "駅", "学校", "私"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「駅」 (Eki) — \"Vokzal / Stansiya\". Gapning to'liq ma'nosi: \"Vokzal qayerda?\"."
+            },
+            {
+              "id": "ja-n5-u2-l1-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「時間は とても （　　）です。」",
+              "options": ["学校", "こんにちは", "大切", "駅"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「大切」 (Taisetsu) — \"Muhim, qadrli\". Gapning to'liq ma'nosi: \"Vaqt juda qadrlidir.\"."
+            },
+            {
+              "id": "ja-n5-u2-l1-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「学校」 (Gakkou) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Maktab", "Muhim, qadrli", "Vokzal / Stansiya", "O'tgan hafta"],
+              "correctAnswer": 0,
+              "explanation": "「学校」 (Gakkou) so'zi o'zbek tilida \"Maktab\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u2-l1-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「駅」 (Eki) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Maktab", "Muhim, qadrli", "Vokzal / Stansiya", "Doʻst"],
+              "correctAnswer": 2,
+              "explanation": "「駅」 (Eki) so'zi o'zbek tilida \"Vokzal / Stansiya\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u2-l1-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「学校（　　） 行きます。」",
+              "options": ["へ", "と", "を", "で"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「へ」 zarrachasi to'g'ri keladi. Butun jumla: 「学校へ 行きます。」 (Maktabga boraman.)."
+            },
+            {
+              "id": "ja-n5-u2-l1-ex-9",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）へ 行きます。」",
+              "options": ["駅", "大切", "ほしい", "学校"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「学校」 (Gakkou) — \"Maktab\". Gapning to'liq ma'nosi: \"Maktabga boraman.\"."
+            },
+            {
+              "id": "ja-n5-u2-l1-ex-10",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）は どこですか。」",
+              "options": ["大切", "駅", "学校", "私"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「駅」 (Eki) — \"Vokzal / Stansiya\". Gapning to'liq ma'nosi: \"Vokzal qayerda?\"."
+            },
+            {
+              "id": "ja-n5-u2-l1-ex-11",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「時間は とても （　　）です。」",
+              "options": ["学校", "こんにちは", "大切", "駅"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「大切」 (Taisetsu) — \"Muhim, qadrli\". Gapning to'liq ma'nosi: \"Vaqt juda qadrlidir.\"."
+            },
+            {
+              "id": "ja-n5-u2-l1-ex-12",
+              "type": "multiple-choice",
+              "prompt": "「学校」 (Gakkou) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Maktab", "Muhim, qadrli", "Vokzal / Stansiya", "O'tgan hafta"],
+              "correctAnswer": 0,
+              "explanation": "「学校」 (Gakkou) so'zi o'zbek tilida \"Maktab\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u2-l1-ex-13",
+              "type": "multiple-choice",
+              "prompt": "「駅」 (Eki) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Maktab", "Muhim, qadrli", "Vokzal / Stansiya", "Doʻst"],
+              "correctAnswer": 2,
+              "explanation": "「駅」 (Eki) so'zi o'zbek tilida \"Vokzal / Stansiya\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u2-l1-ex-14",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「学校（　　） 行きます。」",
+              "options": ["へ", "と", "を", "で"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「へ」 zarrachasi to'g'ri keladi. Butun jumla: 「学校へ 行きます。」 (Maktabga boraman.)."
             }
           ]
         }
@@ -915,6 +1521,112 @@
               "options": ["散歩[さんぽ]", "飛行機[ひこうき]", "運転[うんてん]", "食事[しょくじ]"],
               "correctAnswer": 1,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"飛行機[ひこうき]\" (Samolyot)."
+            },
+            {
+              "id": "ja-n5-u2-l2-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）で 行きます。」",
+              "options": ["飛行機", "勉強します", "毎朝", "電車"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「電車」 (Densha) — \"Poyezd / Elektrichka\". Gapning to'liq ma'nosi: \"Poyezdda boraman.\"."
+            },
+            {
+              "id": "ja-n5-u2-l2-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）で 来ました。」",
+              "options": ["大切", "電車", "飛行機", "勉強します"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「飛行機」 (Hikouki) — \"Samolyot\". Gapning to'liq ma'nosi: \"Samolyotda keldim.\"."
+            },
+            {
+              "id": "ja-n5-u2-l2-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日本語を （　　）。」",
+              "options": ["飛行機", "勉強します", "学校", "電車"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「勉強します」 (Benkyou shimasu) — \"Oʻrganmoq, dars qilmoq\". Gapning to'liq ma'nosi: \"Yapon tilini oʻrganaman.\"."
+            },
+            {
+              "id": "ja-n5-u2-l2-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「電車」 (Densha) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Talaba / O'quvchi",
+                "Oʻrganmoq, dars qilmoq",
+                "Samolyot",
+                "Poyezd / Elektrichka"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「電車」 (Densha) so'zi o'zbek tilida \"Poyezd / Elektrichka\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u2-l2-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「飛行機」 (Hikouki) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Samolyot", "Kitob", "Oʻrganmoq, dars qilmoq", "Poyezd / Elektrichka"],
+              "correctAnswer": 0,
+              "explanation": "「飛行機」 (Hikouki) so'zi o'zbek tilida \"Samolyot\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u2-l2-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「電車（　　） 行きます。」",
+              "options": ["と", "から", "を", "で"],
+              "correctAnswer": 3,
+              "explanation": "Ushbu o'rinda 「で」 zarrachasi to'g'ri keladi. Butun jumla: 「電車で 行きます。」 (Poyezdda boraman.)."
+            },
+            {
+              "id": "ja-n5-u2-l2-ex-9",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）で 行きます。」",
+              "options": ["飛行機", "勉強します", "毎朝", "電車"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「電車」 (Densha) — \"Poyezd / Elektrichka\". Gapning to'liq ma'nosi: \"Poyezdda boraman.\"."
+            },
+            {
+              "id": "ja-n5-u2-l2-ex-10",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）で 来ました。」",
+              "options": ["大切", "電車", "飛行機", "勉強します"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「飛行機」 (Hikouki) — \"Samolyot\". Gapning to'liq ma'nosi: \"Samolyotda keldim.\"."
+            },
+            {
+              "id": "ja-n5-u2-l2-ex-11",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日本語を （　　）。」",
+              "options": ["飛行機", "勉強します", "学校", "電車"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「勉強します」 (Benkyou shimasu) — \"Oʻrganmoq, dars qilmoq\". Gapning to'liq ma'nosi: \"Yapon tilini oʻrganaman.\"."
+            },
+            {
+              "id": "ja-n5-u2-l2-ex-12",
+              "type": "multiple-choice",
+              "prompt": "「電車」 (Densha) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Talaba / O'quvchi",
+                "Oʻrganmoq, dars qilmoq",
+                "Samolyot",
+                "Poyezd / Elektrichka"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「電車」 (Densha) so'zi o'zbek tilida \"Poyezd / Elektrichka\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u2-l2-ex-13",
+              "type": "multiple-choice",
+              "prompt": "「飛行機」 (Hikouki) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Samolyot", "Kitob", "Oʻrganmoq, dars qilmoq", "Poyezd / Elektrichka"],
+              "correctAnswer": 0,
+              "explanation": "「飛行機」 (Hikouki) so'zi o'zbek tilida \"Samolyot\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u2-l2-ex-14",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「電車（　　） 行きます。」",
+              "options": ["と", "から", "を", "で"],
+              "correctAnswer": 3,
+              "explanation": "Ushbu o'rinda 「で」 zarrachasi to'g'ri keladi. Butun jumla: 「電車で 行きます。」 (Poyezdda boraman.)."
             }
           ]
         }
@@ -1053,6 +1765,102 @@
               "options": ["飲[の]みます", "食事[しょくじ]", "散歩[さんぽ]", "運転[うんてん]"],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"飲[の]みます\" (Ichmoq)."
+            },
+            {
+              "id": "ja-n5-u2-l3-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「リンゴを （　　）。」",
+              "options": ["飲みます", "勉強します", "食べます", "友達"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「食べます」 (Tabemasu) — \"Yemoq\". Gapning to'liq ma'nosi: \"Olma yeyman.\"."
+            },
+            {
+              "id": "ja-n5-u2-l3-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「お茶を （　　）。」",
+              "options": ["友達", "ホテル", "飲みます", "食べます"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「飲みます」 (Nomimasu) — \"Ichmoq\". Gapning to'liq ma'nosi: \"Choy ichaman.\"."
+            },
+            {
+              "id": "ja-n5-u2-l3-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）と 図書館へ 行きます。」",
+              "options": ["勉強します", "飲みます", "食べます", "友達"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「友達」 (Tomodachi) — \"Doʻst\". Gapning to'liq ma'nosi: \"Doʻstim bilan kutubxonaga boraman.\"."
+            },
+            {
+              "id": "ja-n5-u2-l3-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「食べます」 (Tabemasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Ichmoq", "Yemoq", "Men", "Doʻst"],
+              "correctAnswer": 1,
+              "explanation": "「食べます」 (Tabemasu) so'zi o'zbek tilida \"Yemoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u2-l3-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「飲みます」 (Nomimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Yemoq", "Oʻrganmoq, dars qilmoq", "Doʻst", "Ichmoq"],
+              "correctAnswer": 3,
+              "explanation": "「飲みます」 (Nomimasu) so'zi o'zbek tilida \"Ichmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u2-l3-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「リンゴ（　　） 食べます。」",
+              "options": ["と", "で", "を", "は"],
+              "correctAnswer": 2,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「リンゴを 食べます。」 (Olma yeyman.)."
+            },
+            {
+              "id": "ja-n5-u2-l3-ex-9",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「リンゴを （　　）。」",
+              "options": ["飲みます", "勉強します", "食べます", "友達"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「食べます」 (Tabemasu) — \"Yemoq\". Gapning to'liq ma'nosi: \"Olma yeyman.\"."
+            },
+            {
+              "id": "ja-n5-u2-l3-ex-10",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「お茶を （　　）。」",
+              "options": ["友達", "ホテル", "飲みます", "食べます"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「飲みます」 (Nomimasu) — \"Ichmoq\". Gapning to'liq ma'nosi: \"Choy ichaman.\"."
+            },
+            {
+              "id": "ja-n5-u2-l3-ex-11",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）と 図書館へ 行きます。」",
+              "options": ["勉強します", "飲みます", "食べます", "友達"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「友達」 (Tomodachi) — \"Doʻst\". Gapning to'liq ma'nosi: \"Doʻstim bilan kutubxonaga boraman.\"."
+            },
+            {
+              "id": "ja-n5-u2-l3-ex-12",
+              "type": "multiple-choice",
+              "prompt": "「食べます」 (Tabemasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Ichmoq", "Yemoq", "Men", "Doʻst"],
+              "correctAnswer": 1,
+              "explanation": "「食べます」 (Tabemasu) so'zi o'zbek tilida \"Yemoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u2-l3-ex-13",
+              "type": "multiple-choice",
+              "prompt": "「飲みます」 (Nomimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Yemoq", "Oʻrganmoq, dars qilmoq", "Doʻst", "Ichmoq"],
+              "correctAnswer": 3,
+              "explanation": "「飲みます」 (Nomimasu) so'zi o'zbek tilida \"Ichmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u2-l3-ex-14",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「リンゴ（　　） 食べます。」",
+              "options": ["と", "で", "を", "は"],
+              "correctAnswer": 2,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「リンゴを 食べます。」 (Olma yeyman.)."
             }
           ]
         }
@@ -1185,6 +1993,102 @@
               "options": ["散歩[さんぽ]", "食事[しょくじ]", "運転[うんてん]", "友達[ともだち]"],
               "correctAnswer": 3,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"友達[ともだち]\" (Doʻst)."
+            },
+            {
+              "id": "ja-n5-u2-l4-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日本語を （　　）。」",
+              "options": ["学生", "毎日", "友達", "勉強します"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「勉強します」 (Benkyou shimasu) — \"Oʻrganmoq, dars qilmoq\". Gapning to'liq ma'nosi: \"Yapon tilini oʻrganaman.\"."
+            },
+            {
+              "id": "ja-n5-u2-l4-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）と 図書館へ 行きます。」",
+              "options": ["毎日", "日曜日", "勉強します", "友達"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「友達」 (Tomodachi) — \"Doʻst\". Gapning to'liq ma'nosi: \"Doʻstim bilan kutubxonaga boraman.\"."
+            },
+            {
+              "id": "ja-n5-u2-l4-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 朝６時に 起きます。」",
+              "options": ["円", "毎日", "勉強します", "友達"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「毎日」 (Mainichi) — \"Har kuni\". Gapning to'liq ma'nosi: \"Har kuni ertalab soat 6 da uygʻonaman.\"."
+            },
+            {
+              "id": "ja-n5-u2-l4-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「勉強します」 (Benkyou shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Doʻst", "Oʻrganmoq, dars qilmoq", "Bir kishi", "Har kuni"],
+              "correctAnswer": 1,
+              "explanation": "「勉強します」 (Benkyou shimasu) so'zi o'zbek tilida \"Oʻrganmoq, dars qilmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u2-l4-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「友達」 (Tomodachi) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Doʻst", "Har kuni", "Muhim, qadrli", "Oʻrganmoq, dars qilmoq"],
+              "correctAnswer": 0,
+              "explanation": "「友達」 (Tomodachi) so'zi o'zbek tilida \"Doʻst\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u2-l4-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
+              "options": ["から", "と", "は", "を"],
+              "correctAnswer": 3,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
+            },
+            {
+              "id": "ja-n5-u2-l4-ex-9",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日本語を （　　）。」",
+              "options": ["学生", "毎日", "友達", "勉強します"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「勉強します」 (Benkyou shimasu) — \"Oʻrganmoq, dars qilmoq\". Gapning to'liq ma'nosi: \"Yapon tilini oʻrganaman.\"."
+            },
+            {
+              "id": "ja-n5-u2-l4-ex-10",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）と 図書館へ 行きます。」",
+              "options": ["毎日", "日曜日", "勉強します", "友達"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「友達」 (Tomodachi) — \"Doʻst\". Gapning to'liq ma'nosi: \"Doʻstim bilan kutubxonaga boraman.\"."
+            },
+            {
+              "id": "ja-n5-u2-l4-ex-11",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 朝６時に 起きます。」",
+              "options": ["円", "毎日", "勉強します", "友達"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「毎日」 (Mainichi) — \"Har kuni\". Gapning to'liq ma'nosi: \"Har kuni ertalab soat 6 da uygʻonaman.\"."
+            },
+            {
+              "id": "ja-n5-u2-l4-ex-12",
+              "type": "multiple-choice",
+              "prompt": "「勉強します」 (Benkyou shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Doʻst", "Oʻrganmoq, dars qilmoq", "Bir kishi", "Har kuni"],
+              "correctAnswer": 1,
+              "explanation": "「勉強します」 (Benkyou shimasu) so'zi o'zbek tilida \"Oʻrganmoq, dars qilmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u2-l4-ex-13",
+              "type": "multiple-choice",
+              "prompt": "「友達」 (Tomodachi) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Doʻst", "Har kuni", "Muhim, qadrli", "Oʻrganmoq, dars qilmoq"],
+              "correctAnswer": 0,
+              "explanation": "「友達」 (Tomodachi) so'zi o'zbek tilida \"Doʻst\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u2-l4-ex-14",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
+              "options": ["から", "と", "は", "を"],
+              "correctAnswer": 3,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -1322,6 +2226,112 @@
               "options": ["毎日[まいにち]", "運転[うんてん]", "食事[しょくじ]", "散歩[さんぽ]"],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"毎日[まいにち]\" (Har kuni)."
+            },
+            {
+              "id": "ja-n5-u2-l5-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 行きましょう。」",
+              "options": ["毎日", "大切", "一緒に", "いくら"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「一緒に」 (Issho ni) — \"Birgalikda / Birga\". Gapning to'liq ma'nosi: \"Qani, birga boraylik.\"."
+            },
+            {
+              "id": "ja-n5-u2-l5-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 朝６時に 起きます。」",
+              "options": ["一緒に", "毎日", "大切", "電車"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「毎日」 (Mainichi) — \"Har kuni\". Gapning to'liq ma'nosi: \"Har kuni ertalab soat 6 da uygʻonaman.\"."
+            },
+            {
+              "id": "ja-n5-u2-l5-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「時間は とても （　　）です。」",
+              "options": ["初めまして", "一緒に", "毎日", "大切"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「大切」 (Taisetsu) — \"Muhim, qadrli\". Gapning to'liq ma'nosi: \"Vaqt juda qadrlidir.\"."
+            },
+            {
+              "id": "ja-n5-u2-l5-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「一緒に」 (Issho ni) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Non (portugalcha pão)",
+                "Muhim, qadrli",
+                "Har kuni",
+                "Birgalikda / Birga"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「一緒に」 (Issho ni) so'zi o'zbek tilida \"Birgalikda / Birga\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u2-l5-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「毎日」 (Mainichi) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Muhim, qadrli", "Doʻst", "Har kuni", "Birgalikda / Birga"],
+              "correctAnswer": 2,
+              "explanation": "「毎日」 (Mainichi) so'zi o'zbek tilida \"Har kuni\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u2-l5-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「一緒（　　） 行きましょう。」",
+              "options": ["を", "に", "から", "と"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「に」 zarrachasi to'g'ri keladi. Butun jumla: 「一緒に 行きましょう。」 (Qani, birga boraylik.)."
+            },
+            {
+              "id": "ja-n5-u2-l5-ex-9",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 行きましょう。」",
+              "options": ["毎日", "大切", "一緒に", "いくら"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「一緒に」 (Issho ni) — \"Birgalikda / Birga\". Gapning to'liq ma'nosi: \"Qani, birga boraylik.\"."
+            },
+            {
+              "id": "ja-n5-u2-l5-ex-10",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 朝６時に 起きます。」",
+              "options": ["一緒に", "毎日", "大切", "電車"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「毎日」 (Mainichi) — \"Har kuni\". Gapning to'liq ma'nosi: \"Har kuni ertalab soat 6 da uygʻonaman.\"."
+            },
+            {
+              "id": "ja-n5-u2-l5-ex-11",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「時間は とても （　　）です。」",
+              "options": ["初めまして", "一緒に", "毎日", "大切"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「大切」 (Taisetsu) — \"Muhim, qadrli\". Gapning to'liq ma'nosi: \"Vaqt juda qadrlidir.\"."
+            },
+            {
+              "id": "ja-n5-u2-l5-ex-12",
+              "type": "multiple-choice",
+              "prompt": "「一緒に」 (Issho ni) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Non (portugalcha pão)",
+                "Muhim, qadrli",
+                "Har kuni",
+                "Birgalikda / Birga"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「一緒に」 (Issho ni) so'zi o'zbek tilida \"Birgalikda / Birga\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u2-l5-ex-13",
+              "type": "multiple-choice",
+              "prompt": "「毎日」 (Mainichi) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Muhim, qadrli", "Doʻst", "Har kuni", "Birgalikda / Birga"],
+              "correctAnswer": 2,
+              "explanation": "「毎日」 (Mainichi) so'zi o'zbek tilida \"Har kuni\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u2-l5-ex-14",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「一緒（　　） 行きましょう。」",
+              "options": ["を", "に", "から", "と"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「に」 zarrachasi to'g'ri keladi. Butun jumla: 「一緒に 行きましょう。」 (Qani, birga boraylik.)."
             }
           ]
         }
@@ -1459,6 +2469,102 @@
               "options": ["散歩[さんぽ]", "日曜日[にちようび]", "運転[うんてん]", "食事[しょくじ]"],
               "correctAnswer": 1,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"日曜日[にちようび]\" (Yakshanba)."
+            },
+            {
+              "id": "ja-n5-u3-l1-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「今、（　　）ですか。」",
+              "options": ["日曜日", "勉強します", "何時", "電車"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「何時」 (Nanji) — \"Soat necha?\". Gapning to'liq ma'nosi: \"Hozir soat necha?\"."
+            },
+            {
+              "id": "ja-n5-u3-l1-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）は 休みです。」",
+              "options": ["何時", "日曜日", "毎日", "勉強します"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「日曜日」 (Nichiyoubi) — \"Yakshanba\". Gapning to'liq ma'nosi: \"Yakshanba dam olish kuni.\"."
+            },
+            {
+              "id": "ja-n5-u3-l1-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日本語を （　　）。」",
+              "options": ["勉強します", "毎日", "日曜日", "何時"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「勉強します」 (Benkyou shimasu) — \"Oʻrganmoq, dars qilmoq\". Gapning to'liq ma'nosi: \"Yapon tilini oʻrganaman.\"."
+            },
+            {
+              "id": "ja-n5-u3-l1-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「何時」 (Nanji) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Soat necha?", "Yakshanba", "Men", "Oʻrganmoq, dars qilmoq"],
+              "correctAnswer": 0,
+              "explanation": "「何時」 (Nanji) so'zi o'zbek tilida \"Soat necha?\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u3-l1-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「日曜日」 (Nichiyoubi) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Yakshanba", "Soat necha?", "Oʻrganmoq, dars qilmoq", "Xayr"],
+              "correctAnswer": 0,
+              "explanation": "「日曜日」 (Nichiyoubi) so'zi o'zbek tilida \"Yakshanba\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u3-l1-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「今、何時（　　）すか。」",
+              "options": ["と", "で", "を", "が"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「で」 zarrachasi to'g'ri keladi. Butun jumla: 「今、何時ですか。」 (Hozir soat necha?)."
+            },
+            {
+              "id": "ja-n5-u3-l1-ex-9",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「今、（　　）ですか。」",
+              "options": ["日曜日", "勉強します", "何時", "電車"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「何時」 (Nanji) — \"Soat necha?\". Gapning to'liq ma'nosi: \"Hozir soat necha?\"."
+            },
+            {
+              "id": "ja-n5-u3-l1-ex-10",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）は 休みです。」",
+              "options": ["何時", "日曜日", "毎日", "勉強します"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「日曜日」 (Nichiyoubi) — \"Yakshanba\". Gapning to'liq ma'nosi: \"Yakshanba dam olish kuni.\"."
+            },
+            {
+              "id": "ja-n5-u3-l1-ex-11",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日本語を （　　）。」",
+              "options": ["勉強します", "毎日", "日曜日", "何時"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「勉強します」 (Benkyou shimasu) — \"Oʻrganmoq, dars qilmoq\". Gapning to'liq ma'nosi: \"Yapon tilini oʻrganaman.\"."
+            },
+            {
+              "id": "ja-n5-u3-l1-ex-12",
+              "type": "multiple-choice",
+              "prompt": "「何時」 (Nanji) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Soat necha?", "Yakshanba", "Men", "Oʻrganmoq, dars qilmoq"],
+              "correctAnswer": 0,
+              "explanation": "「何時」 (Nanji) so'zi o'zbek tilida \"Soat necha?\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u3-l1-ex-13",
+              "type": "multiple-choice",
+              "prompt": "「日曜日」 (Nichiyoubi) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Yakshanba", "Soat necha?", "Oʻrganmoq, dars qilmoq", "Xayr"],
+              "correctAnswer": 0,
+              "explanation": "「日曜日」 (Nichiyoubi) so'zi o'zbek tilida \"Yakshanba\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u3-l1-ex-14",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「今、何時（　　）すか。」",
+              "options": ["と", "で", "を", "が"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「で」 zarrachasi to'g'ri keladi. Butun jumla: 「今、何時ですか。」 (Hozir soat necha?)."
             }
           ]
         }
@@ -1591,6 +2697,112 @@
               "options": ["円[えん]", "運転[うんてん]", "食事[しょくじ]", "散歩[さんぽ]"],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"円[えん]\" (Iyena (Yaponiya pul birligi))."
+            },
+            {
+              "id": "ja-n5-u3-l2-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「このリンゴは （　　）ですか。」",
+              "options": ["大きい", "友達", "いくら", "円"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「いくら」 (Ikura) — \"Qancha turadi?\". Gapning to'liq ma'nosi: \"Bu olma qancha turadi?\"."
+            },
+            {
+              "id": "ja-n5-u3-l2-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「百（　　）です。」",
+              "options": ["こんにちは", "円", "友達", "いくら"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「円」 (En) — \"Iyena (Yaponiya pul birligi)\". Gapning to'liq ma'nosi: \"Yuz iyena.\"."
+            },
+            {
+              "id": "ja-n5-u3-l2-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）と 図書館へ 行きます。」",
+              "options": ["先週", "いくら", "円", "友達"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「友達」 (Tomodachi) — \"Doʻst\". Gapning to'liq ma'nosi: \"Doʻstim bilan kutubxonaga boraman.\"."
+            },
+            {
+              "id": "ja-n5-u3-l2-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「いくら」 (Ikura) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Qancha turadi?", "Doʻst", "Iyena (Yaponiya pul birligi)", "Har kuni"],
+              "correctAnswer": 0,
+              "explanation": "「いくら」 (Ikura) so'zi o'zbek tilida \"Qancha turadi?\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u3-l2-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「円」 (En) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Iyena (Yaponiya pul birligi)",
+                "Doʻst",
+                "Oʻrganmoq, dars qilmoq",
+                "Qancha turadi?"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「円」 (En) so'zi o'zbek tilida \"Iyena (Yaponiya pul birligi)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u3-l2-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「このリンゴ（　　） いくらですか。」",
+              "options": ["と", "は", "で", "が"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「は」 zarrachasi to'g'ri keladi. Butun jumla: 「このリンゴは いくらですか。」 (Bu olma qancha turadi?)."
+            },
+            {
+              "id": "ja-n5-u3-l2-ex-9",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「このリンゴは （　　）ですか。」",
+              "options": ["大きい", "友達", "いくら", "円"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「いくら」 (Ikura) — \"Qancha turadi?\". Gapning to'liq ma'nosi: \"Bu olma qancha turadi?\"."
+            },
+            {
+              "id": "ja-n5-u3-l2-ex-10",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「百（　　）です。」",
+              "options": ["こんにちは", "円", "友達", "いくら"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「円」 (En) — \"Iyena (Yaponiya pul birligi)\". Gapning to'liq ma'nosi: \"Yuz iyena.\"."
+            },
+            {
+              "id": "ja-n5-u3-l2-ex-11",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）と 図書館へ 行きます。」",
+              "options": ["先週", "いくら", "円", "友達"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「友達」 (Tomodachi) — \"Doʻst\". Gapning to'liq ma'nosi: \"Doʻstim bilan kutubxonaga boraman.\"."
+            },
+            {
+              "id": "ja-n5-u3-l2-ex-12",
+              "type": "multiple-choice",
+              "prompt": "「いくら」 (Ikura) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Qancha turadi?", "Doʻst", "Iyena (Yaponiya pul birligi)", "Har kuni"],
+              "correctAnswer": 0,
+              "explanation": "「いくら」 (Ikura) so'zi o'zbek tilida \"Qancha turadi?\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u3-l2-ex-13",
+              "type": "multiple-choice",
+              "prompt": "「円」 (En) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Iyena (Yaponiya pul birligi)",
+                "Doʻst",
+                "Oʻrganmoq, dars qilmoq",
+                "Qancha turadi?"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「円」 (En) so'zi o'zbek tilida \"Iyena (Yaponiya pul birligi)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u3-l2-ex-14",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「このリンゴ（　　） いくらですか。」",
+              "options": ["と", "は", "で", "が"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「は」 zarrachasi to'g'ri keladi. Butun jumla: 「このリンゴは いくらですか。」 (Bu olma qancha turadi?)."
             }
           ]
         }
@@ -1730,6 +2942,102 @@
               "options": ["運転[うんてん]", "二人[ふたり]", "散歩[さんぽ]", "食事[しょくじ]"],
               "correctAnswer": 1,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"二人[ふたり]\" (Ikki kishi)."
+            },
+            {
+              "id": "ja-n5-u3-l3-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）で 行きます。」",
+              "options": ["一人", "毎日", "二人", "大切"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「一人」 (Hitori) — \"Bir kishi\". Gapning to'liq ma'nosi: \"Yolg'iz o'zim boraman.\"."
+            },
+            {
+              "id": "ja-n5-u3-l3-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）で 食べます。」",
+              "options": ["友達", "二人", "毎日", "一人"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「二人」 (Futari) — \"Ikki kishi\". Gapning to'liq ma'nosi: \"Ikkovimiz yeymiz.\"."
+            },
+            {
+              "id": "ja-n5-u3-l3-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 朝６時に 起きます。」",
+              "options": ["二人", "一人", "円", "毎日"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「毎日」 (Mainichi) — \"Har kuni\". Gapning to'liq ma'nosi: \"Har kuni ertalab soat 6 da uygʻonaman.\"."
+            },
+            {
+              "id": "ja-n5-u3-l3-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「一人」 (Hitori) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Doʻst", "Har kuni", "Ikki kishi", "Bir kishi"],
+              "correctAnswer": 3,
+              "explanation": "「一人」 (Hitori) so'zi o'zbek tilida \"Bir kishi\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u3-l3-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「二人」 (Futari) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Ikki kishi", "Har kuni", "Talaba / O'quvchi", "Bir kishi"],
+              "correctAnswer": 0,
+              "explanation": "「二人」 (Futari) so'zi o'zbek tilida \"Ikki kishi\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u3-l3-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「一人（　　） 行きます。」",
+              "options": ["を", "は", "と", "で"],
+              "correctAnswer": 3,
+              "explanation": "Ushbu o'rinda 「で」 zarrachasi to'g'ri keladi. Butun jumla: 「一人で 行きます。」 (Yolg'iz o'zim boraman.)."
+            },
+            {
+              "id": "ja-n5-u3-l3-ex-9",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）で 行きます。」",
+              "options": ["一人", "毎日", "二人", "大切"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「一人」 (Hitori) — \"Bir kishi\". Gapning to'liq ma'nosi: \"Yolg'iz o'zim boraman.\"."
+            },
+            {
+              "id": "ja-n5-u3-l3-ex-10",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）で 食べます。」",
+              "options": ["友達", "二人", "毎日", "一人"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「二人」 (Futari) — \"Ikki kishi\". Gapning to'liq ma'nosi: \"Ikkovimiz yeymiz.\"."
+            },
+            {
+              "id": "ja-n5-u3-l3-ex-11",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 朝６時に 起きます。」",
+              "options": ["二人", "一人", "円", "毎日"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「毎日」 (Mainichi) — \"Har kuni\". Gapning to'liq ma'nosi: \"Har kuni ertalab soat 6 da uygʻonaman.\"."
+            },
+            {
+              "id": "ja-n5-u3-l3-ex-12",
+              "type": "multiple-choice",
+              "prompt": "「一人」 (Hitori) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Doʻst", "Har kuni", "Ikki kishi", "Bir kishi"],
+              "correctAnswer": 3,
+              "explanation": "「一人」 (Hitori) so'zi o'zbek tilida \"Bir kishi\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u3-l3-ex-13",
+              "type": "multiple-choice",
+              "prompt": "「二人」 (Futari) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Ikki kishi", "Har kuni", "Talaba / O'quvchi", "Bir kishi"],
+              "correctAnswer": 0,
+              "explanation": "「二人」 (Futari) so'zi o'zbek tilida \"Ikki kishi\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u3-l3-ex-14",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「一人（　　） 行きます。」",
+              "options": ["を", "は", "と", "で"],
+              "correctAnswer": 3,
+              "explanation": "Ushbu o'rinda 「で」 zarrachasi to'g'ri keladi. Butun jumla: 「一人で 行きます。」 (Yolg'iz o'zim boraman.)."
             }
           ]
         }
@@ -1871,6 +3179,102 @@
               "options": ["食事[しょくじ]", "散歩[さんぽ]", "先週[せんしゅう]", "運転[うんてん]"],
               "correctAnswer": 2,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"先週[せんしゅう]\" (O'tgan hafta)."
+            },
+            {
+              "id": "ja-n5-u3-l4-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）の 夜。」",
+              "options": ["先週", "勉強します", "大切", "昨日"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「昨日」 (Kinou) — \"Kecha\". Gapning to'liq ma'nosi: \"Kecha kechqurun.\"."
+            },
+            {
+              "id": "ja-n5-u3-l4-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 日本へ 来ました。」",
+              "options": ["先週", "車", "昨日", "大切"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「先週」 (Senshuu) — \"O'tgan hafta\". Gapning to'liq ma'nosi: \"O'tgan hafta Yaponiyaga keldim.\"."
+            },
+            {
+              "id": "ja-n5-u3-l4-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「時間は とても （　　）です。」",
+              "options": ["先週", "昨日", "大切", "ほしい"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「大切」 (Taisetsu) — \"Muhim, qadrli\". Gapning to'liq ma'nosi: \"Vaqt juda qadrlidir.\"."
+            },
+            {
+              "id": "ja-n5-u3-l4-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「昨日」 (Kinou) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Yakshanba", "Kecha", "Muhim, qadrli", "O'tgan hafta"],
+              "correctAnswer": 1,
+              "explanation": "「昨日」 (Kinou) so'zi o'zbek tilida \"Kecha\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u3-l4-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「先週」 (Senshuu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Muhim, qadrli", "Qancha turadi?", "O'tgan hafta", "Kecha"],
+              "correctAnswer": 2,
+              "explanation": "「先週」 (Senshuu) so'zi o'zbek tilida \"O'tgan hafta\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u3-l4-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「先週 日本（　　） 来ました。」",
+              "options": ["と", "へ", "に", "が"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「へ」 zarrachasi to'g'ri keladi. Butun jumla: 「先週 日本へ 来ました。」 (O'tgan hafta Yaponiyaga keldim.)."
+            },
+            {
+              "id": "ja-n5-u3-l4-ex-9",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）の 夜。」",
+              "options": ["先週", "勉強します", "大切", "昨日"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「昨日」 (Kinou) — \"Kecha\". Gapning to'liq ma'nosi: \"Kecha kechqurun.\"."
+            },
+            {
+              "id": "ja-n5-u3-l4-ex-10",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 日本へ 来ました。」",
+              "options": ["先週", "車", "昨日", "大切"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「先週」 (Senshuu) — \"O'tgan hafta\". Gapning to'liq ma'nosi: \"O'tgan hafta Yaponiyaga keldim.\"."
+            },
+            {
+              "id": "ja-n5-u3-l4-ex-11",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「時間は とても （　　）です。」",
+              "options": ["先週", "昨日", "大切", "ほしい"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「大切」 (Taisetsu) — \"Muhim, qadrli\". Gapning to'liq ma'nosi: \"Vaqt juda qadrlidir.\"."
+            },
+            {
+              "id": "ja-n5-u3-l4-ex-12",
+              "type": "multiple-choice",
+              "prompt": "「昨日」 (Kinou) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Yakshanba", "Kecha", "Muhim, qadrli", "O'tgan hafta"],
+              "correctAnswer": 1,
+              "explanation": "「昨日」 (Kinou) so'zi o'zbek tilida \"Kecha\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u3-l4-ex-13",
+              "type": "multiple-choice",
+              "prompt": "「先週」 (Senshuu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Muhim, qadrli", "Qancha turadi?", "O'tgan hafta", "Kecha"],
+              "correctAnswer": 2,
+              "explanation": "「先週」 (Senshuu) so'zi o'zbek tilida \"O'tgan hafta\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u3-l4-ex-14",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「先週 日本（　　） 来ました。」",
+              "options": ["と", "へ", "に", "が"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「へ」 zarrachasi to'g'ri keladi. Butun jumla: 「先週 日本へ 来ました。」 (O'tgan hafta Yaponiyaga keldim.)."
             }
           ]
         }
@@ -2018,6 +3422,102 @@
               "options": ["散歩[さんぽ]", "運転[うんてん]", "食事[しょくじ]", "銀行[ぎんこう]"],
               "correctAnswer": 3,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"銀行[ぎんこう]\" (Bank)."
+            },
+            {
+              "id": "ja-n5-u3-l5-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）へ 行きます。」",
+              "options": ["郵便局", "勉強します", "友達", "銀行"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「郵便局」 (Yuubinkyoku) — \"Pochta bo'limi\". Gapning to'liq ma'nosi: \"Pochtaga boraman.\"."
+            },
+            {
+              "id": "ja-n5-u3-l5-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）の 隣。」",
+              "options": ["犬", "銀行", "勉強します", "郵便局"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「銀行」 (Ginkou) — \"Bank\". Gapning to'liq ma'nosi: \"Bankning yonida.\"."
+            },
+            {
+              "id": "ja-n5-u3-l5-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日本語を （　　）。」",
+              "options": ["銀行", "友達", "郵便局", "勉強します"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「勉強します」 (Benkyou shimasu) — \"Oʻrganmoq, dars qilmoq\". Gapning to'liq ma'nosi: \"Yapon tilini oʻrganaman.\"."
+            },
+            {
+              "id": "ja-n5-u3-l5-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「郵便局」 (Yuubinkyoku) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Bank", "Katta", "Pochta bo'limi", "Oʻrganmoq, dars qilmoq"],
+              "correctAnswer": 2,
+              "explanation": "「郵便局」 (Yuubinkyoku) so'zi o'zbek tilida \"Pochta bo'limi\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u3-l5-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「銀行」 (Ginkou) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Bank", "Pochta bo'limi", "Muhim, qadrli", "Oʻrganmoq, dars qilmoq"],
+              "correctAnswer": 0,
+              "explanation": "「銀行」 (Ginkou) so'zi o'zbek tilida \"Bank\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u3-l5-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「郵便局（　　） 行きます。」",
+              "options": ["で", "へ", "は", "を"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「へ」 zarrachasi to'g'ri keladi. Butun jumla: 「郵便局へ 行きます。」 (Pochtaga boraman.)."
+            },
+            {
+              "id": "ja-n5-u3-l5-ex-9",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）へ 行きます。」",
+              "options": ["郵便局", "勉強します", "友達", "銀行"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「郵便局」 (Yuubinkyoku) — \"Pochta bo'limi\". Gapning to'liq ma'nosi: \"Pochtaga boraman.\"."
+            },
+            {
+              "id": "ja-n5-u3-l5-ex-10",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）の 隣。」",
+              "options": ["犬", "銀行", "勉強します", "郵便局"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「銀行」 (Ginkou) — \"Bank\". Gapning to'liq ma'nosi: \"Bankning yonida.\"."
+            },
+            {
+              "id": "ja-n5-u3-l5-ex-11",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日本語を （　　）。」",
+              "options": ["銀行", "友達", "郵便局", "勉強します"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「勉強します」 (Benkyou shimasu) — \"Oʻrganmoq, dars qilmoq\". Gapning to'liq ma'nosi: \"Yapon tilini oʻrganaman.\"."
+            },
+            {
+              "id": "ja-n5-u3-l5-ex-12",
+              "type": "multiple-choice",
+              "prompt": "「郵便局」 (Yuubinkyoku) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Bank", "Katta", "Pochta bo'limi", "Oʻrganmoq, dars qilmoq"],
+              "correctAnswer": 2,
+              "explanation": "「郵便局」 (Yuubinkyoku) so'zi o'zbek tilida \"Pochta bo'limi\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u3-l5-ex-13",
+              "type": "multiple-choice",
+              "prompt": "「銀行」 (Ginkou) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Bank", "Pochta bo'limi", "Muhim, qadrli", "Oʻrganmoq, dars qilmoq"],
+              "correctAnswer": 0,
+              "explanation": "「銀行」 (Ginkou) so'zi o'zbek tilida \"Bank\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u3-l5-ex-14",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「郵便局（　　） 行きます。」",
+              "options": ["で", "へ", "は", "を"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「へ」 zarrachasi to'g'ri keladi. Butun jumla: 「郵便局へ 行きます。」 (Pochtaga boraman.)."
             }
           ]
         }
@@ -2155,6 +3655,102 @@
               "options": ["安[やす]い", "散歩[さんぽ]", "食事[しょくじ]", "運転[うんてん]"],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"安[やす]い\" (Arzon)."
+            },
+            {
+              "id": "ja-n5-u4-l1-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「この時計は （　　）です。」",
+              "options": ["大きい", "高い", "先生", "安い"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「高い」 (Takai) — \"Qimmat / Baland\". Gapning to'liq ma'nosi: \"Bu soat qimmat.\"."
+            },
+            {
+              "id": "ja-n5-u4-l1-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「この店は （　　）です。」",
+              "options": ["大きい", "高い", "安い", "テレビ"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「安い」 (Yasui) — \"Arzon\". Gapning to'liq ma'nosi: \"Bu do'kon arzon.\"."
+            },
+            {
+              "id": "ja-n5-u4-l1-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 家。」",
+              "options": ["大きい", "安い", "高い", "昨日"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「大きい」 (Ookii) — \"Katta\". Gapning to'liq ma'nosi: \"Katta uy.\"."
+            },
+            {
+              "id": "ja-n5-u4-l1-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「高い」 (Takai) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Arzon", "Katta", "O'qituvchi / Ustoz", "Qimmat / Baland"],
+              "correctAnswer": 3,
+              "explanation": "「高い」 (Takai) so'zi o'zbek tilida \"Qimmat / Baland\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u4-l1-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「安い」 (Yasui) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Katta", "Qimmat / Baland", "Men", "Arzon"],
+              "correctAnswer": 3,
+              "explanation": "「安い」 (Yasui) so'zi o'zbek tilida \"Arzon\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u4-l1-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「この時計（　　） 高いです。」",
+              "options": ["で", "は", "に", "から"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「は」 zarrachasi to'g'ri keladi. Butun jumla: 「この時計は 高いです。」 (Bu soat qimmat.)."
+            },
+            {
+              "id": "ja-n5-u4-l1-ex-9",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「この時計は （　　）です。」",
+              "options": ["大きい", "高い", "先生", "安い"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「高い」 (Takai) — \"Qimmat / Baland\". Gapning to'liq ma'nosi: \"Bu soat qimmat.\"."
+            },
+            {
+              "id": "ja-n5-u4-l1-ex-10",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「この店は （　　）です。」",
+              "options": ["大きい", "高い", "安い", "テレビ"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「安い」 (Yasui) — \"Arzon\". Gapning to'liq ma'nosi: \"Bu do'kon arzon.\"."
+            },
+            {
+              "id": "ja-n5-u4-l1-ex-11",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 家。」",
+              "options": ["大きい", "安い", "高い", "昨日"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「大きい」 (Ookii) — \"Katta\". Gapning to'liq ma'nosi: \"Katta uy.\"."
+            },
+            {
+              "id": "ja-n5-u4-l1-ex-12",
+              "type": "multiple-choice",
+              "prompt": "「高い」 (Takai) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Arzon", "Katta", "O'qituvchi / Ustoz", "Qimmat / Baland"],
+              "correctAnswer": 3,
+              "explanation": "「高い」 (Takai) so'zi o'zbek tilida \"Qimmat / Baland\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u4-l1-ex-13",
+              "type": "multiple-choice",
+              "prompt": "「安い」 (Yasui) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Katta", "Qimmat / Baland", "Men", "Arzon"],
+              "correctAnswer": 3,
+              "explanation": "「安い」 (Yasui) so'zi o'zbek tilida \"Arzon\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u4-l1-ex-14",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「この時計（　　） 高いです。」",
+              "options": ["で", "は", "に", "から"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「は」 zarrachasi to'g'ri keladi. Butun jumla: 「この時計は 高いです。」 (Bu soat qimmat.)."
             }
           ]
         }
@@ -2297,6 +3893,106 @@
               "options": ["散歩[さんぽ]", "運転[うんてん]", "親切[しんせつ]な", "食事[しょくじ]"],
               "correctAnswer": 2,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"親切[しんせつ]な\" (Mehribon / Ochiqko'ngil)."
+            },
+            {
+              "id": "ja-n5-u4-l2-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） レストラン。」",
+              "options": ["親切な", "有名な", "勉強します", "暇な"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「有名な」 (Yuumei na) — \"Mashhur\". Gapning to'liq ma'nosi: \"Mashhur restoran.\"."
+            },
+            {
+              "id": "ja-n5-u4-l2-ex-4",
+              "type": "multiple-choice",
+              "prompt": "「有名な」 (Yuumei na) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tanishganimdan xursandman",
+                "Mehribon / Ochiqko'ngil",
+                "Bo'sh (vaqti bor)",
+                "Mashhur"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「有名な」 (Yuumei na) so'zi o'zbek tilida \"Mashhur\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u4-l2-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「親切な」 (Shinsetsu na) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Mashhur", "Mehribon / Ochiqko'ngil", "Bo'sh (vaqti bor)", "Ikki kishi"],
+              "correctAnswer": 1,
+              "explanation": "「親切な」 (Shinsetsu na) so'zi o'zbek tilida \"Mehribon / Ochiqko'ngil\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u4-l2-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「暇な」 (Hima na) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Talaba / O'quvchi",
+                "Mehribon / Ochiqko'ngil",
+                "Mashhur",
+                "Bo'sh (vaqti bor)"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「暇な」 (Hima na) so'zi o'zbek tilida \"Bo'sh (vaqti bor)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u4-l2-ex-7",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「田中さん（　　） 親切です。」",
+              "options": ["は", "を", "に", "で"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「は」 zarrachasi to'g'ri keladi. Butun jumla: 「田中さんは 親切です。」 (Tanaka san mehribon.)."
+            },
+            {
+              "id": "ja-n5-u4-l2-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） レストラン。」",
+              "options": ["親切な", "有名な", "勉強します", "暇な"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「有名な」 (Yuumei na) — \"Mashhur\". Gapning to'liq ma'nosi: \"Mashhur restoran.\"."
+            },
+            {
+              "id": "ja-n5-u4-l2-ex-9",
+              "type": "multiple-choice",
+              "prompt": "「有名な」 (Yuumei na) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tanishganimdan xursandman",
+                "Mehribon / Ochiqko'ngil",
+                "Bo'sh (vaqti bor)",
+                "Mashhur"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「有名な」 (Yuumei na) so'zi o'zbek tilida \"Mashhur\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u4-l2-ex-10",
+              "type": "multiple-choice",
+              "prompt": "「親切な」 (Shinsetsu na) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Mashhur", "Mehribon / Ochiqko'ngil", "Bo'sh (vaqti bor)", "Ikki kishi"],
+              "correctAnswer": 1,
+              "explanation": "「親切な」 (Shinsetsu na) so'zi o'zbek tilida \"Mehribon / Ochiqko'ngil\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u4-l2-ex-11",
+              "type": "multiple-choice",
+              "prompt": "「暇な」 (Hima na) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Talaba / O'quvchi",
+                "Mehribon / Ochiqko'ngil",
+                "Mashhur",
+                "Bo'sh (vaqti bor)"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「暇な」 (Hima na) so'zi o'zbek tilida \"Bo'sh (vaqti bor)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u4-l2-ex-12",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「田中さん（　　） 親切です。」",
+              "options": ["は", "を", "に", "で"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「は」 zarrachasi to'g'ri keladi. Butun jumla: 「田中さんは 親切です。」 (Tanaka san mehribon.)."
             }
           ]
         }
@@ -2434,6 +4130,102 @@
               "options": ["猫[ねこ]", "食事[しょくじ]", "運転[うんてん]", "散歩[さんぽ]"],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"猫[ねこ]\" (Mushuk)."
+            },
+            {
+              "id": "ja-n5-u4-l3-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「白い （　　）が います。」",
+              "options": ["猫", "大切", "高い", "犬"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「犬」 (Inu) — \"It / Kuchuk\". Gapning to'liq ma'nosi: \"Oq kuchuk bor.\"."
+            },
+            {
+              "id": "ja-n5-u4-l3-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）が 好きです。」",
+              "options": ["犬", "猫", "友達", "大切"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「猫」 (Neko) — \"Mushuk\". Gapning to'liq ma'nosi: \"Mushuklarni yaxshi ko'raman.\"."
+            },
+            {
+              "id": "ja-n5-u4-l3-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「時間は とても （　　）です。」",
+              "options": ["大切", "猫", "犬", "勉強します"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「大切」 (Taisetsu) — \"Muhim, qadrli\". Gapning to'liq ma'nosi: \"Vaqt juda qadrlidir.\"."
+            },
+            {
+              "id": "ja-n5-u4-l3-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「犬」 (Inu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Doʻst", "Muhim, qadrli", "It / Kuchuk", "Mushuk"],
+              "correctAnswer": 2,
+              "explanation": "「犬」 (Inu) so'zi o'zbek tilida \"It / Kuchuk\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u4-l3-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「猫」 (Neko) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Har tong", "It / Kuchuk", "Mushuk", "Muhim, qadrli"],
+              "correctAnswer": 2,
+              "explanation": "「猫」 (Neko) so'zi o'zbek tilida \"Mushuk\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u4-l3-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「白い 犬（　　） います。」",
+              "options": ["が", "は", "から", "と"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「が」 zarrachasi to'g'ri keladi. Butun jumla: 「白い 犬が います。」 (Oq kuchuk bor.)."
+            },
+            {
+              "id": "ja-n5-u4-l3-ex-9",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「白い （　　）が います。」",
+              "options": ["猫", "大切", "高い", "犬"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「犬」 (Inu) — \"It / Kuchuk\". Gapning to'liq ma'nosi: \"Oq kuchuk bor.\"."
+            },
+            {
+              "id": "ja-n5-u4-l3-ex-10",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）が 好きです。」",
+              "options": ["犬", "猫", "友達", "大切"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「猫」 (Neko) — \"Mushuk\". Gapning to'liq ma'nosi: \"Mushuklarni yaxshi ko'raman.\"."
+            },
+            {
+              "id": "ja-n5-u4-l3-ex-11",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「時間は とても （　　）です。」",
+              "options": ["大切", "猫", "犬", "勉強します"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「大切」 (Taisetsu) — \"Muhim, qadrli\". Gapning to'liq ma'nosi: \"Vaqt juda qadrlidir.\"."
+            },
+            {
+              "id": "ja-n5-u4-l3-ex-12",
+              "type": "multiple-choice",
+              "prompt": "「犬」 (Inu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Doʻst", "Muhim, qadrli", "It / Kuchuk", "Mushuk"],
+              "correctAnswer": 2,
+              "explanation": "「犬」 (Inu) so'zi o'zbek tilida \"It / Kuchuk\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u4-l3-ex-13",
+              "type": "multiple-choice",
+              "prompt": "「猫」 (Neko) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Har tong", "It / Kuchuk", "Mushuk", "Muhim, qadrli"],
+              "correctAnswer": 2,
+              "explanation": "「猫」 (Neko) so'zi o'zbek tilida \"Mushuk\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u4-l3-ex-14",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「白い 犬（　　） います。」",
+              "options": ["が", "は", "から", "と"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「が」 zarrachasi to'g'ri keladi. Butun jumla: 「白い 犬が います。」 (Oq kuchuk bor.)."
             }
           ]
         }
@@ -2571,6 +4363,122 @@
               "options": ["散歩[さんぽ]", "運転[うんてん]", "食事[しょくじ]", "大切[たいせつ]"],
               "correctAnswer": 3,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"大切[たいせつ]\" (Muhim, qadrli)."
+            },
+            {
+              "id": "ja-n5-u4-l4-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「時間が （　　）です。」",
+              "options": ["大切", "毎日", "勉強します", "ほしい"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「ほしい」 (Hoshii) — \"Kerak / Xohlayman (buyumni)\". Gapning to'liq ma'nosi: \"Vaqt bo'lishini xohlayman.\"."
+            },
+            {
+              "id": "ja-n5-u4-l4-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「時間は とても （　　）です。」",
+              "options": ["先生", "大切", "勉強します", "ほしい"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「大切」 (Taisetsu) — \"Muhim, qadrli\". Gapning to'liq ma'nosi: \"Vaqt juda qadrlidir.\"."
+            },
+            {
+              "id": "ja-n5-u4-l4-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日本語を （　　）。」",
+              "options": ["ほしい", "大切", "日本", "勉強します"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「勉強します」 (Benkyou shimasu) — \"Oʻrganmoq, dars qilmoq\". Gapning to'liq ma'nosi: \"Yapon tilini oʻrganaman.\"."
+            },
+            {
+              "id": "ja-n5-u4-l4-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「ほしい」 (Hoshii) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Kerak / Xohlayman (buyumni)",
+                "Oʻrganmoq, dars qilmoq",
+                "Mehribon / Ochiqko'ngil",
+                "Muhim, qadrli"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「ほしい」 (Hoshii) so'zi o'zbek tilida \"Kerak / Xohlayman (buyumni)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u4-l4-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「大切」 (Taisetsu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Muhim, qadrli",
+                "Kerak / Xohlayman (buyumni)",
+                "Oʻrganmoq, dars qilmoq",
+                "Pochta bo'limi"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「大切」 (Taisetsu) so'zi o'zbek tilida \"Muhim, qadrli\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u4-l4-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「時間（　　） ほしいです。」",
+              "options": ["で", "が", "は", "を"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「が」 zarrachasi to'g'ri keladi. Butun jumla: 「時間が ほしいです。」 (Vaqt bo'lishini xohlayman.)."
+            },
+            {
+              "id": "ja-n5-u4-l4-ex-9",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「時間が （　　）です。」",
+              "options": ["大切", "毎日", "勉強します", "ほしい"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「ほしい」 (Hoshii) — \"Kerak / Xohlayman (buyumni)\". Gapning to'liq ma'nosi: \"Vaqt bo'lishini xohlayman.\"."
+            },
+            {
+              "id": "ja-n5-u4-l4-ex-10",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「時間は とても （　　）です。」",
+              "options": ["先生", "大切", "勉強します", "ほしい"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「大切」 (Taisetsu) — \"Muhim, qadrli\". Gapning to'liq ma'nosi: \"Vaqt juda qadrlidir.\"."
+            },
+            {
+              "id": "ja-n5-u4-l4-ex-11",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日本語を （　　）。」",
+              "options": ["ほしい", "大切", "日本", "勉強します"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「勉強します」 (Benkyou shimasu) — \"Oʻrganmoq, dars qilmoq\". Gapning to'liq ma'nosi: \"Yapon tilini oʻrganaman.\"."
+            },
+            {
+              "id": "ja-n5-u4-l4-ex-12",
+              "type": "multiple-choice",
+              "prompt": "「ほしい」 (Hoshii) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Kerak / Xohlayman (buyumni)",
+                "Oʻrganmoq, dars qilmoq",
+                "Mehribon / Ochiqko'ngil",
+                "Muhim, qadrli"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「ほしい」 (Hoshii) so'zi o'zbek tilida \"Kerak / Xohlayman (buyumni)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u4-l4-ex-13",
+              "type": "multiple-choice",
+              "prompt": "「大切」 (Taisetsu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Muhim, qadrli",
+                "Kerak / Xohlayman (buyumni)",
+                "Oʻrganmoq, dars qilmoq",
+                "Pochta bo'limi"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「大切」 (Taisetsu) so'zi o'zbek tilida \"Muhim, qadrli\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u4-l4-ex-14",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「時間（　　） ほしいです。」",
+              "options": ["で", "が", "は", "を"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「が」 zarrachasi to'g'ri keladi. Butun jumla: 「時間が ほしいです。」 (Vaqt bo'lishini xohlayman.)."
             }
           ]
         }
@@ -2709,6 +4617,96 @@
               ],
               "correctAnswer": 2,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"勉強[べんきょう]します\" (Oʻrganmoq, dars qilmoq)."
+            },
+            {
+              "id": "ja-n5-u4-l5-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 散歩します。」",
+              "options": ["勉強します", "先生", "毎朝", "友達"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「毎朝」 (Maiasa) — \"Har tong\". Gapning to'liq ma'nosi: \"Har tong sayr qilaman.\"."
+            },
+            {
+              "id": "ja-n5-u4-l5-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日本語を （　　）。」",
+              "options": ["友達", "毎朝", "いくら", "勉強します"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「勉強します」 (Benkyou shimasu) — \"Oʻrganmoq, dars qilmoq\". Gapning to'liq ma'nosi: \"Yapon tilini oʻrganaman.\"."
+            },
+            {
+              "id": "ja-n5-u4-l5-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）と 図書館へ 行きます。」",
+              "options": ["一緒に", "勉強します", "友達", "毎朝"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「友達」 (Tomodachi) — \"Doʻst\". Gapning to'liq ma'nosi: \"Doʻstim bilan kutubxonaga boraman.\"."
+            },
+            {
+              "id": "ja-n5-u4-l5-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「毎朝」 (Maiasa) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Doʻst", "Har tong", "Oʻrganmoq, dars qilmoq", "Qancha turadi?"],
+              "correctAnswer": 1,
+              "explanation": "「毎朝」 (Maiasa) so'zi o'zbek tilida \"Har tong\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u4-l5-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「勉強します」 (Benkyou shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Oʻrganmoq, dars qilmoq",
+                "Har tong",
+                "Doʻst",
+                "Yaponiya (Kunchiqar yurt)"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「勉強します」 (Benkyou shimasu) so'zi o'zbek tilida \"Oʻrganmoq, dars qilmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u4-l5-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 散歩します。」",
+              "options": ["勉強します", "先生", "毎朝", "友達"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「毎朝」 (Maiasa) — \"Har tong\". Gapning to'liq ma'nosi: \"Har tong sayr qilaman.\"."
+            },
+            {
+              "id": "ja-n5-u4-l5-ex-9",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日本語を （　　）。」",
+              "options": ["友達", "毎朝", "いくら", "勉強します"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「勉強します」 (Benkyou shimasu) — \"Oʻrganmoq, dars qilmoq\". Gapning to'liq ma'nosi: \"Yapon tilini oʻrganaman.\"."
+            },
+            {
+              "id": "ja-n5-u4-l5-ex-10",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）と 図書館へ 行きます。」",
+              "options": ["一緒に", "勉強します", "友達", "毎朝"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「友達」 (Tomodachi) — \"Doʻst\". Gapning to'liq ma'nosi: \"Doʻstim bilan kutubxonaga boraman.\"."
+            },
+            {
+              "id": "ja-n5-u4-l5-ex-11",
+              "type": "multiple-choice",
+              "prompt": "「毎朝」 (Maiasa) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Doʻst", "Har tong", "Oʻrganmoq, dars qilmoq", "Qancha turadi?"],
+              "correctAnswer": 1,
+              "explanation": "「毎朝」 (Maiasa) so'zi o'zbek tilida \"Har tong\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u4-l5-ex-12",
+              "type": "multiple-choice",
+              "prompt": "「勉強します」 (Benkyou shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Oʻrganmoq, dars qilmoq",
+                "Har tong",
+                "Doʻst",
+                "Yaponiya (Kunchiqar yurt)"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「勉強します」 (Benkyou shimasu) so'zi o'zbek tilida \"Oʻrganmoq, dars qilmoq\" ma'nosini bildiradi."
             }
           ]
         }
@@ -2846,6 +4844,122 @@
               "options": ["散歩[さんぽ]", "水曜日[すいようび]", "運転[うんてん]", "食事[しょくじ]"],
               "correctAnswer": 1,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"水曜日[すいようび]\" (Chorshanba (Suv kuni))."
+            },
+            {
+              "id": "ja-n5-u5-l1-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）へ 行きます。」",
+              "options": ["毎日", "水曜日", "ほしい", "日本"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「日本」 (Nihon) — \"Yaponiya (Kunchiqar yurt)\". Gapning to'liq ma'nosi: \"Yaponiyaga boraman.\"."
+            },
+            {
+              "id": "ja-n5-u5-l1-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）に 会いましょう。」",
+              "options": ["初めまして", "毎日", "水曜日", "日本"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「水曜日」 (Suiyoubi) — \"Chorshanba (Suv kuni)\". Gapning to'liq ma'nosi: \"Chorshanba kuni ko'rishaylik.\"."
+            },
+            {
+              "id": "ja-n5-u5-l1-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 朝６時に 起きます。」",
+              "options": ["大切", "水曜日", "日本", "毎日"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「毎日」 (Mainichi) — \"Har kuni\". Gapning to'liq ma'nosi: \"Har kuni ertalab soat 6 da uygʻonaman.\"."
+            },
+            {
+              "id": "ja-n5-u5-l1-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「日本」 (Nihon) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Yaponiya (Kunchiqar yurt)",
+                "Chorshanba (Suv kuni)",
+                "Muhim, qadrli",
+                "Har kuni"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「日本」 (Nihon) so'zi o'zbek tilida \"Yaponiya (Kunchiqar yurt)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u5-l1-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「水曜日」 (Suiyoubi) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Yaponiya (Kunchiqar yurt)",
+                "Chorshanba (Suv kuni)",
+                "Bir kishi",
+                "Har kuni"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「水曜日」 (Suiyoubi) so'zi o'zbek tilida \"Chorshanba (Suv kuni)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u5-l1-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本（　　） 行きます。」",
+              "options": ["に", "へ", "を", "から"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「へ」 zarrachasi to'g'ri keladi. Butun jumla: 「日本へ 行きます。」 (Yaponiyaga boraman.)."
+            },
+            {
+              "id": "ja-n5-u5-l1-ex-9",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）へ 行きます。」",
+              "options": ["毎日", "水曜日", "ほしい", "日本"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「日本」 (Nihon) — \"Yaponiya (Kunchiqar yurt)\". Gapning to'liq ma'nosi: \"Yaponiyaga boraman.\"."
+            },
+            {
+              "id": "ja-n5-u5-l1-ex-10",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）に 会いましょう。」",
+              "options": ["初めまして", "毎日", "水曜日", "日本"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「水曜日」 (Suiyoubi) — \"Chorshanba (Suv kuni)\". Gapning to'liq ma'nosi: \"Chorshanba kuni ko'rishaylik.\"."
+            },
+            {
+              "id": "ja-n5-u5-l1-ex-11",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 朝６時に 起きます。」",
+              "options": ["大切", "水曜日", "日本", "毎日"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「毎日」 (Mainichi) — \"Har kuni\". Gapning to'liq ma'nosi: \"Har kuni ertalab soat 6 da uygʻonaman.\"."
+            },
+            {
+              "id": "ja-n5-u5-l1-ex-12",
+              "type": "multiple-choice",
+              "prompt": "「日本」 (Nihon) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Yaponiya (Kunchiqar yurt)",
+                "Chorshanba (Suv kuni)",
+                "Muhim, qadrli",
+                "Har kuni"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「日本」 (Nihon) so'zi o'zbek tilida \"Yaponiya (Kunchiqar yurt)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u5-l1-ex-13",
+              "type": "multiple-choice",
+              "prompt": "「水曜日」 (Suiyoubi) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Yaponiya (Kunchiqar yurt)",
+                "Chorshanba (Suv kuni)",
+                "Bir kishi",
+                "Har kuni"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「水曜日」 (Suiyoubi) so'zi o'zbek tilida \"Chorshanba (Suv kuni)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u5-l1-ex-14",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本（　　） 行きます。」",
+              "options": ["に", "へ", "を", "から"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「へ」 zarrachasi to'g'ri keladi. Butun jumla: 「日本へ 行きます。」 (Yaponiyaga boraman.)."
             }
           ]
         }
@@ -2978,6 +5092,122 @@
               "options": ["大学[だいがく]", "食事[しょくじ]", "散歩[さんぽ]", "運転[うんてん]"],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"大学[だいがく]\" (Universitet (Katta ta'lim))."
+            },
+            {
+              "id": "ja-n5-u5-l2-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）の 切符。」",
+              "options": ["大切", "電車", "大学", "大人"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「大人」 (Otona) — \"Katta yoshli inson\". Gapning to'liq ma'nosi: \"Kattalar chiptasi.\"."
+            },
+            {
+              "id": "ja-n5-u5-l2-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）で 学びます。」",
+              "options": ["大人", "大切", "大学", "暇な"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「大学」 (Daigaku) — \"Universitet (Katta ta'lim)\". Gapning to'liq ma'nosi: \"Universitetda o'qiyman.\"."
+            },
+            {
+              "id": "ja-n5-u5-l2-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「時間は とても （　　）です。」",
+              "options": ["大人", "大学", "大切", "円"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「大切」 (Taisetsu) — \"Muhim, qadrli\". Gapning to'liq ma'nosi: \"Vaqt juda qadrlidir.\"."
+            },
+            {
+              "id": "ja-n5-u5-l2-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「大人」 (Otona) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Muhim, qadrli",
+                "Universitet (Katta ta'lim)",
+                "Katta yoshli inson",
+                "Yakshanba"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「大人」 (Otona) so'zi o'zbek tilida \"Katta yoshli inson\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u5-l2-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「大学」 (Daigaku) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Oʻrganmoq, dars qilmoq",
+                "Muhim, qadrli",
+                "Katta yoshli inson",
+                "Universitet (Katta ta'lim)"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「大学」 (Daigaku) so'zi o'zbek tilida \"Universitet (Katta ta'lim)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u5-l2-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「大学（　　） 学びます。」",
+              "options": ["で", "に", "は", "が"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「で」 zarrachasi to'g'ri keladi. Butun jumla: 「大学で 学びます。」 (Universitetda o'qiyman.)."
+            },
+            {
+              "id": "ja-n5-u5-l2-ex-9",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）の 切符。」",
+              "options": ["大切", "電車", "大学", "大人"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「大人」 (Otona) — \"Katta yoshli inson\". Gapning to'liq ma'nosi: \"Kattalar chiptasi.\"."
+            },
+            {
+              "id": "ja-n5-u5-l2-ex-10",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）で 学びます。」",
+              "options": ["大人", "大切", "大学", "暇な"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「大学」 (Daigaku) — \"Universitet (Katta ta'lim)\". Gapning to'liq ma'nosi: \"Universitetda o'qiyman.\"."
+            },
+            {
+              "id": "ja-n5-u5-l2-ex-11",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「時間は とても （　　）です。」",
+              "options": ["大人", "大学", "大切", "円"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「大切」 (Taisetsu) — \"Muhim, qadrli\". Gapning to'liq ma'nosi: \"Vaqt juda qadrlidir.\"."
+            },
+            {
+              "id": "ja-n5-u5-l2-ex-12",
+              "type": "multiple-choice",
+              "prompt": "「大人」 (Otona) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Muhim, qadrli",
+                "Universitet (Katta ta'lim)",
+                "Katta yoshli inson",
+                "Yakshanba"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「大人」 (Otona) so'zi o'zbek tilida \"Katta yoshli inson\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u5-l2-ex-13",
+              "type": "multiple-choice",
+              "prompt": "「大学」 (Daigaku) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Oʻrganmoq, dars qilmoq",
+                "Muhim, qadrli",
+                "Katta yoshli inson",
+                "Universitet (Katta ta'lim)"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「大学」 (Daigaku) so'zi o'zbek tilida \"Universitet (Katta ta'lim)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u5-l2-ex-14",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「大学（　　） 学びます。」",
+              "options": ["で", "に", "は", "が"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「で」 zarrachasi to'g'ri keladi. Butun jumla: 「大学で 学びます。」 (Universitetda o'qiyman.)."
             }
           ]
         }
@@ -3110,6 +5340,122 @@
               "options": ["散歩[さんぽ]", "食事[しょくじ]", "運転[うんてん]", "電車[でんしゃ]"],
               "correctAnswer": 3,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"電車[でんしゃ]\" (Poyezd (Elektr mashina))."
+            },
+            {
+              "id": "ja-n5-u5-l3-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日本語の （　　）。」",
+              "options": ["電車", "親切な", "先生", "勉強します"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「先生」 (Sensei) — \"Ustoz / O'qituvchi\". Gapning to'liq ma'nosi: \"Yapon tili ustozi.\"."
+            },
+            {
+              "id": "ja-n5-u5-l3-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）に 乗ります。」",
+              "options": ["先生", "大切", "電車", "勉強します"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「電車」 (Densha) — \"Poyezd (Elektr mashina)\". Gapning to'liq ma'nosi: \"Poyezdga chiqaman.\"."
+            },
+            {
+              "id": "ja-n5-u5-l3-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日本語を （　　）。」",
+              "options": ["電車", "勉強します", "一緒に", "先生"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「勉強します」 (Benkyou shimasu) — \"Oʻrganmoq, dars qilmoq\". Gapning to'liq ma'nosi: \"Yapon tilini oʻrganaman.\"."
+            },
+            {
+              "id": "ja-n5-u5-l3-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「先生」 (Sensei) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Universitet (Katta ta'lim)",
+                "Poyezd (Elektr mashina)",
+                "Ustoz / O'qituvchi",
+                "Oʻrganmoq, dars qilmoq"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「先生」 (Sensei) so'zi o'zbek tilida \"Ustoz / O'qituvchi\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u5-l3-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「電車」 (Densha) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Poyezd (Elektr mashina)",
+                "Ustoz / O'qituvchi",
+                "Yaponiya (Kunchiqar yurt)",
+                "Oʻrganmoq, dars qilmoq"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「電車」 (Densha) so'zi o'zbek tilida \"Poyezd (Elektr mashina)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u5-l3-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「電車（　　） 乗ります。」",
+              "options": ["に", "から", "と", "で"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「に」 zarrachasi to'g'ri keladi. Butun jumla: 「電車に 乗ります。」 (Poyezdga chiqaman.)."
+            },
+            {
+              "id": "ja-n5-u5-l3-ex-9",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日本語の （　　）。」",
+              "options": ["電車", "親切な", "先生", "勉強します"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「先生」 (Sensei) — \"Ustoz / O'qituvchi\". Gapning to'liq ma'nosi: \"Yapon tili ustozi.\"."
+            },
+            {
+              "id": "ja-n5-u5-l3-ex-10",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）に 乗ります。」",
+              "options": ["先生", "大切", "電車", "勉強します"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「電車」 (Densha) — \"Poyezd (Elektr mashina)\". Gapning to'liq ma'nosi: \"Poyezdga chiqaman.\"."
+            },
+            {
+              "id": "ja-n5-u5-l3-ex-11",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日本語を （　　）。」",
+              "options": ["電車", "勉強します", "一緒に", "先生"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「勉強します」 (Benkyou shimasu) — \"Oʻrganmoq, dars qilmoq\". Gapning to'liq ma'nosi: \"Yapon tilini oʻrganaman.\"."
+            },
+            {
+              "id": "ja-n5-u5-l3-ex-12",
+              "type": "multiple-choice",
+              "prompt": "「先生」 (Sensei) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Universitet (Katta ta'lim)",
+                "Poyezd (Elektr mashina)",
+                "Ustoz / O'qituvchi",
+                "Oʻrganmoq, dars qilmoq"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「先生」 (Sensei) so'zi o'zbek tilida \"Ustoz / O'qituvchi\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u5-l3-ex-13",
+              "type": "multiple-choice",
+              "prompt": "「電車」 (Densha) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Poyezd (Elektr mashina)",
+                "Ustoz / O'qituvchi",
+                "Yaponiya (Kunchiqar yurt)",
+                "Oʻrganmoq, dars qilmoq"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「電車」 (Densha) so'zi o'zbek tilida \"Poyezd (Elektr mashina)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u5-l3-ex-14",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「電車（　　） 乗ります。」",
+              "options": ["に", "から", "と", "で"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「に」 zarrachasi to'g'ri keladi. Butun jumla: 「電車に 乗ります。」 (Poyezdga chiqaman.)."
             }
           ]
         }
@@ -3247,6 +5593,112 @@
               ],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"勉強[べんきょう]します\" (Oʻrganmoq, dars qilmoq)."
+            },
+            {
+              "id": "ja-n5-u5-l4-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「時間は とても （　　）です。」",
+              "options": ["大切", "友達", "コーヒー", "勉強します"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「大切」 (Taisetsu) — \"Muhim, qadrli\". Gapning to'liq ma'nosi: \"Vaqt juda qadrlidir.\"."
+            },
+            {
+              "id": "ja-n5-u5-l4-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日本語を （　　）。」",
+              "options": ["大切", "勉強します", "初めまして", "友達"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「勉強します」 (Benkyou shimasu) — \"Oʻrganmoq, dars qilmoq\". Gapning to'liq ma'nosi: \"Yapon tilini oʻrganaman.\"."
+            },
+            {
+              "id": "ja-n5-u5-l4-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）と 図書館へ 行きます。」",
+              "options": ["友達", "大切", "勉強します", "飲みます"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「友達」 (Tomodachi) — \"Doʻst\". Gapning to'liq ma'nosi: \"Doʻstim bilan kutubxonaga boraman.\"."
+            },
+            {
+              "id": "ja-n5-u5-l4-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「大切」 (Taisetsu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Muhim, qadrli", "Doʻst", "Oʻrganmoq, dars qilmoq", "Televizor"],
+              "correctAnswer": 0,
+              "explanation": "「大切」 (Taisetsu) so'zi o'zbek tilida \"Muhim, qadrli\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u5-l4-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「勉強します」 (Benkyou shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Muhim, qadrli",
+                "Oʻrganmoq, dars qilmoq",
+                "Yaponiya (Kunchiqar yurt)",
+                "Doʻst"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「勉強します」 (Benkyou shimasu) so'zi o'zbek tilida \"Oʻrganmoq, dars qilmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u5-l4-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
+              "options": ["で", "が", "から", "を"],
+              "correctAnswer": 3,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
+            },
+            {
+              "id": "ja-n5-u5-l4-ex-9",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「時間は とても （　　）です。」",
+              "options": ["大切", "友達", "コーヒー", "勉強します"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「大切」 (Taisetsu) — \"Muhim, qadrli\". Gapning to'liq ma'nosi: \"Vaqt juda qadrlidir.\"."
+            },
+            {
+              "id": "ja-n5-u5-l4-ex-10",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日本語を （　　）。」",
+              "options": ["大切", "勉強します", "初めまして", "友達"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「勉強します」 (Benkyou shimasu) — \"Oʻrganmoq, dars qilmoq\". Gapning to'liq ma'nosi: \"Yapon tilini oʻrganaman.\"."
+            },
+            {
+              "id": "ja-n5-u5-l4-ex-11",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）と 図書館へ 行きます。」",
+              "options": ["友達", "大切", "勉強します", "飲みます"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「友達」 (Tomodachi) — \"Doʻst\". Gapning to'liq ma'nosi: \"Doʻstim bilan kutubxonaga boraman.\"."
+            },
+            {
+              "id": "ja-n5-u5-l4-ex-12",
+              "type": "multiple-choice",
+              "prompt": "「大切」 (Taisetsu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Muhim, qadrli", "Doʻst", "Oʻrganmoq, dars qilmoq", "Televizor"],
+              "correctAnswer": 0,
+              "explanation": "「大切」 (Taisetsu) so'zi o'zbek tilida \"Muhim, qadrli\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u5-l4-ex-13",
+              "type": "multiple-choice",
+              "prompt": "「勉強します」 (Benkyou shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Muhim, qadrli",
+                "Oʻrganmoq, dars qilmoq",
+                "Yaponiya (Kunchiqar yurt)",
+                "Doʻst"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「勉強します」 (Benkyou shimasu) so'zi o'zbek tilida \"Oʻrganmoq, dars qilmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u5-l4-ex-14",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
+              "options": ["で", "が", "から", "を"],
+              "correctAnswer": 3,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -3379,6 +5831,112 @@
               "options": ["運転[うんてん]", "友達[ともだち]", "散歩[さんぽ]", "食事[しょくじ]"],
               "correctAnswer": 1,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"友達[ともだち]\" (Doʻst)."
+            },
+            {
+              "id": "ja-n5-u5-l5-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日本語を （　　）。」",
+              "options": ["勉強します", "毎日", "毎朝", "友達"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「勉強します」 (Benkyou shimasu) — \"Oʻrganmoq, dars qilmoq\". Gapning to'liq ma'nosi: \"Yapon tilini oʻrganaman.\"."
+            },
+            {
+              "id": "ja-n5-u5-l5-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）と 図書館へ 行きます。」",
+              "options": ["友達", "毎日", "勉強します", "大人"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「友達」 (Tomodachi) — \"Doʻst\". Gapning to'liq ma'nosi: \"Doʻstim bilan kutubxonaga boraman.\"."
+            },
+            {
+              "id": "ja-n5-u5-l5-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 朝６時に 起きます。」",
+              "options": ["大切", "勉強します", "毎日", "友達"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「毎日」 (Mainichi) — \"Har kuni\". Gapning to'liq ma'nosi: \"Har kuni ertalab soat 6 da uygʻonaman.\"."
+            },
+            {
+              "id": "ja-n5-u5-l5-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「勉強します」 (Benkyou shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Oʻrganmoq, dars qilmoq", "Doʻst", "Har kuni", "Men"],
+              "correctAnswer": 0,
+              "explanation": "「勉強します」 (Benkyou shimasu) so'zi o'zbek tilida \"Oʻrganmoq, dars qilmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u5-l5-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「友達」 (Tomodachi) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Assalomu alaykum / Xayrli kun",
+                "Oʻrganmoq, dars qilmoq",
+                "Doʻst",
+                "Har kuni"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「友達」 (Tomodachi) so'zi o'zbek tilida \"Doʻst\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u5-l5-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
+              "options": ["から", "を", "は", "が"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
+            },
+            {
+              "id": "ja-n5-u5-l5-ex-9",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日本語を （　　）。」",
+              "options": ["勉強します", "毎日", "毎朝", "友達"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「勉強します」 (Benkyou shimasu) — \"Oʻrganmoq, dars qilmoq\". Gapning to'liq ma'nosi: \"Yapon tilini oʻrganaman.\"."
+            },
+            {
+              "id": "ja-n5-u5-l5-ex-10",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）と 図書館へ 行きます。」",
+              "options": ["友達", "毎日", "勉強します", "大人"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「友達」 (Tomodachi) — \"Doʻst\". Gapning to'liq ma'nosi: \"Doʻstim bilan kutubxonaga boraman.\"."
+            },
+            {
+              "id": "ja-n5-u5-l5-ex-11",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 朝６時に 起きます。」",
+              "options": ["大切", "勉強します", "毎日", "友達"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「毎日」 (Mainichi) — \"Har kuni\". Gapning to'liq ma'nosi: \"Har kuni ertalab soat 6 da uygʻonaman.\"."
+            },
+            {
+              "id": "ja-n5-u5-l5-ex-12",
+              "type": "multiple-choice",
+              "prompt": "「勉強します」 (Benkyou shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Oʻrganmoq, dars qilmoq", "Doʻst", "Har kuni", "Men"],
+              "correctAnswer": 0,
+              "explanation": "「勉強します」 (Benkyou shimasu) so'zi o'zbek tilida \"Oʻrganmoq, dars qilmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u5-l5-ex-13",
+              "type": "multiple-choice",
+              "prompt": "「友達」 (Tomodachi) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Assalomu alaykum / Xayrli kun",
+                "Oʻrganmoq, dars qilmoq",
+                "Doʻst",
+                "Har kuni"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「友達」 (Tomodachi) so'zi o'zbek tilida \"Doʻst\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n5-u5-l5-ex-14",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
+              "options": ["から", "を", "は", "が"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }

@@ -578,6 +578,14 @@ export const JlptMistakeNotebook: React.FC = () => {
                       </div>
                     </div>
 
+                    {/* Broken Rule Identifier Badge */}
+                    <div className="flex items-center gap-2 rounded-xl border border-amber-500/25 bg-amber-500/10 px-3 py-1.5 text-xs font-bold text-amber-700 dark:text-amber-300">
+                      <span>⚖️ Buzilgan Qoida:</span>
+                      <span className="font-extrabold">
+                        {MistakeVaultService.inferRuleBroken(item)}
+                      </span>
+                    </div>
+
                     {/* Question Prompt */}
                     <div className="font-japanese text-sm font-bold leading-relaxed text-foreground sm:text-base">
                       <FuriganaText text={item.questionText} />
@@ -604,8 +612,32 @@ export const JlptMistakeNotebook: React.FC = () => {
                     {/* Explanation */}
                     {item.explanationUzbek && (
                       <div className="rounded-xl border border-border bg-muted/40 p-3 text-xs text-muted-foreground">
-                        <span className="font-bold text-foreground">💡 Izoh:</span>{' '}
+                        <span className="font-bold text-foreground">💡 Asosiy Tushuntirish:</span>{' '}
                         {item.explanationUzbek}
+                      </div>
+                    )}
+
+                    {/* Distractor Analysis (Why other options are wrong) */}
+                    {item.options && item.options.length > 1 && (
+                      <div className="space-y-1.5 rounded-2xl border border-border/80 bg-muted/20 p-3.5">
+                        <span className="text-[11px] font-black uppercase tracking-wider text-muted-foreground">
+                          🔍 Noto‘g‘ri variantlar tahlili (Distractor Analysis):
+                        </span>
+                        <div className="space-y-1.5 pt-1">
+                          {MistakeVaultService.getDistractorAnalysis(item)
+                            .filter((d) => !d.isCorrect)
+                            .map((dist, dIdx) => (
+                              <div
+                                key={dIdx}
+                                className="flex items-start gap-2 rounded-xl border border-border/60 bg-card/60 p-2 text-xs leading-relaxed"
+                              >
+                                <span className="font-japanese shrink-0 font-black text-rose-600 dark:text-rose-400">
+                                  {dist.option}:
+                                </span>
+                                <span className="text-muted-foreground">{dist.reasonUzbek}</span>
+                              </div>
+                            ))}
+                        </div>
                       </div>
                     )}
                   </div>

@@ -30604,9 +30604,15 @@
     "word": "あられ",
     "reading": "あられ",
     "romaji": "arare",
-    "meaningUz": "Kind of cookie, cartoon character",
+    "meaningUz": "Arare (yaponcha mayda guruch pishirig'i / do'l)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "冬の空から冷たいあられがパラパラと音を立てて降ってきた。",
+        "romaji": "Fuyu no sora kara tsumetai arare ga parapara to oto o tatete futte kita.",
+        "uz": "Qishki osmondan sovuq do'l shitirlab yerga yog'a boshladi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_14",
@@ -30824,9 +30830,15 @@
     "word": "インターチェンジ",
     "reading": "いんたーちぇんじ",
     "romaji": "intaachenji",
-    "meaningUz": "Interchange",
+    "meaningUz": "Magistral yo'l chorrahasi, tutashmasi (interchange)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "高速道路のインターチェンジ付近で激しい渋滞が発生した。",
+        "romaji": "Kousokudouro no intaachenji fukin de hageshii juutai ga hassei shita.",
+        "uz": "Tezyurar avtomagistral chorrahasi yaqinida kuchli tirbandlik yuzaga keldi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_25",
@@ -30834,9 +30846,15 @@
     "word": "インターナショナル",
     "reading": "いんたーなしょなる",
     "romaji": "intaanashonaru",
-    "meaningUz": "International",
+    "meaningUz": "Xalqaro, xalqaro miqyosdagi",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "本校はインターナショナルな学習環境を提供している。",
+        "romaji": "Honkou wa intaanashonaru na gakushuu kankyou o teikyou shite iru.",
+        "uz": "Bizning maktabimiz xalqaro miqyosdagi ta'lim muhitini taqdim etadi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_26",
@@ -30844,9 +30862,15 @@
     "word": "インターフォン",
     "reading": "いんたーふぉん",
     "romaji": "intaafon",
-    "meaningUz": "Intercom",
+    "meaningUz": "Domofon, interfon",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "配達員がマンションのインターフォンを鳴らした。",
+        "romaji": "Haitatsuin ga manshon no intaafon o narashita.",
+        "uz": "Kuryer ko'p qavatli uyning domofon qo'ng'irog'ini chaldi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_27",
@@ -30912,9 +30936,15 @@
     "word": "ウェートレス",
     "reading": "うぇーとれす",
     "romaji": "ueetoresu",
-    "meaningUz": "Waitress",
+    "meaningUz": "Ofitsiant ayol",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "ウェートレスが丁寧に季節のおすすめ料理を説明してくれた。",
+        "romaji": "Ueetoresu ga teinei ni kisetsu no osusume ryouri o setsumei shite kureta.",
+        "uz": "Ofitsiant ayol faslga xos tavsiya etiladigan taomlarni muloyimlik bilan tushuntirdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_31",
@@ -31064,9 +31094,15 @@
     "word": "オートマチック",
     "reading": "おーとまちっく",
     "romaji": "ootomachikku",
-    "meaningUz": "Automatic",
+    "meaningUz": "Avtomatik (uzatmalar qutisi yoki tizim)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "オートマチック車の普及により、運転操作が大幅に容易になった。",
+        "romaji": "Ootomachikku sha no fukyuu ni yori, unten sousa ga oohaba ni youi ni natta.",
+        "uz": "Avtomat uzatmali mashinalarning ommalashuvi natijasida boshqaruv ancha osonlashdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_39",
@@ -31211,9 +31247,15 @@
     "word": "お蔭様で",
     "reading": "おかげさまで",
     "romaji": "okagesamade",
-    "meaningUz": "Thanks to god, thanks to you",
+    "meaningUz": "Sizning sharofatingiz bilan, shukrki",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "お蔭様で家族一同、健康に過ごしております。",
+        "romaji": "Okagesamade kazoku ichidou, kenkou ni sugoshite orimasu.",
+        "uz": "Shukrki, oilamizning barcha a'zolari sog'-salomat hayot kechirmoqda."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_47",
@@ -31305,9 +31347,15 @@
     "word": "お菜",
     "reading": "おかず",
     "romaji": "okazu",
-    "meaningUz": "Side dish, accompaniment for rice dishes",
+    "meaningUz": "Yaxna taom, garnir, ovqatga qo'shimcha yegulik",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "白いご飯にぴったりのお菜をたくさん食卓に並べた。",
+        "romaji": "Shiroi gohan ni pittari no okazu o takusan shokutaku ni narabeta.",
+        "uz": "Oq guruchga juda mos tushadigan mazali yeguliklarni dasturxonga tizib qo'ydim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_52",
@@ -31394,9 +31442,15 @@
     "word": "お出でになる",
     "reading": "おいでになる",
     "romaji": "oideninaru",
-    "meaningUz": "To be",
+    "meaningUz": "Tashrif buyurmoq, bo'lmoq (o'ta hurmat shakli)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "先生は本日午後、本館の研究室にお出でになります。",
+        "romaji": "Sensei wa honjitsu gogo, honkan no kenkyuushitsu ni oide ni narimasu.",
+        "uz": "Professor bugun tushdan keyin asosiy binodagi ilmiy xonada bo'ladilar."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_57",
@@ -31567,9 +31621,15 @@
     "word": "お八",
     "reading": "おやつ",
     "romaji": "oyatsu",
-    "meaningUz": "1.  (uk) between meal snack, afternoon refreshment, afternoon tea, 2.  mid-day snack",
+    "meaningUz": "Tushdan keyingi yengil tamaddi, shirinlik",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "午後3時のお八に手作りの抹茶プリンをいただいた。",
+        "romaji": "Gogo sanji no oyatsu ni tezukuri no matcha purin o itadaita.",
+        "uz": "Kungi soat 3 dagi tamaddi vaqtida qo'lda tayyorlangan matcha pudingini yedim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_66",
@@ -31577,9 +31637,15 @@
     "word": "お目出度う",
     "reading": "おめでとう",
     "romaji": "omedetou",
-    "meaningUz": "(ateji) (int) (uk) congratulations!, an auspicious occasion!",
+    "meaningUz": "Tabriklayman, qutlug' bo'lsin",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "長年の努力が実を結び、第一志望合格お目出度うございます。",
+        "romaji": "Naganen no doryoku ga mi o musubi, daiichi shibou goukaku omedetou gozaimasu.",
+        "uz": "Ko'p yillik mehnatlaringiz samara berib asosiy maqsadga erishganingiz qutlug' bo'lsin."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_67",
@@ -31608,9 +31674,15 @@
     "word": "お襁褓",
     "reading": "おむつ",
     "romaji": "omutsu",
-    "meaningUz": "Diaper, nappy",
+    "meaningUz": "Taglik, pampers",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "赤ちゃんの肌に優しくて通気性の良いお襁褓を選ぶ。",
+        "romaji": "Akachan no hada ni yasashikute tsuukisei no yoi omutsu o erabu.",
+        "uz": "Chaqaloq terisiga muloyim va havo o'tkazadigan qulay tagliklarni tanlayman."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_69",
@@ -31718,9 +31790,15 @@
     "word": "がっしり",
     "reading": "がっしり",
     "romaji": "gasshiri",
-    "meaningUz": "Firmly, solidly, tough",
+    "meaningUz": "Baquvvat, gavdali, pishiq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "毎日の筋力トレーニングでがっしりとした体格を作り上げた。",
+        "romaji": "Mainichi no kinryoku toreeningu de gasshiri to shita taikaku o tsukuriageta.",
+        "uz": "Kundalik mashg'ulotlar orqali baquvvat va kelishgan qaddi-qomatga erishdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_75",
@@ -31728,9 +31806,15 @@
     "word": "がっちり",
     "reading": "がっちり",
     "romaji": "gatchiri",
-    "meaningUz": "Solidly built, tightly, shrewd, calculating",
+    "meaningUz": "Mustahkam, tejamkor, pishiq-puxta",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "彼は若くして資金管理ががっちりしていて頼もしい。",
+        "romaji": "Kare wa wakakushite shikin kanri ga gatchiri shite ite tanomoshii.",
+        "uz": "U yosh bo'lishiga qaramay moliyani puxta boshqaradigan ishonchli inson."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_76",
@@ -31780,9 +31864,15 @@
     "word": "カムバック",
     "reading": "かむばっく",
     "romaji": "kamubakku",
-    "meaningUz": "Comeback",
+    "meaningUz": "Qaytish, yana sahnaga chiqish (comeback)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "大怪我を乗り越えて見事にカムバックを果たした選手に歓声が送られた。",
+        "romaji": "Oo-kega o norikoete migoto ni kamubakku o hatashita senshu ni kansei ga okurareta.",
+        "uz": "Og'ir jarohatni yengib maydonga munosib qaytgan sportchini olqishlashdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_79",
@@ -31916,9 +32006,15 @@
     "word": "きちっと",
     "reading": "きちっと",
     "romaji": "kichitto",
-    "meaningUz": "Exactly, perfectly",
+    "meaningUz": "Tartibli, risoladagidek, aniq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "ビジネススーツをきちっと着こなして重要な商談に臨んだ。",
+        "romaji": "Bijinesu suutsu o kichitto kikonashite juuyou na shoudan ni nozonda.",
+        "uz": "Rasmiy kostyumni risoladagidek kiyib muhim muzokaraga kirdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_86",
@@ -32042,9 +32138,15 @@
     "word": "くっきり",
     "reading": "くっきり",
     "romaji": "kukkiri",
-    "meaningUz": "Distinctly, clearly, boldly",
+    "meaningUz": "Tiniq, yaqqol, ravshan",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "雨上がりの澄んだ空に富士山の稜線がくっきりと見えた。",
+        "romaji": "Ameagari no sunda sora ni fujisan no ryousen ga kukkiri to mieta.",
+        "uz": "Yomg'irdan keyingi musaffo osmonda Fuji tog'ining qirralari yaqqol ko'rinib turardi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_93",
@@ -32073,9 +32175,15 @@
     "word": "くっ付く",
     "reading": "くっつく",
     "romaji": "kuttsuku",
-    "meaningUz": "To adhere to, to keep close to",
+    "meaningUz": "Yopishmoq, mahkam bog'lanmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "磁石が冷蔵庫の扉にピタリとくっ付いている。",
+        "romaji": "Jishaku ga reizouko no tobira ni pitari to kuttsuite iru.",
+        "uz": "Magnit muzlatgich eshigiga mahkam yopishib turibdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_95",
@@ -32083,9 +32191,15 @@
     "word": "くっ付ける",
     "reading": "くっつける",
     "romaji": "kuttsukeru",
-    "meaningUz": "To attach",
+    "meaningUz": "Yopishtirmoq, ulamoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "破れた封筒の端をテープでくっ付けて投函した。",
+        "romaji": "Yabureta fuutou no hashi o teepu de kuttsukete toukan shita.",
+        "uz": "Yirtilgan konvert chetini skotch bilan yopishtirib pochtaga tashladim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_96",
@@ -32572,9 +32686,15 @@
     "word": "ご馳走さま",
     "reading": "ごちそうさま",
     "romaji": "gochisousama",
-    "meaningUz": "Feast",
+    "meaningUz": "Shirin taom uchun rahmat, mehmondorchilik",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "大変美味しい夕食をご馳走さまでした。",
+        "romaji": "Taihen oishii yuushoku o gochisousama deshita.",
+        "uz": "Juda mazali kechki ovqat uchun katta rahmat."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_121",
@@ -32708,9 +32828,15 @@
     "word": "サンキュー",
     "reading": "さんきゅー",
     "romaji": "sankyuu",
-    "meaningUz": "Thank you",
+    "meaningUz": "Rahmat, tashakkur",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "手伝ってくれてサンキュー、本当に助かったよ。",
+        "romaji": "Tetsudatte kurete sankyuu, hontou ni tasukatta yo.",
+        "uz": "Yordaming uchun rahmat, juda asqotdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_128",
@@ -32802,9 +32928,15 @@
     "word": "しいんと",
     "reading": "しいんと",
     "romaji": "shiinto",
-    "meaningUz": "Silent (as the grave), (deathly) quiet",
+    "meaningUz": "Sukunat ichida, jimjit",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "深夜の図書館は物音ひとつせずしいんとしている。",
+        "romaji": "Shinya no toshokan wa mono-oto hitotsu sezu shiinto shite iru.",
+        "uz": "Tungi kutubxonada biron sado chiqmay jimjitlik hukm surmoqda."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_133",
@@ -33054,9 +33186,15 @@
     "word": "じゃん拳",
     "reading": "じゃんけん",
     "romaji": "janken",
-    "meaningUz": "Rock-scissors-paper game",
+    "meaningUz": "Janken (tosh-qaychi-qog'oz o'yini)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "順番を決めるために全員でじゃん拳をした。",
+        "romaji": "Junban o kimeru tame ni zen'in de janken o shita.",
+        "uz": "Navbatni belgilash uchun barchamiz tosh-qaychi-qog'oz o'ynadik."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_146",
@@ -33401,9 +33539,15 @@
     "word": "ずらっと",
     "reading": "ずらっと",
     "romaji": "zuratto",
-    "meaningUz": "In a line, in a row",
+    "meaningUz": "Qator bo'lib, tizilib",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "書店の店頭に最新のベストセラー小説がずらっと並んでいる。",
+        "romaji": "Shoten no tentou ni saishin no besutoseraa shousetsu ga zuratto narande iru.",
+        "uz": "Kitob do'koni peshtaxtasida eng yangi mashhur romanlar qator bo'lib tizilib turibdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_164",
@@ -33485,9 +33629,15 @@
     "word": "すんなり",
     "reading": "すんなり",
     "romaji": "sunnari",
-    "meaningUz": "Pass with no objection, slim, slender",
+    "meaningUz": "Osonlik bilan, to'siqsiz, qomatdor",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "綿密な準備のおかげで法案は議会をすんなり通過した。",
+        "romaji": "Menmitsu na junbi no okage de houan wa gikai o sunnari tsuuka shita.",
+        "uz": "Puxta tayyorgarlik sharofati bilan qonun loyihasi parlamentdan to'siqsiz o'tdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_169",
@@ -33642,9 +33792,15 @@
     "word": "その為",
     "reading": "そのため",
     "romaji": "sonotame",
-    "meaningUz": "Hence, for that reason",
+    "meaningUz": "Shu sababli, shu tufayli",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "大雪により電車が運休となり、その為会議に遅刻してしまった。",
+        "romaji": "Ooyuki ni yori densha ga unkyuu to nari, sono tame kaigi ni chikoku shite shimatta.",
+        "uz": "Qalin qor sababli poyezdlar qatnovi to'xtatildi, shu tufayli majlisga kechikib qoldim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_177",
@@ -34162,9 +34318,15 @@
     "word": "ちやほや",
     "reading": "ちやほや",
     "romaji": "chiyahoya",
-    "meaningUz": "Pamper, make a fuss of, spoil",
+    "meaningUz": "Erkalatmoq, e'zozlamoq, ko'kka ko'tarmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "幼い頃から周囲にちやほやされて育ったため、忍耐力に欠ける。",
+        "romaji": "Osanai koro kara shuui ni chiyahoya sarete sodatta tame, nintairyoku ni kakeru.",
+        "uz": "Yoshligidan atrofdagilar erkalatib o'stirgani bois, unda sabr-toqat yetishmaydi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_203",
@@ -34235,9 +34397,15 @@
     "word": "ティッシュペーパー",
     "reading": "てぃっしゅぺーぱー",
     "romaji": "teisshupeepaa",
-    "meaningUz": "Tissue paper",
+    "meaningUz": "Qog'oz dastro'molcha, salfetka",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "花粉症の季節にはティッシュペーパーが手放せない。",
+        "romaji": "Kafunshou no kisetsu ni wa tisshu peepaa ga tebanasenai.",
+        "uz": "Gulchangi allergiyasi mavsumida qog'oz salfetkalarsiz yura olmayman."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_207",
@@ -34287,9 +34455,15 @@
     "word": "デコレーション",
     "reading": "でこれーしょん",
     "romaji": "dekoreeshon",
-    "meaningUz": "Decoration",
+    "meaningUz": "Bezak, bezatish (dekoratsiya)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "クリスマスツリーに華やかなデコレーションを施した。",
+        "romaji": "Kurisumasu tsurii ni hanayaka na dekoreeshon o hodokoshita.",
+        "uz": "Yangi yil archasiga jilvakor bezaklar o'rnatildi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_210",
@@ -34339,9 +34513,15 @@
     "word": "てっきり",
     "reading": "てっきり",
     "romaji": "tekkiri",
-    "meaningUz": "Surely, certainly, beyond doubt",
+    "meaningUz": "Shubhasiz deb o'ylamoq, aniq deb bilmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "天気が良いのでてっきり晴れると思い込んで傘を持たずに出かけた。",
+        "romaji": "Tenki ga yoi node tekkiri hareru to omoikonde kasa o motazu ni dekaketa.",
+        "uz": "Havo ochiqligi uchun mutlaqo yomg'ir yog'maydi deb o'ylab soyabonsiz ko'chaga chiqdim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_213",
@@ -34502,9 +34682,15 @@
     "word": "トーン",
     "reading": "とーん",
     "romaji": "toon",
-    "meaningUz": "Tone",
+    "meaningUz": "Ohang, ton, ovoz sadolari",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "冷静かつ落ち着いたトーンで聴衆に向けて語りかけた。",
+        "romaji": "Reisei katsu ochitsuita toon de choushuu ni mukete katarikaketa.",
+        "uz": "Vazmin va xotirjam ohangda tinglovchilarga murojaat qildi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_222",
@@ -34644,9 +34830,15 @@
     "word": "とんだ",
     "reading": "とんだ",
     "romaji": "tonda",
-    "meaningUz": "Terrible, awful, serious, preposterous, absolutely not",
+    "meaningUz": "Kutilmagan, dahshatli, bema'ni",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "とんだ災難に見舞われたが、近所の人々の温かい支援で乗り切れた。",
+        "romaji": "Tonda sainan ni mimawareta ga, kinjo no hitobito no atatakai shien de norikireta.",
+        "uz": "Kutilmagan kulfatga yo'liqqan bo'lsak-da, qo'shnilarning yordami bilan yengib o'tdik."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_230",
@@ -34738,9 +34930,15 @@
     "word": "なんだかんだ",
     "reading": "なんだかんだ",
     "romaji": "nandakanda",
-    "meaningUz": "Something or other",
+    "meaningUz": "U-bu narsalar, har xil bahonalar",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "なんだかんだ文句を言いながらも、最後まで課題をやり遂げた。",
+        "romaji": "Nandakanda monku o ii nagara mo, saigo made kadai o yaritogeta.",
+        "uz": "U-bu deb norozilik bildirgan bo'lsa-da, topshiriqni oxiriga yetkazdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_235",
@@ -34827,9 +35025,15 @@
     "word": "ねじ回し",
     "reading": "ねじまわし",
     "romaji": "nejimawashi",
-    "meaningUz": "Screwdriver",
+    "meaningUz": "Otvyortka (buragich)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "家具を組み立てるためにねじ回しでネジをしっかり締めた。",
+        "romaji": "Kagu o kumitateru tame ni nejimawashi de neji o shikkari shimeta.",
+        "uz": "Mebelni yig'ish uchun otvyortka bilan buramalarni mahkam qotirdim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_240",
@@ -34963,9 +35167,15 @@
     "word": "ばてる",
     "reading": "ばてる",
     "romaji": "bateru",
-    "meaningUz": "To be exhausted, to be worn out",
+    "meaningUz": "Holdan toymoq, butunlay charchamoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "猛暑の中での長時間の作業ですっかりばててしまった。",
+        "romaji": "Mousho no naka de no choujikan no sagyou de sukkari batete shimatta.",
+        "uz": "Jazirama issiqda uzoq vaqt mehnat qilib butunlay holdan toydim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_247",
@@ -35038,7 +35248,13 @@
     "romaji": "biirusu",
     "meaningUz": "Virus",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "新型ビールスの感染拡大を防ぐため、徹底的な消毒が行われた。",
+        "romaji": "Shingata biirusu no kansen kakudai o fusegu tame, tetteiteki na shoudoku ga okonawareta.",
+        "uz": "Yangi turdagi virus tarqalishining oldini olish maqsadida to'liq dezinfeksiya o'tkazildi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_251",
@@ -35377,9 +35593,15 @@
     "word": "ぶら下げる",
     "reading": "ぶらさげる",
     "romaji": "burasageru",
-    "meaningUz": "To hang, to suspend, to dangle, to swing",
+    "meaningUz": "Osmoq, osiltirib qo'ymoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "壁にフックを取り付けて帽子をぶら下げた。",
+        "romaji": "Kabe ni fukku o toritsukete boushi o burasageta.",
+        "uz": "Devorga ilgak o'rnatib bosh kiyimni osib qo'ydim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_268",
@@ -35429,9 +35651,15 @@
     "word": "ふんだん",
     "reading": "ふんだん",
     "romaji": "fundan",
-    "meaningUz": "Plentiful, abundant, lavish",
+    "meaningUz": "Mo'l-ko'l, serob",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "季節の新鮮な果物をふんだんに使った贅沢なパフェを味わった。",
+        "romaji": "Kisetsu no shinsen na kudamono o fundan ni tsukatta zeitaku na pafe o ajiwatta.",
+        "uz": "Mavsumiy yangi mevalar mo'l-ko'l qo'shilgan tansiq desertdan bahramand bo'ldim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_271",
@@ -35702,9 +35930,15 @@
     "word": "ぼつぼつ",
     "reading": "ぼつぼつ",
     "romaji": "botsubotsu",
-    "meaningUz": "Gradually, here and there, spots, pimples",
+    "meaningUz": "Asta-sekin, sekin-asta",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "外が暗くなってきたので、ぼつぼつ帰り支度を始めよう。",
+        "romaji": "Soto ga kuraku natte kita node, botsubotsu kaerijitaku o hajimeyou.",
+        "uz": "Tashqari qorong'ilashib qoldi, sekin-asta qaytishga hozirlik ko'raylik."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_285",
@@ -35712,9 +35946,15 @@
     "word": "ぼやく",
     "reading": "ぼやく",
     "romaji": "boyaku",
-    "meaningUz": "To grumble, to complain",
+    "meaningUz": "G'o'ng'illamoq, nolib gapirmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "いくら不満をぼやいても現状が好転するわけではない。",
+        "romaji": "Ikura fuman o boyaitemo genjou ga kouten suru wake dewa nai.",
+        "uz": "Qancha nolib gapirganing bilan vaziyat o'z-o'zidan yaxshilanib qolmaydi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_286",
@@ -35722,9 +35962,15 @@
     "word": "ぼやける",
     "reading": "ぼやける",
     "romaji": "boyakeru",
-    "meaningUz": "To become dim, to become blurred",
+    "meaningUz": "Xiralashmoq, noaniq bo'lib qolmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "霧が深く立ち込めて遠くの山並みがぼやけて見えた。",
+        "romaji": "Kiri ga fukaku tachikomete tooku no yamanami ga boyakete mieta.",
+        "uz": "Qalin tuman tushib uzoqdagi tog' tizmalari xiralashib ko'rindi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_287",
@@ -35795,9 +36041,15 @@
     "word": "まごつく",
     "reading": "まごつく",
     "romaji": "magotsuku",
-    "meaningUz": "To be confused, to be flustered",
+    "meaningUz": "Shoshib qolmoq, nima qilishini bilmay qolmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "初めての海外出張で空港の乗り継ぎ手続きにまごついてしまった。",
+        "romaji": "Hajimete no kaigai shutchou de kuukou no noritsugi tetsuzuki ni magotsuite shimatta.",
+        "uz": "Birinchi marta chet elga safar qilganimda aeroportda samolyot almashtirishda adashib qoldim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_291",
@@ -35868,9 +36120,15 @@
     "word": "ミセス",
     "reading": "みせす",
     "romaji": "misesu",
-    "meaningUz": "Mrs.",
+    "meaningUz": "Misis, turmushga chiqqan ayol",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "スミス夫人は地域のボランティア活動に積極的に携わっている。",
+        "romaji": "Sumisu fujin wa chiiki no borantia katsudou ni sekkyokuteki ni tazusawatte iru.",
+        "uz": "Misis Smit mahalliy ko'ngillilar faoliyatida faol ishtirok etadi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_295",
@@ -36083,9 +36341,15 @@
     "word": "やっ付ける",
     "reading": "やっつける",
     "romaji": "yattsukeru",
-    "meaningUz": "To beat",
+    "meaningUz": "Tor-mor qilmoq, mag'lub etmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "強力なライバルを徹底的な分析と練習でやっつけた。",
+        "romaji": "Kyouryoku na raibaru o tetteiteki na bunseki to renshuu de yattsuketa.",
+        "uz": "Kuchli raqibni chuqur tahlil va tinimsiz mashg'ulotlar orqali mag'lub etdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_306",
@@ -36592,9 +36856,15 @@
     "word": "亜科",
     "reading": "あか",
     "romaji": "aka",
-    "meaningUz": "Suborder, subfamily",
+    "meaningUz": "Kichik oila (biologiyada: suborder / subfamily)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "生物学の分類体系において、この植物は特定の亜科に属している。",
+        "romaji": "Seibutsugaku no bunrui taikei ni oite, kono shokubutsu wa tokutei no aka ni zokushite iru.",
+        "uz": "Biologik tasnif tizimida bu o'simlik ma'lum bir kenja oilaga mansubdir."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_331",
@@ -36602,9 +36872,15 @@
     "word": "愛でたい",
     "reading": "めでたい",
     "romaji": "medetai",
-    "meaningUz": "Auspicious",
+    "meaningUz": "Quvonarli, qutlug', xayrli",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "新年の幕開けにふさわしい愛でたい知らせが届いた。",
+        "romaji": "Shinnen no makuake ni fusawashii medetai shirase ga todoita.",
+        "uz": "Yangi yil boshlanishiga mos xushxabar va qutlug' xabar yetib keldi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_332",
@@ -36754,9 +37030,15 @@
     "word": "悪日",
     "reading": "あくび",
     "romaji": "akubi",
-    "meaningUz": "Unlucky day",
+    "meaningUz": "Omadsiz kun, xosiyatsiz kun",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "古くからの迷信にとらわれず、悪日でも前向きに行動する。",
+        "romaji": "Furuku kara no meishin ni torawawarezu, akubi demo maemuki ni koudou suru.",
+        "uz": "Eski bid'atlarga berilmasdan, hatto xosiyatsiz deb hisoblangan kunda ham shijoat bilan harakat qiladi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_340",
@@ -36869,9 +37151,15 @@
     "word": "宛てる",
     "reading": "あてる",
     "romaji": "ateru",
-    "meaningUz": "To address",
+    "meaningUz": "Yo'llamoq, manzilga atamoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "恩師へ宛てて感謝の気持ちを込めた手紙を認めた。",
+        "romaji": "Onshi e atete kansha no kimochi o kometa tegami o shitatameta.",
+        "uz": "Ustozim nomiga minnatdorchilik tuyg'ulari bilan yo'g'rilgan maktub yozdim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_346",
@@ -36879,9 +37167,15 @@
     "word": "或いは",
     "reading": "あるいは",
     "romaji": "aruiha",
-    "meaningUz": "Or, possibly",
+    "meaningUz": "Yoki, ehtimol",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "直接会って話すか、或いはオンラインで会議を開くかを決めよう。",
+        "romaji": "Chokusetsu atte hanasu ka, aruiwa onrain de kaigi o hiraku ka o kimeyou.",
+        "uz": "Yuzma-yuz uchrashib gaplashamizmi yoki onlayn majlis o'tkazamizmi, kelishib olaylik."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_347",
@@ -37010,9 +37304,15 @@
     "word": "案じる",
     "reading": "あんじる",
     "romaji": "anjiru",
-    "meaningUz": "To be anxious, to ponder",
+    "meaningUz": "Xavotirlanmoq, qayg'urmoq, chuqur o'ylamoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "遠方に暮らす高齢の両親の健康を常に案じている。",
+        "romaji": "Enpou ni kurasu kourei no ryoushin no kenkou o tsune ni anjite iru.",
+        "uz": "Olisda yashayotgan keksa ota-onamning salomatligidan doimo xavotirdaman."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_354",
@@ -37083,9 +37383,15 @@
     "word": "伊井",
     "reading": "いい",
     "romaji": "ii",
-    "meaningUz": "That one, italy",
+    "meaningUz": "Italiya (qisqartma kanji yozuvi)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "伊井両国の文化交流を深めるための国際展覧会が開催された。",
+        "romaji": "I-I ryoukoku no bunka kouryuu o fukameru tame no kokusai tenrankai ga kaisai sareta.",
+        "uz": "Ikki davlat o'rtasidagi madaniy aloqalarni chuqurlashtirish maqsadida xalqaro ko'rgazma tashkil etildi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_358",
@@ -37093,9 +37399,15 @@
     "word": "位地",
     "reading": "いち",
     "romaji": "ichi",
-    "meaningUz": "Place, situation, position, location",
+    "meaningUz": "Joylashuv, o'rin, pozitsiya",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "地図上で遭難船の正確な位地を特定して救助隊を派遣した。",
+        "romaji": "Chizujou de sounansen no seikaku na ichi o tokutei shite kyuujotai o haken shita.",
+        "uz": "Xaritada falokatga uchragan kemaning aniq o'rnini aniqlab qutqaruvchilarni yubordik."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_359",
@@ -37124,9 +37436,15 @@
     "word": "依って",
     "reading": "よって",
     "romaji": "yotte",
-    "meaningUz": "Therefore, consequently, accordingly, because of",
+    "meaningUz": "Shuning uchun, sababli, binoan",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "以上の理由に依って、本計画の採択を提案いたします。",
+        "romaji": "Ijou no riyuu ni yotte, hon keikaku no saitaku o teian itashimasu.",
+        "uz": "Yuqoridagi sabablarga ko'ra, mazkur loyihani qabul qilishni taklif etaman."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_361",
@@ -37197,9 +37515,15 @@
     "word": "意気込む",
     "reading": "いきごむ",
     "romaji": "ikigomu",
-    "meaningUz": "To be enthusiastic about",
+    "meaningUz": "Bel bog'lamoq, g'ayrat bilan kirishmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "来期の全国大会で必ず優勝すると固く意気込んでいる。",
+        "romaji": "Raiki no zenkoku taikai de kanarazu yuushou suru to kataku ikigonde iru.",
+        "uz": "Keyingi mavsumda mamlakat chempionatida albatta g'olib chiqaman deb qat'iy bel bog'lagan."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_365",
@@ -37270,9 +37594,15 @@
     "word": "為さる",
     "reading": "なさる",
     "romaji": "nasaru",
-    "meaningUz": "To do",
+    "meaningUz": "Bajarmoq, qilmoq (hurmat shakli)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "社長が自ら先頭に立ってプロジェクトの指揮をなさる。",
+        "romaji": "Shachou ga mizukara sentou ni tatte purojekuto no shiki o nasaru.",
+        "uz": "Prezident shaxsan o'zlari bosh bo'lib loyihani boshqarmoqdalar."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_369",
@@ -37280,9 +37610,15 @@
     "word": "為来り",
     "reading": "しきたり",
     "romaji": "shikitari",
-    "meaningUz": "Customs",
+    "meaningUz": "Odat, qadimiy an'ana, rasm-rusum",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "村の古い為来りに従って新年の豊作祈願祭が執り行われた。",
+        "romaji": "Mura no furui shikitari ni shitagatte shinnen no housaku kigansai ga toriokonawareta.",
+        "uz": "Qishloqning qadimiy odatlariga muvofiq yangi yilda hosildorlik tilash marosimi o'tkazildi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_370",
@@ -37306,9 +37642,15 @@
     "word": "異見",
     "reading": "いけん",
     "romaji": "iken",
-    "meaningUz": "Different opinion, objection",
+    "meaningUz": "Qarshi fikr, e'tiroz",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "委員会の提案に対して出席者から異見が出された。",
+        "romaji": "Iinkai no teian ni taishite shusseikisha kara iken ga d sareta.",
+        "uz": "Qo'mita taklifiga qarshi yig'ilganlar tomonidan e'tiroz bildirildi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_372",
@@ -37437,9 +37779,15 @@
     "word": "萎びる",
     "reading": "しなびる",
     "romaji": "shinabiru",
-    "meaningUz": "To wilt, to fade",
+    "meaningUz": "So'lmoq, qurimoq, burishmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "冷蔵庫に長く置き忘れた野菜がすっかり萎びてしまった。",
+        "romaji": "Reizouko ni nagaku okiwasureta yasai ga sukkari shinabite shimatta.",
+        "uz": "Muzlatgichda uzoq vaqt unutilgan sabzavot butunlay so'lib qolibdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_379",
@@ -37447,9 +37795,15 @@
     "word": "萎む",
     "reading": "しぼむ",
     "romaji": "shibomu",
-    "meaningUz": "To wither, to fade (away), to shrivel, to wilt",
+    "meaningUz": "So'lib qolmoq, shashti so'nmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "朝は美しく咲いていた朝顔が、夕方には静かに萎んでしまった。",
+        "romaji": "Asa wa utsukushiku saite ita asagao ga, yuugata ni wa shizuka ni shibonde shimatta.",
+        "uz": "Tongda go'zal ochilgan gul kechga borib ohista so'lib qoldi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_380",
@@ -37573,9 +37927,15 @@
     "word": "一々",
     "reading": "いちいち",
     "romaji": "ichiichi",
-    "meaningUz": "One by one, separately",
+    "meaningUz": "Birma-bir, har bir detaligacha",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "他人の細かい失敗をいちいち指摘するのはよくない。",
+        "romaji": "Tanin no komakai shippai o ichiichi shiteki suru no wa yokunai.",
+        "uz": "Birovning kichik xatolarini birma-bir yuziga solish yaxshi odat emas."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_387",
@@ -37583,9 +37943,15 @@
     "word": "一まず",
     "reading": "ひとまず",
     "romaji": "hitomazu",
-    "meaningUz": "For the present, once, in outline",
+    "meaningUz": "Hozircha, vaqtincha",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "トラブルの応急処置が終わったので、ひとまず安心した。",
+        "romaji": "Toraburu no oukyuu shochi ga owatta node, hitomazu anshin shita.",
+        "uz": "Muammoni vaqtincha bartaraf etganimiz tufayli hozircha xotirjam bo'ldik."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_388",
@@ -37609,9 +37975,15 @@
     "word": "一挙に",
     "reading": "いっきょに",
     "romaji": "ikkyoni",
-    "meaningUz": "At a stroke, with a single swoop",
+    "meaningUz": "Bir zarbda, birato'la",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "新製品の発売により、市場でのシェアを一挙に拡大した。",
+        "romaji": "Shinseihin no hatsubai ni yori, shijou de no shea o ikkyo ni kakudai shita.",
+        "uz": "Yangi mahsulot chiqarilishi orqali bozordagi ulushimizni birato'la kengaytirdik."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_390",
@@ -37682,9 +38054,15 @@
     "word": "一頃",
     "reading": "ひところ",
     "romaji": "hitokoro",
-    "meaningUz": "Once, some time ago",
+    "meaningUz": "Bir paytlar, ma'lum davrda",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "一頃流行したレトロなデザインが再び脚光を浴びている。",
+        "romaji": "Hitokoro ryuukou shita retoro na dezain ga futatabi kyakkou o abite iru.",
+        "uz": "Bir paytlar urf bo'lgan retro uslubi yana qaytadan e'tibor markaziga tushmoqda."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_394",
@@ -37692,9 +38070,15 @@
     "word": "一昨昨日",
     "reading": "さきおととい",
     "romaji": "sakiototoi",
-    "meaningUz": "Two days before yesterday",
+    "meaningUz": "Uch kun oldin (kechadan oldingi kundan oldin)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "一昨昨日発生した地震の影響で、今も一部の道路が通行止めだ。",
+        "romaji": "Sakiototoi hassei shita jishin no eikyou de, ima mo ichibu no douro ga tsuukoudome da.",
+        "uz": "Uch kun avval sodir bo'lgan zilzila tufayli hozir ham ba'zi yo'llar yopiq turibdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_395",
@@ -37744,9 +38128,15 @@
     "word": "一人でに",
     "reading": "ひとりでに",
     "romaji": "hitorideni",
-    "meaningUz": "By itself, automatically, naturally",
+    "meaningUz": "O'z-o'zidan, tabiiy ravishda",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "自動ドアの前に立つと、扉が一人でに開いた。",
+        "romaji": "Jidou doa no mae ni tatsu to, tobira ga hitoride ni aita.",
+        "uz": "Avtomatik eshik oldiga kelganimda eshik o'z-o'zidan ochildi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_398",
@@ -37922,9 +38312,15 @@
     "word": "一別",
     "reading": "いちべつ",
     "romaji": "ichibetsu",
-    "meaningUz": "Parting",
+    "meaningUz": "Vidolashuv, ayriliq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "空港での一別以来、彼とは何年も音信不通のままである。",
+        "romaji": "Kuukou de no ichibetsu irai, kare to wa nannen mo onshin futsuu no mama de aru.",
+        "uz": "Aeroportdagi xayrlashuvdan buyon u bilan bir necha yildan beri aloqamiz uzilgan."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_407",
@@ -37990,9 +38386,15 @@
     "word": "一様",
     "reading": "いちよう",
     "romaji": "ichiyou",
-    "meaningUz": "Uniformity, evenness, similarity, equality, impartiality",
+    "meaningUz": "Bir xil, bir tekis, umumiy",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "参加者全員が一様に驚きの表情を浮かべた。",
+        "romaji": "Sankasha zen'in ga ichiyou ni odoroki no hyoujou o ukabeta.",
+        "uz": "Qatnashchilarning barchasi birdek hayrat alomatini bildirdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_411",
@@ -38000,9 +38402,15 @@
     "word": "一律",
     "reading": "いちりつ",
     "romaji": "ichiritsu",
-    "meaningUz": "Evenness, uniformity, monotony, equality",
+    "meaningUz": "Bir xilda, umumiy qoida bo'yicha",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "給料を一律にカットする方針に従業員から反発が起きた。",
+        "romaji": "Kyuuryou o ichiritsu ni katto suru houshin ni juugyouin kara hanpatsu ga okita.",
+        "uz": "Oyliklarni barcha xodimlar uchun bir xilda kamaytirish qaroriga norozilik bildirildi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_412",
@@ -38047,9 +38455,15 @@
     "word": "逸らす",
     "reading": "そらす",
     "romaji": "sorasu",
-    "meaningUz": "To turn away, to avert",
+    "meaningUz": "Chetga burmoq, chalg'itmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "都合の悪い質問をされると、彼はすぐに視線を逸らした。",
+        "romaji": "Tsugou no warui shitsumon o sareru to, kare wa sugu ni shisen o sorashita.",
+        "uz": "Noqulay savol berilganda u darhol nigohini chetga burdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_415",
@@ -38141,9 +38555,15 @@
     "word": "引き下げる",
     "reading": "ひきさげる",
     "romaji": "hikisageru",
-    "meaningUz": "To pull down, to lower, to reduce, to withdraw",
+    "meaningUz": "Tushirmoq, pasaytirmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "政府は消費者の負担を軽減するために電気料金を引き下げた。",
+        "romaji": "Seifu wa shouhisha no futan o keigen suru tame ni denki ryoukin o hikisageta.",
+        "uz": "Hukumat iste'molchilar yukini yengillatish maqsadida elektr to'lovlarini pasaytirdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_420",
@@ -38256,9 +38676,15 @@
     "word": "引っ掛ける",
     "reading": "ひっかける",
     "romaji": "hikkakeru",
-    "meaningUz": "1.  to hang (something) on (something), to throw on (clothes), 2.  to hook, to catch, to trap, to ensnar",
+    "meaningUz": "Ilib qo'ymoq, ilintirmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "玄関のコート掛けにジャケットを引っ掛けて部屋に入った。",
+        "romaji": "Genkan no kootokake ni jaketto o hikkakete heya ni haitta.",
+        "uz": "Dahlizdagi kiyim ilgichga kurtkamni ilib xonaga kirdim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_426",
@@ -38266,9 +38692,15 @@
     "word": "引っ掻く",
     "reading": "ひっかく",
     "romaji": "hikkaku",
-    "meaningUz": "To scratch",
+    "meaningUz": "Tirnamoq, tirnab olmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "飼い猫と遊んでいたら誤って腕を引っ掻かれた。",
+        "romaji": "Kaineko to asonde itara ayamatte ude o hikkakareta.",
+        "uz": "Xonaki mushuk bilan o'ynayotganimda tasodifan qo'limni tirnab oldi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_427",
@@ -38418,9 +38850,15 @@
     "word": "云々",
     "reading": "うんぬん",
     "romaji": "unnun",
-    "meaningUz": "And so on, and so forth, comment",
+    "meaningUz": "Va hokazo, shunga o'xshash narsalar",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "他人の私生活についてあれこれ云々する必要はない。",
+        "romaji": "Tanin no shiseikatsu ni tsuite arekore unnun suru hitsuyou wa nai.",
+        "uz": "Birovning shaxsiy hayoti haqida u yoki bu deb gap tarqatishning hojati yo'q."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_435",
@@ -38549,9 +38987,15 @@
     "word": "映える",
     "reading": "はえる",
     "romaji": "haeru",
-    "meaningUz": "To shine, to look attractive, to look pretty",
+    "meaningUz": "Yarashmoq, jilvalanmoq, ko'rkam ko'rinmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "青空を背景に白い山並みが美しく映えている。",
+        "romaji": "Aozora o haikei ni shiroi yamanami ga utsukushiku haete iru.",
+        "uz": "Moviy osmon fonida qorli tog'lar nihoyatda ko'rkam jilvalanmoqda."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_442",
@@ -38701,9 +39145,15 @@
     "word": "厭々",
     "reading": "いやいや",
     "romaji": "iyaiya",
-    "meaningUz": "Unwillingly, grudgingly, shaking head in refusal (to children)",
+    "meaningUz": "Istamay, majburan, noiloj",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "頼み事を断り切れず、厭々ながら引き受けることになった。",
+        "romaji": "Tanamigoto o kotowarikirezu, iyaiya nagara hikiukeru koto ni natta.",
+        "uz": "Iltimosni rad eta olmay, istamaygina zimmamga olishga to'g'ri keldi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_450",
@@ -38711,9 +39161,15 @@
     "word": "厭やらしい",
     "reading": "いやらしい",
     "romaji": "iyarashii",
-    "meaningUz": "Detestable, disagreeable",
+    "meaningUz": "Yoqimsiz, jirkanch, xunuk",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "そんな厭やらしい態度をとっていると周囲の信頼を失う。",
+        "romaji": "Sonna iyarashii taido o totte iru to shuui no shinrai o ushinau.",
+        "uz": "Bunday yoqimsiz munosabatda bo'lsang, atrofdagilarning ishonchini yo'qotasan."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_451",
@@ -38763,9 +39219,15 @@
     "word": "延いては",
     "reading": "ひいては",
     "romaji": "hiiteha",
-    "meaningUz": "Not only...but also, in addition to, consequently",
+    "meaningUz": "Natijada esa, shu bilan birga",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "個人の努力が会社の発展、延いては社会への貢献につながる。",
+        "romaji": "Kojin no doryoku ga kaisha no hatten, hiite wa shakai e no kouken ni tsunagaru.",
+        "uz": "Insonning shaxsiy mehnati kompaniya taraqqiyotiga, natijada esa jamiyatga xizmat qilishga olib keladi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_454",
@@ -38957,9 +39419,15 @@
     "word": "煙る",
     "reading": "けむる",
     "romaji": "kemuru",
-    "meaningUz": "To smoke (e.g. fire)",
+    "meaningUz": "Tutamoq, tutun bosmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "湿った薪を燃やしたため、暖炉から煙がもうもうと煙った。",
+        "romaji": "Shimetta maki o moyashita tame, danro kara kemuri ga moumou to kemutta.",
+        "uz": "Nam o'tin yondirilgani sababli kamin xonani qora tutun qoplab ketdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_464",
@@ -39135,9 +39603,15 @@
     "word": "於",
     "reading": "お",
     "romaji": "o",
-    "meaningUz": "At, in, on",
+    "meaningUz": "Da, ichida (rasmiy yozma shakl)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "本大会は国立競技場に於て厳粛に挙行される。",
+        "romaji": "Hon taikai wa kokuritsu kyougijou ni ote genshuku ni kyokou sareru.",
+        "uz": "Mazkur anjuman Milliy stadionda tantanali ravishda o'tkaziladi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_473",
@@ -39145,9 +39619,15 @@
     "word": "於いて",
     "reading": "おいて",
     "romaji": "oite",
-    "meaningUz": "At, in, on",
+    "meaningUz": "Da, doirasida, maydonida",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "現代社会に於いてIT技術の活用は不可欠である。",
+        "romaji": "Gendai shakai ni oite IT gijutsu no katsuyou wa fukaketsu de aru.",
+        "uz": "Zamonaviy jamiyatda axborot texnologiyalaridan foydalanish zaruriy omildir."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_474",
@@ -39313,9 +39793,15 @@
     "word": "横綱",
     "reading": "よこづな",
     "romaji": "yokozuna",
-    "meaningUz": "Sumo grand champion",
+    "meaningUz": "Yokozuna (sumo kurashining eng oliy chempioni)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "新横綱の土俵入りに満員の観客から万雷の拍手が送られた。",
+        "romaji": "Shin yokozuna no dohyouiri ni man'in no kankyaku kara banrai no hakushu ga okurareta.",
+        "uz": "Yangi yokozunaning maydonga chiqishiga to'lib-toshgan tomoshabinlar momaqaldiroqdek qarsaklar bilan javob berdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_483",
@@ -39554,9 +40040,15 @@
     "word": "下らない",
     "reading": "くだらない",
     "romaji": "kudaranai",
-    "meaningUz": "Good-for-nothing, stupid, trivial, worthless",
+    "meaningUz": "Arzimas, bema'ni, foydasiz",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "下らない口論で貴重な時間を浪費してしまった。",
+        "romaji": "Kudarproperty nai kouron de kichou na jikan o rouhi shite shimatta.",
+        "uz": "Bema'ni janjal bilan qimmatli vaqtimni behuda sarfladim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_495",
@@ -39643,9 +40135,15 @@
     "word": "下地",
     "reading": "したじ",
     "romaji": "shitaji",
-    "meaningUz": "Groundwork, foundation, inclination, aptitude, elementary knowledge of, grounding in, prearrangement, spade",
+    "meaningUz": "Poydevor, asos, tayyorgarlik",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "日頃の地道な勉強が確固たる学力の下地となる。",
+        "romaji": "Higoro no jimichi na benkyou ga kakkotaru gakuryoku no shitaji to naru.",
+        "uz": "Har kungi izchil mutolaa mustahkam bilim poydevorini yaratadi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_500",
@@ -39669,9 +40167,15 @@
     "word": "下番",
     "reading": "かばん",
     "romaji": "kaban",
-    "meaningUz": "Going off duty",
+    "meaningUz": "Navbatchilikdan bo'shash, smena tugashi",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "夜勤の当番を終えて下番し、自宅でぐっすり休んだ。",
+        "romaji": "Yakin no touban o oete kaban shi, jitaku de gussuri yasunda.",
+        "uz": "Tungi navbatchilik smenasini tugatib, uyga borib miriqib dam oldim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_502",
@@ -39700,9 +40204,15 @@
     "word": "下吏",
     "reading": "かり",
     "romaji": "kari",
-    "meaningUz": "Lower official",
+    "meaningUz": "Quyi mansabdor, mayda amaldor",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "歴史小説に描かれた下吏たちの過酷な生活実態を読んだ。",
+        "romaji": "Rekishi shousetsu ni egakareta kari-tachi no kakoku na seikatsu jittai o yonda.",
+        "uz": "Tarixiy romanda tasvirlangan quyi amaldorlarning og'ir hayotiy qismatini o'qidim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_504",
@@ -39794,9 +40304,15 @@
     "word": "化繊",
     "reading": "かせん",
     "romaji": "kasen",
-    "meaningUz": "Synthetic fibres",
+    "meaningUz": "Sintetik tola",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "軽くて耐久性に優れた化繊のスポーツウェアが人気を集めている。",
+        "romaji": "Karukute taikuusei ni sugureta kasen no supootsuwea ga ninki o atsumete iru.",
+        "uz": "Yengil va chidamli sintetik tolali sport kiyimlari ommalashmoqda."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_509",
@@ -39841,9 +40357,15 @@
     "word": "何々",
     "reading": "どれどれ",
     "romaji": "doredore",
-    "meaningUz": "Which (emphatic)",
+    "meaningUz": "Qani-qani, qaysi biri",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "何々、その面白い話をもっと詳しく聞かせてくれ。",
+        "romaji": "Doredore, sono omoshiroi hanashi o motto kuwashiku kikasete kure.",
+        "uz": "Qani-qani, o'sha qiziq voqeani batafsilroq so'zlab ber-chi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_512",
@@ -39851,9 +40373,15 @@
     "word": "何しろ",
     "reading": "なにしろ",
     "romaji": "nanishiro",
-    "meaningUz": "At any rate, anyhow, anyway, in any case",
+    "meaningUz": "Har holda, nima bo'lganda ham",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "何しろ初めての経験なので、緊張で手が震えてしまった。",
+        "romaji": "Nanishiro hajimete no keiken na node, kinchou de te ga furuete shimatta.",
+        "uz": "Har holda birinchi marta bo'lgani sababli, hayajondan qo'lim titrab ketdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_513",
@@ -40061,9 +40589,15 @@
     "word": "何気ない",
     "reading": "なにげない",
     "romaji": "nanigenai",
-    "meaningUz": "Casual, unconcerned",
+    "meaningUz": "Beparvo, oddiy, beozor",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "何気ない一言が相手を深く傷つけてしまうこともある。",
+        "romaji": "Nanigenai hitokoto ga aite o fukaku kizutsukete shimau koto mo aru.",
+        "uz": "O'ylanmay aytilgan oddiy bir so'z ham inson ko'nglini qattiq og'ritishi mumkin."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_524",
@@ -40150,9 +40684,15 @@
     "word": "何時でも",
     "reading": "いつでも",
     "romaji": "itsudemo",
-    "meaningUz": "(at) any time, always, at all times, never (neg), whenever",
+    "meaningUz": "Xohlagan paytda, doimo",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "困ったことがあれば、何時でも遠慮なくご相談ください。",
+        "romaji": "Komatta koto ga areba, itsudemo enryonaku gosoudan kudasai.",
+        "uz": "Biron qiyinchilik tug'ilsa, xohlagan paytingizda tortinmasdan murojaat qiling."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_529",
@@ -40176,9 +40716,15 @@
     "word": "何時までも",
     "reading": "いつまでも",
     "romaji": "itsumademo",
-    "meaningUz": "Forever, for good, eternally, as long as one likes, indefinitely",
+    "meaningUz": "Abadiy, to abad, qachongacha",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "両国の平和と友好が何時までも続くことを祈念いたします。",
+        "romaji": "Ryoukoku no heiwa to yuukou ga itsumademo tsuzuku koto o kinen itashimasu.",
+        "uz": "Ikki davlat o'rtasidagi tinchlik va do'stlik abadiy davom etishini tilayman."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_531",
@@ -40244,9 +40790,15 @@
     "word": "何卒",
     "reading": "どうぞ",
     "romaji": "douzo",
-    "meaningUz": "Please, kindly, by all means",
+    "meaningUz": "Iltimos, marhamat qilib",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "何卒よろしくご指導ご鞭撻のほどお願い申し上げます。",
+        "romaji": "Douzo yoroshiku goshidou gobentatsu no hodo onegai moushiagemasu.",
+        "uz": "Marhamat qilib to'g'ri yo'l ko'rsatib, maslahatingizni ayamaysiz degan umiddaman."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_535",
@@ -40254,9 +40806,15 @@
     "word": "何方",
     "reading": "どちら",
     "romaji": "dochira",
-    "meaningUz": "Which, who",
+    "meaningUz": "Qaysi biri, kim (hurmat shakli)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "本日のセミナーの講師はどちら様でいらっしゃいますか。",
+        "romaji": "Honjitsu no seminaa no koushi wa dochirasama de irasshaimasu ka.",
+        "uz": "Bugungi seminarimizning ma'ruzachisi qaysi mutaxassis bo'ladilar?"
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_536",
@@ -40264,9 +40822,15 @@
     "word": "佳句",
     "reading": "かく",
     "romaji": "kaku",
-    "meaningUz": "Beautiful passage of literature",
+    "meaningUz": "Chiroyli satr, nafis she'riy misra",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "名作の文学作品から心に響く佳句をノートに書き留めた。",
+        "romaji": "Meisaku no bungaku sakuhin kara kokoro ni hibiku kaku o nooto ni kakitometa.",
+        "uz": "Mumtoz adabiyot durdonasidan qalbga yoqadigan nafis satrlarni daftarga yozib oldim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_537",
@@ -40316,9 +40880,15 @@
     "word": "加味",
     "reading": "かみ",
     "romaji": "kami",
-    "meaningUz": "Seasoning, flavoring",
+    "meaningUz": "Ta'm qo'shish, hisobga olish",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "専門家の意見を加味して、開発計画をより現実的なものに修正した。",
+        "romaji": "Senmonka no iken o kami shite, kaihatsu keikaku o yori genjitsuteki na mono ni shuusei shita.",
+        "uz": "Mutaxassislarning mulohazalarini inobatga olgan holda taraqqiyot rejasini amaliyotga moslashtirdik."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_540",
@@ -40326,9 +40896,15 @@
     "word": "加留多",
     "reading": "かるた",
     "romaji": "karuta",
-    "meaningUz": "(pt:) (n) playing cards (pt: carta)",
+    "meaningUz": "Karuta kartalari",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "正月の伝統行事として加留多の大会が各地で開かれる。",
+        "romaji": "Shougatsu no dentou gyouji toshite karuta no taikai ga kakuchi de hirakareru.",
+        "uz": "Yangi yilning an'anaviy tadbiri sifatida turli joylarda karuta musobaqalari o'tkaziladi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_541",
@@ -40431,9 +41007,15 @@
     "word": "可成",
     "reading": "かなり",
     "romaji": "kanari",
-    "meaningUz": "Considerably, fairly, quite",
+    "meaningUz": "Ancha, ancha-muncha, yetarlicha",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "今回の試験は可成りの難問揃いで合格率が低かった。",
+        "romaji": "Konkai no shiken wa kanari no nanmonzoroi de goukakuritsu ga hikukatta.",
+        "uz": "Bu galgi imtihonda ancha qiyin savollar tushganligi sababli o'tish foizi past bo'ldi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_547",
@@ -40504,9 +41086,15 @@
     "word": "家来",
     "reading": "けらい",
     "romaji": "kerai",
-    "meaningUz": "Retainer, retinue, servant",
+    "meaningUz": "Xizmatkor, mulozim, malay",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "戦国武将は忠誠を誓う家来たちと共に合戦に挑んだ。",
+        "romaji": "Sengoku bushou wa chuusei o chikau kerai-tachi to tomo ni kassen ni idonda.",
+        "uz": "Sarkarda o'ziga sadoqat bildirgan mulozimlari bilan birga jangga kirdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_551",
@@ -40635,9 +41223,15 @@
     "word": "果ない",
     "reading": "はかない",
     "romaji": "hakanai",
-    "meaningUz": "Fleeting, transient, short-lived, momentary, vain, fickle, miserable, empty, ephemeral",
+    "meaningUz": "O'tkinchi, bebaqo, omonat",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "春の夜に散りゆく桜の花びらのように、果ない命を惜しんだ。",
+        "romaji": "Haru no yo ni chiriyuku sakura no hanabira no you ni, hakanai inochi o oshinda.",
+        "uz": "Bahor oqshomida to'kilayotgan sakura barglaridek o'tkinchi umrga achindi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_558",
@@ -40703,9 +41297,15 @@
     "word": "火燵",
     "reading": "こたつ",
     "romaji": "kotatsu",
-    "meaningUz": "Table with heater, (orig) charcoal brazier in a floor well",
+    "meaningUz": "Kotatsu (isitgichli yapon stoli)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "寒い冬の日は火燵に入ってみかんを食べるのが至福の時間だ。",
+        "romaji": "Samui fuyu no hi wa kotatsu ni haitte mikan o taberu no ga shifuku no jikan da.",
+        "uz": "Qahraton qish kunlarida kotatsu ichiga kirib mandarin yeyish haqiqiy huzurdir."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_562",
@@ -40713,9 +41313,15 @@
     "word": "箇箇",
     "reading": "ここ",
     "romaji": "koko",
-    "meaningUz": "Individual, separate",
+    "meaningUz": "Har biri alohida, alohida-alohida",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "問題の箇箇について詳細な検証を行う必要がある。",
+        "romaji": "Mondai no koko ni tsuite shousai na kenshou o okonau hitsuyou ga aru.",
+        "uz": "Muammoning har bir bo'g'ini bo'yicha batafsil tekshiruv olib borish zarur."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_563",
@@ -40807,9 +41413,15 @@
     "word": "苛める",
     "reading": "いじめる",
     "romaji": "ijimeru",
-    "meaningUz": "To tease, to torment, to persecute, to chastise",
+    "meaningUz": "Kamsitmoq, azob bermoq, xo'rlamoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "いかなる理由があろうとも、弱者を苛める行為は断じて許されない。",
+        "romaji": "Ikanaru riyuu ga arou tomo, jakusha o ijimeru koui wa danjite yurusarenai.",
+        "uz": "Har qanday vaj bo'lmasin, ojizlarni kamsitish va xo'rlash mutlaqo kechirilmaydi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_568",
@@ -40859,9 +41471,15 @@
     "word": "華々しい",
     "reading": "はなばなしい",
     "romaji": "hanabanashii",
-    "meaningUz": "Brilliant, magnificent, spectacular",
+    "meaningUz": "Dabdabali, yorqin, shonli",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "世界選手権で金メダルを獲得し、華々しい勝利を飾った。",
+        "romaji": "Sekai senshuken de kinmedaru o kakutoku shi, hanabanashii shouri o kazatta.",
+        "uz": "Jahon chempionatida oltin medalni qo'lga kiritib, yorqin g'alabaga erishdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_571",
@@ -40901,9 +41519,15 @@
     "word": "課外",
     "reading": "かがい",
     "romaji": "kagai",
-    "meaningUz": "Extracurricular",
+    "meaningUz": "Darsdan tashqari, fakultativ",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "放課後に課外活動としてロボット工学の勉強会に参加している。",
+        "romaji": "Houkago ni kagai katsudou toshite robotto kougaku no benkyoukai ni sanka shite iru.",
+        "uz": "Darsdan keyin qo'shimcha to'garak sifatida robototexnika o'quv guruhida qatnashaman."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_574",
@@ -40974,9 +41598,15 @@
     "word": "過疎",
     "reading": "かそ",
     "romaji": "kaso",
-    "meaningUz": "Depopulation",
+    "meaningUz": "Aholi siyraklashuvi, qishloqlar huvillab qolishi",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "地方都市では若者の流出により過疎化が急速に進行している。",
+        "romaji": "Chihou toshi dewa wakamono no ryuushutsu ni yori kasoka ga kyuusoku ni shinkou shite iru.",
+        "uz": "Viloyatlarda yoshlarning ko'chib ketishi tufayli aholi siyraklashuvi tezlashmoqda."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_578",
@@ -41037,9 +41667,15 @@
     "word": "霞む",
     "reading": "かすむ",
     "romaji": "kasumu",
-    "meaningUz": "To grow hazy, to be misty",
+    "meaningUz": "Tumanlanmoq, xiralashmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "春の朝の空気は白く霞み、幻想的な景色を作り出していた。",
+        "romaji": "Haru no asa no kuuki wa shiroku kasumi, gensouteki na keshiki o tsukuridashite ita.",
+        "uz": "Bahor tongidagi havo oq tuman bilan qoplanib afsonaviy manzara kasb etgan edi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_582",
@@ -41047,9 +41683,15 @@
     "word": "俄か",
     "reading": "にわか",
     "romaji": "niwaka",
-    "meaningUz": "Sudden, abrupt, unexpected, improvised, offhand",
+    "meaningUz": "To'satdan, daf'atan, kutilmagan",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "晴れていた空が俄かにかき曇り、激しい夕立が降り始めた。",
+        "romaji": "Haite ita sora ga niwaka ni kakikumori, hageshii yuudachi ga furihajimeta.",
+        "uz": "Ochiq turgan osmon daf'atan qora bulutlar bilan qoplanib kuchli jala quya boshladi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_583",
@@ -41057,9 +41699,15 @@
     "word": "我がまま",
     "reading": "わがまま",
     "romaji": "wagamama",
-    "meaningUz": "Selfishness, egoism, wilfulness, disobedience, whim",
+    "meaningUz": "Xudbinlik, erkalik, injiqlik",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "自分の都合ばかりを押し通す我がままな態度は改めるべきだ。",
+        "romaji": "Jibun no tsugou bakari o oshitoosu wagamama na taido wa aratameru beki da.",
+        "uz": "Faqat o'z manfaatini ko'zlaydigan injiq va xudbin xatti-harakatlarni o'zgartirish kerak."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_584",
@@ -41109,9 +41757,15 @@
     "word": "雅致",
     "reading": "がち",
     "romaji": "gachi",
-    "meaningUz": "Artistry, good taste, elegance, grace",
+    "meaningUz": "Nafislik, did, go'zallik",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "茶室の簡素な造りの中にも独特の雅致が感じられる。",
+        "romaji": "Chashitsu no kanso na tsukuri no naka ni mo dokutoku no gachi ga kanjirareru.",
+        "uz": "Choyxona xonasining oddiy ko'rinishida ham o'ziga xos nafis did va fayz seziladi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_587",
@@ -41303,9 +41957,15 @@
     "word": "懐く",
     "reading": "なつく",
     "romaji": "natsuku",
-    "meaningUz": "To become emotionally attached",
+    "meaningUz": "Mehr qo'ymoq, o'rganib qolmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "野良猫が毎日餌をくれる心優しいおばあさんに懐いた。",
+        "romaji": "Noraneko ga mainichi esa o kureru kokoroyasashii obaasan ni natsuita.",
+        "uz": "Ko'cha mushugi har kuni ovqat beradigan mehribon buviga mehr qo'ydi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_597",
@@ -41313,9 +41973,15 @@
     "word": "拐う",
     "reading": "さらう",
     "romaji": "sarau",
-    "meaningUz": "To carry off, to run away with, to kidnap, to abduct",
+    "meaningUz": "O'g'irlab ketmoq, olib qochmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "子供が公園で何者かに拐われそうになる事件が発生した。",
+        "romaji": "Kodomo ga kouen de nanimonoka ni sarawaresou ni naru jiken ga hassei shita.",
+        "uz": "Bog'da bolani kimdir olib qochishiga sal qolgan noxush voqea yuz berdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_598",
@@ -41323,9 +41989,15 @@
     "word": "改まる",
     "reading": "あらたまる",
     "romaji": "aratamaru",
-    "meaningUz": "To be renewed",
+    "meaningUz": "Yangilanmoq, rasmiy tus olmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "年が改まり、気持ちも新たに目標に向かってスタートした。",
+        "romaji": "Toshi ga aratamari, kimochi mo arata ni mokuhyou ni mukatte sutaato shita.",
+        "uz": "Yil yangilanib, yangi shijoat bilan belgilangan maqsadlar sari odimladik."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_599",
@@ -41333,9 +42005,15 @@
     "word": "改悪",
     "reading": "かいあく",
     "romaji": "kaiaku",
-    "meaningUz": "Deterioration, changing for the worse",
+    "meaningUz": "Yomonlashish, buzilish (qonun yoki tizimning)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "利用者の利便性を無視した今回の制度改正は改悪と批判された。",
+        "romaji": "Riyousha no ribensei o mushi shita konkai no seido kaisei wa kaiaku to hihan sareta.",
+        "uz": "Foydalanuvchilar qulayligini inkor etgan bu yangi qonun tizimni yomonlashtirish deb tanqid qilindi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_600",
@@ -41385,9 +42063,15 @@
     "word": "改定",
     "reading": "かいてい",
     "romaji": "kaitei",
-    "meaningUz": "Reform",
+    "meaningUz": "Qayta ko'rib chiqish, isloh qilish",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "物価の上昇に伴い、最低賃金の改定が閣議決定された。",
+        "romaji": "Bukka no joushou ni tomonai, saitei chingin no kaitei ga kakugi kettei sareta.",
+        "uz": "Narxlarning o'sishi munosabati bilan eng kam ish haqini qayta ko'rib chiqish hukumat tomonidan ma'qullandi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_603",
@@ -41700,9 +42384,15 @@
     "word": "外方",
     "reading": "そっぽ",
     "romaji": "soppo",
-    "meaningUz": "Look (or turn) the other way",
+    "meaningUz": "Boshqa tomonga qarash, yuz o'girish",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "注意されるとふてくされて外方を向いてしまった。",
+        "romaji": "Chuui sareru to futekusarete soppo o muite shimatta.",
+        "uz": "Tanbeh berilgach arazlab boshqa tomonga yuzini o'girib oldi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_619",
@@ -42041,9 +42731,15 @@
     "word": "確り",
     "reading": "しっかり",
     "romaji": "shikkari",
-    "meaningUz": "Firmly, tightly, reliable, level-headed, steady",
+    "meaningUz": "Mahkam, pishiq, hushyor",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "将来の目標を見据えて、確りとした人生設計を立てる。",
+        "romaji": "Shourai no mokuhyou o misuete, shikkari to shita jinsei sekkei o tateru.",
+        "uz": "Kelajakdagi maqsadlarni ko'zlab, mustahkam hayotiy reja tuzadi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_636",
@@ -42135,9 +42831,15 @@
     "word": "隔たる",
     "reading": "へだたる",
     "romaji": "hedataru",
-    "meaningUz": "To be distant",
+    "meaningUz": "Uzoqlashmoq, orasi ochiq bo'lmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "故郷を遠く隔たった異国の地で勉学に励んでいる。",
+        "romaji": "Kokyou o tooku hedatatta ikoku no chi de bengaku ni hagende iru.",
+        "uz": "Vatandan olisda, begonalar yurtida ilm olish yo'lida zahmat chekmoqda."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_641",
@@ -42487,9 +43189,15 @@
     "word": "恰度",
     "reading": "ちょうど",
     "romaji": "choudo",
-    "meaningUz": "Just, right, exactly",
+    "meaningUz": "Aynan, rosa, xuddi",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "駅に到着したとき、恰度乗るべき電車がホームに入ってきた。",
+        "romaji": "Eki ni touchaku shita toki, choudo norubeki densha ga hoomu ni haitte kita.",
+        "uz": "Bekatga yetib kelgan paytimda aynan men minishim kerak bo'lgan poyezd yo'lakka kirdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_659",
@@ -42497,9 +43205,15 @@
     "word": "活ける",
     "reading": "いける",
     "romaji": "ikeru",
-    "meaningUz": "To arrange (flowers)",
+    "meaningUz": "Guldastaga solmoq, gullarni bezamoq (ikebana)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "季節の野花を和風の花瓶に美しく活けた。",
+        "romaji": "Kisetsu no nobana o wafuu no kabin ni utsukushiku iketa.",
+        "uz": "Mavsumiy dala gullarini yaponcha guldonga go'zal qilib joylashtirdim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_660",
@@ -42570,9 +43284,15 @@
     "word": "且つ",
     "reading": "かつ",
     "romaji": "katsu",
-    "meaningUz": "Yet, and",
+    "meaningUz": "Shuningdek, hamda, ayni chog'da",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "この計画は経済的であり、且つ環境にも優しい。",
+        "romaji": "Kono keikaku wa keizaiteki de ari, katsu kankyou ni mo yasashii.",
+        "uz": "Ushbu reja iqtisodiy jihatdan tejamkor hamda atrof-muhitga ham zararsizdir."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_664",
@@ -42643,9 +43363,15 @@
     "word": "噛み切る",
     "reading": "かみきる",
     "romaji": "kamikiru",
-    "meaningUz": "To bite off, to gnaw through",
+    "meaningUz": "Tishlab uzmoq, uzib olmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "固いパンを前歯で力強く噛み切って食べた。",
+        "romaji": "Katai pan o maeba de chikaradzuyoku kamikitte tabeta.",
+        "uz": "Qattiq nonni old tishlarim bilan kuch bilan tishlab uzib yedim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_668",
@@ -42653,9 +43379,15 @@
     "word": "噛る",
     "reading": "かじる",
     "romaji": "kajiru",
-    "meaningUz": "To chew, to bite (at), to gnaw, to nibble, to munch, to crunch, to have a smattering of",
+    "meaningUz": "Kemirmoq, tishlamoq, oz-moz o'rganmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "学生時代にフランス語の初歩を少し齧ったことがある。",
+        "romaji": "Gakusei jidai ni furansugo no shoho o sukoshi kajitta koto ga aru.",
+        "uz": "Talabalik yillarimda fransuz tilining boshlang'ich qoidalarini ozgina o'rganganman."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_669",
@@ -42942,9 +43674,15 @@
     "word": "干し物",
     "reading": "ほしもの",
     "romaji": "hoshimono",
-    "meaningUz": "Dried washing (clothes)",
+    "meaningUz": "Quritiladigan kirlar, quritilgan narsalar",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "天気が良いのでベランダいっぱいに干し物を並べた。",
+        "romaji": "Tenki ga yoi node beranda ippai ni hoshimono o narabeta.",
+        "uz": "Havo ochiqligi sababli ayvon bo'ylab kirlarni yoyib chiqdim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_684",
@@ -43047,9 +43785,15 @@
     "word": "感無量",
     "reading": "かんむりょう",
     "romaji": "kanmuryou",
-    "meaningUz": "Deep feeling, inexpressible feeling, filled with emotion",
+    "meaningUz": "Cheksiz taassurot, to'lqinlanib ketish",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "長年の夢だった宇宙飛行に成功し、感無量の面持ちで記者会見に臨んだ。",
+        "romaji": "Naganen no yume datta uchuuhikou ni seikou shi, kanmuryou no omomochi de kishakaiken ni nozonda.",
+        "uz": "Ko'p yillik orzusi bo'lmish koinot parvozi amalga oshib, cheksiz hayajon bilan matbuot anjumanida ishtirok etdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_690",
@@ -43404,9 +44148,15 @@
     "word": "緩める",
     "reading": "ゆるめる",
     "romaji": "yurumeru",
-    "meaningUz": "To loosen, to slow down",
+    "meaningUz": "Bo'shashtirmoq, yumshatmoq, sekinlatmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "カーブの手前で車のアクセルを緩めて減速した。",
+        "romaji": "Kaabu no temae de kuruma no akuseru o yurumete gensoku shita.",
+        "uz": "Burilish oldida mashina gaz pedalini bo'shashtirib tezlikni pasaytirdim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_708",
@@ -43598,9 +44348,15 @@
     "word": "間々",
     "reading": "まま",
     "romaji": "mama",
-    "meaningUz": "Occasionally, frequently",
+    "meaningUz": "Goh-gohida, tez-tez",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "忙しい日々の中でも間々時間を見つけて読書を楽しむ。",
+        "romaji": "Isogashii hibi no naka demo mama jikan o mitsukete dokusho o tanoshimu.",
+        "uz": "Tig'iz kunlarda ham goh-gohida vaqt topib kitob mutolaasidan zavqlanaman."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_718",
@@ -43750,9 +44506,15 @@
     "word": "丸っきり",
     "reading": "まるっきり",
     "romaji": "marukkiri",
-    "meaningUz": "Completely, perfectly, just as if",
+    "meaningUz": "Butunlay, mutlaqo",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "彼の言っていることは事実と丸っきり異なっている。",
+        "romaji": "Kare no itte iru koto wa jijitsu to marukkiri kotonatte iru.",
+        "uz": "Uning aytayotgan gaplari haqiqatdan butunlay yiroqdir."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_726",
@@ -43797,9 +44559,15 @@
     "word": "含嗽",
     "reading": "うがい",
     "romaji": "ugai",
-    "meaningUz": "Gargle, rinse mouth",
+    "meaningUz": "G'arg'ara qilish, og'izni chayish",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "感染予防のために帰宅後は手洗いと含嗽を徹底している。",
+        "romaji": "Kansen yobou no tame ni kitakugo wa tearai to ugai o tettei shite iru.",
+        "uz": "Kasallikdan saqlanish uchun uyga qaytgach qo'l yuvish va og'iz chayishni kanda qilmayman."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_729",
@@ -44175,9 +44943,15 @@
     "word": "寄こす",
     "reading": "よこす",
     "romaji": "yokosu",
-    "meaningUz": "To send, to forward",
+    "meaningUz": "Yubormoq, yetkazmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "遠方の親戚から季節の採れたてフルーツをたくさん寄こしてくれた。",
+        "romaji": "Enpou no shinseki kara kisetsu no toretate furuutsu o takusan yokoshite kureta.",
+        "uz": "Olisdagi qarindoshlar yangi uzilgan sarxil mevalardan ko'p qilib yuborishibdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_748",
@@ -44185,9 +44959,15 @@
     "word": "寄り掛かる",
     "reading": "よりかかる",
     "romaji": "yorikakaru",
-    "meaningUz": "To lean against, to recline on, to lean on, to rely on",
+    "meaningUz": "Suyanchiqqa suyanmoq, tayanmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "疲れていたので電車の座席の背もたれに深く寄り掛かった。",
+        "romaji": "Tsukarete ita node densha no zaseki no semotare ni fukaku yorikakatta.",
+        "uz": "Charchaganim bois poyezd o'rindig'ining suyanchig'iga orqamni berib suyanib oldim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_749",
@@ -44358,9 +45138,15 @@
     "word": "帰京",
     "reading": "ききょう",
     "romaji": "kikyou",
-    "meaningUz": "Returning to tokyo",
+    "meaningUz": "Tokioga qaytish",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "地方での視察を終えた大臣が本日午後に帰京した。",
+        "romaji": "Chihou de no shisatsu o oeta daijin ga honjitsu gogo ni kikyou shita.",
+        "uz": "Viloyatlardagi o'rganish safarini yakunlagan vazir bugun tushdan keyin Tokioga qaytdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_758",
@@ -44473,9 +45259,15 @@
     "word": "気障",
     "reading": "きざ",
     "romaji": "kiza",
-    "meaningUz": "Affectation, conceit, snobbery",
+    "meaningUz": "Sun'iy, o'zini ko'rsatuvchi, manman",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "気障な言い回しを避け、率直な言葉で相手に思いを伝えた。",
+        "romaji": "Kiza na iimawashi o sake, sotchoku na kotoba de aite ni omoi o tsutaeta.",
+        "uz": "Sun'iy va balandparvoz gaplardan qochib, samimiy so'zlar bilan fikrini bildirdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_764",
@@ -44483,9 +45275,15 @@
     "word": "気触れる",
     "reading": "かぶれる",
     "romaji": "kabureru",
-    "meaningUz": "To react to, to be influenced by, to go overboard for",
+    "meaningUz": "Qattiq berilib ketmoq, ta'sirlanmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "海外のポップカルチャーに気触れて服装や話し方が一変した。",
+        "romaji": "Kaigai no poppukaruchaa ni kaburete fukusou ya hanashikata ga ippen shita.",
+        "uz": "Xorijiy pop madaniyatiga qattiq berilib kiyinishi va so'zlashuvi butunlay o'zgardi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_765",
@@ -44514,9 +45312,15 @@
     "word": "気風",
     "reading": "きふう",
     "romaji": "kifuu",
-    "meaningUz": "Character, traits, ethos",
+    "meaningUz": "Ruh, fe'l-atvor, an'anaviy xarakter",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "下町の職人たちには情に厚く義理堅い気風が今も息づいている。",
+        "romaji": "Shitamachi no shokunin-tachi ni wa jou ni atsuku girigatai kifuu ga ima mo ikidzuite iru.",
+        "uz": "Shahar hunarmandlari orasida bag'rikeng va burchga sadoqatli ruh hanuz yashab kelmoqda."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_767",
@@ -44608,9 +45412,15 @@
     "word": "季刊",
     "reading": "きかん",
     "romaji": "kikan",
-    "meaningUz": "Quarterly (e.g. magazine)",
+    "meaningUz": "Choraklik jurnal yoki nashr",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "経済学の権威ある季刊誌に最新の研究論文が掲載された。",
+        "romaji": "Keizaigaku no ken'i aru kikanshi ni saishin no kenkyuu ronbun ga keisai sareta.",
+        "uz": "Iqtisodiyot sohasining nufuzli choraklik jurnalida eng so'nggi ilmiy maqolam chop etildi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_772",
@@ -44618,9 +45428,15 @@
     "word": "規格",
     "reading": "きかく",
     "romaji": "kikaku",
-    "meaningUz": "Standard, norm",
+    "meaningUz": "Standart, me'yor, texnik talab",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "国際的な安全規格に適合した製品のみが出荷を許可される。",
+        "romaji": "Kokusaiteki na anzen kikaku ni tekigou shita seihin nomi ga shukka o kyoka sareru.",
+        "uz": "Faqatgina xalqaro xavfsizlik standartlariga javob beradigan mahsulotlar sotuvga chiqariladi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_773",
@@ -44728,9 +45544,15 @@
     "word": "貴い",
     "reading": "たっとい",
     "romaji": "tattoi",
-    "meaningUz": "Precious, valuable, priceless, noble, exalted, sacred",
+    "meaningUz": "Muqaddas, qimmatbaho, e'zozli",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "平和のために捧げられた貴い命を決して無駄にしてはならない。",
+        "romaji": "Heiwa no tame ni sasagerareta tattoi inochi o kesshite muda ni shite wa naranai.",
+        "uz": "Tinchlik yo'lida qurbon bo'lgan aziz va muqaddas jonlarni aslo bekor ketkazmaslik kerak."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_779",
@@ -44801,9 +45623,15 @@
     "word": "起点",
     "reading": "きてん",
     "romaji": "kiten",
-    "meaningUz": "Starting point",
+    "meaningUz": "Boshlang'ich nuqta, ibtido",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "東海道五十三次の起点である日本橋には多くの旅人が集まった。",
+        "romaji": "Toukaidou gojuusantsugi no kiten de aru nihonbashi ni wa tooku no tabibito ga atsumatta.",
+        "uz": "Tokaido yo'lining boshlang'ich nuqtasi bo'lmish Nihonbashi ko'prigida ko'plab sayyohlar to'plangan."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_783",
@@ -44811,9 +45639,15 @@
     "word": "起伏",
     "reading": "きふく",
     "romaji": "kifuku",
-    "meaningUz": "Undulation",
+    "meaningUz": "Past-balandlik, relyefning to'lqinsimonligi",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "マラソンコースの激しい起伏がランナーたちの体力を奪っていく。",
+        "romaji": "Marason koosu no hageshii kifuku ga rannaa-tachi no tairyoku o ubatte iku.",
+        "uz": "Marafon yo'lining keskin past-balandligi yuguruvchilarning kuch-quvvatini quritib bormoqda."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_784",
@@ -44989,9 +45823,15 @@
     "word": "議事堂",
     "reading": "ぎじどう",
     "romaji": "gijidou",
-    "meaningUz": "Diet building",
+    "meaningUz": "Parlament binosi",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "国会議事堂の前で新内閣の発足を祝うパレードが行われた。",
+        "romaji": "Kokkai gijidou no mae de shin naikaku no hossoku o iwau pareedo ga okonawareta.",
+        "uz": "Parlament binosi ro'parasida yangi hukumat tuzilgani munosabati bilan tantanali marsh o'tdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_793",
@@ -45020,9 +45860,15 @@
     "word": "掬う",
     "reading": "すくう",
     "romaji": "sukuu",
-    "meaningUz": "To scoop, to ladle out",
+    "meaningUz": "Kaftlab olmoq, suzib olmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "両手で清らかな小川の水を掬って喉の渇きを潤した。",
+        "romaji": "Ryoute de kiyoraka na ogawa no mizu o sukutte nodo no kawaki o uruoshita.",
+        "uz": "Kaftim bilan musaffo ariq suvidan olib chanqog'imni bosdim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_795",
@@ -45030,9 +45876,15 @@
     "word": "鞠",
     "reading": "まり",
     "romaji": "mari",
-    "meaningUz": "Ball",
+    "meaningUz": "An'anaviy yapon to'pi",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "色鮮やかな絹糸で編まれた手まりは伝統的な工芸品として親しまれている。",
+        "romaji": "Iroazayaka na kinuito de amareta temari wa dentouteki na kougeihin toshite shitashimarete iru.",
+        "uz": "Rang-barang ipak iplaridan to'qilgan to'p an'anaviy xalq amaliy san'ati namunasi sifatida e'zozlanadi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_796",
@@ -45040,9 +45892,15 @@
     "word": "吃逆",
     "reading": "しゃっくり",
     "romaji": "shakkuri",
-    "meaningUz": "Hiccough, hiccup",
+    "meaningUz": "Hiqichoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "コップ一杯の冷たい水を一気に飲んだら吃逆が止まった。",
+        "romaji": "Koppu ippai no tsumetai mizu o ikki ni nondara shakkuri ga tomatta.",
+        "uz": "Bir stakan sovuq suvni bir ko'tarishda ichib yuborganimdan so'ng hiqichoq to'xtadi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_797",
@@ -45108,9 +45966,15 @@
     "word": "詰らない",
     "reading": "つまらない",
     "romaji": "tsumaranai",
-    "meaningUz": "Insignificant, boring, trifling",
+    "meaningUz": "Zerikarli, arzimas, ahamiyatsiz",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "詰らない意地を張っていないで、素直に非を認めたほうがいい。",
+        "romaji": "Tsumaranai iji o hatte inaide, sunao ni hi o mitometa hou ga ii.",
+        "uz": "Arzimas o'jarlik qilmasdan, xatongni samimiy tan olganing ma'qul."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_801",
@@ -45118,9 +45982,15 @@
     "word": "詰る",
     "reading": "なじる",
     "romaji": "najiru",
-    "meaningUz": "To rebuke, to scold, to tell off",
+    "meaningUz": "Qattiq tanbeh bermoq, koyimoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "約束を破った友人を一方的に詰るのではなく、理由を尋ねた。",
+        "romaji": "Yakusoku o yabutta yuujin o ippouteki ni najiru dewanaku, riyuu o tazuneta.",
+        "uz": "Va'dasida turmagan do'stimni bir tomonlama koyimasdan, avval sababini so'radim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_802",
@@ -45170,9 +46040,15 @@
     "word": "逆上る",
     "reading": "さかのぼる",
     "romaji": "sakanoboru",
-    "meaningUz": "To go back, to go upstream, to make retroactive",
+    "meaningUz": "Ortga surishtirmoq, daryoning yuqori oqimiga yurmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "歴史の文献を古代まで逆上って調査することで真実を究明した。",
+        "romaji": "Rekishi no bunken o kodai made sakanobotte chousa suru koto de shinjitsu o kyuumei shita.",
+        "uz": "Tarixiy qo'lyozmalarni qadimgi davrlargacha surishtirib o'rganish orqali haqiqatni aniqladik."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_805",
@@ -45243,9 +46119,15 @@
     "word": "久し振り",
     "reading": "ひさしぶり",
     "romaji": "hisashiburi",
-    "meaningUz": "After a long time",
+    "meaningUz": "Uzoq tanaffusdan so'ng, ancha vaqtdan keyin",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "高校時代の親友と10年ぶりに久し振りの再会を祝った。",
+        "romaji": "Koukou jidai no shin'yuu to juunenburi ni hisashiburi no saikai o iwatta.",
+        "uz": "Maktabdosh yaqin do'stim bilan o'n yildan so'ng uzoq kutilgan uchrashuvni nishonladik."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_809",
@@ -45432,9 +46314,15 @@
     "word": "朽ちる",
     "reading": "くちる",
     "romaji": "kuchiru",
-    "meaningUz": "To rot",
+    "meaningUz": "Chirimoq, barham topmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "森の奥深くに朽ちた大木が静かに横たわっている。",
+        "romaji": "Mori no okufukaku ni kuchita taiboku ga shizuka ni yokotawatte iru.",
+        "uz": "O'rmonning ichkari qismida chirigan ulkan daraxt sokin yotibdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_819",
@@ -45442,9 +46330,15 @@
     "word": "球根",
     "reading": "きゅうこん",
     "romaji": "kyuukon",
-    "meaningUz": "(plant) bulb",
+    "meaningUz": "Piyozbosh (lola yoki boshqa gullarning)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "秋のうちにチューリップの球根を花壇に植え付けた。",
+        "romaji": "Aki no uchi ni chuurippu no kyuukon o kadan ni uetsuketa.",
+        "uz": "Kuz faslida gulzorga lola piyozboshlarini ekib chiqdim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_820",
@@ -45557,9 +46451,15 @@
     "word": "旧事",
     "reading": "くじ",
     "romaji": "kuji",
-    "meaningUz": "Past events, bygones",
+    "meaningUz": "O'tmish voqealari, qadimiy ishlar",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "旧事に思いを馳せながら、古都の旧跡を巡り歩いた。",
+        "romaji": "Kuji ni omoi o hasenagara, koto no kyuuseki o meguriaruita.",
+        "uz": "O'tmish voqealarini xayoldan o'tkazgan holda qadimiy poytaxt obidalarini aylandim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_826",
@@ -45567,9 +46467,15 @@
     "word": "旧知",
     "reading": "きゅうち",
     "romaji": "kyuuchi",
-    "meaningUz": "Old friend, old friendship",
+    "meaningUz": "Eski qadrdon, ko'p yillik do'st",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "旧知の間柄である彼とは、言葉を交わさずとも理解し合える。",
+        "romaji": "Kyuuchi no aidagara de aru kare to wa, kotoba o kawasazu tomo rikai shiaeru.",
+        "uz": "Eski qadrdon bo'lganimiz sababli, u bilan so'zsiz ham bir-birimizni tushuna olamiz."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_827",
@@ -45761,9 +46667,15 @@
     "word": "共学",
     "reading": "きょうがく",
     "romaji": "kyougaku",
-    "meaningUz": "Coeducation",
+    "meaningUz": "Aralash ta'lim (o'g'il va qiz bolalar birga)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "創立以来男子校だった伝統校が来春から男女共学に移行する。",
+        "romaji": "Souritsu irai danshikou datta dentoukou ga raishun kara danjo kyougaku ni ikou suru.",
+        "uz": "Ochilganidan buyon faqat o'g'il bolalar o'qigan an'anaviy maktab kelasi bahordan aralash ta'limga o'tadi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_837",
@@ -45813,9 +46725,15 @@
     "word": "共存",
     "reading": "きょうそん",
     "romaji": "kyouson",
-    "meaningUz": "Coexistence",
+    "meaningUz": "Hamkorlikda birga yashash (koeksistensiya)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "人類が自然環境と調和しながら共存していく道を模索する。",
+        "romaji": "Jinrui ga shizen kankyou to chouwa shinagara kyouson shite iku michi o mosaku suru.",
+        "uz": "Insoniyat tabiiy atrof-muhit bilan hamohanglikda birga yashash yo'llarini izlamoqda."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_840",
@@ -45965,9 +46883,15 @@
     "word": "強いる",
     "reading": "しいる",
     "romaji": "shiiru",
-    "meaningUz": "To force, to compel, to coerce",
+    "meaningUz": "Majburlamoq, zo'rlamoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "本人の意思に反して特定の進路を強いることはできない。",
+        "romaji": "Honnin no ishi ni hanshite tokutei no shinro o shiiru koto wa dekinai.",
+        "uz": "Insonning xohishiga qarshi o'laroq ma'lum bir yo'nalishni unga majburlab bo'lmaydi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_848",
@@ -46059,9 +46983,15 @@
     "word": "強行",
     "reading": "きょうこう",
     "romaji": "kyoukou",
-    "meaningUz": "Forcing, enforcement",
+    "meaningUz": "Majburiy ijro, zo'ravonlik bilan amalga oshirish",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "悪天候にもかかわらず山頂への登頂を強行するのは極めて危険だ。",
+        "romaji": "Akutenkou ni mo kakawarazu sanchou e no touchou o kyoukou suru no wa kiwamete kiken da.",
+        "uz": "Noqulay ob-havoga qaramay cho'qqini zabt etishni majburan davom ettirish nihoyatda xavflidir."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_853",
@@ -46090,9 +47020,15 @@
     "word": "強請る",
     "reading": "ねだる",
     "romaji": "nedaru",
-    "meaningUz": "To tease, to coax, to solicit, to demand",
+    "meaningUz": "Yalinib so'ramoq, erkalik qilib talab qilmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "子供が誕生日に最新のゲーム機を両親に強請った。",
+        "romaji": "Kodomo ga tanjoubi ni saishin no geemuki o ryoushin ni nedatta.",
+        "uz": "Bola tug'ilgan kuniga ota-onasidan eng so'nggi o'yin qurilmasini olib berishni yalinib so'radi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_855",
@@ -46179,9 +47115,15 @@
     "word": "恐れ入る",
     "reading": "おそれいる",
     "romaji": "osoreiru",
-    "meaningUz": "To be filled with awe, to feel small, to be amazed, to be surprised, to be disconcerted, to be sorry, to b",
+    "meaningUz": "Xijolat bo'lmoq, minnatdorlik bildirmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "ご多忙の中わざわざお越しいただき、恐れ入ります。",
+        "romaji": "Gotabou no naka wazawaza okoshi itadaki, osoreirimasu.",
+        "uz": "Juda band bo'lishingizga qaramay ataylab tashrif buyurganingiz uchun minnatdorman, xijolatdaman."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_860",
@@ -46336,9 +47278,15 @@
     "word": "橋渡し",
     "reading": "はしわたし",
     "romaji": "hashiwatashi",
-    "meaningUz": "Bridge building, mediation",
+    "meaningUz": "Ko'prik bo'lish, vositachilik qilish",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "両国の学術交流を促進するための橋渡し役を務めた。",
+        "romaji": "Ryoukoku no gakujutsu kouryuu o sokushin suru tame no hashiwatashiyaku o tsutometa.",
+        "uz": "Ikki mamlakat o'rtasidagi ilmiy aloqalarni jadallashtirishda vositachilik vazifasini bajardi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_868",
@@ -46346,9 +47294,15 @@
     "word": "況して",
     "reading": "まして",
     "romaji": "mashite",
-    "meaningUz": "Still more, still less (with neg. verb), to say nothing of, not to mention",
+    "meaningUz": "U yoqda tursin, ayniqsa",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "大人が解けない難問なのだから、況して子供には解けない。",
+        "romaji": "Otona ga tokenai nanmon na no dakara, mashite kodomo ni wa tokenai.",
+        "uz": "Kattalar ham yecholmaydigan qiyin masala ekan, bolalar-ku u yoqda tursin."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_869",
@@ -46419,9 +47373,15 @@
     "word": "興じる",
     "reading": "きょうじる",
     "romaji": "kyoujiru",
-    "meaningUz": "To amuse oneself, to make merry",
+    "meaningUz": "Zavqlanmoq, sho'xlik qilmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "花見客たちが満開の桜の下で酒宴に興じている。",
+        "romaji": "Hanamikyaku-tachi ga mankai no sakura no shita de shuen ni kyoujite iru.",
+        "uz": "Gullagan sakura ostida bayram qiluvchilar maroqli suhbat va ziyofatdan zavqlanishmoqda."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_873",
@@ -46429,9 +47389,15 @@
     "word": "興業",
     "reading": "こうぎょう",
     "romaji": "kougyou",
-    "meaningUz": "Industrial enterprise",
+    "meaningUz": "Sanoat korxonasi, tomoshabinlik biznesi",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "伝統芸能の保存と発展のために新しい興行を企画した。",
+        "romaji": "Dentou geinou no hozon to hatten no tame ni atarashii kougyou o kikaku shita.",
+        "uz": "An'anaviy san'atni saqlash va rivojlantirish maqsadida yangi tomosha tadbirlari rejalashtirildi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_874",
@@ -46523,9 +47489,15 @@
     "word": "仰っしゃる",
     "reading": "おっしゃる",
     "romaji": "ossharu",
-    "meaningUz": "To say, to speak, to tell, to talk",
+    "meaningUz": "Demoq, so'zlamoq (hurmat shakli)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "先生の仰る通り、日々の積み重ねが何よりも大切です。",
+        "romaji": "Sensei no ossharu doori, hibi no tsumikasane ga nani yori mo taisetsu desu.",
+        "uz": "Ustoz ta'kidlaganlaridek, har kungi doimiy mehnat har narsadan muhimroqdir."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_879",
@@ -46533,9 +47505,15 @@
     "word": "凝らす",
     "reading": "こごらす",
     "romaji": "kogorasu",
-    "meaningUz": "To freeze, to congeal",
+    "meaningUz": "Muzlatmoq, qotirmoq, diqqatni jamlamoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "部屋を冷やしすぎて容器の油が白く凝ってしまった。",
+        "romaji": "Heya o hiyashisugite youki no abura ga shiroku kogotte shimatta.",
+        "uz": "Xona haddan ortiq sovitib yuborilgani tufayli idishdagi yog' oqarib qotib qoldi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_880",
@@ -46648,9 +47626,15 @@
     "word": "局限",
     "reading": "きょくげん",
     "romaji": "kyokugen",
-    "meaningUz": "Limit, localize",
+    "meaningUz": "Cheklamoq, doirani toraytirmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "被害の影響を最小限の区域に局限することに成功した。",
+        "romaji": "Higai no eikyou o saishougen no kuiki ni kyokugen suru koto ni seikou shita.",
+        "uz": "Zarar ta'sirini eng minimal hudud bilan cheklashga muvaffaq bo'ldik."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_886",
@@ -46758,9 +47742,15 @@
     "word": "桐",
     "reading": "きり",
     "romaji": "kiri",
-    "meaningUz": "Paulownia tree",
+    "meaningUz": "Pavlovniya daraxti",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "桐の木は軽くて防湿性に優れており、伝統的なタンスの材料として重宝される。",
+        "romaji": "Kiri no ki wa karukute boushitsusei ni sugurete ori, dentouteki na tansu no zairyou toshite chouhou sareru.",
+        "uz": "Pavlovniya yog'ochi yengil va namlikka chidamli bo'lgani sababli an'anaviy javonlar uchun qadrlanadi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_892",
@@ -46789,9 +47779,15 @@
     "word": "勤まる",
     "reading": "つとまる",
     "romaji": "tsutomaru",
-    "meaningUz": "To be fit for, to be equal to, to function properly",
+    "meaningUz": "Eplay olmoq, vazifani bajara olmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "自分のような未熟者にこの重責が務まるか不安だった。",
+        "romaji": "Jibun no you na mijukumono ni kono juuseki ga tsutomaruka fuan datta.",
+        "uz": "Mendek tajribasiz kishi bu og'ir mas'uliyatni eplay oladimi-yo'qmi deb xavotirda edim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_894",
@@ -47025,9 +48021,15 @@
     "word": "近付く",
     "reading": "ちかづく",
     "romaji": "chikazuku",
-    "meaningUz": "To approach, to get near, to get acquainted with, to get closer",
+    "meaningUz": "Yaqinlashmoq, yaqin kelmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "台風が本州に近付くにつれて風雨が一段と強まった。",
+        "romaji": "Taifuu ga honshuu ni chikadzuku ni tsurete fuuu ga ichidan to tsuyomatta.",
+        "uz": "Tayfun orolga yaqinlashgani sari shamol va yomg'ir yanada kuchaydi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_906",
@@ -47135,9 +48137,15 @@
     "word": "区切り",
     "reading": "くぎり",
     "romaji": "kugiri",
-    "meaningUz": "An end, a stop, punctuation",
+    "meaningUz": "To'xtalish, bosqich, yakun",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "長かった研究プロジェクトが一つの大きな区切りを迎えた。",
+        "romaji": "Nagakatta kenkyuu purojekuto ga hitotsu no ookina kugiri o mukaeta.",
+        "uz": "Uzoq davom etgan ilmiy tadqiqot loyihasi muhim bir bosqichiga yetib keldi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_912",
@@ -47182,9 +48190,15 @@
     "word": "駆ける",
     "reading": "かける",
     "romaji": "kakeru",
-    "meaningUz": "To run (race  esp. horse), to gallop, to canter",
+    "meaningUz": "Shiddat bilan chopmoq, yeldek yugurmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "駿馬が青々とした草原を一陣の風のように駆けていった。",
+        "romaji": "Shunba ga aoao to shita sougen o ichijin no kaze no you ni kakete itta.",
+        "uz": "Chaqqon tulpor yashil yaylov bo'ylab shamoldek yelib o'tib ketdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_915",
@@ -47229,9 +48243,15 @@
     "word": "空しい",
     "reading": "むなしい",
     "romaji": "munashii",
-    "meaningUz": "Vacant, futile, vain, void, empty, ineffective, lifeless",
+    "meaningUz": "Puch, ma'nosiz, behuda",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "どれほど富を築いても、心が満たされなければ人生は空しい。",
+        "romaji": "Dorehodo tomi o kizuitemo, kokoro ga mitasarenakereba jinsei wa munashii.",
+        "uz": "Qanchalik boylik to'plamagin, ko'ngil to'lmasa hayot ma'nosiz va puchdir."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_918",
@@ -47239,9 +48259,15 @@
     "word": "空ろ",
     "reading": "うつろ",
     "romaji": "utsuro",
-    "meaningUz": "Blank, cavity, hollow, empty (space)",
+    "meaningUz": "Bo'shliq, hissiz nigoh",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "深い悲しみのあまり、彼の目は空ろな光をたたえていた。",
+        "romaji": "Fukai kanashimi no amari, kare no me wa utsuro na hikari o tataete ita.",
+        "uz": "Cheksiz g'am-alam tufayli uning ko'zlarida jonsiz va bo'm-bo'sh nigoh aks etardi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_919",
@@ -47270,9 +48296,15 @@
     "word": "偶に",
     "reading": "たまに",
     "romaji": "tamani",
-    "meaningUz": "Occasionally, once in a while",
+    "meaningUz": "Gohida, onda-sonda",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "偶には都会の喧騒を離れて静かな自然の中で過ごしたい。",
+        "romaji": "Tama ni wa tokai no kensou o hanarete shizuka na shizen no naka de sugoshitai.",
+        "uz": "Gohida shahar shovqinidan uzoqlashib osuda tabiat qo'ynida hordiq chiqarishni istayman."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_921",
@@ -47280,9 +48312,15 @@
     "word": "屈折",
     "reading": "くっせつ",
     "romaji": "kussetsu",
-    "meaningUz": "Bending, indentation, refraction",
+    "meaningUz": "Sinish (yorug'lik nurlarining sinishi), bukilish",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "水面に入った光が屈折して底の小石が浅く見える。",
+        "romaji": "Suimen ni haitta hikari ga kussetsu shite soko no koishi ga asaku mieru.",
+        "uz": "Suv sirtiga tushgan yorug'lik nuri sinib daryo tubidagi toshlar sayozdek ko'rinadi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_922",
@@ -47453,9 +48491,15 @@
     "word": "軍服",
     "reading": "ぐんぷく",
     "romaji": "gunpuku",
-    "meaningUz": "Military or naval uniform",
+    "meaningUz": "Harbiy kiyim, mundir",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "厳格な儀式に参列した将校たちは格式高い軍服を身にまとっていた。",
+        "romaji": "Genkaku na gishiki ni sanretsu shita shoukou-tachi wa kakushikitakai gunpuku o mi ni matotte ita.",
+        "uz": "Tantanali marosimda qatnashgan zobitlar hashamatli harbiy kiyimda edilar."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_931",
@@ -47505,9 +48549,15 @@
     "word": "傾く",
     "reading": "かたぶく",
     "romaji": "katabuku",
-    "meaningUz": "To incline toward, to slant, to lurch, to heel over, to be disposed to, to trend toward, to be prone to, to",
+    "meaningUz": "Og'moq, qiyalay boshlamoq, inqirozga yuz tutmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "長引く不況の影響で老舗企業の経営が大きく傾いた。",
+        "romaji": "Nagabiku fukyou no eikyou de shinise kigyou no keiei ga ookiku katabuita.",
+        "uz": "Cho'zilib ketgan inqiroz tufayli nufuzli korxona faoliyati jiddiy inqirozga yuz tutdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_934",
@@ -47599,9 +48649,15 @@
     "word": "契る",
     "reading": "ちぎる",
     "romaji": "chigiru",
-    "meaningUz": "To pledge, to promise, to swear",
+    "meaningUz": "Ont ichmoq, ahd-paymon qilmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "二人は固い友情を一生涯守り抜くことを心に誓い契った。",
+        "romaji": "Futari wa katai yuujou o isshouga mamorinuku koto o kokoro ni chikai chigitta.",
+        "uz": "Ikki do'st bir umr mustahkam do'stlikni saqlab qolishga ont ichdilar."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_939",
@@ -47693,9 +48749,15 @@
     "word": "恵む",
     "reading": "めぐむ",
     "romaji": "megumu",
-    "meaningUz": "To bless, to show mercy to",
+    "meaningUz": "Ehson qilmoq, in'om etmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "大自然が恵んでくれた豊かな実りに心から感謝した。",
+        "romaji": "Daishizen ga megunde kureta yutaka na minori ni kokoro kara kansha shita.",
+        "uz": "Ona tabiat in'om etgan mo'l hosil uchun chin dildan minnatdor bo'ldik."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_944",
@@ -47745,9 +48807,15 @@
     "word": "敬具",
     "reading": "けいぐ",
     "romaji": "keigu",
-    "meaningUz": "Sincerely yours",
+    "meaningUz": "Hurmat ila (rasmiy xat oxiridagi ibora)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "拝啓で始まる手紙の末尾には敬具と記すのが正しい作法だ。",
+        "romaji": "Haikei de hajimaru tegami no matsubi ni wa keigu to shirusu no ga tadashii sahou da.",
+        "uz": "\"Haikei\" bilan boshlangan rasmiy xat oxirida \"Keigu\" deb yozish to'g'ri qoidadir."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_947",
@@ -47776,9 +48844,15 @@
     "word": "経る",
     "reading": "へる",
     "romaji": "heru",
-    "meaningUz": "To pass, to elapse, to experience",
+    "meaningUz": "Boshdan kechirmoq, o'tmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "幾多の困難を経てようやく念願の事業計画が実現した。",
+        "romaji": "Ikuta no konnan o hete youyaku nengan no jigyou keikaku ga jitsugen shita.",
+        "uz": "Ko'plab mashaqqatlarni boshdan kechirib nihoyat orzu qilingan biznes reja amalga oshdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_949",
@@ -48207,9 +49281,15 @@
     "word": "結び付き",
     "reading": "むすびつき",
     "romaji": "musubitsuki",
-    "meaningUz": "Connection, relation",
+    "meaningUz": "Mustahkam aloqa, bog'liqlik",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "地域社会と学校の強い結び付きが青少年の健全な育成を支える。",
+        "romaji": "Chiiki shakai to gakkou no tsuyoi musubitsuki ga seishounen no kenzen na ikusei o sasaeru.",
+        "uz": "Mahalla bilan maktabning mustahkam aloqasi yoshlarning sog'lom tarbiyasiga zamin yaratadi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_971",
@@ -48217,9 +49297,15 @@
     "word": "結び付く",
     "reading": "むすびつく",
     "romaji": "musubitsuku",
-    "meaningUz": "To be connected or related, to join together",
+    "meaningUz": "Bog'lanmoq, natijaga olib kelmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "日々の地道な努力が必ずや大きな成功へ結び付く。",
+        "romaji": "Hibi no jimichi na doryoku ga kanarazu ya ookina seikou e musubitsuku.",
+        "uz": "Har kungi izchil mehnat muqarrar ravishda ulkan zafarlarga bog'lanadi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_972",
@@ -48521,9 +49607,15 @@
     "word": "兼業",
     "reading": "けんぎょう",
     "romaji": "kengyou",
-    "meaningUz": "Side line, second business",
+    "meaningUz": "Qo'shimcha kasb, ikkinchi ish",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "農業と観光業を兼業することで安定した収入を確保している。",
+        "romaji": "Nougyou to kankougyou o kengyou suru koto de antei shita shuunyuu o kakuho shite iru.",
+        "uz": "Dehqonchilik bilan birga sayyohlik faoliyatini yuritib barqaror daromadga ega bo'lmoqda."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_987",
@@ -48552,9 +49644,15 @@
     "word": "喧しい",
     "reading": "やかましい",
     "romaji": "yakamashii",
-    "meaningUz": "Noisy, strict, fussy",
+    "meaningUz": "Shovqinli, injiq, talabchan",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "礼儀作法に口喧かしい祖父の教えが今となっては大変役に立っている。",
+        "romaji": "Reigisahou ni kuchiyakamashii sofu no oshie ga ima to natte wa taihen yaku ni tatte iru.",
+        "uz": "Odob-axloq borasida nihoyatda talabchan bo'lgan bobomning o'gitlari bugun menga juda asqotmoqda."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_989",
@@ -48625,9 +49723,15 @@
     "word": "捲る",
     "reading": "まくる",
     "romaji": "makuru",
-    "meaningUz": "Verb suffix to indicate reckless abandon to the activity",
+    "meaningUz": "Ketma-ket qilmoq, tinimsiz bajarmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "相手チームの守備の隙を突いてシュートを打ちまくった。",
+        "romaji": "Aite chiimu no shubi no suki o tsuite shuuto o uchimakutta.",
+        "uz": "Raqib jamoa himoyasidagi bo'shliqdan foydalanib tinimsiz zarba yo'lladi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_993",
@@ -48719,9 +49823,15 @@
     "word": "研ぐ",
     "reading": "とぐ",
     "romaji": "togu",
-    "meaningUz": "To sharpen, to grind, to scour, to hone, to polish, to wash (rice)",
+    "meaningUz": "O'tkirlamoq, charxlamoq, tozalab yuvmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "料理人が研ぎ澄まされた包丁で手際よく魚をさばく。",
+        "romaji": "Ryourinin ga togisumasareta houchou de tegiwayoku sakana o sabaku.",
+        "uz": "Oshpaz o'tkir charxlangan pichoq bilan chaqqonlik bilan baliqni tozaladi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_998",
@@ -48729,9 +49839,15 @@
     "word": "見すぼらしい",
     "reading": "みすぼらしい",
     "romaji": "misuborashii",
-    "meaningUz": "Shabby, seedy",
+    "meaningUz": "Yirtiq-yamoq, abgor, g'arib",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "みすぼらしい身なりをしているが、彼は世界的な大富豪である。",
+        "romaji": "Misuborashii minari o shite iru ga, kare wa sekaiteki na daifugou de aru.",
+        "uz": "G'aribona kiyingan bo'lishiga qaramay, u dunyoga mashhur yirik milliarderdir."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_999",
@@ -48760,9 +49876,15 @@
     "word": "見せ物",
     "reading": "みせもの",
     "romaji": "misemono",
-    "meaningUz": "Show, exhibition",
+    "meaningUz": "Ko'rgazmali tomosha, diqqatga sazovor narsa",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "伝統的な祭りの見せ物に多くの観光客が詰めかけた。",
+        "romaji": "Dentouteki na matsuri no misemono ni tooku no kankoukyaku ga tsumekaketa.",
+        "uz": "An'anaviy bayram tomoshalarini ko'rish uchun ko'plab sayyohlar to'plandi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1001",
@@ -48770,9 +49892,15 @@
     "word": "見っともない",
     "reading": "みっともない",
     "romaji": "mittomonai",
-    "meaningUz": "Shameful, indecent",
+    "meaningUz": "Uyatli, sharmandali, bachkana",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "公共の場で大声で口論するなんて見っともない。",
+        "romaji": "Koukyou no ba de oogoe de kouron suru nante mittomonai.",
+        "uz": "Jamoat joyida baqirib janjallashish juda uyatli holatdir."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1002",
@@ -49059,9 +50187,15 @@
     "word": "謙る",
     "reading": "へりくだる",
     "romaji": "herikudaru",
-    "meaningUz": "To deprecate oneself and praise the listener",
+    "meaningUz": "Kamtar bo'lmoq, o'zini past olmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "偉大な業績を上げても常に謙る姿勢を忘れない。",
+        "romaji": "Idai na gyouseki o agetemo tsune ni herikudaru shisei o wasurenai.",
+        "uz": "Ulkan muvaffaqiyatlarga erishsa-da, doimo kamtarlik fazilatini unutmaydi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1017",
@@ -49069,9 +50203,15 @@
     "word": "軒並み",
     "reading": "のきなみ",
     "romaji": "nokinami",
-    "meaningUz": "Row of houses",
+    "meaningUz": "Uylar qatori, bir boshdan hamma",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "台風の影響でこの通りの商店街は軒並み臨時休業となった。",
+        "romaji": "Taifuu no eikyou de kono toori no shoutengai wa nokinami rinji kyuugyou to natta.",
+        "uz": "Tayfun oqibatida bu ko'chadagi do'konlarning barchasi bir boshdan vaqtincha yopildi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1018",
@@ -49100,9 +50240,15 @@
     "word": "遣り通す",
     "reading": "やりとおす",
     "romaji": "yaritoosu",
-    "meaningUz": "To carry through, to achieve, to complete",
+    "meaningUz": "Oxiriga yetkazmoq, so'nggigacha ado etmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "どんな逆境に立たされても自らの信念をやり通した。",
+        "romaji": "Donna gyakkyou ni tatasaretemo mizukara no shinnen o yaritooshita.",
+        "uz": "Qanday og'ir qiyinchilikka duch kelmasin, o'z e'tiqodini oxirigacha himoya qildi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1020",
@@ -49110,9 +50256,15 @@
     "word": "遣る",
     "reading": "やる",
     "romaji": "yaru",
-    "meaningUz": "To do, to have sexual intercourse, to kill, to give (to inferiors  animals  etc.), to dispatch (a letter",
+    "meaningUz": "Qilmoq, bermoq, yubormoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "困っている後輩のために一肌脱いでやることにした。",
+        "romaji": "Komatte iru kouhai no tame ni hitohada nuide yaru koto ni shita.",
+        "uz": "Qiyin ahvolda qolgan yosh safdoshimga yordam qo'lini cho'zishga qaror qildim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1021",
@@ -49162,9 +50314,15 @@
     "word": "元年",
     "reading": "がんねん",
     "romaji": "gannen",
-    "meaningUz": "First year (of a specific reign)",
+    "meaningUz": "Birinchi yil (yangi imperator boshqaruvi davri)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "令和元年に元号が改められ、新しい時代が幕を開けた。",
+        "romaji": "Reiwa gannen ni gengou ga aratamerare, atarashii jidai ga maku o aketa.",
+        "uz": "Reiva davrining birinchi yilida yangi eraga asos solinib yangi davr boshlandi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1024",
@@ -49214,9 +50372,15 @@
     "word": "原っぱ",
     "reading": "はらっぱ",
     "romaji": "harappa",
-    "meaningUz": "Open field, empty lot, plain",
+    "meaningUz": "Keng dala, ochiq maydon",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "子供の頃は近所の原っぱで日が暮れるまでサッカーをして遊んだ。",
+        "romaji": "Kodomo no koro wa kinjo no harappa de hi ga kureru made sakkaa o shite asonda.",
+        "uz": "Bolaligimizda qorong'i tushguncha mahalladagi ochiq maydonda futbol o'ynardik."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1027",
@@ -49487,9 +50651,15 @@
     "word": "減点",
     "reading": "げんてん",
     "romaji": "genten",
-    "meaningUz": "Subtract, give a demerit",
+    "meaningUz": "Ball ayirish, jarima bali",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "提出書類に不備があったため、選考で減点されてしまった。",
+        "romaji": "Teishutsu shorui ni fubi ga atta tame, senkou de genten sarete shimatta.",
+        "uz": "Topshirilgan hujjatda kamchilik bo'lgani sababli tanlovda jarima bali olindi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1041",
@@ -50096,9 +51266,15 @@
     "word": "跨がる",
     "reading": "またがる",
     "romaji": "matagaru",
-    "meaningUz": "To extend over or into, to straddle",
+    "meaningUz": "Cho'zilib ketmoq, qamrab olmoq (vaqt yoki masofa)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "工事は数カ月に跨がる大規模なものとなる見込みだ。",
+        "romaji": "Kouji wa suukagetsu ni matagaru daikibo na mono to naru mikomi da.",
+        "uz": "Qurilish ishlari bir necha oyni qamrab oladigan yirik hajmda bo'lishi kutilmoqda."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1071",
@@ -50106,9 +51282,15 @@
     "word": "跨ぐ",
     "reading": "またぐ",
     "romaji": "matagu",
-    "meaningUz": "To straddle",
+    "meaningUz": "Hatlamoq, qadam tashlab o'tmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "道に倒れていた木の枝をまたいで山道を進んだ。",
+        "romaji": "Michi ni taorete ita ki no eda o mataide yamamichi o susunda.",
+        "uz": "Yo'lda yiqilib yotgan daraxt shoxini hatlab tog' so'qmog'idan ilgariladi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1072",
@@ -50116,9 +51298,15 @@
     "word": "五月蝿い",
     "reading": "うるさい",
     "romaji": "urusai",
-    "meaningUz": "Noisy, loud, fussy",
+    "meaningUz": "Shovqinli, g'ala-g'ovur, quloqni teshar",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "外の工事の音が五月蝿くて勉強に集中できない。",
+        "romaji": "Soto no kouji no oto ga urusakute benkyou ni shuuchuu dekinai.",
+        "uz": "Tashqaridagi qurilish shovqini juda baland bo'lgani uchun darsga diqqat qilolmayapman."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1073",
@@ -50126,9 +51314,15 @@
     "word": "呉れる",
     "reading": "くれる",
     "romaji": "kureru",
-    "meaningUz": "To give, to let one have, to do for one, to be given",
+    "meaningUz": "Bermoq (menga yoki mening yaqinimga)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "親切な駅員が迷子の案内を丁寧にしてくれた。",
+        "romaji": "Shinsetsu na ekiin ga maigo no annai o teinei ni shite kureta.",
+        "uz": "Xushmuomala bekat xodimi adashib qolgan menga yo'lni tushuntirib berdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1074",
@@ -50136,9 +51330,15 @@
     "word": "呉れ呉れも",
     "reading": "くれぐれも",
     "romaji": "kureguremo",
-    "meaningUz": "Repeatedly, sincerely, earnestly",
+    "meaningUz": "Yolvorib so'rayman, takror va takror",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "季節の変わり目ですので、呉れ呉れもお体をご自愛ください。",
+        "romaji": "Kisetsu no kawarime desu node, kreguremo okarada o gojiai kudasai.",
+        "uz": "Fasl almashayotgan payt, o'zingizni ehtiyot qilishingizni chin dildan o'tinaman."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1075",
@@ -50209,9 +51409,15 @@
     "word": "御手洗い",
     "reading": "おてあらい",
     "romaji": "otearai",
-    "meaningUz": "Toilet, restroom, lavatory, bathroom (us)",
+    "meaningUz": "Hojatxona (xushmuomala atama)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "御手洗いは廊下の突き当たり右手にございます。",
+        "romaji": "Otearai wa rouka no tsukiatari migite ni gozaimasu.",
+        "uz": "Hojatxona yo'lak oxiridagi o'ng tomonda joylashgan."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1079",
@@ -50219,9 +51425,15 @@
     "word": "御負け",
     "reading": "おまけ",
     "romaji": "omake",
-    "meaningUz": "1.  a discount, a prize, 2.  something additional, bonus, an extra, 3.  an exaggeration",
+    "meaningUz": "Qo'shimcha sovg'a, chegirma, bonus",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "リンゴを3個買ったら、店主が御負けにもう1個つけてくれた。",
+        "romaji": "Ringo o sanko kattara, tenshu ga omake ni mou ikko tsukete kureta.",
+        "uz": "Uchta olma sotib olsam, do'konchi bonus sifatida yana bitta qo'shib berdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1080",
@@ -50229,9 +51441,15 @@
     "word": "御免ください",
     "reading": "ごめんください",
     "romaji": "gomenkudasai",
-    "meaningUz": "May i come in?",
+    "meaningUz": "Kirsam maylimi? (mehmonga kelganda)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "御免ください、田中様はいらっしゃいますでしょうか。",
+        "romaji": "Gomen kudasai, Tanaka-sama wa irasshaimasu deshou ka.",
+        "uz": "Assalomu alaykum, kirsam maylimi, Tanaka janoblari uydamilar?"
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1081",
@@ -50292,9 +51510,15 @@
     "word": "碁盤",
     "reading": "ごばん",
     "romaji": "goban",
-    "meaningUz": "Go board",
+    "meaningUz": "Go taxtasi (yapon donalari taxtasi)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "祖父と対局するために碁盤を居間に用意した。",
+        "romaji": "Sofu to taikyoku suru tame ni goban o ima ni youi shita.",
+        "uz": "Bobom bilan o'yin o'ynash uchun mehmonxonaga go taxtasini tayyorlab qo'ydim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1085",
@@ -50449,9 +51673,15 @@
     "word": "交える",
     "reading": "まじえる",
     "romaji": "majieru",
-    "meaningUz": "To mix, to converse with, to cross (swords)",
+    "meaningUz": "Aralashtirmoq, qo'shib gapirmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "ユーモアを交えながら専門的な講義を分かりやすく進めた。",
+        "romaji": "Yuumoa o majienagara senmonteki na kougi o wakariyasuku susumeta.",
+        "uz": "Hazil-mutoyiba qo'shgan holda sohaviy ma'ruzani tushunarli qilib olib bordi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1093",
@@ -50580,9 +51810,15 @@
     "word": "光熱費",
     "reading": "こうねつひ",
     "romaji": "kounetsuhi",
-    "meaningUz": "Cost of fuel and light",
+    "meaningUz": "Kommunal to'lovlar (gaz, elektr, suv xarajatlari)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "冬場は暖房を使うため、毎月の光熱費が高くなりがちだ。",
+        "romaji": "Fuyuba wa danbou o tsukau tame, maitsuki no kounetsuhi ga takaku narigachi da.",
+        "uz": "Qish mavsumida isitish vositalaridan foydalanilgani sababli oylik kommunal to'lovlar oshib ketadi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1100",
@@ -50711,9 +51947,15 @@
     "word": "公募",
     "reading": "こうぼ",
     "romaji": "koubo",
-    "meaningUz": "Public appeal, public contribution",
+    "meaningUz": "Ochiq tanlov, jamoat e'loni",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "市の新しいシンボルマークのデザインを広く一般から公募した。",
+        "romaji": "Shi no atarashii shinborumaaku no dezain o hiroku ippan kara koubo shita.",
+        "uz": "Shaharning yangi ramzi dizayni uchun keng jamoatchilik o'rtasida ochiq tanlov e'lon qilindi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1107",
@@ -50805,9 +52047,15 @@
     "word": "口ずさむ",
     "reading": "くちずさむ",
     "romaji": "kuchizusamu",
-    "meaningUz": "To hum something, to sing to oneself",
+    "meaningUz": "Xirgoyi qilmoq, o'zicha kuylamoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "懐かしいメロディーを口ずさみながら夕暮れの道を歩いた。",
+        "romaji": "Natsukashii merodii o kuchizusaminagara yuugure no michi o aruita.",
+        "uz": "Qadrdon ohangni xirgoyi qilib oqshom yo'lida yurib ketdim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1112",
@@ -51167,9 +52415,15 @@
     "word": "控室",
     "reading": "ひかえしつ",
     "romaji": "hikaeshitsu",
-    "meaningUz": "Waiting room",
+    "meaningUz": "Kutish zali, kutish xonasi",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "出演者たちは本番が始まるまで控室で待機していた。",
+        "romaji": "Shutsuensha-tachi wa honban ga hajimaru made hikaeshitsu de taiki shite ita.",
+        "uz": "Ishtirokchilar jonli chiqish boshlanguncha kutish xonasida kutib turishdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1130",
@@ -51503,9 +52757,15 @@
     "word": "行き成り",
     "reading": "いきなり",
     "romaji": "ikinari",
-    "meaningUz": "Suddenly",
+    "meaningUz": "To'satdan, birdaniga",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "行き成り背後から名前を呼ばれて驚いて振り返った。",
+        "romaji": "Ikinari haigo kara namae o yobarete odoroite furikaetta.",
+        "uz": "Orqamdan to'satdan ismim aytib chaqirilganda cho'chib ortimga qaradim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1147",
@@ -51597,9 +52857,15 @@
     "word": "講読",
     "reading": "こうどく",
     "romaji": "koudoku",
-    "meaningUz": "Reading, translation",
+    "meaningUz": "Matnni o'qib tarjima qilish darsi",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "大学の講読ゼミで難解な古典文学の原文を読み解いた。",
+        "romaji": "Daigaku no koudoku zemi de nankai na koten bungaku no genbun o yomitoita.",
+        "uz": "Universitetdagi matnshunoslik darsida murakkab mumtoz adabiyot asl nusxasini o'qib tahlil qildik."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1152",
@@ -51833,9 +53099,15 @@
     "word": "合議",
     "reading": "ごうぎ",
     "romaji": "gougi",
-    "meaningUz": "Consultation, conference",
+    "meaningUz": "Kollektiv maslahat, jamoaviy muhokama",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "重大な決定を下す前に役員一同による合議が行われた。",
+        "romaji": "Juudai na kettei o kudasu mae ni yakuin ichidou ni yoru gougi ga okonawareta.",
+        "uz": "Muhim qaror qabul qilishdan avval barcha rahbarlar ishtirokida jamoaviy kengash o'tkazildi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1164",
@@ -51906,9 +53178,15 @@
     "word": "濠",
     "reading": "ごう",
     "romaji": "gou",
-    "meaningUz": "Moat",
+    "meaningUz": "Qal'a atrofi xandag'i",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "城郭の周囲を取り囲む深い濠には清らかな水がたたえられていた。",
+        "romaji": "Joukwaku no shuui o torikakomu fukai gou ni wa kiyoraka na mizu ga tataerarete ita.",
+        "uz": "Qal'a atrofini o'rab turgan chuqur xandaqda musaffo suv to'lqinlanib turardi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1168",
@@ -51974,9 +53252,15 @@
     "word": "国定",
     "reading": "こくてい",
     "romaji": "kokutei",
-    "meaningUz": "State-sponsored, national",
+    "meaningUz": "Davlat tomonidan tasdiqlangan",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "小学校で使用される国定教科書の検定基準が見直された。",
+        "romaji": "Shougakkou de shiyou sareru kokutei kyoukasho no kentei kijun ga minaosareta.",
+        "uz": "Boshlang'ich maktablarda qo'llaniladigan davlat darsliklarining tasdiqlash mezonlari qayta ko'rib chiqildi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1172",
@@ -52110,9 +53394,15 @@
     "word": "忽ち",
     "reading": "たちまち",
     "romaji": "tachimachi",
-    "meaningUz": "At once, in a moment, suddenly, all at once",
+    "meaningUz": "Darhol, bir lahzada",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "新製品の告知をSNSに投稿すると、忽ち話題となって拡散した。",
+        "romaji": "Shinseihin no kokuchi o SNS ni toukou suru to, tachimachi wadai to natte kakusan shita.",
+        "uz": "Yangi mahsulot e'loni ijtimoiy tarmoqqa qo'yilishi bilanoq bir zumda shov-shuvga aylanib tarqaldi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1179",
@@ -52199,9 +53489,15 @@
     "word": "此れ",
     "reading": "これ",
     "romaji": "kore",
-    "meaningUz": "This",
+    "meaningUz": "Bu (yozma / ta'kid shakli)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "此れこそが長年探し求めていた真実の証拠である。",
+        "romaji": "Kore koso ga naganen sagashimotomete ita shinjitsu no shouko de aru.",
+        "uz": "Aynan mana shu narsa ko'p yillar davomida izlangan haqiqat dalilidir."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1184",
@@ -52209,9 +53505,15 @@
     "word": "此れ等",
     "reading": "これら",
     "romaji": "korera",
-    "meaningUz": "These",
+    "meaningUz": "Bular, ushbular",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "此れ等の資料を基に今後の開発戦略を策定する。",
+        "romaji": "Korera no shiryou o moto ni kongo no kaihatsu senryaku o sakutei suru.",
+        "uz": "Ushbu ma'lumotlar asosida kelgusidagi rivojlanish strategiyasini ishlab chiqamiz."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1185",
@@ -52440,9 +53742,15 @@
     "word": "些とも",
     "reading": "ちっとも",
     "romaji": "chittomo",
-    "meaningUz": "Not at all (neg. verb)",
+    "meaningUz": "Zarra ham, sira ham (inkor bilan)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "彼の説明を聞いても疑問は些とも解消しなかった。",
+        "romaji": "Kare no setsumei o kiitemo gimon wa chittomo kaishou shinakatta.",
+        "uz": "Uning tushuntirishini eshitganim bilan shubham zarra qadar ham tarqamadi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1197",
@@ -52450,9 +53758,15 @@
     "word": "些事",
     "reading": "さじ",
     "romaji": "saji",
-    "meaningUz": "Something small or petty, trifle",
+    "meaningUz": "Arzimas ish, mayda-chuyda",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "そんな日常の些事にこだわっていては大きな事業は成し遂げられない。",
+        "romaji": "Sonna nichijou no saji ni kodawatte ite wa ookina jigyou wa nashitogerarenai.",
+        "uz": "Kundalik arzimas mayda ishlarga o'ralashib qolsang ulkan ishlarni amalga oshirolmaysan."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1198",
@@ -52481,9 +53795,15 @@
     "word": "左程",
     "reading": "さほど",
     "romaji": "sahodo",
-    "meaningUz": "(not) very, (not) much",
+    "meaningUz": "Unchalik ham, u qadar (inkor bilan)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "事前の評判ほどには、映画の内容は左程面白くなかった。",
+        "romaji": "Jizen no hyouban hodo ni wa, eiga no naiyou wa sahodo omoshirokunakatta.",
+        "uz": "Oldindan tarqalgan shov-shuvchalik darajada film u qadar qiziq emas ekan."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1200",
@@ -52491,9 +53811,15 @@
     "word": "左様なら",
     "reading": "さようなら",
     "romaji": "sayounara",
-    "meaningUz": "Good-bye",
+    "meaningUz": "Xayr, salomat bo'ling",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "それでは皆様、また来週お会いしましょう、左様なら。",
+        "romaji": "Soredewa minasama, mata raishuu oaishimashou, sayounara.",
+        "uz": "Shunday ekan azizlar, kelasi hafta ko'rishguncha, xayr, salomat bo'ling."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1201",
@@ -52538,9 +53864,15 @@
     "word": "差し掛かる",
     "reading": "さしかかる",
     "romaji": "sashikakaru",
-    "meaningUz": "To come near to, to approach",
+    "meaningUz": "Yaqinlashmoq, yetib kelmoq (vaqt yoki joy)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "日暮れ時に差し掛かり、冷たい風が吹き始めた。",
+        "romaji": "Higure doki ni sashikakari, tsumetai kaze ga fukihajimeta.",
+        "uz": "Kechki payt yaqinlashib sovuq shabada esa boshladi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1204",
@@ -52548,9 +53880,15 @@
     "word": "差し支える",
     "reading": "さしつかえる",
     "romaji": "sashitsukaeru",
-    "meaningUz": "To interfere, to hinder, to become impeded",
+    "meaningUz": "Xalal bermoq, to'sqinlik qilmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "明日の仕事に差し支えるので、今夜の深酒は控えます。",
+        "romaji": "Ashita no shigoto ni sashitsukaeru node, kon'ya no fukazake wa hikaemasu.",
+        "uz": "Ertangi ishimga xalal bermasligi uchun bugun ko'p ichishdan o'zimni tiyaman."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1205",
@@ -52663,9 +54001,15 @@
     "word": "座談会",
     "reading": "ざだんかい",
     "romaji": "zadankai",
-    "meaningUz": "Symposium, round-table discussion",
+    "meaningUz": "Davra suhbati, simpozium",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "各界の有識者を招いて環境問題に関する座談会が催された。",
+        "romaji": "Kakkai no yuushikisha o maneite kankyou mondai ni kansuru zadankai ga moyoosareta.",
+        "uz": "Har soha mutaxassislari taklif etilib atrof-muhit muammolari bo'yicha davra suhbati o'tkazildi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1211",
@@ -52673,9 +54017,15 @@
     "word": "座標",
     "reading": "ざひょう",
     "romaji": "zahyou",
-    "meaningUz": "Coordinate(s)",
+    "meaningUz": "Koordinata (matematika, geografiya)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "レーダー画面に表示された敵機の座標を速やかに本部に伝達した。",
+        "romaji": "Reedaa gamen ni hyouji sareta tekiki no zahyou o sumiyaka ni honbu ni dentatsu shita.",
+        "uz": "Radar ekranida ko'ringan dushman samolyotining koordinatalarini zudlik bilan shtabga yetkazdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1212",
@@ -52846,9 +54196,15 @@
     "word": "哉",
     "reading": "や",
     "romaji": "ya",
-    "meaningUz": "Question mark",
+    "meaningUz": "Nahotki, -mi? (qadimiy so'roq yuklamasi)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "これほどの苦難を前にして誰が屈服しよう哉。",
+        "romaji": "Kore hodo no kunan o mae ni shite dare ga kuppuku shiyou ya.",
+        "uz": "Shunchalik og'ir sinov qarshisida kim ham taslim bo'lsin?"
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1221",
@@ -53450,9 +54806,15 @@
     "word": "擦る",
     "reading": "かする",
     "romaji": "kasuru",
-    "meaningUz": "To touch lightly, to take a percentage (from)",
+    "meaningUz": "Tegib o'tmoq, yengil qirilib o'tmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "弾丸がかすかに肩を擦って飛んでいった。",
+        "romaji": "Dangan ga kasuka ni kata o kasutte tonde itta.",
+        "uz": "O'q yelkasiga yengilgina tegib o'tib ketdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1251",
@@ -53476,9 +54838,15 @@
     "word": "擦れ違い",
     "reading": "すれちがい",
     "romaji": "surechigai",
-    "meaningUz": "Chance encounter",
+    "meaningUz": "Kelishmovchilik, bir-birini tushunmaslik",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "ちょっとした擦れ違いから親友と気まずくなってしまった。",
+        "romaji": "Chottoshita surechigai kara shin'yuu to kimazuku natte shimatta.",
+        "uz": "Kichik bir tushunmovchilik tufayli yaqin do'stim bilan oramiz sovuqlashdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1253",
@@ -53570,9 +54938,15 @@
     "word": "雑木",
     "reading": "ざつぼく",
     "romaji": "zatsuboku",
-    "meaningUz": "Various kinds of small trees, assorted trees",
+    "meaningUz": "Har xil past bo'yli daraxtlar, butazor",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "雑木林の中に小鳥たちのさえずりが心地よく響いている。",
+        "romaji": "Zatsubokubayashi no naka ni kotori-tachi no saezuri ga kokochiyoku hibiite iru.",
+        "uz": "Butazorlar orasida qushlarning mayin sayrashi yoqimli jaranglamoqda."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1258",
@@ -53749,9 +55123,15 @@
     "word": "散蒔く",
     "reading": "ばらまく",
     "romaji": "baramaku",
-    "meaningUz": "To disseminate, to scatter, to give money freely",
+    "meaningUz": "Sochmoq, tarqatmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "庭一面に花の種を散蒔いて春の訪れを待った。",
+        "romaji": "Niwa ichimen ni hana no tane o baramaite haru no otozure o matta.",
+        "uz": "Bog' bo'ylab gul urug'larini sochib bahor kelishini intizorlik bilan kutdim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1268",
@@ -54127,9 +55507,15 @@
     "word": "仕切る",
     "reading": "しきる",
     "romaji": "shikiru",
-    "meaningUz": "To partition, to divide, to mark off, to settle accounts, to toe the mark",
+    "meaningUz": "Bo'lmoq, ajratmoq, boshqarib turmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "リーダーとして議論の進行をテキパキと仕切った。",
+        "romaji": "Riidaa toshite giron no shinkou o tekipaki to shikitta.",
+        "uz": "Yetakchi sifatida munozara jarayonini chaqqonlik bilan boshqarib bordi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1287",
@@ -54158,9 +55544,15 @@
     "word": "仕入れる",
     "reading": "しいれる",
     "romaji": "shiireru",
-    "meaningUz": "To lay in stock, to replenish stock, to procure",
+    "meaningUz": "Xomashyo yoki tovar sotib olmoq, g'amlamoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "毎朝市場から新鮮な魚介類を直接仕入れている。",
+        "romaji": "Maiasa ichiba kara shinsen na gyokairui o chokusetsu shiirete iru.",
+        "uz": "Har tong bozordan yangi dengiz mahsulotlarini to'g'ridan-to'g'ri xarid qilib oladi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1289",
@@ -54168,9 +55560,15 @@
     "word": "仕付ける",
     "reading": "しつける",
     "romaji": "shitsukeru",
-    "meaningUz": "To be used to a job, to begin to do, to baste, to tack, to plant",
+    "meaningUz": "O'rgatmoq, tarbiyalamoq, odatlantirmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "幼い頃から礼儀作法を身に付けるよう厳しく仕付けられた。",
+        "romaji": "Osanai koro kara reigisahou o mi ni tsukeru you kibishiku shitsukerareta.",
+        "uz": "Yoshligidanoq odob-axloq qoidalarini o'zlashtirish uchun qattiqqo'llik bilan tarbiya ko'rgan."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1290",
@@ -54199,9 +55597,15 @@
     "word": "仕舞う",
     "reading": "しまう",
     "romaji": "shimau",
-    "meaningUz": "To finish, to close, to do something completely, to put away, to put an end to",
+    "meaningUz": "Yig'ishtirmoq, joyiga qo'ymoq, tugatmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "使った道具を元の引き出しへきれいに仕舞った。",
+        "romaji": "Tsukatta dougu o moto no hikidashi e kirei ni shimatta.",
+        "uz": "Foydalanilgan asboblarni o'z tortmasiga tartib bilan yig'ishtirib qo'ydim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1292",
@@ -54409,9 +55813,15 @@
     "word": "始めまして",
     "reading": "はじめまして",
     "romaji": "hajimemashite",
-    "meaningUz": "How do you do?, i am glad to meet you",
+    "meaningUz": "Tanishganimdan xursandman (salomlashuv)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "始めまして、新しく営業部に配属されました佐藤と申します。",
+        "romaji": "Hajimemashite, atarashiku eigyoubu ni haizoku saremashita Satou to moushimasu.",
+        "uz": "Assalomu alaykum, tanishganimdan xursandman, savdo bo'limining yangi xodimi Satoman."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1303",
@@ -54766,9 +56176,15 @@
     "word": "止むを得ない",
     "reading": "やむをえない",
     "romaji": "yamuwoenai",
-    "meaningUz": "Cannot be helped, unavoidable",
+    "meaningUz": "Noiloj, chorasiz",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "悪天候のため本日の屋外イベントを中止するのは止むを得ない。",
+        "romaji": "Akutenkou no tame honjitsu no okugai ibento o chuushi suru no wa yamu o enai.",
+        "uz": "Noqulay ob-havo tufayli bugungi ochiq havodagi tadbirni bekor qilish majburiy choradir."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1321",
@@ -55002,9 +56418,15 @@
     "word": "諮る",
     "reading": "はかる",
     "romaji": "hakaru",
-    "meaningUz": "To consult with, to confer",
+    "meaningUz": "Kengashmoq, fikrini so'ramoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "役員会に新制度の導入方針を諮って合意を得た。",
+        "romaji": "Yakuinkai ni shinseido no dounyuu houshin o hakatte goui o eta.",
+        "uz": "Rahbariyat kengashiga yangi tizim joriy etish masalasini qo'yib rozilik oldik."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1333",
@@ -55033,9 +56455,15 @@
     "word": "賜る",
     "reading": "たまわる",
     "romaji": "tamawaru",
-    "meaningUz": "To grant, to bestow",
+    "meaningUz": "In'om etmoq, baxsh etmoq (oliy zotdan)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "長年の学術的功績を称えられ、勲章を賜った。",
+        "romaji": "Naganen no gakujutsuteki kouseki o tataerare, kunshou o tamawatta.",
+        "uz": "Ko'p yillik ilmiy xizmatlari e'tirof etilib, yuksak davlat ordeni bilan taqdirlandi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1335",
@@ -55127,9 +56555,15 @@
     "word": "事によると",
     "reading": "ことによると",
     "romaji": "kotoniyoruto",
-    "meaningUz": "Depending on the circumstances",
+    "meaningUz": "Vaziyatga qarab, ehtimol",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "事によると明日の試合は雨で延期になるかもしれない。",
+        "romaji": "Koto ni yoru to ashita no shiai wa ame de enki ni naru kamo shirenai.",
+        "uz": "Vaziyatga qarab ertangi o'yin yomg'ir tufayli qoldirilishi ham mumkin."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1340",
@@ -55221,9 +56655,15 @@
     "word": "似通う",
     "reading": "にかよう",
     "romaji": "nikayou",
-    "meaningUz": "To resemble closely",
+    "meaningUz": "Juda o'xshash bo'lmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "双子の兄弟は声も話し方も驚くほど似通っている。",
+        "romaji": "Futago no kyoudai wa koe mo hanashikata mo odoroku hodo nikayotte iru.",
+        "uz": "Egizak aka-ukaning ovozi ham, gapirish tarzi ham hayratlanarli darajada o'xshash."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1345",
@@ -55294,9 +56734,15 @@
     "word": "字体",
     "reading": "じたい",
     "romaji": "jitai",
-    "meaningUz": "Type, font, lettering",
+    "meaningUz": "Shrift, yozuv shakli",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "ポスターの見出しには視認性の高い太い字体を採用した。",
+        "romaji": "Posutaa no midashi ni wa shininsei no takai futoi jitai o saiyou shita.",
+        "uz": "Plakat sarlavhasi uchun uzoqdan yaqqol ko'rinadigan qalin shrift tanlandi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1349",
@@ -55325,9 +56771,15 @@
     "word": "持ち切り",
     "reading": "もちきり",
     "romaji": "mochikiri",
-    "meaningUz": "Hot topic, talk of the town",
+    "meaningUz": "Bosh mavzu, hamma muhokama qilayotgan gap",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "若手研究者のノーベル賞受賞のニュースで世間は持ち切りだ。",
+        "romaji": "Wakate kenkyuusha no nooberushou jushou no nyuusu de seken wa mochikkiri da.",
+        "uz": "Yosh olimning Nobel mukofotiga sazovor bo'lgani haqidagi yangilik butun jamoatchilikning bosh mavzusiga aylandi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1351",
@@ -55356,9 +56808,15 @@
     "word": "持て成す",
     "reading": "もてなす",
     "romaji": "motenasu",
-    "meaningUz": "To entertain, to make welcome",
+    "meaningUz": "Izzat-ikrom ko'rsatmoq, mehmon qilmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "遠方からのお客様を伝統的な懐石料理で心を込めて持て成した。",
+        "romaji": "Enpou kara no okyakusama o dentouteki na kaiseki ryouri de kokoro o komete motenashita.",
+        "uz": "Olisdan kelgan aziz mehmonni an'anaviy tansiq taomlar bilan samimiy kutib oldik."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1353",
@@ -55566,9 +57024,15 @@
     "word": "而も",
     "reading": "しかも",
     "romaji": "shikamo",
-    "meaningUz": "Moreover, furthermore, nevertheless, and yet",
+    "meaningUz": "Ustiga-ustak, qolaversa, shu bilan birga",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "この最新機器は高性能で、而も消費電力が極めて少ない。",
+        "romaji": "Kono saishin kiki wa kouseinou de, shikamo shouhi denryoku ga kiwamete sukunai.",
+        "uz": "Ushbu zamonaviy uskuna yuqori quvvatga ega, ustiga-ustak elektr energiyasini juda kam sarflaydi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1364",
@@ -55597,9 +57061,15 @@
     "word": "自ずから",
     "reading": "おのずから",
     "romaji": "onozukara",
-    "meaningUz": "Naturally, as a matter of course",
+    "meaningUz": "O'z-o'zidan, tabiiy yo'l bilan",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "誠実に行動していれば、自ずから周囲の信頼も得られる。",
+        "romaji": "Seijitsu ni koudou shite ireba, onozukara shuui no shinrai mo erareru.",
+        "uz": "Halol va samimiy harakat qilsang, atrofdagilarning ishonchiga o'z-o'zidan erishasan."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1366",
@@ -55880,9 +57350,15 @@
     "word": "式場",
     "reading": "しきじょう",
     "romaji": "shikijou",
-    "meaningUz": "Ceremonial hall, place of ceremony (e.g. marriage)",
+    "meaningUz": "Tantanalar zali, marosim o'tkaziladigan joy",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "厳かな結婚式が格式高いホテルの式場で執り行われた。",
+        "romaji": "Ogosoka na kekkonshiki ga kakushikitakai hoteru no shikijou de toriokonawareta.",
+        "uz": "Fayzli nikoh to'yi nufuzli mehmonxonaning tantanalar zalida o'tkazildi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1380",
@@ -56027,9 +57503,15 @@
     "word": "悉く",
     "reading": "ことごとく",
     "romaji": "kotogotoku",
-    "meaningUz": "Altogether, entirely",
+    "meaningUz": "Barchasi, butkul, yoppasiga",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "大火災によって歴史ある古い街並みが悉く灰燼に帰した。",
+        "romaji": "Daikasai ni yotte rekishi aru furui machinami ga kotogotoku kaijin ni kishita.",
+        "uz": "Katta yong'in tufayli qadimiy ko'chalar butkul kulga aylandi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1388",
@@ -56037,9 +57519,15 @@
     "word": "湿気る",
     "reading": "しける",
     "romaji": "shikeru",
-    "meaningUz": "To be damp, to be moist",
+    "meaningUz": "Nam tortmoq, zaxlanmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "湿気を含んでお菓子のクッキーがすっかり湿気てしまった。",
+        "romaji": "Shikke o fukunde okashi no kukkii ga sukkari shikete shimatta.",
+        "uz": "Namlik o'tib shirin pechenyelar butunlay yumshab, zax tortib qoldi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1389",
@@ -56047,9 +57535,15 @@
     "word": "疾っくに",
     "reading": "とっくに",
     "romaji": "tokkuni",
-    "meaningUz": "Long ago, already, a long time ago",
+    "meaningUz": "Allaqaachon, ancha oldin",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "その問題なら疾っくに解決済みだから心配いらない。",
+        "romaji": "Sono mondai nara tokkuni kaiketsuzumi dakara shinpai iranai.",
+        "uz": "U muammo allaqaachon hal bo'lgan, shuning uchun xavotirga o'rin yo'q."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1390",
@@ -56057,9 +57551,15 @@
     "word": "質疑",
     "reading": "しつぎ",
     "romaji": "shitsugi",
-    "meaningUz": "Question",
+    "meaningUz": "Savol-javob, surishtiruv",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "予算案に関する白熱した質疑応答が国会で続いている。",
+        "romaji": "Yosan'an ni kansuru hakunetsu shita shitsugi outou ga kokkai de tsuzuite iru.",
+        "uz": "Byudjet loyihasi bo'yicha qizg'in savol-javoblar parlamentda davom etmoqda."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1391",
@@ -56193,9 +57693,15 @@
     "word": "実費",
     "reading": "じっぴ",
     "romaji": "jippi",
-    "meaningUz": "Actual expense, cost price",
+    "meaningUz": "Haqiqiy xarajat, tannarx",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "交通費や宿泊費などの実費は後日会社から精算される。",
+        "romaji": "Koutsuuhi ya shukuhakuhi nado no jippi wa gojitsu kaisha kara seisan sareru.",
+        "uz": "Yo'l kira va mehmonxona kabi haqiqiy xarajatlar keyinchalik korxona tomonidan to'lab beriladi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1398",
@@ -56356,9 +57862,15 @@
     "word": "若しかしたら",
     "reading": "もしかしたら",
     "romaji": "moshikashitara",
-    "meaningUz": "Perhaps, maybe, by some chance",
+    "meaningUz": "Ehtimol, balki, shoyad",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "若しかしたら彼の提案のほうが効率的かもしれない。",
+        "romaji": "Moshikashitara kare no teian no hou ga kouritsuteki kamo shirenai.",
+        "uz": "Ehtimol uning bergan taklifi samaraliroq bo'lishi mumkin."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1407",
@@ -56366,9 +57878,15 @@
     "word": "若しかして",
     "reading": "もしかして",
     "romaji": "moshikashite",
-    "meaningUz": "Perhaps, possibly",
+    "meaningUz": "Mabodo, ehtimol",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "若しかして道に迷ったのではないかと心配になった。",
+        "romaji": "Moshikashite michi ni mayotta no dewa nai ka to shinpai ni natta.",
+        "uz": "Mabodo yo'ldan adashib qolmadimikin deb xavotirga tushdim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1408",
@@ -56376,9 +57894,15 @@
     "word": "若しかすると",
     "reading": "もしかすると",
     "romaji": "moshikasuruto",
-    "meaningUz": "Perhaps, maybe, by some chance",
+    "meaningUz": "Balki, ehtimolki",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "若しかすると天候の急変で飛行機が欠航になる恐れがある。",
+        "romaji": "Moshikasuruto tenkou no kyuuhen de hikouki ga kekkou ni naru osore ga aru.",
+        "uz": "Balki ob-havoning keskin o'zgarishi tufayli samolyot parvozi bekor qilinishi mumkin."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1409",
@@ -56402,9 +57926,15 @@
     "word": "若しも",
     "reading": "もしも",
     "romaji": "moshimo",
-    "meaningUz": "If",
+    "meaningUz": "Agar, mabodo",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "若しも明日世界が終わるとしても、私はリンゴの木を植える。",
+        "romaji": "Moshimo ashita sekai ga owaru to shitemo, watashi wa ringo no ki o ueru.",
+        "uz": "Mabodo ertaga qiyomat qoyim bo'lsa ham, men olma ko'chatini ekaman."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1411",
@@ -56780,9 +58310,15 @@
     "word": "取り巻く",
     "reading": "とりまく",
     "romaji": "torimaku",
-    "meaningUz": "To surround, to circle, to enclose",
+    "meaningUz": "O'rab olmoq, qurshamoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "記者会見場に到着した首相を大勢の報道陣が取り巻いた。",
+        "romaji": "Kishakaikenjou ni touchaku shita shushou o oozei no houdoujin ga torimaita.",
+        "uz": "Matbuot anjumani maydoniga kelgan bosh vazirni ko'plab jurnalistlar qurshab oldi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1430",
@@ -56806,9 +58342,15 @@
     "word": "取り混ぜる",
     "reading": "とりまぜる",
     "romaji": "torimazeru",
-    "meaningUz": "To mix, to put together",
+    "meaningUz": "Aralashtirmoq, qorishtirmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "大小様々なサイズのリンゴを取り混ぜて箱に詰めた。",
+        "romaji": "Daishou samazama na saizu no ringo o torimazete hako ni tsumeta.",
+        "uz": "Katta-kichik turli o'lchamdagi olmalarni aralashtirib qutiga joyladim."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1432",
@@ -56816,9 +58358,15 @@
     "word": "取り次ぐ",
     "reading": "とりつぐ",
     "romaji": "toritsugu",
-    "meaningUz": "To act as an agent for, to announce (someone), to convey (a message)",
+    "meaningUz": "Yetkazmoq, vositachilik qilmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "来客の用件を受付の担当者が速やかに社長室へ取り次いだ。",
+        "romaji": "Raikyaku no youken o uketsuke no tantousha ga sumiyaka ni shachoushitsu e toritsuida.",
+        "uz": "Qabulxona mas'uli mehmonning tashrif maqsadini darhol prezident qabulxonasiga yetkazdi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1433",
@@ -56947,9 +58495,15 @@
     "word": "取り立てる",
     "reading": "とりたてる",
     "romaji": "toritateru",
-    "meaningUz": "To collect, to extort, to appoint, to promote",
+    "meaningUz": "Aynan ajratib ko'rsatmoq, undirmoq (soliq)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "取り立てて問題にするほどの欠陥は見当たらなかった。",
+        "romaji": "Toritatete mondai ni suru hodo no kekkan wa miataranakatta.",
+        "uz": "Alohida muammo darajasiga ko'taradigan jiddiy kamchilik topilmadi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1440",
@@ -57036,9 +58590,15 @@
     "word": "手回し",
     "reading": "てまわし",
     "romaji": "temawashi",
-    "meaningUz": "Preparations, arrangements",
+    "meaningUz": "Oldindan tayyorgarlik ko'rish, tadbirlar",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "万全の手回しのおかげで、大規模な国際会議が無事に閉幕した。",
+        "romaji": "Banzen no temawashi no okage de, daikibo na kokusai kaigi ga buji ni heimaku shita.",
+        "uz": "Puxta oldindan tayyorgarlik sharofati bilan yirik xalqaro anjuman muvaffaqiyatli yakunlandi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1445",
@@ -57067,9 +58627,15 @@
     "word": "手掛ける",
     "reading": "てがける",
     "romaji": "tegakeru",
-    "meaningUz": "To handle, to manage, to work with, to rear, to look after, to have experience with",
+    "meaningUz": "Qo'l urmoq, shug'ullanmoq, boshqarmoq",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "著名な建築家が自ら手掛けた美術館が一般公開された。",
+        "romaji": "Chomei na kenchikuka ga mizukara tegaketa bijutsukan ga ippan koukai sareta.",
+        "uz": "Mashhur me'morning shaxsan o'zi loyihalashtirgan san'at muzeyi jamoatchilik uchun ochildi."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1447",
@@ -57303,9 +58869,15 @@
     "word": "手筈",
     "reading": "てはず",
     "romaji": "tehazu",
-    "meaningUz": "Arrangement, plan, programme",
+    "meaningUz": "Reja, tartib, tartibga solish",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "引っ越し当日の手筈を家族で念入りに確認し合った。",
+        "romaji": "Hikkoshi toujitsu no tehazu o kazoku de neiniri ni kakuninshiatta.",
+        "uz": "Ko'chish kuni bo'yicha belgilangan rejalarni oila a'zolari bilan puxta tekshirib oldik."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1459",
@@ -57313,9 +58885,15 @@
     "word": "手分け",
     "reading": "てわけ",
     "romaji": "tewake",
-    "meaningUz": "Division of labour",
+    "meaningUz": "Vazifalarni bo'lib olish",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "手分けして広い会場の清掃を行い、短時間で終えた。",
+        "romaji": "Tewake shite hiroi kaijou no seisou o okonai, tanjikan de oeta.",
+        "uz": "Keng zalni tozalash vazifasini o'zaro bo'lib olib, qisqa vaqt ichida bitirdik."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1460",
@@ -57644,9 +59222,15 @@
     "word": "受け付ける",
     "reading": "うけつける",
     "romaji": "uketsukeru",
-    "meaningUz": "To be accepted, to receive (an application)",
+    "meaningUz": "Qabul qilmoq (ariza, murojaat)",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "窓口で新年度の奨学金の申請書類を受け付けている。",
+        "romaji": "Madoguchi de shinnendo no shougakukin no shinsei shorui o uketsukete iru.",
+        "uz": "Qabul oynasida yangi o'quv yili uchun stipendiya arizalari qabul qilinmoqda."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1477",
@@ -57654,9 +59238,15 @@
     "word": "受身",
     "reading": "うけみ",
     "romaji": "ukemi",
-    "meaningUz": "Passive, passive voice",
+    "meaningUz": "Majhul nisbat (grammatika), passiv pozitsiya",
     "partOfSpeech": "Leksika",
-    "examples": []
+    "examples": [
+      {
+        "ja": "日本語の文法において受身表現は多様なニュアンスを持つ。",
+        "romaji": "Nihongo no bunpou ni oite ukemi hyougen wa tayou na nyuansu o motsu.",
+        "uz": "Yapon tili grammatikasida majhul nisbat iboralari xilma-xil ma'no qirralariga egadir."
+      }
+    ]
   },
   {
     "id": "vocab_n1_add_1478",

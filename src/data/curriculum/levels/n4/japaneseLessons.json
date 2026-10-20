@@ -90,6 +90,61 @@
               "options": ["書[か]きます", "食事[しょくじ]", "運転[うんてん]", "散歩[さんぽ]"],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"書[か]きます\" (Yozmoq (Te-form: 書[か]いて))."
+            },
+            {
+              "id": "ja-n4-u1-l1-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「この 説明は 少し （　　）です。」",
+              "options": ["待ちます", "準備", "複雑", "書きます"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「複雑」 (Fukuzatsu) — \"Murakkab, chigal\". Gapning to'liq ma'nosi: \"Bu tushuntirish biroz murakkab.\"."
+            },
+            {
+              "id": "ja-n4-u1-l1-ex-4",
+              "type": "multiple-choice",
+              "prompt": "「待ちます」 (Machimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Yozmoq (Te-form: 書[か]いて)",
+                "Kutmoq (Te-form: 待[ま]って)",
+                "Murakkab, chigal",
+                "Ayniqsa / Xususan"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「待ちます」 (Machimasu) so'zi o'zbek tilida \"Kutmoq (Te-form: 待[ま]って)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u1-l1-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「書きます」 (Kakimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Kutmoq (Te-form: 待[ま]って)",
+                "Murakkab, chigal",
+                "Yozmoq (Te-form: 書[か]いて)",
+                "Isitma"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「書きます」 (Kakimasu) so'zi o'zbek tilida \"Yozmoq (Te-form: 書[か]いて)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u1-l1-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「複雑」 (Fukuzatsu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Kutmoq (Te-form: 待[ま]って)",
+                "Bitirmoq / Tamomlamoq",
+                "Yozmoq (Te-form: 書[か]いて)",
+                "Murakkab, chigal"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「複雑」 (Fukuzatsu) so'zi o'zbek tilida \"Murakkab, chigal\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u1-l1-ex-7",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「名前（　　） 書いてください。」",
+              "options": ["を", "から", "と", "に"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「名前を 書いてください。」 (Ismingizni yozing.)."
             }
           ]
         }
@@ -228,6 +283,56 @@
               "options": ["散歩[さんぽ]", "運転[うんてん]", "食事[しょくじ]", "複雑[ふくざつ]"],
               "correctAnswer": 3,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"複雑[ふくざつ]\" (Murakkab, chigal)."
+            },
+            {
+              "id": "ja-n4-u1-l2-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） お願いします。」",
+              "options": ["もう 一度", "複雑", "遠慮します", "知ります"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「もう 一度」 (Mou ichido) — \"Yana bir bor\". Gapning to'liq ma'nosi: \"Iltimos, yana bir marta.\"."
+            },
+            {
+              "id": "ja-n4-u1-l2-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「この 説明は 少し （　　）です。」",
+              "options": ["もう 一度", "複雑", "遠慮します", "案内します"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「複雑」 (Fukuzatsu) — \"Murakkab, chigal\". Gapning to'liq ma'nosi: \"Bu tushuntirish biroz murakkab.\"."
+            },
+            {
+              "id": "ja-n4-u1-l2-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「もう 一度」 (Mou ichido) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Murakkab, chigal",
+                "Tortinmoq, rad etmoq",
+                "Yana bir bor",
+                "Bitirmoq / Tamomlamoq"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「もう 一度」 (Mou ichido) so'zi o'zbek tilida \"Yana bir bor\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u1-l2-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「複雑」 (Fukuzatsu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Yana bir bor", "Sayohat", "Murakkab, chigal", "Tortinmoq, rad etmoq"],
+              "correctAnswer": 2,
+              "explanation": "「複雑」 (Fukuzatsu) so'zi o'zbek tilida \"Murakkab, chigal\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u1-l2-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「遠慮します」 (Enryo shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Yana bir bor",
+                "Tortinmoq, rad etmoq",
+                "Murakkab, chigal"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「遠慮します」 (Enryo shimasu) so'zi o'zbek tilida \"Tortinmoq, rad etmoq\" ma'nosini bildiradi."
             }
           ]
         }
@@ -370,6 +475,61 @@
               ],
               "correctAnswer": 2,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"遠慮[えんりょ]します\" (Tortinmoq, rad etmoq)."
+            },
+            {
+              "id": "ja-n4-u1-l3-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）を 撮ります。」",
+              "options": ["写真", "遠慮します", "案内します", "複雑"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「写真」 (Shashin) — \"Rasm / Fotosurat\". Gapning to'liq ma'nosi: \"Rasmga olaman.\"."
+            },
+            {
+              "id": "ja-n4-u1-l3-ex-4",
+              "type": "multiple-choice",
+              "prompt": "「写真」 (Shashin) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tortinmoq, rad etmoq",
+                "Rasm / Fotosurat",
+                "Javob",
+                "Yoʻl koʻrsatmoq, tanishtirmoq"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「写真」 (Shashin) so'zi o'zbek tilida \"Rasm / Fotosurat\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u1-l3-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「遠慮します」 (Enryo shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tortinmoq, rad etmoq",
+                "Rasm / Fotosurat",
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Yashamoq (Holat: 住[す]んでいる)"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「遠慮します」 (Enryo shimasu) so'zi o'zbek tilida \"Tortinmoq, rad etmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u1-l3-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「案内します」 (Annai shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Rasm / Fotosurat",
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Javob",
+                "Tortinmoq, rad etmoq"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「案内します」 (Annai shimasu) so'zi o'zbek tilida \"Yoʻl koʻrsatmoq, tanishtirmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u1-l3-ex-7",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「写真（　　） 撮ります。」",
+              "options": ["と", "は", "を", "から"],
+              "correctAnswer": 2,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「写真を 撮ります。」 (Rasmga olaman.)."
             }
           ]
         }
@@ -511,6 +671,61 @@
               "options": ["運転[うんてん]", "知[し]ります", "散歩[さんぽ]", "食事[しょくじ]"],
               "correctAnswer": 1,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"知[し]ります\" (Bilib olmoq (Holat: 知[し]っている))."
+            },
+            {
+              "id": "ja-n4-u1-l4-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「試験の （　　）を 始めましょう。」",
+              "options": ["住みます", "準備", "知ります", "書きます"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「準備」 (Junbi) — \"Tayyorgarlik\". Gapning to'liq ma'nosi: \"Imtihonga tayyorgarlikni boshlaylik.\"."
+            },
+            {
+              "id": "ja-n4-u1-l4-ex-4",
+              "type": "multiple-choice",
+              "prompt": "「住みます」 (Sumimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tayyorgarlik",
+                "Yashamoq (Holat: 住[す]んでいる)",
+                "Bilib olmoq (Holat: 知[し]っている)",
+                "Reja / Jadval"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「住みます」 (Sumimasu) so'zi o'zbek tilida \"Yashamoq (Holat: 住[す]んでいる)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u1-l4-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「知ります」 (Shirimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Bitirmoq / Tamomlamoq",
+                "Bilib olmoq (Holat: 知[し]っている)",
+                "Tayyorgarlik",
+                "Yashamoq (Holat: 住[す]んでいる)"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「知ります」 (Shirimasu) so'zi o'zbek tilida \"Bilib olmoq (Holat: 知[し]っている)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u1-l4-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「準備」 (Junbi) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Bilib olmoq (Holat: 知[し]っている)",
+                "Yashamoq (Holat: 住[す]んでいる)",
+                "Murakkab, chigal",
+                "Tayyorgarlik"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「準備」 (Junbi) so'zi o'zbek tilida \"Tayyorgarlik\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u1-l4-ex-7",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「東京（　　） 住んでいます。」",
+              "options": ["に", "と", "は", "を"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「に」 zarrachasi to'g'ri keladi. Butun jumla: 「東京に 住んでいます。」 (Tokioda yashayman.)."
             }
           ]
         }
@@ -653,6 +868,69 @@
               "options": ["準備[じゅんび]", "運転[うんてん]", "食事[しょくじ]", "散歩[さんぽ]"],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"準備[じゅんび]\" (Tayyorgarlik)."
+            },
+            {
+              "id": "ja-n4-u1-l5-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「試験の （　　）を 始めましょう。」",
+              "options": ["準備", "卒業します", "複雑", "一番"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「準備」 (Junbi) — \"Tayyorgarlik\". Gapning to'liq ma'nosi: \"Imtihonga tayyorgarlikni boshlaylik.\"."
+            },
+            {
+              "id": "ja-n4-u1-l5-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「この 説明は 少し （　　）です。」",
+              "options": ["複雑", "準備", "住みます", "卒業します"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「複雑」 (Fukuzatsu) — \"Murakkab, chigal\". Gapning to'liq ma'nosi: \"Bu tushuntirish biroz murakkab.\"."
+            },
+            {
+              "id": "ja-n4-u1-l5-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「卒業します」 (Sotsugyou shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Bitirmoq / Tamomlamoq",
+                "Tayyorgarlik",
+                "Yozmoq (Te-form: 書[か]いて)",
+                "Murakkab, chigal"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「卒業します」 (Sotsugyou shimasu) so'zi o'zbek tilida \"Bitirmoq / Tamomlamoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u1-l5-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「準備」 (Junbi) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Bitirmoq / Tamomlamoq",
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Murakkab, chigal",
+                "Tayyorgarlik"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「準備」 (Junbi) so'zi o'zbek tilida \"Tayyorgarlik\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u1-l5-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「複雑」 (Fukuzatsu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Bitirmoq / Tamomlamoq",
+                "Murakkab, chigal",
+                "Tayyorgarlik",
+                "Ayniqsa / Xususan"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「複雑」 (Fukuzatsu) so'zi o'zbek tilida \"Murakkab, chigal\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u1-l5-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「大学（　　） 卒業しました。」",
+              "options": ["は", "が", "と", "を"],
+              "correctAnswer": 3,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「大学を 卒業しました。」 (Universitetni bitirdim.)."
             }
           ]
         }
@@ -794,6 +1072,48 @@
               "options": ["散歩[さんぽ]", "食事[しょくじ]", "運転[うんてん]", "忘[わす]れます"],
               "correctAnswer": 3,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"忘[わす]れます\" (Unutmoq)."
+            },
+            {
+              "id": "ja-n4-u2-l1-ex-3",
+              "type": "multiple-choice",
+              "prompt": "「心配します」 (Shinpai shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Unutmoq", "Murakkab, chigal", "Tortinmoq, rad etmoq", "Xavotir olmoq"],
+              "correctAnswer": 3,
+              "explanation": "「心配します」 (Shinpai shimasu) so'zi o'zbek tilida \"Xavotir olmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u2-l1-ex-4",
+              "type": "multiple-choice",
+              "prompt": "「忘れます」 (Wasuremasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Unutmoq",
+                "Tortinmoq, rad etmoq",
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Xavotir olmoq"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「忘れます」 (Wasuremasu) so'zi o'zbek tilida \"Unutmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u2-l1-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「遠慮します」 (Enryo shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Unutmoq",
+                "Xavotir olmoq",
+                "Tortinmoq, rad etmoq",
+                "Bitirmoq / Tamomlamoq"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「遠慮します」 (Enryo shimasu) so'zi o'zbek tilida \"Tortinmoq, rad etmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u2-l1-ex-6",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「心配しない（　　） ください。」",
+              "options": ["は", "を", "から", "で"],
+              "correctAnswer": 3,
+              "explanation": "Ushbu o'rinda 「で」 zarrachasi to'g'ri keladi. Butun jumla: 「心配しないで ください。」 (Xavotir olmang.)."
             }
           ]
         }
@@ -936,6 +1256,61 @@
               ],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"遠慮[えんりょ]します\" (Tortinmoq, rad etmoq)."
+            },
+            {
+              "id": "ja-n4-u2-l2-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 食べたことが ありません。」",
+              "options": ["予定", "遠慮します", "一度も", "案内します"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「一度も」 (Ichido mo) — \"Biror marta ham (inkor bilan)\". Gapning to'liq ma'nosi: \"Biror marta ham yemaganman.\"."
+            },
+            {
+              "id": "ja-n4-u2-l2-ex-4",
+              "type": "multiple-choice",
+              "prompt": "「一度も」 (Ichido mo) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Javob",
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Tortinmoq, rad etmoq",
+                "Biror marta ham (inkor bilan)"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「一度も」 (Ichido mo) so'zi o'zbek tilida \"Biror marta ham (inkor bilan)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u2-l2-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「遠慮します」 (Enryo shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Unutmoq",
+                "Biror marta ham (inkor bilan)",
+                "Tortinmoq, rad etmoq"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「遠慮します」 (Enryo shimasu) so'zi o'zbek tilida \"Tortinmoq, rad etmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u2-l2-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「案内します」 (Annai shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Biror marta ham (inkor bilan)",
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Tortinmoq, rad etmoq",
+                "Foydalanish"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「案内します」 (Annai shimasu) so'zi o'zbek tilida \"Yoʻl koʻrsatmoq, tanishtirmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u2-l2-ex-7",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「一度も 食べたこと（　　） ありません。」",
+              "options": ["から", "で", "が", "は"],
+              "correctAnswer": 2,
+              "explanation": "Ushbu o'rinda 「が」 zarrachasi to'g'ri keladi. Butun jumla: 「一度も 食べたことが ありません。」 (Biror marta ham yemaganman.)."
             }
           ]
         }
@@ -1078,6 +1453,69 @@
               ],
               "correctAnswer": 1,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"案内[あんない]します\" (Yoʻl koʻrsatmoq, tanishtirmoq)."
+            },
+            {
+              "id": "ja-n4-u2-l3-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「これが （　　） 安いです。」",
+              "options": ["一番", "案内します", "準備", "忘れます"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「一番」 (Ichiban) — \"Eng birinchi / Eng ...\". Gapning to'liq ma'nosi: \"Bu eng arzoni.\"."
+            },
+            {
+              "id": "ja-n4-u2-l3-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「試験の （　　）を 始めましょう。」",
+              "options": ["案内します", "複雑", "一番", "準備"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「準備」 (Junbi) — \"Tayyorgarlik\". Gapning to'liq ma'nosi: \"Imtihonga tayyorgarlikni boshlaylik.\"."
+            },
+            {
+              "id": "ja-n4-u2-l3-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「一番」 (Ichiban) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Eng birinchi / Eng ...",
+                "Tortinmoq, rad etmoq",
+                "Tayyorgarlik",
+                "Yoʻl koʻrsatmoq, tanishtirmoq"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「一番」 (Ichiban) so'zi o'zbek tilida \"Eng birinchi / Eng ...\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u2-l3-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「案内します」 (Annai shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tayyorgarlik",
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Eng birinchi / Eng ...",
+                "Tortinmoq, rad etmoq"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「案内します」 (Annai shimasu) so'zi o'zbek tilida \"Yoʻl koʻrsatmoq, tanishtirmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u2-l3-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「準備」 (Junbi) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Eng birinchi / Eng ...",
+                "Tayyorgarlik",
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Tortinmoq, rad etmoq"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「準備」 (Junbi) so'zi o'zbek tilida \"Tayyorgarlik\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u2-l3-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「これ（　　） 一番 安いです。」",
+              "options": ["が", "に", "から", "を"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「が」 zarrachasi to'g'ri keladi. Butun jumla: 「これが 一番 安いです。」 (Bu eng arzoni.)."
             }
           ]
         }
@@ -1215,6 +1653,69 @@
               "options": ["食事[しょくじ]", "散歩[さんぽ]", "準備[じゅんび]", "運転[うんてん]"],
               "correctAnswer": 2,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"準備[じゅんび]\" (Tayyorgarlik)."
+            },
+            {
+              "id": "ja-n4-u2-l4-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「試験の （　　）を 始めましょう。」",
+              "options": ["案内します", "複雑", "準備", "住みます"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「準備」 (Junbi) — \"Tayyorgarlik\". Gapning to'liq ma'nosi: \"Imtihonga tayyorgarlikni boshlaylik.\"."
+            },
+            {
+              "id": "ja-n4-u2-l4-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「この 説明は 少し （　　）です。」",
+              "options": ["複雑", "案内します", "遠慮します", "準備"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「複雑」 (Fukuzatsu) — \"Murakkab, chigal\". Gapning to'liq ma'nosi: \"Bu tushuntirish biroz murakkab.\"."
+            },
+            {
+              "id": "ja-n4-u2-l4-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「案内します」 (Annai shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Tayyorgarlik",
+                "Bitirmoq / Tamomlamoq",
+                "Murakkab, chigal"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「案内します」 (Annai shimasu) so'zi o'zbek tilida \"Yoʻl koʻrsatmoq, tanishtirmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u2-l4-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「準備」 (Junbi) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tayyorgarlik",
+                "Tortinmoq, rad etmoq",
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Murakkab, chigal"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「準備」 (Junbi) so'zi o'zbek tilida \"Tayyorgarlik\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u2-l4-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「複雑」 (Fukuzatsu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Murakkab, chigal",
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Tayyorgarlik",
+                "Bitirmoq / Tamomlamoq"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「複雑」 (Fukuzatsu) so'zi o'zbek tilida \"Murakkab, chigal\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u2-l4-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
+              "options": ["から", "と", "は", "を"],
+              "correctAnswer": 3,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -1357,6 +1858,69 @@
               "options": ["散歩[さんぽ]", "運転[うんてん]", "食事[しょくじ]", "返却[へんきゃく]"],
               "correctAnswer": 3,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"返却[へんきゃく]\" (Qaytarib berish (kitobni))."
+            },
+            {
+              "id": "ja-n4-u2-l5-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「図書館を （　　）します。」",
+              "options": ["卒業します", "利用", "遠慮します", "返却"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「利用」 (Riyou) — \"Foydalanish\". Gapning to'liq ma'nosi: \"Kutubxonadan foydalanaman.\"."
+            },
+            {
+              "id": "ja-n4-u2-l5-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「本の （　　）。」",
+              "options": ["準備", "遠慮します", "利用", "返却"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「返却」 (Henkyaku) — \"Qaytarib berish (kitobni)\". Gapning to'liq ma'nosi: \"Kitobni qaytarish.\"."
+            },
+            {
+              "id": "ja-n4-u2-l5-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「利用」 (Riyou) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Foydalanish",
+                "Tortinmoq, rad etmoq",
+                "Murakkab, chigal",
+                "Qaytarib berish (kitobni)"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「利用」 (Riyou) so'zi o'zbek tilida \"Foydalanish\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u2-l5-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「返却」 (Henkyaku) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Qaytarib berish (kitobni)",
+                "Foydalanish",
+                "Reja / Jadval",
+                "Tortinmoq, rad etmoq"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「返却」 (Henkyaku) so'zi o'zbek tilida \"Qaytarib berish (kitobni)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u2-l5-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「遠慮します」 (Enryo shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tayyorgarlik",
+                "Qaytarib berish (kitobni)",
+                "Foydalanish",
+                "Tortinmoq, rad etmoq"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「遠慮します」 (Enryo shimasu) so'zi o'zbek tilida \"Tortinmoq, rad etmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u2-l5-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「図書館（　　） 利用します。」",
+              "options": ["が", "から", "に", "を"],
+              "correctAnswer": 3,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「図書館を 利用します。」 (Kutubxonadan foydalanaman.)."
             }
           ]
         }
@@ -1503,6 +2067,61 @@
               ],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"遠慮[えんりょ]します\" (Tortinmoq, rad etmoq)."
+            },
+            {
+              "id": "ja-n4-u3-l1-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「この 説明は 少し （　　）です。」",
+              "options": ["遠慮します", "会社", "案内します", "複雑"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「複雑」 (Fukuzatsu) — \"Murakkab, chigal\". Gapning to'liq ma'nosi: \"Bu tushuntirish biroz murakkab.\"."
+            },
+            {
+              "id": "ja-n4-u3-l1-ex-4",
+              "type": "multiple-choice",
+              "prompt": "「複雑」 (Fukuzatsu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Tayyorgarlik",
+                "Tortinmoq, rad etmoq",
+                "Murakkab, chigal"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「複雑」 (Fukuzatsu) so'zi o'zbek tilida \"Murakkab, chigal\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u3-l1-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「遠慮します」 (Enryo shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tortinmoq, rad etmoq",
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Javob",
+                "Murakkab, chigal"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「遠慮します」 (Enryo shimasu) so'zi o'zbek tilida \"Tortinmoq, rad etmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u3-l1-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「案内します」 (Annai shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Murakkab, chigal",
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Bilib olmoq (Holat: 知[し]っている)",
+                "Tortinmoq, rad etmoq"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「案内します」 (Annai shimasu) so'zi o'zbek tilida \"Yoʻl koʻrsatmoq, tanishtirmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u3-l1-ex-7",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
+              "options": ["を", "と", "で", "が"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -1646,6 +2265,61 @@
               ],
               "correctAnswer": 2,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"案内[あんない]します\" (Yoʻl koʻrsatmoq, tanishtirmoq)."
+            },
+            {
+              "id": "ja-n4-u3-l2-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「試験の （　　）を 始めましょう。」",
+              "options": ["利用", "準備", "案内します", "遠慮します"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「準備」 (Junbi) — \"Tayyorgarlik\". Gapning to'liq ma'nosi: \"Imtihonga tayyorgarlikni boshlaylik.\"."
+            },
+            {
+              "id": "ja-n4-u3-l2-ex-4",
+              "type": "multiple-choice",
+              "prompt": "「遠慮します」 (Enryo shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Gazeta (Yangi eshitilgan xabar)",
+                "Tortinmoq, rad etmoq",
+                "Tayyorgarlik"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「遠慮します」 (Enryo shimasu) so'zi o'zbek tilida \"Tortinmoq, rad etmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u3-l2-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「案内します」 (Annai shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tortinmoq, rad etmoq",
+                "Tayyorgarlik",
+                "Murakkab, chigal",
+                "Yoʻl koʻrsatmoq, tanishtirmoq"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「案内します」 (Annai shimasu) so'zi o'zbek tilida \"Yoʻl koʻrsatmoq, tanishtirmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u3-l2-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「準備」 (Junbi) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tortinmoq, rad etmoq",
+                "Tayyorgarlik",
+                "Foydalanish",
+                "Yoʻl koʻrsatmoq, tanishtirmoq"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「準備」 (Junbi) so'zi o'zbek tilida \"Tayyorgarlik\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u3-l2-ex-7",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
+              "options": ["が", "を", "に", "から"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -1778,6 +2452,64 @@
               "options": ["旅行[りょこう]", "食事[しょくじ]", "運転[うんてん]", "散歩[さんぽ]"],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"旅行[りょこう]\" (Sayohat)."
+            },
+            {
+              "id": "ja-n4-u3-l3-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）を 読みます。」",
+              "options": ["複雑", "薬", "旅行", "新聞"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「新聞」 (Shinbun) — \"Gazeta (Yangi eshitilgan xabar)\". Gapning to'liq ma'nosi: \"Gazeta o'qiyman.\"."
+            },
+            {
+              "id": "ja-n4-u3-l3-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）に 行きます。」",
+              "options": ["新聞", "複雑", "遠慮します", "旅行"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「旅行」 (Ryokou) — \"Sayohat\". Gapning to'liq ma'nosi: \"Sayohatga boraman.\"."
+            },
+            {
+              "id": "ja-n4-u3-l3-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「この 説明は 少し （　　）です。」",
+              "options": ["旅行", "新聞", "複雑", "準備"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「複雑」 (Fukuzatsu) — \"Murakkab, chigal\". Gapning to'liq ma'nosi: \"Bu tushuntirish biroz murakkab.\"."
+            },
+            {
+              "id": "ja-n4-u3-l3-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「新聞」 (Shinbun) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Sayohat",
+                "Tortinmoq, rad etmoq",
+                "Gazeta (Yangi eshitilgan xabar)",
+                "Murakkab, chigal"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「新聞」 (Shinbun) so'zi o'zbek tilida \"Gazeta (Yangi eshitilgan xabar)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u3-l3-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「旅行」 (Ryokou) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tayyorgarlik",
+                "Sayohat",
+                "Murakkab, chigal",
+                "Gazeta (Yangi eshitilgan xabar)"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「旅行」 (Ryokou) so'zi o'zbek tilida \"Sayohat\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u3-l3-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「新聞（　　） 読みます。」",
+              "options": ["は", "が", "を", "から"],
+              "correctAnswer": 2,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「新聞を 読みます。」 (Gazeta o'qiyman.)."
             }
           ]
         }
@@ -1910,6 +2642,69 @@
               "options": ["散歩[さんぽ]", "運転[うんてん]", "食事[しょくじ]", "安全[あんぜん]"],
               "correctAnswer": 3,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"安全[あんぜん]\" (Xavfsiz)."
+            },
+            {
+              "id": "ja-n4-u3-l4-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）に 勤めます。」",
+              "options": ["遠慮します", "案内します", "会社", "安全"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「会社」 (Kaisha) — \"Kompaniya / Korxona\". Gapning to'liq ma'nosi: \"Kompaniyada ishlayman.\"."
+            },
+            {
+              "id": "ja-n4-u3-l4-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）な 町。」",
+              "options": ["遠慮します", "安全", "会社", "一度も"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「安全」 (Anzen) — \"Xavfsiz\". Gapning to'liq ma'nosi: \"Xavfsiz shahar.\"."
+            },
+            {
+              "id": "ja-n4-u3-l4-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「会社」 (Kaisha) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Kompaniya / Korxona",
+                "Yashamoq (Holat: 住[す]んでいる)",
+                "Tortinmoq, rad etmoq",
+                "Xavfsiz"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「会社」 (Kaisha) so'zi o'zbek tilida \"Kompaniya / Korxona\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u3-l4-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「安全」 (Anzen) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Kompaniya / Korxona",
+                "Xavfsiz",
+                "Tortinmoq, rad etmoq"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「安全」 (Anzen) so'zi o'zbek tilida \"Xavfsiz\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u3-l4-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「遠慮します」 (Enryo shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Xavfsiz",
+                "Tortinmoq, rad etmoq",
+                "Kompaniya / Korxona",
+                "Yoʻl koʻrsatmoq, tanishtirmoq"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「遠慮します」 (Enryo shimasu) so'zi o'zbek tilida \"Tortinmoq, rad etmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u3-l4-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「会社（　　） 勤めます。」",
+              "options": ["で", "から", "に", "が"],
+              "correctAnswer": 2,
+              "explanation": "Ushbu o'rinda 「に」 zarrachasi to'g'ri keladi. Butun jumla: 「会社に 勤めます。」 (Kompaniyada ishlayman.)."
             }
           ]
         }
@@ -2052,6 +2847,61 @@
               ],
               "correctAnswer": 2,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"遠慮[えんりょ]します\" (Tortinmoq, rad etmoq)."
+            },
+            {
+              "id": "ja-n4-u3-l5-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「次の 駅で （　　）。」",
+              "options": ["案内します", "準備", "遠慮します", "乗り換えます"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「乗り換えます」 (Norikaemasu) — \"Boshqa transportga o'tirmoq / Liniya almashtirmoq\". Gapning to'liq ma'nosi: \"Keyingi bekatda liniyani almashtiraman.\"."
+            },
+            {
+              "id": "ja-n4-u3-l5-ex-4",
+              "type": "multiple-choice",
+              "prompt": "「乗り換えます」 (Norikaemasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Boshqa transportga o'tirmoq / Liniya almashtirmoq",
+                "Tortinmoq, rad etmoq",
+                "Tayyorgarlik"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「乗り換えます」 (Norikaemasu) so'zi o'zbek tilida \"Boshqa transportga o'tirmoq / Liniya almashtirmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u3-l5-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「遠慮します」 (Enryo shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Boshqa transportga o'tirmoq / Liniya almashtirmoq",
+                "Ayniqsa / Xususan",
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Tortinmoq, rad etmoq"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「遠慮します」 (Enryo shimasu) so'zi o'zbek tilida \"Tortinmoq, rad etmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u3-l5-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「案内します」 (Annai shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Boshqa transportga o'tirmoq / Liniya almashtirmoq",
+                "Tortinmoq, rad etmoq",
+                "Bilib olmoq (Holat: 知[し]っている)",
+                "Yoʻl koʻrsatmoq, tanishtirmoq"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「案内します」 (Annai shimasu) so'zi o'zbek tilida \"Yoʻl koʻrsatmoq, tanishtirmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u3-l5-ex-7",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「次の 駅（　　） 乗り換えます。」",
+              "options": ["で", "から", "は", "を"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「で」 zarrachasi to'g'ri keladi. Butun jumla: 「次の 駅で 乗り換えます。」 (Keyingi bekatda liniyani almashtiraman.)."
             }
           ]
         }
@@ -2194,6 +3044,59 @@
               "options": ["散歩[さんぽ]", "運転[うんてん]", "食事[しょくじ]", "出張[しゅっちょう]"],
               "correctAnswer": 3,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"出張[しゅっちょう]\" (Xizmat safari)."
+            },
+            {
+              "id": "ja-n4-u4-l1-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「明日の （　　）。」",
+              "options": ["遠慮します", "準備", "予定", "出張"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「予定」 (Yotei) — \"Reja / Jadval\". Gapning to'liq ma'nosi: \"Ertangi reja.\"."
+            },
+            {
+              "id": "ja-n4-u4-l1-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「大阪へ （　　）します。」",
+              "options": ["卒業します", "出張", "予定", "準備"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「出張」 (Shucchou) — \"Xizmat safari\". Gapning to'liq ma'nosi: \"Osakaga xizmat safariga boraman.\"."
+            },
+            {
+              "id": "ja-n4-u4-l1-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「試験の （　　）を 始めましょう。」",
+              "options": ["準備", "予定", "出張", "乗り換えます"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「準備」 (Junbi) — \"Tayyorgarlik\". Gapning to'liq ma'nosi: \"Imtihonga tayyorgarlikni boshlaylik.\"."
+            },
+            {
+              "id": "ja-n4-u4-l1-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「予定」 (Yotei) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Reja / Jadval", "Tayyorgarlik", "Unutmoq", "Xizmat safari"],
+              "correctAnswer": 0,
+              "explanation": "「予定」 (Yotei) so'zi o'zbek tilida \"Reja / Jadval\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u4-l1-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「出張」 (Shucchou) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Xizmat safari",
+                "Tayyorgarlik",
+                "Boshqa transportga o'tirmoq / Liniya almashtirmoq",
+                "Reja / Jadval"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「出張」 (Shucchou) so'zi o'zbek tilida \"Xizmat safari\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u4-l1-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「大阪（　　） 出張します。」",
+              "options": ["で", "に", "へ", "から"],
+              "correctAnswer": 2,
+              "explanation": "Ushbu o'rinda 「へ」 zarrachasi to'g'ri keladi. Butun jumla: 「大阪へ 出張します。」 (Osakaga xizmat safariga boraman.)."
             }
           ]
         }
@@ -2331,6 +3234,69 @@
               "options": ["食事[しょくじ]", "散歩[さんぽ]", "準備[じゅんび]", "運転[うんてん]"],
               "correctAnswer": 2,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"準備[じゅんび]\" (Tayyorgarlik)."
+            },
+            {
+              "id": "ja-n4-u4-l2-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「試験の （　　）を 始めましょう。」",
+              "options": ["複雑", "案内します", "準備", "遠慮します"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「準備」 (Junbi) — \"Tayyorgarlik\". Gapning to'liq ma'nosi: \"Imtihonga tayyorgarlikni boshlaylik.\"."
+            },
+            {
+              "id": "ja-n4-u4-l2-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「この 説明は 少し （　　）です。」",
+              "options": ["準備", "案内します", "複雑", "遠慮します"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「複雑」 (Fukuzatsu) — \"Murakkab, chigal\". Gapning to'liq ma'nosi: \"Bu tushuntirish biroz murakkab.\"."
+            },
+            {
+              "id": "ja-n4-u4-l2-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「案内します」 (Annai shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Eng birinchi / Eng ...",
+                "Murakkab, chigal",
+                "Tayyorgarlik",
+                "Yoʻl koʻrsatmoq, tanishtirmoq"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「案内します」 (Annai shimasu) so'zi o'zbek tilida \"Yoʻl koʻrsatmoq, tanishtirmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u4-l2-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「準備」 (Junbi) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Gazeta (Yangi eshitilgan xabar)",
+                "Tayyorgarlik",
+                "Murakkab, chigal",
+                "Yoʻl koʻrsatmoq, tanishtirmoq"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「準備」 (Junbi) so'zi o'zbek tilida \"Tayyorgarlik\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u4-l2-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「複雑」 (Fukuzatsu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Murakkab, chigal",
+                "Kompaniya / Korxona",
+                "Tayyorgarlik",
+                "Yoʻl koʻrsatmoq, tanishtirmoq"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「複雑」 (Fukuzatsu) so'zi o'zbek tilida \"Murakkab, chigal\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u4-l2-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
+              "options": ["と", "が", "を", "は"],
+              "correctAnswer": 2,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -2472,6 +3438,69 @@
               "options": ["運転[うんてん]", "複雑[ふくざつ]", "散歩[さんぽ]", "食事[しょくじ]"],
               "correctAnswer": 1,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"複雑[ふくざつ]\" (Murakkab, chigal)."
+            },
+            {
+              "id": "ja-n4-u4-l3-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「試験の （　　）を 始めましょう。」",
+              "options": ["案内します", "準備", "複雑", "遠慮します"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「準備」 (Junbi) — \"Tayyorgarlik\". Gapning to'liq ma'nosi: \"Imtihonga tayyorgarlikni boshlaylik.\"."
+            },
+            {
+              "id": "ja-n4-u4-l3-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「この 説明は 少し （　　）です。」",
+              "options": ["複雑", "準備", "遠慮します", "心配します"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「複雑」 (Fukuzatsu) — \"Murakkab, chigal\". Gapning to'liq ma'nosi: \"Bu tushuntirish biroz murakkab.\"."
+            },
+            {
+              "id": "ja-n4-u4-l3-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「準備」 (Junbi) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tayyorgarlik",
+                "Murakkab, chigal",
+                "Tortinmoq, rad etmoq",
+                "Biror marta ham (inkor bilan)"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「準備」 (Junbi) so'zi o'zbek tilida \"Tayyorgarlik\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u4-l3-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「複雑」 (Fukuzatsu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Murakkab, chigal",
+                "Yana bir bor",
+                "Tayyorgarlik",
+                "Tortinmoq, rad etmoq"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「複雑」 (Fukuzatsu) so'zi o'zbek tilida \"Murakkab, chigal\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u4-l3-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「遠慮します」 (Enryo shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tayyorgarlik",
+                "Murakkab, chigal",
+                "Bilib olmoq (Holat: 知[し]っている)",
+                "Tortinmoq, rad etmoq"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「遠慮します」 (Enryo shimasu) so'zi o'zbek tilida \"Tortinmoq, rad etmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u4-l3-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
+              "options": ["は", "を", "で", "と"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -2613,6 +3642,61 @@
               ],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"遠慮[えんりょ]します\" (Tortinmoq, rad etmoq)."
+            },
+            {
+              "id": "ja-n4-u4-l4-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「この 説明は 少し （　　）です。」",
+              "options": ["遠慮します", "特に", "案内します", "複雑"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「複雑」 (Fukuzatsu) — \"Murakkab, chigal\". Gapning to'liq ma'nosi: \"Bu tushuntirish biroz murakkab.\"."
+            },
+            {
+              "id": "ja-n4-u4-l4-ex-4",
+              "type": "multiple-choice",
+              "prompt": "「複雑」 (Fukuzatsu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Tortinmoq, rad etmoq",
+                "Foydalanish",
+                "Murakkab, chigal"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「複雑」 (Fukuzatsu) so'zi o'zbek tilida \"Murakkab, chigal\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u4-l4-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「遠慮します」 (Enryo shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tortinmoq, rad etmoq",
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Xavotir olmoq",
+                "Murakkab, chigal"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「遠慮します」 (Enryo shimasu) so'zi o'zbek tilida \"Tortinmoq, rad etmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u4-l4-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「案内します」 (Annai shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Isitma",
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Murakkab, chigal",
+                "Tortinmoq, rad etmoq"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「案内します」 (Annai shimasu) so'zi o'zbek tilida \"Yoʻl koʻrsatmoq, tanishtirmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u4-l4-ex-7",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
+              "options": ["を", "から", "が", "と"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -2754,6 +3838,59 @@
               "options": ["散歩[さんぽ]", "食事[しょくじ]", "運転[うんてん]", "返事[へんじ]"],
               "correctAnswer": 3,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"返事[へんじ]\" (Javob)."
+            },
+            {
+              "id": "ja-n4-u4-l5-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）が いいです。」",
+              "options": ["返事", "知ります", "準備", "都合"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「都合」 (Tsugou) — \"Vaqt sharoiti / Qulaylik\". Gapning to'liq ma'nosi: \"Vaqtim qulay.\"."
+            },
+            {
+              "id": "ja-n4-u4-l5-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「お（　　）を ください。」",
+              "options": ["都合", "返事", "特に", "準備"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「返事」 (Henji) — \"Javob\". Gapning to'liq ma'nosi: \"Iltimos, javob bering.\"."
+            },
+            {
+              "id": "ja-n4-u4-l5-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「試験の （　　）を 始めましょう。」",
+              "options": ["都合", "準備", "返事", "予定"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「準備」 (Junbi) — \"Tayyorgarlik\". Gapning to'liq ma'nosi: \"Imtihonga tayyorgarlikni boshlaylik.\"."
+            },
+            {
+              "id": "ja-n4-u4-l5-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「都合」 (Tsugou) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Tayyorgarlik", "Murakkab, chigal", "Vaqt sharoiti / Qulaylik", "Javob"],
+              "correctAnswer": 2,
+              "explanation": "「都合」 (Tsugou) so'zi o'zbek tilida \"Vaqt sharoiti / Qulaylik\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u4-l5-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「返事」 (Henji) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Javob",
+                "Tortinmoq, rad etmoq",
+                "Vaqt sharoiti / Qulaylik",
+                "Tayyorgarlik"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「返事」 (Henji) so'zi o'zbek tilida \"Javob\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u4-l5-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「都合（　　） いいです。」",
+              "options": ["で", "は", "に", "が"],
+              "correctAnswer": 3,
+              "explanation": "Ushbu o'rinda 「が」 zarrachasi to'g'ri keladi. Butun jumla: 「都合が いいです。」 (Vaqtim qulay.)."
             }
           ]
         }
@@ -2887,6 +4024,59 @@
               "options": ["準備[じゅんび]", "運転[うんてん]", "食事[しょくじ]", "散歩[さんぽ]"],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"準備[じゅんび]\" (Tayyorgarlik)."
+            },
+            {
+              "id": "ja-n4-u5-l1-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 春が 好きです。」",
+              "options": ["特に", "準備", "複雑", "遠慮します"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「特に」 (Toku ni) — \"Ayniqsa / Xususan\". Gapning to'liq ma'nosi: \"Ayniqsa bahorni yoqtiraman.\"."
+            },
+            {
+              "id": "ja-n4-u5-l1-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「試験の （　　）を 始めましょう。」",
+              "options": ["特に", "複雑", "遠慮します", "準備"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「準備」 (Junbi) — \"Tayyorgarlik\". Gapning to'liq ma'nosi: \"Imtihonga tayyorgarlikni boshlaylik.\"."
+            },
+            {
+              "id": "ja-n4-u5-l1-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「この 説明は 少し （　　）です。」",
+              "options": ["準備", "複雑", "新聞", "特に"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「複雑」 (Fukuzatsu) — \"Murakkab, chigal\". Gapning to'liq ma'nosi: \"Bu tushuntirish biroz murakkab.\"."
+            },
+            {
+              "id": "ja-n4-u5-l1-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「特に」 (Toku ni) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tortinmoq, rad etmoq",
+                "Ayniqsa / Xususan",
+                "Tayyorgarlik",
+                "Murakkab, chigal"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「特に」 (Toku ni) so'zi o'zbek tilida \"Ayniqsa / Xususan\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u5-l1-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「準備」 (Junbi) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Tayyorgarlik", "Ayniqsa / Xususan", "Isitma", "Murakkab, chigal"],
+              "correctAnswer": 0,
+              "explanation": "「準備」 (Junbi) so'zi o'zbek tilida \"Tayyorgarlik\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u5-l1-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「特に 春（　　） 好きです。」",
+              "options": ["を", "が", "に", "と"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「が」 zarrachasi to'g'ri keladi. Butun jumla: 「特に 春が 好きです。」 (Ayniqsa bahorni yoqtiraman.)."
             }
           ]
         }
@@ -3024,6 +4214,59 @@
               "options": ["運転[うんてん]", "薬[くすり]", "散歩[さんぽ]", "食事[しょくじ]"],
               "correctAnswer": 1,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"薬[くすり]\" (Dori)."
+            },
+            {
+              "id": "ja-n4-u5-l2-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）が 38度 あります。」",
+              "options": ["熱", "遠慮します", "薬", "知ります"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「熱」 (Netsu) — \"Isitma\". Gapning to'liq ma'nosi: \"38 daraja isitmam bor.\"."
+            },
+            {
+              "id": "ja-n4-u5-l2-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「食後に （　　）を 飲みます。」",
+              "options": ["一番", "薬", "熱", "遠慮します"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「薬」 (Kusuri) — \"Dori\". Gapning to'liq ma'nosi: \"Ovqatdan so'ng dori ichaman.\"."
+            },
+            {
+              "id": "ja-n4-u5-l2-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「熱」 (Netsu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Dori", "Isitma", "Reja / Jadval", "Tortinmoq, rad etmoq"],
+              "correctAnswer": 1,
+              "explanation": "「熱」 (Netsu) so'zi o'zbek tilida \"Isitma\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u5-l2-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「薬」 (Kusuri) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Isitma",
+                "Dori",
+                "Yashamoq (Holat: 住[す]んでいる)",
+                "Tortinmoq, rad etmoq"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「薬」 (Kusuri) so'zi o'zbek tilida \"Dori\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u5-l2-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「遠慮します」 (Enryo shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": ["Yana bir bor", "Dori", "Isitma", "Tortinmoq, rad etmoq"],
+              "correctAnswer": 3,
+              "explanation": "「遠慮します」 (Enryo shimasu) so'zi o'zbek tilida \"Tortinmoq, rad etmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u5-l2-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「食後に 薬（　　） 飲みます。」",
+              "options": ["を", "から", "は", "で"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「食後に 薬を 飲みます。」 (Ovqatdan so'ng dori ichaman.)."
             }
           ]
         }
@@ -3175,6 +4418,61 @@
               ],
               "correctAnswer": 2,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"遠慮[えんりょ]します\" (Tortinmoq, rad etmoq)."
+            },
+            {
+              "id": "ja-n4-u5-l3-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「この 説明は 少し （　　）です。」",
+              "options": ["遠慮します", "案内します", "準備", "複雑"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「複雑」 (Fukuzatsu) — \"Murakkab, chigal\". Gapning to'liq ma'nosi: \"Bu tushuntirish biroz murakkab.\"."
+            },
+            {
+              "id": "ja-n4-u5-l3-ex-4",
+              "type": "multiple-choice",
+              "prompt": "「複雑」 (Fukuzatsu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tortinmoq, rad etmoq",
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Murakkab, chigal",
+                "Xizmat safari"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「複雑」 (Fukuzatsu) so'zi o'zbek tilida \"Murakkab, chigal\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u5-l3-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「遠慮します」 (Enryo shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tortinmoq, rad etmoq",
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Murakkab, chigal",
+                "Yana bir bor"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「遠慮します」 (Enryo shimasu) so'zi o'zbek tilida \"Tortinmoq, rad etmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u5-l3-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「案内します」 (Annai shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Tayyorgarlik",
+                "Murakkab, chigal",
+                "Tortinmoq, rad etmoq"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「案内します」 (Annai shimasu) so'zi o'zbek tilida \"Yoʻl koʻrsatmoq, tanishtirmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u5-l3-ex-7",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
+              "options": ["で", "から", "を", "は"],
+              "correctAnswer": 2,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -3311,6 +4609,61 @@
               ],
               "correctAnswer": 3,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"案内[あんない]します\" (Yoʻl koʻrsatmoq, tanishtirmoq)."
+            },
+            {
+              "id": "ja-n4-u5-l4-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「試験の （　　）を 始めましょう。」",
+              "options": ["遠慮します", "住みます", "準備", "案内します"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「準備」 (Junbi) — \"Tayyorgarlik\". Gapning to'liq ma'nosi: \"Imtihonga tayyorgarlikni boshlaylik.\"."
+            },
+            {
+              "id": "ja-n4-u5-l4-ex-4",
+              "type": "multiple-choice",
+              "prompt": "「遠慮します」 (Enryo shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Tortinmoq, rad etmoq",
+                "Tayyorgarlik",
+                "Sayohat"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「遠慮します」 (Enryo shimasu) so'zi o'zbek tilida \"Tortinmoq, rad etmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u5-l4-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「案内します」 (Annai shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Xavotir olmoq",
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Tortinmoq, rad etmoq",
+                "Tayyorgarlik"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「案内します」 (Annai shimasu) so'zi o'zbek tilida \"Yoʻl koʻrsatmoq, tanishtirmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u5-l4-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「準備」 (Junbi) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tortinmoq, rad etmoq",
+                "Tayyorgarlik",
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Xizmat safari"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「準備」 (Junbi) so'zi o'zbek tilida \"Tayyorgarlik\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u5-l4-ex-7",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
+              "options": ["を", "で", "に", "が"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -3444,6 +4797,69 @@
               "options": ["準備[じゅんび]", "食事[しょくじ]", "運転[うんてん]", "散歩[さんぽ]"],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"準備[じゅんび]\" (Tayyorgarlik)."
+            },
+            {
+              "id": "ja-n4-u5-l5-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「試験の （　　）を 始めましょう。」",
+              "options": ["案内します", "複雑", "住みます", "準備"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「準備」 (Junbi) — \"Tayyorgarlik\". Gapning to'liq ma'nosi: \"Imtihonga tayyorgarlikni boshlaylik.\"."
+            },
+            {
+              "id": "ja-n4-u5-l5-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「この 説明は 少し （　　）です。」",
+              "options": ["案内します", "複雑", "忘れます", "準備"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「複雑」 (Fukuzatsu) — \"Murakkab, chigal\". Gapning to'liq ma'nosi: \"Bu tushuntirish biroz murakkab.\"."
+            },
+            {
+              "id": "ja-n4-u5-l5-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「案内します」 (Annai shimasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Murakkab, chigal",
+                "Xavotir olmoq",
+                "Yoʻl koʻrsatmoq, tanishtirmoq",
+                "Tayyorgarlik"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「案内します」 (Annai shimasu) so'zi o'zbek tilida \"Yoʻl koʻrsatmoq, tanishtirmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u5-l5-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「準備」 (Junbi) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tayyorgarlik",
+                "Murakkab, chigal",
+                "Tortinmoq, rad etmoq",
+                "Yoʻl koʻrsatmoq, tanishtirmoq"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「準備」 (Junbi) so'zi o'zbek tilida \"Tayyorgarlik\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u5-l5-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「複雑」 (Fukuzatsu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tayyorgarlik",
+                "Bilib olmoq (Holat: 知[し]っている)",
+                "Murakkab, chigal",
+                "Yoʻl koʻrsatmoq, tanishtirmoq"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「複雑」 (Fukuzatsu) so'zi o'zbek tilida \"Murakkab, chigal\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n4-u5-l5-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
+              "options": ["で", "に", "を", "が"],
+              "correctAnswer": 2,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }

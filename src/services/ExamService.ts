@@ -122,6 +122,16 @@ export class ExamService {
         createdAt: new Date().toISOString(),
         totalQuestions: JLPT_MOCK_EXAM_SET3_DATA[lvl]?.length || 25,
       });
+      items.push({
+        id: `builtin_${lvl.toLowerCase()}_random`,
+        title: `JLPT ${lvl} 🎲 Aqlli Dinamik Variant (Smart Dynamic Simulator)`,
+        description: `Barcha to'plamlardan saralangan, takrorlanmaydigan savollar bilan tuzilgan yangi simulyatsiya.`,
+        type: `JLPT ${lvl}`,
+        level: lvl,
+        isPublished: true,
+        createdAt: new Date().toISOString(),
+        totalQuestions: 25,
+      });
     }
     return items;
   }
@@ -137,6 +147,9 @@ export class ExamService {
     // If ID is a built-in slug
     if (examId.startsWith('builtin_')) {
       const lvl = this.parseLevelFromType(examId);
+      if (examId.endsWith('_random')) {
+        return this.buildRandomizedExam(lvl);
+      }
       const isSet3 = examId.endsWith('_set3');
       const isSet2 = examId.endsWith('_set2');
       return this.buildFallbackExam(lvl, isSet2, isSet3);
@@ -303,5 +316,79 @@ export class ExamService {
       timeLimitSeconds: DEFAULT_TIME_LIMITS[level] || 3000,
       isFromDb: false,
     };
+  }
+
+  /**
+   * Builds a dynamic, randomized mock exam variant with no-repeat prioritization.
+   */
+  static buildRandomizedExam(level: JlptLevel): NormalizedExam {
+    const set1 = JLPT_MOCK_EXAM_DATA[level] || [];
+    const set2 = JLPT_MOCK_EXAM_SET2_DATA[level] || [];
+    const set3 = JLPT_MOCK_EXAM_SET3_DATA[level] || [];
+    const allPool = [...set1, ...set2, ...set3];
+
+    // Read recently seen question IDs (no-repeat logic)
+    let recentQIds: number[] = [];
+    try {
+      if (typeof localStorage !== 'undefined') {
+        const raw = localStorage.getItem('jlpt_recent_answered_qids');
+        if (raw) recentQIds = JSON.parse(raw);
+      }
+    } catch {
+      // Ignore storage errors
+    }
+
+    const recentSet = new Set(recentQIds);
+
+    const partition = (section: 'knowledge' | 'reading' | 'listening', targetCount: number) => {
+      const candidates = allPool.filter((q) => q.section === section);
+      const unvisited = candidates.filter((q) => !recentSet.has(q.id));
+      const visited = candidates.filter((q) => recentSet.has(q.id));
+
+      const shuffledUnvisited = [...unvisited].sort(() => Math.random() - 0.5);
+      const shuffledVisited = [...visited].sort(() => Math.random() - 0.5);
+
+      const combined = [...shuffledUnvisited, ...shuffledVisited];
+      return combined.slice(0, targetCount);
+    };
+
+    const chosenKnowledge = partition('knowledge', 13);
+    const chosenReading = partition('reading', 6);
+    const chosenListening = partition('listening', 6);
+
+    const questions: ExamQuestion[] = [
+      ...chosenKnowledge,
+      ...chosenReading,
+      ...chosenListening,
+    ].map((q, idx) => ({
+      ...q,
+      id: idx + 1, // Normalized 1..25 sequential ID
+    }));
+
+    return {
+      id: `builtin_${level.toLowerCase()}_random`,
+      title: `JLPT ${level} 🎲 Aqlli Dinamik Variant (Tasodifiy Generator)`,
+      description: `Barcha to'plamlardan saralangan, takrorlanmaydigan savollar bilan tuzilgan yangi simulyatsiya.`,
+      type: `JLPT ${level}`,
+      level,
+      questions,
+      timeLimitSeconds: DEFAULT_TIME_LIMITS[level] || 3000,
+      isFromDb: false,
+    };
+  }
+
+  /**
+   * Persists answered question IDs to avoid repeats in future mock exams.
+   */
+  static recordAnsweredQuestions(questionIds: number[]): void {
+    if (typeof localStorage === 'undefined' || !questionIds || questionIds.length === 0) return;
+    try {
+      const raw = localStorage.getItem('jlpt_recent_answered_qids');
+      const prev: number[] = raw ? JSON.parse(raw) : [];
+      const merged = Array.from(new Set([...questionIds, ...prev])).slice(0, 100);
+      localStorage.setItem('jlpt_recent_answered_qids', JSON.stringify(merged));
+    } catch {
+      // Ignore storage errors
+    }
   }
 }

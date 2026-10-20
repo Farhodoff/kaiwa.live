@@ -12,6 +12,7 @@ import {
   Play,
   ArrowRight,
   Star,
+  Layers,
 } from 'lucide-react';
 import type { JlptGrammarItem, JlptKanjiItem, JlptVocabItem } from '../../data/jlptGrammarKanji';
 import type { JlptGrammarQuestion } from '../../data/jlpt/grammar_data';
@@ -22,6 +23,9 @@ import { lazyWithRetry } from '../../utils/lazyRetry';
 
 const KanjiStrokeOrderModal = lazyWithRetry(() =>
   import('./KanjiStrokeOrderModal').then((m) => ({ default: m.KanjiStrokeOrderModal })),
+);
+const ConfusingKanjiComparator = lazyWithRetry(() =>
+  import('./ConfusingKanjiComparator').then((m) => ({ default: m.ConfusingKanjiComparator })),
 );
 import { useJlptMastery, MasteryStatus } from '../../hooks/useJlptMastery';
 import { HistoryService } from '../../services/HistoryService';
@@ -36,7 +40,7 @@ import { ActivityLoggingService } from '../../services/ActivityLoggingService';
 import { useTelegramWebApp } from '../../hooks/useTelegramWebApp';
 
 interface JlptGrammarKanjiMasterProps {
-  initialTab?: 'grammar' | 'kanji' | 'goi' | 'quiz';
+  initialTab?: 'grammar' | 'kanji' | 'goi' | 'quiz' | 'confusing';
 }
 
 export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
@@ -52,7 +56,9 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
   const { getItemStatus, setItemStatus, getStatsForLevel } = useJlptMastery();
   const { language } = useLanguage();
 
-  const [activeTab, setActiveTab] = useState<'grammar' | 'kanji' | 'goi' | 'quiz'>(initialTab);
+  const [activeTab, setActiveTab] = useState<'grammar' | 'kanji' | 'goi' | 'quiz' | 'confusing'>(
+    initialTab,
+  );
   const [selectedLevel, setSelectedLevel] = useState<'ALL' | 'N5' | 'N4' | 'N3' | 'N2' | 'N1'>(
     initialLevel,
   );
@@ -552,11 +558,26 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
               ? `⚡ テスト (${quizSource.length})`
               : `⚡ Test Banki (${quizSource.length})`}
           </button>
+
+          <button
+            onClick={() => {
+              haptics.selection();
+              setActiveTab('confusing');
+            }}
+            className={`flex shrink-0 cursor-pointer touch-manipulation select-none items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-bold transition-all sm:px-4 ${
+              activeTab === 'confusing'
+                ? 'scale-[1.02] bg-primary text-primary-foreground shadow-xs'
+                : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
+            }`}
+          >
+            <Layers className="h-4 w-4" />
+            {language === 'ja' ? '🔍 類似漢字' : "🔍 O'xshash Kanjilar"}
+          </button>
         </div>
       </div>
 
       {/* Level & Search Controls (for Grammar & Kanji & Goi) */}
-      {activeTab !== 'quiz' && (
+      {activeTab !== 'quiz' && activeTab !== 'confusing' && (
         <div className="max-w-full space-y-4 overflow-hidden rounded-2xl border border-border bg-card p-3.5 shadow-xs sm:p-4">
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
             {/* Level Pills */}
@@ -1400,6 +1421,21 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
             </div>
           )}
         </div>
+      )}
+
+      {/* Confusing Kanji Comparison Tab */}
+      {activeTab === 'confusing' && (
+        <Suspense
+          fallback={
+            <div className="flex items-center justify-center p-12">
+              <div className="border-3 h-8 w-8 animate-spin rounded-full border-primary border-t-transparent" />
+            </div>
+          }
+        >
+          <div className="animate-in fade-in">
+            <ConfusingKanjiComparator />
+          </div>
+        </Suspense>
       )}
 
       {/* Kanji Stroke Order Modal */}

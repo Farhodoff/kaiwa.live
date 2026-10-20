@@ -49,6 +49,7 @@ export interface JlptScoreReport {
   correctTotal: number;
   questionsTotal: number;
   accuracyPercentage: number;
+  passProbability?: number; // 0..100
 }
 
 export const JLPT_LEVEL_THRESHOLDS: Record<
@@ -198,6 +199,34 @@ export function calculateJlptScore(
     statusTextJa = '不合格（ふごうかく）- 基準点（足切り）未達';
   }
 
+  // Statistical Pass Probability Prediction (0..100)
+  let passProbability = 0;
+  if (passed) {
+    if (totalScore >= thresholds.passMark + 30) {
+      passProbability = Math.min(
+        99,
+        90 +
+          Math.round(
+            ((totalScore - thresholds.passMark - 30) /
+              Math.max(1, 180 - thresholds.passMark - 30)) *
+              9,
+          ),
+      );
+    } else if (totalScore >= thresholds.passMark + 15) {
+      passProbability = 85 + Math.round(((totalScore - thresholds.passMark - 15) / 15) * 5);
+    } else {
+      passProbability = 75 + Math.round(((totalScore - thresholds.passMark) / 15) * 9);
+    }
+  } else {
+    if (passedOverallScore && !passedAllSections) {
+      const minFloorScore = Math.min(...failedSections.map((s) => sections[s].score));
+      passProbability = Math.max(25, Math.round(55 * (minFloorScore / thresholds.sectionPassMark)));
+    } else {
+      const scoreRatio = Math.min(1.0, totalScore / Math.max(1, thresholds.passMark));
+      passProbability = Math.round(scoreRatio * 60);
+    }
+  }
+
   return {
     level: cleanLevel,
     totalScore,
@@ -214,5 +243,6 @@ export function calculateJlptScore(
     correctTotal,
     questionsTotal,
     accuracyPercentage,
+    passProbability,
   };
 }
