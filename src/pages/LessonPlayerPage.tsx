@@ -23,6 +23,7 @@ import { ActivityLoggingService } from '../services/ActivityLoggingService';
 import { useGamificationStore } from '../stores/useGamificationStore';
 import { useSEO } from '../hooks/useSEO';
 import { toast } from '../hooks/use-toast';
+import { ErrorNotificationService } from '../services/ErrorNotificationService';
 
 export const LessonPlayerPage: React.FC = () => {
   const { lessonId } = useParams<{ lessonId: string }>();
@@ -382,6 +383,13 @@ export const LessonPlayerPage: React.FC = () => {
       }
     } catch (err) {
       console.error('[LessonPlayerPage] Failed to complete lesson mastery pipeline:', err);
+      ErrorNotificationService.notifyError({
+        title: 'Dars natijasini saqlashda xatolik',
+        message: "Natijani to'liq saqlab bo'lmadi. Iltimos, qayta saqlash tugmasini bosing.",
+        error: err,
+        retryLabel: 'Qayta saqlash',
+        retryAction: () => handleCompleteLesson(score, mistakes),
+      });
     } finally {
       completionInFlightRef.current = false;
     }

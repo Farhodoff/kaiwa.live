@@ -37,6 +37,7 @@ import { isUserAdmin } from '../utils/admin';
 import { PRESET_DECKS, PresetDeck, PresetSubDeck } from '../data/presetDecks';
 import { PresetDeckService, DeckPart } from '../services/PresetDeckService';
 import { toast } from '../hooks/use-toast';
+import { ErrorNotificationService } from '../services/ErrorNotificationService';
 import { isFlashcardForLanguage } from '../utils/subjectResolver';
 
 import SubjectForm from '../components/subjects/SubjectForm';
@@ -201,10 +202,11 @@ const DecksPage: React.FC = () => {
       setTimeout(() => setImportedDeckTitle(null), 4000);
     } catch (err) {
       console.error('Import preset error:', err);
-      toast({
-        variant: 'destructive',
-        title: 'Xatolik',
-        description: "To'plamni saqlashda xatolik yuz berdi. Qayta urinib ko'ring.",
+      ErrorNotificationService.notifyError({
+        title: "To'plamni saqlashda xatolik",
+        message: "Lug'at to'plamini yuklash va saqlashda uzilish bo'ldi. Qayta urinib ko'ring.",
+        error: err,
+        retryAction: () => handleImportPresetDeck(preset),
       });
     } finally {
       setIsImportingPreset(false);
@@ -281,10 +283,11 @@ const DecksPage: React.FC = () => {
       }
     } catch (err) {
       console.error('Part import error:', err);
-      toast({
-        variant: 'destructive',
-        title: 'Xatolik',
-        description: "Jildni saqlashda xatolik yuz berdi. Qayta urinib ko'ring.",
+      ErrorNotificationService.notifyError({
+        title: 'Jildni saqlashda xatolik',
+        message: "Jild kartochkalarini saqlashda uzilish bo'ldi. Qayta urinib ko'ring.",
+        error: err,
+        retryAction: () => handleImportDeckPart(part),
       });
     } finally {
       setIsImportingPreset(false);
@@ -297,6 +300,12 @@ const DecksPage: React.FC = () => {
       setStandaloneAlbums(list);
     } catch (e) {
       console.error('Error loading standalone albums:', e);
+      ErrorNotificationService.notifyError({
+        title: "Albomlarni yuklab bo'lmadi",
+        message: 'Maxsus darslik albomlarini yuklashda xatolik yuz berdi.',
+        error: e,
+        retryAction: () => loadStandaloneAlbums(),
+      });
     }
   }, []);
 
@@ -499,6 +508,12 @@ const DecksPage: React.FC = () => {
       setExplorerParts(parts);
     } catch (e) {
       console.error('Error opening explorer:', e);
+      ErrorNotificationService.notifyError({
+        title: "Jildlar tafsilotini ochib bo'lmadi",
+        message: "To'plam ichidagi bo'limlarni o'qishda xatolik yuz berdi.",
+        error: e,
+        retryAction: () => handleOpenDeckExplorer(preset),
+      });
     }
   };
 

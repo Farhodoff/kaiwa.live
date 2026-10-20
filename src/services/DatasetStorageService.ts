@@ -1,5 +1,6 @@
 import { idbGet, idbSet } from '../utils/storage/indexedDb';
 import { supabase } from '../lib/supabase';
+import { ErrorNotificationService } from './ErrorNotificationService';
 
 const DATASET_CACHE_PREFIX = 'study_planner_dataset_';
 
@@ -46,7 +47,7 @@ export class DatasetStorageService {
       // Non-blocking if IndexedDB is unavailable
     }
 
-    // 3. Attempt CDN / Supabase Storage fetch
+    // 3. Attempt CDN / Supabase Storage fetch with automatic retry
     let fetchedData: T | null = null;
 
     // 3A. Supabase Storage public bucket
@@ -57,10 +58,14 @@ export class DatasetStorageService {
           .getPublicUrl(supabasePath);
 
         if (publicUrlData?.publicUrl) {
-          const res = await fetch(publicUrlData.publicUrl);
-          if (res.ok) {
-            fetchedData = (await res.json()) as T;
-          }
+          fetchedData = await ErrorNotificationService.withRetry(
+            async () => {
+              const res = await fetch(publicUrlData.publicUrl);
+              if (!res.ok) throw new Error(`HTTP ${res.status}`);
+              return (await res.json()) as T;
+            },
+            { retries: 2, delayMs: 300, contextName: `dataset_supabase_${datasetKey}` },
+          );
         }
       } catch (err) {
         console.warn(`[DatasetStorageService] Supabase fetch failed for ${datasetKey}:`, err);
@@ -73,10 +78,14 @@ export class DatasetStorageService {
       Boolean(window.location?.origin && window.location.origin !== 'null');
     if (!fetchedData && localPath && hasBrowserOrigin && typeof window.fetch === 'function') {
       try {
-        const res = await fetch(localPath);
-        if (res.ok) {
-          fetchedData = (await res.json()) as T;
-        }
+        fetchedData = await ErrorNotificationService.withRetry(
+          async () => {
+            const res = await fetch(localPath);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            return (await res.json()) as T;
+          },
+          { retries: 2, delayMs: 300, contextName: `dataset_static_${datasetKey}` },
+        );
       } catch (err) {
         console.warn(`[DatasetStorageService] Static fetch failed for ${datasetKey}:`, err);
       }

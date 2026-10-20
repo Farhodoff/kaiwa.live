@@ -35,6 +35,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { ExamService, ExamListItem, NormalizedExam } from '../services/ExamService';
 import { JLPT_MOCK_EXAM_DATA, ExamQuestion } from '../data/jlptMockExamData';
 import { toast } from '../hooks/use-toast';
+import { ErrorNotificationService } from '../services/ErrorNotificationService';
 import {
   MistakeVaultService,
   MistakeCategory,
@@ -130,6 +131,14 @@ export const JlptMockExamPage: React.FC = () => {
         }
       } catch (err) {
         console.warn('JlptMockExamPage: Error fetching exams:', err);
+        if (isMounted) {
+          ErrorNotificationService.notifyError({
+            title: 'Imtihonlarni yuklashda xatolik',
+            message: `${level} darajasidagi testlar ro'yxatini yuklab bo'lmadi. Qayta urinib ko'ring.`,
+            error: err,
+            retryAction: () => fetchExams(),
+          });
+        }
       } finally {
         if (isMounted) setLoadingExams(false);
       }

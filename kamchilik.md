@@ -114,8 +114,7 @@ Ushbu faylda loyihadagi aniqlangan kamchiliklar, tuzatilishi kerak bo'lgan xatol
 
 - [x] **Writing evaluator AI parsingini to‘g‘rilash:** AI javobini parse qilishda xatolik bo‘lsa, asossiz 85 ball berish o‘rniga qayta so‘rov (retry) yuborish yoki foydalanuvchiga aniq xato xabarini ko‘rsatish.
 - [x] **Listening sync `catch(() => {})` xatolarini ochish:** Jim yutilayotgan xatoliklarga log yuritish, foydalanuvchiga audio sinxronizatsiya holati haqida ogohlantirish (toast/banner) berish.
-- [x] **Savol topilmaganda noto‘g‘ri fallbackni cheklash:** Yuqori darajalar (masalan, N2/N1) uchun savol topilmaganda N5 ga yashirin o‘tib ketishni to‘xtatish; agar fallback qilinsa, foydalanuvchiga buni ochiq bildirish yoki kontent yetishmasligini bildirish.
-- [ ] **Shaklli xatoliklar (error boundary va notification) tizimi:** Silent fail bo‘lib qolayotgan joylarga yaxlit xatoliklarni qayta ishlash va qayta urinish mexanizmini kiritish.
+- [x] **Shaklli xatoliklar (error boundary va notification) tizimi:** Silent fail bo‘lib qolayotgan joylarga yaxlit xatoliklarni qayta ishlash va qayta urinish mexanizmini kiritish (`ErrorNotificationService` orqali `notifyError`, `withRetry` va `safeAsync` integratsiya qilindi; `ErrorBoundary` ga nusxa olish, retry counter va telemetriya ulandi; `LessonPlayerPage`, `DecksPage`, `JlptMockExamPage` va `DatasetStorageService` da silent xatolar ochilib, harakatli "Qayta urinish" tugmalari joriy qilindi).
 
 ### 8. Kanji bazasida texnik takrorlar mavjud (Duplicate IDs)
 
