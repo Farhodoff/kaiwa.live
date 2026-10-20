@@ -2122,7 +2122,7 @@ export const JLPT_LISTENING_QUESTIONS: JlptListeningQuestion[] = [
     level: 'N1',
     type: 'task',
     titleUz: 'Xalqaro anjuman ochilishidan oldin',
-    audioUrl: '',
+    audioUrl: '/audio/choukai/n1/n1_dialogue_l20.mp3',
     script:
       'シンポジウムの運営会議でリーダーが話しています。メンバーは開会までに何を完了させなければなりませんか？\nリーダー：皆さん、準備ご苦労様です。来場者向けのパンフレット配布と誘導動線の確保は整いました。ただ、登壇される海外招聘教授の同時通訳レシーバーの動作確認が一部未完了のままです。開会まであと30分しかありませんので、全端末の音声テストを最優先で完了させてください。\nメンバー：承知しました。直ちに全員で点検します。',
     questionText: 'メンバーは開会までに最優先で何をしなければなりませんか？',
@@ -2225,7 +2225,7 @@ export const JLPT_LISTENING_QUESTIONS: JlptListeningQuestion[] = [
     level: 'N1',
     type: 'task',
     titleUz: 'Ilmiy maqola uchun etika hujjati',
-    audioUrl: '',
+    audioUrl: '/audio/choukai/n1/n1_lecture_l08.mp3',
     script:
       '国際共同研究プロジェクトのオンラインミーティングで研究代表者が指示を出しています。各国の研究チームは今週末までに何を提出しなければなりませんか？\n代表：論文の初稿執筆は予定通り進んでいます。しかし、査読付き学術誌への投稿に先立ち、各国の研究倫理委員会の承認証明書の英訳原本が必要です。今週末までにクラウドの共有フォルダにアップロードを完了させてください。',
     questionText: '各研究チームが今週末までに提出すべきものは何ですか？',
@@ -2319,7 +2319,7 @@ export const JLPT_LISTENING_QUESTIONS: JlptListeningQuestion[] = [
     level: 'N1',
     type: 'point',
     titleUz: 'Aholi qarishi va tibbiyot texnologiyalari',
-    audioUrl: '',
+    audioUrl: '/audio/choukai/n1/n1_track_84.mp3',
     script:
       '公衆衛生政策の諮問会議で有識者が提言しています。超高齢社会における医療費抑制のために最も優先すべき方針は何ですか？\n有識者：重症化してからの高度医療の拡充も大切ですが、財政破綻を防ぐためには、AIバイタルセンシングを用いた未病段階での早期介入と生活習慣病の予防医療へのシフトが不可欠です。治療中心から予防中心への転換こそが核心です。',
     questionText: '医療費抑制のために最優先すべき方針は何ですか？',

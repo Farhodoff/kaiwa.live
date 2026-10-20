@@ -154,4 +154,39 @@ describe('MistakeVaultService', () => {
     list = MistakeVaultService.getMistakes(testUserId);
     expect(list).toHaveLength(0);
   });
+
+  it('infers broken grammar rules and generates per-option distractor analysis', () => {
+    const item = MistakeVaultService.recordMistake(
+      {
+        source: 'quiz',
+        level: 'N5',
+        category: 'grammar',
+        questionText: 'ここでタバコを吸っては____。',
+        options: ['いいです', 'いけません', 'かまいません', '大丈夫です'],
+        userAnswer: 0,
+        correctAnswer: 1,
+        explanationUzbek: '〜てはいけない taqiqlash qoidasi: chekish taqiqlangan.',
+      },
+      testUserId,
+    );
+
+    const rule = MistakeVaultService.inferRuleBroken(item);
+    expect(rule).toContain('〜てはいけない');
+
+    const distractors = MistakeVaultService.getDistractorAnalysis(item);
+    expect(distractors).toHaveLength(4);
+
+    const correctDistractor = distractors.find((d) => d.isCorrect);
+    expect(correctDistractor).toBeDefined();
+    expect(correctDistractor?.option).toBe('いけません');
+
+    const wrongDistractor = distractors.find((d) => d.option === 'いいです');
+    expect(wrongDistractor?.isCorrect).toBe(false);
+    expect(wrongDistractor?.reasonUzbek).toContain('Siz tanlagan chalg‘ituvchi variant');
+
+    const drill = MistakeVaultService.generateRemedialDrill(item);
+    expect(drill.id).toContain('drill_');
+    expect(drill.ruleBroken).toContain('〜てはいけない');
+    expect(drill.distractorAnalysis).toHaveLength(4);
+  });
 });

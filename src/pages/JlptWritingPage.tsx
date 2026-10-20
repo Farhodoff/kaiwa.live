@@ -92,12 +92,21 @@ export const JlptWritingPage: React.FC = () => {
         suggestions?: string[];
       }>(rawRes);
 
+      if (!parsed || typeof parsed.score !== 'number' || isNaN(parsed.score)) {
+        throw new Error(
+          "AI baholash javobini to'g'ri tahlil qilib bo'lmadi. Iltimos, qayta urinib ko'ring.",
+        );
+      }
+
       const evalData = {
-        score: parsed.score || 85,
-        kanjiRating: parsed.kanjiRating || "Qoniqarli Kanji qo'llangan",
-        grammarFeedback: parsed.grammarFeedback || "Grammatik konstruksiyalar to'g'ri tanlangan.",
+        score: Math.max(0, Math.min(100, Math.round(parsed.score))),
+        kanjiRating: parsed.kanjiRating || 'Qoniqarli',
+        grammarFeedback: parsed.grammarFeedback || 'Grammatik konstruksiyalar tahlil qilindi.',
         correctedText: parsed.correctedText || essayText,
-        suggestions: parsed.suggestions || ['Desu/Masu shakllarini bir maromda saqlang.'],
+        suggestions:
+          Array.isArray(parsed.suggestions) && parsed.suggestions.length > 0
+            ? parsed.suggestions
+            : ['Grammatik shakllarni bir maromda saqlashga e’tibor bering.'],
       };
 
       setResult(evalData);

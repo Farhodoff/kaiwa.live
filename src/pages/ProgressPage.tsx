@@ -10,6 +10,7 @@ import FlashcardAnalytics from '../components/analytics/FlashcardAnalytics';
 import ExamHistoryAnalytics from '../components/analytics/ExamHistoryAnalytics';
 import CoachAnalytics from '../components/analytics/CoachAnalytics';
 import JlptProgressAnalytics from '../components/analytics/JlptProgressAnalytics';
+import { JlptSkillMatrixView } from '../components/analytics/JlptSkillMatrixView';
 import { useStudyData } from '../context/StudyPlannerContext';
 import Skeleton from '../components/ui/Skeleton';
 import ShareCardModal from '../components/ShareCardModal';
@@ -157,6 +158,7 @@ const ProgressPage: React.FC = () => {
       {/* Tab 2: Language, JLPT & Coach */}
       {activeTab === 'language' && (
         <div className="space-y-8 duration-300 animate-in fade-in">
+          <JlptSkillMatrixView />
           <JlptProgressAnalytics />
           <CoachAnalytics sessions={coachSessions} />
           <ExamHistoryAnalytics />

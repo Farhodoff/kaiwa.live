@@ -791,6 +791,8 @@ export interface SessionAnalysisReport {
   grammar_score: number;
   fluency_score: number;
   pronunciation_score: number;
+  naturalness_score?: number;
+  hesitation_score?: number;
   overall_score: number;
   user_level_eng?: string;
   user_level_jp?: string;
@@ -867,11 +869,13 @@ export const analyzeSpeakingSession = async (
       Full Conversation Transcript:
       ${conversationText}
 
-      Task: Perform a FORMAL MULTI-DIMENSIONAL LINGUISTIC ASSESSMENT using 4 weighted pillars:
-      1. Lexical Resource (30%): Analyze vocabulary depth, idioms, kanji/keigo or C1/C2 terms used.
-      2. Grammatical Range & Accuracy (30%): Sentence complexity ratio & error density.
-      3. Fluency & Coherence (25%): Turn length & logical connectors used.
-      4. Pronunciation & Intonation (15%): Pitch accent, stress, and clarity.
+      Task: Perform a FORMAL MULTI-DIMENSIONAL LINGUISTIC ASSESSMENT using 6 criteria:
+      1. Lexical Resource (25%): Analyze vocabulary depth, idioms, kanji/keigo or C1/C2 terms used.
+      2. Grammatical Range & Accuracy (25%): Sentence complexity ratio & error density.
+      3. Fluency & Coherence (20%): Turn length & logical connectors used.
+      4. Pronunciation & Intonation (10%): Pitch accent, stress, and clarity.
+      5. Naturalness (10%): Contextual nuance, natural collocations, and idiomatic appropriateness.
+      6. Hesitation Management (10%): Lack of excessive pauses, smooth transitions.
 
       Provide JSON feedback in natural Uzbek (O'zbek tilida).
 
@@ -881,6 +885,8 @@ export const analyzeSpeakingSession = async (
         "grammar_score": 7.0,
         "fluency_score": 7.5,
         "pronunciation_score": 8.0,
+        "naturalness_score": 7.5,
+        "hesitation_score": 8.0,
         "user_level_eng": "CEFR B2 (IELTS Band 6.5)",
         "user_level_jp": "JLPT N3 (中級 - Intermediate)",
         "pronunciation_feedback": "Intonatsiya, nutq tempi va urg'u bo'yicha chuqur tahlil (O'zbek tilida)...",
@@ -925,6 +931,8 @@ export const analyzeSpeakingSession = async (
     const fluency = typeof data.fluency_score === 'number' ? data.fluency_score : 7.0;
     const pronunciation =
       typeof data.pronunciation_score === 'number' ? data.pronunciation_score : 7.5;
+    const naturalness = typeof data.naturalness_score === 'number' ? data.naturalness_score : 7.5;
+    const hesitation = typeof data.hesitation_score === 'number' ? data.hesitation_score : 7.5;
     const overall = calculateWeightedOverallScore(lexical, grammar, fluency, pronunciation);
 
     return {
@@ -932,6 +940,8 @@ export const analyzeSpeakingSession = async (
       grammar_score: grammar,
       fluency_score: fluency,
       pronunciation_score: pronunciation,
+      naturalness_score: naturalness,
+      hesitation_score: hesitation,
       overall_score: overall,
       user_level_eng: data.user_level_eng || getCEFRLevelFromScore(overall),
       user_level_jp: data.user_level_jp || getJLPTLevelFromScore(overall),

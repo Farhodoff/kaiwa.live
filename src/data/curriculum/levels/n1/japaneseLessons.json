@@ -108,6 +108,64 @@
               "options": ["まみれ", "であれ", "ずくめ", "まじき"],
               "correctAnswer": 1,
               "explanation": "«何であれ» — har qanday sabab bo'lishidan qat'i nazar ma'nosidagi rasmiy ifoda."
+            },
+            {
+              "id": "ja-n1-u1-l1-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 困難にも 屈しない 覚悟だ。」",
+              "options": ["いかなる", "普遍的な", "不撓不屈", "超越する"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「いかなる」 (ikanaru) — \"Har qanday, qanday boʻlishidan qatʼi nazar (oliy adabiy)\". Gapning to'liq ma'nosi: \"Har qanday qiyinchilikka boʻysunmaslikka qatʼiy ahd qildim.\"."
+            },
+            {
+              "id": "ja-n1-u1-l1-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）の 精神で 研究を 成し遂げた。」",
+              "options": ["超越する", "屈する", "不撓不屈", "普遍的な"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「不撓不屈」 (futoufukutsu) — \"Sinmas iroda, yengilmas sabr-matonat\". Gapning to'liq ma'nosi: \"Yengilmas iroda va matonat bilan ilmiy tadqiqotni nihoyasiga yetkazdi.\"."
+            },
+            {
+              "id": "ja-n1-u1-l1-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「人間の 尊厳は （　　） 価値で ある。」",
+              "options": ["不撓不屈", "超越する", "いかなる", "普遍的な"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「普遍的な」 (fuhenteki na) — \"Umumbashariy, hamma joyda oʻzgarmas\". Gapning to'liq ma'nosi: \"Inson qadr-qimmati umumbashariy qadriyatdir.\"."
+            },
+            {
+              "id": "ja-n1-u1-l1-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「いかなる」 (ikanaru) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Har qanday, qanday boʻlishidan qatʼi nazar (oliy adabiy)",
+                "Chegaralardan oshib oʻtmoq, transsendent boʻlmoq",
+                "Tiz choʻkmoq, taslim boʻlmoq, boʻysunmoq",
+                "Umumbashariy, hamma joyda oʻzgarmas"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「いかなる」 (ikanaru) so'zi o'zbek tilida \"Har qanday, qanday boʻlishidan qatʼi nazar (oliy adabiy)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u1-l1-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「屈する」 (kussuru) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Umumbashariy, hamma joyda oʻzgarmas",
+                "Har qanday, qanday boʻlishidan qatʼi nazar (oliy adabiy)",
+                "Chegaralardan oshib oʻtmoq, transsendent boʻlmoq",
+                "Tiz choʻkmoq, taslim boʻlmoq, boʻysunmoq"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「屈する」 (kussuru) so'zi o'zbek tilida \"Tiz choʻkmoq, taslim boʻlmoq, boʻysunmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u1-l1-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「いかなる 困難（　　）も 屈しない。」",
+              "options": ["から", "を", "に", "は"],
+              "correctAnswer": 2,
+              "explanation": "Ushbu o'rinda 「に」 zarrachasi to'g'ri keladi. Butun jumla: 「いかなる 困難にも 屈しない。」 (Har qanday qiyinchilikka bo'ysunmaslik.)."
             }
           ]
         }
@@ -255,6 +313,51 @@
               "options": ["ずくめ", "至る", "まじき", "ならでは"],
               "correctAnswer": 2,
               "explanation": "«あるまじき» — ma'lum kasb yoki maqom egasiga aslo yarashmaydigan, kechirib bo'lmas nojo'ya xatti-harakat."
+            },
+            {
+              "id": "ja-n1-u1-l2-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「指導者たる者、社会への （　　）を 果たすべきだ。」",
+              "options": ["自覚を 促す", "品格", "あるまじき", "責務"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「責務」 (sekimu) — \"Muqaddas burch, yuksak masʼuliyat\". Gapning to'liq ma'nosi: \"Rahbarlik maqomidagi inson jamiyat oldidagi muqaddas burchini ado etishi shart.\"."
+            },
+            {
+              "id": "ja-n1-u1-l2-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「いかなる 状況でも 学者としての （　　）を 保つ。」",
+              "options": ["襟を 正す", "品格", "あるまじき", "責務"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「品格」 (hinkaku) — \"Olijanoblik, sharaf, yuksak maʼnaviyat\". Gapning to'liq ma'nosi: \"Har qanday vaziyatda ham olimlik shaʼn-sharafini saqlamoq.\"."
+            },
+            {
+              "id": "ja-n1-u1-l2-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「医療従事者として （　　） 暴言を 吐く。」",
+              "options": ["品格", "責務", "自覚を 促す", "あるまじき"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「あるまじき」 (arumajiki) — \"Aslo yoʻl qoʻyib boʻlmaydigan, nomaqbul\". Gapning to'liq ma'nosi: \"Tibbiyot xodimiga aslo yarashmaydigan qoʻpol soʻzlarni ishlatmoq.\"."
+            },
+            {
+              "id": "ja-n1-u1-l2-ex-6",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「新任の 役員に リーダーとしての （　　）。」",
+              "options": ["品格", "あるまじき", "自覚を 促す", "襟を 正す"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「自覚を 促す」 (jikaku o unagasu) — \"Masʼuliyatni anglashga undamoq\". Gapning to'liq ma'nosi: \"Yangi tayinlangan boshqaruvchiga yetakchilik masʼuliyatini his qilishni uqtirmoq.\"."
+            },
+            {
+              "id": "ja-n1-u1-l2-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「責務」 (sekimu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Olijanoblik, sharaf, yuksak maʼnaviyat",
+                "Oʻzini oʻnglab olmoq, jiddiy xushyor tortmoq",
+                "Muqaddas burch, yuksak masʼuliyat",
+                "Aslo yoʻl qoʻyib boʻlmaydigan, nomaqbul"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「責務」 (sekimu) so'zi o'zbek tilida \"Muqaddas burch, yuksak masʼuliyat\" ma'nosini bildiradi."
             }
           ]
         }
@@ -402,6 +505,51 @@
               "options": ["まみれ", "たるもの", "が早いか", "ならでは"],
               "correctAnswer": 3,
               "explanation": "«〜ならでは» — faqat shu shaxs yoki narsagagina xos bo'lgan yuksak mahoratni ifodalaydi."
+            },
+            {
+              "id": "ja-n1-u1-l3-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「彼の 芸術は （　　）の 独創性を 誇る。」",
+              "options": ["追随を 許さない", "極致", "真骨頂", "唯一無二"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「唯一無二」 (yuiitsumuni) — \"Yagona va tengsiz, betakror\". Gapning to'liq ma'nosi: \"Uning sanʼati betakror va tengsiz oʻziga xoslikka ega.\"."
+            },
+            {
+              "id": "ja-n1-u1-l3-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「逆境においてこそ、彼の （　　）が 発揮される。」",
+              "options": ["真骨頂", "唯一無二", "極致", "追随を 許さない"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「真骨頂」 (shinkocchou) — \"Haqiqiy asl mahorat, eng kuchli qirra\". Gapning to'liq ma'nosi: \"Aynan ogʻir damlarda uning asl mahorati yaqqol namoyon boʻladi.\"."
+            },
+            {
+              "id": "ja-n1-u1-l3-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「技術力において 他社の （　　）。」",
+              "options": ["専売特許", "追随を 許さない", "唯一無二", "真骨頂"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「追随を 許さない」 (tsuizui o yurusanai) — \"Hech kim tenglasha olmaydigan, oʻzib ketgan\". Gapning to'liq ma'nosi: \"Texnologik salohiyatda boshqa birorta kompaniyani yaqinlashtirmaydi.\"."
+            },
+            {
+              "id": "ja-n1-u1-l3-ex-6",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「皮肉な 冗談は 彼の （　　）だ。」",
+              "options": ["真骨頂", "追随を 許さない", "唯一無二", "専売特許"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「専売特許」 (sembaittokkyo) — \"Faqat bir kishiga xos odat/xususiyat\". Gapning to'liq ma'nosi: \"Pichingli hazillar faqat uning oʻzigagina xos xususiyatdir.\"."
+            },
+            {
+              "id": "ja-n1-u1-l3-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「唯一無二」 (yuiitsumuni) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Hech kim tenglasha olmaydigan, oʻzib ketgan",
+                "Yagona va tengsiz, betakror",
+                "Faqat bir kishiga xos odat/xususiyat",
+                "Eng oliy choʻqqi, kamolot nuqtasi"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「唯一無二」 (yuiitsumuni) so'zi o'zbek tilida \"Yagona va tengsiz, betakror\" ma'nosini bildiradi."
             }
           ]
         }
@@ -549,6 +697,59 @@
               "options": ["まみれ", "ずくめ", "ならでは", "たるもの"],
               "correctAnswer": 0,
               "explanation": "«泥まみれ» — butun vujudi yoki yuzasi loy, qon kabi yoqimsiz narsa bilan qoplanishida «まみれ» qo'llanadi."
+            },
+            {
+              "id": "ja-n1-u1-l4-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「子どもたちは （　　）に なって サッカーに 興じた。」",
+              "options": ["埃まみれ", "いいことずくめ", "借金まみれ", "泥まみれ"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「泥まみれ」 (doromamire) — \"Boshdan-oyoq loyga belangan\". Gapning to'liq ma'nosi: \"Bolalar boshdan-oyoq loyga botib futbol oʻynashga shoʻngʻishdi.\"."
+            },
+            {
+              "id": "ja-n1-u1-l4-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「無謀な 投資で （　　）に 陥った。」",
+              "options": ["傷だらけ", "泥まみれ", "借金まみれ", "いいことずくめ"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「借金まみれ」 (shakkinmamire) — \"Qarzga botib ketgan\". Gapning to'liq ma'nosi: \"Oʻylanmagan sarmoyalar oqibatida qarz girdobiga botib qoldi.\"."
+            },
+            {
+              "id": "ja-n1-u1-l4-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「今月は 昇進も 決まり （　　）だ。」",
+              "options": ["泥まみれ", "いいことずくめ", "傷だらけ", "埃まみれ"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「いいことずくめ」 (iikotozukume) — \"Barchasi ijobiy, faqat yaxshi xushxabarlar\". Gapning to'liq ma'nosi: \"Bu oyda mansabim ham oshib, faqatgina xushxabarlar yogʻildi.\"."
+            },
+            {
+              "id": "ja-n1-u1-l4-ex-6",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「過酷な 練習で 体が （　　）に なった。」",
+              "options": ["泥まみれ", "埃まみれ", "借金まみれ", "傷だらけ"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「傷だらけ」 (kizudarake) — \"Gʻurra va jarohatlarga toʻla\". Gapning to'liq ma'nosi: \"Ogʻir mashgʻulotlar tufayli butun vujudi jarohatlarga toʻldi.\"."
+            },
+            {
+              "id": "ja-n1-u1-l4-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「泥まみれ」 (doromamire) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Barchasi ijobiy, faqat yaxshi xushxabarlar",
+                "Boshdan-oyoq loyga belangan",
+                "Gʻurra va jarohatlarga toʻla",
+                "Chang bosib ketgan"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「泥まみれ」 (doromamire) so'zi o'zbek tilida \"Boshdan-oyoq loyga belangan\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u1-l4-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「今年（　　） 結構ずくめの 1年だった。」",
+              "options": ["が", "と", "は", "で"],
+              "correctAnswer": 2,
+              "explanation": "Ushbu o'rinda 「は」 zarrachasi to'g'ri keladi. Butun jumla: 「今年は 結構ずくめの 1年だった。」 (Bu yil faqat quvonchli voqealarga boy bo'ldi.)."
             }
           ]
         }
@@ -703,6 +904,59 @@
               "options": ["妥協[だきょう]", "規定[きてい]", "余儀[よぎ]", "漏洩[ろうえい]"],
               "correctAnswer": 1,
               "explanation": "«認識を規定する» — til inson tafakkuri va dunyoni anglash chegaralarini belgilab berishini ifodalovchi falsafiy atama."
+            },
+            {
+              "id": "ja-n1-u1-l5-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「カントの （　　）に おける 主観と 客観の 関係を 論ずる。」",
+              "options": ["概念規定", "本質を 洞察する", "認識論", "解釈学"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「認識論」 (ninshikiron) — \"Epistemologiya, bilish nazariyasi (falsafa)\". Gapning to'liq ma'nosi: \"Kant epistemologiyasidagi subyektivlik va obyektivlik munosabatini tahlil qilamiz.\"."
+            },
+            {
+              "id": "ja-n1-u1-l5-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「近代（　　）の 手法を 古典テキストに 適用する。」",
+              "options": ["恣意的な", "概念規定", "本質を 洞察する", "解釈学"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「解釈学」 (kaishakugaku) — \"Germenevtika (matn talqini ilmi)\". Gapning to'liq ma'nosi: \"Zamonaviy germenevtika metodlarini qadimiy adabiy matnlarga tatbiq etamiz.\"."
+            },
+            {
+              "id": "ja-n1-u1-l5-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「厳密な （　　）なしに 議論を 進めることは できない。」",
+              "options": ["概念規定", "本質を 洞察する", "解釈学", "認識論"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「概念規定」 (gainen kitei) — \"Tushunchaning falsafiy taʼrifi\". Gapning to'liq ma'nosi: \"Aniq falsafiy tushuncha taʼrifisiz bahsni davom ettirib boʻlmaydi.\"."
+            },
+            {
+              "id": "ja-n1-u1-l5-ex-6",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「表面の 事象に 惑わされず、物事の （　　）。」",
+              "options": ["認識論", "恣意的な", "概念規定", "本質を 洞察する"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「本質を 洞察する」 (honshitsu o dousatsu suru) — \"Hodisaning tub mohiyatini chuqur fahmlamoq\". Gapning to'liq ma'nosi: \"Yuzaki hodisalarga chalgʻimay narsalarning tub asl mohiyatini chuqur fahmlamoq.\"."
+            },
+            {
+              "id": "ja-n1-u1-l5-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「認識論」 (ninshikiron) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Epistemologiya, bilish nazariyasi (falsafa)",
+                "Tushunchaning falsafiy taʼrifi",
+                "Germenevtika (matn talqini ilmi)",
+                "Hodisaning tub mohiyatini chuqur fahmlamoq"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「認識論」 (ninshikiron) so'zi o'zbek tilida \"Epistemologiya, bilish nazariyasi (falsafa)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u1-l5-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「概念（　　） 分節化する。」",
+              "options": ["に", "を", "は", "で"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「概念を 分節化する。」 (Tushunchalarni kategoriyalarga ajratmoq.)."
             }
           ]
         }
@@ -854,6 +1108,64 @@
               "options": ["齟齬[そご]", "曖昧[あいまい]", "乖離[かいり]", "葛藤[かっとう]"],
               "correctAnswer": 2,
               "explanation": "«乖離» — ikki tushuncha yoki reallik o'rtasida katta masofa yoki uzilish paydo bo'lishi."
+            },
+            {
+              "id": "ja-n1-u2-l1-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「公約と 実際の 政策の （　　）。」",
+              "options": ["乖離が 著しい", "葛藤を 抱える", "自己矛盾", "曖昧模糊"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「乖離が 著しい」 (kairi ga ichijirushii) — \"Oradagi masofa/tafovut nihoyatda katta\". Gapning to'liq ma'nosi: \"Saylovoldi vaʼdasi bilan amaldagi siyosat oʻrtasidagi tafovut nihoyatda katta.\"."
+            },
+            {
+              "id": "ja-n1-u2-l1-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）とした 返答で 責任を 逃れる。」",
+              "options": ["曖昧模糊", "乖離が 著しい", "自己矛盾", "齟齬を きたす"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「曖昧模糊」 (aimaimoko) — \"Nihoyatda tushunarsiz, xira, noaniq\". Gapning to'liq ma'nosi: \"Tushunarsiz va chigal javoblar bilan javobgarlikdan qochish.\"."
+            },
+            {
+              "id": "ja-n1-u2-l1-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「彼の 主張は （　　）に 陥っている。」",
+              "options": ["齟齬を きたす", "自己矛盾", "葛藤を 抱える", "乖離が 著しい"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「自己矛盾」 (jikomujun) — \"Oʻz-oʻziga zid kelish\". Gapning to'liq ma'nosi: \"Uning daʼvosi oʻz-oʻzini inkor qiladigan ziddiyatga botib qolgan.\"."
+            },
+            {
+              "id": "ja-n1-u2-l1-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「齟齬を きたす」 (sogo o kitasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Oʻz-oʻziga zid kelish",
+                "Nihoyatda tushunarsiz, xira, noaniq",
+                "Mos kelmaslik, ziddiyatga uchramoq",
+                "Oradagi masofa/tafovut nihoyatda katta"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「齟齬を きたす」 (sogo o kitasu) so'zi o'zbek tilida \"Mos kelmaslik, ziddiyatga uchramoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u2-l1-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「乖離が 著しい」 (kairi ga ichijirushii) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Ichki ziddiyat va iztirobda qolmoq",
+                "Mos kelmaslik, ziddiyatga uchramoq",
+                "Oʻz-oʻziga zid kelish",
+                "Oradagi masofa/tafovut nihoyatda katta"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「乖離が 著しい」 (kairi ga ichijirushii) so'zi o'zbek tilida \"Oradagi masofa/tafovut nihoyatda katta\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u2-l1-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「両者の 意見に 齟齬（　　） 生じる。」",
+              "options": ["に", "を", "は", "が"],
+              "correctAnswer": 3,
+              "explanation": "Ushbu o'rinda 「が」 zarrachasi to'g'ri keladi. Butun jumla: 「両者の 意見に 齟齬が 生じる。」 (Ikkala tomon fikrida ziddiyat yuzaga keldi.)."
             }
           ]
         }
@@ -1000,6 +1312,59 @@
               "options": ["隠蔽[いんぺい]", "覇権[はけん]", "諮問[しもん]", "脆弱[ぜいじゃく]性"],
               "correctAnswer": 3,
               "explanation": "«脆弱性» — tizimning zaif, himoyasiz yoki xavfga moyil bo'lgan nuqtasi."
+            },
+            {
+              "id": "ja-n1-u2-l2-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「国際情勢の 悪化を 深く （　　）。」",
+              "options": ["覇権を 握る", "憂慮する", "諮問機関", "脆弱な"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「憂慮する」 (yuuryo suru) — \"Tashvishga tushmoq, jiddiy xavotir olmoq\". Gapning to'liq ma'nosi: \"Xalqaro vaziyatning yomonlashuvidan jiddiy tashvishdamiz.\"."
+            },
+            {
+              "id": "ja-n1-u2-l2-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「サイバー攻撃に 対して （　　） システム。」",
+              "options": ["憂慮する", "諮問機関", "隠蔽工作", "脆弱な"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「脆弱な」 (zeijaku na) — \"Zaif, moʻrt, omonat\". Gapning to'liq ma'nosi: \"Kiberhujumlarga qarshi himoyasi oʻta zaif boʻlgan tizim.\"."
+            },
+            {
+              "id": "ja-n1-u2-l2-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「首相の （　　）が 改革案を 答申した。」",
+              "options": ["覇権を 握る", "諮問機関", "隠蔽工作", "脆弱な"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「諮問機関」 (shimon kikan) — \"Ekspert maslahat organi, konsullik kengashi\". Gapning to'liq ma'nosi: \"Bosh vazir huzuridagi maslahat organi islohotlar rejasini taqdim etdi.\"."
+            },
+            {
+              "id": "ja-n1-u2-l2-ex-6",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「不祥事の （　　）が 発覚し 批判を 浴びた。」",
+              "options": ["隠蔽工作", "憂慮する", "諮問機関", "脆弱な"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「隠蔽工作」 (impeikousaku) — \"Haqiqatni yashirish fitnasi, dalillarni yoʻqotish\". Gapning to'liq ma'nosi: \"Qonunbuzarlikni yashirishga qaratilgan fitna fosh boʻlib, qattiq tanqidga uchradi.\"."
+            },
+            {
+              "id": "ja-n1-u2-l2-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「憂慮する」 (yuuryo suru) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Ekspert maslahat organi, konsullik kengashi",
+                "Haqiqatni yashirish fitnasi, dalillarni yoʻqotish",
+                "Tashvishga tushmoq, jiddiy xavotir olmoq",
+                "Zaif, moʻrt, omonat"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「憂慮する」 (yuuryo suru) so'zi o'zbek tilida \"Tashvishga tushmoq, jiddiy xavotir olmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u2-l2-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「事態（　　） 深く 憂慮する。」",
+              "options": ["を", "は", "で", "と"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「事態を 深く 憂慮する。」 (Vaziyatdan chuqur xavotirdamiz.)."
             }
           ]
         }
@@ -1154,6 +1519,59 @@
               "explanation": "«定説を覆す» — avvaldan o'rnatilgan ilmiy qarash yoki nazariyani inkor etib, yangisini kashf qilish.",
               "audioUrl": "/audio/choukai/n1/n1_track_10.mp3",
               "audioTitle": "N1 Track 10: Akademik Muhokama"
+            },
+            {
+              "id": "ja-n1-u2-l3-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「ノーベル賞受賞者による （　　）を 拝聴する。」",
+              "options": ["要旨を 把握する", "論証", "学術講義", "反論の 余地がない"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「学術講義」 (gakujutsukougi) — \"Akademik ilmiy maʼruza\". Gapning to'liq ma'nosi: \"Nobel mukofoti laureatining ilmiy maʼruzasini diqqat bilan tinglash.\"."
+            },
+            {
+              "id": "ja-n1-u2-l3-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「緻密な （　　）に より 自説の 正当性を 示す。」",
+              "options": ["論証", "要旨を 把握する", "学術講義", "統合的な 視座"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「論証」 (ronshou) — \"Ilmiy asoslash, dalillar bilan isbotlash\". Gapning to'liq ma'nosi: \"Mukammal mantiqiy isbotlar orqali oʻz gʻoyasining haqligini koʻrsatdi.\"."
+            },
+            {
+              "id": "ja-n1-u2-l3-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「完璧な データで （　　）。」",
+              "options": ["統合的な 視座", "反論の 余地がない", "要旨を 把握する", "学術講義"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「反論の 余地がない」 (hanron no yochi ga nai) — \"Eʼtiroz bildirishga oʻrin qoldirmaydigan\". Gapning to'liq ma'nosi: \"Mukammal dalillar tufayli birorta eʼtirozga oʻrin yoʻq.\"."
+            },
+            {
+              "id": "ja-n1-u2-l3-ex-6",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「複眼的かつ （　　）から 問題を 捉え直す。」",
+              "options": ["論証", "統合的な 視座", "学術講義", "要旨を 把握する"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「統合的な 視座」 (tougouteki na shiza) — \"Integratsiyalashgan yaxlit nuqtayi nazar\". Gapning to'liq ma'nosi: \"Koʻp qirrali va yaxlit ilmiy nuqtayi nazardan masalani qayta koʻrib chiqish.\"."
+            },
+            {
+              "id": "ja-n1-u2-l3-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「学術講義」 (gakujutsukougi) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Maʼruzaning tub mohiyatini ilgʻab olmoq",
+                "Integratsiyalashgan yaxlit nuqtayi nazar",
+                "Akademik ilmiy maʼruza",
+                "Eʼtiroz bildirishga oʻrin qoldirmaydigan"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「学術講義」 (gakujutsukougi) so'zi o'zbek tilida \"Akademik ilmiy maʼruza\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u2-l3-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
+              "options": ["に", "は", "で", "を"],
+              "correctAnswer": 3,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -1313,6 +1731,59 @@
               "options": ["妥協[だきょう]", "拍車[はくしゃ]", "余儀[よぎ]", "皮切り[かわきり]"],
               "correctAnswer": 1,
               "explanation": "«拍車をかける» — jarayonning rivojlanishiga yanada kuchli turtki berib, tezlashtirish."
+            },
+            {
+              "id": "ja-n1-u2-l4-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 分析に 基く 高度な 読解問題。」",
+              "options": ["精緻な", "卓越した", "網羅する", "難攻不落"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「精緻な」 (seichi na) — \"Zargarlarcha nozik, yuksak aniqlikdagi\". Gapning to'liq ma'nosi: \"Zargarlarcha nozik tahlilga asoslangan yuqori darajadagi matn tahlili.\"."
+            },
+            {
+              "id": "ja-n1-u2-l4-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）と 呼ばれる N1の 壁を 突破する。」",
+              "options": ["精緻な", "卓越した", "難攻不落", "網羅する"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「難攻不落」 (nankoufukaku) — \"Zabt etib boʻlmas qalʼa, yengilmas toʻsiq\". Gapning to'liq ma'nosi: \"Yengilmas qalʼa sanalgan JLPT N1 choʻqqisini zabt etmoq.\"."
+            },
+            {
+              "id": "ja-n1-u2-l4-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 語学力を 実証してみせた。」",
+              "options": ["遺憾なく", "卓越した", "難攻不落", "精緻な"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「卓越した」 (takuetsu shita) — \"Tengsiz, benuqson, yuksak darajadagi\". Gapning to'liq ma'nosi: \"Yuksak va benuqson til bilish mahoratini amalda isbotladi.\"."
+            },
+            {
+              "id": "ja-n1-u2-l4-ex-6",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日頃の 学習の 成果を （　　） 発揮する。」",
+              "options": ["網羅する", "卓越した", "遺憾なく", "難攻不落"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「遺憾なく」 (ikan naku) — \"Toʻliq va bekamu koʻst (namoyon etmoq)\". Gapning to'liq ma'nosi: \"Muntazam tayyorgarlik mevalarini toʻliq va bekamu koʻst namoyish etmoq.\"."
+            },
+            {
+              "id": "ja-n1-u2-l4-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「網羅する」 (moura suru) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Zabt etib boʻlmas qalʼa, yengilmas toʻsiq",
+                "Toʻliq va bekamu koʻst (namoyon etmoq)",
+                "Tengsiz, benuqson, yuksak darajadagi",
+                "Barchasini qamrab olmoq, toʻliq oʻz ichiga olmoq"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「網羅する」 (moura suru) so'zi o'zbek tilida \"Barchasini qamrab olmoq, toʻliq oʻz ichiga olmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u2-l4-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
+              "options": ["が", "を", "に", "は"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -1470,6 +1941,64 @@
               "options": ["乖離[かいり]", "齟齬[そご]", "妥協[だきょう]", "隠蔽[いんぺい]"],
               "correctAnswer": 2,
               "explanation": "«妥協を許さない» — hech qanday murosa yoki sifatni pasaytirishga yo'l qo'ymaslik."
+            },
+            {
+              "id": "ja-n1-u2-l5-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「どんな 難問にも （　　） 自信を 持って 臨む。」",
+              "options": ["揺るぎない", "冠を 戴く", "名実ともに", "金字塔を 打ち立てる"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「揺るぎない」 (yuruginai) — \"Tebranmas, qatʼiy, mustahkam\". Gapning to'liq ma'nosi: \"Har qanday ogʻir savolga tebranmas qatʼiyat bilan yondashmoq.\"."
+            },
+            {
+              "id": "ja-n1-u2-l5-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「N1最高峰の 栄（　　）。」",
+              "options": ["冠を 戴く", "金字塔を 打ち立てる", "揺るぎない", "極致に 達する"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「冠を 戴く」 (kanmuri o itadaku) — \"Gʻoliblik tojini kiymoq, oliy sharafga sazovor boʻlmoq\". Gapning to'liq ma'nosi: \"JLPT N1 ning eng oliy sharafli tojiga sazovor boʻlmoq.\"."
+            },
+            {
+              "id": "ja-n1-u2-l5-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 日本語の マスターと なった。」",
+              "options": ["名実ともに", "金字塔を 打ち立てる", "揺るぎない", "冠を 戴く"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「名実ともに」 (meijitsutomoni) — \"Ham noman, ham amalda (haqiqiy maʼnoda)\". Gapning to'liq ma'nosi: \"Ham rasman, ham amalda haqiqiy yapon tili ustasiga aylandi.\"."
+            },
+            {
+              "id": "ja-n1-u2-l5-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「金字塔を 打ち立てる」 (kinjitou o uchitateru) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Kamolotning eng oliy choʻqqisiga erishmoq",
+                "Tarixiy yuksak choʻqqi yaratmoq, buyuk yutuqqa erishmoq",
+                "Gʻoliblik tojini kiymoq, oliy sharafga sazovor boʻlmoq",
+                "Ham noman, ham amalda (haqiqiy maʼnoda)"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「金字塔を 打ち立てる」 (kinjitou o uchitateru) so'zi o'zbek tilida \"Tarixiy yuksak choʻqqi yaratmoq, buyuk yutuqqa erishmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u2-l5-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「極致に 達する」 (kyokuchi ni tassuru) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Ham noman, ham amalda (haqiqiy maʼnoda)",
+                "Kamolotning eng oliy choʻqqisiga erishmoq",
+                "Tebranmas, qatʼiy, mustahkam",
+                "Gʻoliblik tojini kiymoq, oliy sharafga sazovor boʻlmoq"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「極致に 達する」 (kyokuchi ni tassuru) so'zi o'zbek tilida \"Kamolotning eng oliy choʻqqisiga erishmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u2-l5-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
+              "options": ["は", "に", "を", "が"],
+              "correctAnswer": 2,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -1621,6 +2150,51 @@
               "options": ["まじき", "ずくめ", "に至る", "者[もの]"],
               "correctAnswer": 3,
               "explanation": "«指導者たる者» — rahbar bo'lgan shaxs o'z mavqeiga mos fazilatni namoyon etishi kerakligini ifodalaydi."
+            },
+            {
+              "id": "ja-n1-u3-l1-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「教育者たる者、（　　） 人格が 求められる。」",
+              "options": ["誇り高い", "模範と なる", "高潔な", "恥じない"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「高潔な」 (kouketsu na) — \"Vijdonli, pokiza, yuksak axloqli\". Gapning to'liq ma'nosi: \"Murabbiy kishi yuksak va pokiza axloq sohibi boʻlishi darkor.\"."
+            },
+            {
+              "id": "ja-n1-u3-l1-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「プロの 名に （　　） 仕事を する。」",
+              "options": ["恥じない", "誇り高い", "高潔な", "模範と なる"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「恥じない」 (hajinai) — \"Uyaltirib qoʻymaydigan, nomiga munosib\". Gapning to'liq ma'nosi: \"Professional nomiga dogʻ tushirmaydigan munosib ish qilmoq.\"."
+            },
+            {
+              "id": "ja-n1-u3-l1-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「先輩として 後輩の （　　） 行動を 心がける。」",
+              "options": ["誇り高い", "高潔な", "使命感", "模範と なる"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「模範と なる」 (mohan to naru) — \"Oʻrnak, ibrat boʻlmoq\". Gapning to'liq ma'nosi: \"Katta safdosh sifatida kichiklarga ibrat boʻladigan xulqni odat qilmoq.\"."
+            },
+            {
+              "id": "ja-n1-u3-l1-ex-6",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「強い （　　）を 持って 難局に 立ち向かう。」",
+              "options": ["使命感", "誇り高い", "恥じない", "模範と なる"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「使命感」 (shimeikan) — \"Burch va masʼuliyat hissi\". Gapning to'liq ma'nosi: \"Yuksak masʼuliyat tuygʻusi bilan ogʻir sinovlarga qarshi turmoq.\"."
+            },
+            {
+              "id": "ja-n1-u3-l1-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「高潔な」 (kouketsu na) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Vijdonli, pokiza, yuksak axloqli",
+                "Burch va masʼuliyat hissi",
+                "Oʻrnak, ibrat boʻlmoq",
+                "Uyaltirib qoʻymaydigan, nomiga munosib"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「高潔な」 (kouketsu na) so'zi o'zbek tilida \"Vijdonli, pokiza, yuksak axloqli\" ma'nosini bildiradi."
             }
           ]
         }
@@ -1787,6 +2361,59 @@
               ],
               "correctAnswer": 0,
               "explanation": "«事態がここに至った以上» — voqealar rivoji shu darajaga yetib kelgan ekan degan vaziyatni ifodalaydi."
+            },
+            {
+              "id": "ja-n1-u3-l2-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「政権の （　　）に 至って 汚職が 蔓延した。」",
+              "options": ["経緯", "泥沼化する", "末期", "事ここに 至っては"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「末期」 (makki) — \"Soʻnggi bosqich, oxirgi palla\". Gapning to'liq ma'nosi: \"Hokimiyatning soʻnggi pallalariga yetib poraxoʻrlik urchib ketdi.\"."
+            },
+            {
+              "id": "ja-n1-u3-l2-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「事件が ここに 至るまでの （　　）を 説明する。」",
+              "options": ["経緯", "泥沼化する", "極限状態", "末期"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「経緯」 (ikisatsu) — \"Voqealar rivoji, tafsilotlar silsilasi\". Gapning to'liq ma'nosi: \"Vaziyat ushbu nuqtaga yetib kelguncha boʻlgan jarayonni tushuntirib berish.\"."
+            },
+            {
+              "id": "ja-n1-u3-l2-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）に 至っても 冷静さを 保つ。」",
+              "options": ["事ここに 至っては", "極限状態", "泥沼化する", "末期"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「極限状態」 (kyokugenjoutai) — \"Oʻta keskin, chekka chegara holati\". Gapning to'liq ma'nosi: \"Eng keskin chidab boʻlmas holatda ham bosiqlikni saqlab qolmoq.\"."
+            },
+            {
+              "id": "ja-n1-u3-l2-ex-6",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）、もはや 隠し立ては できない。」",
+              "options": ["末期", "経緯", "極限状態", "事ここに 至っては"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「事ここに 至っては」 (koto koko ni itatte wa) — \"Ish shunday holatga yetib borgach endi...\". Gapning to'liq ma'nosi: \"Ish bu darajagacha yetib borgach, endi hech narsani yashirib boʻlmaydi.\"."
+            },
+            {
+              "id": "ja-n1-u3-l2-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「末期」 (makki) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Chiqib boʻlmas botqoqlikka aylanmoq",
+                "Soʻnggi bosqich, oxirgi palla",
+                "Ish shunday holatga yetib borgach endi...",
+                "Voqealar rivoji, tafsilotlar silsilasi"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「末期」 (makki) so'zi o'zbek tilida \"Soʻnggi bosqich, oxirgi palla\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u3-l2-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「事態（　　）悪化する。」",
+              "options": ["と", "から", "に", "が"],
+              "correctAnswer": 3,
+              "explanation": "Ushbu o'rinda 「が」 zarrachasi to'g'ri keladi. Butun jumla: 「事態が悪化する。」 (Vaziyat yomonlashadi.)."
             }
           ]
         }
@@ -1953,6 +2580,79 @@
               ],
               "correctAnswer": 1,
               "explanation": "«閉鎖を余儀なくされた» — o'z xohishiga qarshi o'laroq, majburlikdan bo'limni yopishga to'g'ri keldi."
+            },
+            {
+              "id": "ja-n1-u3-l3-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「断腸の 思いで （　　）の 決断を 下す。」",
+              "options": [
+                "窮地に 追い込まれる",
+                "背に腹は変えられない",
+                "撤退を 余儀なくされる",
+                "苦衷"
+              ],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「苦衷」 (kuchuu) — \"Qalbdagi ogʻir iztirob va nochorlik\". Gapning to'liq ma'nosi: \"Yuragi tilka-pora boʻlib nochor ahvolda ogʻir qaror qabul qilmoq.\"."
+            },
+            {
+              "id": "ja-n1-u3-l3-ex-4",
+              "type": "multiple-choice",
+              "prompt": "「撤退を 余儀なくされる」 (tettai o yoginaku sareru) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Qalbdagi ogʻir iztirob va nochorlik",
+                "Qoldirishga majbur boʻlmoq",
+                "Jon saqlash uchun bor narsadan kechishga majbur",
+                "Chekinishga majbur boʻlmoq"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「撤退を 余儀なくされる」 (tettai o yoginaku sareru) so'zi o'zbek tilida \"Chekinishga majbur boʻlmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u3-l3-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「延期を 余儀なくされる」 (enki o yoginaku sareru) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Qalbdagi ogʻir iztirob va nochorlik",
+                "Chekinishga majbur boʻlmoq",
+                "Qoldirishga majbur boʻlmoq",
+                "Jon saqlash uchun bor narsadan kechishga majbur"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「延期を 余儀なくされる」 (enki o yoginaku sareru) so'zi o'zbek tilida \"Qoldirishga majbur boʻlmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u3-l3-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「苦衷」 (kuchuu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Chekinishga majbur boʻlmoq",
+                "Jon saqlash uchun bor narsadan kechishga majbur",
+                "Tubsiz nochor boshi berk koʻchaga kirib qolmoq",
+                "Qalbdagi ogʻir iztirob va nochorlik"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「苦衷」 (kuchuu) so'zi o'zbek tilida \"Qalbdagi ogʻir iztirob va nochorlik\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u3-l3-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「背に腹は変えられない」 (se ni hara wa kaerarenai) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Jon saqlash uchun bor narsadan kechishga majbur",
+                "Tubsiz nochor boshi berk koʻchaga kirib qolmoq",
+                "Qoldirishga majbur boʻlmoq",
+                "Qalbdagi ogʻir iztirob va nochorlik"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「背に腹は変えられない」 (se ni hara wa kaerarenai) so'zi o'zbek tilida \"Jon saqlash uchun bor narsadan kechishga majbur\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u3-l3-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「全便欠航（　　）なった。」",
+              "options": ["が", "を", "は", "と"],
+              "correctAnswer": 3,
+              "explanation": "Ushbu o'rinda 「と」 zarrachasi to'g'ri keladi. Butun jumla: 「全便欠航となった。」 (Barcha reyslar bekor qilindi.)."
             }
           ]
         }
@@ -2114,6 +2814,51 @@
               "options": ["鳴[な]った", "鳴[な]りそう", "鳴[な]る", "鳴[な]れば"],
               "correctAnswer": 2,
               "explanation": "«鳴るが早いか» — jiringlashi bilanoq darhol keyingi kutilmagan harakat sodir bo'ldi (fe'l lug'at shakli + が早いか)."
+            },
+            {
+              "id": "ja-n1-u3-l4-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）の 勢いで 敵の 陣地を 攻略した。」",
+              "options": ["電光石火", "疾風怒濤", "咄嗟に", "間髪を 入れず"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「電光石火」 (denkousekka) — \"Chaqmoqdek tezkor, bir soniyada\". Gapning to'liq ma'nosi: \"Chaqmoqdek tezkor surʼatda raqib maydonini zabt etdi.\"."
+            },
+            {
+              "id": "ja-n1-u3-l4-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「記者から （　　） 質問が 飛び出した。」",
+              "options": ["電光石火", "矢継ぎ早に", "咄嗟に", "疾風怒濤"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「矢継ぎ早に」 (yatsugibaya ni) — \"Ketma-ket, toʻxtovsiz yogʻdirib\". Gapning to'liq ma'nosi: \"Jurnalistlar tomonidan ketma-ket toʻxtovsiz savollar yogʻdirildi.\"."
+            },
+            {
+              "id": "ja-n1-u3-l4-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「危険を 察知して （　　） ブレーキを 踏んだ。」",
+              "options": ["咄嗟に", "電光石火", "矢継ぎ早に", "間髪を 入れず"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「間髪を 入れず」 (kamhatsu o irezu) — \"Qil sigʻmas fursatda, bir zumda\". Gapning to'liq ma'nosi: \"Xavfni sezishi bilanoq bir lahza ham oʻtmay tormozni bosdi.\"."
+            },
+            {
+              "id": "ja-n1-u3-l4-ex-6",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）の 時代を 生き抜く。」",
+              "options": ["疾風怒濤", "咄嗟に", "矢継ぎ早に", "電光石火"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「疾風怒濤」 (shippuudotou) — \"Dovuldek shiddatli, poʻrtanali\". Gapning to'liq ma'nosi: \"Dovuldek shiddatli va toʻpolonli zamonda sabot bilan yashamoq.\"."
+            },
+            {
+              "id": "ja-n1-u3-l4-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「電光石火」 (denkousekka) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Chaqmoqdek tezkor, bir soniyada",
+                "Dovuldek shiddatli, poʻrtanali",
+                "Qil sigʻmas fursatda, bir zumda",
+                "Ketma-ket, toʻxtovsiz yogʻdirib"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「電光石火」 (denkousekka) so'zi o'zbek tilida \"Chaqmoqdek tezkor, bir soniyada\" ma'nosini bildiradi."
             }
           ]
         }
@@ -2270,6 +3015,51 @@
               "options": ["ずくめ", "ならでは", "たるもの", "まじき"],
               "correctAnswer": 3,
               "explanation": "«あるまじき暴言» — o'qituvchilik sha'niga aslo loyiq bo'lmagan, qabul qilib bo'lmas haqoratli so'zlar."
+            },
+            {
+              "id": "ja-n1-u3-l5-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「公金の 横領など （　　）の 暴挙だ。」",
+              "options": ["断じて 許せない", "背信行為", "言語道断", "糾弾する"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「言語道断」 (gongodoudan) — \"Aql bovar qilmas darajada jirkanch/nomaqbul\". Gapning to'liq ma'nosi: \"Davlat gʻaznasini talon-toroj qilish aql bovar qilmas darajadagi qabihlikdir.\"."
+            },
+            {
+              "id": "ja-n1-u3-l5-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「無実の 人を 陥れる 行為は （　　）。」",
+              "options": ["断じて 許せない", "面目丸潰れ", "背信行為", "糾弾する"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「断じて 許せない」 (danjite yurusenai) — \"Qatʼiyan aslo kechirib boʻlmaydigan\". Gapning to'liq ma'nosi: \"Begunoh insonni tuhmatga qoldirish xatti-harakatini aslo kechirib boʻlmaydi.\"."
+            },
+            {
+              "id": "ja-n1-u3-l5-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「長年の 友を 裏切る （　　）に 憤る。」",
+              "options": ["面目丸潰れ", "断じて 許せない", "背信行為", "言語道断"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「背信行為」 (haishinkoui) — \"Ishonchga xiyonat qilish\". Gapning to'liq ma'nosi: \"Koʻp yillik doʻstga xiyonat qilishdek razolatdan qattiq gʻazabdaman.\"."
+            },
+            {
+              "id": "ja-n1-u3-l5-ex-6",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「不正を 働いた 政治家を 厳しく （　　）。」",
+              "options": ["面目丸潰れ", "断じて 許せない", "背信行為", "糾弾する"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「糾弾する」 (kyuudan suru) — \"Ayblab fosh qilmoq, jamoat oldida qoralash\". Gapning to'liq ma'nosi: \"Qingʻirlik qilgan siyosatchini omma oldida qattiq qoralab fosh qilmoq.\"."
+            },
+            {
+              "id": "ja-n1-u3-l5-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「言語道断」 (gongodoudan) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Aql bovar qilmas darajada jirkanch/nomaqbul",
+                "Ishonchga xiyonat qilish",
+                "Ayblab fosh qilmoq, jamoat oldida qoralash",
+                "Qatʼiyan aslo kechirib boʻlmaydigan"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「言語道断」 (gongodoudan) so'zi o'zbek tilida \"Aql bovar qilmas darajada jirkanch/nomaqbul\" ma'nosini bildiradi."
             }
           ]
         }
@@ -2437,6 +3227,51 @@
               "options": ["批判[ひはん]", "妥協[だきょう]", "拍車[はくしゃ]", "余儀[よぎ]"],
               "correctAnswer": 0,
               "explanation": "«盲従を厳しく批判する» — zamonaviy ratsionallikka ko'r-ko'rona ergashishni keskin tanqid ostiga oluvchi tahlil."
+            },
+            {
+              "id": "ja-n1-u4-l1-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「ヘーゲルの （　　）に おける 正・反・合の 発展。」",
+              "options": ["思索を 深める", "弁証法", "唯物論", "命題"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「弁証法」 (benshouhou) — \"Dialektika (qarama-qarshiliklar orqali rivojlanish falsafasi)\". Gapning to'liq ma'nosi: \"Gegel dialektikasidagi tezis, antitezis va sintez taraqqiyoti.\"."
+            },
+            {
+              "id": "ja-n1-u4-l1-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「歴史的（　　）の 観点から 経済構造を 読み解く。」",
+              "options": ["思索を 深める", "命題", "唯物論", "弁証法"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「唯物論」 (yuibutsuron) — \"Materializm falsafasi\". Gapning to'liq ma'nosi: \"Tarixiy materializm nuqtayi nazaridan iqtisodiy tuzilmani tahlil qilmoq.\"."
+            },
+            {
+              "id": "ja-n1-u4-l1-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）の 根本問題で ある 存在の 意味を 問う。」",
+              "options": ["弁証法", "思索を 深める", "形而上学", "命題"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「形而上学」 (keijijougaku) — \"Metafizika (moddiy olamdan tashqaridagi borliq ilmi)\". Gapning to'liq ma'nosi: \"Metafizikaning tub masalasi boʻlgan mavjudlik mohiyatini izlamoq.\"."
+            },
+            {
+              "id": "ja-n1-u4-l1-ex-6",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「この （　　）の 真偽を 厳密に 検証する。」",
+              "options": ["思索を 深める", "形而上学", "唯物論", "命題"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「命題」 (meidai) — \"Falsafiy tezis, isbotlanishi lozim boʻlgan hukm\". Gapning to'liq ma'nosi: \"Ushbu tezisning haqiqat yoki yolgʻonligini qatʼiy tekshirib koʻrmoq.\"."
+            },
+            {
+              "id": "ja-n1-u4-l1-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「弁証法」 (benshouhou) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Dialektika (qarama-qarshiliklar orqali rivojlanish falsafasi)",
+                "Materializm falsafasi",
+                "Falsafiy tezis, isbotlanishi lozim boʻlgan hukm",
+                "Metafizika (moddiy olamdan tashqaridagi borliq ilmi)"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「弁証法」 (benshouhou) so'zi o'zbek tilida \"Dialektika (qarama-qarshiliklar orqali rivojlanish falsafasi)\" ma'nosini bildiradi."
             }
           ]
         }
@@ -2588,6 +3423,69 @@
               "options": ["まじき", "んがため", "ずくめ", "たるもの"],
               "correctAnswer": 1,
               "explanation": "«実現させんがため» — orzuni amalga oshirish oliy maqsadida degan arxaik-adabiy uslub (fe'l inkor negizi + んがため)."
+            },
+            {
+              "id": "ja-n1-u4-l2-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「国家の 繁栄の ために （　　）の 努力を 重ねる。」",
+              "options": ["志を 貫く", "悲願", "粉骨砕身", "宿願を 果たす"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「粉骨砕身」 (funkotsusaishin) — \"Jonini fido qilib, bor kuchi bilan xizmat qilmoq\". Gapning to'liq ma'nosi: \"Vatan taraqqiyoti yoʻlida jonini fido qilib tinimsiz xizmat qildi.\"."
+            },
+            {
+              "id": "ja-n1-u4-l2-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「オリンピックでの 金メダル獲得は 国民の （　　）であった。」",
+              "options": ["身命を 賭す", "悲願", "粉骨砕身", "志を 貫く"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「悲願」 (higan) — \"Qalb tubidagi eng buyuk orzu-umid\". Gapning to'liq ma'nosi: \"Olimpiadada oltin medal yutish butun xalqning eng buyuk orzusi edi.\"."
+            },
+            {
+              "id": "ja-n1-u4-l2-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「宿願を 果たす」 (shukugan o hatasu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Jonini fido qilib, bor kuchi bilan xizmat qilmoq",
+                "Hayotini, borligʻini garovga qoʻymoq",
+                "Koʻp yillik ezgu orzusini roʻyobga chiqarmoq",
+                "Qalb tubidagi eng buyuk orzu-umid"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「宿願を 果たす」 (shukugan o hatasu) so'zi o'zbek tilida \"Koʻp yillik ezgu orzusini roʻyobga chiqarmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u4-l2-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「粉骨砕身」 (funkotsusaishin) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Qalb tubidagi eng buyuk orzu-umid",
+                "Hayotini, borligʻini garovga qoʻymoq",
+                "Koʻp yillik ezgu orzusini roʻyobga chiqarmoq",
+                "Jonini fido qilib, bor kuchi bilan xizmat qilmoq"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「粉骨砕身」 (funkotsusaishin) so'zi o'zbek tilida \"Jonini fido qilib, bor kuchi bilan xizmat qilmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u4-l2-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「悲願」 (higan) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Qalb tubidagi eng buyuk orzu-umid",
+                "Yuksak niyatidan chekinmay qatʼiy turmoq",
+                "Jonini fido qilib, bor kuchi bilan xizmat qilmoq",
+                "Koʻp yillik ezgu orzusini roʻyobga chiqarmoq"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「悲願」 (higan) so'zi o'zbek tilida \"Qalb tubidagi eng buyuk orzu-umid\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u4-l2-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「真相（　　）究明する。」",
+              "options": ["を", "で", "から", "は"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「真相を究明する。」 (Haqiqatni aniqlamoq.)."
             }
           ]
         }
@@ -2739,6 +3637,56 @@
               "options": ["に至[いた]って", "にかまけて", "をおいて", "を皮切り[かわきり]に"],
               "correctAnswer": 2,
               "explanation": "«彼をおいて他にいない» — undan boshqa hech kim bu ulkan mas'uliyatni zimmaga ola olmaydi."
+            },
+            {
+              "id": "ja-n1-u4-l3-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「世俗の 流行に 流されず、（　　） 道を 歩む。」",
+              "options": ["群を 抜く", "冠絶する", "孤高の", "独壇場"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「孤高の」 (kokou no) — \"Yolgʻiz, magʻrur, boshqalardan yuksak\". Gapning to'liq ma'nosi: \"Ommaviy mayda shov-shuvlarga ergashmay magʻrur oʻz yoʻlidan yurmoq.\"."
+            },
+            {
+              "id": "ja-n1-u4-l3-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「即興ディベートは 彼の （　　）だ。」",
+              "options": ["群を 抜く", "独壇場", "孤高の", "冠絶する"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「独壇場」 (dokudanjou) — \"Yakka oʻzining maydoni, hech kim teng kela olmaydigan soha\". Gapning to'liq ma'nosi: \"Tezkor munozara faqat uning yakka oʻziga xos tengsiz maydonidir.\"."
+            },
+            {
+              "id": "ja-n1-u4-l3-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「彼こそは 私の 生涯における （　　）だ。」",
+              "options": ["群を 抜く", "冠絶する", "孤高の", "無二の 親友"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「無二の 親友」 (muni no shinyuu) — \"Tengsiz eng yaqin, sadoqatli doʻst\". Gapning to'liq ma'nosi: \"Aynan u mening butun umrimdagi eng sadoqatli va tengsiz doʻstimdir.\"."
+            },
+            {
+              "id": "ja-n1-u4-l3-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「孤高の」 (kokou no) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Yakka oʻzining maydoni, hech kim teng kela olmaydigan soha",
+                "Barchadan mutlaq ustun turmoq",
+                "Yolgʻiz, magʻrur, boshqalardan yuksak",
+                "Tengsiz eng yaqin, sadoqatli doʻst"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「孤高の」 (kokou no) so'zi o'zbek tilida \"Yolgʻiz, magʻrur, boshqalardan yuksak\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u4-l3-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「独壇場」 (dokudanjou) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Yakka oʻzining maydoni, hech kim teng kela olmaydigan soha",
+                "Yolgʻiz, magʻrur, boshqalardan yuksak",
+                "Barchadan mutlaq ustun turmoq",
+                "Tengsiz eng yaqin, sadoqatli doʻst"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「独壇場」 (dokudanjou) so'zi o'zbek tilida \"Yakka oʻzining maydoni, hech kim teng kela olmaydigan soha\" ma'nosini bildiradi."
             }
           ]
         }
@@ -2900,6 +3848,51 @@
               "options": ["ずくめ", "まじき", "ならでは", "極[きわ]まりない"],
               "correctAnswer": 3,
               "explanation": "«失礼極まりない» — o'ta beodoblik, haddan ziyod hurmatsizlik ifodasi."
+            },
+            {
+              "id": "ja-n1-u4-l4-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「初対面で あのような 暴言を 吐くとは （　　）。」",
+              "options": ["無礼極まる", "痛恨の 極み", "感極まる", "遺憾の 極み"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「無礼極まる」 (bureikiwamaru) — \"Haddan ziyod beadab, oʻta odobsiz\". Gapning to'liq ma'nosi: \"Ilk uchrashuvdayoq shunday haqorat qilish haddan ziyod odobsizlikdir.\"."
+            },
+            {
+              "id": "ja-n1-u4-l4-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「ヘルメットも 着用せずに 高所で 作業するのは （　　）。」",
+              "options": ["感極まる", "痛恨の 極み", "危険極まりない", "遺憾の 極み"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「危険極まりない」 (kikenkiwamarinai) — \"Oʻta xavfli, halokatli\". Gapning to'liq ma'nosi: \"Kaskasiz balandlikda ishlash oʻta xavfli va tahlikalidir.\"."
+            },
+            {
+              "id": "ja-n1-u4-l4-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「今回の 不祥事は 誠に （　　）で あります。」",
+              "options": ["遺憾の 極み", "痛恨の 極み", "無礼極まる", "感極まる"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「遺憾の 極み」 (ikan no kiwami) — \"Cheksiz afsus va chuqur nadomat\". Gapning to'liq ma'nosi: \"Ushbu koʻngilsiz hodisadan cheksiz afsusdamiz.\"."
+            },
+            {
+              "id": "ja-n1-u4-l4-ex-6",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「ラスト1秒で 逆転されたことは （　　）だ。」",
+              "options": ["感極まる", "痛恨の 極み", "無礼極まる", "遺憾の 極み"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「痛恨の 極み」 (tsuukon no kiwami) — \"Yurakni tiluvchi ogʻir alam\". Gapning to'liq ma'nosi: \"Oxirgi bir soniyada magʻlub boʻlish yurakni tilka-pora qiladigan ogʻir alamdir.\"."
+            },
+            {
+              "id": "ja-n1-u4-l4-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「無礼極まる」 (bureikiwamaru) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Hayajondan koʻzlari yoshlanmoq, qalbi toʻlqinlanmoq",
+                "Haddan ziyod beadab, oʻta odobsiz",
+                "Oʻta xavfli, halokatli",
+                "Cheksiz afsus va chuqur nadomat"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「無礼極まる」 (bureikiwamaru) so'zi o'zbek tilida \"Haddan ziyod beadab, oʻta odobsiz\" ma'nosini bildiradi."
             }
           ]
         }
@@ -3065,6 +4058,59 @@
               "explanation": "«統合的に整理する» — ikkala tomonning qarama-qarshi fikrlarini birlashtirib, yaxlit tahlil qilish.",
               "audioUrl": "/audio/choukai/n1/n1_track_45.mp3",
               "audioTitle": "N1 Track 45: Ekspertlar Bahsi"
+            },
+            {
+              "id": "ja-n1-u4-l5-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「言葉の 表面だけでなく （　　） 洞察が 必須だ。」",
+              "options": ["行間を 読む", "言外の 意", "反語的な", "ニュアンスを 嗅ぎ分ける"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「行間を 読む」 (gyoukan o yomu) — \"Satrlar orasidagi yashirin maʼnoni anglamoq\". Gapning to'liq ma'nosi: \"Faqat soʻzning yuzasiga emas, satrlar orasidagi asl maʼnoga eʼtibor berish lozim.\"."
+            },
+            {
+              "id": "ja-n1-u4-l5-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「外交官の スピーチには （　　）が 込められている。」",
+              "options": ["反語的な", "言外の 意", "論旨の 展開", "ニュアンスを 嗅ぎ分ける"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「言外の 意」 (gengai no i) — \"Soʻz bilan aytilmagan botiniy maʼno\". Gapning to'liq ma'nosi: \"Diplomatning nutqida ochiq aytilmagan botiniy maʼno yashiringan.\"."
+            },
+            {
+              "id": "ja-n1-u4-l5-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「ネイティブ特有の 微妙な （　　）。」",
+              "options": ["ニュアンスを 嗅ぎ分ける", "行間を 読む", "反語的な", "論旨の 展開"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「ニュアンスを 嗅ぎ分ける」 (nyuansu o kagiwakeru) — \"Nozik uslubiy maʼno tuslanishini ilgʻab olmoq\". Gapning to'liq ma'nosi: \"Tugʻma soʻzlovchilarga xos nozik maʼno qirralarini aniq ilgʻamoq.\"."
+            },
+            {
+              "id": "ja-n1-u4-l5-ex-6",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「筆者の 巧みな （　　）に 引き込まれる。」",
+              "options": ["反語的な", "言外の 意", "論旨の 展開", "ニュアンスを 嗅ぎ分ける"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「論旨の 展開」 (ronshi no tenkai) — \"Fikr va dalillarning mantiqiy silsilasi\". Gapning to'liq ma'nosi: \"Muallifning mahoratli fikr rivoji oʻquvchini oʻziga rom etadi.\"."
+            },
+            {
+              "id": "ja-n1-u4-l5-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「行間を 読む」 (gyoukan o yomu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Satrlar orasidagi yashirin maʼnoni anglamoq",
+                "Soʻz bilan aytilmagan botiniy maʼno",
+                "Pichingli, kinoyali, teskari maʼnodagi",
+                "Nozik uslubiy maʼno tuslanishini ilgʻab olmoq"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「行間を 読む」 (gyoukan o yomu) so'zi o'zbek tilida \"Satrlar orasidagi yashirin maʼnoni anglamoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u4-l5-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
+              "options": ["は", "が", "を", "と"],
+              "correctAnswer": 2,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -3235,6 +4281,59 @@
               "options": ["隠蔽[いんぺい]", "圧迫[あっぱく]", "乖離[かいり]", "諮問[しもん]"],
               "correctAnswer": 1,
               "explanation": "«家計を圧迫する» — narx-navoning ko'tarilishi oilaviy byudjetga jiddiy og'irlik va bosim o'tkazmoqda."
+            },
+            {
+              "id": "ja-n1-u5-l1-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「DNAの 二重（　　）を 解明した。」",
+              "options": ["凝固する", "螺旋構造", "触媒", "揮発性"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「螺旋構造」 (rasenkouzou) — \"Spiral shaklidagi struktura (DNK)\". Gapning to'liq ma'nosi: \"DNKning qoʻshaloq spiral tuzilishi kashf etildi.\"."
+            },
+            {
+              "id": "ja-n1-u5-l1-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「新たな （　　）の 感染拡大を 阻止する。」",
+              "options": ["揮発性", "触媒", "螺旋構造", "変異株"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「変異株」 (henʼikabu) — \"Mutatsiyaga uchragan virus shtammi\". Gapning to'liq ma'nosi: \"Yangi mutatsiyaga uchragan shtammning tarqalishini toʻxtatmoq.\"."
+            },
+            {
+              "id": "ja-n1-u5-l1-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「低温に 達すると 液体が （　　）。」",
+              "options": ["螺旋構造", "揮発性", "変異株", "凝固する"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「凝固する」 (gyouko suru) — \"Iymoq, qotmoq, quyilmoq\". Gapning to'liq ma'nosi: \"Harorat pasayganda suyuqlik qotadi.\"."
+            },
+            {
+              "id": "ja-n1-u5-l1-ex-6",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「ガソリンは 高い （　　）を 有するため 取扱に 注意する。」",
+              "options": ["変異株", "凝固する", "触媒", "揮発性"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「揮発性」 (kihatsusei) — \"Uchuvchanlik (gazga aylanuvchanlik)\". Gapning to'liq ma'nosi: \"Benzin oʻta yuqori uchuvchanlikka ega boʻlgani bois ehtiyotkorlik bilan ishlatiladi.\"."
+            },
+            {
+              "id": "ja-n1-u5-l1-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「螺旋構造」 (rasenkouzou) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Mutatsiyaga uchragan virus shtammi",
+                "Spiral shaklidagi struktura (DNK)",
+                "Iymoq, qotmoq, quyilmoq",
+                "Katalizator (reaksiyani tezlashtiruvchi modda)"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「螺旋構造」 (rasenkouzou) so'zi o'zbek tilida \"Spiral shaklidagi struktura (DNK)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u5-l1-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「不正（　　）糾弾する。」",
+              "options": ["を", "は", "で", "に"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「不正を糾弾する。」 (Nohaqlikni qoralash.)."
             }
           ]
         }
@@ -3402,6 +4501,59 @@
               ],
               "correctAnswer": 2,
               "explanation": "«臥薪嘗胆» — kelajakdagi katta maqsad yo'lida barcha mashaqqatlarga chidab, sabot bilan intilish ramzi."
+            },
+            {
+              "id": "ja-n1-u5-l2-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「10年間の （　　）の 末、ついに 雪辱を 果たした。」",
+              "options": ["一網打尽", "臨機応変", "臥薪嘗胆", "自縄自縛"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「臥薪嘗胆」 (gashinshoutan) — \"Intiqom yoki muvaffaqiyat uchun ogʻir mashaqqatga chidash\". Gapning to'liq ma'nosi: \"Oʻn yillik mashaqqatli sabr-matonatdan soʻng nihoyat gʻalaba qozondi.\"."
+            },
+            {
+              "id": "ja-n1-u5-l2-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「警察は 詐欺グループの メンバーを （　　）に 逮捕した。」",
+              "options": ["一網打尽", "自縄自縛", "臥薪嘗胆", "臨機応変"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「一網打尽」 (ichimoudajin) — \"Bir toʻr bilan barchasini birdaniga qoʻlga olmoq\". Gapning to'liq ma'nosi: \"Politsiya firibgarlar toʻdasini bir yoʻla toʻliq qoʻlga oldi.\"."
+            },
+            {
+              "id": "ja-n1-u5-l2-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「不測の 事態にも （　　）な 処置を 施す。」",
+              "options": ["臨機応変", "臥薪嘗胆", "自縄自縛", "起死回生"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「臨機応変」 (rinkiouhen) — \"Vaziyatga qarab oʻzgaruvchan, hozirjavob\". Gapning to'liq ma'nosi: \"Kutilmagan vaziyatda ham epchillik bilan chora koʻriladi.\"."
+            },
+            {
+              "id": "ja-n1-u5-l2-ex-6",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「自ら 作った 規則に 縛られて （　　）に 陥る。」",
+              "options": ["起死回生", "一網打尽", "臥薪嘗胆", "自縄自縛"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「自縄自縛」 (jijoujibaku) — \"Oʻz qilmishi yoki qoidasi bilan oʻzini oʻzi tuzoqqa ilintirmoq\". Gapning to'liq ma'nosi: \"Oʻzi oʻylab topgan qoidalarga oʻralashib oʻz oyogʻiga oʻzi tuzoq qoʻymoq.\"."
+            },
+            {
+              "id": "ja-n1-u5-l2-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「臥薪嘗胆」 (gashinshoutan) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Vaziyatga qarab oʻzgaruvchan, hozirjavob",
+                "Bir toʻr bilan barchasini birdaniga qoʻlga olmoq",
+                "Oʻlim yoqasidan hayotga qaytish, moʻjizaviy najot",
+                "Intiqom yoki muvaffaqiyat uchun ogʻir mashaqqatga chidash"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「臥薪嘗胆」 (gashinshoutan) so'zi o'zbek tilida \"Intiqom yoki muvaffaqiyat uchun ogʻir mashaqqatga chidash\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u5-l2-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「一期一会の出会い（　　）大切にする。」",
+              "options": ["と", "が", "を", "から"],
+              "correctAnswer": 2,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「一期一会の出会いを大切にする。」 (Qadrli takrorlanmas uchrashuvni qadrlash.)."
             }
           ]
         }
@@ -3565,6 +4717,59 @@
               "options": ["捉[とら]えて", "捉[とら]える", "捉[とら]えた", "捉[とら]えず"],
               "correctAnswer": 3,
               "explanation": "«捉えずにはおかなかった» — tinglovchilarning qalbini zabt etmay qo'ymadi (〜ずにはおかない shakli)."
+            },
+            {
+              "id": "ja-n1-u5-l3-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「才能と 努力が （　　） 偉大な 成果を 生んだ。」",
+              "options": ["かまけて", "相応の", "相まって", "余儀ない"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「相まって」 (aimatte) — \"Bir-biri bilan qoʻshilib, oʻzaro taʼsirda\". Gapning to'liq ma'nosi: \"Iqtidor bilan mehnat bir-biriga qoʻshilib buyuk natijani yaratdi.\"."
+            },
+            {
+              "id": "ja-n1-u5-l3-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「目先の 忙しさに （　　） 健康を 害してしまった。」",
+              "options": ["皮切りに", "相応の", "かまけて", "相まって"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「かまけて」 (kamakete) — \"Bir narsaga berilib ketib, boshqa muhim ishni unutmoq\". Gapning to'liq ma'nosi: \"Kunlik tashvishlarga berilib ketib salomatligini boy berdi.\"."
+            },
+            {
+              "id": "ja-n1-u5-l3-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「東京公演を （　　） 全国ツアーが 始まる。」",
+              "options": ["皮切りに", "相まって", "相応の", "余儀ない"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「皮切りに」 (kawakiniri) — \"Boshlab berish nuqtasi sifatida, dastlab\". Gapning to'liq ma'nosi: \"Tokio konsertidan boshlab butun mamlakat boʻylab gastrol safarlari boshlanadi.\"."
+            },
+            {
+              "id": "ja-n1-u5-l3-ex-6",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「重責を 担うに （　　） 報酬を 支払う。」",
+              "options": ["皮切りに", "相まって", "相応の", "かまけて"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「相応の」 (souou no) — \"Darajasiga yarasha, munosib\". Gapning to'liq ma'nosi: \"Yuksak masʼuliyatga yarasha munosib haq toʻlanadi.\"."
+            },
+            {
+              "id": "ja-n1-u5-l3-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「相まって」 (aimatte) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Bir-biri bilan qoʻshilib, oʻzaro taʼsirda",
+                "Boshlab berish nuqtasi sifatida, dastlab",
+                "Boshqa chora va yoʻl qolmagan",
+                "Darajasiga yarasha, munosib"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「相まって」 (aimatte) so'zi o'zbek tilida \"Bir-biri bilan qoʻshilib, oʻzaro taʼsirda\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u5-l3-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
+              "options": ["から", "と", "で", "を"],
+              "correctAnswer": 3,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -3726,6 +4931,59 @@
               "options": ["先立[さきだ]って", "かまけて", "まじき", "ずくめ"],
               "correctAnswer": 0,
               "explanation": "«改正に先立って» — qonun o'zgartirilishidan oldin jamoatchilik eshituvi o'tkazildi."
+            },
+            {
+              "id": "ja-n1-u5-l4-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）の 猛者たちが 集う 最高峰の 舞台。」",
+              "options": ["泰然自若", "百戦錬磨", "乾坤一擲", "盤石の"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「百戦錬磨」 (hyakusenremma) — \"Yuzlab janglarda toblangan, oʻta tajribali\". Gapning to'liq ma'nosi: \"Minglab sinovlarda toblangan tajribali insonlar jamlangan eng oliy maydon.\"."
+            },
+            {
+              "id": "ja-n1-u5-l4-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）の 大勝負に 出る。」",
+              "options": ["白眉", "百戦錬磨", "泰然自若", "乾坤一擲"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「乾坤一擲」 (kenkonʼitteki) — \"Barcha narsani bir tikishga garov qilib tavakkal qilmoq\". Gapning to'liq ma'nosi: \"Bor narsasini garovga qoʻyib hal qiluvchi buyuk jangga kirishmoq.\"."
+            },
+            {
+              "id": "ja-n1-u5-l4-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） 体制を 築き上げて 試験に 臨む。」",
+              "options": ["盤石の", "泰然自若", "百戦錬磨", "乾坤一擲"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「盤石の」 (banjaku no) — \"Qoyadek mustahkam, yiqilmas\". Gapning to'liq ma'nosi: \"Qoyadek mustahkam tayyorgarlik tizimini qurib imtihonga kirishmoq.\"."
+            },
+            {
+              "id": "ja-n1-u5-l4-ex-6",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「彼の デビュー作は 近代文学の （　　）と 称される。」",
+              "options": ["泰然自若", "乾坤一擲", "白眉", "盤石の"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「白眉」 (hakubi) — \"Eng aʼlo durdona, tengqurlari ichida eng sarasi\". Gapning to'liq ma'nosi: \"Uning debyut asari zamonaviy adabiyotning eng sarasi deb eʼtirof etiladi.\"."
+            },
+            {
+              "id": "ja-n1-u5-l4-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「百戦錬磨」 (hyakusenremma) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Qoyadek mustahkam, yiqilmas",
+                "Barcha narsani bir tikishga garov qilib tavakkal qilmoq",
+                "Yuzlab janglarda toblangan, oʻta tajribali",
+                "Eng aʼlo durdona, tengqurlari ichida eng sarasi"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「百戦錬磨」 (hyakusenremma) so'zi o'zbek tilida \"Yuzlab janglarda toblangan, oʻta tajribali\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u5-l4-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
+              "options": ["から", "を", "が", "に"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -3878,6 +5136,59 @@
               "options": ["余儀[よぎ]なくされ", "乗[の]り越[こ]え", "かまけて", "怠[おこた]り"],
               "correctAnswer": 1,
               "explanation": "«幾多の試練を乗り越え» — son-sanoqsiz qiyinchilik va sinovlarni yengib o'tib, faxrli natijaga erishdi."
+            },
+            {
+              "id": "ja-n1-u5-l5-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　） JLPT N1 合格の 栄冠を 獲得した。」",
+              "options": ["真髄", "先駆者", "研鑽を 積む", "名誉ある"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「名誉ある」 (meiyo aru) — \"Sharafli, faxrli\". Gapning to'liq ma'nosi: \"Sharafli JLPT N1 zafarini qoʻlga kiritdim.\"."
+            },
+            {
+              "id": "ja-n1-u5-l5-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日本語学習における 最高の （　　）を 刻む。」",
+              "options": ["名誉ある", "研鑽を 積む", "金字塔", "真髄"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「金字塔」 (kinjitou) — \"Mislsiz choʻqqi, unutilmas buyuk yutuq\". Gapning to'liq ma'nosi: \"Yapon tili oʻrganish yoʻlida eng buyuk choʻqqini zabt etmoq.\"."
+            },
+            {
+              "id": "ja-n1-u5-l5-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「日本文化の （　　）に 触れる。」",
+              "options": ["金字塔", "先駆者", "真髄", "研鑽を 積む"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「真髄」 (shinzui) — \"Asl mohiyat, teran falsafasi\". Gapning to'liq ma'nosi: \"Yapon madaniyatining asl teran mohiyatini his etmoq.\"."
+            },
+            {
+              "id": "ja-n1-u5-l5-ex-6",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「新しい 時代の （　　）として 世界へ 羽ばたく。」",
+              "options": ["真髄", "金字塔", "研鑽を 積む", "先駆者"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「先駆者」 (senkusha) — \"Pioner, yoʻl ochib beruvchi peshqadam\". Gapning to'liq ma'nosi: \"Yangi davrning peshqadami sifatida jahon sari qanot qoqmoq.\"."
+            },
+            {
+              "id": "ja-n1-u5-l5-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「名誉ある」 (meiyo aru) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tinimsiz ilm olib mahoratini charxlamoq",
+                "Sharafli, faxrli",
+                "Mislsiz choʻqqi, unutilmas buyuk yutuq",
+                "Pioner, yoʻl ochib beruvchi peshqadam"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「名誉ある」 (meiyo aru) so'zi o'zbek tilida \"Sharafli, faxrli\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u5-l5-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
+              "options": ["と", "を", "から", "に"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -4045,6 +5356,74 @@
               ],
               "correctAnswer": 0,
               "explanation": "〜に他ならない aynan shu sabab ekanligini ta'kidlaydi."
+            },
+            {
+              "id": "ja-n1-u6-l1-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「生成AIの 普及に 伴い （　　）が 問われている。」",
+              "options": [
+                "アルゴリズムバイアス",
+                "特異点（シンギュラリティ）",
+                "人間中心主義",
+                "人工知能の 倫理"
+              ],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「人工知能の 倫理」 (jinkouchinou no rinri) — \"Sunʼiy intellekt etikasi\". Gapning to'liq ma'nosi: \"Generativ sunʼiy intellekt tarqalishi bilan uning etikasi jiddiy muhokama qilinmoqda.\"."
+            },
+            {
+              "id": "ja-n1-u6-l1-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「訓練データの 偏りに よる （　　）を 是正する。」",
+              "options": [
+                "人間中心主義",
+                "アルゴリズムバイアス",
+                "自律型兵器",
+                "特異点（シンギュラリティ）"
+              ],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「アルゴリズムバイアス」 (arugorizumu baiasu) — \"Algoritmik tarafkashlik/ogʻish\". Gapning to'liq ma'nosi: \"Oʻrgatish maʼlumotlaridagi nomutanosiblikdan kelib chiqqan algoritm xatosini toʻgʻrilash.\"."
+            },
+            {
+              "id": "ja-n1-u6-l1-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「（　　）の 開発に 対する 国際的な 規制が 急務だ。」",
+              "options": [
+                "自律型兵器",
+                "特異点（シンギュラリティ）",
+                "人間中心主義",
+                "人工知能の 倫理"
+              ],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「自律型兵器」 (jiritsugata heiki) — \"Avtonom qurollar tizimi\". Gapning to'liq ma'nosi: \"Avtonom qurollarni ishlab chiqishga xalqaro cheklov qoʻyish kechiktirib boʻlmas vazifadir.\"."
+            },
+            {
+              "id": "ja-n1-u6-l1-ex-6",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「AI時代における （　　）の 再定義が 求められる。」",
+              "options": ["自律型兵器", "アルゴリズムバイアス", "人工知能の 倫理", "人間中心主義"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「人間中心主義」 (ningenchushinshugi) — \"Antropotsentrizm (insonni markazga qoʻyuvchi falsafa)\". Gapning to'liq ma'nosi: \"AI asrida insonparvarlik falsafasini qayta taʼriflash talab etilmoqda.\"."
+            },
+            {
+              "id": "ja-n1-u6-l1-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「人工知能の 倫理」 (jinkouchinou no rinri) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Antropotsentrizm (insonni markazga qoʻyuvchi falsafa)",
+                "Avtonom qurollar tizimi",
+                "Sunʼiy intellekt etikasi",
+                "Algoritmik tarafkashlik/ogʻish"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「人工知能の 倫理」 (jinkouchinou no rinri) so'zi o'zbek tilida \"Sunʼiy intellekt etikasi\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u6-l1-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「失敗（　　） 成功への 糧に 他ならない。」",
+              "options": ["と", "は", "を", "が"],
+              "correctAnswer": 1,
+              "explanation": "Ushbu o'rinda 「は」 zarrachasi to'g'ri keladi. Butun jumla: 「失敗は 成功への 糧に 他ならない。」 (Mag'lubiyat muvaffaqiyat sari ozuqadan boshqa narsa emas.)."
             }
           ]
         }
@@ -4222,6 +5601,74 @@
               ],
               "correctAnswer": 0,
               "explanation": "«〜を皮切りに» tabiiy stixiyali hodisalar uchun qo'llanilmaydi, insoniy va ijtimoiy jarayonlar uchun ishlatiladi."
+            },
+            {
+              "id": "ja-n1-u6-l2-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「準備を （　　） 整えて 本番に 臨む。」",
+              "options": ["にかまけて", "怠りなく", "を皮切りに", "を皮切りとして"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「怠りなく」 (okotarinaku) — \"Bekamu koʻst, zarracha beparvoliksiz\". Gapning to'liq ma'nosi: \"Tayyorgarlikni zarracha kamchiliksiz puxta qilib imtihonga kirishmoq.\"."
+            },
+            {
+              "id": "ja-n1-u6-l2-ex-4",
+              "type": "multiple-choice",
+              "prompt": "「にかまけて」 (nikamakete) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Biror narsaga chalgʻib/berilib muhim ishni eʼtiborsiz qoldirmoq",
+                "Bekamu koʻst, zarracha beparvoliksiz",
+                "Bir narsani bahona qilib olmoq",
+                "Ni start deb olib"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「にかまけて」 (nikamakete) so'zi o'zbek tilida \"Biror narsaga chalgʻib/berilib muhim ishni eʼtiborsiz qoldirmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u6-l2-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「を皮切りに」 (o kawakiri ni) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Bekamu koʻst, zarracha beparvoliksiz",
+                "Ni boshlangʻich nuqta qilib, ketidan davom etmoq",
+                "Biror narsaga chalgʻib/berilib muhim ishni eʼtiborsiz qoldirmoq",
+                "Bir narsani bahona qilib olmoq"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「を皮切りに」 (o kawakiri ni) so'zi o'zbek tilida \"Ni boshlangʻich nuqta qilib, ketidan davom etmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u6-l2-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「にかこつけて」 (nikakotsukete) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Ni boshlangʻich nuqta qilib, ketidan davom etmoq",
+                "Bir narsani bahona qilib olmoq",
+                "Ni start deb olib",
+                "Bekamu koʻst, zarracha beparvoliksiz"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「にかこつけて」 (nikakotsukete) so'zi o'zbek tilida \"Bir narsani bahona qilib olmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u6-l2-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「を皮切りとして」 (o kawakiri to shite) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Ni start deb olib",
+                "Biror narsaga chalgʻib/berilib muhim ishni eʼtiborsiz qoldirmoq",
+                "Ni boshlangʻich nuqta qilib, ketidan davom etmoq",
+                "Bir narsani bahona qilib olmoq"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「を皮切りとして」 (o kawakiri to shite) so'zi o'zbek tilida \"Ni start deb olib\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u6-l2-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「スマホに かまけて 家事（　　） 放置した。」",
+              "options": ["が", "と", "は", "を"],
+              "correctAnswer": 3,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「スマホに かまけて 家事を 放置した。」 (Telefonga chalg'ib uy ishlarini tashlab qo'ydi.)."
             }
           ]
         }
@@ -4394,6 +5841,69 @@
               ],
               "correctAnswer": 0,
               "explanation": "Ichki achinish va hamdardlikni jilovlab bo'lmaslik holatidir."
+            },
+            {
+              "id": "ja-n1-u6-l3-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「あまりの 理不尽さに 憤りを （　　）。」",
+              "options": ["愛してやまない", "てやまない", "涙を 禁じ得ない", "禁じ得ない"],
+              "correctAnswer": 3,
+              "explanation": "To'g'ri javob: 「禁じ得ない」 (kinji enai) — \"Oʻzini tiyib boʻlmaslik (hissiyotga)\". Gapning to'liq ma'nosi: \"Bunday nohaqlik oldida gʻazabni tiyib turish mutlaqo imkonsiz.\"."
+            },
+            {
+              "id": "ja-n1-u6-l3-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「彼の 圧倒的な 技量に （　　）。」",
+              "options": ["感嘆を 禁じ得ない", "愛してやまない", "禁じ得ない", "涙を 禁じ得ない"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「感嘆を 禁じ得ない」 (kantan o kinjienai) — \"Hayrat va tahsinni tiyolmay qolmoq\". Gapning to'liq ma'nosi: \"Uning tengsiz mahoratiga tahsin aytmasdan iloj yoʻq.\"."
+            },
+            {
+              "id": "ja-n1-u6-l3-ex-5",
+              "type": "multiple-choice",
+              "prompt": "「てやまない」 (te yamanai) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Jon-dilidan sevmoq, cheksiz muhabbat bogʻlamoq",
+                "Koʻz yoshlarini tutib turolmaslik",
+                "Hayrat va tahsinni tiyolmay qolmoq",
+                "Tinmay dildan tilamoq, soʻnmas istak bilan"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「てやまない」 (te yamanai) so'zi o'zbek tilida \"Tinmay dildan tilamoq, soʻnmas istak bilan\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u6-l3-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「禁じ得ない」 (kinji enai) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tinmay dildan tilamoq, soʻnmas istak bilan",
+                "Hayrat va tahsinni tiyolmay qolmoq",
+                "Jon-dilidan sevmoq, cheksiz muhabbat bogʻlamoq",
+                "Oʻzini tiyib boʻlmaslik (hissiyotga)"
+              ],
+              "correctAnswer": 3,
+              "explanation": "「禁じ得ない」 (kinji enai) so'zi o'zbek tilida \"Oʻzini tiyib boʻlmaslik (hissiyotga)\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u6-l3-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「感嘆を 禁じ得ない」 (kantan o kinjienai) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Oʻzini tiyib boʻlmaslik (hissiyotga)",
+                "Hayrat va tahsinni tiyolmay qolmoq",
+                "Koʻz yoshlarini tutib turolmaslik",
+                "Tinmay dildan tilamoq, soʻnmas istak bilan"
+              ],
+              "correctAnswer": 1,
+              "explanation": "「感嘆を 禁じ得ない」 (kantan o kinjienai) so'zi o'zbek tilida \"Hayrat va tahsinni tiyolmay qolmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u6-l3-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「卒業生の 輝かしい 未来（　　） 期待して やまない。」",
+              "options": ["が", "で", "と", "を"],
+              "correctAnswer": 3,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「卒業生の 輝かしい 未来を 期待して やまない。」 (Bitiruvchilarning porloq kelajagiga chin dildan umid bog'lab qolaman.)."
             }
           ]
         }
@@ -4546,6 +6056,64 @@
               "options": ["忘[わす]れた", "経[へ]た", "遮[さえぎ]った", "断[ことわ]った"],
               "correctAnswer": 1,
               "explanation": "«所定の手続きを経たうえで» — belgilangan rasmiy tartib-qoidalarni bosqichma-bosqich o'tagan holda ro'yxatdan o'tish degan rasmiy ifodadir."
+            },
+            {
+              "id": "ja-n1-u6-l4-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「膨大な 情報を 瞬時に 処理する （　　）を 習得する。」",
+              "options": ["斜め読み（スキャニング）", "速読術", "取捨選択", "情報検索"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「速読術」 (sokudokujutsu) — \"Tez oʻqish mahorati\". Gapning to'liq ma'nosi: \"Ulkan maʼlumotlarni bir zumda qayta ishlaydigan tez oʻqish texnikasini egallamoq.\"."
+            },
+            {
+              "id": "ja-n1-u6-l4-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「溢れる 情報を （　　）する 判断力が 肝要だ。」",
+              "options": ["取捨選択", "斜め読み（スキャニング）", "情報検索", "速読術"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「取捨選択」 (shushasentaku) — \"Keragini olib, keraksizini chiqarib tashlash\". Gapning to'liq ma'nosi: \"Koʻp maʼlumotlar ichidan kerakligini saralab olish qobiliyati juda muhim.\"."
+            },
+            {
+              "id": "ja-n1-u6-l4-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「難解な 契約書は （　　）して リスクを 排除する。」",
+              "options": ["精読", "速読術", "情報検索", "斜め読み（スキャニング）"],
+              "correctAnswer": 0,
+              "explanation": "To'g'ri javob: 「精読」 (seidoku) — \"Ipidan ignasigacha sinchiklab oʻqish\". Gapning to'liq ma'nosi: \"Murakkab shartnomani sinchiklab ipidan ignasigacha oʻqib xatarlarni yoʻqotamiz.\"."
+            },
+            {
+              "id": "ja-n1-u6-l4-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「速読術」 (sokudokujutsu) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tez oʻqish mahorati",
+                "Koʻz yugurtirib kerakli joyni tez topish",
+                "Kerakli maʼlumotni qidirish va saralash",
+                "Ipidan ignasigacha sinchiklab oʻqish"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「速読術」 (sokudokujutsu) so'zi o'zbek tilida \"Tez oʻqish mahorati\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u6-l4-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「斜め読み（スキャニング）」 (nanameyomi) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Koʻz yugurtirib kerakli joyni tez topish",
+                "Tez oʻqish mahorati",
+                "Ipidan ignasigacha sinchiklab oʻqish",
+                "Kerakli maʼlumotni qidirish va saralash"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「斜め読み（スキャニング）」 (nanameyomi) so'zi o'zbek tilida \"Koʻz yugurtirib kerakli joyni tez topish\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u6-l4-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「改装工事（　　）つき、本日 休業。」",
+              "options": ["に", "で", "は", "を"],
+              "correctAnswer": 0,
+              "explanation": "Ushbu o'rinda 「に」 zarrachasi to'g'ri keladi. Butun jumla: 「改装工事につき、本日 休業。」 (Ta'mirlash ishlari munosabati bilan bugun dam olish kuni.)."
             }
           ]
         }
@@ -4718,6 +6286,64 @@
               "options": ["皮切り[かわきり]に", "かまけて", "末[すえ]に", "まじき"],
               "correctAnswer": 2,
               "explanation": "«研鑽の末に» — uzoq yillik mashaqqatli izlanish va chuqur o'rganishlar yakunida natijaga erishishni ifodalaydi."
+            },
+            {
+              "id": "ja-n1-u6-l5-ex-3",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「JLPT N1 最高峰の （　　）を 讃える。」",
+              "options": ["至高の 境地", "冠絶の 栄誉", "偉業を 達成する", "世界への 飛翔"],
+              "correctAnswer": 1,
+              "explanation": "To'g'ri javob: 「冠絶の 栄誉」 (kanzetsu no eiyo) — \"Tengsiz oliy sharaf\". Gapning to'liq ma'nosi: \"JLPT N1 ning eng oliy choʻqqisidagi tengsiz sharafni eʼtirof etamiz.\"."
+            },
+            {
+              "id": "ja-n1-u6-l5-ex-4",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「語学学習の （　　）へと 到達した。」",
+              "options": ["世界への 飛翔", "無窮の 探求", "至高の 境地", "冠絶の 栄誉"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「至高の 境地」 (shikou no kyouchi) — \"Eng yuksak kamolot maqomi\". Gapning to'liq ma'nosi: \"Til oʻrganishning eng yuksak kamolot maqomiga yetib bordi.\"."
+            },
+            {
+              "id": "ja-n1-u6-l5-ex-5",
+              "type": "multiple-choice",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang:\n「学びに 終わりは ない。（　　）を 続けよう。」",
+              "options": ["冠絶の 栄誉", "偉業を 達成する", "無窮の 探求", "世界への 飛翔"],
+              "correctAnswer": 2,
+              "explanation": "To'g'ri javob: 「無窮の 探求」 (mukyuu no tankyuu) — \"Cheksiz va tuganmas izlanish\". Gapning to'liq ma'nosi: \"Ilm olishning intihosi yoʻq. Keling, cheksiz izlanishda davom etaylik.\"."
+            },
+            {
+              "id": "ja-n1-u6-l5-ex-6",
+              "type": "multiple-choice",
+              "prompt": "「冠絶の 栄誉」 (kanzetsu no eiyo) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tengsiz oliy sharaf",
+                "Buyuk jasorat va ulkan tarixiy natijaga erishmoq",
+                "Eng yuksak kamolot maqomi",
+                "Jahon uzra parvoz qilish, xalqaro maydonga chiqish"
+              ],
+              "correctAnswer": 0,
+              "explanation": "「冠絶の 栄誉」 (kanzetsu no eiyo) so'zi o'zbek tilida \"Tengsiz oliy sharaf\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u6-l5-ex-7",
+              "type": "multiple-choice",
+              "prompt": "「偉業を 達成する」 (igyou o tassei suru) so'zining to'g'ri o'zbekcha tarjimasini tanlang:",
+              "options": [
+                "Tengsiz oliy sharaf",
+                "Jahon uzra parvoz qilish, xalqaro maydonga chiqish",
+                "Buyuk jasorat va ulkan tarixiy natijaga erishmoq",
+                "Cheksiz va tuganmas izlanish"
+              ],
+              "correctAnswer": 2,
+              "explanation": "「偉業を 達成する」 (igyou o tassei suru) so'zi o'zbek tilida \"Buyuk jasorat va ulkan tarixiy natijaga erishmoq\" ma'nosini bildiradi."
+            },
+            {
+              "id": "ja-n1-u6-l5-ex-8",
+              "type": "multiple-choice",
+              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「皆様の 前途（　　） 祝して やみません。」",
+              "options": ["から", "で", "を", "に"],
+              "correctAnswer": 2,
+              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「皆様の 前途を 祝して やみません。」 (Barchangizning yorug' kelajagingizni chin qalbimdan qutlab qolaman.)."
             }
           ]
         }

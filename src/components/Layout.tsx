@@ -31,6 +31,7 @@ import { AppLogo } from './AppLogo';
 import { UzbekistanFlag, JapanFlag, UKFlag } from './common/FlagIcons';
 import ErrorBoundary from './ErrorBoundary';
 import { GlobalAnnouncementBanner } from './GlobalAnnouncementBanner';
+import { OfflineSyncStatusBar } from './common/OfflineSyncStatusBar';
 import { QuickCommandPalette } from './common/QuickCommandPalette';
 import { useKeyboardOffset } from '../hooks/useKeyboardOffset';
 
@@ -491,6 +492,7 @@ const Layout: React.FC = () => {
       {/* Main Content */}
       <main className="relative flex w-full max-w-full flex-1 flex-col overflow-hidden bg-background">
         {!isFullScreenPage && <GlobalAnnouncementBanner />}
+        <OfflineSyncStatusBar />
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}

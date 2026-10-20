@@ -38,6 +38,25 @@ export const LearningProgressionService = {
   },
 
   /**
+   * Adaptive Next Lesson based on real-time performance metrics and AI predictions.
+   * Backward-compatible with standard progression endpoints.
+   */
+  async getAdaptiveNextLesson(
+    userId: string = 'guest',
+    performance?: Partial<import('../types/adaptiveDifficulty').UserPerformanceData>,
+    language?: SupportedLanguage,
+  ): Promise<import('../types/adaptiveDifficulty').AdaptiveLessonRecommendation | null> {
+    const lang = language || LearningOrchestrator.getPrimaryLanguage();
+    const { AdaptiveDifficultyEngine } = await import('./AdaptiveDifficultyEngine');
+
+    return AdaptiveDifficultyEngine.getOptimalNextLesson({
+      userId,
+      language: lang,
+      ...performance,
+    });
+  },
+
+  /**
    * Phase 19 — Single next-lesson decision with reason + priority bucket.
    *
    * Pipeline:
