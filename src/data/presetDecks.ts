@@ -88,14 +88,14 @@ export const PRESET_DECKS: PresetDeck[] = [
   },
   {
     id: 'deck_n5_test_bank',
-    title: '📝 JLPT N5 Amaliy Test Banki (Original 33 Savol)',
+    title: '📝 JLPT N5 Amaliy Test Banki (Original 70 Savol)',
     description:
-      "Haqiqiy rasmiy JLPT imtihon kitobidan olingan 33 ta amaliy test savollari (Kanji o'qilishi, yozilishi, so'z tanlash va ma'nodosh gaplar).",
+      "Haqiqiy rasmiy JLPT imtihon kitobidan olingan 70 ta amaliy test savollari (Kanji o'qilishi, yozilishi, so'z tanlash, zarra va gap tuzish hamda qisqa dokkai).",
     language: 'ja',
     level: 'JLPT N5',
     badgeColor: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20',
     icon: '📝',
-    cardCount: 33,
+    cardCount: 70,
     isPremiumOnly: false,
     loadCards: () => loadAndApplyOverrides(import('./decks/n5_test_bank.json')),
   },

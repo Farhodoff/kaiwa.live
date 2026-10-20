@@ -35,7 +35,7 @@ describe('PRESET_DECKS Integrity & Quality Tests', () => {
     expect(n5Deck).toBeDefined();
     expect(n5Deck!.level).toBe('JLPT N5');
     const n5Cards = await n5Deck!.loadCards();
-    expect(n5Cards.length).toBe(33);
+    expect(n5Cards.length).toBe(70);
 
     const n3Deck = PRESET_DECKS.find((d) => d.id === 'deck_n3_confusing_grammar');
     expect(n3Deck).toBeDefined();

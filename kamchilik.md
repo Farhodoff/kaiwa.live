@@ -9,17 +9,17 @@ Ushbu faylda loyihadagi aniqlangan kamchiliklar, tuzatilishi kerak bo'lgan xatol
 
 ### 📊 Darajalar bo‘yicha joriy holat
 
-| Daraja | Lug‘at | Grammatika | Kanji | Darslar / Testlar | Holat / Izoh                                                                                |
-| :----: | :----: | :--------: | :---: | :---------------: | :------------------------------------------------------------------------------------------ |
-| **N5** |  750   |     85     |  106  |        25         | Yaxshi boshlang‘ich baza                                                                    |
-| **N4** | 1 037  |    125     |  268  |        25         | Mashqlar bazasi 375+ taga kengaytirildi va xilma-xillashtirildi                             |
-| **N3** | 2 236  |    115     |  340  |        30         | Sifat bir xilda yuqori darajaga keltirildi (300 ta amaliy mashq, 300 ta test, 105 ta karta) |
-| **N2** | 4 621  |    172     |  470  |        30         | Lug‘at yaxshi, amaliy kontekst kam                                                          |
-| **N1** | 3 397  |    151     |  877  |        30         | Kanji kuchli, lekin N1 darajasidagi real matn va audio kam                                  |
+| Daraja | Lug‘at | Grammatika | Kanji | Darslar / Testlar | Holat / Izoh                                                                                     |
+| :----: | :----: | :--------: | :---: | :---------------: | :----------------------------------------------------------------------------------------------- |
+| **N5** |  750   |     85     |  106  |        25         | To‘liq imtihon darajasiga yetkazildi (375 ta amaliy mashq, 100 ta test, 70 ta test bank kartasi) |
+| **N4** | 1 037  |    125     |  268  |        25         | Mashqlar bazasi 375+ taga kengaytirildi va xilma-xillashtirildi                                  |
+| **N3** | 2 236  |    115     |  340  |        30         | Sifat bir xilda yuqori darajaga keltirildi (300 ta amaliy mashq, 300 ta test, 105 ta karta)      |
+| **N2** | 4 621  |    172     |  470  |        30         | Lug‘at yaxshi, amaliy kontekst kam                                                               |
+| **N1** | 3 397  |    151     |  877  |        30         | Kanji kuchli, lekin N1 darajasidagi real matn va audio kam                                       |
 
 ### 🎯 Darajalar kesimidagi vazifalar
 
-- [ ] **N5:** Yaxshi boshlang‘ich baza, lekin to‘liq imtihon darajasiga yetkazish va mustahkamlash.
+- [x] **N5:** Yaxshi boshlang‘ich baza, lekin to‘liq imtihon darajasiga yetkazish va mustahkamlash (barcha 25 darsda 15 tadan, jami 375 ta boyitilgan amaliy mashq, 100 ta test savoli, Choukai audiolari va 70 ta rasmiy N5 test bank kartasi).
 - [x] **N4 mashqlar bazasi:** Yetarli yo‘nalish bor, lekin mashqlar kam — amaliy mashqlar soni va xilma-xilligini oshirish (har bir darsda 15 tadan, jami 375 ta amaliy mashq, 100 ta test savoli va 84 ta 500 Mon kartasi).
 - [x] **N3 kontent sifati:** Qamrov bor, lekin kontent sifati notekis — sifatni bir xilda yuqori darajaga keltirish va qayta ko‘rib chiqish (barcha 30 ta darsda 10 tadan, jami 300 ta yuqori sifatli amaliy mashq, 300 ta test savoli, n3_500_mon 60 ta va n3_confusing_grammar 45 ta kartaga kengaytirildi).
 - [ ] **N2 amaliy kontekst:** Lug‘at yaxshi, lekin amaliy kontekst kam — real hayotiy va imtihon darajasidagi kontekstli misollar va mashqlarni kuchaytirish.
@@ -32,7 +32,7 @@ Ushbu faylda loyihadagi aniqlangan kamchiliklar, tuzatilishi kerak bo'lgan xatol
 
 > Har bir darsda 3 ta bosqich bor, ammo odatda faqat 2 ta practice/test savoli mavjud edi:
 >
-> - N5: 25 dars, 50 ta mashq -> 346 taga kengaytirildi
+> - N5: 25 dars, 50 ta mashq -> 375 taga kengaytirildi (har bir darsda 15 ta boyitilgan amaliy mashq + 4 ta test, Choukai audiolari bilan)
 > - N4: 25 dars, 50 ta mashq -> 375 taga kengaytirildi (har bir darsda 15 ta boyitilgan amaliy mashq + 4 ta test)
 > - N3: 30 dars, 60 ta mashq -> 300 taga kengaytirildi (har bir darsda 10 ta sifatli amaliy mashq + 10 ta test)
 > - N2: 30 dars, 61 ta mashq -> 236 taga kengaytirildi
@@ -257,7 +257,7 @@ Ushbu faylda loyihadagi aniqlangan kamchiliklar, tuzatilishi kerak bo'lgan xatol
 
 ### 📌 Darajalar bo‘yicha xulosa
 
-- **N5:** Boshlang‘ich o‘quvchi uchun mustahkam poydevor, mashqlar soni 346 taga yetkazildi, romaji va o‘zbekcha tarjimalar to‘liq tartibga keltirildi.
+- **N5:** Boshlang‘ich o‘quvchi uchun mustahkam poydevor, mashqlar soni 375 taga yetkazildi (25 dars x 15 mashq), 100 ta test savoli, Choukai audio integratsiyasi va 70 ta rasmiy test bank kartasi to‘liq tartibga keltirildi.
 - **N4:** Vocabulary va grammar amaliyoti chuqurlashtirildi, 187 ta dars mashqi, audio va chalg‘ituvchi kanjilar solishtirmasi qo‘shildi.
 - **N3:** Reading/listening real JLPT qiyinligiga yaqinlashtirildi, 237 ta mashq va rasmiy imtihon simulyatori faollashtirildi.
 - **N2:** 236 ta rasmiy amaliy mashq, akademik kontekstlar va random JLPT mock generator bilan boyitildi.
