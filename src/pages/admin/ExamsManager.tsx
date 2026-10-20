@@ -15,9 +15,11 @@ import {
   Search,
   Shield,
   Eye,
+  Upload,
 } from 'lucide-react';
 import { useStudyData } from '../../context/StudyPlannerContext';
 import { isAdminEmail, isUserAdmin } from '../../utils/admin';
+import { ExamBulkImportModal } from '../../components/admin/ExamBulkImportModal';
 
 import { toast } from '../../hooks/use-toast';
 
@@ -34,6 +36,7 @@ export const ExamsManager: React.FC = () => {
 
   // Step-by-Step Creation Wizard State
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showBulkModal, setShowBulkModal] = useState(false);
   const [jlptLevel, setJlptLevel] = useState<'N5' | 'N4' | 'N3' | 'N2' | 'N1'>('N3');
   const [newTitle, setNewTitle] = useState('');
   const [newDesc, setNewDesc] = useState('');
@@ -189,12 +192,21 @@ export const ExamsManager: React.FC = () => {
               boshqarish.
             </p>
           </div>
-          <Button
-            onClick={() => setShowCreateModal(true)}
-            className="transform gap-2 rounded-2xl bg-white px-6 py-3 font-extrabold text-rose-700 shadow-lg transition hover:-translate-y-0.5 hover:bg-slate-100 hover:shadow-xl"
-          >
-            <Plus className="h-5 w-5" /> Yangi JLPT Imtihoni Qo'shish
-          </Button>
+          <div className="flex flex-wrap items-center gap-3">
+            <Button
+              variant="outline"
+              onClick={() => setShowBulkModal(true)}
+              className="transform gap-2 rounded-2xl border-white/40 bg-white/10 px-5 py-3 font-extrabold text-white shadow-lg backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white hover:text-rose-700 hover:shadow-xl"
+            >
+              <Upload className="h-5 w-5" /> Ommaviy Import (JSON / CSV)
+            </Button>
+            <Button
+              onClick={() => setShowCreateModal(true)}
+              className="transform gap-2 rounded-2xl bg-white px-6 py-3 font-extrabold text-rose-700 shadow-lg transition hover:-translate-y-0.5 hover:bg-slate-100 hover:shadow-xl"
+            >
+              <Plus className="h-5 w-5" /> Yangi JLPT Imtihoni Qo'shish
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -454,6 +466,20 @@ export const ExamsManager: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Full Exam Bulk Import Modal */}
+      <ExamBulkImportModal
+        isOpen={showBulkModal}
+        onClose={() => setShowBulkModal(false)}
+        onSuccess={({ examId }) => {
+          fetchExams();
+          if (examId) {
+            navigate(`/admin/exams/${examId}`);
+          }
+        }}
+        mode="full-exam"
+        availableExams={exams}
+      />
     </div>
   );
 };

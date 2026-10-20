@@ -18,11 +18,11 @@ import {
   Eye,
   Sparkles,
   Upload,
-  Download,
 } from 'lucide-react';
 import { useStudyData } from '../../context/StudyPlannerContext';
 import { isAdminEmail, isUserAdmin } from '../../utils/admin';
 import { toast } from '../../hooks/use-toast';
+import { ExamBulkImportModal } from '../../components/admin/ExamBulkImportModal';
 
 interface QuestionFormData {
   question_text: string;
@@ -56,10 +56,8 @@ export const QuestionEditor: React.FC = () => {
   const [editingContentId, setEditingContentId] = useState<string | null>(null);
   const [editContent, setEditContent] = useState('');
 
-  // Bulk Import state
-  const [showBulkModal, setShowBulkModal] = useState<string | null>(null); // section_id
-  const [bulkFileContent, setBulkFileContent] = useState<string>('');
-  const [bulkImporting, setBulkImporting] = useState(false);
+  // Bulk Import state (sectionId)
+  const [showBulkModal, setShowBulkModal] = useState<string | null>(null);
 
   const fetchExamDetails = async () => {
     try {
@@ -290,102 +288,6 @@ export const QuestionEditor: React.FC = () => {
         title: 'Xatolik',
         description: `Nashr qilishda xatolik: ${err?.message || JSON.stringify(err)}`,
       });
-    }
-  };
-
-  // Bulk JSON/CSV Import Logic
-  const handleDownloadTemplate = () => {
-    const sampleData = [
-      {
-        question_text: '本文の内容と合っているものはどれか。',
-        type: 'multiple_choice',
-        options: ['Variant A matni', 'Variant B matni', 'Variant C matni', 'Variant D matni'],
-        correct_answer: 'Variant A matni',
-        explanation: 'Izoh (ixtiyoriy)',
-      },
-      {
-        question_text: 'According to the passage, why did the author move?',
-        type: 'multiple_choice',
-        options: ['Job opportunity', 'Study abroad', 'Family reason', 'Weather'],
-        correct_answer: 'Job opportunity',
-        explanation: 'Mentioned in paragraph 2.',
-      },
-    ];
-    const blob = new Blob([JSON.stringify(sampleData, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'sample_questions_template.json';
-    a.click();
-    URL.revokeObjectURL(url);
-  };
-
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      setBulkFileContent((event.target?.result as string) || '');
-    };
-    reader.readAsText(file);
-  };
-
-  const handleExecuteBulkImport = async (sectionId: string) => {
-    if (!bulkFileContent.trim()) {
-      toast({
-        variant: 'destructive',
-        title: 'Diqqat',
-        description: 'Iltimos, JSON faylni tanlang yoki matn shaklida kiriting!',
-      });
-      return;
-    }
-
-    setBulkImporting(true);
-    try {
-      let parsedQuestions: any[] = [];
-      try {
-        parsedQuestions = JSON.parse(bulkFileContent);
-      } catch {
-        throw new Error(
-          "JSON formati noto'g'ri. Tayyor shablon shaklida kiritilganiga ishonch hosil qiling.",
-        );
-      }
-
-      if (!Array.isArray(parsedQuestions)) {
-        throw new Error("JSON obyekt emas, massiv ([...]) bo'lishi kerak.");
-      }
-
-      const existingQuestions = sectionQuestions[sectionId] || [];
-      const rowsToInsert = parsedQuestions.map((q, i) => ({
-        section_id: sectionId,
-        question_text: q.question_text || `Savol #${i + 1}`,
-        type: q.type || 'multiple_choice',
-        options: Array.isArray(q.options) ? q.options : null,
-        correct_answer: q.correct_answer || '',
-        explanation: q.explanation || null,
-        order_index: existingQuestions.length + i,
-      }));
-
-      const { error } = await supabase.from('exam_questions').insert(rowsToInsert);
-      if (error) throw error;
-
-      toast({
-        title: '✅ Import Qilindi',
-        description: `${rowsToInsert.length} ta savol muvaffaqiyatli import qilindi!`,
-      });
-      setShowBulkModal(null);
-      setBulkFileContent('');
-      fetchExamDetails();
-    } catch (err: any) {
-      console.error('Bulk import error:', err);
-      toast({
-        variant: 'destructive',
-        title: 'Import Xatosi',
-        description: `Import qilishda xatolik: ${err?.message || JSON.stringify(err)}`,
-      });
-    } finally {
-      setBulkImporting(false);
     }
   };
 
@@ -794,99 +696,6 @@ export const QuestionEditor: React.FC = () => {
                   </div>
                 </div>
               )}
-
-              {/* Bulk Import Modal */}
-              {showBulkModal === section.id && (
-                <div
-                  className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-md animate-in fade-in"
-                  onClick={() => setShowBulkModal(null)}
-                >
-                  <div
-                    className="w-full max-w-xl space-y-5 rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <div className="flex items-center justify-between border-b border-slate-100 pb-3 dark:border-slate-800">
-                      <div className="flex items-center gap-2">
-                        <Upload className="h-5 w-5 text-indigo-500" />
-                        <h3 className="text-lg font-bold text-slate-900 dark:text-white">
-                          Savollarni Ommaviy Import Qilish (Bulk)
-                        </h3>
-                      </div>
-                      <button
-                        onClick={() => setShowBulkModal(null)}
-                        className="p-1 text-slate-400 hover:text-slate-600"
-                      >
-                        <X className="h-5 w-5" />
-                      </button>
-                    </div>
-
-                    <div className="space-y-3 text-xs text-slate-600 dark:text-slate-300">
-                      <p className="leading-relaxed">
-                        JSON fayl yuklang yoki savollar obyektini pastdagi matn maydoniga qo'ying.
-                        Bir yo'la 50-100 ta savol yuklashingiz mumkin.
-                      </p>
-
-                      <div className="flex gap-2">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={handleDownloadTemplate}
-                          className="gap-1.5 rounded-xl text-xs font-bold"
-                        >
-                          <Download className="h-3.5 w-3.5" /> Shablon JSON Faylini Yuklab Olish
-                        </Button>
-                      </div>
-
-                      <div className="pt-2">
-                        <label className="mb-1 block text-xs font-bold text-slate-500">
-                          Fayldan tanlash (.json):
-                        </label>
-                        <input
-                          type="file"
-                          accept=".json"
-                          onChange={handleFileUpload}
-                          className="w-full rounded-xl border border-slate-200 bg-slate-50 p-2 text-xs dark:border-slate-700 dark:bg-slate-800"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="mb-1 block text-xs font-bold text-slate-500">
-                          Yoki JSON Matnini Kiriting:
-                        </label>
-                        <textarea
-                          rows={6}
-                          value={bulkFileContent}
-                          onChange={(e) => setBulkFileContent(e.target.value)}
-                          placeholder='[{"question_text": "...", "options": ["A", "B", "C", "D"], "correct_answer": "A"}]'
-                          className="w-full rounded-xl border border-slate-200 bg-slate-50 p-3 font-mono text-xs dark:border-slate-700 dark:bg-slate-800"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="flex justify-end gap-2 pt-2">
-                      <Button
-                        variant="outline"
-                        onClick={() => setShowBulkModal(null)}
-                        className="rounded-xl"
-                      >
-                        Bekor qilish
-                      </Button>
-                      <Button
-                        onClick={() => handleExecuteBulkImport(section.id)}
-                        disabled={bulkImporting}
-                        className="gap-1 rounded-xl bg-indigo-600 font-bold text-white"
-                      >
-                        {bulkImporting ? (
-                          <Loader2 className="h-4 w-4 animate-spin" />
-                        ) : (
-                          <Upload className="h-4 w-4" />
-                        )}
-                        Import Qilish 🚀
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
           );
         })}
@@ -904,6 +713,22 @@ export const QuestionEditor: React.FC = () => {
           </div>
         )}
       </div>
+
+      {/* Bulk Import Modal */}
+      {showBulkModal && (
+        <ExamBulkImportModal
+          isOpen={Boolean(showBulkModal)}
+          onClose={() => setShowBulkModal(null)}
+          onSuccess={() => {
+            fetchExamDetails();
+          }}
+          mode="section"
+          sectionId={showBulkModal}
+          sectionTitle={sections.find((s) => s.id === showBulkModal)?.title}
+          examLevel={(exam?.type?.match(/N[1-5]/i)?.[0]?.toUpperCase() as any) || 'N3'}
+          existingQuestions={sectionQuestions[showBulkModal] || []}
+        />
+      )}
     </div>
   );
 };
