@@ -37,6 +37,7 @@ import { isUserAdmin } from '../utils/admin';
 import { PRESET_DECKS, PresetDeck, PresetSubDeck } from '../data/presetDecks';
 import { PresetDeckService, DeckPart } from '../services/PresetDeckService';
 import { toast } from '../hooks/use-toast';
+import { isFlashcardForLanguage } from '../utils/subjectResolver';
 
 import SubjectForm from '../components/subjects/SubjectForm';
 
@@ -148,14 +149,20 @@ const DecksPage: React.FC = () => {
       if (targetSubjectId) {
         const loadedCards = await preset.loadCards();
         if (loadedCards && loadedCards.length > 0) {
+          const isJapanesePreset = preset.language === 'ja';
           const existingFronts = new Set(
             flashcards
-              .filter((c) => c.subjectId === targetSubjectId)
+              .filter(
+                (c) =>
+                  c.subjectId === targetSubjectId ||
+                  (isJapanesePreset && isFlashcardForLanguage(c, subjects, 'ja')),
+              )
               .map((c) => c.front.trim().toLowerCase()),
           );
           const newCards = loadedCards.filter(
             (c) => !existingFronts.has(c.front.trim().toLowerCase()),
           );
+          const skippedCount = loadedCards.length - newCards.length;
 
           if (newCards.length > 0) {
             const batchCards = newCards.map((c) => ({
@@ -181,10 +188,12 @@ const DecksPage: React.FC = () => {
               });
             }
             setImportedDeckTitle(
-              `${cleanTitle || preset.title} (${newCards.length} ta yangi kartochka qo'shildi)`,
+              `${cleanTitle || preset.title} (${newCards.length} ta yangi kartochka qo'shildi${skippedCount > 0 ? `, ${skippedCount} ta mavjud kartochka takrorlanmasligi uchun o'tkazib yuborildi` : ''})`,
             );
           } else {
-            setImportedDeckTitle(`${cleanTitle || preset.title} (Barcha kartochkalar mavjud)`);
+            setImportedDeckTitle(
+              `${cleanTitle || preset.title} (Barcha ${loadedCards.length} ta kartochka avvaldan mavjud va SRS tizimingizda faol)`,
+            );
           }
         }
       }

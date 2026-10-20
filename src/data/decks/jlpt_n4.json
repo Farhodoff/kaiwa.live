@@ -1,16 +1,16 @@
 [
   {
     "front": "案内",
-    "back": "Yo'l ko'rsatish, Tanishtirish (Guidance, show around)",
+    "back": "Yo'l ko'rsatish, tanishtiruv, ekskursiya\nTurkum: Ot / Suru-fe'l",
     "phonetic": "あんない - Annai",
-    "example": "街を案内します (Shahar bo'ylab yo'l ko'rsataman)",
+    "example": "観光客に京都の街を案内しました。 (Sayyohlarga Kyoto shahrini aylanib tanishtirdim.)",
     "level": "N4"
   },
   {
     "front": "安心",
     "back": "Xotirjamlik, Ko'ngil to'qligi (Peace of mind, relief)",
     "phonetic": "あんしん - Anshin",
-    "example": "家族の声を聞いて安心しました (Oilam ovozini eshitib xotirjam bo'ldim)",
+    "example": "家族が無事に着いて安心しました。 (Oilam eson-omon yetib borib ko'nglim xotirjam bo'ldi.)",
     "level": "N4"
   },
   {
@@ -22,23 +22,23 @@
   },
   {
     "front": "意見",
-    "back": "Fikr, Mulohaza (Opinion, view)",
+    "back": "Fikr, mulohaza, taklif\nTurkum: Ot / Suru-fe'l",
     "phonetic": "いけん - Iken",
-    "example": "自分の意見を言う (O'z fikrini aytmoq)",
+    "example": "会議で自分の率直な意見を述べました。 (Majlisda o'zimning ochiq-oydin fikrimni bildirdim.)",
     "level": "N4"
   },
   {
     "front": "急ぐ",
-    "back": "Shoshilmoq (To hurry)",
+    "back": "Shoshilmoq, tezlashmoq\nTurkum: Godan fe'l",
     "phonetic": "いそぐ - Isogu",
-    "example": "時間に遅れるので急ぎましょう (Vaqtga kech qolamiz, shoshamiz)",
+    "example": "電車の発車時刻が迫っているので足早に駅へ急ぎました。 (Poyezd jo'nash vaqti yaqinlashgani uchun stansiyaga qarab shoshildim.)",
     "level": "N4"
   },
   {
     "front": "以内",
-    "back": "Ichida, Davomida (...within, inside)",
+    "back": "Oralig'ida, ichida (vaqt yoki masofa)\nTurkum: Ot / Qo'shimcha (Noun)",
     "phonetic": "いない - Inai",
-    "example": "一週間以内に返事します (Bir hafta ichida javob beraman)",
+    "example": "一週間以内にこの書類を提出してください。 (Bir hafta ichida ushbu hujjatni topshiring.)",
     "level": "N4"
   },
   {
@@ -50,72 +50,72 @@
   },
   {
     "front": "運動",
-    "back": "Jismoniy mashq, Sport (Exercise, workout)",
+    "back": "Jismoniy mashq, harakat, sport\nTurkum: Ot / Suru-fe'l",
     "phonetic": "うんどう - Undou",
-    "example": "毎朝運動をします (Har tong mashq qilaman)",
+    "example": "毎日の適度な運動が健康の秘訣です。 (Har kungi me'yordagi jismoniy mashq salomatlik kalitidir.)",
     "level": "N4"
   },
   {
     "front": "運転",
-    "back": "Haydash, Boshqarish (Driving, operation)",
+    "back": "Haydash, boshqarish\nTurkum: Ot / Suru-fe'l",
     "phonetic": "うんてん - Unten",
-    "example": "車を運転できますか (Mashina hayday olasizmi?)",
+    "example": "父は毎日車を安全に運転して会社へ行きます。 (Otam har kuni mashinani xavfsiz haydab ishga boradi.)",
     "level": "N4"
   },
   {
     "front": "遠慮",
-    "back": "Tortinish, Iymanmoq (Hesitation, reserve)",
+    "back": "Tortinish, o'zini tiyish, iymanib turish\nTurkum: Ot / Fe'l (Noun / Suru-verb)",
     "phonetic": "えんりょ - Enryo",
-    "example": "遠慮しないで食べてください (Tortinmasdan yeng)",
+    "example": "どうぞ遠慮しないでたくさん召し上がってください。 (Marhamat, tortinmasdan ko'pdan-ko'p tanovul qiling.)",
     "level": "N4"
   },
   {
     "front": "送る",
     "back": "Yubormoq, Kuzatib qo'ymoq (To send, to see off)",
     "phonetic": "おくる - Okuru",
-    "example": "駅まで送ります (Vokzalga qadar kuzatib qo'yaman)",
+    "example": "母国で待つ家族へ日本のお菓子と手紙を国際郵便で送りました。 (Vatanimdagi oilamga yapon shirinliklari va xatni xalqaro pochta orqali jo'natdim.)",
     "level": "N4"
   },
   {
     "front": "怒る",
-    "back": "Jahli chiqmoq, G'azablanmoq (To get angry)",
+    "back": "Jahli chiqmoq, g'azablanmoq\nTurkum: Fe'l (Godan verb)",
     "phonetic": "おこる - Okoru",
-    "example": "先生が怒りました (O'qituvchining jahli chiqdi)",
+    "example": "約束の時間を大幅に遅刻してしまい友達を怒らせてしまいました。 (Uchrashuv vaqtiga ancha kechikib kelib do'stimning g'azabini keltirdim.)",
     "level": "N4"
   },
   {
     "front": "落ちる",
-    "back": "Tushib ketmoq, Yiqilmoq (To fall, to drop)",
+    "back": "Tushib ketmoq, yiqilmoq\nTurkum: Ichidan fe'l",
     "phonetic": "おちる - Ochiru",
-    "example": "ペンが床に落ちました (Ruchka polga tushib ketdi)",
+    "example": "ポケットに入れていた鍵が歩いている途中で落ちてしまいました。 (Cho'ntagimdagi kalit yo'lda yurib ketayotganimda tushib qolibdi.)",
     "level": "N4"
   },
   {
     "front": "思い出す",
-    "back": "Eslamoq, Yodga olmoq (To recall, to remember)",
+    "back": "yodga olmoq, eslamoq, xotirlamoq\nTurkum: Godan fe'l",
     "phonetic": "おもいだす - Omoidasu",
-    "example": "昔のことを思い出しました (Qadimgi xotiralarni esladim)",
+    "example": "この曲を聴くと高校時代の楽しい思い出を思い出す。 (Bu kuyni eshitsam, maktab davridagi ajoyib xotiralarni eslayman.)",
     "level": "N4"
   },
   {
     "front": "海岸",
     "back": "Dengiz qirg'og'i, Sohili (Coast, beach)",
     "phonetic": "かいがん - Kaigan",
-    "example": "海岸を散歩する (Dengiz qirg'og'ida sayr qilmoq)",
+    "example": "夕暮れ時に静かな海岸をゆっくり散歩しました。 (Shom paytida sokin dengiz sohili bo'ylab sekin sayr qildim.)",
     "level": "N4"
   },
   {
     "front": "会議",
-    "back": "Majlis, Yig'ilish (Meeting, conference)",
+    "back": "Majlis, yig'ilish, muzokara\nTurkum: Ot / Fe'l (Noun / Suru-verb)",
     "phonetic": "かいぎ - Kaigi",
-    "example": "大事な会議に参加する (Muhim yig'ilishda qatnashmoq)",
+    "example": "午前十時から重要なプロジェクトの会議があります。 (Ertalab soat o'ndan muhim loyiha bo'yicha yig'ilish boshlanadi.)",
     "level": "N4"
   },
   {
     "front": "会場",
     "back": "Tadbir joyi, Majlis zali (Venue, hall)",
     "phonetic": "かいじょう - Kaijou",
-    "example": "試験の会場へ行く (Imtihon zali tomon bormoq)",
+    "example": "コンサートの会場には開演前から長蛇の列ができていた。 (Konsert zali oldida boshlanishidan ancha oldin uzun navbat hosil bo'ldi.)",
     "level": "N4"
   },
   {
@@ -127,16 +127,16 @@
   },
   {
     "front": "通う",
-    "back": "Qatnamoq (To commute)",
+    "back": "Qatnamoq (o'qishga, ishga)\nTurkum: Godan fe'l",
     "phonetic": "かよう - Kayou",
-    "example": "大学に通っています (Universitetga qatnayapman)",
+    "example": "日本語の会話力を高めるために週に二回語学教室に通っています。 (Yapon tilida so'zlashishni yaxshilash uchun haftada ikki marta til kursiga qatnayman.)",
     "level": "N4"
   },
   {
     "front": "関係",
-    "back": "Aloqa, Bog'liqlik (Relation, connection)",
+    "back": "Aloqa, munosabat, bog'liqlik\nTurkum: Ot / Fe'l (Noun / Suru-verb)",
     "phonetic": "かんけい - Kankei",
-    "example": "彼とは親しい関係です (U bilan yaqin munosabatdaman)",
+    "example": "両国の良好な関係を今後も深めていきたいです。 (Ikki mamlakat o'rtasidagi do'stona munosabatlarni yanada chuqurlashtirmoqchimiz.)",
     "level": "N4"
   },
   {
@@ -148,14 +148,14 @@
   },
   {
     "front": "機会",
-    "back": "Imkoniyat, Fursat (Opportunity, chance)",
+    "back": "Imkoniyat, fursat, qulay vaziyat\nTurkum: Ot",
     "phonetic": "きかい - Kikai",
-    "example": "留学する機会を得た (Chet elda o'qish imkoniyatiga ega bo'ldim)",
+    "example": "また日本を訪れる機会があれば嬉しいです。 (Yana Yaponiyaga borish imkoniyati bo'lsa xursand bo'lar edim.)",
     "level": "N4"
   },
   {
     "front": "危険",
-    "back": "Xavfli, Xatarli (Dangerous, peril)",
+    "back": "危険 tushunchasi, ilmiy/amaliy atama (Kiken)",
     "phonetic": "きけん - Kiken",
     "example": "夜道は危険です (Tungi yo'l xavfli)",
     "level": "N4"
@@ -171,175 +171,175 @@
     "front": "技術",
     "back": "Texnika, Texnologiya, Mahorat (Technology, skill)",
     "phonetic": "ぎじゅつ - Gijutsu",
-    "example": "日本の技術は進んでいる (Yaponiya texnologiyasi rivojlangan)",
+    "example": "日本の高度な建築技術は地震に強い建物を作ります。 (Yaponiyaning yuksak qurilish texnologiyasi zilzilaga bardoshli binolar bunyod etadi.)",
     "level": "N4"
   },
   {
     "front": "季節",
-    "back": "Fasl, Mavsum (Season)",
+    "back": "Fasl, mavsum\nTurkum: Ot",
     "phonetic": "きせつ - Kisetsu",
-    "example": "春は一番好きな季節です (Bahor eng yoqtirgan faslim)",
+    "example": "日本には四季があり季節ごとに美しい景色が見られます。 (Yaponiyada to'rt fasl bo'lib har faslda go'zal manzaralar ko'rinadi.)",
     "level": "N4"
   },
   {
     "front": "規則",
-    "back": "Qoida, Nizom (Rule, regulation)",
+    "back": "Qoida, tartib-intizom\nTurkum: Ot (Noun)",
     "phonetic": "きそく - Kisoku",
-    "example": "学校の規則を守る (Maktab qoidalariga rioya qilmoq)",
+    "example": "学校や寮の規則をきちんと守りましょう。 (Maktab va yotoqxona qoidalariga qat'iy rioya qilaylik.)",
     "level": "N4"
   },
   {
     "front": "気分",
-    "back": "Kayfiyat, O'zini his qilish (Mood, feeling)",
+    "back": "Kayfiyat, o'zini his qilish holati\nTurkum: Ot",
     "phonetic": "きぶん - Kibun",
-    "example": "今日はとても気分がいい (Bugun kayfiyatim a'lo)",
+    "example": "朝の散歩をすると気分がとても爽やかになります。 (Ertalab sayr qilsam kayfiyatim nihoyatda tetiklashadi.)",
     "level": "N4"
   },
   {
     "front": "希望",
-    "back": "Umid, Istak (Hope, wish)",
+    "back": "Umid, istak, orzu\nTurkum: Ot / Fe'l (Noun / Suru-verb)",
     "phonetic": "きぼう - Kibou",
-    "example": "将来の希望を語る (Kelajakdagi orzu-umidlarni aytmoq)",
+    "example": "将来は海外の大学院に進学することを希望しています。 (Kelajakda xorijiy magistraturada tahsil olishni umid qilaman.)",
     "level": "N4"
   },
   {
     "front": "決める",
-    "back": "Qaror qilmoq, Belgilamoq (To decide)",
+    "back": "Qaror qilmoq, belgilamoq\nTurkum: Ichidan fe'l",
     "phonetic": "きめる - Kimeru",
-    "example": "日程を決めましょう (Jadvalni belgilaylik)",
+    "example": "家族とよく話し合って日本へ留学することを決めました。 (Oilam bilan bamaslahat Yaponiyada tahsil olishga qaror qildim.)",
     "level": "N4"
   },
   {
     "front": "興味",
-    "back": "Qiziqish (Interest)",
+    "back": "Qiziqish, e'tibor\nTurkum: Ot",
     "phonetic": "きょうみ - Kyoumi",
-    "example": "日本文化に興味があります (Yapon madaniyatiga qiziqishim bor)",
+    "example": "昔から日本の伝統文化や歴史に深い興味があります。 (Qadimdan yapon an'anaviy madaniyati va tarixiga katta qiziqishim bor.)",
     "level": "N4"
   },
   {
     "front": "具合",
-    "back": "Ahvol, Sog'lik holati (Condition, health)",
+    "back": "Ahvol, salomatlik holati, qulaylik\nTurkum: Ot",
     "phonetic": "ぐあい - Guai",
-    "example": "体の具合はどうですか (Sog'lig'ingiz ahvoli qanday?)",
+    "example": "体の具合が悪くなったら無理をしないで休んでください。 (Sog'lig'ingiz yomonlashsa o'zingizni zo'riqtirmasdan dam oling.)",
     "level": "N4"
   },
   {
     "front": "空港",
-    "back": "Aeroport (Airport)",
+    "back": "Aeroport\nTurkum: Ot",
     "phonetic": "くうこう - Kuukou",
-    "example": "空港へ友達を迎えに行く (Aeroportga do'stimni kutib olgani bormoq)",
+    "example": "成田国際空港へ友達を出迎えに行きました。 (Narita xalqaro aeroportiga do'stimni kutib olish uchun bordim.)",
     "level": "N4"
   },
   {
     "front": "比べる",
-    "back": "Taqqoslamoq, Solishtirmoq (To compare)",
+    "back": "Taqqoslamoq, solishtirmoq\nTurkum: Fe'l (Ichidan verb)",
     "phonetic": "くらべる - Kuraberu",
-    "example": "東京と大阪を比べる (Tokio va Osakani solishtirmoq)",
+    "example": "去年の自分と比べて日本語の会話力が大きく向上しました。 (O'tgan yilgi holatim bilan solishtirganda yapon tilida gapirish mahoratim ancha o'sdi.)",
     "level": "N4"
   },
   {
     "front": "景色",
-    "back": "Manzara (Scenery, view)",
+    "back": "景色 tushunchasi, ilmiy/amaliy atama (Keshiki)",
     "phonetic": "けしき - Keshiki",
-    "example": "山の景色が美しい (Tog' manzarasi go'zal)",
+    "example": "展望台から見渡す夜の景色は息をのむほど美しかったです。 (Kuzatuv maydonchasidan ko'ringan tungi manzara lol qoldiradigan darajada go'zal edi.)",
     "level": "N4"
   },
   {
     "front": "計画",
-    "back": "Reja, Dastur (Plan, project)",
+    "back": "Reja, loyiha\nTurkum: Ot / Fe'l (Noun / Suru-verb)",
     "phonetic": "けいかく - Keikaku",
-    "example": "旅行の計画を立てる (Sayohat rejasini tuzmoq)",
+    "example": "無理のない学習計画を立てて毎日勉強する。 (Haddan tashqari og'ir bo'lmagan o'qish rejasini tuzib, har kuni dars qilaman.)",
     "level": "N4"
   },
   {
     "front": "経験",
-    "back": "Tajriba (Experience)",
+    "back": "Tajriba\nTurkum: Ot / Fe'l (Noun / Suru-verb)",
     "phonetic": "けいけん - Keiken",
-    "example": "良い経験になりました (Yaxshi tajriba bo'ldi)",
+    "example": "海外留学で得た貴重な経験は一生の宝物だ。 (Chet elda o'qish orqali to'plangan qimmatli tajriba bir umrlik xazinadir.)",
     "level": "N4"
   },
   {
     "front": "研究",
-    "back": "Tadqiqot, Ilmiy izlanish (Research, study)",
+    "back": "Tadqiqot, ilmiy izlanish\nTurkum: Ot / Suru-fe'l",
     "phonetic": "けんきゅう - Kenkyuu",
-    "example": "AIについて研究する (Sun'iy intellekt bo'yicha tadqiqot olib bormoq)",
+    "example": "大学の研究室で人工知能の最新技術を研究しています。 (Universitet laboratoriyasida sun'iy intellektning so'nggi texnologiyalarini tadqiq qilyapman.)",
     "level": "N4"
   },
   {
     "front": "故障",
     "back": "Buzilish, Nosozlik (Breakdown, malfunction)",
     "phonetic": "こしょう - Koshou",
-    "example": "パソコンが故障した (Kompyuter buzildi)",
+    "example": "洗濯機が故障したので修理を頼みました。 (Kir yuvish mashinasi buzilib qolgani uchun tuzatishga chaqirdim.)",
     "level": "N4"
   },
   {
     "front": "断る",
-    "back": "Rad etmoq, Rad javobi bermoq (To refuse, to decline)",
+    "back": "rad etmoq, rad javobini bermoq, oldindan ogohlantirmoq\nTurkum: Godan fe'l",
     "phonetic": "ことわる - Kotowaru",
-    "example": "誘いを丁寧に断る (Taklifni xushmuomalalik bilan rad etmoq)",
+    "example": "忙しくて手が回らないため、せっかくの誘いを丁重に断った。 (Vaqtim juda tig'iz bo'lgani sababli taklifni xushmuomalalik bilan rad etdim.)",
     "level": "N4"
   },
   {
     "front": "探す",
-    "back": "Qidirmoq, Izlamoq (To search, to look for)",
+    "back": "Izlamoq, qidirmoq (kerakli narsa yoki ishni)\nTurkum: Fe'l (Godan verb)",
     "phonetic": "さがす - Sagasu",
-    "example": "鍵を探しています (Kalitimni qidiryapman)",
+    "example": "インターネットで自分に合った条件の良いアパートを探す。 (Internetdan o'zimga mos qulay sharoitli kvartira izlayapman.)",
     "level": "N4"
   },
   {
     "front": "寂しい",
-    "back": "Yolg'iz, G'amgin (Lonely, sad)",
+    "back": "yolg'iz, g'arib, kimsasiz, sog'inchli\nTurkum: I-sifat",
     "phonetic": "さびしい - Sabishii",
-    "example": "一人で寂しいです (Yakka o'zim yolg'izman)",
+    "example": "家族と離れて一人で暮らすのは最初はとても寂しかった。 (Oiladan uzoqda yolg'iz yashash boshida juda mungli va yolg'iz tuyulardi.)",
     "level": "N4"
   },
   {
     "front": "触る",
-    "back": "Tegmoq, Qo'l tekkizmoq (To touch)",
+    "back": "tegmoq, qo'l tekkizmoq\nTurkum: Godan fe'l",
     "phonetic": "さわる - Sawaru",
-    "example": "展示物に触らないでください (Eksponatlarga qo'l tekkizmang)",
+    "example": "展示されている美術品には触らないでください。 (Ko'rgazmaga qo'yilgan san'at asarlariga tegmang.)",
     "level": "N4"
   },
   {
     "front": "参加",
-    "back": "Qatnashish, Ishtirok (Participation)",
+    "back": "Qatnashish, ishtirok etish\nTurkum: Ot / Suru-fe'l",
     "phonetic": "さんか - Sanka",
-    "example": "パーティーに参加する (Kechada ishtirok etmoq)",
+    "example": "週末のボランティア活動に喜んで参加しました。 (Dam olish kunidagi ko'ngillilar aksiyasida bajonidil ishtirok etdim.)",
     "level": "N4"
   },
   {
     "front": "事故",
-    "back": "Falokat, Avariya (Accident)",
+    "back": "事故 tushunchasi, ilmiy/amaliy atama (Jiko)",
     "phonetic": "じこ - Jiko",
     "example": "交通事故に注意する (Yo'l transport hodisasidan ehtiyot bo'lmoq)",
     "level": "N4"
   },
   {
     "front": "地震",
-    "back": "Zilzila (Earthquake)",
+    "back": "地震 tushunchasi, ilmiy/amaliy atama (Jishin)",
     "phonetic": "じしん - Jishin",
     "example": "大きな地震が起きた (Katta zilzila sodir bo'ldi)",
     "level": "N4"
   },
   {
     "front": "自信",
-    "back": "O'ziga ishonch (Self-confidence)",
+    "back": "Ishonch, o'z kuchiga ishonch\nTurkum: Ot",
     "phonetic": "じしん - Jishin",
-    "example": "自分に自信を持つ (O'ziga ishonch hosil qilmoq)",
+    "example": "たくさんの練習を重ねたことで試験に合格する自信がつきました。 (Ko'p mashq qilganim sababli imtihondan o'tishimga ishonchim komil bo'ldi.)",
     "level": "N4"
   },
   {
     "front": "時代",
-    "back": "Davr, Zamon (Era, period)",
+    "back": "Davr, zamon\nTurkum: Ot (Noun)",
     "phonetic": "じだい - Jidai",
-    "example": "新しい時代が始まった (Yangi davr boshlandi)",
+    "example": "スマートフォンが普及して本当に便利な時代になりました。 (Smartfonlar ommalashib haqiqatan ham juda qulay zamon bo'ldi.)",
     "level": "N4"
   },
   {
     "front": "失敗",
-    "back": "Muvaffaqiyatsizlik, Xato (Failure, mistake)",
+    "back": "Muvaffaqiyatsizlik, xato, yutqazish\nTurkum: Ot / Suru-fe'l",
     "phonetic": "しっぱい - Shippai",
-    "example": "失敗を恐れない (Muvaffaqiyatsizlikdan qo'rqmaslik)",
+    "example": "失敗から学んで次の挑戦に活かすことが重要です。 (Xatolardan saboq chiqarib keyingi intilishda qo'llash g'oyat muhimdir.)",
     "level": "N4"
   },
   {
@@ -351,37 +351,37 @@
   },
   {
     "front": "習慣",
-    "back": "Odat, Ko'nikma (Custom, habit)",
+    "back": "習慣 tushunchasi, ilmiy/amaliy atama (Shuukan)",
     "phonetic": "しゅうかん - Shuukan",
-    "example": "毎朝読書する習慣 (Har tong kitob o'qish odati)",
+    "example": "朝起きたらまず白湯を飲むのが健康のための習慣です。 (Ertalab turgach avval iliq suv ichish salomatlik uchun odatimdir.)",
     "level": "N4"
   },
   {
     "front": "住所",
-    "back": "Yashash manzili (Address)",
+    "back": "Manzil, yashash manzili\nTurkum: Ot",
     "phonetic": "じゅうしょ - Juusho",
-    "example": "住所を書いてください (Manzilingizni yozing)",
+    "example": "引っ越しをしたので市役所で新しい住所を登録しました。 (Yangi uyga ko'chganim sababli shahar hokimiyatida yangi manzilimni ro'yxatdan o'tkazdim.)",
     "level": "N4"
   },
   {
     "front": "準備",
-    "back": "Tayyorgarlik (Preparation)",
+    "back": "Tayyorgarlik, hozirlik\nTurkum: Ot / Fe'l (Noun / Suru-verb)",
     "phonetic": "じゅんび - Junbi",
-    "example": "試験の準備をする (Imtihonga tayyorgarlik ko'rmoq)",
+    "example": "明日の出張に必要な荷物を前もって準備しました。 (Ertangi xizmat safari uchun kerakli buyumlarni oldindan tayyorlab qo'ydim.)",
     "level": "N4"
   },
   {
     "front": "紹介",
-    "back": "Tanishtirish (Introduction)",
+    "back": "Tanishtirish, tavsiya qilish\nTurkum: Ot / Fe'l (Noun / Suru-verb)",
     "phonetic": "しょうかい - Shoukai",
-    "example": "友達を紹介します (Do'stimni tanishtiraman)",
+    "example": "友人に素敵な日本の伝統料理店を紹介してもらった。 (Do'stim menga ajoyib yapon an'anaviy restoranini tavsiya qildi.)",
     "level": "N4"
   },
   {
     "front": "将来",
-    "back": "Kelajak (Future, prospects)",
+    "back": "将来 tushunchasi, ilmiy/amaliy atama (Shourai)",
     "phonetic": "しょうらい - Shourai",
-    "example": "将来エンジニアになりたい (Kelajakda muhandis bo'lmoqchiman)",
+    "example": "将来は世界で活躍できるITエンジニアになりたいです。 (Kelajakda jahon miqyosida ishlaydigan IT muhandisi bo'lishni orzu qilaman.)",
     "level": "N4"
   },
   {
@@ -402,49 +402,49 @@
     "front": "調べる",
     "back": "Tekshirmoq, Qidirib bilmoq (To investigate, to look up)",
     "phonetic": "しらべる - Shiraberu",
-    "example": "辞書で単語を調べる (Lug'atdan so'zni izlab topmoq)",
+    "example": "わからない言葉はインターネットで調べます。 (Tushunarsiz so'zlarni internetdan qidirib ko'raman.)",
     "level": "N4"
   },
   {
     "front": "心配",
-    "back": "Xavotir, Tashvish (Worry, anxiety)",
+    "back": "Xavotir, tashvish\nTurkum: Ot / Na-sifat / Fe'l (Noun / Na-adj / Suru-verb)",
     "phonetic": "しんぱい - Shinpai",
-    "example": "心配しないでください (Xavotir olmang)",
+    "example": "一人暮らしの息子の健康を心配している。 (Yolg'iz yashayotgan o'g'limning sog'lig'idan xavotirdaman.)",
     "level": "N4"
   },
   {
     "front": "素晴らしい",
-    "back": "Ajoyib, A'lo darajada (Wonderful, splendid)",
+    "back": "素晴らしい tushunchasi, ilmiy/amaliy atama (Subarashii)",
     "phonetic": "すばらしい - Subarashii",
     "example": "素晴らしい景色ですね (Ajoyib manzara-a!)",
     "level": "N4"
   },
   {
     "front": "進む",
-    "back": "Oldinga siljimoq, Rivojlanmoq (To advance, to progress)",
+    "back": "oldinga siljimoq, ilgarilamoq, rivojlanmoq\nTurkum: Godan fe'l",
     "phonetic": "すすむ - Susumu",
-    "example": "前へ進みましょう (Oldinga qarab intilaylik)",
+    "example": "計画は予定通りに順調に進んでいる。 (Reja kutilganidek maromida oldinga siljiyapti.)",
     "level": "N4"
   },
   {
     "front": "説明",
-    "back": "Tushuntirish, Izoh (Explanation)",
+    "back": "Tushuntirish, izohlash\nTurkum: Ot / Suru-fe'l",
     "phonetic": "せつめい - Setsumei",
-    "example": "理由を説明してください (Sababini tushuntirib bering)",
+    "example": "先生が新しい文法の使い方をわかりやすく説明してくれました。 (O'qituvchi yangi grammatikaning qo'llanilishini juda tushunarli tarzda izohlab berdi.)",
     "level": "N4"
   },
   {
     "front": "専門",
-    "back": "Mutaxassislik (Specialty, major)",
+    "back": "Mutaxassislik, ixtisoslik\nTurkum: Ot / No-sifat",
     "phonetic": "せんもん - Senmon",
-    "example": "私の専門はITです (Mening soham IT)",
+    "example": "大学での私の専攻はコンピュータ工学の専門です。 (Universitetdagi mutaxassisligim kompyuter muhandisligi sohasidir.)",
     "level": "N4"
   },
   {
     "front": "相談",
-    "back": "Maslahatlashish (Consultation)",
+    "back": "Maslahatlashish, kengashish\nTurkum: Ot / Suru-fe'l",
     "phonetic": "そうだん - Soudan",
-    "example": "先生に相談する (O'qituvchi bilan maslahatlashmoq)",
+    "example": "進路について悩んだ時は信頼できる先生に相談します。 (Kelajak yo'lim bo'yicha ikkilansam ishonchli ustozim bilan maslahatlashaman.)",
     "level": "N4"
   },
   {
@@ -465,7 +465,7 @@
     "front": "倒れる",
     "back": "Yiqilmoq, Qulamoq (To fall down, to collapse)",
     "phonetic": "たおれる - Taoreru",
-    "example": "強い風で木が倒れた (Kuchli shamolda daraxt quladi)",
+    "example": "激しい台風の暴風によって大きな街路樹が倒れた。 (Kuchli to'fon shamoli tufayli ko'chadagi ulkan daraxt quladi.)",
     "level": "N4"
   },
   {
@@ -477,16 +477,16 @@
   },
   {
     "front": "足す",
-    "back": "Qo'shmoq (To add)",
+    "back": "qo'shmoq (hisobda yoki qo'shimcha qilmoq)\nTurkum: Godan fe'l",
     "phonetic": "たす - Tasu",
-    "example": "砂糖を足してください (Shakar qo'shing)",
+    "example": "味が少し薄いので醤油を少し足した。 (Ta'mi biroz bemaza bo'lgani uchun ozgina soya sousi qo'shdim.)",
     "level": "N4"
   },
   {
     "front": "助ける",
-    "back": "Yordam bermoq, Qutqarmoq (To help, to rescue)",
+    "back": "Yordam bermoq, qutqarmoq\nTurkum: Fe'l (Ichidan verb)",
     "phonetic": "たすける - Tasukeru",
-    "example": "困っている人を助ける (Qiyin ahvoldagi insonga yordam bermoq)",
+    "example": "困っている人がいたら迷わず進んで助けの手を差し伸べる。 (Qiyin ahvoldagi odamni ko'rsam, ikkilanmasdan yordam qo'lini cho'zaman.)",
     "level": "N4"
   },
   {
@@ -500,14 +500,14 @@
     "front": "建てる",
     "back": "Qurmoq, Bino qilmoq (To build, to construct)",
     "phonetic": "たてる - Tateru",
-    "example": "新しい家を建てる (Yangi uy qurmoq)",
+    "example": "将来、自分の一戸建ての家を建てたい。 (Kelajakda o'zimning alohida hovli uyimni qurmoqchiman.)",
     "level": "N4"
   },
   {
     "front": "楽しむ",
-    "back": "Zavqlanmoq, Rohatlanmoq (To enjoy)",
+    "back": "Zavqlanmoq, maroq olmoq\nTurkum: Fe'l (Godan verb)",
     "phonetic": "たのしむ - Tanoshimu",
-    "example": "旅行を楽しむ (Sayohatdan zavqlanmoq)",
+    "example": "週末は好きな音楽を聴いて休日を楽しむ。 (Dam olish kunlarida yoqtirgan musiqamni tinglab hordiq chiqaraman.)",
     "level": "N4"
   },
   {
@@ -519,16 +519,16 @@
   },
   {
     "front": "注意",
-    "back": "Diqqat, Ehtiyotkorlik (Attention, warning)",
+    "back": "Diqqat, ehtiyotkorlik, ogohlantirish\nTurkum: Ot / Suru-fe'l",
     "phonetic": "ちゅうい - Chuui",
-    "example": "車に注意してください (Mashinalardan ehtiyot bo'ling)",
+    "example": "階段を降りるときは足元に十分注意してください。 (Zinadan tushayotganda qadamingizga yaxshilab e'tibor bering.)",
     "level": "N4"
   },
   {
     "front": "伝える",
-    "back": "Yetkazmoq, Xabar qilmoq (To convey, to report)",
+    "back": "yetkazmoq, bildirmoq, xabar qilmoq\nTurkum: Ichidan fe'l",
     "phonetic": "つたえる - Tsutaeru",
-    "example": "メッセージを伝える (Xabarni yetkazmoq)",
+    "example": "彼に明日の集合時間を伝えておいてください。 (Unga ertangi yig'ilish vaqtini yetkazib qo'ying.)",
     "level": "N4"
   },
   {
@@ -540,9 +540,9 @@
   },
   {
     "front": "手伝う",
-    "back": "Yordamlashmoq (To assist, to help)",
+    "back": "yordam bermoq, ko'maklashmoq\nTurkum: Godan fe'l",
     "phonetic": "てつだう - Tetsudau",
-    "example": "母の料理を手伝う (Onamning ovqatiga yordamlashmoq)",
+    "example": "引っ越しの荷物運びを手伝ってくれた。 (Ko'chishdagi yuklarni tashishga yordam berdi.)",
     "level": "N4"
   },
   {
@@ -554,16 +554,16 @@
   },
   {
     "front": "届ける",
-    "back": "Yetkazib bermoq (To deliver)",
+    "back": "yetkazib bermoq, topshirmoq\nTurkum: Ichidan fe'l",
     "phonetic": "とどける - Todokeru",
-    "example": "荷物を届ける (Yukni yetkazib bermoq)",
+    "example": "拾った財布をすぐに交番に届けた。 (Topib olingan hamyonni darhol politsiya bo'limiga topshirdim.)",
     "level": "N4"
   },
   {
     "front": "直す",
     "back": "Tuzatmoq, Qayta to'g'rilamoq (To fix, to repair)",
     "phonetic": "なおす - Naosu",
-    "example": "時計を直す (Soatni tuzatmoq)",
+    "example": "作文の間違いを先生に直してもらった。 (Inshodagi xatolarni ustozimga tuzattirdim.)",
     "level": "N4"
   },
   {
@@ -575,23 +575,23 @@
   },
   {
     "front": "投げる",
-    "back": "Otmoq, Uloqtirmoq (To throw)",
+    "back": "otmoq, irg'itmoq, uloqtirmoq\nTurkum: Ichidan fe'l",
     "phonetic": "なげる - Nageru",
-    "example": "ボールを投げる (To'pni otmoq)",
+    "example": "ピッチャーが速いボールを投げた。 (Ko'zbo'zchi (pitcher) tezkor to'pni uloqtirdi.)",
     "level": "N4"
   },
   {
     "front": "慣れる",
-    "back": "O'rganib qolmoq, Ko'nikmoq (To get used to)",
+    "back": "O'rganmoq, ko'nikmoq\nTurkum: Fe'l (Ichidan verb)",
     "phonetic": "なれる - Nareru",
-    "example": "日本の生活に慣れました (Yaponiya hayotiga ko'nikdim)",
+    "example": "日本での新しい一人暮らしの環境にもすっかり慣れた。 (Yaponiyadagi yangi mustaqil hayot sharoitiga ham butunlay ko'nikib oldim.)",
     "level": "N4"
   },
   {
     "front": "逃げる",
-    "back": "Qochmoq (To escape, to run away)",
+    "back": "qochmoq, qochib ketmoq\nTurkum: Ichidan fe'l",
     "phonetic": "にげる - Nigeru",
-    "example": "犯人が逃げた (Jinoyatchi qochib ketdi)",
+    "example": "警察の姿を見て泥棒が裏口から逃げた。 (Politsiyani ko'rib o'g'ri orqa eshikdan qochib ketdi.)",
     "level": "N4"
   },
   {
@@ -603,86 +603,86 @@
   },
   {
     "front": "盗む",
-    "back": "O'g'irlamoq (To steal)",
+    "back": "o'g'irlamoq\nTurkum: verb (transitive)",
     "phonetic": "ぬすむ - Nusumu",
-    "example": "財布を盗まれた (Hamyonim o'g'irlandi)",
+    "example": "混雑した電車の中で財布を盗まれた。 (Gavjum poyezdda hamyonimni o'g'irlatib qo'ydim.)",
     "level": "N4"
   },
   {
     "front": "残る",
-    "back": "Qolmoq, Saqlanib qolmoq (To remain, to be left)",
+    "back": "Qolmoq, saqlanib qolmoq\nTurkum: Fe'l (Godan verb)",
     "phonetic": "のこる - Nokoru",
-    "example": "まだ仕事が残っています (Hali ishlar qolgan)",
+    "example": "まだやるべき仕事がたくさん残っている。 (Hali qilinishi kerak bo'lgan ishlar juda ko'p qolgan.)",
     "level": "N4"
   },
   {
     "front": "乗り換える",
-    "back": "Transportni almashtirmoq (To transfer, change trains)",
+    "back": "boshqa transportga o'tirmoq (pereyozka); yangisiga o'tmoq\nTurkum: verb (transitive, intransitive)",
     "phonetic": "のりかえる - Norikaeru",
-    "example": "新宿で電車を乗り換える (Shinjukuda poyezdni almashtirmoq)",
+    "example": "新宿駅で地下鉄からJR線に乗り換えた。 (Shinjuku bekatida metrodan poyezd yo'nalishiga o'tdim.)",
     "level": "N4"
   },
   {
     "front": "運ぶ",
     "back": "Tashimoq, Ko'chirmoq (To transport, to carry)",
     "phonetic": "はこぶ - Hakobu",
-    "example": "荷物を二階へ運ぶ (Yuklarni ikkinchi qavatga tashimoq)",
+    "example": "重い荷物を二階の部屋まで運んだ。 (Og'ir yukni ikkinchi qavatdagi xonagacha tashidim.)",
     "level": "N4"
   },
   {
     "front": "払う",
-    "back": "To'lamoq (To pay)",
+    "back": "To'lamoq; qoqib tashlamoq\nTurkum: Fe'l (Godan verb)",
     "phonetic": "はらう - Harau",
-    "example": "クレジットカードで払います (Kredit karta orqali to'layman)",
+    "example": "コートについた雪を手で軽く払ってから家に入った。 (Paltodagi qorni qo'lim bilan qoqib tashlab, uyga kirdim.)",
     "level": "N4"
   },
   {
     "front": "増える",
-    "back": "Ko'paymoq, Oshmoq (To increase)",
+    "back": "Ko'paymoq, oshmoq (son yoki miqdor)\nTurkum: Fe'l (Ichidan verb)",
     "phonetic": "ふえる - Fueru",
-    "example": "留学生が増えました (Chet ellik talabalar ko'paydi)",
+    "example": "最近、外国人の観光客が日本で急速に増えている。 (So'nggi paytlarda Yaponiyada xorijlik sayyohlar soni tezlik bilan ortib bormoqda.)",
     "level": "N4"
   },
   {
     "front": "複雑",
-    "back": "Murakkab, Chigal (Complicated, complex)",
+    "back": "複雑 tushunchasi, ilmiy/amaliy atama (Fukuzatsu)",
     "phonetic": "ふくざつ - Fukuzatsu",
     "example": "複雑な問題ですね (Murakkab masala)",
     "level": "N4"
   },
   {
     "front": "復習",
-    "back": "Takrorlash (Review, revision)",
+    "back": "Takrorlash, darsni mustahkamlash\nTurkum: Ot / Suru-fe'l",
     "phonetic": "ふくしゅう - Fukushuu",
-    "example": "習った漢字を復習する (O'rganilgan iyerogliflarni takrorlamoq)",
+    "example": "習った文法を忘れないようにその日のうちに復習します。 (O'rganilgan grammatikani esdan chiqarmaslik uchun o'sha kunning o'zidayoq takrorlayman.)",
     "level": "N4"
   },
   {
     "front": "普通",
-    "back": "Odatdagi, Oddiy (Normal, ordinary)",
+    "back": "Oddiy, odatiy, o'rtacha\nTurkum: Ot / No-sifat / Ravish",
     "phonetic": "ふつう - Futsuu",
-    "example": "普通の生活を送る (Oddiy hayot kechirmoq)",
+    "example": "この電車は各駅に止まる普通の列車です。 (Bu poyezd har bir bekatda to'xtaydigan oddiy mahalliy poyezddir.)",
     "level": "N4"
   },
   {
     "front": "法律",
-    "back": "Qonun (Law)",
+    "back": "qonun\nTurkum: Ot",
     "phonetic": "ほうりつ - Houritsu",
-    "example": "法律を守らなければならない (Qonunga rioya qilish shart)",
+    "example": "誰もが社会の秩序を守るために法律を守らなければならない。 (Har bir inson jamiyat tartibini saqlash uchun qonunlarga rioya qilishi shart.)",
     "level": "N4"
   },
   {
     "front": "翻訳",
-    "back": "Tarjima (Translation)",
+    "back": "Yozma tarjima, tarjima qilish\nTurkum: Ot / Suru-fe'l",
     "phonetic": "ほんやく - Honyaku",
-    "example": "本を日本語に翻訳する (Kitobni yapon tiliga tarjima qilmoq)",
+    "example": "日本の素晴らしい文学作品を母国語に翻訳したいです。 (Yaponiyaning ajoyib adabiy asarlarini o'z ona tilimga yozma tarjima qilmoqchiman.)",
     "level": "N4"
   },
   {
     "front": "間に合う",
-    "back": "Vaqtida ulgurmoq (To be in time for)",
+    "back": "ulgurmoq, o'z vaqtida yetib bormoq\nTurkum: expression, verb",
     "phonetic": "まにあう - Maniau",
-    "example": "電車に間に合いました (Poyezdga ulgurdim)",
+    "example": "急いで走ったおかげで発車ベルが鳴る前に電車に間に合った。 (Shoshib yugurganim tufayli jo'nash signali chalinmasidan poyezdga ulgurib oldim.)",
     "level": "N4"
   },
   {
@@ -694,23 +694,23 @@
   },
   {
     "front": "迎える",
-    "back": "Kutib olmoq (To welcome, to greet)",
+    "back": "Kutib olmoq (mehmon yoki yangi davrni)\nTurkum: Fe'l (Ichidan verb)",
     "phonetic": "むかえる - Mukaeru",
-    "example": "お客様を笑顔で迎える (Mehmonlarni tabassum bilan kutib olmoq)",
+    "example": "空港の到着ロビーで海外からのお客様を温かく迎えた。 (Aeroportning kutib olish zalida xorijdan kelgan mehmonlarni iliq kutib oldim.)",
     "level": "N4"
   },
   {
     "front": "無理",
-    "back": "Imkonsiz, Qiyin (Impossible, unreasonable)",
+    "back": "Ilojsiz, zo'riqish, ortiqcha urinish\nTurkum: Ot / Na-sifat / Suru-fe'l",
     "phonetic": "むり - Muri",
-    "example": "無理をしないでください (O'zingizni haddan ortiq qiynamang)",
+    "example": "疲れているときは無理をしないでゆっくり休養を取ってください。 (Charchagan paytda o'zingizni zo'riqtirmasdan yaxshilab dam oling.)",
     "level": "N4"
   },
   {
     "front": "約束",
-    "back": "Va'da, Kelishuv (Promise, appointment)",
+    "back": "Va'da, ahd, uchrashuv vaqti\nTurkum: Ot / Suru-fe'l",
     "phonetic": "やくそく - Yakusoku",
-    "example": "友達と約束があります (Do'stim bilan uchrashuv rejam bor)",
+    "example": "友達と交わした大切な約束は必ず最後まで守ります。 (Do'stim bilan berishgan muhim va'dani albatta oxirigacha bajaraman.)",
     "level": "N4"
   },
   {
@@ -722,16 +722,16 @@
   },
   {
     "front": "止める",
-    "back": "To'xtatmoq, Voz kechmoq (To stop, to quit)",
+    "back": "To'xtatmoq (mashina yoki harakatni)\nTurkum: Fe'l (Ichidan verb)",
     "phonetic": "やめる - Yameru",
-    "example": "タバコをやめました (Chekishni tashladim)",
+    "example": "駅前のコインパーキングに車を安全に止めた。 (Stansiya oldidagi pullik to'xtash joyiga mashinani xavfsiz qo'ydim.)",
     "level": "N4"
   },
   {
     "front": "汚れる",
-    "back": "Ifloslanmoq (To become dirty)",
+    "back": "kirlanmoq, ifloslanmoq\nTurkum: Ichidan fe'l",
     "phonetic": "よごれる - Yogoreru",
-    "example": "服が泥で汚れた (Kiyim loyga belanib ifloslandi)",
+    "example": "大雨のせいで靴がひどく汚れてしまった。 (Kuchli yomg'ir tufayli poyabzalim juda qattiq kirlanib ketdi.)",
     "level": "N4"
   },
   {
@@ -743,44 +743,44 @@
   },
   {
     "front": "予定",
-    "back": "Reja, Jadval (Schedule, plan)",
+    "back": "Reja, jadval\nTurkum: Ot / Suru-fe'l",
     "phonetic": "よてい - Yotei",
-    "example": "来週の予定を教えてください (Keyingi haftadagi rejangizni ayting)",
+    "example": "来週の予定をカレンダーアプリに分かりやすく書き込みました。 (Kelasi haftaning rejalarini taqvim ilovasida qulay qilib belgilab chiqdim.)",
     "level": "N4"
   },
   {
     "front": "予約",
-    "back": "Buyurtma qilish, Bronlash (Reservation, booking)",
+    "back": "Band qilish, oldindan bron qilish\nTurkum: Ot / Suru-fe'l",
     "phonetic": "よやく - Yoyaku",
-    "example": "ホテルを予約しました (Mehmonxonani bron qildim)",
+    "example": "人気の和食レストランの席をネットで前もって予約しました。 (Mashhur yapon restorani o'rindig'ini internet orqali oldindan bron qilib qo'ydim.)",
     "level": "N4"
   },
   {
     "front": "利用",
-    "back": "Foydalanish, Ishlatish (Utilization, use)",
+    "back": "Foydalanish, ishlatish\nTurkum: Ot / Suru-fe'l",
     "phonetic": "りよう - Riyou",
-    "example": "図書館を利用する (Kutubxonadan foydalanmoq)",
+    "example": "図書館の静かな学習スペースを放課後に有効利用しています。 (Kutubxonaning sokin o'quv xonasidan darsdan so'ng samarali foydalanaman.)",
     "level": "N4"
   },
   {
     "front": "連絡",
-    "back": "Aloqa, Xabarlashish (Contact, communication)",
+    "back": "Aloqaga chiqish, xabar berish\nTurkum: Ot / Suru-fe'l",
     "phonetic": "れんらく - Renraku",
-    "example": "後で連絡します (Keyinroq aloqaga chiqaman)",
+    "example": "用事が終わり次第すぐに電話で連絡します。 (Ishim bitishi bilanoq darhol telefon orqali aloqaga chiqaman.)",
     "level": "N4"
   },
   {
     "front": "理由",
-    "back": "Sabab, Vaj (Reason)",
+    "back": "Sabab, vaj, dalil\nTurkum: Ot",
     "phonetic": "りゆう - Riyuu",
-    "example": "遅れた理由を話す (Kech qolish sababini aytmoq)",
+    "example": "日本で働きたいと思った一番の理由を面接で熱く語りました。 (Yaponiyada ishlashni xohlashimning eng asosiy sababini suhbatda jo'shqinlik bilan so'zlab berdim.)",
     "level": "N4"
   },
   {
     "front": "別れる",
     "back": "Ajralmoq, Xayrlashmoq (To separate, to break up)",
     "phonetic": "わかれる - Wakareru",
-    "example": "駅の前で友達と別れた (Vokzal oldida do'stlarim bilan xayrlashdim)",
+    "example": "駅の改札口で友達と笑顔で別れた。 (Stansiya nazorat darvozasida do'stim bilan kulib xayrlashdim.)",
     "level": "N4"
   },
   {
@@ -792,33 +792,9 @@
   },
   {
     "front": "割る",
-    "back": "Sindirmoq, Bo'lmoq (To break, to divide)",
+    "back": "sindirmoq, yormoq, bo'lmoq (idish/raqam)\nTurkum: Godan fe'l",
     "phonetic": "わる - Waru",
-    "example": "コップを割ってしまった (Stakanni sindirib qo'ydim)",
-    "level": "N4"
-  },
-  {
-    "front": "不",
-    "back": "Emas, inkor, no- (No-, not, non-)\nOnyomi: フ, ブ (fu, bu)\nKunyomi: -",
-    "phonetic": "フ - フ",
-    "example": "不便 (ふべん (Fuben)) — Noqulay",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "世",
-    "back": "Dunyo, zamon, avlod (World, generation)\nOnyomi: セイ, セ (sei, se)\nKunyomi: よ (yo)",
-    "phonetic": "よ - yo",
-    "example": "世界 (せかい (Sekai)) — Dunyo",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "主",
-    "back": "Asosiy, xo'jayin (Main, master)\nOnyomi: シュ, ス (shu, su)\nKunyomi: おも, ぬし (omo, nushi)",
-    "phonetic": "おも - おも",
-    "example": "主人 (しゅじん (Shujin)) — Xo'jayin, er",
-    "category": "Kanji",
+    "example": "手が滑ってガラスのコップを割ってしまった。 (Qo'lim toyib ketib, shisha stakanni sindirib qo'ydim.)",
     "level": "N4"
   },
   {
@@ -826,14 +802,6 @@
     "back": "Poytaxt (Capital)\nOnyomi: キョウ, ケイ (kyou, kei)\nKunyomi: みやこ (miyako)",
     "phonetic": "みやこ - miyako",
     "example": "東京 (とうきょう (Toukyou)) — Tokio",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "仕",
-    "back": "Xizmat qilmoq, ish (Serve, doing)\nOnyomi: シ, ジ (shi, ji)\nKunyomi: つか・える (tsuka-eru)",
-    "phonetic": "つかえる - tsuka-eru",
-    "example": "仕事 (しごと (Shigoto)) — Ish, xizmat",
     "category": "Kanji",
     "level": "N4"
   },
@@ -854,42 +822,10 @@
     "level": "N4"
   },
   {
-    "front": "体",
-    "back": "Tana, gavda (Body)\nOnyomi: タイ, テイ (tai, tei)\nKunyomi: からだ (karada)",
-    "phonetic": "からだ - karada",
-    "example": "体 (からだ (Karada)) — Tana",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "作",
-    "back": "Yasamoq, tayyorlamoq (Make, create)\nOnyomi: サク, サ (saku, sa)\nKunyomi: つく・る (tsuku-ru)",
-    "phonetic": "つくる - tsuku-ru",
-    "example": "作る (つくる (Tsukuru)) — Yasamoq",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "使",
-    "back": "Ishlatmoq, elchi (Use, messenger)\nOnyomi: シ (shi)\nKunyomi: つか・う (tsuka-u)",
-    "phonetic": "つかう - tsuka-u",
-    "example": "使う (つかう (Tsukau)) — Ishlatmoq",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
     "front": "便",
     "back": "Qulaylik, pochta (Convenience, mail)\nOnyomi: ベン, ビン (ben, bin)\nKunyomi: たよ・り (tayo-ri)",
     "phonetic": "たより - tayo-ri",
-    "example": "便利 (べんり (Benri)) — Qulay",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "借",
-    "back": "Qarzga olmoq (Borrow)\nOnyomi: シャク (shaku)\nKunyomi: か・りる (ka-riru)",
-    "phonetic": "かりる - ka-riru",
-    "example": "借りる (かりる (Kariru)) — Qarz olmoq",
+    "example": "夕方の飛行機の便を予約することができた。 (Kechki samolyot reysiga chipta band qila oldim.)",
     "category": "Kanji",
     "level": "N4"
   },
@@ -902,50 +838,10 @@
     "level": "N4"
   },
   {
-    "front": "元",
-    "back": "Asos, boshlang'ich, tetik (Origin, health)\nOnyomi: ゲン, ガン (gen, gan)\nKunyomi: もと (moto)",
-    "phonetic": "もと - moto",
-    "example": "元気 (げんき (Genki)) — Tetik, sog'lom",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "兄",
-    "back": "Aka (Older brother)\nOnyomi: ケイ, キョウ (kei, kyou)\nKunyomi: あに (ani)",
-    "phonetic": "あに - ani",
-    "example": "兄 (あに (Ani)) — Akam",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
     "front": "光",
     "back": "Nur, yorug'lik (Light, ray)\nOnyomi: コウ (kou)\nKunyomi: ひか・る, ひかり (hika-ru, hikari)",
     "phonetic": "ひかる - ひかる",
-    "example": "光る (ひかる (Hikaru)) — Yaltiramoq",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "写",
-    "back": "Nusxa olmoq, rasmga olmoq (Copy, photograph)\nOnyomi: シャ (sha)\nKunyomi: うつ・す, うつ・る (utsu-su, utsu-ru)",
-    "phonetic": "うつす - うつす",
-    "example": "写真 (しゃしん (Shashin)) — Fotosurat",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "冬",
-    "back": "Qish (Winter)\nOnyomi: トウ (tou)\nKunyomi: ふゆ (fuyu)",
-    "phonetic": "ふゆ - fuyu",
-    "example": "冬 (ふゆ (Fuyu)) — Qish",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "切",
-    "back": "Kesmoq (Cut)\nOnyomi: セツ, サイ (setsu, sai)\nKunyomi: き・る, き・れる (ki-ru, ki-reru)",
-    "phonetic": "きる - きる",
-    "example": "切る (きる (Kiru)) — Kesmoq",
+    "example": "窓から差し込む太陽の光がとても心地よいです。 (Derazadan tushayotgan quyosh nuri juda yoqimli.)",
     "category": "Kanji",
     "level": "N4"
   },
@@ -958,34 +854,10 @@
     "level": "N4"
   },
   {
-    "front": "勉",
-    "back": "Tirishmoq, g'ayrat (Endeavor, strive)\nOnyomi: ベン (ben)\nKunyomi: つと・める (tsuto-meru)",
-    "phonetic": "つとめる - tsuto-meru",
-    "example": "勉強 (べんきょう (Benkyou)) — O'qish, ta'lim",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "動",
-    "back": "Qimirlamoq, harakatlanmoq (Move)\nOnyomi: ドウ (dou)\nKunyomi: うご・く, うご・かす (ugo-ku, ugo-kasu)",
-    "phonetic": "うごく - うごく",
-    "example": "動く (うごく (Ugoku)) — Harakatlanmoq",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
     "front": "区",
     "back": "Tuman, hudud (Ward, district)\nOnyomi: ク (ku)\nKunyomi: -",
     "phonetic": "ク - ku",
     "example": "区役所 (くやくしょ (Kuyakusho)) — Tuman hokimiyati",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "医",
-    "back": "Tibbiyot, davolash (Medicine, doctor)\nOnyomi: イ (i)\nKunyomi: -",
-    "phonetic": "イ - i",
-    "example": "医者 (いしゃ (Isha)) — Shifokor",
     "category": "Kanji",
     "level": "N4"
   },
@@ -1001,7 +873,7 @@
     "front": "台",
     "back": "Taglik, apparat sanog'i (Platform, counter for machines)\nOnyomi: ダイ, タイ (dai, tai)\nKunyomi: -",
     "phonetic": "ダイ - ダイ",
-    "example": "台所 (だいどころ (Daidokoro)) — Oshxona",
+    "example": "荷物を運ぶために台の上に載せました。 (Yukni tashish uchun taglik ustiga qo'ydim.)",
     "category": "Kanji",
     "level": "N4"
   },
@@ -1014,42 +886,10 @@
     "level": "N4"
   },
   {
-    "front": "同",
-    "back": "Bir xil, teng (Same)\nOnyomi: ドウ (dou)\nKunyomi: おな・じ (ona-ji)",
-    "phonetic": "おなじ - ona-ji",
-    "example": "同じ (おなじ (Onaji)) — Bir xil",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
     "front": "味",
     "back": "Ta'm, maza, ma'no (Flavor, taste)\nOnyomi: ミ (mi)\nKunyomi: あじ, あじ・わう (aji, aji-wau)",
     "phonetic": "あじ - あじ",
-    "example": "意味 (いみ (Imi)) — Ma'no",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "品",
-    "back": "Mahsulot, tovar (Goods, refinement)\nOnyomi: ヒン (hin)\nKunyomi: しな (shina)",
-    "phonetic": "しな - shina",
-    "example": "品物 (しなもの (Shinamono)) — Mahsulot",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "員",
-    "back": "Xodim, a'zo (Member, employee)\nOnyomi: イン (in)\nKunyomi: -",
-    "phonetic": "イン - in",
-    "example": "会社員 (かいしゃいん (Kaishain)) — Firma xodimi",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "問",
-    "back": "Savol, so'ramoq (Question, ask)\nOnyomi: モン (mon)\nKunyomi: と・う, と・い (to-u, to-i)",
-    "phonetic": "とう - とう",
-    "example": "質問 (しつもん (Shitsumon)) — Savol",
+    "example": "このスープはとても深い味がします。 (Bu sho'rvaning mazasi juda boy va mazali.)",
     "category": "Kanji",
     "level": "N4"
   },
@@ -1062,30 +902,6 @@
     "level": "N4"
   },
   {
-    "front": "図",
-    "back": "Chizma, reja (Drawing, plan)\nOnyomi: ズ, ト (zu, to)\nKunyomi: はか・る (haka-ru)",
-    "phonetic": "はかる - haka-ru",
-    "example": "地図 (ちず (Chizu)) — Xarita",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "堂",
-    "back": "Zal, bino (Hall, shrine)\nOnyomi: ドウ (dou)\nKunyomi: -",
-    "phonetic": "ドウ - dou",
-    "example": "食堂 (しょくどう (Shokudou)) — Oshxona",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "場",
-    "back": "Joy, maydon (Place, location)\nOnyomi: ジョウ (jou)\nKunyomi: ば (ba)",
-    "phonetic": "ば - ba",
-    "example": "場所 (ばしょ (Basho)) — Joy",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
     "front": "声",
     "back": "Ovoz (Voice)\nOnyomi: セイ, ショウ (sei, shou)\nKunyomi: こえ (koe)",
     "phonetic": "こえ - koe",
@@ -1094,34 +910,10 @@
     "level": "N4"
   },
   {
-    "front": "売",
-    "back": "Sotmoq (Sell)\nOnyomi: バイ (bai)\nKunyomi: う・る, う・れる (u-ru, u-reru)",
-    "phonetic": "うる - うる",
-    "example": "売る (うる (Uru)) — Sotmoq",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "夏",
-    "back": "Yoz (Summer)\nOnyomi: カ, ゲ (ka, ge)\nKunyomi: なつ (natsu)",
-    "phonetic": "なつ - natsu",
-    "example": "夏 (なつ (Natsu)) — Yoz",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
     "front": "夕",
     "back": "Oqshom, shom (Evening)\nOnyomi: セキ (seki)\nKunyomi: ゆう (yuu)",
     "phonetic": "ゆう - yuu",
     "example": "夕方 (ゆうがた (Yuugata)) — Kechki payt",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "夜",
-    "back": "Tun, kecha (Night)\nOnyomi: ヤ (ya)\nKunyomi: よる, よ (yoru, yo)",
-    "phonetic": "よる - よる",
-    "example": "夜 (よる (Yoru)) — Tun",
     "category": "Kanji",
     "level": "N4"
   },
@@ -1142,66 +934,10 @@
     "level": "N4"
   },
   {
-    "front": "妹",
-    "back": "Singil (Younger sister)\nOnyomi: マイ (mai)\nKunyomi: いもうと (imouto)",
-    "phonetic": "いもうと - imouto",
-    "example": "妹 (いもうと (Imouto)) — Singlim",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "姉",
-    "back": "Opa (Older sister)\nOnyomi: シ (shi)\nKunyomi: あね (ane)",
-    "phonetic": "あね - ane",
-    "example": "姉 (あね (Ane)) — Opam",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "始",
-    "back": "Boshlanmoq, boshlamoq (Begin, start)\nOnyomi: シ (shi)\nKunyomi: はじ・まる, はじ・める (haji-maru, haji-meru)",
-    "phonetic": "はじまる - はじまる",
-    "example": "始まる (はじまる (Hajimaru)) — Boshlanmoq",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "字",
-    "back": "Harf, yozuv (Letter, character)\nOnyomi: ジ (ji)\nKunyomi: あざ (aza)",
-    "phonetic": "あざ - aza",
-    "example": "漢字 (かんじ (Kanji)) — Kanji",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "室",
-    "back": "Xona (Room)\nOnyomi: シツ (shitsu)\nKunyomi: むろ (muro)",
-    "phonetic": "むろ - muro",
-    "example": "教室 (きょうしつ (Kyoushitsu)) — Sinfxona",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "家",
-    "back": "Uy, oila (House, family)\nOnyomi: カ, ケ (ka, ke)\nKunyomi: いえ, や (ie, ya)",
-    "phonetic": "いえ - いえ",
-    "example": "家族 (かぞく (Kazoku)) — Oila",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
     "front": "寒",
     "back": "Sovuq (havo) (Cold)\nOnyomi: カン (kan)\nKunyomi: さむ・い (samu-i)",
     "phonetic": "さむい - samu-i",
     "example": "寒い (さむい (Samui)) — Sovuq",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "屋",
-    "back": "Tom, do'kon, xona (Roof, shop)\nOnyomi: オク (oku)\nKunyomi: や (ya)",
-    "phonetic": "や - ya",
-    "example": "部屋 (へや (Heya)) — Xona",
     "category": "Kanji",
     "level": "N4"
   },
@@ -1222,26 +958,10 @@
     "level": "N4"
   },
   {
-    "front": "帰",
-    "back": "Qaytmoq (Return)\nOnyomi: キ (ki)\nKunyomi: かえ・る, かえ・す (kae-ru, kae-su)",
-    "phonetic": "かえる - かえる",
-    "example": "帰る (かえる (Kaeru)) — Qaytmoq",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
     "front": "広",
     "back": "Keng (Wide, spacious)\nOnyomi: コウ (kou)\nKunyomi: ひろ・い, ひろ・がる (hiro-i, hiro-garu)",
     "phonetic": "ひろい - ひろい",
     "example": "広い (ひろい (Hiroi)) — Keng",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "度",
-    "back": "Daraja, marta (Degree, time)\nOnyomi: ド, ト (do, to)\nKunyomi: たび (tabi)",
-    "phonetic": "たび - tabi",
-    "example": "一度 (いちど (Ichido)) — Bir marta",
     "category": "Kanji",
     "level": "N4"
   },
@@ -1254,26 +974,10 @@
     "level": "N4"
   },
   {
-    "front": "弟",
-    "back": "Uka (Younger brother)\nOnyomi: テイ, ダイ (tei, dai)\nKunyomi: おとうと (otouto)",
-    "phonetic": "おとうと - otouto",
-    "example": "弟 (おとうと (Otouto)) — Ukam",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
     "front": "弱",
     "back": "Zaif, kuchsiz (Weak)\nOnyomi: ジャク (jaku)\nKunyomi: よわ・い, よわ・る (yowa-i, yowa-ru)",
     "phonetic": "よわい - よわい",
     "example": "弱い (よわい (Yowai)) — Zaif",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "強",
-    "back": "Kuchli (Strong)\nOnyomi: キョウ, ゴウ (kyou, gou)\nKunyomi: つよ・い, つよ・まる (tsuyo-i, tsuyo-maru)",
-    "phonetic": "つよい - つよい",
-    "example": "強い (つよい (Tsuyoi)) — Kuchli",
     "category": "Kanji",
     "level": "N4"
   },
@@ -1302,102 +1006,6 @@
     "level": "N4"
   },
   {
-    "front": "持",
-    "back": "Ushlamoq, ega bo'lmoq (Hold, possess)\nOnyomi: ジ (ji)\nKunyomi: も・つ, も・てる (mo-tsu, mo-teru)",
-    "phonetic": "もつ - もつ",
-    "example": "持つ (もつ (Motsu)) — Ushlamoq",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "教",
-    "back": "O'rgatmoq, ta'lim (Teach, religion)\nOnyomi: キョウ (kyou)\nKunyomi: おし・える, おそ・わる (oshi-eru, oso-waru)",
-    "phonetic": "おしえる - おしえる",
-    "example": "教える (おしえる (Oshieru)) — O'rgatmoq",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "文",
-    "back": "Matn, jumla, adabiyot (Sentence, literature)\nOnyomi: ブン, モン (bun, mon)\nKunyomi: ふみ (fumi)",
-    "phonetic": "ふみ - fumi",
-    "example": "作文 (さくぶん (Sakubun)) — Insho",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "料",
-    "back": "To'lov, xomashyo (Fee, ingredients)\nOnyomi: リョウ (ryou)\nKunyomi: -",
-    "phonetic": "リョウ - ryou",
-    "example": "料理 (りょうり (Ryouri)) — Taom",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "方",
-    "back": "Tomon, shaxs, usul (Direction, person, way)\nOnyomi: ホウ (hou)\nKunyomi: かた (kata)",
-    "phonetic": "かた - kata",
-    "example": "方法 (ほうほう (Houhou)) — Usul",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "旅",
-    "back": "Sayohat (Travel, trip)\nOnyomi: リョ (ryo)\nKunyomi: たび (tabi)",
-    "phonetic": "たび - tabi",
-    "example": "旅行 (りょこう (Ryokou)) — Sayohat",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "族",
-    "back": "Oila, toifa (Family, tribe)\nOnyomi: ゾク (zoku)\nKunyomi: -",
-    "phonetic": "ゾク - zoku",
-    "example": "家族 (かぞく (Kazoku)) — Oila",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "早",
-    "back": "Erta, tez (Early, fast)\nOnyomi: ソウ, サッ (sou, satsu)\nKunyomi: はや・い, はや・まる (haya-i, haya-maru)",
-    "phonetic": "はやい - はやい",
-    "example": "早い (はやい (Hayai)) — Erta",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "明",
-    "back": "Yorug', ravshan (Bright, clear)\nOnyomi: メイ, ミョウ (mei, myou)\nKunyomi: あか・るい, あき・らか (aka-rui, aki-raka)",
-    "phonetic": "あかるい - あかるい",
-    "example": "明るい (あかるい (Akarui)) — Yorug'",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "映",
-    "back": "Aks ettirmoq, proyeksiyalamoq (Reflect, project)\nOnyomi: エイ (ei)\nKunyomi: うつ・る, うつ・す, は・える (utsu-ru, utsu-su, ha-eru)",
-    "phonetic": "うつる - うつる",
-    "example": "映画 (えいが (Eiga)) — Film, kino",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "春",
-    "back": "Bahor (Spring)\nOnyomi: シュン (shun)\nKunyomi: はる (haru)",
-    "phonetic": "はる - haru",
-    "example": "春 (はる (Haru)) — Bahor",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "昼",
-    "back": "Kunduz, tush (Noon, daytime)\nOnyomi: チュウ (chuu)\nKunyomi: ひる (hiru)",
-    "phonetic": "ひる - hiru",
-    "example": "昼ご飯 (ひるごはん (Hirugohan)) — Tushlik",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
     "front": "暑",
     "back": "Issiq (havo) (Hot weather)\nOnyomi: ショ (sho)\nKunyomi: あつ・い (atsu-i)",
     "phonetic": "あつい - atsu-i",
@@ -1422,26 +1030,10 @@
     "level": "N4"
   },
   {
-    "front": "有",
-    "back": "Bor, mavjud bo'lmoq (Have, exist)\nOnyomi: ユウ, ウ (yuu, u)\nKunyomi: あ・る (a-ru)",
-    "phonetic": "ある - a-ru",
-    "example": "有名 (ゆうめい (Yuumei)) — Mashhur",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
     "front": "服",
     "back": "Kiyim, itoat qilmoq (Clothes)\nOnyomi: フク (fuku)\nKunyomi: -",
     "phonetic": "フク - fuku",
-    "example": "服 (ふく (Fuku)) — Kiyim",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "朝",
-    "back": "Tong, ertalab (Morning)\nOnyomi: チョウ (chou)\nKunyomi: あさ (asa)",
-    "phonetic": "あさ - asa",
-    "example": "朝 (あさ (Asa)) — Tong",
+    "example": "明日の面接のために新しいスーツの服を買いました。 (Ertangi suhbat uchun yangi kostyum kiyimi sotib oldim.)",
     "category": "Kanji",
     "level": "N4"
   },
@@ -1449,23 +1041,7 @@
     "front": "村",
     "back": "Qishloq (Village)\nOnyomi: ソン (son)\nKunyomi: むら (mura)",
     "phonetic": "むら - mura",
-    "example": "村 (むら (Mura)) — Qishloq",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "林",
-    "back": "O'rmoncha, daraxtzor (Grove, woods)\nOnyomi: リン (rin)\nKunyomi: はやし (hayashi)",
-    "phonetic": "はやし - hayashi",
-    "example": "林 (はやし (Hayashi)) — Daraxtzor",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "森",
-    "back": "Katta o'rmon (Forest)\nOnyomi: シン (shin)\nKunyomi: もり (mori)",
-    "phonetic": "もり - mori",
-    "example": "森 (もり (Mori)) — O'rmon",
+    "example": "山の奥にある静かな村でのんびり過ごしました。 (Tog'ning ichkarisidagi sokin qishloqda xotirjam vaqt o'tkazdim.)",
     "category": "Kanji",
     "level": "N4"
   },
@@ -1478,22 +1054,6 @@
     "level": "N4"
   },
   {
-    "front": "歌",
-    "back": "Qo'shiq, kuylamoq (Song, sing)\nOnyomi: カ (ka)\nKunyomi: うた, うた・う (uta, uta-u)",
-    "phonetic": "うた - うた",
-    "example": "歌 (うた (Uta)) — Qo'shiq",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "歩",
-    "back": "Yurmoq, qadam (Walk, step)\nOnyomi: ホ, ブ (ho, bu)\nKunyomi: ある・く, あゆ・む (aru-ku, ayu-mu)",
-    "phonetic": "あるく - あるく",
-    "example": "歩く (あるく (Aruku)) — Piyoda yurmoq",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
     "front": "死",
     "back": "O'lmoq, o'lim (Death, die)\nOnyomi: シ (shi)\nKunyomi: し・ぬ (shi-nu)",
     "phonetic": "しぬ - shi-nu",
@@ -1502,18 +1062,10 @@
     "level": "N4"
   },
   {
-    "front": "民",
-    "back": "Xalq, aholi (People, citizen)\nOnyomi: ミン (min)\nKunyomi: たみ (tami)",
-    "phonetic": "たみ - tami",
-    "example": "市民 (しみん (Shimin)) — Shahar aholisi",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
     "front": "池",
     "back": "Hovuz (Pond)\nOnyomi: チ (chi)\nKunyomi: いけ (ike)",
     "phonetic": "いけ - ike",
-    "example": "池 (いけ (Ike)) — Hovuz",
+    "example": "公園の池で色とりどりの鯉が泳いでいます。 (Parkdagi hovuzda turli rangli koi baliqlari suzmoqda.)",
     "category": "Kanji",
     "level": "N4"
   },
@@ -1534,90 +1086,10 @@
     "level": "N4"
   },
   {
-    "front": "漢",
-    "back": "Xitoy (China, Han)\nOnyomi: カン (kan)\nKunyomi: -",
-    "phonetic": "カン - kan",
-    "example": "漢字 (かんじ (Kanji)) — Kanji",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "牛",
-    "back": "Mol, sigir (Cow, beef)\nOnyomi: ギュウ (gyuu)\nKunyomi: うし (ushi)",
-    "phonetic": "うし - ushi",
-    "example": "牛乳 (ぎゅうにゅう (Gyuunyuu)) — Sut",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "物",
-    "back": "Narsa, buyum (Thing, object)\nOnyomi: ブツ, モツ (butsu, motsu)\nKunyomi: もの (mono)",
-    "phonetic": "もの - mono",
-    "example": "食べ物 (たべもの (Tabemono)) — Yegulik",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "犬",
-    "back": "It (Dog)\nOnyomi: ケン (ken)\nKunyomi: いぬ (inu)",
-    "phonetic": "いぬ - inu",
-    "example": "犬 (いぬ (Inu)) — It",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
     "front": "産",
     "back": "Tug'moq, ishlab chiqarish (Birth, produce)\nOnyomi: サン (san)\nKunyomi: う・む, う・まれる (u-mu, u-mareru)",
     "phonetic": "うむ - うむ",
     "example": "生産 (せいさん (Seisan)) — Ishlab chiqarish",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "用",
-    "back": "Foydalanmoq, vazifa (Use, business)\nOnyomi: ヨウ (you)\nKunyomi: もち・いる (mochi-iru)",
-    "phonetic": "もちいる - mochi-iru",
-    "example": "用事 (ようじ (Youji)) — Yumush",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "田",
-    "back": "Sholizor, dala (Rice field)\nOnyomi: デン (den)\nKunyomi: た (ta)",
-    "phonetic": "た - ta",
-    "example": "田んぼ (たんぼ (Tanbo)) — Sholizor",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "町",
-    "back": "Shaharcha (Town)\nOnyomi: チョウ (chou)\nKunyomi: まち (machi)",
-    "phonetic": "まち - machi",
-    "example": "町 (まち (Machi)) — Shaharcha",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "画",
-    "back": "Tasvir, reja, chiziq (Picture, plan, stroke)\nOnyomi: ガ, カク (ga, kaku)\nKunyomi: -",
-    "phonetic": "ガ - ガ",
-    "example": "映画 (えいが (Eiga)) — Kino",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "界",
-    "back": "Chegara, dunyo (World, boundary)\nOnyomi: カイ (kai)\nKunyomi: -",
-    "phonetic": "カイ - kai",
-    "example": "世界 (せかい (Sekai)) — Dunyo",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "病",
-    "back": "Kasallik (Illness, disease)\nOnyomi: ビョウ, ヘイ (byou, hei)\nKunyomi: や・む, やまい (ya-mu, yamai)",
-    "phonetic": "やむ - やむ",
-    "example": "病気 (びょうき (Byouki)) — Kasallik",
     "category": "Kanji",
     "level": "N4"
   },
@@ -1633,23 +1105,7 @@
     "front": "県",
     "back": "Prefektura, viloyat (Prefecture)\nOnyomi: ケン (ken)\nKunyomi: -",
     "phonetic": "ケン - ken",
-    "example": "県 (けん (Ken)) — Prefektura",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "真",
-    "back": "Haqiqat, sof (True, reality)\nOnyomi: シン (shin)\nKunyomi: ま, まこと (ma, makoto)",
-    "phonetic": "ま - ま",
-    "example": "写真 (しゃしん (Shashin)) — Fotosurat",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "着",
-    "back": "Kiymoq, yetib bormoq (Wear, arrive)\nOnyomi: チャク, ジャク (chaku, jaku)\nKunyomi: き・る, つ・く (ki-ru, tsu-ku)",
-    "phonetic": "きる - きる",
-    "example": "着る (きる (Kiru)) — Kiymoq",
+    "example": "長野県は美しい山がたくさんあります。 (Nagano prefekturasida ko'plab go'zal tog'lar bor.)",
     "category": "Kanji",
     "level": "N4"
   },
@@ -1662,22 +1118,6 @@
     "level": "N4"
   },
   {
-    "front": "私",
-    "back": "Men, shaxsiy (I, private)\nOnyomi: シ (shi)\nKunyomi: わたし, わたくし (watashi, watakushi)",
-    "phonetic": "わたし - わたし",
-    "example": "私 (わたし (Watashi)) — Men",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "秋",
-    "back": "Kuz (Autumn)\nOnyomi: シュウ (shuu)\nKunyomi: あき (aki)",
-    "phonetic": "あき - aki",
-    "example": "秋 (あき (Aki)) — Kuz",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
     "front": "究",
     "back": "Chuqur o'rganish (Research thoroughly)\nOnyomi: キュウ (kyuu)\nKunyomi: きわ・める (kiwa-meru)",
     "phonetic": "きわめる - kiwa-meru",
@@ -1686,50 +1126,10 @@
     "level": "N4"
   },
   {
-    "front": "答",
-    "back": "Javob bermoq (Answer)\nOnyomi: トウ (tou)\nKunyomi: こた・える, こた・え (kota-eru, kota-e)",
-    "phonetic": "こたえる - こたえる",
-    "example": "答える (こたえる (Kotaeru)) — Javob bermoq",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
     "front": "紙",
     "back": "Qog'oz (Paper)\nOnyomi: シ (shi)\nKunyomi: かみ (kami)",
     "phonetic": "かみ - kami",
-    "example": "手紙 (てがみ (Tegami)) — Xat",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "終",
-    "back": "Tugamoq, tugatmoq (End, finish)\nOnyomi: シュウ (shuu)\nKunyomi: お・わる, お・える (o-waru, o-eru)",
-    "phonetic": "おわる - おわる",
-    "example": "終わる (おわる (Owaru)) — Tugamoq",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "考",
-    "back": "O'ylamoq, fikr yuritmoq (Think, consider)\nOnyomi: コウ (kou)\nKunyomi: かんが・える (kanga-eru)",
-    "phonetic": "かんがえる - kanga-eru",
-    "example": "考える (かんがえる (Kangaeru)) — O'ylamoq",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "者",
-    "back": "Kishi, odam (Person)\nOnyomi: シャ (sha)\nKunyomi: もの (mono)",
-    "phonetic": "もの - mono",
-    "example": "医者 (いしゃ (Isha)) — Shifokor",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "肉",
-    "back": "Go'sht (Meat)\nOnyomi: ニク (niku)\nKunyomi: -",
-    "phonetic": "ニク - niku",
-    "example": "牛肉 (ぎゅうにく (Gyuuniku)) — Mol go'shti",
+    "example": "白い紙に名前と電話番号を書いてください。 (Oq qog'ozga ismingiz va telefon raqamingizni yozing.)",
     "category": "Kanji",
     "level": "N4"
   },
@@ -1738,22 +1138,6 @@
     "back": "Rang (Color)\nOnyomi: ショク, シキ (shoku, shiki)\nKunyomi: いろ (iro)",
     "phonetic": "いろ - iro",
     "example": "色 (いろ (Iro)) — Rang",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "英",
-    "back": "Ingliz, ajoyib (English, brilliant)\nOnyomi: エイ (ei)\nKunyomi: -",
-    "phonetic": "エイ - ei",
-    "example": "英語 (えいご (Eigo)) — Ingliz tili",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "茶",
-    "back": "Choy (Tea)\nOnyomi: チャ, サ (cha, sa)\nKunyomi: -",
-    "phonetic": "チャ - チャ",
-    "example": "お茶 (おちゃ (Ocha)) — Choy",
     "category": "Kanji",
     "level": "N4"
   },
@@ -1769,7 +1153,7 @@
     "front": "薬",
     "back": "Dori (Medicine)\nOnyomi: ヤク (yaku)\nKunyomi: くすり (kusuri)",
     "phonetic": "くすり - kusuri",
-    "example": "薬 (くすり (Kusuri)) — Dori",
+    "example": "食後にこの薬を水と一緒に飲んでください。 (Ovqatdan so'ng bu dorini suv bilan iching.)",
     "category": "Kanji",
     "level": "N4"
   },
@@ -1777,23 +1161,7 @@
     "front": "親",
     "back": "Ota-ona, yaqin (Parent, close)\nOnyomi: シン (shin)\nKunyomi: おや, した・しい (oya, shita-shii)",
     "phonetic": "おや - おや",
-    "example": "両親 (りょうしん (Ryoushin)) — Ota-ona",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "試",
-    "back": "Sinab ko'rmoq (Try, test)\nOnyomi: シ (shi)\nKunyomi: こころ・みる, ため・す (kokoro-miru, tame-su)",
-    "phonetic": "こころみる - こころみる",
-    "example": "試合 (しあい (Shiai)) — Musobaqa",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "貸",
-    "back": "Qarzga bermoq (Lend)\nOnyomi: タイ (tai)\nKunyomi: か・す (ka-su)",
-    "phonetic": "かす - ka-su",
-    "example": "貸す (かす (Kasu)) — Qarzga bermoq",
+    "example": "親の恩を忘れてはならない。 (Ota-onaning mehnat va yaxshiligini unutmaslik kerak.)",
     "category": "Kanji",
     "level": "N4"
   },
@@ -1802,14 +1170,6 @@
     "back": "Sifat, garov (Quality, matter)\nOnyomi: シツ, シチ (shitsu, shichi)\nKunyomi: -",
     "phonetic": "シツ - シツ",
     "example": "質問 (しつもん (Shitsumon)) — Savol",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "赤",
-    "back": "Qizil (Red)\nOnyomi: セキ, シャク (seki, shaku)\nKunyomi: あか, あか・い (aka, aka-i)",
-    "phonetic": "あか - あか",
-    "example": "赤い (あかい (Akai)) — Qizil",
     "category": "Kanji",
     "level": "N4"
   },
@@ -1846,14 +1206,6 @@
     "level": "N4"
   },
   {
-    "front": "近",
-    "back": "Yaqin (Near)\nOnyomi: キン (kin)\nKunyomi: ちか・い (chika-i)",
-    "phonetic": "ちかい - chika-i",
-    "example": "近い (ちかい (Chikai)) — Yaqin",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
     "front": "都",
     "back": "Metropoliya, sharoit (Metropolis, capital)\nOnyomi: ト, ツ (to, tsu)\nKunyomi: みやこ (miyako)",
     "phonetic": "みやこ - miyako",
@@ -1878,58 +1230,10 @@
     "level": "N4"
   },
   {
-    "front": "銀",
-    "back": "Kumush (Silver)\nOnyomi: ギン (gin)\nKunyomi: -",
-    "phonetic": "ギン - gin",
-    "example": "銀行 (ぎんこう (Ginkou)) — Bank",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "門",
-    "back": "Darvoza (Gate)\nOnyomi: モン (mon)\nKunyomi: かど (kado)",
-    "phonetic": "かど - kado",
-    "example": "校門 (こうもん (Koumon)) — Maktab darvozasi",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "開",
-    "back": "Ochmoq, ochilmoq (Open)\nOnyomi: カイ (kai)\nKunyomi: ひら・く, あ・く, あ・ける (hira-ku, a-ku, a-keru)",
-    "phonetic": "ひらく - ひらく",
-    "example": "開ける (あける (Akeru)) — Ochmoq",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "院",
-    "back": "Muassasa, bino (Institution)\nOnyomi: イン (in)\nKunyomi: -",
-    "phonetic": "イン - in",
-    "example": "病院 (びょういん (Byouin)) — Kasalxona",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
     "front": "集",
     "back": "Yig'ilmoq, to'plamoq (Gather, collect)\nOnyomi: シュウ (shuu)\nKunyomi: あつ・まる, あつ・める (atsu-maru, atsu-meru)",
     "phonetic": "あつまる - あつまる",
     "example": "集める (あつめる (Atsumeru)) — To'plamoq",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "青",
-    "back": "Moviy, ko'k (Blue)\nOnyomi: セイ, ショウ (sei, shou)\nKunyomi: あお, あお・い (ao, ao-i)",
-    "phonetic": "あお - あお",
-    "example": "青い (あおい (Aoi)) — Moviy",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "音",
-    "back": "Tovush, ovoz (Sound)\nOnyomi: オン, イン (on, in)\nKunyomi: おと, ね (oto, ne)",
-    "phonetic": "おと - おと",
-    "example": "音 (おと (Oto)) — Tovush",
     "category": "Kanji",
     "level": "N4"
   },
@@ -1950,14 +1254,6 @@
     "level": "N4"
   },
   {
-    "front": "顔",
-    "back": "Yuz, chehra (Face)\nOnyomi: ガン (gan)\nKunyomi: かお (kao)",
-    "phonetic": "かお - kao",
-    "example": "顔 (かお (Kao)) — Yuz",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
     "front": "風",
     "back": "Shamol, uslub (Wind, style)\nOnyomi: フウ, フ (fuu, fu)\nKunyomi: かぜ, かざ (kaze, kaza)",
     "phonetic": "かぜ - かぜ",
@@ -1974,26 +1270,10 @@
     "level": "N4"
   },
   {
-    "front": "館",
-    "back": "Katta bino, saroy (Building, mansion)\nOnyomi: カン (kan)\nKunyomi: やかた (yakata)",
-    "phonetic": "やかた - yakata",
-    "example": "図書館 (としょかん (Toshokan)) — Kutubxona",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
     "front": "首",
     "back": "Bo'yin, rahbar (Neck, leader)\nOnyomi: シュ (shu)\nKunyomi: くび (kubi)",
     "phonetic": "くび - kubi",
-    "example": "首 (くび (Kubi)) — Bo'yin",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "験",
-    "back": "Sinov, tajriba (Test, verify)\nOnyomi: ケン, ゲン (ken, gen)\nKunyomi: -",
-    "phonetic": "ケン - ケン",
-    "example": "試験 (しけん (Shiken)) — Imtihon",
+    "example": "寒いので首にマフラーを巻きました。 (Sovuq bo'lgani uchun bo'ynimga sharf o'radim.)",
     "category": "Kanji",
     "level": "N4"
   },
@@ -2001,15 +1281,7 @@
     "front": "鳥",
     "back": "Qush (Bird)\nOnyomi: チョウ (chou)\nKunyomi: とり (tori)",
     "phonetic": "とり - tori",
-    "example": "鳥 (とり (Tori)) — Qush",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "黒",
-    "back": "Qora (Black)\nOnyomi: コク (koku)\nKunyomi: くろ, くろ・い (kuro, kuro-i)",
-    "phonetic": "くろ - くろ",
-    "example": "黒い (くろい (Kuroi)) — Qora",
+    "example": "朝早くから鳥たちが美しく鳴いています。 (Ertalab barvaqtdan qushlar go'zal kuylamoqda.)",
     "category": "Kanji",
     "level": "N4"
   },
@@ -2049,7 +1321,7 @@
     "front": "雪",
     "back": "Qor (Snow)\nOnyomi: セツ (setsu)\nKunyomi: ゆき (yuki)",
     "phonetic": "ゆき - yuki",
-    "example": "雪 (ゆき (Yuki)) — Qor",
+    "example": "朝起きると外は一面の白い雪に覆われていました。 (Ertalab uyg'onsam, tashqari oppoq qor bilan qoplangan edi.)",
     "category": "Kanji",
     "level": "N4"
   },
@@ -2089,15 +1361,7 @@
     "front": "内",
     "back": "Ichkari, ichki (Inside, within)\nOnyomi: ナイ, ダイ (nai, dai)\nKunyomi: うち (uchi)",
     "phonetic": "うち - uchi",
-    "example": "案内 (あんない (Annai)) — Yo'l ko'rsatish",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "晩",
-    "back": "Oqshom, kechqurun (Night, evening)\nOnyomi: バン (ban)\nKunyomi: -",
-    "phonetic": "バン - ban",
-    "example": "今晩 (こんばん (Konban)) — Bugun kechqurun",
+    "example": "期限内に宿題を提出してください。 (Belgilangan muddat ichida uyga vazifani topshiring.)",
     "category": "Kanji",
     "level": "N4"
   },
@@ -2121,7 +1385,7 @@
     "front": "形",
     "back": "Shakl, ko'rinish (Shape, form)\nOnyomi: ケイ, ギョウ (kei, gyou)\nKunyomi: かたち, かた (katachi, kata)",
     "phonetic": "かたち - かたち",
-    "example": "人形 (にんぎょう (Ningyou)) — Qo'g'irchoq",
+    "example": "星の形をしたかわいいクッキーを焼きました。 (Yulduz shaklidagi yoqimli pechenyelar pishirdim.)",
     "category": "Kanji",
     "level": "N4"
   },
@@ -2162,14 +1426,6 @@
     "back": "Kesishtirmoq, aralashtirmoq, aloqa (Intersect, mingle, exchange)\nOnyomi: コウ (kou)\nKunyomi: まじ・わる, ま・ぜる, かわ・す (maji-waru, ma-zeru, kawa-su)",
     "phonetic": "まじわる - まじわる",
     "example": "交通 (こうつう (Koutsuu)) — Yo'l harakati",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
-    "front": "降",
-    "back": "Yog'moq, tushmoq (Fall, get off)\nOnyomi: コウ, ゴ (kou, go)\nKunyomi: ふ・る, お・りる (fu-ru, o-riru)",
-    "phonetic": "ふる - ふる",
-    "example": "降りる (おりる (Oriru)) — Tushmoq",
     "category": "Kanji",
     "level": "N4"
   },
@@ -2286,14 +1542,6 @@
     "level": "N4"
   },
   {
-    "front": "部",
-    "back": "Bo'lim, qism, xona (Section, department, part)\nOnyomi: ブ (bu)\nKunyomi: -",
-    "phonetic": "ブ - bu",
-    "example": "全部 (ぜんぶ (Zenbu)) — Hammasi",
-    "category": "Kanji",
-    "level": "N4"
-  },
-  {
     "front": "困",
     "back": "Qiyinchilikda qolmoq (Troubled, distressed)\nOnyomi: コン (kon)\nKunyomi: こま・る (koma-ru)",
     "phonetic": "こまる - koma-ru",
@@ -2313,7 +1561,7 @@
     "front": "席",
     "back": "O'rindiq, joy (Seat)\nOnyomi: セキ (seki)\nKunyomi: -",
     "phonetic": "セキ - seki",
-    "example": "席 (せき (Seki)) — Joy, o'rindiq",
+    "example": "電車でお年寄りに席を譲りました。 (Poyezdda keksaga joyimni bo'shatib berdim.)",
     "category": "Kanji",
     "level": "N4"
   },
@@ -2321,7 +1569,7 @@
     "front": "鉄",
     "back": "Temir (Iron, steel)\nOnyomi: テツ (tetsu)\nKunyomi: くろがね (kurogane)",
     "phonetic": "くろがね - kurogane",
-    "example": "地下鉄 (ちかてつ (Chikatetsu)) — Metro",
+    "example": "鉄は熱いうちに打てということわざがある。 ('Temirni qizig'ida bos' degan maqol bor.)",
     "category": "Kanji",
     "level": "N4"
   },
@@ -2361,7 +1609,7 @@
     "front": "線",
     "back": "Chiziq, yo'nalish (Line, track)\nOnyomi: セン (sen)\nKunyomi: すじ (suji)",
     "phonetic": "すじ - suji",
-    "example": "線 (せん (Sen)) — Chiziq",
+    "example": "ノートの赤い線の上に名前を書いてください。 (Daftarning qizil chizig'i ustiga ismingizni yozing.)",
     "category": "Kanji",
     "level": "N4"
   },
@@ -2430,9 +1678,9 @@
   },
   {
     "front": "運動会",
-    "back": "sport musobaqasi bayrami",
+    "back": "maktab sport musobaqasi, sport bayrami\nTurkum: Ot",
     "phonetic": "うんどうかい - undoukai",
-    "example": "明日は 学校の 運動会です。",
+    "example": "秋晴れの日に小学校の運動会が盛大に開催された。 (Kuzning ochiq kunida boshlang'ich maktab sport musobaqasi ko'tarinki ruhda o'tdi.)",
     "level": "N4"
   },
   {
@@ -2444,16 +1692,16 @@
   },
   {
     "front": "ボランティア",
-    "back": "ko'ngilli, volontyor",
+    "back": "ko'ngilli (volontyor)\nTurkum: noun, suru verb",
     "phonetic": "ボランティア - borantea",
-    "example": "週末 ボランティアに 参加します。",
+    "example": "地域の清掃ボランティア活動に参加した。 (Mahalladagi tozalash ko'ngillilar faoliyatida ishtirok etdim.)",
     "level": "N4"
   },
   {
     "front": "財布",
-    "back": "hamyon",
+    "back": "Hamyon, karmon\nTurkum: Ot",
     "phonetic": "さいふ - saifu",
-    "example": "財布を 落として しまいました。",
+    "example": "新しい革の財布を誕生日プレゼントにもらいました。 (Tug'ilgan kunimga yangi charmdan qilingan hamyon sovg'a olishdi.)",
     "level": "N4"
   },
   {
@@ -2472,9 +1720,9 @@
   },
   {
     "front": "平日",
-    "back": "ish kunlari (hafta o'rtasi)",
+    "back": "Ish kunlari (odatiy kunlar)\nTurkum: Ot",
     "phonetic": "へいじつ - heijitsu",
-    "example": "平日は 忙しいです。",
+    "example": "平日は忙しいので週末にまとめて部屋の掃除をします。 (Hafta kunlari band bo'lganim uchun dam olish kunlarida uyni birdaniga yig'ishtiraman.)",
     "level": "N4"
   },
   {
@@ -2507,7 +1755,7 @@
   },
   {
     "front": "何でも",
-    "back": "har narsa, hamma narsa",
+    "back": "Har qanday narsa, nima bo'lsa ham",
     "phonetic": "なんでも - nande",
     "example": "何でも 食べられます。",
     "level": "N4"
@@ -2563,9 +1811,9 @@
   },
   {
     "front": "直接",
-    "back": "to'g'ridan-to'g'ri, bevosita",
+    "back": "Bevosita, to'g'ridan-to'g'ri\nTurkum: Ot / Ravish",
     "phonetic": "ちょくせつ - chokusetsu",
-    "example": "先生に 直接 聞いて ください。",
+    "example": "大事な用件なので電話ではなく直接会って話しましょう。 (Muhim masala bo'lgani sababli telefon orqali emas, to'g'ridan-to'g'ri ko'rishib gaplashaylik.)",
     "level": "N4"
   },
   {
@@ -2619,28 +1867,28 @@
   },
   {
     "front": "波",
-    "back": "to'lqin",
+    "back": "To'lqin (Wave)\nTurkum: Ot",
     "phonetic": "なみ - nami",
-    "example": "静かな 波ですね。",
+    "example": "海岸に打ち寄せる静かな波の音を聞きました。 (Qirg'oqqa urilayotgan sokin to'lqinlar ovozini tingladim.)",
     "level": "N4"
   },
   {
     "front": "花火",
-    "back": "mushakbozlik, feyerverk",
+    "back": "Mushakbozlik, feyerverk\nTurkum: Ot",
     "phonetic": "はなび - hanabi",
-    "example": "夏に 花火を 見に 行きます。",
+    "example": "夏の夜空を鮮やかに彩る大きな花火大会を見に行きました。 (Yozgi tungi osmonni yorqin ranglarga bo'yagan katta mushakbozlik tomoshasiga bordim.)",
     "level": "N4"
   },
   {
     "front": "道具",
-    "back": "asbob, qurol, dastgoh",
+    "back": "Asbob, buyum, ish quroli\nTurkum: Ot",
     "phonetic": "どうぐ - dougu",
-    "example": "便利な 道具ですね。",
+    "example": "修理に必要な道具を箱の中から取り出しました。 (Tuzatish uchun zarur asboblarni qutidan chiqarib oldim.)",
     "level": "N4"
   },
   {
     "front": "クリーニング",
-    "back": "kimyoviy tozalash (ximchistka)",
+    "back": "Kimyoviy tozalash (Cleaning, dry cleaning, laundry service)",
     "phonetic": "クリーニング - kuri-ningu",
     "example": "スーツを クリーニングに 出します。",
     "level": "N4"
@@ -2654,9 +1902,9 @@
   },
   {
     "front": "台所",
-    "back": "oshxona",
+    "back": "Oshxona (uy oshxonasi)\nTurkum: Ot",
     "phonetic": "だいどころ - daidokoro",
-    "example": "台所を 掃除しました。",
+    "example": "母は毎日台所で美味しい手料理を作ってくれます。 (Onam har kuni oshxonada mazali uy taomlarini pishirib beradi.)",
     "level": "N4"
   },
   {
@@ -2675,9 +1923,9 @@
   },
   {
     "front": "本棚",
-    "back": "kitob javoni",
+    "back": "Kitob javoni\nTurkum: Ot (Noun)",
     "phonetic": "ほんだな - hondana",
-    "example": "本棚を 自分で 作りました。",
+    "example": "読書が好きで部屋の本棚にはたくさんの本が並んでいます。 (Kitob o'qishni yoqtirganim bois xonamdagi kitob javonida ko'plab kitoblar terilgan.)",
     "level": "N4"
   },
   {
@@ -2696,16 +1944,16 @@
   },
   {
     "front": "夢",
-    "back": "tush, orzu",
+    "back": "Tush, orzu, maqsad\nTurkum: Ot (Noun)",
     "phonetic": "ゆめ - yume",
-    "example": "いつか 日本に 住むのが 夢です。",
+    "example": "昨夜、空を飛ぶとても不思議な夢を見ました。 (Kecha tunda havoda uchayotgan juda g'alati tush ko'rdim.)",
     "level": "N4"
   },
   {
     "front": "不思議な",
-    "back": "ajoyib, g'alati, sirli",
+    "back": "g'aroyib, aql bovar qilmas, mo''jizaviy\nTurkum: Na-sifat",
     "phonetic": "ふしぎな - fushigina",
-    "example": "不思議な ポケットですね。",
+    "example": "昨夜見た夢はとても不思議な体験の連続だった。 (Kecha ko'rgan tushim g'aroyib voqealarning ketma-ketligidan iborat edi.)",
     "level": "N4"
   },
   {
@@ -2780,79 +2028,79 @@
   },
   {
     "front": "偉い",
-    "back": "buyuk, hurmatga sazovor, qoyilmaqom",
+    "back": "Great, celebrated, eminent, terrible, awful, famous, remarkable, excellent",
     "phonetic": "えらい - erai",
     "example": "一人で やって 偉いですね。",
     "level": "N4"
   },
   {
     "front": "人気",
-    "back": "mashhurlik, obro'",
+    "back": "Mashhurlik, ommaboplik\nTurkum: Ot / Na-sifat (Noun / Na-adj)",
     "phonetic": "にんき - ninki",
-    "example": "この 歌手は 若い 人に 人気が あります。",
+    "example": "この作家の新作小説は若者の間で絶大な人気を誇る。 (Ushbu yozuvchining yangi romani yoshlar orasida juda katta mashhurlikka ega.)",
     "level": "N4"
   },
   {
     "front": "値段",
-    "back": "narx, baho",
+    "back": "値段 tushunchasi, ilmiy/amaliy atama (Nedan)",
     "phonetic": "ねだん - nedan",
-    "example": "この 店は 値段が 安いです。",
+    "example": "品質の割に値段が手頃でとても満足している。 (Sifatiga nisbatan narxi ancha qulay bo'lganidan juda mamnunman.)",
     "level": "N4"
   },
   {
     "front": "給料",
-    "back": "oylik maosh",
+    "back": "給料 tushunchasi, ilmiy/amaliy atama (Kyuuryou)",
     "phonetic": "きゅうりょう - kyuuryou",
-    "example": "給料も いいし、仕事も 面白いです。",
+    "example": "初任給の給料で両親にプレゼントを贈りました。 (Birinchi olgan oylik maoshimga ota-onamga sovg'a ulashdim.)",
     "level": "N4"
   },
   {
     "front": "それに",
-    "back": "bundan tashqari, ustiga-ustak",
+    "back": "bundan tashqari, shuningdek, yana\nTurkum: Bog'lovchi",
     "phonetic": "それに - soreni",
-    "example": "頭が 痛いです。それに 熱も あります。",
+    "example": "今日は頭が痛い。それに、少し熱もあるようだ。 (Bugun boshim og'riyapti. Bundan tashqari, ozgina haroratim ham bordek.)",
     "level": "N4"
   },
   {
     "front": "それで",
-    "back": "shu sababli, shuning uchun",
+    "back": "shuning uchun, natijada; xo'sh keyin-chi\nTurkum: Bog'lovchi",
     "phonetic": "それで - sorede",
-    "example": "雨が 降りました。それで 遅れました。",
+    "example": "朝から大雨が降っていた。それで、野球の試合は中止になった。 (Ertalabdan qattiq yomg'ir yog'ayotgan edi. Shu sababli beysbol o'yini bekor qilindi.)",
     "level": "N4"
   },
   {
     "front": "におい",
-    "back": "hid",
+    "back": "Hid, is",
     "phonetic": "におい - nioi",
     "example": "いい においが しますね。",
     "level": "N4"
   },
   {
     "front": "品物",
-    "back": "tovar, mahsulot",
+    "back": "buyum, mahsulot, tovar\nTurkum: Ot",
     "phonetic": "しなもの - shinano",
-    "example": "いい 品物を 安く 買いました。",
+    "example": "注文した品物が傷ひとつなく無事に自宅へ届いた。 (Buyurtma qilingan buyum hech qanday ziyon-zaxm yetmasdan eson-omon yetib keldi.)",
     "level": "N4"
   },
   {
     "front": "ボーナス",
-    "back": "bonus, mukofot puli",
+    "back": "Mukofot puli, bonus (Bonus)",
     "phonetic": "ぼーなす - bo-nasu",
     "example": "夏の ボーナスを もらいました。",
     "level": "N4"
   },
   {
     "front": "番組",
-    "back": "ko'rsatuv, dastur",
+    "back": "Teleko'rsatuv, teledastur\nTurkum: Ot",
     "phonetic": "ばんぐみ - bangumi",
-    "example": "面白い 番組を 見ています。",
+    "example": "毎週日曜日の夜に放送されるドキュメンタリー番組が楽しみです。 (Har yakshanba oqshomida efirga uzatiladigan hujjatli ko'rsatuvni intizorlik bilan kutaman.)",
     "level": "N4"
   },
   {
     "front": "歌手",
-    "back": "qo'shiqchi, xonanda",
+    "back": "Qo'shiqchi, xonanda\nTurkum: Ot",
     "phonetic": "かしゅ - kashu",
-    "example": "彼女は 有名な 歌手です。",
+    "example": "その歌手の美しい歌声は世界中の人々を魅了しています。 (Ushbu xonandaning go'zal ovozi butun dunyo ahlini maftun etmoqda.)",
     "level": "N4"
   },
   {
@@ -2948,16 +2196,16 @@
   },
   {
     "front": "書類",
-    "back": "hujjatlar",
+    "back": "Hujjatlar, qog'ozlar\nTurkum: Ot",
     "phonetic": "しょるい - shorui",
-    "example": "大切な 書類を 忘れました。",
+    "example": "ビザの更新に必要なすべての書類を準備しました。 (Viza muddatini uzaytirish uchun kerakli barcha hujjatlarni tayyorladim.)",
     "level": "N4"
   },
   {
     "front": "忘れ物",
-    "back": "unutilgan buyum",
+    "back": "unutilgan buyum, esdan chiqqan narsa\nTurkum: Ot",
     "phonetic": "わすれもの - wasureno",
-    "example": "電車に 忘れ物を しました。",
+    "example": "電車を降りる前に網棚に忘れ物がないかもう一度確かめた。 (Poyezddan tushishdan oldin tokchada unutib qoldirilgan buyum yo'qligini tekshirdim.)",
     "level": "N4"
   },
   {
@@ -2990,16 +2238,16 @@
   },
   {
     "front": "袋",
-    "back": "xalta, paket",
+    "back": "Xalta, paket, qop (Bag, sack)\nTurkum: Ot",
     "phonetic": "ふくろ - fukuro",
-    "example": "ごみ袋を 買って きます。",
+    "example": "買い物のレジ袋を有料化する店が増えている。 (Xarid paketlarini pullik qilayotgan do'konlar ko'paymoqda.)",
     "level": "N4"
   },
   {
     "front": "交番",
-    "back": "politsiya maskani (koban)",
+    "back": "Koban (politsiya tayanch punkti)\nTurkum: Ot",
     "phonetic": "こうばん - kouban",
-    "example": "交番に 届けました。",
+    "example": "道に迷ってしまったので駅前の交番で尋ねました。 (Yo'ldan adashib qolganim uchun vokzal oldidagi politsiya punktidan so'radim.)",
     "level": "N4"
   },
   {
@@ -3130,9 +2378,9 @@
   },
   {
     "front": "花瓶",
-    "back": "vaza, guldon",
+    "back": "Guldon, vaza\nTurkum: Ot (Noun)",
     "phonetic": "かびん - kabin",
-    "example": "テーブルの 上に 花瓶が 置いて あります。",
+    "example": "テーブルの上の花瓶に白いユリを飾った。 (Stol ustidagi guldonga oq nilufar gulini qo'ydim.)",
     "level": "N4"
   },
   {
@@ -3144,30 +2392,30 @@
   },
   {
     "front": "引き出し",
-    "back": "g'aladon, tortma",
+    "back": "Tortma (stol yoki javon tortmasi)\nTurkum: Ot",
     "phonetic": "ひきだし - hikidashi",
-    "example": "パスポートは 引き出しに しまって あります。",
+    "example": "大切なパスポートを机の一番上の引き出しに保管しました。 (Muhim pasportimni yozuv stolining eng yuqori tortmasida saqladim.)",
     "level": "N4"
   },
   {
     "front": "玄関",
-    "back": "dahliz, kirish joyi",
+    "back": "Kirish dahlizi, koridor\nTurkum: Ot",
     "phonetic": "げんかん - nkan",
-    "example": "玄関に 靴を 並べて おきます。",
+    "example": "日本の家では玄関で靴を脱ぐのが習慣です。 (Yapon xonadonlarida dahlizda poyabzalni yechish odat tusiga kirgan.)",
     "level": "N4"
   },
   {
     "front": "廊下",
-    "back": "yo'lak, koridor",
+    "back": "廊下 tushunchasi, ilmiy/amaliy atama (Rouka)",
     "phonetic": "ろうか - rouka",
-    "example": "廊下を 走らないで ください。",
+    "example": "学校の長い廊下を走らないように注意されました。 (Maktabning uzun yo'lagida yugurmaslik to'g'risida ogohlantirildim.)",
     "level": "N4"
   },
   {
     "front": "壁",
-    "back": "devor",
+    "back": "Devor (Wall, barrier)\nTurkum: Ot",
     "phonetic": "かべ - kabe",
-    "example": "壁に 絵を 掛けます。",
+    "example": "部屋の白い壁に綺麗な絵を掛けました。 (Xonaning oq devoriga chiroyli rasm ildirib qo'ydim.)",
     "level": "N4"
   },
   {
@@ -3235,16 +2483,16 @@
   },
   {
     "front": "結婚式",
-    "back": "to'y marosimi",
+    "back": "To'y marosimi, nikoh to'yi\nTurkum: Ot",
     "phonetic": "けっこんしき - kekonshiki",
-    "example": "友だちの 結婚式に 行きます。",
+    "example": "来週末、親友の結婚式に出席するためにスーツを新調しました。 (Kelasi dam olish kunida yaqin do'stimning to'yida qatnashish uchun yangi kostyum xarid qildim.)",
     "level": "N4"
   },
   {
     "front": "本社",
-    "back": "bosh ofis, bosh korxona",
+    "back": "本社 tushunchasi, ilmiy/amaliy atama (Honsha)",
     "phonetic": "ほんしゃ - honsha",
-    "example": "東京の 本社で 働きます。",
+    "example": "来週、東京の本社で役員報告会が開かれる。 (Kelasi hafta Tokiodagi bosh ofisda rahbarlar hisobot yig'ilishi bo'lib o'tadi.)",
     "level": "N4"
   },
   {
@@ -3256,9 +2504,9 @@
   },
   {
     "front": "大学院",
-    "back": "magistratura / doktorantura",
+    "back": "Magistratura / aspirantura\nTurkum: Ot (Noun)",
     "phonetic": "だいがくいん - daigakuin",
-    "example": "大学院に 進学したいです。",
+    "example": "大学を卒業した後は大学院に進学して専門研究を深めたい。 (Universitetni tugatgach magistraturaga kirib ilmiy izlanishlarimni chuqurlashtirmoqchiman.)",
     "level": "N4"
   },
   {
@@ -3277,9 +2525,9 @@
   },
   {
     "front": "映画館",
-    "back": "kinoteatr",
+    "back": "kinoteatr\nTurkum: noun",
     "phonetic": "えいがかん - eigakan",
-    "example": "週末 映画館へ 行こうと 思っています。",
+    "example": "迫力のある映像を楽しむために映画館へ足を運んだ。 (Jonli va ta'sirchan tasvirlardan zavqlanish uchun kinoteatrga bordim.)",
     "level": "N4"
   },
   {
@@ -3354,9 +2602,9 @@
   },
   {
     "front": "十分",
-    "back": "yetarli darajada",
+    "back": "yetarli, yetarlicha, to'la-to'kis\nTurkum: Ravish / Na-sifat",
     "phonetic": "じゅうぶんな - juubunna",
-    "example": "時間は 十分 あります。",
+    "example": "時間ならまだ十分ありますので、焦らず確認してください。 (Vaqt hali yetarlicha bor, shoshilmasdan tekshirib oling.)",
     "level": "N4"
   },
   {
@@ -3382,9 +2630,9 @@
   },
   {
     "front": "熱",
-    "back": "isitma, harorat",
+    "back": "Harorat (istima), qizg'inlik (Heat, fever)\nTurkum: Ot",
     "phonetic": "ねつ - netsu",
-    "example": "高い 熱が ありますから、病院へ 行った ほうが いいです。",
+    "example": "昨晩から熱が三十八度以上ある。 (Kecha oqshomdan beri isitmam 38 darajadan yuqori.)",
     "level": "N4"
   },
   {
@@ -3396,28 +2644,28 @@
   },
   {
     "front": "太陽",
-    "back": "quyosh",
+    "back": "Quyosh\nTurkum: Ot",
     "phonetic": "たいよう - taiyou",
-    "example": "太陽が 出て 暖かくなりました。",
+    "example": "東の空から昇る太陽の光が部屋を明るく照らします。 (Sharqdan ko'tarilgan quyosh nuri xonani yoritib yubordi.)",
     "level": "N4"
   },
   {
     "front": "星",
-    "back": "yulduz",
+    "back": "Yulduz, sayyora (Star, planet)\nTurkum: Ot",
     "phonetic": "ほし - hoshi",
-    "example": "今夜は 星が きれいに 見えます。",
+    "example": "今夜は空が澄んでいて星がとても綺麗に見えます。 (Bugun tunda osmon musaffo bo'lib, yulduzlar juda chiroyli ko'rinmoqda.)",
     "level": "N4"
   },
   {
     "front": "夕方",
-    "back": "oqshom pallasi",
+    "back": "Oqshom, shom vaqti\nTurkum: Ot",
     "phonetic": "ゆうがた - yuugata",
-    "example": "夕方から 雨が 降るでしょう。",
+    "example": "夕方になると空が美しいオレンジ色に染まります。 (Shom tushganda osmon maftunkor olovrang tusga kiradi.)",
     "level": "N4"
   },
   {
     "front": "水道",
-    "back": "suv quvuri, vodoprovod",
+    "back": "Suv ta'minoti, kran suvi",
     "phonetic": "すいどう - suidou",
     "example": "水道の 水を 飲んでも いいですか。",
     "level": "N4"
@@ -3487,9 +2735,9 @@
   },
   {
     "front": "無料",
-    "back": "bepul, tekin",
+    "back": "Bepul, tekin\nTurkum: Ot (Noun)",
     "phonetic": "むりょう - muryou",
-    "example": "この 博物館は 無料です。",
+    "example": "この博物館は高校生以下なら無料で入場できる。 (Bu muzeyga yuqori sinf o'quvchilari bepul kirishi mumkin.)",
     "level": "N4"
   },
   {
@@ -3515,9 +2763,9 @@
   },
   {
     "front": "伝言",
-    "back": "xabar, omonat gap",
+    "back": "Omonat xabar, og'zaki xabar qoldirish\nTurkum: Ot / Fe'l (Noun / Suru-verb)",
     "phonetic": "でんごん - dengon",
-    "example": "田中さんに 伝言を お願いできますか。",
+    "example": "席を外している田中さんに折り返し電話の伝言をお願いしました。 (Joyida bo'lmagan Tanaka jonga qayta qo'ng'iroq qilish to'g'risida xabar qoldirdim.)",
     "level": "N4"
   },
   {
@@ -3599,14 +2847,14 @@
   },
   {
     "front": "順番",
-    "back": "ketma-ketlik, navbat",
+    "back": "順番 tushunchasi, ilmiy/amaliy atama (Junban)",
     "phonetic": "じゅんばん - junban",
-    "example": "順番どおりに 並んで ください。",
+    "example": "病院の待合室で自分の診察の順番を静かに待ちました。 (Shifoxonaning kutish xonasida o'z ko'rik navbatimni sokin kutdim.)",
     "level": "N4"
   },
   {
     "front": "ソース",
-    "back": "sous",
+    "back": "Source",
     "phonetic": "そーす - so-su",
     "example": "ソースを かけないで 食べて みてください。",
     "level": "N4"
@@ -3640,52 +2888,45 @@
     "level": "N4"
   },
   {
-    "front": "楽",
-    "back": "oson, qulay, rohatbaxsh",
-    "phonetic": "らくな - rakuna",
-    "example": "新幹線の ほう が 楽です。",
-    "level": "N4"
-  },
-  {
     "front": "珍しい",
-    "back": "nodir, kamyob",
+    "back": "Noyob, kam uchraydigan, ajoyib\nTurkum: I-sifat (I-adj)",
     "phonetic": "めずらしい - mezurashii",
-    "example": "珍しい 鳥が います。",
+    "example": "植物園でめったに咲かない珍しい熱帯の花を見ました。 (Botanika bog'ida juda kam ochiladigan noyob tropik gulni ko'rdim.)",
     "level": "N4"
   },
   {
     "front": "詳しい",
-    "back": "batafsil, yaxshi biladigan",
+    "back": "batafsil, mufassal; yaxshi biladigan\nTurkum: I-sifat",
     "phonetic": "くわしい - kuwashii",
-    "example": "彼は パソコンに 詳しいです。",
+    "example": "彼はパソコンのハードウェアの知識について非常に詳しい。 (U kompyuter qurilmalari borasidagi bilimlarni juda mukammal biladi.)",
     "level": "N4"
   },
   {
     "front": "向こう",
-    "back": "qarama-qarshi tomon, narigi taraf",
+    "back": "U tomon, ro'para, qarama-qarshi tomon\nTurkum: Ot",
     "phonetic": "むこう - mukou",
-    "example": "向こうに 島が 見えます。",
+    "example": "川の向こう岸に綺麗な桜並木が見えます。 (Daryoning narigi sohilida go'zal sakura xiyoboni ko'rinib turibdi.)",
     "level": "N4"
   },
   {
     "front": "島",
-    "back": "orol",
+    "back": "Orol (Island)\nTurkum: Ot",
     "phonetic": "しま - shima",
-    "example": "小さな 島に 住んで います。",
+    "example": "夏休みに南の島への旅行を計画している。 (Yozgi ta'tilda janubiy orolga sayohat rejalashtiryapman.)",
     "level": "N4"
   },
   {
     "front": "港",
-    "back": "bandargoh, port",
+    "back": "Port, bandargoh (Port, harbor)\nTurkum: Ot",
     "phonetic": "みなと - minato",
-    "example": "港に 船が 着きました。",
+    "example": "夕方になると港に多くの漁船が帰ってきます。 (Kechqurun portga ko'plab baliqchilik qayiqlari qaytib keladi.)",
     "level": "N4"
   },
   {
     "front": "近所",
-    "back": "mahalla, qo'shnichilik, yaqin atrofi",
+    "back": "Qo'shnichilik, mahalla, yaqin-atrof\nTurkum: Ot",
     "phonetic": "きんじょ - kinjo",
-    "example": "近所の 人と 仲よく します。",
+    "example": "近所の人たちと朝会ったら明るく挨拶を交わします。 (Mahalla ahli bilan ertalab uchrashganda ochiq chehra bilan salomlashaman.)",
     "level": "N4"
   },
   {
@@ -3704,14 +2945,14 @@
   },
   {
     "front": "海外",
-    "back": "chet el, chet davlatlar",
+    "back": "Chet el, xorij\nTurkum: Ot",
     "phonetic": "かいがい - kaigai",
-    "example": "時間が あれば、海外旅行に 行きたいです。",
+    "example": "将来は海外で自分の会社を作りたいと考えています。 (Kelajakda xorijda o'z kompaniyamni ochmoqchiman.)",
     "level": "N4"
   },
   {
     "front": "歴史",
-    "back": "tarix",
+    "back": "歴史 tushunchasi, ilmiy/amaliy atama (Rekishi)",
     "phonetic": "れきし - rekishi",
     "example": "日本の 歴史なら、京都が 一番です。",
     "level": "N4"
@@ -3760,16 +3001,16 @@
   },
   {
     "front": "宇宙",
-    "back": "koinot, fazo",
+    "back": "Koinot, fazo\nTurkum: Ot (Noun)",
     "phonetic": "うちゅう - uchiu",
-    "example": "宇宙へ 行って みたいです。",
+    "example": "人類が宇宙へ進出するスピードが加速している。 (Insoniyatning koinotga chiqish sur'ati tezlashmoqda.)",
     "level": "N4"
   },
   {
     "front": "曲",
-    "back": "kuy, musiqa ohangi",
+    "back": "Musiqa kuyi, ashula (Piece of music, tune)\nTurkum: Ot",
     "phonetic": "きょく - kyoku",
-    "example": "この 曲を よく 聞きます。",
+    "example": "彼女がピアノで弾いた曲に感動しました。 (Uning pianinoda chalgan kuyi meni hayratga soldi.)",
     "level": "N4"
   },
   {
@@ -3788,7 +3029,7 @@
   },
   {
     "front": "必ず",
-    "back": "albatta, muqarrar",
+    "back": "Albatta, shubhasiz",
     "phonetic": "かならず - kanarazu",
     "example": "約束を 必ず 守って ください。",
     "level": "N4"
@@ -3816,9 +3057,9 @@
   },
   {
     "front": "健康",
-    "back": "salomatlik",
+    "back": "Salomatlik, sog'lom\nTurkum: Ot / Na-sifat (Noun / Na-adj)",
     "phonetic": "けんこう - kenkou",
-    "example": "健康のために 野菜を たくさん 食べます。",
+    "example": "健康のために毎朝ジョギングを欠かさない。 (Salomatlik uchun har kuni ertalab yugurishni kanda qilmayman.)",
     "level": "N4"
   },
   {
@@ -3830,16 +3071,16 @@
   },
   {
     "front": "特別な",
-    "back": "maxsus, alohida",
+    "back": "maxsus, o'zgacha, alohida\nTurkum: Na-sifat",
     "phonetic": "とくべつな - tokubetsuna",
-    "example": "特別な 運動は していません。",
+    "example": "今日は結婚記念日なので特別なレストランを予約した。 (Bugun to'yimiz yilligi bo'lgani sababli o'zgacha restoranni band qildim.)",
     "level": "N4"
   },
   {
     "front": "水泳",
-    "back": "suzish sporti",
+    "back": "Suzish (sport turi)\nTurkum: Ot",
     "phonetic": "すいえい - suiei",
-    "example": "水泳が できるように なりました。",
+    "example": "夏休みには毎日市民プールへ通って水泳の練習をします。 (Yozgi ta'tilda har kuni shahar hovuziga borib suzishni mashq qilaman.)",
     "level": "N4"
   },
   {
@@ -3851,9 +3092,9 @@
   },
   {
     "front": "ショック",
-    "back": "shok, hayrat",
+    "back": "shok, ruhiy zarba\nTurkum: noun, na-adjective",
     "phonetic": "しょっく - shoku",
-    "example": "試験に 落ちて ショックを 受けました。",
+    "example": "大好きな俳優の引退の知らせを聞いてショックを受けた。 (Sevimli aktyorim san'atni tark etganini eshitib shok holatiga tushdim.)",
     "level": "N4"
   },
   {
@@ -3956,9 +3197,9 @@
   },
   {
     "front": "警官",
-    "back": "politsiyachi",
+    "back": "Politsiyachi\nTurkum: Ot (Noun)",
     "phonetic": "けいかん - keikan",
-    "example": "泥棒は 警官に 捕まりました。",
+    "example": "交番の警官に駅への行き方を尋ねた。 (Politsiya punktidagi xodimdan vokzalga qanday borishni so'radim.)",
     "level": "N4"
   },
   {
@@ -3970,16 +3211,9 @@
   },
   {
     "front": "漫画",
-    "back": "manga (yapon komikslari)",
+    "back": "Manga (yapon komiksi)\nTurkum: Ot",
     "phonetic": "まんが - manga",
-    "example": "日本の 漫画は 世界中で 読まれています。",
-    "level": "N4"
-  },
-  {
-    "front": "金",
-    "back": "oltin",
-    "phonetic": "きん - kin",
-    "example": "金の 寺（金閣寺）が 建てられました。",
+    "example": "日本の漫画を通じて日常で使える自然な会話表現を学びました。 (Yapon mangalari orqali kundalik hayotdagi tabiiy so'zlashuv iboralarini o'rgandim.)",
     "level": "N4"
   },
   {
@@ -4047,9 +3281,9 @@
   },
   {
     "front": "手袋",
-    "back": "qo'lqop",
+    "back": "Qo'lqop\nTurkum: Ot (Noun)",
     "phonetic": "てぶくろ - tebukuro",
-    "example": "手袋を はめるのを 忘れました。",
+    "example": "冬の寒い朝は暖かい手袋をして出かけます。 (Qishning sovuq ertalablarida issiq qo'lqop kiyib ko'chaga chiqaman.)",
     "level": "N4"
   },
   {
@@ -4061,9 +3295,9 @@
   },
   {
     "front": "革",
-    "back": "charm, ko'n",
+    "back": "ishlangan teri, charm\nTurkum: Ot",
     "phonetic": "かわ - kawa",
-    "example": "革の 財布を 買いました。",
+    "example": "本革の財布は使うほどに味わいが出る。 (Asl charmdan ishlangan hamyon ishlatilgan sari qadri oshaveradi.)",
     "level": "N4"
   },
   {
@@ -4082,9 +3316,9 @@
   },
   {
     "front": "工場",
-    "back": "zavod, fabrika",
+    "back": "工場 tushunchasi, ilmiy/amaliy atama (Koujou)",
     "phonetic": "こうじょう - koujou",
-    "example": "車を 作る 工場を 見学しました。",
+    "example": "大きな工場でロボットが自動車を組み立てています。 (Katta zavodda robotlar avtomobillarni yig'moqda.)",
     "level": "N4"
   },
   {
@@ -4145,16 +3379,16 @@
   },
   {
     "front": "邪魔",
-    "back": "xalal beruvchi, noqulay",
+    "back": "xalal, to'siq, bezovta qilish\nTurkum: Ot / Na-sifat / Fe'l (Suru verb)",
     "phonetic": "じゃまな - jamana",
-    "example": "荷物が 邪魔です。",
+    "example": "勉強の邪魔をしないで静かにしていてください。 (O'qishimga xalal bermasdan jim o'tiring.)",
     "level": "N4"
   },
   {
     "front": "台風",
-    "back": "to'fon, tayfun",
+    "back": "Tayfun\nTurkum: Ot",
     "phonetic": "たいふう - taifuu",
-    "example": "台風で 電車が 止まりました。",
+    "example": "大型の台風が上陸する恐れがあるため外出を控えます。 (Katta tayfun quruqlikka urilishi xavfi borligi uchun ko'chaga chiqishdan tiyilamiz.)",
     "level": "N4"
   },
   {
@@ -4229,9 +3463,9 @@
   },
   {
     "front": "傷",
-    "back": "chiziq, tirnalish, jarohat",
+    "back": "Jarohat, yara, tirnalish (Wound, scratch, injury)\nTurkum: Ot",
     "phonetic": "きず - kizu",
-    "example": "車に 傷が あります。",
+    "example": "転んで足に小さな傷ができました。 (Yiqilib tushib oyog'imda kichik yara paydo bo'ldi.)",
     "level": "N4"
   },
   {
@@ -4264,30 +3498,30 @@
   },
   {
     "front": "大会",
-    "back": "musobaqa, syezdd",
+    "back": "Katta musobaqa, turnir, qurultoy\nTurkum: Ot",
     "phonetic": "たいかい - taikai",
-    "example": "スピーチ大会で 誰が 優勝するか 楽しみです。",
+    "example": "全国スピーチ大会に出場して堂々と日本語でスピーチしました。 (Butunmamlakat notiqlik tanlovida qatnashib dadil yapon tilida nutq so'zladim.)",
     "level": "N4"
   },
   {
     "front": "表",
-    "back": "yuz tomon, usti",
+    "back": "Yuzasi, old tomoni, jadval (Front side, surface, table)\nTurkum: Ot",
     "phonetic": "おもて - ote",
-    "example": "表と 裏を 確かめて ください。",
+    "example": "コインの表が出たら私の勝ちです。 (Tangani yuzi chiqsa men yutaman.)",
     "level": "N4"
   },
   {
     "front": "裏",
-    "back": "orqa tomon, teskarisi",
+    "back": "Orqa tomon, ichki/teskari tomon\nTurkum: Ot (Noun)",
     "phonetic": "うら - ura",
-    "example": "封筒の 裏に 住所を 書きます。",
+    "example": "用紙の裏にも必要事項を記入してください。 (Varaqning orqa tomoniga ham kerakli ma'lumotlarni yozing.)",
     "level": "N4"
   },
   {
     "front": "返事",
-    "back": "javob",
+    "back": "Javob, javob qaytarish\nTurkum: Ot / Suru-fe'l",
     "phonetic": "へんじ - henji",
-    "example": "メールの 返事を 出しました。",
+    "example": "名前を呼ばれたら元気に「はい」と返事をしてください。 (Ismingiz chaqirilganda dadil qilib 'labbay' deb javob bering.)",
     "level": "N4"
   },
   {
@@ -4327,30 +3561,30 @@
   },
   {
     "front": "お祝い",
-    "back": "tabrik sovg'asi",
+    "back": "Tabrik, to'yona, qutlov\nTurkum: Ot / Fe'l (Noun / Suru-verb)",
     "phonetic": "おいわい - oiwai",
-    "example": "結婚の お祝いを あげます。",
+    "example": "友人の昇進のお祝いに花束を贈った。 (Do'stimning lavozimi ko'tarilgani munosabati bilan guldasta sovg'a qildim.)",
     "level": "N4"
   },
   {
     "front": "お年玉",
-    "back": "yangi yil pul sovg'asi (bolalarga)",
+    "back": "Otoshidama (yangi yilda bolalarga beriladigan pul sovg'asi)\nTurkum: Ot",
     "phonetic": "おとしだま - otoshidama",
-    "example": "子どもに お年玉を やります。",
+    "example": "お正月に親戚のおじさんからお年玉をもらって大喜びしました。 (Yangi yil bayramida qarindosh amakimdan yangi yil pul sovg'asini olib rosa suyundim.)",
     "level": "N4"
   },
   {
     "front": "お見舞い",
-    "back": "bemor ko'rish sovg'asi / tashrifi",
+    "back": "Bemor ko'rish, kasal holidan xabar olish\nTurkum: Ot / Fe'l (Noun / Suru-verb)",
     "phonetic": "おみまい - omimai",
-    "example": "お見舞いに 行きます。",
+    "example": "入院している友達のお見舞いに果物と花を持って行きました。 (Shifoxonada yotgan do'stimning holidan xabar olgani meva va gullar olib bordim.)",
     "level": "N4"
   },
   {
     "front": "情報",
-    "back": "ma'lumot, axborot",
+    "back": "Ma'lumot, axborot\nTurkum: Ot",
     "phonetic": "じょうほう - jouhou",
-    "example": "先生が いい 情報を くださいました。",
+    "example": "インターネットを使って最新の留学情報を集めました。 (Internetdan foydalanib o'qish bo'yicha eng so'nggi ma'lumotlarni to'pladim.)",
     "level": "N4"
   },
   {
@@ -4362,16 +3596,16 @@
   },
   {
     "front": "発音",
-    "back": "talaffuz",
+    "back": "Talaffuz, aytilish\nTurkum: Ot / Fe'l (Noun / Suru-verb)",
     "phonetic": "はつおん - hatsuon",
-    "example": "発音を 直して いただきました。",
+    "example": "ネイティブスピーカーの音声を繰り返し聞いて正しい発音を身につける。 (Ona tili sohibining audiosini qayta-qayta tinglab, to'g'ri talaffuzni o'rganaman.)",
     "level": "N4"
   },
   {
     "front": "猿",
-    "back": "maymun",
+    "back": "Maymun (Monkey)\nTurkum: Ot",
     "phonetic": "さる - saru",
-    "example": "動物園で 猿に えさを やりました。",
+    "example": "動物園で猿が木に登っています。 (Hayvonot bog'ida maymun daraxtga chiqyapti.)",
     "level": "N4"
   },
   {
@@ -4404,16 +3638,16 @@
   },
   {
     "front": "目的",
-    "back": "maqsad, muddao",
+    "back": "Maqsad\nTurkum: Ot",
     "phonetic": "もくてき - kuteki",
-    "example": "日本へ 来た 目的は 何ですか。",
+    "example": "日本に留学した最大の目的は先端のIT技術を学ぶことです。 (Yaponiyaga o'qishga kelishdagi eng asosiy maqsadim ilg'or IT texnologiyalarini o'rganishdir.)",
     "level": "N4"
   },
   {
     "front": "論文",
-    "back": "ilmiy maqola, dissertatsiya",
+    "back": "Ilmiy maqola, ilmiy dissertatsiya\nTurkum: Ot",
     "phonetic": "ろんぶん - ronbun",
-    "example": "卒業論文を 書きます。",
+    "example": "大学院を修了するために一年かけて修士論文を書き上げました。 (Magistraturani tamomlash uchun bir yil davomida magistrlik dissertatsiyasini yozib tugatdim.)",
     "level": "N4"
   },
   {
@@ -4446,16 +3680,16 @@
   },
   {
     "front": "教育",
-    "back": "ta'lim, tarbiya",
+    "back": "教育 tushunchasi, ilmiy/amaliy atama (Kyouiku)",
     "phonetic": "きょういく - kyouiku",
-    "example": "子どもの 教育に お金が かかります。",
+    "example": "子供たちの将来のために質の高い教育環境を整えます。 (Farzandlar kelajagi uchun yuqori sifatli ta'lim muhitini yaratamiz.)",
     "level": "N4"
   },
   {
     "front": "文化",
-    "back": "madaniyat",
+    "back": "Madaniyat\nTurkum: Ot",
     "phonetic": "ぶんか - bunka",
-    "example": "文化を 理解するのに 時間が かかります。",
+    "example": "茶道や歌舞伎など日本の奥深い伝統文化に触れました。 (Choy marosimi va kabuki kabi Yaponiyaning chuqur an'anaviy madaniyatidan bahramand bo'ldim.)",
     "level": "N4"
   },
   {
@@ -4516,21 +3750,21 @@
   },
   {
     "front": "暖房",
-    "back": "isitish tizimi (pechka)",
+    "back": "Isitish tizimi, pechka\nTurkum: Ot / Suru-fe'l",
     "phonetic": "だんぼう - danbou",
-    "example": "暖房を つけたので、部屋が 暖かくなりました。",
+    "example": "冬の寒い朝は暖房をつけて部屋を暖めます。 (Qishning sovuq ertalabida isitkichni yoqib xonani ilitaman.)",
     "level": "N4"
   },
   {
     "front": "冷房",
-    "back": "konditsioner, sovitish tizimi",
+    "back": "冷房 tushunchasi, ilmiy/amaliy atama (Reibou)",
     "phonetic": "れいぼう - reibou",
     "example": "冷房が 効いて 涼しいです。",
     "level": "N4"
   },
   {
     "front": "センス",
-    "back": "did, nozik did",
+    "back": "Good sense (for music  style  tact  etc.)",
     "phonetic": "せんす - sensu",
     "example": "服の センスが いいですね。",
     "level": "N4"
@@ -4544,16 +3778,16 @@
   },
   {
     "front": "会員",
-    "back": "a'zo (klub yoki tashkilot)",
+    "back": "A'zo (klub, jamiyat yoki tashkilot a'zosi)\nTurkum: Ot (Noun)",
     "phonetic": "かいいん - kaiin",
-    "example": "ジムの 会員に なりました。",
+    "example": "スポーツジムの会員になるとプールも自由に利用できる。 (Fitnes klubi a'zosi bo'lsangiz basseynidan ham bemalol foydalanishingiz mumkin.)",
     "level": "N4"
   },
   {
     "front": "適当な",
-    "back": "munosib, mos keluvchi",
+    "back": "mos, to'g'ri; ba'zan: yuzaki, o'zboshimcha\nTurkum: na-adjective",
     "phonetic": "てきとうな - tekitouna",
-    "example": "適当な 大きさに 切って ください。",
+    "example": "肉を適当な大きさに切って鍋に入れた。 (Go'shtni mos kattalikda to'g'rab qozonga soldim.)",
     "level": "N4"
   },
   {
@@ -4593,44 +3827,44 @@
   },
   {
     "front": "濃い",
-    "back": "quyuq, to'q (choy, rang)",
+    "back": "to'q (rang), quyuq (choy/sho'rva), o'tkir\nTurkum: I-sifat",
     "phonetic": "こい - koi",
-    "example": "濃い お茶が 好きです。",
+    "example": "眠気を覚ますために朝一番で濃いブラックコーヒーを飲んだ。 (Uyquni qochirish uchun saharda quyuq achchiq kofe ichdim.)",
     "level": "N4"
   },
   {
     "front": "薄い",
-    "back": "suyuq, och rang, yupqa",
+    "back": "Yupqa; ochiq rang; suyuq ta'm\nTurkum: I-sifat (I-adj)",
     "phonetic": "うすい - usui",
-    "example": "味が 薄いです。",
+    "example": "このスープは少し味が薄いので塩を足した。 (Bu sho'rvaning ta'mi biroz suyuk bo'lgani uchun tuz qo'shdim.)",
     "level": "N4"
   },
   {
     "front": "厚い",
-    "back": "qalin (kitob, kiyim)",
+    "back": "Qalin; samimiy (mehr-oqibat)\nTurkum: I-sifat (I-adj)",
     "phonetic": "あつい - atsui",
-    "example": "厚い 本を 読みます。",
+    "example": "冬の外出時には厚いウールのコートを着る。 (Qishda ko'chaga chiqqanda qalin jun palto kiyaman.)",
     "level": "N4"
   },
   {
     "front": "太い",
-    "back": "yo'g'on (daraxt, chiziq)",
+    "back": "yo'g'on, semiz, qalin (ip/daraxt)\nTurkum: I-sifat",
     "phonetic": "ふとい - futoi",
-    "example": "太い ペンで 書いて ください。",
+    "example": "この神社には樹齢数百年の太い大木がそびえ立っている。 (Ushbu ziyoratgohda bir necha yuz yillik yo'g'on ulkan daraxt qad ko'tarib turibdi.)",
     "level": "N4"
   },
   {
     "front": "細い",
-    "back": "ingichka",
+    "back": "ingichka, oriq, nozik\nTurkum: I-sifat",
     "phonetic": "ほそい - hosoi",
-    "example": "細い 道ですね。",
+    "example": "車一台がやっと通れるくらいの細い路地を歩いた。 (Bitta mashina arang o'tadigan darajadagi ingichka ko'chadan yurdik.)",
     "level": "N4"
   },
   {
     "front": "涙",
-    "back": "ko'z yoshi",
+    "back": "Ko'z yoshi (Tear)\nTurkum: Ot",
     "phonetic": "なみだ - namida",
-    "example": "涙が 出ました。",
+    "example": "感動的な映画を見て思わず涙がこぼれました。 (Ta'sirli filmni ko'rib, bextiyor ko'z yoshlarim oqib ketdi.)",
     "level": "N4"
   },
   {
@@ -4656,9 +3890,9 @@
   },
   {
     "front": "靴",
-    "back": "poyafzal",
+    "back": "Poyabzal, poyafzal (Shoes)\nTurkum: Ot",
     "phonetic": "くつ - kutsu",
-    "example": "この 靴は 歩きやすいです。",
+    "example": "玄関で靴を脱いで上がってください。 (Yo'lakda poyabzalingizni yechib kiring.)",
     "level": "N4"
   },
   {
@@ -4691,16 +3925,16 @@
   },
   {
     "front": "領収書",
-    "back": "to'lov kvitansiyasi, chek",
+    "back": "領収書 tushunchasi, ilmiy/amaliy atama (Ryoushuusho)",
     "phonetic": "りょうしゅうしょ - ryoushuusho",
-    "example": "領収書を ください。",
+    "example": "経費で精算するために宛名入りの領収書をもらった。 (Xarajatlarni kompaniyadan undirish uchun nomim yozilgan to'lov kvitansiyasini oldim.)",
     "level": "N4"
   },
   {
     "front": "中止",
-    "back": "to'xtatish, bekor qilish",
+    "back": "To'xtatish, bekor qilish\nTurkum: Ot / Suru-fe'l",
     "phonetic": "ちゅうし - chiushi",
-    "example": "雨で 試合は 中止です。",
+    "example": "台風が接近しているため野外コンサートは中止となりました。 (Tayfun yaqinlashayotgani tufayli ochiq havodagi konsert bekor qilindi.)",
     "level": "N4"
   },
   {
@@ -4733,30 +3967,30 @@
   },
   {
     "front": "レシート",
-    "back": "kassa cheki",
+    "back": "kassa cheki\nTurkum: noun",
     "phonetic": "れしーと - reshi-to",
-    "example": "レシートを なくして しまいました。",
+    "example": "返品の際には購入時のレシートが必要です。 (Mahsulotni qaytarishda xarid qilingan paytdagi kassa cheki kerak bo'ladi.)",
     "level": "N4"
   },
   {
     "front": "連絡先",
-    "back": "aloqa ma'lumotlari (telefon, manzil)",
+    "back": "aloqa ma'lumotlari, telefon raqam / manzil\nTurkum: noun",
     "phonetic": "れんらくさき - renrakusaki",
-    "example": "緊急の 連絡先を 教えて ください。",
+    "example": "何かあったときのために緊急連絡先をメモしておいた。 (Favqulodda vaziyat yuz berganda kerak bo'ladi deb shoshilinch aloqa raqamini yozib qo'ydim.)",
     "level": "N4"
   },
   {
     "front": "都合",
-    "back": "sharoit, qulaylik",
+    "back": "都合 tushunchasi, ilmiy/amaliy atama (Tsugou)",
     "phonetic": "つごう - tsugou",
-    "example": "都合が 悪い 場合は、事前に ご連絡ください。",
+    "example": "明日の午後はご都合はいかがでしょうか。 (Ertaga tushdan keyin vaqtingiz qulaymi?)",
     "level": "N4"
   },
   {
     "front": "一生懸命",
-    "back": "bor kuch bilan, sidqidildan",
+    "back": "bor kuchi bilan, sidqidildan, jon-jahdi bilan\nTurkum: Ravish / Na-sifat",
     "phonetic": "いっしょうけんめい - ishoukenmei",
-    "example": "一生懸命 勉強したのに、不合格でした。",
+    "example": "夢を叶えるために毎日一生懸命日本語の勉強に励んでいる。 (Orzumni amalga oshirish uchun har kuni sidqidildan yapon tilini o'rganmoqdaman.)",
     "level": "N4"
   },
   {
@@ -4782,9 +4016,9 @@
   },
   {
     "front": "留守",
-    "back": "uyda yo'qlik, bekorchilik",
+    "back": "Uyda bo'lmaslik, yo'qlik\nTurkum: Ot (Noun)",
     "phonetic": "るす - rusu",
-    "example": "留守の 間に 荷物が 来ました。",
+    "example": "旅行で留守の間、隣人に庭の植木への水やりを頼んだ。 (Sayohatda uyda bo'lmaganim paytida qo'shnimdan gullarni sug'orib turishni iltimos qildim.)",
     "level": "N4"
   },
   {
@@ -4796,9 +4030,9 @@
   },
   {
     "front": "原因",
-    "back": "sabab, omil",
+    "back": "Sabab, omil\nTurkum: Ot (Noun)",
     "phonetic": "げんいん - nin",
-    "example": "事故の 原因を 調べます。",
+    "example": "事故の直接の原因について警察が調査しています。 (Hodisaning bevosita sababi yuzasidan politsiya surishtiruv olib bormoqda.)",
     "level": "N4"
   },
   {
@@ -4817,16 +4051,16 @@
   },
   {
     "front": "荷物",
-    "back": "yuk, posilka",
+    "back": "荷物 tushunchasi, ilmiy/amaliy atama (Niもtsu)",
     "phonetic": "にもつ - nitsu",
-    "example": "荷物を まとめている ところです。",
+    "example": "海外からの重い荷物が無事に自宅へ届きました。 (Xorijdan yuborilgan og'ir yuk eson-omon uyimga yetib keldi.)",
     "level": "N4"
   },
   {
     "front": "結果",
-    "back": "natija",
+    "back": "Natija, yakun\nTurkum: Ot",
     "phonetic": "けっか - keka",
-    "example": "明日 結果が 出る はずです。",
+    "example": "毎日の努力の結果、試験に高得点で合格しました。 (Har kungi tinimsiz harakat natijasida imtihondan yuqori ball bilan o'tdim.)",
     "level": "N4"
   },
   {
@@ -4859,9 +4093,9 @@
   },
   {
     "front": "天気予報",
-    "back": "ob-havo ma'lumoti",
+    "back": "Ob-havo ma'lumoti / prognozi\nTurkum: Ot",
     "phonetic": "てんきよほう - tenkiyohou",
-    "example": "天気予報に よると、明日は 晴れる そうです。",
+    "example": "毎朝出かける前にスマートフォンの天気予報を必ずチェックします。 (Har kuni ertalab ko'chaga chiqishdan avval smartfondan ob-havo ma'lumotini tekshiraman.)",
     "level": "N4"
   },
   {
@@ -4915,9 +4149,9 @@
   },
   {
     "front": "厳しい",
-    "back": "qattiqqo'l, talabchan",
+    "back": "Qattiqqo'l, talabchan; shiddatli\nTurkum: I-sifat (I-adj)",
     "phonetic": "きびしい - kibishii",
-    "example": "先生は とても 厳しいです。",
+    "example": "厳しい冬の吹雪を乗り越えて春がやってくる。 (Qahraton qishning qorbo'ronlarini yengib o'tib bahor keladi.)",
     "level": "N4"
   },
   {
@@ -4936,9 +4170,9 @@
   },
   {
     "front": "生徒",
-    "back": "o'quvchi (maktab o'quvchisi)",
+    "back": "O'quvchi, maktab o'quvchisi\nTurkum: Ot",
     "phonetic": "せいと - seito",
-    "example": "生徒に 本を 読ませます。",
+    "example": "先生の質問に対して生徒たちが元気に手を挙げました。 (O'qituvchining savoliga o'quvchilar ko'tarinki kayfiyatda qo'l ko'tarishdi.)",
     "level": "N4"
   },
   {
@@ -4964,9 +4198,9 @@
   },
   {
     "front": "買い物",
-    "back": "bozor-o'char, xarid",
+    "back": "xarid, bozor-o'char\nTurkum: Ot / Suru-fe'l",
     "phonetic": "かいもの - kaino",
-    "example": "息子に 買い物に 行かせました。",
+    "example": "日曜日は近所の商店街で一週間分の買い物を済ませる。 (Yakshanba kunida yaqindagi do'konlardan bir haftalik oziq-ovqat xaridini qilaman.)",
     "level": "N4"
   },
   {
@@ -4999,9 +4233,9 @@
   },
   {
     "front": "いらっしゃいます",
-    "back": "boradilar / keladilar / borlar (行きます・来ます・います ning hurmat shakli)",
+    "back": "borlar, keladilar, bo'ladilar (hurmat shakli: sonkeigo)\nTurkum: Hurmat iborasi (Keigo)",
     "phonetic": "いらっしゃいます - irashaimasu",
-    "example": "社長は 部屋に いらっしゃいます。",
+    "example": "社長はただいま奥の応接室にいらっしゃいます。 (Bosh direktor hozir ichkaridagi qabulxonada bo'lib turibdilar.)",
     "level": "N4"
   },
   {
@@ -5055,16 +4289,16 @@
   },
   {
     "front": "社長",
-    "back": "kompaniya prezidenti",
+    "back": "Kompaniya prezidenti, direktor",
     "phonetic": "しゃちょう - shachou",
     "example": "社長は もう お帰りに なりました。",
     "level": "N4"
   },
   {
     "front": "部長",
-    "back": "departament boshlig'i",
+    "back": "Bo'lim boshlig'i, departament mudiri\nTurkum: Ot",
     "phonetic": "ぶちょう - buchou",
-    "example": "部長が ゴルフを なさいます。",
+    "example": "営業部の部長から新しいプロジェクトのリーダーに任命されました。 (Savdo bo'limi boshlig'i tomonidan yangi loyiha yetakchisi etib tayinlandim.)",
     "level": "N4"
   },
   {
@@ -5125,9 +4359,9 @@
   },
   {
     "front": "伺います",
-    "back": "so'rayman / tashrif buyuraman (聞きます・行きます ning kamtarlik shakli)",
+    "back": "boraman, kelaman; eshitaman, so'rayman (kamtarona: kenjougo)\nTurkum: Hurmat iborasi (Keigo)",
     "phonetic": "うかがいます - ukagaimasu",
-    "example": "明日 お宅へ 伺います。",
+    "example": "明日の午後二時にご都合がよろしければ事務所へ伺います。 (Ertaga soat ikkida sizga ma'qul kelsa ofisingizga tashrif buyuraman.)",
     "level": "N4"
   },
   {
@@ -5153,16 +4387,16 @@
   },
   {
     "front": "お伝えします",
-    "back": "yetkazmoq (kamtarlik)",
+    "back": "yetkazib qo'yaman, bildiraman (kamtarona: kenjougo)\nTurkum: Hurmat iborasi (Keigo)",
     "phonetic": "おつたえします - otsutaeshimasu",
-    "example": "部長に お伝えいたします。",
+    "example": "田中が戻り次第、いただいたご伝言をお伝えします。 (Tanaka qaytib kelishi bilanoq qoldirgan xabaringizni yetkazib qo'yaman.)",
     "level": "N4"
   },
   {
     "front": "案内する",
     "back": "yo'l ko'rsatmoq, tanishtirmoq",
     "phonetic": "あんないする - annaisuru",
-    "example": "町を案内します。",
+    "example": "駅まで案内します。",
     "level": "N4"
   },
   {
@@ -5181,16 +4415,16 @@
   },
   {
     "front": "いらっしゃる",
-    "back": "bo'lmoq, bormoq, kelmoq (hurmat shakli)",
+    "back": "tashrif buyurmoq / kelmoq / ketmoq / bo'lmoq (hurmat shakli)\nTurkum: verb (polite / sonkeigo)",
     "phonetic": "いらっしゃる - irassharu",
-    "example": "社長は部屋にいらっしゃいます。",
+    "example": "先生は本日午後から研究室にいらっしゃる予定です。 (Ustoz bugun tushdan keyin o'z ilmiy xonalarida bo'lishlari rejalashtirilgan.)",
     "level": "N4"
   },
   {
     "front": "おっしゃる",
-    "back": "aytmoq, demoq (hurmat shakli)",
+    "back": "aytmoq, demoq (hurmat shakli: 言う ning sonkeigosi)\nTurkum: Godan fe'l",
     "phonetic": "おっしゃる - ossharu",
-    "example": "先生がおっしゃいました。",
+    "example": "先生のおっしゃる通り、日々の積み重ねが最も大切ですね。 (Ustoz aytganlaridek, har kungi tinimsiz mehnat eng muhimi ekan.)",
     "level": "N4"
   },
   {
@@ -5202,23 +4436,23 @@
   },
   {
     "front": "ご覧になる",
-    "back": "ko'rmoq (hurmat shakli: miru)",
+    "back": "ko'rmoq, qaramoq (hurmat shakli: 見る ning sonkeigosi)\nTurkum: Godan fe'l",
     "phonetic": "ごらんになる - goran ni naru",
-    "example": "この写真をご覧になりましたか。",
+    "example": "添付ファイルの詳細なデータをご覧になってください。 (Biriktirilgan fayldagi batafsil ma'lumotlarni ko'rib chiqing.)",
     "level": "N4"
   },
   {
     "front": "申す",
-    "back": "demoq, atalmoq (kamtarlik shakli: iu)",
+    "back": "aytmoq, deb atalmoq (kamtarona nutq)\nTurkum: Godan fe'l",
     "phonetic": "もうす - mousu",
-    "example": "ファルホドと申します。",
+    "example": "田中と申します。どうぞよろしくお願いいたします。 (Ismim Tanaka deb ataladi. Siz bilan tanishganimdan juda xursandman.)",
     "level": "N4"
   },
   {
     "front": "参る",
-    "back": "bormoq, kelmoq (kamtarlik shakli: iku/kuru)",
+    "back": "bormoq, kelmoq (kamtarona shakl)\nTurkum: verb (kenjougo)",
     "phonetic": "まいる - mairu",
-    "example": "ただ今参りました。",
+    "example": "明日午後2時に御社へご挨拶に参ります。 (Ertaga tushdan keyin soat 2 da kompaniyangizga salom-alik qilish uchun boraman.)",
     "level": "N4"
   },
   {
@@ -5237,9 +4471,9 @@
   },
   {
     "front": "受付",
-    "back": "qabulxona, registratura",
+    "back": "Qabulxona, registratsiya\nTurkum: Ot",
     "phonetic": "うけつけ - uketsuke",
-    "example": "受付で名前を書いてください。",
+    "example": "ビルの入り口にある受付で名前を記入しました。 (Binoning kirish qismidagi qabulxonada ismimni yozib qoldirdim.)",
     "level": "N4"
   },
   {
@@ -5251,23 +4485,23 @@
   },
   {
     "front": "運転手",
-    "back": "haydovchi",
+    "back": "Haydovchi, haydovchi xodim\nTurkum: Ot",
     "phonetic": "うんてんしゅ - untenshu",
-    "example": "バスの運転手さんに道を聞きました。",
+    "example": "バスの運転手さんが乗客に優しく行き先を教えてくれました。 (Avtobus haydovchisi yo'lovchilarga boradigan manzilni xushmuomalalik bilan tushuntirdi.)",
     "level": "N4"
   },
   {
     "front": "遠慮する",
-    "back": "tortinmoq, xijolat bo'lmoq",
+    "back": "Tortinmoq, o'zini tiyib turmoq",
     "phonetic": "えんりょする - enryo suru",
     "example": "遠慮しないで食べてください。",
     "level": "N4"
   },
   {
     "front": "落とす",
-    "back": "tushirib yubormoq (tr.)",
+    "back": "Tushirib yubormoq, yo'qotmoq\nTurkum: Fe'l (Godan verb)",
     "phonetic": "おとす - otosu",
-    "example": "財布を落としてしまいました。",
+    "example": "手が滑って大事なお皿を床に落として割ってしまいました。 (Qo'lim sirpanib qimmatbaho likopchani polga tushirib sindirib qo'ydim.)",
     "level": "N4"
   },
   {
@@ -5279,16 +4513,16 @@
   },
   {
     "front": "壊れる",
-    "back": "buzilmoq, sinmoq (intr.)",
+    "back": "buzilmoq, sinmoq\nTurkum: Ichidan fe'l",
     "phonetic": "こわれる - kowareru",
-    "example": "椅子が壊れています。",
+    "example": "パソコンが急に壊れて動かなくなった。 (Kompyuter to'satdan buzilib, ishlamay qoldi.)",
     "level": "N4"
   },
   {
     "front": "汚す",
-    "back": "iflos qilmoq (tr.)",
+    "back": "iflos qilmoq, kirlatmoq, bulg'amoq\nTurkum: Godan fe'l",
     "phonetic": "よごす - yogosu",
-    "example": "服を汚さないでください。",
+    "example": "新しい白いシャツにコーヒーをこぼして汚してしまった。 (Yangi oq ko'ylagimga qahva to'kib kir qilib qo'ydim.)",
     "level": "N4"
   },
   {
@@ -5300,9 +4534,9 @@
   },
   {
     "front": "消す",
-    "back": "o'chirmoq (tr.)",
+    "back": "O'chirmoq (chiroq, olov)\nTurkum: Godan fe'l",
     "phonetic": "けす - kesu",
-    "example": "テレビを消してください。",
+    "example": "部屋を出るときは必ず電気とエアコンを消してください。 (Xonadan chiqayotganda chiroq va konditsionerni albatta o'chiring.)",
     "level": "N4"
   },
   {
@@ -5328,44 +4562,44 @@
   },
   {
     "front": "閉める",
-    "back": "yopmoq (tr.)",
+    "back": "Yopmoq (eshik yoki derazani)\nTurkum: Fe'l (Ichidan verb)",
     "phonetic": "しめる - shimeru",
-    "example": "ドアを閉めてください。",
+    "example": "冷気が逃げないように部屋の窓をきちんと閉めた。 (Salqin havo chiqib ketmasligi uchun xona derazasini mahkam yopdim.)",
     "level": "N4"
   },
   {
     "front": "会議室",
-    "back": "majlislar xonasi",
+    "back": "majlislar zali, yig'ilish xonasi\nTurkum: Ot",
     "phonetic": "かいぎしつ - kaigishitsu",
-    "example": "会議室で打ち合わせをします。",
+    "example": "午後からの企画会議のために第二会議室を予約しておいた。 (Tushdan keyingi loyiha majlisi uchun ikkinchi yig'ilish xonasini band qilib qo'ydim.)",
     "level": "N4"
   },
   {
     "front": "飾る",
-    "back": "bezatmoq",
+    "back": "Bezamoq, yasatmoq\nTurkum: Godan fe'l",
     "phonetic": "かざる - kazaru",
-    "example": "部屋に花を飾りました。",
+    "example": "部屋の窓辺に綺麗な季節の花を花瓶に生けて飾りました。 (Xonaning tokchasiga faslning go'zal gullarini guldonga solib bezatdim.)",
     "level": "N4"
   },
   {
     "front": "片付ける",
-    "back": "yig'ishtirmoq, tartibga solmoq",
+    "back": "Saranjomlamoq, yig'ishtirmoq\nTurkum: Ichidan fe'l",
     "phonetic": "かたづける - katadukeru",
-    "example": "机の上を片付けました。",
+    "example": "勉強が終わったら机の上の教科書を本棚に片付けます。 (Dars tugagach stol ustidagi darsliklarni kitob javoniga saranjomlab qo'yaman.)",
     "level": "N4"
   },
   {
     "front": "髪",
-    "back": "soch",
+    "back": "Soch (Hair)\nTurkum: Ot",
     "phonetic": "かみ - kami",
-    "example": "髪を切りました。",
+    "example": "暑いので美容院で髪を短く切りました。 (Issiq bo'lgani uchun sartaroshxonada sochimni kalta qildirdim.)",
     "level": "N4"
   },
   {
     "front": "看護師",
-    "back": "hamshira",
+    "back": "Hamshira, tibbiy xodim\nTurkum: Ot (Noun)",
     "phonetic": "かんごし - kangoshi",
-    "example": "看護師さんはとても親切でした。",
+    "example": "看護師が笑顔で患者を励ましながら点滴を行った。 (Hamshira tabassum bilan bemorning ko'nglini ko'tarib osma ukol qo'ydi.)",
     "level": "N4"
   },
   {
@@ -5377,7 +4611,7 @@
   },
   {
     "front": "決まる",
-    "back": "qaror qilinmoq, belgilanish (intr.)",
+    "back": "To be decided, to be settled, to look good in (clothes)",
     "phonetic": "きまる - kimaru",
     "example": "出発の日が決まりました。",
     "level": "N4"
@@ -5398,49 +4632,49 @@
   },
   {
     "front": "警察",
-    "back": "politsiya",
+    "back": "Politsiya, militsiya mahkamasi\nTurkum: Ot (Noun)",
     "phonetic": "けいさつ - keisatsu",
-    "example": "警察に届けました。",
+    "example": "財布を落としてしまったので近くの警察に届け出ました。 (Hamyonimni tushirib qo'yganim uchun yaqin atrofdagi politsiyaga ariza berdim.)",
     "level": "N4"
   },
   {
     "front": "経済",
-    "back": "iqtisodiyot",
+    "back": "経済 tushunchasi, ilmiy/amaliy atama (Keizai)",
     "phonetic": "けいざい - keizai",
-    "example": "大学で経済を勉強しています。",
+    "example": "世界経済の動向についてニュースで詳しく学びます。 (Jahon iqtisodiyoti tendentsiyalari haqida yangiliklar orqali batafsil o'rganaman.)",
     "level": "N4"
   },
   {
     "front": "最近",
-    "back": "yaqinda, so'nggi paytlarda",
+    "back": "最近 tushunchasi, ilmiy/amaliy atama (Saikin)",
     "phonetic": "さいきん - saikin",
-    "example": "最近とても忙しいです。",
+    "example": "最近、日本のドラマを見てリスニングを鍛えています。 (So'nggi paytlarda yapon seriallarini tomosha qilib eshitib tushunishimni mashq qilyapman.)",
     "level": "N4"
   },
   {
     "front": "最初",
-    "back": "boshlanishi, dastlab",
+    "back": "Boshi, dastlab, ilk bor\nTurkum: Ot",
     "phonetic": "さいしょ - saisho",
-    "example": "最初は難しかったです。",
+    "example": "最初は難しかった日本語も今では楽しく話せます。 (Boshida juda qiyin bo'lgan yapon tili hozir maroq bilan gapiriladigan bo'ldi.)",
     "level": "N4"
   },
   {
     "front": "最後",
-    "back": "oxiri, so'nggi",
+    "back": "最後 tushunchasi, ilmiy/amaliy atama (Saigo)",
     "phonetic": "さいご - saigo",
-    "example": "最後まで頑張りましょう。",
+    "example": "マラソンの最後の最後まで諦めずに走り抜きました。 (Marafonning oxirgi lahzalarigacha taslim bo'lmay yugurib o'tdim.)",
     "level": "N4"
   },
   {
     "front": "坂",
-    "back": "qiyalik, tepalik",
+    "back": "Qiyalik, qiyalama yo'l (Slope, hill)\nTurkum: Ot",
     "phonetic": "さか - saka",
-    "example": "急な坂を登りました。",
+    "example": "この急な坂を自転車で登るのは大変です。 (Bu tik qiyalikdan velosipedda ko'tarilish juda qiyin.)",
     "level": "N4"
   },
   {
     "front": "下がる",
-    "back": "pasaymoq, tushmoq (intr.)",
+    "back": "To hang down, to abate, to retire, to fall, to step back",
     "phonetic": "さがる - sagaru",
     "example": "熱が下がりました。",
     "level": "N4"
@@ -5468,30 +4702,30 @@
   },
   {
     "front": "試合",
-    "back": "musobaqa, o'yin",
+    "back": "Musobaqa, o'yin, uchrashuv\nTurkum: Ot",
     "phonetic": "しあい - shiai",
-    "example": "明日のサッカーの試合を見に行きます。",
+    "example": "昨日のサッカーの試合は白熱した展開でした。 (Kechagi futbol uchrashuvi nihoyatda qizg'in kechdi.)",
     "level": "N4"
   },
   {
     "front": "仕方",
-    "back": "iloj, yo'l",
+    "back": "Chora, iloj, usul\nTurkum: Ot",
     "phonetic": "しかた - shikata",
-    "example": "雨だから仕方がないです。",
+    "example": "終わってしまったことは仕方がないので次に進みましょう。 (O'tib ketgan ishga iloj yo'q, shuning uchun keyingisiga o'taylik.)",
     "level": "N4"
   },
   {
     "front": "成功",
-    "back": "muvaffaqiyat, yutuq",
+    "back": "Muvaffaqiyat, yutuq\nTurkum: Ot / Suru-fe'l",
     "phonetic": "せいこう - seikou",
-    "example": "実験が成功しました。",
+    "example": "長年の研究の末、新しい薬の開発に成功しました。 (Ko'p yillik izlanishlar samarasida yangi dorini yaratishda muvaffaqiyat qozondik.)",
     "level": "N4"
   },
   {
     "front": "神社",
-    "back": "Sinto ibodatxonasi",
+    "back": "Sinto ibodatxonasi (yapon ziyoratgohi)\nTurkum: Ot",
     "phonetic": "じんじゃ - jinja",
-    "example": "初詣に神社へ行きました。",
+    "example": "お正月の初詣に近くの有名な神社へお参りに行った。 (Yangi yilning ilk ziyorati uchun yaqin atrofdagi mashhur sinto ibodatxonasiga bordim.)",
     "level": "N4"
   },
   {
@@ -5510,23 +4744,23 @@
   },
   {
     "front": "すっかり",
-    "back": "butunlay, to'liq",
+    "back": "butunlay, batamom\nTurkum: Taqlid so'z / Ravish",
     "phonetic": "すっかり - sukkari",
-    "example": "桜はすっかり散ってしまいました。",
+    "example": "薬を飲んだら、頭痛がすっかり治った。 (Dori ichganimdan keyin bosh og'rig'i butunlay yo'qoldi.)",
     "level": "N4"
   },
   {
     "front": "捨てる",
-    "back": "tashlab yubormoq, uloqtirmoq",
+    "back": "tashlab yubormoq, uloqtirmoq\nTurkum: Ichidan fe'l",
     "phonetic": "すてる - suteru",
-    "example": "ここにゴミを捨てないでください。",
+    "example": "使わなくなった古い服を思い切って捨てた。 (Kiyilmay qolgan eski kiyimlarni dadil tashlab yubordim.)",
     "level": "N4"
   },
   {
     "front": "拾う",
-    "back": "yerdan olmoq, terib olmoq",
+    "back": "terib olmoq, topib olmoq\nTurkum: Godan fe'l",
     "phonetic": "ひろう - hirou",
-    "example": "道で財布を拾いました。",
+    "example": "道端に落ちていたゴミを拾ってゴミ箱に入れた。 (Yo'l chetida tushib yotgan chiqindini terib olib, axlat qutisiga tashladim.)",
     "level": "N4"
   },
   {
@@ -5538,58 +4772,58 @@
   },
   {
     "front": "滑る",
-    "back": "sirpanmoq",
+    "back": "Toyib ketmoq, sirpanmoq\nTurkum: Fe'l (Godan verb)",
     "phonetic": "すべる - suberu",
-    "example": "雪で足が滑りました。",
+    "example": "凍った歩道は滑りやすいので足元に十分注意してください。 (Muzlagan yo'lak sirpanchiq bo'lgani sababli ehtiyotkorlik bilan yuring.)",
     "level": "N4"
   },
   {
     "front": "隅",
-    "back": "burchak",
+    "back": "Burchak (ichki burchak) (Corner, nook)\nTurkum: Ot",
     "phonetic": "すみ - sumi",
-    "example": "部屋の隅に机を置きました。",
+    "example": "部屋の隅に小さな観葉植物を置いた。 (Xonaning burchagiga kichik xona o'simligi qo'ydim.)",
     "level": "N4"
   },
   {
     "front": "済む",
-    "back": "tugamoq, ado etilmoq",
+    "back": "Bitmoq, hal bo'lmoq, yetarli bo'lmoq\nTurkum: Fe'l (Godan verb)",
     "phonetic": "すむ - sumu",
-    "example": "用事が早く済みました。",
+    "example": "幸いなことに軽い怪我だけで済んで安心した。 (Xayriyatki, arzimagan yengil jarohat bilan qutulib, xotirjam bo'ldim.)",
     "level": "N4"
   },
   {
     "front": "生活",
-    "back": "turmush tarzi, hayot",
+    "back": "生活 tushunchasi, ilmiy/amaliy atama (Seikatsu)",
     "phonetic": "せいかつ - seikatsu",
-    "example": "日本の生活に慣れました。",
+    "example": "日本での一人暮らしの生活にもすっかり慣れました。 (Yaponiyada yolg'iz yashash turmushiga ham to'liq o'rganib oldim.)",
     "level": "N4"
   },
   {
     "front": "世界",
-    "back": "dunyo, olam",
+    "back": "Dunyo, olam, jahon\nTurkum: Ot",
     "phonetic": "せかい - sekai",
-    "example": "世界中を旅行したいです。",
+    "example": "世界中の国々を自分の足で旅して回るのが夢です。 (Dunyoning barcha mamlakatlarini o'z ko'zim bilan ko'rib sayohat qilish orzuim.)",
     "level": "N4"
   },
   {
     "front": "世話",
-    "back": "g'amxo'rlik qilish, qarash",
+    "back": "G'amxo'rlik, qarash, parvarish\nTurkum: Ot / Suru-fe'l",
     "phonetic": "せわ - sewa",
-    "example": "犬の世話をします。",
+    "example": "日本に滞在中、ホストファミリーに大変お世話になりました。 (Yaponiyada bo'lgan vaqtimda mezbon oilaning katta g'amxo'rligida bo'ldim.)",
     "level": "N4"
   },
   {
     "front": "卒業",
-    "back": "o'qishni bitirish",
+    "back": "Bitiruv, o'qishni tugatish\nTurkum: Ot / Suru-fe'l",
     "phonetic": "そつぎょう - sotsugyou",
-    "example": "来年大学を卒業します。",
+    "example": "今年の三月に大学を無事に卒業して社会人になります。 (Bu yil mart oyida universitetni muvaffaqiyatli tamomlab mustaqil hayotga qadam qo'yaman.)",
     "level": "N4"
   },
   {
     "front": "退院",
-    "back": "shifoxonadan chiqish",
+    "back": "Shifoxonadan chiqish\nTurkum: Ot / Suru-fe'l",
     "phonetic": "たいいん - taiin",
-    "example": "来週退院する予定です。",
+    "example": "怪我がすっかり治ったので明日無事に退院します。 (Jarohatim to'liq tuzalgani bois ertaga shifoxonadan eson-omon chiqaman.)",
     "level": "N4"
   },
   {
@@ -5601,100 +4835,100 @@
   },
   {
     "front": "例えば",
-    "back": "masalan",
+    "back": "masalan, aytaylik\nTurkum: Ravish",
     "phonetic": "たとえば - tatoeba",
-    "example": "例えば、寿司や天ぷらが好きです。",
+    "example": "例えば、週末に映画を見たりカフェに行ったりするのが好きだ。 (Masalan, dam olish kunlari film ko'rish yoki qahvaxonaga borishni yoqtiraman.)",
     "level": "N4"
   },
   {
     "front": "捕まえる",
-    "back": "ushlamoq, tutmoq",
+    "back": "Ushlamoq, qo'lga olmoq\nTurkum: Fe'l (Ichidan verb)",
     "phonetic": "つかまえる - tsukamaeru",
-    "example": "警察が泥棒を捕まえました。",
+    "example": "警察官が逃走した泥棒を素早く捕まえた。 (Politsiyachi qochgan o'g'rini chaqqonlik bilan qo'lga oldi.)",
     "level": "N4"
   },
   {
     "front": "泊まる",
-    "back": "tunab qolmoq (mehmonxonada)",
+    "back": "tunamoq, qonmoq, mehmon bo'lmoq\nTurkum: Godan fe'l",
     "phonetic": "とまる - tomaru",
-    "example": "ホテルに一泊しました。",
+    "example": "京都の伝統的な旅館に二泊した。 (Kyotodagi an'anaviy yapon mehmonxonasida ikki kecha tunadik.)",
     "level": "N4"
   },
   {
     "front": "取り替える",
-    "back": "almashtirmoq",
+    "back": "Almashtirmoq, yangisiga o'zgartirmoq\nTurkum: Qo'shma fe'l (Ichidan verb)",
     "phonetic": "とりかえる - torikaeru",
-    "example": "電池を取り替えました。",
+    "example": "破れた障子紙を真っ白な新しい紙に取り替えた。 (Yirtilgan yapon qog'oz to'sig'ini oppoq yangi qog'ozga almashtirdim.)",
     "level": "N4"
   },
   {
     "front": "治る",
-    "back": "tuzalmoq (kasallikdan)",
+    "back": "tuzalmoq, sog'aymoq (kasallik)\nTurkum: Godan fe'l",
     "phonetic": "なおる - naoru",
-    "example": "風邪が治りました。",
+    "example": "十分な休養を取ったので病気がすっかり治った。 (Yaxshi dam olganim sababli kasallik butunlay tuzaldi.)",
     "level": "N4"
   },
   {
     "front": "塗る",
-    "back": "surkamoq, bo'yamoq",
+    "back": "Surkamoq, bo'yamoq (krem yoki bo'yoq)\nTurkum: Fe'l (Godan verb)",
     "phonetic": "ぬる - nuru",
-    "example": "パンにバターを塗ります。",
+    "example": "日焼けを防ぐために外出前に日焼け止めクリームを塗る。 (Quyoshda qorayishning oldini olish uchun ko'chaga chiqishdan oldin krem surtaman.)",
     "level": "N4"
   },
   {
     "front": "反対",
-    "back": "qarshi, teskari",
+    "back": "Qarshi, qarshilik, teskari\nTurkum: Ot / Suru-fe'l",
     "phonetic": "はんたい - hantai",
-    "example": "彼の意見に反対です。",
+    "example": "計画の変更に対して多くのメンバーが反対の意見を出しました。 (Rejaning o'zgarishiga nisbatan ko'plab a'zolar qarshi fikr bildirishdi.)",
     "level": "N4"
   },
   {
     "front": "冷える",
-    "back": "sovumoq, sovib qolmoq",
+    "back": "sovumoq, muzlamoq (tana/havo)\nTurkum: Ichidan fe'l",
     "phonetic": "ひえる - hieru",
-    "example": "ビールがよく冷えています。",
+    "example": "冬の夜は冷え込むので温かいお風呂に入ろう。 (Qish kechasi juda sovuq bo'lgani uchun iliq vannaga tushaylik.)",
     "level": "N4"
   },
   {
     "front": "冷やす",
-    "back": "sovitmoq",
+    "back": "sovutmoq, muzlatmoq\nTurkum: Godan fe'l",
     "phonetic": "ひやす - hiyasu",
-    "example": "スイカを冷蔵庫で冷やします。",
+    "example": "スイカを冷蔵庫でキンキンに冷やして食べた。 (Tarvuzni muzlatgichda yaxshilab sovutib yedim.)",
     "level": "N4"
   },
   {
     "front": "増やす",
-    "back": "ko'paytirmoq (tr.)",
+    "back": "ko'paytirmoq, oshirmoq\nTurkum: verb (transitive)",
     "phonetic": "ふやす - fuyasu",
-    "example": "貯金を増やしたいです。",
+    "example": "貯金を増やすために節約を心がけている。 (Jamg'armani ko'paytirish uchun tejashga harakat qilyapman.)",
     "level": "N4"
   },
   {
     "front": "減る",
-    "back": "kamaymoq (intr.)",
+    "back": "Kamaymoq, qisqarmoq\nTurkum: Fe'l (Godan verb)",
     "phonetic": "へる - heru",
-    "example": "体重が3キロ減りました。",
+    "example": "少子化の影響で全国の小中学校の児童数が減っている。 (Tug'ilish kamayishi oqibatida butun mamlakat maktablarida o'quvchilar soni kamaymoqda.)",
     "level": "N4"
   },
   {
     "front": "減らす",
-    "back": "kamaytirmoq (tr.)",
+    "back": "Kamaytirmoq, qisqartirmoq\nTurkum: Fe'l (Godan verb)",
     "phonetic": "へらす - herasu",
-    "example": "甘いものを減らします。",
+    "example": "プラスチックごみを減らすためにマイバッグを持参する。 (Plastik chiqindini kamaytirish uchun o'zim bilan xarid sumkasi olib yuraman.)",
     "level": "N4"
   },
   {
     "front": "沸く",
-    "back": "qaynamoq",
+    "back": "Qaynamoq (suv)\nTurkum: Fe'l (Godan verb)",
     "phonetic": "わく - waku",
-    "example": "お湯が沸きました。",
+    "example": "お湯が沸いたら急須に注いでお茶を淹れる。 (Suv qaynagach, choynakka quyib choy damlayman.)",
     "level": "N4"
   },
   {
     "front": "戻す",
-    "back": "joyiga qaytarib qo'ymoq",
+    "back": "Qaytarib qo'ymoq, joyiga qo'ymoq\nTurkum: Fe'l (Godan verb)",
     "phonetic": "もどす - modosu",
-    "example": "本を元の場所に戻してください。",
+    "example": "使った本は必ず元の本棚の場所に戻してください。 (Foydalanilgan kitobni albatta o'z joyiga qaytarib qo'ying.)",
     "level": "N4"
   },
   {
@@ -5706,7 +4940,7 @@
   },
   {
     "front": "丁寧",
-    "back": "muloyim, xushmuomala, e'tiborli",
+    "back": "丁寧 tushunchasi, ilmiy/amaliy atama (Teinei)",
     "phonetic": "ていねい - teinei",
     "example": "丁寧な言葉を使ってください。",
     "level": "N4"
@@ -5727,9 +4961,9 @@
   },
   {
     "front": "必要",
-    "back": "zarur, kerakli",
+    "back": "必要 tushunchasi, ilmiy/amaliy atama (Hitsuyou)",
     "phonetic": "ひつよう - hitsuyou",
-    "example": "パスポートが必要です。",
+    "example": "必要についての調査を進める",
     "level": "N4"
   },
   {
@@ -5776,9 +5010,9 @@
   },
   {
     "front": "不自由",
-    "back": "noqulay, erkin bo'lmagan",
+    "back": "noqulay, cheklangan, erkin bo'lmagan\nTurkum: na-adjective",
     "phonetic": "ふじゆう - fujiyuu",
-    "example": "足が不自由です。",
+    "example": "足を怪我して、歩くのに不自由を感じている。 (Oyog'imni jarohatlab olib, yurishda noqulaylik sezmoqdaman.)",
     "level": "N4"
   },
   {
@@ -5818,44 +5052,44 @@
   },
   {
     "front": "大変",
-    "back": "juda, og'ir, qiyin",
+    "back": "Juda, nihoyatda; qiyin",
     "phonetic": "たいへん - taihen",
     "example": "仕事が大変です。",
     "level": "N4"
   },
   {
     "front": "たまに",
-    "back": "ba'zida, onda-sonda",
+    "back": "onda-sonda, ba'zida, vaqti-vaqti bilan\nTurkum: Ravish",
     "phonetic": "たまに - tamani",
-    "example": "たまに外食をします。",
+    "example": "普段は自炊していますが、たまに外食して息抜きをします。 (Odatda uyda ovqat pishiraman, lekin ba'zida tashqarida ovqatlanib hordiq chiqaraman.)",
     "level": "N4"
   },
   {
     "front": "だんだん",
-    "back": "bora-bora, asta-sekin",
+    "back": "asta-sekin, borgan sari\nTurkum: Ravish",
     "phonetic": "だんだん - dandan",
-    "example": "だんだん暖かくなります。",
+    "example": "夕方になってだんだん寒くなってきました。 (Kech kirishi bilan havo asta-sekin soviy boshladi.)",
     "level": "N4"
   },
   {
     "front": "ちょうど",
-    "back": "aynan, xuddi",
+    "back": "roppa-rosa, ayni, to'g'ri kelgan\nTurkum: Ravish",
     "phonetic": "ちょうど - choudo",
-    "example": "今ちょうど12時です。",
+    "example": "駅に着いたとき、ちょうど乗る予定の電車が入ってきた。 (Stansiyaga yetib borganimda roppa-rosa men chiqadigan poyezd kelib to'xtadi.)",
     "level": "N4"
   },
   {
     "front": "とうとう",
-    "back": "nihoyat, oxir-oqibat",
+    "back": "oxir-oqibat, nihoyat, oxiri\nTurkum: Ravish",
     "phonetic": "とうとう - toutou",
-    "example": "とうとう論文が完成しました。",
+    "example": "長年乗り続けていた愛車がとうとう壊れて動かなくなった。 (Ko'p yillar mingan sevimli mashinam oxir-oqibat buzilib yurmay qoldi.)",
     "level": "N4"
   },
   {
     "front": "特に",
-    "back": "ayniqsa, xususan",
+    "back": "ayniqsa, asosan, alohida\nTurkum: Ravish",
     "phonetic": "とくに - tokuni",
-    "example": "果物の中で特にリンゴが好きです。",
+    "example": "日本料理の中でも、特に刺身と天ぷらが大好きです。 (Yapon taomlari ichida ayniqsa sashimi va tenpurani juda yoqtiraman.)",
     "level": "N4"
   },
   {
@@ -5867,9 +5101,9 @@
   },
   {
     "front": "なかなか",
-    "back": "hech (inkor bilan), kutilgandan yaxshiroq",
+    "back": "ancha, ancha-muncha, osonlikcha (inkor bilan)\nTurkum: Ravish",
     "phonetic": "なかなか - nakanaka",
-    "example": "バスがなかなか来ません。",
+    "example": "風邪がなかなか治らなくて困っている。 (Shamollashim osonlikcha tuzalmayotgani sabab qiynalyapman.)",
     "level": "N4"
   },
   {
@@ -5881,9 +5115,9 @@
   },
   {
     "front": "初めて",
-    "back": "birinchi marta",
+    "back": "birinchi marta, ilk bor\nTurkum: Ravish",
     "phonetic": "はじめて - hajimete",
-    "example": "富士山に初めて登りました。",
+    "example": "日本に来て初めて本物の温泉に入って感動した。 (Yaponiyaga kelib birinchi marta haqiqiy issiq buloqqa tushib hayratlandim.)",
     "level": "N4"
   },
   {
@@ -5902,16 +5136,16 @@
   },
   {
     "front": "まず",
-    "back": "birinchi galda, avval",
+    "back": "Avvalo, birinchi navbatda",
     "phonetic": "まず - mazu",
     "example": "まず手を洗いましょう。",
     "level": "N4"
   },
   {
     "front": "また",
-    "back": "yana, takroran",
+    "back": "shuningdek, hamda, yana\nTurkum: Bog'lovchi",
     "phonetic": "また - mata",
-    "example": "また明日会いましょう。",
+    "example": "彼は英語が堪能で、またフランス語も上手に話す。 (U ingliz tilida erkin so'zlashadi, shuningdek fransuzcha ham yaxshi gapiradi.)",
     "level": "N4"
   },
   {
@@ -5923,7 +5157,7 @@
   },
   {
     "front": "もう",
-    "back": "allaqachon, yana",
+    "back": "Yana, boshqa; allaqachon",
     "phonetic": "もう - mou",
     "example": "もうご飯を食べました。",
     "level": "N4"
@@ -5937,16 +5171,16 @@
   },
   {
     "front": "やはり",
-    "back": "baribir, o'ylaganimdek",
+    "back": "baribir, kutilganidek (rasmiy/adabiy)\nTurkum: Ravish",
     "phonetic": "やはり - yahari",
-    "example": "やはり彼は来ませんでした。",
+    "example": "予想通り、やはり彼が優勝を果たした。 (Kutilganidek, baribir u chempion bo'ldi.)",
     "level": "N4"
   },
   {
     "front": "招待",
-    "back": "taklif qilish",
+    "back": "Taklif qilish, mehmonga chaqirish\nTurkum: Ot / Fe'l (Noun / Suru-verb)",
     "phonetic": "しょうたい - shoutai",
-    "example": "結婚式に招待されました。",
+    "example": "恩師を我が家の夕食会に招待した。 (Hurmatli ustozimni xonadonimizdagi kechki ovqatga taklif qildim.)",
     "level": "N4"
   },
   {
@@ -5965,9 +5199,9 @@
   },
   {
     "front": "到着",
-    "back": "yetib borish, kelish",
+    "back": "Yetib kelish, kelish\nTurkum: Ot / Fe'l (Noun / Suru-verb)",
     "phonetic": "とうちゃく - touchaku",
-    "example": "飛行機が無事に到着しました。",
+    "example": "飛行機は予定時刻より十分早く空港に到着しました。 (Samolyot belgilangan vaqtdan o'n daqiqa erta aeroportga yetib keldi.)",
     "level": "N4"
   },
   {
@@ -5979,42 +5213,42 @@
   },
   {
     "front": "発見",
-    "back": "kashfiyot, topilma",
+    "back": "Kashfiyot, yangilik topish\nTurkum: Ot / Suru-fe'l",
     "phonetic": "はっけん - hakken",
-    "example": "新しい星を発見しました。",
+    "example": "古い寺院の蔵から貴重な歴史的資料が発見されました。 (Qadimiy ibodatxona omboridan nodir tarixiy hujjatlar kashf etildi.)",
     "level": "N4"
   },
   {
     "front": "生産",
-    "back": "ishlab chiqarish",
+    "back": "ishlab chiqarish\nTurkum: Ot / Fe'l (Suru verb)",
     "phonetic": "せいさん - seisan",
-    "example": "日本で車を生産しています。",
+    "example": "この工場では最新のハイブリッド車を生産している。 (Bu zavodda eng yangi gibrid avtomobillari ishlab chiqarilmoqda.)",
     "level": "N4"
   },
   {
     "front": "貿易",
-    "back": "tashqi savdo",
+    "back": "Xalqaro savdo, tashqi savdo\nTurkum: Ot / Fe'l (Noun / Suru-verb)",
     "phonetic": "ぼうえき - boueki",
-    "example": "外国と貿易をしています。",
+    "example": "両国の間では工業製品や農産物の貿易が盛んに行われています。 (Ikki davlat o'rtasida sanoat mahsulotlari va qishloq xo'jalik tovarlari savdosi jadal bormoqda.)",
     "level": "N4"
   },
   {
     "front": "輸出",
-    "back": "eksport (chetga sotish)",
+    "back": "Eksport qilish, chetga chiqarish\nTurkum: Ot / Suru-fe'l",
     "phonetic": "ゆしゅつ - yushutsu",
-    "example": "日本は車を輸出しています。",
+    "example": "日本は自動車や高度な電子機器を世界各国へ輸出しています。 (Yaponiya avtomobillar va ilg'or elektronika vositalarini dunyo mamlakatlariga eksport qiladi.)",
     "level": "N4"
   },
   {
     "front": "輸入",
-    "back": "import (chetidan keltirish)",
+    "back": "Import qilish, chetdan olib kirish\nTurkum: Ot / Fe'l (Noun / Suru-verb)",
     "phonetic": "ゆにゅう - yunyuu",
-    "example": "石油を輸入しています。",
+    "example": "日本は石油や天然ガスなど多くのエネルギー資源を海外から輸入しています。 (Yaponiya neft va tabiiy gaz kabi ko'plab energetika boyliklarini xorijdan import qiladi.)",
     "level": "N4"
   },
   {
     "front": "政治",
-    "back": "siyosat",
+    "back": "政治 tushunchasi, ilmiy/amaliy atama (Seiji)",
     "phonetic": "せいじ - seiji",
     "example": "政治について話し合いました。",
     "level": "N4"
@@ -6042,9 +5276,9 @@
   },
   {
     "front": "あいさつする",
-    "back": "Salomlashmoq (To greet)",
+    "back": "Salomlashmoq, salom bermoq",
     "phonetic": "あいさつする - aisatsusuru",
-    "example": "",
+    "example": "毎朝、あいさつします。",
     "level": "N4"
   },
   {
@@ -6149,7 +5383,7 @@
     "front": "うち",
     "back": "Ichida, fursatida (Within)",
     "phonetic": "うち - uchi",
-    "example": "うちの旦那。",
+    "example": "うちに帰ります。",
     "level": "N4"
   },
   {
@@ -6163,7 +5397,7 @@
     "front": "うれしい",
     "back": "Xursand, baxtiyor (Glad)",
     "phonetic": "うれしい - ureshii",
-    "example": "会えてうれしいよ。",
+    "example": "プレゼントをもらって、うれしいです。",
     "level": "N4"
   },
   {
@@ -6182,16 +5416,16 @@
   },
   {
     "front": "おいでになる",
-    "back": "Tashrif buyurmoq (hurmat) ((respectful) to be)",
+    "back": "tashrif buyurmoq, bormoq, bo'lmoq (hurmat shakli)\nTurkum: Hurmat iborasi (Keigo)",
     "phonetic": "おいでになる - oideninaru",
-    "example": "",
+    "example": "先生は明日の記念式典においでになりますでしょうか。 (Ustoz, ertangi tantanali marosimga tashrif buyurasizmi?)",
     "level": "N4"
   },
   {
     "front": "オートバイ",
     "back": "Mototsikl (Motorcycle)",
     "phonetic": "おーとばい - ootobai",
-    "example": "オートバイを買うんだ。",
+    "example": "週末にオートバイで海辺をツーリングした。 (Dam olish kunida motosiklda dengiz bo'ylab sayr qildim.)",
     "level": "N4"
   },
   {
@@ -6219,7 +5453,7 @@
     "front": "おもちゃ",
     "back": "O'yinchoq (Toy)",
     "phonetic": "おもちゃ - omocha",
-    "example": "おもちゃ、直して。",
+    "example": "子どもにおもちゃをあげます。",
     "level": "N4"
   },
   {
@@ -6252,16 +5486,16 @@
   },
   {
     "front": "お土産",
-    "back": "Esdalik sovg'a (Souvenir)",
+    "back": "Esdalik sovg'asi, sovg'a-salom\nTurkum: Ot (Noun)",
     "phonetic": "おみやげ - omiyage",
-    "example": "これはお土産です。",
+    "example": "京都旅行の素敵なお土産をクラスメート全員に配りました。 (Kyoto sayohatidan keltirilgan ajoyib esdalik sovg'alarini barcha sinfdoshlarimga tarqatdim.)",
     "level": "N4"
   },
   {
     "front": "お礼",
-    "back": "Tashakkur, minnatdorchilik (Expression of gratitude)",
+    "back": "Minnatdorlik, tashakkur bildirish\nTurkum: Ot / Fe'l (Noun / Suru-verb)",
     "phonetic": "おれい - orei",
-    "example": "お礼状のカードです。",
+    "example": "困ったときに助けてくれた先輩にお礼の品を贈りました。 (Qiyin vaziyatda yordam bergan katta hamkasbimga minnatdorchilik sovg'asi berdim.)",
     "level": "N4"
   },
   {
@@ -6275,7 +5509,7 @@
     "front": "ガソリン",
     "back": "Benzin (Petrol)",
     "phonetic": "がそりん - gasorin",
-    "example": "ガソリン臭いよ。",
+    "example": "ガソリンがありません。",
     "level": "N4"
   },
   {
@@ -6308,7 +5542,7 @@
   },
   {
     "front": "くださる",
-    "back": "(respectful) to give",
+    "back": "Berib qo'ymoq (hurmat shakli)",
     "phonetic": "くださる - kudasaru",
     "example": "最寄駅で降ろしてくださる？",
     "level": "N4"
@@ -6336,14 +5570,14 @@
   },
   {
     "front": "けれど/けれども",
-    "back": "However",
+    "back": "But, however",
     "phonetic": "けれど/けれども - keredo / keredomo",
     "example": "",
     "level": "N4"
   },
   {
     "front": "けんかする",
-    "back": "To quarrel",
+    "back": "Janjallashmoq, urishmoq",
     "phonetic": "けんかする - kenkasuru",
     "example": "私はよく彼女とけんかする。",
     "level": "N4"
@@ -6357,9 +5591,9 @@
   },
   {
     "front": "ごちそう",
-    "back": "A feast",
+    "back": "Hashamatli ovqat, ziyofat",
     "phonetic": "ごちそう - gochisou",
-    "example": "ごちそうさま。",
+    "example": "今日はごちそうを食べます。",
     "level": "N4"
   },
   {
@@ -6378,7 +5612,7 @@
   },
   {
     "front": "このごろ",
-    "back": "These days, nowadays",
+    "back": "Shu kunlarda, oxirgi paytlarda",
     "phonetic": "このごろ - konogoro",
     "example": "このごろ暖かい日が多い。",
     "level": "N4"
@@ -6413,16 +5647,16 @@
   },
   {
     "front": "ご存じ",
-    "back": "Knowing, acquaintance",
+    "back": "Bilmoq, xabardor bo'lmoq (hurmat shakli)",
     "phonetic": "ごぞんじ - gozonji",
-    "example": "ご存じだった？",
+    "example": "この店をご存じですか。",
     "level": "N4"
   },
   {
     "front": "さっき",
-    "back": "Some time ago",
+    "back": "boyagina, hozirgina\nTurkum: Ravish",
     "phonetic": "さっき - sakki",
-    "example": "さっき何かあった？",
+    "example": "さっき田中さんから電話があって、少し遅れるそうです。 (Boyagina Tanaka san qo'ng'iroq qildi, biroz kechikarkan.)",
     "level": "N4"
   },
   {
@@ -6443,7 +5677,7 @@
     "front": "サンドイッチ",
     "back": "Sandwich",
     "phonetic": "さんどいっち - sandoitchi",
-    "example": "サンドイッチはいかが？",
+    "example": "サンドイッチを食べます。",
     "level": "N4"
   },
   {
@@ -6469,16 +5703,16 @@
   },
   {
     "front": "しっかり",
-    "back": "Mahkam, jiddiy (Firmly, steadily)",
+    "back": "mahkam, puxta, baquvvat\nTurkum: Taqlid so'z / Ravish",
     "phonetic": "しっかり - shikkari",
-    "example": "しっかりしろ。",
+    "example": "手すりをしっかりつかんで階段を降りてください。 (Tutqichni mahkam ushlab zinapoyadan tushing.)",
     "level": "N4"
   },
   {
     "front": "しばらく",
-    "back": "Biroz muddat (Little while)",
+    "back": "bir muddat, bir oz vaqt\nTurkum: Ravish",
     "phonetic": "しばらく - shibaraku",
-    "example": "しばらくね。",
+    "example": "ここでしばらくお待ちいただけますでしょうか。 (Shu yerda bir oz vaqt kutib tura olasizmi?)",
     "level": "N4"
   },
   {
@@ -6497,23 +5731,23 @@
   },
   {
     "front": "ずいぶん",
-    "back": "Extremely",
+    "back": "ancha, ancha-muncha, ancha sezilarli\nTurkum: Ravish",
     "phonetic": "ずいぶん - zuibun",
-    "example": "ずいぶんと古いな。",
+    "example": "久しぶりに会ったら、日本語がずいぶん上達していて驚いた。 (Uzoq vaqtdan so'ng uchrashganimizda yapon tili ancha rivojlanganidan hayratlandim.)",
     "level": "N4"
   },
   {
     "front": "スーツ",
-    "back": "Suit",
+    "back": "Kostyum",
     "phonetic": "すーつ - suutsu",
     "example": "スーツに着替えなさい。",
     "level": "N4"
   },
   {
     "front": "スーツケース",
-    "back": "Suitcase",
+    "back": "chamadon\nTurkum: noun",
     "phonetic": "すーつけーす - suutsukeesu",
-    "example": "そのスーツケース重い？",
+    "example": "大きなスーツケースに旅行の荷物を詰め込んだ。 (Katta chamadonga sayohat yuklarini joyladim.)",
     "level": "N4"
   },
   {
@@ -6567,9 +5801,9 @@
   },
   {
     "front": "すると",
-    "back": "Then",
+    "back": "shu payt, shunda, birdan\nTurkum: Bog'lovchi",
     "phonetic": "すると - suruto",
-    "example": "彼は遅刻すると思う。",
+    "example": "カーテンを開けた。すると、窓の外は一面の雪景色だった。 (Pardani ochdim. Shunda, deraza tashqarisi oppoq qor bilan qoplangan edi.)",
     "level": "N4"
   },
   {
@@ -6625,7 +5859,7 @@
     "front": "そんなに",
     "back": "Bunday, shunaqa (So much, like that)",
     "phonetic": "そんなに - sonnani",
-    "example": "そんなに騒ぐな。",
+    "example": "そんなに難しくないです。",
     "level": "N4"
   },
   {
@@ -6637,16 +5871,16 @@
   },
   {
     "front": "タイプ",
-    "back": "Type, style",
+    "back": "tur, toifa; yoqtirgan toifadagi inson\nTurkum: noun",
     "phonetic": "たいぷ - taipu",
-    "example": "彼って私のタイプ！",
+    "example": "彼女は私の理想のタイプだ。 (U aynan men orzu qilgan toifadagi qizdir.)",
     "level": "N4"
   },
   {
     "front": "だから",
-    "back": "So, therefore",
+    "back": "shuning uchun, shu bois\nTurkum: Bog'lovchi",
     "phonetic": "だから - dakara",
-    "example": "だから何なの？",
+    "example": "明日は大事な試験がある。だから、今夜は早く寝るつもりだ。 (Ertaga muhim imtihonim bor. Shuning uchun bugun erta yotmoqchiman.)",
     "level": "N4"
   },
   {
@@ -6658,7 +5892,7 @@
   },
   {
     "front": "チェックする",
-    "back": "To check",
+    "back": "Tekshirmoq",
     "phonetic": "ちぇっくする - chekku suru",
     "example": "私は仕事を一つ終えるごとにリストの上でチェックする。",
     "level": "N4"
@@ -6798,9 +6032,9 @@
   },
   {
     "front": "ひどい",
-    "back": "Dahshatli, shafqatsiz (Awful)",
+    "back": "dahshatli, o'ta yomon, shafqatsiz\nTurkum: I-sifat",
     "phonetic": "ひどい - hidoi",
-    "example": "ひどい天気！",
+    "example": "昨日の夜はひどい暴風雨で電車のダイヤが大きく乱れた。 (Kechagi kuchli to'fonli bo'ron tufayli poyezdlar qatnov jadvali izdan chiqdi.)",
     "level": "N4"
   },
   {
@@ -6847,16 +6081,16 @@
   },
   {
     "front": "ほめる",
-    "back": "Maqtamoq (To praise)",
+    "back": "maqtamoq, tahsin aytmoq\nTurkum: Ichidan fe'l",
     "phonetic": "ほめる - homeru",
-    "example": "彼女はほめる言葉に困る程だ。",
+    "example": "テストで満点を取って先生にたくさんほめられた。 (Testda eng yuqori ball olib, ustozimdan ko'p maqtov eshitdim.)",
     "level": "N4"
   },
   {
     "front": "または",
-    "back": "Or, otherwise",
+    "back": "yoki, yoxud\nTurkum: Bog'lovchi",
     "phonetic": "または - mataha",
-    "example": "",
+    "example": "お問い合わせはお電話またはメールにて承ります。 (Murojaatlaringiz telefon yoki elektron pochta orqali qabul qilinadi.)",
     "level": "N4"
   },
   {
@@ -6875,9 +6109,9 @@
   },
   {
     "front": "もちろん",
-    "back": "Of course",
+    "back": "Albatta, shubhasiz",
     "phonetic": "もちろん - mochiron",
-    "example": "もちろんさ。",
+    "example": "もちろん大丈夫です。",
     "level": "N4"
   },
   {
@@ -6910,9 +6144,9 @@
   },
   {
     "front": "レジ",
-    "back": "Register",
+    "back": "kassa (do'konda)\nTurkum: Ot",
     "phonetic": "れじ - reji",
-    "example": "レジはあそこよ。",
+    "example": "スーパーのレジに並んでポイントカードを提示した。 (Supermarket kassasiga navbatda turib jamg'arma kartamni ko'rsatdim.)",
     "level": "N4"
   },
   {
@@ -6931,23 +6165,23 @@
   },
   {
     "front": "以下",
-    "back": "Less than",
+    "back": "...dan past, ...dan kam, quyidagi\nTurkum: Ot / Qo'shimcha",
     "phonetic": "いか - ika",
-    "example": "以下は彼の話です。",
+    "example": "小学生以下の子供は入場無料です。 (Boshlang'ich maktab o'quvchilari va undan kichik bolalarga kirish bepul.)",
     "level": "N4"
   },
   {
     "front": "以外",
-    "back": "With the exception of",
+    "back": "...dan tashqari, ...dan bo'lak\nTurkum: Ot / Qo'shimcha (Noun)",
     "phonetic": "いがい - igai",
-    "example": "職員以外入室禁止。",
+    "example": "日曜日の午前中以外は仕事をしている。 (Yakshanba ertalabdan tashqari boshqa payt ishlayman.)",
     "level": "N4"
   },
   {
     "front": "以上",
-    "back": "More than, this is all",
+    "back": "...dan ko'p, ortiq; shuning bilan tamom\nTurkum: Ot / Qo'shimcha",
     "phonetic": "いじょう - ijou",
-    "example": "以上ですか？",
+    "example": "この本を三回以上繰り返し読みました。 (Bu kitobni uch martadan ortiq qayta-qayta o'qidim.)",
     "level": "N4"
   },
   {
@@ -6959,9 +6193,9 @@
   },
   {
     "front": "移る",
-    "back": "To move house or transfer",
+    "back": "Ko'chmoq, o'tmoq (joy yoki mavzuga)\nTurkum: Fe'l (Godan verb)",
     "phonetic": "うつる - utsuru",
-    "example": "熱意は移る。",
+    "example": "仕事の都合で来月から大阪の新しい支店へ移ることになりました。 (Ish sababli kelasi oydan Osakadagi yangi filialga ko'chib o'tadigan bo'ldim.)",
     "level": "N4"
   },
   {
@@ -6980,23 +6214,23 @@
   },
   {
     "front": "引き出す",
-    "back": "To withdraw",
+    "back": "Tortib olmoq; pul yechmoq; iqtidorni yuzaga chiqarmoq\nTurkum: Qo'shma fe'l (Godan verb)",
     "phonetic": "ひきだす - hikidasu",
-    "example": "我々は勉強からさらに楽しみを引き出す。",
+    "example": "銀行のATMで生活費として五万円を引き出した。 (Bank bankomatidan ro'zg'or xarajatlari uchun ellik ming iyen naqd yechib oldim.)",
     "level": "N4"
   },
   {
     "front": "引っ越す",
-    "back": "To move house",
+    "back": "Ko'chmoq (boshqa xonadonga)\nTurkum: Qo'shma fe'l (Godan verb)",
     "phonetic": "ひっこす - hikkosu",
-    "example": "引っ越すの？",
+    "example": "来月の初めに会社の近くのアパートへ引っ越す予定です。 (Kelasi oy boshida ishxona yaqinidagi kvartiraga ko'chishni rejalashtiryapman.)",
     "level": "N4"
   },
   {
     "front": "雲",
-    "back": "Cloud",
+    "back": "Bulut (Cloud)\nTurkum: Ot",
     "phonetic": "くも - kumo",
-    "example": "雲って、何色？",
+    "example": "空に白い雲がゆっくり浮かんでいます。 (Osmonda oq bulutlar sekin suzib yuribdi.)",
     "level": "N4"
   },
   {
@@ -7021,15 +6255,8 @@
     "level": "N4"
   },
   {
-    "front": "億",
-    "back": "One hundred million",
-    "phonetic": "おく - oku",
-    "example": "トムは億万長者だ。",
-    "level": "N4"
-  },
-  {
     "front": "下りる",
-    "back": "To get off",
+    "back": "Pastga tushmoq",
     "phonetic": "おりる - oriru",
     "example": "階段を下りるのがつらくてね。",
     "level": "N4"
@@ -7064,51 +6291,44 @@
   },
   {
     "front": "科学",
-    "back": "Science",
+    "back": "科学 tushunchasi, ilmiy/amaliy atama (Kagaku)",
     "phonetic": "かがく - kagaku",
-    "example": "彼は科学者です。",
-    "level": "N4"
-  },
-  {
-    "front": "火",
-    "back": "Fire",
-    "phonetic": "ひ - hi",
-    "example": "火は燃える。",
+    "example": "現代の科学技術の発展には目を見張るものがあります。 (Zamonaviy fan va texnika taraqqiyoti lol qoldiradi.)",
     "level": "N4"
   },
   {
     "front": "花見",
-    "back": "Cherry-blossom viewing",
+    "back": "Hanami (sakura gullarini tomosha qilish)\nTurkum: Ot / Suru-fe'l",
     "phonetic": "はなみ - hanami",
-    "example": "あのお花見て。",
+    "example": "春になると桜の木の下で友達と賑やかにお花見を楽しみます。 (Bahor kelganda sakura daraxti tagida do'stlar bilan quvnoq hanami saylini o'tkazamiz.)",
     "level": "N4"
   },
   {
     "front": "課長",
-    "back": "Section manager",
+    "back": "Bo'lim boshlig'i, bo'linma mudiri\nTurkum: Ot (Noun)",
     "phonetic": "かちょう - kachou",
-    "example": "彼は課長に昇進した。",
+    "example": "課長に明日の出張の計画について報告しました。 (Bo'lim boshlig'iga ertangi xizmat safari rejasi haqida hisobot berdim.)",
     "level": "N4"
   },
   {
     "front": "過ぎる",
-    "back": "To exceed",
+    "back": "O'tib ketmoq (vaqt yoki joy)\nTurkum: Fe'l (Ichidan verb)",
     "phonetic": "すぎる - sugiru",
-    "example": "静か過ぎる。",
+    "example": "楽しかった週末はあっという間に過ぎてしまった。 (Maroqli dam olish kunlari ko'z ochib yumguncha o'tib ketdi.)",
     "level": "N4"
   },
   {
     "front": "会話",
-    "back": "Conversation",
+    "back": "Muloqot, suhbat, so'zlashuv\nTurkum: Ot / Suru-fe'l",
     "phonetic": "かいわ - kaiwa",
-    "example": "会話に加われば？",
+    "example": "毎日日本人と会話をして話す練習をしています。 (Har kuni yaponlar bilan suhbat qurib gapirishni mashq qilaman.)",
     "level": "N4"
   },
   {
     "front": "回る",
-    "back": "To go around",
+    "back": "aylanmoq, aylanib chiqmoq\nTurkum: Godan fe'l",
     "phonetic": "まわる - mawaru",
-    "example": "蜂が飛び回る。",
+    "example": "地球は太陽の周りを一年かけて回る。 (Yer quyosh atrofini bir yil davomida aylanib chiqadi.)",
     "level": "N4"
   },
   {
@@ -7141,9 +6361,9 @@
   },
   {
     "front": "割合",
-    "back": "Nisbatan, ulush (Rate, ratio, percentage)",
+    "back": "Nisbat, foiz; ancha\nTurkum: Ot / Ravish (Noun / Adverb)",
     "phonetic": "わりあい - wariai",
-    "example": "彼らは１時間３マイルの割合で歩いた。",
+    "example": "日本語の試験は思っていたよりも割合簡単に解けました。 (Yapon tili imtihonidagi savollar o'ylaganimdan ko'ra ancha oson yechildi.)",
     "level": "N4"
   },
   {
@@ -7155,44 +6375,37 @@
   },
   {
     "front": "乾く",
-    "back": "Qaynamoq (To get dry)",
+    "back": "Qurimoq (kiyim, tomoq)\nTurkum: Godan fe'l",
     "phonetic": "かわく - kawaku",
-    "example": "皮は乾くにつれて堅くなった。",
+    "example": "天気が良くて風もあるので洗った洗濯物がすぐに乾きました。 (Havo ochiq va shamol bo'lgani sababli yuvilgan kiyimlar tezda quridi.)",
     "level": "N4"
   },
   {
     "front": "看護婦",
-    "back": "Female nurse",
+    "back": "看護婦 tushunchasi, ilmiy/amaliy atama (Kangofu)",
     "phonetic": "かんごふ - kangofu",
-    "example": "私は看護婦です。",
-    "level": "N4"
-  },
-  {
-    "front": "間",
-    "back": "Ah, oh (A space)",
-    "phonetic": "あいだ - aida",
-    "example": "貸し間あり。",
+    "example": "看護婦についての調査を進める",
     "level": "N4"
   },
   {
     "front": "間違える",
-    "back": "To make a mistake",
+    "back": "yanglishmoq, xato qilmoq\nTurkum: Ichidan fe'l",
     "phonetic": "まちがえる - machigaeru",
-    "example": "私、よく間違えるの。",
+    "example": "電話番号を一桁間違えてかけてしまった。 (Telefon raqamini bitta raqam adashtirib qo'ng'iroq qilib yubordim.)",
     "level": "N4"
   },
   {
     "front": "喜ぶ",
-    "back": "Quvonmoq, sevinmoq (To be delighted)",
+    "back": "Quvonmoq, xursand bo'lmoq\nTurkum: Fe'l (Godan verb)",
     "phonetic": "よろこぶ - yorokobu",
-    "example": "早まって喜ぶな。",
+    "example": "合格の知らせを聞いて家族全員が大いに喜んだ。 (Imtihondan o'tganim xabarini eshitib, butun oilamiz juda quvondi.)",
     "level": "N4"
   },
   {
     "front": "寄る",
-    "back": "To'xtab o'tmoq, yaqinlashmoq (To visit)",
+    "back": "yo'l-yo'lakay kirib o'tmoq, yaqinlashmoq\nTurkum: Godan fe'l",
     "phonetic": "よる - yoru",
-    "example": "犬に近寄るな。",
+    "example": "仕事の帰りにスーパーに寄って夕食の材料を買った。 (Ishdan qaytishda supermarketga kirib kechki ovqat masalliqlarini sotib oldim.)",
     "level": "N4"
   },
   {
@@ -7203,17 +6416,10 @@
     "level": "N4"
   },
   {
-    "front": "気",
-    "back": "Spirit, mood",
-    "phonetic": "き - ki",
-    "example": "本気ですか。",
-    "level": "N4"
-  },
-  {
     "front": "汽車",
-    "back": "Steam train",
+    "back": "Vapor, Steam",
     "phonetic": "きしゃ - kisha",
-    "example": "汽車が脱線した。",
+    "example": "汽車の影響を分析する",
     "level": "N4"
   },
   {
@@ -7225,30 +6431,30 @@
   },
   {
     "front": "客",
-    "back": "Guest, customer",
+    "back": "mehmon, mijoz\nTurkum: Ot",
     "phonetic": "きゃく - kyaku",
-    "example": "トムは客だ。",
+    "example": "休日のレストランは多くのお客で賑わっていた。 (Dam olish kunidagi restoran ko'plab mijozlar bilan gavjum edi.)",
     "level": "N4"
   },
   {
     "front": "久しぶり",
-    "back": "After a long time",
+    "back": "Uzoq vaqtdan beri, ancha vaqtdan so'ng\nTurkum: Ot / Na-sifat",
     "phonetic": "ひさしぶり - hisashiburi",
-    "example": "お久しぶり。",
+    "example": "久しぶりに会った高校時代の親友と思い出を語り合いました。 (Uzoq vaqtdan keyin ko'rishgan litsey davridagi do'stim bilan xotiralarni bo'lishdik.)",
     "level": "N4"
   },
   {
     "front": "泣く",
-    "back": "To weep",
+    "back": "yig'lamoq\nTurkum: Godan fe'l",
     "phonetic": "なく - naku",
-    "example": "泣くもんか。",
+    "example": "感動的な映画を見て思わず泣いてしまった。 (Ta'sirli filmni ko'rib beixtiyor yig'lab yubordim.)",
     "level": "N4"
   },
   {
     "front": "競争",
-    "back": "Yolg'on (Competition)",
+    "back": "Raqobat, musobaqa\nTurkum: Ot / Fe'l (Noun / Suru-verb)",
     "phonetic": "きょうそう - kyousou",
-    "example": "私は彼と競争した。",
+    "example": "世界市場での激しい競争に勝ち抜く必要があります。 (Jahon bozoridagi shiddatli raqobatda g'olib chiqishimiz lozim.)",
     "level": "N4"
   },
   {
@@ -7260,9 +6466,9 @@
   },
   {
     "front": "驚く",
-    "back": "To be surprised",
+    "back": "Hayratlanmoq, ajablanmoq\nTurkum: Fe'l (Godan verb)",
     "phonetic": "おどろく - odoroku",
-    "example": "彼女はきっと驚く。",
+    "example": "手品師の鮮やかなトリックに観客全員が驚いた。 (Ko'zboylog'ichning mohirona hiylasidan barcha tomoshabinlar hayratda qolishdi.)",
     "level": "N4"
   },
   {
@@ -7274,30 +6480,30 @@
   },
   {
     "front": "空く",
-    "back": "Ah, oh (To open, to become empty)",
+    "back": "Bo'shamoq, ochilmoq (joy yoki teshik)\nTurkum: Fe'l (Godan verb)",
     "phonetic": "あく - aku",
-    "example": "あと１０分で手が空く。",
+    "example": "電車が次の駅に着くと席がいくつか空きました。 (Poyezd keyingi bekatga yetgach bir nechta o'rindiq bo'shadi.)",
     "level": "N4"
   },
   {
     "front": "空気",
-    "back": "Air, atmosphere",
+    "back": "Havo, atmosfera, muhit\nTurkum: Ot",
     "phonetic": "くうき - kuuki",
-    "example": "空気読めない。",
+    "example": "山の上は空気が澄んでいてとても気持ちがいいです。 (Tog'ning tepasida havo toza va nihoyatda yoqimli.)",
     "level": "N4"
   },
   {
     "front": "君",
-    "back": "(informal) you (used by men towards women)",
+    "back": "Sen (You - do'stona/norasmiy)\nTurkum: Olmosh",
     "phonetic": "きみ - kimi",
-    "example": "君次第だよ。",
+    "example": "君の意見をぜひ聞かせてほしい。 (Sening fikringni albatta eshitishni xohlayman.)",
     "level": "N4"
   },
   {
     "front": "決して",
-    "back": "Never",
+    "back": "Aslo, hech qachon (inkor bilan)\nTurkum: Ravish (Adverb)",
     "phonetic": "けっして - kesshite",
-    "example": "決して放さないで。",
+    "example": "どんなに困難な状況でも決して夢を諦めない。 (Qanchalik og'ir vaziyat bo'lmasin, orzuyimdan aslo voz kechmayman.)",
     "level": "N4"
   },
   {
@@ -7323,37 +6529,37 @@
   },
   {
     "front": "研究室",
-    "back": "Study room, laboratory",
+    "back": "研究室 tushunchasi, ilmiy/amaliy atama (Kenkyuushitsu)",
     "phonetic": "けんきゅうしつ - kenkyuushitsu",
-    "example": "研究室に戻りなさい。",
+    "example": "卒論の相談をするために教授の研究室を訪問した。 (Bitiruv malakaviy ishi bo'yicha maslahat olish uchun professor xonasiga bordim.)",
     "level": "N4"
   },
   {
     "front": "絹",
-    "back": "Silk",
+    "back": "ipak\nTurkum: Ot",
     "phonetic": "きぬ - kinu",
-    "example": "絹は高価なんだよ。",
+    "example": "この着物は上質な絹で作られている。 (Bu kimono oliy sifatli ipakdan tikilgan.)",
     "level": "N4"
   },
   {
     "front": "見つける",
-    "back": "Topmoq (To discover)",
+    "back": "topmoq, qidirib topmoq\nTurkum: Ichidan fe'l",
     "phonetic": "みつける - mitsukeru",
-    "example": "私を見つけるの？",
+    "example": "本棚の奥で探していたノートを見つけた。 (Kitob javonining ichkarisidan qidirayotgan daftarimni topib oldim.)",
     "level": "N4"
   },
   {
     "front": "見物",
-    "back": "Sightseeing",
+    "back": "Tomosha qilish, sayr qilish\nTurkum: Ot / Suru-fe'l",
     "phonetic": "けんぶつ - kenbutsu",
-    "example": "町中見物でもするか？",
+    "example": "春休みに京都の桜の名所を見物して回りました。 (Bahorgi ta'tilda Kyotodagi mashhur sakura maskanlarini tomosha qilib aylandim.)",
     "level": "N4"
   },
   {
     "front": "湖",
-    "back": "Lake",
+    "back": "Ko'l (Lake)\nTurkum: Ot",
     "phonetic": "みずうみ - mizuumi",
-    "example": "この湖は深い。",
+    "example": "山の頂上から静かな青い湖が見渡せる。 (Tog' cho'qqisidan sokin ko'm-ko'k ko'l ko'rinib turibdi.)",
     "level": "N4"
   },
   {
@@ -7372,9 +6578,9 @@
   },
   {
     "front": "光る",
-    "back": "To shine, to glitter",
+    "back": "porlamoq, chaqnamoq, yarqiramoq\nTurkum: Godan fe'l",
     "phonetic": "ひかる - hikaru",
-    "example": "使っている鎌は光る。",
+    "example": "夜空に無数の星が美しく光っている。 (Tungi osmonda son-sanoqsiz yulduzlar go'zal porlab turibdi.)",
     "level": "N4"
   },
   {
@@ -7386,16 +6592,16 @@
   },
   {
     "front": "向かう",
-    "back": "To face",
+    "back": "yo'l olmoq, qarab bormoq\nTurkum: Godan fe'l",
     "phonetic": "むかう - mukau",
-    "example": "女は悪魔の宴へと向かう。",
+    "example": "仕事が終わったのでこれから駅に向かいます。 (Ish tugagani uchun hozir stansiyaga yo'l olyapman.)",
     "level": "N4"
   },
   {
     "front": "工業",
-    "back": "The manufacturing industry",
+    "back": "Sanoat, ishlab chiqarish\nTurkum: Ot",
     "phonetic": "こうぎょう - kougyou",
-    "example": "工業都市です。",
+    "example": "この沿岸地域は自動車や精密機械の工業が盛んです。 (Bu sohilbo'yi hududida avtomobil va aniq mexanika sanoati juda rivojlangan.)",
     "level": "N4"
   },
   {
@@ -7407,23 +6613,23 @@
   },
   {
     "front": "考える",
-    "back": "To consider",
+    "back": "O'ylamoq, o'ylab ko'rmoq",
     "phonetic": "かんがえる - kangaeru",
-    "example": "なぜそう考えるの？",
+    "example": "将来について考えます。",
     "level": "N4"
   },
   {
     "front": "行う",
-    "back": "To do",
+    "back": "O'tkazmoq, amalga oshirmoq\nTurkum: Godan fe'l",
     "phonetic": "おこなう - okonau",
-    "example": "言うは易く行うは難し。",
+    "example": "大学の講堂で新しい留学生のためのオリエンテーションを行いました。 (Universitet katta zalida yangi xorijlik talabalar uchun tanishtiruv o'tkazdik.)",
     "level": "N4"
   },
   {
     "front": "講義",
     "back": "Lecture",
     "phonetic": "こうぎ - kougi",
-    "example": "文学の講義をする。",
+    "example": "大学で経済の講義を聴く",
     "level": "N4"
   },
   {
@@ -7435,16 +6641,16 @@
   },
   {
     "front": "郊外",
-    "back": "Outskirts",
+    "back": "shahar atrofi, chekka hudud\nTurkum: Ot",
     "phonetic": "こうがい - kougai",
-    "example": "私の家は郊外にある。",
+    "example": "都会の喧騒を離れて郊外の静かな一軒家に住んでいる。 (Shahar to'polonidan uzoqlashib, shahar atrofidagi tinch hovlida yashayapman.)",
     "level": "N4"
   },
   {
     "front": "降り出す",
-    "back": "To start to rain",
+    "back": "yog'a boshlamoq (yomg'ir/qor)\nTurkum: Godan fe'l",
     "phonetic": "ふりだす - furidasu",
-    "example": "まもなく雪が降り出すだろう。",
+    "example": "空が急に暗くなったと思ったら、激しい雨が降り出した。 (Osmon to'satdan qorong'ilashdi-yu, kuchli yomg'ir yog'a boshladi.)",
     "level": "N4"
   },
   {
@@ -7456,9 +6662,9 @@
   },
   {
     "front": "高校生",
-    "back": "High school student",
+    "back": "Yuqori sinf / litsey o'quvchisi\nTurkum: Ot",
     "phonetic": "こうこうせい - koukousei",
-    "example": "高校生なの？",
+    "example": "日本の高校生たちは部活動と大学受験の勉強を両立させています。 (Yaponiyadagi litsey o'quvchilari to'garak va imtihonga tayyorgarlikni birdek olib borishadi.)",
     "level": "N4"
   },
   {
@@ -7477,58 +6683,58 @@
   },
   {
     "front": "国際",
-    "back": "Xalqaro (International)",
+    "back": "Xalqaro\nTurkum: Ot / No-sifat",
     "phonetic": "こくさい - kokusai",
-    "example": "国際語は必要ですか？",
+    "example": "将来は国際的な舞台で活躍できる人材になりたいです。 (Kelajakda xalqaro maydonda faoliyat yurita oladigan yetuk mutaxassis bo'lishni xohlayman.)",
     "level": "N4"
   },
   {
     "front": "込む",
-    "back": "To be crowded",
+    "back": "ichkariga kirmoq, joylashmoq, tiqilmoq\nTurkum: Godan fe'l",
     "phonetic": "こむ - komu",
-    "example": "綿は水を吸い込む。",
+    "example": "スーツケースに荷物をぎゅっと詰め込んだ。 (Chamadonga yuklarni zich qilib joyladim.)",
     "level": "N4"
   },
   {
     "front": "今度",
     "back": "Bu safar, kelasi safar (Now, next time)",
     "phonetic": "こんど - kondo",
-    "example": "また、今度な！",
+    "example": "今度の日曜日にみんなでバーベキューをしましょう。 (Kelayotgan yakshanba kuni hammamiz birgalikda barbekyu qilaylik.)",
     "level": "N4"
   },
   {
     "front": "今夜",
-    "back": "Tonight",
+    "back": "Bugun kechqurun",
     "phonetic": "こんや - konya",
-    "example": "今夜会える？",
+    "example": "今夜、友達と会います。",
     "level": "N4"
   },
   {
     "front": "差し上げる",
-    "back": "Ah, oh ((polite) to give)",
+    "back": "taqdim etmoq, bermoq (kamtarona: あげる ning kenjougosi)\nTurkum: Ichidan fe'l",
     "phonetic": "さしあげる - sashiageru",
-    "example": "突然にかような奇怪な手紙を差し上げる非礼をお許し下さい。",
+    "example": "ご参加いただいた皆様にささやかな記念品を差し上げます。 (Qatnashgan barcha aziz mehmonlarga kamtarona esdalik sovg'asi taqdim etamiz.)",
     "level": "N4"
   },
   {
     "front": "妻",
-    "back": "(humble) wife",
+    "back": "Xotin, rafiqa (Wife - o'ziniki)\nTurkum: Ot",
     "phonetic": "つま - tsuma",
-    "example": "妻が怖くて。",
+    "example": "休日は妻と一緒に買い物に出かける。 (Dam olish kunlari rafiqam bilan birga xaridga chiqaman.)",
     "level": "N4"
   },
   {
     "front": "細かい",
-    "back": "Small, fine",
+    "back": "Mayda; sinchkov, mayda-chuydasigacha\nTurkum: I-sifat (I-adj)",
     "phonetic": "こまかい - komakai",
-    "example": "私は細かいんだ。",
+    "example": "自動販売機で飲み物を買いたいので、細かい小銭が必要です。 (Ichimlik avtomatidan suv sotib olmoqchiman, shuning uchun mayda tangalar kerak.)",
     "level": "N4"
   },
   {
     "front": "産業",
-    "back": "Industry",
+    "back": "sanoat, ishlab chiqarish tarmog'i\nTurkum: Ot",
     "phonetic": "さんぎょう - sangyou",
-    "example": "日本は産業国である。",
+    "example": "自動車産業はこの国の経済を支える重要な柱だ。 (Avtomobilsozlik sanoati ushbu mamlakat iqtisodiyotining muhim tayanchi hisoblanadi.)",
     "level": "N4"
   },
   {
@@ -7540,23 +6746,16 @@
   },
   {
     "front": "始める",
-    "back": "Boshlamoq (To begin)",
+    "back": "始める tushunchasi, ilmiy/amaliy atama (Hajimeru)",
     "phonetic": "はじめる - hajimeru",
-    "example": "新たに始める。",
-    "level": "N4"
-  },
-  {
-    "front": "子",
-    "back": "Child",
-    "phonetic": "こ - ko",
-    "example": "花より団子。",
+    "example": "始めることが重要である",
     "level": "N4"
   },
   {
     "front": "市民",
-    "back": "Citizen",
+    "back": "Shahar aholisi, shahar fuqarosi\nTurkum: Ot (Noun)",
     "phonetic": "しみん - shimin",
-    "example": "私は札幌市民です。",
+    "example": "市民ホールで週末に無料のコンサートが催される。 (Shahar madaniyat saroyida dam olish kunlari bepul konsert bo'lib o'tadi.)",
     "level": "N4"
   },
   {
@@ -7568,16 +6767,16 @@
   },
   {
     "front": "指",
-    "back": "Finger",
+    "back": "Barmoq (Finger, toe)\nTurkum: Ot",
     "phonetic": "ゆび - yubi",
-    "example": "指を開いて。",
+    "example": "料理中に包丁で指を切らないように注意してください。 (Ovqat pishirish paytida pichoqda barmoqni kesib olmaslikdan ehtiyot bo'ling.)",
     "level": "N4"
   },
   {
     "front": "指輪",
-    "back": "Finger ring",
+    "back": "指輪 tushunchasi, ilmiy/amaliy atama (Yubiwa)",
     "phonetic": "ゆびわ - yubiwa",
-    "example": "指輪がない。",
+    "example": "指輪についての調査を進める",
     "level": "N4"
   },
   {
@@ -7589,65 +6788,65 @@
   },
   {
     "front": "枝",
-    "back": "Branch, twig",
+    "back": "Shox, daraxt shoxi, novda\nTurkum: Ot (Noun)",
     "phonetic": "えだ - eda",
-    "example": "枝を折るな。",
+    "example": "強風で桜の枝が折れてしまった。 (Kuchli shamoldan sakura daraxtining shoxi sinib ketdi.)",
     "level": "N4"
   },
   {
     "front": "止む",
-    "back": "To'xtamoq (yomg'ir/qor) (To stop)",
+    "back": "to'xtamoq, tinmoq (yomg'ir, shamol)\nTurkum: Godan fe'l",
     "phonetic": "やむ - yamu",
-    "example": "雨は止む兆しが無い。",
+    "example": "激しかった雨がようやく止んで青空が見えてきた。 (Kuchli yomg'ir nihoyat tindi va moviy osmon ko'rina boshladi.)",
     "level": "N4"
   },
   {
     "front": "糸",
-    "back": "Thread",
+    "back": "Ip (Thread, yarn)\nTurkum: Ot",
     "phonetic": "いと - ito",
-    "example": "糸が絡まった。",
+    "example": "針に赤い糸を通してください。 (Ignaga qizil ipni o'tkazing.)",
     "level": "N4"
   },
   {
     "front": "試験",
-    "back": "Imtihon (Examination)",
+    "back": "試験 tushunchasi, ilmiy/amaliy atama (Shiken)",
     "phonetic": "しけん - shiken",
-    "example": "来週は試験だ。",
+    "example": "明日の日本語の期末試験に向けてしっかり復習します。 (Ertangi yapon tili yakuniy imtihoni uchun yaxshilab takrorlayapman.)",
     "level": "N4"
   },
   {
     "front": "歯医者",
-    "back": "Dentist",
+    "back": "Tish shifokori, stomatolog\nTurkum: Ot",
     "phonetic": "はいしゃ - haisha",
-    "example": "彼は歯医者に行った。",
+    "example": "歯が痛むので放っておかずに近くの歯医者を予約しました。 (Tishim og'riyotgani bois kechiktirmasdan yaqindagi tish shifokoriga yozildim.)",
     "level": "N4"
   },
   {
     "front": "事務所",
-    "back": "Hasharot (Office)",
+    "back": "ofis, ish idorasi\nTurkum: noun",
     "phonetic": "じむしょ - jimusho",
-    "example": "事務所にいます。",
+    "example": "ビルの五階にある事務所で新しいプロジェクトの打ち合わせをしました。 (Binoning beshinchi qavatidagi idorada yangi loyiha bo'yicha uchrashuv o'tkazdik.)",
     "level": "N4"
   },
   {
     "front": "似る",
-    "back": "To be similar",
+    "back": "O'xshamoq\nTurkum: Fe'l (Ichidan verb)",
     "phonetic": "にる - niru",
-    "example": "息子は父親に似る。",
+    "example": "彼は父親に声も顔立ちも驚くほどよく似ている。 (U otasiga ovozi ham, yuz tuzilishi ham hayratlanarli darajada o'xshaydi.)",
     "level": "N4"
   },
   {
     "front": "寺",
-    "back": "Temple",
+    "back": "Budda ibodatxonasi (Buddhist temple)\nTurkum: Ot",
     "phonetic": "てら - tera",
-    "example": "寺の隣に鬼が住む。",
+    "example": "京都で多くの歴史ある寺を訪れました。 (Kyotoda ko'plab tarixiy ibodatxonalarni ziyorat qildim.)",
     "level": "N4"
   },
   {
     "front": "辞典",
-    "back": "Dictionary",
+    "back": "ensiklopediya, lug'at\nTurkum: Ot",
     "phonetic": "じてん - jiten",
-    "example": "トムは中日辞典を買った。",
+    "example": "図書館の国語辞典で言葉の詳しい意味を調べた。 (Kutubxonadagi izohli lug'atdan so'zning batafsil ma'nosini qidirdim.)",
     "level": "N4"
   },
   {
@@ -7659,37 +6858,37 @@
   },
   {
     "front": "社会",
-    "back": "Society, public",
+    "back": "Jamiyat\nTurkum: Ot",
     "phonetic": "しゃかい - shakai",
-    "example": "暴力は社会のガンだ。",
+    "example": "学校を卒業して社会の一員として責任を持って働きます。 (Maktabni tugatgach jamiyatning to'laqonli a'zosi sifatida mas'uliyat bilan ishlayman.)",
     "level": "N4"
   },
   {
     "front": "謝る",
-    "back": "Ah, oh (To apologize)",
+    "back": "Kechirim so'ramoq, uzr aytmoq\nTurkum: Fe'l (Godan verb)",
     "phonetic": "あやまる - ayamaru",
-    "example": "謝るしかない。",
+    "example": "自分の不注意を素直に認めて相手に深く謝った。 (O'z beparvoligimni samimiy tan olib, undan uzr so'radim.)",
     "level": "N4"
   },
   {
     "front": "趣味",
-    "back": "Qiziqish, xobbi (Hobby)",
+    "back": "趣味 tushunchasi, ilmiy/amaliy atama (Shumi)",
     "phonetic": "しゅみ - shumi",
-    "example": "彼は多趣味だ。",
+    "example": "私の趣味は休日に日本の風景写真を撮ることです。 (Mening sevimli mashg'ulotim dam olish kunlari Yaponiyaning manzara suratlarini olishdir.)",
     "level": "N4"
   },
   {
     "front": "受ける",
-    "back": "To take a lesson or test",
+    "back": "Qabul qilmoq; imtihon topshirmoq\nTurkum: Ichidan fe'l",
     "phonetic": "うける - ukeru",
-    "example": "ワクチンを受けるの？",
+    "example": "来月、日本で働くための重要な就職面接を受けます。 (Kelasi oy Yaponiyada ishlash uchun muhim ishga qabul suhbatidan o'taman.)",
     "level": "N4"
   },
   {
     "front": "周り",
-    "back": "Surroundings",
+    "back": "Atrof, tevarak\nTurkum: Ot (Noun)",
     "phonetic": "まわり - mawari",
-    "example": "僕は周りを見回した。",
+    "example": "池の周りをゆっくりと散歩して春の風を感じた。 (Hovuz atrofida ohista sayr qilib bahor shabadasini his qildim.)",
     "level": "N4"
   },
   {
@@ -7708,9 +6907,9 @@
   },
   {
     "front": "集める",
-    "back": "Ah, oh (To collect something)",
+    "back": "Yig'moq, to'plamoq\nTurkum: Ichidan fe'l",
     "phonetic": "あつめる - atsumeru",
-    "example": "はがきを集める。",
+    "example": "世界各国の珍しい切手を趣味で集めています。 (Dunyo mamlakatlarining nodir markalarini qiziqishim uchun to'playman.)",
     "level": "N4"
   },
   {
@@ -7722,86 +6921,86 @@
   },
   {
     "front": "柔らかい",
-    "back": "Soft",
+    "back": "yumshoq (non/go'sht/yostiq)\nTurkum: I-sifat",
     "phonetic": "やわらかい - yawarakai",
-    "example": "体柔らかいね。",
+    "example": "焼きたてのパンは中がふわふわでとても柔らかい。 (Yangi pishgan nonning ichi g'oyat mayin va juda yumshoq.)",
     "level": "N4"
   },
   {
     "front": "柔道",
-    "back": "Judo",
+    "back": "Dzyudo\nTurkum: Ot",
     "phonetic": "じゅうどう - juudou",
-    "example": "柔道を練習しています。",
+    "example": "日本の伝統武道である柔道を毎週稽古しています。 (Yapon an'anaviy jang san'ati bo'lgan dzyudo bilan har hafta shug'ullanaman.)",
     "level": "N4"
   },
   {
     "front": "出席",
-    "back": "O'rindiq, joy (To attend)",
+    "back": "Qatnashish, hozir bo'lish\nTurkum: Ot / Suru-fe'l",
     "phonetic": "しゅっせきする - shussekisuru",
-    "example": "出席します。",
+    "example": "明日の重要な会議には必ず出席してください。 (Ertangi muhim yig'ilishga albatta qatnashing.)",
     "level": "N4"
   },
   {
     "front": "女性",
-    "back": "Woman",
+    "back": "女性 tushunchasi, ilmiy/amaliy atama (Josei)",
     "phonetic": "じょせい - josei",
-    "example": "色っぽい女性。",
+    "example": "現代の社会では多くの女性が多方面で活躍している。 (Zamonaviy jamiyatda ko'plab ayollar turli sohalarda faoliyat yuritmoqda.)",
     "level": "N4"
   },
   {
     "front": "勝つ",
-    "back": "To win",
+    "back": "G'alaba qozonmoq, yutmoq\nTurkum: Godan fe'l",
     "phonetic": "かつ - katsu",
-    "example": "戦いに勝つ。",
+    "example": "決勝戦で最後まで諦めずに戦い見事に強敵に勝ちました。 (Finalda oxirigacha kurashib kuchli raqib ustidan g'alaba qozondik.)",
     "level": "N4"
   },
   {
     "front": "召し上がる",
-    "back": "Ah, oh ((polite) to eat)",
+    "back": "tanovul qilmoq, yemoq, ichmoq (hurmat shakli)\nTurkum: verb (sonkeigo)",
     "phonetic": "めしあがる - meshiagaru",
-    "example": "さあいらっしゃい、何を召し上がるか言いたまえ。",
+    "example": "どうぞ温かいお茶とお菓子を召し上がってください。 (Marhamat, issiq choy va shirinlikdan tanovul qiling.)",
     "level": "N4"
   },
   {
     "front": "小学校",
-    "back": "Elementary school",
+    "back": "Boshlang'ich maktab",
     "phonetic": "しょうがっこう - shougakkou",
-    "example": "君、小学校に行ってるの？",
+    "example": "弟は小学校に通っています。",
     "level": "N4"
   },
   {
     "front": "小説",
-    "back": "Novel",
+    "back": "小説 tushunchasi, ilmiy/amaliy atama (Shousetsu)",
     "phonetic": "しょうせつ - shousetsu",
-    "example": "小説家になるよ。",
+    "example": "夏目漱石の有名な小説を日本語で読み通しました。 (Natsume Sosekining mashhur romanini yapon tilida to'liq o'qib chiqdim.)",
     "level": "N4"
   },
   {
     "front": "小鳥",
-    "back": "Small bird",
+    "back": "Qushcha, mayda qush\nTurkum: Ot",
     "phonetic": "ことり - kotori",
-    "example": "彼は小鳥を狙った。",
+    "example": "庭の木の上で小鳥たちが可愛らしくさえずっています。 (Bog'dagi daraxt shoxida qushchalar yoqimli sayramoqda.)",
     "level": "N4"
   },
   {
     "front": "承知",
-    "back": "Ichida, fursatida (To consent)",
+    "back": "bilish, xabardor bo'lish, qabul qilish\nTurkum: Ot / Fe'l (Suru verb)",
     "phonetic": "しょうちする - shouchisuru",
-    "example": "承知しました。",
+    "example": "ご用件は承知いたしました。すぐに対応します。 (Iltimosangizni tushundim (qabul qildim). Darhol chora ko'raman.)",
     "level": "N4"
   },
   {
     "front": "消しゴム",
-    "back": "Eraser",
+    "back": "O'chirg'ich\nTurkum: Ot",
     "phonetic": "けしゴム - keshi gomu",
-    "example": "消しゴム返してよ。",
+    "example": "鉛筆で書き間違えた漢字を消しゴムできれいに消しました。 (Qalamda adashib yozilgan kanjini o'chirg'ich bilan toza qilib o'chirdim.)",
     "level": "N4"
   },
   {
     "front": "焼く",
-    "back": "To bake, to grill",
+    "back": "pishirmoq (o'tda/tovada), qovurmoq, kuydirmoq\nTurkum: Godan fe'l",
     "phonetic": "やく - yaku",
-    "example": "やきもちを焼くなよ。",
+    "example": "朝食にトースターで香ばしいパンを焼いた。 (Nonushtaga tasterda xushbo'y non qovurdim.)",
     "level": "N4"
   },
   {
@@ -7820,58 +7019,51 @@
   },
   {
     "front": "上る",
-    "back": "Ah, oh (To rise)",
+    "back": "To ascend, to go up, to climb",
     "phonetic": "あがる - agaru",
     "example": "月は東から上る。",
     "level": "N4"
   },
   {
     "front": "乗り物",
-    "back": "Vehicle",
+    "back": "transport vositasi, miniladigan narsa\nTurkum: Ot",
     "phonetic": "のりもの - norimono",
-    "example": "乗り物は子供向けである。",
+    "example": "遊園地で一番人気のあるジェットコースターの乗り物に並んだ。 (Istirohat bog'ida eng mashhur attraksionga navbatda turdim.)",
     "level": "N4"
   },
   {
     "front": "場合",
-    "back": "Ah, oh (Situation)",
+    "back": "場合 tushunchasi, ilmiy/amaliy atama (Baai)",
     "phonetic": "ばあい - baai",
-    "example": "それは極端な場合だ。",
+    "example": "場合についての調査を進める",
     "level": "N4"
   },
   {
     "front": "畳",
-    "back": "Japanese straw mat",
+    "back": "Tatami (yapon qamish to'shamasi) (Tatami mat)\nTurkum: Ot",
     "phonetic": "たたみ - tatami",
-    "example": "傘は畳んで。",
+    "example": "和室には新しい畳のいい香りがします。 (Yaponcha xonada yangi tatamining xushbo'y hidi kelmoqda.)",
     "level": "N4"
   },
   {
     "front": "植える",
-    "back": "To plant, to grow",
+    "back": "Ekmoq, o'tqazmoq (ko'chat yoki gul)\nTurkum: Fe'l (Ichidan verb)",
     "phonetic": "うえる - ueru",
-    "example": "春は木を植える時期です。",
+    "example": "春になったら庭の花壇に色とりどりのチューリップの球根を植えます。 (Bahor kelgach hovlidagi gulzorga turli rangdagi lola piyozi ekayman.)",
     "level": "N4"
   },
   {
     "front": "食料品",
-    "back": "Groceries",
+    "back": "Oziq-ovqat mahsulotlari",
     "phonetic": "しょくりょうひん - shokuryouhin",
     "example": "食料品買わなくちゃ。",
     "level": "N4"
   },
   {
     "front": "寝坊",
-    "back": "Sleeping in late",
+    "back": "Uxlab qolish, kech uyg'onish\nTurkum: Ot / Fe'l (Noun / Suru-verb)",
     "phonetic": "ねぼう - nebou",
-    "example": "私は寝坊した。",
-    "level": "N4"
-  },
-  {
-    "front": "心",
-    "back": "Core, heart",
-    "phonetic": "こころ - kokoro",
-    "example": "目は心の鏡。",
+    "example": "目覚まし時計を止め忘れてうっかり寝坊してしまった。 (Budilnikni to'g'ri qo'yishni unutib, bexosdan uxlab qolibman.)",
     "level": "N4"
   },
   {
@@ -7883,16 +7075,16 @@
   },
   {
     "front": "深い",
-    "back": "Deep",
+    "back": "chuqur (suv/ma'no/o'rmon)\nTurkum: I-sifat",
     "phonetic": "ふかい - fukai",
-    "example": "この湖は深い。",
+    "example": "この湖は中心部が非常に深いため、遊泳は禁止されています。 (Bu ko'lning o'rtasi g'oyat chuqur bo'lgani sababli suzish taqiqlangan.)",
     "level": "N4"
   },
   {
     "front": "申し上げる",
-    "back": "Aytmoq (kamtarlik) ((humble) to say, to tell)",
+    "back": "aytmoq, bildirmoq, arz qilmoq (kamtarona shakl)\nTurkum: verb (kenjougo)",
     "phonetic": "もうしあげる - moushiageru",
-    "example": "反対申し上げるつもりは全然なかったのです。",
+    "example": "本日のご来場、心より厚く御礼申し上げます。 (Bugungi tashrifingiz uchun chin dildan cheksiz minnatdorchilik bildiraman.)",
     "level": "N4"
   },
   {
@@ -7911,16 +7103,16 @@
   },
   {
     "front": "尋ねる",
-    "back": "To ask",
+    "back": "So'ramoq, savol bermoq\nTurkum: Fe'l (Ichidan verb)",
     "phonetic": "たずねる - tazuneru",
-    "example": "尋ねるだけの価値がある。",
+    "example": "道に迷ったので近くの人に駅への道を尋ねた。 (Yo'ldan adashganim sababli yaqin atrofdagi odamdan stansiya yo'lini so'radim.)",
     "level": "N4"
   },
   {
     "front": "数学",
-    "back": "Mathematics, arithmetic",
+    "back": "数学 tushunchasi, ilmiy/amaliy atama (Suugaku)",
     "phonetic": "すうがく - suugaku",
-    "example": "数学はムズイ。",
+    "example": "論理的な思考力を鍛えるために数学の問題を解く。 (Mantiqiy fikrlash qobiliyatini rivojlantirish uchun matematika masalalarini yechaman.)",
     "level": "N4"
   },
   {
@@ -7939,9 +7131,9 @@
   },
   {
     "front": "昔",
-    "back": "Qadim zamon, o'tmish (Olden days, former)",
+    "back": "Qadim zamon, oldin, o'tmish (Old times, the past)\nTurkum: Ot",
     "phonetic": "むかし - mukashi",
-    "example": "昔はよくした。",
+    "example": "昔はこの地域にもたくさんの田んぼがありました。 (Qadimda bu hududda ham ko'plab sholizorlar bo'lgan.)",
     "level": "N4"
   },
   {
@@ -7960,51 +7152,51 @@
   },
   {
     "front": "折る",
-    "back": "To break or to fold",
+    "back": "Sinmoq, bukmoq (qog'oz yoki shoxni)\nTurkum: Fe'l (Godan verb)",
     "phonetic": "おる - oru",
-    "example": "木を折るな。",
+    "example": "色紙を丁寧に折って綺麗な折り鶴を作りました。 (Rangli qog'ozni ehtiyotkorlik bilan bukib chiroyli turna qushini yasadim.)",
     "level": "N4"
   },
   {
     "front": "折れる",
-    "back": "To break or be folded",
+    "back": "Sinmoq, bukilmoq\nTurkum: Ichidan fe'l",
     "phonetic": "おれる - oreru",
-    "example": "折れるより曲がれ。",
+    "example": "強い台風の風で庭の木の太い枝がポキリと折れてしまいました。 (Kuchli tayfun shamolida hovlidagi daraxtning yo'g'on shoxi sinib tushdi.)",
     "level": "N4"
   },
   {
     "front": "先輩",
-    "back": "Katta kursdosh, tajribali hamkasb (Senior)",
+    "back": "Katta kursdoshi, tajribali hamkasb (senpay)\nTurkum: Ot (Noun)",
     "phonetic": "せんぱい - senpai",
-    "example": "トムは高校の先輩です。",
+    "example": "親切な先輩が仕事のコツを優しく教えてくれました。 (Mehribon senpai menga ishning nozik jihatlarini erinmay tushuntirib berdi.)",
     "level": "N4"
   },
   {
     "front": "浅い",
-    "back": "Ah, oh (Shallow, superficial)",
+    "back": "Sayoz, yuzaki\nTurkum: I-sifat (I-adj)",
     "phonetic": "あさい - asai",
-    "example": "眠りが浅いんだ。",
+    "example": "この川は水深が浅いので子どもでも安心して遊べる。 (Bu daryoning suvi sayoz bo'lgani uchun bolalar ham xavfsiz o'ynay oladi.)",
     "level": "N4"
   },
   {
     "front": "選ぶ",
-    "back": "To choose",
+    "back": "Tanlamoq, saylamoq\nTurkum: Godan fe'l",
     "phonetic": "えらぶ - erabu",
-    "example": "金を選ぶべきだった。",
+    "example": "たくさんの選択肢の中から自分の夢に最も近い進路を選びました。 (Ko'plab yo'llar orasidan orzularimga eng yaqin bo'lgan yo'nalishni tanladim.)",
     "level": "N4"
   },
   {
     "front": "祖父",
-    "back": "Grandfather",
+    "back": "祖父 tushunchasi, ilmiy/amaliy atama (Sofu)",
     "phonetic": "そふ - sofu",
-    "example": "彼は祖父似だ。",
+    "example": "私の祖父は毎朝早起きして散歩をするのが日課です。 (Mening bobom har kuni erta tongda turib sayr qilishni odat qilgan.)",
     "level": "N4"
   },
   {
     "front": "祖母",
-    "back": "Grandmother",
+    "back": "Buvi (o'ziniki)\nTurkum: Ot",
     "phonetic": "そぼ - sobo",
-    "example": "祖母はゆっくり話す。",
+    "example": "私の祖母は手先が器用で美味しいお菓子を作ってくれます。 (Mening buvim qo'li shirin inson bo'lib mazali shirinliklar tayyorlab beradi.)",
     "level": "N4"
   },
   {
@@ -8016,65 +7208,65 @@
   },
   {
     "front": "草",
-    "back": "Grass",
+    "back": "O't, o'lan, maysa (Grass, weed)\nTurkum: Ot",
     "phonetic": "くさ - kusa",
-    "example": "草草の草ァ！",
+    "example": "庭の草を一本ずつ抜きました。 (Bog'dagi begona o'tlarni bittalab yuldim.)",
     "level": "N4"
   },
   {
     "front": "騒ぐ",
-    "back": "To make noise, to be excited",
+    "back": "shovqin solmoq, to'polon qilmoq\nTurkum: Godan fe'l",
     "phonetic": "さわぐ - sawagu",
-    "example": "そんなに騒ぐな。",
+    "example": "図書館の中では大声で騒いではいけません。 (Kutubxona ichida baland ovozda shovqin solmaslik kerak.)",
     "level": "N4"
   },
   {
     "front": "贈り物",
-    "back": "Gift",
+    "back": "sovg'a, tuhfa\nTurkum: Ot",
     "phonetic": "おくりもの - okurimono",
-    "example": "贈り物があります。",
+    "example": "感謝の気持ちを込めて心のこもった贈り物を渡した。 (Minnatdorchilik bilan chin yurakdan sovg'a taqdim etdim.)",
     "level": "N4"
   },
   {
     "front": "息子",
-    "back": "O'g'il farzand ((humble) son)",
+    "back": "O'g'il farzand\nTurkum: Ot (Noun)",
     "phonetic": "むすこ - musuko",
-    "example": "私の息子です。",
+    "example": "私の息子は大学でロボット工学の勉強に夢中になっています。 (Mening o'g'lim universitetda robototexnika sohasini ishtiyoq bilan o'rganmoqda.)",
     "level": "N4"
   },
   {
     "front": "続く",
-    "back": "To be continued",
+    "back": "davom etmoq\nTurkum: Godan fe'l",
     "phonetic": "つづく - tsuzuku",
-    "example": "最近は寒い日が続く。",
+    "example": "今週はずっと晴天が続いている。 (Bu hafta davomida doim ochiq havo davom etmoqda.)",
     "level": "N4"
   },
   {
     "front": "太る",
-    "back": "Semirmoq (To become fat)",
+    "back": "semirmoq, to'lishmoq\nTurkum: Godan fe'l",
     "phonetic": "ふとる - futoru",
-    "example": "食べ過ぎると太る。",
+    "example": "運動不足で最近少し太ってしまった。 (Kamharakatlik tufayli yaqinda biroz semirib ketdim.)",
     "level": "N4"
   },
   {
     "front": "打つ",
-    "back": "To hit",
+    "back": "Urmoq, zarba bermoq, terish\nTurkum: Godan fe'l",
     "phonetic": "うつ - utsu",
-    "example": "打つ手がないね。",
+    "example": "パソコンのキーボードを素早く打って長いメールを書き上げました。 (Kompyuter klaviaturasida tez yozib uzun elektron xatni tayyorladim.)",
     "level": "N4"
   },
   {
     "front": "代わり",
-    "back": "Substitute, alternate",
+    "back": "O'rniga, evaziga\nTurkum: Ot",
     "phonetic": "かわり - kawari",
-    "example": "担当者と代わります。",
+    "example": "風邪を引いた同僚の代わりに急遽プレゼンテーションを行いました。 (Shamollagan hamkasbim o'rniga zudlik bilan taqdimotni men o'tkazdim.)",
     "level": "N4"
   },
   {
     "front": "大学生",
-    "back": "University student",
+    "back": "Talaba (universitet talabasi)\nTurkum: Ot",
     "phonetic": "だいがくせい - daigakusei",
-    "example": "大学生です。",
+    "example": "大学生になってから一人暮らしを始めて自立した生活を送っています。 (Talaba bo'lganimdan keyin yolg'iz yashashni boshlab mustaqil hayot kechirmoqdaman.)",
     "level": "N4"
   },
   {
@@ -8086,30 +7278,30 @@
   },
   {
     "front": "大分",
-    "back": "Greatly",
+    "back": "ancha, ancha-muncha\nTurkum: adverb",
     "phonetic": "だいぶ - daibu",
-    "example": "今日は大分暖かいね。",
+    "example": "薬のおかげで熱も大分下がってきた。 (Dori sababli isitma ham ancha pasayib qoldi.)",
     "level": "N4"
   },
   {
     "front": "棚",
-    "back": "Javon, tokcha (Shelves)",
+    "back": "Javon, tokcha (Shelf, rack)\nTurkum: Ot",
     "phonetic": "たな - tana",
-    "example": "棚は空っぽです。",
+    "example": "本棚の一番上の棚に辞書を置きました。 (Kitob javonining eng yuqori tokchasiga lug'atni qo'ydim.)",
     "level": "N4"
   },
   {
     "front": "男性",
-    "back": "Erkak kishi (Male)",
+    "back": "Erkak kishi\nTurkum: Ot",
     "phonetic": "だんせい - dansei",
-    "example": "男性より女性が先。",
+    "example": "親切な男性が重い荷物を持つ手を貸してくれました。 (Oqko'ngil bir erkak kishi og'ir yukimni ko'tarishda yordamlashdi.)",
     "level": "N4"
   },
   {
     "front": "恥ずかしい",
     "back": "Uyalgan, xijolatli (Embarrassed)",
     "phonetic": "はずかしい - hazukashii",
-    "example": "恥ずかしいなぁ！",
+    "example": "ちょっと恥ずかしいです。",
     "level": "N4"
   },
   {
@@ -8121,16 +7313,16 @@
   },
   {
     "front": "遅れる",
-    "back": "To be late",
+    "back": "Kechikmoq, kech qolmoq\nTurkum: Fe'l (Ichidan verb)",
     "phonetic": "おくれる - okureru",
-    "example": "遅れるなよ。",
+    "example": "事故による電車の遅延で大事な授業に十分遅れてしまいました。 (Poyezd to'xtab qolgani sababli muhim darsga o'n daqiqa kechikib qoldim.)",
     "level": "N4"
   },
   {
     "front": "着物",
-    "back": "Kimono, milliy yapon kiyimi (Kimono)",
+    "back": "Kimono (milliy yapon libosi)\nTurkum: Ot",
     "phonetic": "きもの - kimono",
-    "example": "着物は着ますか。",
+    "example": "お正月には色鮮やかな着物を着て神社へお参りします。 (Yangi yilda yorqin rangli kimono kiyib ziyoratgohga boramiz.)",
     "level": "N4"
   },
   {
@@ -8144,14 +7336,14 @@
     "front": "中学校",
     "back": "Junior high school, middle school",
     "phonetic": "ちゅうがっこう - chuugakkou",
-    "example": "彼は中学校に入った。",
+    "example": "弟は中学校に通っています。",
     "level": "N4"
   },
   {
     "front": "昼間",
-    "back": "Kunduzi (Daytime, during the day)",
+    "back": "Kunduzi, kunduz kuni\nTurkum: Ot (Noun)",
     "phonetic": "ひるま - hiruma",
-    "example": "太陽は昼間輝く。",
+    "example": "昼間は日差しが暖かくて春のような陽気だった。 (Kunduzi quyosh ilitib, bahordek iliq havo bo'ldi.)",
     "level": "N4"
   },
   {
@@ -8177,23 +7369,23 @@
   },
   {
     "front": "駐車場",
-    "back": "Inyeksiya, ukol (Parking lot)",
+    "back": "駐車場 tushunchasi, ilmiy/amaliy atama (Chuushajou)",
     "phonetic": "ちゅうしゃじょう - chuushajou",
-    "example": "駐車場はある？",
+    "example": "スーパーの地下駐車場に車を停めて買い物をした。 (Supermarketning yerosti avtoturargohiga mashinani qo'yib xarid qildim.)",
     "level": "N4"
   },
   {
     "front": "直る",
-    "back": "To be fixed, to be repaired",
+    "back": "tuzalmoq, o'nglanmoq (buyum/buzilish)\nTurkum: Godan fe'l",
     "phonetic": "なおる - naoru",
-    "example": "すぐに立ち直るよね！",
+    "example": "壊れていた時計がやっと直った。 (Buzilib qolgan soat nihoyat tuzaldi.)",
     "level": "N4"
   },
   {
     "front": "通る",
-    "back": "To go through",
+    "back": "o'tmoq, qatnamoq\nTurkum: Godan fe'l",
     "phonetic": "とおる - tooru",
-    "example": "この橋を通るな。",
+    "example": "この道路は大型トラックがよく通る。 (Bu yo'ldan katta yuk mashinalari tez-tez o'tadi.)",
     "level": "N4"
   },
   {
@@ -8205,7 +7397,7 @@
   },
   {
     "front": "釣る",
-    "back": "To fish",
+    "back": "Baliq tutmoq",
     "phonetic": "つる - tsuru",
     "example": "海老で鯛を釣る。",
     "level": "N4"
@@ -8221,28 +7413,28 @@
     "front": "展覧会",
     "back": "Ko'rgazma (Exhibition)",
     "phonetic": "てんらんかい - tenrankai",
-    "example": "展覧会は現在開催中です。",
+    "example": "美術館で開かれている近代絵画の展覧会を見に行った。 (Muzeyda o'tkazilayotgan zamonaviy rasmlar ko'rgazmasini tomosha qilishga bordim.)",
     "level": "N4"
   },
   {
     "front": "店員",
-    "back": "Shop assistant",
+    "back": "店員 tushunchasi, ilmiy/amaliy atama (Tenin)",
     "phonetic": "てんいん - ten'in",
-    "example": "彼は店員に金を渡した。",
+    "example": "店員さんにサイズがあるか尋ねたら、奥から持ってきてくれた。 (Sotuvchidan o'lcham bor-yo'qligini so'rasam, ichkaridan olib chiqib berdi.)",
     "level": "N4"
   },
   {
     "front": "点",
-    "back": "Point, dot",
+    "back": "Nuqta, ball, ochko (Point, score)\nTurkum: Ot",
     "phonetic": "てん - ten",
-    "example": "論点がわかる。",
+    "example": "日本語のテストで満点を取ることができました。 (Yapon tili testidan eng yuqori ballni olishga muvaffaq bo'ldim.)",
     "level": "N4"
   },
   {
     "front": "田舎",
-    "back": "Countryside",
+    "back": "Qishloq, chekka joy, qishloqjoy\nTurkum: Ot",
     "phonetic": "いなか - inaka",
-    "example": "田舎育ちです。",
+    "example": "静かな田舎で自然に囲まれて暮らしたい。 (Sokin qishloqda tabiat qo'ynida yashashni istayman.)",
     "level": "N4"
   },
   {
@@ -8261,58 +7453,51 @@
   },
   {
     "front": "途中",
-    "back": "Yo'l o'rtasida, chala (On the way)",
+    "back": "Yo'l ustida, o'rtasida, davomida\nTurkum: Ot (Noun)",
     "phonetic": "とちゅう - tochuu",
-    "example": "家に帰る途中なの？",
+    "example": "学校へ行く途中のコンビニでパンを買いました。 (Maktabga borish yo'lidagi qulay do'kondan non xarid qildim.)",
     "level": "N4"
   },
   {
     "front": "湯",
-    "back": "Hot water",
+    "back": "Qaynoq suv, issiq vanna suvi (Hot water, bath)\nTurkum: Ot",
     "phonetic": "ゆ - yu",
-    "example": "いい湯だなあ。",
+    "example": "疲れた体を温かいお湯に浸かって癒やしました。 (Charchagan vujudimni issiq suvga botirib orom oldirdim.)",
     "level": "N4"
   },
   {
     "front": "踏む",
-    "back": "Bosmoq (oyoq bilan) (To step on)",
+    "back": "bosmoq (oyoq bilan)\nTurkum: Godan fe'l",
     "phonetic": "ふむ - fumu",
-    "example": "割れたガラスを踏むな。",
+    "example": "満員電車の中でうっかり人の足を踏んでしまった。 (Liq to'la poyezdda bilmasdan birovning oyog'ini bosib oldim.)",
     "level": "N4"
   },
   {
     "front": "動物園",
-    "back": "Zoo",
+    "back": "hayvonot bog'i\nTurkum: Ot",
     "phonetic": "どうぶつえん - doubutsuen",
-    "example": "動物園に行こう。",
+    "example": "休日に子供たちを連れて上野動物園へパンダを見に行った。 (Dam olish kunida bolalarimni ergashtirib Ueno hayvonot bog'iga pandani ko'rishga bordim.)",
     "level": "N4"
   },
   {
     "front": "特急",
     "back": "Tezyurar ekspress poyezd (Limited express train (faster than an express train))",
     "phonetic": "とっきゅう - tokkyuu",
-    "example": "特急のホームは何番ですか。",
+    "example": "特急電車を利用すると目的地まで一時間で行けます。 (Ekspress poyezddan foydalansangiz manzilgacha bir soatda yetib olasiz.)",
     "level": "N4"
   },
   {
     "front": "二階建て",
-    "back": "Two storied",
+    "back": "ikki qavatli bino / uy\nTurkum: noun",
     "phonetic": "にかいだて - nikaidate",
-    "example": "",
-    "level": "N4"
-  },
-  {
-    "front": "日",
-    "back": "Day, sun",
-    "phonetic": "ひ - hi",
-    "example": "本日定休日。",
+    "example": "庭付きの二階建ての家に引っ越した。 (Hovlisi bor ikki qavatli uyga ko'chib o'tdik.)",
     "level": "N4"
   },
   {
     "front": "日記",
-    "back": "Kundalik daftar (Journal)",
+    "back": "Kundalik (shaxsiy daftar)\nTurkum: Ot",
     "phonetic": "にっき - nikki",
-    "example": "日記をつける。",
+    "example": "日本語の表現力を高めるために毎日短い日記をつけています。 (Yaponcha ifoda qobiliyatimni o'stirish uchun har kuni qisqa kundalik yozib boraman.)",
     "level": "N4"
   },
   {
@@ -8324,37 +7509,37 @@
   },
   {
     "front": "拝見",
-    "back": "(humble) to look at",
+    "back": "(hum) (pol) seeing, look at",
     "phonetic": "はいけんする - haikensuru",
     "example": "搭乗券を拝見します。",
     "level": "N4"
   },
   {
     "front": "背中",
-    "back": "Back of the body",
+    "back": "Orqa, orqa tomon, kurak\nTurkum: Ot",
     "phonetic": "せなか - senaka",
-    "example": "背中が痛い。",
+    "example": "荷物が重すぎて背中や腰が痛くなってしまいました。 (Yuk haddan tashqari og'ir bo'lgani uchun belim va kuragim og'rib qoldi.)",
     "level": "N4"
   },
   {
     "front": "倍",
-    "back": "Double",
+    "back": "...barobar, marta ko'p (Times, -fold)\nTurkum: Ot / Qo'shimcha",
     "phonetic": "ばい - bai",
-    "example": "二の二倍は四。",
+    "example": "去年に比べて売り上げが二倍に増えました。 (O'tgan yilga nisbatan sotuv ikki barobar oshdi.)",
     "level": "N4"
   },
   {
     "front": "売り場",
-    "back": "Place where things are sold",
+    "back": "savdo bo'limi, rasta\nTurkum: Ot",
     "phonetic": "うりば - uriba",
-    "example": "切符売り場はどこですか。",
+    "example": "デパートの地下一階にある食品売り場でお惣菜を買った。 (Supermarketning yerosti birinchi qavatidagi oziq-ovqat bo'limidan tayyor taomlar oldim.)",
     "level": "N4"
   },
   {
     "front": "彼",
-    "back": "He, boyfriend",
+    "back": "Yigit, sevgilisi",
     "phonetic": "かれ - kare",
-    "example": "彼女は歩く。",
+    "example": "彼に会いたいです。",
     "level": "N4"
   },
   {
@@ -8368,21 +7553,21 @@
     "front": "彼女",
     "back": "She, girlfriend",
     "phonetic": "かのじょ - kanojo",
-    "example": "彼女は歩く。",
+    "example": "彼女に会いたいです。",
     "level": "N4"
   },
   {
     "front": "悲しい",
-    "back": "Sad",
+    "back": "悲しい tushunchasi, ilmiy/amaliy atama (Kanashii)",
     "phonetic": "かなしい - kanashii",
-    "example": "悲しいです。",
+    "example": "長年一緒に暮らしたペットが亡くなってとても悲しい。 (Ko'p yillar birga yashagan uy hayvonim nobud bo'lib, juda g'amgin bo'ldim.)",
     "level": "N4"
   },
   {
     "front": "非常に",
-    "back": "Extremely",
+    "back": "o'ta, nihoyatda, g'oyatda\nTurkum: Ravish",
     "phonetic": "ひじょうに - hijouni",
-    "example": "彼は非常に親切だ。",
+    "example": "この最新の翻訳AIツールは非常に役に立ちます。 (Ushbu eng so'nggi sun'iy intellektli tarjima vositasi nihoyatda foydalidir.)",
     "level": "N4"
   },
   {
@@ -8401,16 +7586,16 @@
   },
   {
     "front": "美術館",
-    "back": "Art gallery",
+    "back": "san'at muzeyi / galereyasi\nTurkum: noun",
     "phonetic": "びじゅつかん - bijutsukan",
-    "example": "俺たちは美術館に行った。",
+    "example": "週末に美術館で印象派の絵画を鑑賞した。 (Dam olish kunida san'at muzeyida impressionizm rasmlarini tomosha qildim.)",
     "level": "N4"
   },
   {
     "front": "付く",
-    "back": "To be attached",
+    "back": "yopishmoq, birikmoq, qo'shilmoq\nTurkum: Godan fe'l",
     "phonetic": "つく - tsuku",
-    "example": "彼女の水着は目に付く。",
+    "example": "白いシャツにケチャップのシミが付いた。 (Oq ko'ylakka ketchup dog'i tushib qoldi.)",
     "level": "N4"
   },
   {
@@ -8422,23 +7607,23 @@
   },
   {
     "front": "布団",
-    "back": "Japanese bedding, futon",
+    "back": "Futon (yapon an'anaviy to'shagi)\nTurkum: Ot",
     "phonetic": "ふとん - futon",
-    "example": "布団干しといて。",
+    "example": "天気の良い日に布団をベランダに干してふかふかにしました。 (Ochiq havoda to'shakni balkonga yoyib yumshoq qilib oldim.)",
     "level": "N4"
   },
   {
     "front": "怖い",
-    "back": "Frightening",
+    "back": "Qo'rqinchli, vahimali\nTurkum: I-sifat (I-adj)",
     "phonetic": "こわい - kowai",
-    "example": "まだ怖いの？",
+    "example": "夜遅くに暗い路地を一人で歩くのはとても怖い。 (Tunda qorong'i tor ko'chada yolg'iz yurish juda qo'rqinchli.)",
     "level": "N4"
   },
   {
     "front": "負ける",
-    "back": "To lose",
+    "back": "yutqazmoq, mag'lub bo'lmoq; narxini arzonlatmoq\nTurkum: Ichidan fe'l",
     "phonetic": "まける - makeru",
-    "example": "負けるが勝ち。",
+    "example": "決勝戦で惜しくもライバルチームに負けた。 (Final bahsida afsuski ashaddiy raqib jamoaga mag'lub bo'ldik.)",
     "level": "N4"
   },
   {
@@ -8457,16 +7642,16 @@
   },
   {
     "front": "変える",
-    "back": "To change",
+    "back": "O'zgartirmoq (reja, odat)\nTurkum: Ichidan fe'l",
     "phonetic": "かえる - kaeru",
-    "example": "熱は氷を水に変える。",
+    "example": "健康のために毎日の食生活を野菜中心に変えました。 (Salomatlik uchun har kungi taomlanish tartibimni sabzavotlarga boy qilib o'zgartirdim.)",
     "level": "N4"
   },
   {
     "front": "変わる",
-    "back": "To change",
+    "back": "O'zgarmoq, yangilanmoq\nTurkum: Godan fe'l",
     "phonetic": "かわる - kawaru",
-    "example": "水は蒸気に変わる。",
+    "example": "季節が変わると山の木々の色も赤や黄色に変わります。 (Fasl o'zgarganda tog' daraxtlarining rangi ham qizil va sariqqa aylanadi.)",
     "level": "N4"
   },
   {
@@ -8478,23 +7663,23 @@
   },
   {
     "front": "包む",
-    "back": "To wrap",
+    "back": "O'ramoq, qadoqlamoq (sovg'ani)\nTurkum: Fe'l (Godan verb)",
     "phonetic": "つつむ - tsutsumu",
-    "example": "包む必要はありません。",
+    "example": "大切なプレゼントを綺麗な包装紙で丁寧に包んだ。 (Qimmatli sovg'ani chiroyli qadoq qog'ozi bilan ehtiyotkorlik bilan o'radim.)",
     "level": "N4"
   },
   {
     "front": "放送",
-    "back": "Yolg'on (To broadcast)",
+    "back": "Efirga uzatish, radio/teleeshittirish\nTurkum: Ot / Suru-fe'l",
     "phonetic": "ほうそうする - housousuru",
-    "example": "絶賛放送中！",
+    "example": "校内放送で次の授業の教室変更がアナウンスされました。 (Maktab radiosi orqali keyingi dars xonasi o'zgargani e'lon qilindi.)",
     "level": "N4"
   },
   {
     "front": "僕",
-    "back": "Men (erkaklar tilida) (I (used by males))",
+    "back": "Men (erkaklar norasmiy) (I, me - male informal)\nTurkum: Olmosh",
     "phonetic": "ぼく - boku",
-    "example": "僕は忙しい。",
+    "example": "僕は将来、日本でエンジニアとして働きたいです。 (Men kelajakda Yaponiyada muhandis bo'lib ishlashni xohlayman.)",
     "level": "N4"
   },
   {
@@ -8513,9 +7698,9 @@
   },
   {
     "front": "眠る",
-    "back": "To sleep",
+    "back": "Uxlamaq, chuqur uyquda bo'lmoq\nTurkum: Fe'l (Godan verb)",
     "phonetic": "ねむる - nemuru",
-    "example": "私と友に眠る。",
+    "example": "疲れていたのでベッドに入るとすぐに深く眠りについた。 (Charchaganim sababli yotoqqa yotishim bilan chuqur uyquga ketdim.)",
     "level": "N4"
   },
   {
@@ -8527,37 +7712,37 @@
   },
   {
     "front": "娘",
-    "back": "Qiz farzand ((humble) daughter)",
+    "back": "Qiz (farzand) (Daughter)\nTurkum: Ot",
     "phonetic": "むすめ - musume",
-    "example": "猫娘は好き。",
+    "example": "私の娘は来年四月に小学生になります。 (Mening qizim kelasi yil aprelda maktab o'quvchisi bo'ladi.)",
     "level": "N4"
   },
   {
     "front": "明日",
-    "back": "Ah, oh (Tomorrow)",
+    "back": "ertaga (rasmiy nutq ohangida)\nTurkum: Ot / Ravish",
     "phonetic": "あす - asu",
-    "example": "明日来れる？",
+    "example": "あすの午前十時に貴社へお伺いいたします。 (Ertaga ertalab soat o'nda sizning korxonangizga tashrif buyuraman.)",
     "level": "N4"
   },
   {
     "front": "鳴る",
-    "back": "To sound",
+    "back": "Chalinmoq, jaranglamoq (telefon, qo'ng'iroq)\nTurkum: Fe'l (Godan verb)",
     "phonetic": "なる - naru",
-    "example": "怒鳴るなよ。",
+    "example": "静かな部屋で突然電話の呼び出し音が鳴り響いた。 (Sokin xonada birdaniga telefon qo'ng'irog'i jaranglab ketdi.)",
     "level": "N4"
   },
   {
     "front": "毛",
-    "back": "Hair or fur",
+    "back": "tuk, soch, jun\nTurkum: Ot",
     "phonetic": "け - ke",
-    "example": "はい、毛布。",
+    "example": "セーターに猫の毛がたくさん付いてしまった。 (Sviterga mushukning juni ko'p yopishib qolibdi.)",
     "level": "N4"
   },
   {
     "front": "戻る",
-    "back": "Qaytmoq (To turn back)",
+    "back": "qaytmoq, o'z o'rniga qaytib kelmoq\nTurkum: Godan fe'l",
     "phonetic": "もどる - modoru",
-    "example": "すぐに戻るよ。",
+    "example": "会議が終わったらすぐに事務所に戻ります。 (Majlis tugagach, darhol ofisga qaytaman.)",
     "level": "N4"
   },
   {
@@ -8569,44 +7754,44 @@
   },
   {
     "front": "優しい",
-    "back": "Mehribon, muloyim (Kind)",
+    "back": "mehribon, shirinso'z, g'amxo'r\nTurkum: I-sifat",
     "phonetic": "やさしい - yasashii",
-    "example": "優しい人です。",
+    "example": "先生は質問に対していつも優しく丁寧に教えてくれる。 (Ustoz savollarga har doim mehribonlik va bosiqlik bilan tushuntirib beradi.)",
     "level": "N4"
   },
   {
     "front": "遊び",
     "back": "Ah, oh (Play)",
     "phonetic": "あそび - asobi",
-    "example": "遊びましょう。",
+    "example": "子どもたちは遊びが好きです。",
     "level": "N4"
   },
   {
     "front": "揺れる",
-    "back": "Tebranmoq, chayqalmoq (To shake, to sway)",
+    "back": "silkinmoq, chayqalmoq, tebranmoq\nTurkum: Ichidan fe'l",
     "phonetic": "ゆれる - yureru",
-    "example": "家が揺れるのを感じた。",
+    "example": "地震で部屋の照明器具が左右に大きく揺れた。 (Zilzilada xonadagi qandil ikki tomonga qattiq chayqaldi.)",
     "level": "N4"
   },
   {
     "front": "用意",
-    "back": "Tayyorgarlik (Preparation)",
+    "back": "Hozirlik, tayyorgarlik ko'rish\nTurkum: Ot / Suru-fe'l",
     "phonetic": "ようい - youi",
-    "example": "早く用意して。",
+    "example": "明日の試験に必要な筆記用具を前もって用意しておきます。 (Ertangi imtihon uchun kerak bo'ladigan yozuv qurollarini oldindan tayyorlab qo'yaman.)",
     "level": "N4"
   },
   {
     "front": "用事",
     "back": "Yumush, zarur ish (Things to do)",
     "phonetic": "ようじ - youji",
-    "example": "今日用事あるの？",
+    "example": "今日は午後に銀行と郵便局へ行く用事があります。 (Bugun tushdan keyin bank va pochtaga boradigan zarur yumushlarim bor.)",
     "level": "N4"
   },
   {
     "front": "葉",
-    "back": "Leaf",
+    "back": "Barg, yaproq (Leaf)\nTurkum: Ot",
     "phonetic": "は - ha",
-    "example": "葉が落ちた。",
+    "example": "秋になると木々の葉が赤や黄色に変わります。 (Kuz kelganda daraxt barglari qizil va sariq rangga aylanadi.)",
     "level": "N4"
   },
   {
@@ -8618,9 +7803,9 @@
   },
   {
     "front": "踊る",
-    "back": "To dance",
+    "back": "Raqsga tushmoq\nTurkum: Godan fe'l",
     "phonetic": "おどる - odoru",
-    "example": "踊るのが大っ嫌い。",
+    "example": "夏祭りの夜にやぐらの周りでみんなと一緒に盆踊りを踊りました。 (Yozgi festival oqshomida hamma bilan birgalikda bon raqsiga tushdim.)",
     "level": "N4"
   },
   {
@@ -8646,30 +7831,30 @@
   },
   {
     "front": "旅館",
-    "back": "Japanese hotel",
+    "back": "Ryokan (an'anaviy yapon mehmonxonasi)\nTurkum: Ot (Noun)",
     "phonetic": "りょかん - ryokan",
-    "example": "あの旅館は家庭的だ。",
+    "example": "温泉街の老舗旅館に泊まって伝統的なおもてなしを満喫した。 (Issiq buloqlar shaharchasidagi an'anaviy ryokanda tunab yaponcha mehmondo'stlikdan bahramand bo'ldim.)",
     "level": "N4"
   },
   {
     "front": "両方",
-    "back": "Both sides",
+    "back": "Ikkala tomon, har ikkisi\nTurkum: Ot",
     "phonetic": "りょうほう - ryouhou",
-    "example": "両方好きよ。",
+    "example": "日本語の読む力と話す力の両方をバランスよく鍛えます。 (Yapon tilida o'qish va so'zlashish qobiliyatlarining ikkalasini ham teng ravishda rivojlantiraman.)",
     "level": "N4"
   },
   {
     "front": "連れる",
-    "back": "O'zi bilan olib bormoq (To lead)",
+    "back": "ergashtirmoq, olib bormoq/kelmoq (odam/jonivorni)\nTurkum: Ichidan fe'l",
     "phonetic": "つれる - tsureru",
-    "example": "",
+    "example": "妹を連れて近所の遊園地に遊びに行った。 (Singlimni ergashtirib yaqin atrofdagi istirohat bog'iga aylangani bordik.)",
     "level": "N4"
   },
   {
     "front": "腕",
-    "back": "Arm",
+    "back": "Qo'l, bilak, mahorat (Arm, skill)\nTurkum: Ot",
     "phonetic": "うで - ude",
-    "example": "腕を放して。",
+    "example": "彼は料理の腕がとても優れています。 (Uning pazandalik mahorati juda yuqori.)",
     "level": "N4"
   }
 ]

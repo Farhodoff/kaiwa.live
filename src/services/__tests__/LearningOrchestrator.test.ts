@@ -287,4 +287,60 @@ describe('LearningOrchestrator Foundation Unit Tests', () => {
     expect(summary.recentMistakeTopics.length).toBeGreaterThan(0);
     expect(activity.lastCompletedLessonId).toBe('en-b2-u1-l1');
   });
+
+  it('14. should deduplicate cards by front in getReviewSummary so duplicate cards across decks do not distort SRS metrics', () => {
+    const userId = 'srs_dedup_user';
+    const subjectId = 'sub-ja-1';
+
+    localStorage.setItem(
+      'study_planner_subjects_cache_' + userId,
+      JSON.stringify([{ id: subjectId, name: 'JLPT N5 Words', language: 'ja' }]),
+    );
+
+    // Two cards for '病院': one studied (interval 10, reps 3), one unstudied duplicate (interval 0, reps 0)
+    // Plus one card for '猫'
+    const cards = [
+      {
+        id: 'c1',
+        subjectId,
+        front: '病院',
+        back: 'Kasalxona',
+        repetitions: 3,
+        interval: 10,
+        easeFactor: 2.5,
+        nextReviewDate: new Date('2026-10-30T00:00:00Z').toISOString(),
+      },
+      {
+        id: 'c2',
+        subjectId,
+        front: '病院',
+        back: 'Kasalxona',
+        repetitions: 0,
+        interval: 0,
+        easeFactor: 2.5,
+        nextReviewDate: new Date('2026-10-01T00:00:00Z').toISOString(),
+      },
+      {
+        id: 'c3',
+        subjectId,
+        front: '猫',
+        back: 'Mushuk',
+        repetitions: 1,
+        interval: 3,
+        easeFactor: 2.5,
+        nextReviewDate: new Date('2026-10-25T00:00:00Z').toISOString(),
+      },
+    ];
+
+    localStorage.setItem('study_planner_flashcards_cache_' + userId, JSON.stringify(cards));
+
+    const subjects = [
+      { id: subjectId, name: 'JLPT N5 Words', language: 'ja' },
+    ] as unknown as Subject[];
+    const summary = LearningOrchestrator.getReviewSummary(userId, cards, 'ja', subjects);
+    // totalCards should be 2 unique words (病院 and 猫), not 3!
+    expect(summary.totalCards).toBe(2);
+    expect(summary.learnedCount).toBe(2); // Both unique words have mature representation
+    expect(summary.newCount).toBe(0);
+  });
 });

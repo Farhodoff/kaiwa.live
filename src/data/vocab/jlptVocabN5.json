@@ -37,13 +37,18 @@
     "word": "彼",
     "reading": "かれ",
     "romaji": "kare",
-    "meaningUz": "U (erkak kishi)",
+    "meaningUz": "Yigit, sevgilisi",
     "partOfSpeech": "Olmosh",
     "examples": [
       {
-        "ja": "彼は日本語の先生です。",
-        "romaji": "Kare wa nihongo no sensei desu.",
-        "uz": "U yapon tili o'qituvchisi."
+        "ja": "彼女は歩く。",
+        "romaji": "kanojo ha aruku .",
+        "uz": "She walks."
+      },
+      {
+        "ja": "彼を見張れ。",
+        "romaji": "kare wo mihare .",
+        "uz": "Keep watch on him."
       }
     ]
   },
@@ -57,9 +62,14 @@
     "partOfSpeech": "Olmosh",
     "examples": [
       {
-        "ja": "彼女は親切な人です。",
-        "romaji": "Kanojo wa shinsetsu na hito desu.",
-        "uz": "U juda mehribon inson."
+        "ja": "彼女は歩く。",
+        "romaji": "kanojo ha aruku .",
+        "uz": "She walks."
+      },
+      {
+        "ja": "彼女は元気？",
+        "romaji": "kanojo ha genki ？",
+        "uz": "Is she healthy?"
       }
     ]
   },
@@ -169,9 +179,14 @@
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "あの女の人は英語が上手です。",
-        "romaji": "Ano onna no hito wa eigo ga jouzu desu.",
-        "uz": "Anavi ayol ingliz tilida zo'r gapiradi."
+        "ja": "女の人は奇麗です。",
+        "romaji": "onnanohito ha kirei desu .",
+        "uz": "The woman is beautiful."
+      },
+      {
+        "ja": "あすこの女の人見て！",
+        "romaji": "asukono onnanohito mite !",
+        "uz": "Check out that woman!"
       }
     ]
   },
@@ -341,7 +356,7 @@
     "word": "昨日",
     "reading": "きのう",
     "romaji": "kinou",
-    "meaningUz": "Kecha",
+    "meaningUz": "Kecha, kechagi kun\nTurkum: Ot",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -389,7 +404,7 @@
     "word": "昼",
     "reading": "ひる",
     "romaji": "hiru",
-    "meaningUz": "Kunduz, tush vaqti",
+    "meaningUz": "Kunduz, tush vaqti\nTurkum: Ot",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -469,7 +484,7 @@
     "word": "部屋",
     "reading": "へや",
     "romaji": "heya",
-    "meaningUz": "Xona",
+    "meaningUz": "Xona\nTurkum: Ot",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -517,7 +532,7 @@
     "word": "教室",
     "reading": "きょうしつ",
     "romaji": "kyoushitsu",
-    "meaningUz": "Sinfxona, auditoriya",
+    "meaningUz": "Sinfxona, auditoriya\nTurkum: Ot",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -549,7 +564,7 @@
     "word": "病院",
     "reading": "びょういん",
     "romaji": "byouin",
-    "meaningUz": "Shifoxona, kasalxona",
+    "meaningUz": "shifoxona, kasalxona\nTurkum: Ot",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -613,7 +628,7 @@
     "word": "辞書",
     "reading": "じしょ",
     "romaji": "jisho",
-    "meaningUz": "Lug'at",
+    "meaningUz": "Lug'at\nTurkum: Ot",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -741,7 +756,7 @@
     "word": "野菜",
     "reading": "やさい",
     "romaji": "yasai",
-    "meaningUz": "Sabzavot",
+    "meaningUz": "Sabzavotlar\nTurkum: Ot",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -853,7 +868,7 @@
     "word": "聞く",
     "reading": "きく",
     "romaji": "kiku",
-    "meaningUz": "Eshitmoq, tinglamoq / so'ramoq",
+    "meaningUz": "Eshitmoq, tinglamoq; so'ramoq\nTurkum: Godan fe'l",
     "partOfSpeech": "Fe'l (1-guruh)",
     "examples": [
       {
@@ -901,7 +916,7 @@
     "word": "話す",
     "reading": "はなす",
     "romaji": "hanasu",
-    "meaningUz": "Gapirmoq, suhbatlashmoq",
+    "meaningUz": "gaplashmoq, so'zlamoq\nTurkum: Godan fe'l",
     "partOfSpeech": "Fe'l (1-guruh)",
     "examples": [
       {
@@ -981,7 +996,7 @@
     "word": "働く",
     "reading": "はたらく",
     "romaji": "hataraku",
-    "meaningUz": "Ishlamoq, mehnat qilmoq",
+    "meaningUz": "ishlamoq, mehnat qilmoq\nTurkum: Godan fe'l",
     "partOfSpeech": "Fe'l (1-guruh)",
     "examples": [
       {
@@ -1013,7 +1028,7 @@
     "word": "教える",
     "reading": "おしえる",
     "romaji": "oshieru",
-    "meaningUz": "O'rgatmoq, tushuntirmoq",
+    "meaningUz": "O'rgatmoq, ma'lumot bermoq",
     "partOfSpeech": "Fe'l (2-guruh)",
     "examples": [
       {
@@ -1029,7 +1044,7 @@
     "word": "習う",
     "reading": "ならう",
     "romaji": "narau",
-    "meaningUz": "O'rganmoq (ustozdan)",
+    "meaningUz": "o'rganmoq (ustozdan ta'lim olmoq)\nTurkum: Godan fe'l",
     "partOfSpeech": "Fe'l (1-guruh)",
     "examples": [
       {
@@ -1061,7 +1076,7 @@
     "word": "寝る",
     "reading": "ねる",
     "romaji": "neru",
-    "meaningUz": "Uxlashga yotmoq",
+    "meaningUz": "yotmoq, uxlamoq\nTurkum: Ichidan fe'l",
     "partOfSpeech": "Fe'l (2-guruh)",
     "examples": [
       {
@@ -1429,7 +1444,7 @@
     "word": "～さん",
     "reading": "～さん",
     "romaji": "san",
-    "meaningUz": "janob / xonim (hurmat qo'shimchasi)",
+    "meaningUz": "Janob, xonim; ayrim kasblarga hurmat bilan qo'shiladi",
     "partOfSpeech": "Qo'shimcha / Suffiks",
     "examples": [
       {
@@ -1461,7 +1476,7 @@
     "word": "～君",
     "reading": "～くん",
     "romaji": "kun",
-    "meaningUz": "erkalash qo'shimchasi",
+    "meaningUz": "O'g'il bolalar yoki yosh erkaklarga qo'shiladigan hurmat shakli",
     "partOfSpeech": "Qo'shimcha / Suffiks",
     "examples": [
       {
@@ -1541,7 +1556,7 @@
     "word": "社員",
     "reading": "しゃいん",
     "romaji": "shain",
-    "meaningUz": "firma xodimi",
+    "meaningUz": "kompaniya xodimi, ishchi",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -1573,7 +1588,7 @@
     "word": "医者",
     "reading": "いしゃ",
     "romaji": "isha",
-    "meaningUz": "shifokor",
+    "meaningUz": "Shifokor, do'xtir",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -1749,7 +1764,7 @@
     "word": "失礼ですが",
     "reading": "しつれいですが",
     "romaji": "shitsureidesuga",
-    "meaningUz": "Kechirasiz, ~ (murojaat oldidan)",
+    "meaningUz": "aybga buyurmasangiz, kechirasiz-u (savol oldidan)",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -1801,9 +1816,14 @@
     "partOfSpeech": "Fe'l",
     "examples": [
       {
-        "ja": "どうぞ よろしく お願いします。",
-        "romaji": "Douzo yoroshiku o negai shimasu.",
-        "uz": "Marhamat, yaxshi munosabatda bo'ling / Tanishganimdan xursandman."
+        "ja": "どうぞよろしく。",
+        "romaji": "douzoyoroshiku .",
+        "uz": "Pleased to meet you."
+      },
+      {
+        "ja": "皆さまにもどうぞよろしく。",
+        "romaji": "minasa manimodouzoyoroshiku .",
+        "uz": "My best wishes to you and yours."
       }
     ]
   },
@@ -1813,13 +1833,18 @@
     "word": "お願いします",
     "reading": "おねがいします",
     "romaji": "onegaishimasu",
-    "meaningUz": "iltimos, so'rayman",
+    "meaningUz": "iltimos qilaman, shunday qilib bersangiz",
     "partOfSpeech": "Fe'l",
     "examples": [
       {
-        "ja": "これを お願いします。",
-        "romaji": "Korewo o negai shimasu.",
-        "uz": "Buni iltimos qilaman."
+        "ja": "お願いします。",
+        "romaji": "o negai shimasu .",
+        "uz": "Please."
+      },
+      {
+        "ja": "勘定お願いします。",
+        "romaji": "kanjou o negai shimasu .",
+        "uz": "The check, please."
       }
     ]
   },
@@ -2229,7 +2254,7 @@
     "word": "手帳",
     "reading": "てちょう",
     "romaji": "techou",
-    "meaningUz": "yon daftar",
+    "meaningUz": "Yon daftarcha, kun tartibi daftari",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -2245,7 +2270,7 @@
     "word": "名刺",
     "reading": "めいし",
     "romaji": "meishi",
-    "meaningUz": "tashrif qog`ozi",
+    "meaningUz": "Tashrif qog'ozi, vizitka",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -2357,7 +2382,7 @@
     "word": "時計",
     "reading": "とけい",
     "romaji": "tokei",
-    "meaningUz": "soat",
+    "meaningUz": "Soat (qo'l yoki devor soati)",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -2373,7 +2398,7 @@
     "word": "傘",
     "reading": "かさ",
     "romaji": "kasa",
-    "meaningUz": "soyabon",
+    "meaningUz": "Soyabon (Umbrella)",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -2501,7 +2526,7 @@
     "word": "自動車",
     "reading": "じどうしゃ",
     "romaji": "jidousha",
-    "meaningUz": "avtomobil",
+    "meaningUz": "Avtomobil, mashina",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -2517,7 +2542,7 @@
     "word": "机",
     "reading": "つくえ",
     "romaji": "tsukue",
-    "meaningUz": "stol, parta",
+    "meaningUz": "Stol, yozuv stoli (Desk)",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -2633,9 +2658,14 @@
     "partOfSpeech": "Fe'l",
     "examples": [
       {
-        "ja": "はい、その 通り そうです。",
-        "romaji": "Hai, sono touri soudesu.",
-        "uz": "Ha, xuddi shunday."
+        "ja": "本当にそう。",
+        "romaji": "hontou nisou .",
+        "uz": "You can't be so sure."
+      },
+      {
+        "ja": "晴れそうだ。",
+        "romaji": "hare souda .",
+        "uz": "The sky is likely to clear up."
       }
     ]
   },
@@ -2901,7 +2931,7 @@
     "word": "食堂",
     "reading": "しょくどう",
     "romaji": "shokudou",
-    "meaningUz": "oshxona",
+    "meaningUz": "Oshxona, tamaddixona",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -2917,13 +2947,18 @@
     "word": "事務所",
     "reading": "じむしょ",
     "romaji": "jimusho",
-    "meaningUz": "idora, ofis",
+    "meaningUz": "Hasharot (Office)",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "事務所で 書類を もらいました。",
-        "romaji": "Jimusho de shorui o moraimashita.",
-        "uz": "Idoradan hujjatlarni oldim."
+        "ja": "事務所にいます。",
+        "romaji": "jimusho niimasu .",
+        "uz": "I'm in my office."
+      },
+      {
+        "ja": "彼は事務所にいない。",
+        "romaji": "kareha jimusho niinai .",
+        "uz": "He is out of the office."
       }
     ]
   },
@@ -2933,7 +2968,7 @@
     "word": "会議室",
     "reading": "かいぎしつ",
     "romaji": "kaigishitsu",
-    "meaningUz": "majlislar zali",
+    "meaningUz": "majlislar zali, yig'ilish xonasi",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -2949,7 +2984,7 @@
     "word": "受付",
     "reading": "うけつけ",
     "romaji": "uketsuke",
-    "meaningUz": "qabulxona",
+    "meaningUz": "Qabulxona, registratsiya",
     "partOfSpeech": "Olmosh",
     "examples": [
       {
@@ -2997,7 +3032,7 @@
     "word": "階段",
     "reading": "かいだん",
     "romaji": "kaidan",
-    "meaningUz": "zina",
+    "meaningUz": "Zina, zinapoya",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -3061,13 +3096,18 @@
     "word": "うち",
     "reading": "うち",
     "romaji": "uchi",
-    "meaningUz": "uy",
+    "meaningUz": "Ichida, fursatida (Within)",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "6時に うちへ 帰ります。",
-        "romaji": "6 tokini uchihe kaerimasu.",
-        "uz": "Soat 6 da uyga qaytaman."
+        "ja": "うちの旦那。",
+        "romaji": "uchino danna .",
+        "uz": "He is my husband."
+      },
+      {
+        "ja": "うちにいます。",
+        "romaji": "uchiniimasu .",
+        "uz": "I am at home."
       }
     ]
   },
@@ -3093,7 +3133,7 @@
     "word": "靴",
     "reading": "くつ",
     "romaji": "kutsu",
-    "meaningUz": "poyafzal",
+    "meaningUz": "Poyabzal, poyafzal (Shoes)",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -3161,9 +3201,14 @@
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "ネクタイ売り場は 2階に あります。",
-        "romaji": "Nekutai uriba wa 2 kai ni arimasu.",
-        "uz": "Galstuk bo'limi 2-qavatda."
+        "ja": "切符売り場はどこですか。",
+        "romaji": "kippu uriba hadokodesuka .",
+        "uz": "Where is the ticket window?"
+      },
+      {
+        "ja": "切符売り場はどこですか？",
+        "romaji": "kippu uriba hadokodesuka ？",
+        "uz": "Where's the ticket counter?"
       }
     ]
   },
@@ -3589,13 +3634,18 @@
     "word": "美術館",
     "reading": "びじゅつかん",
     "romaji": "bijutsukan",
-    "meaningUz": "badiiy san’at muzeyi",
+    "meaningUz": "san'at muzeyi / galereyasi",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "上野の 美術館へ 行きました。",
-        "romaji": "Ueno no bijutsukan e ikimashita.",
-        "uz": "Uenodagi san'at muzeyiga bordim."
+        "ja": "俺たちは美術館に行った。",
+        "romaji": "ore tachiha bijutsukan ni itta .",
+        "uz": "We went to the museum."
+      },
+      {
+        "ja": "今日は美術館に行くんだ。",
+        "romaji": "konnichiha bijutsukan ni iku nda .",
+        "uz": "I'll go to a museum today."
       }
     ]
   },
@@ -3737,9 +3787,14 @@
     "partOfSpeech": "Sifat",
     "examples": [
       {
-        "ja": "おととい 友達と 映画を 見ました。",
-        "romaji": "Ototoi tomodachi to eiga o mima shita.",
-        "uz": "Kechadan oldingi kuni do'stim bilan kino ko'rdim."
+        "ja": "おとといきやがれ！",
+        "romaji": "ototoikiyagare !",
+        "uz": "Don't you ever come here again!"
+      },
+      {
+        "ja": "おとといは嵐だった。",
+        "romaji": "ototoiha arashi datta .",
+        "uz": "It was stormy the day before yesterday."
       }
     ]
   },
@@ -3865,9 +3920,14 @@
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "昼休みに 友達と 食堂へ 行きます。",
-        "romaji": "Hiruyasumi ni tomodachi to shokudou e ikimasu.",
-        "uz": "Tushlik tanaffusida do'stim bilan oshxonaga boraman."
+        "ja": "お昼休みはいつ？",
+        "romaji": "o hiruyasumi haitsu ？",
+        "uz": "When is your lunch break?"
+      },
+      {
+        "ja": "お昼休みは、１時間です。",
+        "romaji": "o hiruyasumi ha , 1 jikan desu .",
+        "uz": "Lunch break is an hour long."
       }
     ]
   },
@@ -4037,7 +4097,7 @@
     "word": "番号",
     "reading": "ばんごう",
     "romaji": "bangou",
-    "meaningUz": "raqam",
+    "meaningUz": "Raqam, nomer",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -4437,7 +4497,7 @@
     "word": "船",
     "reading": "ふね",
     "romaji": "fune",
-    "meaningUz": "kema",
+    "meaningUz": "Kema, qayiq (Ship, boat)",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -4469,13 +4529,18 @@
     "word": "新幹線",
     "reading": "しんかんせん",
     "romaji": "shinkansen",
-    "meaningUz": "“sinkansen” tez yurar poyezdi",
+    "meaningUz": "Bullet train (very high speed), shinkansen",
     "partOfSpeech": "Olmosh",
     "examples": [
       {
-        "ja": "新幹線で 大阪へ 行きました。",
-        "romaji": "Shinkansen de oosaka e ikimashita.",
-        "uz": "Tezyurar Shinkansenda Osakaga bordim."
+        "ja": "新しい新幹線の速いこと！",
+        "romaji": "atarashii shinkansen no hayai koto !",
+        "uz": "How fast the new Shinkansen goes!"
+      },
+      {
+        "ja": "次の新幹線は９時ちょうどに出ます。",
+        "romaji": "tsugino shinkansen ha 9 toki choudoni dema su .",
+        "uz": "The next Shinkansen train leaves at just nine o'clock."
       }
     ]
   },
@@ -5013,7 +5078,7 @@
     "word": "普通",
     "reading": "ふつう",
     "romaji": "futsuu",
-    "meaningUz": "oddiy poyezd",
+    "meaningUz": "Oddiy, odatiy, o'rtacha\nTurkum: Ot / No-sifat / Ravish",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -5029,7 +5094,7 @@
     "word": "急行",
     "reading": "きゅうこう",
     "romaji": "kyuukou",
-    "meaningUz": "tez yurar poyezd",
+    "meaningUz": "tez yurar poyezd (Express)",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -5045,13 +5110,18 @@
     "word": "特急",
     "reading": "とっきゅう",
     "romaji": "tokyuu",
-    "meaningUz": "ekspress (tez yurar) poyezd",
+    "meaningUz": "Tezyurar ekspress poyezd (Limited express train (faster than an express train))",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "特急券を 買って、特急に 乗りました。",
-        "romaji": "Tokkyuuken o katsu te, tokkyuu ni norimashita.",
-        "uz": "Ekspress chiptasini sotib olib, ekspress poyezdga chiqdim."
+        "ja": "特急のホームは何番ですか。",
+        "romaji": "tokkyuu no hoomu ha nanban desuka .",
+        "uz": "What's the track for the limited express?"
+      },
+      {
+        "ja": "最近、特急に乗りましたか。",
+        "romaji": "saikin , tokkyuu ni nori mashitaka .",
+        "uz": "Have you ridden on an express train lately?"
       }
     ]
   },
@@ -5093,7 +5163,7 @@
     "word": "～番線",
     "reading": "～ばんせん",
     "romaji": "~ bansen",
-    "meaningUz": "~yo'l, ~platforma",
+    "meaningUz": "~-raqamli poyezd yoki metro liniyasi platformasi",
     "partOfSpeech": "Qo'shimcha / Suffiks",
     "examples": [
       {
@@ -5237,7 +5307,7 @@
     "word": "見ます",
     "reading": "みます",
     "romaji": "mimasu",
-    "meaningUz": "ko'rmoq",
+    "meaningUz": "ko'rmoq, tekshirmoq, qarab chiqmoq",
     "partOfSpeech": "Fe'l",
     "examples": [
       {
@@ -5477,7 +5547,7 @@
     "word": "卵",
     "reading": "たまご",
     "romaji": "tamago",
-    "meaningUz": "tuxum",
+    "meaningUz": "Tuxum (Egg)",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -5493,7 +5563,7 @@
     "word": "果物",
     "reading": "くだもの",
     "romaji": "kudamono",
-    "meaningUz": "meva",
+    "meaningUz": "Mevalar",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -5525,7 +5595,7 @@
     "word": "牛乳",
     "reading": "ぎゅうにゅう",
     "romaji": "gyuunyuu",
-    "meaningUz": "sut",
+    "meaningUz": "Sigir suti",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -5621,7 +5691,7 @@
     "word": "映画",
     "reading": "えいが",
     "romaji": "eiga",
-    "meaningUz": "kino",
+    "meaningUz": "Film, kino",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -5685,7 +5755,7 @@
     "word": "写真",
     "reading": "しゃしん",
     "romaji": "shashin",
-    "meaningUz": "fotosurat",
+    "meaningUz": "Fotosurat, rasm",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -5717,7 +5787,7 @@
     "word": "庭",
     "reading": "にわ",
     "romaji": "niwa",
-    "meaningUz": "hovli, bog",
+    "meaningUz": "Bog', hovli (Garden, yard)",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -5813,7 +5883,7 @@
     "word": "ちょっと",
     "reading": "ちょっと",
     "romaji": "choto",
-    "meaningUz": "bir oz, ozgina, ozroq",
+    "meaningUz": "biroz, sal, ozgina; bir daqiqa",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -5845,7 +5915,7 @@
     "word": "時々",
     "reading": "ときどき",
     "romaji": "tokidoki",
-    "meaningUz": "ba'zan",
+    "meaningUz": "ba'zan, vaqti-vaqti bilan",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -6345,9 +6415,14 @@
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "消しゴムで 間違えた 字を 消します。",
-        "romaji": "Keshigomu de machigae ta ji o keshimasu.",
-        "uz": "O'chirg'ich bilan xato yozuvni o'chiraman."
+        "ja": "消しゴム返してよ。",
+        "romaji": "keshigomu kaeshi teyo .",
+        "uz": "Give me back my eraser."
+      },
+      {
+        "ja": "消しゴム借りていい？",
+        "romaji": "keshigomu kari teii ？",
+        "uz": "May I borrow your eraser?"
       }
     ]
   },
@@ -6357,7 +6432,7 @@
     "word": "紙",
     "reading": "かみ",
     "romaji": "kami",
-    "meaningUz": "qog'oz",
+    "meaningUz": "Qog'oz (Paper)",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -6421,7 +6496,7 @@
     "word": "荷物",
     "reading": "にもつ",
     "romaji": "nimotsu",
-    "meaningUz": "buyum, yuk",
+    "meaningUz": "Yuk, posilka, buyumlar",
     "partOfSpeech": "Olmosh",
     "examples": [
       {
@@ -6453,7 +6528,7 @@
     "word": "切符",
     "reading": "きっぷ",
     "romaji": "kipu",
-    "meaningUz": "chipta",
+    "meaningUz": "Chipta, bilet",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -6533,7 +6608,7 @@
     "word": "まだ",
     "reading": "まだ",
     "romaji": "mada",
-    "meaningUz": "hali ham",
+    "meaningUz": "hali, hanuz",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -6553,9 +6628,14 @@
     "partOfSpeech": "Olmosh",
     "examples": [
       {
-        "ja": "これから 日本語の 勉強を 始めます。",
-        "romaji": "Korekara nihongo no benkyou o hajimemasu.",
-        "uz": "Hozir yapon tili darsini boshlayman."
+        "ja": "これから帰ります。",
+        "romaji": "korekara kaeri masu .",
+        "uz": "I'm going home now."
+      },
+      {
+        "ja": "これからよろしく。",
+        "romaji": "korekarayoroshiku .",
+        "uz": "I look forward to working with you from now on."
       }
     ]
   },
@@ -6629,7 +6709,7 @@
     "word": "失礼します",
     "reading": "しつれいします",
     "romaji": "shitsurei shimasu",
-    "meaningUz": "Ruxsatingiz bilan / Xayr (xushmuomala)",
+    "meaningUz": "kechirasiz, ruxsatingiz bilan (kirishda yoki ketishda)",
     "partOfSpeech": "Fe'l",
     "examples": [
       {
@@ -6693,13 +6773,18 @@
     "word": "お土産",
     "reading": "おみやげ",
     "romaji": "omiyage",
-    "meaningUz": "esdalik sovg'a",
+    "meaningUz": "Esdalik sovg'asi, sovg'a-salom",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "京都の お土産を 買いました。",
-        "romaji": "Kyouto no o miyage o kaimashita.",
-        "uz": "Kiotodan esdalik sovg'a sotib oldim."
+        "ja": "これはお土産です。",
+        "romaji": "korehao miyage desu .",
+        "uz": "This is a little gift for you."
+      },
+      {
+        "ja": "お土産何買ったの？",
+        "romaji": "o miyage nani katsu tano ？",
+        "uz": "What kind of souvenirs did you buy?"
       }
     ]
   },
@@ -6773,7 +6858,7 @@
     "word": "静かな",
     "reading": "しずかな",
     "romaji": "shizukana",
-    "meaningUz": "tinch, osoyishta, osuda",
+    "meaningUz": "sokin, tinch, shovqinsiz",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -6805,7 +6890,7 @@
     "word": "有名な",
     "reading": "ゆうめいな",
     "romaji": "yuumeina",
-    "meaningUz": "mashhur",
+    "meaningUz": "mashhur, tanilgan",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -6821,7 +6906,7 @@
     "word": "親切な",
     "reading": "しんせつな",
     "romaji": "shinsetsuna",
-    "meaningUz": "mehribon",
+    "meaningUz": "mehribon, oqko'ngil, iltifotli",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -6837,7 +6922,7 @@
     "word": "元気な",
     "reading": "げんきな",
     "romaji": "genkina",
-    "meaningUz": "sog'lom, baquvvat",
+    "meaningUz": "tetik, baquvvat, sho'x, sog'-omon",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -6869,7 +6954,7 @@
     "word": "便利な",
     "reading": "べんりな",
     "romaji": "benrina",
-    "meaningUz": "qulay",
+    "meaningUz": "qulay, foydali, oson",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -6949,7 +7034,7 @@
     "word": "難しい",
     "reading": "むずかしい",
     "romaji": "muzukashii",
-    "meaningUz": "qiyin",
+    "meaningUz": "qiyin, murakkab",
     "partOfSpeech": "Sifat",
     "examples": [
       {
@@ -6965,7 +7050,7 @@
     "word": "易しい",
     "reading": "やさしい",
     "romaji": "yasashii",
-    "meaningUz": "oson",
+    "meaningUz": "oson, yengil, sodda",
     "partOfSpeech": "Sifat",
     "examples": [
       {
@@ -7109,7 +7194,7 @@
     "word": "桜",
     "reading": "さくら",
     "romaji": "sakura",
-    "meaningUz": "olcha (sakura)",
+    "meaningUz": "Sakura, yapon olchasi (Cherry blossom)",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -7141,7 +7226,7 @@
     "word": "町",
     "reading": "まち",
     "romaji": "machi",
-    "meaningUz": "(kichik) shahar",
+    "meaningUz": "Shaharcha, tuman (Town, neighborhood)",
     "partOfSpeech": "Sifat",
     "examples": [
       {
@@ -7157,7 +7242,7 @@
     "word": "食べ物",
     "reading": "たべもの",
     "romaji": "tabemono",
-    "meaningUz": "yegulik",
+    "meaningUz": "oziq-ovqat, taom",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -7189,7 +7274,7 @@
     "word": "寮",
     "reading": "りょう",
     "romaji": "ryou",
-    "meaningUz": "yotoqxona",
+    "meaningUz": "Yotoqxona (talabalar yoki xodimlar yotoqxonasi)",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -7205,7 +7290,7 @@
     "word": "勉強",
     "reading": "べんきょう",
     "romaji": "benkyou",
-    "meaningUz": "dars, mashg'ulot",
+    "meaningUz": "O'qish, tahsil olish, o'rganish",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -7221,7 +7306,7 @@
     "word": "生活",
     "reading": "せいかつ",
     "romaji": "seikatsu",
-    "meaningUz": "turmush, hayot",
+    "meaningUz": "turmush tarzi, hayot",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -7333,7 +7418,7 @@
     "word": "そして",
     "reading": "そして",
     "romaji": "soshite",
-    "meaningUz": "keyin",
+    "meaningUz": "va, keyin, shuningdek",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -7653,7 +7738,7 @@
     "word": "下手な",
     "reading": "へたな",
     "romaji": "hetana",
-    "meaningUz": "epsiz, no'noq, mahoratsiz",
+    "meaningUz": "no'noq, qo'lidan kelmaydigan",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -7669,7 +7754,7 @@
     "word": "料理",
     "reading": "りょうり",
     "romaji": "ryouri",
-    "meaningUz": "ovqat, taom",
+    "meaningUz": "Taom, ovqat tayyorlash",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -7765,7 +7850,7 @@
     "word": "歌",
     "reading": "うた",
     "romaji": "uta",
-    "meaningUz": "qo'shiq",
+    "meaningUz": "Qo'shiq (Song)",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -7861,7 +7946,7 @@
     "word": "絵",
     "reading": "え",
     "romaji": "e",
-    "meaningUz": "rasm",
+    "meaningUz": "Rasm, kartina (Picture, drawing)",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -7877,7 +7962,7 @@
     "word": "字",
     "reading": "じ",
     "romaji": "ji",
-    "meaningUz": "harf",
+    "meaningUz": "harf, yozuv",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -7893,7 +7978,7 @@
     "word": "漢字",
     "reading": "かんじ",
     "romaji": "kanji",
-    "meaningUz": "belgi, iyeroglif",
+    "meaningUz": "Kanji (yapon iyeroglifi)",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -7941,7 +8026,7 @@
     "word": "ローマ字",
     "reading": "ローマじ",
     "romaji": "ro-maji",
-    "meaningUz": "rim yozuvi (lotin yozuvi)",
+    "meaningUz": "Romanization, roman letters",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -8005,13 +8090,18 @@
     "word": "用事",
     "reading": "ようじ",
     "romaji": "youji",
-    "meaningUz": "ish, yumush",
+    "meaningUz": "Yumush, zarur ish (Things to do)",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "午後は 銀行に 用事が あります。",
-        "romaji": "Gogo wa ginkou ni youji ga arimasu.",
-        "uz": "Tushdan keyin bankda yumushim bor."
+        "ja": "今日用事あるの？",
+        "romaji": "kyou youji aruno ？",
+        "uz": "Is there anything you need to do today?"
+      },
+      {
+        "ja": "私は街に用事がある。",
+        "romaji": "watashi ha machi ni youji gaaru .",
+        "uz": "I have an errand to do in town."
       }
     ]
   },
@@ -8021,7 +8111,7 @@
     "word": "約束",
     "reading": "やくそく",
     "romaji": "yakusoku",
-    "meaningUz": "va'da",
+    "meaningUz": "Va'da, ahd, uchrashuv vaqti\nTurkum: Ot / Suru-fe'l",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -8069,7 +8159,7 @@
     "word": "奥さん",
     "reading": "おくさん",
     "romaji": "okusan",
-    "meaningUz": "ayol(ingiz), xotin(ingiz)",
+    "meaningUz": "Rafiqangiz, birovning turmush o'rtog'i",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -8165,7 +8255,7 @@
     "word": "全然",
     "reading": "ぜんぜん",
     "romaji": "zenzen",
-    "meaningUz": "umuman, hech",
+    "meaningUz": "Umuman, aslo (inkor bilan); juda ham",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -8245,13 +8335,18 @@
     "word": "ああ",
     "reading": "ああ",
     "romaji": "aa",
-    "meaningUz": "A",
+    "meaningUz": "Shunday, unga o'xshash (Like that)",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "ああ、佐藤さん、こんにちは。",
-        "romaji": "Aa, satou san, konnichiha.",
-        "uz": "Aha, xonim Sato, assalomu alaykum."
+        "ja": "ああ悲しい。",
+        "romaji": "aa kanashii .",
+        "uz": "Ah, me!"
+      },
+      {
+        "ja": "ああ嬉しい。",
+        "romaji": "aa ureshii .",
+        "uz": "How glad I am!"
       }
     ]
   },
@@ -8453,7 +8548,7 @@
     "word": "物",
     "reading": "もの",
     "romaji": "mono",
-    "meaningUz": "narsa, buyum",
+    "meaningUz": "Narsa, buyum (Thing, object)",
     "partOfSpeech": "Olmosh",
     "examples": [
       {
@@ -8485,13 +8580,18 @@
     "word": "電池",
     "reading": "でんち",
     "romaji": "denchi",
-    "meaningUz": "batareya",
+    "meaningUz": "Batareya, batareyka",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "リモコンの 電池を 交換しました。",
-        "romaji": "Rimokon no denchi o koukan shimashita.",
-        "uz": "Pultning batareyasini almashtirdim."
+        "ja": "電池が切れた。",
+        "romaji": "denchi ga kire ta .",
+        "uz": "The battery is flat."
+      },
+      {
+        "ja": "電池が切れちゃった。",
+        "romaji": "denchi ga kire chatta .",
+        "uz": "My battery ran out."
       }
     ]
   },
@@ -8501,7 +8601,7 @@
     "word": "箱",
     "reading": "はこ",
     "romaji": "hako",
-    "meaningUz": "quti",
+    "meaningUz": "Quti (Box)",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -8533,7 +8633,7 @@
     "word": "冷蔵庫",
     "reading": "れいぞうこ",
     "romaji": "reizouko",
-    "meaningUz": "muzlatgich",
+    "meaningUz": "Sovutgich, xolodilnik",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -8581,13 +8681,18 @@
     "word": "棚",
     "reading": "たな",
     "romaji": "tana",
-    "meaningUz": "tokcha",
+    "meaningUz": "Javon, tokcha (Shelf, rack)",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "本棚の 棚に 辞書が 並んでいます。",
-        "romaji": "Hondana no tana ni jisho ga naran deimasu.",
-        "uz": "Kitob javonining tokchasida lug'atlar tizilib turibdi."
+        "ja": "棚は空っぽです。",
+        "romaji": "tana ha karappo desu .",
+        "uz": "The shelves are empty."
+      },
+      {
+        "ja": "私は戸棚を覗いた。",
+        "romaji": "watashi ha todana wo nozoi ta .",
+        "uz": "I looked in the cupboard."
       }
     ]
   },
@@ -8613,7 +8718,7 @@
     "word": "窓",
     "reading": "まど",
     "romaji": "mado",
-    "meaningUz": "deraza",
+    "meaningUz": "Deraza, oyna (Window)",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -8661,7 +8766,7 @@
     "word": "公園",
     "reading": "こうえん",
     "romaji": "kouen",
-    "meaningUz": "xiyobon, bog', park",
+    "meaningUz": "Park, xiyobon, dam olish bog'i",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -8677,7 +8782,7 @@
     "word": "喫茶店",
     "reading": "きっさてん",
     "romaji": "kissaten",
-    "meaningUz": "qahvaxona",
+    "meaningUz": "Qahvaxona, kafeteriy",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -8725,7 +8830,7 @@
     "word": "乗り場",
     "reading": "のりば",
     "romaji": "noriba",
-    "meaningUz": "bekat, chiqish/minish joyi",
+    "meaningUz": "transportga minish joyi, bekat",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -8741,7 +8846,7 @@
     "word": "県",
     "reading": "けん",
     "romaji": "ken",
-    "meaningUz": "viloyat",
+    "meaningUz": "Prefektura, viloyat (Prefecture)",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -8901,7 +9006,7 @@
     "word": "近く",
     "reading": "ちかく",
     "romaji": "chikaku",
-    "meaningUz": "yaqin",
+    "meaningUz": "Yaqinida, yaqin atrof",
     "partOfSpeech": "Fe'l",
     "examples": [
       {
@@ -8917,13 +9022,18 @@
     "word": "間",
     "reading": "あいだ",
     "romaji": "aida",
-    "meaningUz": "ora, o'rta",
+    "meaningUz": "Oraliq, orasi, vaqt oralig'i (Between, interval)",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "銀行と 郵便局の 間に 薬局が あります。",
-        "romaji": "Ginkou to yuubinkyoku no mani yakkyoku ga arimasu.",
-        "uz": "Bank va pochta o'rtasida dorixona bor."
+        "ja": "貸し間あり。",
+        "romaji": "kashi kan ari .",
+        "uz": "Room for rent."
+      },
+      {
+        "ja": "寝る時間よ。",
+        "romaji": "neru jikan yo .",
+        "uz": "Time for bed."
       }
     ]
   },
@@ -9013,7 +9123,7 @@
     "word": "奥",
     "reading": "おく",
     "romaji": "oku",
-    "meaningUz": "ichkari, to'r",
+    "meaningUz": "Ichkari, to'r, ichki tomon (Interior, inner part)",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -9493,7 +9603,7 @@
     "word": "はがき",
     "reading": "はがき",
     "romaji": "hagaki",
-    "meaningUz": "otkritka",
+    "meaningUz": "Pochta kartochkasi",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -9541,13 +9651,18 @@
     "word": "書留",
     "reading": "かきとめ",
     "romaji": "kakitome",
-    "meaningUz": "buyurtmali pochta",
+    "meaningUz": "Writing down, putting on record, recording, making a note of, registration (of mail)",
     "partOfSpeech": "Olmosh",
     "examples": [
       {
-        "ja": "大事な 手紙を 書留で 出しました。",
-        "romaji": "Daiji na tegami o kakitome de dashimashita.",
-        "uz": "Muhim xatni buyurtmali xat orqali jo'natdim."
+        "ja": "この手紙を書留にしたい。",
+        "romaji": "kono tegami wo kakitome nishitai .",
+        "uz": "I want to have this letter registered."
+      },
+      {
+        "ja": "これを書留でお願いします。",
+        "romaji": "korewo kakitome deo negai shimasu .",
+        "uz": "I'd like to send this by registered mail."
       }
     ]
   },
@@ -9589,13 +9704,18 @@
     "word": "船便",
     "reading": "ふなびん",
     "romaji": "funabin",
-    "meaningUz": "dengiz pochtasi",
+    "meaningUz": "Surface mail (ship)",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "重い 荷物は 船便で 送ると 安いです。",
-        "romaji": "Omoi nimotsu wa funabin de okuru to yasui desu.",
-        "uz": "Og'ir yukni kema pochtasida jo'natsa arzon bo'ladi."
+        "ja": "船便で出してください。",
+        "romaji": "funabin de dashi tekudasai .",
+        "uz": "Send this by sea mail."
+      },
+      {
+        "ja": "これを船便で送って下さい。",
+        "romaji": "korewo funabin de okutsu te kudasai .",
+        "uz": "Please send this by sea mail."
       }
     ]
   },
@@ -10037,7 +10157,7 @@
     "word": "簡単な",
     "reading": "かんたんな",
     "romaji": "kantanna",
-    "meaningUz": "oson",
+    "meaningUz": "oddiy, oson, sodda",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -10197,7 +10317,7 @@
     "word": "甘い",
     "reading": "あまい",
     "romaji": "amai",
-    "meaningUz": "shirin",
+    "meaningUz": "Shirin; soddadil, qat'iyatsiz",
     "partOfSpeech": "Sifat",
     "examples": [
       {
@@ -10213,7 +10333,7 @@
     "word": "辛い",
     "reading": "からい",
     "romaji": "karai",
-    "meaningUz": "achchiq (taom)",
+    "meaningUz": "achchiq (taom/qalampir)",
     "partOfSpeech": "Sifat",
     "examples": [
       {
@@ -10245,7 +10365,7 @@
     "word": "軽い",
     "reading": "かるい",
     "romaji": "karui",
-    "meaningUz": "yengil",
+    "meaningUz": "yengil (vazni yengil/oson)",
     "partOfSpeech": "Sifat",
     "examples": [
       {
@@ -10277,7 +10397,7 @@
     "word": "季節",
     "reading": "きせつ",
     "romaji": "kisetsu",
-    "meaningUz": "fasl",
+    "meaningUz": "Fasl, mavsum\nTurkum: Ot",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -10389,7 +10509,7 @@
     "word": "雪",
     "reading": "ゆき",
     "romaji": "yuki",
-    "meaningUz": "qor",
+    "meaningUz": "Qor (Snow)",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -10469,7 +10589,7 @@
     "word": "世界",
     "reading": "せかい",
     "romaji": "sekai",
-    "meaningUz": "dunyo, olam",
+    "meaningUz": "Dunyo, olam, jahon",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -10501,13 +10621,18 @@
     "word": "お祭り",
     "reading": "おまつり",
     "romaji": "omatsuri",
-    "meaningUz": "bayram",
+    "meaningUz": "Festival, sayil (Festival)",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "町で 夏の お祭りが 開催されています。",
-        "romaji": "Machi de natsu no o matsuri ga kaisai sareteimasu.",
-        "uz": "Shaharda yozgi festival o'tkazilyapti."
+        "ja": "彼らはお祭りを中止した。",
+        "romaji": "karera hao matsuri wo chuushi shita .",
+        "uz": "They cancelled the festival."
+      },
+      {
+        "ja": "お祭り中に高山に行きたい。",
+        "romaji": "o matsuri nakani kouzan ni iki tai .",
+        "uz": "I'd like to go to Takayama during festival time."
       }
     ]
   },
@@ -10517,13 +10642,18 @@
     "word": "試験",
     "reading": "しけん",
     "romaji": "shiken",
-    "meaningUz": "imtihon, sinov",
+    "meaningUz": "Imtihon (Examination)",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "あしたの 試験のために 一生懸命 復習します。",
-        "romaji": "Ashitano shiken no tameni isshoukenmei fukushuu shimasu.",
-        "uz": "Ertangi imtihon uchun astoydil takrorlayman."
+        "ja": "来週は試験だ。",
+        "romaji": "raishuu ha shiken da .",
+        "uz": "The exam is coming up next week."
+      },
+      {
+        "ja": "試験に失敗した。",
+        "romaji": "shiken ni shippai shita .",
+        "uz": "He failed the exam."
       }
     ]
   },
@@ -10549,13 +10679,18 @@
     "word": "刺身",
     "reading": "さしみ",
     "romaji": "sashimi",
-    "meaningUz": "sashimi",
+    "meaningUz": "Sliced raw fish",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "新鮮な マグロの 刺身を 食べました。",
-        "romaji": "Shinsen na maguro no sashimi o tabemashita.",
-        "uz": "Yangi tunets balig'i sashimisini yedim."
+        "ja": "私は刺身が大嫌いです。",
+        "romaji": "watashi ha sashimi ga daikirai desu .",
+        "uz": "I can't stand raw fish."
+      },
+      {
+        "ja": "刺身、嫌いなんだよね？",
+        "romaji": "sashimi , kirai nandayone ？",
+        "uz": "You don't like raw fish, do you?"
       }
     ]
   },
@@ -10601,9 +10736,14 @@
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "週末に 日本の 生け花を 習っています。",
-        "romaji": "Shuumatsu ni nippon no ikebana o naratsu teimasu.",
-        "uz": "Dam olish kunida yapon gul bezash san'atini o'rganyapman."
+        "ja": "母は生け花を教えている。",
+        "romaji": "haha ha ikebana wo oshie teiru .",
+        "uz": "My mother teaches flower arranging."
+      },
+      {
+        "ja": "生け花は日本の文化です。",
+        "romaji": "ikebana ha nippon no bunka desu .",
+        "uz": "Flower arrangement is a part of Japanese culture."
       }
     ]
   },
@@ -10645,7 +10785,7 @@
     "word": "ずっと",
     "reading": "ずっと",
     "romaji": "zuto",
-    "meaningUz": "ancha; ancha vaqt oldin; ancha vaqt",
+    "meaningUz": "doim, to'xtovsiz; ancha (taqqoslashda)",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -10661,7 +10801,7 @@
     "word": "初めて",
     "reading": "はじめて",
     "romaji": "hajimete",
-    "meaningUz": "birinchi bor, ilk bor",
+    "meaningUz": "birinchi marta, ilk bor",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -11093,7 +11233,7 @@
     "word": "大変な",
     "reading": "たいへんな",
     "romaji": "taihenna",
-    "meaningUz": "qiyin, og'ir",
+    "meaningUz": "og'ir, mashaqqatli; dahshatli",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -11125,7 +11265,7 @@
     "word": "寂しい",
     "reading": "さびしい",
     "romaji": "sabishii",
-    "meaningUz": "yolg'iz, ma'yus, xafa",
+    "meaningUz": "yolg'iz, g'arib, kimsasiz, sog'inchli\nTurkum: I-sifat",
     "partOfSpeech": "Sifat",
     "examples": [
       {
@@ -11141,7 +11281,7 @@
     "word": "広い",
     "reading": "ひろい",
     "romaji": "hiroi",
-    "meaningUz": "keng",
+    "meaningUz": "keng, bepoyon",
     "partOfSpeech": "Sifat",
     "examples": [
       {
@@ -11317,7 +11457,7 @@
     "word": "週末",
     "reading": "しゅうまつ",
     "romaji": "shuumatsu",
-    "meaningUz": "hafta oxiri, dam olish kuni",
+    "meaningUz": "dam olish kunlari, hafta oxiri",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -11461,7 +11601,7 @@
     "word": "定食",
     "reading": "ていしょく",
     "romaji": "teishoku",
-    "meaningUz": "ovqatlar to'plami",
+    "meaningUz": "Kompleks tushlik/ovqat to'plami",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -11941,7 +12081,7 @@
     "word": "住所",
     "reading": "じゅうしょ",
     "romaji": "juusho",
-    "meaningUz": "manzil, turar joy",
+    "meaningUz": "Manzil, yashash manzili\nTurkum: Ot",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -11973,7 +12113,7 @@
     "word": "塩",
     "reading": "しお",
     "romaji": "shio",
-    "meaningUz": "tuz",
+    "meaningUz": "Tuz (Salt)",
     "partOfSpeech": "Ot",
     "examples": [
       {

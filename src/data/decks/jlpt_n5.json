@@ -97,9 +97,9 @@
   },
   {
     "front": "方",
-    "back": "Tomon, Taraf, Usul, Hurmatli shaxs (Direction, Person, Method)",
+    "back": "Tomon, shaxs, usul (Direction, person, way)\nOnyomi: ホウ (hou)\nKunyomi: かた (kata)",
     "phonetic": "かた / ほう - Kata / Hou",
-    "example": "読み方 (よみかた - O'qish usuli)",
+    "example": "新しい漢字の書き方を先生に教わりました。 (Yangi kanjining yozish usulini ustozdan o'rgandim.)",
     "category": "Kanji",
     "level": "N5"
   },
@@ -315,7 +315,7 @@
     "front": "金",
     "back": "Pul, Oltin (Money, Gold)",
     "phonetic": "かね - Kane",
-    "example": "お金 (O-kane - Pul)",
+    "example": "金の 寺（金閣寺）が 建てられました。",
     "category": "Kanji",
     "level": "N5"
   },
@@ -409,7 +409,7 @@
   },
   {
     "front": "帰",
-    "back": "Qaytmoq (uyga/yurtga) (To return home)",
+    "back": "Qaytmoq (Return)\nOnyomi: キ (ki)\nKunyomi: かえ・る, かえ・す (kae-ru, kae-su)",
     "phonetic": "かえ・る / き - Kae-ru / Ki",
     "example": "帰国 (きこく - Vataniga qaytish)",
     "category": "Kanji",
@@ -497,25 +497,25 @@
   },
   {
     "front": "私",
-    "back": "Men (I, me)",
+    "back": "Men, shaxsiy (I, private)\nOnyomi: シ (shi)\nKunyomi: わたし, わたくし (watashi, watakushi)",
     "phonetic": "わたし - Watashi",
-    "example": "私は学生です (Men talabaman)",
+    "example": "本日の司会を務めさせていただきます私、田中でございます。 (Bugungi tadbir boshlovchisi bo'lgan kamina Tanaka bo'laman.)",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "門",
-    "back": "Darvoza (Gate)",
+    "back": "Darvoza (Gate)\nOnyomi: モン (mon)\nKunyomi: かど (kado)",
     "phonetic": "もん - Mon",
-    "example": "専門 (Senmon - Mutaxassislik)",
+    "example": "校門 (こうもん (Koumon)) — Maktab darvozasi",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "間",
-    "back": "Orasi, Vaqt (Between)",
+    "back": "Oraliq, orasi, vaqt oralig'i (Between, interval)\nTurkum: Ot",
     "phonetic": "あいだ - Aida",
-    "example": "時間 (Jikan - Vaqt)",
+    "example": "私と彼の間に問題はありません。 (Men bilan uning o'rtasida hech qanday muammo yo'q.)",
     "category": "Kanji",
     "level": "N5"
   },
@@ -537,15 +537,15 @@
   },
   {
     "front": "物",
-    "back": "Narsa, Buyum (Thing, Object)",
+    "back": "Narsa, buyum (Thing, object)\nOnyomi: ブツ, モツ (butsu, motsu)\nKunyomi: もの (mono)",
     "phonetic": "もの / ぶつ - Mono / Butsu",
-    "example": "食べ物 (たべもの - Yegulik, taom)",
+    "example": "大切な物をなくさないように引き出しにしまいます。 (Muhim narsani yo'qotib qo'ymaslik uchun tortmaga solib qo'yaman.)",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "朝",
-    "back": "Tong, Ertalab (Morning)",
+    "back": "Tong, ertalab (Morning)\nOnyomi: チョウ (chou)\nKunyomi: あさ (asa)",
     "phonetic": "あさ / ちょう - Asa / Chou",
     "example": "今朝 (けさ - Bugun ertalab)",
     "category": "Kanji",
@@ -553,15 +553,15 @@
   },
   {
     "front": "昼",
-    "back": "Kunduzi, Tush vaqti (Noon, Daytime)",
+    "back": "Kunduz, tush (Noon, daytime)\nOnyomi: チュウ (chuu)\nKunyomi: ひる (hiru)",
     "phonetic": "ひる / ちゅう - Hiru / Chuu",
-    "example": "昼ご飯 (ひるごはん - Tushlik)",
+    "example": "昼休みに同僚と一緒に近くの公園で弁当を食べました。 (Tushlik tanaffusida hamkasbim bilan yaqindagi parkda bento yedim.)",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "夜",
-    "back": "Tun, Kecha (Night)",
+    "back": "Tun, kecha (Night)\nOnyomi: ヤ (ya)\nKunyomi: よる, よ (yoru, yo)",
     "phonetic": "よる / や - Yoru / Ya",
     "example": "今夜 (こんや - Bugun kechasi)",
     "category": "Kanji",
@@ -569,17 +569,17 @@
   },
   {
     "front": "晩",
-    "back": "Kechqurun, Oqshom (Evening, Night)",
+    "back": "Oqshom, kechqurun (Night, evening)\nOnyomi: バン (ban)\nKunyomi: -",
     "phonetic": "ばん - Ban",
-    "example": "晩ご飯 (ばんごはん - Kechki ovqat)",
+    "example": "今晩、家族と一緒に外食をする予定です。 (Bugun oqshom oilam bilan birga tashqarida ovqatlanmoqchimiz.)",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "町",
-    "back": "Shahar, Qasaba (Town)",
+    "back": "Shaharcha (Town)\nOnyomi: チョウ (chou)\nKunyomi: まち (machi)",
     "phonetic": "まち / ちょう - Machi / Chou",
-    "example": "町長 (ちょうちょう - Shaharcha hokimi)",
+    "example": "私が生まれ育った町は自然が豊かで静かです。 (Men tug'ilib o'sgan shaharcha tabiati boy va sokindir.)",
     "category": "Kanji",
     "level": "N5"
   },
@@ -593,23 +593,23 @@
   },
   {
     "front": "赤",
-    "back": "Qizil rang (Red)",
+    "back": "Qizil (Red)\nOnyomi: セキ, シャク (seki, shaku)\nKunyomi: あか, あか・い (aka, aka-i)",
     "phonetic": "あか / あかい - Aka / Akai",
-    "example": "赤ちゃん (あかちゃん - Go'dak, chaqaloq)",
+    "example": "秋になると山全体の木々が美しい赤や黄色に染まります。 (Kuz kelganda butun tog' daraxtlari ajoyib qizil va sariq rangga kiradi.)",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "青",
-    "back": "Ko'k, Havorang (Blue)",
+    "back": "Moviy, ko'k (Blue)\nOnyomi: セイ, ショウ (sei, shou)\nKunyomi: あお, あお・い (ao, ao-i)",
     "phonetic": "あお / あおい - Ao / Aoi",
-    "example": "青空 (あおぞら - Musaffo osmon)",
+    "example": "信号が青に変わったら渡りましょう。 (Svetofor yashilga (moviyga) o'zgarganda o'taylik.)",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "黒",
-    "back": "Qora rang (Black)",
+    "back": "Qora (Black)\nOnyomi: コク (koku)\nKunyomi: くろ, くろ・い (kuro, kuro-i)",
     "phonetic": "くろ / くろい - Kuro / Kuroi",
     "example": "黒板 (こくばん - Doska / doskachasi)",
     "category": "Kanji",
@@ -625,7 +625,7 @@
   },
   {
     "front": "高",
-    "back": "Qimmat, Baland (High, Expensive)",
+    "back": "Quantity, amount, volume, number, amount of money",
     "phonetic": "たか・い / こう - Taka-i / Kou",
     "example": "高校生 (こうこうせい - Yuqori sinf talabasi)",
     "category": "Kanji",
@@ -689,7 +689,7 @@
   },
   {
     "front": "近",
-    "back": "Yaqin, Atrofida (Near, Close)",
+    "back": "Yaqin (Near)\nOnyomi: キン (kin)\nKunyomi: ちか・い (chika-i)",
     "phonetic": "ちか・い / きん - Chika-i / Kin",
     "example": "近くの店 (ちかくのみせ - Yaqin atrofdagi do'kon)",
     "category": "Kanji",
@@ -713,7 +713,7 @@
   },
   {
     "front": "犬",
-    "back": "It, Kuchuk (Dog)",
+    "back": "It (Dog)\nOnyomi: ケン (ken)\nKunyomi: いぬ (inu)",
     "phonetic": "いぬ / けん - Inu / Ken",
     "example": "子犬 (こいぬ - Kuchukcha)",
     "category": "Kanji",
@@ -721,7 +721,7 @@
   },
   {
     "front": "早",
-    "back": "Erta, Barvaqt (Early, Fast)",
+    "back": "Erta, tez (Early, fast)\nOnyomi: ソウ, サッ (sou, satsu)\nKunyomi: はや・い, はや・まる (haya-i, haya-maru)",
     "phonetic": "はや・い / そう - Haya-i / Sou",
     "example": "早起き (はやおき - Ertalab barvaqt uyg'onish)",
     "category": "Kanji",
@@ -745,7 +745,7 @@
   },
   {
     "front": "兄",
-    "back": "Aka (Older brother)",
+    "back": "Aka (Older brother)\nOnyomi: ケイ, キョウ (kei, kyou)\nKunyomi: あに (ani)",
     "phonetic": "あに / けい - Ani / Kei",
     "example": "お兄さん (おにいさん - Aka (hurmatli))",
     "category": "Kanji",
@@ -753,47 +753,47 @@
   },
   {
     "front": "弟",
-    "back": "Uka (Younger brother)",
+    "back": "Uka (Younger brother)\nOnyomi: テイ, ダイ (tei, dai)\nKunyomi: おとうと (otouto)",
     "phonetic": "おとうと / てい - Otouto / Tei",
-    "example": "弟さん (おとうとさん - Uka)",
+    "example": "弟 (おとうと (Otouto)) — Ukam",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "姉",
-    "back": "Opa (Older sister)",
+    "back": "Opa (Older sister)\nOnyomi: シ (shi)\nKunyomi: あね (ane)",
     "phonetic": "あね / し - Ane / Shi",
-    "example": "お姉さん (おねえさん - Opa)",
+    "example": "姉 (あね (Ane)) — Opam",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "妹",
-    "back": "Singil (Younger sister)",
+    "back": "Singil (Younger sister)\nOnyomi: マイ (mai)\nKunyomi: いもうと (imouto)",
     "phonetic": "いもうと / まい - Imouto / Mai",
-    "example": "妹さん (いもうとさん - Singil)",
+    "example": "妹 (いもうと (Imouto)) — Singlim",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "家",
-    "back": "Uy, Oila (House, Home)",
+    "back": "Uy, oila (House, family)\nOnyomi: カ, ケ (ka, ke)\nKunyomi: いえ, や (ie, ya)",
     "phonetic": "いえ / か - Ie / Ka",
-    "example": "家族 (かぞく - Oila)",
+    "example": "仕事が終わったらすぐに家に帰ります。 (Ish tugagach darhol uyga qaytaman.)",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "族",
-    "back": "Oila, Qarindoshlar (Family, Tribe)",
+    "back": "Oila, toifa (Family, tribe)\nOnyomi: ゾク (zoku)\nKunyomi: -",
     "phonetic": "ぞく - Zoku",
-    "example": "家族 (かぞく - Oila)",
+    "example": "家族 (かぞく (Kazoku)) — Oila",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "春",
-    "back": "Bahor (Spring)",
+    "back": "Bahor (Spring)\nOnyomi: シュン (shun)\nKunyomi: はる (haru)",
     "phonetic": "はる / しゅん - Haru / Shun",
     "example": "春休み (はるやすみ - Bahorgi tatil)",
     "category": "Kanji",
@@ -801,7 +801,7 @@
   },
   {
     "front": "夏",
-    "back": "Yoz fasli (Summer)",
+    "back": "Yoz (Summer)\nOnyomi: カ, ゲ (ka, ge)\nKunyomi: なつ (natsu)",
     "phonetic": "なつ / か - Natsu / Ka",
     "example": "夏休み (なつやすみ - Yozgi tatil)",
     "category": "Kanji",
@@ -809,7 +809,7 @@
   },
   {
     "front": "秋",
-    "back": "Kuz fasli (Autumn, Fall)",
+    "back": "Kuz (Autumn)\nOnyomi: シュウ (shuu)\nKunyomi: あき (aki)",
     "phonetic": "あき / しゅう - Aki / Shuu",
     "example": "秋風 (あきかぜ - Kuzgi shabada)",
     "category": "Kanji",
@@ -817,7 +817,7 @@
   },
   {
     "front": "冬",
-    "back": "Qish fasli (Winter)",
+    "back": "Qish (Winter)\nOnyomi: トウ (tou)\nKunyomi: ふゆ (fuyu)",
     "phonetic": "ふゆ / とう - Fuyu / Tou",
     "example": "冬休み (ふゆやすみ - Qishki tatil)",
     "category": "Kanji",
@@ -857,17 +857,17 @@
   },
   {
     "front": "元",
-    "back": "Asl, Tetiklik (Origin, Healthy)",
+    "back": "Asos, boshlang'ich, tetik (Origin, health)\nOnyomi: ゲン, ガン (gen, gan)\nKunyomi: もと (moto)",
     "phonetic": "げん / もと - Gen / Moto",
-    "example": "お元気ですか (おげんきですか - Yaxshimisiz?)",
+    "example": "失敗は成功の元という言葉を信じて挑戦を続けた。 ('Xatolar muvaffaqiyatning kalitidir' degan gapga ishonib intilishda davom etdim.)",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "歩",
-    "back": "Piyoda yurmoq (To walk)",
+    "back": "Yurmoq, qadam (Walk, step)\nOnyomi: ホ, ブ (ho, bu)\nKunyomi: ある・く, あゆ・む (aru-ku, ayu-mu)",
     "phonetic": "ある・く / ほ - Aru-ku / Ho",
-    "example": "歩いて行きます (Piyoda boraman)",
+    "example": "歩く (あるく (Aruku)) — Piyoda yurmoq",
     "category": "Kanji",
     "level": "N5"
   },
@@ -905,17 +905,17 @@
   },
   {
     "front": "始",
-    "back": "Boshlanmoq, Boshlamoq (To begin)",
+    "back": "Boshlanmoq, boshlamoq (Begin, start)\nOnyomi: シ (shi)\nKunyomi: はじ・まる, はじ・める (haji-maru, haji-meru)",
     "phonetic": "はじ・まる / し - Haji-maru / Shi",
-    "example": "授業が始まります (Dars boshlanadi)",
+    "example": "始まる (はじまる (Hajimaru)) — Boshlanmoq",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "開",
-    "back": "Ochmoq, Ochilmoq (To open)",
+    "back": "Ochmoq, ochilmoq (Open)\nOnyomi: カイ (kai)\nKunyomi: ひら・く, あ・く, あ・ける (hira-ku, a-ku, a-keru)",
     "phonetic": "あ・ける / かい - A-keru / Kai",
-    "example": "ドアを開けます (Eshikni ochaman)",
+    "example": "開ける (あける (Akeru)) — Ochmoq",
     "category": "Kanji",
     "level": "N5"
   },
@@ -929,15 +929,15 @@
   },
   {
     "front": "世",
-    "back": "Dunyo, Jamiyat, Avlod (World, Age)",
+    "back": "Dunyo, zamon, avlod (World, generation)\nOnyomi: セイ, セ (sei, se)\nKunyomi: よ (yo)",
     "phonetic": "せ / よ - Se / Yo",
-    "example": "世界 (せかい - Dunyo)",
+    "example": "世界 (せかい (Sekai)) — Dunyo",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "界",
-    "back": "Olam, Doira (World, Realm)",
+    "back": "Chegara, dunyo (World, boundary)\nOnyomi: カイ (kai)\nKunyomi: -",
     "phonetic": "かい - Kai",
     "example": "世界中 (せかいじゅう - Butun dunyo)",
     "category": "Kanji",
@@ -945,17 +945,17 @@
   },
   {
     "front": "画",
-    "back": "Rasm, Tasvir, Reja (Picture, Plan)",
+    "back": "Tasvir, reja, chiziq (Picture, plan, stroke)\nOnyomi: ガ, カク (ga, kaku)\nKunyomi: -",
     "phonetic": "が / かく - Ga / Kaku",
-    "example": "映画 (えいが - Film, kino)",
+    "example": "映画 (えいが (Eiga)) — Kino",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "映",
-    "back": "Aks etmoq, Namoyish (Project, Reflect)",
+    "back": "Aks ettirmoq, proyeksiyalamoq (Reflect, project)\nOnyomi: エイ (ei)\nKunyomi: うつ・る, うつ・す, は・える (utsu-ru, utsu-su, ha-eru)",
     "phonetic": "えい / うつす - Ei / Utsusu",
-    "example": "映画館 (えいがかん - Kinoteatr)",
+    "example": "映画 (えいが (Eiga)) — Film, kino",
     "category": "Kanji",
     "level": "N5"
   },
@@ -969,9 +969,9 @@
   },
   {
     "front": "茶",
-    "back": "Choy (Tea)",
+    "back": "Choy (Tea)\nOnyomi: チャ, サ (cha, sa)\nKunyomi: -",
     "phonetic": "ちゃ / さ - Cha / Sa",
-    "example": "お茶 (おちゃ - Choy)",
+    "example": "食事の後に温かいお茶を一杯飲みます。 (Ovqatdan so'ng bir chashka issiq choy ichaman.)",
     "category": "Kanji",
     "level": "N5"
   },
@@ -985,17 +985,17 @@
   },
   {
     "front": "英",
-    "back": "Ingliz (English)",
+    "back": "Ingliz, ajoyib (English, brilliant)\nOnyomi: エイ (ei)\nKunyomi: -",
     "phonetic": "えい - Ei",
-    "example": "英語 (えいご - Ingliz tili)",
+    "example": "英語 (えいご (Eigo)) — Ingliz tili",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "体",
-    "back": "Tana, Jism (Body)",
+    "back": "Tana, gavda (Body)\nOnyomi: タイ, テイ (tai, tei)\nKunyomi: からだ (karada)",
     "phonetic": "からだ / たい - Karada / Tai",
-    "example": "体に気をつけて (Sog'likka e'tibor bering)",
+    "example": "毎朝ジョギングをして体を鍛えています。 (Har tong yugurib, tanamni chiniqtiraman.)",
     "category": "Kanji",
     "level": "N5"
   },
@@ -1017,9 +1017,9 @@
   },
   {
     "front": "顔",
-    "back": "Yuz, Chehra (Face)",
+    "back": "Yuz, chehra (Face)\nOnyomi: ガン (gan)\nKunyomi: かお (kao)",
     "phonetic": "かお / がん - Kao / Gan",
-    "example": "顔を洗います (Yuzimni yuvaman)",
+    "example": "朝起きたら冷たい水で顔を洗います。 (Ertalab turgach sovuq suvda yuzimni yuvaman.)",
     "category": "Kanji",
     "level": "N5"
   },
@@ -1065,15 +1065,15 @@
   },
   {
     "front": "使",
-    "back": "Ishlatmoq, Foydalanmoq (To use)",
+    "back": "Ishlatmoq, elchi (Use, messenger)\nOnyomi: シ (shi)\nKunyomi: つか・う (tsuka-u)",
     "phonetic": "つか・う / し - Tsuka-u / Shi",
-    "example": "箸を使います (Chopik ishlataman)",
+    "example": "使う (つかう (Tsukau)) — Ishlatmoq",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "作",
-    "back": "Yasamoq, Tayyorlamoq (To make)",
+    "back": "Yasamoq, tayyorlamoq (Make, create)\nOnyomi: サク, サ (saku, sa)\nKunyomi: つく・る (tsuku-ru)",
     "phonetic": "つく・る / さく - Tsuku-ru / Saku",
     "example": "料理を作ります (Ovqat tayyorlayman)",
     "category": "Kanji",
@@ -1081,9 +1081,9 @@
   },
   {
     "front": "品",
-    "back": "Mahsulot, Buyum (Goods, Article)",
+    "back": "Mahsulot, tovar (Goods, refinement)\nOnyomi: ヒン (hin)\nKunyomi: しな (shina)",
     "phonetic": "しな / ひん - Shina / Hin",
-    "example": "作品 (さくひん - Ijodiy asar)",
+    "example": "品物 (しなもの (Shinamono)) — Mahsulot",
     "category": "Kanji",
     "level": "N5"
   },
@@ -1097,41 +1097,41 @@
   },
   {
     "front": "明",
-    "back": "Yorug', Ravshan (Bright, Clear)",
+    "back": "Yorug', ravshan (Bright, clear)\nOnyomi: メイ, ミョウ (mei, myou)\nKunyomi: あか・るい, あき・らか (aka-rui, aki-raka)",
     "phonetic": "あか・るい / めい - Aka-rui / Mei",
-    "example": "明るい部屋 (Yorug' xona)",
+    "example": "明るい (あかるい (Akarui)) — Yorug'",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "肉",
-    "back": "Go'sht (Meat)",
+    "back": "Go'sht (Meat)\nOnyomi: ニク (niku)\nKunyomi: -",
     "phonetic": "にく - Niku",
-    "example": "牛肉 (ぎゅうにく - Mol go'shti)",
+    "example": "牛肉 (ぎゅうにく (Gyuuniku)) — Mol go'shti",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "問",
-    "back": "Savol, Muammo (Question, Problem)",
+    "back": "Savol, so'ramoq (Question, ask)\nOnyomi: モン (mon)\nKunyomi: と・う, と・い (to-u, to-i)",
     "phonetic": "とい / もん - Toi / Mon",
-    "example": "問題 (もんだい - Savol, masala)",
+    "example": "質問 (しつもん (Shitsumon)) — Savol",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "答",
-    "back": "Javob, Javob bermoq (Answer)",
+    "back": "Javob bermoq (Answer)\nOnyomi: トウ (tou)\nKunyomi: こた・える, こた・え (kota-eru, kota-e)",
     "phonetic": "こた・え / とう - Kota-e / Tou",
-    "example": "答えを書きます (Javobni yozaman)",
+    "example": "答える (こたえる (Kotaeru)) — Javob bermoq",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "心",
-    "back": "Qalb, Yurak (Heart, Mind)",
+    "back": "yurak, qalb, ko'ngil\nTurkum: Ot",
     "phonetic": "こころ / しん - Kokoro / Shin",
-    "example": "安心 (あんしん - Xotirjamlik)",
+    "example": "相手を思いやる温かい心を持つことが大切だ。 (Boshqalarni tushunadigan iliq qalb egasi bo'lish muhimdir.)",
     "category": "Kanji",
     "level": "N5"
   },
@@ -1145,7 +1145,7 @@
   },
   {
     "front": "売",
-    "back": "Sotmoq (To sell)",
+    "back": "Sotmoq (Sell)\nOnyomi: バイ (bai)\nKunyomi: う・る, う・れる (u-ru, u-reru)",
     "phonetic": "う・る / ばい - U-ru / Bai",
     "example": "本を売ります (Kitob sotaman)",
     "category": "Kanji",
@@ -1153,23 +1153,23 @@
   },
   {
     "front": "場",
-    "back": "Joy, Maydon (Place, Location)",
+    "back": "Joy, maydon (Place, location)\nOnyomi: ジョウ (jou)\nKunyomi: ば (ba)",
     "phonetic": "ば / じょう - Ba / Jou",
-    "example": "場所 (ばしょ - Joy)",
+    "example": "場所 (ばしょ (Basho)) — Joy",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "字",
-    "back": "Harf, Iyeroglif (Letter, Character)",
+    "back": "Harf, yozuv (Letter, character)\nOnyomi: ジ (ji)\nKunyomi: あざ (aza)",
     "phonetic": "じ - Ji",
-    "example": "漢字 (かんじ - Kanji)",
+    "example": "漢字 (かんじ (Kanji)) — Kanji",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "漢",
-    "back": "Xitoy, Xan (Chinese)",
+    "back": "Xitoy (China, Han)\nOnyomi: カン (kan)\nKunyomi: -",
     "phonetic": "かん - Kan",
     "example": "漢字を覚える (Kanjilarni eslab qolish)",
     "category": "Kanji",
@@ -1177,7 +1177,7 @@
   },
   {
     "front": "料",
-    "back": "To'lov, Material (Fee, Material)",
+    "back": "To'lov, xomashyo (Fee, ingredients)\nOnyomi: リョウ (ryou)\nKunyomi: -",
     "phonetic": "りょう - Ryou",
     "example": "料理 (りょうり - Taom, pishirish)",
     "category": "Kanji",
@@ -1193,17 +1193,17 @@
   },
   {
     "front": "主",
-    "back": "Asosiy, Xo'jayin (Main, Master)",
+    "back": "Asosiy, xo'jayin (Main, master)\nOnyomi: シュ, ス (shu, su)\nKunyomi: おも, ぬし (omo, nushi)",
     "phonetic": "おも / しゅ - Omo / Shu",
-    "example": "主に (おもに - Asosan)",
+    "example": "主人 (しゅじん (Shujin)) — Xo'jayin, er",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "着",
-    "back": "Kiymoq, Yetib kelmoq (To wear, Arrive)",
+    "back": "Kiymoq, yetib bormoq (Wear, arrive)\nOnyomi: チャク, ジャク (chaku, jaku)\nKunyomi: き・る, つ・く (ki-ru, tsu-ku)",
     "phonetic": "き・る / つ・く / ちゃく - Ki-ru / Tsu-ku / Chaku",
-    "example": "着物 (きもの - Kimono)",
+    "example": "着る (きる (Kiru)) — Kiymoq",
     "category": "Kanji",
     "level": "N5"
   },
@@ -1217,7 +1217,7 @@
   },
   {
     "front": "古",
-    "back": "Eski, Qadimiy (Old)",
+    "back": "Antiquity, ancient times",
     "phonetic": "ふる・い / こ - Furu-i / Ko",
     "example": "古い本 (Eski kitob)",
     "category": "Kanji",
@@ -1225,7 +1225,7 @@
   },
   {
     "front": "持",
-    "back": "Ushlamoq, Bor bo'lmoq (To hold, Have)",
+    "back": "Ushlamoq, ega bo'lmoq (Hold, possess)\nOnyomi: ジ (ji)\nKunyomi: も・つ, も・てる (mo-tsu, mo-teru)",
     "phonetic": "も・つ / じ - Mo-tsu / Ji",
     "example": "お金を持っています (Yonimda pul bor)",
     "category": "Kanji",
@@ -1249,9 +1249,9 @@
   },
   {
     "front": "音",
-    "back": "Ovoz, Tovush (Sound, Noise)",
+    "back": "Tovush, ovoz (Sound)\nOnyomi: オン, イン (on, in)\nKunyomi: おと, ね (oto, ne)",
     "phonetic": "おと / おん - Oto / On",
-    "example": "音楽 (おんがく - Musiqa)",
+    "example": "外から不思議な音が聞こえます。 (Tashqaridan g'alati ovoz eshitilyapti.)",
     "category": "Kanji",
     "level": "N5"
   },
@@ -1265,15 +1265,15 @@
   },
   {
     "front": "歌",
-    "back": "Qo'shiq, Kuylamoq (Song, To sing)",
+    "back": "Qo'shiq, kuylamoq (Song, sing)\nOnyomi: カ (ka)\nKunyomi: うた, うた・う (uta, uta-u)",
     "phonetic": "うた / うた・う - Uta / Uta-u",
-    "example": "歌を歌います (Qo'shiq kuylayman)",
+    "example": "日本の古い歌をカラオケで歌いました。 (Yaponiyaning eski qo'shig'ini karaokeda kuyladim.)",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "度",
-    "back": "Marta, Daraja (Degree, Times)",
+    "back": "Daraja, marta (Degree, time)\nOnyomi: ド, ト (do, to)\nKunyomi: たび (tabi)",
     "phonetic": "ど / たび - Do / Tabi",
     "example": "もう一度 (もういちど - Yana bir marta)",
     "category": "Kanji",
@@ -1281,9 +1281,9 @@
   },
   {
     "front": "教",
-    "back": "O'rgatmoq (To teach)",
+    "back": "O'rgatmoq, ta'lim (Teach, religion)\nOnyomi: キョウ (kyou)\nKunyomi: おし・える, おそ・わる (oshi-eru, oso-waru)",
     "phonetic": "おし・える / きょう - Oshi-eru / Kyou",
-    "example": "教室 (きょうしつ - Sinfxona)",
+    "example": "教える (おしえる (Oshieru)) — O'rgatmoq",
     "category": "Kanji",
     "level": "N5"
   },
@@ -1297,7 +1297,7 @@
   },
   {
     "front": "貸",
-    "back": "Qarz bermoq, Ijaraga bermoq (To lend)",
+    "back": "Qarzga bermoq (Lend)\nOnyomi: タイ (tai)\nKunyomi: か・す (ka-su)",
     "phonetic": "か・す / たい - Ka-su / Tai",
     "example": "本を貸してください (Kitob berib turing)",
     "category": "Kanji",
@@ -1305,9 +1305,9 @@
   },
   {
     "front": "借",
-    "back": "Qarz olmoq (To borrow)",
+    "back": "Qarzga olmoq (Borrow)\nOnyomi: シャク (shaku)\nKunyomi: か・りる (ka-riru)",
     "phonetic": "か・りる / しゃく - Ka-riru / Shaku",
-    "example": "お金を借ります (Pul qarz olaman)",
+    "example": "借りる (かりる (Kariru)) — Qarz olmoq",
     "category": "Kanji",
     "level": "N5"
   },
@@ -1321,33 +1321,33 @@
   },
   {
     "front": "強",
-    "back": "Kuchli, Baquvvat (Strong)",
+    "back": "Kuchli (Strong)\nOnyomi: キョウ, ゴウ (kyou, gou)\nKunyomi: つよ・い, つよ・まる (tsuyo-i, tsuyo-maru)",
     "phonetic": "つよ・い / きょう - Tsuyo-i / Kyou",
-    "example": "風が強い (Shamol kuchli)",
+    "example": "強い (つよい (Tsuyoi)) — Kuchli",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "勉",
-    "back": "G'ayrat qilmoq, O'qimoq (Endeavor)",
+    "back": "Tirishmoq, g'ayrat (Endeavor, strive)\nOnyomi: ベン (ben)\nKunyomi: つと・める (tsuto-meru)",
     "phonetic": "べん - Ben",
-    "example": "勉強します (Dars qilaman)",
+    "example": "勉強 (べんきょう (Benkyou)) — O'qish, ta'lim",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "旅",
-    "back": "Sayohat (Trip, Travel)",
+    "back": "Sayohat (Travel, trip)\nOnyomi: リョ (ryo)\nKunyomi: たび (tabi)",
     "phonetic": "たび / りょ - Tabi / Ryo",
-    "example": "旅行 (りょこう - Sayohat)",
+    "example": "一人で日本中を旅するのが夢です。 (Bir o'zim butun Yaponiya bo'ylab sayohat qilish orzuim.)",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "室",
-    "back": "Xona (Room)",
+    "back": "Xona (Room)\nOnyomi: シツ (shitsu)\nKunyomi: むろ (muro)",
     "phonetic": "しつ - Shitsu",
-    "example": "教室 (きょうしつ - Sinfxona)",
+    "example": "教室 (きょうしつ (Kyoushitsu)) — Sinfxona",
     "category": "Kanji",
     "level": "N5"
   },
@@ -1361,15 +1361,15 @@
   },
   {
     "front": "不",
-    "back": "Inkor qo'shimchasi (Non-, Un-)",
+    "back": "Emas, inkor, no- (No-, not, non-)\nOnyomi: フ, ブ (fu, bu)\nKunyomi: -",
     "phonetic": "ふ / ぶ - Fu / Bu",
-    "example": "不便 (ふべん - Noqulay)",
+    "example": "不便 (ふべん (Fuben)) — Noqulay",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "同",
-    "back": "Bir xil, O'xshash (Same)",
+    "back": "Bir xil, teng (Same)\nOnyomi: ドウ (dou)\nKunyomi: おな・じ (ona-ji)",
     "phonetic": "おな・じ / どう - Ona-ji / Dou",
     "example": "同じ本 (O'xshash / bir xil kitob)",
     "category": "Kanji",
@@ -1401,55 +1401,55 @@
   },
   {
     "front": "仕",
-    "back": "Xizmat qilmoq, Ish (To serve)",
+    "back": "Xizmat qilmoq, ish (Serve, doing)\nOnyomi: シ, ジ (shi, ji)\nKunyomi: つか・える (tsuka-eru)",
     "phonetic": "し / つかえる - Shi / Tsukaeru",
-    "example": "仕事 (しごと - Ish)",
+    "example": "仕事 (しごと (Shigoto)) — Ish, xizmat",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "病",
-    "back": "Kasallik (Illness, Sick)",
+    "back": "Kasallik (Illness, disease)\nOnyomi: ビョウ, ヘイ (byou, hei)\nKunyomi: や・む, やまい (ya-mu, yamai)",
     "phonetic": "びょう - Byou",
-    "example": "病院 (びょういん - Shifoxona)",
+    "example": "病気 (びょうき (Byouki)) — Kasallik",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "院",
-    "back": "Muassasa (Institution)",
+    "back": "Muassasa, bino (Institution)\nOnyomi: イン (in)\nKunyomi: -",
     "phonetic": "いん - In",
-    "example": "病院 (びょういん - Shifoxona)",
+    "example": "病院 (びょういん (Byouin)) — Kasalxona",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "医",
-    "back": "Tibbiyot (Doctor, Medicine)",
+    "back": "Tibbiyot, davolash (Medicine, doctor)\nOnyomi: イ (i)\nKunyomi: -",
     "phonetic": "い - I",
-    "example": "医者 (いしゃ - Shifokor)",
+    "example": "医者 (いしゃ (Isha)) — Shifokor",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "者",
-    "back": "Kishi, Shaxs (Person, Someone)",
+    "back": "Kishi, odam (Person)\nOnyomi: シャ (sha)\nKunyomi: もの (mono)",
     "phonetic": "もの / しゃ - Mono / Sha",
-    "example": "医者 (いしゃ - Shifokor)",
+    "example": "医者 (いしゃ (Isha)) — Shifokor",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "堂",
-    "back": "Zal, Katta xona (Hall)",
+    "back": "Zal, bino (Hall, shrine)\nOnyomi: ドウ (dou)\nKunyomi: -",
     "phonetic": "どう - Dou",
-    "example": "食堂 (しょくどう - Oshxona)",
+    "example": "食堂 (しょくどう (Shokudou)) — Oshxona",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "屋",
-    "back": "Do'kon, Xona (Shop, Room)",
+    "back": "Tom, do'kon, xona (Roof, shop)\nOnyomi: オク (oku)\nKunyomi: や (ya)",
     "phonetic": "や / おく - Ya / Oku",
     "example": "本屋 (ほんや - Kitob do'koni)",
     "category": "Kanji",
@@ -1457,17 +1457,17 @@
   },
   {
     "front": "用",
-    "back": "Foydalanmoq, Ish (To use, Business)",
+    "back": "Foydalanmoq, vazifa (Use, business)\nOnyomi: ヨウ (you)\nKunyomi: もち・いる (mochi-iru)",
     "phonetic": "よう - You",
-    "example": "用事 (ようじ - Yumush, ish)",
+    "example": "今日は急な用ができて早く帰らなければなりません。 (Bugun to'satdan shoshilinch yumush chiqib qolib, erta qaytishim kerak.)",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "有",
-    "back": "Bor bo'lmoq, Mashhur (To have, Exist)",
+    "back": "Bor, mavjud bo'lmoq (Have, exist)\nOnyomi: ユウ, ウ (yuu, u)\nKunyomi: あ・る (a-ru)",
     "phonetic": "ゆう / ある - Yuu / Aru",
-    "example": "有名 (ゆうめい - Mashhur)",
+    "example": "有名 (ゆうめい (Yuumei)) — Mashhur",
     "category": "Kanji",
     "level": "N5"
   },
@@ -1481,9 +1481,9 @@
   },
   {
     "front": "民",
-    "back": "Xalq, Fuqaro (People, Nation)",
+    "back": "Xalq, aholi (People, citizen)\nOnyomi: ミン (min)\nKunyomi: たみ (tami)",
     "phonetic": "みん / たみ - Min / Tami",
-    "example": "市民 (しみん - Shahar fuqarosi)",
+    "example": "市民 (しみん (Shimin)) — Shahar aholisi",
     "category": "Kanji",
     "level": "N5"
   },
@@ -1497,25 +1497,25 @@
   },
   {
     "front": "銀",
-    "back": "Kumush (Silver)",
+    "back": "Kumush (Silver)\nOnyomi: ギン (gin)\nKunyomi: -",
     "phonetic": "ぎん - Gin",
-    "example": "銀行 (ぎんこう - Bank)",
+    "example": "銀行 (ぎんこう (Ginkou)) — Bank",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "図",
-    "back": "Xarita, Chizma (Drawing, Map)",
+    "back": "Chizma, reja (Drawing, plan)\nOnyomi: ズ, ト (zu, to)\nKunyomi: はか・る (haka-ru)",
     "phonetic": "ず / と - Zu / To",
-    "example": "図書館 (としょかん - Kutubxona)",
+    "example": "わかりやすいように図を描いて説明してください。 (Tushunarli bo'lishi uchun chizma chizib tushuntirib bering.)",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "館",
-    "back": "Katta bino, Saroy (Building, Hall)",
+    "back": "Katta bino, saroy (Building, mansion)\nOnyomi: カン (kan)\nKunyomi: やかた (yakata)",
     "phonetic": "かん - Kan",
-    "example": "映画館 (えいがかん - Kinoteatr)",
+    "example": "図書館 (としょかん (Toshokan)) — Kutubxona",
     "category": "Kanji",
     "level": "N5"
   },
@@ -1529,9 +1529,9 @@
   },
   {
     "front": "動",
-    "back": "Harakatlanmoq (To move)",
+    "back": "Qimirlamoq, harakatlanmoq (Move)\nOnyomi: ドウ (dou)\nKunyomi: うご・く, うご・かす (ugo-ku, ugo-kasu)",
     "phonetic": "うご・く / どう - Ugo-ku / Dou",
-    "example": "自動車 (じどうしゃ - Avtomobil)",
+    "example": "動く (うごく (Ugoku)) — Harakatlanmoq",
     "category": "Kanji",
     "level": "N5"
   },
@@ -1553,9 +1553,9 @@
   },
   {
     "front": "終",
-    "back": "Tugamoq, Tugatmoq (To end, Finish)",
+    "back": "Tugamoq, tugatmoq (End, finish)\nOnyomi: シュウ (shuu)\nKunyomi: お・わる, お・える (o-waru, o-eru)",
     "phonetic": "お・わる / しゅう - O-waru / Shuu",
-    "example": "仕事が終わりました (Ish tugadi)",
+    "example": "終わる (おわる (Owaru)) — Tugamoq",
     "category": "Kanji",
     "level": "N5"
   },
@@ -1569,39 +1569,39 @@
   },
   {
     "front": "写",
-    "back": "Rasmga olmoq, Nusxalamoq (Copy, Photograph)",
+    "back": "Nusxa olmoq, rasmga olmoq (Copy, photograph)\nOnyomi: シャ (sha)\nKunyomi: うつ・す, うつ・る (utsu-su, utsu-ru)",
     "phonetic": "うつ・す / しゃ - Utsu-su / Sha",
-    "example": "写真 (しゃしん - Rasm, fotosurat)",
+    "example": "写真 (しゃしん (Shashin)) — Fotosurat",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "真",
-    "back": "Haqiqiy, Rost (True, Reality)",
+    "back": "Haqiqat, sof (True, reality)\nOnyomi: シン (shin)\nKunyomi: ま, まこと (ma, makoto)",
     "phonetic": "ま / しん - Ma / Shin",
-    "example": "真ん中 (まんなか - Qoqm o'rtasi)",
+    "example": "写真 (しゃしん (Shashin)) — Fotosurat",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "牛",
-    "back": "Sigir, Mol (Cow, Cattle)",
+    "back": "Mol, sigir (Cow, beef)\nOnyomi: ギュウ (gyuu)\nKunyomi: うし (ushi)",
     "phonetic": "うし / ぎゅう - Ushi / Gyuu",
-    "example": "牛乳 (ぎゅうにゅう - Sut)",
+    "example": "牛乳 (ぎゅうにゅう (Gyuunyuu)) — Sut",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "員",
-    "back": "Xodim, A'zo (Member, Employee)",
+    "back": "Xodim, a'zo (Member, employee)\nOnyomi: イン (in)\nKunyomi: -",
     "phonetic": "いん - In",
-    "example": "会社員 (かいしゃいん - Kompaniya xodimi)",
+    "example": "会社員 (かいしゃいん (Kaishain)) — Firma xodimi",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "林",
-    "back": "To'qayzor, Kichik o'rmon (Grove)",
+    "back": "O'rmoncha, daraxtzor (Grove, woods)\nOnyomi: リン (rin)\nKunyomi: はやし (hayashi)",
     "phonetic": "はやし / りん - Hayashi / Rin",
     "example": "小林 (こばやし - Kobayashi (familiya))",
     "category": "Kanji",
@@ -1609,23 +1609,23 @@
   },
   {
     "front": "森",
-    "back": "O'rmon (Forest)",
+    "back": "Katta o'rmon (Forest)\nOnyomi: シン (shin)\nKunyomi: もり (mori)",
     "phonetic": "もり / しん - Mori / Shin",
-    "example": "森の中 (O'rmon ichida)",
+    "example": "深い森の中には珍しい野生動物が生息しています。 (Qalin o'rmon ichida noyob yovvoyi hayvonlar yashaydi.)",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "田",
-    "back": "Sholizor (Rice field)",
+    "back": "Sholizor, dala (Rice field)\nOnyomi: デン (den)\nKunyomi: た (ta)",
     "phonetic": "た / でん - Ta / Den",
-    "example": "水田 (すいでん - Suvli sholizor)",
+    "example": "田んぼ (たんぼ (Tanbo)) — Sholizor",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "考",
-    "back": "O'ylamoq, Mulohaza qilmoq (To consider)",
+    "back": "O'ylamoq, fikr yuritmoq (Think, consider)\nOnyomi: コウ (kou)\nKunyomi: かんが・える (kanga-eru)",
     "phonetic": "かんが・える / こう - Kanga-eru / Kou",
     "example": "よく考えます (Yaxshilab o'ylab ko'raman)",
     "category": "Kanji",
@@ -1641,41 +1641,41 @@
   },
   {
     "front": "切",
-    "back": "Kesmoq (To cut)",
+    "back": "Kesmoq (Cut)\nOnyomi: セツ, サイ (setsu, sai)\nKunyomi: き・る, き・れる (ki-ru, ki-reru)",
     "phonetic": "き・る / せつ - Ki-ru / Setsu",
-    "example": "切符 (きっぷ - Chipta)",
+    "example": "切る (きる (Kiru)) — Kesmoq",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "試",
-    "back": "Sinab ko'rmoq (To test, Try)",
+    "back": "Sinab ko'rmoq (Try, test)\nOnyomi: シ (shi)\nKunyomi: こころ・みる, ため・す (kokoro-miru, tame-su)",
     "phonetic": "ため・す / し - Tame-su / Shi",
-    "example": "試験 (しけん - Imtihon)",
+    "example": "試合 (しあい (Shiai)) — Musobaqa",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "験",
-    "back": "Tajriba, Sinov (Test, Experience)",
+    "back": "Sinov, tajriba (Test, verify)\nOnyomi: ケン, ゲン (ken, gen)\nKunyomi: -",
     "phonetic": "けん - Ken",
-    "example": "試験 (しけん - Imtihon)",
+    "example": "試験 (しけん (Shiken)) — Imtihon",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "部",
-    "back": "Qism, Bo'lim (Part, Section)",
+    "back": "Bo'lim, qism, xona (Section, department, part)\nOnyomi: ブ (bu)\nKunyomi: -",
     "phonetic": "ぶ - Bu",
-    "example": "部屋 (へや - Xona)",
+    "example": "全部 (ぜんぶ (Zenbu)) — Hammasi",
     "category": "Kanji",
     "level": "N5"
   },
   {
     "front": "文",
-    "back": "Gap, Jumla, Yozuv (Sentence, Text)",
+    "back": "Matn, jumla, adabiyot (Sentence, literature)\nOnyomi: ブン, モン (bun, mon)\nKunyomi: ふみ (fumi)",
     "phonetic": "ぶん / もん - Bun / Mon",
-    "example": "作文 (さくぶん - Insho)",
+    "example": "作文 (さくぶん (Sakubun)) — Insho",
     "category": "Kanji",
     "level": "N5"
   },
@@ -1721,7 +1721,7 @@
   },
   {
     "front": "降",
-    "back": "Tushmoq, Yog'moq (Descend, Fall)",
+    "back": "Yog'moq, tushmoq (Fall, get off)\nOnyomi: コウ, ゴ (kou, go)\nKunyomi: ふ・る, お・りる (fu-ru, o-riru)",
     "phonetic": "お・りる / ふ・る / こう - O-riru / Fu-ru / Kou",
     "example": "電車を降ります (Poyezddan tushaman)",
     "category": "Kanji",

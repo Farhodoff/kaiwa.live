@@ -9,13 +9,13 @@ Ushbu faylda loyihadagi aniqlangan kamchiliklar, tuzatilishi kerak bo'lgan xatol
 
 ### 📊 Darajalar bo‘yicha joriy holat
 
-| Daraja | Lug‘at | Grammatika | Kanji | Darslar / Testlar | Holat / Izoh                                                                                     |
-| :----: | :----: | :--------: | :---: | :---------------: | :----------------------------------------------------------------------------------------------- |
-| **N5** |  750   |     85     |  106  |        25         | To‘liq imtihon darajasiga yetkazildi (375 ta amaliy mashq, 100 ta test, 70 ta test bank kartasi) |
-| **N4** | 1 037  |    125     |  268  |        25         | Mashqlar bazasi 375+ taga kengaytirildi va xilma-xillashtirildi                                  |
-| **N3** | 2 236  |    115     |  340  |        30         | Sifat bir xilda yuqori darajaga keltirildi (300 ta amaliy mashq, 300 ta test, 105 ta karta)      |
-| **N2** | 4 621  |    172     |  470  |        30         | Lug‘at yaxshi, amaliy kontekst kam                                                               |
-| **N1** | 3 397  |    151     |  877  |        30         | Kanji kuchli, lekin N1 darajasidagi real matn va audio kam                                       |
+| Daraja | Lug‘at | Grammatika | Kanji | Darslar / Testlar | Holat / Izoh                                                                                       |
+| :----: | :----: | :--------: | :---: | :---------------: | :------------------------------------------------------------------------------------------------- |
+| **N5** |  750   |     85     |  106  |        25         | To‘liq imtihon darajasiga yetkazildi (375 ta amaliy mashq, 100 ta test, 70 ta test bank kartasi)   |
+| **N4** |  995   |    125     |  268  |        25         | Mashqlar bazasi 375+ taga kengaytirildi va xilma-xillashtirildi (995 ta unikal so'z)               |
+| **N3** | 1 664  |    115     |  340  |        30         | Sifat yuqori darajaga keltirildi (300 ta mashq, 300 ta test, 1 664 ta unikal so'z, 1 738 ta karta) |
+| **N2** | 3 703  |    172     |  470  |        30         | Lug‘at to‘liq tartibga keltirildi (3 703 ta unikal so'z, 3 715 ta master karta)                    |
+| **N1** | 2 748  |    151     |  877  |        30         | Kanji va akademik leksika mustahkamlandi (2 748 ta unikal so'z, 2 772 ta master karta)             |
 
 ### 🎯 Darajalar kesimidagi vazifalar
 
@@ -63,8 +63,8 @@ Ushbu faylda loyihadagi aniqlangan kamchiliklar, tuzatilishi kerak bo'lgan xatol
 > N3 va N2 fayllarida ichki takrorlar mavjud. Darajalar o‘rtasidagi takror esa SRS va progress hisobini buzishi mumkin (foydalanuvchi bir so‘zni ikki yoki uch darajada qayta o‘rganib qoladi).
 
 - [x] **N3 va N2 ichki dublikatlarini tozalash:** N3 va N2 lug‘at bazasidagi bir xil so‘z va yozuvlarni tozalash (deduplication).
-- [ ] **Darajalararo (cross-level) takrorlarni bartaraf etish:** Bitta so‘z bir necha darajada qayta takrorlanishini tekshirish va har bir so‘zni faqat eng mos darajasiga biriktirish.
-- [ ] **SRS va progress algoritmiga moslashtirish:** Takroriy so‘zlar SRS va umumiy o‘zlashtirish progressini buzmasligini ta'minlash.
+- [x] **Darajalararo (cross-level) takrorlarni bartaraf etish:** Bitta so‘z bir necha darajada qayta takrorlanishini tekshirish va har bir so‘zni faqat eng mos darajasiga biriktirish (2,165 ta darajalararo dublikat bartaraf etilib, jami 9,860 ta mutlaq unikal so‘z o‘zining poydevor darajasiga biriktirildi; 2,285 ta master kartochka dublikatlari tozalandi).
+- [x] **SRS va progress algoritmiga moslashtirish:** Takroriy so‘zlar SRS va umumiy o‘zlashtirish progressini buzmasligini ta'minlash (SRS navbatida va LearningOrchestrator review hisob-kitoblarida `deduplicateCardsByFront` joriy qilindi, DecksPage'da esa darajalararo takroriy kartalarni importdan himoyalash filtri faollashtirildi).
 
 ### 4. Mock examlar haqiqiy JLPT o‘rnini bosmaydi
 
