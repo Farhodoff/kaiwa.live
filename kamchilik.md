@@ -9,19 +9,19 @@ Ushbu faylda loyihadagi aniqlangan kamchiliklar, tuzatilishi kerak bo'lgan xatol
 
 ### 📊 Darajalar bo‘yicha joriy holat
 
-| Daraja | Lug‘at | Grammatika | Kanji | Darslar / Testlar | Holat / Izoh                                                    |
-| :----: | :----: | :--------: | :---: | :---------------: | :-------------------------------------------------------------- |
-| **N5** |  750   |     85     |  106  |        25         | Yaxshi boshlang‘ich baza                                        |
-| **N4** | 1 037  |    125     |  268  |        25         | Mashqlar bazasi 375+ taga kengaytirildi va xilma-xillashtirildi |
-| **N3** | 2 236  |    115     |  340  |        30         | Qamrov bor, lekin kontent sifati notekis                        |
-| **N2** | 4 621  |    172     |  470  |        30         | Lug‘at yaxshi, amaliy kontekst kam                              |
-| **N1** | 3 397  |    151     |  877  |        30         | Kanji kuchli, lekin N1 darajasidagi real matn va audio kam      |
+| Daraja | Lug‘at | Grammatika | Kanji | Darslar / Testlar | Holat / Izoh                                                                                |
+| :----: | :----: | :--------: | :---: | :---------------: | :------------------------------------------------------------------------------------------ |
+| **N5** |  750   |     85     |  106  |        25         | Yaxshi boshlang‘ich baza                                                                    |
+| **N4** | 1 037  |    125     |  268  |        25         | Mashqlar bazasi 375+ taga kengaytirildi va xilma-xillashtirildi                             |
+| **N3** | 2 236  |    115     |  340  |        30         | Sifat bir xilda yuqori darajaga keltirildi (300 ta amaliy mashq, 300 ta test, 105 ta karta) |
+| **N2** | 4 621  |    172     |  470  |        30         | Lug‘at yaxshi, amaliy kontekst kam                                                          |
+| **N1** | 3 397  |    151     |  877  |        30         | Kanji kuchli, lekin N1 darajasidagi real matn va audio kam                                  |
 
 ### 🎯 Darajalar kesimidagi vazifalar
 
 - [ ] **N5:** Yaxshi boshlang‘ich baza, lekin to‘liq imtihon darajasiga yetkazish va mustahkamlash.
 - [x] **N4 mashqlar bazasi:** Yetarli yo‘nalish bor, lekin mashqlar kam — amaliy mashqlar soni va xilma-xilligini oshirish (har bir darsda 15 tadan, jami 375 ta amaliy mashq, 100 ta test savoli va 84 ta 500 Mon kartasi).
-- [ ] **N3 kontent sifati:** Qamrov bor, lekin kontent sifati notekis — sifatni bir xilda yuqori darajaga keltirish va qayta ko‘rib chiqish.
+- [x] **N3 kontent sifati:** Qamrov bor, lekin kontent sifati notekis — sifatni bir xilda yuqori darajaga keltirish va qayta ko‘rib chiqish (barcha 30 ta darsda 10 tadan, jami 300 ta yuqori sifatli amaliy mashq, 300 ta test savoli, n3_500_mon 60 ta va n3_confusing_grammar 45 ta kartaga kengaytirildi).
 - [ ] **N2 amaliy kontekst:** Lug‘at yaxshi, lekin amaliy kontekst kam — real hayotiy va imtihon darajasidagi kontekstli misollar va mashqlarni kuchaytirish.
 - [ ] **N1 real matn va audio:** Kanji kuchli, ammo N1 darajasidagi real o‘qish matnlari (Dokkai) va sifatli audio materiallarni (Choukai) ko‘paytirish.
 - [ ] **N1 akademik va rasmiy kontekstlar:** N1 uchun akademik, rasmiy, gazeta maqolalari va ishbilarmonlik (business) kontekstlarini chuqurlashtirish.
@@ -34,7 +34,7 @@ Ushbu faylda loyihadagi aniqlangan kamchiliklar, tuzatilishi kerak bo'lgan xatol
 >
 > - N5: 25 dars, 50 ta mashq -> 346 taga kengaytirildi
 > - N4: 25 dars, 50 ta mashq -> 375 taga kengaytirildi (har bir darsda 15 ta boyitilgan amaliy mashq + 4 ta test)
-> - N3: 30 dars, 60 ta mashq -> 237 taga kengaytirildi
+> - N3: 30 dars, 60 ta mashq -> 300 taga kengaytirildi (har bir darsda 10 ta sifatli amaliy mashq + 10 ta test)
 > - N2: 30 dars, 61 ta mashq -> 236 taga kengaytirildi
 > - N1: 30 dars, 60 ta mashq -> 232 taga kengaytirildi
 
