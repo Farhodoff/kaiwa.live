@@ -26,6 +26,7 @@ import {
 import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
 import { speakText } from '../utils/audioTts';
 import { toast } from '../hooks/use-toast';
+import { ErrorNotificationService } from '../services/ErrorNotificationService';
 import { PersonalLearningPlanService } from '../services/PersonalLearningPlanService';
 import { isFlashcardAnswerCorrect } from '../utils/flashcardMatching';
 import { useTelegramWebApp } from '../hooks/useTelegramWebApp';
@@ -389,10 +390,11 @@ const StudyModePage: React.FC = () => {
       setIsEditingCard(false);
     } catch (err) {
       console.error('Failed to edit flashcard:', err);
-      toast({
-        variant: 'destructive',
-        title: '❌ Xatolik',
-        description: 'Kartochkani tahrirlashda xatolik yuz berdi.',
+      ErrorNotificationService.notifyError({
+        title: 'Kartochkani tahrirlashda xatolik',
+        message: "O'zgarishlarni saqlashda xatolik yuz berdi. Qayta urinib ko'ring.",
+        error: err,
+        retryAction: () => handleSaveEdit(),
       });
     }
   };
@@ -459,6 +461,12 @@ const StudyModePage: React.FC = () => {
         }
       } catch (err) {
         console.error('Flashcard review error:', err);
+        ErrorNotificationService.notifyError({
+          title: 'SRS takrorlashni saqlashda xatolik',
+          message: "Kartochka holatini saqlashda uzilish yuz berdi. Qayta urinib ko'ring.",
+          error: err,
+          retryAction: () => handleRate(grade),
+        });
       } finally {
         setIsProcessing(false);
       }

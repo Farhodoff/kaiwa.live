@@ -11,6 +11,7 @@ import {
   Award,
 } from 'lucide-react';
 import { aiEvaluationService, AiEvaluationResult } from '../../services/aiEvaluationService';
+import { ErrorNotificationService } from '../../services/ErrorNotificationService';
 
 interface SpeakingSectionProps {
   examType: 'IELTS' | 'JLPT';
@@ -99,7 +100,15 @@ export const SpeakingSection: React.FC<SpeakingSectionProps> = ({
       }
     } catch (err: any) {
       console.error(err);
-      setError(err?.message || "AI orqali baholashda xatolik yuz berdi. Qayta urinib ko'ring.");
+      const errMsg =
+        err?.message || "AI orqali baholashda xatolik yuz berdi. Qayta urinib ko'ring.";
+      setError(errMsg);
+      ErrorNotificationService.notifyError({
+        title: "Speaking topshirig'ini baholashda xatolik",
+        message: errMsg,
+        error: err,
+        retryAction: () => handleSubmit(),
+      });
     } finally {
       setLoading(false);
     }
