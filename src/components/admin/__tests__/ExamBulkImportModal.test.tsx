@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor, within } from '@testing-library/react';
 import { ExamBulkImportModal } from '../ExamBulkImportModal';
 import { ExamBulkImportService } from '../../../services/ExamBulkImportService';
+import { ExamAiExtractorService } from '../../../services/ExamAiExtractorService';
 
 // Mock Supabase
 vi.mock('../../../lib/supabase', () => ({
@@ -264,6 +265,108 @@ Valid savol matni birinchi,A,B,C,D,A,N3,knowledge
           isPublished: true,
         }),
       );
+    });
+  });
+
+  describe('Task 4: AI Extraction from PDF & Text with Retry, Recommendations & Draft Enforcing', () => {
+    it('switches to AI extraction tab and loads demo text', () => {
+      render(<ExamBulkImportModal {...defaultProps} />);
+
+      const aiTabBtn = screen.getByRole('button', { name: /AI bilan ajratish/i });
+      fireEvent.click(aiTabBtn);
+
+      expect(screen.getByText(/AI Yordamida Savollarni Avtomatik Ajratish/i)).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /Namuna matnni yuklash/i })).toBeInTheDocument();
+
+      fireEvent.click(screen.getByRole('button', { name: /Namuna matnni yuklash/i }));
+      const textarea = screen.getByPlaceholderText(/Savollar matnini bu yerga joylashtiring/i);
+      expect((textarea as HTMLTextAreaElement).value).toContain('JLPT N3 Sinov Savollari');
+    });
+
+    it('runs AI extraction, displays recommendations, and enforces Draft status', async () => {
+      const mockResult = {
+        recommendedLevel: 'N2' as const,
+        recommendedSection: 'knowledge' as const,
+        recommendedTitle: 'JLPT N2 Sinov Imtihoni',
+        summary: '1 ta savol muvaffaqiyatli ajratildi.',
+        isDraft: true as const,
+        questions: [
+          {
+            id: 'ai-1',
+            question_text: '彼女はいつも服を着ている。',
+            passage: null,
+            options: ['派手な', '地味な', '親切な', '清潔な'],
+            correct_answer: '派手な',
+            correct_index: 0,
+            explanation: 'Izoh matni.',
+            level: 'N2' as const,
+            section_type: 'knowledge' as const,
+            section_name: 'Gengo Chishiki',
+            question_type: 'vocabulary',
+            difficulty: 'medium' as const,
+            is_published: false as const,
+          },
+        ],
+      };
+
+      const extractSpy = vi
+        .spyOn(ExamAiExtractorService, 'extractQuestions')
+        .mockResolvedValue(mockResult);
+
+      render(<ExamBulkImportModal {...defaultProps} />);
+
+      // Switch to AI tab
+      fireEvent.click(screen.getByRole('button', { name: /AI bilan ajratish/i }));
+
+      // Enter text
+      const textarea = screen.getByPlaceholderText(/Savollar matnini bu yerga joylashtiring/i);
+      fireEvent.change(textarea, {
+        target: { value: '1. 彼女はいつも服を着ている。 1) 派手な 2) 地味な' },
+      });
+
+      // Click AI Extract button
+      const extractBtn = screen.getByRole('button', { name: /AI bilan savollarni ajratish/i });
+      fireEvent.click(extractBtn);
+
+      await waitFor(() => {
+        expect(extractSpy).toHaveBeenCalled();
+      });
+
+      await waitFor(() => {
+        expect(screen.getByText('1 ta savol muvaffaqiyatli ajratildi.')).toBeInTheDocument();
+        expect(screen.getByText('彼女はいつも服を着ている。')).toBeInTheDocument();
+      });
+
+      // Retry button is available
+      const retryBtn = screen.getByRole('button', { name: /Qayta ishlash/i });
+      expect(retryBtn).toBeInTheDocument();
+
+      fireEvent.click(retryBtn);
+      expect(extractSpy).toHaveBeenCalledTimes(2);
+    });
+
+    it('displays error message and allows retry when AI extraction fails', async () => {
+      const extractSpy = vi
+        .spyOn(ExamAiExtractorService, 'extractQuestions')
+        .mockRejectedValue(new Error('AI tahlilida parser xatosi'));
+
+      render(<ExamBulkImportModal {...defaultProps} />);
+
+      fireEvent.click(screen.getByRole('button', { name: /AI bilan ajratish/i }));
+      const textarea = screen.getByPlaceholderText(/Savollar matnini bu yerga joylashtiring/i);
+      fireEvent.change(textarea, { target: { value: 'Noto‘g‘ri formatdagi matn' } });
+
+      const extractBtn = screen.getByRole('button', { name: /AI bilan savollarni ajratish/i });
+      fireEvent.click(extractBtn);
+
+      await waitFor(() => {
+        expect(screen.getByText(/AI tahlilida parser xatosi/i)).toBeInTheDocument();
+      });
+
+      // Click retry
+      const retryBtn = screen.getByRole('button', { name: /Qayta urinish/i });
+      fireEvent.click(retryBtn);
+      expect(extractSpy).toHaveBeenCalledTimes(2);
     });
   });
 });

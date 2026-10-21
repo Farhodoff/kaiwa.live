@@ -21,6 +21,7 @@ import {
   Check,
   Clock,
   Award,
+  Sparkles,
 } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { toast } from '../../hooks/use-toast';
@@ -36,6 +37,10 @@ import {
   pdfQuestionsToJson,
   validatePdfFile,
 } from '../../services/ExamPdfImportService';
+import {
+  ExamAiExtractorService,
+  type AiExtractionResult,
+} from '../../services/ExamAiExtractorService';
 
 export interface ExamBulkImportModalProps {
   isOpen: boolean;
@@ -58,6 +63,8 @@ interface EditDraft {
   explanation: string;
   level: JlptLevel;
   section_type: string;
+  difficulty?: 'easy' | 'medium' | 'hard';
+  question_type?: string;
 }
 
 export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
@@ -72,7 +79,7 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
   examId,
   availableExams = [],
 }) => {
-  const [inputTab, setInputTab] = useState<'file' | 'text'>('file');
+  const [inputTab, setInputTab] = useState<'file' | 'text' | 'ai'>('file');
   const [fileFormat, setFileFormat] = useState<'auto' | 'json' | 'csv'>('auto');
   const [rawContent, setRawContent] = useState<string>('');
   const [fileName, setFileName] = useState<string | null>(null);
@@ -87,6 +94,16 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
   const [deletedRows, setDeletedRows] = useState<Set<number>>(new Set());
   const [overrides, setOverrides] = useState<Record<number, ValidatedQuestion>>({});
   const [expandedPassages, setExpandedPassages] = useState<Set<number>>(new Set());
+
+  // AI Extraction States (Task 4)
+  const [aiInputMode, setAiInputMode] = useState<'text' | 'file'>('text');
+  const [aiSourceText, setAiSourceText] = useState<string>('');
+  const [aiSelectedFile, setAiSelectedFile] = useState<File | null>(null);
+  const [aiCustomInstruction, setAiCustomInstruction] = useState<string>('');
+  const [isAiExtracting, setIsAiExtracting] = useState<boolean>(false);
+  const [aiError, setAiError] = useState<string | null>(null);
+  const [aiResult, setAiResult] = useState<AiExtractionResult | null>(null);
+  const aiFileInputRef = useRef<HTMLInputElement>(null);
 
   // Real Exam Preview Simulator State
   const [previewAnswers, setPreviewAnswers] = useState<Record<number, number>>({});
@@ -132,6 +149,12 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
       setShowCorrectInPreview(false);
       setIsSimulated(false);
       setPreviewSectionFilter('all');
+      setAiSourceText('');
+      setAiSelectedFile(null);
+      setAiCustomInstruction('');
+      setAiError(null);
+      setAiResult(null);
+      setIsAiExtracting(false);
       if (examId) setSelectedExamId(examId);
       if (examLevel) setNewLevel(examLevel);
     }
@@ -238,6 +261,81 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     if (e.dataTransfer.files && e.dataTransfer.files[0]) loadDroppedFile(e.dataTransfer.files[0]);
+  };
+
+  const handleAiFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setAiSelectedFile(file);
+    setAiError(null);
+  };
+
+  const handleLoadAiDemoText = () => {
+    const demo = `JLPT N3 Sinov Savollari to'plami:
+
+1. 彼女はいつも（　　）服を着ていて、遠くからでもすぐ分かる。
+A) 派手な
+B) 地味な
+C) 清潔な
+D) 親切な
+答え: A
+解説: 遠くからでも目立つという意味なので「派手な」が正解です。
+
+2. 【読解問題】
+以下の文章を読んで、筆者の考えに最も合うものを選びなさい。
+「科学技術の進歩によって私たちの生活は非常に便利になった。しかし、便利さの代償として人と人との直接的な対話が減ってきているのも事実である。便利さを享受しながらも、心の触れ合いを大切にする姿勢が今こそ求められているのではないだろうか。」
+
+質問: 筆者が最も伝えたいことは何か。
+1) 科学技術は危険だから使用を制限すべきだ
+2) 生活が便利になったことだけを喜ぶべきだ
+3) 便利さを利用しつつも、人との心の触れ合いを大切にすべきだ
+4) 直接的な対話はもはや必要ない
+正解: 3
+解説: 文章の最後の文で「便利さを享受しながらも、心の触れ合いを大切にする姿勢が今こそ求められている」と述べられています。`;
+    setAiSourceText(demo);
+    setAiInputMode('text');
+    setAiError(null);
+  };
+
+  const handleAiExtract = async (overrideInstruction?: string) => {
+    setIsAiExtracting(true);
+    setAiError(null);
+    try {
+      const result = await ExamAiExtractorService.extractQuestions({
+        text: aiSourceText,
+        file: aiSelectedFile || undefined,
+        customInstruction:
+          overrideInstruction !== undefined ? overrideInstruction : aiCustomInstruction,
+        defaultLevel: examLevel || newLevel || 'N3',
+      });
+
+      setAiResult(result);
+      if (result.recommendedTitle && !newTitle.trim()) {
+        setNewTitle(result.recommendedTitle);
+      }
+      if (result.recommendedLevel) {
+        setNewLevel(result.recommendedLevel);
+      }
+      // Pass questions to validation pipeline as JSON
+      setRawContent(JSON.stringify(result.questions, null, 2));
+      setFileFormat('json');
+      setViewMode('table');
+
+      toast({
+        title: '✨ AI tahlili yakunlandi',
+        description: result.summary,
+      });
+    } catch (err: any) {
+      const msg = err?.message || 'AI tahlilida kutilmagan xatolik yuz berdi.';
+      setAiError(msg);
+      toast({
+        title: 'AI xatosi',
+        description: msg,
+        variant: 'destructive',
+      });
+    } finally {
+      setIsAiExtracting(false);
+    }
   };
 
   const handleLoadDemo = (format: 'csv' | 'json') => {
@@ -397,6 +495,8 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
       explanation: v?.explanation || raw.explanation || '',
       level: initialLevel,
       section_type: initialSection,
+      difficulty: v?.difficulty || (raw.difficulty as any) || 'medium',
+      question_type: v?.question_type || raw.question_type || 'multiple_choice',
     });
   };
 
@@ -444,6 +544,8 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
       level: editDraft.level,
       section_name: editDraft.section_type,
       section_type: editDraft.section_type,
+      difficulty: editDraft.difficulty || 'medium',
+      question_type: editDraft.question_type || 'multiple_choice',
     };
 
     setOverrides((pr) => ({ ...pr, [row]: updated }));
@@ -739,6 +841,17 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
               >
                 Matn ko‘rinishida kiritish
               </button>
+              <button
+                type="button"
+                onClick={() => setInputTab('ai')}
+                className={
+                  inputTab === 'ai'
+                    ? 'rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 px-4 py-2 text-xs font-bold text-white shadow-sm'
+                    : 'rounded-xl bg-purple-50 px-4 py-2 text-xs font-bold text-purple-700 hover:bg-purple-100 dark:bg-purple-950/50 dark:text-purple-300'
+                }
+              >
+                ✨ AI bilan ajratish (PDF / Matn)
+              </button>
             </div>
             <button
               type="button"
@@ -753,7 +866,7 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
           {/* Guide Dropdown */}
           {showGuide && (
             <div className="space-y-2 rounded-2xl border border-indigo-200 bg-indigo-50/60 p-4 text-xs text-indigo-900 dark:border-indigo-900/50 dark:bg-indigo-950/30 dark:text-indigo-200">
-              <p className="font-bold">Qat'iy Validatsiya Talablari (Task 2 &amp; 3):</p>
+              <p className="font-bold">Qat'iy Validatsiya Talablari (Task 2, 3 &amp; 4):</p>
               <ul className="list-disc space-y-1 pl-4">
                 <li>
                   <b>Majburiy maydonlar:</b> question_text, options (kamida 2 ta), correct_answer /
@@ -764,15 +877,206 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
                   javob matniga mos kelishi shart.
                 </li>
                 <li>
-                  <b>Bo'sh joylar:</b> Bo'sh savol yoki variantlar xato sifatida qayd etiladi. Xato
-                  savollarni jadvalda "Qayta tuzatish" orqali to'g'rilash yoki "O'chirish" mumkin.
+                  <b>AI bilan ajratish:</b> PDF yoki erkin formatdagi matndan savollar avtomatik
+                  ajratiladi, daraja, bo'lim va qiyinlik tavsiya qilinadi va barchasi avtomatik
+                  Draft holatida saqlanadi.
                 </li>
               </ul>
             </div>
           )}
 
           {/* Input Area */}
-          {inputTab === 'file' ? (
+          {inputTab === 'ai' ? (
+            <div className="space-y-4 rounded-2xl border border-purple-200 bg-gradient-to-b from-purple-50/40 to-indigo-50/20 p-5 dark:border-purple-900/40 dark:bg-slate-900/60">
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-purple-100 pb-3 dark:border-purple-900/30">
+                <div>
+                  <h4 className="flex items-center gap-1.5 text-sm font-black text-purple-950 dark:text-purple-200">
+                    <Sparkles className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+                    AI Yordamida Savollarni Avtomatik Ajratish
+                  </h4>
+                  <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
+                    PDF, TXT yoki nusxalangan matnni kiriting. AI savol, variantlar, javob, izoh va
+                    darajani o'zi tavsiya qiladi.
+                  </p>
+                </div>
+                <div className="flex items-center gap-1 rounded-xl bg-white/80 p-1 shadow-sm dark:bg-slate-800">
+                  <button
+                    type="button"
+                    onClick={() => setAiInputMode('text')}
+                    className={`rounded-lg px-3 py-1 text-xs font-bold transition ${
+                      aiInputMode === 'text'
+                        ? 'bg-purple-600 text-white shadow-xs'
+                        : 'text-slate-600 hover:text-slate-900 dark:text-slate-300'
+                    }`}
+                  >
+                    Matn (Copy-Paste)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setAiInputMode('file')}
+                    className={`rounded-lg px-3 py-1 text-xs font-bold transition ${
+                      aiInputMode === 'file'
+                        ? 'bg-purple-600 text-white shadow-xs'
+                        : 'text-slate-600 hover:text-slate-900 dark:text-slate-300'
+                    }`}
+                  >
+                    Fayl (PDF / TXT)
+                  </button>
+                </div>
+              </div>
+
+              {aiInputMode === 'text' ? (
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
+                      Imtihon yoki savollar matni:
+                    </label>
+                    <button
+                      type="button"
+                      onClick={handleLoadAiDemoText}
+                      className="text-[11px] font-bold text-purple-600 hover:underline dark:text-purple-400"
+                    >
+                      Namuna matnni yuklash
+                    </button>
+                  </div>
+                  <textarea
+                    value={aiSourceText}
+                    onChange={(e) => setAiSourceText(e.target.value)}
+                    rows={6}
+                    placeholder="Savollar matnini bu yerga joylashtiring (masalan: 1. 彼女は＿＿服を着ている。 1) 派手な 2) 地味な 答え: 1)..."
+                    className="w-full rounded-xl border border-purple-200 bg-white p-3 font-mono text-xs text-slate-900 focus:border-purple-500 focus:outline-none dark:border-slate-800 dark:bg-slate-950 dark:text-white"
+                  />
+                </div>
+              ) : (
+                <div
+                  onClick={() => aiFileInputRef.current?.click()}
+                  className="group cursor-pointer rounded-xl border-2 border-dashed border-purple-200 bg-white/70 p-6 text-center transition hover:border-purple-500 hover:bg-purple-50/50 dark:border-slate-700 dark:bg-slate-950/60"
+                >
+                  <input
+                    ref={aiFileInputRef}
+                    type="file"
+                    accept=".pdf,.txt,application/pdf,text/plain"
+                    onChange={handleAiFileSelect}
+                    className="hidden"
+                  />
+                  <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-xl bg-purple-100 text-purple-600 dark:bg-purple-950 dark:text-purple-400">
+                    <Upload className="h-5 w-5" />
+                  </div>
+                  <p className="text-xs font-bold text-slate-800 dark:text-slate-200">
+                    PDF yoki TXT faylni tanlang yoki bu yerga bosing
+                  </p>
+                  <p className="mt-0.5 text-[11px] text-slate-400">
+                    Maksimal hajm: 20 MB. O'qiladigan matnli PDF yoki .txt fayl
+                  </p>
+                  {aiSelectedFile && (
+                    <div className="mt-2 inline-flex items-center gap-1.5 rounded-lg bg-purple-100 px-2.5 py-1 text-xs font-bold text-purple-800 dark:bg-purple-950 dark:text-purple-300">
+                      <FileText className="h-3.5 w-3.5" />
+                      {aiSelectedFile.name} ({(aiSelectedFile.size / 1024).toFixed(1)} KB)
+                    </div>
+                  )}
+                </div>
+              )}
+
+              <div>
+                <label className="text-[11px] font-bold text-slate-600 dark:text-slate-400">
+                  Qo‘shimcha ko‘rsatma (ixtiyoriy):
+                </label>
+                <input
+                  type="text"
+                  value={aiCustomInstruction}
+                  onChange={(e) => setAiCustomInstruction(e.target.value)}
+                  placeholder="Masalan: 'Faqat N2 savollarini ajrat', 'Variantlar 4 tadan bo‘lsin'..."
+                  className="mt-1 w-full rounded-xl border border-purple-200 bg-white px-3 py-1.5 text-xs text-slate-900 focus:border-purple-500 focus:outline-none dark:border-slate-800 dark:bg-slate-950 dark:text-white"
+                />
+              </div>
+
+              {aiError && (
+                <div className="flex items-start justify-between gap-3 rounded-xl border border-rose-200 bg-rose-50 p-3 text-xs text-rose-800 dark:border-rose-900/50 dark:bg-rose-950/40 dark:text-rose-200">
+                  <div className="flex items-start gap-2">
+                    <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-rose-600" />
+                    <div>
+                      <p className="font-bold">Xatolik yuz berdi:</p>
+                      <p className="mt-0.5">{aiError}</p>
+                    </div>
+                  </div>
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="outline"
+                    onClick={() => handleAiExtract()}
+                    className="border-rose-300 bg-white text-rose-700 hover:bg-rose-100 dark:border-rose-800 dark:bg-slate-900"
+                  >
+                    Qayta urinish
+                  </Button>
+                </div>
+              )}
+
+              {aiResult && (
+                <div className="space-y-3 rounded-xl border border-purple-300 bg-purple-50/80 p-4 dark:border-purple-800 dark:bg-purple-950/40">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="inline-flex items-center gap-1 rounded-lg bg-purple-200 px-2.5 py-1 text-xs font-black text-purple-900 dark:bg-purple-900 dark:text-purple-200">
+                        <Sparkles className="h-3.5 w-3.5" /> AI: {aiResult.recommendedLevel}
+                      </span>
+                      <span className="inline-flex items-center rounded-lg bg-indigo-100 px-2 py-1 text-xs font-bold text-indigo-800 dark:bg-indigo-900/70 dark:text-indigo-200">
+                        Bo'lim: {aiResult.recommendedSection}
+                      </span>
+                      <span className="inline-flex items-center rounded-lg bg-emerald-100 px-2 py-1 text-xs font-bold text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                        {aiResult.questions.length} ta savol
+                      </span>
+                      <span className="inline-flex items-center rounded-lg bg-amber-100 px-2 py-1 text-xs font-bold text-amber-800 dark:bg-amber-950 dark:text-amber-300">
+                        Draft (Qoralama)
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant="outline"
+                        disabled={isAiExtracting}
+                        onClick={() => handleAiExtract()}
+                        className="flex items-center gap-1.5 rounded-xl border-purple-300 bg-white text-xs font-bold text-purple-800 hover:bg-purple-100 dark:border-purple-700 dark:bg-slate-900 dark:text-purple-200"
+                      >
+                        <RotateCcw className="h-3.5 w-3.5" />
+                        Qayta ishlash
+                      </Button>
+                      <Button
+                        type="button"
+                        size="sm"
+                        onClick={() => setViewMode('table')}
+                        className="rounded-xl bg-purple-600 text-xs font-bold text-white hover:bg-purple-700"
+                      >
+                        Jadvalda tahrirlash
+                      </Button>
+                    </div>
+                  </div>
+                  <p className="text-xs text-purple-950 dark:text-purple-200">{aiResult.summary}</p>
+                </div>
+              )}
+
+              <Button
+                type="button"
+                disabled={
+                  isAiExtracting ||
+                  (aiInputMode === 'text' ? !aiSourceText.trim() : !aiSelectedFile)
+                }
+                onClick={() => handleAiExtract()}
+                className="w-full rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 py-2.5 text-xs font-black text-white shadow-md hover:from-purple-700 hover:to-indigo-700"
+              >
+                {isAiExtracting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    AI savollar, variantlar va javoblarni tahlil qilmoqda...
+                  </>
+                ) : (
+                  <>
+                    <Sparkles className="mr-2 h-4 w-4" />
+                    {aiResult ? 'Savollarni qayta ajratish' : 'AI bilan savollarni ajratish'}
+                  </>
+                )}
+              </Button>
+            </div>
+          ) : inputTab === 'file' ? (
             <div
               onDragOver={handleDragOver}
               onDrop={handleDrop}
@@ -1098,6 +1402,24 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
                                       <span className="inline-flex w-fit rounded bg-indigo-50 px-1.5 py-0.5 text-[10px] font-black text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">
                                         JLPT {v?.level || raw.level || newLevel}
                                       </span>
+                                      {Boolean(v?.difficulty || raw.difficulty) && (
+                                        <span
+                                          className={`inline-flex w-fit rounded px-1.5 py-0.5 text-[9px] font-bold uppercase ${
+                                            (v?.difficulty || raw.difficulty) === 'hard'
+                                              ? 'bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300'
+                                              : (v?.difficulty || raw.difficulty) === 'easy'
+                                                ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300'
+                                                : 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300'
+                                          }`}
+                                        >
+                                          {v?.difficulty || raw.difficulty}
+                                        </span>
+                                      )}
+                                      {Boolean(v?.question_type || raw.question_type) && (
+                                        <span className="text-[10px] text-slate-500">
+                                          {v?.question_type || raw.question_type}
+                                        </span>
+                                      )}
                                     </div>
                                   </td>
 
@@ -1350,6 +1672,25 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
                                                   </option>
                                                 ),
                                               )}
+                                            </select>
+                                          </div>
+                                          <div className="flex items-center gap-2">
+                                            <span className="text-[11px] font-bold text-slate-600 dark:text-slate-400">
+                                              Qiyinlik:
+                                            </span>
+                                            <select
+                                              value={editDraft.difficulty || 'medium'}
+                                              onChange={(e) =>
+                                                setEditDraft({
+                                                  ...editDraft,
+                                                  difficulty: e.target.value as any,
+                                                })
+                                              }
+                                              className="rounded-xl border border-slate-200 bg-white px-2.5 py-1 text-xs font-black dark:border-slate-700 dark:bg-slate-950"
+                                            >
+                                              <option value="easy">easy (Oson)</option>
+                                              <option value="medium">medium (O‘rtacha)</option>
+                                              <option value="hard">hard (Qiyin)</option>
                                             </select>
                                           </div>
                                         </div>

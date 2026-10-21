@@ -17,15 +17,18 @@ export interface RawImportQuestion {
   correctAnswer?: string | number;
   correct_answer?: string;
   correct_index?: number | string;
-  explanation?: string;
-  passage?: string;
-  reading_passage?: string;
-  text?: string;
-  content?: string;
+  explanation?: string | null;
+  passage?: string | null;
+  reading_passage?: string | null;
+  text?: string | null;
+  content?: string | null;
   level?: string;
   section?: string;
   section_name?: string;
   section_type?: 'reading' | 'listening' | 'knowledge' | string;
+  difficulty?: 'easy' | 'medium' | 'hard' | string;
+  question_type?: string;
+  is_published?: boolean;
 }
 
 export interface ValidatedQuestion {
@@ -40,6 +43,8 @@ export interface ValidatedQuestion {
   level: JlptLevel | null;
   section_name: string;
   section_type: string;
+  difficulty?: 'easy' | 'medium' | 'hard';
+  question_type?: string;
 }
 
 export interface ValidationIssue {
@@ -596,6 +601,9 @@ export class ExamBulkImportService {
             level: questionLevel,
             section_name: normalizedSectionType || secStr || 'knowledge',
             section_type: normalizedSectionType || 'knowledge',
+            difficulty:
+              raw.difficulty === 'easy' || raw.difficulty === 'hard' ? raw.difficulty : 'medium',
+            question_type: raw.question_type || qType,
           };
 
       // Ogohlantirish: reading bo'limida passagesiz savol
