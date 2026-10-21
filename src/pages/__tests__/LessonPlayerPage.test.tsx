@@ -89,8 +89,9 @@ describe('LessonPlayerPage', () => {
     fireEvent.click(optButtons1[0]);
 
     // Advance through exercises until reaching the final finish button
-    while (screen.queryByRole('button', { name: /Davom etish/i })) {
-      const continueBtn = screen.getByRole('button', { name: /Davom etish/i });
+    for (let i = 0; i < 12; i++) {
+      const continueBtn = screen.queryByRole('button', { name: /Davom etish/i });
+      if (!continueBtn) break;
       fireEvent.click(continueBtn);
       const optButtons = screen.getAllByRole('button').filter((b) => b.textContent?.includes('A'));
       if (optButtons.length > 0) {

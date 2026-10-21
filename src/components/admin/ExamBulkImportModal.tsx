@@ -1,5 +1,27 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { Upload, X, Loader2, Eye, Table2, Save, Send } from 'lucide-react';
+import {
+  Upload,
+  X,
+  Loader2,
+  Eye,
+  Table2,
+  Save,
+  Send,
+  Trash2,
+  Edit3,
+  Plus,
+  RotateCcw,
+  Search,
+  CheckCircle2,
+  XCircle,
+  AlertTriangle,
+  FileText,
+  BookOpen,
+  HelpCircle,
+  Check,
+  Clock,
+  Award,
+} from 'lucide-react';
 import { Button } from '../ui/Button';
 import { toast } from '../../hooks/use-toast';
 import {
@@ -9,6 +31,11 @@ import {
   ValidatedQuestion,
 } from '../../services/ExamBulkImportService';
 import { sanitizeErrorMessage } from '../ErrorBoundary';
+import {
+  parsePdfFile,
+  pdfQuestionsToJson,
+  validatePdfFile,
+} from '../../services/ExamPdfImportService';
 
 export interface ExamBulkImportModalProps {
   isOpen: boolean;
@@ -21,6 +48,16 @@ export interface ExamBulkImportModalProps {
   existingQuestions?: Array<{ question_text?: string }>;
   examId?: string;
   availableExams?: Array<{ id: string; title: string; type: string }>;
+}
+
+interface EditDraft {
+  question_text: string;
+  passage: string;
+  options: string[];
+  correct_index: number;
+  explanation: string;
+  level: JlptLevel;
+  section_type: string;
 }
 
 export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
@@ -40,20 +77,26 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
   const [rawContent, setRawContent] = useState<string>('');
   const [fileName, setFileName] = useState<string | null>(null);
   const [fileSizeStr, setFileSizeStr] = useState<string | null>(null);
-  const [activeFilter, setActiveFilter] = useState<'all' | 'errors' | 'warnings' | 'valid'>('all');
+  const [activeFilter, setActiveFilter] = useState<
+    'all' | 'errors' | 'warnings' | 'valid' | 'deleted'
+  >('all');
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const [viewMode, setViewMode] = useState<'table' | 'preview'>('table');
   const [editingRow, setEditingRow] = useState<number | null>(null);
-  const [editDraft, setEditDraft] = useState<{
-    question_text: string;
-    passage: string;
-    options: string[];
-    correct_index: number;
-    explanation: string;
-  } | null>(null);
+  const [editDraft, setEditDraft] = useState<EditDraft | null>(null);
   const [deletedRows, setDeletedRows] = useState<Set<number>>(new Set());
   const [overrides, setOverrides] = useState<Record<number, ValidatedQuestion>>({});
+  const [expandedPassages, setExpandedPassages] = useState<Set<number>>(new Set());
+
+  // Real Exam Preview Simulator State
   const [previewAnswers, setPreviewAnswers] = useState<Record<number, number>>({});
   const [showCorrectInPreview, setShowCorrectInPreview] = useState<boolean>(false);
+  const [previewSectionFilter, setPreviewSectionFilter] = useState<
+    'all' | 'knowledge' | 'reading' | 'listening'
+  >('all');
+  const [isSimulated, setIsSimulated] = useState<boolean>(false);
+
+  // New Exam Settings
   const [examTargetType, setExamTargetType] = useState<'create_new' | 'existing'>(
     availableExams.length > 0 && examId ? 'existing' : 'create_new',
   );
@@ -65,6 +108,8 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
   const [newDesc, setNewDesc] = useState<string>('');
   const [showGuide, setShowGuide] = useState<boolean>(false);
   const [isImporting, setIsImporting] = useState<boolean>(false);
+  const [isParsingPdf, setIsParsingPdf] = useState<boolean>(false);
+  const [pdfWarnings, setPdfWarnings] = useState<string[]>([]);
   const [importProgress, setImportProgress] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -74,6 +119,7 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
       setFileName(null);
       setFileSizeStr(null);
       setActiveFilter('all');
+      setSearchQuery('');
       setIsImporting(false);
       setImportProgress(null);
       setViewMode('table');
@@ -81,8 +127,11 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
       setEditDraft(null);
       setDeletedRows(new Set());
       setOverrides({});
+      setExpandedPassages(new Set());
       setPreviewAnswers({});
       setShowCorrectInPreview(false);
+      setIsSimulated(false);
+      setPreviewSectionFilter('all');
       if (examId) setSelectedExamId(examId);
       if (examLevel) setNewLevel(examLevel);
     }
@@ -102,7 +151,7 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
     if (Object.keys(overrides).length === 0) return baseValidation;
     const mergedItems = baseValidation.items.map((item) => {
       const ov = overrides[item.row];
-      if (ov && item.validated) return { ...item, validated: { ...ov } };
+      if (ov) return { ...item, validated: { ...ov } };
       return item;
     });
     return ExamBulkImportService.revalidateEditedItems(mergedItems, {
@@ -120,6 +169,14 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
   const loadDroppedFile = (file: File) => {
     setFileName(file.name);
     setFileSizeStr((file.size / 1024).toFixed(1) + ' KB');
+    setPdfWarnings([]);
+
+    if (file.name.toLowerCase().endsWith('.pdf') || file.type === 'application/pdf') {
+      setFileFormat('json');
+      void handlePdfFile(file);
+      return;
+    }
+
     if (file.name.toLowerCase().endsWith('.csv')) setFileFormat('csv');
     else if (file.name.toLowerCase().endsWith('.json')) setFileFormat('json');
     else setFileFormat('auto');
@@ -129,6 +186,50 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
       setRawContent(content);
     };
     reader.readAsText(file, 'UTF-8');
+  };
+
+  const handlePdfFile = async (file: File) => {
+    const validation = validatePdfFile(file);
+    if (!validation.valid) {
+      setRawContent('');
+      toast({
+        variant: 'destructive',
+        title: 'PDF yuklanmadi',
+        description: validation.error,
+      });
+      return;
+    }
+
+    setIsParsingPdf(true);
+    try {
+      const parsed = await parsePdfFile(file);
+      setPdfWarnings(parsed.warnings);
+      if (!parsed.questions.length) {
+        setRawContent('');
+        toast({
+          variant: 'destructive',
+          title: 'Savol topilmadi',
+          description:
+            parsed.warnings[0] ||
+            'PDF matnida savollar topilmadi. Boshqa formatda (CSV/JSON) urinib ko‘ring.',
+        });
+        return;
+      }
+      setRawContent(pdfQuestionsToJson(parsed.questions));
+      toast({
+        title: 'PDF o‘qildi',
+        description: `${parsed.questions.length} ta savol topildi (${parsed.pageCount} sahifa).`,
+      });
+    } catch (err: any) {
+      setRawContent('');
+      toast({
+        variant: 'destructive',
+        title: 'PDF o‘qib bo‘lmadi',
+        description: sanitizeErrorMessage(err?.message || 'Noma’lum xatolik.'),
+      });
+    } finally {
+      setIsParsingPdf(false);
+    }
   };
 
   const handleDragOver = (e: React.DragEvent) => {
@@ -154,20 +255,64 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
     toast({ title: 'Namuna yuklandi', description: format.toUpperCase() + ' namuna yuklandi.' });
   };
 
+  // Filtered rows for the table view
   const filteredItems = useMemo(() => {
     if (!validationResult) return [];
+    let list = validationResult.items;
+
+    // Filter by tab
     switch (activeFilter) {
       case 'errors':
-        return validationResult.items.filter((it) => it.status === 'error');
+        list = list.filter((it) => it.status === 'error' && !deletedRows.has(it.row));
+        break;
       case 'warnings':
-        return validationResult.items.filter((it) => it.status === 'warning');
+        list = list.filter((it) => it.status === 'warning' && !deletedRows.has(it.row));
+        break;
       case 'valid':
-        return validationResult.items.filter((it) => it.status === 'valid');
+        list = list.filter((it) => it.status === 'valid' && !deletedRows.has(it.row));
+        break;
+      case 'deleted':
+        list = list.filter((it) => deletedRows.has(it.row));
+        break;
       default:
-        return validationResult.items;
+        // 'all' includes non-deleted or all items
+        break;
     }
-  }, [validationResult, activeFilter]);
 
+    // Filter by search query
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase().trim();
+      list = list.filter((it) => {
+        const v = it.validated;
+        const raw = it.raw;
+        const text = (v?.question_text || raw.question || raw.question_text || '').toLowerCase();
+        const passage = (
+          v?.passage ||
+          raw.passage ||
+          raw.reading_passage ||
+          raw.text ||
+          ''
+        ).toLowerCase();
+        const explanation = (v?.explanation || raw.explanation || '').toLowerCase();
+        const optionsList =
+          v?.options ||
+          (Array.isArray(raw.options)
+            ? raw.options
+            : [raw.option_a, raw.option_b, raw.option_c, raw.option_d]);
+        const optionsStr = optionsList.filter(Boolean).join(' ').toLowerCase();
+        return (
+          text.includes(q) ||
+          passage.includes(q) ||
+          explanation.includes(q) ||
+          optionsStr.includes(q)
+        );
+      });
+    }
+
+    return list;
+  }, [validationResult, activeFilter, deletedRows, searchQuery]);
+
+  // Valid questions eligible for import/publish
   const validQuestionsToImport: ValidatedQuestion[] = useMemo(() => {
     if (!validationResult) return [];
     return validationResult.items
@@ -176,112 +321,234 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
   }, [validationResult, deletedRows]);
 
   const confirmableCount = validQuestionsToImport.length;
+
   const hasBlockingErrors = useMemo(() => {
     if (!validationResult) return false;
     return validationResult.items.some((it) => it.status === 'error' && !deletedRows.has(it.row));
   }, [validationResult, deletedRows]);
 
+  // Start editing a row (even if it had errors originally, user can repair it)
   const startEditing = (row: number) => {
     const item = validationResult?.items.find((i) => i.row === row);
-    const v = item?.validated;
-    if (!v) {
-      toast({
-        variant: 'destructive',
-        title: 'Tahrirlab bolmaydi',
-        description: 'Valid savol yoq.',
-      });
-      return;
+    if (!item) return;
+    const v = item.validated;
+    const raw = item.raw;
+
+    let initialOptions: string[] = [];
+    if (v?.options && v.options.length > 0) {
+      initialOptions = [...v.options];
+    } else if (Array.isArray(raw.options)) {
+      initialOptions = raw.options.map((o) => String(o).trim());
+    } else if (typeof raw.options === 'string') {
+      try {
+        const parsed = JSON.parse(raw.options);
+        if (Array.isArray(parsed)) initialOptions = parsed.map((o) => String(o).trim());
+        else initialOptions = raw.options.split('|').map((o) => o.trim());
+      } catch {
+        initialOptions = raw.options.split('|').map((o) => o.trim());
+      }
+    } else {
+      const extracted = [raw.option_a, raw.option_b, raw.option_c, raw.option_d]
+        .map((o) => (o !== undefined && o !== null ? String(o).trim() : ''))
+        .filter(Boolean);
+      initialOptions = extracted.length > 0 ? extracted : ['', '', '', ''];
     }
+
+    while (initialOptions.length < 2) {
+      initialOptions.push('');
+    }
+
+    let initialIdx = 0;
+    if (v && typeof v.correct_index === 'number') {
+      initialIdx = v.correct_index;
+    } else if (raw.correct_index !== undefined && !isNaN(Number(raw.correct_index))) {
+      initialIdx = Number(raw.correct_index);
+    } else if (raw.correctAnswer !== undefined || raw.correct_answer !== undefined) {
+      const ca = String(raw.correctAnswer || raw.correct_answer).trim();
+      const mIdx = initialOptions.findIndex((o) => o.toLowerCase() === ca.toLowerCase());
+      if (mIdx >= 0) initialIdx = mIdx;
+      else if (/^[A-D]$/i.test(ca)) {
+        initialIdx = ca.toUpperCase().charCodeAt(0) - 65;
+      }
+    }
+
+    const cleanLevel = raw.level ? String(raw.level).toUpperCase().replace(/\s+/g, '') : '';
+    const initialLevel: JlptLevel =
+      v?.level ||
+      (['N1', 'N2', 'N3', 'N4', 'N5'].includes(cleanLevel) ? (cleanLevel as JlptLevel) : null) ||
+      (mode === 'section' ? examLevel : newLevel) ||
+      'N3';
+
+    const rawSec = String(raw.section || raw.section_name || raw.section_type || '').toLowerCase();
+    let initialSection = v?.section_type || 'knowledge';
+    if (!v) {
+      if (rawSec.includes('read') || rawSec.includes('dokkai')) initialSection = 'reading';
+      else if (rawSec.includes('listen') || rawSec.includes('choukai'))
+        initialSection = 'listening';
+      else initialSection = 'knowledge';
+    }
+
     setEditingRow(row);
     setEditDraft({
-      question_text: v.question_text,
-      passage: v.passage || '',
-      options: [...v.options],
-      correct_index: v.correct_index,
-      explanation: v.explanation || '',
+      question_text: v?.question_text || raw.question || raw.question_text || '',
+      passage: v?.passage || raw.passage || raw.reading_passage || raw.text || raw.content || '',
+      options: initialOptions,
+      correct_index: Math.max(0, Math.min(initialIdx, Math.max(initialOptions.length - 1, 0))),
+      explanation: v?.explanation || raw.explanation || '',
+      level: initialLevel,
+      section_type: initialSection,
     });
   };
+
   const cancelEditing = () => {
     setEditingRow(null);
     setEditDraft(null);
   };
+
   const saveEditing = (row: number) => {
     if (!editDraft) return;
     const qText = editDraft.question_text.trim();
-    const opts = editDraft.options.map((o) => o.trim()).filter(Boolean);
+    const opts = editDraft.options.map((o) => o.trim());
+
     if (qText.length < 3) {
-      toast({ variant: 'destructive', title: 'Savol qisqa', description: 'Kamida 3 belgi.' });
+      toast({
+        variant: 'destructive',
+        title: 'Savol matni juda qisqa',
+        description: "Savol matni kamida 3 ta belgidan iborat bo'lishi shart.",
+      });
       return;
     }
-    if (opts.length < 2) {
-      toast({ variant: 'destructive', title: 'Variant kam', description: 'Kamida 2 ta.' });
+    const nonEmptyOpts = opts.filter(Boolean);
+    if (nonEmptyOpts.length < 2) {
+      toast({
+        variant: 'destructive',
+        title: 'Variantlar yetarli emas',
+        description: "Kamida 2 ta to'ldirilgan variant bo'lishi shart.",
+      });
       return;
     }
+
     const safeIndex = Math.min(Math.max(editDraft.correct_index, 0), opts.length - 1);
     const item = validationResult?.items.find((i) => i.row === row);
-    const prev = item?.validated;
-    if (!prev) return;
+    if (!item) return;
+
     const updated: ValidatedQuestion = {
-      ...prev,
+      id: item.validated?.id ?? item.raw.id,
       question_text: qText,
-      passage: editDraft.passage.trim() || null,
+      type: 'multiple_choice',
       options: opts,
       correct_index: safeIndex,
-      correct_answer: opts[safeIndex],
+      correct_answer: opts[safeIndex] || '',
       explanation: editDraft.explanation.trim() || null,
+      passage: editDraft.passage.trim() || null,
+      level: editDraft.level,
+      section_name: editDraft.section_type,
+      section_type: editDraft.section_type,
     };
+
     setOverrides((pr) => ({ ...pr, [row]: updated }));
     setEditingRow(null);
     setEditDraft(null);
-    toast({ title: 'Savol yangilandi', description: row + '-qator qayta tekshirildi.' });
+    toast({
+      title: 'Savol yangilandi',
+      description: `${row}-qator qayta tekshirildi va saqlandi.`,
+    });
   };
+
   const deleteRow = (row: number) => {
     setDeletedRows((prev) => new Set(prev).add(row));
     if (editingRow === row) cancelEditing();
+    toast({
+      title: "Savol o'chirildi",
+      description: `${row}-qator import ro'yxatidan chiqarildi.`,
+    });
   };
+
   const restoreRow = (row: number) => {
     setDeletedRows((prev) => {
       const n = new Set(prev);
       n.delete(row);
       return n;
     });
+    toast({
+      title: 'Savol qaytarildi',
+      description: `${row}-qator import ro'yxatiga qayta tiklandi.`,
+    });
   };
+
+  const togglePassageExpand = (row: number) => {
+    setExpandedPassages((prev) => {
+      const n = new Set(prev);
+      if (n.has(row)) n.delete(row);
+      else n.add(row);
+      return n;
+    });
+  };
+
+  // Preview filtering questions
+  const previewQuestions = useMemo(() => {
+    if (previewSectionFilter === 'all') return validQuestionsToImport;
+    return validQuestionsToImport.filter((q) => q.section_type === previewSectionFilter);
+  }, [validQuestionsToImport, previewSectionFilter]);
+
+  // Preview Simulation calculation
+  const simulationResults = useMemo(() => {
+    if (!isSimulated || validQuestionsToImport.length === 0) return null;
+    let correctCount = 0;
+    validQuestionsToImport.forEach((q, idx) => {
+      const ans = previewAnswers[idx];
+      if (ans === q.correct_index) {
+        correctCount++;
+      }
+    });
+    const percentage = Math.round((correctCount / validQuestionsToImport.length) * 100);
+    return {
+      score: correctCount,
+      total: validQuestionsToImport.length,
+      percentage,
+      isPassed: percentage >= 60,
+    };
+  }, [isSimulated, validQuestionsToImport, previewAnswers]);
 
   const handleExecuteImport = async (publish: boolean) => {
     if (validQuestionsToImport.length === 0) {
       toast({
         variant: 'destructive',
-        title: 'Import bolmaydi',
-        description: 'Kamida 1 ta valid savol kerak!',
+        title: "Import qilib bo'lmaydi",
+        description: "Saqlash uchun kamida 1 ta to'g'ri (valid) savol bo'lishi shart!",
       });
       return;
     }
     if (publish && hasBlockingErrors) {
       toast({
         variant: 'destructive',
-        title: 'Tasdiqlab bolmaydi',
-        description: 'Xatoli savollarni tahrirlang yoki ochiring.',
+        title: "Tasdiqlab bo'lmaydi",
+        description: "Xatolik mavjud bo'lgan savollarni to'g'rilang yoki o'chiring.",
       });
       return;
     }
+
     setIsImporting(true);
-    setImportProgress(publish ? 'Tasdiqlanmoqda...' : 'Draft saqlanmoqda...');
+    setImportProgress(
+      publish ? 'Tasdiqlanmoqda va publish qilinmoqda...' : 'Draft sifatida saqlanmoqda...',
+    );
     try {
       if (mode === 'section') {
-        if (!sectionId) throw new Error('Bolim topilmadi.');
+        if (!sectionId) throw new Error("Bo'lim identifikatori topilmadi.");
         const res = await ExamBulkImportService.importQuestionsToSection(
           sectionId,
           validQuestionsToImport,
+          publish,
         );
         toast({
-          title: publish ? 'Tasdiqlandi' : 'Draft saqlandi',
-          description: res.insertedCount + ' ta savol.',
+          title: publish ? 'Muvaffaqiyatli tasdiqlandi' : 'Draft saqlandi',
+          description: `${res.insertedCount} ta savol bo'limga qo'shildi.`,
         });
         onSuccess({ count: res.insertedCount });
         onClose();
       } else {
         if (examTargetType === 'create_new') {
-          const title = newTitle.trim() || 'JLPT ' + newLevel + ' Yangi Imtihon';
+          const title = newTitle.trim() || `JLPT ${newLevel} Rasmiy Imtihon`;
           const res = await ExamBulkImportService.importFullExamWithSections({
             title,
             level: newLevel,
@@ -290,20 +557,21 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
             isPublished: publish,
           });
           toast({
-            title: publish ? 'Imtihon tasdiqlandi' : 'Draft saqlandi',
-            description: title + ' — ' + res.totalInserted + ' ta savol.',
+            title: publish ? 'Imtihon muvaffaqiyatli tasdiqlandi' : 'Draft sifatida saqlandi',
+            description: `${title} — ${res.totalInserted} ta savol muvaffaqiyatli yuklandi.`,
           });
           onSuccess({ count: res.totalInserted, examId: res.examId });
           onClose();
         } else {
-          if (!selectedExamId) throw new Error('Imtihon tanlang.');
+          if (!selectedExamId) throw new Error('Mavjud imtihon tanlanmadi.');
           const res = await ExamBulkImportService.importQuestionsToExistingExam(
             selectedExamId,
             validQuestionsToImport,
+            publish,
           );
           toast({
-            title: publish ? 'Tasdiqlandi' : 'Draft qoshildi',
-            description: res.totalInserted + ' ta savol.',
+            title: publish ? 'Imtihon tasdiqlandi' : "Savollar draft sifatida qo'shildi",
+            description: `${res.totalInserted} ta savol imtihonga qo'shildi.`,
           });
           onSuccess({ count: res.totalInserted, examId: selectedExamId });
           onClose();
@@ -313,7 +581,7 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
       toast({
         variant: 'destructive',
         title: 'Import xatoligi',
-        description: sanitizeErrorMessage(err?.message || 'Xatolik.'),
+        description: sanitizeErrorMessage(err?.message || 'Saqlashda xatolik yuz berdi.'),
       });
     } finally {
       setIsImporting(false);
@@ -329,94 +597,124 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
       onClick={onClose}
     >
       <div
-        className="flex max-h-[92vh] w-full max-w-5xl flex-col overflow-hidden rounded-3xl border bg-white shadow-2xl"
+        className="flex max-h-[94vh] w-full max-w-6xl flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl dark:border-slate-800 dark:bg-slate-950"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between border-b px-6 py-4">
+        {/* Modal Header */}
+        <div className="flex items-center justify-between border-b border-slate-200 px-6 py-4 dark:border-slate-800">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-500/10 text-indigo-600">
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-indigo-500/10 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-400">
               <Upload className="h-5 w-5" />
             </div>
             <div>
-              <h3 className="text-lg font-black">Ommaviy Savollar Importi</h3>
-              <p className="text-xs text-slate-500">
-                Preview + tahrirlash + draft/tasdiqlash
-                {mode === 'section' && sectionTitle ? ' • ' + sectionTitle : ''}
+              <div className="flex items-center gap-2">
+                <h3 className="text-lg font-black text-slate-900 dark:text-white">
+                  Ommaviy Imtihon Importi &amp; Qat'iy Validatsiya
+                </h3>
+                <span className="rounded-md bg-indigo-100 px-2 py-0.5 text-[10px] font-black uppercase text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300">
+                  {mode === 'section' ? "Bo'limga import" : 'To‘liq imtihon'}
+                </span>
+              </div>
+              <p className="text-xs text-slate-500 dark:text-slate-400">
+                Jadval orqali ko‘rish, tahrirlash, real imtihon previewsi va draft/tasdiqlash
+                {mode === 'section' && sectionTitle ? ` • ${sectionTitle}` : ''}
               </p>
             </div>
           </div>
-          <button type="button" onClick={onClose} className="rounded-xl p-2 hover:bg-slate-100">
+          <button
+            type="button"
+            onClick={onClose}
+            className="rounded-xl p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+          >
             <X className="h-5 w-5" />
           </button>
         </div>
+
+        {/* Modal Body */}
         <div className="flex-1 space-y-5 overflow-y-auto px-6 py-5">
+          {/* Target Exam Config (when mode === 'full-exam') */}
           {mode === 'full-exam' && (
-            <div className="space-y-3 rounded-2xl border p-4">
-              <div className="flex gap-2">
-                <button
-                  type="button"
-                  onClick={() => setExamTargetType('create_new')}
-                  className={
-                    examTargetType === 'create_new'
-                      ? 'rounded-xl bg-slate-900 px-3 py-1.5 text-xs font-bold text-white'
-                      : 'rounded-xl bg-slate-100 px-3 py-1.5 text-xs font-bold'
-                  }
-                >
-                  Yangi imtihon
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setExamTargetType('existing')}
-                  className={
-                    examTargetType === 'existing'
-                      ? 'rounded-xl bg-slate-900 px-3 py-1.5 text-xs font-bold text-white'
-                      : 'rounded-xl bg-slate-100 px-3 py-1.5 text-xs font-bold'
-                  }
-                >
-                  Mavjud imtihon
-                </button>
+            <div className="space-y-3 rounded-2xl border border-slate-200 bg-slate-50/70 p-4 dark:border-slate-800 dark:bg-slate-900/50">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-black uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                  Maqsadli Imtihon
+                </span>
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setExamTargetType('create_new')}
+                    className={
+                      examTargetType === 'create_new'
+                        ? 'rounded-xl bg-slate-900 px-3 py-1.5 text-xs font-bold text-white dark:bg-white dark:text-slate-900'
+                        : 'rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300'
+                    }
+                  >
+                    Yangi imtihon yaratish
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setExamTargetType('existing')}
+                    className={
+                      examTargetType === 'existing'
+                        ? 'rounded-xl bg-slate-900 px-3 py-1.5 text-xs font-bold text-white dark:bg-white dark:text-slate-900'
+                        : 'rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300'
+                    }
+                  >
+                    Mavjud imtihonga qo‘shish
+                  </button>
+                </div>
               </div>
               {examTargetType === 'create_new' ? (
-                <div className="grid gap-2">
-                  <input
-                    value={newTitle}
-                    onChange={(e) => setNewTitle(e.target.value)}
-                    placeholder="Imtihon nomi"
-                    className="rounded-xl border p-2 text-xs"
-                  />
+                <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-3">
+                  <div className="sm:col-span-2">
+                    <input
+                      value={newTitle}
+                      onChange={(e) => setNewTitle(e.target.value)}
+                      placeholder="Imtihon nomi (masalan: JLPT N3 Rasmiy Mock 2026)"
+                      className="w-full rounded-xl border border-slate-200 bg-white p-2.5 text-xs font-medium text-slate-900 focus:border-indigo-500 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+                    />
+                  </div>
+                  <div>
+                    <select
+                      value={newLevel}
+                      onChange={(e) => setNewLevel(e.target.value as JlptLevel)}
+                      className="w-full rounded-xl border border-slate-200 bg-white p-2.5 text-xs font-black text-slate-900 focus:border-indigo-500 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+                    >
+                      {(['N5', 'N4', 'N3', 'N2', 'N1'] as JlptLevel[]).map((lvl) => (
+                        <option key={lvl} value={lvl}>
+                          JLPT {lvl} Darajasi
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="sm:col-span-3">
+                    <input
+                      value={newDesc}
+                      onChange={(e) => setNewDesc(e.target.value)}
+                      placeholder="Qisqacha tavsif (ixtiyoriy: 500 Mon va Shin Kanzen asosida)"
+                      className="w-full rounded-xl border border-slate-200 bg-white p-2.5 text-xs font-medium text-slate-900 focus:border-indigo-500 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div>
                   <select
-                    value={newLevel}
-                    onChange={(e) => setNewLevel(e.target.value as JlptLevel)}
-                    className="rounded-xl border p-2 text-xs font-bold"
+                    value={selectedExamId}
+                    onChange={(e) => setSelectedExamId(e.target.value)}
+                    className="w-full rounded-xl border border-slate-200 bg-white p-2.5 text-xs font-bold text-slate-900 focus:border-indigo-500 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-white"
                   >
-                    {(['N5', 'N4', 'N3', 'N2', 'N1'] as JlptLevel[]).map((lvl) => (
-                      <option key={lvl} value={lvl}>
-                        JLPT {lvl}
+                    {availableExams.map((ex) => (
+                      <option key={ex.id} value={ex.id}>
+                        {ex.title} ({ex.type})
                       </option>
                     ))}
                   </select>
-                  <input
-                    value={newDesc}
-                    onChange={(e) => setNewDesc(e.target.value)}
-                    placeholder="Tavsif (ixtiyoriy)"
-                    className="rounded-xl border p-2 text-xs"
-                  />
                 </div>
-              ) : (
-                <select
-                  value={selectedExamId}
-                  onChange={(e) => setSelectedExamId(e.target.value)}
-                  className="w-full rounded-xl border p-2 text-xs font-bold"
-                >
-                  {availableExams.map((ex) => (
-                    <option key={ex.id} value={ex.id}>
-                      {ex.title} ({ex.type})
-                    </option>
-                  ))}
-                </select>
               )}
             </div>
           )}
+
+          {/* Upload & Input Tabs */}
           <div className="flex items-center justify-between">
             <div className="flex gap-2">
               <button
@@ -424,51 +722,97 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
                 onClick={() => setInputTab('file')}
                 className={
                   inputTab === 'file'
-                    ? 'rounded-xl bg-slate-900 px-4 py-2 text-xs font-bold text-white'
-                    : 'rounded-xl bg-slate-100 px-4 py-2 text-xs font-bold'
+                    ? 'rounded-xl bg-slate-900 px-4 py-2 text-xs font-bold text-white shadow-sm dark:bg-white dark:text-slate-900'
+                    : 'rounded-xl bg-slate-100 px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300'
                 }
               >
-                Fayl
+                Fayl yuklash (CSV / JSON / PDF)
               </button>
               <button
                 type="button"
                 onClick={() => setInputTab('text')}
                 className={
                   inputTab === 'text'
-                    ? 'rounded-xl bg-slate-900 px-4 py-2 text-xs font-bold text-white'
-                    : 'rounded-xl bg-slate-100 px-4 py-2 text-xs font-bold'
+                    ? 'rounded-xl bg-slate-900 px-4 py-2 text-xs font-bold text-white shadow-sm dark:bg-white dark:text-slate-900'
+                    : 'rounded-xl bg-slate-100 px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300'
                 }
               >
-                Matn
+                Matn ko‘rinishida kiritish
               </button>
             </div>
             <button
               type="button"
               onClick={() => setShowGuide(!showGuide)}
-              className="text-xs font-bold text-indigo-600"
+              className="flex items-center gap-1 text-xs font-bold text-indigo-600 hover:underline dark:text-indigo-400"
             >
-              Qollanma {showGuide ? '▲' : '▼'}
+              <HelpCircle className="h-3.5 w-3.5" />
+              Qo‘llanma va talablar {showGuide ? '▲' : '▼'}
             </button>
           </div>
+
+          {/* Guide Dropdown */}
+          {showGuide && (
+            <div className="space-y-2 rounded-2xl border border-indigo-200 bg-indigo-50/60 p-4 text-xs text-indigo-900 dark:border-indigo-900/50 dark:bg-indigo-950/30 dark:text-indigo-200">
+              <p className="font-bold">Qat'iy Validatsiya Talablari (Task 2 &amp; 3):</p>
+              <ul className="list-disc space-y-1 pl-4">
+                <li>
+                  <b>Majburiy maydonlar:</b> question_text, options (kamida 2 ta), correct_answer /
+                  correct_index, level (N1..N5), section (knowledge, reading, listening).
+                </li>
+                <li>
+                  <b>To'g'ri javob indeksi:</b> 0 yoki 1-based raqam, harf (A/B/C/D) yoki to'liq
+                  javob matniga mos kelishi shart.
+                </li>
+                <li>
+                  <b>Bo'sh joylar:</b> Bo'sh savol yoki variantlar xato sifatida qayd etiladi. Xato
+                  savollarni jadvalda "Qayta tuzatish" orqali to'g'rilash yoki "O'chirish" mumkin.
+                </li>
+              </ul>
+            </div>
+          )}
+
+          {/* Input Area */}
           {inputTab === 'file' ? (
             <div
               onDragOver={handleDragOver}
               onDrop={handleDrop}
               onClick={() => fileInputRef.current?.click()}
-              className="cursor-pointer rounded-2xl border-2 border-dashed p-8 text-center"
+              className="group cursor-pointer rounded-2xl border-2 border-dashed border-slate-300 p-8 text-center transition hover:border-indigo-500 hover:bg-indigo-50/20 dark:border-slate-700 dark:hover:border-indigo-500"
             >
               <input
                 ref={fileInputRef}
                 type="file"
-                accept=".csv,.json,.txt"
+                accept=".csv,.json,.txt,.pdf,application/pdf"
                 onChange={handleFileChange}
                 className="hidden"
               />
-              <p className="text-sm font-bold">CSV / JSON fayl tanlang</p>
-              {fileName && (
-                <p className="text-xs text-slate-500">
-                  {fileName} ({fileSizeStr})
+              <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 transition group-hover:scale-105 dark:bg-indigo-950 dark:text-indigo-400">
+                <Upload className="h-6 w-6" />
+              </div>
+              <p className="text-sm font-bold text-slate-800 dark:text-slate-200">
+                CSV, JSON yoki PDF faylni tanlang yoki bu yerga tortib tashlang
+              </p>
+              <p className="mt-1 text-xs text-slate-400">
+                UTF-8 formatidagi .csv yoki .json fayllar qo‘llab-quvvatlanadi
+              </p>
+              {isParsingPdf && (
+                <p className="mt-2 flex items-center justify-center gap-2 text-xs font-bold text-indigo-600">
+                  <Loader2 className="h-4 w-4 animate-spin" /> PDF o‘qilmoqda va savollar
+                  ajratilmoqda...
                 </p>
+              )}
+              {fileName && (
+                <div className="mt-3 inline-flex items-center gap-2 rounded-xl bg-slate-100 px-3 py-1.5 text-xs font-bold text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                  <FileText className="h-3.5 w-3.5 text-indigo-600" />
+                  {fileName} ({fileSizeStr})
+                </div>
+              )}
+              {pdfWarnings.length > 0 && (
+                <ul className="mx-auto mt-2 max-w-md list-disc space-y-0.5 text-left text-xs text-amber-700 dark:text-amber-300">
+                  {pdfWarnings.slice(0, 5).map((w, i) => (
+                    <li key={i}>{w}</li>
+                  ))}
+                </ul>
               )}
             </div>
           ) : (
@@ -476,370 +820,961 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
               value={rawContent}
               onChange={(e) => setRawContent(e.target.value)}
               rows={6}
-              placeholder="CSV yoki JSON matnni joylashtiring..."
-              className="w-full rounded-2xl border p-3 font-mono text-xs"
+              placeholder="CSV yoki JSON matnini bu yerga joylashtiring..."
+              className="w-full rounded-2xl border border-slate-200 p-3 font-mono text-xs text-slate-900 focus:border-indigo-500 focus:outline-none dark:border-slate-800 dark:bg-slate-900 dark:text-white"
             />
           )}
-          <div className="flex flex-wrap gap-2">
-            <Button size="sm" variant="outline" onClick={() => handleLoadDemo('csv')}>
-              CSV namuna
-            </Button>
-            <Button size="sm" variant="outline" onClick={() => handleLoadDemo('json')}>
-              JSON namuna
-            </Button>
-            <select
-              value={fileFormat}
-              onChange={(e) => setFileFormat(e.target.value as 'auto' | 'json' | 'csv')}
-              className="rounded-xl border p-1.5 text-xs font-bold"
-            >
-              <option value="auto">Auto</option>
-              <option value="csv">CSV</option>
-              <option value="json">JSON</option>
-            </select>
+
+          {/* Quick Demo Templates */}
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold text-slate-500">Namunalar:</span>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => handleLoadDemo('csv')}
+                className="rounded-xl text-xs font-bold"
+              >
+                CSV Namuna
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => handleLoadDemo('json')}
+                className="rounded-xl text-xs font-bold"
+              >
+                JSON Namuna
+              </Button>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold text-slate-500">Format:</span>
+              <select
+                value={fileFormat}
+                onChange={(e) => setFileFormat(e.target.value as 'auto' | 'json' | 'csv')}
+                className="rounded-xl border border-slate-200 bg-white px-2.5 py-1 text-xs font-bold text-slate-700 focus:border-indigo-500 focus:outline-none dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
+              >
+                <option value="auto">Auto-detect</option>
+                <option value="csv">CSV</option>
+                <option value="json">JSON</option>
+              </select>
+            </div>
           </div>
+
+          {/* Validation & Preview Engine */}
           {validationResult && (
-            <div className="space-y-3 rounded-2xl border bg-slate-50/80 p-4">
-              <div className="flex flex-wrap gap-2 text-xs font-bold">
-                <span>Jami: {validationResult.totalCount}</span>
-                <span className="text-emerald-600">Togri: {validationResult.validCount}</span>
-                {validationResult.errorCount > 0 && (
-                  <span className="text-rose-600">Xato: {validationResult.errorCount}</span>
-                )}
-                {validationResult.warningCount > 0 && (
-                  <span className="text-amber-600">Ogoh: {validationResult.warningCount}</span>
-                )}
-              </div>
-              <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-white p-2">
-                <div className="flex gap-1">
+            <div className="space-y-4 rounded-3xl border border-slate-200 bg-slate-50/70 p-5 dark:border-slate-800 dark:bg-slate-900/60">
+              {/* Metrics & Mode Switcher Bar */}
+              <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                {/* Metric Badges */}
+                <div className="flex flex-wrap items-center gap-2 text-xs font-bold">
+                  <span className="rounded-lg bg-slate-100 px-2.5 py-1 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                    Jami: {validationResult.totalCount}
+                  </span>
+                  <span className="rounded-lg border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950/50 dark:text-emerald-300">
+                    ✓ Yaroqli: {validationResult.validCount}
+                  </span>
+                  {validationResult.errorCount > 0 && (
+                    <span className="rounded-lg border border-rose-200 bg-rose-50 px-2.5 py-1 text-rose-700 dark:border-rose-900 dark:bg-rose-950/50 dark:text-rose-300">
+                      ✗ Xatolik: {validationResult.errorCount}
+                    </span>
+                  )}
+                  {validationResult.warningCount > 0 && (
+                    <span className="rounded-lg border border-amber-200 bg-amber-50 px-2.5 py-1 text-amber-700 dark:border-amber-900 dark:bg-amber-950/50 dark:text-amber-300">
+                      ⚠ Ogohlantirish: {validationResult.warningCount}
+                    </span>
+                  )}
+                  {deletedRows.size > 0 && (
+                    <span className="rounded-lg bg-slate-200 px-2.5 py-1 text-slate-600 dark:bg-slate-800 dark:text-slate-400">
+                      O'chirilgan: {deletedRows.size}
+                    </span>
+                  )}
+                </div>
+
+                {/* View Mode Switcher */}
+                <div className="flex items-center gap-1 rounded-xl bg-slate-100 p-1 dark:bg-slate-800">
                   <button
                     type="button"
                     onClick={() => setViewMode('table')}
-                    className={
+                    className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-black transition ${
                       viewMode === 'table'
-                        ? 'rounded-lg bg-indigo-600 px-3 py-1.5 text-xs font-bold text-white'
-                        : 'rounded-lg px-3 py-1.5 text-xs font-bold text-slate-500'
-                    }
+                        ? 'bg-white text-indigo-600 shadow-sm dark:bg-slate-900 dark:text-indigo-400'
+                        : 'text-slate-600 hover:text-slate-900 dark:text-slate-400'
+                    }`}
                   >
-                    <span className="flex items-center gap-1">
-                      <Table2 className="h-3.5 w-3.5" /> Jadval
-                    </span>
+                    <Table2 className="h-3.5 w-3.5" /> Savollar Jadvali
                   </button>
                   <button
                     type="button"
                     onClick={() => setViewMode('preview')}
-                    className={
+                    className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-black transition ${
                       viewMode === 'preview'
-                        ? 'rounded-lg bg-indigo-600 px-3 py-1.5 text-xs font-bold text-white'
-                        : 'rounded-lg px-3 py-1.5 text-xs font-bold text-slate-500'
-                    }
+                        ? 'bg-white text-indigo-600 shadow-sm dark:bg-slate-900 dark:text-indigo-400'
+                        : 'text-slate-600 hover:text-slate-900 dark:text-slate-400'
+                    }`}
                   >
-                    <span className="flex items-center gap-1">
-                      <Eye className="h-3.5 w-3.5" /> Preview
-                    </span>
+                    <Eye className="h-3.5 w-3.5" /> Real Imtihon Preview
                   </button>
                 </div>
-                <div className="text-[11px] text-slate-500">
-                  Tasdiqlanadi: <b className="text-emerald-600">{confirmableCount}</b>
-                  {deletedRows.size > 0 ? ' • Ochirilgan: ' + deletedRows.size : ''}
+              </div>
+
+              {/* Blocking Warning Banner */}
+              {hasBlockingErrors && (
+                <div className="flex items-center gap-2.5 rounded-2xl border border-rose-200 bg-rose-50/80 p-3 text-xs text-rose-800 dark:border-rose-900/60 dark:bg-rose-950/40 dark:text-rose-200">
+                  <AlertTriangle className="h-4 w-4 shrink-0 text-rose-600" />
+                  <span>
+                    <b>Diqqat:</b> {validationResult.errorCount} ta savolda validatsiya xatoligi
+                    aniqlandi. Imtihonni tasdiqlash uchun xato savollarni jadval orqali{' '}
+                    <b>qayta tuzating</b> yoki <b>o'chiring</b>.
+                  </span>
                 </div>
-              </div>
-              <div className="flex gap-2 border-b pb-2">
-                <button
-                  type="button"
-                  onClick={() => setActiveFilter('all')}
-                  className="rounded-lg px-3 py-1 text-xs font-bold"
-                >
-                  Barchasi ({validationResult.totalCount})
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveFilter('errors')}
-                  className="rounded-lg px-3 py-1 text-xs font-bold text-rose-600"
-                >
-                  Xatolar ({validationResult.errorCount})
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveFilter('warnings')}
-                  className="rounded-lg px-3 py-1 text-xs font-bold text-amber-600"
-                >
-                  Ogoh ({validationResult.warningCount})
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveFilter('valid')}
-                  className="rounded-lg px-3 py-1 text-xs font-bold text-emerald-600"
-                >
-                  Togri ({validationResult.validCount})
-                </button>
-              </div>
-              {viewMode === 'table' ? (
-                <div className="max-h-80 space-y-2 overflow-y-auto">
-                  {filteredItems.length === 0 && (
-                    <p className="py-6 text-center text-xs text-slate-400">Savollar yoq.</p>
-                  )}
-                  {filteredItems.map((item) => {
-                    const isDel = deletedRows.has(item.row);
-                    const isEd = editingRow === item.row;
-                    const v = item.validated;
-                    return (
-                      <div
-                        key={item.row}
-                        className={
-                          isDel
-                            ? 'rounded-2xl border bg-slate-100 p-3 opacity-60'
-                            : 'rounded-2xl border bg-white p-3'
-                        }
+              )}
+
+              {/* VIEW 1: SAVOLLAR JADVALI (Table View) */}
+              {viewMode === 'table' && (
+                <div className="space-y-3">
+                  {/* Table Filter Tabs & Search */}
+                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-2 dark:border-slate-800">
+                    <div className="flex flex-wrap gap-1">
+                      <button
+                        type="button"
+                        onClick={() => setActiveFilter('all')}
+                        className={`rounded-lg px-3 py-1 text-xs font-bold transition ${
+                          activeFilter === 'all'
+                            ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900'
+                            : 'text-slate-600 hover:bg-slate-200 dark:text-slate-400'
+                        }`}
                       >
-                        <div className="mb-2 flex items-center justify-between">
-                          <div className="text-[11px] font-bold text-slate-500">
-                            #{item.row} • {item.status}
-                            {isDel ? ' • ochirilgan' : ''}
-                            {v?.passage ? ' • passage bor' : ''}
-                          </div>
-                          <div className="flex gap-1">
-                            {isDel ? (
-                              <button
-                                type="button"
-                                onClick={() => restoreRow(item.row)}
-                                className="rounded-lg border px-2 py-1 text-[10px] font-bold"
-                              >
-                                Qaytarish
-                              </button>
-                            ) : isEd ? (
-                              <>
-                                <button
-                                  type="button"
-                                  onClick={() => saveEditing(item.row)}
-                                  className="rounded-lg bg-emerald-600 px-2 py-1 text-[10px] font-bold text-white"
-                                >
-                                  Saqlash
-                                </button>
-                                <button
-                                  type="button"
-                                  onClick={cancelEditing}
-                                  className="rounded-lg border px-2 py-1 text-[10px] font-bold"
-                                >
-                                  Bekor
-                                </button>
-                              </>
-                            ) : (
-                              <>
-                                <button
-                                  type="button"
-                                  onClick={() => startEditing(item.row)}
-                                  disabled={!v}
-                                  className="rounded-lg border px-2 py-1 text-[10px] font-bold"
-                                >
-                                  Tahrirlash
-                                </button>
-                                <button
-                                  type="button"
-                                  onClick={() => deleteRow(item.row)}
-                                  className="rounded-lg border px-2 py-1 text-[10px] font-bold text-rose-600"
-                                >
-                                  Ochirish
-                                </button>
-                              </>
-                            )}
-                          </div>
-                        </div>
-                        {isEd && editDraft ? (
-                          <div className="space-y-2 rounded-xl bg-slate-50 p-2">
-                            <textarea
-                              value={editDraft.question_text}
-                              onChange={(e) =>
-                                setEditDraft({ ...editDraft, question_text: e.target.value })
-                              }
-                              rows={2}
-                              className="w-full rounded-lg border p-1.5 text-xs"
-                              placeholder="Savol *"
-                            />
-                            <textarea
-                              value={editDraft.passage}
-                              onChange={(e) =>
-                                setEditDraft({ ...editDraft, passage: e.target.value })
-                              }
-                              rows={2}
-                              className="w-full rounded-lg border p-1.5 text-xs"
-                              placeholder="Passage / Matn"
-                            />
-                            {editDraft.options.map((opt, oi) => (
-                              <div key={oi} className="flex items-center gap-1">
-                                <button
-                                  type="button"
-                                  onClick={() => setEditDraft({ ...editDraft, correct_index: oi })}
-                                  className={
-                                    editDraft.correct_index === oi
-                                      ? 'h-6 w-6 rounded-full bg-emerald-600 text-[11px] font-black text-white'
-                                      : 'h-6 w-6 rounded-full border text-[11px] font-black'
-                                  }
-                                >
-                                  {String.fromCharCode(65 + oi)}
-                                </button>
-                                <input
-                                  value={opt}
-                                  onChange={(e) => {
-                                    const n = [...editDraft.options];
-                                    n[oi] = e.target.value;
-                                    setEditDraft({ ...editDraft, options: n });
-                                  }}
-                                  className="w-full rounded-lg border p-1.5 text-xs"
-                                />
-                              </div>
-                            ))}
-                            <textarea
-                              value={editDraft.explanation}
-                              onChange={(e) =>
-                                setEditDraft({ ...editDraft, explanation: e.target.value })
-                              }
-                              rows={2}
-                              className="w-full rounded-lg border p-1.5 text-xs"
-                              placeholder="Izoh"
-                            />
-                          </div>
-                        ) : (
-                          <div className="space-y-1">
-                            <p className="text-[13px] font-bold">
-                              {v?.question_text || '(Savol yoq)'}
-                            </p>
-                            {v?.passage && (
-                              <p className="rounded bg-slate-50 p-1.5 text-[11px] text-slate-600">
-                                Passage: {v.passage.slice(0, 120)}
-                              </p>
-                            )}
-                            {v?.options && (
-                              <div className="flex flex-wrap gap-1">
-                                {v.options.map((o, oi) => (
-                                  <span
-                                    key={oi}
-                                    className={
-                                      oi === v.correct_index
-                                        ? 'rounded bg-emerald-100 px-1.5 py-0.5 text-[11px] font-bold'
-                                        : 'rounded bg-slate-100 px-1.5 py-0.5 text-[11px]'
-                                    }
-                                  >
-                                    {String.fromCharCode(65 + oi)}: {o}
-                                  </span>
-                                ))}
-                              </div>
-                            )}
-                            {v?.explanation && (
-                              <p className="text-[11px] italic text-slate-500">
-                                Izoh: {v.explanation.slice(0, 100)}
-                              </p>
-                            )}
-                            {item.issues.map((iss, k) => (
-                              <p key={k} className="text-[11px] text-rose-600">
-                                [{iss.field}] {iss.message}
-                              </p>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              ) : (
-                <div className="rounded-2xl border bg-white p-4">
-                  <div className="mb-3 flex items-center justify-between">
-                    <div className="text-xs font-bold">
-                      Talaba korinishi ({validQuestionsToImport.length} ta)
+                        Barchasi ({validationResult.totalCount})
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setActiveFilter('valid')}
+                        className={`rounded-lg px-3 py-1 text-xs font-bold transition ${
+                          activeFilter === 'valid'
+                            ? 'bg-emerald-600 text-white'
+                            : 'text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-950/30'
+                        }`}
+                      >
+                        To'g'ri ({validationResult.validCount})
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setActiveFilter('errors')}
+                        className={`rounded-lg px-3 py-1 text-xs font-bold transition ${
+                          activeFilter === 'errors'
+                            ? 'bg-rose-600 text-white'
+                            : 'text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/30'
+                        }`}
+                      >
+                        Xatolar ({validationResult.errorCount})
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setActiveFilter('warnings')}
+                        className={`rounded-lg px-3 py-1 text-xs font-bold transition ${
+                          activeFilter === 'warnings'
+                            ? 'bg-amber-600 text-white'
+                            : 'text-amber-600 hover:bg-amber-50 dark:hover:bg-amber-950/30'
+                        }`}
+                      >
+                        Ogoh ({validationResult.warningCount})
+                      </button>
+                      {deletedRows.size > 0 && (
+                        <button
+                          type="button"
+                          onClick={() => setActiveFilter('deleted')}
+                          className={`rounded-lg px-3 py-1 text-xs font-bold transition ${
+                            activeFilter === 'deleted'
+                              ? 'bg-slate-700 text-white'
+                              : 'text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-800'
+                          }`}
+                        >
+                          O'chirilgan ({deletedRows.size})
+                        </button>
+                      )}
                     </div>
-                    <button
-                      type="button"
-                      onClick={() => setShowCorrectInPreview((s) => !s)}
-                      className="rounded-xl border px-3 py-1.5 text-xs font-bold"
-                    >
-                      {showCorrectInPreview ? 'Yashirish' : 'Javoblarni korsatish'}
-                    </button>
+
+                    {/* Search Bar */}
+                    <div className="relative min-w-[220px]">
+                      <Search className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-slate-400" />
+                      <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        placeholder="Savol yoki variant qidirish..."
+                        className="w-full rounded-xl border border-slate-200 bg-white py-1.5 pl-8 pr-3 text-xs text-slate-800 focus:border-indigo-500 focus:outline-none dark:border-slate-800 dark:bg-slate-900 dark:text-white"
+                      />
+                      {searchQuery && (
+                        <button
+                          type="button"
+                          onClick={() => setSearchQuery('')}
+                          className="absolute right-2 top-2 text-slate-400 hover:text-slate-600"
+                        >
+                          <X className="h-3 w-3" />
+                        </button>
+                      )}
+                    </div>
                   </div>
-                  <div className="max-h-96 space-y-4 overflow-y-auto">
-                    {validQuestionsToImport.map((q, qi) => {
-                      const rn = validationResult.items.find((it) => it.validated === q)?.row ?? qi;
-                      const sel = previewAnswers[rn];
-                      return (
-                        <div key={rn} className="rounded-2xl border p-4">
-                          <div className="mb-1 text-[11px] font-bold text-slate-400">
-                            {qi + 1}-savol • {q.section_type}
-                          </div>
-                          {q.passage && (
-                            <div className="mb-2 rounded-xl bg-slate-50 p-3 text-[13px]">
-                              <b>MATN:</b>
-                              <p className="whitespace-pre-wrap">{q.passage}</p>
-                            </div>
-                          )}
-                          <p className="mb-2 text-sm font-bold">{q.question_text}</p>
-                          {q.options.map((o, oi) => {
-                            const isS = sel === oi;
-                            const isC = oi === q.correct_index;
-                            let c = 'border-slate-200';
-                            if (showCorrectInPreview && isC) c = 'border-emerald-500 bg-emerald-50';
-                            else if (showCorrectInPreview && isS) c = 'border-rose-500 bg-rose-50';
-                            else if (isS) c = 'border-indigo-600 bg-indigo-50';
-                            return (
-                              <button
-                                key={oi}
-                                type="button"
-                                onClick={() => setPreviewAnswers((pr) => ({ ...pr, [rn]: oi }))}
-                                className={
-                                  'mb-1.5 flex w-full justify-between rounded-xl border p-2.5 text-left text-sm ' +
-                                  c
-                                }
-                              >
-                                <span>
-                                  {String.fromCharCode(65 + oi)}: {o}
-                                </span>
-                                <span>{showCorrectInPreview && isC ? 'OK' : ''}</span>
-                              </button>
+
+                  {/* HTML TABLE CONTAINER */}
+                  <div className="max-h-[440px] overflow-x-auto overflow-y-auto rounded-2xl border border-slate-200 bg-white shadow-inner dark:border-slate-800 dark:bg-slate-900">
+                    <table className="w-full border-collapse text-left text-xs">
+                      <thead className="sticky top-0 z-10 border-b border-slate-200 bg-slate-100 text-[11px] font-black uppercase tracking-wider text-slate-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                        <tr>
+                          <th className="w-10 px-3 py-2.5 text-center">#</th>
+                          <th className="w-28 px-3 py-2.5">Holat</th>
+                          <th className="w-32 px-3 py-2.5">Bo‘lim / Daraja</th>
+                          <th className="min-w-[280px] px-3 py-2.5">Savol va Passage</th>
+                          <th className="min-w-[240px] px-3 py-2.5">
+                            Variantlar &amp; To‘g‘ri Javob
+                          </th>
+                          <th className="min-w-[140px] px-3 py-2.5">Izoh</th>
+                          <th className="w-28 px-3 py-2.5 text-right">Amallar</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                        {filteredItems.length === 0 ? (
+                          <tr>
+                            <td colSpan={7} className="py-10 text-center text-xs text-slate-400">
+                              Savollar topilmadi.
+                            </td>
+                          </tr>
+                        ) : (
+                          filteredItems.map((item) => {
+                            const isDel = deletedRows.has(item.row);
+                            const isEd = editingRow === item.row;
+                            const v = item.validated;
+                            const raw = item.raw;
+                            const hasPassage = Boolean(
+                              v?.passage || raw.passage || raw.reading_passage || raw.text,
                             );
-                          })}
-                          {showCorrectInPreview && q.explanation && (
-                            <div className="mt-2 rounded-xl bg-emerald-50 p-2 text-xs">
-                              Izoh: {q.explanation}
-                            </div>
-                          )}
+                            const isExpandedPassage = expandedPassages.has(item.row);
+                            const passageText =
+                              v?.passage || raw.passage || raw.reading_passage || raw.text || '';
+
+                            return (
+                              <React.Fragment key={item.row}>
+                                <tr
+                                  className={`transition-colors hover:bg-slate-50/80 dark:hover:bg-slate-800/50 ${
+                                    isDel ? 'bg-slate-100/60 opacity-60 dark:bg-slate-900/60' : ''
+                                  } ${item.status === 'error' && !isDel ? 'bg-rose-50/20' : ''}`}
+                                >
+                                  {/* # Row */}
+                                  <td className="px-3 py-3 text-center font-mono font-bold text-slate-500">
+                                    {item.row}
+                                  </td>
+
+                                  {/* Holat Badge */}
+                                  <td className="px-3 py-3">
+                                    {isDel ? (
+                                      <span className="inline-flex items-center gap-1 rounded-md bg-slate-200 px-2 py-0.5 text-[10px] font-bold text-slate-600 dark:bg-slate-800 dark:text-slate-400">
+                                        O'chirilgan
+                                      </span>
+                                    ) : item.status === 'valid' ? (
+                                      <span className="inline-flex items-center gap-1 rounded-md bg-emerald-100 px-2 py-0.5 text-[10px] font-bold text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300">
+                                        <Check className="h-3 w-3" /> To'g'ri
+                                      </span>
+                                    ) : item.status === 'warning' ? (
+                                      <span className="inline-flex items-center gap-1 rounded-md bg-amber-100 px-2 py-0.5 text-[10px] font-bold text-amber-700 dark:bg-amber-950/60 dark:text-amber-300">
+                                        <AlertTriangle className="h-3 w-3" /> Ogoh
+                                      </span>
+                                    ) : (
+                                      <span className="inline-flex items-center gap-1 rounded-md bg-rose-100 px-2 py-0.5 text-[10px] font-bold text-rose-700 dark:bg-rose-950/60 dark:text-rose-300">
+                                        <X className="h-3 w-3" /> Xatolik
+                                      </span>
+                                    )}
+                                  </td>
+
+                                  {/* Section & Level */}
+                                  <td className="px-3 py-3">
+                                    <div className="flex flex-col gap-1">
+                                      <span className="inline-block text-[11px] font-bold text-slate-700 dark:text-slate-300">
+                                        {v?.section_type === 'reading'
+                                          ? "📖 O'qish (読解)"
+                                          : v?.section_type === 'listening'
+                                            ? '🎧 Tinglash (聴解)'
+                                            : '📚 Lug‘at / Qoida'}
+                                      </span>
+                                      <span className="inline-flex w-fit rounded bg-indigo-50 px-1.5 py-0.5 text-[10px] font-black text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">
+                                        JLPT {v?.level || raw.level || newLevel}
+                                      </span>
+                                    </div>
+                                  </td>
+
+                                  {/* Question Text & Passage Toggle */}
+                                  <td className="px-3 py-3">
+                                    <div className="space-y-1">
+                                      <p className="font-bold leading-relaxed text-slate-900 dark:text-white">
+                                        {v?.question_text || raw.question || raw.question_text || (
+                                          <span className="italic text-rose-500">
+                                            (Savol matni kiritilmagan)
+                                          </span>
+                                        )}
+                                      </p>
+                                      {hasPassage && (
+                                        <div>
+                                          <button
+                                            type="button"
+                                            onClick={() => togglePassageExpand(item.row)}
+                                            className="inline-flex items-center gap-1 rounded-lg border border-amber-200 bg-amber-50 px-2 py-0.5 text-[11px] font-bold text-amber-800 hover:bg-amber-100 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-300"
+                                          >
+                                            <BookOpen className="h-3 w-3" />
+                                            {isExpandedPassage
+                                              ? 'Matnni yopish ▲'
+                                              : 'Passage (Matn) ▼'}
+                                          </button>
+                                          {isExpandedPassage && (
+                                            <div className="mt-1.5 whitespace-pre-wrap rounded-xl border border-amber-200/80 bg-amber-50/50 p-2.5 font-serif text-xs leading-relaxed text-slate-800 shadow-sm dark:border-amber-900/40 dark:bg-slate-900 dark:text-slate-200">
+                                              {passageText}
+                                            </div>
+                                          )}
+                                        </div>
+                                      )}
+                                      {/* Specific Issues */}
+                                      {item.issues.map((iss, ki) => (
+                                        <p
+                                          key={ki}
+                                          className="text-[11px] font-bold text-rose-600 dark:text-rose-400"
+                                        >
+                                          [{iss.field}]: {iss.message}
+                                        </p>
+                                      ))}
+                                    </div>
+                                  </td>
+
+                                  {/* Options and Correct Answer Pill */}
+                                  <td className="px-3 py-3">
+                                    <div className="flex flex-wrap gap-1.5">
+                                      {(
+                                        v?.options ||
+                                        (Array.isArray(raw.options)
+                                          ? raw.options
+                                          : [
+                                              raw.option_a,
+                                              raw.option_b,
+                                              raw.option_c,
+                                              raw.option_d,
+                                            ])
+                                      )
+                                        .filter(Boolean)
+                                        .map((opt: any, oi: number) => {
+                                          const isCorrect = v
+                                            ? oi === v.correct_index
+                                            : String(opt) ===
+                                              String(raw.correct_answer || raw.correctAnswer);
+                                          return (
+                                            <span
+                                              key={oi}
+                                              className={`inline-flex items-center gap-1 rounded-lg px-2 py-1 text-[11px] ${
+                                                isCorrect
+                                                  ? 'border border-emerald-500 bg-emerald-50 font-black text-emerald-800 shadow-sm dark:bg-emerald-950 dark:text-emerald-300'
+                                                  : 'border border-slate-200 bg-slate-100 text-slate-700 dark:border-slate-800 dark:bg-slate-800 dark:text-slate-300'
+                                              }`}
+                                            >
+                                              <span className="font-mono text-[10px] font-bold">
+                                                {String.fromCharCode(65 + oi)})
+                                              </span>
+                                              <span>{String(opt)}</span>
+                                              {isCorrect && (
+                                                <Check className="h-3 w-3 text-emerald-600" />
+                                              )}
+                                            </span>
+                                          );
+                                        })}
+                                    </div>
+                                  </td>
+
+                                  {/* Explanation */}
+                                  <td className="px-3 py-3 text-[11px] italic text-slate-500 dark:text-slate-400">
+                                    {v?.explanation || raw.explanation || '—'}
+                                  </td>
+
+                                  {/* Actions */}
+                                  <td className="px-3 py-3 text-right">
+                                    <div className="flex items-center justify-end gap-1">
+                                      {isDel ? (
+                                        <button
+                                          type="button"
+                                          onClick={() => restoreRow(item.row)}
+                                          title="Qayta tiklash"
+                                          className="inline-flex items-center gap-1 rounded-lg border border-slate-300 bg-white px-2 py-1 text-[10px] font-bold text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
+                                        >
+                                          <RotateCcw className="h-3 w-3" /> Qaytarish
+                                        </button>
+                                      ) : isEd ? (
+                                        <span className="text-[10px] font-bold text-indigo-600">
+                                          Tahrirlanmoqda
+                                        </span>
+                                      ) : (
+                                        <>
+                                          <button
+                                            type="button"
+                                            onClick={() => startEditing(item.row)}
+                                            title="Savolni tahrirlash yoki qayta tuzatish"
+                                            className={`inline-flex items-center gap-1 rounded-lg border px-2 py-1 text-[10px] font-bold transition ${
+                                              item.status === 'error'
+                                                ? 'border-rose-400 bg-rose-50 text-rose-700 hover:bg-rose-100 dark:bg-rose-950/40 dark:text-rose-300'
+                                                : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200'
+                                            }`}
+                                          >
+                                            <Edit3 className="h-3 w-3" />
+                                            {item.status === 'error'
+                                              ? 'Qayta tuzatish'
+                                              : 'Tahrirlash'}
+                                          </button>
+                                          <button
+                                            type="button"
+                                            onClick={() => deleteRow(item.row)}
+                                            title="O'chirish"
+                                            className="inline-flex items-center rounded-lg border border-slate-200 p-1 text-slate-400 hover:bg-rose-50 hover:text-rose-600 dark:border-slate-700 dark:hover:bg-rose-950/40"
+                                          >
+                                            <Trash2 className="h-3 w-3" />
+                                          </button>
+                                        </>
+                                      )}
+                                    </div>
+                                  </td>
+                                </tr>
+
+                                {/* INLINE EDIT DRAWER ROW */}
+                                {isEd && editDraft && (
+                                  <tr className="bg-indigo-50/40 dark:bg-indigo-950/20">
+                                    <td colSpan={7} className="p-4">
+                                      <div className="space-y-3 rounded-2xl border border-indigo-200 bg-white p-4 shadow-md dark:border-indigo-900 dark:bg-slate-900">
+                                        <div className="flex items-center justify-between border-b border-slate-100 pb-2 dark:border-slate-800">
+                                          <span className="text-xs font-black text-indigo-600 dark:text-indigo-400">
+                                            #{item.row}-savolni tahrirlash va qayta tuzatish
+                                          </span>
+                                          <div className="flex gap-2">
+                                            <Button
+                                              size="sm"
+                                              onClick={() => saveEditing(item.row)}
+                                              className="h-8 gap-1.5 rounded-xl bg-emerald-600 font-bold text-white hover:bg-emerald-500"
+                                            >
+                                              <Save className="h-3.5 w-3.5" /> Saqlash va Qayta
+                                              tekshirish
+                                            </Button>
+                                            <Button
+                                              size="sm"
+                                              variant="outline"
+                                              onClick={cancelEditing}
+                                              className="h-8 rounded-xl font-bold"
+                                            >
+                                              Bekor qilish
+                                            </Button>
+                                          </div>
+                                        </div>
+
+                                        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                                          <div>
+                                            <label className="text-[11px] font-bold text-slate-700 dark:text-slate-300">
+                                              Savol matni *
+                                            </label>
+                                            <textarea
+                                              value={editDraft.question_text}
+                                              onChange={(e) =>
+                                                setEditDraft({
+                                                  ...editDraft,
+                                                  question_text: e.target.value,
+                                                })
+                                              }
+                                              rows={2}
+                                              className="mt-1 w-full rounded-xl border border-slate-200 p-2 text-xs text-slate-900 focus:border-indigo-500 focus:outline-none dark:border-slate-700 dark:bg-slate-950 dark:text-white"
+                                              placeholder="Savol matnini kiriting..."
+                                            />
+                                          </div>
+                                          <div>
+                                            <label className="text-[11px] font-bold text-slate-700 dark:text-slate-300">
+                                              Passage (Reading / Matn - ixtiyoriy)
+                                            </label>
+                                            <textarea
+                                              value={editDraft.passage}
+                                              onChange={(e) =>
+                                                setEditDraft({
+                                                  ...editDraft,
+                                                  passage: e.target.value,
+                                                })
+                                              }
+                                              rows={2}
+                                              className="mt-1 w-full rounded-xl border border-slate-200 p-2 font-serif text-xs text-slate-900 focus:border-indigo-500 focus:outline-none dark:border-slate-700 dark:bg-slate-950 dark:text-white"
+                                              placeholder="O'qish matni (passage)..."
+                                            />
+                                          </div>
+                                        </div>
+
+                                        {/* Section and Level dropdowns */}
+                                        <div className="flex flex-wrap items-center gap-3">
+                                          <div className="flex items-center gap-2">
+                                            <span className="text-[11px] font-bold text-slate-600 dark:text-slate-400">
+                                              Bo‘lim:
+                                            </span>
+                                            <select
+                                              value={editDraft.section_type}
+                                              onChange={(e) =>
+                                                setEditDraft({
+                                                  ...editDraft,
+                                                  section_type: e.target.value,
+                                                })
+                                              }
+                                              className="rounded-xl border border-slate-200 bg-white px-2.5 py-1 text-xs font-bold dark:border-slate-700 dark:bg-slate-950"
+                                            >
+                                              <option value="knowledge">
+                                                knowledge (Til bilimi / Grammatika)
+                                              </option>
+                                              <option value="reading">
+                                                reading (O‘qish / Dokkai)
+                                              </option>
+                                              <option value="listening">
+                                                listening (Tinglash / Choukai)
+                                              </option>
+                                            </select>
+                                          </div>
+                                          <div className="flex items-center gap-2">
+                                            <span className="text-[11px] font-bold text-slate-600 dark:text-slate-400">
+                                              Daraja:
+                                            </span>
+                                            <select
+                                              value={editDraft.level}
+                                              onChange={(e) =>
+                                                setEditDraft({
+                                                  ...editDraft,
+                                                  level: e.target.value as JlptLevel,
+                                                })
+                                              }
+                                              className="rounded-xl border border-slate-200 bg-white px-2.5 py-1 text-xs font-black dark:border-slate-700 dark:bg-slate-950"
+                                            >
+                                              {(['N5', 'N4', 'N3', 'N2', 'N1'] as JlptLevel[]).map(
+                                                (lvl) => (
+                                                  <option key={lvl} value={lvl}>
+                                                    JLPT {lvl}
+                                                  </option>
+                                                ),
+                                              )}
+                                            </select>
+                                          </div>
+                                        </div>
+
+                                        {/* Options Editor */}
+                                        <div className="space-y-2">
+                                          <div className="flex items-center justify-between">
+                                            <span className="text-[11px] font-bold text-slate-700 dark:text-slate-300">
+                                              Variantlar (To‘g‘ri javobni tanlash uchun harf ustiga
+                                              bosing):
+                                            </span>
+                                            <button
+                                              type="button"
+                                              onClick={() =>
+                                                setEditDraft({
+                                                  ...editDraft,
+                                                  options: [...editDraft.options, ''],
+                                                })
+                                              }
+                                              className="inline-flex items-center gap-1 text-[11px] font-bold text-indigo-600 hover:underline"
+                                            >
+                                              <Plus className="h-3 w-3" /> Variant qo‘shish
+                                            </button>
+                                          </div>
+                                          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                                            {editDraft.options.map((opt, oi) => {
+                                              const isCorrect = editDraft.correct_index === oi;
+                                              return (
+                                                <div
+                                                  key={oi}
+                                                  className={`flex items-center gap-2 rounded-xl border p-1.5 transition ${
+                                                    isCorrect
+                                                      ? 'border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/20'
+                                                      : 'border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-950'
+                                                  }`}
+                                                >
+                                                  <button
+                                                    type="button"
+                                                    onClick={() =>
+                                                      setEditDraft({
+                                                        ...editDraft,
+                                                        correct_index: oi,
+                                                      })
+                                                    }
+                                                    title="To'g'ri javob sifatida belgilash"
+                                                    className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-xs font-black transition ${
+                                                      isCorrect
+                                                        ? 'bg-emerald-600 text-white shadow-sm'
+                                                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300'
+                                                    }`}
+                                                  >
+                                                    {String.fromCharCode(65 + oi)}
+                                                  </button>
+                                                  <input
+                                                    value={opt}
+                                                    onChange={(e) => {
+                                                      const n = [...editDraft.options];
+                                                      n[oi] = e.target.value;
+                                                      setEditDraft({ ...editDraft, options: n });
+                                                    }}
+                                                    placeholder={`${String.fromCharCode(65 + oi)} varianti`}
+                                                    className="w-full bg-transparent text-xs font-medium text-slate-900 focus:outline-none dark:text-white"
+                                                  />
+                                                  {editDraft.options.length > 2 && (
+                                                    <button
+                                                      type="button"
+                                                      onClick={() => {
+                                                        const n = editDraft.options.filter(
+                                                          (_, idx) => idx !== oi,
+                                                        );
+                                                        const nextIdx = Math.min(
+                                                          editDraft.correct_index,
+                                                          n.length - 1,
+                                                        );
+                                                        setEditDraft({
+                                                          ...editDraft,
+                                                          options: n,
+                                                          correct_index: nextIdx,
+                                                        });
+                                                      }}
+                                                      className="p-1 text-slate-400 hover:text-rose-500"
+                                                    >
+                                                      <Trash2 className="h-3 w-3" />
+                                                    </button>
+                                                  )}
+                                                </div>
+                                              );
+                                            })}
+                                          </div>
+                                        </div>
+
+                                        {/* Explanation */}
+                                        <div>
+                                          <label className="text-[11px] font-bold text-slate-700 dark:text-slate-300">
+                                            Izoh / Tushuntirish (Explanation)
+                                          </label>
+                                          <textarea
+                                            value={editDraft.explanation}
+                                            onChange={(e) =>
+                                              setEditDraft({
+                                                ...editDraft,
+                                                explanation: e.target.value,
+                                              })
+                                            }
+                                            rows={2}
+                                            className="mt-1 w-full rounded-xl border border-slate-200 p-2 text-xs text-slate-900 focus:border-indigo-500 focus:outline-none dark:border-slate-700 dark:bg-slate-950 dark:text-white"
+                                            placeholder="To'g'ri javob sababi va qoidasi..."
+                                          />
+                                        </div>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                )}
+                              </React.Fragment>
+                            );
+                          })
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+
+              {/* VIEW 2: REAL IMTIHON PREVIEW (Official JLPT Exam Look & Feel) */}
+              {viewMode === 'preview' && (
+                <div className="space-y-4 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                  {/* Real Exam Header Widget */}
+                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-4 dark:border-slate-800">
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-tr from-indigo-600 to-purple-600 text-sm font-black text-white shadow-md">
+                        JLPT
+                      </span>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <h4 className="text-sm font-black text-slate-900 dark:text-white">
+                            {mode === 'section'
+                              ? sectionTitle || 'JLPT Mock Test'
+                              : newTitle || `JLPT ${newLevel} Rasmiy Imtihon`}
+                          </h4>
+                          <span className="rounded-md bg-indigo-50 px-2 py-0.5 text-[10px] font-black uppercase text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">
+                            {newLevel || examLevel} Darajasi
+                          </span>
                         </div>
-                      );
-                    })}
+                        <p className="text-xs text-slate-500">
+                          Haqiqiy talaba ko‘rinishi • Jami: {validQuestionsToImport.length} ta savol
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Simulated Timer and Actions */}
+                    <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1.5 rounded-xl border border-slate-200 bg-slate-50 px-3 py-1.5 font-mono text-xs font-bold text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                        <Clock className="h-3.5 w-3.5 text-indigo-600" />
+                        <span>01:45:00</span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setShowCorrectInPreview(!showCorrectInPreview)}
+                        className={`rounded-xl border px-3 py-1.5 text-xs font-bold transition ${
+                          showCorrectInPreview
+                            ? 'border-emerald-500 bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300'
+                            : 'border-slate-200 text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300'
+                        }`}
+                      >
+                        {showCorrectInPreview
+                          ? '✓ Javoblar ko‘rsatilgan'
+                          : 'To‘g‘ri javoblarni ko‘rsatish'}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setIsSimulated(true);
+                        }}
+                        className="rounded-xl bg-indigo-600 px-3 py-1.5 text-xs font-black text-white shadow-sm transition hover:bg-indigo-500"
+                      >
+                        Natijani hisoblash (Simulyatsiya)
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Section Filters */}
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex gap-1.5">
+                      <button
+                        type="button"
+                        onClick={() => setPreviewSectionFilter('all')}
+                        className={`rounded-xl px-3 py-1 text-xs font-bold transition ${
+                          previewSectionFilter === 'all'
+                            ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900'
+                            : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400'
+                        }`}
+                      >
+                        Barchasi ({validQuestionsToImport.length})
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setPreviewSectionFilter('knowledge')}
+                        className={`rounded-xl px-3 py-1 text-xs font-bold transition ${
+                          previewSectionFilter === 'knowledge'
+                            ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900'
+                            : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400'
+                        }`}
+                      >
+                        📚 Til bilimi
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setPreviewSectionFilter('reading')}
+                        className={`rounded-xl px-3 py-1 text-xs font-bold transition ${
+                          previewSectionFilter === 'reading'
+                            ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900'
+                            : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400'
+                        }`}
+                      >
+                        📖 O‘qish (読解)
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setPreviewSectionFilter('listening')}
+                        className={`rounded-xl px-3 py-1 text-xs font-bold transition ${
+                          previewSectionFilter === 'listening'
+                            ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900'
+                            : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400'
+                        }`}
+                      >
+                        🎧 Tinglash (聴解)
+                      </button>
+                    </div>
+
+                    <div className="text-xs font-bold text-slate-500">
+                      Belgilandi: {Object.keys(previewAnswers).length} /{' '}
+                      {validQuestionsToImport.length}
+                    </div>
+                  </div>
+
+                  {/* Simulation Score Result Banner */}
+                  {simulationResults && (
+                    <div
+                      className={`flex items-center justify-between rounded-2xl border p-4 transition-all duration-300 ${
+                        simulationResults.isPassed
+                          ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-900 dark:text-emerald-200'
+                          : 'border-amber-500/40 bg-amber-500/10 text-amber-900 dark:text-amber-200'
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <Award className="h-6 w-6 text-emerald-600" />
+                        <div>
+                          <p className="text-sm font-black">
+                            Simulyatsiya Natijasi: {simulationResults.score} /{' '}
+                            {simulationResults.total} to‘g‘ri ({simulationResults.percentage}%)
+                          </p>
+                          <p className="text-xs text-slate-600 dark:text-slate-300">
+                            {simulationResults.isPassed
+                              ? "Ajoyib! O'tish bali (60%) muvaffaqiyatli zabt etildi."
+                              : "Qayta urinib ko'ring, to'g'ri javoblarni tahlil qiling."}
+                          </p>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setPreviewAnswers({});
+                          setIsSimulated(false);
+                        }}
+                        className="rounded-xl border border-slate-300 bg-white px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
+                      >
+                        Qayta boshlash
+                      </button>
+                    </div>
+                  )}
+
+                  {/* Questions List */}
+                  <div className="max-h-[500px] space-y-6 overflow-y-auto pr-1">
+                    {previewQuestions.length === 0 ? (
+                      <p className="py-12 text-center text-xs text-slate-400">
+                        Ushbu bo‘lim bo‘yicha yaroqli savol yo‘q.
+                      </p>
+                    ) : (
+                      previewQuestions.map((q, qIndex) => {
+                        const originalRow =
+                          validationResult?.items.find((it) => it.validated === q)?.row ?? qIndex;
+                        const userSelectedIdx = previewAnswers[originalRow];
+
+                        return (
+                          <div
+                            key={originalRow}
+                            className="space-y-3 rounded-2xl border border-slate-200 bg-slate-50/70 p-5 transition dark:border-slate-800 dark:bg-slate-900/60"
+                          >
+                            <div className="flex items-center justify-between">
+                              <span className="rounded-lg bg-slate-200 px-2 py-0.5 text-xs font-black text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                                第 {qIndex + 1} 問 ({qIndex + 1}-savol)
+                              </span>
+                              <span className="text-[11px] font-bold text-slate-400">
+                                {q.section_type === 'reading'
+                                  ? '読解 (Reading)'
+                                  : q.section_type === 'listening'
+                                    ? '聴解 (Listening)'
+                                    : '言語知識 (Knowledge)'}
+                              </span>
+                            </div>
+
+                            {/* Official Paper-style Reading Passage */}
+                            {q.passage && (
+                              <div className="rounded-2xl border border-amber-200 bg-amber-50/50 p-4 font-serif text-[13px] leading-relaxed text-slate-800 shadow-inner dark:border-amber-900/50 dark:bg-slate-950 dark:text-slate-200">
+                                <div className="mb-1.5 font-sans text-[11px] font-bold uppercase tracking-wider text-amber-800 dark:text-amber-400">
+                                  【問題本文 / Reading Passage】
+                                </div>
+                                <p className="whitespace-pre-wrap">{q.passage}</p>
+                              </div>
+                            )}
+
+                            {/* Question Prompt */}
+                            <p className="text-sm font-bold leading-relaxed text-slate-900 dark:text-white">
+                              {q.question_text}
+                            </p>
+
+                            {/* Interactive Options */}
+                            <div className="space-y-2">
+                              {q.options.map((opt, optIdx) => {
+                                const isSelected = userSelectedIdx === optIdx;
+                                const isCorrect = optIdx === q.correct_index;
+
+                                let btnStyle =
+                                  'border-slate-200 bg-white text-slate-700 hover:border-indigo-400 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200';
+
+                                if (showCorrectInPreview || isSimulated) {
+                                  if (isCorrect) {
+                                    btnStyle =
+                                      'border-emerald-500 bg-emerald-50 text-emerald-800 font-bold dark:bg-emerald-950/40 dark:text-emerald-300 shadow-sm';
+                                  } else if (isSelected && !isCorrect) {
+                                    btnStyle =
+                                      'border-rose-500 bg-rose-50 text-rose-800 font-bold dark:bg-rose-950/40 dark:text-rose-300';
+                                  }
+                                } else if (isSelected) {
+                                  btnStyle =
+                                    'border-indigo-600 bg-indigo-50 text-indigo-700 font-bold ring-1 ring-indigo-600 dark:bg-indigo-950 dark:text-indigo-300';
+                                }
+
+                                return (
+                                  <button
+                                    key={optIdx}
+                                    type="button"
+                                    onClick={() =>
+                                      setPreviewAnswers((prev) => ({
+                                        ...prev,
+                                        [originalRow]: optIdx,
+                                      }))
+                                    }
+                                    className={`flex w-full items-center justify-between rounded-xl border p-3.5 text-left text-xs transition sm:text-sm ${btnStyle}`}
+                                  >
+                                    <span className="flex items-center gap-2">
+                                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-current font-mono text-xs font-black">
+                                        {String.fromCharCode(65 + optIdx)}
+                                      </span>
+                                      <span>{opt}</span>
+                                    </span>
+                                    {(showCorrectInPreview || isSimulated) && isCorrect && (
+                                      <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" />
+                                    )}
+                                    {(showCorrectInPreview || isSimulated) &&
+                                      isSelected &&
+                                      !isCorrect && (
+                                        <XCircle className="h-4 w-4 shrink-0 text-rose-600" />
+                                      )}
+                                  </button>
+                                );
+                              })}
+                            </div>
+
+                            {/* Explanation Card */}
+                            {(showCorrectInPreview || isSimulated) && q.explanation && (
+                              <div className="mt-2 rounded-xl border border-emerald-200 bg-emerald-50/70 p-3 text-xs text-emerald-900 dark:border-emerald-900/60 dark:bg-emerald-950/40 dark:text-emerald-200">
+                                <b>💡 Izoh va Qoida:</b> {q.explanation}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })
+                    )}
                   </div>
                 </div>
               )}
             </div>
           )}
         </div>
-        <div className="flex flex-wrap items-center justify-between gap-3 border-t px-6 py-4">
+
+        {/* Modal Footer with "Draft sifatida saqlash" and "Tasdiqlash" */}
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-200 bg-slate-50/80 px-6 py-4 dark:border-slate-800 dark:bg-slate-900">
           <Button variant="outline" onClick={onClose} className="rounded-xl font-bold">
             Bekor Qilish
           </Button>
-          <div className="flex items-center gap-2">
+
+          <div className="flex flex-wrap items-center gap-2">
             {importProgress && (
-              <span className="flex items-center gap-2 text-xs font-bold text-indigo-600">
+              <span className="mr-2 flex items-center gap-2 text-xs font-bold text-indigo-600 dark:text-indigo-400">
                 <Loader2 className="h-4 w-4 animate-spin" /> {importProgress}
               </span>
             )}
+
+            {/* DRAFT SAQLASH TUGMASI */}
             <Button
               variant="outline"
               onClick={() => handleExecuteImport(false)}
-              disabled={isImporting || !validationResult || validQuestionsToImport.length === 0}
-              className="gap-2 rounded-2xl font-bold"
+              disabled={isImporting || !validationResult || confirmableCount === 0}
+              className="gap-2 rounded-2xl border-slate-300 font-bold hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
             >
               {isImporting ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
               ) : (
-                <Save className="h-4 w-4" />
+                <Save className="h-4 w-4 text-slate-600 dark:text-slate-300" />
               )}
-              Draft sifatida saqlash ({validQuestionsToImport.length})
+              Draft sifatida saqlash ({confirmableCount})
             </Button>
+
+            {/* TASDIQLASH VA PUBLISH TUGMASI */}
             <Button
               onClick={() => handleExecuteImport(true)}
               disabled={
-                isImporting ||
-                !validationResult ||
-                validQuestionsToImport.length === 0 ||
-                hasBlockingErrors
+                isImporting || !validationResult || confirmableCount === 0 || hasBlockingErrors
               }
-              className="gap-2 rounded-2xl bg-indigo-600 font-bold text-white"
+              className={`gap-2 rounded-2xl font-bold text-white shadow-lg transition ${
+                hasBlockingErrors
+                  ? 'cursor-not-allowed bg-slate-400'
+                  : 'bg-gradient-to-r from-indigo-600 to-purple-600 hover:opacity-95'
+              }`}
             >
               {isImporting ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -847,8 +1782,8 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
                 <Send className="h-4 w-4" />
               )}
               {hasBlockingErrors
-                ? 'Xatolarni tuzating'
-                : 'Tasdiqlash (' + validQuestionsToImport.length + ') '}
+                ? `Xatolarni tuzating (${validationResult?.errorCount})`
+                : `Tasdiqlash (${confirmableCount})`}
             </Button>
           </div>
         </div>

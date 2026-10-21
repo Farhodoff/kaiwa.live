@@ -23,6 +23,10 @@ import { useStudyData } from '../../context/StudyPlannerContext';
 import { isAdminEmail, isUserAdmin } from '../../utils/admin';
 import { toast } from '../../hooks/use-toast';
 import { ExamBulkImportModal } from '../../components/admin/ExamBulkImportModal';
+import { ReadingPassageEditor } from '../../components/admin/ReadingPassageEditor';
+import { ListeningAudioEditor } from '../../components/admin/ListeningAudioEditor';
+import { ReadingPassageService } from '../../services/ReadingPassageService';
+import { ListeningAudioService } from '../../services/ListeningAudioService';
 
 interface QuestionFormData {
   question_text: string;
@@ -39,6 +43,8 @@ export const QuestionEditor: React.FC = () => {
   const [exam, setExam] = useState<any>(null);
   const [sections, setSections] = useState<any[]>([]);
   const [sectionQuestions, setSectionQuestions] = useState<Record<string, any[]>>({});
+  const [readingPassages, setReadingPassages] = useState<any[]>([]);
+  const [listeningAudios, setListeningAudios] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   // Question form state
@@ -79,6 +85,18 @@ export const QuestionEditor: React.FC = () => {
 
       const secs = sectionsData || [];
       setSections(secs);
+
+      // Load separate passage / audio entities for this exam
+      try {
+        const [pRes, aRes] = await Promise.all([
+          ReadingPassageService.listByExam(id!),
+          ListeningAudioService.listByExam(id!),
+        ]);
+        setReadingPassages(pRes);
+        setListeningAudios(aRes);
+      } catch (err: any) {
+        console.error('Error fetching passage/audio entities:', err?.message || err);
+      }
 
       const questionsMap: Record<string, any[]> = {};
       const sectionIds = secs.map((s) => s.id);
@@ -128,13 +146,32 @@ export const QuestionEditor: React.FC = () => {
     if (!title) return;
 
     try {
-      const { error } = await supabase.from('exam_sections').insert({
-        exam_id: id,
-        title,
-        type,
-        order_index: sections.length,
-      });
+      const { error } = await supabase
+        .from('exam_sections')
+        .insert({
+          exam_id: id,
+          title,
+          type,
+          order_index: sections.length,
+        })
+        .select()
+        .single();
       if (error) throw error;
+
+      // Create separate passage / audio entity for Reading / Listening sections
+      if (type === 'Reading') {
+        await ReadingPassageService.create(id!, {
+          title: `${title} Matni`,
+          content: '',
+          order_index: 0,
+        });
+      } else if (type === 'Listening') {
+        await ListeningAudioService.create(id!, {
+          title: `${title} Audio`,
+          order_index: 0,
+        });
+      }
+
       fetchExamDetails();
       toast({
         title: "✅ Bo'lim Qo'shildi",
@@ -151,15 +188,37 @@ export const QuestionEditor: React.FC = () => {
   };
 
   const handleDeleteSection = async (sectionId: string) => {
-    if (!confirm("Bu bo'limni o'chirishni xohlaysizmi? Ichidagi barcha savollar ham o'chadi."))
+    if (!confirm(`Bu bo'limni o'chirishni xohlaysizmi? Ichidagi barcha savollar ham o'chadi.`))
       return;
+
     try {
+      // Warning about linked passage / audio questions (Talab 7)
+      const passage = readingPassages.find((p) => p.section_id === sectionId);
+      const audio = listeningAudios.find((a) => a.section_id === sectionId);
+      const linkedCount = (passage?.linkedQuestionCount || 0) + (audio?.linkedQuestionCount || 0);
+
+      if (linkedCount > 0) {
+        const ok = confirm(
+          `${linkedCount} ta savol shu bo'limning matni / audio'iga biriktirilgan. Ular ham o'chiriladi. Davom etasizmi?`,
+        );
+        if (!ok) return;
+      }
+
+      // Remove linked passage / audio entities first
+      if (passage) {
+        await supabase.from('reading_passages').delete().eq('id', passage.id);
+      }
+      if (audio && audio.audio_url) {
+        await supabase.storage.from('listening_audios').remove([audio.audio_url]);
+        await supabase.from('listening_audios').delete().eq('id', audio.id);
+      }
+
       const { error } = await supabase.from('exam_sections').delete().eq('id', sectionId);
       if (error) throw error;
       fetchExamDetails();
       toast({
         title: "🗑️ O'chirildi",
-        description: "Bo'lim muvaffaqiyatli o'chirildi.",
+        description: "Bo'lim (va bog'liq kontent) muvaffaqiyatli o'chirildi.",
       });
     } catch (err: any) {
       console.error('Section delete error:', err);
@@ -183,8 +242,13 @@ export const QuestionEditor: React.FC = () => {
     setSavingQuestion(true);
     try {
       const existingQuestions = sectionQuestions[sectionId] || [];
+      const section = sections.find((s) => s.id === sectionId);
+      const passage = readingPassages.find((p) => p.section_id === sectionId);
+      const audio = listeningAudios.find((a) => a.section_id === sectionId);
       const { error } = await supabase.from('exam_questions').insert({
         section_id: sectionId,
+        passage_id: section?.type === 'Reading' ? (passage?.id ?? null) : null,
+        listening_audio_id: section?.type === 'Listening' ? (audio?.id ?? null) : null,
         question_text: questionForm.question_text,
         type: questionForm.type,
         options:
@@ -265,6 +329,50 @@ export const QuestionEditor: React.FC = () => {
         description: `Kontentni saqlashda xatolik: ${err?.message || JSON.stringify(err)}`,
       });
     }
+  };
+
+  const handleDeleteReadingPassage = async (passageId: string) => {
+    try {
+      await ReadingPassageService.delete(passageId);
+      fetchExamDetails();
+      toast({ title: "🗑️ O'chirildi", description: "Dokkai matni o'chirildi." });
+    } catch (err: any) {
+      if (err.code === 'HAS_LINKED_QUESTIONS') {
+        const ok = confirm(`${err.message}\n\nUlarni ham o'chirib, matnni o'chirasanmi?`);
+        if (!ok) return;
+        try {
+          await Promise.all(
+            (err.linkedQuestions || []).map((q: any) =>
+              supabase.from('exam_questions').delete().eq('id', q.id),
+            ),
+          );
+          await ReadingPassageService.delete(passageId);
+          fetchExamDetails();
+          toast({
+            title: "🗑️ O'chirildi",
+            description: "Matn va unga biriktirilgan barcha savollar o'chirildi.",
+          });
+        } catch (err2: any) {
+          toast({
+            variant: 'destructive',
+            title: 'Xatolik',
+            description: err2?.message || String(err2),
+          });
+        }
+      } else {
+        toast({
+          variant: 'destructive',
+          title: 'Xatolik',
+          description: err?.message || String(err),
+        });
+      }
+    }
+  };
+
+  const handleDeleteListeningAudio = () => {
+    // Deletion (+ linked-question guard + storage cleanup) is handled inside
+    // ListeningAudioEditor via ListeningAudioService.delete. Just refresh data.
+    fetchExamDetails();
   };
 
   const handlePublishToggle = async () => {
@@ -447,70 +555,81 @@ export const QuestionEditor: React.FC = () => {
                 </div>
               </div>
 
-              {/* Section Content Editing (Dokkai Passage / Listening Audio / Prompts) */}
+              {/* Section Content Editing */}
               <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-extrabold uppercase tracking-wider text-slate-500">
-                    {section.type === 'Reading'
-                      ? '📖 Dokkai Matni (Reading Passage):'
-                      : section.type === 'Listening'
-                        ? '🎧 Audio URL / Transkript:'
-                        : '📝 Prompt / Topshiriq Mavzusi:'}
-                  </span>
-                  {editingContentId !== section.id && (
-                    <button
-                      onClick={() => {
-                        setEditingContentId(section.id);
-                        setEditContent(section.content || '');
-                      }}
-                      className="flex items-center gap-1 text-xs font-bold text-indigo-600 hover:underline dark:text-indigo-400"
-                    >
-                      <Edit3 className="h-3.5 w-3.5" /> Matnni Tahrirlash
-                    </button>
-                  )}
-                </div>
-
-                {editingContentId === section.id ? (
-                  <div className="space-y-3 rounded-2xl border border-indigo-300 bg-slate-50 p-4 dark:border-indigo-700 dark:bg-slate-800">
-                    <textarea
-                      rows={7}
-                      value={editContent}
-                      onChange={(e) => setEditContent(e.target.value)}
-                      placeholder={
-                        section.type === 'Reading'
-                          ? 'Dokkai matnini shu yerga yozing...'
-                          : 'Mavzu yoki matnni yozing...'
-                      }
-                      className="w-full rounded-xl border border-slate-200 bg-white p-3.5 font-sans text-sm leading-relaxed outline-none focus:ring-2 focus:ring-indigo-500 dark:border-slate-700 dark:bg-slate-900"
-                    />
-                    <div className="flex justify-end gap-2">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => setEditingContentId(null)}
-                        className="rounded-xl"
-                      >
-                        Bekor
-                      </Button>
-                      <Button
-                        size="sm"
-                        onClick={() => handleSaveContent(section.id)}
-                        className="rounded-xl bg-indigo-600 font-bold"
-                      >
-                        Saqlash
-                      </Button>
-                    </div>
-                  </div>
+                {section.type === 'Reading' ? (
+                  <ReadingPassageEditor
+                    passage={readingPassages.find((x) => x.section_id === section.id) || null}
+                    onUpdate={(p) =>
+                      setReadingPassages((prev) => prev.map((x) => (x.id === p.id ? p : x)))
+                    }
+                    onDelete={handleDeleteReadingPassage}
+                  />
+                ) : section.type === 'Listening' ? (
+                  <ListeningAudioEditor
+                    audio={listeningAudios.find((x) => x.section_id === section.id) || null}
+                    onUpdate={(a) =>
+                      setListeningAudios((prev) => prev.map((x) => (x.id === a.id ? a : x)))
+                    }
+                    onDelete={handleDeleteListeningAudio}
+                  />
                 ) : (
-                  <div
-                    onClick={() => {
-                      setEditingContentId(section.id);
-                      setEditContent(section.content || '');
-                    }}
-                    className="max-h-48 cursor-pointer overflow-y-auto rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-4 text-sm leading-relaxed text-slate-700 transition hover:border-indigo-400 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-300"
-                  >
-                    {section.content ||
-                      `+ Dokkai matni yoki mavzu kiritilmagan. Tahrirlash uchun ustiga bosing...`}
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-extrabold uppercase tracking-wider text-slate-500">
+                        📝 Prompt / Topshiriq Mavzusi:
+                      </span>
+                      {editingContentId !== section.id && (
+                        <button
+                          onClick={() => {
+                            setEditingContentId(section.id);
+                            setEditContent(section.content || '');
+                          }}
+                          className="flex items-center gap-1 text-xs font-bold text-indigo-600 hover:underline dark:text-indigo-400"
+                        >
+                          <Edit3 className="h-3.5 w-3.5" /> Matnni Tahrirlash
+                        </button>
+                      )}
+                    </div>
+                    {editingContentId === section.id ? (
+                      <div className="space-y-3 rounded-2xl border border-indigo-300 bg-slate-50 p-4 dark:border-indigo-700 dark:bg-slate-800">
+                        <textarea
+                          rows={7}
+                          value={editContent}
+                          onChange={(e) => setEditContent(e.target.value)}
+                          placeholder="Mavzu yoki matnni yozing..."
+                          className="w-full rounded-xl border border-slate-200 bg-white p-3.5 font-sans text-sm leading-relaxed outline-none focus:ring-2 focus:ring-indigo-500 dark:border-slate-700 dark:bg-slate-900"
+                        />
+                        <div className="flex justify-end gap-2">
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => setEditingContentId(null)}
+                            className="rounded-xl"
+                          >
+                            Bekor
+                          </Button>
+                          <Button
+                            size="sm"
+                            onClick={() => handleSaveContent(section.id)}
+                            className="rounded-xl bg-indigo-600 font-bold"
+                          >
+                            Saqlash
+                          </Button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div
+                        onClick={() => {
+                          setEditingContentId(section.id);
+                          setEditContent(section.content || '');
+                        }}
+                        className="max-h-48 cursor-pointer overflow-y-auto rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-4 text-sm leading-relaxed text-slate-700 transition hover:border-indigo-400 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-300"
+                      >
+                        {section.content ||
+                          '+ Mavzu kiritilmagan. Tahrirlash uchun ustiga bosing...'}
+                      </div>
+                    )}
                   </div>
                 )}
               </div>

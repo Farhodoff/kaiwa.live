@@ -936,11 +936,28 @@ q4,listening,男の人はこの後まず何をしますか。,,資料をコピ�
   static async importQuestionsToSection(
     sectionId: string,
     questions: ValidatedQuestion[],
+    isPublished?: boolean,
   ): Promise<{ insertedCount: number }> {
     if (!questions || !questions.length) {
       throw new Error(
         "Saqlash uchun yaroqli savollar topilmadi. Noto'g'ri ma'lumot bazaga saqlanmaydi.",
       );
+    }
+
+    // Optional: update parent exam's published status if requested
+    if (isPublished !== undefined) {
+      try {
+        const { data: sec } = await supabase
+          .from('exam_sections')
+          .select('exam_id')
+          .eq('id', sectionId)
+          .single();
+        if (sec?.exam_id) {
+          await supabase.from('exams').update({ is_published: isPublished }).eq('id', sec.exam_id);
+        }
+      } catch (pubErr) {
+        console.warn('Failed to update exam publication status:', pubErr);
+      }
     }
 
     // Get current order index
@@ -1056,7 +1073,16 @@ q4,listening,男の人はこの後まず何をしますか。,,資料をコピ�
   static async importQuestionsToExistingExam(
     examId: string,
     questions: ValidatedQuestion[],
+    isPublished?: boolean,
   ): Promise<{ examId: string; totalInserted: number }> {
+    if (isPublished !== undefined) {
+      try {
+        await supabase.from('exams').update({ is_published: isPublished }).eq('id', examId);
+      } catch (pubErr) {
+        console.warn('Failed to update existing exam publication status:', pubErr);
+      }
+    }
+
     // 1. Fetch existing sections of this exam
     const { data: existingSections, error: secFetchErr } = await supabase
       .from('exam_sections')
