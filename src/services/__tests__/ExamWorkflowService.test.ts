@@ -564,4 +564,224 @@ describe('ExamWorkflowService Unit Tests (Task 6)', () => {
       );
     });
   });
+
+  describe('Task 7: Source and License Metadata Validation & Management', () => {
+    it('warns when exam has restricted license during pre-publish validation', async () => {
+      (supabase.from as any).mockImplementation((table: string) => {
+        if (table === 'exams') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                single: vi.fn().mockResolvedValue({
+                  data: {
+                    id: 'exam-restricted',
+                    title: 'Restricted Material Exam',
+                    license_type: 'restricted',
+                    copyright_confirmed: true,
+                    is_official_jlpt: false,
+                  },
+                  error: null,
+                }),
+              }),
+            }),
+          };
+        }
+        if (table === 'exam_sections') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                order: vi.fn().mockResolvedValue({
+                  data: [{ id: 'sec-1', type: 'knowledge', title: 'Goi' }],
+                  error: null,
+                }),
+              }),
+            }),
+          };
+        }
+        if (table === 'exam_questions') {
+          return {
+            select: vi.fn().mockReturnValue({
+              in: vi.fn().mockReturnValue({
+                order: vi.fn().mockResolvedValue({
+                  data: [
+                    {
+                      id: 'q-1',
+                      status: 'approved',
+                      question_text: 'Test question',
+                      options: ['A', 'B', 'C', 'D'],
+                      correct_answer: '0',
+                    },
+                  ],
+                  error: null,
+                }),
+              }),
+            }),
+          };
+        }
+        return {
+          select: vi.fn().mockReturnValue({
+            eq: vi.fn().mockResolvedValue({ data: [], error: null }),
+          }),
+        };
+      });
+
+      const res = await ExamWorkflowService.validateForPublish('exam-restricted');
+      expect(res.isValid).toBe(true);
+      expect(res.warnings.some((w) => w.includes('restricted'))).toBe(true);
+    });
+
+    it('warns when copyright is unconfirmed during pre-publish validation', async () => {
+      (supabase.from as any).mockImplementation((table: string) => {
+        if (table === 'exams') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                single: vi.fn().mockResolvedValue({
+                  data: {
+                    id: 'exam-unconfirmed',
+                    title: 'Unconfirmed Exam',
+                    license_type: 'cc-by',
+                    copyright_confirmed: false,
+                    is_official_jlpt: false,
+                  },
+                  error: null,
+                }),
+              }),
+            }),
+          };
+        }
+        if (table === 'exam_sections') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                order: vi.fn().mockResolvedValue({
+                  data: [{ id: 'sec-1', type: 'knowledge', title: 'Goi' }],
+                  error: null,
+                }),
+              }),
+            }),
+          };
+        }
+        if (table === 'exam_questions') {
+          return {
+            select: vi.fn().mockReturnValue({
+              in: vi.fn().mockReturnValue({
+                order: vi.fn().mockResolvedValue({
+                  data: [
+                    {
+                      id: 'q-1',
+                      status: 'approved',
+                      question_text: 'Test question',
+                      options: ['A', 'B', 'C', 'D'],
+                      correct_answer: '0',
+                    },
+                  ],
+                  error: null,
+                }),
+              }),
+            }),
+          };
+        }
+        return {
+          select: vi.fn().mockReturnValue({
+            eq: vi.fn().mockResolvedValue({ data: [], error: null }),
+          }),
+        };
+      });
+
+      const res = await ExamWorkflowService.validateForPublish('exam-unconfirmed');
+      expect(res.isValid).toBe(true);
+      expect(res.warnings.some((w) => w.includes('Mualliflik huquqi tasdiqlanmagan'))).toBe(true);
+    });
+
+    it('blocks publication with error if exam is falsely claimed as Official JLPT', async () => {
+      (supabase.from as any).mockImplementation((table: string) => {
+        if (table === 'exams') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                single: vi.fn().mockResolvedValue({
+                  data: {
+                    id: 'exam-false-official',
+                    title: 'Unofficial Practice Exam',
+                    license_type: 'original',
+                    copyright_confirmed: true,
+                    is_official_jlpt: true,
+                    source_name: 'Third-party Publisher',
+                  },
+                  error: null,
+                }),
+              }),
+            }),
+          };
+        }
+        if (table === 'exam_sections') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                order: vi.fn().mockResolvedValue({
+                  data: [{ id: 'sec-1', type: 'knowledge', title: 'Goi' }],
+                  error: null,
+                }),
+              }),
+            }),
+          };
+        }
+        if (table === 'exam_questions') {
+          return {
+            select: vi.fn().mockReturnValue({
+              in: vi.fn().mockReturnValue({
+                order: vi.fn().mockResolvedValue({
+                  data: [
+                    {
+                      id: 'q-1',
+                      status: 'approved',
+                      question_text: 'Test question',
+                      options: ['A', 'B', 'C', 'D'],
+                      correct_answer: '0',
+                    },
+                  ],
+                  error: null,
+                }),
+              }),
+            }),
+          };
+        }
+        return {
+          select: vi.fn().mockReturnValue({
+            eq: vi.fn().mockResolvedValue({ data: [], error: null }),
+          }),
+        };
+      });
+
+      const res = await ExamWorkflowService.validateForPublish('exam-false-official');
+      expect(res.isValid).toBe(false);
+      expect(res.errors.some((e) => e.includes('Japan Foundation / JEES'))).toBe(true);
+    });
+
+    it('updateExamSourceLicense updates source and license in database', async () => {
+      const mockUpdate = vi.fn().mockReturnValue({
+        eq: vi.fn().mockResolvedValue({ error: null }),
+      });
+      (supabase.from as any).mockReturnValue({ update: mockUpdate });
+
+      await ExamWorkflowService.updateExamSourceLicense('exam-1', {
+        sourceName: 'The Japan Foundation',
+        sourceUrl: 'https://www.jlpt.jp',
+        author: 'JEES Team',
+        licenseType: 'restricted',
+        copyrightConfirmed: true,
+        isOfficialJlpt: true,
+      });
+
+      expect(mockUpdate).toHaveBeenCalledWith({
+        source_name: 'The Japan Foundation',
+        source_url: 'https://www.jlpt.jp',
+        author: 'JEES Team',
+        license_type: 'restricted',
+        copyright_confirmed: true,
+        is_official_jlpt: true,
+      });
+    });
+  });
 });

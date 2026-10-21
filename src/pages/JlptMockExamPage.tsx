@@ -17,7 +17,9 @@ import {
   X,
   LayoutGrid,
   Flag,
+  ExternalLink,
 } from 'lucide-react';
+import { formatAttribution } from '../types/examMetadata';
 import { Button } from '../components/ui/Button';
 import { HistoryService } from '../services/HistoryService';
 import {
@@ -849,12 +851,33 @@ export const JlptMockExamPage: React.FC = () => {
                       <div className="flex items-start justify-between gap-2">
                         <div className="space-y-1">
                           <div className="flex items-center gap-2">
-                            <span className="text-sm font-bold text-foreground">{ex.title}</span>
-                            <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
+                            <span
+                              className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-bold ${
+                                ex.isOfficialJlpt
+                                  ? 'border-rose-500/30 bg-rose-500/10 text-rose-600 dark:text-rose-400'
+                                  : 'border-emerald-500/20 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
+                              }`}
+                            >
                               <Database size={10} />{' '}
-                              {ex.id.startsWith('builtin_') ? 'Oflayn Baza' : 'Rasmiy DB'}
+                              {ex.isOfficialJlpt
+                                ? 'Rasmiy JLPT'
+                                : ex.id.startsWith('builtin_')
+                                  ? 'Oflayn Mock'
+                                  : 'Amaliyot Mock'}
                             </span>
                           </div>
+                          {(ex.sourceName ||
+                            ex.author ||
+                            (ex.licenseType && ex.licenseType !== 'original')) && (
+                            <div className="flex items-center gap-1.5 pt-0.5 text-[11px] text-muted-foreground">
+                              <span>Manba: {ex.sourceName || ex.author || 'Platforma'}</span>
+                              {ex.licenseType && (
+                                <span className="py-0.2 rounded bg-muted px-1.5 font-mono text-[9px] font-bold uppercase">
+                                  {ex.licenseType}
+                                </span>
+                              )}
+                            </div>
+                          )}
                           {ex.description && (
                             <p className="line-clamp-1 text-xs text-muted-foreground">
                               {ex.description}
@@ -1504,6 +1527,51 @@ export const JlptMockExamPage: React.FC = () => {
               </Button>
             )}
           </div>
+
+          {/* User-facing Attribution & Legal Disclaimer Footer (Task 7) */}
+          {(() => {
+            const attr = formatAttribution({
+              sourceName: activeExam?.sourceName,
+              sourceUrl: activeExam?.sourceUrl,
+              author: activeExam?.author,
+              licenseType: activeExam?.licenseType,
+              isOfficialJlpt: activeExam?.isOfficialJlpt,
+            });
+            return (
+              <div className="rounded-2xl border border-border bg-card/60 p-4 text-xs text-muted-foreground shadow-sm">
+                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/60 pb-2">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span
+                      className={`inline-flex items-center rounded-md border px-2 py-0.5 text-[10px] font-bold ${attr.licenseMeta.badgeClass}`}
+                    >
+                      {attr.licenseMeta.shortLabel}
+                    </span>
+                    <span className="font-semibold text-foreground">
+                      {attr.hasAttribution ? attr.displayTitle : 'Yapon tili o‘quv platformasi'}
+                    </span>
+                    {activeExam?.sourceUrl && (
+                      <a
+                        href={activeExam.sourceUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1 text-[11px] font-bold text-rose-600 hover:underline dark:text-rose-400"
+                      >
+                        <ExternalLink size={11} /> Asl manba
+                      </a>
+                    )}
+                  </div>
+                  <span className="text-[10px] font-medium text-muted-foreground">
+                    {activeExam?.isOfficialJlpt
+                      ? '🏛️ Rasmiy format'
+                      : '📖 O‘quv-amaliyot materiali'}
+                  </span>
+                </div>
+                <p className="pt-2 text-[11px] leading-relaxed text-muted-foreground">
+                  ⚖️ {attr.disclaimer}
+                </p>
+              </div>
+            );
+          })()}
         </div>
       )}
 
@@ -1529,6 +1597,51 @@ export const JlptMockExamPage: React.FC = () => {
               onBackToHub={() => navigate('/jlpt')}
               onViewCertificate={() => setShowCertificate(true)}
             />
+
+            {/* User-facing Attribution & Legal Disclaimer on Report View (Task 7) */}
+            {(() => {
+              const attr = formatAttribution({
+                sourceName: activeExam?.sourceName,
+                sourceUrl: activeExam?.sourceUrl,
+                author: activeExam?.author,
+                licenseType: activeExam?.licenseType,
+                isOfficialJlpt: activeExam?.isOfficialJlpt,
+              });
+              return (
+                <div className="mx-auto mt-6 max-w-4xl rounded-2xl border border-border bg-card/60 p-4 text-xs text-muted-foreground shadow-sm">
+                  <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/60 pb-2">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span
+                        className={`inline-flex items-center rounded-md border px-2 py-0.5 text-[10px] font-bold ${attr.licenseMeta.badgeClass}`}
+                      >
+                        {attr.licenseMeta.shortLabel}
+                      </span>
+                      <span className="font-semibold text-foreground">
+                        {attr.hasAttribution ? attr.displayTitle : 'Yapon tili o‘quv platformasi'}
+                      </span>
+                      {activeExam?.sourceUrl && (
+                        <a
+                          href={activeExam.sourceUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-1 text-[11px] font-bold text-rose-600 hover:underline dark:text-rose-400"
+                        >
+                          <ExternalLink size={11} /> Manba havolasi
+                        </a>
+                      )}
+                    </div>
+                    <span className="text-[10px] font-medium text-muted-foreground">
+                      {activeExam?.isOfficialJlpt
+                        ? '🏛️ Rasmiy format'
+                        : '📖 O‘quv-amaliyot materiali'}
+                    </span>
+                  </div>
+                  <p className="pt-2 text-[11px] leading-relaxed text-muted-foreground">
+                    ⚖️ {attr.disclaimer}
+                  </p>
+                </div>
+              );
+            })()}
 
             <ExamCertificateModal
               isOpen={showCertificate}

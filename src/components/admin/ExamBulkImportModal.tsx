@@ -22,6 +22,7 @@ import {
   Clock,
   Award,
   Sparkles,
+  Shield,
 } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { toast } from '../../hooks/use-toast';
@@ -31,7 +32,13 @@ import {
   BulkValidationResult,
   ValidatedQuestion,
 } from '../../services/ExamBulkImportService';
+import { ExamWorkflowService } from '../../services/ExamWorkflowService';
 import { sanitizeErrorMessage } from '../ErrorBoundary';
+import {
+  type ExamLicenseType,
+  LICENSE_CONFIG,
+  validateJlptOfficialStatus,
+} from '../../types/examMetadata';
 import {
   parsePdfFile,
   pdfQuestionsToJson,
@@ -130,6 +137,14 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
   const [importProgress, setImportProgress] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // Source & License Metadata States (Task 7)
+  const [sourceName, setSourceName] = useState<string>('');
+  const [sourceUrl, setSourceUrl] = useState<string>('');
+  const [author, setAuthor] = useState<string>('');
+  const [licenseType, setLicenseType] = useState<ExamLicenseType>('original');
+  const [copyrightConfirmed, setCopyrightConfirmed] = useState<boolean>(false);
+  const [isOfficialJlpt, setIsOfficialJlpt] = useState<boolean>(false);
+
   useEffect(() => {
     if (isOpen) {
       setRawContent('');
@@ -155,6 +170,12 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
       setAiError(null);
       setAiResult(null);
       setIsAiExtracting(false);
+      setSourceName('');
+      setSourceUrl('');
+      setAuthor('');
+      setLicenseType('original');
+      setCopyrightConfirmed(false);
+      setIsOfficialJlpt(false);
       if (examId) setSelectedExamId(examId);
       if (examLevel) setNewLevel(examLevel);
     }
@@ -630,6 +651,42 @@ D) 親切な
       return;
     }
 
+    // Copyright confirmation validation (Task 7)
+    if (!copyrightConfirmed) {
+      toast({
+        variant: 'destructive',
+        title: 'Mualliflik huquqi tasdiqlanmagan',
+        description:
+          "Iltimos, import qilishdan oldin 'Mualliflik huquqi roziligi' (Copyright confirmation) katakchasini belgilang.",
+      });
+      return;
+    }
+
+    // Official JLPT claim validation (Task 7)
+    if (isOfficialJlpt) {
+      const officialCheck = validateJlptOfficialStatus({
+        isOfficialJlpt: true,
+        sourceName: sourceName.trim(),
+        title: newTitle.trim(),
+      });
+      if (!officialCheck.isValid) {
+        toast({
+          variant: 'destructive',
+          title: 'Rasmiy JLPT xatoligi',
+          description: officialCheck.error,
+        });
+        return;
+      }
+    }
+
+    // Restricted license publish warning (Task 7)
+    if (publish && licenseType === 'restricted') {
+      const confirmed = window.confirm(
+        "DIQQAT: Ushbu material 'Restricted' (cheklangan) litsenziyaga ega!\n\nNashr qilish mualliflik huquqi cheklovlariga bog'liq bo'lishi mumkin. Haqiqatan ham ushbu materialni to'g'ridan-to'g'ri nashr qilishni (publish) tasdiqlaysizmi?",
+      );
+      if (!confirmed) return;
+    }
+
     setIsImporting(true);
     setImportProgress(
       publish ? 'Tasdiqlanmoqda va publish qilinmoqda...' : 'Draft sifatida saqlanmoqda...',
@@ -657,6 +714,12 @@ D) 親切な
             description: newDesc.trim() || undefined,
             questions: validQuestionsToImport,
             isPublished: publish,
+            sourceName: sourceName.trim() || undefined,
+            sourceUrl: sourceUrl.trim() || undefined,
+            author: author.trim() || undefined,
+            licenseType,
+            copyrightConfirmed,
+            isOfficialJlpt,
           });
           toast({
             title: publish ? 'Imtihon muvaffaqiyatli tasdiqlandi' : 'Draft sifatida saqlandi',
@@ -671,6 +734,20 @@ D) 親切な
             validQuestionsToImport,
             publish,
           );
+          if (sourceName.trim() || author.trim() || licenseType !== 'original') {
+            try {
+              await ExamWorkflowService.updateExamSourceLicense(selectedExamId, {
+                sourceName: sourceName.trim() || undefined,
+                sourceUrl: sourceUrl.trim() || undefined,
+                author: author.trim() || undefined,
+                licenseType,
+                copyrightConfirmed,
+                isOfficialJlpt,
+              });
+            } catch (licenseErr) {
+              console.warn('Failed to update exam license on existing exam:', licenseErr);
+            }
+          }
           toast({
             title: publish ? 'Imtihon tasdiqlandi' : "Savollar draft sifatida qo'shildi",
             description: `${res.totalInserted} ta savol imtihonga qo'shildi.`,
@@ -813,6 +890,137 @@ D) 親切な
                   </select>
                 </div>
               )}
+
+              {/* Source & License Metadata Card (Task 7) */}
+              <div className="mt-3 rounded-2xl border border-indigo-100 bg-indigo-50/50 p-4 dark:border-indigo-900/40 dark:bg-indigo-950/20">
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="flex items-center gap-1.5 text-xs font-black text-indigo-900 dark:text-indigo-200">
+                    <Shield className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
+                    Manba va Litsenziya Metadatalari (Source & License)
+                  </span>
+                  <span className="rounded-full bg-indigo-100/70 px-2 py-0.5 text-[10px] font-bold text-indigo-700 dark:bg-indigo-900/60 dark:text-indigo-300">
+                    Mualliflik huquqi va attribution
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-3">
+                  <div>
+                    <label className="mb-1 block text-[11px] font-bold text-slate-600 dark:text-slate-400">
+                      Manba nomi (Source Name)
+                    </label>
+                    <input
+                      value={sourceName}
+                      onChange={(e) => setSourceName(e.target.value)}
+                      placeholder="masalan: JLPT Speed Master, So-matome"
+                      className="w-full rounded-xl border border-slate-200 bg-white p-2.5 text-xs font-medium text-slate-900 focus:border-indigo-500 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-[11px] font-bold text-slate-600 dark:text-slate-400">
+                      Manba URL havolasi (Source URL)
+                    </label>
+                    <input
+                      value={sourceUrl}
+                      onChange={(e) => setSourceUrl(e.target.value)}
+                      placeholder="https://example.com/material"
+                      className="w-full rounded-xl border border-slate-200 bg-white p-2.5 text-xs font-medium text-slate-900 focus:border-indigo-500 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-[11px] font-bold text-slate-600 dark:text-slate-400">
+                      Muallif / Tashkilot (Author)
+                    </label>
+                    <input
+                      value={author}
+                      onChange={(e) => setAuthor(e.target.value)}
+                      placeholder="masalan: Ask Publishing, Farhod"
+                      className="w-full rounded-xl border border-slate-200 bg-white p-2.5 text-xs font-medium text-slate-900 focus:border-indigo-500 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <div>
+                    <label className="mb-1 block text-[11px] font-bold text-slate-600 dark:text-slate-400">
+                      Litsenziya turi (License Type)
+                    </label>
+                    <select
+                      value={licenseType}
+                      onChange={(e) => setLicenseType(e.target.value as ExamLicenseType)}
+                      className="w-full rounded-xl border border-slate-200 bg-white p-2.5 text-xs font-bold text-slate-900 focus:border-indigo-500 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+                    >
+                      <option value="original">
+                        Original (Platforma / O'qituvchi muallifligi)
+                      </option>
+                      <option value="cc-by">Creative Commons Attribution (CC BY)</option>
+                      <option value="cc-by-sa">
+                        Creative Commons Attribution-ShareAlike (CC BY-SA)
+                      </option>
+                      <option value="public-domain">Ommaviy Mulk (Public Domain / CC0)</option>
+                      <option value="restricted">
+                        Cheklangan / Mualliflik huquqi bilan himoyalangan (Restricted ⚠️)
+                      </option>
+                    </select>
+                    <p className="mt-1 text-[10px] text-slate-500 dark:text-slate-400">
+                      {LICENSE_CONFIG[licenseType]?.description}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col justify-center gap-2">
+                    <label className="flex cursor-pointer items-center gap-2 text-xs font-bold text-slate-700 dark:text-slate-300">
+                      <input
+                        type="checkbox"
+                        checked={isOfficialJlpt}
+                        onChange={(e) => setIsOfficialJlpt(e.target.checked)}
+                        className="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                      />
+                      <span>Rasmiy JLPT Materiali (Official JEES / Japan Foundation)</span>
+                    </label>
+
+                    <label className="flex cursor-pointer items-center gap-2 text-xs font-bold text-slate-900 dark:text-white">
+                      <input
+                        type="checkbox"
+                        checked={copyrightConfirmed}
+                        onChange={(e) => setCopyrightConfirmed(e.target.checked)}
+                        className="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                      />
+                      <span
+                        className={
+                          copyrightConfirmed
+                            ? 'font-extrabold text-emerald-700 dark:text-emerald-400'
+                            : 'text-slate-700 dark:text-slate-300'
+                        }
+                      >
+                        ✓ Mualliflik huquqi roziligi (Copyright confirmation)
+                      </span>
+                    </label>
+                  </div>
+                </div>
+
+                {/* Restricted Warning */}
+                {licenseType === 'restricted' && (
+                  <div className="mt-3 flex items-start gap-2 rounded-xl border border-rose-200 bg-rose-50 p-2.5 text-xs text-rose-700 dark:border-rose-900/50 dark:bg-rose-950/30 dark:text-rose-300">
+                    <AlertTriangle className="h-4 w-4 shrink-0 text-rose-600" />
+                    <span>
+                      <b>Diqqat (Restricted Material):</b> Ushbu material litsenziyasi cheklangan.
+                      Nashr qilishdan oldin ogohlantirish ko‘rsatiladi va ruxsatnomaga ega
+                      ekanligingizni tasdiqlashingiz lozim.
+                    </span>
+                  </div>
+                )}
+
+                {/* Official JLPT False Claim Warning */}
+                {isOfficialJlpt &&
+                  !validateJlptOfficialStatus({ isOfficialJlpt, sourceName }).isValid && (
+                    <div className="mt-3 flex items-start gap-2 rounded-xl border border-amber-200 bg-amber-50 p-2.5 text-xs text-amber-700 dark:border-amber-900/50 dark:bg-amber-950/30 dark:text-amber-300">
+                      <AlertTriangle className="h-4 w-4 shrink-0 text-amber-600" />
+                      <span>
+                        <b>Ogohlantirish:</b>{' '}
+                        {validateJlptOfficialStatus({ isOfficialJlpt, sourceName }).error}
+                      </span>
+                    </div>
+                  )}
+              </div>
             </div>
           )}
 

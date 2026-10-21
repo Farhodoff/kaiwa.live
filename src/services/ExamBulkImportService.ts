@@ -1,5 +1,10 @@
 import { supabase } from '../lib/supabase';
 import { sanitizeErrorMessage } from '../components/ErrorBoundary';
+import {
+  type ExamLicenseType,
+  normalizeLicenseType,
+  validateJlptOfficialStatus,
+} from '../types/examMetadata';
 
 export type JlptLevel = 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
 export type ValidExamSection = 'knowledge' | 'reading' | 'listening';
@@ -29,6 +34,16 @@ export interface RawImportQuestion {
   difficulty?: 'easy' | 'medium' | 'hard' | string;
   question_type?: string;
   is_published?: boolean;
+  source?: string | null;
+  source_name?: string | null;
+  source_url?: string | null;
+  url?: string | null;
+  author?: string | null;
+  license?: string | null;
+  license_type?: string | null;
+  copyright_confirmed?: boolean | string | null;
+  is_official?: boolean | string | null;
+  is_official_jlpt?: boolean | string | null;
 }
 
 export interface ValidatedQuestion {
@@ -45,6 +60,12 @@ export interface ValidatedQuestion {
   section_type: string;
   difficulty?: 'easy' | 'medium' | 'hard';
   question_type?: string;
+  source_name?: string | null;
+  source_url?: string | null;
+  author?: string | null;
+  license_type?: ExamLicenseType;
+  copyright_confirmed?: boolean;
+  is_official_jlpt?: boolean;
 }
 
 export interface ValidationIssue {
@@ -79,6 +100,12 @@ export interface FullExamImportPayload {
   type: string;
   description?: string;
   level?: JlptLevel;
+  sourceName?: string;
+  sourceUrl?: string;
+  author?: string;
+  licenseType?: ExamLicenseType;
+  copyrightConfirmed?: boolean;
+  isOfficialJlpt?: boolean;
   sections: Array<{
     title: string;
     type: string;
@@ -576,6 +603,66 @@ export class ExamBulkImportService {
         seenTextsInBatch.add(normalizedQ);
       }
 
+      // 7. Source & License Metadata validation (Task 7)
+      const rawSourceName =
+        (raw.source_name !== undefined && raw.source_name !== null
+          ? String(raw.source_name).trim()
+          : raw.source !== undefined && raw.source !== null
+            ? String(raw.source).trim()
+            : '') || null;
+
+      const rawSourceUrl =
+        (raw.source_url !== undefined && raw.source_url !== null
+          ? String(raw.source_url).trim()
+          : raw.url !== undefined && raw.url !== null
+            ? String(raw.url).trim()
+            : '') || null;
+
+      const rawAuthor =
+        (raw.author !== undefined && raw.author !== null ? String(raw.author).trim() : '') || null;
+
+      const rawLicense = normalizeLicenseType(raw.license_type || raw.license);
+
+      const isCopyrightConfirmed = Boolean(
+        raw.copyright_confirmed === true ||
+        raw.copyright_confirmed === 'true' ||
+        raw.copyright_confirmed === '1' ||
+        raw.copyright_confirmed === 'yes',
+      );
+
+      const isOfficial = Boolean(
+        raw.is_official_jlpt === true ||
+        raw.is_official_jlpt === 'true' ||
+        raw.is_official === true ||
+        raw.is_official === 'true' ||
+        raw.is_official === '1',
+      );
+
+      if (rawLicense === 'restricted') {
+        issues.push({
+          row: rowNumber,
+          field: 'license_type',
+          message:
+            "Diqqat: Ushbu savolda 'Restricted' litsenziyasi ko'rsatilgan. Nashr qilishdan oldin ruxsatnoma olingan bo'lishi shart.",
+          severity: 'warning',
+        });
+      }
+
+      if (isOfficial) {
+        const officialCheck = validateJlptOfficialStatus({
+          isOfficialJlpt: true,
+          sourceName: rawSourceName || undefined,
+        });
+        if (!officialCheck.isValid && officialCheck.error) {
+          issues.push({
+            row: rowNumber,
+            field: 'is_official_jlpt',
+            message: officialCheck.error,
+            severity: 'warning',
+          });
+        }
+      }
+
       const hasErrors = issues.some((i) => i.severity === 'error');
       const hasWarnings = issues.some((i) => i.severity === 'warning');
       const status: 'valid' | 'warning' | 'error' = hasErrors
@@ -604,6 +691,12 @@ export class ExamBulkImportService {
             difficulty:
               raw.difficulty === 'easy' || raw.difficulty === 'hard' ? raw.difficulty : 'medium',
             question_type: raw.question_type || qType,
+            source_name: rawSourceName,
+            source_url: rawSourceUrl,
+            author: rawAuthor,
+            license_type: rawLicense,
+            copyright_confirmed: isCopyrightConfirmed,
+            is_official_jlpt: isOfficial,
           };
 
       // Ogohlantirish: reading bo'limida passagesiz savol
@@ -745,6 +838,15 @@ export class ExamBulkImportService {
           section: r.section || r['Section'] || r.section_name || r["Bo'lim"] || '',
           section_name: r.section_name || r.section || r["Bo'lim"] || '',
           section_type: r.section_type || '',
+          source: r.source || r.source_name || r['Manba'] || r['Source'] || '',
+          source_name: r.source_name || r.source || r['Manba'] || r['Source'] || '',
+          source_url: r.source_url || r.url || r['URL'] || r['Havola'] || '',
+          author: r.author || r['Muallif'] || r['Author'] || '',
+          license: r.license || r.license_type || r['Litsenziya'] || r['License'] || '',
+          license_type: r.license_type || r.license || r['Litsenziya'] || r['License'] || '',
+          copyright_confirmed: r.copyright_confirmed || r['Copyright'] || r['Mualliflik'] || '',
+          is_official: r.is_official || r.is_official_jlpt || r['Rasmiy'] || '',
+          is_official_jlpt: r.is_official_jlpt || r.is_official || r['Rasmiy'] || '',
         }));
       } catch (err: any) {
         return {
@@ -986,6 +1088,12 @@ q4,listening,男の人はこの後まず何をしますか。,,資料をコピ�
       correct_answer: q.correct_answer,
       explanation: q.explanation,
       order_index: baseOrder + idx,
+      source_name: q.source_name || null,
+      source_url: q.source_url || null,
+      author: q.author || null,
+      license_type: q.license_type || 'original',
+      copyright_confirmed: q.copyright_confirmed || false,
+      is_official_jlpt: q.is_official_jlpt || false,
     }));
 
     const { error } = await supabase.from('exam_questions').insert(rows);
@@ -1006,6 +1114,12 @@ q4,listening,男の人はこの後まず何をしますか。,,資料をコピ�
     description?: string;
     questions: ValidatedQuestion[];
     isPublished?: boolean;
+    sourceName?: string;
+    sourceUrl?: string;
+    author?: string;
+    licenseType?: ExamLicenseType;
+    copyrightConfirmed?: boolean;
+    isOfficialJlpt?: boolean;
   }): Promise<{ examId: string; totalInserted: number }> {
     const fullType = `JLPT ${payload.level}`;
 
@@ -1018,6 +1132,12 @@ q4,listening,男の人はこの後まず何をしますか。,,資料をコピ�
         description:
           payload.description || `Ommaviy import orqali yuklangan ${fullType} mock imtihoni.`,
         is_published: payload.isPublished ?? false,
+        source_name: payload.sourceName || null,
+        source_url: payload.sourceUrl || null,
+        author: payload.author || null,
+        license_type: payload.licenseType || 'original',
+        copyright_confirmed: payload.copyrightConfirmed ?? false,
+        is_official_jlpt: payload.isOfficialJlpt ?? false,
       })
       .select()
       .single();

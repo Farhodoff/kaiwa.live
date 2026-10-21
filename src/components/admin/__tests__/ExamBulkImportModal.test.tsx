@@ -229,6 +229,10 @@ Valid savol matni birinchi,A,B,C,D,A,N3,knowledge
     const textarea = screen.getByPlaceholderText(/CSV yoki JSON matnini/i);
     fireEvent.change(textarea, { target: { value: sampleCsvContent } });
 
+    // Check copyright confirmation
+    const copyrightCheckbox = screen.getByLabelText(/Mualliflik huquqi roziligi/i);
+    fireEvent.click(copyrightCheckbox);
+
     // Draft save button
     const draftBtn = screen.getByRole('button', { name: /Draft sifatida saqlash \(2\)/i });
     fireEvent.click(draftBtn);
@@ -237,6 +241,7 @@ Valid savol matni birinchi,A,B,C,D,A,N3,knowledge
       expect(importFullSpy).toHaveBeenCalledWith(
         expect.objectContaining({
           isPublished: false,
+          copyrightConfirmed: true,
         }),
       );
     });
@@ -255,6 +260,10 @@ Valid savol matni birinchi,A,B,C,D,A,N3,knowledge
     const textarea = screen.getByPlaceholderText(/CSV yoki JSON matnini/i);
     fireEvent.change(textarea, { target: { value: sampleCsvContent } });
 
+    // Check copyright confirmation
+    const copyrightCheckbox = screen.getByLabelText(/Mualliflik huquqi roziligi/i);
+    fireEvent.click(copyrightCheckbox);
+
     // Confirmation button
     const confirmBtn = screen.getByRole('button', { name: /Tasdiqlash \(2\)/i });
     fireEvent.click(confirmBtn);
@@ -263,6 +272,7 @@ Valid savol matni birinchi,A,B,C,D,A,N3,knowledge
       expect(importFullSpy).toHaveBeenCalledWith(
         expect.objectContaining({
           isPublished: true,
+          copyrightConfirmed: true,
         }),
       );
     });
@@ -367,6 +377,48 @@ Valid savol matni birinchi,A,B,C,D,A,N3,knowledge
       const retryBtn = screen.getByRole('button', { name: /Qayta urinish/i });
       fireEvent.click(retryBtn);
       expect(extractSpy).toHaveBeenCalledTimes(2);
+    });
+  });
+
+  describe('Task 7: Source & License Metadata, Copyright and Restricted Warnings', () => {
+    it('renders source, author, license fields and copyright checkbox', () => {
+      render(<ExamBulkImportModal {...defaultProps} />);
+      expect(screen.getByPlaceholderText(/JLPT Speed Master, So-matome/i)).toBeInTheDocument();
+      expect(screen.getByPlaceholderText(/Ask Publishing/i)).toBeInTheDocument();
+      expect(screen.getByText(/Litsenziya turi \(License Type\)/i)).toBeInTheDocument();
+      expect(screen.getByLabelText(/Mualliflik huquqi roziligi/i)).toBeInTheDocument();
+    });
+
+    it('blocks import when copyright is not confirmed', async () => {
+      const importFullSpy = vi.spyOn(ExamBulkImportService, 'importFullExamWithSections');
+      render(<ExamBulkImportModal {...defaultProps} />);
+
+      fireEvent.click(screen.getByRole('button', { name: /Matn ko‘rinishida kiritish/i }));
+      fireEvent.change(screen.getByPlaceholderText(/CSV yoki JSON matnini/i), {
+        target: { value: sampleCsvContent },
+      });
+
+      // Do NOT check copyright checkbox
+      const draftBtn = screen.getByRole('button', { name: /Draft sifatida saqlash/i });
+      fireEvent.click(draftBtn);
+
+      expect(importFullSpy).not.toHaveBeenCalled();
+    });
+
+    it('displays warning banner when Restricted license is selected', () => {
+      render(<ExamBulkImportModal {...defaultProps} />);
+      const licenseSelect = screen.getByDisplayValue(/Original \(Platforma/i);
+      fireEvent.change(licenseSelect, { target: { value: 'restricted' } });
+
+      expect(screen.getByText(/Restricted Material/i)).toBeInTheDocument();
+    });
+
+    it('displays warning when isOfficialJlpt is checked without official source', () => {
+      render(<ExamBulkImportModal {...defaultProps} />);
+      const officialCheckbox = screen.getByLabelText(/Rasmiy JLPT Materiali/i);
+      fireEvent.click(officialCheckbox);
+
+      expect(screen.getByText(/Japan Foundation \/ JEES/i)).toBeInTheDocument();
     });
   });
 });

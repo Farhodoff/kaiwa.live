@@ -1,4 +1,10 @@
 import { supabase } from '../lib/supabase';
+import {
+  type ExamLicenseType,
+  type ExamSourceLicenseMeta,
+  normalizeLicenseType,
+  validateJlptOfficialStatus,
+} from '../types/examMetadata';
 
 export type ExamWorkflowStatus = 'draft' | 'review' | 'approved' | 'published' | 'archived';
 export type QuestionWorkflowStatus = 'draft' | 'review' | 'approved' | 'rejected';
@@ -14,6 +20,15 @@ export interface PrePublishValidationResult {
     reviewCount: number;
     draftCount: number;
     rejectedCount: number;
+  };
+  metadata?: {
+    sourceName?: string | null;
+    sourceUrl?: string | null;
+    author?: string | null;
+    licenseType?: ExamLicenseType;
+    isRestricted?: boolean;
+    copyrightConfirmed?: boolean;
+    isOfficialJlpt?: boolean;
   };
 }
 
@@ -101,7 +116,9 @@ export class ExamWorkflowService {
     // 1. Fetch Exam
     const { data: exam, error: examErr } = await supabase
       .from('exams')
-      .select('id, title, type, is_published, status')
+      .select(
+        'id, title, type, is_published, status, source_name, source_url, author, license_type, copyright_confirmed, is_official_jlpt',
+      )
       .eq('id', examId)
       .single();
 
@@ -245,6 +262,30 @@ export class ExamWorkflowService {
       }
     }
 
+    // 6. Source & License Metadata validation (Task 7)
+    const normLicense = normalizeLicenseType(exam.license_type);
+    const isRestricted = normLicense === 'restricted';
+    if (isRestricted) {
+      warnings.push(
+        "⚠️ Diqqat: Ushbu imtihon cheklangan litsenziyaga ('restricted') ega. Nashr qilishdan oldin mualliflik huquqi va tarqatish ruxsatnomalarini tekshiring.",
+      );
+    }
+
+    if (exam.copyright_confirmed === false) {
+      warnings.push(
+        'Mualliflik huquqi tasdiqlanmagan (Copyright confirmation talab qilinadi). Materialni nashr qilishdan oldin huquqiy rozilikni tasdiqlang.',
+      );
+    }
+
+    const officialCheck = validateJlptOfficialStatus({
+      isOfficialJlpt: exam.is_official_jlpt,
+      sourceName: exam.source_name,
+      title: exam.title,
+    });
+    if (!officialCheck.isValid && officialCheck.error) {
+      errors.push(officialCheck.error);
+    }
+
     return {
       isValid: errors.length === 0,
       errors,
@@ -257,7 +298,38 @@ export class ExamWorkflowService {
         draftCount,
         rejectedCount,
       },
+      metadata: {
+        sourceName: exam.source_name || null,
+        sourceUrl: exam.source_url || null,
+        author: exam.author || null,
+        licenseType: normLicense,
+        isRestricted,
+        copyrightConfirmed: Boolean(exam.copyright_confirmed),
+        isOfficialJlpt: Boolean(exam.is_official_jlpt),
+      },
     };
+  }
+
+  /**
+   * Update source and license metadata for an exam (Task 7)
+   */
+  static async updateExamSourceLicense(
+    examId: string,
+    meta: Partial<ExamSourceLicenseMeta>,
+  ): Promise<void> {
+    const updates: Record<string, any> = {};
+    if (meta.sourceName !== undefined) updates.source_name = meta.sourceName;
+    if (meta.sourceUrl !== undefined) updates.source_url = meta.sourceUrl;
+    if (meta.author !== undefined) updates.author = meta.author;
+    if (meta.licenseType !== undefined) updates.license_type = meta.licenseType;
+    if (meta.copyrightConfirmed !== undefined)
+      updates.copyright_confirmed = meta.copyrightConfirmed;
+    if (meta.isOfficialJlpt !== undefined) updates.is_official_jlpt = meta.isOfficialJlpt;
+
+    const { error } = await supabase.from('exams').update(updates).eq('id', examId);
+    if (error) {
+      throw new Error(`Manba va litsenziyani yangilashda xatolik: ${error.message}`);
+    }
   }
 
   /**

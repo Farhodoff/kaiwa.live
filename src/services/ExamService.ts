@@ -9,6 +9,7 @@ import {
 export type JlptLevel = 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
 
 import type { ExamWorkflowStatus } from './ExamWorkflowService';
+import type { ExamLicenseType } from '../types/examMetadata';
 
 export interface ExamListItem {
   id: string;
@@ -20,6 +21,12 @@ export interface ExamListItem {
   status?: ExamWorkflowStatus;
   createdAt: string;
   totalQuestions?: number;
+  sourceName?: string | null;
+  sourceUrl?: string | null;
+  author?: string | null;
+  licenseType?: ExamLicenseType;
+  copyrightConfirmed?: boolean;
+  isOfficialJlpt?: boolean;
 }
 
 export interface NormalizedExam {
@@ -31,6 +38,12 @@ export interface NormalizedExam {
   questions: ExamQuestion[];
   timeLimitSeconds: number;
   isFromDb: boolean;
+  sourceName?: string | null;
+  sourceUrl?: string | null;
+  author?: string | null;
+  licenseType?: ExamLicenseType;
+  copyrightConfirmed?: boolean;
+  isOfficialJlpt?: boolean;
 }
 
 const DEFAULT_TIME_LIMITS: Record<JlptLevel, number> = {
@@ -62,7 +75,9 @@ export class ExamService {
     try {
       let query = supabase
         .from('exams')
-        .select('id, title, description, type, is_published, status, created_at')
+        .select(
+          'id, title, description, type, is_published, status, created_at, source_name, source_url, author, license_type, copyright_confirmed, is_official_jlpt',
+        )
         .eq('is_published', true)
         .order('created_at', { ascending: false });
 
@@ -90,6 +105,12 @@ export class ExamService {
           isPublished: item.is_published,
           status: item.status,
           createdAt: item.created_at,
+          sourceName: item.source_name || null,
+          sourceUrl: item.source_url || null,
+          author: item.author || null,
+          licenseType: item.license_type || 'original',
+          copyrightConfirmed: Boolean(item.copyright_confirmed),
+          isOfficialJlpt: Boolean(item.is_official_jlpt),
         }));
       }
     } catch (err) {
@@ -275,6 +296,12 @@ export class ExamService {
         questions,
         timeLimitSeconds: DEFAULT_TIME_LIMITS[lvl] || 3000,
         isFromDb: true,
+        sourceName: examData.source_name || null,
+        sourceUrl: examData.source_url || null,
+        author: examData.author || null,
+        licenseType: examData.license_type || 'original',
+        copyrightConfirmed: Boolean(examData.copyright_confirmed),
+        isOfficialJlpt: Boolean(examData.is_official_jlpt),
       };
     } catch (err) {
       console.warn('ExamService: Falling back to local dataset for exam', examId, err);
