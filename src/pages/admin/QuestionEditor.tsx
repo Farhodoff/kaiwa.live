@@ -34,6 +34,8 @@ interface QuestionFormData {
   options: string[];
   correct_answer: string;
   explanation: string;
+  passage_id?: string | null;
+  listening_audio_id?: string | null;
 }
 
 export const QuestionEditor: React.FC = () => {
@@ -55,6 +57,8 @@ export const QuestionEditor: React.FC = () => {
     options: ['', '', '', ''],
     correct_answer: '',
     explanation: '',
+    passage_id: null,
+    listening_audio_id: null,
   });
   const [savingQuestion, setSavingQuestion] = useState(false);
 
@@ -146,7 +150,7 @@ export const QuestionEditor: React.FC = () => {
     if (!title) return;
 
     try {
-      const { error } = await supabase
+      const { data: newSec, error } = await supabase
         .from('exam_sections')
         .insert({
           exam_id: id,
@@ -163,11 +167,13 @@ export const QuestionEditor: React.FC = () => {
         await ReadingPassageService.create(id!, {
           title: `${title} Matni`,
           content: '',
+          section_id: newSec.id,
           order_index: 0,
         });
       } else if (type === 'Listening') {
         await ListeningAudioService.create(id!, {
           title: `${title} Audio`,
+          section_id: newSec.id,
           order_index: 0,
         });
       }
@@ -243,12 +249,32 @@ export const QuestionEditor: React.FC = () => {
     try {
       const existingQuestions = sectionQuestions[sectionId] || [];
       const section = sections.find((s) => s.id === sectionId);
-      const passage = readingPassages.find((p) => p.section_id === sectionId);
-      const audio = listeningAudios.find((a) => a.section_id === sectionId);
+      const sectionPassages = readingPassages.filter(
+        (p) => p.section_id === sectionId || !p.section_id,
+      );
+      const sectionAudios = listeningAudios.filter(
+        (a) => a.section_id === sectionId || !a.section_id,
+      );
+
+      const resolvedPassageId =
+        section?.type === 'Reading'
+          ? questionForm.passage_id !== undefined && questionForm.passage_id !== null
+            ? questionForm.passage_id
+            : (sectionPassages[0]?.id ?? null)
+          : null;
+
+      const resolvedAudioId =
+        section?.type === 'Listening'
+          ? questionForm.listening_audio_id !== undefined &&
+            questionForm.listening_audio_id !== null
+            ? questionForm.listening_audio_id
+            : (sectionAudios[0]?.id ?? null)
+          : null;
+
       const { error } = await supabase.from('exam_questions').insert({
         section_id: sectionId,
-        passage_id: section?.type === 'Reading' ? (passage?.id ?? null) : null,
-        listening_audio_id: section?.type === 'Listening' ? (audio?.id ?? null) : null,
+        passage_id: resolvedPassageId,
+        listening_audio_id: resolvedAudioId,
         question_text: questionForm.question_text,
         type: questionForm.type,
         options:
@@ -267,6 +293,8 @@ export const QuestionEditor: React.FC = () => {
         options: ['', '', '', ''],
         correct_answer: '',
         explanation: '',
+        passage_id: null,
+        listening_audio_id: null,
       });
       if (!keepOpen) {
         setShowQuestionForm(null);
@@ -329,50 +357,6 @@ export const QuestionEditor: React.FC = () => {
         description: `Kontentni saqlashda xatolik: ${err?.message || JSON.stringify(err)}`,
       });
     }
-  };
-
-  const handleDeleteReadingPassage = async (passageId: string) => {
-    try {
-      await ReadingPassageService.delete(passageId);
-      fetchExamDetails();
-      toast({ title: "🗑️ O'chirildi", description: "Dokkai matni o'chirildi." });
-    } catch (err: any) {
-      if (err.code === 'HAS_LINKED_QUESTIONS') {
-        const ok = confirm(`${err.message}\n\nUlarni ham o'chirib, matnni o'chirasanmi?`);
-        if (!ok) return;
-        try {
-          await Promise.all(
-            (err.linkedQuestions || []).map((q: any) =>
-              supabase.from('exam_questions').delete().eq('id', q.id),
-            ),
-          );
-          await ReadingPassageService.delete(passageId);
-          fetchExamDetails();
-          toast({
-            title: "🗑️ O'chirildi",
-            description: "Matn va unga biriktirilgan barcha savollar o'chirildi.",
-          });
-        } catch (err2: any) {
-          toast({
-            variant: 'destructive',
-            title: 'Xatolik',
-            description: err2?.message || String(err2),
-          });
-        }
-      } else {
-        toast({
-          variant: 'destructive',
-          title: 'Xatolik',
-          description: err?.message || String(err),
-        });
-      }
-    }
-  };
-
-  const handleDeleteListeningAudio = () => {
-    // Deletion (+ linked-question guard + storage cleanup) is handled inside
-    // ListeningAudioEditor via ListeningAudioService.delete. Just refresh data.
-    fetchExamDetails();
   };
 
   const handlePublishToggle = async () => {
@@ -559,19 +543,29 @@ export const QuestionEditor: React.FC = () => {
               <div className="space-y-2">
                 {section.type === 'Reading' ? (
                   <ReadingPassageEditor
-                    passage={readingPassages.find((x) => x.section_id === section.id) || null}
-                    onUpdate={(p) =>
-                      setReadingPassages((prev) => prev.map((x) => (x.id === p.id ? p : x)))
-                    }
-                    onDelete={handleDeleteReadingPassage}
+                    passages={readingPassages.filter(
+                      (x) =>
+                        x.section_id === section.id ||
+                        (!x.section_id && readingPassages.length === 1),
+                    )}
+                    sectionId={section.id}
+                    examId={id}
+                    onUpdate={() => fetchExamDetails()}
+                    onDelete={() => fetchExamDetails()}
+                    onRefresh={() => fetchExamDetails()}
                   />
                 ) : section.type === 'Listening' ? (
                   <ListeningAudioEditor
-                    audio={listeningAudios.find((x) => x.section_id === section.id) || null}
-                    onUpdate={(a) =>
-                      setListeningAudios((prev) => prev.map((x) => (x.id === a.id ? a : x)))
-                    }
-                    onDelete={handleDeleteListeningAudio}
+                    audios={listeningAudios.filter(
+                      (x) =>
+                        x.section_id === section.id ||
+                        (!x.section_id && listeningAudios.length === 1),
+                    )}
+                    sectionId={section.id}
+                    examId={id}
+                    onUpdate={() => fetchExamDetails()}
+                    onDelete={() => fetchExamDetails()}
+                    onRefresh={() => fetchExamDetails()}
                   />
                 ) : (
                   <div className="space-y-2">
@@ -691,6 +685,90 @@ export const QuestionEditor: React.FC = () => {
                               })}
                             </div>
                           )}
+
+                          {/* Linked Passage / Audio Tag & Re-linker (Talab 2) */}
+                          {section.type === 'Reading' && (
+                            <div className="flex flex-wrap items-center gap-2 pt-2 text-xs">
+                              <span className="flex items-center gap-1 font-bold text-slate-500">
+                                <FileText className="h-3.5 w-3.5 text-emerald-500" />
+                                <span>Biriktirilgan matn:</span>
+                              </span>
+                              <select
+                                value={q.passage_id || ''}
+                                onChange={async (e) => {
+                                  const newId = e.target.value || null;
+                                  try {
+                                    await ReadingPassageService.linkQuestion(q.id, newId);
+                                    fetchExamDetails();
+                                    toast({
+                                      title: 'Bog‘landi',
+                                      description: 'Savol matnga biriktirildi.',
+                                    });
+                                  } catch (err: any) {
+                                    toast({
+                                      variant: 'destructive',
+                                      title: 'Xatolik',
+                                      description: err?.message,
+                                    });
+                                  }
+                                }}
+                                className="rounded-lg border border-slate-200 bg-white px-2 py-1 text-xs font-semibold text-slate-700 outline-none focus:ring-1 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+                                data-testid={`link-passage-select-${q.id}`}
+                              >
+                                <option value="">(Umumiy / Bog'lanmagan)</option>
+                                {readingPassages
+                                  .filter((p) => p.section_id === section.id || !p.section_id)
+                                  .map((p) => (
+                                    <option key={p.id} value={p.id}>
+                                      📖 {p.title}
+                                    </option>
+                                  ))}
+                              </select>
+                            </div>
+                          )}
+
+                          {section.type === 'Listening' && (
+                            <div className="flex flex-wrap items-center gap-2 pt-2 text-xs">
+                              <span className="flex items-center gap-1 font-bold text-slate-500">
+                                <Headphones className="h-3.5 w-3.5 text-blue-500" />
+                                <span>Biriktirilgan audio:</span>
+                              </span>
+                              <select
+                                value={q.listening_audio_id || ''}
+                                onChange={async (e) => {
+                                  const newId = e.target.value || null;
+                                  try {
+                                    await ListeningAudioService.linkQuestion(q.id, newId);
+                                    fetchExamDetails();
+                                    toast({
+                                      title: 'Bog‘landi',
+                                      description: 'Savol audioga biriktirildi.',
+                                    });
+                                  } catch (err: any) {
+                                    toast({
+                                      variant: 'destructive',
+                                      title: 'Xatolik',
+                                      description: err?.message,
+                                    });
+                                  }
+                                }}
+                                className="rounded-lg border border-slate-200 bg-white px-2 py-1 text-xs font-semibold text-slate-700 outline-none focus:ring-1 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+                                data-testid={`link-audio-select-${q.id}`}
+                              >
+                                <option value="">(Umumiy / Bog'lanmagan)</option>
+                                {listeningAudios
+                                  .filter((a) => a.section_id === section.id || !a.section_id)
+                                  .map((a) => (
+                                    <option key={a.id} value={a.id}>
+                                      🎧 {a.title}{' '}
+                                      {a.duration_seconds
+                                        ? `(${Math.floor(a.duration_seconds / 60)}:${(a.duration_seconds % 60).toString().padStart(2, '0')})`
+                                        : ''}
+                                    </option>
+                                  ))}
+                              </select>
+                            </div>
+                          )}
                         </div>
                       ))}
                     </div>
@@ -733,6 +811,62 @@ export const QuestionEditor: React.FC = () => {
                       autoFocus
                     />
                   </div>
+
+                  {section.type === 'Reading' && (
+                    <div>
+                      <label className="mb-1 block text-xs font-bold text-slate-600 dark:text-slate-300">
+                        📖 Qaysi Dokkai Matniga biriktirilsin?
+                      </label>
+                      <select
+                        value={questionForm.passage_id || ''}
+                        onChange={(e) =>
+                          setQuestionForm((f) => ({ ...f, passage_id: e.target.value || null }))
+                        }
+                        className="w-full rounded-xl border border-slate-200 bg-white p-2.5 text-xs font-semibold outline-none focus:ring-2 focus:ring-indigo-500 dark:border-slate-700 dark:bg-slate-900"
+                        data-testid="question-form-passage-select"
+                      >
+                        <option value="">(Umumiy / Bo'lim matnisiz)</option>
+                        {readingPassages
+                          .filter((p) => p.section_id === section.id || !p.section_id)
+                          .map((p) => (
+                            <option key={p.id} value={p.id}>
+                              📖 {p.title}
+                            </option>
+                          ))}
+                      </select>
+                    </div>
+                  )}
+
+                  {section.type === 'Listening' && (
+                    <div>
+                      <label className="mb-1 block text-xs font-bold text-slate-600 dark:text-slate-300">
+                        🎧 Qaysi Choukai Audiosiga biriktirilsin?
+                      </label>
+                      <select
+                        value={questionForm.listening_audio_id || ''}
+                        onChange={(e) =>
+                          setQuestionForm((f) => ({
+                            ...f,
+                            listening_audio_id: e.target.value || null,
+                          }))
+                        }
+                        className="w-full rounded-xl border border-slate-200 bg-white p-2.5 text-xs font-semibold outline-none focus:ring-2 focus:ring-indigo-500 dark:border-slate-700 dark:bg-slate-900"
+                        data-testid="question-form-audio-select"
+                      >
+                        <option value="">(Umumiy / Audiosiz)</option>
+                        {listeningAudios
+                          .filter((a) => a.section_id === section.id || !a.section_id)
+                          .map((a) => (
+                            <option key={a.id} value={a.id}>
+                              🎧 {a.title}{' '}
+                              {a.duration_seconds
+                                ? `(${Math.floor(a.duration_seconds / 60)}:${(a.duration_seconds % 60).toString().padStart(2, '0')})`
+                                : ''}
+                            </option>
+                          ))}
+                      </select>
+                    </div>
+                  )}
 
                   {questionForm.type === 'multiple_choice' && (
                     <div className="space-y-2">
