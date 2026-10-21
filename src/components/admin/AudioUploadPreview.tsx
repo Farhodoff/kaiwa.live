@@ -32,7 +32,6 @@ export const AudioUploadPreview: React.FC<AudioUploadPreviewProps> = ({
     if (!f) return;
     const validation = validateAudioFile(f);
     if (!validation.ok) {
-      // eslint-disable-next-line no-alert
       alert(validation.message);
       return;
     }

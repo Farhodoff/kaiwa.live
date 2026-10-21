@@ -26,7 +26,6 @@ export const ReadingPassageEditor: React.FC<ReadingPassageEditorProps> = ({
       setEditing(false);
       onUpdate({ ...passage, content: draft });
     } catch (err: any) {
-      // eslint-disable-next-line no-alert
       alert(err?.message || 'Matnni saqlashda xatolik.');
     }
   };
