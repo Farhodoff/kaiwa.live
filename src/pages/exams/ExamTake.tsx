@@ -18,6 +18,7 @@ import { Button } from '../../components/ui/Button';
 import { ExamCertificateModal } from '../../components/exams/ExamCertificateModal';
 import { useStudyData } from '../../context/StudyPlannerContext';
 import { HistoryService } from '../../services/HistoryService';
+import { publicAudioUrl } from '../../services/ListeningAudioService';
 
 // Built-in standalone exams catalog when DB records do not exist
 const BUILTIN_EXAMS: Record<
@@ -296,6 +297,10 @@ export const ExamTake: React.FC = () => {
   // Certificate modal state
   const [showCertificate, setShowCertificate] = useState(false);
 
+  // Standalone reading passages and listening audios
+  const [readingPassages, setReadingPassages] = useState<any[]>([]);
+  const [listeningAudios, setListeningAudios] = useState<any[]>([]);
+
   useEffect(() => {
     const fetchExam = async () => {
       if (!id) {
@@ -336,13 +341,27 @@ export const ExamTake: React.FC = () => {
           }
         } else {
           setExam(examData);
-          const { data: sectionsData } = await supabase
-            .from('exam_sections')
-            .select('*')
-            .eq('exam_id', resolvedId)
-            .order('order_index', { ascending: true });
+          const [{ data: sectionsData }, { data: pData }, { data: aData }] = await Promise.all([
+            supabase
+              .from('exam_sections')
+              .select('*')
+              .eq('exam_id', resolvedId)
+              .order('order_index', { ascending: true }),
+            supabase
+              .from('reading_passages')
+              .select('*')
+              .eq('exam_id', resolvedId)
+              .order('order_index', { ascending: true }),
+            supabase
+              .from('listening_audios')
+              .select('*')
+              .eq('exam_id', resolvedId)
+              .order('order_index', { ascending: true }),
+          ]);
 
           setSections(sectionsData || []);
+          setReadingPassages(pData || []);
+          setListeningAudios(aData || []);
           if (sectionsData && sectionsData.length > 0) {
             setActiveSectionId(sectionsData[0].id);
           }
@@ -551,17 +570,127 @@ export const ExamTake: React.FC = () => {
 
             {(activeSection.type === 'Reading' || activeSection.type === 'Listening') && (
               <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-2">
-                {/* Left Pane: Dokkai Reading Passage / Text */}
+                {/* Left Pane: Dokkai Reading Passage or Choukai Listening Audio */}
                 <div className="sticky top-4 max-h-[78vh] space-y-4 overflow-y-auto rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-                  <div className="flex items-center gap-2 border-b border-slate-100 pb-3 dark:border-slate-800">
-                    <FileText className="h-5 w-5 text-indigo-500" />
-                    <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">
-                      {activeSection.title} (Dokkai Matni)
-                    </h3>
-                  </div>
-                  <div className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-slate-800 dark:text-slate-200">
-                    {activeSection.content || 'Hali matn kiritilmagan.'}
-                  </div>
+                  {activeSection.type === 'Listening' ? (
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2 border-b border-slate-100 pb-3 dark:border-slate-800">
+                        <Headphones className="h-5 w-5 text-blue-500" />
+                        <div>
+                          <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">
+                            {activeSection.title} (Choukai Tinglash)
+                          </h3>
+                          <p className="text-xs text-slate-500">
+                            Audioni tinglang va savollarga javob bering
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Render Audios */}
+                      {(() => {
+                        const secAudios = listeningAudios.filter(
+                          (a) => a.section_id === activeSection.id || !a.section_id,
+                        );
+                        if (secAudios.length === 0) {
+                          return (
+                            <div className="rounded-2xl border border-dashed border-slate-200 p-6 text-center text-xs text-slate-400">
+                              Ushbu bo‘limda audio fayl topilmadi.
+                            </div>
+                          );
+                        }
+                        return (
+                          <div className="space-y-4">
+                            {secAudios.map((audioItem, aIdx) => (
+                              <div
+                                key={audioItem.id}
+                                className="space-y-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800/60"
+                              >
+                                <div className="flex items-center justify-between">
+                                  <h4 className="text-sm font-bold text-slate-800 dark:text-slate-200">
+                                    {audioItem.title || `${aIdx + 1}-audio`}
+                                  </h4>
+                                  {audioItem.speaker && (
+                                    <span className="rounded-full bg-blue-50 px-2.5 py-0.5 text-[11px] font-semibold text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+                                      So‘zlovchi: {audioItem.speaker}
+                                    </span>
+                                  )}
+                                </div>
+
+                                {audioItem.audio_url && (
+                                  <audio
+                                    controls
+                                    src={publicAudioUrl(audioItem.audio_url)}
+                                    className="w-full"
+                                  />
+                                )}
+
+                                {/* Show transcript & translation on submitted results review */}
+                                {submittedResults &&
+                                  (audioItem.transcript || audioItem.uz_translation) && (
+                                    <div className="space-y-2 rounded-xl bg-white p-3 text-xs dark:bg-slate-900">
+                                      {audioItem.transcript && (
+                                        <div>
+                                          <p className="font-bold text-slate-500">Transkript:</p>
+                                          <p className="font-sans leading-relaxed text-slate-800 dark:text-slate-200">
+                                            {audioItem.transcript}
+                                          </p>
+                                        </div>
+                                      )}
+                                      {audioItem.uz_translation && (
+                                        <div className="border-t border-slate-100 pt-1.5 dark:border-slate-800">
+                                          <p className="font-bold text-emerald-600">Tarjima:</p>
+                                          <p className="leading-relaxed text-slate-700 dark:text-slate-300">
+                                            {audioItem.uz_translation}
+                                          </p>
+                                        </div>
+                                      )}
+                                    </div>
+                                  )}
+                              </div>
+                            ))}
+                          </div>
+                        );
+                      })()}
+                    </div>
+                  ) : (
+                    // Reading Passages
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2 border-b border-slate-100 pb-3 dark:border-slate-800">
+                        <FileText className="h-5 w-5 text-indigo-500" />
+                        <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">
+                          {activeSection.title} (Dokkai Matni)
+                        </h3>
+                      </div>
+                      {(() => {
+                        const secPassages = readingPassages.filter(
+                          (p) => p.section_id === activeSection.id || !p.section_id,
+                        );
+                        if (secPassages.length > 0) {
+                          return (
+                            <div className="space-y-4">
+                              {secPassages.map((p) => (
+                                <div key={p.id} className="space-y-2">
+                                  {secPassages.length > 1 && (
+                                    <h4 className="text-sm font-bold text-indigo-600 dark:text-indigo-400">
+                                      {p.title}
+                                    </h4>
+                                  )}
+                                  <div className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-slate-800 dark:text-slate-200">
+                                    {p.content}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          );
+                        }
+                        return (
+                          <div className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-slate-800 dark:text-slate-200">
+                            {activeSection.content || 'Hali matn kiritilmagan.'}
+                          </div>
+                        );
+                      })()}
+                    </div>
+                  )}
                 </div>
 
                 {/* Right Pane: Questions & Answer Selectors */}

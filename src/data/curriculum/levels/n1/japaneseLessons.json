@@ -1564,14 +1564,6 @@
               ],
               "correctAnswer": 2,
               "explanation": "「学術講義」 (gakujutsukougi) so'zi o'zbek tilida \"Akademik ilmiy maʼruza\" ma'nosini bildiradi."
-            },
-            {
-              "id": "ja-n1-u2-l3-ex-8",
-              "type": "multiple-choice",
-              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
-              "options": ["に", "は", "で", "を"],
-              "correctAnswer": 3,
-              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -1776,14 +1768,6 @@
               ],
               "correctAnswer": 3,
               "explanation": "「網羅する」 (moura suru) so'zi o'zbek tilida \"Barchasini qamrab olmoq, toʻliq oʻz ichiga olmoq\" ma'nosini bildiradi."
-            },
-            {
-              "id": "ja-n1-u2-l4-ex-8",
-              "type": "multiple-choice",
-              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
-              "options": ["が", "を", "に", "は"],
-              "correctAnswer": 1,
-              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -1991,14 +1975,6 @@
               ],
               "correctAnswer": 1,
               "explanation": "「極致に 達する」 (kyokuchi ni tassuru) so'zi o'zbek tilida \"Kamolotning eng oliy choʻqqisiga erishmoq\" ma'nosini bildiradi."
-            },
-            {
-              "id": "ja-n1-u2-l5-ex-8",
-              "type": "multiple-choice",
-              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
-              "options": ["は", "に", "を", "が"],
-              "correctAnswer": 2,
-              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -4103,14 +4079,6 @@
               ],
               "correctAnswer": 0,
               "explanation": "「行間を 読む」 (gyoukan o yomu) so'zi o'zbek tilida \"Satrlar orasidagi yashirin maʼnoni anglamoq\" ma'nosini bildiradi."
-            },
-            {
-              "id": "ja-n1-u4-l5-ex-8",
-              "type": "multiple-choice",
-              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
-              "options": ["は", "が", "を", "と"],
-              "correctAnswer": 2,
-              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -4762,14 +4730,6 @@
               ],
               "correctAnswer": 0,
               "explanation": "「相まって」 (aimatte) so'zi o'zbek tilida \"Bir-biri bilan qoʻshilib, oʻzaro taʼsirda\" ma'nosini bildiradi."
-            },
-            {
-              "id": "ja-n1-u5-l3-ex-8",
-              "type": "multiple-choice",
-              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
-              "options": ["から", "と", "で", "を"],
-              "correctAnswer": 3,
-              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -4976,14 +4936,6 @@
               ],
               "correctAnswer": 2,
               "explanation": "「百戦錬磨」 (hyakusenremma) so'zi o'zbek tilida \"Yuzlab janglarda toblangan, oʻta tajribali\" ma'nosini bildiradi."
-            },
-            {
-              "id": "ja-n1-u5-l4-ex-8",
-              "type": "multiple-choice",
-              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
-              "options": ["から", "を", "が", "に"],
-              "correctAnswer": 1,
-              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }
@@ -5181,14 +5133,6 @@
               ],
               "correctAnswer": 1,
               "explanation": "「名誉ある」 (meiyo aru) so'zi o'zbek tilida \"Sharafli, faxrli\" ma'nosini bildiradi."
-            },
-            {
-              "id": "ja-n1-u5-l5-ex-8",
-              "type": "multiple-choice",
-              "prompt": "Jumlaga mos to'g'ri zarrachani (particle) tanlang:\n「日本語（　　） 毎日 勉強します。」",
-              "options": ["と", "を", "から", "に"],
-              "correctAnswer": 1,
-              "explanation": "Ushbu o'rinda 「を」 zarrachasi to'g'ri keladi. Butun jumla: 「日本語を 毎日 勉強します。」 (Har kuni yapon tilini o'rganaman.)."
             }
           ]
         }

@@ -8,6 +8,8 @@ import {
 
 export type JlptLevel = 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
 
+import type { ExamWorkflowStatus } from './ExamWorkflowService';
+
 export interface ExamListItem {
   id: string;
   title: string;
@@ -15,6 +17,7 @@ export interface ExamListItem {
   type: string;
   level: JlptLevel;
   isPublished: boolean;
+  status?: ExamWorkflowStatus;
   createdAt: string;
   totalQuestions?: number;
 }
@@ -59,7 +62,7 @@ export class ExamService {
     try {
       let query = supabase
         .from('exams')
-        .select('id, title, description, type, is_published, created_at')
+        .select('id, title, description, type, is_published, status, created_at')
         .eq('is_published', true)
         .order('created_at', { ascending: false });
 
@@ -74,13 +77,18 @@ export class ExamService {
       if (error) throw error;
 
       if (data && data.length > 0) {
-        return data.map((item) => ({
+        // Enforce workflow: only exams that are not archived and have published status (or null in legacy)
+        const visibleExams = data.filter(
+          (item: any) => item.status !== 'archived' && item.status !== 'draft',
+        );
+        return visibleExams.map((item: any) => ({
           id: item.id,
           title: item.title,
           description: item.description,
           type: item.type,
           level: this.parseLevelFromType(item.type),
           isPublished: item.is_published,
+          status: item.status,
           createdAt: item.created_at,
         }));
       }
