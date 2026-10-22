@@ -1,3 +1,10 @@
+/**
+ * ListeningAudioService
+ *
+ * Manages JLPT Choukai (listening) audio tracks, storage uploads, duration extraction,
+ * and question bindings with size/MIME validation.
+ */
+
 import { supabase } from '../lib/supabase';
 
 const BUCKET = 'listening_audios';
