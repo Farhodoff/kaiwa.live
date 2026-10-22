@@ -1,3 +1,10 @@
+/**
+ * ExamAiExtractorService
+ *
+ * Extracts structured JLPT questions from raw PDF and OCR text via LLM prompts,
+ * enforcing schema conformance, JSON array formatting, and draft-only invariants.
+ */
+
 import { callAI } from '../utils/ai/aiCore';
 import type { JlptLevel, ValidExamSection, RawImportQuestion } from './ExamBulkImportService';
 import {
