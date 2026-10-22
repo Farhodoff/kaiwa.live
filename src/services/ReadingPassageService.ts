@@ -1,3 +1,10 @@
+/**
+ * ReadingPassageService
+ *
+ * Manages JLPT Dokkai (reading comprehension) passages, section bindings,
+ * and relational linkage to comprehension questions.
+ */
+
 import { supabase } from '../lib/supabase';
 
 export interface ReadingPassage {
