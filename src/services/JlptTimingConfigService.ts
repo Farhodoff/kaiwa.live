@@ -1,3 +1,10 @@
+/**
+ * JlptTimingConfigService
+ *
+ * Manages official JLPT section timing configuration per level (N5-N1),
+ * with Supabase persistence and local storage fallback caching.
+ */
+
 import { supabase } from '../lib/supabase';
 import { isUserAdmin } from '../utils/admin';
 import {
