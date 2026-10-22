@@ -273,3 +273,14 @@ Ushbu faylda loyihadagi aniqlangan kamchiliklar, tuzatilishi kerak bo'lgan xatol
 - [x] **Savol bankini kengaytirish:** Har bir grammatika va lug‘at mavzusi bo‘yicha savollar hajmini kengaytirish (darslik mashqlari 281 tadan 1,238 taga yetkazildi).
 - [x] **Haqiqiy mock exam formatini kuchaytirish:** Rasmiy vaqt, scoring va random savollar bilan to‘liq imtihon simulyatsiyasini yaratish (`ExamService.buildRandomizedExam`, no-repeat va Pass Probability).
 - [x] **Jim fallback (silent failure) xatolarini tuzatish:** Xatoliklarni yashirmaslik, 85 ball berish kabi noaniqliklarni bartaraf etish va foydalanuvchiga to‘g‘ri ma’lumot ko‘rsatish.
+
+### 11-bosqich: JLPT Admin & Imtihonlar Kontenti Boshqaruvi (Tasks 7–25)
+
+> JLPT imtihonlari va savollar bazasini to‘liq nazorat qilish, sifatini tekshirish va xavfsiz e’lon qilish ekotizimi:
+
+- [x] **Xavfsiz Bulk Import (Tasks 7–10):** PDF, CSV va JSON formatlaridagi imtihonlarni AI extractor va jadval muharriri orqali faqat `draft` holatida yuklash, versiyalash va rollback mexanizmi.
+- [x] **4 bosqichli kontent hayot sikli (Tasks 11–13):** `draft` -> `review` -> `approved` -> `published` o‘tishlari, qat’iy yuridik (mualliflik huquqi, litsenziya, maxfiylik) tekshiruvlari bilan.
+- [x] **Matn va Audio boshqaruvi (Tasks 11–13):** Reading passages (dokkai) va listening audio fayllarini (choukai) admin paneldan to‘g‘ridan-to‘g‘ri boshqarish va savollarga bog‘lash.
+- [x] **Rasmiy JLPT vaqt konfiguratsiyalari (Task 12):** N5 dan N1 gacha bo‘lgan rasmiy bo‘lim vaqtlarini boshqarish va avtomatik hisoblash (`JlptTimingConfigService`).
+- [x] **Kontent sifati va xavfsizlik auditi (Tasks 14–15):** Dublikatlarni aniqlash, sifat ballari (quality score) va XSS/injection sanitizatsiyasi (`ContentQualityAuditService`).
+- [x] **To‘liq E2E va barqarorlashtirish (Tasks 16–25):** 100% o‘tuvchi test suite (2,211 ta test pass) va real Supabase E2E CI integratsiyasi.
