@@ -178,7 +178,8 @@ RULES & EXTRACTION REQUIREMENTS:
 3. RECOMMENDATIONS & CLASSIFICATION:
    - "level": Accurately classify the JLPT level ("N1", "N2", "N3", "N4", "N5") based on kanji, grammar patterns, vocabulary, and sentence structures. Default to "${defaultLevel}" if mixed or borderline.
    - "section_type": Classify into "knowledge" (Moji/Goi/Bunpou), "reading" (Dokkai), or "listening" (Choukai). Default to "${defaultSection}".
-   - "question_type": Categorize as "multiple_choice", "reading_comprehension", "grammar", "vocabulary", or "listening".
+   - "question_type": Categorize as one of: "vocabulary_meaning", "kanji_reading", "grammar_fill_blank", "sentence_ordering", "synonym_nuance", "reading_main_idea", "reading_detail", "reading_inference", "listening_situation", "listening_intention", "listening_summary".
+   - For "sentence_ordering" only: provide "fragments" (exactly 4 strings), "correct_order" (4 numbers, 1-based order of fragments), "star_position" (1-4), and optional "prefix"/"suffix".
    - "difficulty": Recommend difficulty as "easy", "medium", or "hard".
 4. DRAFT & PUBLISH ENFORCEMENT:
    - All questions are strictly DRAFT and MUST NEVER be marked published. Set "is_published": false.
@@ -201,7 +202,7 @@ RULES & EXTRACTION REQUIREMENTS:
          "level": "N3",
          "section_type": "knowledge",
          "section_name": "Gengo Chishiki",
-         "question_type": "vocabulary",
+         "question_type": "vocabulary_meaning",
          "difficulty": "medium",
          "is_published": false
        }
@@ -323,6 +324,11 @@ ${sourceText}`;
               ? 'Dokkai'
               : 'Choukai'),
         question_type: String(q.question_type || 'multiple_choice'),
+        fragments: Array.isArray(q.fragments) ? q.fragments.map(String) : undefined,
+        correct_order: Array.isArray(q.correct_order) ? q.correct_order.map(Number) : undefined,
+        star_position: q.star_position !== undefined ? Number(q.star_position) : undefined,
+        prefix: q.prefix ? String(q.prefix) : undefined,
+        suffix: q.suffix ? String(q.suffix) : undefined,
         difficulty: qDifficulty,
         is_published: false, // STRICTLY DRAFT
       };

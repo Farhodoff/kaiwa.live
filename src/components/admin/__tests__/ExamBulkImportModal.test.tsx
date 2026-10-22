@@ -37,6 +37,8 @@ describe('ExamBulkImportModal (Task 3: Preview, Table View, Editing & Confirmati
     onSuccess: vi.fn(),
     mode: 'full-exam' as const,
     examLevel: 'N3' as const,
+    currentUserEmail: 'fsoyilov@gmail.com',
+    currentUserRole: 'superadmin',
   };
 
   const sampleCsvContent = `question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,passage,level,section
@@ -175,13 +177,16 @@ Valid savol matni birinchi,A,B,C,D,A,N3,knowledge
 
     // Initially blocking error exists
     expect(screen.getByText(/Xatolarni tuzating/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Draft sifatida saqlash/i })).toBeDisabled();
 
     // Delete row 2 (which has error)
     const deleteButtons = screen.getAllByTitle(/O'chirish/i);
     fireEvent.click(deleteButtons[1]);
 
-    // Row 2 is marked deleted, blocking error is resolved, "Tasdiqlash" becomes active
-    expect(screen.getByRole('button', { name: /Tasdiqlash \(1\)/i })).toBeInTheDocument();
+    // Row 2 is marked deleted, blocking error is resolved.
+    // Task 17: there is no publish button anymore — only the draft save.
+    expect(screen.queryByRole('button', { name: /Tasdiqlash/i })).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Draft sifatida saqlash \(1\)/i })).toBeEnabled();
   });
 
   it('switches to Real Imtihon Preview and enables interactive answer simulation', () => {
@@ -216,7 +221,7 @@ Valid savol matni birinchi,A,B,C,D,A,N3,knowledge
     expect(screen.getByText(/Simulyatsiya Natijasi/i)).toBeInTheDocument();
   });
 
-  it('triggers Draft saving with isPublished: false', async () => {
+  it('triggers Draft saving without any publish flag (Task 17: draft-only import)', async () => {
     const importFullSpy = vi
       .spyOn(ExamBulkImportService, 'importFullExamWithSections')
       .mockResolvedValue({ examId: 'new-exam-123', totalInserted: 2 });
@@ -240,18 +245,17 @@ Valid savol matni birinchi,A,B,C,D,A,N3,knowledge
     await waitFor(() => {
       expect(importFullSpy).toHaveBeenCalledWith(
         expect.objectContaining({
-          isPublished: false,
           copyrightConfirmed: true,
         }),
       );
     });
+
+    // The import payload must never carry a publish flag.
+    const payload = importFullSpy.mock.calls[0][0] as Record<string, unknown>;
+    expect(payload.isPublished).toBeUndefined();
   });
 
-  it('triggers Confirmation with isPublished: true', async () => {
-    const importFullSpy = vi
-      .spyOn(ExamBulkImportService, 'importFullExamWithSections')
-      .mockResolvedValue({ examId: 'new-exam-123', totalInserted: 2 });
-
+  it('Task 17: no publish button exists in the bulk import window', () => {
     render(<ExamBulkImportModal {...defaultProps} />);
 
     const textTab = screen.getByRole('button', { name: /Matn ko‘rinishida kiritish/i });
@@ -260,22 +264,9 @@ Valid savol matni birinchi,A,B,C,D,A,N3,knowledge
     const textarea = screen.getByPlaceholderText(/CSV yoki JSON matnini/i);
     fireEvent.change(textarea, { target: { value: sampleCsvContent } });
 
-    // Check copyright confirmation
-    const copyrightCheckbox = screen.getByLabelText(/Mualliflik huquqi roziligi/i);
-    fireEvent.click(copyrightCheckbox);
-
-    // Confirmation button
-    const confirmBtn = screen.getByRole('button', { name: /Tasdiqlash \(2\)/i });
-    fireEvent.click(confirmBtn);
-
-    await waitFor(() => {
-      expect(importFullSpy).toHaveBeenCalledWith(
-        expect.objectContaining({
-          isPublished: true,
-          copyrightConfirmed: true,
-        }),
-      );
-    });
+    expect(screen.queryByRole('button', { name: /Tasdiqlash/i })).not.toBeInTheDocument();
+    expect(screen.queryByText(/Tasdiqlash va publish/i)).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Draft sifatida saqlash/i })).toBeInTheDocument();
   });
 
   describe('Task 4: AI Extraction from PDF & Text with Retry, Recommendations & Draft Enforcing', () => {
@@ -418,7 +409,45 @@ Valid savol matni birinchi,A,B,C,D,A,N3,knowledge
       const officialCheckbox = screen.getByLabelText(/Rasmiy JLPT Materiali/i);
       fireEvent.click(officialCheckbox);
 
-      expect(screen.getByText(/Japan Foundation \/ JEES/i)).toBeInTheDocument();
+      expect(screen.getAllByText(/Japan Foundation \/ JEES/i).length).toBeGreaterThan(0);
+    });
+
+    it('Task 18: lists exactly which legal fields still block publishing', () => {
+      render(<ExamBulkImportModal {...defaultProps} />);
+
+      // Copyright is not confirmed yet -> the checklist names the field.
+      expect(screen.getByText(/Yetishmayotgan maydonlar/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/Mualliflik huquqi roziligi \(copyright_confirmed\)/i),
+      ).toBeInTheDocument();
+
+      // Confirming copyright clears the last blocking gate for 'original'.
+      fireEvent.click(screen.getByLabelText(/Mualliflik huquqi roziligi/i));
+      expect(
+        screen.getByText(/Huquqiy va metadata tekshiruvi to‘liq bajarilgan/i),
+      ).toBeInTheDocument();
+    });
+
+    it('Task 18: shows a hard block for the restricted license', () => {
+      render(<ExamBulkImportModal {...defaultProps} />);
+
+      const licenseSelect = screen.getByDisplayValue(/Original \(Platforma/i);
+      fireEvent.change(licenseSelect, { target: { value: 'restricted' } });
+
+      expect(screen.getByText(/Yetishmayotgan maydonlar/i)).toBeInTheDocument();
+      expect(screen.getAllByText(/Litsenziya turi \(license_type\)/i).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(/huquqiy ruxsat/i).length).toBeGreaterThan(0);
+    });
+
+    it('Task 18: requires source, author and url for attribution licenses', () => {
+      render(<ExamBulkImportModal {...defaultProps} />);
+
+      const licenseSelect = screen.getByDisplayValue(/Original \(Platforma/i);
+      fireEvent.change(licenseSelect, { target: { value: 'cc-by' } });
+
+      expect(screen.getAllByText(/Manba nomi \(source_name\)/i).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(/Manba havolasi \(source_url\)/i).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(/Muallif \/ nashriyot \(author\)/i).length).toBeGreaterThan(0);
     });
   });
 });

@@ -1,5 +1,7 @@
 export interface ExamQuestion {
   id: number;
+  originalId?: string;
+  displayNumber?: number;
   section: 'knowledge' | 'reading' | 'listening';
   questionText: string;
   passageText?: string;

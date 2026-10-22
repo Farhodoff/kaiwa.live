@@ -519,11 +519,13 @@ invalid_section,,["A"],,INVALID_LEVEL`;
       const res = ExamBulkImportService.validateQuestions([
         {
           section: 'reading',
-          question: 'Muallifning asosiy fikri qaysi?',
+          question: '筆者の最も主張したいことはどれか。',
           passage:
             'Texnologiya hayotni osonlashtirdi. Shu bilan birga axloqiy qarashlarni ham yangilash kerak.',
           options: ['A variant', 'B variant'],
           correctAnswer: 'A variant',
+          translation: 'Texnologiya hayotni osonlashtirdi.',
+          explanation: 'Passage asosida javob beriladi.',
           level: 'N3',
         },
         {
@@ -543,10 +545,11 @@ invalid_section,,["A"],,INVALID_LEVEL`;
       const base = ExamBulkImportService.validateQuestions([
         {
           section: 'knowledge',
-          question: 'Savol matni uzun',
+          question: 'この問題の正しい答えを選んでください。',
           options: ['A1', 'B1'],
           correctAnswer: 'A1',
           explanation: 'eski izoh',
+          translation: 'eski tarjima',
           level: 'N3',
         },
       ]);
@@ -561,6 +564,123 @@ invalid_section,,["A"],,INVALID_LEVEL`;
       expect(re.items[0].validated?.question_text).toBe('Yangilangan savol matni');
       expect(re.items[0].validated?.explanation).toBe('yangi izoh');
       expect(re.errorCount).toBe(0);
+    });
+  });
+
+  describe('Task 8: Duplicate detection & content quality audit', () => {
+    const baseQuestion = (overrides: Partial<RawImportQuestion> = {}): RawImportQuestion => ({
+      section: 'knowledge',
+      question: 'この問題の正しい答えを選んでください。',
+      options: ['答えA', '答えB', '答えC'],
+      correctAnswer: '答えA',
+      explanation: '正解の理由を説明します。',
+      translation: 'Bu savolning tarjimasi.',
+      level: 'N3',
+      difficulty: 'medium',
+      ...overrides,
+    });
+
+    it('bir xil question IDlarni fayl ichida va bazada aniqlaydi', () => {
+      const res = ExamBulkImportService.validateQuestions(
+        [
+          baseQuestion({ id: 'q_1' }),
+          baseQuestion({ id: 'q_1', question: '別の日本語の問題文です。' }),
+          baseQuestion({ id: 'q_2', question: '三番目の日本語の問題です。' }),
+        ],
+        { existingQuestionIds: ['q_2'] },
+      );
+
+      expect(res.items[0].status).not.toBe('error');
+      expect(res.items[1].issues.some((i) => i.field === 'id')).toBe(true);
+      expect(res.items[2].issues.some((i) => i.field === 'id')).toBe(true);
+      expect(res.errorCount).toBe(2);
+    });
+
+    it("bir xil yoki juda o'xshash savollarni aniqlaydi", () => {
+      const res = ExamBulkImportService.validateQuestions([
+        baseQuestion({ question: '日本語の文法問題を解いてください。' }),
+        baseQuestion({ question: '日本語の文法問題を解いて下さい！' }),
+      ]);
+
+      expect(res.items[1].isDuplicate).toBe(true);
+      expect(res.items[1].isSimilar).toBe(true);
+      expect(res.items[1].similarToRow).toBe(1);
+      expect(res.items[1].issues.some((i) => i.code === 'similar_question')).toBe(true);
+      expect(res.similarCount).toBe(1);
+    });
+
+    it('bir xil passageni qayta import qilinishini aniqlaydi', () => {
+      const passage = '科学技術の進歩は生活を便利にした。しかし倫理観の見直しも必要だ。';
+      const res = ExamBulkImportService.validateQuestions(
+        [
+          baseQuestion({
+            section: 'reading',
+            passage,
+            question: '筆者の主張は何か。',
+          }),
+        ],
+        { existingPassages: [passage] },
+      );
+
+      expect(res.items[0].isPassageDuplicate).toBe(true);
+      expect(res.items[0].issues.some((i) => i.code === 'duplicate_passage')).toBe(true);
+      expect(res.passageDuplicateCount).toBe(1);
+    });
+
+    it('level va difficulty mosligini tekshiradi', () => {
+      const res = ExamBulkImportService.validateQuestions([
+        baseQuestion({ level: 'N5', difficulty: 'hard' }),
+        baseQuestion({ level: 'N3', difficulty: 'impossible' }),
+      ]);
+
+      expect(res.items[0].issues.some((i) => i.code === 'level_difficulty_mismatch')).toBe(true);
+      expect(res.items[1].issues.some((i) => i.code === 'invalid_difficulty')).toBe(true);
+    });
+
+    it("to'g'ri javob variantlarda mavjudligini tekshiradi", () => {
+      const res = ExamBulkImportService.validateQuestions([
+        baseQuestion({ correctAnswer: '存在しない答え' }),
+      ]);
+
+      expect(res.items[0].status).toBe('error');
+      expect(res.items[0].issues.some((i) => i.field === 'correctAnswer')).toBe(true);
+    });
+
+    it('japanese text, translation va explanation bosh emasligini tekshiradi', () => {
+      const res = ExamBulkImportService.validateQuestions([
+        baseQuestion({
+          question: 'Latin text only question',
+          translation: '',
+          explanation: '',
+        }),
+      ]);
+
+      const codes = res.items[0].issues.map((i) => i.code);
+      expect(codes).toContain('japanese_text_missing');
+      expect(codes).toContain('translation_missing');
+      expect(codes).toContain('explanation_missing');
+      expect(res.items[0].status).toBe('warning');
+    });
+
+    it('audit natijasini xatolar, ogohlantirishlar va muvaffaqiyatli yozuvlarga ajratadi', () => {
+      const res = ExamBulkImportService.validateQuestions([
+        baseQuestion({ level: 'N5', difficulty: 'easy' }),
+        baseQuestion({
+          question: '別の日本語の問題文です。',
+          explanation: '',
+        }),
+        {},
+      ]);
+
+      expect(res.totalCount).toBe(3);
+      expect(res.audit.counts.total).toBe(3);
+      expect(res.audit.errors).toHaveLength(1);
+      expect(res.audit.warnings).toHaveLength(1);
+      expect(res.audit.successful).toHaveLength(1);
+      expect(res.audit.counts.errors).toBe(1);
+      expect(res.audit.counts.warnings).toBe(1);
+      expect(res.audit.counts.successful).toBe(1);
+      expect(res.successfulCount).toBe(1);
     });
   });
 });

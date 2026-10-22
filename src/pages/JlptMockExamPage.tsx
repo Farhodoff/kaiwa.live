@@ -44,18 +44,35 @@ import {
   MistakeLevel,
 } from '../services/MistakeVaultService';
 import {
-  JLPT_SECTION_SPECS,
   getSectionDurationSeconds,
   getOrderedSections,
   getSectionIndex,
-  getNextSectionKey,
+  getNextTimingBlock,
+  getTimingBlockForSection,
+  getBlockDurationSeconds,
+  canOpenSectionInOfficialMode,
+  getTotalExamSeconds,
+  getTimingModelLabel,
+  JLPT_CONTENT_SECTIONS,
+  JLPT_CONTENT_SECTION_META,
   JlptExamMode,
   SectionKey,
+  JlptTimingConfig,
 } from '../utils/jlptExamTiming';
+import { JlptTimingConfigService } from '../services/JlptTimingConfigService';
 import { resolveAudioUrl } from '../utils/audioUrl';
 import { speakJapaneseText, stopAllAudio } from '../utils/audioTts';
 
 const DRAFT_EXAM_STORAGE_KEY = 'jlpt_mock_exam_draft_v1';
+
+interface CompletedTimingModel {
+  label: string;
+  mode: JlptExamMode;
+  format: 'official' | 'simulation' | 'practice';
+  level: string;
+  totalMinutes: number;
+  blockCount: number;
+}
 
 export const JlptMockExamPage: React.FC = () => {
   const navigate = useNavigate();
@@ -76,6 +93,9 @@ export const JlptMockExamPage: React.FC = () => {
   const [loadingExams, setLoadingExams] = useState<boolean>(true);
   const [activeExam, setActiveExam] = useState<NormalizedExam | null>(null);
   const [isStartingExam, setIsStartingExam] = useState<boolean>(false);
+  const [noRepeatPeriodDays, setNoRepeatPeriodDays] = useState<number>(() =>
+    ExamService.getNoRepeatPeriodDays(),
+  );
 
   // Official Sectioned Exam Mode State
   const [examMode, setExamMode] = useState<JlptExamMode>('official_timed');
@@ -84,6 +104,12 @@ export const JlptMockExamPage: React.FC = () => {
   const [sectionTimeLeft, setSectionTimeLeft] = useState<number>(1200);
   const [sectionTotalDuration, setSectionTotalDuration] = useState<number>(1200);
   const [showSectionTransitionModal, setShowSectionTransitionModal] = useState<boolean>(false);
+  const [timingConfig, setTimingConfig] = useState<JlptTimingConfig>(() =>
+    JlptTimingConfigService.getCachedConfig(),
+  );
+  const [completedTimingModel, setCompletedTimingModel] = useState<CompletedTimingModel | null>(
+    null,
+  );
   const examStartTimeRef = useRef<number>(Date.now());
 
   // Interactive Question Matrix & Flagging State
@@ -114,6 +140,18 @@ export const JlptMockExamPage: React.FC = () => {
       setLevel(urlLevel as any);
     }
   }, [urlLevel]);
+
+  useEffect(() => {
+    let mounted = true;
+    JlptTimingConfigService.loadConfig()
+      .then((config) => {
+        if (mounted) setTimingConfig(config);
+      })
+      .catch(() => {});
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   // Fetch published exams for current level from Supabase
   useEffect(() => {
@@ -201,20 +239,62 @@ export const JlptMockExamPage: React.FC = () => {
     }
   }, [step, activeSection, listeningQuestions]);
 
-  // Timer Effect (handles both official sectioned timer and practice single timer)
+  const scrollExamToTop = () => {
+    if (typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
+      try {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch {}
+    }
+  };
+
+  const sealCurrentBlockAndAdvance = (automatic: boolean) => {
+    if (audioRef.current) audioRef.current.pause();
+    stopAllAudio();
+    setIsPlaying(false);
+    setPlayingAudioId(null);
+
+    const currentBlock = getTimingBlockForSection(level, activeSection, timingConfig);
+    const sectionsToSeal = currentBlock?.sections || [activeSection];
+    const nextBlock = getNextTimingBlock(level, activeSection, timingConfig);
+
+    if (nextBlock) {
+      setSealedSections((prev) => Array.from(new Set([...prev, ...sectionsToSeal])));
+      const nextSection = nextBlock.sections[0];
+      setActiveSection(nextSection);
+      const nextDuration = getBlockDurationSeconds(nextBlock, useFullOfficialTime);
+      setSectionTimeLeft(nextDuration);
+      setSectionTotalDuration(nextDuration);
+      toast({
+        title: automatic ? '⏰ Blok vaqti tugadi!' : '✅ Blok muhrlandi!',
+        description: `${nextBlock.shortLabel} blokiga o'tildi. ${
+          sectionsToSeal.length > 1 ? 'Language Knowledge va Reading ' : 'Oldingi bo‘lim '
+        }qayta ochilmaydi.`,
+      });
+      scrollExamToTop();
+      return;
+    }
+
+    toast({
+      title: '⏰ Rasmiy imtihon vaqti yakunlandi!',
+      description: 'Barcha bloklar topshirildi. Natijangiz hisoblanmoqda...',
+    });
+    handleSubmitExam();
+  };
+
+  // Timer Effect (handles both official block timer and practice single timer)
   useEffect(() => {
     let timer: any;
     if (isTimerRunning) {
       if (examMode === 'official_timed') {
         if (sectionTimeLeft > 0) {
           timer = setInterval(() => setSectionTimeLeft((prev) => prev - 1), 1000);
-        } else if (sectionTimeLeft === 0) {
+        } else if (sectionTimeLeft <= 0) {
           handleSectionTimeExpired();
         }
       } else {
         if (timeLeft > 0) {
           timer = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
-        } else if (timeLeft === 0) {
+        } else if (timeLeft <= 0) {
           handleSubmitExam();
         }
       }
@@ -223,40 +303,12 @@ export const JlptMockExamPage: React.FC = () => {
   }, [isTimerRunning, examMode, sectionTimeLeft, timeLeft]);
 
   const handleSectionTimeExpired = () => {
-    if (audioRef.current) audioRef.current.pause();
-    stopAllAudio();
-    setIsPlaying(false);
-    setPlayingAudioId(null);
-
-    const nextSec = getNextSectionKey(level, activeSection);
-    if (nextSec) {
-      setSealedSections((prev) => (prev.includes(activeSection) ? prev : [...prev, activeSection]));
-      setActiveSection(nextSec);
-      const nextDuration = getSectionDurationSeconds(level, nextSec, useFullOfficialTime);
-      setSectionTimeLeft(nextDuration);
-      setSectionTotalDuration(nextDuration);
-      const nextSpec = JLPT_SECTION_SPECS[level].find((s) => s.section === nextSec);
-      toast({
-        title: "⏰ Bo'lim vaqti tugadi!",
-        description: `Oldingi bo'lim muhrlandi. Yangi bo'lim boshlandi: ${nextSpec?.titleUz || nextSec}`,
-      });
-      if (typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
-        try {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        } catch {}
-      }
-    } else {
-      toast({
-        title: '⏰ Rasmiy imtihon vaqti yakunlandi!',
-        description: "Barcha bo'limlar topshirildi. Natijangiz hisoblanmoqda...",
-      });
-      handleSubmitExam();
-    }
+    sealCurrentBlockAndAdvance(true);
   };
 
   const handleAdvanceSectionClick = () => {
-    const nextSec = getNextSectionKey(level, activeSection);
-    if (!nextSec) {
+    const nextBlock = getNextTimingBlock(level, activeSection, timingConfig);
+    if (!nextBlock) {
       handleSubmitExam();
       return;
     }
@@ -265,31 +317,7 @@ export const JlptMockExamPage: React.FC = () => {
 
   const handleConfirmAdvanceSection = () => {
     setShowSectionTransitionModal(false);
-    if (audioRef.current) audioRef.current.pause();
-    stopAllAudio();
-    setIsPlaying(false);
-    setPlayingAudioId(null);
-
-    const nextSec = getNextSectionKey(level, activeSection);
-    if (nextSec) {
-      setSealedSections((prev) => (prev.includes(activeSection) ? prev : [...prev, activeSection]));
-      setActiveSection(nextSec);
-      const nextDuration = getSectionDurationSeconds(level, nextSec, useFullOfficialTime);
-      setSectionTimeLeft(nextDuration);
-      setSectionTotalDuration(nextDuration);
-      const nextSpec = JLPT_SECTION_SPECS[level].find((s) => s.section === nextSec);
-      toast({
-        title: "✅ Bo'lim muhrlandi!",
-        description: `${nextSpec?.shortLabel || nextSec} bo'limiga o'tildi. Orqaga qaytib bo'lmaydi.`,
-      });
-      if (typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
-        try {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        } catch {}
-      }
-    } else {
-      handleSubmitExam();
-    }
+    sealCurrentBlockAndAdvance(false);
   };
 
   const formatTime = (secs: number) => {
@@ -400,6 +428,17 @@ export const JlptMockExamPage: React.FC = () => {
       }
       setActiveExam(examData);
 
+      if (examData.generationWarnings && examData.generationWarnings.length > 0) {
+        const hasShortage = examData.generationWarnings.some((warning) =>
+          warning.includes('kerak edi'),
+        );
+        toast({
+          variant: hasShortage ? 'destructive' : 'default',
+          title: hasShortage ? '⚠️ Savollar yetarli emas' : 'ℹ️ No-repeat ogohlantirishi',
+          description: examData.generationWarnings.join(' '),
+        });
+      }
+
       // Check for valid existing draft for this level
       let restoredAnswers: { [qId: number]: number } = {};
       let restoredActiveSection: 'knowledge' | 'reading' | 'listening' | null = null;
@@ -440,21 +479,27 @@ export const JlptMockExamPage: React.FC = () => {
 
       setUserAnswers(restoredAnswers);
       setMistakes([]);
+      setCompletedTimingModel(null);
       setStep('exam');
       examStartTimeRef.current = Date.now();
 
-      const ordered = getOrderedSections(level);
-      const firstSec = ordered[0].section;
-      setActiveSection(restoredActiveSection || firstSec);
-      setSealedSections(restoredSealedSections || []);
+      const ordered = getOrderedSections(level, timingConfig);
+      const firstSec = ordered[0]?.sections[0] || 'knowledge';
+      const restoredSection =
+        restoredActiveSection &&
+        ['knowledge', 'reading', 'listening'].includes(restoredActiveSection)
+          ? restoredActiveSection
+          : firstSec;
+      setActiveSection(restoredSection);
+      setSealedSections(examMode === 'official_timed' ? restoredSealedSections || [] : []);
 
       if (examMode === 'official_timed') {
         const duration =
           restoredSectionTime ??
-          getSectionDurationSeconds(level, restoredActiveSection || firstSec, useFullOfficialTime);
+          getSectionDurationSeconds(level, restoredSection, useFullOfficialTime, timingConfig);
         setSectionTimeLeft(duration);
         setSectionTotalDuration(
-          getSectionDurationSeconds(level, restoredActiveSection || firstSec, useFullOfficialTime),
+          getSectionDurationSeconds(level, restoredSection, useFullOfficialTime, timingConfig),
         );
       } else {
         setTimeLeft(restoredTimeLeft ?? examData.timeLimitSeconds);
@@ -579,6 +624,19 @@ export const JlptMockExamPage: React.FC = () => {
     setIsPlaying(false);
     setPlayingAudioId(null);
     setIsTimerRunning(false);
+    const timingBlocks = getOrderedSections(level, timingConfig);
+    setCompletedTimingModel({
+      label: getTimingModelLabel(level, examMode, useFullOfficialTime),
+      mode: examMode,
+      format:
+        examMode === 'practice' ? 'practice' : useFullOfficialTime ? 'official' : 'simulation',
+      level,
+      totalMinutes:
+        examMode === 'official_timed'
+          ? Math.round(getTotalExamSeconds(level, useFullOfficialTime, timingConfig) / 60)
+          : Math.round((activeExam?.timeLimitSeconds || 3000) / 60),
+      blockCount: examMode === 'official_timed' ? timingBlocks.length : 1,
+    });
     try {
       if (typeof localStorage !== 'undefined') {
         localStorage.removeItem(DRAFT_EXAM_STORAGE_KEY);
@@ -645,7 +703,7 @@ export const JlptMockExamPage: React.FC = () => {
 
     // Record question IDs to ensure no-repeat logic in subsequent dynamic exams
     try {
-      ExamService.recordAnsweredQuestions(levelQuestions.map((q) => q.id));
+      ExamService.recordAnsweredQuestions(levelQuestions.map((q) => q.originalId ?? String(q.id)));
     } catch (e) {
       console.warn('Failed to record answered questions in ExamService:', e);
     }
@@ -736,13 +794,10 @@ export const JlptMockExamPage: React.FC = () => {
     }
   };
 
-  const orderedSections = getOrderedSections(level);
-  const currentSectionIndex = getSectionIndex(level, activeSection);
-  const currentSpec = JLPT_SECTION_SPECS[level].find((s) => s.section === activeSection);
-  const nextSectionKey = getNextSectionKey(level, activeSection);
-  const nextSectionSpec = nextSectionKey
-    ? JLPT_SECTION_SPECS[level].find((s) => s.section === nextSectionKey)
-    : null;
+  const orderedSections = getOrderedSections(level, timingConfig);
+  const currentSectionIndex = getSectionIndex(level, activeSection, timingConfig);
+  const currentSpec = getTimingBlockForSection(level, activeSection, timingConfig);
+  const nextSectionSpec = getNextTimingBlock(level, activeSection, timingConfig);
 
   const activeSectionQuestions =
     activeSection === 'knowledge'
@@ -750,11 +805,18 @@ export const JlptMockExamPage: React.FC = () => {
       : activeSection === 'reading'
         ? readingQuestions
         : listeningQuestions;
+  const currentBlockQuestions = levelQuestions.filter((q) =>
+    currentSpec?.sections.includes(q.section),
+  );
   const answeredInSection = activeSectionQuestions.filter(
     (q) => userAnswers[q.id] !== undefined,
   ).length;
   const totalInSection = activeSectionQuestions.length;
   const unansweredInSection = totalInSection - answeredInSection;
+  const answeredInBlock = currentBlockQuestions.filter(
+    (q) => userAnswers[q.id] !== undefined,
+  ).length;
+  const unansweredInBlock = currentBlockQuestions.length - answeredInBlock;
 
   const isWarningTime =
     examMode === 'official_timed'
@@ -866,6 +928,9 @@ export const JlptMockExamPage: React.FC = () => {
                                   : 'Amaliyot Mock'}
                             </span>
                           </div>
+                          <h4 className="line-clamp-1 text-xs font-extrabold text-foreground">
+                            {ex.title}
+                          </h4>
                           {(ex.sourceName ||
                             ex.author ||
                             (ex.licenseType && ex.licenseType !== 'original')) && (
@@ -908,6 +973,35 @@ export const JlptMockExamPage: React.FC = () => {
             )}
           </div>
 
+          {selectedExamId.endsWith('_random') && (
+            <div className="flex flex-col gap-2 rounded-xl border border-border bg-muted/30 p-3 text-left sm:flex-row sm:items-center sm:justify-between">
+              <div className="space-y-0.5">
+                <div className="text-xs font-bold text-foreground">Takrorlanmaslik davri</div>
+                <div className="text-[11px] text-muted-foreground">
+                  So'nggi shu davr ichida ishlangan savollar yangi variantda iloji boricha
+                  takrorlanmaydi.
+                </div>
+              </div>
+              <select
+                data-testid="jlpt-no-repeat-period"
+                value={noRepeatPeriodDays}
+                onChange={(event) => {
+                  const days = Number(event.target.value);
+                  setNoRepeatPeriodDays(days);
+                  ExamService.setNoRepeatPeriodDays(days);
+                }}
+                className="rounded-lg border border-border bg-card px-3 py-2 text-xs font-bold text-foreground"
+              >
+                <option value={0}>O'chirilgan</option>
+                <option value={7}>7 kun</option>
+                <option value={14}>14 kun</option>
+                <option value={30}>30 kun</option>
+                <option value={60}>60 kun</option>
+                <option value={90}>90 kun</option>
+              </select>
+            </div>
+          )}
+
           {/* Rejimni tanlash (Exam Mode Selection) */}
           <div className="space-y-3 text-left">
             <div className="flex items-center justify-between">
@@ -947,8 +1041,9 @@ export const JlptMockExamPage: React.FC = () => {
                   </div>
                 </div>
                 <p className="mt-2 text-[11px] leading-relaxed text-muted-foreground">
-                  Japan Foundation qoidalari: har bir bo'limga alohida taymer, o'tilgan bo'limlar
-                  muhrlanadi, qaytish taqiqlanadi.
+                  Japan Foundation qoidalari: N5–N3 da har bir bo‘lim alohida taymerda, N2/N1 da
+                  Language Knowledge va Reading bitta rasmiy blokda. Yakunlangan blok qayta
+                  ochilmaydi.
                 </p>
                 <div className="mt-2 flex flex-wrap gap-1">
                   <span className="rounded-md bg-amber-500/10 px-2 py-0.5 text-[9px] font-bold text-amber-600 dark:text-amber-400">
@@ -1006,8 +1101,8 @@ export const JlptMockExamPage: React.FC = () => {
                   <div className="text-xs font-bold text-foreground">Vaqt formati</div>
                   <div className="text-[11px] text-muted-foreground">
                     {useFullOfficialTime
-                      ? `To'liq rasmiy JLPT vaqti (${JLPT_SECTION_SPECS[level].reduce((acc, s) => acc + s.officialMinutes, 0)} daqiqa)`
-                      : `Moslashtirilgan sinov vaqti (${Math.round(JLPT_SECTION_SPECS[level].reduce((acc, s) => acc + s.simulationSeconds, 0) / 60)} daqiqa)`}
+                      ? `To'liq rasmiy JLPT vaqti (${Math.round(getTotalExamSeconds(level, true, timingConfig) / 60)} daqiqa, ${getOrderedSections(level, timingConfig).length} blok)`
+                      : `Moslashtirilgan sinov vaqti (${Math.round(getTotalExamSeconds(level, false, timingConfig) / 60)} daqiqa, ${getOrderedSections(level, timingConfig).length} blok)`}
                   </div>
                 </div>
                 <button
@@ -1096,8 +1191,8 @@ export const JlptMockExamPage: React.FC = () => {
 
                 <div className="flex items-center gap-2 self-start sm:self-center">
                   <span className="rounded-full bg-muted/60 px-3 py-1 text-[11px] font-bold text-muted-foreground">
-                    Javoblar: <strong className="text-foreground">{answeredInSection}</strong> /{' '}
-                    {totalInSection}
+                    Javoblar: <strong className="text-foreground">{answeredInBlock}</strong> /{' '}
+                    {currentBlockQuestions.length}
                   </span>
                   {isCriticalTime && (
                     <span className="inline-flex animate-pulse items-center gap-1 rounded-full border border-red-500/30 bg-red-500/15 px-2.5 py-1 text-[10px] font-black text-red-600 dark:text-red-400">
@@ -1115,12 +1210,14 @@ export const JlptMockExamPage: React.FC = () => {
               {/* Section Timeline Cards */}
               <div className="grid grid-cols-3 gap-2">
                 {orderedSections.map((sec) => {
-                  const isSealed = sealedSections.includes(sec.section);
-                  const isActive = activeSection === sec.section;
+                  const isSealed = sec.sections.every((section) =>
+                    sealedSections.includes(section),
+                  );
+                  const isActive = sec.sections.includes(activeSection);
 
                   return (
                     <div
-                      key={sec.section}
+                      key={sec.block}
                       className={`flex flex-col justify-between gap-1 rounded-2xl border p-3 transition-all sm:flex-row sm:items-center ${
                         isActive
                           ? 'border-rose-500 bg-rose-500/10 text-rose-600 shadow-sm ring-1 ring-rose-500/30 dark:text-rose-400'
@@ -1171,56 +1268,73 @@ export const JlptMockExamPage: React.FC = () => {
 
           {/* Section Switcher Tabs */}
           <div className="flex border-b border-border text-xs">
-            {orderedSections.map((sec) => {
-              const isSealed = sealedSections.includes(sec.section);
-              const isActive = activeSection === sec.section;
-              const isUpcoming = examMode === 'official_timed' && !isSealed && !isActive;
+            {JLPT_CONTENT_SECTIONS.map((section) => {
+              const meta = JLPT_CONTENT_SECTION_META[section];
+              const sectionBlock = getTimingBlockForSection(level, section, timingConfig);
+              const isSealed =
+                sealedSections.includes(section) ||
+                Boolean(sectionBlock?.sections.every((item) => sealedSections.includes(item)));
+              const isActive = activeSection === section;
+              const targetBlockIndex = getSectionIndex(level, section, timingConfig);
+              const isUpcoming =
+                examMode === 'official_timed' && targetBlockIndex > currentSectionIndex;
+              const isLocked =
+                examMode === 'official_timed' &&
+                !isActive &&
+                !canOpenSectionInOfficialMode(
+                  level,
+                  section,
+                  activeSection,
+                  sealedSections,
+                  timingConfig,
+                );
 
               return (
                 <button
-                  key={sec.section}
+                  key={section}
                   onClick={() => {
-                    if (examMode === 'official_timed') {
-                      if (isUpcoming) {
+                    if (examMode === 'official_timed' && !isActive) {
+                      if (isSealed || targetBlockIndex < currentSectionIndex) {
                         toast({
-                          title: "🔒 Bo'lim qulflangan",
+                          title: "🔒 Bo'lim muhrlangan",
                           description:
-                            "Japan Foundation qoidalariga ko'ra, oldingi bo'lim yakunlangach ochiladi.",
+                            'Ushbu blok yakunlangan. Javoblar qat’iy saqlangan va qayta ochilmaydi.',
                         });
                         return;
                       }
-                      if (isSealed) {
+                      if (isUpcoming || isLocked) {
                         toast({
-                          title: "🔒 Bo'lim muhrlangan",
-                          description: "Ushbu bo'lim yakunlangan, javoblar qat'iy saqlangan.",
+                          title: "🔒 Bo'lim qulflangan",
+                          description:
+                            'Japan Foundation qoidalariga ko‘ra, keyingi blok oldingi blok yakunlangach ochiladi.',
                         });
                         return;
                       }
                     }
-                    setActiveSection(sec.section);
+                    setActiveSection(section);
                   }}
                   className={`flex flex-1 items-center justify-center gap-1.5 border-b-2 py-3 font-bold transition-all ${
                     isActive
                       ? 'border-rose-500 text-rose-600 dark:text-rose-400'
                       : isSealed
                         ? 'border-transparent text-emerald-600 dark:text-emerald-400'
-                        : isUpcoming
+                        : isLocked
                           ? 'cursor-not-allowed border-transparent text-muted-foreground/40'
                           : 'border-transparent text-muted-foreground'
                   }`}
                 >
                   {isSealed ? (
                     <CheckCircle2 size={14} className="text-emerald-500" />
-                  ) : isUpcoming ? (
+                  ) : isLocked ? (
                     <Lock size={14} />
-                  ) : sec.section === 'knowledge' ? (
+                  ) : section === 'knowledge' ? (
                     <FileText size={14} />
-                  ) : sec.section === 'reading' ? (
+                  ) : section === 'reading' ? (
                     <BookOpen size={14} />
                   ) : (
                     <Volume2 size={14} />
                   )}
-                  <span>{sec.titleJa}</span>
+                  <span>{meta.titleJa}</span>
                   {isSealed && (
                     <span className="text-[10px] font-normal text-emerald-500">(Muhrlandi)</span>
                   )}
@@ -1495,14 +1609,14 @@ export const JlptMockExamPage: React.FC = () => {
           {/* Bottom Actions */}
           <div className="pt-6">
             {examMode === 'official_timed' ? (
-              nextSectionKey ? (
+              nextSectionSpec ? (
                 <div className="space-y-2">
                   <Button
                     onClick={handleAdvanceSectionClick}
                     className="flex w-full items-center justify-center gap-2 rounded-2xl bg-amber-600 py-4 text-sm font-extrabold text-white shadow-lg shadow-amber-500/20 transition-all hover:bg-amber-700"
                   >
                     <span>
-                      {`${currentSectionIndex + 1}-bo‘limni muhrlash va ${nextSectionSpec?.shortLabel}ga o‘tish ⏩`}
+                      {`${currentSectionIndex + 1}-blokni muhrlash va ${nextSectionSpec?.shortLabel}ga o‘tish ⏩`}
                     </span>
                   </Button>
                   <p className="text-center text-[11px] text-muted-foreground">
@@ -1589,6 +1703,31 @@ export const JlptMockExamPage: React.FC = () => {
           </div>
         ) : diagnosticReport ? (
           <>
+            {completedTimingModel && (
+              <div
+                data-testid="jlpt-timing-model-summary"
+                className="mx-auto max-w-3xl rounded-2xl border border-border bg-card p-4 text-xs shadow-sm"
+              >
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 font-extrabold text-foreground">
+                    <Clock size={16} className="text-rose-500" />
+                    Ishlatilgan vaqt modeli: {completedTimingModel.label}
+                  </div>
+                  <span className="rounded-full border border-rose-500/20 bg-rose-500/10 px-2.5 py-0.5 text-[10px] font-extrabold uppercase text-rose-600 dark:text-rose-400">
+                    {completedTimingModel.format}
+                  </span>
+                </div>
+                <p className="mt-2 text-[11px] leading-relaxed text-muted-foreground">
+                  {completedTimingModel.level} • {completedTimingModel.totalMinutes} daqiqa •{' '}
+                  {completedTimingModel.mode === 'official_timed'
+                    ? `${completedTimingModel.blockCount} ta mustaqil vaqt bloki`
+                    : 'Yagona umumiy taymer, bo‘limlar erkin almashinadi'}
+                  {completedTimingModel.level === 'N2' || completedTimingModel.level === 'N1'
+                    ? ' • Language Knowledge + Reading bitta blokda'
+                    : ''}
+                </p>
+              </div>
+            )}
             <JlptExamResultCard
               report={diagnosticReport}
               level={level}
@@ -1685,7 +1824,7 @@ export const JlptMockExamPage: React.FC = () => {
               <div className="flex items-center gap-2 text-amber-500">
                 <ShieldAlert size={20} />
                 <h3 className="text-sm font-extrabold text-foreground">
-                  Bo'limni Muhrlash va Keyingisiga O'tish
+                  Blokni Muhrlash va Keyingisiga O'tish
                 </h3>
               </div>
               <button
@@ -1707,14 +1846,14 @@ export const JlptMockExamPage: React.FC = () => {
               <div className="space-y-1.5 rounded-2xl border border-border bg-muted/40 p-3">
                 <div className="flex justify-between font-bold text-foreground">
                   <span>Belgilangan savollar:</span>
-                  <span className={unansweredInSection > 0 ? 'text-amber-500' : 'text-emerald-500'}>
-                    {answeredInSection} / {totalInSection} ta
+                  <span className={unansweredInBlock > 0 ? 'text-amber-500' : 'text-emerald-500'}>
+                    {answeredInBlock} / {currentBlockQuestions.length} ta
                   </span>
                 </div>
-                {unansweredInSection > 0 ? (
+                {unansweredInBlock > 0 ? (
                   <div className="flex items-center gap-1.5 text-[11px] font-semibold text-amber-600 dark:text-amber-400">
                     <AlertTriangle size={13} />
-                    <span>{unansweredInSection} ta savolga javob belgilanmagan!</span>
+                    <span>{unansweredInBlock} ta savolga javob belgilanmagan!</span>
                   </div>
                 ) : (
                   <div className="flex items-center gap-1.5 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400">
