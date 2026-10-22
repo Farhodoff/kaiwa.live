@@ -18,6 +18,10 @@ jobs:
   real_supabase_e2e:
     name: Real Supabase E2E (Task 20)
     runs-on: ubuntu-latest
+    env:
+      VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+      VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -25,7 +29,7 @@ jobs:
       - name: Check Supabase Secrets Availability
         id: check_secrets
         run: |
-          if [ -n "${{ secrets.VITE_SUPABASE_URL }}" ] && [ -n "${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" ]; then
+          if [ -n "$VITE_SUPABASE_URL" ] && [ -n "$SUPABASE_SERVICE_ROLE_KEY" ]; then
             echo "has_secrets=true" >> "$GITHUB_OUTPUT"
             echo "✅ Supabase secrets found. Proceeding with real E2E."
           else
@@ -53,10 +57,6 @@ jobs:
 
       - name: Validate Service Role & Provision Test Users
         if: steps.check_secrets.outputs.has_secrets == 'true'
-        env:
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: |
           echo "Checking Supabase URL and service key format..."
           python3 -c "
@@ -73,8 +73,6 @@ jobs:
         if: steps.check_secrets.outputs.has_secrets == 'true'
         env:
           TASK20_REAL: '1'
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
         run: |
           npx vitest run src/services/__tests__/task20/Task20RealSupabase.test.ts
 
