@@ -332,7 +332,7 @@ describe('Task 16 · AI draft generation feeds the import pipeline', () => {
 });
 
 describe('Task 16 · version snapshot + revert', () => {
-  it('reverts an exam to an earlier snapshot, restoring the previous question set', async () => {
+  it('reverts an exam to an earlier snapshot, restoring questions while preserving workflow status', async () => {
     const imported = await importFullExam('N3', 'json');
     const sections = fakeSupabase.__table('exam_sections');
     const knowledgeSection = sections.find((s) => s.type === 'knowledge') || sections[0];
@@ -365,26 +365,19 @@ describe('Task 16 · version snapshot + revert', () => {
       1,
     );
 
+    // Simulate published status prior to revert
+    const exam = fakeSupabase.__table('exams').find((e) => e.id === imported.examId)!;
+    exam.status = 'published';
+    exam.is_published = true;
+
     const revert = await ExamImportHistoryService.revertToVersion(v1!.id, {
       adminConfirmed: true,
       actor: ADMIN,
     });
     expect(revert.examId).toBe(imported.examId);
     expect(fakeSupabase.__table('exam_questions').length).toBe(imported.questionIds!.length);
-  });
 
-  it('preserves the current workflow status when reverting content', async () => {
-    const imported = await importFullExam('N3', 'json');
-    const versions = await ExamImportHistoryService.listVersions(imported.examId);
-    const exam = fakeSupabase.__table('exams').find((e) => e.id === imported.examId)!;
-    exam.status = 'published';
-    exam.is_published = true;
-
-    await ExamImportHistoryService.revertToVersion(versions[0].id, {
-      adminConfirmed: true,
-      actor: ADMIN,
-    });
-
+    // Verify workflow status was preserved during content revert
     const after = fakeSupabase.__table('exams').find((e) => e.id === imported.examId)!;
     expect(after.status).toBe('published');
     expect(after.is_published).toBe(true);

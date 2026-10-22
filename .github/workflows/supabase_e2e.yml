@@ -1,0 +1,92 @@
+name: Supabase Real E2E Tests (Task 20)
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'supabase/migrations/**'
+      - 'src/services/ExamWorkflowService.ts'
+      - 'src/services/ExamBulkImportService.ts'
+      - 'src/services/ExamImportHistoryService.ts'
+      - 'src/services/__tests__/task20/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  real_supabase_e2e:
+    name: Real Supabase E2E (Task 20)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Check Supabase Secrets Availability
+        id: check_secrets
+        run: |
+          if [ -n "${{ secrets.VITE_SUPABASE_URL }}" ] && [ -n "${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" ]; then
+            echo "has_secrets=true" >> "$GITHUB_OUTPUT"
+            echo "✅ Supabase secrets found. Proceeding with real E2E."
+          else
+            echo "has_secrets=false" >> "$GITHUB_OUTPUT"
+            echo "ℹ️ [SKIPPED] Supabase secrets (VITE_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) are not set in repo secrets."
+            echo "Task 20 real Supabase integration test safely skipped."
+          fi
+
+      - name: Setup Node.js 20
+        if: steps.check_secrets.outputs.has_secrets == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Setup Python
+        if: steps.check_secrets.outputs.has_secrets == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        if: steps.check_secrets.outputs.has_secrets == 'true'
+        run: npm ci
+
+      - name: Validate Service Role & Provision Test Users
+        if: steps.check_secrets.outputs.has_secrets == 'true'
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          echo "Checking Supabase URL and service key format..."
+          python3 -c "
+          import os, re
+          url = os.environ.get('VITE_SUPABASE_URL', '')
+          role = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+          assert url.startswith('http'), 'Invalid VITE_SUPABASE_URL'
+          assert len(role) > 20, 'Invalid SUPABASE_SERVICE_ROLE_KEY length'
+          print('✅ Supabase credentials syntax verified.')
+          "
+          python3 scripts/task20/prepare_real_env.py
+
+      - name: Run Real Supabase E2E Test Suite
+        if: steps.check_secrets.outputs.has_secrets == 'true'
+        env:
+          TASK20_REAL: '1'
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+        run: |
+          npx vitest run src/services/__tests__/task20/Task20RealSupabase.test.ts
+
+      - name: Cleanup Ephemeral Test Credentials
+        if: always() && steps.check_secrets.outputs.has_secrets == 'true'
+        run: |
+          rm -f backups/task20/test_users.json
+          echo "🧹 Ephemeral test credentials cleaned up."
+
+      - name: Upload E2E Test Artifacts
+        if: steps.check_secrets.outputs.has_secrets == 'true' && hashFiles('backups/task20/e2e_results.json') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: task20-e2e-results
+          path: backups/task20/e2e_results.json

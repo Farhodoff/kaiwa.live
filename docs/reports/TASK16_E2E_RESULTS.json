@@ -1,0 +1,114 @@
+{
+  "task": "Task 16 — N3/N2/N1 real-content end-to-end verification",
+  "generatedAt": "2026-10-21",
+  "environment": {
+    "runtime": "Vitest + JSDOM",
+    "database": "in-memory fake Supabase (src/utils/fakeSupabase.ts)",
+    "aiProvider": "mocked callAI (deterministic JSON draft)",
+    "liveSupabase": false,
+    "reasonLiveSkipped": [
+      "SERVICE_ROLE key rejected: {\"message\":\"Unregistered API key\"}",
+      "~70 migrations pending on linked project",
+      "live exams schema lacks import/version/workflow/QC tables"
+    ]
+  },
+  "sourceContent": {
+    "file": "src/data/jlptMockExamData.ts",
+    "levels": ["N3", "N2", "N1"],
+    "questionsPerLevel": 9,
+    "breakdownPerLevel": { "knowledge": 5, "reading": 2, "listening": 2 }
+  },
+  "suite": {
+    "file": "src/services/__tests__/task16/Task16E2E.test.ts",
+    "fixtures": "src/services/__tests__/task16/contentFixtures.ts",
+    "testFiles": 1,
+    "tests": 18,
+    "passed": 18,
+    "failed": 0,
+    "durationMs": 42
+  },
+  "scenarios": {
+    "importValidation": {
+      "description": "JSON and CSV payloads parse and validate with 0 errors; sections knowledge/reading/listening detected.",
+      "levels": ["N3", "N2", "N1"],
+      "formats": ["json", "csv"],
+      "tests": 6,
+      "passed": 6
+    },
+    "fullLifecycle": {
+      "description": "import -> reading passage/audio -> publish blocked while draft -> review -> approved -> published -> published listing -> mock exam load -> timer -> JLPT scoring -> mistake vault -> skill matrix -> export JSON/CSV -> rollback.",
+      "levels": ["N3", "N2", "N1"],
+      "tests": 3,
+      "passed": 3,
+      "assertions": {
+        "importedQuestionsPerLevel": 9,
+        "sectionsPerLevel": 3,
+        "readingPassages": 1,
+        "listeningAudios": 1,
+        "publishBlockedBeforeApproval": true,
+        "publishedStatus": true,
+        "isFromDb": true,
+        "timeLimitSeconds": ">0",
+        "scoreRange": "1..180",
+        "sectionsScored": ["knowledge", "reading", "listening"],
+        "mistakesRecorded": "wrong answers only",
+        "skillMatrixSkills": ["reading", "listening"],
+        "exportQuestionCountMatchesImport": true,
+        "rollbackRemovedExam": true
+      }
+    },
+    "csvImport": {
+      "description": "CSV import persists the same question count as JSON.",
+      "levels": ["N3", "N2", "N1"],
+      "tests": 3,
+      "passed": 3
+    },
+    "aiDraft": {
+      "description": "AI draft questions are marked is_published=false, validate cleanly, and import as drafts.",
+      "levels": ["N3", "N2", "N1"],
+      "tests": 3,
+      "passed": 3
+    },
+    "versionRevert": {
+      "description": "Version snapshot v1 plus a later import, then revertToVersion restores the v1 question set.",
+      "tests": 1,
+      "passed": 1
+    },
+    "rollbackGuards": {
+      "description": "Rollback requires explicit admin confirmation and an admin actor.",
+      "tests": 2,
+      "passed": 2
+    }
+  },
+  "defects": [
+    {
+      "id": "TASK16-BUG-01",
+      "severity": "high",
+      "component": "src/services/ExamBulkImportService.ts",
+      "summary": "CSV header normalization lowercases headers, so the generated `correctAnswer` column became `correctanswer` and was never read; the app's own CSV template failed validation with 'correctAnswer ko'rsatilmagan'.",
+      "fix": "Read lowercased `correctanswer` fallback in the CSV record mapper.",
+      "status": "fixed",
+      "regressionCoverage": "CSV import validation + CSV full-exam import for N3/N2/N1"
+    }
+  ],
+  "qualityGates": {
+    "tscNoEmit": "pass",
+    "eslintMaxWarnings0": "pass",
+    "prettier": "pass",
+    "task16Suite": "18/18 pass",
+    "fullSuite": "2103/2107 pass; 4 pre-existing load-sensitive tests fail only under high parallelism and pass in isolation/pairs",
+    "flakyFullSuiteFiles": [
+      "src/components/speaking/__tests__/CoachProgressDashboard.test.tsx",
+      "src/services/__tests__/CustomContentDokkai.test.ts",
+      "src/services/__tests__/CustomContentService.test.ts",
+      "src/services/__tests__/JlptMockDiagnosticRemediation.test.ts",
+      "src/services/__tests__/Phase19E2ELearningLoop.test.ts"
+    ],
+    "flakyNote": "These files fail in different combinations on repeated full runs and pass when run alone or in pairs; reproduced without the Task 16 suite, so unrelated to this change."
+  },
+  "limitations": [
+    "Runs against an in-memory Supabase fake, not the live project; RLS, storage, and real network behavior are not exercised.",
+    "AI extraction uses a deterministic mocked provider response.",
+    "Content is sampled (9 questions/level) from the repository dataset, not a full production question bank."
+  ]
+}

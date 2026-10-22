@@ -10,30 +10,35 @@ import { pwaGlobIgnores, pwaRuntimeCaching } from './src/config/pwaRuntimeCachin
 const buildTimestamp = Date.now();
 
 function versionGeneratorPlugin() {
+  const versionData = {
+    version: process.env.npm_package_version || '1.2.0',
+    buildTimestamp,
+    buildDate: new Date(buildTimestamp).toISOString(),
+  };
+
   return {
     name: 'version-generator-plugin',
+    configureServer(server: any) {
+      server.middlewares.use((req: any, res: any, next: any) => {
+        if (req.url === '/version.json' || req.url?.startsWith('/version.json?')) {
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify(versionData, null, 2));
+          return;
+        }
+        next();
+      });
+    },
     buildStart() {
-      const versionData = {
-        version: process.env.npm_package_version || '1.1.0',
-        buildTimestamp,
-        buildDate: new Date(buildTimestamp).toISOString(),
-      };
       const publicDir = path.resolve(__dirname, 'public');
-      if (!fs.existsSync(publicDir)) {
-        fs.mkdirSync(publicDir, { recursive: true });
+      const versionFile = path.resolve(publicDir, 'version.json');
+      if (process.env.RELEASE_VERSION_SYNC === 'true' || !fs.existsSync(versionFile)) {
+        if (!fs.existsSync(publicDir)) {
+          fs.mkdirSync(publicDir, { recursive: true });
+        }
+        fs.writeFileSync(versionFile, JSON.stringify(versionData, null, 2), 'utf-8');
       }
-      fs.writeFileSync(
-        path.resolve(publicDir, 'version.json'),
-        JSON.stringify(versionData, null, 2),
-        'utf-8',
-      );
     },
     generateBundle() {
-      const versionData = {
-        version: process.env.npm_package_version || '1.1.0',
-        buildTimestamp,
-        buildDate: new Date(buildTimestamp).toISOString(),
-      };
       this.emitFile({
         type: 'asset',
         fileName: 'version.json',

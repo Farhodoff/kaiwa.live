@@ -11,7 +11,27 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const REAL = process.env.TASK20_REAL === '1';
-const describeReal = REAL ? describe.sequential : describe.skip;
+const usersPath = path.resolve(process.cwd(), 'backups/task20/test_users.json');
+const hasUsers = fs.existsSync(usersPath);
+const hasEnvUrl = Boolean(
+  process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL,
+);
+
+let skipReason = '';
+if (REAL) {
+  if (!hasUsers) {
+    skipReason = `Missing test users at ${usersPath}. Run scripts/task20/prepare_real_env.py or provide secrets.`;
+  } else if (!hasEnvUrl) {
+    skipReason = 'Missing VITE_SUPABASE_URL environment variable.';
+  }
+}
+
+if (REAL && skipReason) {
+  console.warn(`[Task20RealSupabase] Suite SKIPPED: ${skipReason}`);
+}
+
+const canRunReal = REAL && !skipReason;
+const describeReal = canRunReal ? describe.sequential : describe.skip;
 
 type Role = 'admin' | 'reviewer' | 'user';
 
