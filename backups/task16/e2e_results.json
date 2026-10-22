@@ -1,0 +1,230 @@
+{
+  "numTotalTestSuites": 7,
+  "numPassedTestSuites": 7,
+  "numFailedTestSuites": 0,
+  "numPendingTestSuites": 0,
+  "numTotalTests": 19,
+  "numPassedTests": 19,
+  "numFailedTests": 0,
+  "numPendingTests": 0,
+  "numTodoTests": 0,
+  "snapshot": {
+    "added": 0,
+    "failure": false,
+    "filesAdded": 0,
+    "filesRemoved": 0,
+    "filesRemovedList": [],
+    "filesUnmatched": 0,
+    "filesUpdated": 0,
+    "matched": 0,
+    "total": 0,
+    "unchecked": 0,
+    "uncheckedKeysByFile": [],
+    "unmatched": 0,
+    "updated": 0,
+    "didUpdate": false
+  },
+  "startTime": 1792688380557,
+  "success": true,
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["Task 16 · import validation with real N3/N2/N1 content"],
+          "fullName": "Task 16 · import validation with real N3/N2/N1 content N3: JSON payload parses, validates with 0 errors and Japanese content",
+          "status": "passed",
+          "title": "N3: JSON payload parses, validates with 0 errors and Japanese content",
+          "duration": 3.7783330000000888,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Task 16 · import validation with real N3/N2/N1 content"],
+          "fullName": "Task 16 · import validation with real N3/N2/N1 content N3: CSV payload parses and validates with 0 errors",
+          "status": "passed",
+          "title": "N3: CSV payload parses and validates with 0 errors",
+          "duration": 1.4501670000000786,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Task 16 · import validation with real N3/N2/N1 content"],
+          "fullName": "Task 16 · import validation with real N3/N2/N1 content N2: JSON payload parses, validates with 0 errors and Japanese content",
+          "status": "passed",
+          "title": "N2: JSON payload parses, validates with 0 errors and Japanese content",
+          "duration": 0.8094999999999573,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Task 16 · import validation with real N3/N2/N1 content"],
+          "fullName": "Task 16 · import validation with real N3/N2/N1 content N2: CSV payload parses and validates with 0 errors",
+          "status": "passed",
+          "title": "N2: CSV payload parses and validates with 0 errors",
+          "duration": 0.9616669999999203,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Task 16 · import validation with real N3/N2/N1 content"],
+          "fullName": "Task 16 · import validation with real N3/N2/N1 content N1: JSON payload parses, validates with 0 errors and Japanese content",
+          "status": "passed",
+          "title": "N1: JSON payload parses, validates with 0 errors and Japanese content",
+          "duration": 0.7194169999999076,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Task 16 · import validation with real N3/N2/N1 content"],
+          "fullName": "Task 16 · import validation with real N3/N2/N1 content N1: CSV payload parses and validates with 0 errors",
+          "status": "passed",
+          "title": "N1: CSV payload parses and validates with 0 errors",
+          "duration": 1.0159999999999627,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Task 16 · full lifecycle per level"],
+          "fullName": "Task 16 · full lifecycle per level N3: import -> passage/audio -> review -> approved -> published -> mock exam -> scoring -> export -> rollback",
+          "status": "passed",
+          "title": "N3: import -> passage/audio -> review -> approved -> published -> mock exam -> scoring -> export -> rollback",
+          "duration": 7.749582999999916,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Task 16 · full lifecycle per level"],
+          "fullName": "Task 16 · full lifecycle per level N2: import -> passage/audio -> review -> approved -> published -> mock exam -> scoring -> export -> rollback",
+          "status": "passed",
+          "title": "N2: import -> passage/audio -> review -> approved -> published -> mock exam -> scoring -> export -> rollback",
+          "duration": 2.3101660000000948,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Task 16 · full lifecycle per level"],
+          "fullName": "Task 16 · full lifecycle per level N1: import -> passage/audio -> review -> approved -> published -> mock exam -> scoring -> export -> rollback",
+          "status": "passed",
+          "title": "N1: import -> passage/audio -> review -> approved -> published -> mock exam -> scoring -> export -> rollback",
+          "duration": 2.708458000000064,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Task 16 · CSV import creates a separate published-ready exam"],
+          "fullName": "Task 16 · CSV import creates a separate published-ready exam N3: CSV import persists the same question count as JSON",
+          "status": "passed",
+          "title": "N3: CSV import persists the same question count as JSON",
+          "duration": 3.1279579999999214,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Task 16 · CSV import creates a separate published-ready exam"],
+          "fullName": "Task 16 · CSV import creates a separate published-ready exam N2: CSV import persists the same question count as JSON",
+          "status": "passed",
+          "title": "N2: CSV import persists the same question count as JSON",
+          "duration": 0.8404590000000098,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Task 16 · CSV import creates a separate published-ready exam"],
+          "fullName": "Task 16 · CSV import creates a separate published-ready exam N1: CSV import persists the same question count as JSON",
+          "status": "passed",
+          "title": "N1: CSV import persists the same question count as JSON",
+          "duration": 0.6707920000000058,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Task 16 · AI draft generation feeds the import pipeline"],
+          "fullName": "Task 16 · AI draft generation feeds the import pipeline N3: AI draft questions are validated and importable as drafts only",
+          "status": "passed",
+          "title": "N3: AI draft questions are validated and importable as drafts only",
+          "duration": 0.795708999999988,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Task 16 · AI draft generation feeds the import pipeline"],
+          "fullName": "Task 16 · AI draft generation feeds the import pipeline N2: AI draft questions are validated and importable as drafts only",
+          "status": "passed",
+          "title": "N2: AI draft questions are validated and importable as drafts only",
+          "duration": 0.2370410000000902,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Task 16 · AI draft generation feeds the import pipeline"],
+          "fullName": "Task 16 · AI draft generation feeds the import pipeline N1: AI draft questions are validated and importable as drafts only",
+          "status": "passed",
+          "title": "N1: AI draft questions are validated and importable as drafts only",
+          "duration": 0.2600840000000062,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Task 16 · version snapshot + revert"],
+          "fullName": "Task 16 · version snapshot + revert reverts an exam to an earlier snapshot, restoring the previous question set",
+          "status": "passed",
+          "title": "reverts an exam to an earlier snapshot, restoring the previous question set",
+          "duration": 1.0117500000000064,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Task 16 · version snapshot + revert"],
+          "fullName": "Task 16 · version snapshot + revert preserves the current workflow status when reverting content",
+          "status": "passed",
+          "title": "preserves the current workflow status when reverting content",
+          "duration": 0.6336669999999458,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Task 16 · rollback guards"],
+          "fullName": "Task 16 · rollback guards refuses rollback without admin confirmation",
+          "status": "passed",
+          "title": "refuses rollback without admin confirmation",
+          "duration": 1.1465839999999616,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Task 16 · rollback guards"],
+          "fullName": "Task 16 · rollback guards refuses rollback for a non-admin actor",
+          "status": "passed",
+          "title": "refuses rollback for a non-admin actor",
+          "duration": 0.5560829999999441,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1792688381748,
+      "endTime": 1792688381779.5562,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/farhod/Desktop/github/study_planner/src/services/__tests__/task16/Task16E2E.test.ts"
+    }
+  ]
+}
