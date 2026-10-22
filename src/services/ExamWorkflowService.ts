@@ -1,3 +1,10 @@
+/**
+ * ExamWorkflowService
+ *
+ * Orchestrates the full lifecycle of exam content across Draft -> Review -> Approved -> Published states.
+ * Integrates role-based gating, legal checklist evaluation, and atomic state transitions.
+ */
+
 import { supabase } from '../lib/supabase';
 import { canImportExamContent, canPublishExamContent } from '../utils/examImportSecurity';
 import { evaluateLegalGates, type LegalGate } from '../utils/examLegalGates';
