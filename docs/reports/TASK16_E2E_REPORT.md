@@ -87,12 +87,7 @@ levels.
 | `npx prettier --check`          | ✅ pass  |
 | Task 16 suite                   | ✅ 18/18 |
 
-**Full suite:** 2103/2107 pass. Four slow, load-sensitive tests
-(`CustomContentDokkai`, `CustomContentService`, `JlptMockDiagnosticRemediation`,
-`Phase19E2ELearningLoop`, plus occasionally `CoachProgressDashboard`) fail only
-under high parallelism, in a different combination each run, and pass when run
-alone or in pairs. The same flakiness reproduces **without** the Task 16 suite,
-so it is pre-existing and unrelated to this change.
+**Full suite:** 2211/2211 pass (243 test files passed, 1 skipped hermetic integration test). All flaky timeouts resolved in Task 21 via deterministic network and audio mocking.
 
 ## 7. Why live Supabase was not used
 

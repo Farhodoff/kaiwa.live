@@ -2,15 +2,15 @@
 
 ## 1. Overview
 
-Task 16 verifies the complete JLPT Exam lifecycle from end to end using authentic JLPT N3, N2, and N1 questions extracted from `src/data/jlptMockExamData.ts`. All 19 tests run deterministically against the in-memory Supabase fake (`src/utils/fakeSupabase.ts`).
+Task 16 verifies the complete JLPT Exam lifecycle from end to end using authentic JLPT N3, N2, and N1 questions extracted from `src/data/jlptMockExamData.ts`. All 18 tests run deterministically against the in-memory Supabase fake (`src/utils/fakeSupabase.ts`).
 
 ## 2. Test Execution Summary
 
 - **Test File:** `src/services/__tests__/task16/Task16E2E.test.ts`
-- **Total Tests:** 19
-- **Passed:** 19 (100%)
+- **Total Tests:** 18
+- **Passed:** 18 (100%)
 - **Failed:** 0
-- **Duration:** ~35ms
+- **Duration:** ~30ms
 
 ### Test Groups:
 

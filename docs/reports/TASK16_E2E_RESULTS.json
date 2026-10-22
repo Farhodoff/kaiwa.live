@@ -96,15 +96,7 @@
     "eslintMaxWarnings0": "pass",
     "prettier": "pass",
     "task16Suite": "18/18 pass",
-    "fullSuite": "2103/2107 pass; 4 pre-existing load-sensitive tests fail only under high parallelism and pass in isolation/pairs",
-    "flakyFullSuiteFiles": [
-      "src/components/speaking/__tests__/CoachProgressDashboard.test.tsx",
-      "src/services/__tests__/CustomContentDokkai.test.ts",
-      "src/services/__tests__/CustomContentService.test.ts",
-      "src/services/__tests__/JlptMockDiagnosticRemediation.test.ts",
-      "src/services/__tests__/Phase19E2ELearningLoop.test.ts"
-    ],
-    "flakyNote": "These files fail in different combinations on repeated full runs and pass when run alone or in pairs; reproduced without the Task 16 suite, so unrelated to this change."
+    "fullSuite": "2211/2211 pass (243 passed, 1 skipped); all timeouts resolved in Task 21"
   },
   "limitations": [
     "Runs against an in-memory Supabase fake, not the live project; RLS, storage, and real network behavior are not exercised.",
