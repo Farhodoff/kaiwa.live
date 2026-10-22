@@ -1,3 +1,10 @@
+/**
+ * ContentQualityAuditService
+ *
+ * Scans JLPT N3-N1 questions, reading passages, and audio entities for completeness,
+ * duplicate detection, and quality scoring (0-100).
+ */
+
 import { supabase } from '../lib/supabase';
 import { normalizeJlptQuestionType } from '../types/jlptQuestionType';
 
