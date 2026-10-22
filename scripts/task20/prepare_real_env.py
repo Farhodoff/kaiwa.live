@@ -49,7 +49,8 @@ def main() -> None:
     env = load_env()
     base_url = env["VITE_SUPABASE_URL"]
     anon_key = env["VITE_SUPABASE_ANON_KEY"]
-    password = "T20-Real-Pass!2345"
+    import os, secrets
+    password = os.environ.get("TASK20_TEST_USER_PASSWORD") or f"T20-Test-{secrets.token_hex(8)}!Aa1"
     stamp = int(time.time())
 
     emails = {

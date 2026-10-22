@@ -228,8 +228,7 @@ export function createImportRateLimiter(options: RateLimitOptions): ImportRateLi
 }
 
 const JWT_RE = /\beyJ[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\b/g;
-const SERVICE_ROLE_RE =
-  /\b(service_role|service-role|SERVICE_ROLE|sbp_[A-Za-z0-9_-]{20,}|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\.[A-Za-z0-9._-]+)\b/g;
+const SERVICE_ROLE_RE = /\b(service_role|service-role|SERVICE_ROLE|sbp_[A-Za-z0-9_-]{20,})\b/g;
 
 /**
  * Sanitizes an import error before it reaches the UI or audit log. Extends the

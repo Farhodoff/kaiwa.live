@@ -175,9 +175,11 @@ describe('error sanitization', () => {
   });
 
   it('redacts raw JWTs and service-role references', () => {
-    const jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VydmljZV9yb2xlIn0.abcdefghijk';
+    const mockHeader = Buffer.from('{"alg":"HS256","typ":"JWT"}').toString('base64url');
+    const mockPayload = Buffer.from('{"role":"service_role"}').toString('base64url');
+    const jwt = `${mockHeader}.${mockPayload}.testsignature12345`;
     const out = sanitizeImportError(`token ${jwt} service_role`);
-    expect(out).not.toContain('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9');
+    expect(out).not.toContain(mockHeader);
     expect(out).not.toMatch(/service_role/);
   });
 
