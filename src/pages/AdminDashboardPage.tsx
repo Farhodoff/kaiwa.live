@@ -17,6 +17,7 @@ import {
   Download,
   Radio,
   X,
+  BarChart3,
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { useNavigate } from 'react-router-dom';
@@ -48,6 +49,11 @@ const AdminSpeechAnalytics = lazy(() =>
 );
 const AdminContentStudio = lazy(() =>
   import('../components/admin/AdminContentStudio').then((m) => ({ default: m.AdminContentStudio })),
+);
+const AdminContentQualityDashboard = lazy(() =>
+  import('../components/admin/AdminContentQualityDashboard').then((m) => ({
+    default: m.AdminContentQualityDashboard,
+  })),
 );
 const AdminDatasetVaultModal = lazy(() =>
   import('../components/admin/AdminDatasetVaultModal').then((m) => ({
@@ -224,9 +230,9 @@ export default function AdminDashboardPage() {
   );
   const [usersPage, setUsersPage] = useState(0);
   const USERS_PER_PAGE = 15;
-  const [activeSection, setActiveSection] = useState<'users' | 'speech' | 'scenarios' | 'content'>(
-    'users',
-  );
+  const [activeSection, setActiveSection] = useState<
+    'users' | 'speech' | 'scenarios' | 'content' | 'quality'
+  >('users');
 
   const [isCleanerOpen, setIsCleanerOpen] = useState(false);
   const [isVaultOpen, setIsVaultOpen] = useState(false);
@@ -1590,13 +1596,15 @@ export default function AdminDashboardPage() {
           >
             <Radio size={14} className="text-primary" /> {isJa ? '一斉通知' : "E'lon / Broadcast"}
           </button>
-          <button
-            onClick={activeSection === 'speech' ? exportSpeechToCSV : exportUsersToCSV}
-            className="flex min-h-[36px] cursor-pointer items-center gap-1.5 rounded-xl border border-border bg-muted px-3 py-1.5 text-xs font-bold text-foreground transition-colors hover:bg-muted/80"
-            title={isJa ? 'CSVエクスポート' : 'Joriy jadvalni CSV formatida yuklab olish'}
-          >
-            <Download size={14} /> {isJa ? 'CSV出力' : 'CSV Yuklab Olish'}
-          </button>
+          {(activeSection === 'users' || activeSection === 'speech') && (
+            <button
+              onClick={activeSection === 'speech' ? exportSpeechToCSV : exportUsersToCSV}
+              className="flex min-h-[36px] cursor-pointer items-center gap-1.5 rounded-xl border border-border bg-muted px-3 py-1.5 text-xs font-bold text-foreground transition-colors hover:bg-muted/80"
+              title={isJa ? 'CSVエクスポート' : 'Joriy jadvalni CSV formatida yuklab olish'}
+            >
+              <Download size={14} /> {isJa ? 'CSV出力' : 'CSV Yuklab Olish'}
+            </button>
+          )}
           <button
             onClick={() => setIsCleanerOpen(true)}
             className="flex min-h-[36px] cursor-pointer items-center gap-1.5 rounded-xl border border-border bg-muted px-3 py-1.5 text-xs font-bold text-foreground transition-colors hover:bg-muted/80"
@@ -1667,6 +1675,16 @@ export default function AdminDashboardPage() {
         >
           <BookOpen size={14} /> {isJa ? 'コンテンツ作成・管理' : "Kontent Qo'shish & Boshqaruv"}
         </button>
+        <button
+          onClick={() => setActiveSection('quality')}
+          className={`flex shrink-0 cursor-pointer items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 transition-all ${
+            activeSection === 'quality'
+              ? 'bg-primary text-primary-foreground shadow-xs'
+              : 'text-muted-foreground hover:text-foreground'
+          }`}
+        >
+          <BarChart3 size={14} /> {isJa ? 'N3–N1 品質監査' : 'N3–N1 Kontent Sifati'}
+        </button>
       </div>
 
       {activeSection === 'users' && (
@@ -1733,6 +1751,11 @@ export default function AdminDashboardPage() {
       {activeSection === 'content' && (
         <Suspense fallback={<AdminTabFallback />}>
           <AdminContentStudio />
+        </Suspense>
+      )}
+      {activeSection === 'quality' && (
+        <Suspense fallback={<AdminTabFallback />}>
+          <AdminContentQualityDashboard />
         </Suspense>
       )}
 

@@ -13,6 +13,14 @@ export type ActivityFormat =
   | 'sentence_ordering'
   | 'reading_passage';
 
+export interface EvidenceSourceSummary {
+  source: string;
+  format: ActivityFormat;
+  count: number;
+  accuracy: number | null; // 0-100, null when the source has no scored attempts
+  lastUsedAt?: string;
+}
+
 export interface CompetencyProgress {
   competencyId: string;
   name: { uz: string; ja: string; en: string };
@@ -20,10 +28,23 @@ export interface CompetencyProgress {
   description: { uz: string; ja: string; en: string };
   targetCount: number;
   currentCount: number;
-  accuracy: number; // 0-100
+  accuracy: number; // 0-100, computed from the latest competency evidence
+  evidenceCount: number;
+  evidenceSources: string[];
   formatsTested: ActivityFormat[];
   status: MasteryStatus;
   benchmarkRule: string;
+}
+
+export interface CompetencyResultRecord {
+  competencyId: string;
+  skill: MasterySkill;
+  level: JlptLevel;
+  accuracy: number;
+  status: MasteryStatus;
+  evidenceCount: number;
+  evidenceSources: string[];
+  updatedAt: string;
 }
 
 export interface SkillMatrixDefinition {
@@ -34,9 +55,12 @@ export interface SkillMatrixDefinition {
   overallTargetCount: number;
   currentCount: number;
   score: number; // 0-100
-  accuracy: number; // 0-100
-  multiFormatPassed: boolean; // >= 2 distinct formats tested with >= 80% accuracy
-  retentionPassed: boolean; // retention rate >= 80%
+  accuracy: number; // 0-100, latest-attempt accuracy for this skill
+  evidenceCount: number;
+  evidenceSources: EvidenceSourceSummary[];
+  multiFormatPassed: boolean; // >= 2 distinct formats, each at >= minimum format accuracy
+  retentionRate: number; // 0-100
+  retentionPassed: boolean; // retention rate >= retentionThreshold (80%)
   status: MasteryStatus;
   competencies: CompetencyProgress[];
   practiceRoute: string;

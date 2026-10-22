@@ -14,6 +14,7 @@ import {
   Layers,
   Award,
   Zap,
+  Database,
 } from 'lucide-react';
 import { JlptLevel } from '../../services/JlptReadinessService';
 import { MasterySkill, MasteryStatus } from '../../types/mastery';
@@ -402,10 +403,10 @@ export const JlptSkillMatrixView: React.FC<JlptSkillMatrixViewProps> = ({
                 <div className="text-muted-foreground">
                   {currentSkillData.multiFormatPassed
                     ? language === 'ja'
-                      ? '2形式以上確認済 (達成)'
+                      ? '2形式以上、各80%+ (達成)'
                       : language === 'en'
-                        ? '2+ formats confirmed'
-                        : '2+ formatda tasdiqlangan'
+                        ? '2+ formats, each ≥80%'
+                        : '2+ format, har biri ≥80%'
                     : language === 'ja'
                       ? '他形式の演習が必要'
                       : language === 'en'
@@ -434,12 +435,13 @@ export const JlptSkillMatrixView: React.FC<JlptSkillMatrixViewProps> = ({
                       : 'Xotirada Saqlanish'}
                 </div>
                 <div className="font-semibold text-muted-foreground">
+                  {currentSkillData.retentionRate}% (mezon: 80%+) —{' '}
                   {currentSkillData.retentionPassed
                     ? language === 'ja'
-                      ? '安定 (80%+)'
+                      ? '安定'
                       : language === 'en'
-                        ? 'Stable (80%+)'
-                        : 'Barqaror (80%+)'
+                        ? 'Stable'
+                        : 'Barqaror'
                     : language === 'ja'
                       ? '復習を推奨'
                       : language === 'en'
@@ -448,6 +450,56 @@ export const JlptSkillMatrixView: React.FC<JlptSkillMatrixViewProps> = ({
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Evidence Sources */}
+          <div className="rounded-xl border border-border bg-card p-3.5">
+            <div className="flex items-center gap-2">
+              <Database size={15} className="text-primary" />
+              <h5 className="text-xs font-black uppercase tracking-wider text-muted-foreground">
+                {language === 'ja'
+                  ? '証拠ソース (Evidence)'
+                  : language === 'en'
+                    ? 'Evidence Sources'
+                    : 'Evidence Manbalari'}
+              </h5>
+            </div>
+            {currentSkillData.evidenceSources.length === 0 ? (
+              <p className="mt-2 text-xs text-muted-foreground">
+                {language === 'ja'
+                  ? 'まだ証拠がありません。'
+                  : language === 'en'
+                    ? 'No scored evidence recorded yet.'
+                    : 'Hali baholangan evidence mavjud emas.'}
+              </p>
+            ) : (
+              <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                {currentSkillData.evidenceSources.map((source) => (
+                  <div
+                    key={`${source.source}-${source.format}`}
+                    className="rounded-lg border border-border/70 bg-muted/20 px-2.5 py-2 text-[11px]"
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="font-bold text-foreground">{source.source}</span>
+                      <span className="rounded bg-muted px-1.5 py-0.5 text-[9px] font-bold uppercase">
+                        {source.format}
+                      </span>
+                    </div>
+                    <div className="mt-1 text-muted-foreground">
+                      {source.count} ta natija
+                      {source.accuracy !== null ? ` · ${source.accuracy}%` : ''}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+            <p className="mt-2 text-[10px] text-muted-foreground">
+              {language === 'ja'
+                ? `直近${5}回の結果を優先して計算。`
+                : language === 'en'
+                  ? 'Computed from the latest 5 scored attempts.'
+                  : "So'nggi 5 ta baholangan urinish asosida hisoblanadi."}
+            </p>
           </div>
 
           {/* Sub-competencies Table / Cards */}
@@ -508,11 +560,21 @@ export const JlptSkillMatrixView: React.FC<JlptSkillMatrixViewProps> = ({
                       </div>
                       <div className="mt-1.5 flex items-center justify-between text-[10px] text-muted-foreground">
                         <span>{comp.benchmarkRule}</span>
-                        {comp.formatsTested.length > 0 && (
-                          <span className="rounded bg-muted px-1.5 py-0.5 text-[9px] font-bold">
-                            {comp.formatsTested.join(', ')}
+                        <span className="rounded bg-muted px-1.5 py-0.5 text-[9px] font-bold">
+                          {comp.evidenceCount} evidence
+                        </span>
+                      </div>
+                      <div className="mt-1 flex flex-wrap items-center gap-1 text-[9px] text-muted-foreground">
+                        {comp.formatsTested.map((format) => (
+                          <span key={format} className="rounded bg-muted px-1.5 py-0.5 font-bold">
+                            {format}
                           </span>
-                        )}
+                        ))}
+                        {comp.evidenceSources.map((source) => (
+                          <span key={source} className="rounded border border-border px-1.5 py-0.5">
+                            {source}
+                          </span>
+                        ))}
                       </div>
                     </div>
                   </div>

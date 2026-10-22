@@ -159,8 +159,8 @@ Ushbu faylda loyihadagi aniqlangan kamchiliklar, tuzatilishi kerak bo'lgan xatol
 > Mavzuni shunchaki ko‘rib chiqish emas, balki to‘liq o‘zlashtirilganini (mastered) tasdiqlovchi mezonlar:
 
 - [x] **Aniqlik mezoni (80–90% accuracy):** Test va mashqlarda doimiy ravishda 80–90% (85% standart threshold) talab qilish (`MasteryEngine.ts` va `SkillMatrixService.ts`).
-- [x] **Ko‘p formatli tasdiqlash (Multi-format testing):** Har bir mavzu bo‘yicha kamida 2–3 marta turli xil formatda (test, listening, gap tuzish, tarjima) to‘g‘ri javob berilganini tekshirish (`multiFormatPassed` validatsiyasi).
-- [x] **Spaced repetition retention (Vaqt sinovidan o‘tish):** SRS tizimi orqali vaqt o‘tgach takrorlanganda ham esda saqlanganligini (retention >= 80%) tasdiqlash (`retentionPassed`).
+- [x] **Ko‘p formatli tasdiqlash (Multi-format testing):** Har bir mavzu bo‘yicha kamida 2 xil formatda (test, listening, gap tuzish, tarjima) va **har bir formatda kamida 80% aniqlik** bilan javob berilganini tekshirish (`multiFormatPassed` validatsiyasi).
+- [x] **Spaced repetition retention (Vaqt sinovidan o‘tish):** SRS tizimi orqali vaqt o‘tgach takrorlanganda ham esda saqlanganligini (`retention >= 80%`) tasdiqlash. Kodda yagona manba: `MASTERY_CONFIG.retentionThreshold = 80` (`MasteryEngine.ts`), `SkillMatrixService` shu qiymatdan foydalanadi.
 - [x] **Kontekstda amaliy qo‘llay olish:** O‘rganilgan so‘z yoki qoidani real gaplar kontekstida to‘g‘ri qo‘llash va xatosiz tushunishni baholash (`JlptSkillMatrixView.tsx`).
 
 ### 3-bosqich: Kengroq savol banki va yangi savol turlari
