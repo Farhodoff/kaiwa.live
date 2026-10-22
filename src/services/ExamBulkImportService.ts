@@ -1,3 +1,10 @@
+/**
+ * ExamBulkImportService
+ *
+ * Core engine for parsing, validating, sanitizing, and persisting bulk JLPT exams
+ * from CSV, JSON, and PDF sources with draft-only enforcement.
+ */
+
 import { supabase } from '../lib/supabase';
 import { sanitizeErrorMessage } from '../components/ErrorBoundary';
 import { ExamImportHistoryService, type ImportActor } from './ExamImportHistoryService';
