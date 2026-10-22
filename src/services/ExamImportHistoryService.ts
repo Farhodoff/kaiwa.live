@@ -1,3 +1,10 @@
+/**
+ * ExamImportHistoryService
+ *
+ * Tracks batch import events, JSON snapshot exports, and point-in-time
+ * rollback capabilities for question batches.
+ */
+
 import { supabase } from '../lib/supabase';
 import { isAdminEmail } from '../utils/admin';
 import { sanitizeErrorMessage } from '../components/ErrorBoundary';
