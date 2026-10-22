@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
 import { Button } from '../../components/ui/Button';
@@ -8,6 +8,7 @@ import {
   Loader2,
   List,
   FileText,
+  BookOpen,
   Headphones,
   Mic,
   PenTool,
@@ -24,11 +25,19 @@ import {
   Send,
   ShieldCheck,
   CornerDownLeft,
+  Shield,
+  History,
 } from 'lucide-react';
 import { useStudyData } from '../../context/StudyPlannerContext';
 import { isAdminEmail, isUserAdmin } from '../../utils/admin';
+import {
+  blockingLegalGates,
+  evaluateLegalGates,
+  type LegalGateField,
+} from '../../utils/examLegalGates';
 import { toast } from '../../hooks/use-toast';
 import { ExamBulkImportModal } from '../../components/admin/ExamBulkImportModal';
+import { ExamImportHistoryModal } from '../../components/admin/ExamImportHistoryModal';
 import { ReadingPassageEditor } from '../../components/admin/ReadingPassageEditor';
 import { ListeningAudioEditor } from '../../components/admin/ListeningAudioEditor';
 import { ReadingPassageService } from '../../services/ReadingPassageService';
@@ -41,15 +50,36 @@ import {
   QuestionWorkflowStatus,
   PrePublishValidationResult,
 } from '../../services/ExamWorkflowService';
+import {
+  type ExamLicenseType,
+  LICENSE_CONFIG,
+  normalizeLicenseType,
+  validateJlptOfficialStatus,
+} from '../../types/examMetadata';
+import { JlptQuestionPreview } from '../../components/jlpt/JlptQuestionPreview';
+import {
+  buildJlptQuestionPayload,
+  getDefaultQuestionTypeForSection,
+  getJlptQuestionTypeDefinition,
+  getQuestionTypesForSection,
+  normalizeJlptQuestionType,
+  type JlptQuestionType,
+} from '../../types/jlptQuestionType';
 
 interface QuestionFormData {
   question_text: string;
   type: 'multiple_choice' | 'true_false' | 'short_answer';
+  question_type: JlptQuestionType;
   options: string[];
   correct_answer: string;
   explanation: string;
   passage_id?: string | null;
   listening_audio_id?: string | null;
+  fragments: string[];
+  correct_order: number[];
+  star_position: number;
+  prefix: string;
+  suffix: string;
 }
 
 export const QuestionEditor: React.FC = () => {
@@ -68,11 +98,17 @@ export const QuestionEditor: React.FC = () => {
   const [questionForm, setQuestionForm] = useState<QuestionFormData>({
     question_text: '',
     type: 'multiple_choice',
+    question_type: 'vocabulary_meaning',
     options: ['', '', '', ''],
     correct_answer: '',
     explanation: '',
     passage_id: null,
     listening_audio_id: null,
+    fragments: ['', '', '', ''],
+    correct_order: [0, 1, 2, 3],
+    star_position: 3,
+    prefix: '',
+    suffix: '',
   });
   const [savingQuestion, setSavingQuestion] = useState(false);
 
@@ -82,6 +118,7 @@ export const QuestionEditor: React.FC = () => {
 
   // Bulk Import state (sectionId)
   const [showBulkModal, setShowBulkModal] = useState<string | null>(null);
+  const [showImportHistory, setShowImportHistory] = useState(false);
 
   // Question Rejection Modal State
   const [rejectingQuestionId, setRejectingQuestionId] = useState<string | null>(null);
@@ -94,6 +131,44 @@ export const QuestionEditor: React.FC = () => {
   const [isValidating, setIsValidating] = useState(false);
   const [isPublishing, setIsPublishing] = useState(false);
 
+  // Metadata Modal State (Task 7)
+  const [showMetadataModal, setShowMetadataModal] = useState(false);
+  const [metaSourceName, setMetaSourceName] = useState('');
+  const [metaSourceUrl, setMetaSourceUrl] = useState('');
+  const [metaAuthor, setMetaAuthor] = useState('');
+  const [metaLicenseType, setMetaLicenseType] = useState<ExamLicenseType>('original');
+  const [metaCopyrightConfirmed, setMetaCopyrightConfirmed] = useState(false);
+  const [metaIsOfficialJlpt, setMetaIsOfficialJlpt] = useState(false);
+
+  // Task 18: live legal / metadata checklist for the metadata form.
+  const metadataLegalGates = useMemo(
+    () =>
+      evaluateLegalGates({
+        copyrightConfirmed: metaCopyrightConfirmed,
+        licenseType: metaLicenseType,
+        sourceName: metaSourceName,
+        sourceUrl: metaSourceUrl,
+        author: metaAuthor,
+        isOfficialJlpt: metaIsOfficialJlpt,
+        title: exam?.title,
+      }),
+    [
+      metaCopyrightConfirmed,
+      metaLicenseType,
+      metaSourceName,
+      metaSourceUrl,
+      metaAuthor,
+      metaIsOfficialJlpt,
+      exam?.title,
+    ],
+  );
+  const missingMetadataFields = useMemo(
+    () => Array.from(new Set(blockingLegalGates(metadataLegalGates).map((g) => g.field))),
+    [metadataLegalGates],
+  );
+  const isMetadataFieldMissing = (field: LegalGateField) => missingMetadataFields.includes(field);
+  const [savingMetadata, setSavingMetadata] = useState(false);
+
   const fetchExamDetails = async () => {
     try {
       const { data: examData, error: examErr } = await supabase
@@ -103,6 +178,15 @@ export const QuestionEditor: React.FC = () => {
         .single();
       if (examErr) console.error('Error fetching exam:', examErr);
       setExam(examData);
+
+      if (examData) {
+        setMetaSourceName(examData.source_name || '');
+        setMetaSourceUrl(examData.source_url || '');
+        setMetaAuthor(examData.author || '');
+        setMetaLicenseType(normalizeLicenseType(examData.license_type));
+        setMetaCopyrightConfirmed(Boolean(examData.copyright_confirmed));
+        setMetaIsOfficialJlpt(Boolean(examData.is_official_jlpt));
+      }
 
       const { data: sectionsData, error: secErr } = await supabase
         .from('exam_sections')
@@ -156,8 +240,11 @@ export const QuestionEditor: React.FC = () => {
     }
   };
 
+  // Task 17: publishing is admin-only (reviewers may import and review).
+  const isAdminUser = isUserAdmin(user) || isAdminEmail(user?.email, (user as any)?.role);
+
   useEffect(() => {
-    if (isUserAdmin(user) || isAdminEmail(user?.email, (user as any)?.role)) {
+    if (isAdminUser) {
       fetchExamDetails();
     } else {
       setLoading(false);
@@ -170,7 +257,9 @@ export const QuestionEditor: React.FC = () => {
         ? 'Dokkai (読解) Part 1'
         : type === 'Listening'
           ? 'Choukai (聴解) Part 1'
-          : `${type} Part 1`;
+          : type === 'Knowledge'
+            ? 'Gengo Chishiki (言語知識) Part 1'
+            : `${type} Part 1`;
     const title = prompt(`${type} bo'limi uchun nom kiriting:`, defaultTitle);
     if (!title) return;
 
@@ -270,6 +359,27 @@ export const QuestionEditor: React.FC = () => {
       });
       return;
     }
+
+    const isOrdering = questionForm.question_type === 'sentence_ordering';
+    const rawFragments = questionForm.fragments.map((fragment) => fragment.trim());
+    const fragments = rawFragments.filter(Boolean);
+    const correctOrder = questionForm.correct_order;
+    if (isOrdering) {
+      if (
+        rawFragments.some((fragment) => !fragment) ||
+        fragments.length !== 4 ||
+        new Set(correctOrder).size !== 4 ||
+        correctOrder.some((index) => index < 0 || index > 3)
+      ) {
+        toast({
+          variant: 'destructive',
+          title: 'Gap tartibi xatosi',
+          description: "4 ta fragment va 1-4 oralig'idagi takrorlanmas tartib kiriting.",
+        });
+        return;
+      }
+    }
+
     setSavingQuestion(true);
     try {
       const existingQuestions = sectionQuestions[sectionId] || [];
@@ -296,17 +406,42 @@ export const QuestionEditor: React.FC = () => {
             : (sectionAudios[0]?.id ?? null)
           : null;
 
+      const starIndex = isOrdering
+        ? correctOrder[Math.min(Math.max(questionForm.star_position, 1), 4) - 1]
+        : -1;
+      const optionsForStorage = isOrdering
+        ? rawFragments
+        : questionForm.type === 'multiple_choice'
+          ? questionForm.options.filter((option) => option.trim())
+          : null;
+      const correctAnswer = isOrdering ? fragments[starIndex] || '' : questionForm.correct_answer;
+      const correctIndex = isOrdering
+        ? starIndex
+        : optionsForStorage
+          ? (optionsForStorage as string[]).indexOf(correctAnswer)
+          : -1;
+      const questionPayload = buildJlptQuestionPayload({
+        type: questionForm.question_type,
+        options: optionsForStorage || [],
+        correctAnswer,
+        correctIndex,
+        fragments: isOrdering ? fragments : undefined,
+        correctOrder: isOrdering ? correctOrder : undefined,
+        starPosition: isOrdering ? questionForm.star_position : undefined,
+        prefix: questionForm.prefix,
+        suffix: questionForm.suffix,
+      });
+
       const { error } = await supabase.from('exam_questions').insert({
         section_id: sectionId,
         passage_id: resolvedPassageId,
         listening_audio_id: resolvedAudioId,
         question_text: questionForm.question_text,
         type: questionForm.type,
-        options:
-          questionForm.type === 'multiple_choice'
-            ? questionForm.options.filter((o) => o.trim())
-            : null,
-        correct_answer: questionForm.correct_answer,
+        question_type: questionForm.question_type,
+        question_payload: questionPayload,
+        options: optionsForStorage,
+        correct_answer: correctAnswer,
         explanation: questionForm.explanation || null,
         order_index: existingQuestions.length,
       });
@@ -315,11 +450,17 @@ export const QuestionEditor: React.FC = () => {
       setQuestionForm({
         question_text: '',
         type: 'multiple_choice',
+        question_type: getDefaultQuestionTypeForSection(section?.type),
         options: ['', '', '', ''],
         correct_answer: '',
         explanation: '',
         passage_id: null,
         listening_audio_id: null,
+        fragments: ['', '', '', ''],
+        correct_order: [0, 1, 2, 3],
+        star_position: 3,
+        prefix: '',
+        suffix: '',
       });
       if (!keepOpen) {
         setShowQuestionForm(null);
@@ -395,6 +536,7 @@ export const QuestionEditor: React.FC = () => {
         targetStatus,
         user?.email,
         comment,
+        (user as any)?.role,
       );
       fetchExamDetails();
       toast({
@@ -413,7 +555,11 @@ export const QuestionEditor: React.FC = () => {
   const handleBulkApprove = async (qIds: string[]) => {
     if (!qIds.length) return;
     try {
-      const res = await ExamWorkflowService.bulkTransitionQuestions(qIds, 'approved', user?.email);
+      const res = await ExamWorkflowService.bulkApproveQuestions(
+        qIds,
+        user?.email,
+        (user as any)?.role,
+      );
       fetchExamDetails();
       toast({
         title: '✅ Ommaviy Tasdiqlandi',
@@ -433,7 +579,13 @@ export const QuestionEditor: React.FC = () => {
 
   const handleExamStatusChange = async (targetStatus: ExamWorkflowStatus) => {
     try {
-      await ExamWorkflowService.transitionExamStatus(exam.id, targetStatus, user?.email);
+      await ExamWorkflowService.transitionExamStatus(
+        exam.id,
+        targetStatus,
+        user?.email,
+        undefined,
+        (user as any)?.role,
+      );
       fetchExamDetails();
       toast({
         title: 'Status yangilandi',
@@ -474,7 +626,13 @@ export const QuestionEditor: React.FC = () => {
     if (!exam?.id) return;
     setIsPublishing(true);
     try {
-      await ExamWorkflowService.transitionExamStatus(exam.id, 'published', user?.email);
+      await ExamWorkflowService.transitionExamStatus(
+        exam.id,
+        'published',
+        user?.email,
+        undefined,
+        (user as any)?.role,
+      );
       setShowValidationModal(false);
       fetchExamDetails();
       toast({
@@ -500,11 +658,14 @@ export const QuestionEditor: React.FC = () => {
     )
       return;
     try {
-      await ExamWorkflowService.transitionExamStatus(exam.id, 'draft', user?.email);
+      // Task 19: published -> draft is forbidden. The only legal way back is
+      // published -> archived -> draft, and both steps are audited.
+      await ExamWorkflowService.archiveExam(exam.id, user?.email, (user as any)?.role);
+      await ExamWorkflowService.restoreExam(exam.id, user?.email, (user as any)?.role);
       fetchExamDetails();
       toast({
         title: 'Qoralama holatiga o‘tkazildi',
-        description: 'Imtihon endi talabalar ro‘yxatida ko‘rinmaydi.',
+        description: 'Imtihon arxivga o‘tkazildi va qoralama (draft) holatiga qaytarildi.',
       });
     } catch (err: any) {
       toast({
@@ -512,6 +673,72 @@ export const QuestionEditor: React.FC = () => {
         title: 'Xatolik',
         description: err?.message,
       });
+    }
+  };
+
+  const handleSaveMetadata = async () => {
+    if (!exam?.id) return;
+    if (metaIsOfficialJlpt) {
+      const officialCheck = validateJlptOfficialStatus({
+        isOfficialJlpt: true,
+        sourceName: metaSourceName.trim(),
+        title: exam.title,
+      });
+      if (!officialCheck.isValid) {
+        toast({
+          variant: 'destructive',
+          title: 'Rasmiy JLPT xatoligi',
+          description: officialCheck.error,
+        });
+        return;
+      }
+    }
+
+    setSavingMetadata(true);
+    try {
+      await ExamWorkflowService.updateExamSourceLicense(exam.id, {
+        sourceName: metaSourceName.trim() || undefined,
+        sourceUrl: metaSourceUrl.trim() || undefined,
+        author: metaAuthor.trim() || undefined,
+        licenseType: metaLicenseType,
+        copyrightConfirmed: metaCopyrightConfirmed,
+        isOfficialJlpt: metaIsOfficialJlpt,
+      });
+      setShowMetadataModal(false);
+      fetchExamDetails();
+      const stillMissing = blockingLegalGates(
+        evaluateLegalGates({
+          copyrightConfirmed: metaCopyrightConfirmed,
+          licenseType: metaLicenseType,
+          sourceName: metaSourceName,
+          sourceUrl: metaSourceUrl,
+          author: metaAuthor,
+          isOfficialJlpt: metaIsOfficialJlpt,
+          title: exam?.title,
+        }),
+      );
+      if (stillMissing.length > 0) {
+        toast({
+          variant: 'destructive',
+          title: 'Saqlandi, lekin publishga tayyor emas',
+          description: `Yetishmayotgan maydonlar: ${Array.from(
+            new Set(stillMissing.map((gate) => gate.label)),
+          ).join(', ')}`,
+        });
+      } else {
+        toast({
+          title: '✅ Saqlandi',
+          description: 'Manba va litsenziya metadatalari muvaffaqiyatli yangilandi.',
+        });
+      }
+    } catch (err: any) {
+      toast({
+        variant: 'destructive',
+        title: 'Xatolik',
+        description: err?.message || 'Metadatalarni saqlashda xatolik yuz berdi.',
+      });
+    } finally {
+      setSavingMetadata(false);
     }
   };
 
@@ -559,10 +786,86 @@ export const QuestionEditor: React.FC = () => {
             <h1 className="mt-1 text-2xl font-extrabold text-slate-900 dark:text-white">
               {exam.title}
             </h1>
+
+            {/* Source & License Metadata Bar (Task 7) */}
+            <div className="mt-2 flex flex-wrap items-center gap-2 text-xs">
+              {exam.is_official_jlpt ? (
+                <span className="rounded-lg border border-rose-500/20 bg-rose-500/10 px-2 py-0.5 font-bold text-rose-700 dark:text-rose-400">
+                  🏛️ Rasmiy JLPT
+                </span>
+              ) : (
+                <span className="rounded-lg border border-slate-200 bg-slate-100 px-2 py-0.5 font-medium text-slate-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400">
+                  Amaliyot / Mock
+                </span>
+              )}
+
+              {(() => {
+                const licType = normalizeLicenseType(exam.license_type);
+                const licMeta = LICENSE_CONFIG[licType];
+                return (
+                  <span
+                    className={`rounded-lg border px-2 py-0.5 font-bold ${licMeta.badgeClass}`}
+                    title={licMeta.description}
+                  >
+                    {licMeta.shortLabel}
+                  </span>
+                );
+              })()}
+
+              {exam.source_name ? (
+                <span className="flex items-center gap-1 font-semibold text-slate-600 dark:text-slate-300">
+                  <span>Manba:</span>
+                  {exam.source_url ? (
+                    <a
+                      href={exam.source_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-indigo-600 hover:underline dark:text-indigo-400"
+                    >
+                      {exam.source_name}
+                    </a>
+                  ) : (
+                    <span>{exam.source_name}</span>
+                  )}
+                </span>
+              ) : (
+                <span className="text-slate-400 dark:text-slate-500">Manba: Ko'rsatilmagan</span>
+              )}
+
+              {exam.author && (
+                <span className="text-slate-500 dark:text-slate-400">• Muallif: {exam.author}</span>
+              )}
+
+              {exam.copyright_confirmed ? (
+                <span className="rounded-lg bg-emerald-50 px-2 py-0.5 text-[11px] font-bold text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400">
+                  ✓ Copyright tasdiqlangan
+                </span>
+              ) : (
+                <span className="rounded-lg bg-amber-50 px-2 py-0.5 text-[11px] font-bold text-amber-700 dark:bg-amber-950/40 dark:text-amber-400">
+                  ⚠️ Copyright tasdiqlanmagan
+                </span>
+              )}
+
+              <button
+                type="button"
+                onClick={() => setShowMetadataModal(true)}
+                className="ml-1 inline-flex items-center gap-1 rounded-lg border border-slate-200 px-2 py-0.5 text-[11px] font-bold text-indigo-600 hover:bg-indigo-50 dark:border-slate-700 dark:text-indigo-400 dark:hover:bg-indigo-950/40"
+              >
+                <Edit3 className="h-3 w-3" /> Metadatani tahrirlash
+              </button>
+            </div>
           </div>
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
+          <Button
+            variant="outline"
+            onClick={() => setShowImportHistory(true)}
+            className="gap-2 rounded-xl text-xs font-bold"
+          >
+            <History className="h-4 w-4" /> Import tarixi
+          </Button>
+
           <Button
             variant="outline"
             onClick={() => navigate(`/exams/${exam.id}`)}
@@ -689,7 +992,15 @@ export const QuestionEditor: React.FC = () => {
         <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-slate-500">
           <Sparkles className="h-4 w-4 text-indigo-500" /> Bo'lim Qo'shish (Sections):
         </div>
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
+          <Button
+            variant="outline"
+            className="justify-start gap-2 bg-white hover:border-amber-500 dark:bg-slate-900"
+            onClick={() => handleAddSection('Knowledge')}
+          >
+            <BookOpen className="h-4 w-4 text-amber-500" />
+            <span>+ Knowledge (言語知識)</span>
+          </Button>
           <Button
             variant="outline"
             className="justify-start gap-2 bg-white hover:border-emerald-500 dark:bg-slate-900"
@@ -745,7 +1056,7 @@ export const QuestionEditor: React.FC = () => {
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  {(section.type === 'Reading' || section.type === 'Listening') && (
+                  {section.type !== 'Writing' && section.type !== 'Speaking' && (
                     <>
                       <Button
                         variant="outline"
@@ -758,7 +1069,13 @@ export const QuestionEditor: React.FC = () => {
                       <Button
                         size="sm"
                         className="gap-1 rounded-xl bg-indigo-600 text-xs font-bold text-white hover:bg-indigo-700"
-                        onClick={() => setShowQuestionForm(section.id)}
+                        onClick={() => {
+                          setShowQuestionForm(section.id);
+                          setQuestionForm((form) => ({
+                            ...form,
+                            question_type: getDefaultQuestionTypeForSection(section.type),
+                          }));
+                        }}
                       >
                         <Plus className="h-4 w-4" /> Savol Qo'shish
                       </Button>
@@ -863,8 +1180,8 @@ export const QuestionEditor: React.FC = () => {
                 )}
               </div>
 
-              {/* Reading/Listening Questions List */}
-              {(section.type === 'Reading' || section.type === 'Listening') && (
+              {/* Knowledge/Reading/Listening Questions List */}
+              {section.type !== 'Writing' && section.type !== 'Speaking' && (
                 <div className="space-y-3 border-t border-slate-100 pt-3 dark:border-slate-800">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
@@ -913,7 +1230,7 @@ export const QuestionEditor: React.FC = () => {
                                   {idx + 1}.
                                 </span>
                                 <div>
-                                  <div className="mb-1">
+                                  <div className="mb-1 flex flex-wrap items-center gap-1.5">
                                     <span
                                       className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-bold ${qStatusMeta.badgeClass}`}
                                     >
@@ -921,6 +1238,12 @@ export const QuestionEditor: React.FC = () => {
                                         className={`h-1.5 w-1.5 rounded-full ${qStatusMeta.dotColor}`}
                                       />
                                       {qStatusMeta.label}
+                                    </span>
+                                    <span className="inline-flex items-center rounded-full border border-indigo-200 bg-indigo-50 px-2 py-0.5 text-[10px] font-bold text-indigo-700 dark:border-indigo-900 dark:bg-indigo-950/40 dark:text-indigo-300">
+                                      {
+                                        getJlptQuestionTypeDefinition(q.question_type, section.type)
+                                          .labelUz
+                                      }
                                     </span>
                                   </div>
                                   <p className="text-sm font-bold leading-snug text-slate-900 dark:text-white">
@@ -930,7 +1253,18 @@ export const QuestionEditor: React.FC = () => {
                               </div>
 
                               <div className="flex items-center gap-1.5 self-end sm:self-auto">
-                                {qStatus !== 'approved' && (
+                                {qStatus === 'draft' && (
+                                  <button
+                                    onClick={() => handleQuestionStatusChange(q.id, 'review')}
+                                    className="inline-flex items-center gap-1 rounded-lg border border-blue-500/30 bg-white px-2 py-1 text-[11px] font-bold text-blue-600 shadow-sm transition hover:bg-blue-600 hover:text-white dark:bg-slate-900 dark:text-blue-400 dark:hover:bg-blue-600"
+                                    title="Savolni reviewga yuborish"
+                                    data-testid={`review-btn-${q.id}`}
+                                  >
+                                    <Send className="h-3.5 w-3.5" /> Reviewga
+                                  </button>
+                                )}
+
+                                {qStatus === 'review' && (
                                   <button
                                     onClick={() => handleQuestionStatusChange(q.id, 'approved')}
                                     className="inline-flex items-center gap-1 rounded-lg border border-emerald-500/30 bg-white px-2 py-1 text-[11px] font-bold text-emerald-600 shadow-sm transition hover:bg-emerald-600 hover:text-white dark:bg-slate-900 dark:text-emerald-400 dark:hover:bg-emerald-600"
@@ -941,7 +1275,7 @@ export const QuestionEditor: React.FC = () => {
                                   </button>
                                 )}
 
-                                {qStatus !== 'rejected' && (
+                                {qStatus === 'review' && (
                                   <button
                                     onClick={() => {
                                       setRejectingQuestionId(q.id);
@@ -974,10 +1308,10 @@ export const QuestionEditor: React.FC = () => {
                                     Qaytarish izohi:
                                   </span>
                                   <button
-                                    onClick={() => handleQuestionStatusChange(q.id, 'review')}
+                                    onClick={() => handleQuestionStatusChange(q.id, 'draft')}
                                     className="text-[11px] font-bold text-indigo-600 hover:underline dark:text-indigo-400"
                                   >
-                                    Tuzatildi ➔ Reviewga yuborish
+                                    Tuzatildi ➔ Qoralamaga qaytarish
                                   </button>
                                 </div>
                                 <p className="mt-1 font-medium">{q.rejection_comment}</p>
@@ -1136,6 +1470,187 @@ export const QuestionEditor: React.FC = () => {
                     />
                   </div>
 
+                  {(() => {
+                    const definition = getJlptQuestionTypeDefinition(
+                      questionForm.question_type,
+                      section.type,
+                    );
+                    const isOrdering = definition.answerMode === 'sentence_ordering';
+                    const fragments = questionForm.fragments.map((fragment) => fragment.trim());
+                    const correctOrder = questionForm.correct_order;
+                    const starIndex =
+                      correctOrder[Math.min(Math.max(questionForm.star_position, 1), 4) - 1] ?? -1;
+                    const optionsForPreview = isOrdering
+                      ? fragments
+                      : questionForm.options.filter((option) => option.trim());
+                    const correctAnswerPreview = isOrdering
+                      ? fragments[starIndex] || ''
+                      : questionForm.correct_answer;
+                    const correctIndexPreview = isOrdering
+                      ? starIndex
+                      : optionsForPreview.indexOf(correctAnswerPreview);
+                    const previewPayload = buildJlptQuestionPayload({
+                      type: questionForm.question_type,
+                      options: optionsForPreview,
+                      correctAnswer: correctAnswerPreview,
+                      correctIndex: correctIndexPreview,
+                      fragments: isOrdering ? fragments : undefined,
+                      correctOrder: isOrdering ? correctOrder : undefined,
+                      starPosition: isOrdering ? questionForm.star_position : undefined,
+                      prefix: questionForm.prefix,
+                      suffix: questionForm.suffix,
+                    });
+
+                    return (
+                      <>
+                        <div>
+                          <label className="mb-1 block text-xs font-bold text-slate-500">
+                            Savol Turi (N3-N1 schema) *
+                          </label>
+                          <select
+                            value={questionForm.question_type}
+                            onChange={(e) =>
+                              setQuestionForm((form) => ({
+                                ...form,
+                                question_type: normalizeJlptQuestionType(
+                                  e.target.value,
+                                  section.type,
+                                ),
+                              }))
+                            }
+                            className="w-full rounded-xl border border-slate-200 bg-white p-2.5 text-xs font-semibold outline-none focus:ring-2 focus:ring-indigo-500 dark:border-slate-700 dark:bg-slate-900"
+                            data-testid="question-form-type-select"
+                          >
+                            {getQuestionTypesForSection(section.type).map((type) => (
+                              <option key={type.type} value={type.type}>
+                                {type.labelUz} — {type.labelJa} ({type.shortLabel})
+                              </option>
+                            ))}
+                          </select>
+                          <p className="mt-1 text-[11px] text-slate-500 dark:text-slate-400">
+                            {definition.instructionUz}
+                          </p>
+                        </div>
+
+                        {isOrdering ? (
+                          <div className="space-y-3 rounded-2xl border border-amber-200 bg-amber-50/60 p-3 dark:border-amber-900/60 dark:bg-amber-950/20">
+                            <div className="grid gap-2 sm:grid-cols-2">
+                              {questionForm.fragments.map((fragment, index) => (
+                                <input
+                                  key={index}
+                                  value={fragment}
+                                  onChange={(e) => {
+                                    const next = [...questionForm.fragments];
+                                    next[index] = e.target.value;
+                                    setQuestionForm((form) => ({
+                                      ...form,
+                                      fragments: next,
+                                    }));
+                                  }}
+                                  placeholder={`Fragment ${index + 1}`}
+                                  className="rounded-xl border border-slate-200 bg-white p-2.5 text-sm outline-none dark:border-slate-700 dark:bg-slate-900"
+                                />
+                              ))}
+                            </div>
+                            <div className="grid gap-3 sm:grid-cols-2">
+                              <div>
+                                <label className="mb-1 block text-[11px] font-bold text-slate-500">
+                                  To‘g‘ri tartib (har bir slot uchun fragment raqami)
+                                </label>
+                                <div className="flex gap-2">
+                                  {questionForm.correct_order.map((value, index) => (
+                                    <select
+                                      key={index}
+                                      value={value + 1}
+                                      onChange={(e) => {
+                                        const next = [...questionForm.correct_order];
+                                        next[index] = Number(e.target.value) - 1;
+                                        setQuestionForm((form) => ({
+                                          ...form,
+                                          correct_order: next,
+                                        }));
+                                      }}
+                                      className="flex-1 rounded-lg border border-slate-200 bg-white p-2 text-xs font-bold dark:border-slate-700 dark:bg-slate-900"
+                                    >
+                                      {[1, 2, 3, 4].map((number) => (
+                                        <option key={number} value={number}>
+                                          {number}
+                                        </option>
+                                      ))}
+                                    </select>
+                                  ))}
+                                </div>
+                              </div>
+                              <div>
+                                <label className="mb-1 block text-[11px] font-bold text-slate-500">
+                                  ★ Yulduzcha o‘rni
+                                </label>
+                                <select
+                                  value={questionForm.star_position}
+                                  onChange={(e) =>
+                                    setQuestionForm((form) => ({
+                                      ...form,
+                                      star_position: Number(e.target.value),
+                                    }))
+                                  }
+                                  className="w-full rounded-lg border border-slate-200 bg-white p-2 text-xs font-bold dark:border-slate-700 dark:bg-slate-900"
+                                >
+                                  {[1, 2, 3, 4].map((number) => (
+                                    <option key={number} value={number}>
+                                      {number}-o‘rin
+                                    </option>
+                                  ))}
+                                </select>
+                              </div>
+                            </div>
+                            <div className="grid gap-2 sm:grid-cols-2">
+                              <input
+                                value={questionForm.prefix}
+                                onChange={(e) =>
+                                  setQuestionForm((form) => ({
+                                    ...form,
+                                    prefix: e.target.value,
+                                  }))
+                                }
+                                placeholder="Boshlanish (prefix), masalan: 私は"
+                                className="rounded-xl border border-slate-200 bg-white p-2.5 text-sm outline-none dark:border-slate-700 dark:bg-slate-900"
+                              />
+                              <input
+                                value={questionForm.suffix}
+                                onChange={(e) =>
+                                  setQuestionForm((form) => ({
+                                    ...form,
+                                    suffix: e.target.value,
+                                  }))
+                                }
+                                placeholder="Tugash (suffix), masalan: 行きます。"
+                                className="rounded-xl border border-slate-200 bg-white p-2.5 text-sm outline-none dark:border-slate-700 dark:bg-slate-900"
+                              />
+                            </div>
+                          </div>
+                        ) : null}
+
+                        <div className="rounded-2xl border border-slate-200 bg-white p-3 dark:border-slate-700 dark:bg-slate-900">
+                          <p className="mb-2 text-[11px] font-black uppercase tracking-wide text-slate-400">
+                            Preview — {definition.labelUz}
+                          </p>
+                          <JlptQuestionPreview
+                            question={{
+                              question_text: questionForm.question_text || 'Savol matni...',
+                              question_type: questionForm.question_type,
+                              options: optionsForPreview,
+                              correct_answer: correctAnswerPreview,
+                              correct_index: correctIndexPreview,
+                              explanation: questionForm.explanation,
+                              question_payload: previewPayload,
+                            }}
+                            sectionType={section.type}
+                          />
+                        </div>
+                      </>
+                    );
+                  })()}
+
                   {section.type === 'Reading' && (
                     <div>
                       <label className="mb-1 block text-xs font-bold text-slate-600 dark:text-slate-300">
@@ -1192,52 +1707,57 @@ export const QuestionEditor: React.FC = () => {
                     </div>
                   )}
 
-                  {questionForm.type === 'multiple_choice' && (
-                    <div className="space-y-2">
-                      <label className="block text-xs font-bold text-slate-500">
-                        4 ta Variant va To'g'ri javobni tanlang:
-                      </label>
+                  {questionForm.type === 'multiple_choice' &&
+                    questionForm.question_type !== 'sentence_ordering' && (
                       <div className="space-y-2">
-                        {questionForm.options.map((opt, i) => (
-                          <div key={i} className="flex items-center gap-2">
-                            <span className="w-5 text-center text-xs font-bold text-slate-400">
-                              {String.fromCharCode(65 + i)})
-                            </span>
-                            <input
-                              value={opt}
-                              onChange={(e) => {
-                                const newOpts = [...questionForm.options];
-                                const oldVal = newOpts[i];
-                                newOpts[i] = e.target.value;
-                                setQuestionForm((f) => ({
-                                  ...f,
-                                  options: newOpts,
-                                  // Sync correct_answer if this option was the selected one
-                                  correct_answer:
-                                    f.correct_answer === oldVal ? e.target.value : f.correct_answer,
-                                }));
-                              }}
-                              placeholder={`Variant ${String.fromCharCode(65 + i)}`}
-                              className="flex-1 rounded-xl border border-slate-200 bg-white p-2.5 text-sm outline-none dark:border-slate-700 dark:bg-slate-900"
-                            />
-                            <button
-                              type="button"
-                              onClick={() =>
-                                setQuestionForm((f) => ({ ...f, correct_answer: opt }))
-                              }
-                              className={`rounded-xl border px-3 py-2 text-xs font-bold transition ${
-                                questionForm.correct_answer === opt && opt
-                                  ? 'border-green-600 bg-green-600 text-white shadow-sm'
-                                  : 'border-slate-200 bg-white text-slate-500 hover:border-green-400 dark:border-slate-700 dark:bg-slate-800'
-                              }`}
-                            >
-                              {questionForm.correct_answer === opt && opt ? "✓ To'g'ri" : 'Tanlash'}
-                            </button>
-                          </div>
-                        ))}
+                        <label className="block text-xs font-bold text-slate-500">
+                          4 ta Variant va To'g'ri javobni tanlang:
+                        </label>
+                        <div className="space-y-2">
+                          {questionForm.options.map((opt, i) => (
+                            <div key={i} className="flex items-center gap-2">
+                              <span className="w-5 text-center text-xs font-bold text-slate-400">
+                                {String.fromCharCode(65 + i)})
+                              </span>
+                              <input
+                                value={opt}
+                                onChange={(e) => {
+                                  const newOpts = [...questionForm.options];
+                                  const oldVal = newOpts[i];
+                                  newOpts[i] = e.target.value;
+                                  setQuestionForm((f) => ({
+                                    ...f,
+                                    options: newOpts,
+                                    // Sync correct_answer if this option was the selected one
+                                    correct_answer:
+                                      f.correct_answer === oldVal
+                                        ? e.target.value
+                                        : f.correct_answer,
+                                  }));
+                                }}
+                                placeholder={`Variant ${String.fromCharCode(65 + i)}`}
+                                className="flex-1 rounded-xl border border-slate-200 bg-white p-2.5 text-sm outline-none dark:border-slate-700 dark:bg-slate-900"
+                              />
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  setQuestionForm((f) => ({ ...f, correct_answer: opt }))
+                                }
+                                className={`rounded-xl border px-3 py-2 text-xs font-bold transition ${
+                                  questionForm.correct_answer === opt && opt
+                                    ? 'border-green-600 bg-green-600 text-white shadow-sm'
+                                    : 'border-slate-200 bg-white text-slate-500 hover:border-green-400 dark:border-slate-700 dark:bg-slate-800'
+                                }`}
+                              >
+                                {questionForm.correct_answer === opt && opt
+                                  ? "✓ To'g'ri"
+                                  : 'Tanlash'}
+                              </button>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
 
                   <div className="flex flex-wrap gap-2 border-t border-indigo-100 pt-2 dark:border-indigo-900/30">
                     <Button
@@ -1304,8 +1824,23 @@ export const QuestionEditor: React.FC = () => {
           sectionTitle={sections.find((s) => s.id === showBulkModal)?.title}
           examLevel={(exam?.type?.match(/N[1-5]/i)?.[0]?.toUpperCase() as any) || 'N3'}
           existingQuestions={sectionQuestions[showBulkModal] || []}
+          existingPassages={
+            sections.find((s) => s.id === showBulkModal)?.content
+              ? [sections.find((s) => s.id === showBulkModal)!.content as string]
+              : []
+          }
+          currentUserEmail={user?.email}
+          currentUserRole={(user as any)?.role}
         />
       )}
+
+      <ExamImportHistoryModal
+        isOpen={showImportHistory}
+        onClose={() => setShowImportHistory(false)}
+        examId={exam.id}
+        examTitle={exam.title}
+        onChanged={fetchExamDetails}
+      />
 
       {/* Question Rejection Modal (Talab 3 & 4) */}
       {rejectingQuestionId && (
@@ -1500,6 +2035,35 @@ export const QuestionEditor: React.FC = () => {
               </div>
             )}
 
+            {/* Task 18: legal / metadata gates — exactly which field is missing */}
+            {validationResult.legalGates &&
+              blockingLegalGates(validationResult.legalGates).length > 0 && (
+                <div className="space-y-2 rounded-2xl border border-amber-200 bg-amber-50/70 p-4 dark:border-amber-500/20 dark:bg-amber-500/10">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-amber-700 dark:text-amber-400">
+                    <Shield className="h-4 w-4" /> Huquqiy va metadata tekshiruvi — yetishmayotgan
+                    maydonlar:
+                  </div>
+                  <ul className="list-disc space-y-1.5 pl-5 text-xs text-amber-800 dark:text-amber-300">
+                    {blockingLegalGates(validationResult.legalGates).map((gate) => (
+                      <li key={gate.id}>
+                        <b>{gate.label}:</b> {gate.message}
+                      </li>
+                    ))}
+                  </ul>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => {
+                      setShowValidationModal(false);
+                      setShowMetadataModal(true);
+                    }}
+                    className="gap-1 rounded-xl text-xs font-bold"
+                  >
+                    <Shield className="h-3.5 w-3.5" /> Metadata‘ni tahrirlash
+                  </Button>
+                </div>
+              )}
+
             {/* Warnings List */}
             {validationResult.warnings.length > 0 && (
               <div className="space-y-2 rounded-2xl border border-amber-200 bg-amber-50/70 p-4 dark:border-amber-500/20 dark:bg-amber-500/10">
@@ -1538,7 +2102,12 @@ export const QuestionEditor: React.FC = () => {
                 </div>
               )}
 
-            <div className="flex justify-end gap-3 border-t border-slate-100 pt-3 dark:border-slate-800">
+            <div className="flex items-center justify-end gap-3 border-t border-slate-100 pt-3 dark:border-slate-800">
+              {!isAdminUser && (
+                <span className="mr-auto text-xs font-bold text-amber-600 dark:text-amber-400">
+                  Nashr qilish (publish) faqat admin uchun ruxsat etilgan.
+                </span>
+              )}
               <Button
                 variant="outline"
                 onClick={() => setShowValidationModal(false)}
@@ -1548,7 +2117,7 @@ export const QuestionEditor: React.FC = () => {
               </Button>
               <Button
                 onClick={handleExecutePublish}
-                disabled={!validationResult.isValid || isPublishing}
+                disabled={!validationResult.isValid || isPublishing || !isAdminUser}
                 className="gap-2 rounded-xl bg-green-600 px-5 text-xs font-bold text-white shadow-lg hover:bg-green-700 disabled:opacity-50"
               >
                 {isPublishing ? (
@@ -1558,6 +2127,214 @@ export const QuestionEditor: React.FC = () => {
                     <Sparkles className="h-4 w-4" /> Ha, Nashr Qilish 🚀
                   </>
                 )}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Source & License Metadata Edit Modal (Task 7) */}
+      {showMetadataModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
+          onClick={() => setShowMetadataModal(false)}
+        >
+          <div
+            className="w-full max-w-xl rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-slate-100 pb-3 dark:border-slate-800">
+              <div className="flex items-center gap-2 text-base font-extrabold text-slate-900 dark:text-white">
+                <Shield className="h-5 w-5 text-indigo-600" />
+                Manba va Litsenziya Metadatalarini Tahrirlash
+              </div>
+              <button
+                onClick={() => setShowMetadataModal(false)}
+                className="rounded-lg p-1 text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            <div className="mt-4 space-y-4">
+              {/* Task 18: exactly which fields are still missing */}
+              {missingMetadataFields.length > 0 ? (
+                <div className="rounded-2xl border border-amber-200 bg-amber-50 p-3 text-xs text-amber-800 dark:border-amber-900/50 dark:bg-amber-950/30 dark:text-amber-300">
+                  <div className="flex items-center gap-1.5 font-bold">
+                    <Shield className="h-4 w-4 text-amber-600" />
+                    Yetishmayotgan maydonlar:
+                  </div>
+                  <ul className="mt-1.5 list-disc space-y-1 pl-5">
+                    {blockingLegalGates(metadataLegalGates).map((gate) => (
+                      <li key={gate.id}>
+                        <b>{gate.label}:</b> {gate.message}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-3 text-xs font-bold text-emerald-700 dark:border-emerald-900/50 dark:bg-emerald-950/30 dark:text-emerald-300">
+                  ✓ Barcha huquqiy va metadata maydonlari to‘ldirilgan.
+                </div>
+              )}
+
+              <div>
+                <label className="mb-1 block text-xs font-bold text-slate-700 dark:text-slate-300">
+                  Manba nomi (Source Name)
+                </label>
+                <input
+                  value={metaSourceName}
+                  onChange={(e) => setMetaSourceName(e.target.value)}
+                  placeholder="masalan: JLPT Speed Master N3, Nihongo So-matome"
+                  aria-label="Manba nomi (Source Name)"
+                  className={`w-full rounded-xl border bg-white p-2.5 text-xs font-medium text-slate-900 focus:border-indigo-500 focus:outline-none dark:bg-slate-950 dark:text-white ${
+                    isMetadataFieldMissing('source_name')
+                      ? 'border-red-400 dark:border-red-500'
+                      : 'border-slate-200 dark:border-slate-700'
+                  }`}
+                />
+              </div>
+
+              <div>
+                <label className="mb-1 block text-xs font-bold text-slate-700 dark:text-slate-300">
+                  Manba URL havolasi (Source URL)
+                </label>
+                <input
+                  value={metaSourceUrl}
+                  onChange={(e) => setMetaSourceUrl(e.target.value)}
+                  placeholder="https://example.com"
+                  aria-label="Manba URL havolasi (Source URL)"
+                  className={`w-full rounded-xl border bg-white p-2.5 text-xs font-medium text-slate-900 focus:border-indigo-500 focus:outline-none dark:bg-slate-950 dark:text-white ${
+                    isMetadataFieldMissing('source_url')
+                      ? 'border-red-400 dark:border-red-500'
+                      : 'border-slate-200 dark:border-slate-700'
+                  }`}
+                />
+              </div>
+
+              <div>
+                <label className="mb-1 block text-xs font-bold text-slate-700 dark:text-slate-300">
+                  Muallif / Nashriyot (Author)
+                </label>
+                <input
+                  value={metaAuthor}
+                  onChange={(e) => setMetaAuthor(e.target.value)}
+                  placeholder="masalan: Ask Publishing, The Japan Foundation"
+                  aria-label="Muallif / Nashriyot (Author)"
+                  className={`w-full rounded-xl border bg-white p-2.5 text-xs font-medium text-slate-900 focus:border-indigo-500 focus:outline-none dark:bg-slate-950 dark:text-white ${
+                    isMetadataFieldMissing('author')
+                      ? 'border-red-400 dark:border-red-500'
+                      : 'border-slate-200 dark:border-slate-700'
+                  }`}
+                />
+              </div>
+
+              <div>
+                <label className="mb-1 block text-xs font-bold text-slate-700 dark:text-slate-300">
+                  Litsenziya turi (License Type)
+                </label>
+                <select
+                  value={metaLicenseType}
+                  onChange={(e) => setMetaLicenseType(e.target.value as ExamLicenseType)}
+                  aria-label="Litsenziya turi (License Type)"
+                  className={`w-full rounded-xl border bg-white p-2.5 text-xs font-bold text-slate-900 focus:border-indigo-500 focus:outline-none dark:bg-slate-950 dark:text-white ${
+                    isMetadataFieldMissing('license_type')
+                      ? 'border-red-400 dark:border-red-500'
+                      : 'border-slate-200 dark:border-slate-700'
+                  }`}
+                >
+                  <option value="original">Original (Platforma / O'qituvchi muallifligi)</option>
+                  <option value="cc-by">Creative Commons Attribution (CC BY)</option>
+                  <option value="cc-by-sa">
+                    Creative Commons Attribution-ShareAlike (CC BY-SA)
+                  </option>
+                  <option value="public-domain">Ommaviy Mulk (Public Domain / CC0)</option>
+                  <option value="restricted">
+                    Cheklangan / Mualliflik huquqi bilan himoyalangan (Restricted ⚠️)
+                  </option>
+                </select>
+                <p className="mt-1 text-[11px] text-slate-500">
+                  {LICENSE_CONFIG[metaLicenseType]?.description}
+                </p>
+              </div>
+
+              <div className="space-y-2 rounded-2xl border border-slate-100 bg-slate-50/70 p-3.5 dark:border-slate-800 dark:bg-slate-950/40">
+                <label className="flex cursor-pointer items-center gap-2 text-xs font-bold text-slate-700 dark:text-slate-300">
+                  <input
+                    type="checkbox"
+                    checked={metaIsOfficialJlpt}
+                    onChange={(e) => setMetaIsOfficialJlpt(e.target.checked)}
+                    className="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                  />
+                  <span>Rasmiy JLPT Materiali (Official JEES / Japan Foundation)</span>
+                </label>
+
+                <label className="flex cursor-pointer items-center gap-2 text-xs font-bold text-slate-900 dark:text-white">
+                  <input
+                    type="checkbox"
+                    checked={metaCopyrightConfirmed}
+                    onChange={(e) => setMetaCopyrightConfirmed(e.target.checked)}
+                    className="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                  />
+                  <span
+                    className={
+                      metaCopyrightConfirmed
+                        ? 'font-extrabold text-emerald-700 dark:text-emerald-400'
+                        : isMetadataFieldMissing('copyright_confirmed')
+                          ? 'font-extrabold text-red-600 dark:text-red-400'
+                          : 'text-slate-700 dark:text-slate-300'
+                    }
+                  >
+                    ✓ Mualliflik huquqi tasdiqlangan (Copyright confirmation)
+                  </span>
+                </label>
+              </div>
+
+              {metaLicenseType === 'restricted' && (
+                <div className="flex items-start gap-2 rounded-xl border border-rose-200 bg-rose-50 p-2.5 text-xs text-rose-700 dark:border-rose-900/50 dark:bg-rose-950/30 dark:text-rose-300">
+                  <AlertTriangle className="h-4 w-4 shrink-0 text-rose-600" />
+                  <span>
+                    <b>Diqqat:</b> 'Restricted' litsenziyasiga ega material nashr qilinishi to'liq
+                    bloklanadi — aniq huquqiy ruxsat (legal approval) talab qilinadi.
+                  </span>
+                </div>
+              )}
+
+              {metaIsOfficialJlpt &&
+                !validateJlptOfficialStatus({
+                  isOfficialJlpt: metaIsOfficialJlpt,
+                  sourceName: metaSourceName,
+                }).isValid && (
+                  <div className="flex items-start gap-2 rounded-xl border border-amber-200 bg-amber-50 p-2.5 text-xs text-amber-700 dark:border-amber-900/50 dark:bg-amber-950/30 dark:text-amber-300">
+                    <AlertTriangle className="h-4 w-4 shrink-0 text-amber-600" />
+                    <span>
+                      <b>Ogohlantirish:</b>{' '}
+                      {
+                        validateJlptOfficialStatus({
+                          isOfficialJlpt: metaIsOfficialJlpt,
+                          sourceName: metaSourceName,
+                        }).error
+                      }
+                    </span>
+                  </div>
+                )}
+            </div>
+
+            <div className="mt-6 flex justify-end gap-2 border-t border-slate-100 pt-4 dark:border-slate-800">
+              <Button
+                variant="outline"
+                onClick={() => setShowMetadataModal(false)}
+                className="rounded-xl text-xs font-bold"
+              >
+                Bekor Qilish
+              </Button>
+              <Button
+                onClick={handleSaveMetadata}
+                disabled={savingMetadata}
+                className="gap-1.5 rounded-xl bg-indigo-600 text-xs font-bold text-white hover:bg-indigo-700"
+              >
+                {savingMetadata && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
+                Saqlash
               </Button>
             </div>
           </div>

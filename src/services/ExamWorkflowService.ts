@@ -1,4 +1,19 @@
 import { supabase } from '../lib/supabase';
+import { canImportExamContent, canPublishExamContent } from '../utils/examImportSecurity';
+import { evaluateLegalGates, type LegalGate } from '../utils/examLegalGates';
+import {
+  assertExamTransition,
+  assertQuestionTransition,
+  canTransitionQuestion,
+  getExamTransitionActorPolicy,
+  isExamWorkflowStatus,
+  isQuestionWorkflowStatus,
+} from '../utils/examWorkflowTransitions';
+import {
+  type ExamLicenseType,
+  type ExamSourceLicenseMeta,
+  normalizeLicenseType,
+} from '../types/examMetadata';
 
 export type ExamWorkflowStatus = 'draft' | 'review' | 'approved' | 'published' | 'archived';
 export type QuestionWorkflowStatus = 'draft' | 'review' | 'approved' | 'rejected';
@@ -15,6 +30,17 @@ export interface PrePublishValidationResult {
     draftCount: number;
     rejectedCount: number;
   };
+  metadata?: {
+    sourceName?: string | null;
+    sourceUrl?: string | null;
+    author?: string | null;
+    licenseType?: ExamLicenseType;
+    isRestricted?: boolean;
+    copyrightConfirmed?: boolean;
+    isOfficialJlpt?: boolean;
+  };
+  /** Task 18 — structured legal gates (copyright / license / metadata). */
+  legalGates?: LegalGate[];
 }
 
 export interface WorkflowStatusMeta {
@@ -101,7 +127,9 @@ export class ExamWorkflowService {
     // 1. Fetch Exam
     const { data: exam, error: examErr } = await supabase
       .from('exams')
-      .select('id, title, type, is_published, status')
+      .select(
+        'id, title, type, is_published, status, source_name, source_url, author, license_type, copyright_confirmed, is_official_jlpt',
+      )
       .eq('id', examId)
       .single();
 
@@ -245,10 +273,32 @@ export class ExamWorkflowService {
       }
     }
 
+    // 6. Legal gates: copyright, license and required metadata (Task 18)
+    const normLicense = normalizeLicenseType(exam.license_type);
+    const isRestricted = normLicense === 'restricted';
+    const legalGates = evaluateLegalGates({
+      copyrightConfirmed: Boolean(exam.copyright_confirmed),
+      licenseType: exam.license_type,
+      sourceName: exam.source_name,
+      sourceUrl: exam.source_url,
+      author: exam.author,
+      isOfficialJlpt: Boolean(exam.is_official_jlpt),
+      title: exam.title,
+    });
+
+    for (const gate of legalGates) {
+      if (gate.blocking) {
+        errors.push(gate.message);
+      } else {
+        warnings.push(gate.message);
+      }
+    }
+
     return {
       isValid: errors.length === 0,
       errors,
       warnings,
+      legalGates,
       summary: {
         totalSections: secList.length,
         totalQuestions: questions.length,
@@ -257,87 +307,202 @@ export class ExamWorkflowService {
         draftCount,
         rejectedCount,
       },
+      metadata: {
+        sourceName: exam.source_name || null,
+        sourceUrl: exam.source_url || null,
+        author: exam.author || null,
+        licenseType: normLicense,
+        isRestricted,
+        copyrightConfirmed: Boolean(exam.copyright_confirmed),
+        isOfficialJlpt: Boolean(exam.is_official_jlpt),
+      },
     };
   }
 
   /**
-   * Transition Exam status with workflow rules.
-   * If target is 'published', runs pre-publish validation.
+   * Update source and license metadata for an exam (Task 7)
+   */
+  static async updateExamSourceLicense(
+    examId: string,
+    meta: Partial<ExamSourceLicenseMeta>,
+  ): Promise<void> {
+    const updates: Record<string, any> = {};
+    if (meta.sourceName !== undefined) updates.source_name = meta.sourceName;
+    if (meta.sourceUrl !== undefined) updates.source_url = meta.sourceUrl;
+    if (meta.author !== undefined) updates.author = meta.author;
+    if (meta.licenseType !== undefined) updates.license_type = meta.licenseType;
+    if (meta.copyrightConfirmed !== undefined)
+      updates.copyright_confirmed = meta.copyrightConfirmed;
+    if (meta.isOfficialJlpt !== undefined) updates.is_official_jlpt = meta.isOfficialJlpt;
+
+    const { error } = await supabase.from('exams').update(updates).eq('id', examId);
+    if (error) {
+      throw new Error(`Manba va litsenziyani yangilashda xatolik: ${error.message}`);
+    }
+  }
+
+  /**
+   * Task 19 — transition an exam status through the strict workflow matrix.
+   *
+   * Allowed: draft->review, review->draft, review->approved,
+   *          approved->published, published->archived, archived->draft.
+   * Every transition is role-checked and written to the audit log.
    */
   static async transitionExamStatus(
     examId: string,
     targetStatus: ExamWorkflowStatus,
     reviewerEmail?: string,
     rejectionComment?: string,
+    actorRole?: string | null,
   ): Promise<{ success: boolean; validation?: PrePublishValidationResult }> {
-    // If target is published, enforce pre-publish validation
+    if (!isExamWorkflowStatus(targetStatus)) {
+      throw new Error(`Noma'lum exam maqsad holati: "${targetStatus}".`);
+    }
+
+    // Publishing is admin-only. Check this first so a reviewer always gets the
+    // clear permission error, even from a non-approved status.
+    if (targetStatus === 'published' && !canPublishExamContent(reviewerEmail, actorRole)) {
+      throw new Error(
+        "Nashr qilish (publish) faqat admin uchun ruxsat etilgan. Reviewer kontentni import va ko'rib chiqishi mumkin, lekin publish qila olmaydi.",
+      );
+    }
+
+    const currentStatus = await this.fetchExamStatus(examId);
+    assertExamTransition(currentStatus, targetStatus);
+    this.assertExamTransitionRole(currentStatus, targetStatus, reviewerEmail, actorRole);
+
+    let validation: PrePublishValidationResult | undefined;
     if (targetStatus === 'published') {
-      const validation = await this.validateForPublish(examId);
+      validation = await this.validateForPublish(examId);
       if (!validation.isValid) {
         throw new Error(
           `Nashr qilish rad etildi! Quyidagi kamchiliklarni bartaraf qiling:\n\n• ${validation.errors.join('\n• ')}`,
         );
       }
-
-      const { error } = await supabase
-        .from('exams')
-        .update({
-          status: 'published',
-          is_published: true,
-          rejection_comment: null,
-          reviewed_by: reviewerEmail || null,
-          reviewed_at: new Date().toISOString(),
-        })
-        .eq('id', examId);
-
-      if (error) throw error;
-      return { success: true, validation };
     }
 
-    // For other statuses:
     const updatePayload: Record<string, any> = {
       status: targetStatus,
-      is_published: false, // Never published unless targetStatus is 'published'
+      is_published: targetStatus === 'published',
+      archived_at: targetStatus === 'archived' ? new Date().toISOString() : null,
     };
-
-    if (targetStatus === 'archived') {
-      updatePayload.archived_at = new Date().toISOString();
-    } else {
-      updatePayload.archived_at = null;
-    }
 
     if (reviewerEmail) {
       updatePayload.reviewed_by = reviewerEmail;
       updatePayload.reviewed_at = new Date().toISOString();
     }
 
-    if (targetStatus === 'draft' && rejectionComment) {
-      updatePayload.rejection_comment = rejectionComment.trim();
-    } else if (targetStatus === 'approved') {
+    if (targetStatus === 'published' || targetStatus === 'approved') {
       updatePayload.rejection_comment = null;
+    } else if (targetStatus === 'draft' && rejectionComment) {
+      updatePayload.rejection_comment = rejectionComment.trim();
     }
 
     const { error } = await supabase.from('exams').update(updatePayload).eq('id', examId);
     if (error) throw error;
 
-    return { success: true };
+    await this.recordTransitionEvent({
+      entityType: 'exam',
+      entityId: examId,
+      fromStatus: currentStatus,
+      toStatus: targetStatus,
+      actorEmail: reviewerEmail ?? null,
+      actorRole: actorRole ?? null,
+      comment: rejectionComment?.trim() || null,
+    });
+
+    return { success: true, validation };
+  }
+
+  private static async fetchExamStatus(examId: string): Promise<ExamWorkflowStatus> {
+    const { data, error } = await supabase
+      .from('exams')
+      .select('id, status')
+      .eq('id', examId)
+      .maybeSingle();
+
+    if (error) {
+      throw new Error(`Imtihon holatini tekshirishda xatolik: ${error.message}`);
+    }
+    if (!data) {
+      throw new Error('Imtihon topilmadi.');
+    }
+
+    const status = (data as any).status || 'draft';
+    if (!isExamWorkflowStatus(status)) {
+      throw new Error(`Noma'lum exam holati: "${status}".`);
+    }
+    return status;
+  }
+
+  private static assertExamTransitionRole(
+    from: ExamWorkflowStatus,
+    to: ExamWorkflowStatus,
+    actorEmail?: string | null,
+    actorRole?: string | null,
+  ): void {
+    const policy = getExamTransitionActorPolicy(from, to);
+    if (policy === 'admin' && !canPublishExamContent(actorEmail, actorRole)) {
+      throw new Error(`"${from}" → "${to}" o'tishi faqat admin uchun ruxsat etilgan.`);
+    }
+    if (policy === 'reviewer' && !canImportExamContent(actorEmail, actorRole)) {
+      throw new Error(`"${from}" → "${to}" o'tishi uchun reviewer yoki admin roli talab qilinadi.`);
+    }
+  }
+
+  private static assertQuestionTransitionRole(
+    _from: QuestionWorkflowStatus,
+    to: QuestionWorkflowStatus,
+    actorEmail?: string | null,
+    actorRole?: string | null,
+  ): void {
+    if (!canImportExamContent(actorEmail, actorRole)) {
+      throw new Error(
+        `Savolni "${to}" holatiga o'tkazish uchun reviewer yoki admin roli talab qilinadi.`,
+      );
+    }
   }
 
   /**
-   * Archive a published or completed exam.
+   * Persist a workflow transition in the audit log. The event is append-only;
+   * the database has no UPDATE/DELETE policy for this table.
+   */
+  private static async recordTransitionEvent(event: {
+    entityType: 'exam' | 'question';
+    entityId: string;
+    examId?: string | null;
+    fromStatus: string;
+    toStatus: string;
+    actorEmail?: string | null;
+    actorRole?: string | null;
+    comment?: string | null;
+  }): Promise<void> {
+    const { error } = await supabase.from('exam_workflow_events').insert({
+      entity_type: event.entityType,
+      entity_id: event.entityId,
+      exam_id: event.examId ?? null,
+      from_status: event.fromStatus,
+      to_status: event.toStatus,
+      actor_email: event.actorEmail ?? null,
+      actor_role: event.actorRole ?? null,
+      comment: event.comment ?? null,
+    });
+
+    if (error) {
+      throw new Error(`Workflow audit log yozishda xatolik: ${error.message}`);
+    }
+  }
+
+  /**
+   * Archive a published exam (published -> archived).
    * Hides it from students and moves it to the archive section.
    */
-  static async archiveExam(examId: string): Promise<{ success: boolean; message: string }> {
-    const { error } = await supabase
-      .from('exams')
-      .update({
-        status: 'archived',
-        is_published: false,
-        archived_at: new Date().toISOString(),
-      })
-      .eq('id', examId);
-
-    if (error) throw error;
+  static async archiveExam(
+    examId: string,
+    actorEmail?: string,
+    actorRole?: string | null,
+  ): Promise<{ success: boolean; message: string }> {
+    await this.transitionExamStatus(examId, 'archived', actorEmail, undefined, actorRole);
     return {
       success: true,
       message: "Imtihon arxivga ko'chirildi. Talabalar endi ushbu imtihonni ko'ra olmaydi.",
@@ -345,19 +510,14 @@ export class ExamWorkflowService {
   }
 
   /**
-   * Restore an archived exam back to Draft.
+   * Restore an archived exam back to Draft (archived -> draft).
    */
-  static async restoreExam(examId: string): Promise<{ success: boolean; message: string }> {
-    const { error } = await supabase
-      .from('exams')
-      .update({
-        status: 'draft',
-        is_published: false,
-        archived_at: null,
-      })
-      .eq('id', examId);
-
-    if (error) throw error;
+  static async restoreExam(
+    examId: string,
+    actorEmail?: string,
+    actorRole?: string | null,
+  ): Promise<{ success: boolean; message: string }> {
+    await this.transitionExamStatus(examId, 'draft', actorEmail, undefined, actorRole);
     return {
       success: true,
       message: 'Imtihon arxivdan chiqarilib, qoralama (draft) holatiga qaytarildi.',
@@ -397,20 +557,46 @@ export class ExamWorkflowService {
   }
 
   /**
-   * Reviewer or Admin transitions Question status.
-   * If rejected, a rejection comment is required.
+   * Task 19 — reviewer/admin question transition through the strict matrix.
+   *
+   * Allowed: draft->review, review->approved, review->rejected, rejected->draft.
+   * `approved` is the published-ready terminal state; the exam publish step
+   * owns moving approved questions into a published exam.
    */
   static async transitionQuestionStatus(
     questionId: string,
     targetStatus: QuestionWorkflowStatus,
     reviewerEmail?: string,
     rejectionComment?: string,
+    actorRole?: string | null,
   ): Promise<{ success: boolean; message: string }> {
-    if (targetStatus === 'rejected') {
-      if (!rejectionComment || !rejectionComment.trim()) {
-        throw new Error('Savolni qaytarish (rad etish) uchun izoh yozish majburiy.');
-      }
+    if (!isQuestionWorkflowStatus(targetStatus)) {
+      throw new Error(`Noma'lum savol maqsad holati: "${targetStatus}".`);
     }
+    if (targetStatus === 'rejected' && (!rejectionComment || !rejectionComment.trim())) {
+      throw new Error('Savolni qaytarish (rad etish) uchun izoh yozish majburiy.');
+    }
+
+    const { data, error } = await supabase
+      .from('exam_questions')
+      .select('id, status')
+      .eq('id', questionId)
+      .maybeSingle();
+
+    if (error) {
+      throw new Error(`Savol holatini tekshirishda xatolik: ${error.message}`);
+    }
+    if (!data) {
+      throw new Error('Savol topilmadi.');
+    }
+
+    const currentStatus = ((data as any).status || 'draft') as QuestionWorkflowStatus;
+    if (!isQuestionWorkflowStatus(currentStatus)) {
+      throw new Error(`Noma'lum savol holati: "${currentStatus}".`);
+    }
+
+    assertQuestionTransition(currentStatus, targetStatus);
+    this.assertQuestionTransitionRole(currentStatus, targetStatus, reviewerEmail, actorRole);
 
     const updatePayload: Record<string, any> = {
       status: targetStatus,
@@ -419,17 +605,27 @@ export class ExamWorkflowService {
     };
 
     if (targetStatus === 'rejected') {
-      updatePayload.rejection_comment = rejectionComment ? rejectionComment.trim() : '';
+      updatePayload.rejection_comment = rejectionComment!.trim();
     } else if (targetStatus === 'approved') {
       updatePayload.rejection_comment = null;
     }
 
-    const { error } = await supabase
+    const { error: updateError } = await supabase
       .from('exam_questions')
       .update(updatePayload)
       .eq('id', questionId);
 
-    if (error) throw error;
+    if (updateError) throw updateError;
+
+    await this.recordTransitionEvent({
+      entityType: 'question',
+      entityId: questionId,
+      fromStatus: currentStatus,
+      toStatus: targetStatus,
+      actorEmail: reviewerEmail ?? null,
+      actorRole: actorRole ?? null,
+      comment: rejectionComment?.trim() || null,
+    });
 
     return {
       success: true,
@@ -443,14 +639,57 @@ export class ExamWorkflowService {
   }
 
   /**
-   * Bulk approve, review, or draft questions.
+   * Bulk transition. Every question must be allowed to reach the target from
+   * its current status — otherwise the whole batch is rejected and nothing is
+   * written.
    */
   static async bulkTransitionQuestions(
     questionIds: string[],
     targetStatus: QuestionWorkflowStatus,
     reviewerEmail?: string,
+    rejectionComment?: string,
+    actorRole?: string | null,
   ): Promise<{ count: number }> {
     if (!questionIds || questionIds.length === 0) return { count: 0 };
+    if (!isQuestionWorkflowStatus(targetStatus)) {
+      throw new Error(`Noma'lum savol maqsad holati: "${targetStatus}".`);
+    }
+    if (targetStatus === 'rejected' && (!rejectionComment || !rejectionComment.trim())) {
+      throw new Error('Savollarni qaytarish (rad etish) uchun izoh yozish majburiy.');
+    }
+
+    this.assertQuestionTransitionRole('review', targetStatus, reviewerEmail, actorRole);
+
+    const { data, error } = await supabase
+      .from('exam_questions')
+      .select('id, status')
+      .in('id', questionIds);
+
+    if (error) {
+      throw new Error(`Savollar holatini tekshirishda xatolik: ${error.message}`);
+    }
+
+    const rows = (data || []) as Array<{ id: string; status?: string }>;
+    const byId = new Map(rows.map((row) => [row.id, row.status || 'draft']));
+
+    const missing = questionIds.filter((id) => !byId.has(id));
+    if (missing.length > 0) {
+      throw new Error(`Savollar topilmadi: ${missing.join(', ')}.`);
+    }
+
+    const invalid = questionIds
+      .filter((id) => {
+        const current = byId.get(id) as QuestionWorkflowStatus;
+        return !isQuestionWorkflowStatus(current) || !canTransitionQuestion(current, targetStatus);
+      })
+      .map((id) => `${id} (${byId.get(id)} → ${targetStatus})`);
+
+    if (invalid.length > 0) {
+      throw new Error(
+        `Noto'g'ri savol status o'tishi: ${invalid.join(', ')}. ` +
+          'Har bir savol faqat draft → review → approved/rejected → draft zanjirida harakatlanadi.',
+      );
+    }
 
     const updatePayload: Record<string, any> = {
       status: targetStatus,
@@ -460,14 +699,96 @@ export class ExamWorkflowService {
 
     if (targetStatus === 'approved') {
       updatePayload.rejection_comment = null;
+    } else if (targetStatus === 'rejected') {
+      updatePayload.rejection_comment = rejectionComment!.trim();
     }
 
-    const { error } = await supabase
+    const { error: updateError } = await supabase
       .from('exam_questions')
       .update(updatePayload)
       .in('id', questionIds);
 
-    if (error) throw error;
+    if (updateError) throw updateError;
+
+    await supabase.from('exam_workflow_events').insert(
+      questionIds.map((id) => ({
+        entity_type: 'question',
+        entity_id: id,
+        exam_id: null,
+        from_status: byId.get(id),
+        to_status: targetStatus,
+        actor_email: reviewerEmail ?? null,
+        actor_role: actorRole ?? null,
+        comment: rejectionComment?.trim() || null,
+      })),
+    );
+
     return { count: questionIds.length };
+  }
+
+  /**
+   * Bulk-approve convenience that walks every question along legal edges only:
+   * rejected -> draft -> review -> approved. Already-approved questions are
+   * left untouched.
+   */
+  static async bulkApproveQuestions(
+    questionIds: string[],
+    reviewerEmail?: string,
+    actorRole?: string | null,
+  ): Promise<{ count: number }> {
+    if (!questionIds || questionIds.length === 0) return { count: 0 };
+
+    const { data, error } = await supabase
+      .from('exam_questions')
+      .select('id, status')
+      .in('id', questionIds);
+
+    if (error) {
+      throw new Error(`Savollar holatini tekshirishda xatolik: ${error.message}`);
+    }
+
+    const rows = (data || []) as Array<{ id: string; status?: string }>;
+    const byId = new Map(rows.map((row) => [row.id, row.status || 'draft']));
+
+    const missing = questionIds.filter((id) => !byId.has(id));
+    if (missing.length > 0) {
+      throw new Error(`Savollar topilmadi: ${missing.join(', ')}.`);
+    }
+
+    const rejectedIds: string[] = [];
+    const draftIds: string[] = [];
+    const reviewIds: string[] = [];
+    const approvedIds: string[] = [];
+
+    for (const id of questionIds) {
+      const status = byId.get(id);
+      if (status === 'rejected') rejectedIds.push(id);
+      else if (status === 'draft') draftIds.push(id);
+      else if (status === 'review') reviewIds.push(id);
+      else if (status === 'approved') approvedIds.push(id);
+      else throw new Error(`Noma'lum savol holati: "${status}" (${id}).`);
+    }
+
+    if (rejectedIds.length > 0) {
+      await this.bulkTransitionQuestions(rejectedIds, 'draft', reviewerEmail, undefined, actorRole);
+    }
+
+    const toReview = [...draftIds, ...rejectedIds];
+    if (toReview.length > 0) {
+      await this.bulkTransitionQuestions(toReview, 'review', reviewerEmail, undefined, actorRole);
+    }
+
+    const toApprove = [...reviewIds, ...toReview];
+    if (toApprove.length > 0) {
+      await this.bulkTransitionQuestions(
+        toApprove,
+        'approved',
+        reviewerEmail,
+        undefined,
+        actorRole,
+      );
+    }
+
+    return { count: approvedIds.length + toApprove.length };
   }
 }

@@ -1,0 +1,85 @@
+{
+  "generatedAt": "2026-10-22T16:30:23.202Z",
+  "results": [
+    {
+      "name": "admin creates draft exam",
+      "ok": true
+    },
+    {
+      "name": "normal user cannot see draft exam",
+      "ok": true
+    },
+    {
+      "name": "normal user cannot insert exams",
+      "ok": true
+    },
+    {
+      "name": "reviewer can read the draft exam",
+      "ok": true
+    },
+    {
+      "name": "reviewer creates draft exam",
+      "ok": true
+    },
+    {
+      "name": "reviewer creates section and question",
+      "ok": true
+    },
+    {
+      "name": "reviewer cannot flip exam to published via REST",
+      "ok": true
+    },
+    {
+      "name": "publish attempt leaves exam in draft",
+      "ok": true
+    },
+    {
+      "name": "reviewer cannot insert published exam",
+      "ok": true
+    },
+    {
+      "name": "reviewer publish is blocked by workflow service",
+      "ok": true
+    },
+    {
+      "name": "admin imports a full draft exam",
+      "ok": true
+    },
+    {
+      "name": "review → approved → published lifecycle",
+      "ok": true
+    },
+    {
+      "name": "published exam becomes visible to normal users",
+      "ok": true
+    },
+    {
+      "name": "version snapshot can restore exam title",
+      "ok": true
+    },
+    {
+      "name": "import batch rollback removes the exam",
+      "ok": true
+    },
+    {
+      "name": "rolled back exam is no longer visible publicly",
+      "ok": true
+    },
+    {
+      "name": "admin uploads to listening_audios",
+      "ok": true
+    },
+    {
+      "name": "admin reads back uploaded object metadata",
+      "ok": true
+    },
+    {
+      "name": "reviewer cannot upload to listening_audios",
+      "ok": true
+    },
+    {
+      "name": "normal user cannot upload to listening_audios",
+      "ok": true
+    }
+  ]
+}

@@ -1,10 +1,45 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { PitchAccentTrainer } from '../PitchAccentTrainer';
 import * as audioTts from '../../../utils/audioTts';
 
 vi.mock('../../../utils/audioTts', () => ({
   speakText: vi.fn(),
+}));
+
+vi.mock('../../../services/ActivityLoggingService', () => ({
+  ActivityLoggingService: {
+    logActivity: vi.fn().mockResolvedValue({ id: 'mock-activity-id' }),
+  },
+}));
+
+vi.mock('../../../services/DailyQuestService', () => ({
+  DailyQuestService: {
+    incrementMetaCounter: vi.fn(),
+    recordQuestProgress: vi.fn(),
+  },
+}));
+
+vi.mock('../../../lib/supabase', () => ({
+  supabase: {
+    auth: {
+      getSession: vi.fn().mockResolvedValue({ data: { session: null }, error: null }),
+      getUser: vi.fn().mockResolvedValue({ data: { user: null }, error: null }),
+    },
+  },
+}));
+
+vi.mock('../../../hooks/useTelegramWebApp', () => ({
+  useTelegramWebApp: () => ({
+    isTwa: false,
+    webApp: null,
+    user: null,
+    haptics: {
+      impact: vi.fn(),
+      notification: vi.fn(),
+      selection: vi.fn(),
+    },
+  }),
 }));
 
 describe('PitchAccentTrainer Component', () => {
@@ -104,7 +139,7 @@ describe('PitchAccentTrainer Component', () => {
   });
 
   it('completes full quiz, awards XP, and displays completion summary', async () => {
-    const onAwardXP = vi.fn();
+    const onAwardXP = vi.fn().mockResolvedValue(undefined);
     render(<PitchAccentTrainer isOpen={true} onClose={vi.fn()} onAwardXP={onAwardXP} />);
 
     const quizTab = screen.getByRole('button', { name: /Quloq Mashqi/i });
@@ -119,7 +154,9 @@ describe('PitchAccentTrainer Component', () => {
       fireEvent.click(nextBtn);
     }
 
-    expect(screen.getByText('Mashq Yakunlandi!')).toBeDefined();
-    expect(onAwardXP).toHaveBeenCalledWith(15);
+    expect(await screen.findByText('Mashq Yakunlandi!')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(onAwardXP).toHaveBeenCalledWith(15);
+    });
   });
 });

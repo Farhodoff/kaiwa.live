@@ -1,0 +1,2065 @@
+{
+  "columns": {
+    "added": [
+      {
+        "column_default": null,
+        "column_name": "listening_audio_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "ordinal_position": 11,
+        "table_name": "exam_questions",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": null,
+        "column_name": "title",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "ordinal_position": 4,
+        "table_name": "listening_audios",
+        "udt_name": "text"
+      },
+      {
+        "column_default": "false",
+        "column_name": "copyright_confirmed",
+        "data_type": "boolean",
+        "is_nullable": "NO",
+        "ordinal_position": 16,
+        "table_name": "listening_audios",
+        "udt_name": "bool"
+      },
+      {
+        "column_default": null,
+        "column_name": "id",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "ordinal_position": 1,
+        "table_name": "custom_listening_questions",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "audio_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 5,
+        "table_name": "custom_listening_questions",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "rejection_comment",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 8,
+        "table_name": "exams",
+        "udt_name": "text"
+      },
+      {
+        "column_default": "'{}'::jsonb",
+        "column_name": "question_snapshot",
+        "data_type": "jsonb",
+        "is_nullable": "NO",
+        "ordinal_position": 5,
+        "table_name": "exam_import_batch_items",
+        "udt_name": "jsonb"
+      },
+      {
+        "column_default": null,
+        "column_name": "label",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 5,
+        "table_name": "exam_content_versions",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "batch_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "ordinal_position": 3,
+        "table_name": "exam_content_versions",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": null,
+        "column_name": "imported_by_email",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 10,
+        "table_name": "exam_import_batches",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "author",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 14,
+        "table_name": "exams",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "source_name",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 16,
+        "table_name": "exam_questions",
+        "udt_name": "text"
+      },
+      {
+        "column_default": "'original'::text",
+        "column_name": "license_type",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "ordinal_position": 19,
+        "table_name": "exam_questions",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "config",
+        "data_type": "jsonb",
+        "is_nullable": "NO",
+        "ordinal_position": 2,
+        "table_name": "jlpt_timing_configs",
+        "udt_name": "jsonb"
+      },
+      {
+        "column_default": null,
+        "column_name": "tip_uzbek",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 13,
+        "table_name": "custom_listening_questions",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "author",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 10,
+        "table_name": "reading_passages",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "exam_id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "ordinal_position": 2,
+        "table_name": "exam_content_versions",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": null,
+        "column_name": "title",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "ordinal_position": 4,
+        "table_name": "reading_passages",
+        "udt_name": "text"
+      },
+      {
+        "column_default": "timezone('utc'::text, now())",
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "ordinal_position": 10,
+        "table_name": "exam_content_versions",
+        "udt_name": "timestamptz"
+      },
+      {
+        "column_default": null,
+        "column_name": "author",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 18,
+        "table_name": "exam_questions",
+        "udt_name": "text"
+      },
+      {
+        "column_default": "'[]'::jsonb",
+        "column_name": "options_uz",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "ordinal_position": 10,
+        "table_name": "custom_listening_questions",
+        "udt_name": "jsonb"
+      },
+      {
+        "column_default": "uuid_generate_v4()",
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "ordinal_position": 1,
+        "table_name": "exam_content_versions",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": "timezone('utc'::text, now())",
+        "column_name": "updated_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "ordinal_position": 15,
+        "table_name": "custom_listening_questions",
+        "udt_name": "timestamptz"
+      },
+      {
+        "column_default": "'{}'::jsonb",
+        "column_name": "question_payload",
+        "data_type": "jsonb",
+        "is_nullable": "NO",
+        "ordinal_position": 23,
+        "table_name": "exam_questions",
+        "udt_name": "jsonb"
+      },
+      {
+        "column_default": null,
+        "column_name": "question_type",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 22,
+        "table_name": "exam_questions",
+        "udt_name": "text"
+      },
+      {
+        "column_default": "now()",
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "ordinal_position": 11,
+        "table_name": "exam_workflow_events",
+        "udt_name": "timestamptz"
+      },
+      {
+        "column_default": "false",
+        "column_name": "is_current",
+        "data_type": "boolean",
+        "is_nullable": "NO",
+        "ordinal_position": 7,
+        "table_name": "exam_content_versions",
+        "udt_name": "bool"
+      },
+      {
+        "column_default": "false",
+        "column_name": "is_official_jlpt",
+        "data_type": "boolean",
+        "is_nullable": "NO",
+        "ordinal_position": 21,
+        "table_name": "exam_questions",
+        "udt_name": "bool"
+      },
+      {
+        "column_default": null,
+        "column_name": "section_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "ordinal_position": 4,
+        "table_name": "exam_import_batch_items",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": null,
+        "column_name": "level",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "ordinal_position": 2,
+        "table_name": "custom_listening_questions",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "duration_seconds",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "ordinal_position": 9,
+        "table_name": "listening_audios",
+        "udt_name": "int4"
+      },
+      {
+        "column_default": "0",
+        "column_name": "correct_answer",
+        "data_type": "integer",
+        "is_nullable": "NO",
+        "ordinal_position": 11,
+        "table_name": "custom_listening_questions",
+        "udt_name": "int4"
+      },
+      {
+        "column_default": null,
+        "column_name": "question_text_uz",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 8,
+        "table_name": "custom_listening_questions",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "actor_email",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 8,
+        "table_name": "exam_workflow_events",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "rejection_comment",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 13,
+        "table_name": "exam_questions",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "rolled_back_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "ordinal_position": 14,
+        "table_name": "exam_import_batches",
+        "udt_name": "timestamptz"
+      },
+      {
+        "column_default": null,
+        "column_name": "imported_by_name",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 11,
+        "table_name": "exam_import_batches",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "source_name",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 12,
+        "table_name": "exams",
+        "udt_name": "text"
+      },
+      {
+        "column_default": "'section'::text",
+        "column_name": "mode",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "ordinal_position": 4,
+        "table_name": "exam_import_batches",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "question_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "ordinal_position": 3,
+        "table_name": "exam_import_batch_items",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": null,
+        "column_name": "rollback_reason",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 13,
+        "table_name": "exam_import_batches",
+        "udt_name": "text"
+      },
+      {
+        "column_default": "'draft'::text",
+        "column_name": "status",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "ordinal_position": 7,
+        "table_name": "exams",
+        "udt_name": "text"
+      },
+      {
+        "column_default": "now()",
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "ordinal_position": 4,
+        "table_name": "jlpt_timing_configs",
+        "udt_name": "timestamptz"
+      },
+      {
+        "column_default": "timezone('utc'::text, now())",
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "ordinal_position": 7,
+        "table_name": "reading_passages",
+        "udt_name": "timestamptz"
+      },
+      {
+        "column_default": "'original'::text",
+        "column_name": "license_type",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "ordinal_position": 15,
+        "table_name": "listening_audios",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "snapshot",
+        "data_type": "jsonb",
+        "is_nullable": "NO",
+        "ordinal_position": 6,
+        "table_name": "exam_content_versions",
+        "udt_name": "jsonb"
+      },
+      {
+        "column_default": null,
+        "column_name": "title_uz",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "ordinal_position": 4,
+        "table_name": "custom_listening_questions",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "rolled_back_by",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "ordinal_position": 15,
+        "table_name": "exam_import_batches",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": null,
+        "column_name": "source_format",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 5,
+        "table_name": "exam_import_batches",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "from_status",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 5,
+        "table_name": "exam_workflow_events",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "source_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 9,
+        "table_name": "reading_passages",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "entity_id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "ordinal_position": 3,
+        "table_name": "exam_workflow_events",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": "'original'::text",
+        "column_name": "license_type",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "ordinal_position": 15,
+        "table_name": "exams",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "exam_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "ordinal_position": 2,
+        "table_name": "reading_passages",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": null,
+        "column_name": "comment",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 10,
+        "table_name": "exam_workflow_events",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "updated_by",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "ordinal_position": 3,
+        "table_name": "jlpt_timing_configs",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": "'[]'::jsonb",
+        "column_name": "options",
+        "data_type": "jsonb",
+        "is_nullable": "NO",
+        "ordinal_position": 9,
+        "table_name": "custom_listening_questions",
+        "udt_name": "jsonb"
+      },
+      {
+        "column_default": null,
+        "column_name": "actor_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "ordinal_position": 7,
+        "table_name": "exam_workflow_events",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": null,
+        "column_name": "section_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "ordinal_position": 3,
+        "table_name": "exam_import_batches",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": null,
+        "column_name": "speaker",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 8,
+        "table_name": "listening_audios",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "source_name",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 12,
+        "table_name": "listening_audios",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "exam_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "ordinal_position": 4,
+        "table_name": "exam_workflow_events",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": null,
+        "column_name": "completed_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "ordinal_position": 18,
+        "table_name": "exam_import_batches",
+        "udt_name": "timestamptz"
+      },
+      {
+        "column_default": "now()",
+        "column_name": "updated_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "ordinal_position": 5,
+        "table_name": "jlpt_timing_configs",
+        "udt_name": "timestamptz"
+      },
+      {
+        "column_default": null,
+        "column_name": "transcript",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 6,
+        "table_name": "listening_audios",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "passage_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "ordinal_position": 10,
+        "table_name": "exam_questions",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": null,
+        "column_name": "exam_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "ordinal_position": 2,
+        "table_name": "exam_import_batches",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": "false",
+        "column_name": "copyright_confirmed",
+        "data_type": "boolean",
+        "is_nullable": "NO",
+        "ordinal_position": 20,
+        "table_name": "exam_questions",
+        "udt_name": "bool"
+      },
+      {
+        "column_default": null,
+        "column_name": "reviewed_by",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 9,
+        "table_name": "exams",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "source_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 13,
+        "table_name": "exams",
+        "udt_name": "text"
+      },
+      {
+        "column_default": "timezone('utc'::text, now())",
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "ordinal_position": 17,
+        "table_name": "exam_import_batches",
+        "udt_name": "timestamptz"
+      },
+      {
+        "column_default": null,
+        "column_name": "reviewed_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "ordinal_position": 10,
+        "table_name": "exams",
+        "udt_name": "timestamptz"
+      },
+      {
+        "column_default": "'original'::text",
+        "column_name": "license_type",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "ordinal_position": 11,
+        "table_name": "reading_passages",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "source_name",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 8,
+        "table_name": "reading_passages",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "type",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "ordinal_position": 3,
+        "table_name": "custom_listening_questions",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "question_text",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "ordinal_position": 7,
+        "table_name": "custom_listening_questions",
+        "udt_name": "text"
+      },
+      {
+        "column_default": "false",
+        "column_name": "copyright_confirmed",
+        "data_type": "boolean",
+        "is_nullable": "NO",
+        "ordinal_position": 12,
+        "table_name": "reading_passages",
+        "udt_name": "bool"
+      },
+      {
+        "column_default": "false",
+        "column_name": "is_official_jlpt",
+        "data_type": "boolean",
+        "is_nullable": "NO",
+        "ordinal_position": 17,
+        "table_name": "exams",
+        "udt_name": "bool"
+      },
+      {
+        "column_default": "'pending'::text",
+        "column_name": "status",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "ordinal_position": 6,
+        "table_name": "exam_import_batches",
+        "udt_name": "text"
+      },
+      {
+        "column_default": "0",
+        "column_name": "order_index",
+        "data_type": "integer",
+        "is_nullable": "NO",
+        "ordinal_position": 10,
+        "table_name": "listening_audios",
+        "udt_name": "int4"
+      },
+      {
+        "column_default": null,
+        "column_name": "section_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "ordinal_position": 3,
+        "table_name": "listening_audios",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": "0",
+        "column_name": "question_count",
+        "data_type": "integer",
+        "is_nullable": "NO",
+        "ordinal_position": 7,
+        "table_name": "exam_import_batches",
+        "udt_name": "int4"
+      },
+      {
+        "column_default": "''::text",
+        "column_name": "content",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "ordinal_position": 5,
+        "table_name": "reading_passages",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "reviewed_by",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 14,
+        "table_name": "exam_questions",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "audio_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 5,
+        "table_name": "listening_audios",
+        "udt_name": "text"
+      },
+      {
+        "column_default": "uuid_generate_v4()",
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "ordinal_position": 1,
+        "table_name": "exam_import_batches",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": "timezone('utc'::text, now())",
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "ordinal_position": 14,
+        "table_name": "custom_listening_questions",
+        "udt_name": "timestamptz"
+      },
+      {
+        "column_default": null,
+        "column_name": "source_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 13,
+        "table_name": "listening_audios",
+        "udt_name": "text"
+      },
+      {
+        "column_default": "'draft'::text",
+        "column_name": "status",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "ordinal_position": 12,
+        "table_name": "exam_questions",
+        "udt_name": "text"
+      },
+      {
+        "column_default": "uuid_generate_v4()",
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "ordinal_position": 1,
+        "table_name": "reading_passages",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": null,
+        "column_name": "imported_by",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "ordinal_position": 9,
+        "table_name": "exam_import_batches",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": "'{}'::uuid[]",
+        "column_name": "imported_question_ids",
+        "data_type": "ARRAY",
+        "is_nullable": "NO",
+        "ordinal_position": 8,
+        "table_name": "exam_import_batches",
+        "udt_name": "_uuid"
+      },
+      {
+        "column_default": "timezone('utc'::text, now())",
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "ordinal_position": 11,
+        "table_name": "listening_audios",
+        "udt_name": "timestamptz"
+      },
+      {
+        "column_default": null,
+        "column_name": "exam_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "ordinal_position": 2,
+        "table_name": "listening_audios",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": null,
+        "column_name": "section_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "ordinal_position": 3,
+        "table_name": "reading_passages",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": null,
+        "column_name": "explanation_uzbek",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 12,
+        "table_name": "custom_listening_questions",
+        "udt_name": "text"
+      },
+      {
+        "column_default": "'{}'::jsonb",
+        "column_name": "metadata",
+        "data_type": "jsonb",
+        "is_nullable": "NO",
+        "ordinal_position": 12,
+        "table_name": "exam_import_batches",
+        "udt_name": "jsonb"
+      },
+      {
+        "column_default": "0",
+        "column_name": "order_index",
+        "data_type": "integer",
+        "is_nullable": "NO",
+        "ordinal_position": 6,
+        "table_name": "reading_passages",
+        "udt_name": "int4"
+      },
+      {
+        "column_default": null,
+        "column_name": "version_number",
+        "data_type": "integer",
+        "is_nullable": "NO",
+        "ordinal_position": 4,
+        "table_name": "exam_content_versions",
+        "udt_name": "int4"
+      },
+      {
+        "column_default": "gen_random_uuid()",
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "ordinal_position": 1,
+        "table_name": "exam_workflow_events",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": null,
+        "column_name": "rolled_back_by_email",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 16,
+        "table_name": "exam_import_batches",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "created_by_email",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 9,
+        "table_name": "exam_content_versions",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "reviewed_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "ordinal_position": 15,
+        "table_name": "exam_questions",
+        "udt_name": "timestamptz"
+      },
+      {
+        "column_default": null,
+        "column_name": "level",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "ordinal_position": 1,
+        "table_name": "jlpt_timing_configs",
+        "udt_name": "text"
+      },
+      {
+        "column_default": "false",
+        "column_name": "copyright_confirmed",
+        "data_type": "boolean",
+        "is_nullable": "NO",
+        "ordinal_position": 16,
+        "table_name": "exams",
+        "udt_name": "bool"
+      },
+      {
+        "column_default": null,
+        "column_name": "source_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 17,
+        "table_name": "exam_questions",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "batch_id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "ordinal_position": 2,
+        "table_name": "exam_import_batch_items",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": null,
+        "column_name": "uz_translation",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 7,
+        "table_name": "listening_audios",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "actor_role",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 9,
+        "table_name": "exam_workflow_events",
+        "udt_name": "text"
+      },
+      {
+        "column_default": "uuid_generate_v4()",
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "ordinal_position": 1,
+        "table_name": "exam_import_batch_items",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": null,
+        "column_name": "entity_type",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "ordinal_position": 2,
+        "table_name": "exam_workflow_events",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "to_status",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "ordinal_position": 6,
+        "table_name": "exam_workflow_events",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "archived_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "ordinal_position": 11,
+        "table_name": "exams",
+        "udt_name": "timestamptz"
+      },
+      {
+        "column_default": null,
+        "column_name": "created_by",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "ordinal_position": 8,
+        "table_name": "exam_content_versions",
+        "udt_name": "uuid"
+      },
+      {
+        "column_default": null,
+        "column_name": "author",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "ordinal_position": 14,
+        "table_name": "listening_audios",
+        "udt_name": "text"
+      },
+      {
+        "column_default": null,
+        "column_name": "script",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "ordinal_position": 6,
+        "table_name": "custom_listening_questions",
+        "udt_name": "text"
+      },
+      {
+        "column_default": "timezone('utc'::text, now())",
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "ordinal_position": 6,
+        "table_name": "exam_import_batch_items",
+        "udt_name": "timestamptz"
+      },
+      {
+        "column_default": "uuid_generate_v4()",
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "ordinal_position": 1,
+        "table_name": "listening_audios",
+        "udt_name": "uuid"
+      }
+    ],
+    "removed": []
+  },
+  "constraints": {
+    "added": [
+      {
+        "conname": "reading_passages_section_id_fkey",
+        "contype": "f",
+        "definition": "FOREIGN KEY (section_id) REFERENCES exam_sections(id) ON DELETE SET NULL",
+        "table_name": "reading_passages"
+      },
+      {
+        "conname": "listening_audios_pkey",
+        "contype": "p",
+        "definition": "PRIMARY KEY (id)",
+        "table_name": "listening_audios"
+      },
+      {
+        "conname": "exam_workflow_events_entity_type_check",
+        "contype": "c",
+        "definition": "CHECK ((entity_type = ANY (ARRAY['exam'::text, 'question'::text])))",
+        "table_name": "exam_workflow_events"
+      },
+      {
+        "conname": "jlpt_timing_configs_level_check",
+        "contype": "c",
+        "definition": "CHECK ((level = ANY (ARRAY['N5'::text, 'N4'::text, 'N3'::text, 'N2'::text, 'N1'::text])))",
+        "table_name": "jlpt_timing_configs"
+      },
+      {
+        "conname": "jlpt_timing_configs_config_is_array",
+        "contype": "c",
+        "definition": "CHECK ((jsonb_typeof(config) = 'array'::text))",
+        "table_name": "jlpt_timing_configs"
+      },
+      {
+        "conname": "exam_import_batch_items_batch_id_fkey",
+        "contype": "f",
+        "definition": "FOREIGN KEY (batch_id) REFERENCES exam_import_batches(id) ON DELETE CASCADE",
+        "table_name": "exam_import_batch_items"
+      },
+      {
+        "conname": "listening_audios_section_id_fkey",
+        "contype": "f",
+        "definition": "FOREIGN KEY (section_id) REFERENCES exam_sections(id) ON DELETE SET NULL",
+        "table_name": "listening_audios"
+      },
+      {
+        "conname": "exam_import_batches_status_check",
+        "contype": "c",
+        "definition": "CHECK ((status = ANY (ARRAY['pending'::text, 'applied'::text, 'failed'::text, 'rolled_back'::text])))",
+        "table_name": "exam_import_batches"
+      },
+      {
+        "conname": "exams_legal_publish_gate",
+        "contype": "c",
+        "definition": "CHECK (((is_published = false) OR ((copyright_confirmed = true) AND (COALESCE(license_type, 'original'::text) <> 'restricted'::text) AND ((COALESCE(license_type, 'original'::text) <> ALL (ARRAY['cc-by'::text, 'cc-by-sa'::text])) OR ((COALESCE(btrim(source_name), ''::text) <> ''::text) AND (COALESCE(btrim(author), ''::text) <> ''::text) AND (COALESCE(btrim(source_url), ''::text) <> ''::text)))))) NOT VALID",
+        "table_name": "exams"
+      },
+      {
+        "conname": "exam_import_batches_section_id_fkey",
+        "contype": "f",
+        "definition": "FOREIGN KEY (section_id) REFERENCES exam_sections(id) ON DELETE SET NULL",
+        "table_name": "exam_import_batches"
+      },
+      {
+        "conname": "exam_questions_listening_audio_id_fkey",
+        "contype": "f",
+        "definition": "FOREIGN KEY (listening_audio_id) REFERENCES listening_audios(id) ON DELETE SET NULL",
+        "table_name": "exam_questions"
+      },
+      {
+        "conname": "custom_listening_questions_pkey",
+        "contype": "p",
+        "definition": "PRIMARY KEY (id)",
+        "table_name": "custom_listening_questions"
+      },
+      {
+        "conname": "custom_listening_questions_type_check",
+        "contype": "c",
+        "definition": "CHECK ((type = ANY (ARRAY['task'::text, 'point'::text, 'quick'::text, 'summary'::text])))",
+        "table_name": "custom_listening_questions"
+      },
+      {
+        "conname": "custom_listening_questions_level_check",
+        "contype": "c",
+        "definition": "CHECK ((level = ANY (ARRAY['N5'::text, 'N4'::text, 'N3'::text, 'N2'::text, 'N1'::text])))",
+        "table_name": "custom_listening_questions"
+      },
+      {
+        "conname": "exam_content_versions_pkey",
+        "contype": "p",
+        "definition": "PRIMARY KEY (id)",
+        "table_name": "exam_content_versions"
+      },
+      {
+        "conname": "exams_published_status_consistency",
+        "contype": "c",
+        "definition": "CHECK (((is_published = false) OR (status = 'published'::text))) NOT VALID",
+        "table_name": "exams"
+      },
+      {
+        "conname": "listening_audios_exam_id_fkey",
+        "contype": "f",
+        "definition": "FOREIGN KEY (exam_id) REFERENCES exams(id) ON DELETE CASCADE",
+        "table_name": "listening_audios"
+      },
+      {
+        "conname": "exam_import_batches_exam_id_fkey",
+        "contype": "f",
+        "definition": "FOREIGN KEY (exam_id) REFERENCES exams(id) ON DELETE SET NULL",
+        "table_name": "exam_import_batches"
+      },
+      {
+        "conname": "exam_workflow_events_pkey",
+        "contype": "p",
+        "definition": "PRIMARY KEY (id)",
+        "table_name": "exam_workflow_events"
+      },
+      {
+        "conname": "exam_questions_passage_id_fkey",
+        "contype": "f",
+        "definition": "FOREIGN KEY (passage_id) REFERENCES reading_passages(id) ON DELETE SET NULL",
+        "table_name": "exam_questions"
+      },
+      {
+        "conname": "reading_passages_exam_id_fkey",
+        "contype": "f",
+        "definition": "FOREIGN KEY (exam_id) REFERENCES exams(id) ON DELETE CASCADE",
+        "table_name": "reading_passages"
+      },
+      {
+        "conname": "jlpt_timing_configs_pkey",
+        "contype": "p",
+        "definition": "PRIMARY KEY (level)",
+        "table_name": "jlpt_timing_configs"
+      },
+      {
+        "conname": "exam_import_batch_items_pkey",
+        "contype": "p",
+        "definition": "PRIMARY KEY (id)",
+        "table_name": "exam_import_batch_items"
+      },
+      {
+        "conname": "exam_questions_status_values",
+        "contype": "c",
+        "definition": "CHECK ((status = ANY (ARRAY['draft'::text, 'review'::text, 'approved'::text, 'rejected'::text]))) NOT VALID",
+        "table_name": "exam_questions"
+      },
+      {
+        "conname": "exam_import_batches_pkey",
+        "contype": "p",
+        "definition": "PRIMARY KEY (id)",
+        "table_name": "exam_import_batches"
+      },
+      {
+        "conname": "exam_content_versions_batch_id_fkey",
+        "contype": "f",
+        "definition": "FOREIGN KEY (batch_id) REFERENCES exam_import_batches(id) ON DELETE SET NULL",
+        "table_name": "exam_content_versions"
+      },
+      {
+        "conname": "jlpt_timing_configs_updated_by_fkey",
+        "contype": "f",
+        "definition": "FOREIGN KEY (updated_by) REFERENCES auth.users(id) ON DELETE SET NULL",
+        "table_name": "jlpt_timing_configs"
+      },
+      {
+        "conname": "exam_content_versions_unique_number",
+        "contype": "u",
+        "definition": "UNIQUE (exam_id, version_number)",
+        "table_name": "exam_content_versions"
+      },
+      {
+        "conname": "reading_passages_pkey",
+        "contype": "p",
+        "definition": "PRIMARY KEY (id)",
+        "table_name": "reading_passages"
+      },
+      {
+        "conname": "exam_questions_question_type_check",
+        "contype": "c",
+        "definition": "CHECK (((question_type IS NULL) OR (question_type = ANY (ARRAY['vocabulary_meaning'::text, 'kanji_reading'::text, 'grammar_fill_blank'::text, 'sentence_ordering'::text, 'synonym_nuance'::text, 'reading_main_idea'::text, 'reading_detail'::text, 'reading_inference'::text, 'listening_situation'::text, 'listening_intention'::text, 'listening_summary'::text]))))",
+        "table_name": "exam_questions"
+      }
+    ],
+    "removed": []
+  },
+  "indexes": {
+    "added": [
+      {
+        "indexdef": "CREATE UNIQUE INDEX exam_workflow_events_pkey ON public.exam_workflow_events USING btree (id)",
+        "indexname": "exam_workflow_events_pkey",
+        "tablename": "exam_workflow_events"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_exam_import_batch_items_batch_id ON public.exam_import_batch_items USING btree (batch_id)",
+        "indexname": "idx_exam_import_batch_items_batch_id",
+        "tablename": "exam_import_batch_items"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX exam_import_batch_items_pkey ON public.exam_import_batch_items USING btree (id)",
+        "indexname": "exam_import_batch_items_pkey",
+        "tablename": "exam_import_batch_items"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_exam_questions_passage_id ON public.exam_questions USING btree (passage_id)",
+        "indexname": "idx_exam_questions_passage_id",
+        "tablename": "exam_questions"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX exam_import_batches_pkey ON public.exam_import_batches USING btree (id)",
+        "indexname": "exam_import_batches_pkey",
+        "tablename": "exam_import_batches"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_exam_questions_question_type ON public.exam_questions USING btree (question_type) WHERE (question_type IS NOT NULL)",
+        "indexname": "idx_exam_questions_question_type",
+        "tablename": "exam_questions"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_exams_is_official ON public.exams USING btree (is_official_jlpt)",
+        "indexname": "idx_exams_is_official",
+        "tablename": "exams"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX reading_passages_pkey ON public.reading_passages USING btree (id)",
+        "indexname": "reading_passages_pkey",
+        "tablename": "reading_passages"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_exam_workflow_events_entity ON public.exam_workflow_events USING btree (entity_type, entity_id, created_at DESC)",
+        "indexname": "idx_exam_workflow_events_entity",
+        "tablename": "exam_workflow_events"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_exam_content_versions_batch_id ON public.exam_content_versions USING btree (batch_id)",
+        "indexname": "idx_exam_content_versions_batch_id",
+        "tablename": "exam_content_versions"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_exam_import_batches_imported_by ON public.exam_import_batches USING btree (imported_by)",
+        "indexname": "idx_exam_import_batches_imported_by",
+        "tablename": "exam_import_batches"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX exam_content_versions_unique_number ON public.exam_content_versions USING btree (exam_id, version_number)",
+        "indexname": "exam_content_versions_unique_number",
+        "tablename": "exam_content_versions"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_exam_questions_license_type ON public.exam_questions USING btree (license_type)",
+        "indexname": "idx_exam_questions_license_type",
+        "tablename": "exam_questions"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX custom_listening_questions_pkey ON public.custom_listening_questions USING btree (id)",
+        "indexname": "custom_listening_questions_pkey",
+        "tablename": "custom_listening_questions"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_exam_import_batches_exam_id ON public.exam_import_batches USING btree (exam_id)",
+        "indexname": "idx_exam_import_batches_exam_id",
+        "tablename": "exam_import_batches"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_listening_audios_exam_id ON public.listening_audios USING btree (exam_id)",
+        "indexname": "idx_listening_audios_exam_id",
+        "tablename": "listening_audios"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_custom_listening_level ON public.custom_listening_questions USING btree (level)",
+        "indexname": "idx_custom_listening_level",
+        "tablename": "custom_listening_questions"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX listening_audios_pkey ON public.listening_audios USING btree (id)",
+        "indexname": "listening_audios_pkey",
+        "tablename": "listening_audios"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_exams_license_type ON public.exams USING btree (license_type)",
+        "indexname": "idx_exams_license_type",
+        "tablename": "exams"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_reading_passages_exam_id ON public.reading_passages USING btree (exam_id)",
+        "indexname": "idx_reading_passages_exam_id",
+        "tablename": "reading_passages"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_exams_status ON public.exams USING btree (status)",
+        "indexname": "idx_exams_status",
+        "tablename": "exams"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_exam_import_batches_created_at ON public.exam_import_batches USING btree (created_at DESC)",
+        "indexname": "idx_exam_import_batches_created_at",
+        "tablename": "exam_import_batches"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_exam_workflow_events_exam ON public.exam_workflow_events USING btree (exam_id, created_at DESC)",
+        "indexname": "idx_exam_workflow_events_exam",
+        "tablename": "exam_workflow_events"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_custom_listening_type ON public.custom_listening_questions USING btree (type)",
+        "indexname": "idx_custom_listening_type",
+        "tablename": "custom_listening_questions"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_exam_import_batches_section_id ON public.exam_import_batches USING btree (section_id)",
+        "indexname": "idx_exam_import_batches_section_id",
+        "tablename": "exam_import_batches"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_exam_import_batch_items_question_id ON public.exam_import_batch_items USING btree (question_id)",
+        "indexname": "idx_exam_import_batch_items_question_id",
+        "tablename": "exam_import_batch_items"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_exam_content_versions_exam_id ON public.exam_content_versions USING btree (exam_id, version_number DESC)",
+        "indexname": "idx_exam_content_versions_exam_id",
+        "tablename": "exam_content_versions"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_exam_questions_listening_audio_id ON public.exam_questions USING btree (listening_audio_id)",
+        "indexname": "idx_exam_questions_listening_audio_id",
+        "tablename": "exam_questions"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_exam_questions_status ON public.exam_questions USING btree (status)",
+        "indexname": "idx_exam_questions_status",
+        "tablename": "exam_questions"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX exam_content_versions_pkey ON public.exam_content_versions USING btree (id)",
+        "indexname": "exam_content_versions_pkey",
+        "tablename": "exam_content_versions"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_exam_answers_question_correct ON public.exam_answers USING btree (question_id, is_correct)",
+        "indexname": "idx_exam_answers_question_correct",
+        "tablename": "exam_answers"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_exams_draft_only ON public.exams USING btree (status) WHERE (is_published = false)",
+        "indexname": "idx_exams_draft_only",
+        "tablename": "exams"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX jlpt_timing_configs_pkey ON public.jlpt_timing_configs USING btree (level)",
+        "indexname": "jlpt_timing_configs_pkey",
+        "tablename": "jlpt_timing_configs"
+      }
+    ],
+    "removed": []
+  },
+  "policies": {
+    "added": [
+      {
+        "cmd": "UPDATE",
+        "policyname": "listening_audios_update_reviewer",
+        "qual": "(is_reviewer() AND (EXISTS ( SELECT 1\n   FROM exams e\n  WHERE ((e.id = listening_audios.exam_id) AND (e.is_published = false)))))",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "listening_audios",
+        "with_check": "(is_reviewer() AND (EXISTS ( SELECT 1\n   FROM exams e\n  WHERE ((e.id = listening_audios.exam_id) AND (e.is_published = false)))))"
+      },
+      {
+        "cmd": "SELECT",
+        "policyname": "exam_import_batches_select_reviewer",
+        "qual": "is_reviewer()",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "exam_import_batches",
+        "with_check": null
+      },
+      {
+        "cmd": "UPDATE",
+        "policyname": "exam_sections_update_reviewer",
+        "qual": "(is_reviewer() AND (EXISTS ( SELECT 1\n   FROM exams e\n  WHERE ((e.id = exam_sections.exam_id) AND (e.is_published = false)))))",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "exam_sections",
+        "with_check": "(is_reviewer() AND (EXISTS ( SELECT 1\n   FROM exams e\n  WHERE ((e.id = exam_sections.exam_id) AND (e.is_published = false)))))"
+      },
+      {
+        "cmd": "INSERT",
+        "policyname": "Admins can insert listening audios",
+        "qual": null,
+        "roles": "{authenticated}",
+        "schemaname": "storage",
+        "tablename": "objects",
+        "with_check": "((bucket_id = 'listening_audios'::text) AND ( SELECT is_admin() AS is_admin))"
+      },
+      {
+        "cmd": "DELETE",
+        "policyname": "exam_sections_delete_reviewer",
+        "qual": "(is_reviewer() AND (EXISTS ( SELECT 1\n   FROM exams e\n  WHERE ((e.id = exam_sections.exam_id) AND (e.is_published = false)))))",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "exam_sections",
+        "with_check": null
+      },
+      {
+        "cmd": "UPDATE",
+        "policyname": "Admins can update listening audios",
+        "qual": "((bucket_id = 'listening_audios'::text) AND ( SELECT is_admin() AS is_admin))",
+        "roles": "{authenticated}",
+        "schemaname": "storage",
+        "tablename": "objects",
+        "with_check": null
+      },
+      {
+        "cmd": "ALL",
+        "policyname": "Admins can manage reading passages",
+        "qual": "is_admin()",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "reading_passages",
+        "with_check": "is_admin()"
+      },
+      {
+        "cmd": "UPDATE",
+        "policyname": "exam_questions_update_reviewer",
+        "qual": "(is_reviewer() AND (EXISTS ( SELECT 1\n   FROM (exam_sections s\n     JOIN exams e ON ((e.id = s.exam_id)))\n  WHERE ((s.id = exam_questions.section_id) AND (e.is_published = false)))))",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "exam_questions",
+        "with_check": "(is_reviewer() AND (EXISTS ( SELECT 1\n   FROM (exam_sections s\n     JOIN exams e ON ((e.id = s.exam_id)))\n  WHERE ((s.id = exam_questions.section_id) AND (e.is_published = false)))))"
+      },
+      {
+        "cmd": "INSERT",
+        "policyname": "exam_sections_insert_reviewer",
+        "qual": null,
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "exam_sections",
+        "with_check": "(is_reviewer() AND (EXISTS ( SELECT 1\n   FROM exams e\n  WHERE ((e.id = exam_sections.exam_id) AND (e.is_published = false)))))"
+      },
+      {
+        "cmd": "DELETE",
+        "policyname": "Admins can delete JLPT timing configs",
+        "qual": "is_admin()",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "jlpt_timing_configs",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "policyname": "custom_listening_select_policy",
+        "qual": "true",
+        "roles": "{public}",
+        "schemaname": "public",
+        "tablename": "custom_listening_questions",
+        "with_check": null
+      },
+      {
+        "cmd": "INSERT",
+        "policyname": "Reviewers can append exam workflow events",
+        "qual": null,
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "exam_workflow_events",
+        "with_check": "((is_admin() OR is_reviewer()) AND ((actor_email IS NULL) OR (lower(actor_email) = lower(COALESCE((auth.jwt() ->> 'email'::text), ''::text)))))"
+      },
+      {
+        "cmd": "INSERT",
+        "policyname": "Admins can insert JLPT timing configs",
+        "qual": null,
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "jlpt_timing_configs",
+        "with_check": "is_admin()"
+      },
+      {
+        "cmd": "UPDATE",
+        "policyname": "reading_passages_update_reviewer",
+        "qual": "(is_reviewer() AND (EXISTS ( SELECT 1\n   FROM exams e\n  WHERE ((e.id = reading_passages.exam_id) AND (e.is_published = false)))))",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "reading_passages",
+        "with_check": "(is_reviewer() AND (EXISTS ( SELECT 1\n   FROM exams e\n  WHERE ((e.id = reading_passages.exam_id) AND (e.is_published = false)))))"
+      },
+      {
+        "cmd": "ALL",
+        "policyname": "cron_job_run_details_policy",
+        "qual": "(username = CURRENT_USER)",
+        "roles": "{public}",
+        "schemaname": "cron",
+        "tablename": "job_run_details",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "policyname": "exam_questions_select_reviewer",
+        "qual": "(is_reviewer() AND (EXISTS ( SELECT 1\n   FROM (exam_sections s\n     JOIN exams e ON ((e.id = s.exam_id)))\n  WHERE ((s.id = exam_questions.section_id) AND ((e.is_published = false) OR is_admin())))))",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "exam_questions",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "policyname": "Admins can view all reading passages",
+        "qual": "is_admin()",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "reading_passages",
+        "with_check": null
+      },
+      {
+        "cmd": "DELETE",
+        "policyname": "exam_questions_delete_reviewer",
+        "qual": "(is_reviewer() AND (EXISTS ( SELECT 1\n   FROM (exam_sections s\n     JOIN exams e ON ((e.id = s.exam_id)))\n  WHERE ((s.id = exam_questions.section_id) AND (e.is_published = false)))))",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "exam_questions",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "policyname": "Admins can view all exam answers",
+        "qual": "is_admin()",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "exam_answers",
+        "with_check": null
+      },
+      {
+        "cmd": "ALL",
+        "policyname": "Admins can manage exam import batch items",
+        "qual": "is_admin()",
+        "roles": "{public}",
+        "schemaname": "public",
+        "tablename": "exam_import_batch_items",
+        "with_check": "is_admin()"
+      },
+      {
+        "cmd": "INSERT",
+        "policyname": "custom_listening_insert_policy",
+        "qual": null,
+        "roles": "{public}",
+        "schemaname": "public",
+        "tablename": "custom_listening_questions",
+        "with_check": "( SELECT is_admin() AS is_admin)"
+      },
+      {
+        "cmd": "ALL",
+        "policyname": "Admins can manage exam content versions",
+        "qual": "is_admin()",
+        "roles": "{public}",
+        "schemaname": "public",
+        "tablename": "exam_content_versions",
+        "with_check": "is_admin()"
+      },
+      {
+        "cmd": "SELECT",
+        "policyname": "Admins can read exam workflow events",
+        "qual": "is_admin()",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "exam_workflow_events",
+        "with_check": null
+      },
+      {
+        "cmd": "INSERT",
+        "policyname": "exam_import_batches_insert_reviewer",
+        "qual": null,
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "exam_import_batches",
+        "with_check": "(is_reviewer() AND (imported_by = auth.uid()))"
+      },
+      {
+        "cmd": "SELECT",
+        "policyname": "Admins can view all listening audios",
+        "qual": "is_admin()",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "listening_audios",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "policyname": "exams reading passages select",
+        "qual": "(EXISTS ( SELECT 1\n   FROM exams e\n  WHERE ((e.id = reading_passages.exam_id) AND ((e.is_published = true) OR is_admin() OR is_reviewer()))))",
+        "roles": "{anon,authenticated}",
+        "schemaname": "public",
+        "tablename": "reading_passages",
+        "with_check": null
+      },
+      {
+        "cmd": "INSERT",
+        "policyname": "exams_insert_reviewer",
+        "qual": null,
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "exams",
+        "with_check": "(is_reviewer() AND (is_published = false))"
+      },
+      {
+        "cmd": "UPDATE",
+        "policyname": "Admins can update JLPT timing configs",
+        "qual": "is_admin()",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "jlpt_timing_configs",
+        "with_check": "is_admin()"
+      },
+      {
+        "cmd": "UPDATE",
+        "policyname": "exam_content_versions_update_reviewer",
+        "qual": "(is_reviewer() AND (created_by = auth.uid()))",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "exam_content_versions",
+        "with_check": "(is_reviewer() AND (created_by = auth.uid()))"
+      },
+      {
+        "cmd": "SELECT",
+        "policyname": "exam_import_batch_items_select_reviewer",
+        "qual": "(is_reviewer() AND (EXISTS ( SELECT 1\n   FROM exam_import_batches b\n  WHERE ((b.id = exam_import_batch_items.batch_id) AND (b.imported_by = auth.uid())))))",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "exam_import_batch_items",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "policyname": "exam_sections_select_reviewer",
+        "qual": "(is_reviewer() AND (EXISTS ( SELECT 1\n   FROM exams e\n  WHERE ((e.id = exam_sections.exam_id) AND ((e.is_published = false) OR is_admin())))))",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "exam_sections",
+        "with_check": null
+      },
+      {
+        "cmd": "UPDATE",
+        "policyname": "custom_listening_update_policy",
+        "qual": "( SELECT is_admin() AS is_admin)",
+        "roles": "{public}",
+        "schemaname": "public",
+        "tablename": "custom_listening_questions",
+        "with_check": "( SELECT is_admin() AS is_admin)"
+      },
+      {
+        "cmd": "SELECT",
+        "policyname": "exams listening audios select",
+        "qual": "(EXISTS ( SELECT 1\n   FROM exams e\n  WHERE ((e.id = listening_audios.exam_id) AND ((e.is_published = true) OR is_admin() OR is_reviewer()))))",
+        "roles": "{anon,authenticated}",
+        "schemaname": "public",
+        "tablename": "listening_audios",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "policyname": "Anyone can read JLPT timing configs",
+        "qual": "true",
+        "roles": "{anon,authenticated}",
+        "schemaname": "public",
+        "tablename": "jlpt_timing_configs",
+        "with_check": null
+      },
+      {
+        "cmd": "INSERT",
+        "policyname": "exam_content_versions_insert_reviewer",
+        "qual": null,
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "exam_content_versions",
+        "with_check": "(is_reviewer() AND (created_by = auth.uid()))"
+      },
+      {
+        "cmd": "INSERT",
+        "policyname": "exam_questions_insert_reviewer",
+        "qual": null,
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "exam_questions",
+        "with_check": "(is_reviewer() AND (EXISTS ( SELECT 1\n   FROM (exam_sections s\n     JOIN exams e ON ((e.id = s.exam_id)))\n  WHERE ((s.id = exam_questions.section_id) AND (e.is_published = false)))))"
+      },
+      {
+        "cmd": "INSERT",
+        "policyname": "reading_passages_insert_reviewer",
+        "qual": null,
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "reading_passages",
+        "with_check": "(is_reviewer() AND (EXISTS ( SELECT 1\n   FROM exams e\n  WHERE ((e.id = reading_passages.exam_id) AND (e.is_published = false)))))"
+      },
+      {
+        "cmd": "ALL",
+        "policyname": "Admins can manage listening audios",
+        "qual": "is_admin()",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "listening_audios",
+        "with_check": "is_admin()"
+      },
+      {
+        "cmd": "UPDATE",
+        "policyname": "exam_import_batches_update_reviewer",
+        "qual": "(is_reviewer() AND (imported_by = auth.uid()) AND (status <> 'rolled_back'::text))",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "exam_import_batches",
+        "with_check": "(is_reviewer() AND (imported_by = auth.uid()) AND (status = ANY (ARRAY['pending'::text, 'applied'::text, 'failed'::text])))"
+      },
+      {
+        "cmd": "UPDATE",
+        "policyname": "exams_update_reviewer",
+        "qual": "(is_reviewer() AND (is_published = false))",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "exams",
+        "with_check": "(is_reviewer() AND (is_published = false))"
+      },
+      {
+        "cmd": "SELECT",
+        "policyname": "exams_select_reviewer",
+        "qual": "is_reviewer()",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "exams",
+        "with_check": null
+      },
+      {
+        "cmd": "INSERT",
+        "policyname": "listening_audios_insert_reviewer",
+        "qual": null,
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "listening_audios",
+        "with_check": "(is_reviewer() AND (EXISTS ( SELECT 1\n   FROM exams e\n  WHERE ((e.id = listening_audios.exam_id) AND (e.is_published = false)))))"
+      },
+      {
+        "cmd": "DELETE",
+        "policyname": "Admins can delete listening audios",
+        "qual": "((bucket_id = 'listening_audios'::text) AND ( SELECT is_admin() AS is_admin))",
+        "roles": "{authenticated}",
+        "schemaname": "storage",
+        "tablename": "objects",
+        "with_check": null
+      },
+      {
+        "cmd": "DELETE",
+        "policyname": "custom_listening_delete_policy",
+        "qual": "( SELECT is_admin() AS is_admin)",
+        "roles": "{public}",
+        "schemaname": "public",
+        "tablename": "custom_listening_questions",
+        "with_check": null
+      },
+      {
+        "cmd": "INSERT",
+        "policyname": "exam_import_batch_items_reviewer",
+        "qual": null,
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "exam_import_batch_items",
+        "with_check": "(is_reviewer() AND (EXISTS ( SELECT 1\n   FROM exam_import_batches b\n  WHERE ((b.id = exam_import_batch_items.batch_id) AND (b.imported_by = auth.uid())))))"
+      },
+      {
+        "cmd": "ALL",
+        "policyname": "Admins can manage exam import batches",
+        "qual": "is_admin()",
+        "roles": "{public}",
+        "schemaname": "public",
+        "tablename": "exam_import_batches",
+        "with_check": "is_admin()"
+      },
+      {
+        "cmd": "DELETE",
+        "policyname": "listening_audios_delete_reviewer",
+        "qual": "(is_reviewer() AND (EXISTS ( SELECT 1\n   FROM exams e\n  WHERE ((e.id = listening_audios.exam_id) AND (e.is_published = false)))))",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "listening_audios",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "policyname": "Anyone can view listening audios",
+        "qual": "(bucket_id = 'listening_audios'::text)",
+        "roles": "{public}",
+        "schemaname": "storage",
+        "tablename": "objects",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "policyname": "exam_content_versions_select_reviewer",
+        "qual": "is_reviewer()",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "exam_content_versions",
+        "with_check": null
+      },
+      {
+        "cmd": "DELETE",
+        "policyname": "reading_passages_delete_reviewer",
+        "qual": "(is_reviewer() AND (EXISTS ( SELECT 1\n   FROM exams e\n  WHERE ((e.id = reading_passages.exam_id) AND (e.is_published = false)))))",
+        "roles": "{authenticated}",
+        "schemaname": "public",
+        "tablename": "reading_passages",
+        "with_check": null
+      },
+      {
+        "cmd": "ALL",
+        "policyname": "cron_job_policy",
+        "qual": "(username = CURRENT_USER)",
+        "roles": "{public}",
+        "schemaname": "cron",
+        "tablename": "job",
+        "with_check": null
+      }
+    ],
+    "removed": []
+  },
+  "functions": {
+    "added": [
+      {
+        "definition": "CREATE OR REPLACE FUNCTION public.question_allowed_next_statuses(_status text)\n RETURNS text\n LANGUAGE sql\n IMMUTABLE\nAS $function$\n    SELECT CASE _status\n        WHEN 'draft' THEN 'review'\n        WHEN 'review' THEN 'approved, rejected'\n        WHEN 'rejected' THEN 'draft'\n        WHEN 'approved' THEN 'yo''q (exam publish orqali boshqariladi)'\n        ELSE 'yo''q (noma''lum holat)'\n    END;\n$function$\n",
+        "proname": "question_allowed_next_statuses"
+      },
+      {
+        "definition": "CREATE OR REPLACE FUNCTION public.enforce_question_workflow_transition()\n RETURNS trigger\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO 'public', 'auth'\nAS $function$\nDECLARE\n    _allowed BOOLEAN;\nBEGIN\n    IF NEW.status IS NOT DISTINCT FROM OLD.status THEN\n        RETURN NEW;\n    END IF;\n\n    _allowed := (OLD.status, NEW.status) IN (\n        ('draft', 'review'),\n        ('review', 'approved'),\n        ('review', 'rejected'),\n        ('rejected', 'draft')\n    );\n\n    IF NOT _allowed THEN\n        RAISE EXCEPTION 'Noto''g''ri savol status o''tishi: \"%\" \u2192 \"%\". Ruxsat etilgan o''tishlar: %',\n            OLD.status, NEW.status, public.question_allowed_next_statuses(OLD.status)\n            USING ERRCODE = 'check_violation';\n    END IF;\n\n    IF NOT (public.is_admin() OR public.is_reviewer()) THEN\n        RAISE EXCEPTION '\"%\" \u2192 \"%\" o''tishi uchun reviewer yoki admin roli talab qilinadi.',\n            OLD.status, NEW.status\n            USING ERRCODE = 'insufficient_privilege';\n    END IF;\n\n    RETURN NEW;\nEND;\n$function$\n",
+        "proname": "enforce_question_workflow_transition"
+      },
+      {
+        "definition": "CREATE OR REPLACE FUNCTION public.is_reviewer()\n RETURNS boolean\n LANGUAGE plpgsql\n STABLE SECURITY DEFINER\n SET search_path TO 'public', 'auth'\nAS $function$\nDECLARE\n    _uid UUID := auth.uid();\n    _role TEXT;\n    _email TEXT;\nBEGIN\n    IF auth.role() = 'service_role' OR current_user = 'service_role' THEN\n        RETURN TRUE;\n    END IF;\n\n    IF public.is_admin() THEN\n        RETURN TRUE;\n    END IF;\n\n    IF _uid IS NULL THEN\n        RETURN FALSE;\n    END IF;\n\n    SELECT LOWER(TRIM(COALESCE(role, ''))), LOWER(TRIM(COALESCE(email, '')))\n    INTO _role, _email\n    FROM public.profiles\n    WHERE id = _uid;\n\n    RETURN _role IN ('reviewer', 'admin', 'superadmin')\n        OR _email IN ('fsoyilov@gmail.com', 'admin@nihongo-talk.jp');\nEND;\n$function$\n",
+        "proname": "is_reviewer"
+      },
+      {
+        "definition": "CREATE OR REPLACE FUNCTION public.set_jlpt_timing_config_updated_at()\n RETURNS trigger\n LANGUAGE plpgsql\n SET search_path TO 'public'\nAS $function$\nBEGIN\n  NEW.updated_at = now();\n  RETURN NEW;\nEND;\n$function$\n",
+        "proname": "set_jlpt_timing_config_updated_at"
+      },
+      {
+        "definition": "CREATE OR REPLACE FUNCTION public.enforce_exam_workflow_transition()\n RETURNS trigger\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO 'public', 'auth'\nAS $function$\nDECLARE\n    _allowed BOOLEAN;\n    _admin_only BOOLEAN;\nBEGIN\n    IF NEW.status IS NOT DISTINCT FROM OLD.status THEN\n        IF NEW.is_published AND NEW.status <> 'published' THEN\n            RAISE EXCEPTION 'is_published = true faqat status = ''published'' bo''lganda ruxsat etiladi.'\n                USING ERRCODE = 'check_violation';\n        END IF;\n        IF NEW.status = 'published' AND NEW.is_published IS DISTINCT FROM TRUE THEN\n            RAISE EXCEPTION 'status = ''published'' uchun is_published = true bo''lishi shart.'\n                USING ERRCODE = 'check_violation';\n        END IF;\n        RETURN NEW;\n    END IF;\n\n    _allowed := (OLD.status, NEW.status) IN (\n        ('draft', 'review'),\n        ('review', 'draft'),\n        ('review', 'approved'),\n        ('approved', 'published'),\n        ('published', 'archived'),\n        ('archived', 'draft')\n    );\n\n    IF NOT _allowed THEN\n        RAISE EXCEPTION 'Noto''g''ri exam status o''tishi: \"%\" \u2192 \"%\". Ruxsat etilgan o''tishlar: %',\n            OLD.status, NEW.status, public.exam_allowed_next_statuses(OLD.status)\n            USING ERRCODE = 'check_violation';\n    END IF;\n\n    _admin_only := (OLD.status, NEW.status) IN (\n        ('approved', 'published'),\n        ('published', 'archived'),\n        ('archived', 'draft')\n    );\n\n    IF _admin_only AND NOT public.is_admin() THEN\n        RAISE EXCEPTION '\"%\" \u2192 \"%\" o''tishi faqat admin uchun ruxsat etilgan.',\n            OLD.status, NEW.status\n            USING ERRCODE = 'insufficient_privilege';\n    END IF;\n\n    IF NOT _admin_only AND NOT (public.is_admin() OR public.is_reviewer()) THEN\n        RAISE EXCEPTION '\"%\" \u2192 \"%\" o''tishi uchun reviewer yoki admin roli talab qilinadi.',\n            OLD.status, NEW.status\n            USING ERRCODE = 'insufficient_privilege';\n    END IF;\n\n    IF NEW.is_published AND NEW.status <> 'published' THEN\n        RAISE EXCEPTION 'is_published = true faqat status = ''published'' bo''lganda ruxsat etiladi.'\n            USING ERRCODE = 'check_violation';\n    END IF;\n\n    IF NEW.status = 'published' AND NEW.is_published IS DISTINCT FROM TRUE THEN\n        RAISE EXCEPTION 'status = ''published'' uchun is_published = true bo''lishi shart.'\n            USING ERRCODE = 'check_violation';\n    END IF;\n\n    RETURN NEW;\nEND;\n$function$\n",
+        "proname": "enforce_exam_workflow_transition"
+      },
+      {
+        "definition": "CREATE OR REPLACE FUNCTION public.exam_allowed_next_statuses(_status text)\n RETURNS text\n LANGUAGE sql\n IMMUTABLE\nAS $function$\n    SELECT CASE _status\n        WHEN 'draft' THEN 'review'\n        WHEN 'review' THEN 'draft, approved'\n        WHEN 'approved' THEN 'published'\n        WHEN 'published' THEN 'archived'\n        WHEN 'archived' THEN 'draft'\n        ELSE 'yo''q (noma''lum holat)'\n    END;\n$function$\n",
+        "proname": "exam_allowed_next_statuses"
+      }
+    ],
+    "removed": []
+  },
+  "triggers": {
+    "added": [
+      {
+        "action_statement": "EXECUTE FUNCTION set_jlpt_timing_config_updated_at()",
+        "action_timing": "BEFORE",
+        "event_manipulation": "UPDATE",
+        "table_name": "jlpt_timing_configs",
+        "trigger_name": "update_jlpt_timing_configs_updated_at"
+      },
+      {
+        "action_statement": "EXECUTE FUNCTION enforce_exam_workflow_transition()",
+        "action_timing": "BEFORE",
+        "event_manipulation": "UPDATE",
+        "table_name": "exams",
+        "trigger_name": "trg_exams_workflow_transition"
+      },
+      {
+        "action_statement": "EXECUTE FUNCTION enforce_question_workflow_transition()",
+        "action_timing": "BEFORE",
+        "event_manipulation": "UPDATE",
+        "table_name": "exam_questions",
+        "trigger_name": "trg_exam_questions_workflow_transition"
+      }
+    ],
+    "removed": []
+  },
+  "buckets": {
+    "added": [
+      {
+        "allowed_mime_types": [
+          "audio/webm",
+          "audio/mp4",
+          "audio/ogg",
+          "audio/wav",
+          "audio/mpeg",
+          "audio/mp3",
+          "audio/x-m4a"
+        ],
+        "file_size_limit": 26214400,
+        "id": "listening_audios",
+        "name": "listening_audios",
+        "public": true
+      }
+    ],
+    "removed": []
+  },
+  "rls": {
+    "added": [
+      {
+        "force_rls": false,
+        "rls_enabled": true,
+        "table_name": "custom_listening_questions"
+      },
+      {
+        "force_rls": false,
+        "rls_enabled": true,
+        "table_name": "exam_content_versions"
+      },
+      {
+        "force_rls": false,
+        "rls_enabled": true,
+        "table_name": "exam_import_batches"
+      },
+      {
+        "force_rls": false,
+        "rls_enabled": true,
+        "table_name": "exam_workflow_events"
+      },
+      {
+        "force_rls": false,
+        "rls_enabled": true,
+        "table_name": "exam_import_batch_items"
+      },
+      {
+        "force_rls": false,
+        "rls_enabled": true,
+        "table_name": "listening_audios"
+      },
+      {
+        "force_rls": false,
+        "rls_enabled": true,
+        "table_name": "jlpt_timing_configs"
+      },
+      {
+        "force_rls": false,
+        "rls_enabled": true,
+        "table_name": "reading_passages"
+      }
+    ],
+    "removed": []
+  },
+  "migrations": {
+    "added": [
+      {
+        "name": "task17_draft_only_import_invariants",
+        "version": "20261025000000"
+      },
+      {
+        "name": "add_exam_import_batches_and_versions",
+        "version": "20261021000000"
+      },
+      {
+        "name": "admin_content_quality_audit",
+        "version": "20261024000000"
+      },
+      {
+        "name": "task19_workflow_transition_enforcement",
+        "version": "20261027000000"
+      },
+      {
+        "name": "create_custom_listening_questions",
+        "version": "20260920000000"
+      },
+      {
+        "name": "add_exam_content_workflow_status",
+        "version": "20260922000000"
+      },
+      {
+        "name": "add_jlpt_timing_configs",
+        "version": "20261023000000"
+      },
+      {
+        "name": "task18_legal_publish_gates",
+        "version": "20261026000000"
+      },
+      {
+        "name": "task20_exam_workflow_rollout",
+        "version": "20261028000000"
+      },
+      {
+        "name": "add_exam_source_and_license_metadata",
+        "version": "20260923000000"
+      },
+      {
+        "name": "add_jlpt_question_type_payload",
+        "version": "20261022000000"
+      },
+      {
+        "name": "task20_reviewer_read_policies",
+        "version": "20261028000001"
+      },
+      {
+        "name": "add_passage_and_listening_entities",
+        "version": "20260921000000"
+      }
+    ],
+    "removed": []
+  }
+}

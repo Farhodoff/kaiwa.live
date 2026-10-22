@@ -22,11 +22,13 @@ import {
 import { useStudyData } from '../../context/StudyPlannerContext';
 import { isAdminEmail, isUserAdmin } from '../../utils/admin';
 import { ExamBulkImportModal } from '../../components/admin/ExamBulkImportModal';
+import { JlptTimingConfigModal } from '../../components/admin/JlptTimingConfigModal';
 import {
   ExamWorkflowService,
   EXAM_STATUS_CONFIG,
   ExamWorkflowStatus,
 } from '../../services/ExamWorkflowService';
+import { LICENSE_CONFIG, normalizeLicenseType } from '../../types/examMetadata';
 
 import { toast } from '../../hooks/use-toast';
 
@@ -46,6 +48,7 @@ export const ExamsManager: React.FC = () => {
   // Step-by-Step Creation Wizard State
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showBulkModal, setShowBulkModal] = useState(false);
+  const [showTimingModal, setShowTimingModal] = useState(false);
   const [jlptLevel, setJlptLevel] = useState<'N5' | 'N4' | 'N3' | 'N2' | 'N1'>('N3');
   const [newTitle, setNewTitle] = useState('');
   const [newDesc, setNewDesc] = useState('');
@@ -134,7 +137,7 @@ export const ExamsManager: React.FC = () => {
     )
       return;
     try {
-      const res = await ExamWorkflowService.archiveExam(examId);
+      const res = await ExamWorkflowService.archiveExam(examId, user?.email, (user as any)?.role);
       fetchExams();
       toast({
         title: '📦 Arxivlandi',
@@ -152,7 +155,7 @@ export const ExamsManager: React.FC = () => {
 
   const handleRestoreExam = async (examId: string, _examTitle?: string) => {
     try {
-      const res = await ExamWorkflowService.restoreExam(examId);
+      const res = await ExamWorkflowService.restoreExam(examId, user?.email, (user as any)?.role);
       fetchExams();
       toast({
         title: '♻️ Qayta Tiklandi',
@@ -279,6 +282,13 @@ export const ExamsManager: React.FC = () => {
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
+            <Button
+              variant="outline"
+              onClick={() => setShowTimingModal(true)}
+              className="transform gap-2 rounded-2xl border-white/40 bg-white/10 px-5 py-3 font-extrabold text-white shadow-lg backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white hover:text-rose-700 hover:shadow-xl"
+            >
+              <Clock className="h-5 w-5" /> JLPT Vaqt Sozlamalari
+            </Button>
             <Button
               variant="outline"
               onClick={() => setShowBulkModal(true)}
@@ -433,6 +443,56 @@ export const ExamsManager: React.FC = () => {
                     {exam.description}
                   </p>
                 )}
+
+                {/* Source & License Metadata (Task 7) */}
+                <div className="flex flex-wrap items-center gap-1.5 pt-1 text-[11px]">
+                  {exam.is_official_jlpt ? (
+                    <span className="rounded-md border border-rose-500/20 bg-rose-500/10 px-2 py-0.5 font-bold text-rose-700 dark:text-rose-400">
+                      🏛️ Rasmiy JLPT
+                    </span>
+                  ) : (
+                    <span className="rounded-md border border-slate-200 bg-slate-100 px-2 py-0.5 font-medium text-slate-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400">
+                      Amaliyot / Mock
+                    </span>
+                  )}
+
+                  {(() => {
+                    const licType = normalizeLicenseType(exam.license_type);
+                    const licMeta = LICENSE_CONFIG[licType];
+                    return (
+                      <span
+                        className={`rounded-md border px-2 py-0.5 font-bold ${licMeta.badgeClass}`}
+                        title={licMeta.description}
+                      >
+                        {licMeta.shortLabel}
+                      </span>
+                    );
+                  })()}
+
+                  {exam.source_name && (
+                    <span
+                      className="max-w-[150px] truncate text-slate-500 dark:text-slate-400"
+                      title={`Manba: ${exam.source_name}`}
+                    >
+                      {exam.source_url ? (
+                        <a
+                          href={exam.source_url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-indigo-600 hover:underline dark:text-indigo-400"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          🔗 {exam.source_name}
+                        </a>
+                      ) : (
+                        `📚 ${exam.source_name}`
+                      )}
+                    </span>
+                  )}
+                  {exam.author && (
+                    <span className="text-slate-400 dark:text-slate-500">• {exam.author}</span>
+                  )}
+                </div>
 
                 {exam.rejection_comment && currentStatus !== 'published' && (
                   <div className="rounded-xl border border-red-200 bg-red-50 p-2.5 text-xs text-red-700 dark:border-red-500/20 dark:bg-red-500/10 dark:text-red-300">
@@ -618,6 +678,12 @@ export const ExamsManager: React.FC = () => {
         </div>
       )}
 
+      <JlptTimingConfigModal
+        isOpen={showTimingModal}
+        onClose={() => setShowTimingModal(false)}
+        user={user}
+      />
+
       {/* Full Exam Bulk Import Modal */}
       <ExamBulkImportModal
         isOpen={showBulkModal}
@@ -630,6 +696,8 @@ export const ExamsManager: React.FC = () => {
         }}
         mode="full-exam"
         availableExams={exams}
+        currentUserEmail={user?.email}
+        currentUserRole={(user as any)?.role}
       />
     </div>
   );

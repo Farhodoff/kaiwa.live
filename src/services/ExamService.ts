@@ -9,6 +9,7 @@ import {
 export type JlptLevel = 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
 
 import type { ExamWorkflowStatus } from './ExamWorkflowService';
+import type { ExamLicenseType } from '../types/examMetadata';
 
 export interface ExamListItem {
   id: string;
@@ -20,6 +21,12 @@ export interface ExamListItem {
   status?: ExamWorkflowStatus;
   createdAt: string;
   totalQuestions?: number;
+  sourceName?: string | null;
+  sourceUrl?: string | null;
+  author?: string | null;
+  licenseType?: ExamLicenseType;
+  copyrightConfirmed?: boolean;
+  isOfficialJlpt?: boolean;
 }
 
 export interface NormalizedExam {
@@ -31,7 +38,42 @@ export interface NormalizedExam {
   questions: ExamQuestion[];
   timeLimitSeconds: number;
   isFromDb: boolean;
+  sourceName?: string | null;
+  sourceUrl?: string | null;
+  author?: string | null;
+  licenseType?: ExamLicenseType;
+  copyrightConfirmed?: boolean;
+  isOfficialJlpt?: boolean;
+  generationWarnings?: string[];
 }
+
+export type ExamSection = ExamQuestion['section'];
+
+export interface AnsweredQuestionRecord {
+  originalId: string;
+  answeredAt: number;
+}
+
+export interface RandomizedExamOptions {
+  now?: number;
+  random?: () => number;
+  questionPool?: ExamQuestion[];
+  noRepeatPeriodDays?: number;
+  recentAnswered?: AnsweredQuestionRecord[];
+  targetCounts?: Partial<Record<ExamSection, number>>;
+}
+
+export const DEFAULT_NO_REPEAT_PERIOD_DAYS = 30;
+
+const ANSWERED_QUESTIONS_STORAGE_KEY = 'jlpt_answered_questions_v2';
+const LEGACY_ANSWERED_QUESTIONS_KEY = 'jlpt_recent_answered_qids';
+const NO_REPEAT_SETTINGS_STORAGE_KEY = 'jlpt_no_repeat_settings';
+const MAX_ANSWERED_RECORDS = 3000;
+const RANDOM_EXAM_TARGETS: Record<ExamSection, number> = {
+  knowledge: 13,
+  reading: 6,
+  listening: 6,
+};
 
 const DEFAULT_TIME_LIMITS: Record<JlptLevel, number> = {
   N5: 3000, // 50 mins
@@ -62,7 +104,9 @@ export class ExamService {
     try {
       let query = supabase
         .from('exams')
-        .select('id, title, description, type, is_published, status, created_at')
+        .select(
+          'id, title, description, type, is_published, status, created_at, source_name, source_url, author, license_type, copyright_confirmed, is_official_jlpt',
+        )
         .eq('is_published', true)
         .order('created_at', { ascending: false });
 
@@ -90,6 +134,12 @@ export class ExamService {
           isPublished: item.is_published,
           status: item.status,
           createdAt: item.created_at,
+          sourceName: item.source_name || null,
+          sourceUrl: item.source_url || null,
+          author: item.author || null,
+          licenseType: item.license_type || 'original',
+          copyrightConfirmed: Boolean(item.copyright_confirmed),
+          isOfficialJlpt: Boolean(item.is_official_jlpt),
         }));
       }
     } catch (err) {
@@ -254,7 +304,9 @@ export class ExamService {
         }
 
         return {
-          id: idx + 1, // Deterministic numerical ID for answer tracking
+          id: idx + 1,
+          originalId: String(q.id),
+          displayNumber: idx + 1,
           section: sectionCategory,
           questionText: q.question_text || '',
           passageText: sectionCategory === 'reading' ? sec?.content || undefined : undefined,
@@ -275,6 +327,12 @@ export class ExamService {
         questions,
         timeLimitSeconds: DEFAULT_TIME_LIMITS[lvl] || 3000,
         isFromDb: true,
+        sourceName: examData.source_name || null,
+        sourceUrl: examData.source_url || null,
+        author: examData.author || null,
+        licenseType: examData.license_type || 'original',
+        copyrightConfirmed: Boolean(examData.copyright_confirmed),
+        isOfficialJlpt: Boolean(examData.is_official_jlpt),
       };
     } catch (err) {
       console.warn('ExamService: Falling back to local dataset for exam', examId, err);
@@ -320,58 +378,224 @@ export class ExamService {
             : `Rasmiy formatdagi ${level} daraja yapon tili sinovi.`),
       type: existingExamMeta?.type || `JLPT ${level}`,
       level,
-      questions: rawQuestions,
+      questions: this.withDisplayNumbers(rawQuestions),
       timeLimitSeconds: DEFAULT_TIME_LIMITS[level] || 3000,
       isFromDb: false,
     };
   }
 
-  /**
-   * Builds a dynamic, randomized mock exam variant with no-repeat prioritization.
-   */
-  static buildRandomizedExam(level: JlptLevel): NormalizedExam {
-    const set1 = JLPT_MOCK_EXAM_DATA[level] || [];
-    const set2 = JLPT_MOCK_EXAM_SET2_DATA[level] || [];
-    const set3 = JLPT_MOCK_EXAM_SET3_DATA[level] || [];
-    const allPool = [...set1, ...set2, ...set3];
+  private static getQuestionOriginalId(question: ExamQuestion): string {
+    return String(question.originalId ?? question.id);
+  }
 
-    // Read recently seen question IDs (no-repeat logic)
-    let recentQIds: number[] = [];
+  private static withDisplayNumbers(questions: ExamQuestion[]): ExamQuestion[] {
+    return questions.map((question, idx) => ({
+      ...question,
+      id: idx + 1,
+      displayNumber: idx + 1,
+      originalId: this.getQuestionOriginalId(question),
+    }));
+  }
+
+  private static getStorage(): Storage | null {
     try {
-      if (typeof localStorage !== 'undefined') {
-        const raw = localStorage.getItem('jlpt_recent_answered_qids');
-        if (raw) recentQIds = JSON.parse(raw);
-      }
+      return typeof localStorage !== 'undefined' ? localStorage : null;
+    } catch {
+      return null;
+    }
+  }
+
+  private static shuffle<T>(items: T[], random: () => number): T[] {
+    const result = [...items];
+    for (let i = result.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(random() * (i + 1));
+      [result[i], result[j]] = [result[j], result[i]];
+    }
+    return result;
+  }
+
+  static getNoRepeatPeriodDays(): number {
+    const storage = this.getStorage();
+    if (!storage) return DEFAULT_NO_REPEAT_PERIOD_DAYS;
+    try {
+      const raw = storage.getItem(NO_REPEAT_SETTINGS_STORAGE_KEY);
+      if (!raw) return DEFAULT_NO_REPEAT_PERIOD_DAYS;
+      const parsed = JSON.parse(raw);
+      const value = typeof parsed === 'number' ? parsed : parsed?.periodDays;
+      if (!Number.isFinite(value) || value < 0) return DEFAULT_NO_REPEAT_PERIOD_DAYS;
+      return Math.floor(value);
+    } catch {
+      return DEFAULT_NO_REPEAT_PERIOD_DAYS;
+    }
+  }
+
+  static setNoRepeatPeriodDays(days: number): void {
+    const storage = this.getStorage();
+    if (!storage) return;
+    const normalized =
+      Number.isFinite(days) && days >= 0 ? Math.floor(days) : DEFAULT_NO_REPEAT_PERIOD_DAYS;
+    try {
+      storage.setItem(NO_REPEAT_SETTINGS_STORAGE_KEY, JSON.stringify({ periodDays: normalized }));
     } catch {
       // Ignore storage errors
     }
+  }
 
-    const recentSet = new Set(recentQIds);
+  static getAnsweredQuestionRecords(now: number = Date.now()): AnsweredQuestionRecord[] {
+    const storage = this.getStorage();
+    if (!storage) return [];
 
-    const partition = (section: 'knowledge' | 'reading' | 'listening', targetCount: number) => {
-      const candidates = allPool.filter((q) => q.section === section);
-      const unvisited = candidates.filter((q) => !recentSet.has(q.id));
-      const visited = candidates.filter((q) => recentSet.has(q.id));
+    try {
+      const raw = storage.getItem(ANSWERED_QUESTIONS_STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) {
+          return parsed
+            .filter(
+              (item) =>
+                item &&
+                typeof item.originalId === 'string' &&
+                item.originalId.length > 0 &&
+                Number.isFinite(item.answeredAt),
+            )
+            .map((item) => ({
+              originalId: item.originalId,
+              answeredAt: Number(item.answeredAt),
+            }));
+        }
+      }
 
-      const shuffledUnvisited = [...unvisited].sort(() => Math.random() - 0.5);
-      const shuffledVisited = [...visited].sort(() => Math.random() - 0.5);
+      const legacyRaw = storage.getItem(LEGACY_ANSWERED_QUESTIONS_KEY);
+      if (!legacyRaw) return [];
+      const legacyIds = JSON.parse(legacyRaw);
+      if (!Array.isArray(legacyIds)) return [];
+      const migrated = Array.from(new Set(legacyIds.map((id) => String(id)))).map((originalId) => ({
+        originalId,
+        answeredAt: now,
+      }));
+      if (migrated.length > 0) {
+        storage.setItem(ANSWERED_QUESTIONS_STORAGE_KEY, JSON.stringify(migrated));
+      }
+      storage.removeItem(LEGACY_ANSWERED_QUESTIONS_KEY);
+      return migrated;
+    } catch {
+      return [];
+    }
+  }
 
-      const combined = [...shuffledUnvisited, ...shuffledVisited];
-      return combined.slice(0, targetCount);
+  static getRecentAnsweredQuestionIds(
+    periodDays: number = this.getNoRepeatPeriodDays(),
+    now: number = Date.now(),
+  ): Set<string> {
+    if (periodDays <= 0) return new Set();
+    const periodMs = periodDays * 24 * 60 * 60 * 1000;
+    return new Set(
+      this.getAnsweredQuestionRecords(now)
+        .filter((record) => now - record.answeredAt <= periodMs)
+        .map((record) => record.originalId),
+    );
+  }
+
+  /**
+   * Builds a dynamic, randomized mock exam variant with no-repeat prioritization.
+   */
+  static buildRandomizedExam(
+    level: JlptLevel,
+    options: RandomizedExamOptions = {},
+  ): NormalizedExam {
+    const now = options.now ?? Date.now();
+    const random = options.random ?? Math.random;
+    const set1 = JLPT_MOCK_EXAM_DATA[level] || [];
+    const set2 = JLPT_MOCK_EXAM_SET2_DATA[level] || [];
+    const set3 = JLPT_MOCK_EXAM_SET3_DATA[level] || [];
+    const rawPool = options.questionPool ?? [...set1, ...set2, ...set3];
+
+    const uniquePool: ExamQuestion[] = [];
+    const seenOriginalIds = new Set<string>();
+    for (const question of rawPool) {
+      const originalId = this.getQuestionOriginalId(question);
+      if (seenOriginalIds.has(originalId)) continue;
+      seenOriginalIds.add(originalId);
+      uniquePool.push({ ...question, originalId });
+    }
+    const duplicateCount = rawPool.length - uniquePool.length;
+
+    const periodDays = options.noRepeatPeriodDays ?? this.getNoRepeatPeriodDays();
+    const periodMs = periodDays * 24 * 60 * 60 * 1000;
+    const recentAnsweredAt = new Map<string, number>();
+    if (periodDays > 0) {
+      const records = options.recentAnswered ?? this.getAnsweredQuestionRecords(now);
+      for (const record of records) {
+        if (now - record.answeredAt > periodMs) continue;
+        const existing = recentAnsweredAt.get(record.originalId);
+        if (existing === undefined || record.answeredAt > existing) {
+          recentAnsweredAt.set(record.originalId, record.answeredAt);
+        }
+      }
+    }
+
+    const targets: Record<ExamSection, number> = {
+      ...RANDOM_EXAM_TARGETS,
+      ...options.targetCounts,
+    };
+    const sections: ExamSection[] = ['knowledge', 'reading', 'listening'];
+    const selected: ExamQuestion[] = [];
+    const selectedIds = new Set<string>();
+    const sectionCounts: Record<ExamSection, number> = {
+      knowledge: 0,
+      reading: 0,
+      listening: 0,
     };
 
-    const chosenKnowledge = partition('knowledge', 13);
-    const chosenReading = partition('reading', 6);
-    const chosenListening = partition('listening', 6);
+    for (const section of sections) {
+      const target = Math.max(0, Math.floor(targets[section] || 0));
+      const candidates = uniquePool.filter(
+        (question) => question.section === section && !selectedIds.has(question.originalId!),
+      );
+      const fresh = candidates.filter((question) => !recentAnsweredAt.has(question.originalId!));
+      const seen = candidates
+        .filter((question) => recentAnsweredAt.has(question.originalId!))
+        .sort(
+          (a, b) =>
+            (recentAnsweredAt.get(a.originalId!) || 0) - (recentAnsweredAt.get(b.originalId!) || 0),
+        );
+      const ordered = [...this.shuffle(fresh, random), ...this.shuffle(seen, random)];
+      const chosen = ordered.slice(0, target);
+      for (const question of chosen) {
+        selected.push(question);
+        selectedIds.add(question.originalId!);
+      }
+      sectionCounts[section] = chosen.length;
+    }
 
-    const questions: ExamQuestion[] = [
-      ...chosenKnowledge,
-      ...chosenReading,
-      ...chosenListening,
-    ].map((q, idx) => ({
-      ...q,
-      id: idx + 1, // Normalized 1..25 sequential ID
-    }));
+    const questions = this.withDisplayNumbers(selected.map((question) => ({ ...question })));
+    const warnings: string[] = [];
+    if (duplicateCount > 0) {
+      warnings.push(
+        `${duplicateCount} ta takroriy savol olib tashlandi; bir imtihonda faqat noyob savollar ishlatiladi.`,
+      );
+    }
+
+    const totalTarget = sections.reduce((sum, section) => sum + Math.max(0, targets[section]), 0);
+    const totalSelected = questions.length;
+    if (totalSelected < totalTarget) {
+      const shortageDetails = sections
+        .filter((section) => sectionCounts[section] < targets[section])
+        .map((section) => `${section}: ${sectionCounts[section]}/${targets[section]}`)
+        .join(', ');
+      warnings.push(
+        `${level} uchun ${totalTarget} ta savol kerak edi, ammo faqat ${totalSelected} ta mavjud (${shortageDetails}). Iltimos, savollar bazasini to'ldiring.`,
+      );
+    }
+
+    const reusedCount = selected.filter((question) =>
+      recentAnsweredAt.has(question.originalId!),
+    ).length;
+    if (reusedCount > 0) {
+      warnings.push(
+        `${reusedCount} ta savol so'nggi ${periodDays} kun ichida ishlangan, ammo boshqa yetarli savol topilmadi. No-repeat davrini qisqartiring yoki yangi savollar qo'shing.`,
+      );
+    }
 
     return {
       id: `builtin_${level.toLowerCase()}_random`,
@@ -382,19 +606,39 @@ export class ExamService {
       questions,
       timeLimitSeconds: DEFAULT_TIME_LIMITS[level] || 3000,
       isFromDb: false,
+      generationWarnings: warnings,
     };
   }
 
   /**
-   * Persists answered question IDs to avoid repeats in future mock exams.
+   * Persists answered original question IDs to avoid repeats in future mock exams.
    */
-  static recordAnsweredQuestions(questionIds: number[]): void {
-    if (typeof localStorage === 'undefined' || !questionIds || questionIds.length === 0) return;
+  static recordAnsweredQuestions(questionIds: Array<string | number>): void {
+    const storage = this.getStorage();
+    if (!storage || !questionIds || questionIds.length === 0) return;
     try {
-      const raw = localStorage.getItem('jlpt_recent_answered_qids');
-      const prev: number[] = raw ? JSON.parse(raw) : [];
-      const merged = Array.from(new Set([...questionIds, ...prev])).slice(0, 100);
-      localStorage.setItem('jlpt_recent_answered_qids', JSON.stringify(merged));
+      const now = Date.now();
+      const incoming = new Map<string, number>();
+      for (const id of questionIds) {
+        const originalId = String(id ?? '').trim();
+        if (!originalId) continue;
+        incoming.set(originalId, now);
+      }
+      if (incoming.size === 0) return;
+
+      const existing = this.getAnsweredQuestionRecords(now);
+      const merged = new Map<string, number>();
+      for (const record of existing) merged.set(record.originalId, record.answeredAt);
+      for (const [originalId, answeredAt] of incoming) merged.set(originalId, answeredAt);
+
+      const records = Array.from(merged, ([originalId, answeredAt]) => ({
+        originalId,
+        answeredAt,
+      }))
+        .sort((a, b) => b.answeredAt - a.answeredAt)
+        .slice(0, MAX_ANSWERED_RECORDS);
+
+      storage.setItem(ANSWERED_QUESTIONS_STORAGE_KEY, JSON.stringify(records));
     } catch {
       // Ignore storage errors
     }

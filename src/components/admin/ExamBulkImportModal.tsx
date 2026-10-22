@@ -6,14 +6,11 @@ import {
   Eye,
   Table2,
   Save,
-  Send,
   Trash2,
   Edit3,
   Plus,
   RotateCcw,
   Search,
-  CheckCircle2,
-  XCircle,
   AlertTriangle,
   FileText,
   BookOpen,
@@ -22,6 +19,7 @@ import {
   Clock,
   Award,
   Sparkles,
+  Shield,
 } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { toast } from '../../hooks/use-toast';
@@ -31,7 +29,18 @@ import {
   BulkValidationResult,
   ValidatedQuestion,
 } from '../../services/ExamBulkImportService';
-import { sanitizeErrorMessage } from '../ErrorBoundary';
+import { ExamWorkflowService } from '../../services/ExamWorkflowService';
+import { JlptQuestionPreview } from '../jlpt/JlptQuestionPreview';
+import {
+  buildJlptQuestionPayload,
+  normalizeJlptQuestionType,
+  type JlptQuestionType,
+} from '../../types/jlptQuestionType';
+import {
+  type ExamLicenseType,
+  LICENSE_CONFIG,
+  validateJlptOfficialStatus,
+} from '../../types/examMetadata';
 import {
   parsePdfFile,
   pdfQuestionsToJson,
@@ -41,6 +50,14 @@ import {
   ExamAiExtractorService,
   type AiExtractionResult,
 } from '../../services/ExamAiExtractorService';
+import {
+  canImportExamContent,
+  canPublishExamContent,
+  examImportRateLimiter,
+  sanitizeImportError,
+  validateImportUpload,
+} from '../../utils/examImportSecurity';
+import { evaluateLegalGates, type LegalGateField } from '../../utils/examLegalGates';
 
 export interface ExamBulkImportModalProps {
   isOpen: boolean;
@@ -50,9 +67,16 @@ export interface ExamBulkImportModalProps {
   sectionId?: string;
   sectionTitle?: string;
   examLevel?: JlptLevel | null;
-  existingQuestions?: Array<{ question_text?: string }>;
+  existingQuestions?: Array<{
+    id?: string | number;
+    question_text?: string;
+    passage?: string | null;
+  }>;
+  existingPassages?: string[];
   examId?: string;
   availableExams?: Array<{ id: string; title: string; type: string }>;
+  currentUserEmail?: string | null;
+  currentUserRole?: string | null;
 }
 
 interface EditDraft {
@@ -64,7 +88,11 @@ interface EditDraft {
   level: JlptLevel;
   section_type: string;
   difficulty?: 'easy' | 'medium' | 'hard';
-  question_type?: string;
+  question_type?: JlptQuestionType;
+  fragments?: string[];
+  correct_order?: number[];
+  star_position?: number;
+  question_payload?: Record<string, any>;
 }
 
 export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
@@ -76,16 +104,27 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
   sectionTitle,
   examLevel = 'N3',
   existingQuestions = [],
+  existingPassages = [],
   examId,
   availableExams = [],
+  currentUserEmail = null,
+  currentUserRole = null,
 }) => {
+  const canImport = canImportExamContent(currentUserEmail, currentUserRole);
+  const canPublish = canPublishExamContent(currentUserEmail, currentUserRole);
+  // Task 17: bulk import is draft-only. Publishing is never possible here —
+  // it only happens through ExamWorkflowService.transitionExamStatus(...,
+  // 'published') by an admin after the content passed review.
+  const publishHint = canPublish
+    ? 'Nashr qilish (publish) faqat review va tasdiqlashdan keyin, admin workflow orqali amalga oshiriladi.'
+    : 'Nashr qilish (publish) faqat admin uchun ruxsat etilgan. Siz import qilib, reviewga yubora olasiz.';
   const [inputTab, setInputTab] = useState<'file' | 'text' | 'ai'>('file');
   const [fileFormat, setFileFormat] = useState<'auto' | 'json' | 'csv'>('auto');
   const [rawContent, setRawContent] = useState<string>('');
   const [fileName, setFileName] = useState<string | null>(null);
   const [fileSizeStr, setFileSizeStr] = useState<string | null>(null);
   const [activeFilter, setActiveFilter] = useState<
-    'all' | 'errors' | 'warnings' | 'valid' | 'deleted'
+    'all' | 'errors' | 'warnings' | 'valid' | 'duplicates' | 'deleted'
   >('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [viewMode, setViewMode] = useState<'table' | 'preview'>('table');
@@ -130,6 +169,40 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
   const [importProgress, setImportProgress] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // Source & License Metadata States (Task 7)
+  const [sourceName, setSourceName] = useState<string>('');
+  const [sourceUrl, setSourceUrl] = useState<string>('');
+  const [author, setAuthor] = useState<string>('');
+  const [licenseType, setLicenseType] = useState<ExamLicenseType>('original');
+  const [copyrightConfirmed, setCopyrightConfirmed] = useState<boolean>(false);
+  const [isOfficialJlpt, setIsOfficialJlpt] = useState<boolean>(false);
+
+  // Task 18: live legal / metadata checklist. The import itself stays
+  // draft-only, but the user must know exactly which fields still block
+  // publishing later on.
+  const legalGates = useMemo(
+    () =>
+      evaluateLegalGates({
+        copyrightConfirmed,
+        licenseType,
+        sourceName,
+        sourceUrl,
+        author,
+        isOfficialJlpt,
+        title: newTitle,
+      }),
+    [copyrightConfirmed, licenseType, sourceName, sourceUrl, author, isOfficialJlpt, newTitle],
+  );
+  const blockingLegalGates = useMemo(
+    () => legalGates.filter((gate) => gate.blocking),
+    [legalGates],
+  );
+  const missingLegalFieldList = useMemo(
+    () => Array.from(new Set(blockingLegalGates.map((gate) => gate.field))),
+    [blockingLegalGates],
+  );
+  const isLegalFieldMissing = (field: LegalGateField) => missingLegalFieldList.includes(field);
+
   useEffect(() => {
     if (isOpen) {
       setRawContent('');
@@ -155,6 +228,12 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
       setAiError(null);
       setAiResult(null);
       setIsAiExtracting(false);
+      setSourceName('');
+      setSourceUrl('');
+      setAuthor('');
+      setLicenseType('original');
+      setCopyrightConfirmed(false);
+      setIsOfficialJlpt(false);
       if (examId) setSelectedExamId(examId);
       if (examLevel) setNewLevel(examLevel);
     }
@@ -165,9 +244,10 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
     return ExamBulkImportService.parseAndValidate(rawContent, fileFormat, {
       defaultLevel: mode === 'section' ? examLevel || undefined : newLevel,
       existingQuestions,
+      existingPassages,
       checkIntraBatchDuplicates: true,
     });
-  }, [rawContent, fileFormat, mode, examLevel, newLevel, existingQuestions]);
+  }, [rawContent, fileFormat, mode, examLevel, newLevel, existingQuestions, existingPassages]);
 
   const validationResult: BulkValidationResult | null = useMemo(() => {
     if (!baseValidation) return null;
@@ -180,8 +260,9 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
     return ExamBulkImportService.revalidateEditedItems(mergedItems, {
       expectedLevel: mode === 'section' ? examLevel || undefined : newLevel,
       existingQuestions,
+      existingPassages,
     });
-  }, [baseValidation, overrides, mode, examLevel, newLevel, existingQuestions]);
+  }, [baseValidation, overrides, mode, examLevel, newLevel, existingQuestions, existingPassages]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -200,6 +281,19 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
       return;
     }
 
+    const uploadCheck = validateImportUpload(file);
+    if (!uploadCheck.valid) {
+      setFileName(null);
+      setFileSizeStr(null);
+      setRawContent('');
+      toast({
+        variant: 'destructive',
+        title: 'Fayl rad etildi',
+        description: uploadCheck.error,
+      });
+      return;
+    }
+
     if (file.name.toLowerCase().endsWith('.csv')) setFileFormat('csv');
     else if (file.name.toLowerCase().endsWith('.json')) setFileFormat('json');
     else setFileFormat('auto');
@@ -212,7 +306,10 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
   };
 
   const handlePdfFile = async (file: File) => {
-    const validation = validatePdfFile(file);
+    const pdfCheck = validateImportUpload(file, 'pdf');
+    const validation = pdfCheck.valid
+      ? validatePdfFile(file)
+      : { valid: false, error: pdfCheck.error };
     if (!validation.valid) {
       setRawContent('');
       toast({
@@ -248,7 +345,7 @@ export const ExamBulkImportModal: React.FC<ExamBulkImportModalProps> = ({
       toast({
         variant: 'destructive',
         title: 'PDF o‘qib bo‘lmadi',
-        description: sanitizeErrorMessage(err?.message || 'Noma’lum xatolik.'),
+        description: sanitizeImportError(err?.message || 'Noma’lum xatolik.'),
       });
     } finally {
       setIsParsingPdf(false);
@@ -369,6 +466,9 @@ D) 親切な
       case 'valid':
         list = list.filter((it) => it.status === 'valid' && !deletedRows.has(it.row));
         break;
+      case 'duplicates':
+        list = list.filter((it) => it.isDuplicate && !deletedRows.has(it.row));
+        break;
       case 'deleted':
         list = list.filter((it) => deletedRows.has(it.row));
         break;
@@ -410,7 +510,7 @@ D) 親切な
     return list;
   }, [validationResult, activeFilter, deletedRows, searchQuery]);
 
-  // Valid questions eligible for import/publish
+  // Valid questions eligible for import
   const validQuestionsToImport: ValidatedQuestion[] = useMemo(() => {
     if (!validationResult) return [];
     return validationResult.items
@@ -496,7 +596,14 @@ D) 親切な
       level: initialLevel,
       section_type: initialSection,
       difficulty: v?.difficulty || (raw.difficulty as any) || 'medium',
-      question_type: v?.question_type || raw.question_type || 'multiple_choice',
+      question_type: normalizeJlptQuestionType(
+        v?.question_type || raw.question_type,
+        initialSection,
+      ),
+      fragments: v?.question_payload?.fragments,
+      correct_order: v?.question_payload?.correct_order,
+      star_position: v?.question_payload?.star_position,
+      question_payload: v?.question_payload,
     });
   };
 
@@ -532,6 +639,12 @@ D) 親切な
     const item = validationResult?.items.find((i) => i.row === row);
     if (!item) return;
 
+    const questionType =
+      editDraft.question_type ||
+      normalizeJlptQuestionType(
+        item.validated?.question_type || item.raw.question_type,
+        editDraft.section_type,
+      );
     const updated: ValidatedQuestion = {
       id: item.validated?.id ?? item.raw.id,
       question_text: qText,
@@ -545,7 +658,16 @@ D) 親切な
       section_name: editDraft.section_type,
       section_type: editDraft.section_type,
       difficulty: editDraft.difficulty || 'medium',
-      question_type: editDraft.question_type || 'multiple_choice',
+      question_type: questionType,
+      question_payload: buildJlptQuestionPayload({
+        type: questionType,
+        options: opts,
+        correctAnswer: opts[safeIndex] || '',
+        correctIndex: safeIndex,
+        fragments: editDraft.fragments,
+        correctOrder: editDraft.correct_order,
+        starPosition: editDraft.star_position,
+      }),
     };
 
     setOverrides((pr) => ({ ...pr, [row]: updated }));
@@ -612,7 +734,28 @@ D) 親切な
     };
   }, [isSimulated, validQuestionsToImport, previewAnswers]);
 
-  const handleExecuteImport = async (publish: boolean) => {
+  const handleExecuteImport = async () => {
+    if (!canImport) {
+      toast({
+        variant: 'destructive',
+        title: 'Ruxsat yo‘q',
+        description: 'Faqat admin yoki reviewer kontent import qilishi mumkin.',
+      });
+      return;
+    }
+
+    const rate = examImportRateLimiter.check(currentUserEmail || currentUserRole || 'anonymous');
+    if (!rate.allowed) {
+      toast({
+        variant: 'destructive',
+        title: 'Juda ko‘p urinish',
+        description: `Import limiti oshib ketdi. ${Math.ceil(
+          rate.retryAfterMs / 1000,
+        )} soniyadan keyin qayta urinib ko‘ring.`,
+      });
+      return;
+    }
+
     if (validQuestionsToImport.length === 0) {
       toast({
         variant: 'destructive',
@@ -621,7 +764,7 @@ D) 親切な
       });
       return;
     }
-    if (publish && hasBlockingErrors) {
+    if (hasBlockingErrors) {
       toast({
         variant: 'destructive',
         title: "Tasdiqlab bo'lmaydi",
@@ -630,21 +773,57 @@ D) 親切な
       return;
     }
 
+    // Copyright confirmation validation (Task 7)
+    if (!copyrightConfirmed) {
+      toast({
+        variant: 'destructive',
+        title: 'Mualliflik huquqi tasdiqlanmagan',
+        description:
+          "Iltimos, import qilishdan oldin 'Mualliflik huquqi roziligi' (Copyright confirmation) katakchasini belgilang.",
+      });
+      return;
+    }
+
+    // Official JLPT claim validation (Task 7)
+    if (isOfficialJlpt) {
+      const officialCheck = validateJlptOfficialStatus({
+        isOfficialJlpt: true,
+        sourceName: sourceName.trim(),
+        title: newTitle.trim(),
+      });
+      if (!officialCheck.isValid) {
+        toast({
+          variant: 'destructive',
+          title: 'Rasmiy JLPT xatoligi',
+          description: officialCheck.error,
+        });
+        return;
+      }
+    }
+
+    // Restricted license warning (Task 7) — publish is not part of import.
+    if (licenseType === 'restricted') {
+      toast({
+        title: 'Cheklangan litsenziya',
+        description:
+          "Ushbu material 'Restricted' (cheklangan) litsenziyaga ega. Nashr qilishdan oldin mualliflik huquqlarini tekshiring.",
+      });
+    }
+
     setIsImporting(true);
-    setImportProgress(
-      publish ? 'Tasdiqlanmoqda va publish qilinmoqda...' : 'Draft sifatida saqlanmoqda...',
-    );
+    setImportProgress('Draft sifatida saqlanmoqda...');
     try {
       if (mode === 'section') {
         if (!sectionId) throw new Error("Bo'lim identifikatori topilmadi.");
         const res = await ExamBulkImportService.importQuestionsToSection(
           sectionId,
           validQuestionsToImport,
-          publish,
         );
         toast({
-          title: publish ? 'Muvaffaqiyatli tasdiqlandi' : 'Draft saqlandi',
-          description: `${res.insertedCount} ta savol bo'limga qo'shildi.`,
+          title: 'Draft sifatida saqlandi',
+          description: `${res.insertedCount} ta savol bo'limga qo'shildi.${
+            res.batchId ? ` Batch: ${res.batchId.slice(0, 8)}…` : ''
+          } Publish qilish uchun review kerak.`,
         });
         onSuccess({ count: res.insertedCount });
         onClose();
@@ -656,11 +835,18 @@ D) 親切な
             level: newLevel,
             description: newDesc.trim() || undefined,
             questions: validQuestionsToImport,
-            isPublished: publish,
+            sourceName: sourceName.trim() || undefined,
+            sourceUrl: sourceUrl.trim() || undefined,
+            author: author.trim() || undefined,
+            licenseType,
+            copyrightConfirmed,
+            isOfficialJlpt,
           });
           toast({
-            title: publish ? 'Imtihon muvaffaqiyatli tasdiqlandi' : 'Draft sifatida saqlandi',
-            description: `${title} — ${res.totalInserted} ta savol muvaffaqiyatli yuklandi.`,
+            title: 'Draft sifatida saqlandi',
+            description: `${title} — ${res.totalInserted} ta savol yuklandi.${
+              res.batchId ? ` Batch: ${res.batchId.slice(0, 8)}…` : ''
+            } Publish qilish uchun review kerak.`,
           });
           onSuccess({ count: res.totalInserted, examId: res.examId });
           onClose();
@@ -669,11 +855,26 @@ D) 親切な
           const res = await ExamBulkImportService.importQuestionsToExistingExam(
             selectedExamId,
             validQuestionsToImport,
-            publish,
           );
+          if (sourceName.trim() || author.trim() || licenseType !== 'original') {
+            try {
+              await ExamWorkflowService.updateExamSourceLicense(selectedExamId, {
+                sourceName: sourceName.trim() || undefined,
+                sourceUrl: sourceUrl.trim() || undefined,
+                author: author.trim() || undefined,
+                licenseType,
+                copyrightConfirmed,
+                isOfficialJlpt,
+              });
+            } catch (licenseErr) {
+              console.warn('Failed to update exam license on existing exam:', licenseErr);
+            }
+          }
           toast({
-            title: publish ? 'Imtihon tasdiqlandi' : "Savollar draft sifatida qo'shildi",
-            description: `${res.totalInserted} ta savol imtihonga qo'shildi.`,
+            title: "Savollar draft sifatida qo'shildi",
+            description: `${res.totalInserted} ta savol imtihonga qo'shildi.${
+              res.batchId ? ` Batch: ${res.batchId.slice(0, 8)}…` : ''
+            } Publish qilish uchun review kerak.`,
           });
           onSuccess({ count: res.totalInserted, examId: selectedExamId });
           onClose();
@@ -683,7 +884,7 @@ D) 親切な
       toast({
         variant: 'destructive',
         title: 'Import xatoligi',
-        description: sanitizeErrorMessage(err?.message || 'Saqlashda xatolik yuz berdi.'),
+        description: sanitizeImportError(err?.message || 'Saqlashda xatolik yuz berdi.'),
       });
     } finally {
       setIsImporting(false);
@@ -813,6 +1014,176 @@ D) 親切な
                   </select>
                 </div>
               )}
+
+              {/* Source & License Metadata Card (Task 7) */}
+              <div className="mt-3 rounded-2xl border border-indigo-100 bg-indigo-50/50 p-4 dark:border-indigo-900/40 dark:bg-indigo-950/20">
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="flex items-center gap-1.5 text-xs font-black text-indigo-900 dark:text-indigo-200">
+                    <Shield className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
+                    Manba va Litsenziya Metadatalari (Source & License)
+                  </span>
+                  <span className="rounded-full bg-indigo-100/70 px-2 py-0.5 text-[10px] font-bold text-indigo-700 dark:bg-indigo-900/60 dark:text-indigo-300">
+                    Mualliflik huquqi va attribution
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-3">
+                  <div>
+                    <label className="mb-1 block text-[11px] font-bold text-slate-600 dark:text-slate-400">
+                      Manba nomi (Source Name)
+                    </label>
+                    <input
+                      value={sourceName}
+                      onChange={(e) => setSourceName(e.target.value)}
+                      placeholder="masalan: JLPT Speed Master, So-matome"
+                      aria-label="Manba nomi (Source Name)"
+                      className={`w-full rounded-xl border bg-white p-2.5 text-xs font-medium text-slate-900 focus:border-indigo-500 focus:outline-none dark:bg-slate-900 dark:text-white ${
+                        isLegalFieldMissing('source_name')
+                          ? 'border-red-400 dark:border-red-500'
+                          : 'border-slate-200 dark:border-slate-700'
+                      }`}
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-[11px] font-bold text-slate-600 dark:text-slate-400">
+                      Manba URL havolasi (Source URL)
+                    </label>
+                    <input
+                      value={sourceUrl}
+                      onChange={(e) => setSourceUrl(e.target.value)}
+                      placeholder="https://example.com/material"
+                      aria-label="Manba URL havolasi (Source URL)"
+                      className={`w-full rounded-xl border bg-white p-2.5 text-xs font-medium text-slate-900 focus:border-indigo-500 focus:outline-none dark:bg-slate-900 dark:text-white ${
+                        isLegalFieldMissing('source_url')
+                          ? 'border-red-400 dark:border-red-500'
+                          : 'border-slate-200 dark:border-slate-700'
+                      }`}
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-[11px] font-bold text-slate-600 dark:text-slate-400">
+                      Muallif / Tashkilot (Author)
+                    </label>
+                    <input
+                      value={author}
+                      onChange={(e) => setAuthor(e.target.value)}
+                      placeholder="masalan: Ask Publishing, Farhod"
+                      aria-label="Muallif / Tashkilot (Author)"
+                      className={`w-full rounded-xl border bg-white p-2.5 text-xs font-medium text-slate-900 focus:border-indigo-500 focus:outline-none dark:bg-slate-900 dark:text-white ${
+                        isLegalFieldMissing('author')
+                          ? 'border-red-400 dark:border-red-500'
+                          : 'border-slate-200 dark:border-slate-700'
+                      }`}
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <div>
+                    <label className="mb-1 block text-[11px] font-bold text-slate-600 dark:text-slate-400">
+                      Litsenziya turi (License Type)
+                    </label>
+                    <select
+                      value={licenseType}
+                      onChange={(e) => setLicenseType(e.target.value as ExamLicenseType)}
+                      className="w-full rounded-xl border border-slate-200 bg-white p-2.5 text-xs font-bold text-slate-900 focus:border-indigo-500 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+                    >
+                      <option value="original">
+                        Original (Platforma / O'qituvchi muallifligi)
+                      </option>
+                      <option value="cc-by">Creative Commons Attribution (CC BY)</option>
+                      <option value="cc-by-sa">
+                        Creative Commons Attribution-ShareAlike (CC BY-SA)
+                      </option>
+                      <option value="public-domain">Ommaviy Mulk (Public Domain / CC0)</option>
+                      <option value="restricted">
+                        Cheklangan / Mualliflik huquqi bilan himoyalangan (Restricted ⚠️)
+                      </option>
+                    </select>
+                    <p className="mt-1 text-[10px] text-slate-500 dark:text-slate-400">
+                      {LICENSE_CONFIG[licenseType]?.description}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col justify-center gap-2">
+                    <label className="flex cursor-pointer items-center gap-2 text-xs font-bold text-slate-700 dark:text-slate-300">
+                      <input
+                        type="checkbox"
+                        checked={isOfficialJlpt}
+                        onChange={(e) => setIsOfficialJlpt(e.target.checked)}
+                        className="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                      />
+                      <span>Rasmiy JLPT Materiali (Official JEES / Japan Foundation)</span>
+                    </label>
+
+                    <label className="flex cursor-pointer items-center gap-2 text-xs font-bold text-slate-900 dark:text-white">
+                      <input
+                        type="checkbox"
+                        checked={copyrightConfirmed}
+                        onChange={(e) => setCopyrightConfirmed(e.target.checked)}
+                        className="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                      />
+                      <span
+                        className={
+                          copyrightConfirmed
+                            ? 'font-extrabold text-emerald-700 dark:text-emerald-400'
+                            : isLegalFieldMissing('copyright_confirmed')
+                              ? 'font-extrabold text-red-600 dark:text-red-400'
+                              : 'text-slate-700 dark:text-slate-300'
+                        }
+                      >
+                        ✓ Mualliflik huquqi roziligi (Copyright confirmation)
+                      </span>
+                    </label>
+                  </div>
+                </div>
+
+                {/* Task 18: live legal / metadata checklist */}
+                {blockingLegalGates.length > 0 ? (
+                  <div className="mt-3 rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs text-amber-800 dark:border-amber-900/50 dark:bg-amber-950/30 dark:text-amber-300">
+                    <div className="flex items-center gap-1.5 font-bold">
+                      <Shield className="h-4 w-4 text-amber-600" />
+                      Yetishmayotgan maydonlar (publishdan oldin to‘ldirilishi shart):
+                    </div>
+                    <ul className="mt-1.5 list-disc space-y-1 pl-5">
+                      {blockingLegalGates.map((gate) => (
+                        <li key={gate.id}>
+                          <b>{gate.label}:</b> {gate.message}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  <div className="mt-3 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-xs font-semibold text-emerald-700 dark:border-emerald-900/50 dark:bg-emerald-950/30 dark:text-emerald-300">
+                    ✓ Huquqiy va metadata tekshiruvi to‘liq bajarilgan — import reviewga yuborishga
+                    tayyor.
+                  </div>
+                )}
+
+                {/* Restricted Warning */}
+                {licenseType === 'restricted' && (
+                  <div className="mt-3 flex items-start gap-2 rounded-xl border border-rose-200 bg-rose-50 p-2.5 text-xs text-rose-700 dark:border-rose-900/50 dark:bg-rose-950/30 dark:text-rose-300">
+                    <AlertTriangle className="h-4 w-4 shrink-0 text-rose-600" />
+                    <span>
+                      <b>Diqqat (Restricted Material):</b> Ushbu material litsenziyasi cheklangan.
+                      Nashr qilish to‘liq bloklanadi — aniq huquqiy ruxsat (legal approval) talab
+                      qilinadi. Import faqat draft sifatida saqlanadi.
+                    </span>
+                  </div>
+                )}
+
+                {/* Official JLPT False Claim Warning */}
+                {isOfficialJlpt &&
+                  !validateJlptOfficialStatus({ isOfficialJlpt, sourceName }).isValid && (
+                    <div className="mt-3 flex items-start gap-2 rounded-xl border border-amber-200 bg-amber-50 p-2.5 text-xs text-amber-700 dark:border-amber-900/50 dark:bg-amber-950/30 dark:text-amber-300">
+                      <AlertTriangle className="h-4 w-4 shrink-0 text-amber-600" />
+                      <span>
+                        <b>Ogohlantirish:</b>{' '}
+                        {validateJlptOfficialStatus({ isOfficialJlpt, sourceName }).error}
+                      </span>
+                    </div>
+                  )}
+              </div>
             </div>
           )}
 
@@ -1175,7 +1546,10 @@ D) 親切な
                     Jami: {validationResult.totalCount}
                   </span>
                   <span className="rounded-lg border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950/50 dark:text-emerald-300">
-                    ✓ Yaroqli: {validationResult.validCount}
+                    ✓ Importga yaroqli: {validationResult.validCount}
+                  </span>
+                  <span className="rounded-lg border border-teal-200 bg-teal-50 px-2.5 py-1 text-teal-700 dark:border-teal-900 dark:bg-teal-950/50 dark:text-teal-300">
+                    ★ Muvaffaqiyatli: {validationResult.successfulCount}
                   </span>
                   {validationResult.errorCount > 0 && (
                     <span className="rounded-lg border border-rose-200 bg-rose-50 px-2.5 py-1 text-rose-700 dark:border-rose-900 dark:bg-rose-950/50 dark:text-rose-300">
@@ -1185,6 +1559,18 @@ D) 親切な
                   {validationResult.warningCount > 0 && (
                     <span className="rounded-lg border border-amber-200 bg-amber-50 px-2.5 py-1 text-amber-700 dark:border-amber-900 dark:bg-amber-950/50 dark:text-amber-300">
                       ⚠ Ogohlantirish: {validationResult.warningCount}
+                    </span>
+                  )}
+                  {validationResult.duplicateCount > 0 && (
+                    <span className="rounded-lg border border-fuchsia-200 bg-fuchsia-50 px-2.5 py-1 text-fuchsia-700 dark:border-fuchsia-900 dark:bg-fuchsia-950/50 dark:text-fuchsia-300">
+                      ⧉ Duplikat: {validationResult.duplicateCount}
+                      {validationResult.similarCount > 0 &&
+                        ` (${validationResult.similarCount} o'xshash)`}
+                    </span>
+                  )}
+                  {validationResult.passageDuplicateCount > 0 && (
+                    <span className="rounded-lg border border-sky-200 bg-sky-50 px-2.5 py-1 text-sky-700 dark:border-sky-900 dark:bg-sky-950/50 dark:text-sky-300">
+                      ⧉ Passage takrori: {validationResult.passageDuplicateCount}
                     </span>
                   )}
                   {deletedRows.size > 0 && (
@@ -1259,7 +1645,18 @@ D) 親切な
                             : 'text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-950/30'
                         }`}
                       >
-                        To'g'ri ({validationResult.validCount})
+                        Muvaffaqiyatli ({validationResult.successfulCount})
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setActiveFilter('duplicates')}
+                        className={`rounded-lg px-3 py-1 text-xs font-bold transition ${
+                          activeFilter === 'duplicates'
+                            ? 'bg-fuchsia-600 text-white'
+                            : 'text-fuchsia-600 hover:bg-fuchsia-50 dark:hover:bg-fuchsia-950/30'
+                        }`}
+                      >
+                        Duplikatlar ({validationResult.duplicateCount})
                       </button>
                       <button
                         type="button"
@@ -1992,73 +2389,27 @@ D) 親切な
                               </span>
                             </div>
 
-                            {/* Official Paper-style Reading Passage */}
-                            {q.passage && (
-                              <div className="rounded-2xl border border-amber-200 bg-amber-50/50 p-4 font-serif text-[13px] leading-relaxed text-slate-800 shadow-inner dark:border-amber-900/50 dark:bg-slate-950 dark:text-slate-200">
-                                <div className="mb-1.5 font-sans text-[11px] font-bold uppercase tracking-wider text-amber-800 dark:text-amber-400">
-                                  【問題本文 / Reading Passage】
-                                </div>
-                                <p className="whitespace-pre-wrap">{q.passage}</p>
-                              </div>
-                            )}
-
                             {/* Question Prompt */}
                             <p className="text-sm font-bold leading-relaxed text-slate-900 dark:text-white">
                               {q.question_text}
                             </p>
 
-                            {/* Interactive Options */}
-                            <div className="space-y-2">
-                              {q.options.map((opt, optIdx) => {
-                                const isSelected = userSelectedIdx === optIdx;
-                                const isCorrect = optIdx === q.correct_index;
-
-                                let btnStyle =
-                                  'border-slate-200 bg-white text-slate-700 hover:border-indigo-400 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200';
-
-                                if (showCorrectInPreview || isSimulated) {
-                                  if (isCorrect) {
-                                    btnStyle =
-                                      'border-emerald-500 bg-emerald-50 text-emerald-800 font-bold dark:bg-emerald-950/40 dark:text-emerald-300 shadow-sm';
-                                  } else if (isSelected && !isCorrect) {
-                                    btnStyle =
-                                      'border-rose-500 bg-rose-50 text-rose-800 font-bold dark:bg-rose-950/40 dark:text-rose-300';
-                                  }
-                                } else if (isSelected) {
-                                  btnStyle =
-                                    'border-indigo-600 bg-indigo-50 text-indigo-700 font-bold ring-1 ring-indigo-600 dark:bg-indigo-950 dark:text-indigo-300';
-                                }
-
-                                return (
-                                  <button
-                                    key={optIdx}
-                                    type="button"
-                                    onClick={() =>
-                                      setPreviewAnswers((prev) => ({
-                                        ...prev,
-                                        [originalRow]: optIdx,
-                                      }))
-                                    }
-                                    className={`flex w-full items-center justify-between rounded-xl border p-3.5 text-left text-xs transition sm:text-sm ${btnStyle}`}
-                                  >
-                                    <span className="flex items-center gap-2">
-                                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-current font-mono text-xs font-black">
-                                        {String.fromCharCode(65 + optIdx)}
-                                      </span>
-                                      <span>{opt}</span>
-                                    </span>
-                                    {(showCorrectInPreview || isSimulated) && isCorrect && (
-                                      <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" />
-                                    )}
-                                    {(showCorrectInPreview || isSimulated) &&
-                                      isSelected &&
-                                      !isCorrect && (
-                                        <XCircle className="h-4 w-4 shrink-0 text-rose-600" />
-                                      )}
-                                  </button>
-                                );
-                              })}
-                            </div>
+                            <JlptQuestionPreview
+                              question={{
+                                ...q,
+                                passage: q.passage,
+                                question_payload: q.question_payload,
+                              }}
+                              sectionType={q.section_type}
+                              selectedIndex={userSelectedIdx}
+                              showAnswer={showCorrectInPreview || isSimulated}
+                              onSelect={(optIdx) =>
+                                setPreviewAnswers((prev) => ({
+                                  ...prev,
+                                  [originalRow]: optIdx,
+                                }))
+                              }
+                            />
 
                             {/* Explanation Card */}
                             {(showCorrectInPreview || isSimulated) && q.explanation && (
@@ -2077,7 +2428,7 @@ D) 親切な
           )}
         </div>
 
-        {/* Modal Footer with "Draft sifatida saqlash" and "Tasdiqlash" */}
+        {/* Modal Footer — draft-only save (Task 17: no publish button here) */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-200 bg-slate-50/80 px-6 py-4 dark:border-slate-800 dark:bg-slate-900">
           <Button variant="outline" onClick={onClose} className="rounded-xl font-bold">
             Bekor Qilish
@@ -2090,11 +2441,23 @@ D) 親切な
               </span>
             )}
 
-            {/* DRAFT SAQLASH TUGMASI */}
+            <span className="mr-1 hidden max-w-[22rem] text-xs text-slate-500 dark:text-slate-400 sm:block">
+              {publishHint}
+            </span>
+
+            {hasBlockingErrors && (
+              <span className="mr-1 text-xs font-bold text-red-600 dark:text-red-400">
+                Xatolarni tuzating ({validationResult?.errorCount})
+              </span>
+            )}
+
+            {/* DRAFT SAQLASH TUGMASI — import hech qachon publish qilmaydi */}
             <Button
               variant="outline"
-              onClick={() => handleExecuteImport(false)}
-              disabled={isImporting || !validationResult || confirmableCount === 0}
+              onClick={() => handleExecuteImport()}
+              disabled={
+                isImporting || !validationResult || confirmableCount === 0 || hasBlockingErrors
+              }
               className="gap-2 rounded-2xl border-slate-300 font-bold hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
             >
               {isImporting ? (
@@ -2103,28 +2466,6 @@ D) 親切な
                 <Save className="h-4 w-4 text-slate-600 dark:text-slate-300" />
               )}
               Draft sifatida saqlash ({confirmableCount})
-            </Button>
-
-            {/* TASDIQLASH VA PUBLISH TUGMASI */}
-            <Button
-              onClick={() => handleExecuteImport(true)}
-              disabled={
-                isImporting || !validationResult || confirmableCount === 0 || hasBlockingErrors
-              }
-              className={`gap-2 rounded-2xl font-bold text-white shadow-lg transition ${
-                hasBlockingErrors
-                  ? 'cursor-not-allowed bg-slate-400'
-                  : 'bg-gradient-to-r from-indigo-600 to-purple-600 hover:opacity-95'
-              }`}
-            >
-              {isImporting ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : (
-                <Send className="h-4 w-4" />
-              )}
-              {hasBlockingErrors
-                ? `Xatolarni tuzating (${validationResult?.errorCount})`
-                : `Tasdiqlash (${confirmableCount})`}
             </Button>
           </div>
         </div>

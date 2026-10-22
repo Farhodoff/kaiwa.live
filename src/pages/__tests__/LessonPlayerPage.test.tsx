@@ -9,7 +9,7 @@ vi.mock('../../context/StudyPlannerContext', () => ({
   useStudyData: () => ({
     user: { id: 'test-user-123' },
     primaryLanguage: 'ja',
-    awardXP: vi.fn(),
+    awardXP: vi.fn().mockResolvedValue(undefined),
     settings: {},
   }),
 }));
@@ -21,6 +21,39 @@ vi.mock('../../services/LearningOrchestrator', () => ({
     getPrimaryLanguage: () => 'en',
     getUserTarget: () => ({ targetLevel: 'N3', targetGoal: '', currentLevel: 'N3' }),
   },
+}));
+
+vi.mock('../../services/ActivityLoggingService', () => ({
+  ActivityLoggingService: {
+    logActivity: vi.fn().mockResolvedValue({ id: 'test-activity-id' }),
+    calculateSpeakingXP: vi.fn().mockReturnValue({ xp: 15 }),
+    calculateFlashcardMilestoneXP: vi.fn().mockReturnValue({ milestoneXp: 0 }),
+  },
+}));
+
+vi.mock('../../lib/supabase', () => ({
+  supabase: {
+    auth: {
+      getSession: vi.fn().mockResolvedValue({ data: { session: null }, error: null }),
+      getUser: vi.fn().mockResolvedValue({ data: { user: null }, error: null }),
+      onAuthStateChange: vi.fn(() => ({ data: { subscription: { unsubscribe: vi.fn() } } })),
+    },
+    from: vi.fn(() => ({
+      insert: vi.fn().mockResolvedValue({ data: null, error: null }),
+      select: vi.fn().mockReturnThis(),
+      upsert: vi.fn().mockResolvedValue({ data: null, error: null }),
+      update: vi.fn().mockResolvedValue({ data: null, error: null }),
+      delete: vi.fn().mockResolvedValue({ data: null, error: null }),
+      eq: vi.fn().mockReturnThis(),
+      single: vi.fn().mockResolvedValue({ data: null, error: null }),
+    })),
+  },
+}));
+
+vi.mock('../../components/lesson/LessonAudioPlayer', () => ({
+  LessonAudioPlayer: ({ audioTitle }: { audioTitle?: string }) => (
+    <div data-testid="lesson-audio-player">{audioTitle || 'Audio Player'}</div>
+  ),
 }));
 
 vi.mock('../../utils/audioTts', () => ({
@@ -141,17 +174,12 @@ describe('LessonPlayerPage', () => {
     // Finish lesson
     fireEvent.click(screen.getByRole('button', { name: /Darsni Yakunlash/i }));
 
-    await waitFor(
-      () => {
-        expect(srsSpy).toHaveBeenCalled();
-      },
-      { timeout: 4000 },
-    );
+    await waitFor(() => {
+      expect(srsSpy).toHaveBeenCalled();
+    });
+    expect(await screen.findByText(/Dars Yakunlandi! 🎉/i)).toBeInTheDocument();
     expect(
-      await screen.findByText(/Dars Yakunlandi! 🎉/i, {}, { timeout: 4000 }),
-    ).toBeInTheDocument();
-    expect(
-      await screen.findByText(/4 ta yangi so'z Fleshkartalarga qo'shildi/i, {}, { timeout: 4000 }),
+      await screen.findByText(/4 ta yangi so'z Fleshkartalarga qo'shildi/i),
     ).toBeInTheDocument();
   });
 

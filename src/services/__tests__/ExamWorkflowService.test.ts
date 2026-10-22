@@ -12,9 +12,73 @@ vi.mock('../../lib/supabase', () => ({
   },
 }));
 
+function mockWorkflowTables(
+  opts: {
+    examStatus?: string;
+    questionStatus?: string;
+    questionRows?: Array<{ id: string; status: string }>;
+  } = {},
+) {
+  const examUpdate = vi.fn().mockReturnValue({
+    eq: vi.fn().mockResolvedValue({ error: null }),
+  });
+  const questionUpdate = vi.fn().mockReturnValue({
+    eq: vi.fn().mockResolvedValue({ error: null }),
+    in: vi.fn().mockResolvedValue({ error: null }),
+  });
+  const eventsInsert = vi.fn().mockResolvedValue({ error: null });
+
+  (supabase.from as any).mockImplementation((table: string) => {
+    if (table === 'exams') {
+      return {
+        select: vi.fn().mockReturnValue({
+          eq: vi.fn().mockReturnValue({
+            maybeSingle: vi.fn().mockResolvedValue({
+              data: { id: 'exam-1', status: opts.examStatus ?? 'approved' },
+              error: null,
+            }),
+          }),
+        }),
+        update: examUpdate,
+      };
+    }
+    if (table === 'exam_questions') {
+      return {
+        select: vi.fn().mockReturnValue({
+          eq: vi.fn().mockReturnValue({
+            maybeSingle: vi.fn().mockResolvedValue({
+              data: { id: 'q-1', status: opts.questionStatus ?? 'review' },
+              error: null,
+            }),
+          }),
+          in: vi.fn().mockResolvedValue({
+            data:
+              opts.questionRows ??
+              ['q-1', 'q-2', 'q-3'].map((id) => ({
+                id,
+                status: opts.questionStatus ?? 'review',
+              })),
+            error: null,
+          }),
+        }),
+        update: questionUpdate,
+      };
+    }
+    if (table === 'exam_workflow_events') {
+      return { insert: eventsInsert };
+    }
+    return {};
+  });
+
+  return { examUpdate, questionUpdate, eventsInsert };
+}
+
 describe('ExamWorkflowService Unit Tests (Task 6)', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    // Task 17: restore spies so queued one-time mocks cannot leak into the
+    // next test when a publish attempt is rejected before validation runs.
+    vi.restoreAllMocks();
   });
 
   describe('Status Configurations', () => {
@@ -294,7 +358,13 @@ describe('ExamWorkflowService Unit Tests (Task 6)', () => {
             select: vi.fn().mockReturnValue({
               eq: vi.fn().mockReturnValue({
                 single: vi.fn().mockResolvedValue({
-                  data: { id: 'exam-1', title: 'JLPT N2 Mock', status: 'approved' },
+                  data: {
+                    id: 'exam-1',
+                    title: 'JLPT N2 Mock',
+                    status: 'approved',
+                    license_type: 'original',
+                    copyright_confirmed: true,
+                  },
                   error: null,
                 }),
               }),
@@ -354,8 +424,16 @@ describe('ExamWorkflowService Unit Tests (Task 6)', () => {
         },
       });
 
+      mockWorkflowTables({ examStatus: 'approved' });
+
       await expect(
-        ExamWorkflowService.transitionExamStatus('exam-1', 'published', 'admin@example.com'),
+        ExamWorkflowService.transitionExamStatus(
+          'exam-1',
+          'published',
+          'fsoyilov@gmail.com',
+          undefined,
+          'superadmin',
+        ),
       ).rejects.toThrow('Nashr qilish rad etildi!');
     });
 
@@ -374,15 +452,14 @@ describe('ExamWorkflowService Unit Tests (Task 6)', () => {
         },
       });
 
-      const mockUpdate = vi.fn().mockReturnValue({
-        eq: vi.fn().mockResolvedValue({ error: null }),
-      });
-      (supabase.from as any).mockReturnValue({ update: mockUpdate });
+      const { examUpdate: mockUpdate } = mockWorkflowTables({ examStatus: 'approved' });
 
       const res = await ExamWorkflowService.transitionExamStatus(
         'exam-1',
         'published',
-        'reviewer@example.com',
+        'admin@nihongo-talk.jp',
+        undefined,
+        'admin',
       );
 
       expect(res.success).toBe(true);
@@ -390,21 +467,37 @@ describe('ExamWorkflowService Unit Tests (Task 6)', () => {
         expect.objectContaining({
           status: 'published',
           is_published: true,
-          reviewed_by: 'reviewer@example.com',
+          reviewed_by: 'admin@nihongo-talk.jp',
         }),
       );
     });
 
+    it('Task 17: blocks publishing when the actor is a reviewer', async () => {
+      const validateSpy = vi.spyOn(ExamWorkflowService, 'validateForPublish');
+
+      await expect(
+        ExamWorkflowService.transitionExamStatus(
+          'exam-1',
+          'published',
+          'reviewer@example.com',
+          undefined,
+          'reviewer',
+        ),
+      ).rejects.toThrow(/faqat admin/i);
+
+      // Publishing is rejected before any validation or DB write happens.
+      expect(validateSpy).not.toHaveBeenCalled();
+    });
+
     it('sets is_published: false and archived_at when targetStatus is archived', async () => {
-      const mockUpdate = vi.fn().mockReturnValue({
-        eq: vi.fn().mockResolvedValue({ error: null }),
-      });
-      (supabase.from as any).mockReturnValue({ update: mockUpdate });
+      const { examUpdate: mockUpdate } = mockWorkflowTables({ examStatus: 'published' });
 
       const res = await ExamWorkflowService.transitionExamStatus(
         'exam-1',
         'archived',
-        'admin@example.com',
+        'fsoyilov@gmail.com',
+        undefined,
+        'admin',
       );
 
       expect(res.success).toBe(true);
@@ -420,12 +513,9 @@ describe('ExamWorkflowService Unit Tests (Task 6)', () => {
 
   describe('Archive and Restore (archiveExam / restoreExam)', () => {
     it('archiveExam sets status to archived and is_published to false', async () => {
-      const mockUpdate = vi.fn().mockReturnValue({
-        eq: vi.fn().mockResolvedValue({ error: null }),
-      });
-      (supabase.from as any).mockReturnValue({ update: mockUpdate });
+      const { examUpdate: mockUpdate } = mockWorkflowTables({ examStatus: 'published' });
 
-      const res = await ExamWorkflowService.archiveExam('exam-1');
+      const res = await ExamWorkflowService.archiveExam('exam-1', 'fsoyilov@gmail.com', 'admin');
       expect(res.success).toBe(true);
       expect(res.message).toContain('arxivga');
       expect(mockUpdate).toHaveBeenCalledWith(
@@ -438,12 +528,9 @@ describe('ExamWorkflowService Unit Tests (Task 6)', () => {
     });
 
     it('restoreExam returns archived exam to draft status', async () => {
-      const mockUpdate = vi.fn().mockReturnValue({
-        eq: vi.fn().mockResolvedValue({ error: null }),
-      });
-      (supabase.from as any).mockReturnValue({ update: mockUpdate });
+      const { examUpdate: mockUpdate } = mockWorkflowTables({ examStatus: 'archived' });
 
-      const res = await ExamWorkflowService.restoreExam('exam-1');
+      const res = await ExamWorkflowService.restoreExam('exam-1', 'fsoyilov@gmail.com', 'admin');
       expect(res.success).toBe(true);
       expect(res.message).toContain('qoralama');
       expect(mockUpdate).toHaveBeenCalledWith(
@@ -498,16 +585,14 @@ describe('ExamWorkflowService Unit Tests (Task 6)', () => {
     });
 
     it('successfully rejects question and saves rejection comment', async () => {
-      const mockUpdate = vi.fn().mockReturnValue({
-        eq: vi.fn().mockResolvedValue({ error: null }),
-      });
-      (supabase.from as any).mockReturnValue({ update: mockUpdate });
+      const { questionUpdate: mockUpdate } = mockWorkflowTables({ questionStatus: 'review' });
 
       const res = await ExamWorkflowService.transitionQuestionStatus(
         'q-1',
         'rejected',
         'reviewer@test.com',
         "3-variantda noto'g'ri kanji ishlatilgan.",
+        'reviewer',
       );
 
       expect(res.success).toBe(true);
@@ -521,15 +606,14 @@ describe('ExamWorkflowService Unit Tests (Task 6)', () => {
     });
 
     it('successfully approves question and clears rejection comment', async () => {
-      const mockUpdate = vi.fn().mockReturnValue({
-        eq: vi.fn().mockResolvedValue({ error: null }),
-      });
-      (supabase.from as any).mockReturnValue({ update: mockUpdate });
+      const { questionUpdate: mockUpdate } = mockWorkflowTables({ questionStatus: 'review' });
 
       const res = await ExamWorkflowService.transitionQuestionStatus(
         'q-1',
         'approved',
         'reviewer@test.com',
+        undefined,
+        'reviewer',
       );
 
       expect(res.success).toBe(true);
@@ -543,15 +627,16 @@ describe('ExamWorkflowService Unit Tests (Task 6)', () => {
     });
 
     it('bulkTransitionQuestions updates multiple questions', async () => {
-      const mockUpdate = vi.fn().mockReturnValue({
-        in: vi.fn().mockResolvedValue({ error: null }),
+      const { questionUpdate: mockUpdate } = mockWorkflowTables({
+        questionStatus: 'review',
       });
-      (supabase.from as any).mockReturnValue({ update: mockUpdate });
 
       const res = await ExamWorkflowService.bulkTransitionQuestions(
         ['q-1', 'q-2', 'q-3'],
         'approved',
         'reviewer@test.com',
+        undefined,
+        'reviewer',
       );
 
       expect(res.count).toBe(3);
@@ -562,6 +647,230 @@ describe('ExamWorkflowService Unit Tests (Task 6)', () => {
           reviewed_by: 'reviewer@test.com',
         }),
       );
+    });
+  });
+
+  describe('Task 7: Source and License Metadata Validation & Management', () => {
+    it('Task 18: blocks publishing when the license is restricted', async () => {
+      (supabase.from as any).mockImplementation((table: string) => {
+        if (table === 'exams') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                single: vi.fn().mockResolvedValue({
+                  data: {
+                    id: 'exam-restricted',
+                    title: 'Restricted Material Exam',
+                    license_type: 'restricted',
+                    copyright_confirmed: true,
+                    is_official_jlpt: false,
+                  },
+                  error: null,
+                }),
+              }),
+            }),
+          };
+        }
+        if (table === 'exam_sections') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                order: vi.fn().mockResolvedValue({
+                  data: [{ id: 'sec-1', type: 'knowledge', title: 'Goi' }],
+                  error: null,
+                }),
+              }),
+            }),
+          };
+        }
+        if (table === 'exam_questions') {
+          return {
+            select: vi.fn().mockReturnValue({
+              in: vi.fn().mockReturnValue({
+                order: vi.fn().mockResolvedValue({
+                  data: [
+                    {
+                      id: 'q-1',
+                      status: 'approved',
+                      question_text: 'Test question',
+                      options: ['A', 'B', 'C', 'D'],
+                      correct_answer: '0',
+                    },
+                  ],
+                  error: null,
+                }),
+              }),
+            }),
+          };
+        }
+        return {
+          select: vi.fn().mockReturnValue({
+            eq: vi.fn().mockResolvedValue({ data: [], error: null }),
+          }),
+        };
+      });
+
+      const res = await ExamWorkflowService.validateForPublish('exam-restricted');
+      expect(res.isValid).toBe(false);
+      expect(res.errors.some((e) => e.includes('restricted'))).toBe(true);
+      expect(res.legalGates?.some((g) => g.id === 'restricted_license' && g.blocking)).toBe(true);
+    });
+
+    it('Task 18: blocks publishing when copyright is not confirmed', async () => {
+      (supabase.from as any).mockImplementation((table: string) => {
+        if (table === 'exams') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                single: vi.fn().mockResolvedValue({
+                  data: {
+                    id: 'exam-unconfirmed',
+                    title: 'Unconfirmed Exam',
+                    license_type: 'cc-by',
+                    copyright_confirmed: false,
+                    is_official_jlpt: false,
+                  },
+                  error: null,
+                }),
+              }),
+            }),
+          };
+        }
+        if (table === 'exam_sections') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                order: vi.fn().mockResolvedValue({
+                  data: [{ id: 'sec-1', type: 'knowledge', title: 'Goi' }],
+                  error: null,
+                }),
+              }),
+            }),
+          };
+        }
+        if (table === 'exam_questions') {
+          return {
+            select: vi.fn().mockReturnValue({
+              in: vi.fn().mockReturnValue({
+                order: vi.fn().mockResolvedValue({
+                  data: [
+                    {
+                      id: 'q-1',
+                      status: 'approved',
+                      question_text: 'Test question',
+                      options: ['A', 'B', 'C', 'D'],
+                      correct_answer: '0',
+                    },
+                  ],
+                  error: null,
+                }),
+              }),
+            }),
+          };
+        }
+        return {
+          select: vi.fn().mockReturnValue({
+            eq: vi.fn().mockResolvedValue({ data: [], error: null }),
+          }),
+        };
+      });
+
+      const res = await ExamWorkflowService.validateForPublish('exam-unconfirmed');
+      expect(res.isValid).toBe(false);
+      expect(res.errors.some((e) => e.includes('Mualliflik huquqi tasdiqlanmagan'))).toBe(true);
+      expect(res.legalGates?.some((g) => g.id === 'copyright_not_confirmed' && g.blocking)).toBe(
+        true,
+      );
+    });
+
+    it('blocks publication with error if exam is falsely claimed as Official JLPT', async () => {
+      (supabase.from as any).mockImplementation((table: string) => {
+        if (table === 'exams') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                single: vi.fn().mockResolvedValue({
+                  data: {
+                    id: 'exam-false-official',
+                    title: 'Unofficial Practice Exam',
+                    license_type: 'original',
+                    copyright_confirmed: true,
+                    is_official_jlpt: true,
+                    source_name: 'Third-party Publisher',
+                  },
+                  error: null,
+                }),
+              }),
+            }),
+          };
+        }
+        if (table === 'exam_sections') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                order: vi.fn().mockResolvedValue({
+                  data: [{ id: 'sec-1', type: 'knowledge', title: 'Goi' }],
+                  error: null,
+                }),
+              }),
+            }),
+          };
+        }
+        if (table === 'exam_questions') {
+          return {
+            select: vi.fn().mockReturnValue({
+              in: vi.fn().mockReturnValue({
+                order: vi.fn().mockResolvedValue({
+                  data: [
+                    {
+                      id: 'q-1',
+                      status: 'approved',
+                      question_text: 'Test question',
+                      options: ['A', 'B', 'C', 'D'],
+                      correct_answer: '0',
+                    },
+                  ],
+                  error: null,
+                }),
+              }),
+            }),
+          };
+        }
+        return {
+          select: vi.fn().mockReturnValue({
+            eq: vi.fn().mockResolvedValue({ data: [], error: null }),
+          }),
+        };
+      });
+
+      const res = await ExamWorkflowService.validateForPublish('exam-false-official');
+      expect(res.isValid).toBe(false);
+      expect(res.errors.some((e) => e.includes('Japan Foundation / JEES'))).toBe(true);
+    });
+
+    it('updateExamSourceLicense updates source and license in database', async () => {
+      const mockUpdate = vi.fn().mockReturnValue({
+        eq: vi.fn().mockResolvedValue({ error: null }),
+      });
+      (supabase.from as any).mockReturnValue({ update: mockUpdate });
+
+      await ExamWorkflowService.updateExamSourceLicense('exam-1', {
+        sourceName: 'The Japan Foundation',
+        sourceUrl: 'https://www.jlpt.jp',
+        author: 'JEES Team',
+        licenseType: 'restricted',
+        copyrightConfirmed: true,
+        isOfficialJlpt: true,
+      });
+
+      expect(mockUpdate).toHaveBeenCalledWith({
+        source_name: 'The Japan Foundation',
+        source_url: 'https://www.jlpt.jp',
+        author: 'JEES Team',
+        license_type: 'restricted',
+        copyright_confirmed: true,
+        is_official_jlpt: true,
+      });
     });
   });
 });

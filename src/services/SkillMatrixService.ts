@@ -4,10 +4,93 @@ import {
   LevelSkillMatrixReport,
   SkillMatrixDefinition,
   CompetencyProgress,
+  CompetencyResultRecord,
+  EvidenceSourceSummary,
   ActivityFormat,
 } from '../types/skillMatrix';
-import { MasteryEngine } from './MasteryEngine';
+import { MasteryEngine, MASTERY_CONFIG } from './MasteryEngine';
+import { resolveCategory } from '../types/learningEvidence';
 import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
+
+/**
+ * Skill Matrix thresholds. Keep in sync with the retention requirement documented
+ * in kamchilik.md (retention >= 80%) and the Skill Matrix UI copy.
+ */
+export const SKILL_MATRIX_CONFIG = {
+  retentionThreshold: MASTERY_CONFIG.retentionThreshold,
+  multiFormatMinAccuracy: 80,
+  requiredFormats: 2,
+  masteryThreshold: MASTERY_CONFIG.masteredThreshold,
+  recentAttemptWindow: 5,
+} as const;
+
+interface SpeakingCriteria {
+  pronunciation?: number;
+  fluency?: number;
+  grammar?: number;
+  vocabulary?: number;
+  overall?: number;
+}
+
+interface NormalizedAttempt {
+  skill: MasterySkill;
+  format: ActivityFormat;
+  accuracy: number;
+  timestamp: string;
+  source: string;
+  competencyId?: string;
+  criteria?: SpeakingCriteria;
+}
+
+const SPEAKING_COMPETENCY_CRITERIA: Record<string, keyof SpeakingCriteria> = {
+  pronunciation_pitch: 'pronunciation',
+  fluency_hesitation: 'fluency',
+  situational_roleplay: 'overall',
+};
+
+const clampPercent = (value: number): number => Math.max(0, Math.min(100, Math.round(value)));
+
+const normalizePercent = (value: unknown): number | null => {
+  if (typeof value !== 'number' || !Number.isFinite(value)) return null;
+  if (value > 0 && value <= 10) return clampPercent(value * 10);
+  return clampPercent(value);
+};
+
+const parseJsonObject = (value: unknown): Record<string, any> | null => {
+  if (!value) return null;
+  if (typeof value === 'object') return value as Record<string, any>;
+  if (typeof value !== 'string') return null;
+  try {
+    const parsed = JSON.parse(value);
+    return parsed && typeof parsed === 'object' ? parsed : null;
+  } catch {
+    return null;
+  }
+};
+
+const average = (values: number[]): number =>
+  values.length > 0 ? Math.round(values.reduce((sum, value) => sum + value, 0) / values.length) : 0;
+
+const toActivityFormat = (activityType?: string, skill?: MasterySkill): ActivityFormat => {
+  switch (activityType) {
+    case 'srs_review':
+      return 'srs';
+    case 'reading':
+      return 'reading_passage';
+    case 'listening':
+      return 'audio';
+    case 'speaking':
+      return 'speech';
+    case 'writing':
+      return 'essay';
+    case 'quiz':
+    case 'vocabulary':
+    case 'grammar':
+    case 'diagnostic':
+    default:
+      return skill === 'listening' ? 'audio' : 'quiz';
+  }
+};
 
 interface BaseCompetencyMeta {
   id: string;
@@ -472,11 +555,76 @@ export class SkillMatrixService {
     const masteryProfile = MasteryEngine.calculateMasteryProfile(userId, 'ja');
     const allEvidence = MasteryEngine.getUserEvidence(userId, 'ja');
 
-    // Pull flashcards stats
-    const flashcards = safeLocalStorage.getJSON<any[]>('study_planner_flashcards', []);
-    const cardsArray = Array.isArray(flashcards) ? flashcards : [];
+    const cardsArray = this.readHistoryItems([
+      'study_planner_flashcards',
+      `study_planner_flashcards:${userId}`,
+    ]);
     const kanjiCount = cardsArray.filter((c) => /[\u4e00-\u9faf]/.test(c.front || '')).length;
     const vocabCount = Math.max(cardsArray.length, 1);
+
+    const writingHistory = this.readHistoryItems([
+      'study_planner_jlpt_writing_history',
+      'study_planner_ielts_writing_history',
+      'study_planner_writing_history',
+      `study_planner_jlpt_writing_history:${userId}`,
+      `study_planner_ielts_writing_history:${userId}`,
+      `study_planner_writing_history:${userId}`,
+    ]);
+    const speakingHistory = this.readHistoryItems([
+      'study_planner_speaking_coach_sessions',
+      'study_planner_speaking_history',
+      `study_planner_speaking_history_${userId}`,
+      `study_planner_speaking_coach_sessions:${userId}`,
+      `study_planner_speaking_history:${userId}`,
+    ]);
+
+    const allSkills: MasterySkill[] = [
+      'vocabulary',
+      'grammar',
+      'kanji',
+      'reading',
+      'listening',
+      'writing',
+      'speaking',
+    ];
+    const attemptsBySkill = {} as Record<MasterySkill, NormalizedAttempt[]>;
+    for (const skill of allSkills) attemptsBySkill[skill] = [];
+
+    for (const evidence of allEvidence) {
+      if (resolveCategory(evidence) === 'completion') continue;
+      const format = toActivityFormat(evidence.activityType, evidence.skill);
+      const metadata = (evidence.metadata || {}) as Record<string, any>;
+      const criteria = parseJsonObject(metadata.criteria) || undefined;
+      attemptsBySkill[evidence.skill].push({
+        skill: evidence.skill,
+        format,
+        accuracy: normalizePercent(evidence.accuracy ?? evidence.score) ?? 0,
+        timestamp: evidence.timestamp,
+        source: evidence.source || evidence.activityType || 'mastery_evidence',
+        competencyId: typeof metadata.competencyId === 'string' ? metadata.competencyId : undefined,
+        criteria: criteria
+          ? {
+              pronunciation: normalizePercent(criteria.pronunciation) ?? undefined,
+              fluency: normalizePercent(criteria.fluency) ?? undefined,
+              grammar: normalizePercent(criteria.grammar) ?? undefined,
+              vocabulary: normalizePercent(criteria.vocabulary) ?? undefined,
+              overall: normalizePercent(criteria.overall) ?? undefined,
+            }
+          : undefined,
+      });
+    }
+
+    for (const item of writingHistory) {
+      const attempt = this.toWritingAttempt(item);
+      if (attempt) attemptsBySkill.writing.push(attempt);
+    }
+
+    for (const item of speakingHistory) {
+      const attempt = this.toSpeakingAttempt(item);
+      if (attempt) attemptsBySkill.speaking.push(attempt);
+    }
+
+    const flashcardRetention = this.computeFlashcardRetention(cardsArray);
 
     const targetCounts: Record<MasterySkill, number> = {
       vocabulary: benchmark.vocabTarget,
@@ -508,42 +656,24 @@ export class SkillMatrixService {
       speaking: 'Mic',
     };
 
-    const allSkills: MasterySkill[] = [
-      'vocabulary',
-      'grammar',
-      'kanji',
-      'reading',
-      'listening',
-      'writing',
-      'speaking',
-    ];
-
     const skillsMap = {} as Record<MasterySkill, SkillMatrixDefinition>;
     let totalCompetencies = 0;
     let masteredCompetencies = 0;
     let masteredSkills = 0;
     const weaknesses: LevelSkillMatrixReport['topWeaknesses'] = [];
+    const competencyResults: CompetencyResultRecord[] = [];
+    const generatedAt = new Date().toISOString();
 
     for (const skill of allSkills) {
       const blueprints = SKILL_COMPETENCY_BLUEPRINTS[skill] || [];
       const skillTarget = targetCounts[skill];
-      const skillEvidence = allEvidence.filter((e) => e.skill === skill);
+      const skillAttempts = attemptsBySkill[skill].sort(
+        (a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime(),
+      );
 
-      // Distinct formats tested for this skill
-      const testedFormatsSet = new Set<ActivityFormat>();
-      skillEvidence.forEach((e) => {
-        const fmt = (e.activityType as ActivityFormat) || 'quiz';
-        testedFormatsSet.add(fmt);
-      });
+      const recentAccuracy = this.calculateRecentAccuracy(skillAttempts);
+      const multiFormatPassed = this.hasMultiFormatEvidence(skillAttempts);
 
-      // Also supplement from storage
-      if (skill === 'vocabulary' && cardsArray.length > 0) testedFormatsSet.add('srs');
-      if (skill === 'kanji' && kanjiCount > 0) testedFormatsSet.add('srs');
-
-      const formatsTested = Array.from(testedFormatsSet);
-      const multiFormatPassed = formatsTested.length >= 2;
-
-      // Real or estimated counts
       let currentSkillCount = 0;
       if (skill === 'vocabulary') currentSkillCount = vocabCount;
       else if (skill === 'kanji') currentSkillCount = kanjiCount;
@@ -552,48 +682,68 @@ export class SkillMatrixService {
           'study_planner_completed_lessons',
           [],
         );
-        currentSkillCount = Math.max(skillEvidence.length * 2, completedLessons.length * 3);
-      } else if (skill === 'reading') {
-        currentSkillCount = skillEvidence.length;
-      } else if (skill === 'listening') {
-        currentSkillCount = skillEvidence.length;
+        currentSkillCount = Math.max(skillAttempts.length * 2, completedLessons.length * 3);
+      } else if (skill === 'reading' || skill === 'listening') {
+        currentSkillCount = skillAttempts.length;
       } else if (skill === 'writing') {
-        const writingHistory = safeLocalStorage.getJSON<any[]>('study_planner_writing_history', []);
         currentSkillCount = writingHistory.length;
       } else if (skill === 'speaking') {
-        const speakingHistory = safeLocalStorage.getJSON<any[]>(
-          'study_planner_speaking_history',
-          [],
-        );
         currentSkillCount = speakingHistory.length;
       }
 
-      // Base skill score from MasteryEngine
       const baseMastery = masteryProfile.skills[skill];
       const baseScore = baseMastery ? baseMastery.score : 0;
       const countRatio = Math.min(1.0, currentSkillCount / Math.max(1, skillTarget));
-      const effectiveScore = Math.round(baseScore * 0.6 + countRatio * 40);
 
-      const retentionPassed = (baseMastery?.score ?? 0) >= 70;
+      const srsAttempts = skillAttempts.filter((attempt) => attempt.format === 'srs');
+      const retentionRate =
+        (skill === 'vocabulary' || skill === 'kanji') && cardsArray.length > 0
+          ? flashcardRetention
+          : this.calculateRecentAccuracy(srsAttempts);
+      const retentionPassed = retentionRate >= SKILL_MATRIX_CONFIG.retentionThreshold;
 
-      const resolveCompetencyStatus = (score: number, multiFormat: boolean): MasteryStatus => {
-        if (score >= 85 && multiFormat) return 'mastered';
-        if (score >= 70) return 'proficient';
-        if (score >= 45) return 'developing';
-        return 'weak';
-      };
+      const measuredAccuracy =
+        skillAttempts.length > 0 ? recentAccuracy : baseScore > 0 ? baseScore : retentionRate;
+      const effectiveScore =
+        skillAttempts.length > 0 || baseScore > 0 || retentionRate > 0
+          ? clampPercent(measuredAccuracy * 0.65 + countRatio * 35)
+          : 0;
+
+      const evidenceSources = this.buildEvidenceSources(skillAttempts);
+      if ((skill === 'vocabulary' || skill === 'kanji') && cardsArray.length > 0) {
+        evidenceSources.push({
+          source: 'flashcards',
+          format: 'srs',
+          count: cardsArray.length,
+          accuracy: flashcardRetention,
+          lastUsedAt: this.getLatestTimestamp(cardsArray),
+        });
+      }
 
       const competenciesProgress: CompetencyProgress[] = blueprints.map((blueprint) => {
         totalCompetencies++;
         const targetSubCount = Math.max(1, Math.round(skillTarget * blueprint.targetWeight));
-        const currentSubCount = Math.min(
-          targetSubCount,
-          Math.round(currentSkillCount * blueprint.targetWeight),
+        const mappedAttempts = skillAttempts.filter((attempt) => {
+          if (attempt.competencyId) return attempt.competencyId === blueprint.id;
+          return blueprint.formats.includes(attempt.format);
+        });
+        const competencyAttempts = mappedAttempts.map((attempt) => ({
+          ...attempt,
+          accuracy: this.getCompetencyAttemptAccuracy(attempt, blueprint.id),
+        }));
+        const compAccuracy = this.calculateRecentAccuracy(competencyAttempts);
+        const compMultiFormat = this.hasMultiFormatEvidence(competencyAttempts);
+        const compEvidenceCount = competencyAttempts.length;
+        const currentSubCount =
+          compEvidenceCount > 0
+            ? Math.min(targetSubCount, compEvidenceCount)
+            : Math.min(targetSubCount, Math.round(currentSkillCount * blueprint.targetWeight));
+        const compStatus = this.resolveStatus(
+          compAccuracy,
+          compMultiFormat,
+          compEvidenceCount,
+          currentSubCount,
         );
-
-        // Competency accuracy reflects skill accuracy with small perturbation
-        const compAccuracy = Math.min(100, Math.max(0, effectiveScore));
-        const compStatus = resolveCompetencyStatus(compAccuracy, multiFormatPassed);
 
         if (compStatus === 'mastered') {
           masteredCompetencies++;
@@ -601,10 +751,25 @@ export class SkillMatrixService {
           weaknesses.push({
             skill,
             competencyName: blueprint.name.uz,
-            reason: `${blueprint.name.uz} ko'rsatkichi ${compAccuracy}% (maqsad: 85%+ va kamida 2 xil formatda tasdiqlash)`,
+            reason: `${blueprint.name.uz} ko'rsatkichi ${compAccuracy}% (maqsad: 85%+ va har bir formatda kamida ${SKILL_MATRIX_CONFIG.multiFormatMinAccuracy}%)`,
             recommendedRoute: routes[skill],
           });
         }
+
+        const evidenceSourceNames = Array.from(
+          new Set(competencyAttempts.map((attempt) => attempt.source)),
+        );
+
+        competencyResults.push({
+          competencyId: blueprint.id,
+          skill,
+          level,
+          accuracy: compAccuracy,
+          status: compStatus,
+          evidenceCount: compEvidenceCount,
+          evidenceSources: evidenceSourceNames,
+          updatedAt: generatedAt,
+        });
 
         return {
           competencyId: blueprint.id,
@@ -614,20 +779,20 @@ export class SkillMatrixService {
           targetCount: targetSubCount,
           currentCount: currentSubCount,
           accuracy: compAccuracy,
-          formatsTested: formatsTested.filter((f) => blueprint.formats.includes(f)),
+          evidenceCount: compEvidenceCount,
+          evidenceSources: evidenceSourceNames,
+          formatsTested: Array.from(new Set(competencyAttempts.map((attempt) => attempt.format))),
           status: compStatus,
           benchmarkRule: blueprint.benchmarkRule,
         };
       });
 
-      const skillStatus: MasteryStatus =
-        effectiveScore >= 85 && multiFormatPassed
-          ? 'mastered'
-          : effectiveScore >= 70
-            ? 'proficient'
-            : effectiveScore >= 50
-              ? 'developing'
-              : 'weak';
+      const skillStatus = this.resolveStatus(
+        effectiveScore,
+        multiFormatPassed,
+        skillAttempts.length,
+        currentSkillCount,
+      );
 
       if (skillStatus === 'mastered') {
         masteredSkills++;
@@ -641,8 +806,11 @@ export class SkillMatrixService {
         overallTargetCount: skillTarget,
         currentCount: currentSkillCount,
         score: effectiveScore,
-        accuracy: effectiveScore,
+        accuracy: recentAccuracy,
+        evidenceCount: skillAttempts.length,
+        evidenceSources,
         multiFormatPassed,
+        retentionRate,
         retentionPassed,
         status: skillStatus,
         competencies: competenciesProgress,
@@ -650,6 +818,8 @@ export class SkillMatrixService {
         iconName: icons[skill],
       };
     }
+
+    this.saveCompetencyResults(userId, level, competencyResults);
 
     const overallCompletionRate = Math.min(
       100,
@@ -665,8 +835,180 @@ export class SkillMatrixService {
       masteredCompetenciesCount: masteredCompetencies,
       skills: skillsMap,
       topWeaknesses: weaknesses.slice(0, 5),
-      generatedAt: new Date().toISOString(),
+      generatedAt,
     };
+  }
+
+  public static getCompetencyResults(
+    userId: string = 'guest',
+    level?: JlptLevel,
+  ): CompetencyResultRecord[] {
+    const key = this.competencyResultsKey(userId);
+    const records = safeLocalStorage.getJSON<CompetencyResultRecord[]>(key, []);
+    if (!Array.isArray(records)) return [];
+    return level ? records.filter((record) => record.level === level) : records;
+  }
+
+  private static competencyResultsKey(userId: string): string {
+    return `study_planner_skill_matrix_competencies_${userId || 'guest'}_ja`;
+  }
+
+  private static saveCompetencyResults(
+    userId: string,
+    level: JlptLevel,
+    results: CompetencyResultRecord[],
+  ): void {
+    const key = this.competencyResultsKey(userId);
+    const existing = safeLocalStorage.getJSON<CompetencyResultRecord[]>(key, []);
+    const otherLevels = Array.isArray(existing)
+      ? existing.filter((record) => record.level !== level)
+      : [];
+    safeLocalStorage.setJSON(key, [...otherLevels, ...results]);
+  }
+
+  private static readHistoryItems(keys: string[]): any[] {
+    const items = new Map<string, any>();
+    for (const key of keys) {
+      const records = safeLocalStorage.getJSON<any[]>(key, []);
+      if (!Array.isArray(records)) continue;
+      for (const record of records) {
+        if (!record || typeof record !== 'object') continue;
+        const itemKey = String(
+          record.id ||
+            `${record.createdAt || record.created_at || ''}-${record.prompt || record.persona || ''}-${record.questionText || ''}`,
+        );
+        if (!items.has(itemKey)) items.set(itemKey, record);
+      }
+    }
+    return Array.from(items.values());
+  }
+
+  private static toWritingAttempt(item: any): NormalizedAttempt | null {
+    const criteria = parseJsonObject(item?.criteriaBreakdown) || {};
+    const numericCriteria = Object.values(criteria)
+      .map((value) => normalizePercent(value))
+      .filter((value): value is number => value !== null);
+    const score = normalizePercent(item?.score);
+    if (score === null && numericCriteria.length === 0) return null;
+    return {
+      skill: 'writing',
+      format: 'essay',
+      accuracy: numericCriteria.length > 0 ? average(numericCriteria) : (score ?? 0),
+      timestamp: item.createdAt || item.created_at || new Date().toISOString(),
+      source: 'writing_history',
+    };
+  }
+
+  private static toSpeakingAttempt(item: any): NormalizedAttempt | null {
+    const feedback = parseJsonObject(item?.feedback) || {};
+    const criteria: SpeakingCriteria = {
+      pronunciation:
+        normalizePercent(feedback.pronunciation_score ?? item?.pronunciationScore) ?? undefined,
+      fluency: normalizePercent(feedback.fluency_score ?? item?.fluencyScore) ?? undefined,
+      grammar:
+        normalizePercent(feedback.grammar_score ?? feedback.grammatical_range_score) ?? undefined,
+      vocabulary:
+        normalizePercent(feedback.vocabulary_score ?? feedback.lexical_score) ?? undefined,
+      overall: normalizePercent(feedback.overall_score) ?? undefined,
+    };
+    const scores = Object.values(criteria).filter(
+      (value): value is number => typeof value === 'number',
+    );
+    if (scores.length === 0) return null;
+    return {
+      skill: 'speaking',
+      format: 'speech',
+      accuracy: criteria.overall ?? average(scores),
+      timestamp: item.createdAt || item.created_at || new Date().toISOString(),
+      source: 'speaking_history',
+      criteria,
+    };
+  }
+
+  private static getCompetencyAttemptAccuracy(
+    attempt: NormalizedAttempt,
+    competencyId: string,
+  ): number {
+    if (attempt.skill === 'speaking' && attempt.criteria) {
+      const criterion = SPEAKING_COMPETENCY_CRITERIA[competencyId];
+      const value = criterion ? attempt.criteria[criterion] : undefined;
+      if (typeof value === 'number') return value;
+    }
+    return attempt.accuracy;
+  }
+
+  private static calculateRecentAccuracy(attempts: NormalizedAttempt[]): number {
+    if (attempts.length === 0) return 0;
+    const recent = [...attempts]
+      .sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime())
+      .slice(-SKILL_MATRIX_CONFIG.recentAttemptWindow);
+    return average(recent.map((attempt) => attempt.accuracy));
+  }
+
+  private static hasMultiFormatEvidence(attempts: NormalizedAttempt[]): boolean {
+    const formats = new Map<ActivityFormat, NormalizedAttempt[]>();
+    for (const attempt of attempts) {
+      const list = formats.get(attempt.format) || [];
+      list.push(attempt);
+      formats.set(attempt.format, list);
+    }
+    const qualifiedFormats = Array.from(formats.values()).filter(
+      (formatAttempts) =>
+        this.calculateRecentAccuracy(formatAttempts) >= SKILL_MATRIX_CONFIG.multiFormatMinAccuracy,
+    );
+    return qualifiedFormats.length >= SKILL_MATRIX_CONFIG.requiredFormats;
+  }
+
+  private static resolveStatus(
+    score: number,
+    multiFormat: boolean,
+    evidenceCount: number,
+    currentCount: number,
+  ): MasteryStatus {
+    if (evidenceCount === 0) return currentCount > 0 ? 'weak' : 'not_started';
+    if (score >= SKILL_MATRIX_CONFIG.masteryThreshold && multiFormat) return 'mastered';
+    if (score >= MASTERY_CONFIG.proficientThreshold) return 'proficient';
+    if (score >= MASTERY_CONFIG.weakThreshold) return 'developing';
+    return 'weak';
+  }
+
+  private static computeFlashcardRetention(cards: any[]): number {
+    if (cards.length === 0) return 0;
+    const scores = cards.map((card) => {
+      const factor = Number(card.easeFactor) || 2.5;
+      const interval = Number(card.interval) || 0;
+      return Math.min(100, Math.round((interval / 30) * 50 + (factor / 2.5) * 50));
+    });
+    return average(scores);
+  }
+
+  private static getLatestTimestamp(items: any[]): string | undefined {
+    const timestamps = items
+      .map((item) => item.updatedAt || item.createdAt || item.created_at || item.nextReviewDate)
+      .filter((value): value is string => typeof value === 'string' && value.length > 0)
+      .sort();
+    return timestamps.length > 0 ? timestamps[timestamps.length - 1] : undefined;
+  }
+
+  private static buildEvidenceSources(attempts: NormalizedAttempt[]): EvidenceSourceSummary[] {
+    const groups = new Map<string, NormalizedAttempt[]>();
+    for (const attempt of attempts) {
+      const key = `${attempt.source}|${attempt.format}`;
+      const list = groups.get(key) || [];
+      list.push(attempt);
+      groups.set(key, list);
+    }
+
+    return Array.from(groups.entries()).map(([key, group]) => {
+      const [source, format] = key.split('|') as [string, ActivityFormat];
+      return {
+        source,
+        format,
+        count: group.length,
+        accuracy: this.calculateRecentAccuracy(group),
+        lastUsedAt: this.getLatestTimestamp(group),
+      };
+    });
   }
 
   private static getSkillTitle(skill: MasterySkill): { uz: string; ja: string; en: string } {

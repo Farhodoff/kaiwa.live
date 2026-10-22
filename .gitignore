@@ -36,8 +36,11 @@ scripts/temp/
 key.txt
 test-report-screenshot.png
 test_reports/
-reports/
-report/
+/reports/
+/report/
+!docs/reports/TASK16_E2E_REPORT.md
+!docs/reports/TASK16_E2E_RESULTS.json
+!docs/reports/TASK20_REAL_SUPABASE_REPORT.md
 .npm-local-cache/
 .agents/
 skills-lock.json
@@ -58,3 +61,5 @@ supabase/.temp/
 .env*
 src/data/decks/backups/
 scripts/live_session.json
+backups/**/test_users.json
+test_users.json
