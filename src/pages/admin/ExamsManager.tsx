@@ -22,6 +22,7 @@ import {
 import { useStudyData } from '../../context/StudyPlannerContext';
 import { isAdminEmail, isUserAdmin } from '../../utils/admin';
 import { ExamBulkImportModal } from '../../components/admin/ExamBulkImportModal';
+import { JlptTimingConfigModal } from '../../components/admin/JlptTimingConfigModal';
 import {
   ExamWorkflowService,
   EXAM_STATUS_CONFIG,
@@ -47,6 +48,7 @@ export const ExamsManager: React.FC = () => {
   // Step-by-Step Creation Wizard State
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showBulkModal, setShowBulkModal] = useState(false);
+  const [showTimingModal, setShowTimingModal] = useState(false);
   const [jlptLevel, setJlptLevel] = useState<'N5' | 'N4' | 'N3' | 'N2' | 'N1'>('N3');
   const [newTitle, setNewTitle] = useState('');
   const [newDesc, setNewDesc] = useState('');
@@ -135,7 +137,7 @@ export const ExamsManager: React.FC = () => {
     )
       return;
     try {
-      const res = await ExamWorkflowService.archiveExam(examId);
+      const res = await ExamWorkflowService.archiveExam(examId, user?.email, (user as any)?.role);
       fetchExams();
       toast({
         title: '📦 Arxivlandi',
@@ -153,7 +155,7 @@ export const ExamsManager: React.FC = () => {
 
   const handleRestoreExam = async (examId: string, _examTitle?: string) => {
     try {
-      const res = await ExamWorkflowService.restoreExam(examId);
+      const res = await ExamWorkflowService.restoreExam(examId, user?.email, (user as any)?.role);
       fetchExams();
       toast({
         title: '♻️ Qayta Tiklandi',
@@ -280,6 +282,13 @@ export const ExamsManager: React.FC = () => {
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
+            <Button
+              variant="outline"
+              onClick={() => setShowTimingModal(true)}
+              className="transform gap-2 rounded-2xl border-white/40 bg-white/10 px-5 py-3 font-extrabold text-white shadow-lg backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white hover:text-rose-700 hover:shadow-xl"
+            >
+              <Clock className="h-5 w-5" /> JLPT Vaqt Sozlamalari
+            </Button>
             <Button
               variant="outline"
               onClick={() => setShowBulkModal(true)}
@@ -669,6 +678,12 @@ export const ExamsManager: React.FC = () => {
         </div>
       )}
 
+      <JlptTimingConfigModal
+        isOpen={showTimingModal}
+        onClose={() => setShowTimingModal(false)}
+        user={user}
+      />
+
       {/* Full Exam Bulk Import Modal */}
       <ExamBulkImportModal
         isOpen={showBulkModal}
@@ -681,6 +696,8 @@ export const ExamsManager: React.FC = () => {
         }}
         mode="full-exam"
         availableExams={exams}
+        currentUserEmail={user?.email}
+        currentUserRole={(user as any)?.role}
       />
     </div>
   );
