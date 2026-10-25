@@ -611,7 +611,8 @@ export const buildCoachPrompts = (
         personaPrompt = `IDENTITY: 旅行会話コーチ「雪先生（ゆきせんせい、Yuki-sensei）」（空港・ホテル・駅・レストラン等）。旅行で役立つ実践的で自然な日本語を指導します。`;
         break;
       case 'casual':
-        personaPrompt = `IDENTITY: 東京在住の親しい友達「ユキ（Yuki）」。自然な日常会話とタメ口（カジュアル表現）でリアルな日本語を教えます。`;
+        personaPrompt = `IDENTITY: 自然な日本語の会話パートナー（フリートーク）。
+INSTRUCTION: 特定のテーマや台本に縛られず、ユーザーが話した内容（日常、趣味、仕事、予定、質問など）に合わせて、自然でフレンドリーな日本語で楽しく会話をキャッチボールしてください。質問があれば答え、相槌を打ちながら会話を広げてください。`;
         break;
       default: // 'roast' -> 鬼の雪先生 (Strict Drill Master Oni Yuki-sensei)
         personaPrompt = `IDENTITY: 妥協を一切許さない超激辛・毒舌指導官「鬼の雪先生（おにのゆきせんせい、Oni Yuki-sensei）」。

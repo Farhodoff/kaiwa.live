@@ -449,8 +449,8 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
             </div>
             <h1 className="flex items-center gap-3 font-display text-2xl font-black tracking-tight text-foreground md:text-3xl">
               {language === 'ja'
-                ? '⛩️ JLPT ぶんぽう・かんじ・ごい マスター'
-                : '⛩️ JLPT Grammar, Kanji & Goi Master'}
+                ? 'JLPT ぶんぽう・かんじ・ごい マスター'
+                : 'JLPT Grammar, Kanji & Goi Master'}
             </h1>
             <p className="mt-1 max-w-2xl text-sm leading-relaxed text-muted-foreground">
               {language === 'ja'
@@ -499,9 +499,11 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
             }`}
           >
             <BookOpen className="h-4 w-4" />
-            {language === 'ja'
-              ? `📖 文法マスター (${grammarSource.length})`
-              : `📖 Grammatika (${grammarSource.length})`}
+            <span>
+              {language === 'ja'
+                ? `文法マスター (${grammarSource.length})`
+                : `Grammatika (${grammarSource.length})`}
+            </span>
           </button>
 
           <button
@@ -516,9 +518,9 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
             }`}
           >
             <GraduationCap className="h-4 w-4" />
-            {language === 'ja'
-              ? `⛩️ 漢字 (${kanjiSource.length})`
-              : `⛩️ Kanji (${kanjiSource.length})`}
+            <span>
+              {language === 'ja' ? `漢字 (${kanjiSource.length})` : `Kanji (${kanjiSource.length})`}
+            </span>
           </button>
 
           <button
@@ -533,9 +535,9 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
             }`}
           >
             <BookOpen className="h-4 w-4" />
-            {language === 'ja'
-              ? `📚 語彙 (${vocabSource.length})`
-              : `📚 Goi (${vocabSource.length})`}
+            <span>
+              {language === 'ja' ? `語彙 (${vocabSource.length})` : `Goi (${vocabSource.length})`}
+            </span>
           </button>
 
           <button
@@ -554,9 +556,11 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
             }`}
           >
             <Flame className="h-4 w-4 text-amber-600 dark:text-amber-400" />
-            {language === 'ja'
-              ? `⚡ テスト (${quizSource.length})`
-              : `⚡ Test Banki (${quizSource.length})`}
+            <span>
+              {language === 'ja'
+                ? `テスト (${quizSource.length})`
+                : `Test Banki (${quizSource.length})`}
+            </span>
           </button>
 
           <button
@@ -571,7 +575,7 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
             }`}
           >
             <Layers className="h-4 w-4" />
-            {language === 'ja' ? '🔍 類似漢字' : "🔍 O'xshash Kanjilar"}
+            <span>{language === 'ja' ? '類似漢字' : "O'xshash Kanjilar"}</span>
           </button>
         </div>
       </div>

@@ -15,6 +15,7 @@ import {
   Shield,
   BarChart3,
   Star,
+  Radio,
 } from 'lucide-react';
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { SessionCompleteModal } from './SessionCompleteModal';
@@ -151,6 +152,11 @@ const Layout: React.FC = () => {
         icon: Mic,
       },
       {
+        name: isJa ? 'モノローグ' : 'Monolog',
+        path: '/monologue',
+        icon: Radio,
+      },
+      {
         name: isJa ? '復習・フラッシュカード' : isEn ? 'Review' : 'Takrorlash',
         path: '/flashcards',
         icon: Copy,
@@ -210,6 +216,7 @@ const Layout: React.FC = () => {
     if (location.pathname.startsWith('/scenarios')) return isJa ? '会話シナリオ' : 'Scenarios';
     if (location.pathname.startsWith('/speaking-coach'))
       return isJa ? 'AIスピーキング' : 'Speaking';
+    if (location.pathname.startsWith('/monologue')) return isJa ? 'モノローグ' : 'Monolog';
     if (location.pathname === '/jlpt') return isJa ? 'JLPTマスター' : 'JLPT Master';
     if (location.pathname === '/dashboard') return isJa ? 'ホーム' : isEn ? 'Home' : 'Bosh sahifa';
     if (location.pathname === '/progress')

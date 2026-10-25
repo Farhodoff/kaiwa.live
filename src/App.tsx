@@ -23,6 +23,9 @@ const SubjectDetailPage = lazyWithRetry(() => import('./pages/SubjectDetailPage'
 const SubjectsPage = lazyWithRetry(() => import('./pages/SubjectsPage'));
 const AdminDashboardPage = lazyWithRetry(() => import('./pages/AdminDashboardPage'));
 const SpeakingCoachPage = lazyWithRetry(() => import('./pages/SpeakingCoachPage'));
+const MonologuePage = lazyWithRetry(() =>
+  import('./pages/MonologuePage').then((m) => ({ default: m.MonologuePage })),
+);
 const JlptHubPage = lazyWithRetry(() => import('./pages/JlptHubPage'));
 const VocabularyBuilderPage = lazyWithRetry(() =>
   import('./pages/VocabularyBuilderPage').then((m) => ({ default: m.VocabularyBuilderPage })),
@@ -308,6 +311,7 @@ const App: React.FC = () => {
                       <Route path="diagnostic" element={<DiagnosticPage />} />
                       <Route path="lesson/:lessonId" element={<LessonPlayerPage />} />
                       <Route path="speaking-coach" element={<SpeakingCoachPage />} />
+                      <Route path="monologue" element={<MonologuePage />} />
                       <Route
                         path="speaking"
                         element={<Navigate to="/speaking-coach?lang=ja" replace />}

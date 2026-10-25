@@ -17,6 +17,9 @@ const PricingPage = lazyWithRetry(() =>
 );
 const JlptHubPage = lazyWithRetry(() => import('../pages/JlptHubPage'));
 const SpeakingCoachPage = lazyWithRetry(() => import('../pages/SpeakingCoachPage'));
+const MonologuePage = lazyWithRetry(() =>
+  import('../pages/MonologuePage').then((m) => ({ default: m.MonologuePage })),
+);
 const ScenarioPickerPage = lazyWithRetry(() => import('../pages/ScenarioPickerPage'));
 const LessonPlayerPage = lazyWithRetry(() => import('../pages/LessonPlayerPage'));
 const VocabularyBuilderPage = lazyWithRetry(() =>
@@ -61,6 +64,7 @@ export const UnauthRouter: React.FC = () => (
                 <Route element={<Layout />}>
                   <Route path="/jlpt" element={<JlptHubPage />} />
                   <Route path="/speaking-coach" element={<SpeakingCoachPage />} />
+                  <Route path="/monologue" element={<MonologuePage />} />
                   <Route
                     path="/speaking"
                     element={<Navigate to="/speaking-coach?lang=ja" replace />}

@@ -1,10 +1,9 @@
 import { Trophy, ArrowRight, Clock, Map, Sparkles, Loader2 } from 'lucide-react';
 import React, { useMemo, useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useStudyData } from '../context/StudyPlannerContext';
 import { useLanguage } from '../context/LanguageContext';
 import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
-import WeeklyStudyDigest from '../components/analytics/WeeklyStudyDigest';
 import { LearningPathEngine } from '../services/LearningPathEngine';
 import { LearningOrchestrator } from '../services/LearningOrchestrator';
 import { LearningProgressionService } from '../services/LearningProgressionService';
@@ -22,7 +21,6 @@ import { DailyQuestService } from '../services/DailyQuestService';
 import { MistakeVaultService } from '../services/MistakeVaultService';
 
 const DashboardPage: React.FC = () => {
-  const navigate = useNavigate();
   const {
     loading,
     flashcards,
@@ -554,31 +552,31 @@ const DashboardPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Compact status panorama — no CTAs, details live in Roadmap/Progress/Review */}
+      {/* Compact status panorama — clean badges without emoji clutter */}
       <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-        <span className="rounded-full border border-border bg-card px-3 py-1.5 font-bold text-foreground">
-          🎯 JLPT {effectiveTargetLevel}
+        <span className="rounded-full border border-border bg-card px-3 py-1 font-semibold text-foreground">
+          JLPT {effectiveTargetLevel}
         </span>
         {progression && (
-          <span className="rounded-full border border-border bg-card px-3 py-1.5">
+          <span className="rounded-full border border-border bg-card px-3 py-1">
             {progression.currentLevel} → {progression.nextLevel || 'Max'} •{' '}
             {progression.readinessScore || 0}%
           </span>
         )}
         {roadmapSummary && (
-          <span className="rounded-full border border-border bg-card px-3 py-1.5">
-            🗺️ {roadmapSummary.completedCount}/{roadmapSummary.totalCount}
+          <span className="rounded-full border border-border bg-card px-3 py-1">
+            Xarita: {roadmapSummary.completedCount}/{roadmapSummary.totalCount}
           </span>
         )}
-        <span className="rounded-full border border-border bg-card px-3 py-1.5">
-          🔁 SRS due: {srsDueCount}
+        <span className="rounded-full border border-border bg-card px-3 py-1">
+          SRS due: {srsDueCount}
         </span>
         {dailyPlan && (
-          <span className="rounded-full border border-border bg-card px-3 py-1.5">
-            ⏱️ {dailyPlan.totalMinutes} daq
+          <span className="rounded-full border border-border bg-card px-3 py-1">
+            {dailyPlan.totalMinutes} daq
           </span>
         )}
-        <Link to="/progress" className="font-bold text-primary hover:underline">
+        <Link to="/progress" className="font-semibold text-primary hover:underline">
           {language === 'ja' ? '詳細' : 'Batafsil →'}
         </Link>
       </div>
@@ -732,7 +730,6 @@ const DashboardPage: React.FC = () => {
               to="/roadmap"
               className="inline-flex w-fit items-center gap-1.5 rounded-xl border border-primary/20 bg-primary/10 px-4 py-2 text-xs font-bold text-primary transition-all hover:bg-primary/20"
             >
-              <span>🗺️</span>
               <span>
                 {language === 'ja'
                   ? 'ロードマップを みる'
@@ -746,7 +743,6 @@ const DashboardPage: React.FC = () => {
               to="/progress"
               className="inline-flex w-fit items-center gap-1.5 rounded-xl border border-border bg-card px-4 py-2 text-xs font-bold text-foreground transition-all hover:border-primary/40"
             >
-              <span>📊</span>
               <span>{language === 'ja' ? '進捗' : 'Progress'}</span>
               <ArrowRight size={14} />
             </Link>
@@ -936,35 +932,26 @@ const DashboardPage: React.FC = () => {
         </div>
       )}
 
-      {/* Weekly Study Digest & Streak Analytics */}
-      <WeeklyStudyDigest
-        onNavigateToDecks={() => navigate('/decks')}
-        onNavigateToSpeaking={() => navigate('/speaking')}
-      />
-
-      {/* Calendar tasks live in Personal Plan / Calendar — not duplicated here.
-          Full AI insights live in Progress (SmartInsight). */}
-      <div>
-        <div className="flex flex-col gap-2 rounded-2xl border border-border bg-card p-4 text-xs sm:flex-row sm:items-center sm:justify-between">
-          <span className="leading-relaxed text-muted-foreground">
-            {language === 'ja'
-              ? 'カレンダーのタスクは個人プランで管理します。ここはJLPTプランのみ。'
-              : 'Kalendar vazifalar Shaxsiy reja va Kalendarda — bu yerda faqat JLPT rejasi.'}
-          </span>
-          <div className="flex shrink-0 items-center gap-2">
-            <Link
-              to="/personal-plan"
-              className="rounded-xl bg-primary px-3 py-1.5 text-xs font-bold text-primary-foreground transition-all hover:bg-primary/90"
-            >
-              {language === 'ja' ? '個人プラン' : 'Shaxsiy reja'}
-            </Link>
-            <Link
-              to="/calendar"
-              className="rounded-xl border border-border px-3 py-1.5 text-xs font-bold text-foreground transition-all hover:border-primary/40"
-            >
-              {language === 'ja' ? 'カレンダー' : 'Kalendar'}
-            </Link>
-          </div>
+      {/* Quick navigation to Personal Plan and Calendar */}
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border/70 bg-card/60 p-3.5 px-4 text-xs">
+        <span className="text-muted-foreground">
+          {language === 'ja'
+            ? '個人プランとカレンダーで自由な学習管理'
+            : 'Shaxsiy reja va kalendar bilan mustaqil rejalashtirish'}
+        </span>
+        <div className="flex shrink-0 items-center gap-2">
+          <Link
+            to="/personal-plan"
+            className="rounded-xl border border-border bg-secondary/60 px-3 py-1.5 text-xs font-semibold text-foreground transition-all hover:border-primary/40 hover:text-primary"
+          >
+            {language === 'ja' ? '個人プラン' : 'Shaxsiy reja'}
+          </Link>
+          <Link
+            to="/calendar"
+            className="rounded-xl border border-border bg-secondary/60 px-3 py-1.5 text-xs font-semibold text-foreground transition-all hover:border-primary/40 hover:text-primary"
+          >
+            {language === 'ja' ? 'カレンダー' : 'Kalendar'}
+          </Link>
         </div>
       </div>
     </div>

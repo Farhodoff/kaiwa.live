@@ -86,7 +86,7 @@ const SpeakingCoachPage: React.FC = () => {
     return immediate.find((s) => s.id === scenarioIdParam || s.id === normalizedParam) || null;
   });
 
-  const [persona, setPersona] = useState<CoachPersona>('roast');
+  const [persona, setPersona] = useState<CoachPersona>('casual');
   const [targetJlptLevel, setTargetJlptLevel] = useState<'N5' | 'N4' | 'N3' | 'N2' | 'N1'>(() => {
     if (
       activeScenario?.difficulty &&

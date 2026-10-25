@@ -1,15 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LayoutGrid, Play } from 'lucide-react';
+import { LayoutGrid, Mic } from 'lucide-react';
 import { LiveAmbientSphere } from './LiveAmbientSphere';
-
-import { useLanguage } from '../../context/LanguageContext';
-
-interface PromptSuggestion {
-  title: string;
-  text: string;
-  icon: string;
-}
 
 interface CoachWelcomeScreenProps {
   currentPersona: any;
@@ -17,9 +9,9 @@ interface CoachWelcomeScreenProps {
   isSpeaking: boolean;
   isThinking: boolean;
   isListening: boolean;
-  promptSuggestions: PromptSuggestion[];
+  promptSuggestions?: any[];
   onStartSession: () => void;
-  onPromptClick: (text: string) => void;
+  onPromptClick?: (text: string) => void;
 }
 
 export const CoachWelcomeScreen: React.FC<CoachWelcomeScreenProps> = ({
@@ -28,28 +20,24 @@ export const CoachWelcomeScreen: React.FC<CoachWelcomeScreenProps> = ({
   isSpeaking,
   isThinking,
   isListening,
-  promptSuggestions,
   onStartSession,
-  onPromptClick,
 }) => {
-  const ActivePersonaIcon = currentPersona.icon;
-  const { language } = useLanguage();
   const navigate = useNavigate();
 
   return (
-    <div className="scrollbar-hide flex flex-1 flex-col items-center justify-center overflow-y-auto px-3 py-3 text-center sm:px-4 sm:py-6">
+    <div className="scrollbar-hide flex flex-1 flex-col items-center justify-center overflow-y-auto px-4 py-6 text-center">
       {/* Dynamic Live Ambient Neon Sphere */}
-      <div className="group relative mb-3 cursor-pointer sm:mb-6" onClick={onStartSession}>
+      <div className="group relative mb-6 cursor-pointer" onClick={onStartSession}>
         {isLiveSession ? (
           <LiveAmbientSphere
             status={
               isSpeaking ? 'speaking' : isThinking ? 'thinking' : isListening ? 'listening' : 'idle'
             }
-            size={240}
+            size={220}
           />
         ) : (
           <>
-            {/* Outer glow rings (fixed bounds, zero overflow jitter) */}
+            {/* Outer glow rings */}
             <div
               className={`absolute -inset-4 rounded-full bg-gradient-to-tr ${currentPersona.color} pointer-events-none animate-pulse opacity-20 blur-xl`}
             />
@@ -57,18 +45,16 @@ export const CoachWelcomeScreen: React.FC<CoachWelcomeScreenProps> = ({
 
             {/* Main orb */}
             <div
-              className={`relative h-24 w-24 rounded-full bg-gradient-to-tr sm:h-32 sm:w-32 md:h-36 md:w-36 ${currentPersona.color} p-[3px] shadow-2xl transition-transform duration-300 group-hover:scale-105`}
+              className={`relative h-28 w-28 rounded-full bg-gradient-to-tr sm:h-36 sm:w-36 ${currentPersona.color} p-[3px] shadow-2xl transition-transform duration-300 group-hover:scale-105`}
             >
               <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-full bg-card">
-                {/* Inner animated gradient */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(232,72,58,0.25)_0%,transparent_70%)] opacity-40" />
-
-                <ActivePersonaIcon
-                  size={28}
-                  className="relative z-10 text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.5)] sm:h-8 sm:w-8"
+                <Mic
+                  size={32}
+                  className="relative z-10 text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]"
                 />
-                <span className="relative z-10 mt-1 text-[8px] font-extrabold uppercase tracking-[0.2em] text-[#C9A961] sm:text-[9px]">
-                  {language === 'ja' ? '開始' : 'Boshlash'}
+                <span className="relative z-10 mt-1 text-[10px] font-extrabold uppercase tracking-widest text-[#C9A961]">
+                  Boshlash
                 </span>
               </div>
             </div>
@@ -76,51 +62,32 @@ export const CoachWelcomeScreen: React.FC<CoachWelcomeScreenProps> = ({
         )}
       </div>
 
-      <h3 className="mb-1 font-display text-lg font-black text-foreground sm:text-2xl md:text-3xl">
-        {currentPersona.name}
-      </h3>
-      <p className="mb-3 max-w-sm text-xs leading-relaxed text-muted-foreground sm:mb-6 sm:text-sm">
-        {currentPersona.desc}
-      </p>
-      <p className="mb-3 max-w-sm text-[11px] leading-relaxed text-muted-foreground/80 sm:mb-4 sm:text-xs">
-        {language === 'ja'
-          ? '🎙️ 開始時にマイクの許可を求められます。「許可」をタップしてください。'
-          : "🎙️ Boshlanganda brauzer mikrofon so'raydi — «Ruxsat berish» ni bosing."}
+      {/* Clean Clean Title & Description — No weird sensei names or noise */}
+      <h2 className="mb-2 font-display text-xl font-black text-foreground sm:text-2xl">
+        AI Bilan Erkin Muloqot (フリートーク)
+      </h2>
+      <p className="mb-5 max-w-sm text-xs leading-relaxed text-muted-foreground sm:text-sm">
+        Xohlagan mavzuingizda erkin gapiring. AI sizning ovozingizni tinglab, tabiiy yapon tilida
+        suhbatlashadi.
       </p>
 
-      <button
-        onClick={() => navigate('/scenarios?lang=ja')}
-        className="mb-3 flex cursor-pointer items-center gap-2 rounded-2xl border border-primary/30 bg-primary/10 px-4 py-2.5 text-xs font-bold text-primary transition-all hover:bg-primary/20 active:scale-95"
-      >
-        <LayoutGrid size={15} />
-        <span>{language === 'ja' ? 'シナリオを選ぶ' : 'Ssenariy tanlash'}</span>
-      </button>
+      {/* Action Buttons */}
+      <div className="flex flex-col items-center gap-3 sm:flex-row">
+        <button
+          onClick={onStartSession}
+          className="flex min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-xl bg-primary px-6 py-2.5 text-xs font-bold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 active:scale-95 sm:text-sm"
+        >
+          <Mic size={16} />
+          <span>Suhbatni boshlash</span>
+        </button>
 
-      {/* Quick Prompts — Premium Cards */}
-      <div className="grid w-full max-w-lg grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-2.5">
-        {promptSuggestions.map((item, idx) => (
-          <button
-            key={idx}
-            onClick={() => onPromptClick(item.title)}
-            className="group relative cursor-pointer rounded-xl border border-border bg-card/90 p-2.5 text-left shadow-xs backdrop-blur-xl transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/50 hover:bg-card hover:shadow-md active:scale-95 sm:rounded-2xl sm:p-3.5"
-          >
-            <div className="flex items-start gap-2 sm:gap-2.5">
-              <span className="mt-0.5 shrink-0 text-base sm:text-lg">{item.icon}</span>
-              <div className="min-w-0 flex-1">
-                <div className="mb-0.5 text-xs font-bold text-foreground transition-colors group-hover:text-primary">
-                  {item.title}
-                </div>
-                <div className="line-clamp-2 text-[10px] leading-relaxed text-muted-foreground">
-                  {item.text}
-                </div>
-              </div>
-            </div>
-            <Play
-              size={12}
-              className="absolute right-3 top-3 fill-current text-primary opacity-0 transition-opacity group-hover:opacity-100 sm:right-3.5 sm:top-3.5"
-            />
-          </button>
-        ))}
+        <button
+          onClick={() => navigate('/scenarios?lang=ja')}
+          className="flex min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-xl border border-border bg-card/80 px-4 py-2.5 text-xs font-medium text-foreground transition-all hover:bg-card active:scale-95 sm:text-sm"
+        >
+          <LayoutGrid size={15} className="text-primary" />
+          <span>Mavzuli ssenariylar</span>
+        </button>
       </div>
     </div>
   );
