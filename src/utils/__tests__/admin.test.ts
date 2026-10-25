@@ -85,13 +85,16 @@ describe('Admin Email Security & English Track Gating Tests', () => {
   });
 
   it('verifies helper admins in DEFAULT_ADMIN_EMAILS have admin rights but NOT superadmin rights', () => {
-    // admin@nihongo-talk.jp is a trusted helper admin
+    // admin@kaiwa.live and admin@nihongo-talk.jp are trusted helper admins
+    expect(isAdminEmail('admin@kaiwa.live')).toBe(true);
+    expect(isAdminEmail('ADMIN@KAIWA.LIVE')).toBe(true);
     expect(isAdminEmail('admin@nihongo-talk.jp')).toBe(true);
     expect(isAdminEmail('ADMIN@NIHONGO-TALK.JP')).toBe(true);
     expect(isAdminEmail('  admin@nihongo-talk.jp  ')).toBe(true);
     expect(isAdminEmail('admin@nihongo-talk.jp', 'admin')).toBe(true);
 
     // But it is strictly NOT superadmin under any role argument
+    expect(isSuperAdmin('admin@kaiwa.live')).toBe(false);
     expect(isSuperAdmin('admin@nihongo-talk.jp')).toBe(false);
     expect(isSuperAdmin('admin@nihongo-talk.jp', 'admin')).toBe(false);
     expect(isSuperAdmin('admin@nihongo-talk.jp', 'superadmin')).toBe(false);

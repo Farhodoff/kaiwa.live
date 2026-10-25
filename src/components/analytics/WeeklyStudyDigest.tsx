@@ -153,14 +153,14 @@ export const WeeklyStudyDigest: React.FC<WeeklyStudyDigestProps> = ({
 
   const handleShare = () => {
     const text = [
-      `🇯🇵 Nihongo Talk — Haftalik O'rganish Hisoboti:`,
+      `🇯🇵 kaiwa.live — Haftalik O'rganish Hisoboti:`,
       `🔥 Ketma-ketlik: ${streakDays} kun`,
       `⏱️ Jami vaqt: ${weeklyTotals.minutes} daqiqa`,
       `⚡ Olingan tajriba: ${weeklyTotals.xp} XP`,
       `🗂️ Takrorlangan so'zlar: ${weeklyTotals.flashcards} ta`,
       `🎙️ Speaking suhbatlar: ${weeklyTotals.speakingSessions} ta`,
       `Faol kunlar: 7 kundan ${weeklyTotals.activeDaysCount} kunda`,
-      `🌐 https://nihontalk.app`,
+      `🌐 https://kaiwa.live`,
     ].join('\n');
 
     if (navigator.clipboard) {

@@ -1,10 +1,10 @@
-# Nihongo Talk (日本語トーク) — AI Japanese Language & JLPT Preparation Platform
+# Kaiwa Live (kaiwa.live) — AI Japanese Language & JLPT Preparation Platform
 
 > An open, 100% free comprehensive Japanese language learning ecosystem combining Real-time AI Voice Sensei (Speaking Coach), Spaced Repetition (Anki SM-2) flashcards, complete JLPT N5–N1 curriculum (Kanji, Grammar, Reading, Listening), and Telegram Mini-App integration.
 
 - Website: https://kaiwa.live
 - Telegram Mini App & Bot: https://t.me/kaiwa_superapp_bot
-- Open Source Repository: https://github.com/Farhodoff/nihongo-talk
+- Open Source Repository: https://github.com/Farhodoff/kaiwa.live
 - Supported Languages: Uzbek (O'zbekcha), Japanese (日本語)
 
 ## Core Capabilities & Features

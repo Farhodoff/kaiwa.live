@@ -34,7 +34,7 @@ export function canImportExamContent(email?: string | null, role?: RoleInput): b
   if ((IMPORT_ALLOWED_ROLES as readonly string[]).includes(r)) return true;
   const e = normalizeEmail(email);
   if (!e) return false;
-  return e === 'fsoyilov@gmail.com' || e === 'admin@nihongo-talk.jp';
+  return e === 'fsoyilov@gmail.com' || e === 'admin@kaiwa.live' || e === 'admin@nihongo-talk.jp';
 }
 
 /**
@@ -45,7 +45,7 @@ export function canPublishExamContent(email?: string | null, role?: RoleInput): 
   if ((IMPORT_PUBLISH_ROLES as readonly string[]).includes(r)) return true;
   const e = normalizeEmail(email);
   if (!e) return false;
-  return e === 'fsoyilov@gmail.com' || e === 'admin@nihongo-talk.jp';
+  return e === 'fsoyilov@gmail.com' || e === 'admin@kaiwa.live' || e === 'admin@nihongo-talk.jp';
 }
 
 /**

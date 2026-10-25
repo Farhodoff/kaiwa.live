@@ -32,7 +32,7 @@ const DashboardPage: React.FC = () => {
     settings,
   } = useStudyData();
   const { language } = useLanguage();
-  const isJaTrack = true; // Nihongo Talk is strictly Japanese only
+  const isJaTrack = true; // kaiwa.live is strictly Japanese only
   const cachedStateKey = `study_planner_cached_dashboard_ja`;
   const initialCached = useMemo(() => {
     return safeLocalStorage.getJSON<any>(cachedStateKey, null);

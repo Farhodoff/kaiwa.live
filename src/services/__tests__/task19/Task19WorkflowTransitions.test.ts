@@ -79,9 +79,9 @@ function seedExam(status: ExamWorkflowStatus, isPublished = status === 'publishe
       is_published: isPublished,
       license_type: 'original',
       copyright_confirmed: true,
-      source_name: 'Nihongo Talk',
+      source_name: 'Kaiwa Live',
       source_url: null,
-      author: 'Nihongo Talk',
+      author: 'Kaiwa Live',
       is_official_jlpt: false,
     },
   ]);

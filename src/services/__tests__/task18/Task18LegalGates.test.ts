@@ -53,7 +53,7 @@ function seedExam(meta: ExamMetaOverride = {}): string {
       copyright_confirmed: meta.copyright_confirmed ?? true,
       source_name: meta.source_name === undefined ? 'Platforma Original' : meta.source_name,
       source_url: meta.source_url === undefined ? null : meta.source_url,
-      author: meta.author === undefined ? 'Nihongo Talk' : meta.author,
+      author: meta.author === undefined ? 'Kaiwa Live' : meta.author,
       is_official_jlpt: meta.is_official_jlpt ?? false,
     },
   ]);

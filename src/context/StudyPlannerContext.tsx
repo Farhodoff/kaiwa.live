@@ -294,7 +294,7 @@ export const StudyPlannerProvider: React.FC<{ children: React.ReactNode }> = ({ 
     return null;
   });
 
-  // Learning Focus State - 100% Japanese ('ja') strictly for all users in Nihongo Talk
+  // Learning Focus State - 100% Japanese ('ja') strictly for all users in kaiwa.live
   const [primaryLanguage, setPrimaryLanguage] = useState<'en' | 'ja'>(() => {
     safeLocalStorage.setItem('study_planner_primary_language', 'ja');
     safeLocalStorage.setItem('study_planner_study_track', 'ja');

@@ -468,8 +468,8 @@ export class TelegramDatasetService {
         try {
           const result = await TelegramDatasetService.sendDailyReportToTelegram();
           if (result.success) {
-            safeLocalStorage.setItem('nihon_talk_telegram_last_dispatched_date', todayStr);
-            console.log('✅ Nihongo Talk Daily 22:00 Telegram Telemetry Dispatched Successfully');
+            safeLocalStorage.setItem('kaiwa_live_telegram_last_dispatched_date', todayStr);
+            console.log('✅ kaiwa.live Daily 22:00 Telegram Telemetry Dispatched Successfully');
           }
         } catch (e) {
           console.warn('Auto 22:00 dispatch warning:', e);

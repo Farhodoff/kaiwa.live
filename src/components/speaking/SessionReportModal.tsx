@@ -143,7 +143,7 @@ export const SessionReportModal: React.FC<SessionReportModalProps> = ({
                 </style>
             </head>
             <body>
-                <h1>🌸 Nihongo Talk — Speaking Coach Tahlil Hisoboti</h1>
+                <h1>🌸 kaiwa.live — Speaking Coach Tahlil Hisoboti</h1>
                 <div class="subtitle">Ssenariy: <strong>${eT}</strong> | Sana: ${new Date().toLocaleDateString('uz-UZ')}</div>
 
                 <div class="score-card">

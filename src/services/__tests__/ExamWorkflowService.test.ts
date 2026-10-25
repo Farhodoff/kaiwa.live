@@ -457,7 +457,7 @@ describe('ExamWorkflowService Unit Tests (Task 6)', () => {
       const res = await ExamWorkflowService.transitionExamStatus(
         'exam-1',
         'published',
-        'admin@nihongo-talk.jp',
+        'admin@kaiwa.live',
         undefined,
         'admin',
       );
@@ -467,7 +467,7 @@ describe('ExamWorkflowService Unit Tests (Task 6)', () => {
         expect.objectContaining({
           status: 'published',
           is_published: true,
-          reviewed_by: 'admin@nihongo-talk.jp',
+          reviewed_by: 'admin@kaiwa.live',
         }),
       );
     });

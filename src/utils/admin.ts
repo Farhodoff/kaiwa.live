@@ -2,7 +2,11 @@ export const SUPER_ADMIN_EMAIL = 'fsoyilov@gmail.com';
 
 export const SUPER_ADMIN_EMAILS = ['fsoyilov@gmail.com'];
 
-export const DEFAULT_ADMIN_EMAILS = ['fsoyilov@gmail.com', 'admin@nihongo-talk.jp'];
+export const DEFAULT_ADMIN_EMAILS = [
+  'fsoyilov@gmail.com',
+  'admin@kaiwa.live',
+  'admin@nihongo-talk.jp',
+];
 
 export interface AdminAuditLogEntry {
   id: string;
@@ -47,7 +51,7 @@ export const isSuperAdmin = (email?: string | null, _role?: string | null): bool
   return e === SUPER_ADMIN_EMAIL;
 };
 
-// English / IELTS track is strictly disabled in Nihongo Talk (single-language isolation)
+// English / IELTS track is strictly disabled in kaiwa.live (single-language isolation)
 export const isEnglishTrackAllowed = (_email?: string | null): boolean => {
   return false;
 };

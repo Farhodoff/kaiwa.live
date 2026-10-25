@@ -1,6 +1,6 @@
-# 🇯🇵 Nihongo Talk (日本語トーク) — AI Japanese Mastery & JLPT Prep Platform
+# 🇯🇵 Kaiwa Live (kaiwa.live) — AI Japanese Mastery & JLPT Prep Platform
 
-[![CI](https://github.com/Farhodoff/nihongo-talk/actions/workflows/ci.yml/badge.svg)](https://github.com/Farhodoff/nihongo-talk/actions/workflows/ci.yml)
+[![CI](https://github.com/Farhodoff/kaiwa.live/actions/workflows/ci.yml/badge.svg)](https://github.com/Farhodoff/kaiwa.live/actions/workflows/ci.yml)
 [![Live App](https://img.shields.io/badge/Live_Demo-kaiwa.live-rose?style=for-the-badge&logo=vercel)](https://kaiwa.live/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
@@ -15,7 +15,7 @@ A full-stack, AI-powered **Japanese Language (JLPT N5 – N1 & 0-Level Beginners
 
 ## 🇺🇿 O'zbekcha Sharh (Uzbek Summary)
 
-**Nihongo Talk** — Yapon tilini noldan boshlab **JLPT N5 dan N1 gacha** o'rganish va imtihonlarga tizimli tayyorgarlik ko'rish uchun mo'ljallangan ixtisoslashtirilgan AI platforma. Platformada barcha modullar yapon tili mezonlariga moslangan bo'lib, o'quvchiga tabiiy yapon muhitini taqdim etadi.
+**Kaiwa Live** (kaiwa.live) — Yapon tilini noldan boshlab **JLPT N5 dan N1 gacha** o'rganish va imtihonlarga tizimli tayyorgarlik ko'rish uchun mo'ljallangan ixtisoslashtirilgan AI platforma. Platformada barcha modullar yapon tili mezonlariga moslangan bo'lib, o'quvchiga tabiiy yapon muhitini taqdim etadi.
 
 ### ✨ Asosiy Imkoniyatlar:
 
@@ -59,7 +59,7 @@ A full-stack, AI-powered **Japanese Language (JLPT N5 – N1 & 0-Level Beginners
 
 ## 🇯🇵 日本語の概要 (Japanese Overview)
 
-「**Nihongo Talk（日本語トーク）**」は、日本語能力試験（**JLPT N5〜N1**）および初学者（0レベル）の日本語習得を支援するフルスタックAI学習プラットフォームです。
+「**Kaiwa Live（カイワ・ライブ - kaiwa.live）**」は、日本語能力試験（**JLPT N5〜N1**）および初学者（0レベル）の日本語習得を支援するフルスタックAI学習プラットフォームです。
 
 - **AI会話コーチ (Yuki Sensei):** 音声認識（STT）と音声合成（TTS）を活用し、自然な日本語会話・文法修正・発音フィードバックをリアルタイムで提供。
 - **漢字・文法マスター (Kanji & Grammar Hub):** 書き順キャンバス、ふりがな表示、聴解オーディオ、模擬試験（Mock Exam）を完全網羅。
@@ -83,7 +83,7 @@ A full-stack, AI-powered **Japanese Language (JLPT N5 – N1 & 0-Level Beginners
 
 ## 🏛️ Tizim Arxitekturasi (System Architecture)
 
-Quyidagi diagrammada **Nihongo Talk** platformasining ko'p qatlamli (Multi-Tier) arxitekturasi, klient-tomon dvigatellari, real-vaqt muloqot tizimi, AI tahlil oqimi hamda Supabase ma'lumotlar bazasi bilan integratsiyasi aks ettirilgan:
+Quyidagi diagrammada **Kaiwa Live** platformasining ko'p qatlamli (Multi-Tier) arxitekturasi, klient-tomon dvigatellari, real-vaqt muloqot tizimi, AI tahlil oqimi hamda Supabase ma'lumotlar bazasi bilan integratsiyasi aks ettirilgan:
 
 ```mermaid
 flowchart TD
@@ -179,8 +179,8 @@ flowchart TD
 ### 1. Repozitoriyani klonlash va paketlarni o'rnatish:
 
 ```bash
-git clone https://github.com/Farhodoff/nihongo-talk.git
-cd nihongo-talk
+git clone https://github.com/Farhodoff/kaiwa.live.git
+cd kaiwa.live
 npm install --legacy-peer-deps
 ```
 

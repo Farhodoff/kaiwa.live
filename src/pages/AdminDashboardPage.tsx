@@ -1935,7 +1935,7 @@ export default function AdminDashboardPage() {
                   type="email"
                   value={assignAdminEmailInput}
                   onChange={(e) => setAssignAdminEmailInput(e.target.value)}
-                  placeholder="masalan: user@nihongo-talk.jp"
+                  placeholder="masalan: user@kaiwa.live"
                   required
                   disabled={assigningAdmin}
                   className="focus:outline-hidden w-full rounded-xl border border-border bg-background px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:border-primary"

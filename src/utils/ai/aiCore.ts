@@ -31,7 +31,7 @@ export const getAICacheStats = () => ({
 });
 
 /**
- * Universal AI Dispatcher for Nihongo Talk Platform.
+ * Universal AI Dispatcher for kaiwa.live Platform.
  * Enhanced with LRU/TTL caching, in-flight deduplication, and exponential backoff retry.
  */
 export const callAI = async (

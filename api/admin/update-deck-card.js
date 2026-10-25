@@ -11,6 +11,7 @@ const SERVICE_ROLE = process.env.SERVICE_ROLE || process.env.SUPABASE_SERVICE_RO
 
 const ADMIN_EMAILS = new Set([
   'fsoyilov@gmail.com',
+  'admin@kaiwa.live',
   'admin@nihongo-talk.jp',
   'fsoyilovv@gmail.com',
   'xmprofile42@gmail.com',

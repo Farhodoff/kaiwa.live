@@ -196,7 +196,7 @@ const TelegramSection: React.FC = () => {
     setActionLoading('srs_notif');
     try {
       const text =
-        `🧠 <b>Nihongo Talk — SRS Fleshkartalar Eslatmasi!</b>\n\n` +
+        `🧠 <b>kaiwa.live — SRS Fleshkartalar Eslatmasi!</b>\n\n` +
         `Salom, ${linkedAccount.telegram_first_name || "O'quvchi"}! 👋\n` +
         (dueCardsCount > 0
           ? `Sizda bugun takrorlash uchun <b>${dueCardsCount} ta fleshkarta</b> tayyor turibdi.\n5 daqiqa ajratib takrorlang va streak ballingizni oshiring! 🚀`
@@ -227,7 +227,7 @@ const TelegramSection: React.FC = () => {
     try {
       const ok = await telegramService.sendNotification(
         effectiveUserId,
-        '🔔 <b>Nihongo Talk — Sinov Xabarnomasi!</b>\n\nTelegram integratsiyasi muvaffaqiyatli ishlamoqda. Kunlik rejalaringiz va eslatmalaringiz shu yerga yetkaziladi! 🚀',
+        '🔔 <b>kaiwa.live — Sinov Xabarnomasi!</b>\n\nTelegram integratsiyasi muvaffaqiyatli ishlamoqda. Kunlik rejalaringiz va eslatmalaringiz shu yerga yetkaziladi! 🚀',
       );
       if (ok) {
         toast({

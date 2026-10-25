@@ -454,7 +454,9 @@ export function createFakeSupabase(seed: Record<string, Row[]> = {}): FakeSupaba
           (user.user_metadata as any)?.role === 'admin' ||
           user.role === 'admin' ||
           (user.email &&
-            (user.email === 'fsoyilov@gmail.com' || user.email === 'admin@nihongo-talk.jp'))),
+            (user.email === 'fsoyilov@gmail.com' ||
+              user.email === 'admin@kaiwa.live' ||
+              user.email === 'admin@nihongo-talk.jp'))),
       );
       const isReviewer = Boolean(
         isAdmin ||

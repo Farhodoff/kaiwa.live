@@ -86,7 +86,7 @@ describe('WeeklyStudyDigest Component', () => {
 
     expect(writeTextMock).toHaveBeenCalled();
     const copiedText = writeTextMock.mock.calls[0][0];
-    expect(copiedText).toContain("Nihongo Talk — Haftalik O'rganish Hisoboti");
+    expect(copiedText).toContain("kaiwa.live — Haftalik O'rganish Hisoboti");
     expect(copiedText).toContain('25 daqiqa');
     expect(copiedText).toContain('75 XP');
   });

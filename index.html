@@ -47,7 +47,7 @@
             message.includes('mime type') ||
             message.includes('non-precached-url');
           if (isModuleFailure) {
-            var reloadKey = 'nihongo_talk_stale_reload';
+            var reloadKey = 'kaiwa_live_stale_reload';
             var attempts = parseInt(sessionStorage.getItem(reloadKey) || '0', 10);
             if (attempts < 2) {
               sessionStorage.setItem(reloadKey, (attempts + 1).toString());

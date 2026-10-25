@@ -234,7 +234,7 @@ const Layout: React.FC = () => {
     if (location.pathname === '/personal-plan')
       return isJa ? '個人学習プラン' : isEn ? 'My Study Plan' : 'Shaxsiy Rejam';
     if (location.pathname === '/settings') return isJa ? '設定' : isEn ? 'Settings' : 'Sozlamalar';
-    return 'Nihongo Talk';
+    return 'kaiwa.live';
   };
 
   const NavLinks = ({ onClick }: { onClick?: () => void }) => {
