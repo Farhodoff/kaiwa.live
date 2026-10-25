@@ -31,7 +31,51 @@ export interface ImportContext {
   actor?: ImportActor;
   sourceFormat?: string | null;
   batchId?: string;
+  skipRpc?: boolean;
 }
+
+export class ExamImportAtomicError extends Error {
+  readonly success = false as const;
+  readonly batchId?: string;
+  readonly rollbackStatus: 'success' | 'failed' | 'not_needed';
+  readonly rollbackError?: string | null;
+  readonly accumulatedErrors: string[];
+
+  constructor(
+    message: string,
+    details: {
+      batchId?: string;
+      rollbackStatus: 'success' | 'failed' | 'not_needed';
+      rollbackError?: string | null;
+      accumulatedErrors: string[];
+    },
+  ) {
+    super(message);
+    this.name = 'ExamImportAtomicError';
+    this.batchId = details.batchId;
+    this.rollbackStatus = details.rollbackStatus;
+    this.rollbackError = details.rollbackError;
+    this.accumulatedErrors = details.accumulatedErrors;
+  }
+}
+
+export type ExamImportResult =
+  | {
+      success: true;
+      examId: string;
+      totalInserted: number;
+      expectedCount: number;
+      batchId?: string;
+      questionIds?: string[];
+    }
+  | {
+      success: false;
+      error: string;
+      batchId?: string;
+      rollbackStatus: 'success' | 'failed' | 'not_needed';
+      rollbackError?: string | null;
+      accumulatedErrors: string[];
+    };
 
 export interface RawImportQuestion {
   id?: string | number;
@@ -1726,9 +1770,18 @@ q5,knowledge,sentence_ordering,★に入る語句を選んでください。,,�
     }
 
     const insertedRows = (data || []) as Array<Record<string, any>>;
+    const insertedCount = insertedRows.length || rows.length;
+    const questionIds = insertedRows.map((row) => String(row.id)).filter(Boolean);
+
+    if (insertedRows.length > 0 && insertedRows.length !== questions.length) {
+      throw new Error(
+        `Savollarni to'liq saqlab bo'lmadi: ${questions.length} tadan faqat ${insertedRows.length} tasi saqlandi.`,
+      );
+    }
+
     return {
-      insertedCount: insertedRows.length || rows.length,
-      questionIds: insertedRows.map((row) => String(row.id)).filter(Boolean),
+      insertedCount,
+      questionIds,
       insertedRows: insertedRows.length ? insertedRows : rows,
     };
   }
@@ -1740,12 +1793,20 @@ q5,knowledge,sentence_ordering,★に入る語句を選んでください。,,�
    *
    * Task 17: the import is always draft-only — the parent exam is demoted to
    * `draft` and the new questions are stored with `status = 'draft'`.
+   *
+   * Task 26: Fully atomic execution with failure-safety.
    */
   static async importQuestionsToSection(
     sectionId: string,
     questions: ValidatedQuestion[],
     context: ImportContext = {},
-  ): Promise<{ insertedCount: number; batchId?: string; questionIds?: string[] }> {
+  ): Promise<{
+    success?: boolean;
+    insertedCount: number;
+    expectedCount?: number;
+    batchId?: string;
+    questionIds?: string[];
+  }> {
     if (!questions || !questions.length) {
       throw new Error(
         "Saqlash uchun yaroqli savollar topilmadi. Noto'g'ri ma'lumot bazaga saqlanmaydi.",
@@ -1762,11 +1823,21 @@ q5,knowledge,sentence_ordering,★に入る語句を選んでください。,,�
         actor,
       }));
 
+    let insertedQuestionIds: string[] = [];
+    const accumulatedErrors: string[] = [];
+
     try {
       const examId = await this.getSectionExamId(sectionId);
       await this.enforceDraftExamState(examId, actor);
 
       const res = await this.insertQuestionsToSection(sectionId, questions);
+      insertedQuestionIds = res.questionIds;
+
+      if (res.insertedCount !== questions.length) {
+        const msg = `Import to'liq amalga oshmadi: ${questions.length} ta savoldan faqat ${res.insertedCount} tasi saqlandi.`;
+        accumulatedErrors.push(msg);
+        throw new Error(msg);
+      }
 
       await ExamImportHistoryService.appendBatchItems(
         batchId,
@@ -1777,6 +1848,21 @@ q5,knowledge,sentence_ordering,★に入る語句を選んでください。,,�
         })),
       );
 
+      // Snapshot is mandatory (Task 26 Requirement 5)
+      if (examId) {
+        const snapshot = await ExamImportHistoryService.createVersionSnapshot(examId, {
+          batchId,
+          label: `Section import (${res.insertedCount} savol)`,
+          actor,
+        });
+        if (!snapshot) {
+          const msg = "Versiya snapshot yaratish amalga oshmadi (snapshot bo'sh qaytdi).";
+          accumulatedErrors.push(msg);
+          throw new Error(msg);
+        }
+      }
+
+      // Finalize batch only on 100% success (Task 26 Requirement 3)
       await ExamImportHistoryService.finalizeBatch(batchId, {
         examId,
         sectionId,
@@ -1784,30 +1870,64 @@ q5,knowledge,sentence_ordering,★に入る語句を選んでください。,,�
         metadata: { source_format: context.sourceFormat || null },
       });
 
-      if (examId) {
-        try {
-          await ExamImportHistoryService.createVersionSnapshot(examId, {
-            batchId,
-            label: `Section import (${res.insertedCount} savol)`,
-            actor,
-          });
-        } catch (snapshotErr) {
-          console.warn('Import version snapshot failed:', snapshotErr);
-        }
-      }
-
       return {
+        success: true,
         insertedCount: res.insertedCount,
+        expectedCount: questions.length,
         batchId,
         questionIds: res.questionIds,
       };
     } catch (err: any) {
-      await ExamImportHistoryService.failBatch(
-        batchId,
-        sanitizeErrorMessage(err?.message || 'Import xatoligi'),
-        { section_id: sectionId },
+      const primaryError = sanitizeErrorMessage(err?.message || 'Import xatoligi');
+      if (!accumulatedErrors.includes(primaryError)) {
+        accumulatedErrors.push(primaryError);
+      }
+
+      // Rollback inserted questions on error (Task 26 Requirement 4)
+      let rollbackStatus: 'success' | 'failed' | 'not_needed' = 'not_needed';
+      let rollbackError: string | null = null;
+
+      if (insertedQuestionIds.length > 0) {
+        try {
+          const { error: delErr } = await supabase
+            .from('exam_questions')
+            .delete()
+            .in('id', insertedQuestionIds);
+          if (delErr) {
+            throw new Error(
+              `Savollarni o'chirishda xatolik: ${sanitizeErrorMessage(delErr.message)}`,
+            );
+          }
+          rollbackStatus = 'success';
+        } catch (rbErr: any) {
+          rollbackStatus = 'failed';
+          rollbackError = sanitizeErrorMessage(rbErr?.message || 'Rollback xatoligi');
+        }
+      }
+
+      await ExamImportHistoryService.failBatch(batchId, primaryError, {
+        section_id: sectionId,
+        rollback_status: rollbackStatus,
+        rollback_error: rollbackError,
+        rolled_back_question_ids: rollbackStatus === 'success' ? insertedQuestionIds : [],
+        accumulated_errors: accumulatedErrors,
+      });
+
+      throw new ExamImportAtomicError(
+        `Import muvaffaqiyatsiz yakunlandi: ${primaryError}.${
+          rollbackStatus === 'success'
+            ? ' Kiritilgan savollar muvaffaqiyatli rollback qilindi.'
+            : rollbackStatus === 'failed'
+              ? ` DIQQAT: Rollback xatoga uchradi (${rollbackError}).`
+              : ''
+        }`,
+        {
+          batchId,
+          rollbackStatus,
+          rollbackError,
+          accumulatedErrors,
+        },
       );
-      throw err;
     }
   }
 
@@ -1816,6 +1936,10 @@ q5,knowledge,sentence_ordering,★に入る語句を選んでください。,,�
    * Task 17: the created exam is ALWAYS a draft (status = 'draft',
    * is_published = false). Publishing is only possible through the
    * review -> approved -> published workflow.
+   *
+   * Task 26: Fully atomic execution. If any section or question insert fails,
+   * no continue is performed, all errors are accumulated, the newly created exam
+   * and its sections/questions are rolled back, and the batch is marked as failed.
    */
   static async importFullExamWithSections(
     payload: {
@@ -1832,13 +1956,23 @@ q5,knowledge,sentence_ordering,★に入る語句を選んでください。,,�
     },
     context: ImportContext = {},
   ): Promise<{
+    success?: boolean;
     examId: string;
     totalInserted: number;
+    expectedCount?: number;
     batchId?: string;
     questionIds?: string[];
   }> {
     const fullType = `JLPT ${payload.level}`;
     const actor = context.actor || (await ExamImportHistoryService.getCurrentActor());
+    const expectedCount = payload.questions?.length || 0;
+
+    if (!payload.questions || expectedCount === 0) {
+      throw new Error(
+        "Saqlash uchun yaroqli savollar topilmadi. Noto'g'ri ma'lumot bazaga saqlanmaydi.",
+      );
+    }
+
     const batchId =
       context.batchId ||
       (await ExamImportHistoryService.createImportBatch({
@@ -1850,12 +1984,14 @@ q5,knowledge,sentence_ordering,★に入る語句を選んでください。,,�
 
     let examId = '';
     let totalInserted = 0;
+    const createdSectionIds: string[] = [];
     const questionIds: string[] = [];
     const batchItems: Array<{
       questionId: string | null;
       sectionId: string | null;
       snapshot: Record<string, any>;
     }> = [];
+    const accumulatedErrors: string[] = [];
 
     try {
       // 1. Create Exam — always a draft (Task 17: import never publishes)
@@ -1879,9 +2015,9 @@ q5,knowledge,sentence_ordering,★に入る語句を選んでください。,,�
         .single();
 
       if (examErr || !examData) {
-        throw new Error(
-          `Imtihon yaratishda xatolik: ${sanitizeErrorMessage(examErr?.message || '')}`,
-        );
+        const msg = `Imtihon yaratishda xatolik: ${sanitizeErrorMessage(examErr?.message || '')}`;
+        accumulatedErrors.push(msg);
+        throw new Error(msg);
       }
 
       examId = examData.id;
@@ -1901,7 +2037,6 @@ q5,knowledge,sentence_ordering,★に入る語句を選んでください。,,�
       // 3. Create Sections and insert questions
       for (const [secTitle, secQuestions] of sectionMap.entries()) {
         const secType = secQuestions[0]?.section_type || 'reading';
-        // Har bir bo'lim uchun bir xil passage bo'lsa — uni section content sifatida saqlaymiz
         const passages = secQuestions.map((q) => q.passage).filter(Boolean) as string[];
         const uniquePassages = Array.from(new Set(passages));
         const sharedPassage = uniquePassages.length === 1 ? uniquePassages[0] : null;
@@ -1918,12 +2053,24 @@ q5,knowledge,sentence_ordering,★に入る語句を選んでください。,,�
           .select()
           .single();
 
+        // Task 26 Requirement 1: DO NOT CONTINUE!
         if (secErr || !secData) {
-          console.error(`Error creating section ${secTitle}:`, secErr);
-          continue;
+          const msg = `Bo'lim yaratishda xatolik (${secTitle}): ${sanitizeErrorMessage(secErr?.message || '')}`;
+          accumulatedErrors.push(msg);
+          throw new Error(msg);
         }
 
-        const res = await this.insertQuestionsToSection(secData.id, secQuestions);
+        createdSectionIds.push(secData.id);
+
+        let res;
+        try {
+          res = await this.insertQuestionsToSection(secData.id, secQuestions);
+        } catch (qErr: any) {
+          const msg = `Savollarni saqlashda xatolik (${secTitle}): ${sanitizeErrorMessage(qErr?.message || '')}`;
+          accumulatedErrors.push(msg);
+          throw new Error(msg);
+        }
+
         totalInserted += res.insertedCount;
         questionIds.push(...res.questionIds);
         res.insertedRows.forEach((row) => {
@@ -1935,35 +2082,104 @@ q5,knowledge,sentence_ordering,★に入る語句を選んでください。,,�
         });
       }
 
+      // Task 26 Requirement 9: Verify totalInserted === expectedCount
+      if (totalInserted !== expectedCount) {
+        const msg = `Import to'liq amalga oshmadi: kutilgan ${expectedCount} ta savoldan faqat ${totalInserted} tasi saqlandi.`;
+        accumulatedErrors.push(msg);
+        throw new Error(msg);
+      }
+
       await ExamImportHistoryService.appendBatchItems(batchId, batchItems);
+
+      // Task 26 Requirement 5: createVersionSnapshot must be mandatory and never swallowed
+      const snapshot = await ExamImportHistoryService.createVersionSnapshot(examId, {
+        batchId,
+        label: `To'liq imtihon importi (${totalInserted} savol)`,
+        actor,
+      });
+
+      if (!snapshot) {
+        const msg = "Versiya snapshot yaratish amalga oshmadi (snapshot bo'sh qaytdi).";
+        accumulatedErrors.push(msg);
+        throw new Error(msg);
+      }
+
+      // Task 26 Requirement 3: finalize batch only on 100% complete success
       await ExamImportHistoryService.finalizeBatch(batchId, {
         examId,
         questionIds,
         metadata: { created_exam: true, title: payload.title },
       });
 
-      try {
-        await ExamImportHistoryService.createVersionSnapshot(examId, {
-          batchId,
-          label: `To'liq imtihon importi (${totalInserted} savol)`,
-          actor,
-        });
-      } catch (snapshotErr) {
-        console.warn('Import version snapshot failed:', snapshotErr);
+      return {
+        success: true,
+        examId,
+        totalInserted,
+        expectedCount,
+        batchId,
+        questionIds,
+      };
+    } catch (err: any) {
+      const primaryError = sanitizeErrorMessage(err?.message || 'Import xatoligi');
+      if (!accumulatedErrors.includes(primaryError)) {
+        accumulatedErrors.push(primaryError);
       }
 
-      return { examId, totalInserted, batchId, questionIds };
-    } catch (err: any) {
-      await ExamImportHistoryService.failBatch(
-        batchId,
-        sanitizeErrorMessage(err?.message || 'Import xatoligi'),
+      // Task 26 Requirement 4: Rollback newly created exam and its sections/questions
+      let rollbackStatus: 'success' | 'failed' | 'not_needed' = 'not_needed';
+      let rollbackError: string | null = null;
+
+      if (examId || questionIds.length > 0 || createdSectionIds.length > 0) {
+        try {
+          if (questionIds.length > 0) {
+            await supabase.from('exam_questions').delete().in('id', questionIds);
+          }
+          if (createdSectionIds.length > 0) {
+            await supabase.from('exam_sections').delete().in('id', createdSectionIds);
+          }
+          if (examId) {
+            await supabase.from('exam_sections').delete().eq('exam_id', examId);
+            const { error: delErr } = await supabase.from('exams').delete().eq('id', examId);
+            if (delErr) {
+              throw new Error(
+                `Imtihonni o'chirishda xatolik: ${sanitizeErrorMessage(delErr.message)}`,
+              );
+            }
+          }
+          rollbackStatus = 'success';
+        } catch (rbErr: any) {
+          rollbackStatus = 'failed';
+          rollbackError = sanitizeErrorMessage(rbErr?.message || 'Rollback xatoligi');
+        }
+      }
+
+      // Task 26 Requirement 2: record failure status with accumulated errors & rollback status
+      await ExamImportHistoryService.failBatch(batchId, primaryError, {
+        created_exam: Boolean(examId),
+        exam_id: examId || null,
+        question_ids: questionIds,
+        section_ids: createdSectionIds,
+        rollback_status: rollbackStatus,
+        rollback_error: rollbackError,
+        accumulated_errors: accumulatedErrors,
+      });
+
+      // Task 26 Requirement 7: surface failure reason and rollback result
+      throw new ExamImportAtomicError(
+        `Import muvaffaqiyatsiz yakunlandi: ${primaryError}.${
+          rollbackStatus === 'success'
+            ? " Barcha kiritilgan ma'lumotlar muvaffaqiyatli rollback qilindi."
+            : rollbackStatus === 'failed'
+              ? ` DIQQAT: Rollback xatoga uchradi (${rollbackError}).`
+              : ''
+        }`,
         {
-          created_exam: Boolean(examId),
-          exam_id: examId || null,
-          question_ids: questionIds,
+          batchId,
+          rollbackStatus,
+          rollbackError,
+          accumulatedErrors,
         },
       );
-      throw err;
     }
   }
 
@@ -1973,18 +2189,32 @@ q5,knowledge,sentence_ordering,★に入る語句を選んでください。,,�
    * Task 17: draft-only. The exam is demoted back to `draft`
    * (is_published = false) because its content changed and it has to go
    * through the review workflow again before it can be published.
+   *
+   * Task 26: Fully atomic execution. If any section or question insert fails,
+   * no continue is performed, all errors are accumulated, newly inserted questions
+   * and newly created sections are rolled back, and the batch is marked as failed.
    */
   static async importQuestionsToExistingExam(
     examId: string,
     questions: ValidatedQuestion[],
     context: ImportContext = {},
   ): Promise<{
+    success?: boolean;
     examId: string;
     totalInserted: number;
+    expectedCount?: number;
     batchId?: string;
     questionIds?: string[];
   }> {
     const actor = context.actor || (await ExamImportHistoryService.getCurrentActor());
+    const expectedCount = questions?.length || 0;
+
+    if (!questions || expectedCount === 0) {
+      throw new Error(
+        "Saqlash uchun yaroqli savollar topilmadi. Noto'g'ri ma'lumot bazaga saqlanmaydi.",
+      );
+    }
+
     const batchId =
       context.batchId ||
       (await ExamImportHistoryService.createImportBatch({
@@ -1997,11 +2227,13 @@ q5,knowledge,sentence_ordering,★に入る語句を選んでください。,,�
 
     let totalInserted = 0;
     const questionIds: string[] = [];
+    const newlyCreatedSectionIds: string[] = [];
     const batchItems: Array<{
       questionId: string | null;
       sectionId: string | null;
       snapshot: Record<string, any>;
     }> = [];
+    const accumulatedErrors: string[] = [];
 
     try {
       // Task 17 + 19: legally demote the exam to draft — import never publishes.
@@ -2015,9 +2247,9 @@ q5,knowledge,sentence_ordering,★に入る語句を選んでください。,,�
         .order('order_index', { ascending: true });
 
       if (secFetchErr) {
-        throw new Error(
-          `Mavjud bo'limlarni olishda xatolik: ${sanitizeErrorMessage(secFetchErr.message)}`,
-        );
+        const msg = `Mavjud bo'limlarni olishda xatolik: ${sanitizeErrorMessage(secFetchErr.message)}`;
+        accumulatedErrors.push(msg);
+        throw new Error(msg);
       }
 
       const sectionTitleToId = new Map<string, string>();
@@ -2058,19 +2290,34 @@ q5,knowledge,sentence_ordering,★に入る語句を選んでください。,,�
             .select()
             .single();
 
+          // Task 26 Requirement 1: DO NOT CONTINUE!
           if (newSecErr || !newSec || !newSec.id) {
-            console.error(`Error creating section ${secTitle}:`, newSecErr);
-            continue;
+            const msg = `Bo'lim yaratishda xatolik (${secTitle}): ${sanitizeErrorMessage(newSecErr?.message || '')}`;
+            accumulatedErrors.push(msg);
+            throw new Error(msg);
           }
 
           const createdId: string = newSec.id;
           targetSectionId = createdId;
+          newlyCreatedSectionIds.push(createdId);
           sectionTitleToId.set(secTitle.toLowerCase(), createdId);
         }
 
-        if (!targetSectionId) continue;
+        if (!targetSectionId) {
+          const msg = `Bo'lim aniqlanmadi (${secTitle})`;
+          accumulatedErrors.push(msg);
+          throw new Error(msg);
+        }
 
-        const res = await this.insertQuestionsToSection(targetSectionId, secQuestions);
+        let res;
+        try {
+          res = await this.insertQuestionsToSection(targetSectionId, secQuestions);
+        } catch (qErr: any) {
+          const msg = `Savollarni saqlashda xatolik (${secTitle}): ${sanitizeErrorMessage(qErr?.message || '')}`;
+          accumulatedErrors.push(msg);
+          throw new Error(msg);
+        }
+
         totalInserted += res.insertedCount;
         questionIds.push(...res.questionIds);
         res.insertedRows.forEach((row) => {
@@ -2082,31 +2329,180 @@ q5,knowledge,sentence_ordering,★に入る語句を選んでください。,,�
         });
       }
 
+      // Task 26 Requirement 9: Verify totalInserted === expectedCount
+      if (totalInserted !== expectedCount) {
+        const msg = `Import to'liq amalga oshmadi: kutilgan ${expectedCount} ta savoldan faqat ${totalInserted} tasi saqlandi.`;
+        accumulatedErrors.push(msg);
+        throw new Error(msg);
+      }
+
       await ExamImportHistoryService.appendBatchItems(batchId, batchItems);
+
+      // Task 26 Requirement 5: createVersionSnapshot must be mandatory and never swallowed
+      const snapshot = await ExamImportHistoryService.createVersionSnapshot(examId, {
+        batchId,
+        label: `Mavjud imtihonga import (${totalInserted} savol)`,
+        actor,
+      });
+
+      if (!snapshot) {
+        const msg = "Versiya snapshot yaratish amalga oshmadi (snapshot bo'sh qaytdi).";
+        accumulatedErrors.push(msg);
+        throw new Error(msg);
+      }
+
+      // Task 26 Requirement 3: finalize batch only on 100% complete success
       await ExamImportHistoryService.finalizeBatch(batchId, {
         examId,
         questionIds,
         metadata: { created_exam: false },
       });
 
-      try {
-        await ExamImportHistoryService.createVersionSnapshot(examId, {
-          batchId,
-          label: `Mavjud imtihonga import (${totalInserted} savol)`,
-          actor,
-        });
-      } catch (snapshotErr) {
-        console.warn('Import version snapshot failed:', snapshotErr);
+      return {
+        success: true,
+        examId,
+        totalInserted,
+        expectedCount,
+        batchId,
+        questionIds,
+      };
+    } catch (err: any) {
+      const primaryError = sanitizeErrorMessage(err?.message || 'Import xatoligi');
+      if (!accumulatedErrors.includes(primaryError)) {
+        accumulatedErrors.push(primaryError);
       }
 
-      return { examId, totalInserted, batchId, questionIds };
-    } catch (err: any) {
-      await ExamImportHistoryService.failBatch(
-        batchId,
-        sanitizeErrorMessage(err?.message || 'Import xatoligi'),
-        { created_exam: false, exam_id: examId, question_ids: questionIds },
+      // Task 26 Requirement 4: Rollback inserted questions and newly created sections
+      let rollbackStatus: 'success' | 'failed' | 'not_needed' = 'not_needed';
+      let rollbackError: string | null = null;
+
+      if (questionIds.length > 0 || newlyCreatedSectionIds.length > 0) {
+        try {
+          if (questionIds.length > 0) {
+            await supabase.from('exam_questions').delete().in('id', questionIds);
+          }
+          if (newlyCreatedSectionIds.length > 0) {
+            const { error: secDelErr } = await supabase
+              .from('exam_sections')
+              .delete()
+              .in('id', newlyCreatedSectionIds);
+            if (secDelErr) {
+              throw new Error(
+                `Bo'limlarni o'chirishda xatolik: ${sanitizeErrorMessage(secDelErr.message)}`,
+              );
+            }
+          }
+          rollbackStatus = 'success';
+        } catch (rbErr: any) {
+          rollbackStatus = 'failed';
+          rollbackError = sanitizeErrorMessage(rbErr?.message || 'Rollback xatoligi');
+        }
+      }
+
+      // Task 26 Requirement 2: record failure status with accumulated errors & rollback status
+      await ExamImportHistoryService.failBatch(batchId, primaryError, {
+        created_exam: false,
+        exam_id: examId,
+        question_ids: questionIds,
+        section_ids: newlyCreatedSectionIds,
+        rollback_status: rollbackStatus,
+        rollback_error: rollbackError,
+        accumulated_errors: accumulatedErrors,
+      });
+
+      // Task 26 Requirement 7: surface failure reason and rollback result
+      throw new ExamImportAtomicError(
+        `Import muvaffaqiyatsiz yakunlandi: ${primaryError}.${
+          rollbackStatus === 'success'
+            ? " Barcha kiritilgan savollar va yangi bo'limlar muvaffaqiyatli rollback qilindi."
+            : rollbackStatus === 'failed'
+              ? ` DIQQAT: Rollback xatoga uchradi (${rollbackError}).`
+              : ''
+        }`,
+        {
+          batchId,
+          rollbackStatus,
+          rollbackError,
+          accumulatedErrors,
+        },
       );
-      throw err;
+    }
+  }
+
+  /**
+   * Safe wrapper for importFullExamWithSections that returns an ExamImportResult
+   * instead of throwing an error.
+   */
+  static async importFullExamAtomicSafe(
+    payload: Parameters<typeof ExamBulkImportService.importFullExamWithSections>[0],
+    context: ImportContext = {},
+  ): Promise<ExamImportResult> {
+    try {
+      const res = await this.importFullExamWithSections(payload, context);
+      return {
+        success: true,
+        examId: res.examId,
+        totalInserted: res.totalInserted,
+        expectedCount: res.expectedCount ?? res.totalInserted,
+        batchId: res.batchId,
+        questionIds: res.questionIds,
+      };
+    } catch (err: any) {
+      if (err instanceof ExamImportAtomicError) {
+        return {
+          success: false,
+          error: err.message,
+          batchId: err.batchId,
+          rollbackStatus: err.rollbackStatus,
+          rollbackError: err.rollbackError,
+          accumulatedErrors: err.accumulatedErrors,
+        };
+      }
+      return {
+        success: false,
+        error: sanitizeErrorMessage(err?.message || 'Kutilmagan xatolik'),
+        rollbackStatus: 'not_needed',
+        accumulatedErrors: [sanitizeErrorMessage(err?.message || 'Kutilmagan xatolik')],
+      };
+    }
+  }
+
+  /**
+   * Safe wrapper for importQuestionsToExistingExam that returns an ExamImportResult
+   * instead of throwing an error.
+   */
+  static async importQuestionsToExistingExamSafe(
+    examId: string,
+    questions: ValidatedQuestion[],
+    context: ImportContext = {},
+  ): Promise<ExamImportResult> {
+    try {
+      const res = await this.importQuestionsToExistingExam(examId, questions, context);
+      return {
+        success: true,
+        examId: res.examId,
+        totalInserted: res.totalInserted,
+        expectedCount: res.expectedCount ?? res.totalInserted,
+        batchId: res.batchId,
+        questionIds: res.questionIds,
+      };
+    } catch (err: any) {
+      if (err instanceof ExamImportAtomicError) {
+        return {
+          success: false,
+          error: err.message,
+          batchId: err.batchId,
+          rollbackStatus: err.rollbackStatus,
+          rollbackError: err.rollbackError,
+          accumulatedErrors: err.accumulatedErrors,
+        };
+      }
+      return {
+        success: false,
+        error: sanitizeErrorMessage(err?.message || 'Kutilmagan xatolik'),
+        rollbackStatus: 'not_needed',
+        accumulatedErrors: [sanitizeErrorMessage(err?.message || 'Kutilmagan xatolik')],
+      };
     }
   }
 }
