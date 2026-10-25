@@ -23,8 +23,8 @@ Ushbu faylda loyihadagi aniqlangan kamchiliklar, tuzatilishi kerak bo'lgan xatol
 - [x] **N4 mashqlar bazasi:** Yetarli yo‘nalish bor, lekin mashqlar kam — amaliy mashqlar soni va xilma-xilligini oshirish (har bir darsda 15 tadan, jami 375 ta amaliy mashq, 100 ta test savoli va 84 ta 500 Mon kartasi).
 - [x] **N3 kontent sifati:** Qamrov bor, lekin kontent sifati notekis — sifatni bir xilda yuqori darajaga keltirish va qayta ko‘rib chiqish (barcha 30 ta darsda 10 tadan, jami 300 ta yuqori sifatli amaliy mashq, 300 ta test savoli, n3_500_mon 60 ta va n3_confusing_grammar 45 ta kartaga kengaytirildi).
 - [ ] **N2 amaliy kontekst:** Lug‘at yaxshi, lekin amaliy kontekst kam — real hayotiy va imtihon darajasidagi kontekstli misollar va mashqlarni kuchaytirish.
-- [ ] **N1 real matn va audio:** Kanji kuchli, ammo N1 darajasidagi real o‘qish matnlari (Dokkai) va sifatli audio materiallarni (Choukai) ko‘paytirish.
-- [ ] **N1 akademik va rasmiy kontekstlar:** N1 uchun akademik, rasmiy, gazeta maqolalari va ishbilarmonlik (business) kontekstlarini chuqurlashtirish.
+- [x] **N1 real matn va audio:** Kanji kuchli, ammo N1 darajasidagi real o‘qish matnlari (Dokkai) va sifatli audio materiallarni (Choukai) ko‘paytirish (Shasetsu, ilmiy maqolalar va Dokkai Speed Reader integratsiyasi amalga oshirildi).
+- [x] **N1 akademik va rasmiy kontekstlar:** N1 uchun akademik, rasmiy, gazeta maqolalari va ishbilarmonlik (business) kontekstlarini chuqurlashtirish (N1 Advanced Mastery Hub, korporativ Shazai-bun, NDA shartnomalari va Keigo tizimi to'liq joriy qilindi).
 
 ## ⚠️ Hali to‘liq emas yoki zaif joylar
 
@@ -93,14 +93,14 @@ Ushbu faylda loyihadagi aniqlangan kamchiliklar, tuzatilishi kerak bo'lgan xatol
 
 > N1 darajasida imtihonga 100% tayyor bo‘lish uchun o‘quvchiga akademik, ilmiy, rasmiy va yuqori darajadagi amaliy kontent talab etiladi.
 
-- [ ] **Gazeta va editorial matnlar:** N1 darajasidagi tahririyat maqolalari (shasetsu), gazeta sharhlari va tahliliy matnlarni qo‘shish.
-- [ ] **Ilmiy va akademik maqolalar:** Ilmiy jurnallar, ijtimoiy-falsafiy va akademik mavzulardagi matnlar bazasini yaratish.
-- [ ] **Rasmiy e-mail va biznes yozishmalari:** Yapon biznes etiketi, rasmiy korporativ yozishmalar va shartnomaviy tildagi matnlar.
-- [ ] **Keigo (hurmat nutqi) tizimi:** N1 talabiga mos Sonkeigo, Kenjougo, Teineigo va murakkab biznes muloqot mashqlari.
-- [ ] **Abstrakt mavzular:** Jamiyat, psixologiya, fan-texnika va falsafiy mavzulardagi abstrakt tushunchalarni ifodalovchi matnlar.
-- [ ] **Sinonim va nuans farqlari:** O‘xshash ko‘ringan N1 so‘zlari va grammatik konstruksiyalari o‘rtasidagi nozik ma’no farqlarini tushuntiruvchi mashqlar.
+- [x] **Gazeta va editorial matnlar:** N1 darajasidagi tahririyat maqolalari (shasetsu), gazeta sharhlari va tahliliy matnlarni qo‘shish (Nikkei, Asahi va Yomiuri uslubidagi Shasetsu tahlillari va savollari kiritildi).
+- [x] **Ilmiy va akademik maqolalar:** Ilmiy jurnallar, ijtimoiy-falsafiy va akademik mavzulardagi matnlar bazasini yaratish (Tezis-Antiteza-Sintez tahlili va terminologiya bilan boyitildi).
+- [x] **Rasmiy e-mail va biznes yozishmalari:** Yapon biznes etiketi, rasmiy korporativ yozishmalar va shartnomaviy tildagi matnlar (Shazai-bun, NDA, xizmat ko'rsatish shartnomalari va interaktiv tuzatish mashqlari joriy qilindi).
+- [x] **Keigo (hurmat nutqi) tizimi:** N1 talabiga mos Sonkeigo, Kenjougo, Teineigo va murakkab biznes muloqot mashqlari (To'liq fe'llar matritsasi, Nijyuu-keigo tahlili va situatsion mashqlar).
+- [x] **Abstrakt mavzular:** Jamiyat, psixologiya, fan-texnika va falsafiy mavzulardagi abstrakt tushunchalarni ifodalovchi matnlar.
+- [x] **Sinonim va nuans farqlari:** O‘xshash ko‘ringan N1 so‘zlari va grammatik konstruksiyalari o‘rtasidagi nozik ma’no farqlarini tushuntiruvchi mashqlar (Nuance Lab va qiyosiy jadvallar yaratildi).
 - [ ] **Tez va murakkab listening:** Tabiiy tezlikdagi ma’ruza, munozara va tezkor suhbatlardan iborat audio mashqlarni joriy qilish.
-- [ ] **Implicit meaning va inference savollari:** Matn va audioda yashirin ma’no (kontekstdan xulosa chiqarish)ni talab qiluvchi savollarni ishlab chiqish.
+- [x] **Implicit meaning va inference savollari:** Matn va audioda yashirin ma’no (kontekstdan xulosa chiqarish)ni talab qiluvchi savollarni ishlab chiqish (Tuzoq turlari va mantiqiy isbot zanjiri bilan to'liq joriy etildi).
 
 ### 7. Ba’zi xatolar foydalanuvchiga yashiriladi (Silent Failures & Noto‘g‘ri Fallback)
 

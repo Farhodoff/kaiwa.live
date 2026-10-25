@@ -11,6 +11,7 @@ import {
   Sparkles,
   BookMarked,
   Layers,
+  Crown,
 } from 'lucide-react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useStudyData } from '../context/StudyPlannerContext';
@@ -23,6 +24,11 @@ const JlptGrammarKanjiMaster = lazyWithRetry(
   () => import('../components/jlpt/JlptGrammarKanjiMaster'),
 );
 const KanjiCanvasPractice = lazyWithRetry(() => import('../components/jlpt/KanjiCanvasPractice'));
+const N1AdvancedMasteryHub = lazyWithRetry(() =>
+  import('../components/jlpt/N1AdvancedMasteryHub').then((m) => ({
+    default: m.N1AdvancedMasteryHub,
+  })),
+);
 
 const JlptReadingPage = lazyWithRetry(() =>
   import('./JlptReadingPage').then((m) => ({ default: m.JlptReadingPage })),
@@ -277,6 +283,18 @@ export const JlptHubPage: React.FC = () => {
             <Layers size={15} />
             <span>{language === 'ja' ? 'スキル' : 'Skill Matrix'}</span>
           </button>
+
+          <button
+            onClick={() => handleTabChange('n1_mastery')}
+            className={`flex min-h-[40px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
+              activeTab === 'n1_mastery'
+                ? 'border border-primary/30 bg-primary/10 font-black text-primary shadow-xs'
+                : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
+            }`}
+          >
+            <Crown size={15} className="text-amber-500" />
+            <span>{language === 'ja' ? 'N1至高マスター' : 'N1 Mastery (社説・敬語)'}</span>
+          </button>
         </div>
       </div>
 
@@ -400,6 +418,13 @@ export const JlptHubPage: React.FC = () => {
         {activeTab === 'matrix' && (
           <div className="animate-in fade-in">
             <JlptSkillMatrixView />
+          </div>
+        )}
+
+        {/* Tab 10: N1 Advanced Mastery Hub */}
+        {activeTab === 'n1_mastery' && (
+          <div className="animate-in fade-in">
+            <N1AdvancedMasteryHub />
           </div>
         )}
       </Suspense>
