@@ -448,6 +448,24 @@ export function createFakeSupabase(seed: Record<string, Row[]> = {}): FakeSupaba
     },
     __setUser(user) {
       currentUser = user;
+      const isAdmin = Boolean(
+        user &&
+        ((user.app_metadata as any)?.role === 'admin' ||
+          (user.user_metadata as any)?.role === 'admin' ||
+          user.role === 'admin' ||
+          (user.email &&
+            (user.email === 'fsoyilov@gmail.com' || user.email === 'admin@nihongo-talk.jp'))),
+      );
+      const isReviewer = Boolean(
+        isAdmin ||
+        (user &&
+          ((user.app_metadata as any)?.role === 'reviewer' ||
+            (user.user_metadata as any)?.role === 'reviewer' ||
+            user.role === 'reviewer' ||
+            (user.email && String(user.email).toLowerCase().includes('reviewer')))),
+      );
+      rpcResults.is_admin = { data: isAdmin, error: null };
+      rpcResults.is_reviewer = { data: isReviewer, error: null };
     },
     __reset(nextSeed) {
       for (const key of Object.keys(tables)) delete tables[key];
@@ -460,6 +478,13 @@ export function createFakeSupabase(seed: Record<string, Row[]> = {}): FakeSupaba
           })) as StoredRow[];
         }
       }
+      currentUser = {
+        id: 'admin-user-id',
+        email: 'fsoyilov@gmail.com',
+        user_metadata: { full_name: 'Admin' },
+      };
+      rpcResults.is_admin = { data: true, error: null };
+      rpcResults.is_reviewer = { data: true, error: null };
     },
     __rpcResults: rpcResults,
   };

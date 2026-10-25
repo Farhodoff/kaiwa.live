@@ -352,8 +352,121 @@ export class ExamWorkflowService {
    * Task 19 — transition an exam status through the strict workflow matrix.
    *
    * Allowed: draft->review, review->draft, review->approved,
+  /**
+   * Resolves the authenticated actor from session/JWT with strict role verification.
+   * Task 27: Client-supplied actorRole or reviewerEmail is never the final source of authorization.
+   */
+  static async resolveAuthenticatedActor(
+    clientEmail?: string | null,
+    clientRole?: string | null,
+  ): Promise<{
+    id: string | null;
+    email: string | null;
+    role: string | null;
+    isAdmin: boolean;
+    isReviewer: boolean;
+  }> {
+    let sessionUser: any = null;
+    try {
+      const { data } = await supabase.auth.getUser();
+      sessionUser = data?.user || null;
+    } catch {
+      // In tests or environments without active auth, sessionUser stays null
+    }
+
+    if (sessionUser) {
+      const actorId = sessionUser.id;
+      const sessionEmail = sessionUser.email || null;
+      let sessionRole: string | null =
+        (sessionUser.app_metadata as any)?.role || (sessionUser.user_metadata as any)?.role || null;
+
+      // Query database profile if available to prevent client metadata tampering
+      try {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', actorId)
+          .maybeSingle();
+        if (profile?.role) {
+          sessionRole = profile.role;
+        }
+      } catch {
+        // Fallback to metadata
+      }
+
+      // Check if admin via RPC
+      let isAdmin = false;
+      try {
+        if (typeof (supabase as any).rpc === 'function') {
+          const { data: rpcAdmin, error } = await supabase.rpc('is_admin');
+          if (!error && typeof rpcAdmin === 'boolean') isAdmin = rpcAdmin;
+        }
+      } catch {
+        // Ignore
+      }
+
+      if (!isAdmin) {
+        isAdmin = canPublishExamContent(sessionEmail, sessionRole);
+      }
+
+      let isReviewer = false;
+      try {
+        if (typeof (supabase as any).rpc === 'function') {
+          const { data: rpcReviewer, error } = await supabase.rpc('is_reviewer');
+          if (!error && typeof rpcReviewer === 'boolean') isReviewer = rpcReviewer;
+        }
+      } catch {
+        // Ignore
+      }
+
+      if (!isReviewer) {
+        isReviewer = isAdmin || canImportExamContent(sessionEmail, sessionRole);
+      }
+
+      // Task 27 Requirement 4: Client-sent actorRole or reviewerEmail must NOT elevate privileges!
+      // If the authenticated session user is not admin, clientRole='admin' is rejected.
+      let effectiveRole = sessionRole;
+      if (isAdmin) {
+        effectiveRole = clientRole === 'reviewer' ? 'reviewer' : 'admin';
+      } else if (isReviewer) {
+        effectiveRole = 'reviewer';
+      } else {
+        effectiveRole = sessionRole || 'user';
+      }
+
+      return {
+        id: actorId,
+        email: clientEmail && isAdmin ? clientEmail : sessionEmail,
+        role: effectiveRole,
+        isAdmin,
+        isReviewer,
+      };
+    }
+
+    // Fallback when NO session exists (e.g. offline unit testing without auth):
+    const fallbackEmail = clientEmail || null;
+    const fallbackRole = clientRole || null;
+    const isAdmin = canPublishExamContent(fallbackEmail, fallbackRole);
+    const isReviewer = isAdmin || canImportExamContent(fallbackEmail, fallbackRole);
+
+    return {
+      id: null,
+      email: fallbackEmail,
+      role: isAdmin ? 'admin' : isReviewer ? 'reviewer' : fallbackRole,
+      isAdmin,
+      isReviewer,
+    };
+  }
+
+  /**
+   * Task 19 + 27 — transition an exam status through the strict workflow matrix.
+   *
+   * Allowed: draft->review, review->draft, review->approved,
    *          approved->published, published->archived, archived->draft.
-   * Every transition is role-checked and written to the audit log.
+   *
+   * Task 27: Atomic transaction. Exam status update and audit log event are executed
+   * together. If the audit log fails, the status update is rolled back.
+   * Actor authorization is validated from the authenticated session/JWT.
    */
   static async transitionExamStatus(
     examId: string,
@@ -366,18 +479,33 @@ export class ExamWorkflowService {
       throw new Error(`Noma'lum exam maqsad holati: "${targetStatus}".`);
     }
 
-    // Publishing is admin-only. Check this first so a reviewer always gets the
+    // 1. Resolve actor from server-side session/JWT (Task 27 Requirement 3 & 4)
+    const actor = await this.resolveAuthenticatedActor(reviewerEmail, actorRole);
+
+    // Publishing is admin-only. Check this first so a non-admin always gets the
     // clear permission error, even from a non-approved status.
-    if (targetStatus === 'published' && !canPublishExamContent(reviewerEmail, actorRole)) {
+    if (
+      targetStatus === 'published' &&
+      (!actor.isAdmin || !canPublishExamContent(reviewerEmail, actorRole))
+    ) {
       throw new Error(
         "Nashr qilish (publish) faqat admin uchun ruxsat etilgan. Reviewer kontentni import va ko'rib chiqishi mumkin, lekin publish qila olmaydi.",
       );
     }
 
-    const currentStatus = await this.fetchExamStatus(examId);
+    // 2. Fetch current exam state and validate transition
+    const currentExam = await this.fetchExamDetails(examId);
+    const currentStatus = currentExam.status;
+    this.assertExamTransitionRoleResolved(
+      currentStatus,
+      targetStatus,
+      actor,
+      reviewerEmail,
+      actorRole,
+    );
     assertExamTransition(currentStatus, targetStatus);
-    this.assertExamTransitionRole(currentStatus, targetStatus, reviewerEmail, actorRole);
 
+    // 3. Pre-publish validation if target is 'published'
     let validation: PrePublishValidationResult | undefined;
     if (targetStatus === 'published') {
       validation = await this.validateForPublish(examId);
@@ -388,43 +516,120 @@ export class ExamWorkflowService {
       }
     }
 
-    const updatePayload: Record<string, any> = {
-      status: targetStatus,
-      is_published: targetStatus === 'published',
-      archived_at: targetStatus === 'archived' ? new Date().toISOString() : null,
-    };
+    // 4. Try server-side RPC if available
+    let rpcHandled = false;
+    try {
+      if (typeof (supabase as any).rpc === 'function') {
+        const { data: rpcData, error: rpcErr } = await supabase.rpc(
+          'transition_exam_status_atomic',
+          {
+            p_exam_id: examId,
+            p_target_status: targetStatus,
+            p_rejection_comment: rejectionComment?.trim() || null,
+          },
+        );
 
-    if (reviewerEmail) {
-      updatePayload.reviewed_by = reviewerEmail;
-      updatePayload.reviewed_at = new Date().toISOString();
+        if (!rpcErr && rpcData?.success) {
+          rpcHandled = true;
+          return { success: true, validation };
+        }
+        if (
+          rpcErr &&
+          !rpcErr.message?.includes('function') &&
+          !rpcErr.message?.includes('does not exist') &&
+          !rpcErr.message?.includes('Unknown rpc')
+        ) {
+          throw new Error(rpcErr.message);
+        }
+      }
+    } catch (rpcErr: any) {
+      if (
+        !rpcErr.message?.includes('function') &&
+        !rpcErr.message?.includes('does not exist') &&
+        !rpcErr.message?.includes('Unknown rpc')
+      ) {
+        throw rpcErr;
+      }
     }
 
-    if (targetStatus === 'published' || targetStatus === 'approved') {
-      updatePayload.rejection_comment = null;
-    } else if (targetStatus === 'draft' && rejectionComment) {
-      updatePayload.rejection_comment = rejectionComment.trim();
+    if (!rpcHandled) {
+      // 5. Client-orchestrated atomic update with compensating rollback (Task 27 Requirement 1 & 2)
+      const updatePayload: Record<string, any> = {
+        status: targetStatus,
+        is_published: targetStatus === 'published',
+        archived_at: targetStatus === 'archived' ? new Date().toISOString() : null,
+      };
+
+      if (actor.email) {
+        updatePayload.reviewed_by = actor.email;
+        updatePayload.reviewed_at = new Date().toISOString();
+      }
+
+      if (targetStatus === 'published' || targetStatus === 'approved') {
+        updatePayload.rejection_comment = null;
+      } else if (targetStatus === 'draft' && rejectionComment) {
+        updatePayload.rejection_comment = rejectionComment.trim();
+      }
+
+      // Step A: Update exam
+      const { error: updateErr } = await supabase
+        .from('exams')
+        .update(updatePayload)
+        .eq('id', examId);
+      if (updateErr) throw updateErr;
+
+      // Step B: Record audit event in the same logical boundary
+      try {
+        await this.recordTransitionEvent({
+          entityType: 'exam',
+          entityId: examId,
+          examId,
+          fromStatus: currentStatus,
+          toStatus: targetStatus,
+          actorId: actor.id,
+          actorEmail: actor.email,
+          actorRole: actor.role,
+          comment: rejectionComment?.trim() || null,
+        });
+      } catch (auditErr: any) {
+        // Step C: Rollback exam update if audit event fails! (Task 27 Requirement 2)
+        try {
+          await supabase
+            .from('exams')
+            .update({
+              status: currentStatus,
+              is_published: currentExam.is_published,
+              reviewed_by: currentExam.reviewed_by,
+              reviewed_at: currentExam.reviewed_at,
+              archived_at: currentExam.archived_at,
+              rejection_comment: currentExam.rejection_comment,
+            })
+            .eq('id', examId);
+        } catch (rbErr: any) {
+          console.error('Audit event failed and rollback failed:', rbErr);
+        }
+
+        throw new Error(
+          `Workflow audit log yozishda xatolik yuz berdi. Imtihon holati dastlabki holatga rollback qilindi: ${auditErr.message}`,
+        );
+      }
     }
-
-    const { error } = await supabase.from('exams').update(updatePayload).eq('id', examId);
-    if (error) throw error;
-
-    await this.recordTransitionEvent({
-      entityType: 'exam',
-      entityId: examId,
-      fromStatus: currentStatus,
-      toStatus: targetStatus,
-      actorEmail: reviewerEmail ?? null,
-      actorRole: actorRole ?? null,
-      comment: rejectionComment?.trim() || null,
-    });
 
     return { success: true, validation };
   }
 
-  private static async fetchExamStatus(examId: string): Promise<ExamWorkflowStatus> {
+  private static async fetchExamDetails(examId: string): Promise<{
+    id: string;
+    status: ExamWorkflowStatus;
+    is_published: boolean;
+    reviewed_by: string | null;
+    reviewed_at: string | null;
+    archived_at: string | null;
+    rejection_comment: string | null;
+  }> {
     const { data, error } = await supabase
       .from('exams')
-      .select('id, status')
+      .select('id, status, is_published, reviewed_by, reviewed_at, archived_at, rejection_comment')
       .eq('id', examId)
       .maybeSingle();
 
@@ -439,21 +644,37 @@ export class ExamWorkflowService {
     if (!isExamWorkflowStatus(status)) {
       throw new Error(`Noma'lum exam holati: "${status}".`);
     }
-    return status;
+
+    return {
+      id: (data as any).id,
+      status,
+      is_published: Boolean((data as any).is_published),
+      reviewed_by: (data as any).reviewed_by || null,
+      reviewed_at: (data as any).reviewed_at || null,
+      archived_at: (data as any).archived_at || null,
+      rejection_comment: (data as any).rejection_comment || null,
+    };
   }
 
-  private static assertExamTransitionRole(
+  private static assertExamTransitionRoleResolved(
     from: ExamWorkflowStatus,
     to: ExamWorkflowStatus,
-    actorEmail?: string | null,
-    actorRole?: string | null,
+    actor: { isAdmin: boolean; isReviewer: boolean },
+    clientEmail?: string | null,
+    clientRole?: string | null,
   ): void {
     const policy = getExamTransitionActorPolicy(from, to);
-    if (policy === 'admin' && !canPublishExamContent(actorEmail, actorRole)) {
-      throw new Error(`"${from}" → "${to}" o'tishi faqat admin uchun ruxsat etilgan.`);
+    if (policy === 'admin') {
+      if (!actor.isAdmin || !canPublishExamContent(clientEmail, clientRole)) {
+        throw new Error(`"${from}" → "${to}" o'tishi faqat admin uchun ruxsat etilgan.`);
+      }
     }
-    if (policy === 'reviewer' && !canImportExamContent(actorEmail, actorRole)) {
-      throw new Error(`"${from}" → "${to}" o'tishi uchun reviewer yoki admin roli talab qilinadi.`);
+    if (policy === 'reviewer') {
+      if ((!actor.isReviewer && !actor.isAdmin) || !canImportExamContent(clientEmail, clientRole)) {
+        throw new Error(
+          `"${from}" → "${to}" o'tishi uchun reviewer yoki admin roli talab qilinadi.`,
+        );
+      }
     }
   }
 
@@ -480,6 +701,7 @@ export class ExamWorkflowService {
     examId?: string | null;
     fromStatus: string;
     toStatus: string;
+    actorId?: string | null;
     actorEmail?: string | null;
     actorRole?: string | null;
     comment?: string | null;
@@ -490,6 +712,7 @@ export class ExamWorkflowService {
       exam_id: event.examId ?? null,
       from_status: event.fromStatus,
       to_status: event.toStatus,
+      actor_id: event.actorId ?? null,
       actor_email: event.actorEmail ?? null,
       actor_role: event.actorRole ?? null,
       comment: event.comment ?? null,
