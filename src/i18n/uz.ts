@@ -178,13 +178,13 @@ export const uz = {
     speakingAiMessage1: '今日は何を食べますか？',
     speakingUserMessage: 'ラーメンをたべたいです！',
     speakingAiMessage2: 'いいですね！🍜 辛いのは大丈夫ですか？',
-    seoTitle: 'Nihongo Talk',
+    seoTitle: 'kaiwa.live',
     seoDescription:
       'Darslik emas — haqiqiy suhbat. AI bilan gaplashing, xatolaringizni shu zahoti tuzating va har kuni 10 daqiqada oldinga siljing.',
     subtitle:
       'Darslik emas — haqiqiy suhbat. AI bilan gaplashing, xatolaringizni shu zahoti tuzating va har kuni 10 daqiqada oldinga siljing.',
     seoKeywords:
-      'Nihongo Talk, yapon tili, gapirish mashqi, AI Speaking Coach, JLPT N5-N1, Kanji, SRS, fleshkartalar',
+      'kaiwa.live, yapon tili, gapirish mashqi, AI Speaking Coach, JLPT N5-N1, Kanji, SRS, fleshkartalar',
     description:
       'Darslik emas — haqiqiy suhbat. AI bilan gaplashing, xatolaringizni shu zahoti tuzating va har kuni 10 daqiqada oldinga siljing.',
     ctaPrimary: 'Bepul boshlash →',
@@ -236,7 +236,7 @@ export const uz = {
     finalCtaDesc:
       'Grammatika kitoblar bilan yetarlicha vaqt o‘tkazdingiz. Endi gapirish vaqti keldi.',
     finalCtaButton: 'Hoziroq suhbatni boshlang →',
-    footerCopy: '© 2026 Nihongo Talk',
+    footerCopy: '© 2026 kaiwa.live',
     footerSub:
       'O‘zbek tilida so‘zlashuvchilar uchun yapon tilini suhbat orqali o‘rganish platformasi.',
     dashToday: "Bugungi o'quv reja",

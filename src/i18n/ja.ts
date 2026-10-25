@@ -178,11 +178,11 @@ export const ja = {
     speakingAiMessage1: '今日は何を食べますか？',
     speakingUserMessage: 'ラーメンをたべたいです！',
     speakingAiMessage2: 'いいですね！🍜 辛いのは大丈夫ですか？',
-    seoTitle: 'Nihongo Talk',
+    seoTitle: 'kaiwa.live',
     seoDescription:
       '教科書ではなく、本物の会話。AIと話し、間違いをその場で修正し、毎日10分で上達しよう。',
     seoKeywords:
-      'Nihongo Talk, 日本語学習, JLPT対策, JLPT N5-N1, 漢字, SM-2, フラッシュカード, AIスピーキングコーチ',
+      'kaiwa.live, 日本語学習, JLPT対策, JLPT N5-N1, 漢字, SM-2, フラッシュカード, AIスピーキングコーチ',
     subtitle:
       '教科書ではなく、本物の会話。AIと話し、間違いをその場で修正し、毎日10分で上達しよう。',
     description:
@@ -232,7 +232,7 @@ export const ja = {
     finalCtaTitle: '今日、最初の一歩を踏み出そう。',
     finalCtaDesc: '文法書の学習はもう十分。いよいよ日本語を声に出して話す時です。',
     finalCtaButton: '今すぐ会話を始める →',
-    footerCopy: '© 2026 Nihongo Talk',
+    footerCopy: '© 2026 kaiwa.live',
     footerSub: '実践的AI会話練習 · JLPT N5–N1 · 日本語を話そう',
     dashToday: '今日の学習',
     dashRoadmap: 'N4 → N3ロードマップ',

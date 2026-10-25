@@ -1552,7 +1552,7 @@ export default function AdminDashboardPage() {
             <h1
               onClick={handleSecretTitleClick}
               className="cursor-default select-none font-display text-xl font-black tracking-tight text-foreground transition-colors hover:text-primary active:scale-[0.99] sm:text-2xl"
-              title="Nihongo Talk Admin Console"
+              title="kaiwa.live Admin Console"
             >
               {isJa ? 'システム管理者ダッシュボード' : 'Super Admin Paneli'}
             </h1>

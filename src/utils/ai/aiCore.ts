@@ -192,7 +192,7 @@ export const chatWithAI = async (
   subjectName: string,
   _userKey?: string,
 ): Promise<string> => {
-  const systemPrompt = `Siz Nihongo Talk platformasidagi do'stona, professional va intellektual o'quv yordamchisisiz (AI Tutor & Assistant).
+  const systemPrompt = `Siz kaiwa.live platformasidagi do'stona, professional va intellektual o'quv yordamchisisiz (AI Tutor & Assistant).
 
 MUHIM QOIDALAR (STRICT CAPABILITY & LANGUAGE RULES):
 1. LANGUAGE CONSISTENCY:

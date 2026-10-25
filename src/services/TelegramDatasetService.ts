@@ -260,7 +260,7 @@ export class TelegramDatasetService {
     const summary = customSummary || (await this.getDailySummary());
 
     // 1. Build Header & High-level Stats Message
-    let messageText = `📊 <b>Nihongo Talk — KUNLIK OVOZLI SUHBATLAR HISOBOTI (${summary.date})</b>\n`;
+    let messageText = `📊 <b>kaiwa.live — KUNLIK OVOZLI SUHBATLAR HISOBOTI (${summary.date})</b>\n`;
     messageText += `━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
     messageText += `🗣 <b>Jami suhbatlar:</b> ${summary.totalSessions} ta\n`;
     messageText += `⏱ <b>Umumiy suhbat vaqti:</b> ${summary.totalDurationMinutes} daqiqa\n`;
@@ -300,7 +300,7 @@ export class TelegramDatasetService {
       messageText += `<i>Bugun hali yangi suhbatlar yozilmadi.</i>\n`;
     }
 
-    messageText += `\n🤖 <i>Nihongo Talk Speech Dataset Engine</i>`;
+    messageText += `\n🤖 <i>kaiwa.live Speech Dataset Engine</i>`;
 
     try {
       let sentSuccessfully = false;

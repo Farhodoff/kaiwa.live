@@ -331,7 +331,7 @@ const DashboardPage: React.FC = () => {
         <Loader2
           className="h-8 w-8 animate-spin text-primary"
           role="status"
-          aria-label="Loading Nihongo Talk dashboard..."
+          aria-label="Loading kaiwa.live dashboard..."
         />
       </div>
     );
