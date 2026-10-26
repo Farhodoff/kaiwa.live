@@ -31,12 +31,12 @@ describe('Speaking Conversation Scenarios Integrity Tests', () => {
     }
   });
 
-  it('5. Verify accurate scenario counts (8 English, 34 Japanese = 42 total)', () => {
+  it('5. Verify accurate scenario counts (0 English, 34 Japanese = 34 total)', () => {
     const enScenarios = DEFAULT_SCENARIOS.filter((s) => s.language === 'en');
     const jaScenarios = DEFAULT_SCENARIOS.filter((s) => s.language === 'ja' || !s.language);
 
-    expect(enScenarios.length).toBe(8);
+    expect(enScenarios.length).toBe(0);
     expect(jaScenarios.length).toBe(34);
-    expect(DEFAULT_SCENARIOS.length).toBe(42);
+    expect(DEFAULT_SCENARIOS.length).toBe(34);
   });
 });
