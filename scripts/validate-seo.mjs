@@ -33,7 +33,7 @@ check('robots.txt exists and contains Sitemap and AI Bots', () => {
 // 2. Sitemap.xml
 check('sitemap.xml exists and has valid multilingual tags', () => {
   const content = fs.readFileSync(path.join(rootDir, 'public', 'sitemap.xml'), 'utf8');
-  const requiredUrls = ['/', '/jlpt', '/speaking', '/pricing', '/twa'];
+  const requiredUrls = ['/', '/jlpt', '/speaking-coach', '/flashcards', '/pricing'];
   for (const u of requiredUrls) {
     if (!content.includes(`<loc>https://kaiwa.live${u === '/' ? '/' : u}</loc>`)) {
       throw new Error(`Missing route in sitemap: ${u}`);

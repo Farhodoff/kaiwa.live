@@ -1,43 +1,50 @@
 # Kaiwa Live (kaiwa.live) — AI Japanese Language & JLPT Preparation Platform
 
-> An open, 100% free comprehensive Japanese language learning ecosystem combining Real-time AI Voice Sensei (Speaking Coach), Spaced Repetition (Anki SM-2) flashcards, complete JLPT N5–N1 curriculum (Kanji, Grammar, Reading, Listening), and Telegram Mini-App integration.
+> An open, 100% free comprehensive Japanese language learning ecosystem combining Real-time AI Voice Sensei (Speaking Coach), Spaced Repetition (Anki SM-2) flashcards, complete JLPT N5–N1 curriculum (Kanji stroke animations, Grammar rules, Reading Dokkai, Listening Choukai), Minna no Nihongo 1–50 vocabulary, and Telegram Mini-App integration.
 
 - Website: https://kaiwa.live
 - Telegram Mini App & Bot: https://t.me/kaiwa_superapp_bot
 - Open Source Repository: https://github.com/Farhodoff/kaiwa.live
-- Supported Languages: Uzbek (O'zbekcha), Japanese (日本語)
+- Supported Languages: Uzbek (O'zbekcha), Japanese (日本語), English
 
 ## Core Capabilities & Features
 
 1. **AI Speaking Sensei (Yuki-sensei)**
    - Real-time conversational Japanese dialogue with natural voice synthesis (TTS) and speech recognition (STT).
-   - Instant grammar and pronunciation error detection with explanations in Uzbek and Japanese.
+   - Instant grammar, particle, and pronunciation error detection with explanations in Uzbek and Japanese.
    - Situational scenarios: Tokyo restaurant ordering, convenience store (Konbini), train station navigation, university interview, job interview, and free conversation.
-   - URL: https://kaiwa.live/speaking
+   - URL: https://kaiwa.live/speaking-coach
+   - Scenarios: https://kaiwa.live/scenarios
 
 2. **JLPT Master Hub (N5 to N1)**
    - Complete coverage of official Japanese Language Proficiency Test levels N5, N4, N3, N2, and N1.
-   - 1,000+ interactive Kanji stroke animations, radicals, On'yomi, and Kun'yomi readings.
+   - 1,000+ interactive Kanji stroke order animations, radicals, On'yomi, Kun'yomi readings, and vocabulary associations.
    - Grammar database with detailed particle guides, sentence pattern breakdowns, and furigana toggles.
-   - Official-format 180-point JLPT mock exams with timed sections and score analytics.
+   - Authentic audio listening (Choukai) practice with native Japanese voice recordings.
+   - Official-format 180-point JLPT mock exams with timed sections and detailed score analytics.
    - URL: https://kaiwa.live/jlpt
 
 3. **Smart Spaced Repetition (Anki SM-2 Flashcards)**
    - Algorithmic spaced repetition schedule based on SuperMemo SM-2.
-   - Preset decks for JLPT N5/N4 core vocabulary, essential Kanji, and conversational survival phrases.
-   - Offline-first caching via IndexedDB and automatic cross-device Supabase sync.
-   - URL: https://kaiwa.live/decks
+   - Preset decks for Minna no Nihongo 1–50 lessons, JLPT N5/N4 core vocabulary, essential Kanji, and conversational survival phrases.
+   - Offline-first caching via IndexedDB and automatic cross-device Supabase cloud sync.
+   - URL: https://kaiwa.live/flashcards
 
-4. **Telegram Web App (TWA) Mini-App Integration**
+4. **Structured JLPT Learning Roadmap**
+   - Step-by-step level progression from beginner (Hiragana/Katakana, N5) to advanced (N1).
+   - Mastery engine tracking daily progress, review queues, and study streaks.
+   - URL: https://kaiwa.live/roadmap
+
+5. **Diagnostic Placement Test**
+   - Adaptive evaluation of Kanji, Grammar, and Listening skills to recommend the optimal starting level.
+   - URL: https://kaiwa.live/diagnostic
+
+6. **Telegram Web App (TWA) Mini-App Integration**
    - Seamless 1-tap mobile learning directly inside Telegram without separate app installation.
    - Native Telegram theme sync, haptic vibration feedback, and automated daily study reminders.
-   - URL: https://kaiwa.live/twa
+   - URL: https://t.me/kaiwa_superapp_bot
 
-5. **100% Free Open Educational Model**
+7. **100% Free Open Educational Model**
    - Zero subscription fees, zero paywalls, zero premium tiers.
    - Full access to all AI models, JLPT mock exams, and personalized study roadmaps is available completely free of charge.
    - URL: https://kaiwa.live/pricing
-
-6. **Developer & Partner REST API**
-   - Public REST endpoints for vocabulary lookups, JLPT grammar search, and study habit webhooks.
-   - URL: https://kaiwa.live/developers
