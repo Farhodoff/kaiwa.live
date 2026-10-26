@@ -1,94 +1,70 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { LayoutGrid, Mic } from 'lucide-react';
-import { LiveAmbientSphere } from './LiveAmbientSphere';
+import { Briefcase, Home, Mic, Plane, Utensils } from 'lucide-react';
 
 interface CoachWelcomeScreenProps {
-  currentPersona: any;
-  isLiveSession: boolean;
-  isSpeaking: boolean;
-  isThinking: boolean;
-  isListening: boolean;
-  promptSuggestions?: any[];
-  onStartSession: () => void;
-  onPromptClick?: (text: string) => void;
+  promptSuggestions?: { title: string; text: string; icon: string }[];
+  onStartSession: (topic?: string) => void;
 }
 
+const TOPICS = [
+  { label: 'Kundalik hayot', icon: Home },
+  { label: 'Sayohat', icon: Plane },
+  { label: 'Restoran', icon: Utensils },
+  { label: 'Ish', icon: Briefcase },
+];
+
 export const CoachWelcomeScreen: React.FC<CoachWelcomeScreenProps> = ({
-  currentPersona,
-  isLiveSession,
-  isSpeaking,
-  isThinking,
-  isListening,
+  promptSuggestions = [],
   onStartSession,
 }) => {
-  const navigate = useNavigate();
+  const [selectedTopic, setSelectedTopic] = React.useState<string | null>(null);
 
   return (
-    <div className="scrollbar-hide flex flex-1 flex-col items-center justify-center overflow-y-auto px-4 py-6 text-center">
-      {/* Dynamic Live Ambient Neon Sphere */}
-      <div className="group relative mb-6 cursor-pointer" onClick={onStartSession}>
-        {isLiveSession ? (
-          <LiveAmbientSphere
-            status={
-              isSpeaking ? 'speaking' : isThinking ? 'thinking' : isListening ? 'listening' : 'idle'
-            }
-            size={220}
-          />
-        ) : (
-          <>
-            {/* Outer glow rings */}
-            <div
-              className={`absolute -inset-4 rounded-full bg-gradient-to-tr ${currentPersona.color} pointer-events-none animate-pulse opacity-20 blur-xl`}
-            />
-            <div className="pointer-events-none absolute -inset-2 rounded-full border border-primary/20" />
-
-            {/* Main orb */}
-            <div
-              className={`relative h-28 w-28 rounded-full bg-gradient-to-tr sm:h-36 sm:w-36 ${currentPersona.color} p-[3px] shadow-2xl transition-transform duration-300 group-hover:scale-105`}
-            >
-              <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-full bg-card">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(232,72,58,0.25)_0%,transparent_70%)] opacity-40" />
-                <Mic
-                  size={32}
-                  className="relative z-10 text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]"
-                />
-                <span className="relative z-10 mt-1 text-[10px] font-extrabold uppercase tracking-widest text-[#C9A961]">
-                  Boshlash
-                </span>
-              </div>
-            </div>
-          </>
-        )}
-      </div>
-
-      {/* Clean Clean Title & Description — No weird sensei names or noise */}
-      <h2 className="mb-2 font-display text-xl font-black text-foreground sm:text-2xl">
-        AI Bilan Erkin Muloqot (フリートーク)
-      </h2>
-      <p className="mb-5 max-w-sm text-xs leading-relaxed text-muted-foreground sm:text-sm">
-        Xohlagan mavzuingizda erkin gapiring. AI sizning ovozingizni tinglab, tabiiy yapon tilida
-        suhbatlashadi.
-      </p>
-
-      {/* Action Buttons */}
-      <div className="flex flex-col items-center gap-3 sm:flex-row">
+    <section className="relative flex min-h-0 flex-1 flex-col items-center justify-between overflow-y-auto px-4 pb-5 pt-3 text-center sm:px-8 sm:pb-8">
+      <div className="flex flex-1 flex-col items-center justify-center py-8">
+        <p className="mb-5 text-sm font-medium tracking-wide text-white/80">Erkin suhbat</p>
         <button
-          onClick={onStartSession}
-          className="flex min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-xl bg-primary px-6 py-2.5 text-xs font-bold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 active:scale-95 sm:text-sm"
+          type="button"
+          onClick={() => onStartSession(selectedTopic || undefined)}
+          aria-label="Gapirishni boshlash"
+          className="group flex h-28 w-28 flex-col items-center justify-center gap-2 rounded-full border-[3px] border-primary bg-slate-950/65 text-white shadow-[0_0_0_10px_rgba(232,72,58,0.12),0_16px_50px_-12px_rgba(232,72,58,0.65)] backdrop-blur transition hover:scale-105 hover:bg-slate-900/80 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/40 active:scale-95 sm:h-32 sm:w-32"
         >
-          <Mic size={16} />
-          <span>Suhbatni boshlash</span>
-        </button>
-
-        <button
-          onClick={() => navigate('/scenarios?lang=ja')}
-          className="flex min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-xl border border-border bg-card/80 px-4 py-2.5 text-xs font-medium text-foreground transition-all hover:bg-card active:scale-95 sm:text-sm"
-        >
-          <LayoutGrid size={15} className="text-primary" />
-          <span>Mavzuli ssenariylar</span>
+          <Mic size={30} className="text-white transition-transform group-hover:scale-110" />
+          <span className="text-xs font-bold uppercase tracking-[0.16em]">Gapirish</span>
         </button>
       </div>
-    </div>
+
+      <div className="w-full max-w-4xl rounded-2xl border border-white/10 bg-slate-950/55 p-4 text-left shadow-xl backdrop-blur-md sm:p-5">
+        <div className="mb-3 flex items-baseline justify-between gap-3">
+          <h2 className="text-sm font-semibold text-white sm:text-base">Ssenariylar</h2>
+          <span className="text-xs text-slate-300/75">
+            Xohlaganingizni tanlang yoki erkin gapiring
+          </span>
+        </div>
+        <div className="scrollbar-hide flex gap-2 overflow-x-auto pb-1 sm:grid sm:grid-cols-4 sm:overflow-visible">
+          {TOPICS.slice(0, Math.min(4, promptSuggestions.length)).map((topic, index) => {
+            const topicTitle = promptSuggestions[index]?.title;
+            const TopicIcon = topic.icon;
+            const isSelected = selectedTopic === topicTitle;
+            return (
+              <button
+                key={topicTitle || topic.label}
+                type="button"
+                aria-pressed={isSelected}
+                onClick={() => setSelectedTopic(isSelected ? null : topicTitle || topic.label)}
+                className={`flex min-h-12 min-w-[148px] shrink-0 items-center gap-2.5 rounded-xl border px-3 text-left text-xs font-medium transition sm:min-w-0 sm:text-sm ${
+                  isSelected
+                    ? 'border-primary/70 bg-primary/15 text-white'
+                    : 'border-white/10 bg-white/5 text-slate-100 hover:border-white/25 hover:bg-white/10'
+                }`}
+              >
+                <TopicIcon size={17} className="shrink-0 text-primary" aria-hidden="true" />
+                {topic.label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    </section>
   );
 };
