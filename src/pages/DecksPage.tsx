@@ -33,6 +33,7 @@ import { Button } from '../components/ui/Button';
 import { useStudyData } from '../context/StudyPlannerContext';
 import { useLanguage } from '../context/LanguageContext';
 import { useFlashcardImport } from '../hooks/useFlashcardImport';
+import { useSEO } from '../hooks/useSEO';
 import { isUserAdmin } from '../utils/admin';
 import { PRESET_DECKS, PresetDeck, PresetSubDeck } from '../data/presetDecks';
 import { PresetDeckService, DeckPart } from '../services/PresetDeckService';
@@ -43,6 +44,15 @@ import { isFlashcardForLanguage } from '../utils/subjectResolver';
 import SubjectForm from '../components/subjects/SubjectForm';
 
 const DecksPage: React.FC = () => {
+  useSEO({
+    title: "Anki SM-2 Fleshkartalar va Minna no Nihongo Lug'ati",
+    description:
+      "Spaced repetition (SM-2) asosidagi aqlli yapon tili fleshkartalari. Minna no Nihongo 1–50 lug'ati, JLPT N5–N1 so'zlari va shaxsiy kartochkalar to'plami.",
+    canonical: '/flashcards',
+    keywords:
+      "yapon tili fleshkartalar, Anki SM-2 yaponcha, Minna no Nihongo lug'at, JLPT N5 N4 so'z boyligi, yapon tili so'z yodlash, kaiwa.live",
+  });
+
   const {
     user,
     subjects,
