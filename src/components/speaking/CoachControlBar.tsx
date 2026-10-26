@@ -61,26 +61,32 @@ export const CoachControlBar: React.FC<CoachControlBarProps> = ({
       };
     if (isPreparingAudio)
       return {
-        label: isJa ? '準備中...' : 'Tayyorlanmoqda...',
+        label: isJa ? '準備中...' : 'Ovoz tayyorlanmoqda...',
         color: 'text-amber-400',
         pulseColor: 'bg-amber-500',
       };
     if (isThinking)
       return {
-        label: isJa ? '思考中...' : "O'ylamoqda...",
+        label: isJa ? '思考中...' : "Coach javob o'ylamoqda...",
         color: 'text-purple-400',
         pulseColor: 'bg-purple-500',
       };
     if (isListening)
       return {
-        label: isJa ? '音声を認識中 (お話しください)' : 'Eshitmoqda... Gapiring',
+        label: isJa ? 'あなたの番です (お話しください)' : 'Sizning navbatingiz... Gapiring',
         color: 'text-emerald-400',
         pulseColor: 'bg-emerald-500',
       };
+    if (isMuted)
+      return {
+        label: isJa ? 'マイクはミュート中' : "Mikrofon o'chiq (Mute)",
+        color: 'text-amber-400',
+        pulseColor: 'bg-amber-500',
+      };
     return {
-      label: isJa ? 'マイクを押して話す' : 'Gapirish uchun bosing',
-      color: 'text-slate-400',
-      pulseColor: 'bg-slate-500',
+      label: isJa ? '自動対話モード (お話しください)' : 'Navbat sizda... Gapiring',
+      color: 'text-emerald-400/90',
+      pulseColor: 'bg-emerald-500',
     };
   };
 
@@ -203,25 +209,29 @@ export const CoachControlBar: React.FC<CoachControlBarProps> = ({
               <Mic size={18} className={isListening ? 'animate-pulse text-slate-950' : ''} />
             )}
             <span className="hidden sm:inline">
-              {isSpeaking
+              {!isLiveSession
                 ? isJa
-                  ? '中断'
-                  : "TO'XTATISH"
-                : isListening
+                  ? '会話を開始'
+                  : 'BOSHLASH'
+                : isSpeaking
                   ? isJa
-                    ? '聴取中'
-                    : 'ESHITYAPMAN'
-                  : isThinking
+                    ? '中断'
+                    : "TO'XTATISH"
+                  : isListening
                     ? isJa
-                      ? '思考中'
-                      : 'KUTILMOQDA'
-                    : isMuted
+                      ? '聴取中'
+                      : 'ESHITYAPMAN'
+                    : isThinking
                       ? isJa
-                        ? 'ミュート'
-                        : "O'CHIQ"
-                      : isJa
-                        ? '話す'
-                        : 'GAPIRISH'}
+                        ? '思考中'
+                        : "O'YLANMOQDA"
+                      : isMuted
+                        ? isJa
+                          ? 'ミュート'
+                          : "O'CHIQ"
+                        : isJa
+                          ? '話す'
+                          : 'GAPIRISH'}
             </span>
           </button>
 
