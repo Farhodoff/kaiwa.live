@@ -70,9 +70,7 @@ describe('JlptListeningMockPage Component Tests', () => {
   });
 
   it('starts test, toggles script visibility, and allows clicking a dialogue line', () => {
-    const playLineSpy = vi
-      .spyOn(ListeningAudioSyncService, 'playLine')
-      .mockImplementation(() => null);
+    const playLineSpy = vi.spyOn(ListeningAudioSyncService, 'getLineStartTime');
 
     render(
       <MemoryRouter initialEntries={['/listening?level=N5']}>
