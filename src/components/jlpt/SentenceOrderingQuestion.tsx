@@ -101,7 +101,7 @@ export const SentenceOrderingQuestion: React.FC<SentenceOrderingQuestionProps> =
 
       {/* The Sentence Template with 4 interactive slots */}
       <div className="rounded-2xl border border-border bg-gradient-to-br from-card to-secondary/30 p-4 shadow-xs sm:p-6">
-        <div className="flex flex-wrap items-center gap-2 text-base font-bold leading-loose text-foreground sm:text-lg md:text-xl">
+        <div className="font-japanese flex flex-wrap items-center gap-2.5 text-base font-bold leading-loose text-foreground sm:text-lg md:text-xl">
           {question.prefix && (
             <span className="mr-1">
               <FuriganaText text={question.prefix} />
@@ -182,7 +182,7 @@ export const SentenceOrderingQuestion: React.FC<SentenceOrderingQuestionProps> =
                 <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-muted text-xs font-black text-foreground">
                   {idx + 1}
                 </span>
-                <span className="font-japanese flex-1">
+                <span className="font-japanese flex-1 text-sm font-medium leading-relaxed sm:text-base">
                   <FuriganaText text={frag} />
                 </span>
               </button>
