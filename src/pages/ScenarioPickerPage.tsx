@@ -16,8 +16,18 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { toast } from '../hooks/use-toast';
+import { useSEO } from '../hooks/useSEO';
 
 export const ScenarioPickerPage: React.FC = () => {
+  useSEO({
+    title: 'Yapon Tili Dialog va Muloqot Ssenariylari',
+    description:
+      "Hayotiy vaziyatlarda yapon tilida gapirish mashqi: restoran, do'kon (Konbini), aeroport, ish intervyusi va erkin mavzular.",
+    canonical: '/scenarios',
+    keywords:
+      'yapon tili dialoglar, yaponcha ssenariylar, yapon tilida gapirish, yaponcha suhbat mavzulari, kaiwa live',
+  });
+
   const navigate = useNavigate();
   const { language } = useLanguage();
   const [scenarios, setScenarios] = useState<ConversationScenario[]>(() =>
