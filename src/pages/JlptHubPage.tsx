@@ -9,11 +9,9 @@ import {
   ChevronDown,
   ChevronUp,
   Sparkles,
-  BookMarked,
-  Layers,
   Crown,
 } from 'lucide-react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { useStudyData } from '../context/StudyPlannerContext';
 import { useLanguage } from '../context/LanguageContext';
 import { useSEO } from '../hooks/useSEO';
@@ -47,22 +45,17 @@ const JlptMistakeNotebook = lazyWithRetry(() =>
     default: m.JlptMistakeNotebook,
   })),
 );
-const JlptSkillMatrixView = lazyWithRetry(() =>
-  import('../components/analytics/JlptSkillMatrixView').then((m) => ({
-    default: m.JlptSkillMatrixView,
-  })),
-);
 
 export const JlptHubPage: React.FC = () => {
   useSEO({
-    title: 'JLPT N5-N1 Tayyorgarlik Markazi (Kanji, Grammatika, Mocks)',
+    title: 'JLPT N5–N1 Tayyorgarlik Markazi (Kanji, Grammatika, Choukai, Mocks)',
     description:
-      "Yapon tili JLPT N5 dan N1 gacha bo'lgan to'liq o'quv dasturi. 1000+ Kanji mashqi, grammatika viktorinalari va rasmiy formatdagi mock imtihonlar.",
+      "Yapon tili JLPT N5 dan N1 gacha bo'lgan to'liq o'quv dasturi. 1000+ interaktiv Kanji yozish animatsiyasi, grammatika viktorinalari, eshitish (Choukai) va 180 ballik rasmiy mock imtihonlar.",
     canonical: '/jlpt',
-    keywords: "JLPT N5 N4 N3 N2 N1, yapon tili o'rganish O'zbekiston, Kanji mashq, JLPT mock exam",
+    keywords:
+      "JLPT N5 N4 N3 N2 N1, yapon tili o'rganish, yapon tili noldan, Minna no Nihongo o'zbekcha, Kanji yozish mashqi, JLPT mock exam, Choukai eshitish testi, kaiwa.live",
   });
 
-  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const { settings, updateSettings } = useStudyData();
   const { language } = useLanguage();
@@ -116,15 +109,6 @@ export const JlptHubPage: React.FC = () => {
                 </span>
               </button>
             </div>
-
-            {/* Shaxsiy Reja */}
-            <button
-              onClick={() => navigate('/personal-plan')}
-              className="flex items-center gap-1.5 rounded-xl border border-border bg-muted/60 px-3.5 py-2 text-xs font-bold text-foreground transition-all hover:bg-muted active:scale-95"
-            >
-              <Target size={14} className="text-primary" />
-              <span>{language === 'ja' ? '個人学習プラン' : "Shaxsiy O'quv Rejam"}</span>
-            </button>
           </div>
         </div>
       </div>
@@ -268,20 +252,8 @@ export const JlptHubPage: React.FC = () => {
                 : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
             }`}
           >
-            <BookMarked size={15} />
-            <span>{language === 'ja' ? '弱点ノート' : 'Xatolar daftari'}</span>
-          </button>
-
-          <button
-            onClick={() => handleTabChange('matrix')}
-            className={`flex min-h-[40px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
-              activeTab === 'matrix'
-                ? 'bg-primary text-primary-foreground shadow-xs'
-                : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
-            }`}
-          >
-            <Layers size={15} />
-            <span>{language === 'ja' ? 'スキル' : 'Skill Matrix'}</span>
+            <BookOpen size={15} />
+            <span>{language === 'ja' ? '間違いノート' : 'Xatolar daftari'}</span>
           </button>
 
           <button
@@ -407,21 +379,12 @@ export const JlptHubPage: React.FC = () => {
           </div>
         )}
 
-        {/* Tab 8: Xatolar Daftari (Mistake Notebook) */}
+        {/* Tab 8: Mistake Notebook */}
         {activeTab === 'mistakes' && (
           <div className="animate-in fade-in">
             <JlptMistakeNotebook />
           </div>
         )}
-
-        {/* Tab 9: Skill Matrix (7 Ko'nikmalar Matritsasi) */}
-        {activeTab === 'matrix' && (
-          <div className="animate-in fade-in">
-            <JlptSkillMatrixView />
-          </div>
-        )}
-
-        {/* Tab 10: N1 Advanced Mastery Hub */}
         {activeTab === 'n1_mastery' && (
           <div className="animate-in fade-in">
             <N1AdvancedMasteryHub />
