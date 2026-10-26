@@ -62,6 +62,7 @@ export const LessonPlayerPage: React.FC = () => {
 
   useEffect(() => {
     if (!lessonId) {
+      setLesson(null);
       setLoading(false);
       return;
     }

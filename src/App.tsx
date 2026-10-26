@@ -16,7 +16,6 @@ import { lazyWithRetry } from './utils/lazyRetry';
 const CalendarPage = lazyWithRetry(() => import('./pages/CalendarPage'));
 const DecksPage = lazyWithRetry(() => import('./pages/DecksPage'));
 const FlashcardForm = lazyWithRetry(() => import('./pages/FlashcardForm'));
-const FocusPage = lazyWithRetry(() => import('./pages/FocusPage'));
 const SettingsPage = lazyWithRetry(() => import('./pages/SettingsPage'));
 const StudyRoomPage = lazyWithRetry(() => import('./pages/StudyRoomPage'));
 const SubjectDetailPage = lazyWithRetry(() => import('./pages/SubjectDetailPage'));
@@ -27,16 +26,12 @@ const MonologuePage = lazyWithRetry(() =>
   import('./pages/MonologuePage').then((m) => ({ default: m.MonologuePage })),
 );
 const JlptHubPage = lazyWithRetry(() => import('./pages/JlptHubPage'));
-const VocabularyBuilderPage = lazyWithRetry(() =>
-  import('./pages/VocabularyBuilderPage').then((m) => ({ default: m.VocabularyBuilderPage })),
-);
 const PricingPage = lazyWithRetry(() =>
   import('./pages/PricingPage').then((m) => ({ default: m.PricingPage })),
 );
 const ExamsManager = lazyWithRetry(() => import('./pages/admin/ExamsManager'));
 const QuestionEditor = lazyWithRetry(() => import('./pages/admin/QuestionEditor'));
 const ExamTake = lazyWithRetry(() => import('./pages/exams/ExamTake'));
-const DeveloperApiPage = lazyWithRetry(() => import('./pages/DeveloperApiPage'));
 const LessonPlayerPage = lazyWithRetry(() => import('./pages/LessonPlayerPage'));
 const RoadmapPage = lazyWithRetry(() => import('./pages/RoadmapPage'));
 const DiagnosticPage = lazyWithRetry(() =>
@@ -379,7 +374,7 @@ const App: React.FC = () => {
                       <Route path="plan" element={<Navigate to="/personal-plan" replace />} />
                       <Route path="goals" element={<Navigate to="/personal-plan" replace />} />
                       <Route path="tasks" element={<Navigate to="/personal-plan" replace />} />
-                      <Route path="focus" element={<FocusPage />} />
+                      <Route path="focus" element={<Navigate to="/dashboard" replace />} />
                       <Route path="ai" element={<Navigate to="/speaking-coach" replace />} />
                       <Route path="flashcards" element={<DecksPage />} />
                       <Route path="deck" element={<Navigate to="/flashcards" replace />} />
@@ -391,14 +386,12 @@ const App: React.FC = () => {
                       <Route path="study-mode/:subjectId" element={<StudyModePage />} />
                       <Route path="flashcards/study/:subjectId" element={<StudyModePage />} />
                       <Route path="progress" element={<ProgressPage />} />
-                      <Route path="vocabulary" element={<VocabularyBuilderPage />} />
+                      <Route path="vocabulary" element={<Navigate to="/flashcards" replace />} />
                       <Route path="pricing" element={<PricingPage />} />
                       <Route path="room/:roomId" element={<StudyRoomPage />} />
                       <Route path="settings" element={<SettingsPage />} />
                       <Route path="twa" element={<TelegramMiniAppPage />} />
                       <Route path="telegram-app" element={<TelegramMiniAppPage />} />
-                      <Route path="developers" element={<DeveloperApiPage />} />
-                      <Route path="api-docs" element={<Navigate to="/developers" replace />} />
                       <Route
                         path="admin/exams"
                         element={

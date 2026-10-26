@@ -11,7 +11,6 @@ import { lazyWithRetry } from '../utils/lazyRetry';
 // Lazy load public and previewable pages
 const AuthPage = lazyWithRetry(() => import('../pages/AuthPage'));
 const LandingPage = lazyWithRetry(() => import('../pages/LandingPage'));
-const DeveloperApiPage = lazyWithRetry(() => import('../pages/DeveloperApiPage'));
 const PricingPage = lazyWithRetry(() =>
   import('../pages/PricingPage').then((m) => ({ default: m.PricingPage })),
 );
@@ -22,16 +21,12 @@ const MonologuePage = lazyWithRetry(() =>
 );
 const ScenarioPickerPage = lazyWithRetry(() => import('../pages/ScenarioPickerPage'));
 const LessonPlayerPage = lazyWithRetry(() => import('../pages/LessonPlayerPage'));
-const VocabularyBuilderPage = lazyWithRetry(() =>
-  import('../pages/VocabularyBuilderPage').then((m) => ({ default: m.VocabularyBuilderPage })),
-);
 const RoadmapPage = lazyWithRetry(() => import('../pages/RoadmapPage'));
 const DiagnosticPage = lazyWithRetry(() =>
   import('../pages/DiagnosticPage').then((m) => ({ default: m.DiagnosticPage })),
 );
 const DecksPage = lazyWithRetry(() => import('../pages/DecksPage'));
 const StudyModePage = lazyWithRetry(() => import('../pages/StudyModePage'));
-const FocusPage = lazyWithRetry(() => import('../pages/FocusPage'));
 const ExamTake = lazyWithRetry(() => import('../pages/exams/ExamTake'));
 const TelegramMiniAppPage = lazyWithRetry(() => import('../pages/TelegramMiniAppPage'));
 
@@ -82,7 +77,7 @@ export const UnauthRouter: React.FC = () => (
                     path="/jlpt-writing"
                     element={<Navigate to="/jlpt?tab=writing" replace />}
                   />
-                  <Route path="/vocabulary" element={<VocabularyBuilderPage />} />
+                  <Route path="/vocabulary" element={<Navigate to="/flashcards" replace />} />
                   <Route path="/roadmap" element={<RoadmapPage />} />
                   <Route path="/diagnostic" element={<DiagnosticPage />} />
                   <Route path="/flashcards" element={<DecksPage />} />
@@ -90,7 +85,7 @@ export const UnauthRouter: React.FC = () => (
                   <Route path="/decks" element={<Navigate to="/flashcards" replace />} />
                   <Route path="/deck/:id" element={<Navigate to="/flashcards" replace />} />
                   <Route path="/decks/:id" element={<Navigate to="/flashcards" replace />} />
-                  <Route path="/focus" element={<FocusPage />} />
+                  <Route path="/focus" element={<Navigate to="/dashboard" replace />} />
 
                   {/* JLPT tab aliases */}
                   <Route path="/minna" element={<Navigate to="/jlpt?tab=lessons" replace />} />
@@ -141,8 +136,6 @@ export const UnauthRouter: React.FC = () => (
                 <Route path="/flashcards/study/:subjectId" element={<StudyModePage />} />
                 <Route path="/exams/:id" element={<ExamTake />} />
                 <Route path="/pricing" element={<PricingPage />} />
-                <Route path="/developers" element={<DeveloperApiPage />} />
-                <Route path="/api-docs" element={<Navigate to="/developers" replace />} />
                 <Route path="/twa" element={<TelegramMiniAppPage />} />
                 <Route path="/telegram-app" element={<TelegramMiniAppPage />} />
 
