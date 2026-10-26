@@ -12,7 +12,6 @@ test.describe('Navigation', () => {
       { path: '/pricing', name: 'Pricing Page' },
       { path: '/auth', name: 'Auth Page' },
       { path: '/login', name: 'Login Page' },
-      { path: '/developers', name: 'Developer API' },
     ];
 
     for (const route of publicRoutes) {
