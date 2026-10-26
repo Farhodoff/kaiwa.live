@@ -12,11 +12,11 @@ export interface SEOProps {
   noIndex?: boolean;
 }
 
-const DEFAULT_TITLE = 'kaiwa.live';
+const DEFAULT_TITLE = "kaiwa.live — Yapon Tili O'rganish (JLPT N5–N1, AI Speaking Sensei)";
 const DEFAULT_DESC =
-  'JLPT N5-N1 darajalariga tizimli tayyorlaning. AI Speaking Sensei, Kanji, Grammatika va Anki SM-2 Fleshkartalar.';
+  "Yapon tilini noldan o'rganing va JLPT N5–N1 imtihonlariga tizimli tayyorlaning. AI Speaking Sensei, 1000+ Kanji yozish animatsiyasi, Minna no Nihongo lug'ati va Anki SM-2 fleshkartalar.";
 const DEFAULT_KEYWORDS =
-  "kaiwa.live, yapon tili, JLPT tayyorgarlik, Anki SM-2, fleshkartalar, AI Speaking Sensei, JLPT Mock Exam, Pomodoro timer, o'quv rejalashtiruvchi";
+  "yapon tili, yapon tili o'rganish, yapon tili noldan, JLPT N5 N4 N3 N2 N1, Minna no Nihongo o'zbekcha, yaponcha so'zlashuv, AI Speaking Sensei, Anki SM-2, fleshkartalar, kanji yozish tartibi, JLPT mock exam, kaiwa.live";
 const BASE_URL = 'https://kaiwa.live';
 const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.jpg?v=4`;
 
@@ -34,7 +34,7 @@ export const useSEO = ({
   useEffect(() => {
     // 1. Update Title - avoid redundant duplication of brand name
     let finalTitle = DEFAULT_TITLE;
-    if (title && title.trim() !== DEFAULT_TITLE) {
+    if (title && title.trim() !== 'kaiwa.live' && title.trim() !== DEFAULT_TITLE) {
       finalTitle = title.includes('kaiwa.live') ? title : `${title} — kaiwa.live`;
     }
     document.title = finalTitle;

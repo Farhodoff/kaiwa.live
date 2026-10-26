@@ -178,13 +178,13 @@ export const en = {
     speakingAiMessage1: '今日は何を食べますか？',
     speakingUserMessage: 'ラーメンをたべたいです！',
     speakingAiMessage2: 'いいですね！🍜 辛いのは大丈夫ですか？',
-    seoTitle: 'kaiwa.live',
+    seoTitle: 'Learn Japanese with AI Speaking Coach (JLPT N5–N1, Minna no Nihongo)',
     seoDescription:
-      'Not just textbooks — real conversation. Chat with AI, get instant feedback on mistakes, and advance every day in just 10 minutes.',
+      'Master Japanese naturally with real-time AI Speaking Coach (Yuki-sensei), complete JLPT N5–N1 preparation, 1000+ Kanji stroke order animations, Minna no Nihongo decks, and Anki SM-2 flashcards.',
     subtitle:
       'Not just textbooks — real conversation. Chat with AI, get instant feedback on mistakes, and advance every day in just 10 minutes.',
     seoKeywords:
-      'kaiwa.live, learn Japanese, speaking practice, AI Speaking Coach, JLPT N5-N1, Kanji, SRS, flashcards',
+      'learn Japanese, JLPT N5 N4 N3 N2 N1 prep, Japanese speaking practice, AI Japanese tutor, Minna no Nihongo flashcards, Kanji stroke order animation, free Japanese learning, kaiwa.live',
     description:
       'Not just textbooks — real conversation. Chat with AI, get instant feedback on mistakes, and advance every day in just 10 minutes.',
     ctaPrimary: 'Start for Free →',
