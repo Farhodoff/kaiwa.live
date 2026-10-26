@@ -912,8 +912,7 @@ export default function AdminDashboardPage() {
     });
 
     const resolveEmail = (record: any): string => {
-      if (record.user_email && record.user_email !== 'student@nihon-talk.com')
-        return record.user_email;
+      if (record.user_email && record.user_email !== 'student@kaiwa.live') return record.user_email;
       if (record.user_id && profileMap.has(record.user_id)) return profileMap.get(record.user_id)!;
       return "Noma'lum";
     };
@@ -1359,7 +1358,7 @@ export default function AdminDashboardPage() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.setAttribute('href', url);
-    link.setAttribute('download', `nihon_talk_users_${new Date().toISOString().split('T')[0]}.csv`);
+    link.setAttribute('download', `kaiwa_live_users_${new Date().toISOString().split('T')[0]}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -1406,7 +1405,7 @@ export default function AdminDashboardPage() {
     link.setAttribute('href', url);
     link.setAttribute(
       'download',
-      `nihon_talk_speech_history_${new Date().toISOString().split('T')[0]}.csv`,
+      `kaiwa_live_speech_history_${new Date().toISOString().split('T')[0]}.csv`,
     );
     document.body.appendChild(link);
     link.click();

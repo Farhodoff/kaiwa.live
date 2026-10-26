@@ -140,7 +140,7 @@ describe('ErrorBoundary Component', () => {
 
     copyBtn.click();
     expect(writeTextMock).toHaveBeenCalledWith(
-      expect.stringContaining('NihongoTalk Xatolik Hisoboti'),
+      expect.stringContaining('kaiwa.live Xatolik Hisoboti'),
     );
     expect(writeTextMock).toHaveBeenCalledWith(expect.stringContaining('Test error'));
   });

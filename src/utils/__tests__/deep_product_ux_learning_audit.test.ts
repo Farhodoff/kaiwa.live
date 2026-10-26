@@ -70,8 +70,8 @@ describe('kaiwa.live Deep Product, UX & Learning Quality Audit (BUG #27)', () =>
       streakDays: 5,
     };
 
-    safeLocalStorage.setJSON(`nihongo_talk_progress_${activeUserId}`, sampleProgress);
-    const retrieved = safeLocalStorage.getJSON(`nihongo_talk_progress_${activeUserId}`, null);
+    safeLocalStorage.setJSON(`kaiwa_live_progress_${activeUserId}`, sampleProgress);
+    const retrieved = safeLocalStorage.getJSON(`kaiwa_live_progress_${activeUserId}`, null);
 
     expect(retrieved).toEqual(sampleProgress);
   });

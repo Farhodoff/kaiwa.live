@@ -66,7 +66,7 @@ describe('telegramAuth utility', () => {
 
     // Deterministic UUID
     expect(user1.id).toBe(user2.id);
-    expect(user1.email).toBe('tg_99887766@nihontalk.app');
+    expect(user1.email).toBe('tg_99887766@kaiwa.live');
     expect(user1.app_metadata.role).toBe('student');
     expect(user1.user_metadata.role).toBe('student');
     expect(user1.user_metadata.full_name).toBe('Temur Malik');

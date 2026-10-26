@@ -40,7 +40,7 @@ describe('import role gating', () => {
   it('allows the owner/admin emails regardless of role', () => {
     expect(canImportExamContent('fsoyilov@gmail.com', null)).toBe(true);
     expect(canImportExamContent('admin@kaiwa.live', null)).toBe(true);
-    expect(canImportExamContent('admin@nihongo-talk.jp', null)).toBe(true);
+    expect(canImportExamContent('ADMIN@KAIWA.LIVE', null)).toBe(true);
     expect(canImportExamContent('FSOYILOV@gmail.com', 'authenticated')).toBe(true);
   });
 

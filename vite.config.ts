@@ -74,9 +74,9 @@ export default defineConfig(({ mode }) => {
         registerType: 'autoUpdate',
         includeAssets: ['favicon.svg'],
         manifest: {
-          name: 'Nihongo Talk',
-          short_name: 'Nihongo Talk',
-          description: "Nihongo Talk — Aqlli yapon tili o'quv platformasi va AI Speaking Coach",
+          name: 'kaiwa.live',
+          short_name: 'kaiwa.live',
+          description: "kaiwa.live — Aqlli yapon tili o'quv platformasi va AI Speaking Coach",
           theme_color: '#E8483A',
           background_color: '#0F1419',
           display: 'standalone',

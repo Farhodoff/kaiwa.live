@@ -91,7 +91,7 @@ class ErrorBoundary extends Component<Props, State> {
     const safeMessage = sanitizeErrorMessage(this.state.error?.message || '');
     const stackSnippet = this.state.errorInfo?.componentStack?.slice(0, 400) || '';
     const report = [
-      `--- NihongoTalk Xatolik Hisoboti ---`,
+      `--- kaiwa.live Xatolik Hisoboti ---`,
       `Vaqt: ${new Date().toISOString()}`,
       `URL: ${typeof window !== 'undefined' ? window.location.href : "Noma'lum"}`,
       `Xabar: ${safeMessage}`,

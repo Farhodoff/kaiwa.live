@@ -45,8 +45,8 @@ describe('Admin Email Security & English Track Gating Tests', () => {
     expect(isEnglishTrackAllowed('fsoyilovv@gmail.com')).toBe(false);
     expect(isSuperAdmin('soyilovfarhod157@gmail.com')).toBe(false);
     expect(isAdminEmail('soyilovfarhod157@gmail.com')).toBe(false);
-    expect(isSuperAdmin('testadmin2026@nihon-talk.com')).toBe(false);
-    expect(isAdminEmail('testadmin2026@nihon-talk.com')).toBe(false);
+    expect(isSuperAdmin('testadmin2026@kaiwa.live')).toBe(false);
+    expect(isAdminEmail('testadmin2026@kaiwa.live')).toBe(false);
 
     expect(isSuperAdmin('fsayilov.ml@gmail.com')).toBe(false);
     expect(isSuperAdmin('f.sayilov.ml@gmail.com')).toBe(false);
@@ -67,7 +67,7 @@ describe('Admin Email Security & English Track Gating Tests', () => {
     // Attackers or non-fsoyilov users attempting to pass role='superadmin' MUST be rejected
     expect(isSuperAdmin('attacker@evil.com', 'superadmin')).toBe(false);
     expect(isSuperAdmin('hacker@domain.com', 'superadmin')).toBe(false);
-    expect(isSuperAdmin('admin@nihongo-talk.jp', 'superadmin')).toBe(false);
+    expect(isSuperAdmin('helper@kaiwa.live', 'superadmin')).toBe(false);
     expect(isSuperAdmin('fsoyilovv@gmail.com', 'superadmin')).toBe(false);
     expect(isSuperAdmin('soyilovfarhod157@gmail.com', 'superadmin')).toBe(false);
     expect(isSuperAdmin('random_user@domain.com', 'superadmin')).toBe(false);
@@ -85,18 +85,15 @@ describe('Admin Email Security & English Track Gating Tests', () => {
   });
 
   it('verifies helper admins in DEFAULT_ADMIN_EMAILS have admin rights but NOT superadmin rights', () => {
-    // admin@kaiwa.live and admin@nihongo-talk.jp are trusted helper admins
+    // admin@kaiwa.live is a trusted helper admin
     expect(isAdminEmail('admin@kaiwa.live')).toBe(true);
     expect(isAdminEmail('ADMIN@KAIWA.LIVE')).toBe(true);
-    expect(isAdminEmail('admin@nihongo-talk.jp')).toBe(true);
-    expect(isAdminEmail('ADMIN@NIHONGO-TALK.JP')).toBe(true);
-    expect(isAdminEmail('  admin@nihongo-talk.jp  ')).toBe(true);
-    expect(isAdminEmail('admin@nihongo-talk.jp', 'admin')).toBe(true);
+    expect(isAdminEmail('  admin@kaiwa.live  ')).toBe(true);
+    expect(isAdminEmail('admin@kaiwa.live', 'admin')).toBe(true);
 
     // But it is strictly NOT superadmin under any role argument
     expect(isSuperAdmin('admin@kaiwa.live')).toBe(false);
-    expect(isSuperAdmin('admin@nihongo-talk.jp')).toBe(false);
-    expect(isSuperAdmin('admin@nihongo-talk.jp', 'admin')).toBe(false);
-    expect(isSuperAdmin('admin@nihongo-talk.jp', 'superadmin')).toBe(false);
+    expect(isSuperAdmin('admin@kaiwa.live', 'admin')).toBe(false);
+    expect(isSuperAdmin('admin@kaiwa.live', 'superadmin')).toBe(false);
   });
 });

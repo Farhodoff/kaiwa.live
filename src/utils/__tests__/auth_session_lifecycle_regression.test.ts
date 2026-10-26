@@ -441,9 +441,9 @@ describe('Auth Session Lifecycle Regression Tests (BUG #1 through BUG #13)', () 
     expect(isSuperAdmin(displayEmail)).toBe(false);
 
     // Case 2: Ordinary student user
-    const studentUser = { id: 's1', email: 'student123@nihon-talk.com' };
+    const studentUser = { id: 's1', email: 'student123@kaiwa.live' };
     const studentDisplayEmail = studentUser?.email || '';
-    expect(studentDisplayEmail).toBe('student123@nihon-talk.com');
+    expect(studentDisplayEmail).toBe('student123@kaiwa.live');
     expect(isAdminEmail(studentDisplayEmail)).toBe(false);
     expect(isSuperAdmin(studentDisplayEmail)).toBe(false);
 

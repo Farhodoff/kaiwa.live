@@ -40,11 +40,11 @@ describe('kaiwa.live Complete Production Release Audit (BUG #29)', () => {
     const userAlpha = 'user-alpha-uuid';
     const userBeta = 'user-beta-uuid';
 
-    safeLocalStorage.setJSON(`nihongo_talk_session_${userAlpha}`, { level: 'N5', active: true });
-    safeLocalStorage.setJSON(`nihongo_talk_session_${userBeta}`, { level: 'N2', active: false });
+    safeLocalStorage.setJSON(`kaiwa_live_session_${userAlpha}`, { level: 'N5', active: true });
+    safeLocalStorage.setJSON(`kaiwa_live_session_${userBeta}`, { level: 'N2', active: false });
 
-    const sessionAlpha = safeLocalStorage.getJSON(`nihongo_talk_session_${userAlpha}`, null);
-    const sessionBeta = safeLocalStorage.getJSON(`nihongo_talk_session_${userBeta}`, null);
+    const sessionAlpha = safeLocalStorage.getJSON(`kaiwa_live_session_${userAlpha}`, null);
+    const sessionBeta = safeLocalStorage.getJSON(`kaiwa_live_session_${userBeta}`, null);
 
     expect(sessionAlpha).toEqual({ level: 'N5', active: true });
     expect(sessionBeta).toEqual({ level: 'N2', active: false });

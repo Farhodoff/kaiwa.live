@@ -7,7 +7,7 @@
 import { supabase } from '../lib/supabase';
 import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
 
-const TELEGRAM_VAULT_CHAT_ID_KEY = 'nihon_talk_telegram_dataset_chat_id';
+const TELEGRAM_VAULT_CHAT_ID_KEY = 'kaiwa_live_telegram_dataset_chat_id';
 
 export interface DailySpeechSummary {
   date: string;
@@ -64,7 +64,7 @@ export class TelegramDatasetService {
     const effectiveChatId = (maybeChatId !== undefined ? maybeChatId : chatIdOrBotToken) || '';
     safeLocalStorage.setItem(TELEGRAM_VAULT_CHAT_ID_KEY, effectiveChatId.trim());
     // Proactively clean up any legacy bot token from localStorage
-    safeLocalStorage.removeItem('nihon_talk_telegram_dataset_bot_token');
+    safeLocalStorage.removeItem('kaiwa_live_telegram_dataset_bot_token');
   }
 
   /**
@@ -160,7 +160,7 @@ export class TelegramDatasetService {
     // 3. Fallback to local storage history if Supabase is offline
     if (allSessions.length === 0 && typeof window !== 'undefined') {
       try {
-        const localHistory = safeLocalStorage.getJSON<any[]>('nihon_talk_scenario_history', []);
+        const localHistory = safeLocalStorage.getJSON<any[]>('kaiwa_live_scenario_history', []);
         allSessions = localHistory.filter((s: any) => {
           const d = s.created_at || s.timestamp || new Date().toISOString();
           if (todayStr === 'ALL') return true;
@@ -461,7 +461,7 @@ export class TelegramDatasetService {
       const now = new Date();
       const currentHour = now.getHours();
       const todayStr = now.toISOString().split('T')[0];
-      const lastDispatched = safeLocalStorage.getItem('nihon_talk_telegram_last_dispatched_date');
+      const lastDispatched = safeLocalStorage.getItem('kaiwa_live_telegram_last_dispatched_date');
 
       // Agar kechki soat 22:00 (yoki keyinroq) bo'lsa va bugun hali yuborilmagan bo'lsa
       if (currentHour >= 22 && lastDispatched !== todayStr) {
