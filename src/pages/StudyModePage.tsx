@@ -543,13 +543,6 @@ const StudyModePage: React.FC = () => {
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <Button
-            onClick={() => navigate('/vocabulary')}
-            variant="outline"
-            className="rounded-xl px-6 py-2.5 font-bold"
-          >
-            Lug'atga o'tish
-          </Button>
-          <Button
             onClick={() => navigate('/flashcards')}
             variant="outline"
             className="rounded-xl px-6 py-2.5 font-bold"
@@ -589,13 +582,6 @@ const StudyModePage: React.FC = () => {
             className="rounded-xl bg-primary px-6 py-2.5 font-bold text-primary-foreground shadow-md"
           >
             🔄 Yana O'rganish ({batchLimit === 'all' ? 'Barchasi' : `${batchLimit} ta`})
-          </Button>
-          <Button
-            onClick={() => navigate('/vocabulary')}
-            variant="outline"
-            className="rounded-xl px-6 py-2.5 font-bold"
-          >
-            Lug'atga o'tish
           </Button>
           <Button
             onClick={() => navigate('/flashcards')}
@@ -795,18 +781,6 @@ const StudyModePage: React.FC = () => {
               >
                 🇯🇵 <span className="hidden sm:inline">Yaponcha</span>
               </button>
-              <button
-                onClick={() => handleLanguageFilterChange('en')}
-                aria-label="Filter: Inglizcha"
-                className={`rounded-lg px-2 py-0.5 text-xs font-bold transition-all ${
-                  langFilter === 'en'
-                    ? 'bg-blue-600 text-white shadow-sm'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-                title="Faqat ingliz tili kartalari"
-              >
-                🇬🇧 <span className="hidden sm:inline">Inglizcha</span>
-              </button>
             </div>
           )}
         </div>
@@ -876,7 +850,7 @@ const StudyModePage: React.FC = () => {
           <div className="my-6 space-y-4 text-center">
             <h3 className="text-3xl font-extrabold text-foreground">{currentCard?.front}</h3>
             <p className="text-xs text-muted-foreground">
-              Ushbu so'z yoki iboraning o'zbekcha/inglizcha ma'nosini yozing:
+              Ushbu so'z yoki iboraning o'zbekcha ma'nosini yozing:
             </p>
             <input
               type="text"
