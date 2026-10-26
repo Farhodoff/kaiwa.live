@@ -85,7 +85,7 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
   const [isLoadingData, setIsLoadingData] = useState(true);
   const [tabLoading, setTabLoading] = useState(false);
 
-  // Load dataset corresponding to activeTab on-demand
+  // Load dataset corresponding to activeTab on-demand (grammar, kanji, quiz)
   useEffect(() => {
     let isMounted = true;
     const loadTabDataset = async () => {
@@ -97,21 +97,6 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
           setTabLoading(true);
           const kanjiDbModule = await import('../../data/jlptKanjiDatabase');
           if (isMounted) setKanjiData(kanjiDbModule.JLPT_KANJI_DATABASE);
-        } else if (activeTab === 'goi') {
-          setTabLoading(true);
-          const vocabModule = await import('../../data/jlptVocabData');
-          let data: any[] = [];
-          if (selectedLevel === 'ALL') {
-            const [n5, n4, n3] = await Promise.all([
-              vocabModule.loadVocabByLevel('N5'),
-              vocabModule.loadVocabByLevel('N4'),
-              vocabModule.loadVocabByLevel('N3'),
-            ]);
-            data = [...n5, ...n4, ...n3];
-          } else {
-            data = await vocabModule.loadVocabByLevel(selectedLevel);
-          }
-          if (isMounted) setVocabData(data);
         } else if (activeTab === 'quiz' && grammarQuestions.length === 0) {
           setTabLoading(true);
           const questionsModule = await import('../../data/jlpt/grammar_data');
@@ -132,7 +117,7 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
     };
   }, [activeTab]);
 
-  // Dynamic on-demand vocab loader when selectedLevel changes in Goi tab
+  // Fast progressive on-demand vocab loader when Goi tab or level changes
   useEffect(() => {
     if (activeTab !== 'goi') return;
     let isMounted = true;
@@ -140,22 +125,31 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
       try {
         setTabLoading(true);
         const vocabModule = await import('../../data/jlptVocabData');
-        let data: any[] = [];
         if (selectedLevel === 'ALL') {
-          const [n5, n4, n3] = await Promise.all([
-            vocabModule.loadVocabByLevel('N5'),
+          // Instant initial paint: load N5 first (<50ms) so user never sees a stalled screen
+          const n5 = await vocabModule.loadVocabByLevel('N5');
+          if (!isMounted) return;
+          setVocabData(n5);
+          setTabLoading(false);
+
+          // Stream N4 and N3 in the background seamlessly
+          const [n4, n3] = await Promise.all([
             vocabModule.loadVocabByLevel('N4'),
             vocabModule.loadVocabByLevel('N3'),
           ]);
-          data = [...n5, ...n4, ...n3];
+          if (isMounted) {
+            setVocabData([...n5, ...n4, ...n3]);
+          }
         } else {
-          // Dynamic import strictly for the selected level (N2, N1 on-demand)
-          data = await vocabModule.loadVocabByLevel(selectedLevel);
+          // Single level on-demand (N5, N4, N3, N2, or N1)
+          const data = await vocabModule.loadVocabByLevel(selectedLevel);
+          if (isMounted) {
+            setVocabData(data);
+            setTabLoading(false);
+          }
         }
-        if (isMounted) setVocabData(data);
       } catch (err) {
         console.error('Failed to load vocab for level', err);
-      } finally {
         if (isMounted) setTabLoading(false);
       }
     };
@@ -217,6 +211,83 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
     [grammarQuestions],
   );
 
+  // Progressive display pagination state (36 cards initial paint for 60fps responsiveness)
+  const [vocabDisplayCount, setVocabDisplayCount] = useState(36);
+  const [kanjiDisplayCount, setKanjiDisplayCount] = useState(36);
+
+  // Reset pagination on filter or tab change
+  useEffect(() => {
+    setVocabDisplayCount(36);
+    setKanjiDisplayCount(36);
+  }, [activeTab, selectedLevel, searchQuery, statusFilter]);
+
+  // Filter Grammar Items (Memoized)
+  const filteredGrammar = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+    return grammarSource.filter((item) => {
+      const matchesLevel = selectedLevel === 'ALL' || item.level === selectedLevel;
+      if (!matchesLevel) return false;
+      const itemStatus = getItemStatus(item.id);
+      const matchesStatus = statusFilter === 'ALL' || itemStatus === statusFilter;
+      if (!matchesStatus) return false;
+      if (!query) return true;
+      return (
+        item.title.toLowerCase().includes(query) ||
+        item.meaningUz.toLowerCase().includes(query) ||
+        item.romaji.toLowerCase().includes(query)
+      );
+    });
+  }, [grammarSource, selectedLevel, searchQuery, statusFilter, getItemStatus]);
+
+  // Filter Kanji Items (Memoized)
+  const filteredKanji = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+    return kanjiSource.filter((item) => {
+      const matchesLevel = selectedLevel === 'ALL' || item.level === selectedLevel;
+      if (!matchesLevel) return false;
+      const itemStatus = getItemStatus(item.id);
+      const matchesStatus = statusFilter === 'ALL' || itemStatus === statusFilter;
+      if (!matchesStatus) return false;
+      if (!query) return true;
+      return (
+        item.kanji.includes(query) ||
+        item.meaningUz.toLowerCase().includes(query) ||
+        item.onyomi.toLowerCase().includes(query) ||
+        item.kunyomi.toLowerCase().includes(query)
+      );
+    });
+  }, [kanjiSource, selectedLevel, searchQuery, statusFilter, getItemStatus]);
+
+  // Filter Vocab Items (Memoized)
+  const filteredVocab = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+    return vocabSource.filter((item) => {
+      const matchesLevel = selectedLevel === 'ALL' || item.level === selectedLevel;
+      if (!matchesLevel) return false;
+      const itemStatus = getItemStatus(item.id);
+      const matchesStatus = statusFilter === 'ALL' || itemStatus === statusFilter;
+      if (!matchesStatus) return false;
+      if (!query) return true;
+      return (
+        item.word.toLowerCase().includes(query) ||
+        item.reading.toLowerCase().includes(query) ||
+        item.romaji.toLowerCase().includes(query) ||
+        item.meaningUz.toLowerCase().includes(query)
+      );
+    });
+  }, [vocabSource, selectedLevel, searchQuery, statusFilter, getItemStatus]);
+
+  // Progressive slices for silky-smooth rendering
+  const visibleVocab = useMemo(
+    () => filteredVocab.slice(0, vocabDisplayCount),
+    [filteredVocab, vocabDisplayCount],
+  );
+
+  const visibleKanji = useMemo(
+    () => filteredKanji.slice(0, kanjiDisplayCount),
+    [filteredKanji, kanjiDisplayCount],
+  );
+
   if (isLoadingData) {
     return (
       <div className="flex items-center justify-center p-12">
@@ -268,47 +339,6 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
 
     setSavedCardIds((prev) => [...prev, item.id]);
   };
-
-  // Filter Grammar Items
-  const filteredGrammar = grammarSource.filter((item) => {
-    const matchesLevel = selectedLevel === 'ALL' || item.level === selectedLevel;
-    const matchesQuery =
-      !searchQuery.trim() ||
-      item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.meaningUz.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.romaji.toLowerCase().includes(searchQuery.toLowerCase());
-    const itemStatus = getItemStatus(item.id);
-    const matchesStatus = statusFilter === 'ALL' || itemStatus === statusFilter;
-    return matchesLevel && matchesQuery && matchesStatus;
-  });
-
-  // Filter Kanji Items
-  const filteredKanji = kanjiSource.filter((item) => {
-    const matchesLevel = selectedLevel === 'ALL' || item.level === selectedLevel;
-    const matchesQuery =
-      !searchQuery.trim() ||
-      item.kanji.includes(searchQuery) ||
-      item.meaningUz.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.onyomi.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.kunyomi.toLowerCase().includes(searchQuery.toLowerCase());
-    const itemStatus = getItemStatus(item.id);
-    const matchesStatus = statusFilter === 'ALL' || itemStatus === statusFilter;
-    return matchesLevel && matchesQuery && matchesStatus;
-  });
-
-  // Filter Vocab Items
-  const filteredVocab = vocabSource.filter((item) => {
-    const matchesLevel = selectedLevel === 'ALL' || item.level === selectedLevel;
-    const matchesQuery =
-      !searchQuery.trim() ||
-      item.word.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.reading.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.romaji.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.meaningUz.toLowerCase().includes(searchQuery.toLowerCase());
-    const itemStatus = getItemStatus(item.id);
-    const matchesStatus = statusFilter === 'ALL' || itemStatus === statusFilter;
-    return matchesLevel && matchesQuery && matchesStatus;
-  });
 
   // Calculate level stats
   const currentActiveList =
@@ -731,7 +761,7 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
                   </div>
 
                   {/* Rule Title & Furigana */}
-                  <h3 className="font-japanese mb-1 text-xl font-bold tracking-tight text-foreground transition group-hover:text-primary">
+                  <h3 className="font-japanese mb-1.5 text-xl font-bold tracking-tight text-foreground transition group-hover:text-primary sm:text-2xl">
                     <FuriganaText text={item.title} />
                   </h3>
                   <div className="mb-2 font-mono text-xs text-amber-600 dark:text-amber-400">
@@ -754,21 +784,22 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
                   {item.examples.map((ex, idx) => (
                     <div
                       key={idx}
-                      className="mb-2 space-y-1 rounded-xl border border-border/80 bg-muted/20 p-3"
+                      className="mb-2.5 space-y-1.5 rounded-xl border border-border/80 bg-muted/20 p-3 sm:p-3.5"
                     >
-                      <div className="font-japanese flex items-center justify-between text-sm font-medium text-foreground">
-                        <span>
+                      <div className="font-japanese flex items-start justify-between gap-2 text-base font-medium leading-relaxed text-foreground sm:text-lg">
+                        <span className="flex-1">
                           <FuriganaText text={ex.ja} />
                         </span>
                         <button
                           onClick={() => handlePlayAudio(ex.ja)}
-                          className="text-muted-foreground transition hover:text-foreground"
+                          className="mt-0.5 shrink-0 rounded-lg p-1 text-muted-foreground transition hover:bg-muted hover:text-foreground"
+                          title="Tinglash"
                         >
-                          <Volume2 className="h-3.5 w-3.5" />
+                          <Volume2 className="h-4 w-4" />
                         </button>
                       </div>
                       <div className="text-xs italic text-muted-foreground">{ex.romaji}</div>
-                      <div className="text-xs text-foreground/90">{ex.uz}</div>
+                      <div className="text-xs text-foreground/90 sm:text-sm">{ex.uz}</div>
                     </div>
                   ))}
                 </div>
@@ -826,126 +857,159 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
           </p>
         </div>
       )}
-      {activeTab === 'kanji' && !tabLoading && (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredKanji.map((item) => {
-            const status = getItemStatus(item.id);
-            const isExported = savedCardIds.includes(item.id);
-
-            return (
-              <div
-                key={item.id}
-                className="flex flex-col justify-between rounded-2xl border border-border bg-card p-4 shadow-xs transition-all duration-200 hover:border-primary/40 sm:p-5"
-              >
-                <div>
-                  {/* Level Badge & Actions */}
-                  <div className="mb-3 flex items-center justify-between">
-                    <span className="rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 text-xs font-bold text-amber-600 dark:text-amber-400">
-                      {item.level} • {item.strokeCount} {language === 'ja' ? 'かく' : 'chiziq'}
-                    </span>
-                    <div className="flex items-center gap-1.5">
-                      <button
-                        onClick={() => handlePlayAudio(item.kanji)}
-                        className="rounded-xl border border-border bg-muted/60 p-1.5 text-muted-foreground transition hover:bg-muted hover:text-foreground"
-                        title={language === 'ja' ? 'おんせい' : 'Talaffuz'}
-                      >
-                        <Volume2 className="h-4 w-4" />
-                      </button>
-                      <button
-                        onClick={() => {
-                          haptics.selection();
-                          setStrokeModalKanji(item);
-                        }}
-                        className="flex items-center gap-1 rounded-xl border border-amber-500/30 bg-amber-500/10 p-1.5 text-xs font-bold text-amber-600 transition hover:bg-amber-500/20 dark:text-amber-400"
-                        title="Stroke Order Animation"
-                      >
-                        <Play className="h-3.5 w-3.5" />{' '}
-                        {language === 'ja' ? 'かきじゅん' : 'Chizish'}
-                      </button>
-                      <button
-                        onClick={() => handleExportToFlashcard(item, 'kanji')}
-                        className={`rounded-xl border p-1.5 transition ${
-                          isExported
-                            ? 'border-emerald-500/30 bg-emerald-500/15 text-emerald-600 dark:text-emerald-400'
-                            : 'border-border bg-muted/60 text-muted-foreground hover:bg-muted hover:text-foreground'
-                        }`}
-                        title={
-                          language === 'ja' ? 'たんごカードへ ほぞん' : "Flashcards'ga saqlash"
-                        }
-                      >
-                        {isExported ? <Check className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Kanji Large Render */}
-                  <div className="mb-4 flex items-center gap-4">
-                    <div
-                      onClick={() => setStrokeModalKanji(item)}
-                      className="font-japanese flex h-20 w-20 shrink-0 cursor-pointer items-center justify-center rounded-2xl border border-border bg-muted/40 text-4xl font-black text-rose-600 shadow-inner transition hover:scale-105 dark:text-rose-400"
-                    >
-                      {item.kanji}
-                    </div>
-                    <div className="space-y-1">
-                      <div className="text-base font-bold text-foreground">{item.meaningUz}</div>
-                      <div className="text-xs text-muted-foreground">
-                        <span className="font-bold text-amber-600 dark:text-amber-400">On:</span>{' '}
-                        {item.onyomi}
-                      </div>
-                      <div className="text-xs text-muted-foreground">
-                        <span className="font-bold text-emerald-600 dark:text-emerald-400">
-                          Kun:
-                        </span>{' '}
-                        {item.kunyomi}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Examples */}
-                  <div className="space-y-1.5 rounded-xl border border-border/80 bg-muted/20 p-3">
-                    {item.examples.map((ex, idx) => (
-                      <div key={idx} className="flex items-center justify-between text-xs">
-                        <span className="font-japanese font-semibold text-foreground">
-                          {ex.word} ({ex.reading})
-                        </span>
-                        <span className="text-muted-foreground">{ex.meaning}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Status Toggle Buttons */}
-                <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-border pt-3 text-xs">
-                  <span className="shrink-0 text-muted-foreground">
-                    {language === 'ja' ? 'じょうたい:' : 'Holat:'}
-                  </span>
-                  <div className="flex flex-wrap items-center gap-1.5">
-                    <button
-                      onClick={() => setItemStatus(item.id, 'hard')}
-                      className={`rounded-lg border px-2 py-0.5 transition ${
-                        status === 'hard'
-                          ? 'border-rose-500/30 bg-rose-500/15 font-bold text-rose-600 dark:text-rose-400'
-                          : 'border-border bg-muted/30 text-muted-foreground'
-                      }`}
-                    >
-                      {language === 'ja' ? 'むずかしい 🔴' : 'Qiyin 🔴'}
-                    </button>
-                    <button
-                      onClick={() => setItemStatus(item.id, 'mastered')}
-                      className={`rounded-lg border px-2 py-0.5 transition ${
-                        status === 'mastered'
-                          ? 'border-amber-500/30 bg-amber-500/15 font-bold text-amber-600 dark:text-amber-400'
-                          : 'border-border bg-muted/30 text-muted-foreground'
-                      }`}
-                    >
-                      {language === 'ja' ? 'おぼえた ⚡' : 'Mukammal ⚡'}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+      {activeTab === 'kanji' && !tabLoading && filteredKanji.length === 0 && (
+        <div className="flex flex-col items-center justify-center p-12 text-center text-muted-foreground">
+          <p className="text-base font-medium">
+            {language === 'ja'
+              ? '一致する漢字が見つかりませんでした'
+              : "Qidiruv bo'yicha mos keluvchi kanji topilmadi"}
+          </p>
         </div>
+      )}
+      {activeTab === 'kanji' && !tabLoading && filteredKanji.length > 0 && (
+        <>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {visibleKanji.map((item) => {
+              const status = getItemStatus(item.id);
+              const isExported = savedCardIds.includes(item.id);
+
+              return (
+                <div
+                  key={item.id}
+                  className="flex flex-col justify-between rounded-2xl border border-border bg-card p-4 shadow-xs transition-all duration-200 hover:border-primary/40 sm:p-5"
+                >
+                  <div>
+                    {/* Level Badge & Actions */}
+                    <div className="mb-3 flex items-center justify-between">
+                      <span className="rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 text-xs font-bold text-amber-600 dark:text-amber-400">
+                        {item.level} • {item.strokeCount} {language === 'ja' ? 'かく' : 'chiziq'}
+                      </span>
+                      <div className="flex items-center gap-1.5">
+                        <button
+                          onClick={() => handlePlayAudio(item.kanji)}
+                          className="rounded-xl border border-border bg-muted/60 p-1.5 text-muted-foreground transition hover:bg-muted hover:text-foreground"
+                          title={language === 'ja' ? 'おんせい' : 'Talaffuz'}
+                        >
+                          <Volume2 className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => {
+                            haptics.selection();
+                            setStrokeModalKanji(item);
+                          }}
+                          className="flex items-center gap-1 rounded-xl border border-amber-500/30 bg-amber-500/10 p-1.5 text-xs font-bold text-amber-600 transition hover:bg-amber-500/20 dark:text-amber-400"
+                          title="Stroke Order Animation"
+                        >
+                          <Play className="h-3.5 w-3.5" />{' '}
+                          {language === 'ja' ? 'かきじゅん' : 'Chizish'}
+                        </button>
+                        <button
+                          onClick={() => handleExportToFlashcard(item, 'kanji')}
+                          className={`rounded-xl border p-1.5 transition ${
+                            isExported
+                              ? 'border-emerald-500/30 bg-emerald-500/15 text-emerald-600 dark:text-emerald-400'
+                              : 'border-border bg-muted/60 text-muted-foreground hover:bg-muted hover:text-foreground'
+                          }`}
+                          title={
+                            language === 'ja' ? 'たんごカードへ ほぞん' : "Flashcards'ga saqlash"
+                          }
+                        >
+                          {isExported ? (
+                            <Check className="h-4 w-4" />
+                          ) : (
+                            <Plus className="h-4 w-4" />
+                          )}
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Kanji Large Render */}
+                    <div className="mb-4 flex items-center gap-4">
+                      <div
+                        onClick={() => setStrokeModalKanji(item)}
+                        className="font-japanese flex h-20 w-20 shrink-0 cursor-pointer items-center justify-center rounded-2xl border border-border bg-muted/40 text-4xl font-black text-rose-600 shadow-inner transition hover:scale-105 dark:text-rose-400"
+                      >
+                        {item.kanji}
+                      </div>
+                      <div className="space-y-1">
+                        <div className="text-base font-bold text-foreground">{item.meaningUz}</div>
+                        <div className="text-xs text-muted-foreground">
+                          <span className="font-bold text-amber-600 dark:text-amber-400">On:</span>{' '}
+                          {item.onyomi}
+                        </div>
+                        <div className="text-xs text-muted-foreground">
+                          <span className="font-bold text-emerald-600 dark:text-emerald-400">
+                            Kun:
+                          </span>{' '}
+                          {item.kunyomi}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Examples */}
+                    <div className="space-y-1.5 rounded-xl border border-border/80 bg-muted/20 p-3">
+                      {item.examples.map((ex, idx) => (
+                        <div key={idx} className="flex items-center justify-between text-xs">
+                          <span className="font-japanese font-semibold text-foreground">
+                            {ex.word} ({ex.reading})
+                          </span>
+                          <span className="text-muted-foreground">{ex.meaning}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Status Toggle Buttons */}
+                  <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-border pt-3 text-xs">
+                    <span className="shrink-0 text-muted-foreground">
+                      {language === 'ja' ? 'じょうたい:' : 'Holat:'}
+                    </span>
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      <button
+                        onClick={() => setItemStatus(item.id, 'hard')}
+                        className={`rounded-lg border px-2 py-0.5 transition ${
+                          status === 'hard'
+                            ? 'border-rose-500/30 bg-rose-500/15 font-bold text-rose-600 dark:text-rose-400'
+                            : 'border-border bg-muted/30 text-muted-foreground'
+                        }`}
+                      >
+                        {language === 'ja' ? 'むずかしい 🔴' : 'Qiyin 🔴'}
+                      </button>
+                      <button
+                        onClick={() => setItemStatus(item.id, 'mastered')}
+                        className={`rounded-lg border px-2 py-0.5 transition ${
+                          status === 'mastered'
+                            ? 'border-amber-500/30 bg-amber-500/15 font-bold text-amber-600 dark:text-amber-400'
+                            : 'border-border bg-muted/30 text-muted-foreground'
+                        }`}
+                      >
+                        {language === 'ja' ? 'おぼえた ⚡' : 'Mukammal ⚡'}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {visibleKanji.length < filteredKanji.length && (
+            <div className="mt-8 flex flex-col items-center justify-center gap-2">
+              <button
+                onClick={() =>
+                  setKanjiDisplayCount((prev) => Math.min(prev + 36, filteredKanji.length))
+                }
+                className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground shadow-xs transition hover:border-primary/40 hover:bg-muted/50"
+              >
+                <span>{language === 'ja' ? 'さらに読み込む (+36)' : "Ko'proq yuklash (+36)"}</span>
+              </button>
+              <p className="text-xs text-muted-foreground">
+                {language === 'ja'
+                  ? `${visibleKanji.length} / ${filteredKanji.length} 件を表示中`
+                  : `${visibleKanji.length} / ${filteredKanji.length} ta kanji ko'rsatilmoqda`}
+              </p>
+            </div>
+          )}
+        </>
       )}
 
       {/* TAB 3: GOI (VOCABULARY) LIST */}
@@ -957,149 +1021,183 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
           </p>
         </div>
       )}
-      {activeTab === 'goi' && !tabLoading && (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredVocab.map((item) => {
-            const status = getItemStatus(item.id);
-            const isExported = savedCardIds.includes(item.id);
-
-            return (
-              <div
-                key={item.id}
-                className="group relative flex flex-col justify-between rounded-2xl border border-border bg-card p-5 shadow-xs transition-all duration-200 hover:border-primary/40"
-              >
-                <div>
-                  {/* Level Badge & Actions */}
-                  <div className="mb-3 flex items-center justify-between">
-                    <div className="flex items-center gap-1.5">
-                      <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-xs font-bold text-emerald-600 dark:text-emerald-400">
-                        {item.level}
-                      </span>
-                      {item.partOfSpeech && (
-                        <span className="rounded-md border border-border bg-muted/60 px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
-                          {item.partOfSpeech}
-                        </span>
-                      )}
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <button
-                        onClick={() => handlePlayAudio(item.reading || item.word)}
-                        className="rounded-xl border border-border bg-muted/60 p-2 text-muted-foreground transition hover:bg-muted hover:text-foreground"
-                        title={language === 'ja' ? 'おんせい' : 'Talaffuz'}
-                      >
-                        <Volume2 className="h-4 w-4" />
-                      </button>
-                      <button
-                        onClick={() => handleExportToFlashcard(item, 'vocab')}
-                        className={`rounded-xl border p-2 transition ${
-                          isExported
-                            ? 'border-emerald-500/30 bg-emerald-500/15 text-emerald-600 dark:text-emerald-400'
-                            : 'border-border bg-muted/60 text-muted-foreground hover:bg-muted hover:text-foreground'
-                        }`}
-                        title={
-                          language === 'ja' ? 'たんごカードへ ほぞん' : "Flashcards'ga saqlash"
-                        }
-                      >
-                        {isExported ? <Check className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Word & Furigana */}
-                  <h3 className="font-japanese mb-1 text-2xl font-bold tracking-tight text-foreground transition group-hover:text-primary">
-                    <FuriganaText
-                      text={
-                        item.word !== item.reading && !item.word.includes('[')
-                          ? `${item.word}[${item.reading}]`
-                          : item.word
-                      }
-                    />
-                  </h3>
-                  <div className="mb-2 font-mono text-xs text-amber-600 dark:text-amber-400">
-                    {item.romaji}
-                  </div>
-
-                  {/* Meaning */}
-                  <div className="mb-3 space-y-1 rounded-xl border border-border bg-muted/30 p-2.5">
-                    <div className="text-xs font-semibold text-foreground">
-                      <span className="text-emerald-600 dark:text-emerald-400">🇺🇿 Ma'nosi:</span>{' '}
-                      {item.meaningUz}
-                    </div>
-                  </div>
-
-                  {/* Examples */}
-                  {item.examples && item.examples.length > 0 && (
-                    <div className="space-y-1.5">
-                      {item.examples.map((ex, idx) => (
-                        <div
-                          key={idx}
-                          className="space-y-1 rounded-xl border border-border/80 bg-muted/20 p-2.5"
-                        >
-                          <div className="font-japanese flex items-center justify-between text-xs font-medium text-foreground">
-                            <span>
-                              <FuriganaText text={ex.ja} />
-                            </span>
-                            <button
-                              onClick={() => handlePlayAudio(ex.ja)}
-                              className="text-muted-foreground transition hover:text-foreground"
-                            >
-                              <Volume2 className="h-3 w-3" />
-                            </button>
-                          </div>
-                          {ex.romaji && (
-                            <div className="text-[11px] italic text-muted-foreground">
-                              {ex.romaji}
-                            </div>
-                          )}
-                          <div className="text-[11px] text-foreground/90">{ex.uz}</div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                {/* Status Toggle Buttons */}
-                <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-border pt-3 text-xs">
-                  <span className="shrink-0 text-muted-foreground">
-                    {language === 'ja' ? 'おぼえかた:' : 'Mustahkamlash:'}
-                  </span>
-                  <div className="flex flex-wrap items-center gap-1.5">
-                    <button
-                      onClick={() => setItemStatus(item.id, 'hard')}
-                      className={`rounded-lg border px-2 py-1 transition ${
-                        status === 'hard'
-                          ? 'border-rose-500/30 bg-rose-500/15 font-bold text-rose-600 dark:text-rose-400'
-                          : 'border-border bg-muted/30 text-muted-foreground hover:text-rose-600 dark:text-rose-400'
-                      }`}
-                    >
-                      {language === 'ja' ? 'むずかしい 🔴' : 'Qiyin 🔴'}
-                    </button>
-                    <button
-                      onClick={() => setItemStatus(item.id, 'learned')}
-                      className={`rounded-lg border px-2 py-1 transition ${
-                        status === 'learned'
-                          ? 'border-emerald-500/30 bg-emerald-500/15 font-bold text-emerald-600 dark:text-emerald-400'
-                          : 'border-border bg-muted/30 text-muted-foreground hover:text-emerald-600'
-                      }`}
-                    >
-                      {language === 'ja' ? 'がくしゅうずみ 🟢' : "O'rganildi 🟢"}
-                    </button>
-                    <button
-                      onClick={() => setItemStatus(item.id, 'mastered')}
-                      className={`rounded-lg border px-2 py-1 transition ${
-                        status === 'mastered'
-                          ? 'border-amber-500/30 bg-amber-500/15 font-bold text-amber-600 dark:text-amber-400'
-                          : 'border-border bg-muted/30 text-muted-foreground hover:text-amber-600 dark:text-amber-400'
-                      }`}
-                    >
-                      {language === 'ja' ? 'おぼえた ⚡' : 'Mukammal ⚡'}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+      {activeTab === 'goi' && !tabLoading && filteredVocab.length === 0 && (
+        <div className="flex flex-col items-center justify-center p-12 text-center text-muted-foreground">
+          <p className="text-base font-medium">
+            {language === 'ja'
+              ? '一致する語彙が見つかりませんでした'
+              : "Qidiruv bo'yicha mos keluvchi so'z topilmadi"}
+          </p>
         </div>
+      )}
+      {activeTab === 'goi' && !tabLoading && filteredVocab.length > 0 && (
+        <>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {visibleVocab.map((item) => {
+              const status = getItemStatus(item.id);
+              const isExported = savedCardIds.includes(item.id);
+
+              return (
+                <div
+                  key={item.id}
+                  className="group relative flex flex-col justify-between rounded-2xl border border-border bg-card p-5 shadow-xs transition-all duration-200 hover:border-primary/40"
+                >
+                  <div>
+                    {/* Level Badge & Actions */}
+                    <div className="mb-3 flex items-center justify-between">
+                      <div className="flex items-center gap-1.5">
+                        <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-xs font-bold text-emerald-600 dark:text-emerald-400">
+                          {item.level}
+                        </span>
+                        {item.partOfSpeech && (
+                          <span className="rounded-md border border-border bg-muted/60 px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
+                            {item.partOfSpeech}
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <button
+                          onClick={() => handlePlayAudio(item.reading || item.word)}
+                          className="rounded-xl border border-border bg-muted/60 p-2 text-muted-foreground transition hover:bg-muted hover:text-foreground"
+                          title={language === 'ja' ? 'おんせい' : 'Talaffuz'}
+                        >
+                          <Volume2 className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => handleExportToFlashcard(item, 'vocab')}
+                          className={`rounded-xl border p-2 transition ${
+                            isExported
+                              ? 'border-emerald-500/30 bg-emerald-500/15 text-emerald-600 dark:text-emerald-400'
+                              : 'border-border bg-muted/60 text-muted-foreground hover:bg-muted hover:text-foreground'
+                          }`}
+                          title={
+                            language === 'ja' ? 'たんごカードへ ほぞん' : "Flashcards'ga saqlash"
+                          }
+                        >
+                          {isExported ? (
+                            <Check className="h-4 w-4" />
+                          ) : (
+                            <Plus className="h-4 w-4" />
+                          )}
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Word & Furigana */}
+                    <h3 className="font-japanese mb-1 text-2xl font-bold tracking-tight text-foreground transition group-hover:text-primary">
+                      <FuriganaText
+                        text={
+                          item.word !== item.reading && !item.word.includes('[')
+                            ? `${item.word}[${item.reading}]`
+                            : item.word
+                        }
+                      />
+                    </h3>
+                    <div className="mb-2 font-mono text-xs text-amber-600 dark:text-amber-400">
+                      {item.romaji}
+                    </div>
+
+                    {/* Meaning */}
+                    <div className="mb-3 space-y-1 rounded-xl border border-border bg-muted/30 p-2.5">
+                      <div className="text-xs font-semibold text-foreground">
+                        <span className="text-emerald-600 dark:text-emerald-400">🇺🇿 Ma'nosi:</span>{' '}
+                        {item.meaningUz}
+                      </div>
+                    </div>
+
+                    {/* Examples */}
+                    {item.examples && item.examples.length > 0 && (
+                      <div className="space-y-1.5">
+                        {item.examples.map((ex, idx) => (
+                          <div
+                            key={idx}
+                            className="space-y-1.5 rounded-xl border border-border/80 bg-muted/20 p-3"
+                          >
+                            <div className="font-japanese flex items-start justify-between gap-2 text-sm font-medium leading-relaxed text-foreground sm:text-base">
+                              <span className="flex-1">
+                                <FuriganaText text={ex.ja} />
+                              </span>
+                              <button
+                                onClick={() => handlePlayAudio(ex.ja)}
+                                className="mt-0.5 shrink-0 rounded-lg p-1 text-muted-foreground transition hover:bg-muted hover:text-foreground"
+                                title="Tinglash"
+                              >
+                                <Volume2 className="h-3.5 w-3.5" />
+                              </button>
+                            </div>
+                            {ex.romaji && (
+                              <div className="text-[11px] italic text-muted-foreground">
+                                {ex.romaji}
+                              </div>
+                            )}
+                            <div className="text-xs text-foreground/90">{ex.uz}</div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Status Toggle Buttons */}
+                  <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-border pt-3 text-xs">
+                    <span className="shrink-0 text-muted-foreground">
+                      {language === 'ja' ? 'おぼえかた:' : 'Mustahkamlash:'}
+                    </span>
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      <button
+                        onClick={() => setItemStatus(item.id, 'hard')}
+                        className={`rounded-lg border px-2 py-1 transition ${
+                          status === 'hard'
+                            ? 'border-rose-500/30 bg-rose-500/15 font-bold text-rose-600 dark:text-rose-400'
+                            : 'border-border bg-muted/30 text-muted-foreground hover:text-rose-600 dark:text-rose-400'
+                        }`}
+                      >
+                        {language === 'ja' ? 'むずかしい 🔴' : 'Qiyin 🔴'}
+                      </button>
+                      <button
+                        onClick={() => setItemStatus(item.id, 'learned')}
+                        className={`rounded-lg border px-2 py-1 transition ${
+                          status === 'learned'
+                            ? 'border-emerald-500/30 bg-emerald-500/15 font-bold text-emerald-600 dark:text-emerald-400'
+                            : 'border-border bg-muted/30 text-muted-foreground hover:text-emerald-600'
+                        }`}
+                      >
+                        {language === 'ja' ? 'がくしゅうずみ 🟢' : "O'rganildi 🟢"}
+                      </button>
+                      <button
+                        onClick={() => setItemStatus(item.id, 'mastered')}
+                        className={`rounded-lg border px-2 py-1 transition ${
+                          status === 'mastered'
+                            ? 'border-amber-500/30 bg-amber-500/15 font-bold text-amber-600 dark:text-amber-400'
+                            : 'border-border bg-muted/30 text-muted-foreground hover:text-amber-600 dark:text-amber-400'
+                        }`}
+                      >
+                        {language === 'ja' ? 'おぼえた ⚡' : 'Mukammal ⚡'}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {visibleVocab.length < filteredVocab.length && (
+            <div className="mt-8 flex flex-col items-center justify-center gap-2">
+              <button
+                onClick={() =>
+                  setVocabDisplayCount((prev) => Math.min(prev + 36, filteredVocab.length))
+                }
+                className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground shadow-xs transition hover:border-primary/40 hover:bg-muted/50"
+              >
+                <span>{language === 'ja' ? 'さらに読み込む (+36)' : "Ko'proq yuklash (+36)"}</span>
+              </button>
+              <p className="text-xs text-muted-foreground">
+                {language === 'ja'
+                  ? `${visibleVocab.length} / ${filteredVocab.length} 件を表示中`
+                  : `${visibleVocab.length} / ${filteredVocab.length} ta so'z ko'rsatilmoqda`}
+              </p>
+            </div>
+          )}
+        </>
       )}
 
       {/* TAB 4: QUIZ MODE */}
@@ -1318,7 +1416,10 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
                     </span>
                   </div>
 
-                  <h3 className="font-japanese text-xl font-bold leading-relaxed text-foreground">
+                  <h3 className="font-japanese text-lg font-bold leading-relaxed text-foreground sm:text-xl">
+                    <span className="mr-2 font-mono font-bold text-primary">
+                      問{quizIndex + 1}.
+                    </span>
                     {quizQuestions[quizIndex]?.questionText}
                   </h3>
 
@@ -1328,7 +1429,9 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
                       const isCorrect = idx === quizQuestions[quizIndex].correctAnswer;
 
                       let btnClass =
-                        'w-full text-left p-4 rounded-2xl border text-sm font-semibold transition-all flex items-center justify-between ';
+                        'group w-full text-left p-4 rounded-2xl border text-sm sm:text-base font-medium transition-all flex items-center justify-between ';
+                      let badgeClass =
+                        'h-6 w-6 rounded-full flex items-center justify-center text-xs font-bold border border-current/25 shrink-0 ';
 
                       if (selectedOption === null) {
                         btnClass +=
@@ -1336,11 +1439,13 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
                       } else if (isCorrect) {
                         btnClass +=
                           'bg-emerald-500/15 border-emerald-500/40 text-emerald-600 dark:text-emerald-400 font-bold';
+                        badgeClass = 'bg-emerald-500 text-white border-transparent ';
                       } else if (isSelected) {
                         btnClass +=
                           'bg-rose-500/15 border-rose-500/40 text-rose-600 dark:text-rose-400 font-bold';
+                        badgeClass = 'bg-rose-500 text-white border-transparent ';
                       } else {
-                        btnClass += 'bg-muted/20 border-border text-muted-foreground';
+                        btnClass += 'bg-muted/20 border-border text-muted-foreground opacity-60';
                       }
 
                       return (
@@ -1349,9 +1454,14 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
                           onClick={() => handleAnswerQuiz(idx)}
                           className={btnClass}
                         >
-                          <span>{opt}</span>
+                          <span className="flex items-center gap-3">
+                            <span className={badgeClass}>{idx + 1}</span>
+                            <span className="font-japanese text-sm font-medium leading-relaxed sm:text-base">
+                              {opt}
+                            </span>
+                          </span>
                           {selectedOption !== null && isCorrect && (
-                            <CheckCircle2 className="h-5 w-5 text-emerald-500" />
+                            <CheckCircle2 className="ml-2 h-5 w-5 shrink-0 text-emerald-500" />
                           )}
                         </button>
                       );
