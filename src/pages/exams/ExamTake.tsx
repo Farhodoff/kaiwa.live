@@ -499,31 +499,24 @@ export const ExamTake: React.FC = () => {
   return (
     <div className="mx-auto max-w-6xl space-y-6 px-4 py-8 duration-300 animate-in fade-in">
       {/* Header */}
-      <div className="flex items-center gap-4 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+      <div className="flex items-center gap-4 rounded-3xl border border-border bg-card p-5 shadow-xs">
         <button
           onClick={() => navigate(-1)}
-          className="rounded-2xl bg-slate-100 p-2.5 transition hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700"
+          className="rounded-2xl border border-border/60 bg-muted/60 p-2.5 text-foreground transition hover:bg-muted"
+          aria-label="Orqaga"
         >
-          <ArrowLeft className="h-5 w-5 text-slate-600 dark:text-slate-300" />
+          <ArrowLeft className="h-5 w-5" />
         </button>
         <div>
-          <span
-            className={`rounded-full border px-3 py-1 text-xs font-extrabold uppercase ${
-              exam.type.includes('JLPT')
-                ? 'border-rose-500/20 bg-rose-500/10 text-rose-600'
-                : 'border-indigo-500/20 bg-indigo-500/10 text-indigo-600'
-            }`}
-          >
+          <span className="rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-xs font-extrabold uppercase text-primary">
             {exam.type}
           </span>
-          <h1 className="mt-1 text-xl font-extrabold text-slate-900 dark:text-white md:text-2xl">
-            {exam.title}
-          </h1>
+          <h1 className="mt-1 text-xl font-extrabold text-foreground md:text-2xl">{exam.title}</h1>
         </div>
       </div>
 
       {/* Sections Tab Navigation */}
-      <div className="flex gap-2 overflow-x-auto border-b border-slate-200 pb-3 dark:border-slate-800">
+      <div className="flex gap-2 overflow-x-auto border-b border-border pb-3">
         {sections.map((section) => {
           const isActive = section.id === activeSectionId;
           return (
@@ -532,8 +525,8 @@ export const ExamTake: React.FC = () => {
               onClick={() => setActiveSectionId(section.id)}
               className={`flex items-center gap-2 whitespace-nowrap rounded-2xl px-5 py-3 text-sm font-extrabold transition-all ${
                 isActive
-                  ? 'scale-[1.02] bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/20'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700'
+                  ? 'scale-[1.02] bg-primary text-primary-foreground shadow-md shadow-primary/20'
+                  : 'bg-muted/60 text-muted-foreground hover:bg-muted hover:text-foreground'
               }`}
             >
               {section.type === 'Writing' && <PenTool className="h-4 w-4" />}
@@ -571,16 +564,16 @@ export const ExamTake: React.FC = () => {
             {(activeSection.type === 'Reading' || activeSection.type === 'Listening') && (
               <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-2">
                 {/* Left Pane: Dokkai Reading Passage or Choukai Listening Audio */}
-                <div className="sticky top-4 max-h-[78vh] space-y-4 overflow-y-auto rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                <div className="sticky top-4 max-h-[78vh] space-y-4 overflow-y-auto rounded-3xl border border-border bg-card p-6 shadow-xs">
                   {activeSection.type === 'Listening' ? (
                     <div className="space-y-4">
-                      <div className="flex items-center gap-2 border-b border-slate-100 pb-3 dark:border-slate-800">
-                        <Headphones className="h-5 w-5 text-blue-500" />
+                      <div className="flex items-center gap-2 border-b border-border/80 pb-3">
+                        <Headphones className="h-5 w-5 text-primary" />
                         <div>
-                          <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">
+                          <h3 className="text-lg font-extrabold text-foreground">
                             {activeSection.title} (Choukai Tinglash)
                           </h3>
-                          <p className="text-xs text-slate-500">
+                          <p className="text-xs text-muted-foreground">
                             Audioni tinglang va savollarga javob bering
                           </p>
                         </div>
@@ -603,7 +596,7 @@ export const ExamTake: React.FC = () => {
                             {secAudios.map((audioItem, aIdx) => (
                               <div
                                 key={audioItem.id}
-                                className="space-y-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800/60"
+                                className="space-y-3 rounded-2xl border border-border bg-muted/30 p-4"
                               >
                                 <div className="flex items-center justify-between">
                                   <h4 className="text-sm font-bold text-slate-800 dark:text-slate-200">
@@ -675,7 +668,7 @@ export const ExamTake: React.FC = () => {
                                       {p.title}
                                     </h4>
                                   )}
-                                  <div className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-slate-800 dark:text-slate-200">
+                                  <div className="font-japanese whitespace-pre-wrap text-sm leading-loose tracking-wide text-foreground sm:text-base">
                                     {p.content}
                                   </div>
                                 </div>
@@ -684,7 +677,7 @@ export const ExamTake: React.FC = () => {
                           );
                         }
                         return (
-                          <div className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-slate-800 dark:text-slate-200">
+                          <div className="font-japanese whitespace-pre-wrap text-sm leading-loose tracking-wide text-foreground sm:text-base">
                             {activeSection.content || 'Hali matn kiritilmagan.'}
                           </div>
                         );
@@ -694,11 +687,9 @@ export const ExamTake: React.FC = () => {
                 </div>
 
                 {/* Right Pane: Questions & Answer Selectors */}
-                <div className="space-y-6 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-                  <div className="flex items-center justify-between border-b border-slate-100 pb-3 dark:border-slate-800">
-                    <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">
-                      Savollar
-                    </h3>
+                <div className="space-y-6 rounded-3xl border border-border bg-card p-6 shadow-xs">
+                  <div className="flex items-center justify-between border-b border-border/80 pb-3">
+                    <h3 className="text-lg font-extrabold text-foreground">Savollar</h3>
                     {submittedResults ? (
                       <button
                         onClick={() => setShowCertificate(true)}
@@ -708,7 +699,7 @@ export const ExamTake: React.FC = () => {
                         {submittedResults.total} (Sertifikat)
                       </button>
                     ) : (
-                      <span className="text-xs font-bold text-slate-400">
+                      <span className="text-xs font-bold text-muted-foreground">
                         Javob berildi: {Object.keys(userAnswers).length} / {questions.length}
                       </span>
                     )}
@@ -716,7 +707,7 @@ export const ExamTake: React.FC = () => {
 
                   {loadingQuestions ? (
                     <div className="py-12 text-center">
-                      <Loader2 className="mx-auto h-8 w-8 animate-spin text-indigo-500" />
+                      <Loader2 className="mx-auto h-8 w-8 animate-spin text-primary" />
                     </div>
                   ) : questions.length > 0 ? (
                     <div className="max-h-[62vh] space-y-6 overflow-y-auto pr-1">
@@ -725,9 +716,9 @@ export const ExamTake: React.FC = () => {
                         return (
                           <div
                             key={q.id}
-                            className="space-y-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700/80 dark:bg-slate-800/50"
+                            className="space-y-3 rounded-2xl border border-border bg-muted/30 p-4"
                           >
-                            <p className="text-sm font-bold leading-snug text-slate-900 dark:text-white">
+                            <p className="font-japanese text-base font-semibold leading-relaxed text-foreground sm:text-lg">
                               {qIdx + 1}. {q.question_text}
                             </p>
 
@@ -736,19 +727,19 @@ export const ExamTake: React.FC = () => {
                                 {(q.options as string[]).map((opt, optIdx) => {
                                   const isSelected = userAnswers[q.id] === opt;
                                   let btnStyle =
-                                    'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:border-indigo-400';
+                                    'bg-card border-border text-foreground hover:border-primary/50';
 
                                   if (submittedResults) {
                                     if (opt === q.correct_answer) {
                                       btnStyle =
-                                        'bg-green-500/10 border-green-500 text-green-600 font-bold shadow-sm';
+                                        'bg-green-500/10 border-green-500 text-green-600 font-bold shadow-xs';
                                     } else if (isSelected && !isCorrect) {
                                       btnStyle =
                                         'bg-red-500/10 border-red-500 text-red-600 font-bold';
                                     }
                                   } else if (isSelected) {
                                     btnStyle =
-                                      'bg-indigo-600 text-white font-bold border-indigo-600 shadow-md';
+                                      'bg-primary text-primary-foreground font-bold border-primary shadow-sm';
                                   }
 
                                   return (
@@ -757,7 +748,7 @@ export const ExamTake: React.FC = () => {
                                       onClick={() => handleSelectOption(q.id, opt)}
                                       className={`flex w-full items-center justify-between rounded-xl border p-3.5 text-left text-sm transition ${btnStyle}`}
                                     >
-                                      <span>
+                                      <span className="font-japanese text-sm font-medium sm:text-base">
                                         {String.fromCharCode(65 + optIdx)}) {opt}
                                       </span>
                                       {submittedResults && opt === q.correct_answer && (

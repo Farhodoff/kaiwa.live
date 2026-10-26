@@ -1158,11 +1158,6 @@ const LandingPage: React.FC = () => {
                     Lug‘atlar (Decks)
                   </a>
                 </div>
-                <div>
-                  <a href="/developers" className="hover:text-foreground">
-                    Developer API
-                  </a>
-                </div>
               </div>
             </div>
 

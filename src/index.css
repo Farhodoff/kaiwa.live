@@ -81,6 +81,20 @@
   body {
     @apply bg-background font-sans text-foreground antialiased selection:bg-primary/20 selection:text-primary;
   }
+
+  ruby {
+    ruby-align: center;
+    ruby-position: over;
+  }
+
+  rt {
+    font-family: 'Noto Sans JP', 'Shippori Mincho', sans-serif;
+    font-size: 0.62em;
+    line-height: 1;
+    user-select: none;
+    color: hsl(var(--muted-foreground));
+    letter-spacing: 0;
+  }
 }
 
 html,
@@ -116,27 +130,47 @@ a {
   }
 
   .font-japanese {
-    font-family: 'Noto Sans JP', 'Shippori Mincho', sans-serif;
+    font-family:
+      'Noto Sans JP', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo',
+      sans-serif;
+    font-feature-settings: 'palt' 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   .glass {
-    @apply border border-border bg-card/85 shadow-[0_4px_30px_rgba(0,0,0,0.2)] backdrop-blur-xl;
+    @apply border border-border bg-card/85 shadow-[0_4px_24px_-2px_rgba(0,0,0,0.08)] backdrop-blur-xl;
+  }
+
+  .dark .glass {
+    @apply shadow-[0_4px_30px_rgba(0,0,0,0.45)];
   }
 
   .glass-card {
-    @apply border border-border bg-card/90 shadow-xs backdrop-blur-md;
+    @apply border border-border bg-card/90 shadow-[0_2px_10px_-2px_rgba(0,0,0,0.05)] backdrop-blur-md;
+  }
+
+  .dark .glass-card {
+    @apply shadow-[0_4px_16px_-2px_rgba(0,0,0,0.35)];
   }
 
   .text-gradient {
     @apply bg-gradient-to-r from-red-500 via-rose-500 to-amber-500 bg-clip-text text-transparent;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
 
   .text-gradient-hanko {
     @apply bg-gradient-to-r from-[#E8483A] via-[#F87171] to-[#FBBF24] bg-clip-text text-transparent;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
 
   .text-gradient-gold {
     @apply bg-gradient-to-r from-[#FDE68A] via-[#C9A961] to-[#B8964C] bg-clip-text text-transparent;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
 
   .badge-hanko {
@@ -148,7 +182,7 @@ a {
   }
 
   .card-sumi {
-    @apply rounded-2xl border border-border bg-card p-6 transition-all duration-200 hover:border-primary/30;
+    @apply rounded-2xl border border-border bg-card p-6 shadow-xs transition-all duration-200 hover:border-primary/40 hover:shadow-md;
   }
 
   /* 3D Transform utilities for flashcard flip */

@@ -28,23 +28,23 @@ export const PROMPT_SUGGESTIONS_BY_LANG: Record<
   ],
   ja: [
     {
-      title: '自己紹介 (Jikoshoukai)',
-      text: 'はじめまして。自己紹介の練習をしたいです。',
-      icon: '🙋',
-    },
-    {
-      title: 'カフェ・買い物 (Shopping & Cafe)',
-      text: 'カフェでの注文やお店での買い物の練習をしたいです。',
-      icon: '☕',
-    },
-    {
-      title: '日常会話 (Daily Japanese)',
+      title: '日常会話',
       text: '日本語で楽しい日常会話をしましょう！今日の予定や趣味を話したいです。',
-      icon: '🗣️',
+      icon: '🏠',
     },
     {
-      title: '敬語・面接 (Interview & Keigo)',
-      text: '丁寧な敬語や面接の練習をお願いします。',
+      title: '旅行',
+      text: '旅行について日本語で話しましょう。行きたい場所や旅の計画を練習したいです。',
+      icon: '✈️',
+    },
+    {
+      title: 'レストラン',
+      text: 'レストランで注文する会話を練習したいです。店員さんになってください。',
+      icon: '🍜',
+    },
+    {
+      title: '仕事',
+      text: '日本語で仕事の会話を練習したいです。面接の質問をしてください。',
       icon: '💼',
     },
   ],

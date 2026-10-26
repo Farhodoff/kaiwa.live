@@ -1,33 +1,23 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Mic, Settings as SettingsIcon } from 'lucide-react';
 import { CoachPersona, PERSONAS_BY_LANG } from './speakingTypes';
-import { Check, Settings as SettingsIcon, ArrowLeft, TrendingUp } from 'lucide-react';
 
 interface CoachTopBarProps {
   language: 'en' | 'ja';
   persona: CoachPersona;
   isLiveSession: boolean;
   sessionSeconds: number;
-  chatHistoryLength: number;
-  showPersonaSelector: boolean;
-  setShowPersonaSelector: (show: boolean) => void;
-  handleLanguageChange: (lang: 'en' | 'ja') => void;
-  setPersona: (p: CoachPersona) => void;
-  targetBand?: string;
-  setTargetBand?: (band: any) => void;
+  onOpenSettings: () => void;
+  activeScenario?: any;
+  formatTimer: (sec: number) => string;
+  isAdmin?: boolean;
   targetLevel?: string;
   setTargetLevel?: (level: any) => void;
-  isPaidUser?: boolean;
-  isAdmin: boolean;
-  isSuperAdmin?: boolean;
-  isFullscreen?: boolean;
-  onToggleFullscreen?: () => void;
-  onOpenSettings: () => void;
-  onOpenPitchTrainer?: () => void;
-  formatTimer: (sec: number) => string;
-  activeScenario?: any;
   speechSpeed?: number;
   onSpeedChange?: (speed: number) => void;
+  onOpenPitchTrainer?: () => void;
+  isFullscreen?: boolean;
+  onToggleFullscreen?: () => void;
 }
 
 export const CoachTopBar: React.FC<CoachTopBarProps> = ({
@@ -35,222 +25,49 @@ export const CoachTopBar: React.FC<CoachTopBarProps> = ({
   persona,
   isLiveSession,
   sessionSeconds,
-  chatHistoryLength,
-  showPersonaSelector,
-  setShowPersonaSelector,
-  handleLanguageChange: _handleLanguageChange,
-  setPersona,
-  targetBand: _targetBand,
-  setTargetBand: _setTargetBand,
-  targetLevel = 'N3',
-  setTargetLevel,
-  isPaidUser: _isPaidUser,
-  isAdmin,
-  isSuperAdmin: _isSuper,
-  isFullscreen: _isFullscreen = false,
-  onToggleFullscreen: _onToggleFullscreen,
   onOpenSettings,
-  onOpenPitchTrainer,
-  formatTimer,
   activeScenario,
-  speechSpeed = 1.0,
-  onSpeedChange,
+  formatTimer,
 }) => {
-  const navigate = useNavigate();
-  const PERSONAS = PERSONAS_BY_LANG[language];
-  const currentPersona = PERSONAS[persona];
-  const ActivePersonaIcon = currentPersona.icon;
-
-  const displayName = activeScenario
-    ? `${activeScenario.emoji} ${activeScenario.title_ja}`
-    : currentPersona.name;
-
-  const displayDesc = activeScenario
-    ? `JLPT ${activeScenario.difficulty} • ${activeScenario.title_uz}`
-    : currentPersona.desc;
+  const personas = PERSONAS_BY_LANG[language];
+  const currentPersona = personas[persona];
+  const Icon = currentPersona.icon || Mic;
+  const title = isLiveSession ? activeScenario?.title_uz || currentPersona.name : 'Yapon tili';
 
   return (
-    <div className="relative z-10 flex flex-shrink-0 flex-wrap items-center justify-between gap-2 px-3 pb-2 pt-3 sm:flex-nowrap md:px-5">
-      {/* Left: Exit/Back button + Title + Status */}
+    <header className="relative z-10 flex h-14 shrink-0 items-center justify-between border-b border-white/10 bg-slate-950/20 px-4 text-white backdrop-blur-sm sm:px-6">
       <div className="flex min-w-0 items-center gap-2.5">
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-primary">
+          {isLiveSession && activeScenario?.emoji ? (
+            <span aria-hidden="true">{activeScenario.emoji}</span>
+          ) : (
+            <Icon size={17} />
+          )}
+        </span>
+        <div className="min-w-0">
+          <h1 className="truncate text-sm font-bold tracking-tight text-foreground sm:text-base">
+            {title}
+          </h1>
+          {isLiveSession ? (
+            <p className="flex items-center gap-1.5 text-[10px] font-medium text-white/65 sm:text-xs">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              Suhbat davom etmoqda · {formatTimer(sessionSeconds)}
+            </p>
+          ) : null}
+        </div>
+      </div>
+
+      {isLiveSession && (
         <button
           type="button"
-          onClick={() => navigate(-1)}
-          className="shrink-0 cursor-pointer rounded-2xl border border-border bg-card/90 p-2 text-muted-foreground shadow-xs backdrop-blur-xl transition-all hover:bg-muted hover:text-foreground sm:p-2.5"
-          title="Chiqish / Orqaga"
-        >
-          <ArrowLeft size={17} />
-        </button>
-        <div
-          className={`relative bg-gradient-to-tr p-2 sm:p-2.5 ${currentPersona.color} flex shrink-0 items-center justify-center rounded-2xl text-white shadow-md`}
-        >
-          {activeScenario ? (
-            <span className="text-lg">{activeScenario.emoji}</span>
-          ) : (
-            <ActivePersonaIcon size={18} />
-          )}
-          {isLiveSession && (
-            <span className="absolute -right-1 -top-1 h-3 w-3 animate-pulse rounded-full border-2 border-background bg-emerald-400" />
-          )}
-        </div>
-        <div className="min-w-0">
-          <div className="flex items-center gap-1.5">
-            <h2 className="truncate text-sm font-bold tracking-tight text-foreground sm:text-base md:text-lg">
-              {displayName}
-            </h2>
-            {isLiveSession && (
-              <span className="flex shrink-0 items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/15 px-2 py-0.5 text-[10px] font-bold text-emerald-400">
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" />
-                LIVE
-              </span>
-            )}
-          </div>
-          <p className="truncate text-[10px] font-medium text-muted-foreground sm:text-[11px]">
-            {isLiveSession
-              ? `⏱ ${formatTimer(sessionSeconds)} • ${chatHistoryLength} xabar`
-              : displayDesc}
-          </p>
-        </div>
-      </div>
-
-      {/* Right: Controls */}
-      <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:ml-0">
-        {/* Persona Toggle Dropdown */}
-        <div className="relative">
-          <button
-            onClick={() => setShowPersonaSelector(!showPersonaSelector)}
-            disabled={isLiveSession}
-            className="cursor-pointer rounded-xl border border-border bg-card/90 p-1.5 text-muted-foreground backdrop-blur-xl transition-all hover:border-primary/40 hover:text-primary hover:shadow-md disabled:opacity-40 sm:p-2"
-            title="Persona tanlash"
-          >
-            <span className="text-sm">{currentPersona.emoji}</span>
-          </button>
-
-          {showPersonaSelector && !isLiveSession && (
-            <>
-              <div className="fixed inset-0 z-40" onClick={() => setShowPersonaSelector(false)} />
-              <div className="absolute right-0 top-full z-50 mt-2 w-72 rounded-2xl border border-border bg-card/95 p-2 shadow-2xl backdrop-blur-2xl duration-200 animate-in fade-in slide-in-from-top-2">
-                <div className="px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
-                  {language === 'ja' ? 'パートナーを えらぶ' : 'Persona tanlang'}
-                </div>
-                {(Object.keys(PERSONAS) as CoachPersona[])
-                  .filter((pKey) => !(pKey === 'interview' && language === 'ja' && !isAdmin))
-                  .map((pKey) => {
-                    const p = PERSONAS[pKey];
-                    const Icon = p.icon;
-                    const isSelected = persona === pKey;
-                    return (
-                      <button
-                        key={pKey}
-                        onClick={() => {
-                          setPersona(pKey);
-                          setShowPersonaSelector(false);
-                        }}
-                        className={`flex w-full cursor-pointer items-center gap-3 rounded-xl p-2.5 text-left transition-all ${
-                          isSelected
-                            ? `bg-gradient-to-r ${p.color} text-white shadow-md`
-                            : 'text-foreground hover:bg-muted'
-                        }`}
-                      >
-                        <div
-                          className={`rounded-lg p-1.5 ${isSelected ? 'bg-white/20' : 'bg-muted'}`}
-                        >
-                          <Icon size={16} />
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <div className="flex items-center gap-1.5 truncate text-xs font-bold">
-                            {p.name}
-                          </div>
-                          <div
-                            className={`truncate text-[10px] ${isSelected ? 'text-white/70' : 'text-muted-foreground'}`}
-                          >
-                            {p.desc}
-                          </div>
-                        </div>
-                        {isSelected && <Check size={14} className="ml-auto shrink-0" />}
-                      </button>
-                    );
-                  })}
-              </div>
-            </>
-          )}
-        </div>
-
-        {/* JLPT Level Selector (N5, N4, N3, N2, N1) */}
-        {language === 'ja' && (
-          <div className="flex items-center rounded-xl border border-border bg-card/90 p-0.5 backdrop-blur-xl">
-            {(['N5', 'N4', 'N3', 'N2', 'N1'] as const).map((lvl) => {
-              const isCurrent = (targetLevel || 'N3').toUpperCase() === lvl;
-              return (
-                <button
-                  key={lvl}
-                  type="button"
-                  onClick={() => setTargetLevel?.(lvl)}
-                  disabled={isLiveSession}
-                  className={`cursor-pointer rounded-lg px-2 py-1 text-[10px] font-extrabold transition-all disabled:opacity-50 ${
-                    isCurrent
-                      ? lvl === 'N5'
-                        ? 'bg-emerald-500 text-white shadow-xs'
-                        : lvl === 'N4'
-                          ? 'bg-blue-500 text-white shadow-xs'
-                          : lvl === 'N3'
-                            ? 'bg-indigo-500 text-white shadow-xs'
-                            : lvl === 'N2'
-                              ? 'bg-amber-500 text-white shadow-xs'
-                              : 'bg-rose-500 text-white shadow-xs'
-                      : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-                  }`}
-                  title={`JLPT ${lvl} darajasi`}
-                >
-                  {lvl}
-                </button>
-              );
-            })}
-          </div>
-        )}
-
-        {/* AI Speech Speed Selector (0.8x, 1.0x, 1.2x) */}
-        <div className="hidden items-center rounded-xl border border-border bg-card/90 px-2 py-1 backdrop-blur-xl md:flex">
-          <span className="mr-1 text-[10px] font-bold text-muted-foreground">Tezlik:</span>
-          {([0.8, 1.0, 1.2] as const).map((spd) => (
-            <button
-              key={spd}
-              type="button"
-              onClick={() => onSpeedChange?.(spd)}
-              className={`cursor-pointer rounded-md px-1.5 py-0.5 text-[10px] font-extrabold transition-all ${
-                Math.abs(speechSpeed - spd) < 0.05
-                  ? 'bg-primary text-primary-foreground shadow-xs'
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
-              title={`AI nutq tezligi: ${spd}x`}
-            >
-              {spd}x
-            </button>
-          ))}
-        </div>
-
-        {/* Pitch Accent Trainer Button */}
-        {onOpenPitchTrainer && (
-          <button
-            type="button"
-            onClick={onOpenPitchTrainer}
-            className="flex cursor-pointer items-center gap-1.5 rounded-xl border border-primary/30 bg-primary/10 px-2.5 py-1.5 text-primary backdrop-blur-xl transition-all hover:bg-primary/20 hover:shadow-md sm:py-2"
-            title="Pitch Accent (アクセント) Trenajyori"
-          >
-            <TrendingUp size={15} />
-            <span className="hidden text-xs font-bold sm:inline">Pitch Accent</span>
-          </button>
-        )}
-
-        {/* Settings */}
-        <button
           onClick={onOpenSettings}
-          className="cursor-pointer rounded-xl border border-border bg-card/90 p-1.5 text-muted-foreground backdrop-blur-xl transition-all hover:bg-muted hover:text-foreground hover:shadow-md sm:p-2"
-          title="Coach AI Sozlamalari"
+          aria-label="Speaking sozlamalari"
+          title="Sozlamalar"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-slate-950/45 text-white/75 transition hover:bg-slate-900 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
-          <SettingsIcon size={16} />
+          <SettingsIcon size={18} />
         </button>
-      </div>
-    </div>
+      )}
+    </header>
   );
 };
