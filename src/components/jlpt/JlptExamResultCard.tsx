@@ -210,6 +210,23 @@ export const JlptExamResultCard: React.FC<JlptExamResultCardProps> = ({
               {report.percentage}%
             </span>
           </div>
+
+          {jlptReport?.passProbability !== undefined && (
+            <div className="rounded-2xl border border-border bg-background/80 px-4 py-2 shadow-xs">
+              <span className="text-xs text-muted-foreground">O'tish Ehtimoli: </span>
+              <span
+                className={`font-mono text-2xl font-black ${
+                  jlptReport.passProbability >= 75
+                    ? 'text-emerald-500'
+                    : jlptReport.passProbability >= 50
+                      ? 'text-amber-500'
+                      : 'text-rose-500'
+                }`}
+              >
+                {jlptReport.passProbability}%
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Status text badge */}

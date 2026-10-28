@@ -174,5 +174,189 @@
     "example": "作りかけの料理がある。(Chala tayyorlangan taom bor.)",
     "category": "Grammar Contrast Quiz",
     "level": "N3"
+  },
+  {
+    "front": "「〜につれて」 vs 「〜にしたがって」 vs 「〜とともに」 ning farqi nima?",
+    "back": "【〜につれて】: Tabiiy mutanosib o'zgarish (A o'zgargani sari B ham o'zgaradi). Bir tomonlama jarayon.\nMisol: 年をとるにつれて、体力が衰える。\n\n【〜にしたがって】: Rasmiyroq, ham tabiiy mutanosiblik, ham ko'rsatma/qoidaga bo'ysunish ma'nosida ishlatiladi.\nMisol: 規則にしたがって行動する。\n\n【〜とともに】: Birgalikda parallel sodir bo'lish yoki ikkala tomonning bir vaqtda kengayishi.\nMisol: 普及とともに、価格が下がった。",
+    "phonetic": "ni tsurete vs ni shitagatte vs to tomo ni",
+    "example": "技術の進歩に伴い（とともに）、生活が便利になった。(Texnologiya rivoji bilan birga hayot qulaylashdi.)",
+    "category": "Grammar Contrast",
+    "level": "N3"
+  },
+  {
+    "front": "「〜をはじめ」 vs 「〜を中心にして」 ning farqi nima?",
+    "back": "【〜をはじめ (ni hajime)】: Vakillik / eng yirik namuna. \"A dan boshlab, boshqa ko'plab...\"\nMisol: トヨタをはじめとする日本の自動車会社。(Toyota boshchiligidagi yapon avto kompaniyalari).\n\n【〜を中心にして (o chuushin ni shite)】: Markaziy nuqta. \"A ni markaz qilib olgan holda / A boshchiligida to'planib\".\nMisol: 若者を中心にして運動が広がった。(Yoshlarni markazga olgan holda harakat kengaydi.)",
+    "phonetic": "o hajime vs o chuushin ni shite",
+    "example": "東京をはじめ、大都市で物価が上昇している。(Tokiodan boshlab yirik shaharlarda narxlar ko'tarilmoqda.)",
+    "category": "Grammar Contrast",
+    "level": "N3"
+  },
+  {
+    "front": "「〜おかげで」 vs 「〜せいで」 vs 「〜ために」 ning farqi nima?",
+    "back": "【〜おかげで】: Ijobiy sabab (\"sharofati bilan / tufayli yaxshi natija\").\nMisol: 先生のおかげで合格できた。\n\n【〜せいで】: Salbiy sabab va ayblash (\"kasofati tufayli / aybi bilan yomon natija\").\nMisol: 雨のせいで試合が中止になった。\n\n【〜ために】: Neytral ob'ektiv sabab yoki maqsad (\"sababli / oqibatida\").\nMisol: 事故のために電車が遅延した。",
+    "phonetic": "okage de vs sei de vs tame ni",
+    "example": "薬を飲んだおかげで熱が下がった。(Dori ichganim sharofati bilan isitma tushdi.)",
+    "category": "Grammar Contrast",
+    "level": "N3"
+  },
+  {
+    "front": "「〜はずだ」 vs 「〜わけだ」 ning farqi nima?",
+    "back": "【〜はずだ】: Mantiqiy sub'ektiv kutilma (\"taxminimcha, shunday bo'lishi kerak edi / bo'lsa kerak\").\nMisol: 彼は昨日日本に着いたから、今日は休んでいるはずだ。\n\n【〜わけだ】: Ma'lum fakt asosida tushunib yetilgan xulosa (\"demak, shuning uchun shunday ekanda!\").\nMisol: 暑いわけだ。気温が38度もある。(Issiq bo'lishining sababi ma'lum bo'ldi, harorat 38 daraja ekan!)",
+    "phonetic": "hazu da vs wake da",
+    "example": "なるほど、電車の事故があったから遅れたわけですね。(Tushunarli, poyezd halokati tufayli kechikkan ekansizda.)",
+    "category": "Grammar Contrast",
+    "level": "N3"
+  },
+  {
+    "front": "「〜べきだ」 vs 「〜なければならない」 ning farqi nima?",
+    "back": "【〜べきだ】: Axloqiy, ijtimoiy burch yoki shaxsiy maslahat (\"inson sifatida shunday qilish to'g'ri deb bilaman\").\nMisol: お年寄りには席を譲るべきだ。(Keksalarga joy berish kerak).\n\n【〜なければならない】: Qat'iy qonun, qoida yoki muqarrar majburiyat (\"qilmasang mutlaqo bo'lmaydi\").\nMisol: ビザを更新しなければならない。(Vizani yangilashim shart).",
+    "phonetic": "beki da vs nakereba naranai",
+    "example": "約束は守るべきだ。(Va'daga vafo qilish axloqan to'g'ri burchdir.)",
+    "category": "Grammar Contrast",
+    "level": "N3"
+  },
+  {
+    "front": "「〜ことになっている」 vs 「〜ことにしている」 ning farqi nima?",
+    "back": "【〜ことになっている】: Tashqi qoida, qonun yoki boshqalar bilan kelishilgan reja (\"shunday belgilangan / qoida shunday\").\nMisol: 法律で20歳未満の飲酒は禁止されていることになっている。\n\n【〜ことにしている】: Shaxsiy qat'iy qaror va kundalik odat (\"men o'zim shunday qilishga odatlanganman\").\nMisol: 毎朝ジョギングすることにしている。(Har kuni ertalab yugurishni odat qilganman.)",
+    "phonetic": "koto ni natte iru vs koto ni shite iru",
+    "example": "社内では靴を脱ぐことになっています。(Kompaniya ichida poyabzalni yechish qoidasi belgilangan.)",
+    "category": "Grammar Contrast",
+    "level": "N3"
+  },
+  {
+    "front": "「〜ようにする」 vs 「〜ようになる」 ning farqi nima?",
+    "back": "【〜ようにする】: Shaxsiy ongli harakat va intilish (\"...qilishga harakat qilmoq / diqqat qilmoq\").\nMisol: 野菜をたくさん食べるようにしている。\n\n【〜ようになる】: Bosqichma-bosqich yuz bergan o'zgarish yoki yangi qobiliyat (\"qila oladigan bo'lib qolmoq / shunday holatga o'tmoq\").\nMisol: 日本語で新聞が読めるようになった。(Yapon tilida gazeta o'qiy oladigan darajaga yetdim.)",
+    "phonetic": "you ni suru vs you ni naru",
+    "example": "毎日復習するようにしてください。(Har kuni takrorlashga odatlaning.)",
+    "category": "Grammar Contrast",
+    "level": "N3"
+  },
+  {
+    "front": "「〜ばかりだ」 vs 「〜一方だ」 ning farqi nima?",
+    "back": "【〜ばかりだ】: O'zgarishning to'xtovsiz bir tomonga qarab ketishi (ko'pincha salbiy, ammo neytral ham bo'lishi mumkin) yoki tayyorgarlikning to'liq yakunlanishi (後は出発するばかりだ).\nMisol: 祖父の病状は悪化するばかりだ。\n\n【〜一方だ】: O'zgarish sur'atining muttasil oshib borishi (\"faqat bir tomonga qarab ketyapti\").\nMisol: 物価は上がる一方だ。(Narxlar faqat to'xtovsiz o'smoqda.)",
+    "phonetic": "bakari da vs ippou da",
+    "example": "コロナ以降、失業者は増える一方だった。(Pandemiyadan keyin ishsizlar faqat ko'payib bordi.)",
+    "category": "Grammar Contrast",
+    "level": "N3"
+  },
+  {
+    "front": "「〜として」 vs 「〜にしては」 ning farqi nima?",
+    "back": "【〜として】: Maqom, vazifa yoki unvon (\"sifatida\").\nMisol: 留学生として日本に来ました。(Talaba sifatida Yaponiyaga keldim).\n\n【〜にしては】: Kutilmaga zid ajablanish (\"...bo'lishiga qaramasdan / hisobga olganda kutilgandan boshqacha\").\nMisol: 初めてにしては、上手にできた。(Birinchi marta bo'lishiga qaramasdan, juda mohirlik bilan uddaladi.)",
+    "phonetic": "to shite vs ni shite wa",
+    "example": "プロの選手にしてはミスが多すぎる。(Professional sportchi bo'lganiga qaramasdan xatolari juda ko'p.)",
+    "category": "Grammar Contrast",
+    "level": "N3"
+  },
+  {
+    "front": "「〜わりに」 vs 「〜くせに」 ning farqi nima?",
+    "back": "【〜わりに】: Neytral qiyosiy nomutanosiblik (\"...nisbatan qaraganda kutilgandan farqli\"). Ijobiy yoki salbiy bo'lishi mumkin.\nMisol: 値段のわりに美味しい。(Narxiga nisbatan kutilgandan mazali).\n\n【〜くせに】: Shaxsga qaratilgan tanqid, kinoya va norozilik (\"...bo'la turib / bilgan holda\"). Faqat salbiy bo'ladi.\nMisol: お金持ちのくせにケチだ。(Boy bo'la turib pismik.)",
+    "phonetic": "wari ni vs kuse ni",
+    "example": "彼は若いのによく知っている（若いわりによく知っている）。(Yosh bo'lishiga qaramasdan ko'p narsani biladi.)",
+    "category": "Grammar Contrast",
+    "level": "N3"
+  },
+  {
+    "front": "「〜かける」 vs 「〜切る」 vs 「〜抜く」 ning farqi nima?",
+    "back": "【〜かける】: Harakatni endi boshlab to'xtab qolish yoki tugallanmaslik (\"boshlab qo'ymoq\").\nMisol: 読みかけの本。(O'qilishi boshlanib qolgan kitob).\n\n【〜切る】: To'liq oxirigacha tugatish yoki butunlay sarflab bitirish.\nMisol: 疲れ切った。(Butkul charchab bitdim).\n\n【〜抜く】: Qiyinchiliklarga bardosh berib, chidab oxirigacha yetkazish.\nMisol: マラソンを走り抜いた。(Marafonda chidab oxirigacha yugurib keldi.)",
+    "phonetic": "kakeru vs kiru vs nuku",
+    "example": "最後まで諦めずにやり抜いた。(Oxirigacha taslim bo'lmasdan uddalab chiqdi.)",
+    "category": "Grammar Contrast",
+    "level": "N3"
+  },
+  {
+    "front": "「〜たびに」 vs 「〜ついでに」 ning farqi nima?",
+    "back": "【〜たびに】: Har gal o'sha ish bo'lganda muqarrar takrorlanish (\"har safar / har doim\").\nMisol: この曲を聴くたびに、故郷を思い出す。(Bu qo'shiqni har eshitganimda vatanimni eslayman).\n\n【〜ついでに】: Bir ishni bajarayotganda yo'l-yo'lakay boshqa ishni ham ilashtirib ketish (\"bahonasida / yo'l-yo'lakay\").\nMisol: コンビニに行くついでに、ゴミを捨ててくる。(Do'konga chiqayotib yo'l-yo'lakay axlatni ham tashlab kelaman.)",
+    "phonetic": "tabi ni vs tsuide ni",
+    "example": "会うたびに彼女は綺麗になっている。(Har ko'rganimda u tobora go'zallashib bormoqda.)",
+    "category": "Grammar Contrast",
+    "level": "N3"
+  },
+  {
+    "front": "「〜を通じて」 vs 「〜を通して」 ning farqi nima?",
+    "back": "Ikkala grammatika ham juda yaqin, ammo:\n1) Vaqt davomiyligi: Butun davr davomida (四季を通じて = to'rt fasl mobaynida).\n2) Vosita/Vosita shaxs: Biror inson yoki manba orqali (友人を通じて = do'stim orqali tanishdim).\nFarq: 「〜を通して」 harakat va faol faoliyat vositasi uchun ko'proq, 「〜を通じて」 esa tabiiy uzluksiz holatlar uchun kengroq ishlatiladi.",
+    "phonetic": "o tsuujite vs o tooshite",
+    "example": "インターネットを通じて世界中の情報が手に入る。(Internet vositasida butun dunyo ma'lumotlariga erishish mumkin.)",
+    "category": "Grammar Contrast",
+    "level": "N3"
+  },
+  {
+    "front": "「〜っぱなし」 vs 「〜たまま」 ning farqi nima?",
+    "back": "【〜っぱなし】: Harakatdan keyin qilinishi kerak bo'lgan ishni qilmasdan tashlab ketish (beparvolik, salbiy tus).\nMisol: 水を出しっぱなしにする。(Suvni o'chirmasdan oqizib qo'ymoq).\n\n【〜たまま】: Bir holat o'zgarmasdan saqlanib turishi (neytral).\nMisol: 靴を履いたまま部屋に入る。(Poyabzalni kiygan holda xonaga kirmoq.)",
+    "phonetic": "ppanashi vs ta mama",
+    "example": "電気をつけっぱなしで寝てしまった。(Chiroqni o'chirishni unutib, yoqilganicha uxlab qolibman.)",
+    "category": "Grammar Contrast",
+    "level": "N3"
+  },
+  {
+    "front": "「〜ぎみ」 vs 「〜げ」 vs 「〜っぽい」 ning farqi nima?",
+    "back": "【〜気味[ぎみ]】: Jismoniy yoki ruhiy salbiy holatning boshlanishi (\"shamollash alomati sezilmoqda\").\nMisol: 風邪気味だ / 疲れ気味だ。\n\n【〜げ】: Tashqi ko'rinishdan sezilib turgan tuyg'u (\"alamli ko'rinishda / sirli ohangda\").\nMisol: 悲しげな顔 / 自慢げに話す。\n\n【〜っぽい】: Xarakter, rang yoki odatning ko'rinishi (\"bolalarcha / tez jahli chiqadigan\").\nMisol: 子供っぽい / 怒りっぽい。",
+    "phonetic": "gimi vs ge vs ppoi",
+    "example": "今日は少し熱っぽくて、風邪気味です。(Bugun biroz isitmam bordek, shamollash alomati bor.)",
+    "category": "Grammar Contrast",
+    "level": "N3"
+  },
+  {
+    "front": "「〜をもとに（して）」 vs 「〜にもとづいて」 ning farqi nima?",
+    "back": "【〜をもとにして】: Asos, xomashyo yoki syujet manbai (\"...asosida yangi asar/film yaratildi\").\nMisol: 事実をもとにして作られた映画。(Haqiqiy voqealar asosida ishlangan film).\n\n【〜に基づいて】: Qonun, qoida, reja yoki rasmiy mezonlarga qat'iy tayangan holda (\"...asoslanib ish tutmoq\").\nMisol: 法律に基づいて判断する。(Qonunga asoslangan holda hukm chiqarmoq.)",
+    "phonetic": "o moto ni shite vs ni motozuite",
+    "example": "調査結果に基づいて改善策を立てる。(Tekshiruv natijalariga asoslanib yaxshilash choralarini tuzmoq.)",
+    "category": "Grammar Contrast",
+    "level": "N3"
+  },
+  {
+    "front": "「〜に沿って」 vs 「〜にしたがって」 ning farqi nima?",
+    "back": "【〜に沿[そ]って】: 1) Geografik chiziq bo'ylab (daryo bo'ylab - 川に沿って); 2) Yo'riqnoma, reja yoki qo'llanmaga mos holda (マニュアルに沿って).\n\n【〜にしたがって】: Ko'rsatma, qonun yoki buyruqqa bo'ysunish (ルールにしたがって) yoki parallel mutanosiblik.",
+    "phonetic": "ni sotte vs ni shitagatte",
+    "example": "方針に沿って計画を進めます。(Belgilangan yo'nalishga muvofiq rejani amalga oshiramiz.)",
+    "category": "Grammar Contrast",
+    "level": "N3"
+  },
+  {
+    "front": "「〜に限って」 vs 「〜に限らず」 ning farqi nima?",
+    "back": "【〜に限[かぎ]って】: 1) Kutilmaganda aynan o'sha paytda noqulaylik yuz berishi (雨の日に限って傘を忘れる); 2) Ishongan shaxs haqida kuchli himoya (うちの子に限ってそんなことはしない).\n\n【〜に限らず】: Faqat u emas, balki boshqalar ham (\"nafaqat ... balki barcha\").\nMisol: 若者に限らず、高齢者もスマホを使う。(Nafaqat yoshlar, keksalar ham smartfondan foydalanadi.)",
+    "phonetic": "ni kagitte vs ni kagirazu",
+    "example": "急いでいる時に限って、信号が赤になる。(Aynan shoshilayotgan paytingda svetofor qizil yonadi.)",
+    "category": "Grammar Contrast",
+    "level": "N3"
+  },
+  {
+    "front": "「〜うちに」 vs 「〜あいだに」 ning farqi nima?",
+    "back": "【〜うちに】: 1) Vaziyat o'zgarishidan oldin fursatdan foydalanish (\"issig'ida yeb ol / sovuq bo'lmasdan oldin\"); 2) Sezilar-sezilmas o'zgarib qolish (気づかないうちに).\n\n【〜あいだに】: Belgilangan vaqt oralig'ida qisqa bitta harakat sodir bo'lishi.\nMisol: 留守の間に泥棒が入った。(Uyda yo'qligim paytida o'g'ri kirdi.)",
+    "phonetic": "uchi ni vs aida ni",
+    "example": "若いうちに色々な経験をしておきたい。(Yoshlik paytimda imkoniyat borida ko'plab tajribalar orttirmoqchiman.)",
+    "category": "Grammar Contrast",
+    "level": "N3"
+  },
+  {
+    "front": "「〜うえに」 vs 「〜ばかりか」 ning farqi nima?",
+    "back": "【〜上に[うえに]】: Qo'shimchasiga, buning ustiga (A va B ijobiy yoki salbiy bir xil yo'nalishda bo'lishi shart).\nMisol: 料理が美味しい上に、値段も安い。\n\n【〜ばかりか】: Nafaqat bu, balki yanada kutilmagan yuqoriroq daraja ham!\nMisol: 友達ばかりか、家族にも知らせていない。(Nafaqat do'stlarim, hatto oilamga ham aytmaganman.)",
+    "phonetic": "ue ni vs bakari ka",
+    "example": "頭がいい上に、性格も優しい。(Aqlli bo'lishining ustiga fe'li ham juda muloyim.)",
+    "category": "Grammar Contrast",
+    "level": "N3"
+  },
+  {
+    "front": "「〜に関して」 vs 「〜をめぐって」 ning farqi nima?",
+    "back": "【〜に関して】: Mavzu bo'yicha ma'lumot berish yoki tekshirish (〜について ning rasmiy varianti).\nMisol: この問題に関して調査する。\n\n【〜をめぐって】: Biror bahsli mavzu atrofida tortishuv, mojaro yoki kurash ketishi.\nMisol: 遺産をめぐって親族が争っている。(Meros atrofida qarindoshlar tortishmoqda.)",
+    "phonetic": "ni kanshite vs o megutte",
+    "example": "新政策をめぐって激しい議論が交わされた。(Yangi siyosat atrofida qizg'in bahslar bo'lib o'tdi.)",
+    "category": "Grammar Contrast",
+    "level": "N3"
+  },
+  {
+    "front": "「〜からいって」 vs 「〜から見ると」 vs 「〜からして」 ning farqi nima?",
+    "back": "【〜からいって】: Mezon nuqtai nazaridan (\"xarakter yoki sifat jihatdan qaraganda\").\nMisol: 彼の能力からいって、合格は確実だ。\n\n【〜から見ると】: Pozitsiya yoki qarash nuqtasidan (\"chet elliklar nigohi bilan qaraganda\").\nMisol: 外国人から見ると、日本の習慣は不思議だ。\n\n【〜からして】: Bitta ko'zga yaqqol tashlangan belgidan xulosa chiqarish (\"hatto nomining o'zidan / boshlanishidan ma'lumki\").\nMisol: タイトルからして面白そうだ。",
+    "phonetic": "kara itte vs kara miru to vs kara shite",
+    "example": "足跡からして、大きな動物に違いない。(Izidan ko'rinib turibdiki, bu katta hayvon bo'lishi shart.)",
+    "category": "Grammar Contrast",
+    "level": "N3"
+  },
+  {
+    "front": "「〜たとたん（に）」 vs 「〜しだい」 vs 「〜か〜ないかのうちに」 ning farqi nima?",
+    "back": "【〜たとたんに】: O'tmishda bir harakat bo'lishi bilan kutilmagan hodisa darhol yuz berdi.\nMisol: ドアを開けたとたん、猫が飛び出してきた。\n\n【〜次第[しだい]】: Kelajakda bir ish bo'lishi bilanoq keyingisini qilish niyati.\nMisol: わかり次第ご連絡します。(Ma'lum bo'lishi bilanoq xabar qilaman).\n\n【〜か〜ないかのうちに】: Deyarli bir vaqtda (biri tugab-tugamay ikkinchisi boshlandi).\nMisol: 鐘が鳴るか鳴らないかのうちに教室を出た。(Qo'ng'iroq chalinishi tugab-tugamay xonadan chiqdi.)",
+    "phonetic": "ta totan ni vs shidai vs ka nai ka no uchi ni",
+    "example": "立ち上がったとたんに、めまいがした。(O'rnimdan turishim bilan ko'nglim aynab boshim aylandi.)",
+    "category": "Grammar Contrast",
+    "level": "N3"
   }
 ]

@@ -14,6 +14,7 @@ import { generateAIResponse, extractJsonFromAiResponse } from '../utils/ai/aiCor
 import { useStudyData } from '../context/StudyPlannerContext';
 import { toast } from '../hooks/use-toast';
 import { HistoryService } from '../services/HistoryService';
+import { ErrorNotificationService } from '../services/ErrorNotificationService';
 
 interface SakubunHistoryItem {
   id: string;
@@ -92,12 +93,21 @@ export const JlptWritingPage: React.FC = () => {
         suggestions?: string[];
       }>(rawRes);
 
+      if (!parsed || typeof parsed.score !== 'number' || isNaN(parsed.score)) {
+        throw new Error(
+          "AI baholash javobini to'g'ri tahlil qilib bo'lmadi. Iltimos, qayta urinib ko'ring.",
+        );
+      }
+
       const evalData = {
-        score: parsed.score || 85,
-        kanjiRating: parsed.kanjiRating || "Qoniqarli Kanji qo'llangan",
-        grammarFeedback: parsed.grammarFeedback || "Grammatik konstruksiyalar to'g'ri tanlangan.",
+        score: Math.max(0, Math.min(100, Math.round(parsed.score))),
+        kanjiRating: parsed.kanjiRating || 'Qoniqarli',
+        grammarFeedback: parsed.grammarFeedback || 'Grammatik konstruksiyalar tahlil qilindi.',
         correctedText: parsed.correctedText || essayText,
-        suggestions: parsed.suggestions || ['Desu/Masu shakllarini bir maromda saqlang.'],
+        suggestions:
+          Array.isArray(parsed.suggestions) && parsed.suggestions.length > 0
+            ? parsed.suggestions
+            : ['Grammatik shakllarni bir maromda saqlashga e’tibor bering.'],
       };
 
       setResult(evalData);
@@ -120,12 +130,13 @@ export const JlptWritingPage: React.FC = () => {
       await loadHistory();
       toast({ title: '✅ Sakubun baholandi va tarixingizga saqlandi! (+100 XP)' });
     } catch (e: any) {
-      toast({
-        variant: 'destructive',
-        title: '❌ Xatolik yuz berdi',
-        description:
-          e?.message ||
-          "Inshoni baholashda xatolik yuz berdi. Iltimos, keyinroq qayta urinib ko'ring.",
+      console.error('[JlptWritingPage] Evaluation error:', e);
+      ErrorNotificationService.notifyError({
+        title: 'Inshoni baholashda xatolik yuz berdi',
+        message:
+          e?.message || "AI baholash serveri javob bermadi. Qayta urinish tugmasini bosib ko'ring.",
+        error: e,
+        retryAction: () => handleEvaluate(),
       });
     } finally {
       setIsEvaluating(false);

@@ -145,7 +145,7 @@ export const TelegramMiniAppPage: React.FC = () => {
                 <Sparkles size={14} className="fill-amber-400 text-amber-400" />
               </div>
               <p className="text-xs text-muted-foreground">
-                {username ? `@${username}` : 'Nihongo Talk Mini App'}
+                {username ? `@${username}` : 'kaiwa.live Mini App'}
               </p>
             </div>
           </div>
@@ -268,7 +268,7 @@ export const TelegramMiniAppPage: React.FC = () => {
         <p className="text-center text-[10px] text-muted-foreground">
           {isTelegramWebApp()
             ? '⚡ Telegram WebApp orqali sinxronlashtirildi'
-            : '🌐 Nihongo Talk Mobile Rejimida ishlamoqda'}
+            : '🌐 kaiwa.live Mobile Rejimida ishlamoqda'}
         </p>
       </div>
     </div>

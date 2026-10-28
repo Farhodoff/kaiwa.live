@@ -1,5 +1,5 @@
 /**
- * Nihongo Talk — 22:00 Daily Telemetry & Dataset Cron Script
+ * kaiwa.live — 22:00 Daily Telemetry & Dataset Cron Script
  */
 
 const https = require('https');
@@ -85,7 +85,7 @@ async function sendTelegramDocument(filePath, filename, caption = '') {
 
 async function main() {
     const today = getTashkentDate();
-    console.log(`[Nihongo Talk Cron 22:00] Starting daily telemetry dispatch for date: ${today}`);
+    console.log(`[kaiwa.live Cron 22:00] Starting daily telemetry dispatch for date: ${today}`);
 
     let sessions = [];
     try {
@@ -143,7 +143,7 @@ async function main() {
     const totalMinutes = Math.round(totalDurationSec / 60);
 
     // 1. Build Telegram Message
-    let msg = `📊 <b>NIHONGO TALK — KUNLIK 22:00 HISOBOTI (${today})</b>\n`;
+    let msg = `📊 <b>KAIWA.LIVE — KUNLIK 22:00 HISOBOTI (${today})</b>\n`;
     msg += `━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
     msg += `🗣 <b>Jami Ovozli Suhbatlar:</b> ${sessions.length} ta\n`;
     msg += `⏱ <b>Umumiy Suhbat Vaqti:</b> ${totalMinutes} daqiqa\n`;
@@ -183,7 +183,7 @@ async function main() {
         msg += `<i>Bugun yangi ovozli suhbatlar qayd etilmadi. Barcha AI xizmatlari barqaror holatda.</i>\n`;
     }
 
-    msg += `\n🤖 <i>Nihongo Talk Telemetry Cron Engine (22:00 Dispatch)</i>`;
+    msg += `\n🤖 <i>kaiwa.live Telemetry Cron Engine (22:00 Dispatch)</i>`;
 
     console.log('Sending message to Telegram...');
     const result = await sendTelegramMessage(msg);

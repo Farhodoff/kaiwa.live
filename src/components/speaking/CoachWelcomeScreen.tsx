@@ -1,127 +1,70 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { LayoutGrid, Play } from 'lucide-react';
-import { LiveAmbientSphere } from './LiveAmbientSphere';
-
-import { useLanguage } from '../../context/LanguageContext';
-
-interface PromptSuggestion {
-  title: string;
-  text: string;
-  icon: string;
-}
+import { Briefcase, Home, Mic, Plane, Utensils } from 'lucide-react';
 
 interface CoachWelcomeScreenProps {
-  currentPersona: any;
-  isLiveSession: boolean;
-  isSpeaking: boolean;
-  isThinking: boolean;
-  isListening: boolean;
-  promptSuggestions: PromptSuggestion[];
-  onStartSession: () => void;
-  onPromptClick: (text: string) => void;
+  promptSuggestions?: { title: string; text: string; icon: string }[];
+  onStartSession: (topic?: string) => void;
 }
 
+const TOPICS = [
+  { label: 'Kundalik hayot', icon: Home },
+  { label: 'Sayohat', icon: Plane },
+  { label: 'Restoran', icon: Utensils },
+  { label: 'Ish', icon: Briefcase },
+];
+
 export const CoachWelcomeScreen: React.FC<CoachWelcomeScreenProps> = ({
-  currentPersona,
-  isLiveSession,
-  isSpeaking,
-  isThinking,
-  isListening,
-  promptSuggestions,
+  promptSuggestions = [],
   onStartSession,
-  onPromptClick,
 }) => {
-  const ActivePersonaIcon = currentPersona.icon;
-  const { language } = useLanguage();
-  const navigate = useNavigate();
+  const [selectedTopic, setSelectedTopic] = React.useState<string | null>(null);
 
   return (
-    <div className="scrollbar-hide flex flex-1 flex-col items-center justify-center overflow-y-auto px-3 py-3 text-center sm:px-4 sm:py-6">
-      {/* Dynamic Live Ambient Neon Sphere */}
-      <div className="group relative mb-3 cursor-pointer sm:mb-6" onClick={onStartSession}>
-        {isLiveSession ? (
-          <LiveAmbientSphere
-            status={
-              isSpeaking ? 'speaking' : isThinking ? 'thinking' : isListening ? 'listening' : 'idle'
-            }
-            size={240}
-          />
-        ) : (
-          <>
-            {/* Outer glow rings (fixed bounds, zero overflow jitter) */}
-            <div
-              className={`absolute -inset-4 rounded-full bg-gradient-to-tr ${currentPersona.color} pointer-events-none animate-pulse opacity-20 blur-xl`}
-            />
-            <div className="pointer-events-none absolute -inset-2 rounded-full border border-primary/20" />
-
-            {/* Main orb */}
-            <div
-              className={`relative h-24 w-24 rounded-full bg-gradient-to-tr sm:h-32 sm:w-32 md:h-36 md:w-36 ${currentPersona.color} p-[3px] shadow-2xl transition-transform duration-300 group-hover:scale-105`}
-            >
-              <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-full bg-card">
-                {/* Inner animated gradient */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(232,72,58,0.25)_0%,transparent_70%)] opacity-40" />
-
-                <ActivePersonaIcon
-                  size={28}
-                  className="relative z-10 text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.5)] sm:h-8 sm:w-8"
-                />
-                <span className="relative z-10 mt-1 text-[8px] font-extrabold uppercase tracking-[0.2em] text-[#C9A961] sm:text-[9px]">
-                  {language === 'ja' ? '開始' : 'Boshlash'}
-                </span>
-              </div>
-            </div>
-          </>
-        )}
+    <section className="relative flex min-h-0 flex-1 flex-col items-center justify-between overflow-y-auto px-4 pb-5 pt-3 text-center sm:px-8 sm:pb-8">
+      <div className="flex flex-1 flex-col items-center justify-center py-8">
+        <p className="mb-5 text-sm font-medium tracking-wide text-white/80">Erkin suhbat</p>
+        <button
+          type="button"
+          onClick={() => onStartSession(selectedTopic || undefined)}
+          aria-label="Gapirishni boshlash"
+          className="group flex h-28 w-28 flex-col items-center justify-center gap-2 rounded-full border-[3px] border-primary bg-slate-950/65 text-white shadow-[0_0_0_10px_rgba(232,72,58,0.12),0_16px_50px_-12px_rgba(232,72,58,0.65)] backdrop-blur transition hover:scale-105 hover:bg-slate-900/80 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/40 active:scale-95 sm:h-32 sm:w-32"
+        >
+          <Mic size={30} className="text-white transition-transform group-hover:scale-110" />
+          <span className="text-xs font-bold uppercase tracking-[0.16em]">Gapirish</span>
+        </button>
       </div>
 
-      <h3 className="mb-1 font-display text-lg font-black text-foreground sm:text-2xl md:text-3xl">
-        {currentPersona.name}
-      </h3>
-      <p className="mb-3 max-w-sm text-xs leading-relaxed text-muted-foreground sm:mb-6 sm:text-sm">
-        {currentPersona.desc}
-      </p>
-      <p className="mb-3 max-w-sm text-[11px] leading-relaxed text-muted-foreground/80 sm:mb-4 sm:text-xs">
-        {language === 'ja'
-          ? '🎙️ 開始時にマイクの許可を求められます。「許可」をタップしてください。'
-          : "🎙️ Boshlanganda brauzer mikrofon so'raydi — «Ruxsat berish» ni bosing."}
-      </p>
-
-      <button
-        onClick={() => navigate('/scenarios?lang=ja')}
-        className="mb-3 flex cursor-pointer items-center gap-2 rounded-2xl border border-primary/30 bg-primary/10 px-4 py-2.5 text-xs font-bold text-primary transition-all hover:bg-primary/20 active:scale-95"
-      >
-        <LayoutGrid size={15} />
-        <span>{language === 'ja' ? 'シナリオを選ぶ' : 'Ssenariy tanlash'}</span>
-      </button>
-
-      {/* Quick Prompts — Premium Cards */}
-      <div className="grid w-full max-w-lg grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-2.5">
-        {promptSuggestions.map((item, idx) => (
-          <button
-            key={idx}
-            onClick={() => onPromptClick(item.title)}
-            className="group relative cursor-pointer rounded-xl border border-border bg-card/90 p-2.5 text-left shadow-xs backdrop-blur-xl transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/50 hover:bg-card hover:shadow-md active:scale-95 sm:rounded-2xl sm:p-3.5"
-          >
-            <div className="flex items-start gap-2 sm:gap-2.5">
-              <span className="mt-0.5 shrink-0 text-base sm:text-lg">{item.icon}</span>
-              <div className="min-w-0 flex-1">
-                <div className="mb-0.5 text-xs font-bold text-foreground transition-colors group-hover:text-primary">
-                  {item.title}
-                </div>
-                <div className="line-clamp-2 text-[10px] leading-relaxed text-muted-foreground">
-                  {item.text}
-                </div>
-              </div>
-            </div>
-            <Play
-              size={12}
-              className="absolute right-3 top-3 fill-current text-primary opacity-0 transition-opacity group-hover:opacity-100 sm:right-3.5 sm:top-3.5"
-            />
-          </button>
-        ))}
+      <div className="w-full max-w-4xl rounded-2xl border border-white/10 bg-slate-950/55 p-4 text-left shadow-xl backdrop-blur-md sm:p-5">
+        <div className="mb-3 flex items-baseline justify-between gap-3">
+          <h2 className="text-sm font-semibold text-white sm:text-base">Ssenariylar</h2>
+          <span className="text-xs text-slate-300/75">
+            Xohlaganingizni tanlang yoki erkin gapiring
+          </span>
+        </div>
+        <div className="scrollbar-hide flex gap-2 overflow-x-auto pb-1 sm:grid sm:grid-cols-4 sm:overflow-visible">
+          {TOPICS.slice(0, Math.min(4, promptSuggestions.length)).map((topic, index) => {
+            const topicTitle = promptSuggestions[index]?.title;
+            const TopicIcon = topic.icon;
+            const isSelected = selectedTopic === topicTitle;
+            return (
+              <button
+                key={topicTitle || topic.label}
+                type="button"
+                aria-pressed={isSelected}
+                onClick={() => setSelectedTopic(isSelected ? null : topicTitle || topic.label)}
+                className={`flex min-h-12 min-w-[148px] shrink-0 items-center gap-2.5 rounded-xl border px-3 text-left text-xs font-medium transition sm:min-w-0 sm:text-sm ${
+                  isSelected
+                    ? 'border-primary/70 bg-primary/15 text-white'
+                    : 'border-white/10 bg-white/5 text-slate-100 hover:border-white/25 hover:bg-white/10'
+                }`}
+              >
+                <TopicIcon size={17} className="shrink-0 text-primary" aria-hidden="true" />
+                {topic.label}
+              </button>
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };

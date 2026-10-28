@@ -20,9 +20,9 @@ export const PricingPage: React.FC = () => {
   const { user } = useStudyData();
 
   useSEO({
-    title: 'Barcha Imkoniyatlar Bepul — Nihongo Talk',
+    title: 'Barcha Imkoniyatlar Bepul — kaiwa.live',
     description:
-      "Nihongo Talk barcha o'quvchilar uchun 100% bepul. Speaking Coach va JLPT darslari erkin ochiq.",
+      "kaiwa.live barcha o'quvchilar uchun 100% bepul. Speaking Coach va JLPT darslari erkin ochiq.",
     canonical: '/pricing',
   });
 
@@ -65,8 +65,8 @@ export const PricingPage: React.FC = () => {
               Hech Qanday To'lov yoki Narxlar Yo'q
             </h1>
             <p className="mx-auto max-w-lg text-sm leading-relaxed text-muted-foreground sm:text-base">
-              Nihongo Talk har bir foydalanuvchi uchun mutlaqo bepul. Pullik obunalar, cheklovlar
-              yoki yashirin to'lovlar mavjud emas — barcha imkoniyatlar erkin ochiq.
+              kaiwa.live har bir foydalanuvchi uchun mutlaqo bepul. Pullik obunalar, cheklovlar yoki
+              yashirin to'lovlar mavjud emas — barcha imkoniyatlar erkin ochiq.
             </p>
           </div>
 
@@ -139,7 +139,7 @@ export const PricingPage: React.FC = () => {
 
       {/* Simple footer */}
       <div className="mx-auto w-full max-w-4xl py-4 text-center text-xs text-muted-foreground">
-        © 2026 Nihongo Talk · Barcha o'quvchilar uchun 100% bepul
+        © 2026 kaiwa.live · Barcha o'quvchilar uchun 100% bepul
       </div>
     </div>
   );

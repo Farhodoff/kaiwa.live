@@ -12,12 +12,12 @@ describe('RatingReviewModal', () => {
 
   it('does not render when isOpen is false', () => {
     render(<RatingReviewModal isOpen={false} onClose={mockOnClose} onSubmit={mockOnSubmit} />);
-    expect(screen.queryByText(/Nihongo Talk ilovasi sizga yoqdimi\?/i)).toBeNull();
+    expect(screen.queryByText(/kaiwa\.live ilovasi sizga yoqdimi\?/i)).toBeNull();
   });
 
   it('renders correctly when isOpen is true', () => {
     render(<RatingReviewModal isOpen={true} onClose={mockOnClose} onSubmit={mockOnSubmit} />);
-    expect(screen.getByText(/Nihongo Talk ilovasi sizga yoqdimi\?/i)).toBeDefined();
+    expect(screen.getByText(/kaiwa\.live ilovasi sizga yoqdimi\?/i)).toBeDefined();
     expect(screen.getByRole('radiogroup', { name: /Baho tanlang/i })).toBeDefined();
     expect(screen.getByPlaceholderText(/Ilovada nima yoqdi/i)).toBeDefined();
     expect(screen.getByRole('button', { name: /Baholash va Yuborish/i })).toBeDefined();

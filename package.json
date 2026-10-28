@@ -1,6 +1,7 @@
 {
-  "name": "nihongo-talk",
-  "version": "1.1.0",
+  "name": "kaiwa.live",
+  "version": "1.2.0",
+  "description": "AI-powered Japanese language mastery & JLPT N5–N1 prep platform featuring real-time AI voice conversation, Minna no Nihongo, interactive mock tests, and smart SRS flashcards.",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -44,6 +45,7 @@
     "html2canvas": "^1.4.1",
     "jszip": "^3.10.1",
     "lucide-react": "^0.330.0",
+    "pdfjs-dist": "^4.10.38",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^10.1.0",

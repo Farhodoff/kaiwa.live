@@ -1,15 +1,11 @@
 {
-    "compilerOptions": {
-        "composite": true,
-        "skipLibCheck": true,
-        "module": "ESNext",
-        "moduleResolution": "bundler",
-        "allowSyntheticDefaultImports": true,
-        "types": [
-            "node"
-        ]
-    },
-    "include": [
-        "vite.config.ts"
-    ]
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "types": ["node"]
+  },
+  "include": ["vite.config.ts", "src/config/pwaRuntimeCaching.ts"]
 }

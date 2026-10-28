@@ -5,6 +5,7 @@ import {
   Rating,
   sortCardsBySRSPriority,
   getPreviewIntervalLabels,
+  deduplicateCardsByFront,
 } from './srs';
 
 describe('SRS (Spaced Repetition System) Utils', () => {
@@ -292,6 +293,54 @@ describe('SRS (Spaced Repetition System) Utils', () => {
         expect(labels[Rating.HARD]).toBe('7 kun'); // Math.round(6 * 1.2) = 7
         expect(labels[Rating.GOOD]).toBe('15 kun'); // Math.round(6 * 2.5) = 15
         expect(labels[Rating.EASY]).toBe('20 kun'); // Math.round(6 * 2.5 * 1.3) = 20
+      });
+    });
+
+    describe('deduplicateCardsByFront & SRS Cross-Level Protection', () => {
+      it('should keep the most mature card when duplicate cards have identical front', () => {
+        const cards = [
+          { id: '1', front: '病院', repetitions: 0, interval: 0 },
+          { id: '2', front: '病院 ', repetitions: 3, interval: 12 },
+          { id: '3', front: '猫', repetitions: 1, interval: 2 },
+        ];
+
+        const deduped = deduplicateCardsByFront(cards);
+        expect(deduped).toHaveLength(2);
+
+        const byouin = deduped.find((c) => c.front.trim() === '病院');
+        expect(byouin).toBeDefined();
+        expect(byouin!.id).toBe('2');
+        expect(byouin!.repetitions).toBe(3);
+        expect(byouin!.interval).toBe(12);
+      });
+
+      it('should automatically deduplicate duplicate cards in buildDailyStudyQueue', () => {
+        const now = new Date('2026-09-01T10:00:00Z');
+        const cards = [
+          {
+            id: '1',
+            front: '辞書',
+            repetitions: 1,
+            interval: 1,
+            nextReviewDate: '2026-08-30T00:00:00Z',
+          },
+          {
+            id: '2',
+            front: '辞書',
+            repetitions: 4,
+            interval: 15,
+            nextReviewDate: '2026-08-25T00:00:00Z',
+          },
+          { id: '3', front: '桜', repetitions: 0, interval: 0 },
+          { id: '4', front: '桜', repetitions: 0, interval: 0 },
+        ];
+
+        const queue = buildDailyStudyQueue(cards, { now });
+        expect(queue).toHaveLength(2);
+
+        const fronts = queue.map((c) => c.front.trim());
+        expect(new Set(fronts).size).toBe(2);
+        expect(queue.find((c) => c.front === '辞書')?.id).toBe('2');
       });
     });
   });

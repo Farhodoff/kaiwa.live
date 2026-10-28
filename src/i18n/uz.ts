@@ -130,7 +130,7 @@ export const uz = {
   },
   aiCoach: {
     title: 'AI Speaking Coach',
-    subtitle: 'Suhbatdosh AI bilan ingliz va yapon tillarida gapirishni mashq qiling',
+    subtitle: 'Suhbatdosh AI bilan yapon tilida erkin gapirishni mashq qiling',
     selectPersona: 'Muloqot Personasini Tanlang',
     startCall: 'Muloqotni Boshlash 🎙️',
     endCall: 'Tugatish',
@@ -178,13 +178,13 @@ export const uz = {
     speakingAiMessage1: '今日は何を食べますか？',
     speakingUserMessage: 'ラーメンをたべたいです！',
     speakingAiMessage2: 'いいですね！🍜 辛いのは大丈夫ですか？',
-    seoTitle: 'Nihongo Talk',
+    seoTitle: "Yapon Tili O'rganish (JLPT N5–N1, AI Speaking Sensei, Minna no Nihongo)",
     seoDescription:
-      'Darslik emas — haqiqiy suhbat. AI bilan gaplashing, xatolaringizni shu zahoti tuzating va har kuni 10 daqiqada oldinga siljing.',
+      "Yapon tilini noldan o'rganing va JLPT N5–N1 imtihonlariga tizimli tayyorlaning. Real-vaqt AI Speaking Sensei, Minna no Nihongo lug'ati, 1000+ Kanji yozish animatsiyasi va Anki SM-2 fleshkartalar.",
     subtitle:
       'Darslik emas — haqiqiy suhbat. AI bilan gaplashing, xatolaringizni shu zahoti tuzating va har kuni 10 daqiqada oldinga siljing.',
     seoKeywords:
-      'Nihongo Talk, yapon tili, gapirish mashqi, AI Speaking Coach, JLPT N5-N1, Kanji, SRS, fleshkartalar',
+      "yapon tili, yapon tili o'rganish, yapon tili noldan, JLPT N5 N4 N3 N2 N1, Minna no Nihongo o'zbekcha, yaponcha so'zlashuv, AI Speaking Sensei, Anki SM-2, fleshkartalar, kanji yozish tartibi, JLPT mock exam, kaiwa.live",
     description:
       'Darslik emas — haqiqiy suhbat. AI bilan gaplashing, xatolaringizni shu zahoti tuzating va har kuni 10 daqiqada oldinga siljing.',
     ctaPrimary: 'Bepul boshlash →',
@@ -236,7 +236,7 @@ export const uz = {
     finalCtaDesc:
       'Grammatika kitoblar bilan yetarlicha vaqt o‘tkazdingiz. Endi gapirish vaqti keldi.',
     finalCtaButton: 'Hoziroq suhbatni boshlang →',
-    footerCopy: '© 2026 Nihongo Talk',
+    footerCopy: '© 2026 kaiwa.live',
     footerSub:
       'O‘zbek tilida so‘zlashuvchilar uchun yapon tilini suhbat orqali o‘rganish platformasi.',
     dashToday: "Bugungi o'quv reja",

@@ -22,7 +22,7 @@ describe('useSEO & Dynamic Google Rich Results Schema', () => {
       }),
     );
 
-    expect(document.title).toBe('JLPT N2 Grammatika — Nihongo Talk');
+    expect(document.title).toBe('JLPT N2 Grammatika — kaiwa.live');
     const canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
     expect(canonicalLink).toBeTruthy();
     expect(canonicalLink?.href).toBe('https://kaiwa.live/jlpt');
@@ -36,7 +36,7 @@ describe('useSEO & Dynamic Google Rich Results Schema', () => {
       '@graph': [
         {
           '@type': 'WebApplication',
-          name: 'Nihongo Talk',
+          name: 'kaiwa.live',
           aggregateRating: {
             '@type': 'AggregateRating',
             ratingValue: '4.8',
@@ -66,7 +66,7 @@ describe('useSEO & Dynamic Google Rich Results Schema', () => {
     script.textContent = JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'WebApplication',
-      name: 'Nihongo Talk',
+      name: 'kaiwa.live',
       aggregateRating: {
         '@type': 'AggregateRating',
         ratingValue: '4.5',

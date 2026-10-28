@@ -1,13 +1,11 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import {
   BookOpen,
   ChevronLeft,
   ChevronRight,
-  Clock,
   Compass,
   Copy,
   Home,
-  Languages,
   Menu,
   MessageSquare,
   Mic,
@@ -15,14 +13,17 @@ import {
   Shield,
   BarChart3,
   Star,
+  Radio,
+  Sun,
+  Moon,
 } from 'lucide-react';
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { SessionCompleteModal } from './SessionCompleteModal';
 import { RatingReviewModal } from './feedback';
 import { useRatingModalStore } from '../stores';
-import { useFocusTimerContext } from '../context/FocusTimerContext';
 import { useLanguage } from '../context/LanguageContext';
 import { useStudyData } from '../context/StudyPlannerContext';
+import { useTheme } from '../hooks/useTheme';
 import { isAdminEmail, isUserAdmin } from '../utils/admin';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Sheet, SheetContent } from './ui/sheet';
@@ -31,7 +32,7 @@ import { AppLogo } from './AppLogo';
 import { UzbekistanFlag, JapanFlag, UKFlag } from './common/FlagIcons';
 import ErrorBoundary from './ErrorBoundary';
 import { GlobalAnnouncementBanner } from './GlobalAnnouncementBanner';
-import { QuickCommandPalette } from './common/QuickCommandPalette';
+import { OfflineSyncStatusBar } from './common/OfflineSyncStatusBar';
 import { useKeyboardOffset } from '../hooks/useKeyboardOffset';
 
 interface NavItem {
@@ -44,15 +45,33 @@ const Layout: React.FC = () => {
   const { isKeyboardOpen } = useKeyboardOffset();
   const location = useLocation();
   const navigate = useNavigate();
-  const { focusState } = useFocusTimerContext();
   const [isSidebarOpen, setSidebarOpen] = useState(false);
-  const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(() => {
     const saved = localStorage.getItem('study_planner_sidebar_collapsed');
     return saved === 'true';
   });
+  const previousSidebarState = useRef<boolean | null>(null);
+  const isSpeakingRoute =
+    location.pathname === '/speaking-coach' || location.pathname === '/speaking';
+
+  useEffect(() => {
+    if (isSpeakingRoute) {
+      if (previousSidebarState.current === null) {
+        previousSidebarState.current = isCollapsed;
+        if (!isCollapsed) setIsCollapsed(true);
+      }
+      return;
+    }
+
+    if (previousSidebarState.current !== null) {
+      const previousState = previousSidebarState.current;
+      previousSidebarState.current = null;
+      if (isCollapsed !== previousState) setIsCollapsed(previousState);
+    }
+  }, [isSpeakingRoute, isCollapsed]);
 
   const { language, setLanguage, t } = useLanguage();
+  const { isDark, toggleTheme } = useTheme();
   const { user } = useStudyData();
   const displayEmail = user?.email || '';
   const isAdmin = Boolean(
@@ -66,20 +85,6 @@ const Layout: React.FC = () => {
   const submitRatingReview = useRatingModalStore((s) => s.submitReview);
   const initialRating = useRatingModalStore((s) => s.initialRating);
   const initialCategory = useRatingModalStore((s) => s.initialCategory);
-
-  // Global Keyboard Shortcuts (Cmd/Ctrl+K for Quick Command Palette)
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-        e.preventDefault();
-        setIsCommandPaletteOpen((prev) => !prev);
-        return;
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
 
   // Telegram WebApp Native BackButton Integration (Supported in WebApp 6.1+)
   useEffect(() => {
@@ -118,7 +123,6 @@ const Layout: React.FC = () => {
       '/speaking-coach',
       '/speaking',
       '/room',
-      '/focus',
       '/jlpt/listening',
       '/study-mode',
       '/lesson/',
@@ -135,11 +139,6 @@ const Layout: React.FC = () => {
       { name: isJa ? 'ホーム' : isEn ? 'Home' : 'Bosh sahifa', path: '/dashboard', icon: Home },
       { name: isJa ? 'JLPTマスター' : 'JLPT Master', path: '/jlpt', icon: BookOpen },
       {
-        name: isJa ? '単語・語彙分析' : isEn ? 'AI Vocabulary' : 'AI Lug‘at',
-        path: '/vocabulary?lang=ja',
-        icon: Languages,
-      },
-      {
         name: isJa ? '会話シナリオ' : isEn ? 'Scenarios' : 'Ssenariylar',
         path: '/scenarios?lang=ja',
         icon: MessageSquare,
@@ -150,11 +149,15 @@ const Layout: React.FC = () => {
         icon: Mic,
       },
       {
+        name: isJa ? 'モノローグ' : 'Monolog',
+        path: '/monologue',
+        icon: Radio,
+      },
+      {
         name: isJa ? '復習・フラッシュカード' : isEn ? 'Review' : 'Takrorlash',
         path: '/flashcards',
         icon: Copy,
       },
-      { name: isJa ? '集中タイマー' : isEn ? 'Focus Timer' : 'Fokus', path: '/focus', icon: Clock },
       { name: isJa ? '進捗・分析' : 'Progress', path: '/progress', icon: BarChart3 },
       {
         name: isJa ? 'レベル診断' : isEn ? 'Diagnostic' : 'Diagnostika',
@@ -195,12 +198,6 @@ const Layout: React.FC = () => {
     );
   };
 
-  const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-  };
-
   const getPageTitle = () => {
     const isJa = language === 'ja';
     const isEn = language === 'en';
@@ -209,6 +206,7 @@ const Layout: React.FC = () => {
     if (location.pathname.startsWith('/scenarios')) return isJa ? '会話シナリオ' : 'Scenarios';
     if (location.pathname.startsWith('/speaking-coach'))
       return isJa ? 'AIスピーキング' : 'Speaking';
+    if (location.pathname.startsWith('/monologue')) return isJa ? 'モノローグ' : 'Monolog';
     if (location.pathname === '/jlpt') return isJa ? 'JLPTマスター' : 'JLPT Master';
     if (location.pathname === '/dashboard') return isJa ? 'ホーム' : isEn ? 'Home' : 'Bosh sahifa';
     if (location.pathname === '/progress')
@@ -226,7 +224,7 @@ const Layout: React.FC = () => {
     if (location.pathname === '/personal-plan')
       return isJa ? '個人学習プラン' : isEn ? 'My Study Plan' : 'Shaxsiy Rejam';
     if (location.pathname === '/settings') return isJa ? '設定' : isEn ? 'Settings' : 'Sozlamalar';
-    return 'Nihongo Talk';
+    return 'kaiwa.live';
   };
 
   const NavLinks = ({ onClick }: { onClick?: () => void }) => {
@@ -287,80 +285,31 @@ const Layout: React.FC = () => {
 
   return (
     <div className="flex h-screen w-full max-w-[100vw] flex-col overflow-hidden bg-background font-sans text-foreground transition-colors duration-300 md:flex-row">
-      {/* Mini Timer Overlay */}
-      {focusState.isActive && location.pathname !== '/focus' && (
-        <div
-          onClick={() => navigate('/focus')}
-          className={`fixed ${isFullScreenPage ? 'bottom-24 right-3.5 sm:right-6 md:bottom-24' : 'bottom-24 right-3.5 sm:right-6 md:bottom-6'} glass-card group z-50 flex cursor-pointer items-center gap-2.5 rounded-2xl p-2.5 shadow-xl transition-all animate-in slide-in-from-bottom-4 hover:scale-105 sm:p-3`}
-        >
-          <div className="relative">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-primary/20 sm:h-10 sm:w-10">
-              <Clock size={16} className="animate-pulse text-primary" />
-            </div>
-            <svg
-              className="absolute inset-0 h-9 w-9 -rotate-90 sm:h-10 sm:w-10"
-              viewBox="0 0 100 100"
-            >
-              <circle
-                cx="50"
-                cy="50"
-                r="45"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="8"
-                strokeDasharray="283"
-                strokeDashoffset={
-                  283 -
-                  (283 *
-                    ((focusState.mode === 'focus'
-                      ? 25 * 60
-                      : focusState.mode === 'short_break'
-                        ? 5 * 60
-                        : 15 * 60) -
-                      focusState.timeLeft)) /
-                    (focusState.mode === 'focus'
-                      ? 25 * 60
-                      : focusState.mode === 'short_break'
-                        ? 5 * 60
-                        : 15 * 60)
-                }
-                className="text-primary transition-all duration-1000"
-              />
-            </svg>
-          </div>
-          <div className="flex flex-col">
-            <span className="mb-0.5 text-[9px] font-bold uppercase leading-none tracking-widest text-muted-foreground sm:text-[10px]">
-              {focusState.mode === 'focus'
-                ? language === 'ja'
-                  ? '集中'
-                  : language === 'en'
-                    ? 'Focus'
-                    : 'Fokus'
-                : language === 'ja'
-                  ? '休憩'
-                  : language === 'en'
-                    ? 'Break'
-                    : 'Tanaffus'}
-            </span>
-            <span className="font-mono text-base font-bold tabular-nums leading-none text-foreground sm:text-lg">
-              {formatTime(focusState.timeLeft)}
-            </span>
-          </div>
-          <div className="ml-1 opacity-0 transition-opacity group-hover:opacity-100">
-            <ChevronRight size={16} className="text-muted-foreground" />
-          </div>
-        </div>
-      )}
-
       {/* Mobile Header (Hidden on immersive fullscreen activity pages) */}
       {!isFullScreenPage && (
         <header className="glass-card relative z-30 flex items-center justify-between border-b px-3.5 py-2 pt-[max(env(safe-area-inset-top),0.5rem)] md:hidden">
           <div className="flex min-w-0 items-center gap-2">
             <AppLogo size="sm" showText={false} />
-            <h1 className="text-gradient truncate text-base font-bold">{getPageTitle()}</h1>
+            <h1 className="text-gradient truncate pb-0.5 pr-1 text-base font-bold">
+              {getPageTitle()}
+            </h1>
           </div>
 
           <div className="flex shrink-0 items-center gap-1.5">
+            <button
+              type="button"
+              onClick={toggleTheme}
+              className="flex h-8 w-8 items-center justify-center rounded-xl border border-border/80 bg-muted/70 text-muted-foreground shadow-xs transition-all hover:bg-muted hover:text-foreground active:scale-95"
+              title={isDark ? "Yorug' rejim (Light mode)" : "Qorong'u rejim (Dark mode)"}
+              aria-label="Mavzuni almashtirish"
+            >
+              {isDark ? (
+                <Sun size={15} className="text-amber-400 transition-transform hover:rotate-45" />
+              ) : (
+                <Moon size={15} className="text-indigo-400 transition-transform hover:-rotate-12" />
+              )}
+            </button>
+
             <button
               type="button"
               onClick={cycleLanguage}
@@ -403,7 +352,7 @@ const Layout: React.FC = () => {
         {/* Navigation Links */}
         <NavLinks />
 
-        {/* Bottom Section: Settings & Admin */}
+        {/* Bottom Section: Settings, Theme & Admin */}
         <div className="space-y-2 border-t border-border/60 bg-card/80 p-3.5">
           {isAdmin && (
             <NavLink
@@ -447,7 +396,7 @@ const Layout: React.FC = () => {
             <NavLink
               to="/settings"
               className={({ isActive }) =>
-                `flex flex-1 items-center ${isCollapsed ? 'justify-center' : ''} gap-2.5 rounded-xl px-3 py-2 text-xs font-semibold transition-all duration-200 ${
+                `flex flex-1 items-center ${isCollapsed ? 'justify-center' : ''} gap-2 rounded-xl px-2.5 py-1.5 text-xs font-semibold transition-all duration-200 ${
                   isActive
                     ? 'bg-primary/10 font-bold text-primary shadow-xs'
                     : 'text-muted-foreground hover:bg-muted/80 hover:text-foreground'
@@ -463,17 +412,33 @@ const Layout: React.FC = () => {
                   : ''
               }
             >
-              <SettingsIcon size={16} />
+              <SettingsIcon size={16} className="shrink-0" />
               {!isCollapsed && (
-                <span>
+                <span className="truncate">
                   {language === 'ja' ? '設定' : language === 'en' ? 'Settings' : 'Sozlamalar'}
                 </span>
               )}
             </NavLink>
 
+            {/* Theme Toggle Button */}
+            <button
+              type="button"
+              onClick={toggleTheme}
+              className="flex shrink-0 items-center justify-center rounded-xl border border-border/80 bg-muted/80 p-2 text-muted-foreground shadow-xs transition-all hover:bg-muted hover:text-foreground active:scale-95"
+              title={isDark ? "Yorug' rejim (Light mode)" : "Qorong'u rejim (Dark mode)"}
+              aria-label="Mavzuni almashtirish"
+            >
+              {isDark ? (
+                <Sun size={15} className="text-amber-400" />
+              ) : (
+                <Moon size={15} className="text-indigo-400" />
+              )}
+            </button>
+
+            {/* Language Cycle Button */}
             <button
               onClick={cycleLanguage}
-              className="flex shrink-0 items-center gap-1.5 rounded-xl border border-border/80 bg-muted/80 px-2.5 py-1.5 text-[11px] font-bold text-muted-foreground shadow-xs transition-all hover:bg-muted hover:text-foreground"
+              className="flex shrink-0 items-center gap-1 rounded-xl border border-border/80 bg-muted/80 px-2 py-1.5 text-[11px] font-bold text-muted-foreground shadow-xs transition-all hover:bg-muted hover:text-foreground active:scale-95"
               title={
                 language === 'uz'
                   ? '日本語に切り替え (Switch to Japanese)'
@@ -482,7 +447,7 @@ const Layout: React.FC = () => {
                     : "O'zbek tiliga o'tish"
               }
             >
-              {renderLanguageFlagAndCode('h-2.5 w-4')}
+              {renderLanguageFlagAndCode('h-2.5 w-3.5')}
             </button>
           </div>
         </div>
@@ -491,6 +456,7 @@ const Layout: React.FC = () => {
       {/* Main Content */}
       <main className="relative flex w-full max-w-full flex-1 flex-col overflow-hidden bg-background">
         {!isFullScreenPage && <GlobalAnnouncementBanner />}
+        {!isFullScreenPage && <OfflineSyncStatusBar />}
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}
@@ -637,31 +603,55 @@ const Layout: React.FC = () => {
                 <span>Admin Panel</span>
               </NavLink>
             )}
-            <NavLink
-              to="/settings"
-              onClick={() => setSidebarOpen(false)}
-              className={({ isActive }) =>
-                `flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-semibold transition-all duration-200 ${
-                  isActive
-                    ? 'bg-primary/10 font-bold text-primary shadow-xs'
-                    : 'text-muted-foreground hover:bg-muted/80 hover:text-foreground'
-                }`
-              }
-            >
-              <SettingsIcon size={16} className="shrink-0" />
-              <span>
-                {language === 'ja' ? '設定' : language === 'en' ? 'Settings' : 'Sozlamalar'}
-              </span>
-            </NavLink>
+            <div className="flex items-center gap-1.5 pt-1">
+              <NavLink
+                to="/settings"
+                onClick={() => setSidebarOpen(false)}
+                className={({ isActive }) =>
+                  `flex flex-1 items-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold transition-all duration-200 ${
+                    isActive
+                      ? 'bg-primary/10 font-bold text-primary shadow-xs'
+                      : 'text-muted-foreground hover:bg-muted/80 hover:text-foreground'
+                  }`
+                }
+              >
+                <SettingsIcon size={16} className="shrink-0" />
+                <span>
+                  {language === 'ja' ? '設定' : language === 'en' ? 'Settings' : 'Sozlamalar'}
+                </span>
+              </NavLink>
+
+              <button
+                type="button"
+                onClick={toggleTheme}
+                className="flex shrink-0 items-center justify-center rounded-xl border border-border/80 bg-muted/80 p-2 text-muted-foreground shadow-xs transition-all hover:bg-muted hover:text-foreground active:scale-95"
+                title={isDark ? "Yorug' rejim (Light mode)" : "Qorong'u rejim (Dark mode)"}
+                aria-label="Mavzuni almashtirish"
+              >
+                {isDark ? (
+                  <Sun size={15} className="text-amber-400" />
+                ) : (
+                  <Moon size={15} className="text-indigo-400" />
+                )}
+              </button>
+
+              <button
+                onClick={cycleLanguage}
+                className="flex shrink-0 items-center gap-1 rounded-xl border border-border/80 bg-muted/80 px-2 py-2 text-[11px] font-bold text-muted-foreground shadow-xs transition-all hover:bg-muted hover:text-foreground active:scale-95"
+                title={
+                  language === 'uz'
+                    ? '日本語に切り替え (Switch to Japanese)'
+                    : language === 'ja'
+                      ? 'Switch to English'
+                      : "O'zbek tiliga o'tish"
+                }
+              >
+                {renderLanguageFlagAndCode('h-2.5 w-3.5')}
+              </button>
+            </div>
           </div>
         </SheetContent>
       </Sheet>
-
-      {/* Quick Command Palette (Cmd/Ctrl + K) */}
-      <QuickCommandPalette
-        isOpen={isCommandPaletteOpen}
-        onClose={() => setIsCommandPaletteOpen(false)}
-      />
 
       {/* Global Modals */}
       <SessionCompleteModal />

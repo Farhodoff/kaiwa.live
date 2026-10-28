@@ -120,4 +120,28 @@ describe('ErrorBoundary Component', () => {
     retryBtn.click();
     expect(onResetMock).toHaveBeenCalled();
   });
+
+  it('should copy diagnostic error report when copy button is clicked', async () => {
+    const writeTextMock = vi.fn().mockResolvedValue(undefined);
+    Object.assign(navigator, {
+      clipboard: {
+        writeText: writeTextMock,
+      },
+    });
+
+    render(
+      <ErrorBoundary inline={true}>
+        <ThrowError shouldThrow={true} />
+      </ErrorBoundary>,
+    );
+
+    const copyBtn = screen.getByRole('button', { name: /Nusxa olish/i });
+    expect(copyBtn).toBeInTheDocument();
+
+    copyBtn.click();
+    expect(writeTextMock).toHaveBeenCalledWith(
+      expect.stringContaining('kaiwa.live Xatolik Hisoboti'),
+    );
+    expect(writeTextMock).toHaveBeenCalledWith(expect.stringContaining('Test error'));
+  });
 });

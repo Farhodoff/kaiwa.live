@@ -97,7 +97,7 @@ export default async function handler(req, res) {
         });
 
         // 2. Build Telegram Message
-        let messageText = `📊 <b>Nihongo Talk — 22:00 KUNLIK OVOZLI SUHBATLAR HISOBOTI (${todayStr})</b>\n`;
+        let messageText = `📊 <b>kaiwa.live — 22:00 KUNLIK OVOZLI SUHBATLAR HISOBOTI (${todayStr})</b>\n`;
         messageText += `━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
         messageText += `🗣 <b>Bugungi suhbatlar:</b> ${formattedSessions.length} ta\n`;
         messageText += `⏱ <b>Umumiy suhbat vaqti:</b> ${Math.round(totalDurationSec / 60)} daqiqa\n`;
@@ -130,7 +130,7 @@ export default async function handler(req, res) {
             messageText += `<i>Bugun hali yangi suhbatlar yozilmadi.</i>\n`;
         }
 
-        messageText += `\n🤖 <i>Nihongo Talk Automated Vault Engine (22:00 Auto-Purge)</i>`;
+        messageText += `\n🤖 <i>kaiwa.live Automated Vault Engine (22:00 Auto-Purge)</i>`;
         }
 
         // 3. Dispatch to Telegram Bot API

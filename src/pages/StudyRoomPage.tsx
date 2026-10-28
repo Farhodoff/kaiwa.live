@@ -1072,7 +1072,7 @@ const StudyRoomPage: React.FC = () => {
             </div>
 
             {/* Whiteboard Content Area */}
-            <div className="relative flex min-h-[380px] flex-1 touch-none flex-col overflow-hidden rounded-b-3xl bg-white p-4">
+            <div className="relative flex min-h-[380px] flex-1 touch-none flex-col overflow-hidden rounded-b-3xl border-t border-border bg-[#FAF8F5] p-4 dark:bg-[#151B22]">
               <React.Suspense
                 fallback={
                   <div className="flex h-full items-center justify-center text-xs font-bold text-slate-500">

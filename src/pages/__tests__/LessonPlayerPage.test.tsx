@@ -9,7 +9,7 @@ vi.mock('../../context/StudyPlannerContext', () => ({
   useStudyData: () => ({
     user: { id: 'test-user-123' },
     primaryLanguage: 'ja',
-    awardXP: vi.fn(),
+    awardXP: vi.fn().mockResolvedValue(undefined),
     settings: {},
   }),
 }));
@@ -21,6 +21,39 @@ vi.mock('../../services/LearningOrchestrator', () => ({
     getPrimaryLanguage: () => 'en',
     getUserTarget: () => ({ targetLevel: 'N3', targetGoal: '', currentLevel: 'N3' }),
   },
+}));
+
+vi.mock('../../services/ActivityLoggingService', () => ({
+  ActivityLoggingService: {
+    logActivity: vi.fn().mockResolvedValue({ id: 'test-activity-id' }),
+    calculateSpeakingXP: vi.fn().mockReturnValue({ xp: 15 }),
+    calculateFlashcardMilestoneXP: vi.fn().mockReturnValue({ milestoneXp: 0 }),
+  },
+}));
+
+vi.mock('../../lib/supabase', () => ({
+  supabase: {
+    auth: {
+      getSession: vi.fn().mockResolvedValue({ data: { session: null }, error: null }),
+      getUser: vi.fn().mockResolvedValue({ data: { user: null }, error: null }),
+      onAuthStateChange: vi.fn(() => ({ data: { subscription: { unsubscribe: vi.fn() } } })),
+    },
+    from: vi.fn(() => ({
+      insert: vi.fn().mockResolvedValue({ data: null, error: null }),
+      select: vi.fn().mockReturnThis(),
+      upsert: vi.fn().mockResolvedValue({ data: null, error: null }),
+      update: vi.fn().mockResolvedValue({ data: null, error: null }),
+      delete: vi.fn().mockResolvedValue({ data: null, error: null }),
+      eq: vi.fn().mockReturnThis(),
+      single: vi.fn().mockResolvedValue({ data: null, error: null }),
+    })),
+  },
+}));
+
+vi.mock('../../components/lesson/LessonAudioPlayer', () => ({
+  LessonAudioPlayer: ({ audioTitle }: { audioTitle?: string }) => (
+    <div data-testid="lesson-audio-player">{audioTitle || 'Audio Player'}</div>
+  ),
 }));
 
 vi.mock('../../utils/audioTts', () => ({
@@ -84,17 +117,20 @@ describe('LessonPlayerPage', () => {
     expect(screen.getByText(/To'g'ri majhul nisbat shaklini tanlang/i)).toBeInTheDocument();
 
     // Select the first option for Exercise 1
-    const optionA = screen.getByText(/誰/);
-    fireEvent.click(optionA);
+    const optButtons1 = screen.getAllByRole('button').filter((b) => b.textContent?.includes('A'));
+    expect(optButtons1.length).toBeGreaterThan(0);
+    fireEvent.click(optButtons1[0]);
 
-    // Advance to Exercise 2 via Davom etish button
-    const continueBtn = screen.getByRole('button', { name: /Davom etish/i });
-    fireEvent.click(continueBtn);
-
-    // Select option for Exercise 2
-    const optButtons = screen.getAllByRole('button').filter((b) => b.textContent?.includes('A'));
-    expect(optButtons.length).toBeGreaterThan(0);
-    fireEvent.click(optButtons[0]);
+    // Advance through exercises until reaching the final finish button
+    for (let i = 0; i < 12; i++) {
+      const continueBtn = screen.queryByRole('button', { name: /Davom etish/i });
+      if (!continueBtn) break;
+      fireEvent.click(continueBtn);
+      const optButtons = screen.getAllByRole('button').filter((b) => b.textContent?.includes('A'));
+      if (optButtons.length > 0) {
+        fireEvent.click(optButtons[0]);
+      }
+    }
 
     // Click Natijalarni Ko'rish
     const finishBtn = screen.getByRole('button', { name: /Natijalarni Ko'rish/i });
@@ -138,17 +174,12 @@ describe('LessonPlayerPage', () => {
     // Finish lesson
     fireEvent.click(screen.getByRole('button', { name: /Darsni Yakunlash/i }));
 
-    await waitFor(
-      () => {
-        expect(srsSpy).toHaveBeenCalled();
-      },
-      { timeout: 4000 },
-    );
+    await waitFor(() => {
+      expect(srsSpy).toHaveBeenCalled();
+    });
+    expect(await screen.findByText(/Dars Yakunlandi! 🎉/i)).toBeInTheDocument();
     expect(
-      await screen.findByText(/Dars Yakunlandi! 🎉/i, {}, { timeout: 4000 }),
-    ).toBeInTheDocument();
-    expect(
-      await screen.findByText(/4 ta yangi so'z Fleshkartalarga qo'shildi/i, {}, { timeout: 4000 }),
+      await screen.findByText(/4 ta yangi so'z Fleshkartalarga qo'shildi/i),
     ).toBeInTheDocument();
   });
 

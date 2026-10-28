@@ -1,5 +1,5 @@
 /**
- * Nihongo Talk Design System
+ * kaiwa.live Design System
  * Production CSS Tokens & Core UI Components
  */
 
@@ -137,7 +137,8 @@
 
   /* Transitions */
   --transition-all: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-colors: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  --transition-colors:
+    color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
   --transition-opacity: opacity 0.15s ease-in-out;
   --transition-shadow: box-shadow 0.15s ease-in-out;
   --transition-transform: transform 0.15s ease-in-out;
@@ -354,7 +355,6 @@ a:hover {
 
 /* Study Timer Animation */
 @keyframes pulse {
-
   0%,
   100% {
     opacity: 1;
@@ -854,7 +854,7 @@ a:hover {
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 1.125rem;
   width: 1.125rem;
   left: 0.25rem;
@@ -864,11 +864,11 @@ a:hover {
   border-radius: 50%;
 }
 
-input:checked+.slider {
+input:checked + .slider {
   background-color: hsl(var(--color-primary));
 }
 
-input:checked+.slider:before {
+input:checked + .slider:before {
   transform: translateX(1rem);
 }
 

@@ -1,16 +1,6 @@
 import React, { useState } from 'react';
-import {
-  Mic,
-  HeartPulse,
-  MessageCircle,
-  RotateCcw,
-  MicOff,
-  PhoneOff,
-  PhoneCall,
-  Send,
-} from 'lucide-react';
+import { Mic, RotateCcw, MicOff, Send, Square } from 'lucide-react';
 import AudioVisualizer from './AudioVisualizer';
-
 import { useLanguage } from '../../context/LanguageContext';
 import { useTelegramWebApp } from '../../hooks/useTelegramWebApp';
 
@@ -56,7 +46,7 @@ export const CoachControlBar: React.FC<CoachControlBarProps> = ({
 
   const submitText = (e?: React.FormEvent) => {
     e?.preventDefault();
-    if (!onSendText || isThinking) return;
+    if (!onSendText || isThinking || textDraft.trim().length === 0) return;
     haptics.impact('light');
     onSendText(textDraft);
     setTextDraft('');
@@ -65,67 +55,50 @@ export const CoachControlBar: React.FC<CoachControlBarProps> = ({
   const getStatusInfo = () => {
     if (isSpeaking)
       return {
-        label: isJa ? 'AI音声出力中 (タップで中断)' : "AI Gapirmoqda (To'xtatish uchun bosing)",
+        label: isJa ? 'AI話しています (タップで中断)' : "AI Gapirmoqda (To'xtatish)",
         color: 'text-blue-400',
         pulseColor: 'bg-blue-500',
       };
     if (isPreparingAudio)
       return {
-        label: isJa ? '音声準備中...' : 'Ovoz tayyorlanmoqda...',
+        label: isJa ? '準備中...' : 'Ovoz tayyorlanmoqda...',
         color: 'text-amber-400',
         pulseColor: 'bg-amber-500',
       };
     if (isThinking)
       return {
-        label: isJa ? '思考中...' : "O'ylamoqda...",
+        label: isJa ? '思考中...' : "Coach javob o'ylamoqda...",
         color: 'text-purple-400',
         pulseColor: 'bg-purple-500',
       };
     if (isListening)
       return {
-        label: isJa ? '音声認識中 (お話しください)' : 'Eshitmoqda (Siz gapiryapsiz)',
+        label: isJa ? 'あなたの番です (お話しください)' : 'Sizning navbatingiz... Gapiring',
         color: 'text-emerald-400',
         pulseColor: 'bg-emerald-500',
       };
+    if (isMuted)
+      return {
+        label: isJa ? 'マイクはミュート中' : "Mikrofon o'chiq (Mute)",
+        color: 'text-amber-400',
+        pulseColor: 'bg-amber-500',
+      };
     return {
-      label: isJa ? '会話待機中 (マイクを押して開始)' : 'Tayyor (Gapirish uchun mikrofonga bosing)',
-      color: 'text-amber-400',
-      pulseColor: 'bg-amber-500',
+      label: isJa ? '自動対話モード (お話しください)' : 'Navbat sizda... Gapiring',
+      color: 'text-emerald-400/90',
+      pulseColor: 'bg-emerald-500',
     };
   };
+
   const status = getStatusInfo();
 
   return (
     <div className="relative z-20 flex-shrink-0 px-3 pb-[max(env(safe-area-inset-bottom),0.75rem)] pt-1 md:px-5 md:pb-3">
-      <div className="rounded-2xl border border-border bg-card/90 p-2.5 shadow-xl backdrop-blur-2xl md:p-3">
-        {/* Text fallback — usable when microphone is unavailable */}
-        {isLiveSession && onSendText && (
-          <form onSubmit={submitText} className="mb-2 flex items-center gap-2">
-            <input
-              type="text"
-              value={textDraft}
-              onChange={(e) => setTextDraft(e.target.value)}
-              enterKeyHint="send"
-              autoComplete="off"
-              disabled={isThinking}
-              placeholder={isJa ? 'タイプして送信…' : 'Yozib yuboring…'}
-              aria-label={isJa ? 'テキストで返答' : 'Matn bilan javob berish'}
-              className="h-11 min-w-0 flex-1 rounded-xl border border-border bg-background px-3.5 text-sm text-foreground transition-colors placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none disabled:opacity-50"
-            />
-            <button
-              type="submit"
-              disabled={isThinking || textDraft.trim().length < 2}
-              aria-label={isJa ? '送信' : 'Yuborish'}
-              className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-md transition-all hover:bg-primary/90 active:scale-95 disabled:opacity-40"
-            >
-              <Send size={16} />
-            </button>
-          </form>
-        )}
-        {/* Audio Visualizer Row — Only during live session */}
+      <div className="mx-auto max-w-3xl rounded-2xl border border-border bg-card/95 p-2 shadow-xl backdrop-blur-2xl md:p-3">
+        {/* Status & Visualizer Row (when active) */}
         {isLiveSession && (
-          <div className="mb-2 px-1 sm:mb-2.5 sm:px-2">
-            <div className="mb-1.5 flex items-center justify-between gap-2">
+          <div className="mb-2 px-1">
+            <div className="mb-1 flex items-center justify-between gap-2">
               <div
                 onClick={() => {
                   if (isSpeaking && onBargeIn) {
@@ -134,19 +107,16 @@ export const CoachControlBar: React.FC<CoachControlBarProps> = ({
                     onForceStartListening();
                   }
                 }}
-                className="flex min-w-0 cursor-pointer items-center gap-1.5 transition-opacity hover:opacity-80 sm:gap-2"
-                title={isSpeaking ? "AI gapirishini to'xtatish" : 'Gapirish uchun bosish'}
+                className="flex min-w-0 cursor-pointer items-center gap-1.5 transition-opacity hover:opacity-80"
               >
                 <span
-                  className={`h-2 w-2 shrink-0 rounded-full sm:h-2.5 sm:w-2.5 ${status.pulseColor} animate-pulse`}
+                  className={`h-2 w-2 shrink-0 rounded-full ${status.pulseColor} animate-pulse`}
                 />
-                <span
-                  className={`truncate text-[10px] font-bold uppercase tracking-wider sm:text-[11px] ${status.color}`}
-                >
+                <span className={`truncate text-[11px] font-bold ${status.color}`}>
                   {status.label}
                 </span>
               </div>
-              <span className="shrink-0 rounded-md border border-border bg-muted px-1.5 py-0.5 font-mono text-[10px] font-bold text-muted-foreground sm:px-2 sm:text-[11px]">
+              <span className="shrink-0 rounded-md border border-border bg-muted px-2 py-0.5 font-mono text-[10px] font-bold text-muted-foreground">
                 {formatTimer(sessionSeconds)}
               </span>
             </div>
@@ -161,159 +131,138 @@ export const CoachControlBar: React.FC<CoachControlBarProps> = ({
                       ? 'listening'
                       : 'idle'
               }
-              barCount={32}
             />
           </div>
         )}
 
-        {/* Controls Row */}
-        <div className="flex items-center justify-between gap-2">
-          {/* Left: Status or Info */}
-          <div className="flex min-w-0 flex-1 items-center gap-2">
-            {!isLiveSession ? (
-              <div className="flex items-center gap-2 truncate text-xs font-medium text-muted-foreground">
-                <HeartPulse size={14} className="shrink-0 animate-pulse text-emerald-500" />
-                <span className="truncate">
-                  {isJa
-                    ? '会話を始めるには通話開始を押してください'
-                    : "Suhbat boshlash uchun qo'ng'iroq qiling"}
-                </span>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
-                <MessageCircle size={14} className="shrink-0 text-primary" />
-                <span>
-                  {chatHistoryLength} {isJa ? '件のメッセージ' : 'ta xabar'}
-                </span>
-              </div>
-            )}
-          </div>
-
-          {/* Right: Action Buttons */}
-          <div className="flex shrink-0 items-center gap-2">
-            {/* Clear History */}
-            {chatHistoryLength > 0 && !isLiveSession && (
+        {/* Input and Actions Bar — Clean & Mobile Optimized */}
+        <div className="flex items-center gap-2">
+          {/* Text Input */}
+          <form onSubmit={submitText} className="flex min-w-0 flex-1 items-center gap-1.5">
+            <input
+              type="text"
+              value={textDraft}
+              onChange={(e) => setTextDraft(e.target.value)}
+              enterKeyHint="send"
+              autoComplete="off"
+              disabled={isThinking}
+              placeholder={isJa ? 'メッセージを入力…' : 'Xabar yozing (yaponcha)…'}
+              className="h-11 min-w-0 flex-1 rounded-xl border border-border bg-background px-3.5 text-sm text-foreground transition-colors placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none disabled:opacity-50"
+            />
+            {textDraft.trim().length > 0 && (
               <button
-                onClick={onClearHistory}
-                className="cursor-pointer rounded-xl border border-border bg-muted p-2.5 text-muted-foreground transition-all hover:bg-rose-500/10 hover:text-rose-400"
-                title={isJa ? '会話履歴を消去' : 'Chatni tozalash'}
+                type="submit"
+                disabled={isThinking}
+                className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-md transition-all hover:bg-primary/90 active:scale-95"
+                title="Yuborish"
               >
-                <RotateCcw size={16} />
+                <Send size={16} />
               </button>
             )}
+          </form>
 
-            {/* Mute Mic Toggle / Force Start / Barge-in */}
-            {isLiveSession && (
-              <button
-                onClick={() => {
-                  haptics.impact('light');
-                  if (isSpeaking && onBargeIn) {
-                    onBargeIn();
-                  } else {
-                    if (isMuted) {
-                      setIsMuted(false);
-                    }
-                    if (onForceStartListening) {
-                      onForceStartListening();
-                    }
-                  }
-                }}
-                className={`flex min-h-[44px] cursor-pointer items-center gap-1.5 rounded-xl px-3 py-2.5 transition-all ${
-                  isMuted
-                    ? 'bg-amber-500 text-white shadow-md shadow-amber-500/25'
-                    : isSpeaking
-                      ? 'animate-pulse border border-[#C9A961]/40 bg-[#C9A961]/20 text-[#C9A961]'
-                      : isListening
-                        ? 'border border-emerald-500/30 bg-emerald-500/15 text-emerald-400'
-                        : 'bg-primary text-primary-foreground shadow-md hover:bg-primary/90'
-                }`}
-                title={
-                  isSpeaking
-                    ? isJa
-                      ? 'AI音声を中断'
-                      : "AI ni to'xtatish va gapirish"
-                    : isMuted
-                      ? isJa
-                        ? 'マイクをオン'
-                        : 'Mikrofonni yoqish'
-                      : isJa
-                        ? '話す（マイク有効化）'
-                        : 'Gapirish (Mikrofonni faollashtirish)'
+          {/* Main Voice Mic Button (No weird Call button!) */}
+          <button
+            onClick={() => {
+              haptics.impact('medium');
+              if (!isLiveSession) {
+                toggleSession();
+              } else if (isSpeaking && onBargeIn) {
+                onBargeIn();
+              } else {
+                if (isMuted) {
+                  setIsMuted(false);
                 }
-              >
-                {isMuted ? (
-                  <MicOff size={16} />
-                ) : (
-                  <Mic size={16} className={isListening ? 'animate-pulse text-emerald-400' : ''} />
-                )}
-                <span
-                  className={`text-[11px] font-bold ${isSpeaking ? 'text-[#C9A961]' : ''}`}
-                  aria-live="polite"
-                >
-                  {isSpeaking
-                    ? isJa
-                      ? '中断'
-                      : "TO'XTATISH"
-                    : isListening
-                      ? isJa
-                        ? '聴取中'
-                        : 'ESHITYAPMAN'
-                      : isThinking
-                        ? isJa
-                          ? '思考中'
-                          : 'KUTILMOQDA'
-                        : isMuted
-                          ? isJa
-                            ? 'ミュート'
-                            : "O'CHIQ"
-                          : isJa
-                            ? '話す'
-                            : 'GAPIRISH'}
-                </span>
-              </button>
+                if (onForceStartListening) {
+                  onForceStartListening();
+                }
+              }
+            }}
+            className={`flex h-11 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-xl px-4 text-xs font-bold shadow-md transition-all active:scale-95 ${
+              !isLiveSession
+                ? 'bg-gradient-to-r from-rose-500 to-indigo-600 text-white shadow-rose-500/20 hover:opacity-95'
+                : isSpeaking
+                  ? 'animate-pulse border border-amber-500/30 bg-amber-500/20 text-amber-300'
+                  : isListening
+                    ? 'animate-pulse bg-emerald-500 text-slate-950'
+                    : isMuted
+                      ? 'bg-amber-500 text-white shadow-amber-500/25'
+                      : 'bg-primary text-primary-foreground hover:bg-primary/90'
+            }`}
+            title={
+              isSpeaking
+                ? isJa
+                  ? 'AI音声を中断'
+                  : "AI ni to'xtatish va gapirish"
+                : isMuted
+                  ? isJa
+                    ? 'マイクをオン'
+                    : 'Mikrofonni yoqish'
+                  : isJa
+                    ? '話す（マイク有効化）'
+                    : 'Gapirish (Mikrofonni faollashtirish)'
+            }
+          >
+            {isMuted ? (
+              <MicOff size={18} />
+            ) : (
+              <Mic size={18} className={isListening ? 'animate-pulse text-slate-950' : ''} />
             )}
+            <span className="hidden sm:inline">
+              {!isLiveSession
+                ? isJa
+                  ? '会話を開始'
+                  : 'BOSHLASH'
+                : isSpeaking
+                  ? isJa
+                    ? '中断'
+                    : "TO'XTATISH"
+                  : isListening
+                    ? isJa
+                      ? '聴取中'
+                      : 'ESHITYAPMAN'
+                    : isThinking
+                      ? isJa
+                        ? '思考中'
+                        : "O'YLANMOQDA"
+                      : isMuted
+                        ? isJa
+                          ? 'ミュート'
+                          : "O'CHIQ"
+                        : isJa
+                          ? '話す'
+                          : 'GAPIRISH'}
+            </span>
+          </button>
 
-            {/* PRIMARY CALL BUTTON */}
+          {/* Reset / Clear Button */}
+          {chatHistoryLength > 0 && (
             <button
               onClick={() => {
-                haptics.impact('medium');
+                haptics.impact('light');
+                onClearHistory();
+              }}
+              className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-xl border border-border bg-background text-muted-foreground transition-all hover:bg-muted hover:text-foreground active:scale-95"
+              title="Suhbatni tozalash"
+            >
+              <RotateCcw size={16} />
+            </button>
+          )}
+
+          {/* End live session button if active */}
+          {isLiveSession && (
+            <button
+              onClick={() => {
+                haptics.impact('light');
                 toggleSession();
               }}
-              className={`group relative flex cursor-pointer items-center gap-2 overflow-hidden rounded-xl px-4 py-2 font-extrabold text-white shadow-md transition-all duration-300 active:scale-95 sm:px-6 sm:py-2.5 ${
-                isLiveSession
-                  ? 'bg-rose-600 shadow-rose-600/25 hover:bg-rose-700'
-                  : 'bg-primary text-primary-foreground shadow-primary/25 hover:bg-primary/90'
-              }`}
+              className="flex h-11 shrink-0 items-center justify-center gap-1.5 rounded-xl border border-rose-500/30 bg-rose-500/10 px-3 text-xs font-semibold text-rose-400 hover:bg-rose-500/20 active:scale-95"
+              title="Suhbatni yakunlash"
             >
-              {/* Shimmer effect */}
-              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-
-              {isLiveSession && (
-                <span className="pointer-events-none absolute inset-0 animate-ping rounded-xl border-2 border-white/20" />
-              )}
-              {isLiveSession ? (
-                <>
-                  <PhoneOff
-                    size={16}
-                    className="relative z-10 shrink-0 transition-transform group-hover:rotate-12"
-                  />
-                  <span className="relative z-10 text-xs tracking-wide">
-                    {isJa ? '終了' : 'TUGATISH'}
-                  </span>
-                </>
-              ) : (
-                <>
-                  <PhoneCall
-                    size={16}
-                    className="relative z-10 shrink-0 fill-current transition-transform group-hover:-rotate-12"
-                  />
-                  <span className="relative z-10 text-xs tracking-wide">
-                    {isJa ? '通話開始' : "QO'NG'IROQ"}
-                  </span>
-                </>
-              )}
+              <Square size={14} className="fill-current" />
+              <span className="hidden sm:inline">Yakunlash</span>
             </button>
-          </div>
+          )}
         </div>
       </div>
     </div>

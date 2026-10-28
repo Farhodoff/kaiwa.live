@@ -3,6 +3,7 @@ import type { JlptGrammarQuestion } from '../data/jlpt/grammar_data';
 import type { JlptListeningQuestion } from '../data/jlpt/listening_data';
 import type { JlptReadingPassage } from '../data/jlptReadingData';
 import { JLPT_READING_PASSAGES } from '../data/jlptReadingData';
+import { getAllN1ReadingPassages } from '../data/n1AdvancedContent';
 import { supabase } from '../lib/supabase';
 
 import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
@@ -1574,8 +1575,9 @@ export class CustomContentService {
       result.push(item);
     }
 
-    // Base items appended if not overridden
-    for (const item of JLPT_READING_PASSAGES) {
+    // Base items and N1 advanced passages appended if not overridden
+    const baseAndN1Passages = [...JLPT_READING_PASSAGES, ...getAllN1ReadingPassages()];
+    for (const item of baseAndN1Passages) {
       const normTitle = normalize(item.title);
       if (!normTitle || seenId.has(item.id) || seenTitle.has(normTitle)) continue;
       seenId.add(item.id);

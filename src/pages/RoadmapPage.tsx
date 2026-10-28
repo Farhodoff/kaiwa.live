@@ -15,11 +15,21 @@ import {
 } from 'lucide-react';
 import { useStudyData } from '../context/StudyPlannerContext';
 import { useLanguage } from '../context/LanguageContext';
+import { useSEO } from '../hooks/useSEO';
 import { LearningOrchestrator } from '../services/LearningOrchestrator';
 import { RoadmapService } from '../services/RoadmapService';
 import { LearningRoadmap, RoadmapLevelNode, RoadmapLessonNode } from '../types/curriculum';
 
 const RoadmapPage: React.FC = () => {
+  useSEO({
+    title: "Yapon Tili O'quv Yo'l Xaritasi (N5 dan N1 gacha)",
+    description:
+      "Yapon tilini noldan o'rganuvchilar va JLPT imtihoniga tayyorlanuvchilar uchun bosqichma-bosqich tizimli o'quv yo'l xaritasi (Roadmap).",
+    canonical: '/roadmap',
+    keywords:
+      "yapon tili roadmap, yapon tili noldan reja, JLPT N5 N4 N3 N2 N1 o'quv rejasi, yapon tili qanday o'rganiladi, kaiwa.live",
+  });
+
   const { targetLevel, targetGoal, flashcards, user } = useStudyData();
   const effectiveLang = 'ja' as const;
   const { language } = useLanguage();

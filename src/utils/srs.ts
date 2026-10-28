@@ -282,6 +282,53 @@ export interface DailyStudyQueueOptions {
   now?: Date;
   maxNewCards?: number;
   maxTotalCards?: number;
+  deduplicateByFront?: boolean;
+}
+
+/**
+ * Deduplicates cards sharing the same normalized front text.
+ * Prioritizes the card with higher repetitions and interval (most progressed SRS state)
+ * so that duplicate cards across decks do not pollute or distort the learning queue.
+ */
+export function deduplicateCardsByFront<
+  T extends {
+    front?: string;
+    repetitions?: number;
+    repetition?: number;
+    interval?: number;
+    easeFactor?: number;
+  },
+>(cards: T[]): T[] {
+  const map = new Map<string, T>();
+  const nameless: T[] = [];
+
+  for (const card of cards) {
+    const rawFront = card.front ? card.front.trim().toLowerCase() : '';
+    if (!rawFront) {
+      nameless.push(card);
+      continue;
+    }
+
+    if (!map.has(rawFront)) {
+      map.set(rawFront, card);
+    } else {
+      const existing = map.get(rawFront)!;
+      const existingReps = existing.repetitions ?? existing.repetition ?? 0;
+      const currentReps = card.repetitions ?? card.repetition ?? 0;
+      const existingInterval = existing.interval ?? 0;
+      const currentInterval = card.interval ?? 0;
+
+      // Keep the card with higher repetitions or interval (more mature in SRS)
+      if (
+        currentReps > existingReps ||
+        (currentReps === existingReps && currentInterval > existingInterval)
+      ) {
+        map.set(rawFront, card);
+      }
+    }
+  }
+
+  return [...Array.from(map.values()), ...nameless];
 }
 
 /**
@@ -290,23 +337,31 @@ export interface DailyStudyQueueOptions {
  * 2. reviewed cards due now/today
  * 3. a limited number of brand-new cards
  *
+ * Automatically deduplicates cards by front so identical words across decks
+ * are not reviewed multiple times in the same session.
  * Reviewed cards scheduled for the future are never included.
  */
 export function buildDailyStudyQueue<
   T extends {
+    front?: string;
     nextReviewDate?: string;
     nextReview?: string;
     dueDate?: string;
     repetitions?: number;
     repetition?: number;
+    interval?: number;
+    easeFactor?: number;
   },
 >(cards: T[], options: DailyStudyQueueOptions = {}): T[] {
   const now = options.now ?? new Date();
   const maxNewCards = Math.max(0, options.maxNewCards ?? 10);
   const maxTotalCards = Math.max(0, options.maxTotalCards ?? Number.POSITIVE_INFINITY);
+  const deduplicate = options.deduplicateByFront !== false;
 
-  const dueReviewedCards = cards.filter((card) => !isNew(card) && isDue(card, now));
-  const newCards = cards.filter(isNew).slice(0, maxNewCards);
+  const processedCards = deduplicate ? deduplicateCardsByFront(cards) : cards;
+
+  const dueReviewedCards = processedCards.filter((card) => !isNew(card) && isDue(card, now));
+  const newCards = processedCards.filter(isNew).slice(0, maxNewCards);
   const eligibleCards = sortCardsBySRSPriority([...dueReviewedCards, ...newCards], now);
 
   return eligibleCards.slice(0, maxTotalCards);

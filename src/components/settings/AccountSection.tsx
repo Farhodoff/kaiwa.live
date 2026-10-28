@@ -292,7 +292,7 @@ const AccountSection: React.FC = () => {
         <div className="space-y-5 p-6">
           <div>
             <h4 className="flex items-center gap-2 text-base font-bold text-foreground">
-              Nihongo Talk ilovasi sizga yoqdimi?
+              kaiwa.live ilovasi sizga yoqdimi?
             </h4>
             <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
               Platformadagi tajribangizni yulduzchalar bilan baholang yoki uchragan har qanday
