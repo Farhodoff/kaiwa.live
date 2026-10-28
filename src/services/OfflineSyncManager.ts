@@ -58,6 +58,17 @@ export interface QueuedLessonProgress {
   updatedAt: string;
 }
 
+export interface QueuedKanjiProgress {
+  id: string;
+  userId: string;
+  lessonId: string;
+  kanji: string;
+  attempts: number;
+  correctAttempts: number;
+  mastered: boolean;
+  lastReviewedAt: string;
+}
+
 export interface StorageDiagnostics {
   isOnline: boolean;
   pendingFlashcards: number;
@@ -65,6 +76,7 @@ export interface StorageDiagnostics {
   pendingSpeaking: number;
   pendingGamification: number;
   pendingLessonProgress: number;
+  pendingKanjiProgress: number;
   totalPending: number;
   cachedFlashcardsCount: number;
   lastSyncTimestamp: number | null;
@@ -74,6 +86,7 @@ const EXAMS_QUEUE_KEY = 'study_planner_offline_exams_queue';
 const SPEAKING_QUEUE_KEY = 'study_planner_offline_speaking_queue';
 const GAMIFICATION_QUEUE_KEY = 'study_planner_offline_gamification_queue';
 const LESSON_PROGRESS_QUEUE_KEY = 'study_planner_offline_lesson_progress_queue';
+const KANJI_PROGRESS_QUEUE_KEY = 'study_planner_offline_kanji_progress_queue';
 const LAST_SYNC_KEY = 'study_planner_last_offline_sync_time';
 
 let isSyncingAll = false;
@@ -158,6 +171,24 @@ export const OfflineSyncManager = {
     }
   },
 
+  async enqueueKanjiProgress(progress: QueuedKanjiProgress): Promise<void> {
+    try {
+      const queue = (await idbGet<QueuedKanjiProgress[]>(KANJI_PROGRESS_QUEUE_KEY)) || [];
+      const existingIdx = queue.findIndex(
+        (item) =>
+          item.id === progress.id ||
+          (item.userId === progress.userId &&
+            item.lessonId === progress.lessonId &&
+            item.kanji === progress.kanji),
+      );
+      if (existingIdx >= 0) queue[existingIdx] = progress;
+      else queue.push(progress);
+      await idbSet(KANJI_PROGRESS_QUEUE_KEY, queue);
+    } catch (e) {
+      console.warn('[OfflineSyncManager] Failed to enqueue kanji progress:', e);
+    }
+  },
+
   // ─── Queue Counters ─────────────────────────────────────────────
 
   async getPendingExamsCount(): Promise<number> {
@@ -196,19 +227,29 @@ export const OfflineSyncManager = {
     }
   },
 
+  async getPendingKanjiProgressCount(): Promise<number> {
+    try {
+      const queue = await idbGet<QueuedKanjiProgress[]>(KANJI_PROGRESS_QUEUE_KEY);
+      return queue ? queue.length : 0;
+    } catch {
+      return 0;
+    }
+  },
+
   /**
    * Returns total count of pending mutations across all domains.
    */
   async getOverallPendingCount(): Promise<number> {
-    const [flashcards, exams, speaking, gamification, lessons] = await Promise.all([
+    const [flashcards, exams, speaking, gamification, lessons, kanji] = await Promise.all([
       FlashcardOfflineSync.getPendingCount(),
       this.getPendingExamsCount(),
       this.getPendingSpeakingCount(),
       this.getPendingGamificationCount(),
       this.getPendingLessonProgressCount(),
+      this.getPendingKanjiProgressCount(),
     ]);
 
-    return flashcards + exams + speaking + gamification + lessons;
+    return flashcards + exams + speaking + gamification + lessons + kanji;
   },
 
   // ─── Queue Flush / Sync ─────────────────────────────────────────
@@ -222,6 +263,7 @@ export const OfflineSyncManager = {
     syncedSpeaking: number;
     syncedGamification: number;
     syncedLessons: number;
+    syncedKanji: number;
     totalSynced: number;
     totalFailed: number;
   }> {
@@ -232,6 +274,7 @@ export const OfflineSyncManager = {
         syncedSpeaking: 0,
         syncedGamification: 0,
         syncedLessons: 0,
+        syncedKanji: 0,
         totalSynced: 0,
         totalFailed: 0,
       };
@@ -244,6 +287,7 @@ export const OfflineSyncManager = {
         syncedSpeaking: 0,
         syncedGamification: 0,
         syncedLessons: 0,
+        syncedKanji: 0,
         totalSynced: 0,
         totalFailed: 0,
       };
@@ -254,6 +298,7 @@ export const OfflineSyncManager = {
     let syncedExams = 0;
     let syncedSpeaking = 0;
     let syncedGamification = 0;
+    let syncedKanji = 0;
     let totalFailed = 0;
 
     try {
@@ -397,8 +442,51 @@ export const OfflineSyncManager = {
         await idbSet(LESSON_PROGRESS_QUEUE_KEY, remainingLessons);
       }
 
+      // 6. Sync lesson kanji review progress
+      const kanjiQueue = (await idbGet<QueuedKanjiProgress[]>(KANJI_PROGRESS_QUEUE_KEY)) || [];
+      if (kanjiQueue.length > 0) {
+        const remainingKanji: QueuedKanjiProgress[] = [];
+        for (const item of kanjiQueue) {
+          try {
+            if (item.userId && item.userId !== 'guest') {
+              const { error } = await supabase.from('lesson_kanji_progress').upsert(
+                {
+                  id: item.id,
+                  user_id: item.userId,
+                  lesson_id: item.lessonId,
+                  kanji: item.kanji,
+                  attempts: item.attempts,
+                  correct_attempts: item.correctAttempts,
+                  mastered: item.mastered,
+                  last_reviewed_at: item.lastReviewedAt,
+                  updated_at: item.lastReviewedAt,
+                },
+                { onConflict: 'user_id,lesson_id,kanji' },
+              );
+              if (error) {
+                remainingKanji.push(item);
+                totalFailed++;
+              } else {
+                syncedKanji++;
+              }
+            } else {
+              syncedKanji++;
+            }
+          } catch {
+            remainingKanji.push(item);
+            totalFailed++;
+          }
+        }
+        await idbSet(KANJI_PROGRESS_QUEUE_KEY, remainingKanji);
+      }
+
       const totalSynced =
-        syncedCards + syncedExams + syncedSpeaking + syncedGamification + syncedLessons;
+        syncedCards +
+        syncedExams +
+        syncedSpeaking +
+        syncedGamification +
+        syncedLessons +
+        syncedKanji;
 
       if (totalSynced > 0) {
         try {
@@ -418,6 +506,7 @@ export const OfflineSyncManager = {
         syncedSpeaking,
         syncedGamification,
         syncedLessons,
+        syncedKanji,
         totalSynced,
         totalFailed,
       };
@@ -435,12 +524,14 @@ export const OfflineSyncManager = {
       pendingSpeaking,
       pendingGamification,
       pendingLessonProgress,
+      pendingKanjiProgress,
     ] = await Promise.all([
       FlashcardOfflineSync.getPendingCount(),
       this.getPendingExamsCount(),
       this.getPendingSpeakingCount(),
       this.getPendingGamificationCount(),
       this.getPendingLessonProgressCount(),
+      this.getPendingKanjiProgressCount(),
     ]);
 
     let cachedFlashcardsCount = 0;
@@ -466,8 +557,14 @@ export const OfflineSyncManager = {
       pendingSpeaking,
       pendingGamification,
       pendingLessonProgress,
+      pendingKanjiProgress,
       totalPending:
-        pendingCards + pendingExams + pendingSpeaking + pendingGamification + pendingLessonProgress,
+        pendingCards +
+        pendingExams +
+        pendingSpeaking +
+        pendingGamification +
+        pendingLessonProgress +
+        pendingKanjiProgress,
       cachedFlashcardsCount,
       lastSyncTimestamp,
     };
@@ -482,6 +579,7 @@ export const OfflineSyncManager = {
       idbDelete(SPEAKING_QUEUE_KEY),
       idbDelete(GAMIFICATION_QUEUE_KEY),
       idbDelete(LESSON_PROGRESS_QUEUE_KEY),
+      idbDelete(KANJI_PROGRESS_QUEUE_KEY),
     ]);
   },
 

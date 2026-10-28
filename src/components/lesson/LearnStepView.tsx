@@ -16,6 +16,7 @@ import { FuriganaText } from '../jlpt/FuriganaText';
 import { ListeningAudioSyncService } from '../../services/ListeningAudioSyncService';
 import { resolveAudioUrl } from '../../utils/audioUrl';
 import { LessonKanjiService, LessonKanjiProgress } from '../../services/LessonKanjiService';
+import { KanjiStrokeOrderModal } from '../jlpt/KanjiStrokeOrderModal';
 
 const formatAudioTime = (seconds: number) => {
   if (isNaN(seconds) || seconds <= 0) return '00:00';
@@ -45,6 +46,7 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
     [lesson],
   );
   const [kanjiProgress, setKanjiProgress] = useState<LessonKanjiProgress[]>([]);
+  const [strokeModalKanji, setStrokeModalKanji] = useState<LessonKanji | null>(null);
 
   useEffect(() => {
     if (!lesson || lessonKanji.length === 0) {
@@ -52,6 +54,9 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
       return;
     }
     setKanjiProgress(LessonKanjiService.getLessonProgress(userId, lesson.id, lessonKanji));
+    void LessonKanjiService.syncProgressFromDatabase(userId, lesson.id).then((remoteProgress) => {
+      if (remoteProgress.length > 0) setKanjiProgress(remoteProgress);
+    });
   }, [lesson, lessonKanji, userId]);
 
   const getKanjiProgress = (kanji: string) =>
@@ -61,6 +66,7 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
     if (!lesson) return;
     const progress = LessonKanjiService.recordReview(userId, lesson.id, kanji, result);
     setKanjiProgress((current) => [...current.filter((item) => item.kanji !== kanji), progress]);
+    void LessonKanjiService.syncProgress(userId, progress);
   };
   const [playingLineIdx, setPlayingLineIdx] = useState<number | null>(null);
   const [isAutoPlayingDialogue, setIsAutoPlayingDialogue] = useState(false);
@@ -525,6 +531,12 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
                     </span>
                     <div className="flex gap-1.5">
                       <button
+                        onClick={() => setStrokeModalKanji(item)}
+                        className="rounded-lg border border-primary/30 px-2.5 py-1.5 text-xs font-bold text-primary transition-colors hover:bg-primary/10"
+                      >
+                        Stroke tartibi
+                      </button>
+                      <button
                         onClick={() => handleKanjiReview(item.kanji, 'incorrect')}
                         className="rounded-lg border border-border px-2.5 py-1.5 text-xs font-bold text-muted-foreground transition-colors hover:border-rose-400 hover:text-rose-500"
                       >
@@ -543,6 +555,19 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
             })}
           </div>
         </div>
+      )}
+
+      {strokeModalKanji && (
+        <KanjiStrokeOrderModal
+          kanji={strokeModalKanji.kanji}
+          meaningUz={strokeModalKanji.meaningUz}
+          onyomi={strokeModalKanji.onyomi || '-'}
+          kunyomi={strokeModalKanji.kunyomi || '-'}
+          strokeCount={strokeModalKanji.strokeCount || 1}
+          level={lesson?.level || 'N5'}
+          isOpen
+          onClose={() => setStrokeModalKanji(null)}
+        />
       )}
 
       {/* Vocabulary Section */}
