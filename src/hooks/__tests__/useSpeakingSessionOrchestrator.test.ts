@@ -104,7 +104,7 @@ describe('useSpeakingSessionOrchestrator', () => {
     expect(result.current.isLiveSession).toBe(true);
     expect(result.current.chatHistory.length).toBe(1);
     expect(result.current.chatHistory[0].role).toBe('assistant');
-    expect(result.current.chatHistory[0].content).toContain('こんにちは！鬼の雪先生です');
+    expect(result.current.chatHistory[0].content).toContain('こんにちは！調子はどうですか？');
   });
 
   it('resets chat cleanly when handleResetChat is triggered', () => {

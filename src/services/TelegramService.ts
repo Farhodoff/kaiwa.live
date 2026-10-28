@@ -291,7 +291,26 @@ class TelegramService {
    * Send a subscription expiry or upgrade alert via Telegram
    */
   async sendSubscriptionAlert(rawUserId: string, tier: string, daysLeft: number): Promise<boolean> {
-    const text = `👑 <b>Nihongo Talk Obuna Bildirishnomasi</b>\n\nSizning <b>${tier.toUpperCase()}</b> tarifingiz tugashiga <b>${daysLeft} kun</b> qoldi.\nAI speaking va barcha premium imkoniyatlardan uzluksiz foydalanish uchun obunani yangilang:\n👉 <a href="https://kaiwa.live/pricing">Obunani uzaytirish</a>`;
+    const text = `👑 <b>kaiwa.live Obuna Bildirishnomasi</b>\n\nSizning <b>${tier.toUpperCase()}</b> tarifingiz tugashiga <b>${daysLeft} kun</b> qoldi.\nAI speaking va barcha premium imkoniyatlardan uzluksiz foydalanish uchun obunani yangilang:\n👉 <a href="https://kaiwa.live/pricing">Obunani uzaytirish</a>`;
+    return this.sendNotification(rawUserId, text);
+  }
+
+  /**
+   * Send a daily learning bite with quiz invitation via Telegram
+   */
+  async sendDailyQuizReminder(
+    rawUserId: string,
+    kanjiStr: string,
+    vocabStr: string,
+    streakDays: number,
+  ): Promise<boolean> {
+    const text =
+      `🎌 <b>Bugungi Yapon Tili Viktorinasi va Kunlik So'zlar!</b>\n\n` +
+      `🈁 <b>Kun Kanjisi:</b> 「${kanjiStr}」\n` +
+      `📝 <b>Kun So'zi:</b> 「${vocabStr}」\n` +
+      `🔥 <b>Streak:</b> ${streakDays} kun\n\n` +
+      `⚡ 5 ta tezkor savolga javob bering va +50 XP oling!\n` +
+      `👉 <a href="https://kaiwa.live/twa">Mini Appda Viktorinani Boshlash</a>`;
     return this.sendNotification(rawUserId, text);
   }
 }

@@ -1,7 +1,8 @@
 import { Component, ReactNode, ErrorInfo } from 'react';
-import { AlertTriangle, Home, RefreshCw } from 'lucide-react';
+import { AlertTriangle, Check, Copy, Home, RefreshCw } from 'lucide-react';
 import { Button } from './ui/Button';
 import { logger } from '../utils/logger';
+import { recordTelemetryEvent } from '../lib/errorTracking';
 
 interface Props {
   children: ReactNode;
@@ -14,6 +15,9 @@ interface Props {
 interface State {
   hasError: boolean;
   error: Error | null;
+  errorInfo: ErrorInfo | null;
+  retryCount: number;
+  copied: boolean;
 }
 
 // Redacts sensitive keys, tokens, database passwords, and authorization credentials from technical strings
@@ -30,20 +34,38 @@ export function sanitizeErrorMessage(msg: string): string {
 class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = { hasError: false, error: null };
+    this.state = {
+      hasError: false,
+      error: null,
+      errorInfo: null,
+      retryCount: 0,
+      copied: false,
+    };
   }
 
-  static getDerivedStateFromError(error: Error): State {
+  static getDerivedStateFromError(error: Error): Partial<State> {
     return { hasError: true, error };
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     const safeMessage = sanitizeErrorMessage(error?.message || '');
+    this.setState({ errorInfo });
     logger.error('ErrorBoundary', safeMessage, errorInfo?.componentStack?.slice(0, 300));
+    try {
+      recordTelemetryEvent('unhandled', `[ErrorBoundary] ${safeMessage}`, {
+        success: false,
+        metadata: {
+          componentStack: errorInfo?.componentStack?.slice(0, 300),
+          url: typeof window !== 'undefined' ? window.location?.href : '',
+        },
+      });
+    } catch {
+      // Telemetry recording is safe and non-blocking
+    }
   }
 
   handleReset = () => {
-    this.setState({ hasError: false, error: null });
+    this.setState({ hasError: false, error: null, errorInfo: null });
     window.location.reload();
   };
 
@@ -51,12 +73,42 @@ class ErrorBoundary extends Component<Props, State> {
     if (this.props.onReset) {
       this.props.onReset();
     }
-    this.setState({ hasError: false, error: null });
+    this.setState((prev) => ({
+      hasError: false,
+      error: null,
+      errorInfo: null,
+      retryCount: prev.retryCount + 1,
+      copied: false,
+    }));
   };
 
   handleGoHome = () => {
-    this.setState({ hasError: false, error: null });
+    this.setState({ hasError: false, error: null, errorInfo: null });
     window.location.href = '/';
+  };
+
+  handleCopyReport = async () => {
+    const safeMessage = sanitizeErrorMessage(this.state.error?.message || '');
+    const stackSnippet = this.state.errorInfo?.componentStack?.slice(0, 400) || '';
+    const report = [
+      `--- kaiwa.live Xatolik Hisoboti ---`,
+      `Vaqt: ${new Date().toISOString()}`,
+      `URL: ${typeof window !== 'undefined' ? window.location.href : "Noma'lum"}`,
+      `Xabar: ${safeMessage}`,
+      stackSnippet ? `Stack: ${stackSnippet}` : '',
+    ]
+      .filter(Boolean)
+      .join('\n');
+
+    try {
+      if (typeof navigator !== 'undefined' && navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(report);
+        this.setState({ copied: true });
+        setTimeout(() => this.setState({ copied: false }), 2500);
+      }
+    } catch {
+      // Non-blocking clipboard fallback
+    }
   };
 
   render() {
@@ -90,13 +142,35 @@ class ErrorBoundary extends Component<Props, State> {
                 </pre>
               </details>
             )}
-            <Button
-              onClick={this.handleInlineRetry}
-              variant="secondary"
-              className="inline-flex min-h-[44px] items-center justify-center gap-2 px-4 py-2 text-xs font-semibold"
-            >
-              <RefreshCw className="h-3.5 w-3.5" /> Qayta urinish
-            </Button>
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              <Button
+                onClick={this.handleInlineRetry}
+                variant="secondary"
+                className="inline-flex min-h-[44px] items-center justify-center gap-2 px-4 py-2 text-xs font-semibold"
+              >
+                <RefreshCw className="h-3.5 w-3.5" />
+                {this.state.retryCount > 0
+                  ? `Qayta urinish (${this.state.retryCount})`
+                  : 'Qayta urinish'}
+              </Button>
+              {displayError && (
+                <Button
+                  onClick={this.handleCopyReport}
+                  variant="outline"
+                  className="inline-flex min-h-[44px] items-center justify-center gap-2 px-3 py-2 text-xs font-medium"
+                >
+                  {this.state.copied ? (
+                    <>
+                      <Check className="h-3.5 w-3.5 text-emerald-500" /> Nusxa olindi
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="h-3.5 w-3.5" /> Nusxa olish
+                    </>
+                  )}
+                </Button>
+              )}
+            </div>
           </div>
         );
       }
@@ -123,27 +197,51 @@ class ErrorBoundary extends Component<Props, State> {
                 </pre>
               </details>
             )}
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <Button
-                onClick={this.handleReset}
-                className="flex w-full items-center justify-center gap-2"
-              >
-                <RefreshCw className="h-4 w-4" /> Sahifani yangilash
-              </Button>
-              <Button
-                variant="secondary"
-                onClick={this.handleGoHome}
-                className="flex w-full items-center justify-center gap-2"
-              >
-                <Home className="h-4 w-4" /> Bosh sahifa
-              </Button>
+            <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Button
+                  onClick={this.handleReset}
+                  className="flex w-full items-center justify-center gap-2"
+                >
+                  <RefreshCw className="h-4 w-4" /> Sahifani yangilash
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={this.handleGoHome}
+                  className="flex w-full items-center justify-center gap-2"
+                >
+                  <Home className="h-4 w-4" /> Bosh sahifa
+                </Button>
+              </div>
+              {displayError && (
+                <Button
+                  variant="outline"
+                  onClick={this.handleCopyReport}
+                  className="flex w-full items-center justify-center gap-2 text-xs text-muted-foreground"
+                >
+                  {this.state.copied ? (
+                    <>
+                      <Check className="h-3.5 w-3.5 text-emerald-500" /> Xatolik ma'lumotidan nusxa
+                      olindi
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="h-3.5 w-3.5" /> Xatolik ma'lumotidan nusxa olish
+                    </>
+                  )}
+                </Button>
+              )}
             </div>
           </div>
         </div>
       );
     }
 
-    return this.props.children;
+    return (
+      <span key={this.state.retryCount} className="contents">
+        {this.props.children}
+      </span>
+    );
   }
 }
 

@@ -1,8 +1,9 @@
-import { Bell, GraduationCap } from 'lucide-react';
+import { Bell, GraduationCap, Sun, Moon } from 'lucide-react';
 import { PushNotificationService } from '../../services/PushNotificationService';
 import { useStudyData } from '../../context/StudyPlannerContext';
 import { toast } from '../../hooks/use-toast';
 import { useLanguage } from '../../context/LanguageContext';
+import { useTheme } from '../../hooks/useTheme';
 import { UzbekistanFlag, JapanFlag, UKFlag } from '../common/FlagIcons';
 import AIProviderSection from './AIProviderSection';
 
@@ -25,6 +26,7 @@ const PreferencesSection: React.FC<PreferencesSectionProps> = ({
   onToggleNotifications,
 }) => {
   const { language, setLanguage } = useLanguage();
+  const { isDark, setTheme } = useTheme();
   const { user, targetLevel, targetGoal, setPrimaryFocus } = useStudyData();
 
   const isSuper = Boolean(user?.email && isSuperAdmin(user.email));
@@ -160,6 +162,78 @@ const PreferencesSection: React.FC<PreferencesSectionProps> = ({
             >
               <UKFlag className="h-2.5 w-4" />
               <span>English</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Theme Switcher Card */}
+        <div className="flex flex-col justify-between gap-4 rounded-xl border border-border bg-background/50 p-4 sm:flex-row sm:items-center">
+          <div className="flex items-center gap-3">
+            <div className="rounded-lg bg-primary/10 p-2.5 text-lg text-primary">
+              {isDark ? (
+                <Moon size={20} className="text-indigo-400" />
+              ) : (
+                <Sun size={20} className="text-amber-500" />
+              )}
+            </div>
+            <div>
+              <span className="block text-sm font-semibold text-foreground">
+                {language === 'uz'
+                  ? 'Ilova Mavzusi (Theme)'
+                  : language === 'ja'
+                    ? 'カラーテーマ (Theme)'
+                    : 'Color Theme'}
+              </span>
+              <span className="text-xs text-muted-foreground">
+                {language === 'uz'
+                  ? 'Qorongʻu (Sumi-e Charcoal) yoki Yorugʻ (Washi Paper) koʻrinishni tanlang'
+                  : language === 'ja'
+                    ? '墨絵ダーク (Charcoal) または 和紙ライト (Washi Paper)'
+                    : 'Sumi-e Charcoal dark or Washi Paper light aesthetic'}
+              </span>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              onClick={() => {
+                setTheme('dark');
+                toast({
+                  title:
+                    language === 'ja'
+                      ? '墨絵ダークモードに設定しました'
+                      : "Qorong'u rejim (Sumi-e) tanlandi",
+                });
+              }}
+              className={`flex cursor-pointer items-center gap-2 rounded-xl border px-3.5 py-2 text-xs font-bold transition-all ${
+                isDark
+                  ? 'border-primary bg-primary text-primary-foreground shadow-xs'
+                  : 'border-border bg-card text-muted-foreground hover:bg-muted'
+              }`}
+            >
+              <Moon size={14} className={isDark ? 'text-white' : 'text-indigo-400'} />
+              <span>{language === 'ja' ? '墨絵ダーク' : "Qorong'u (Dark)"}</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setTheme('light');
+                toast({
+                  title:
+                    language === 'ja'
+                      ? '和紙ライトモードに設定しました'
+                      : "Yorug' rejim (Washi) tanlandi",
+                });
+              }}
+              className={`flex cursor-pointer items-center gap-2 rounded-xl border px-3.5 py-2 text-xs font-bold transition-all ${
+                !isDark
+                  ? 'border-primary bg-primary text-primary-foreground shadow-xs'
+                  : 'border-border bg-card text-muted-foreground hover:bg-muted'
+              }`}
+            >
+              <Sun size={14} className={!isDark ? 'text-white' : 'text-amber-500'} />
+              <span>{language === 'ja' ? '和紙ライト' : "Yorug' (Light)"}</span>
             </button>
           </div>
         </div>

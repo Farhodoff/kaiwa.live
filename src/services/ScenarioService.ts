@@ -4,9 +4,9 @@ import { MINNA_SCENARIOS } from '../data/minnaScenarios';
 import { supabase } from '../lib/supabase';
 import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
 
-const CUSTOM_SCENARIOS_KEY = 'nihon_talk_custom_scenarios';
-const DELETED_SCENARIOS_KEY = 'nihon_talk_deleted_scenarios';
-const SCENARIO_HISTORY_PREFIX = 'nihon_talk_scenario_history:';
+const CUSTOM_SCENARIOS_KEY = 'kaiwa_live_custom_scenarios';
+const DELETED_SCENARIOS_KEY = 'kaiwa_live_deleted_scenarios';
+const SCENARIO_HISTORY_PREFIX = 'kaiwa_live_scenario_history:';
 let _cachedScenarios: ConversationScenario[] | null = null;
 
 const getHistoryKey = (userId?: string | null): string => {
@@ -52,7 +52,7 @@ export class ScenarioService {
       const key = getHistoryKey(userId);
       const local =
         safeLocalStorage.getItem(key) ||
-        (userId ? safeLocalStorage.getItem('nihon_talk_scenario_history') : null);
+        (userId ? safeLocalStorage.getItem('kaiwa_live_scenario_history') : null);
       if (local) {
         return JSON.parse(local);
       }
@@ -212,14 +212,14 @@ export class ScenarioService {
     explicitUserId?: string | null,
   ): Promise<void> {
     let userId = explicitUserId || null;
-    let userEmail = 'student@nihon-talk.com';
+    let userEmail = 'student@kaiwa.live';
 
     try {
       if (!userId) {
         const sessionRes = await supabase.auth.getSession();
         const sessionUser = sessionRes?.data?.session?.user;
         userId = sessionUser?.id || null;
-        userEmail = sessionUser?.email || 'student@nihon-talk.com';
+        userEmail = sessionUser?.email || 'student@kaiwa.live';
       }
     } catch {
       // guest

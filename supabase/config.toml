@@ -5,8 +5,8 @@ site_url = "https://kaiwa.live"
 additional_redirect_urls = [
   "https://kaiwa.live",
   "https://kaiwa.live/**",
-  "https://nihon-talk.vercel.app",
-  "https://nihon-talk.vercel.app/**",
+  "https://kaiwa-live.vercel.app",
+  "https://kaiwa-live.vercel.app/**",
   "http://localhost:5173",
   "http://localhost:5173/**",
   "http://localhost:3000",

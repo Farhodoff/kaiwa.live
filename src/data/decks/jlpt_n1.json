@@ -7,24 +7,10 @@
     "level": "N1"
   },
   {
-    "front": "安易",
-    "back": "Oson deb qarash, Yuzaki yondashish (Easy-going, simplistic)",
-    "phonetic": "あんい - An'i",
-    "example": "安易な考えは禁物だ (Masalaga yuzaki yondashish yaramaydi)",
-    "level": "N1"
-  },
-  {
     "front": "異色",
     "back": "O'zgacha, O'xshashi yo'q (Unique, novel)",
     "phonetic": "いしょく - Ishoku",
     "example": "異色の経歴を持つ作家 (Noodatiy tarjimai holga ega yozuvchi)",
-    "level": "N1"
-  },
-  {
-    "front": "維持",
-    "back": "Saqlab turish, Qo'llab-quvvatlash (Maintenance, preservation)",
-    "phonetic": "いじ - Iji",
-    "example": "健康を維持するために運動する (Salomatlikni saqlash uchun mashq qilmoq)",
     "level": "N1"
   },
   {
@@ -39,13 +25,6 @@
     "back": "Yashirish, Yopib ketish (Concealment, suppression)",
     "phonetic": "いんぺい - Inpei",
     "example": "事実を隠蔽することは許されない (Haqiqatni yashirishga yo'l qo'yilmaydi)",
-    "level": "N1"
-  },
-  {
-    "front": "意図",
-    "back": "Maqsad, Niyat (Intention, aim)",
-    "phonetic": "いと - Ito",
-    "example": "発言の意図を正確に把握する (Gapning asl niyatini aniq tushunib olmoq)",
     "level": "N1"
   },
   {
@@ -294,13 +273,6 @@
     "level": "N1"
   },
   {
-    "front": "徹底",
-    "back": "To'liq, Oxirigacha qilish (Thoroughness)",
-    "phonetic": "てってい - Tettei",
-    "example": "安全管理を徹底する (Xavfsizlik nazoratini qat'iy ta'minlamoq)",
-    "level": "N1"
-  },
-  {
     "front": "統括",
     "back": "Umumiy boshqaruv, Birlashtirish (General control, supervision)",
     "phonetic": "とうかつ - Toukatsu",
@@ -308,24 +280,10 @@
     "level": "N1"
   },
   {
-    "front": "把握",
-    "back": "Tushunib yetish, Qamrab olish (Grasp, understand)",
-    "phonetic": "はあく - Haaku",
-    "example": "現状を正確に把握する (Hozirgi holatni aniq tushunib yetmoq)",
-    "level": "N1"
-  },
-  {
     "front": "排他",
     "back": "Chetlatish, O'zgalarni siqib chiqarish (Exclusion)",
     "phonetic": "はいた - Haita",
     "example": "排他的な態度を改める (O'zgalarni chetlatuvchi munosabatni o'zgartirmoq)",
-    "level": "N1"
-  },
-  {
-    "front": "反映",
-    "back": "Aks etish, Ta'siri ko'rinish (Reflection, mirror)",
-    "phonetic": "はんえい - Han'ei",
-    "example": "市民の意見を政策に反映する (Fuqarolar fikrini davlat siyosatida aks ettirmoq)",
     "level": "N1"
   },
   {
@@ -347,13 +305,6 @@
     "back": "Asl mohiyat (Essence, true nature)",
     "phonetic": "ほんしつ - Honshitsu",
     "example": "物事の本質を見抜く (Hodisalarning tub mohiyatini anglab yetmoq)",
-    "level": "N1"
-  },
-  {
-    "front": "矛盾",
-    "back": "Zidlik, Qarama-qarshilik (Contradiction)",
-    "phonetic": "むじゅん - Mujun",
-    "example": "言動に矛盾がある (Gap bilan amalda ziddiyat bor)",
     "level": "N1"
   },
   {
@@ -1442,13 +1393,6 @@
     "level": "N1"
   },
   {
-    "front": "舞台",
-    "back": "Sahna, maydon",
-    "phonetic": "ぶたい - butai",
-    "example": "舞台の上で熱演する",
-    "level": "N1"
-  },
-  {
     "front": "首相",
     "back": "Bosh vazir",
     "phonetic": "しゅしょう - shushou",
@@ -1463,38 +1407,10 @@
     "level": "N1"
   },
   {
-    "front": "検討",
-    "back": "Ko'rib chiqish, tahlil qilish",
-    "phonetic": "けんとう - kentou",
-    "example": "計画を前向きに検討する",
-    "level": "N1"
-  },
-  {
-    "front": "描く",
-    "back": "Chizmoq, tasvirlamoq",
-    "phonetic": "えがく - egaku",
-    "example": "未来の社会を描く",
-    "level": "N1"
-  },
-  {
-    "front": "重視",
-    "back": "Muhim deb hisoblash, e'tibor qaratish",
-    "phonetic": "じゅうし - juushi",
-    "example": "品質を重視する姿勢",
-    "level": "N1"
-  },
-  {
     "front": "一断面",
     "back": "Bir qirrasi, bir ko'rinishi",
     "phonetic": "いちだんめん - ichidanmen",
     "example": "社会の一断面を切り取る",
-    "level": "N1"
-  },
-  {
-    "front": "姿勢",
-    "back": "Pozitsiya, qaddi-qomat, munosabat",
-    "phonetic": "しせい - shisei",
-    "example": "前向きな姿勢を保つ",
     "level": "N1"
   },
   {
@@ -1505,41 +1421,6 @@
     "level": "N1"
   },
   {
-    "front": "印象",
-    "back": "Taassurot",
-    "phonetic": "いんしょう - inshou",
-    "example": "強い印象を与える",
-    "level": "N1"
-  },
-  {
-    "front": "要点",
-    "back": "Asosiy nuqta, muhim jihat",
-    "phonetic": "ようてん - youten",
-    "example": "話の要点をまとめる",
-    "level": "N1"
-  },
-  {
-    "front": "狙い",
-    "back": "Maqsad, mo'ljal",
-    "phonetic": "ねらい - nerai",
-    "example": "新商品の狙いを説明する",
-    "level": "N1"
-  },
-  {
-    "front": "保護",
-    "back": "Himoya, muhofaza qilish",
-    "phonetic": "ほご - hogo",
-    "example": "環境保護に努める",
-    "level": "N1"
-  },
-  {
-    "front": "普及",
-    "back": "Keng yoyilish, ommalashish",
-    "phonetic": "ふきゅう - fukyuu",
-    "example": "スマートフォンの急速な普及",
-    "level": "N1"
-  },
-  {
     "front": "優先的",
     "back": "Ustuvor, birlamchi ahamiyatga ega",
     "phonetic": "ゆうせんてき - yuusenteki",
@@ -1547,31 +1428,10 @@
     "level": "N1"
   },
   {
-    "front": "優勝",
-    "back": "Chempionlik, g'alaba",
-    "phonetic": "ゆうしょう - yuushou",
-    "example": "大会で初優勝を果たす",
-    "level": "N1"
-  },
-  {
     "front": "放射",
     "back": "Nurlanish, tarqalish",
     "phonetic": "ほうしゃ - housha",
     "example": "放射熱を感じる",
-    "level": "N1"
-  },
-  {
-    "front": "義務",
-    "back": "Burch, majburiyat",
-    "phonetic": "ぎむ - gimu",
-    "example": "納税の義務を果たす",
-    "level": "N1"
-  },
-  {
-    "front": "放送",
-    "back": "Ettirish, radio/televideniye eshittirishi",
-    "phonetic": "ほうそう - housou",
-    "example": "緊急放送が流れる",
     "level": "N1"
   },
   {
@@ -1596,20 +1456,6 @@
     "level": "N1"
   },
   {
-    "front": "標本",
-    "back": "Namuna, eksponat",
-    "phonetic": "ひょうほん - hyouhon",
-    "example": "昆虫の標本を作る",
-    "level": "N1"
-  },
-  {
-    "front": "混乱",
-    "back": "Tartibsizlik, alg'ov-dalg'ovlik",
-    "phonetic": "こんらん - konran",
-    "example": "現場が混乱に陥る",
-    "level": "N1"
-  },
-  {
     "front": "事態",
     "back": "Vaziyat, ahvol",
     "phonetic": "じたい - jitai",
@@ -1631,13 +1477,6 @@
     "level": "N1"
   },
   {
-    "front": "講義",
-    "back": "Ma'ruza",
-    "phonetic": "こうぎ - kougi",
-    "example": "大学で経済の講義を聴く",
-    "level": "N1"
-  },
-  {
     "front": "避ける",
     "back": "Qochmoq, chetlab o'tmoq",
     "phonetic": "さける - sakeru",
@@ -1645,24 +1484,10 @@
     "level": "N1"
   },
   {
-    "front": "相互",
-    "back": "O'zaro, bir-biriga",
-    "phonetic": "そうご - sougo",
-    "example": "相互の理解を深める",
-    "level": "N1"
-  },
-  {
     "front": "意地",
     "back": "Qaysarlik, xarakter, nafsoniyat",
     "phonetic": "いじ - iji",
     "example": "意地を張る",
-    "level": "N1"
-  },
-  {
-    "front": "取り除く",
-    "back": "Olib tashlamoq, bartaraf etmoq",
-    "phonetic": "とりのぞく - torinozoku",
-    "example": "不安を取り除く",
     "level": "N1"
   },
   {
@@ -1736,24 +1561,10 @@
     "level": "N1"
   },
   {
-    "front": "友好",
-    "back": "友好 tushunchasi, ilmiy/amaliy atama (Yuukou)",
-    "phonetic": "ゆうこう - yuukou",
-    "example": "友好についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "定義",
     "back": "定義 tushunchasi, ilmiy/amaliy atama (Teigi)",
     "phonetic": "ていぎ - teigi",
     "example": "定義についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "携帯",
-    "back": "携帯 tushunchasi, ilmiy/amaliy atama (Keitai)",
-    "phonetic": "けいたい - keitai",
-    "example": "携帯についての調査を進める",
     "level": "N1"
   },
   {
@@ -1778,13 +1589,6 @@
     "level": "N1"
   },
   {
-    "front": "収穫",
-    "back": "収穫 tushunchasi, ilmiy/amaliy atama (Shuukaku)",
-    "phonetic": "しゅうかく - shuukaku",
-    "example": "収穫についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "絡んで",
     "back": "絡んで tushunchasi, ilmiy/amaliy atama (Karande)",
     "phonetic": "からんで - karande",
@@ -1792,24 +1596,10 @@
     "level": "N1"
   },
   {
-    "front": "影響",
-    "back": "影響 tushunchasi, ilmiy/amaliy atama (Eikyou)",
-    "phonetic": "えいきょう - eikyou",
-    "example": "影響についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "一概",
     "back": "一概 tushunchasi, ilmiy/amaliy atama (Ichigai)",
     "phonetic": "いちがい - ichigai",
     "example": "一概についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "与える",
-    "back": "与える tushunchasi, ilmiy/amaliy atama (Ataeru)",
-    "phonetic": "あたえる - ataeru",
-    "example": "与えることが重要である",
     "level": "N1"
   },
   {
@@ -1827,13 +1617,6 @@
     "level": "N1"
   },
   {
-    "front": "再発",
-    "back": "再発 tushunchasi, ilmiy/amaliy atama (Saihatsu)",
-    "phonetic": "さいはつ - saihatsu",
-    "example": "再発についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "豊作",
     "back": "豊作 tushunchasi, ilmiy/amaliy atama (Housaku)",
     "phonetic": "ほうさく - housaku",
@@ -1841,31 +1624,10 @@
     "level": "N1"
   },
   {
-    "front": "防止",
-    "back": "防止 tushunchasi, ilmiy/amaliy atama (Boushi)",
-    "phonetic": "ぼうし - boushi",
-    "example": "防止についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "振興",
     "back": "振興 tushunchasi, ilmiy/amaliy atama (Shinkou)",
     "phonetic": "しんこう - shinkou",
     "example": "振興についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "強調",
-    "back": "強調 tushunchasi, ilmiy/amaliy atama (Kyouchou)",
-    "phonetic": "きょうちょう - kyouchou",
-    "example": "強調についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "視点",
-    "back": "視点 tushunchasi, ilmiy/amaliy atama (Shiten)",
-    "phonetic": "してん - shiten",
-    "example": "視点についての調査を進める",
     "level": "N1"
   },
   {
@@ -1883,13 +1645,6 @@
     "level": "N1"
   },
   {
-    "front": "周囲",
-    "back": "周囲 tushunchasi, ilmiy/amaliy atama (Shuui)",
-    "phonetic": "しゅうい - shuui",
-    "example": "周囲についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "抗議",
     "back": "抗議 tushunchasi, ilmiy/amaliy atama (Kougi)",
     "phonetic": "こうぎ - kougi",
@@ -1901,13 +1656,6 @@
     "back": "劣らず tushunchasi, ilmiy/amaliy atama (Otorazu)",
     "phonetic": "おとらず - otorazu",
     "example": "劣らずについての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "思考",
-    "back": "思考 tushunchasi, ilmiy/amaliy atama (Shikou)",
-    "phonetic": "しこう - shikou",
-    "example": "思考についての調査を進める",
     "level": "N1"
   },
   {
@@ -1925,31 +1673,10 @@
     "level": "N1"
   },
   {
-    "front": "進行",
-    "back": "進行 tushunchasi, ilmiy/amaliy atama (Shinkou)",
-    "phonetic": "しんこう - shinkou",
-    "example": "進行についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "夕闇",
     "back": "夕闇 tushunchasi, ilmiy/amaliy atama (Yuuyami)",
     "phonetic": "ゆうやみ - yuuyami",
     "example": "夕闇についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "支店",
-    "back": "支店 tushunchasi, ilmiy/amaliy atama (Shiten)",
-    "phonetic": "してん - shiten",
-    "example": "支店についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "迫る",
-    "back": "迫る tushunchasi, ilmiy/amaliy atama (Semaru)",
-    "phonetic": "せまる - semaru",
-    "example": "迫ることが重要である",
     "level": "N1"
   },
   {
@@ -1960,24 +1687,10 @@
     "level": "N1"
   },
   {
-    "front": "街角",
-    "back": "街角 tushunchasi, ilmiy/amaliy atama (Machikado)",
-    "phonetic": "まちかど - machikado",
-    "example": "街角についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "不在",
     "back": "不在 tushunchasi, ilmiy/amaliy atama (Fuzai)",
     "phonetic": "ふざい - fuzai",
     "example": "不在についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "夫妻",
-    "back": "夫妻 tushunchasi, ilmiy/amaliy atama (Fusai)",
-    "phonetic": "ふさい - fusai",
-    "example": "夫妻についての調査を進める",
     "level": "N1"
   },
   {
@@ -2016,20 +1729,6 @@
     "level": "N1"
   },
   {
-    "front": "交渉",
-    "back": "交渉 tushunchasi, ilmiy/amaliy atama (Koushou)",
-    "phonetic": "こうしょう - koushou",
-    "example": "交渉についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "故障",
-    "back": "故障 tushunchasi, ilmiy/amaliy atama (Koshou)",
-    "phonetic": "こしょう - koshou",
-    "example": "故障についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "高尚",
     "back": "高尚 tushunchasi, ilmiy/amaliy atama (Koushou)",
     "phonetic": "こうしょう - koushou",
@@ -2041,13 +1740,6 @@
     "back": "廃棄物 tushunchasi, ilmiy/amaliy atama (Haikibutsu)",
     "phonetic": "はいきぶつ - haikibutsu",
     "example": "廃棄物についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "児童",
-    "back": "児童 tushunchasi, ilmiy/amaliy atama (Jidou)",
-    "phonetic": "じどう - jidou",
-    "example": "児童についての調査を進める",
     "level": "N1"
   },
   {
@@ -2065,13 +1757,6 @@
     "level": "N1"
   },
   {
-    "front": "解消",
-    "back": "解消 tushunchasi, ilmiy/amaliy atama (Kaishou)",
-    "phonetic": "かいしょう - kaishou",
-    "example": "解消についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "生涯",
     "back": "生涯 tushunchasi, ilmiy/amaliy atama (Shougai)",
     "phonetic": "しょうがい - shougai",
@@ -2086,20 +1771,6 @@
     "level": "N1"
   },
   {
-    "front": "障害",
-    "back": "障害 tushunchasi, ilmiy/amaliy atama (Shougai)",
-    "phonetic": "しょうがい - shougai",
-    "example": "障害についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "気配",
-    "back": "気配 tushunchasi, ilmiy/amaliy atama (Kehai)",
-    "phonetic": "けはい - kehai",
-    "example": "気配についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "漂い",
     "back": "漂い tushunchasi, ilmiy/amaliy atama (Tadayoi)",
     "phonetic": "ただよい - tadayoi",
@@ -2107,31 +1778,10 @@
     "level": "N1"
   },
   {
-    "front": "養成",
-    "back": "養成 tushunchasi, ilmiy/amaliy atama (Yousei)",
-    "phonetic": "ようせい - yousei",
-    "example": "養成についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "草花",
-    "back": "草花 tushunchasi, ilmiy/amaliy atama (Kusabana)",
-    "phonetic": "くさばな - kusabana",
-    "example": "草花についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "名残",
     "back": "名残 tushunchasi, ilmiy/amaliy atama (Nagori)",
     "phonetic": "なごり - nagori",
     "example": "名残についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "漢和",
-    "back": "漢和 tushunchasi, ilmiy/amaliy atama (Kanwa)",
-    "phonetic": "かんわ - kanwa",
-    "example": "漢和についての調査を進める",
     "level": "N1"
   },
   {
@@ -2156,31 +1806,10 @@
     "level": "N1"
   },
   {
-    "front": "新たな",
-    "back": "新たな tushunchasi, ilmiy/amaliy atama (Aratana)",
-    "phonetic": "あらたな - aratana",
-    "example": "新たなな状態を保つ",
-    "level": "N1"
-  },
-  {
     "front": "負債",
     "back": "負債 tushunchasi, ilmiy/amaliy atama (Fusai)",
     "phonetic": "ふさい - fusai",
     "example": "負債についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "兼ねる",
-    "back": "兼ねる tushunchasi, ilmiy/amaliy atama (Kaneru)",
-    "phonetic": "かねる - kaneru",
-    "example": "兼ねることが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "再三",
-    "back": "再三 tushunchasi, ilmiy/amaliy atama (Saisan)",
-    "phonetic": "さいさん - saisan",
-    "example": "再三についての調査を進める",
     "level": "N1"
   },
   {
@@ -2198,20 +1827,6 @@
     "level": "N1"
   },
   {
-    "front": "厳しい",
-    "back": "厳しい tushunchasi, ilmiy/amaliy atama (Kibishii)",
-    "phonetic": "きびしい - kibishii",
-    "example": "厳しいな状態を保つ",
-    "level": "N1"
-  },
-  {
-    "front": "応募",
-    "back": "応募 tushunchasi, ilmiy/amaliy atama (Oubo)",
-    "phonetic": "おうぼ - oubo",
-    "example": "応募についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "崩れ始める",
     "back": "崩れ始める tushunchasi, ilmiy/amaliy atama (Kuzurehajimeru)",
     "phonetic": "くずれはじめる - kuzurehajimeru",
@@ -2223,20 +1838,6 @@
     "back": "結晶 tushunchasi, ilmiy/amaliy atama (Keshou)",
     "phonetic": "けっしょう - keshou",
     "example": "結晶についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "自ら",
-    "back": "自ら tushunchasi, ilmiy/amaliy atama (Mizukara)",
-    "phonetic": "みずから - mizukara",
-    "example": "自らについての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "決勝",
-    "back": "決勝 tushunchasi, ilmiy/amaliy atama (Keshou)",
-    "phonetic": "けっしょう - keshou",
-    "example": "決勝についての調査を進める",
     "level": "N1"
   },
   {
@@ -2268,31 +1869,10 @@
     "level": "N1"
   },
   {
-    "front": "彫刻",
-    "back": "彫刻 tushunchasi, ilmiy/amaliy atama (Choukoku)",
-    "phonetic": "ちょうこく - choukoku",
-    "example": "彫刻についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "鮮やかな",
-    "back": "鮮やかな tushunchasi, ilmiy/amaliy atama (Azayakana)",
-    "phonetic": "あざやかな - azayakana",
-    "example": "鮮やかなな状態を保つ",
-    "level": "N1"
-  },
-  {
     "front": "色彩",
     "back": "色彩 tushunchasi, ilmiy/amaliy atama (Shikisai)",
     "phonetic": "しきさい - shikisai",
     "example": "色彩についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "誇る",
-    "back": "誇る tushunchasi, ilmiy/amaliy atama (Hokoru)",
-    "phonetic": "ほこる - hokoru",
-    "example": "誇ることが重要である",
     "level": "N1"
   },
   {
@@ -2310,31 +1890,10 @@
     "level": "N1"
   },
   {
-    "front": "完成",
-    "back": "完成 tushunchasi, ilmiy/amaliy atama (Kansei)",
-    "phonetic": "かんせい - kansei",
-    "example": "完成についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "万能",
     "back": "万能 tushunchasi, ilmiy/amaliy atama (Bannou)",
     "phonetic": "ばんのう - bannou",
     "example": "万能についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "習慣",
-    "back": "習慣 tushunchasi, ilmiy/amaliy atama (Shuukan)",
-    "phonetic": "しゅうかん - shuukan",
-    "example": "習慣についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "迷信",
-    "back": "迷信 tushunchasi, ilmiy/amaliy atama (Meishin)",
-    "phonetic": "めいしん - meishin",
-    "example": "迷信についての調査を進める",
     "level": "N1"
   },
   {
@@ -2366,13 +1925,6 @@
     "level": "N1"
   },
   {
-    "front": "抽象",
-    "back": "抽象 tushunchasi, ilmiy/amaliy atama (Chuushou)",
-    "phonetic": "ちゅうしょう - chuushou",
-    "example": "抽象についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "告げる",
     "back": "告げる tushunchasi, ilmiy/amaliy atama (Tsugeru)",
     "phonetic": "つげる - tsugeru",
@@ -2384,13 +1936,6 @@
     "back": "童謡 tushunchasi, ilmiy/amaliy atama (Douyou)",
     "phonetic": "どうよう - douyou",
     "example": "童謡についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "同様",
-    "back": "同様 tushunchasi, ilmiy/amaliy atama (Douyou)",
-    "phonetic": "どうよう - douyou",
-    "example": "同様についての調査を進める",
     "level": "N1"
   },
   {
@@ -2415,24 +1960,10 @@
     "level": "N1"
   },
   {
-    "front": "商店",
-    "back": "商店 tushunchasi, ilmiy/amaliy atama (Shouten)",
-    "phonetic": "しょうてん - shouten",
-    "example": "商店についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "速やかな",
     "back": "速やかな tushunchasi, ilmiy/amaliy atama (Sumiyakana)",
     "phonetic": "すみやかな - sumiyakana",
     "example": "速やかなな状態を保つ",
-    "level": "N1"
-  },
-  {
-    "front": "焦点",
-    "back": "焦点 tushunchasi, ilmiy/amaliy atama (Shouten)",
-    "phonetic": "しょうてん - shouten",
-    "example": "焦点についての調査を進める",
     "level": "N1"
   },
   {
@@ -2454,20 +1985,6 @@
     "back": "値する tushunchasi, ilmiy/amaliy atama (Ataisuru)",
     "phonetic": "あたいする - ataisuru",
     "example": "値することが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "給料",
-    "back": "給料 tushunchasi, ilmiy/amaliy atama (Kyuuryou)",
-    "phonetic": "きゅうりょう - kyuuryou",
-    "example": "給料についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "互いに",
-    "back": "互いに tushunchasi, ilmiy/amaliy atama (Tagaini)",
-    "phonetic": "たがいに - tagaini",
-    "example": "互いにについての調査を進める",
     "level": "N1"
   },
   {
@@ -2506,24 +2023,10 @@
     "level": "N1"
   },
   {
-    "front": "符号",
-    "back": "符号 tushunchasi, ilmiy/amaliy atama (Fugou)",
-    "phonetic": "ふごう - fugou",
-    "example": "符号についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "前途",
     "back": "前途 tushunchasi, ilmiy/amaliy atama (Zento)",
     "phonetic": "ぜんと - zento",
     "example": "前途についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "起床",
-    "back": "起床 tushunchasi, ilmiy/amaliy atama (Kishou)",
-    "phonetic": "きしょう - kishou",
-    "example": "起床についての調査を進める",
     "level": "N1"
   },
   {
@@ -2541,13 +2044,6 @@
     "level": "N1"
   },
   {
-    "front": "視野",
-    "back": "視野 tushunchasi, ilmiy/amaliy atama (Shiya)",
-    "phonetic": "しや - shiya",
-    "example": "視野についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "特派員",
     "back": "特派員 tushunchasi, ilmiy/amaliy atama (Tokuhain)",
     "phonetic": "とくはいん - tokuhain",
@@ -2555,45 +2051,10 @@
     "level": "N1"
   },
   {
-    "front": "充実",
-    "back": "充実 tushunchasi, ilmiy/amaliy atama (Juujitsu)",
-    "phonetic": "じゅうじつ - juujitsu",
-    "example": "充実についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "報道",
     "back": "報道 tushunchasi, ilmiy/amaliy atama (Houdou)",
     "phonetic": "ほうどう - houdou",
     "example": "報道についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "縮小",
-    "back": "縮小 tushunchasi, ilmiy/amaliy atama (Shukushou)",
-    "phonetic": "しゅくしょう - shukushou",
-    "example": "縮小についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "介護",
-    "back": "介護 tushunchasi, ilmiy/amaliy atama (Kaigo)",
-    "phonetic": "かいご - kaigo",
-    "example": "介護についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "演奏",
-    "back": "演奏 tushunchasi, ilmiy/amaliy atama (Ensou)",
-    "phonetic": "えんそう - ensou",
-    "example": "演奏についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "負担",
-    "back": "負担 tushunchasi, ilmiy/amaliy atama (Futan)",
-    "phonetic": "ふたん - futan",
-    "example": "負担についての調査を進める",
     "level": "N1"
   },
   {
@@ -2629,20 +2090,6 @@
     "back": "慢性 tushunchasi, ilmiy/amaliy atama (Mansei)",
     "phonetic": "まんせい - mansei",
     "example": "慢性についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "体制",
-    "back": "体制 tushunchasi, ilmiy/amaliy atama (Taisei)",
-    "phonetic": "たいせい - taisei",
-    "example": "体制についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "睡眠",
-    "back": "睡眠 tushunchasi, ilmiy/amaliy atama (Suimin)",
-    "phonetic": "すいみん - suimin",
-    "example": "睡眠についての調査を進める",
     "level": "N1"
   },
   {
@@ -2695,13 +2142,6 @@
     "level": "N1"
   },
   {
-    "front": "完了",
-    "back": "完了 tushunchasi, ilmiy/amaliy atama (Kanryou)",
-    "phonetic": "かんりょう - kanryou",
-    "example": "完了についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "合併",
     "back": "合併 tushunchasi, ilmiy/amaliy atama (Gapei)",
     "phonetic": "がっぺい - gapei",
@@ -2723,31 +2163,10 @@
     "level": "N1"
   },
   {
-    "front": "世紀",
-    "back": "世紀 tushunchasi, ilmiy/amaliy atama (Seiki)",
-    "phonetic": "せいき - seiki",
-    "example": "世紀についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "候補者",
     "back": "候補者 tushunchasi, ilmiy/amaliy atama (Kouhosha)",
     "phonetic": "こうほしゃ - kouhosha",
     "example": "候補者についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "栄養",
-    "back": "栄養 tushunchasi, ilmiy/amaliy atama (Eiyou)",
-    "phonetic": "えいよう - eiyou",
-    "example": "栄養についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "天候",
-    "back": "天候 tushunchasi, ilmiy/amaliy atama (Tenkou)",
-    "phonetic": "てんこう - tenkou",
-    "example": "天候についての調査を進める",
     "level": "N1"
   },
   {
@@ -2793,13 +2212,6 @@
     "level": "N1"
   },
   {
-    "front": "改善",
-    "back": "改善 tushunchasi, ilmiy/amaliy atama (Kaizen)",
-    "phonetic": "かいぜん - kaizen",
-    "example": "改善についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "認識",
     "back": "Anglash, tushunib yetish",
     "phonetic": "にんしき - ninshiki",
@@ -2807,24 +2219,10 @@
     "level": "N1"
   },
   {
-    "front": "伝統的な",
-    "back": "伝統的な tushunchasi, ilmiy/amaliy atama (Dentoutekina)",
-    "phonetic": "でんとうてきな - dentoutekina",
-    "example": "伝統的なな状態を保つ",
-    "level": "N1"
-  },
-  {
     "front": "柔軟",
     "back": "柔軟 tushunchasi, ilmiy/amaliy atama (Juunan)",
     "phonetic": "じゅうなん - juunan",
     "example": "柔軟についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "物事",
-    "back": "物事 tushunchasi, ilmiy/amaliy atama (もnogoto)",
-    "phonetic": "ものごと - もnogoto",
-    "example": "物事についての調査を進める",
     "level": "N1"
   },
   {
@@ -2839,20 +2237,6 @@
     "back": "志して tushunchasi, ilmiy/amaliy atama (Kokorozashite)",
     "phonetic": "こころざして - kokorozashite",
     "example": "志してについての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "変遷",
-    "back": "変遷 tushunchasi, ilmiy/amaliy atama (Hensen)",
-    "phonetic": "へんせん - hensen",
-    "example": "変遷についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "容易な",
-    "back": "容易な tushunchasi, ilmiy/amaliy atama (Youina)",
-    "phonetic": "よういな - youina",
-    "example": "容易なな状態を保つ",
     "level": "N1"
   },
   {
@@ -2919,13 +2303,6 @@
     "level": "N1"
   },
   {
-    "front": "架空",
-    "back": "架空 tushunchasi, ilmiy/amaliy atama (Kakuu)",
-    "phonetic": "かくう - kakuu",
-    "example": "架空についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "軽快",
     "back": "軽快 tushunchasi, ilmiy/amaliy atama (Keikai)",
     "phonetic": "けいかい - keikai",
@@ -2947,13 +2324,6 @@
     "level": "N1"
   },
   {
-    "front": "自己",
-    "back": "自己 tushunchasi, ilmiy/amaliy atama (Jiko)",
-    "phonetic": "じこ - jiko",
-    "example": "自己についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "繁栄",
     "back": "繁栄 tushunchasi, ilmiy/amaliy atama (Hanei)",
     "phonetic": "はんえい - hanei",
@@ -2965,13 +2335,6 @@
     "back": "挑む tushunchasi, ilmiy/amaliy atama (Idomu)",
     "phonetic": "いどむ - idomu",
     "example": "挑むことが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "意義",
-    "back": "意義 tushunchasi, ilmiy/amaliy atama (Igi)",
-    "phonetic": "いぎ - igi",
-    "example": "意義についての調査を進める",
     "level": "N1"
   },
   {
@@ -2989,13 +2352,6 @@
     "level": "N1"
   },
   {
-    "front": "廊下",
-    "back": "廊下 tushunchasi, ilmiy/amaliy atama (Rouka)",
-    "phonetic": "ろうか - rouka",
-    "example": "廊下についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "勘定",
     "back": "勘定 tushunchasi, ilmiy/amaliy atama (Kanjou)",
     "phonetic": "かんじょう - kanjou",
@@ -3007,34 +2363,6 @@
     "back": "踏み場 tushunchasi, ilmiy/amaliy atama (Fumiba)",
     "phonetic": "ふみば - fumiba",
     "example": "踏み場についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "感情",
-    "back": "感情 tushunchasi, ilmiy/amaliy atama (Kanjou)",
-    "phonetic": "かんじょう - kanjou",
-    "example": "感情についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "火災",
-    "back": "火災 tushunchasi, ilmiy/amaliy atama (Kasai)",
-    "phonetic": "かさい - kasai",
-    "example": "火災についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "清掃",
-    "back": "清掃 tushunchasi, ilmiy/amaliy atama (Seisou)",
-    "phonetic": "せいそう - seisou",
-    "example": "清掃についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "背景",
-    "back": "背景 tushunchasi, ilmiy/amaliy atama (Haikei)",
-    "phonetic": "はいけい - haikei",
-    "example": "背景についての調査を進める",
     "level": "N1"
   },
   {
@@ -3056,13 +2384,6 @@
     "back": "嘆く tushunchasi, ilmiy/amaliy atama (Nageku)",
     "phonetic": "なげく - nageku",
     "example": "嘆くことが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "行為",
-    "back": "行為 tushunchasi, ilmiy/amaliy atama (Koui)",
-    "phonetic": "こうい - koui",
-    "example": "行為についての調査を進める",
     "level": "N1"
   },
   {
@@ -3115,13 +2436,6 @@
     "level": "N1"
   },
   {
-    "front": "動揺",
-    "back": "動揺 tushunchasi, ilmiy/amaliy atama (Douyou)",
-    "phonetic": "どうよう - douyou",
-    "example": "動揺についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "澄み",
     "back": "澄み tushunchasi, ilmiy/amaliy atama (Sumi)",
     "phonetic": "すみ - sumi",
@@ -3133,13 +2447,6 @@
     "back": "遮る tushunchasi, ilmiy/amaliy atama (Saegiru)",
     "phonetic": "さえぎる - saegiru",
     "example": "遮ることが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "企業",
-    "back": "企業 tushunchasi, ilmiy/amaliy atama (Kigyou)",
-    "phonetic": "きぎょう - kigyou",
-    "example": "企業についての調査を進める",
     "level": "N1"
   },
   {
@@ -3185,31 +2492,10 @@
     "level": "N1"
   },
   {
-    "front": "人材",
-    "back": "人材 tushunchasi, ilmiy/amaliy atama (Jinzai)",
-    "phonetic": "じんざい - jinzai",
-    "example": "人材についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "欠陥",
-    "back": "欠陥 tushunchasi, ilmiy/amaliy atama (Kekan)",
-    "phonetic": "けっかん - kekan",
-    "example": "欠陥についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "募って",
     "back": "募って tushunchasi, ilmiy/amaliy atama (Tsunote)",
     "phonetic": "つのって - tsunote",
     "example": "募ってについての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "後悔",
-    "back": "後悔 tushunchasi, ilmiy/amaliy atama (Koukai)",
-    "phonetic": "こうかい - koukai",
-    "example": "後悔についての調査を進める",
     "level": "N1"
   },
   {
@@ -3234,20 +2520,6 @@
     "level": "N1"
   },
   {
-    "front": "別荘",
-    "back": "別荘 tushunchasi, ilmiy/amaliy atama (Besou)",
-    "phonetic": "べっそう - besou",
-    "example": "別荘についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "参加",
-    "back": "参加 tushunchasi, ilmiy/amaliy atama (Sanka)",
-    "phonetic": "さんか - sanka",
-    "example": "参加についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "海峡",
     "back": "海峡 tushunchasi, ilmiy/amaliy atama (Kaikyou)",
     "phonetic": "かいきょう - kaikyou",
@@ -3255,45 +2527,10 @@
     "level": "N1"
   },
   {
-    "front": "脂肪",
-    "back": "脂肪 tushunchasi, ilmiy/amaliy atama (Shibou)",
-    "phonetic": "しぼう - shibou",
-    "example": "脂肪についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "眺める",
-    "back": "眺める tushunchasi, ilmiy/amaliy atama (Nagameru)",
-    "phonetic": "ながめる - nagameru",
-    "example": "眺めることが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "志望",
-    "back": "志望 tushunchasi, ilmiy/amaliy atama (Shibou)",
-    "phonetic": "しぼう - shibou",
-    "example": "志望についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "河川",
     "back": "河川 tushunchasi, ilmiy/amaliy atama (Kasen)",
     "phonetic": "かせん - kasen",
     "example": "河川についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "施設",
-    "back": "施設 tushunchasi, ilmiy/amaliy atama (Shisetsu)",
-    "phonetic": "しせつ - shisetsu",
-    "example": "施設についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "下線",
-    "back": "下線 tushunchasi, ilmiy/amaliy atama (Kasen)",
-    "phonetic": "かせん - kasen",
-    "example": "下線についての調査を進める",
     "level": "N1"
   },
   {
@@ -3311,13 +2548,6 @@
     "level": "N1"
   },
   {
-    "front": "花壇",
-    "back": "花壇 tushunchasi, ilmiy/amaliy atama (Kadan)",
-    "phonetic": "かだん - kadan",
-    "example": "花壇についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "政策",
     "back": "政策 tushunchasi, ilmiy/amaliy atama (Seisaku)",
     "phonetic": "せいさく - seisaku",
@@ -3329,34 +2559,6 @@
     "back": "頑丈 tushunchasi, ilmiy/amaliy atama (Ganjou)",
     "phonetic": "がんじょう - ganjou",
     "example": "頑丈についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "製作",
-    "back": "製作 tushunchasi, ilmiy/amaliy atama (Seisaku)",
-    "phonetic": "せいさく - seisaku",
-    "example": "製作についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "垣根",
-    "back": "垣根 tushunchasi, ilmiy/amaliy atama (Kakine)",
-    "phonetic": "かきね - kakine",
-    "example": "垣根についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "福祉",
-    "back": "福祉 tushunchasi, ilmiy/amaliy atama (Fukushi)",
-    "phonetic": "ふくし - fukushi",
-    "example": "福祉についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "副詞",
-    "back": "副詞 tushunchasi, ilmiy/amaliy atama (Fukushi)",
-    "phonetic": "ふくし - fukushi",
-    "example": "副詞についての調査を進める",
     "level": "N1"
   },
   {
@@ -3374,13 +2576,6 @@
     "level": "N1"
   },
   {
-    "front": "執筆",
-    "back": "執筆 tushunchasi, ilmiy/amaliy atama (Shipitsu)",
-    "phonetic": "しっぴつ - shipitsu",
-    "example": "執筆についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "補償",
     "back": "補償 tushunchasi, ilmiy/amaliy atama (Hoshou)",
     "phonetic": "ほしょう - hoshou",
@@ -3388,24 +2583,10 @@
     "level": "N1"
   },
   {
-    "front": "輝く",
-    "back": "輝く tushunchasi, ilmiy/amaliy atama (Kagayaku)",
-    "phonetic": "かがやく - kagayaku",
-    "example": "輝くことが重要である",
-    "level": "N1"
-  },
-  {
     "front": "賢明",
     "back": "賢明 tushunchasi, ilmiy/amaliy atama (Kenmei)",
     "phonetic": "けんめい - kenmei",
     "example": "賢明についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "斜面",
-    "back": "斜面 tushunchasi, ilmiy/amaliy atama (Shamen)",
-    "phonetic": "しゃめん - shamen",
-    "example": "斜面についての調査を進める",
     "level": "N1"
   },
   {
@@ -3444,13 +2625,6 @@
     "level": "N1"
   },
   {
-    "front": "危険",
-    "back": "危険 tushunchasi, ilmiy/amaliy atama (Kiken)",
-    "phonetic": "きけん - kiken",
-    "example": "危険についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "感染",
     "back": "感染 tushunchasi, ilmiy/amaliy atama (Kansen)",
     "phonetic": "かんせん - kansen",
@@ -3472,13 +2646,6 @@
     "level": "N1"
   },
   {
-    "front": "監督",
-    "back": "監督 tushunchasi, ilmiy/amaliy atama (Kantoku)",
-    "phonetic": "かんとく - kantoku",
-    "example": "監督についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "捜索",
     "back": "捜索 tushunchasi, ilmiy/amaliy atama (Sousaku)",
     "phonetic": "そうさく - sousaku",
@@ -3490,13 +2657,6 @@
     "back": "盛大 tushunchasi, ilmiy/amaliy atama (Seidai)",
     "phonetic": "せいだい - seidai",
     "example": "盛大についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "創作",
-    "back": "創作 tushunchasi, ilmiy/amaliy atama (Sousaku)",
-    "phonetic": "そうさく - sousaku",
-    "example": "創作についての調査を進める",
     "level": "N1"
   },
   {
@@ -3521,31 +2681,10 @@
     "level": "N1"
   },
   {
-    "front": "芝居",
-    "back": "芝居 tushunchasi, ilmiy/amaliy atama (Shibai)",
-    "phonetic": "しばい - shibai",
-    "example": "芝居についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "要求",
-    "back": "Talab, da'vo",
-    "phonetic": "ようきゅう - youkyuu",
-    "example": "給与引き上げを要求する",
-    "level": "N1"
-  },
-  {
     "front": "派遣",
     "back": "Yuborish, xizmat safariga jo'natish",
     "phonetic": "はけん - haken",
     "example": "調査団を海外に派遣する",
-    "level": "N1"
-  },
-  {
-    "front": "方向",
-    "back": "Yo'nalish, tomon",
-    "phonetic": "ほうこう - houkou",
-    "example": "風の方向が変わる",
     "level": "N1"
   },
   {
@@ -3556,20 +2695,6 @@
     "level": "N1"
   },
   {
-    "front": "政府",
-    "back": "政府 tushunchasi, ilmiy/amaliy atama (Seifu)",
-    "phonetic": "せいふ - seifu",
-    "example": "政府についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "教育",
-    "back": "教育 tushunchasi, ilmiy/amaliy atama (Kyouiku)",
-    "phonetic": "きょういく - kyouiku",
-    "example": "教育についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "順調",
     "back": "Bir maromda, ko'ngildagidek",
     "phonetic": "じゅんちょう - junchou",
@@ -3577,38 +2702,10 @@
     "level": "N1"
   },
   {
-    "front": "近代",
-    "back": "近代 tushunchasi, ilmiy/amaliy atama (Kindai)",
-    "phonetic": "きんだい - kindai",
-    "example": "近代についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "順番",
-    "back": "順番 tushunchasi, ilmiy/amaliy atama (Junban)",
-    "phonetic": "じゅんばん - junban",
-    "example": "順番についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "国家",
     "back": "国家 tushunchasi, ilmiy/amaliy atama (Koka)",
     "phonetic": "こっか - koka",
     "example": "国家についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "発展",
-    "back": "発展 tushunchasi, ilmiy/amaliy atama (Haten)",
-    "phonetic": "はってん - haten",
-    "example": "発展についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "索引",
-    "back": "Ko'rsatkich, mundarija alifbosi",
-    "phonetic": "さくいん - sakuin",
-    "example": "巻末の索引で調べる",
     "level": "N1"
   },
   {
@@ -3633,13 +2730,6 @@
     "level": "N1"
   },
   {
-    "front": "費用",
-    "back": "費用 tushunchasi, ilmiy/amaliy atama (Hiyou)",
-    "phonetic": "ひよう - hiyou",
-    "example": "費用についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "興奮",
     "back": "Hayajon, qizg'in ruhiy holat",
     "phonetic": "こうふん - koufun",
@@ -3661,24 +2751,10 @@
     "level": "N1"
   },
   {
-    "front": "運営",
-    "back": "運営 tushunchasi, ilmiy/amaliy atama (Unei)",
-    "phonetic": "うんえい - unei",
-    "example": "運営についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "死傷者",
     "back": "Qurbonlar va jarohatlanganlar",
     "phonetic": "ししょうしゃ - shishousha",
     "example": "事故で死傷者が出る",
-    "level": "N1"
-  },
-  {
-    "front": "営業",
-    "back": "営業 tushunchasi, ilmiy/amaliy atama (Eigyou)",
-    "phonetic": "えいぎょう - eigyou",
-    "example": "営業についての調査を進める",
     "level": "N1"
   },
   {
@@ -3689,13 +2765,6 @@
     "level": "N1"
   },
   {
-    "front": "違反",
-    "back": "Qoidabuzarlik, buzish",
-    "phonetic": "いはん - ihan",
-    "example": "交通ルールに違反する",
-    "level": "N1"
-  },
-  {
     "front": "役職",
     "back": "役職 tushunchasi, ilmiy/amaliy atama (Yakushoku)",
     "phonetic": "やくしょく - yakushoku",
@@ -3703,24 +2772,10 @@
     "level": "N1"
   },
   {
-    "front": "非難",
-    "back": "Tanqid, ayblash, qoralash",
-    "phonetic": "ひなん - hinan",
-    "example": "不正な行為を非難する",
-    "level": "N1"
-  },
-  {
     "front": "辞め",
     "back": "辞め tushunchasi, ilmiy/amaliy atama (Yame)",
     "phonetic": "やめ - yame",
     "example": "辞めについての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "事情",
-    "back": "事情 tushunchasi, ilmiy/amaliy atama (Jijou)",
-    "phonetic": "じじょう - jijou",
-    "example": "事情についての調査を進める",
     "level": "N1"
   },
   {
@@ -3735,13 +2790,6 @@
     "back": "正当 tushunchasi, ilmiy/amaliy atama (Seitou)",
     "phonetic": "せいとう - seitou",
     "example": "正当についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "渋滞",
-    "back": "Tirbandlik, to'xtab qolish",
-    "phonetic": "じゅうたい - juutai",
-    "example": "高速道路の渋滞に巻き込まれる",
     "level": "N1"
   },
   {
@@ -3766,20 +2814,6 @@
     "level": "N1"
   },
   {
-    "front": "災害",
-    "back": "Tabiiy ofat, falokat",
-    "phonetic": "さいがい - saigai",
-    "example": "自然災害に備える",
-    "level": "N1"
-  },
-  {
-    "front": "確保",
-    "back": "Ta'minlash, kafolatlash",
-    "phonetic": "かくほ - kakuho",
-    "example": "安全な避難経路を確保する",
-    "level": "N1"
-  },
-  {
     "front": "即座",
     "back": "Darhol, bir zumda",
     "phonetic": "そくざ - sokuza",
@@ -3794,13 +2828,6 @@
     "level": "N1"
   },
   {
-    "front": "看護婦",
-    "back": "看護婦 tushunchasi, ilmiy/amaliy atama (Kangofu)",
-    "phonetic": "かんごふ - kangofu",
-    "example": "看護婦についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "人影",
     "back": "人影 tushunchasi, ilmiy/amaliy atama (Hitokage)",
     "phonetic": "ひとかげ - hitokage",
@@ -3812,13 +2839,6 @@
     "back": "E'tiroz, qarshilik",
     "phonetic": "いぎ - igi",
     "example": "決定に対して異議を唱える",
-    "level": "N1"
-  },
-  {
-    "front": "異常",
-    "back": "異常 tushunchasi, ilmiy/amaliy atama (Ijou)",
-    "phonetic": "いじょう - ijou",
-    "example": "異常についての調査を進める",
     "level": "N1"
   },
   {
@@ -3843,13 +2863,6 @@
     "level": "N1"
   },
   {
-    "front": "活躍",
-    "back": "活躍 tushunchasi, ilmiy/amaliy atama (Katsuyaku)",
-    "phonetic": "かつやく - katsuyaku",
-    "example": "活躍についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "配置",
     "back": "配置 tushunchasi, ilmiy/amaliy atama (Haichi)",
     "phonetic": "はいち - haichi",
@@ -3861,20 +2874,6 @@
     "back": "尽きる tushunchasi, ilmiy/amaliy atama (Tsukiru)",
     "phonetic": "つきる - tsukiru",
     "example": "尽きることが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "心配",
-    "back": "心配 tushunchasi, ilmiy/amaliy atama (Shinpai)",
-    "phonetic": "しんぱい - shinpai",
-    "example": "心配についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "理想",
-    "back": "理想 tushunchasi, ilmiy/amaliy atama (Risou)",
-    "phonetic": "りそう - risou",
-    "example": "理想についての調査を進める",
     "level": "N1"
   },
   {
@@ -3913,27 +2912,6 @@
     "level": "N1"
   },
   {
-    "front": "催促",
-    "back": "催促 tushunchasi, ilmiy/amaliy atama (Saisoku)",
-    "phonetic": "さいそく - saisoku",
-    "example": "催促についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "証拠",
-    "back": "証拠 tushunchasi, ilmiy/amaliy atama (Shouko)",
-    "phonetic": "しょうこ - shouko",
-    "example": "証拠についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "不動産",
-    "back": "不動産 tushunchasi, ilmiy/amaliy atama (Fudousan)",
-    "phonetic": "ふどうさん - fudousan",
-    "example": "不動産についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "口頭",
     "back": "口頭 tushunchasi, ilmiy/amaliy atama (Koutou)",
     "phonetic": "こうとう - koutou",
@@ -3945,13 +2923,6 @@
     "back": "投資 tushunchasi, ilmiy/amaliy atama (Toushi)",
     "phonetic": "とうし - toushi",
     "example": "投資についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "制服",
-    "back": "制服 tushunchasi, ilmiy/amaliy atama (Seifuku)",
-    "phonetic": "せいふく - seifuku",
-    "example": "制服についての調査を進める",
     "level": "N1"
   },
   {
@@ -3969,27 +2940,6 @@
     "level": "N1"
   },
   {
-    "front": "掲載",
-    "back": "掲載 tushunchasi, ilmiy/amaliy atama (Keisai)",
-    "phonetic": "けいさい - keisai",
-    "example": "掲載についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "転勤",
-    "back": "転勤 tushunchasi, ilmiy/amaliy atama (Tenkin)",
-    "phonetic": "てんきん - tenkin",
-    "example": "転勤についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "功績",
-    "back": "功績 tushunchasi, ilmiy/amaliy atama (Kouseki)",
-    "phonetic": "こうせき - kouseki",
-    "example": "功績についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "勤勉",
     "back": "勤勉 tushunchasi, ilmiy/amaliy atama (Kinben)",
     "phonetic": "きんべん - kinben",
@@ -3997,31 +2947,10 @@
     "level": "N1"
   },
   {
-    "front": "謙虚",
-    "back": "謙虚 tushunchasi, ilmiy/amaliy atama (Kenkyo)",
-    "phonetic": "けんきょ - kenkyo",
-    "example": "謙虚についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "指摘",
-    "back": "指摘 tushunchasi, ilmiy/amaliy atama (Shiteki)",
-    "phonetic": "してき - shiteki",
-    "example": "指摘についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "控え目",
     "back": "控え目 tushunchasi, ilmiy/amaliy atama (Hikaeme)",
     "phonetic": "ひかえめ - hikaeme",
     "example": "控え目についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "資料",
-    "back": "資料 tushunchasi, ilmiy/amaliy atama (Shiryou)",
-    "phonetic": "しりょう - shiryou",
-    "example": "資料についての調査を進める",
     "level": "N1"
   },
   {
@@ -4053,45 +2982,10 @@
     "level": "N1"
   },
   {
-    "front": "解説",
-    "back": "解説 tushunchasi, ilmiy/amaliy atama (Kaisetsu)",
-    "phonetic": "かいせつ - kaisetsu",
-    "example": "解説についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "惜しまれる",
     "back": "惜しまれる tushunchasi, ilmiy/amaliy atama (Oshimareru)",
     "phonetic": "おしまれる - oshimareru",
     "example": "惜しまれることが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "解散",
-    "back": "解散 tushunchasi, ilmiy/amaliy atama (Kaisan)",
-    "phonetic": "かいさん - kaisan",
-    "example": "解散についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "離れる",
-    "back": "離れる tushunchasi, ilmiy/amaliy atama (Hanareru)",
-    "phonetic": "はなれる - hanareru",
-    "example": "離れることが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "購入",
-    "back": "購入 tushunchasi, ilmiy/amaliy atama (Kounyuu)",
-    "phonetic": "こうにゅう - kounyuu",
-    "example": "購入についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "企画",
-    "back": "企画 tushunchasi, ilmiy/amaliy atama (Kikaku)",
-    "phonetic": "きかく - kikaku",
-    "example": "企画についての調査を進める",
     "level": "N1"
   },
   {
@@ -4102,38 +2996,10 @@
     "level": "N1"
   },
   {
-    "front": "強引",
-    "back": "強引 tushunchasi, ilmiy/amaliy atama (Gouin)",
-    "phonetic": "ごういん - gouin",
-    "example": "強引についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "状態",
-    "back": "状態 tushunchasi, ilmiy/amaliy atama (Joutai)",
-    "phonetic": "じょうたい - joutai",
-    "example": "状態についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "強盗",
     "back": "強盗 tushunchasi, ilmiy/amaliy atama (Goutou)",
     "phonetic": "ごうとう - goutou",
     "example": "強盗についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "現れる",
-    "back": "現れる tushunchasi, ilmiy/amaliy atama (Arawareru)",
-    "phonetic": "あらわれる - arawareru",
-    "example": "現れることが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "領収書",
-    "back": "領収書 tushunchasi, ilmiy/amaliy atama (Ryoushuusho)",
-    "phonetic": "りょうしゅうしょ - ryoushuusho",
-    "example": "領収書についての調査を進める",
     "level": "N1"
   },
   {
@@ -4158,24 +3024,10 @@
     "level": "N1"
   },
   {
-    "front": "発揮",
-    "back": "発揮 tushunchasi, ilmiy/amaliy atama (Haki)",
-    "phonetic": "はっき - haki",
-    "example": "発揮についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "権力者",
     "back": "権力者 tushunchasi, ilmiy/amaliy atama (Kenryokusha)",
     "phonetic": "けんりょくしゃ - kenryokusha",
     "example": "権力者についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "価格",
-    "back": "価格 tushunchasi, ilmiy/amaliy atama (Kakaku)",
-    "phonetic": "かかく - kakaku",
-    "example": "価格についての調査を進める",
     "level": "N1"
   },
   {
@@ -4193,20 +3045,6 @@
     "level": "N1"
   },
   {
-    "front": "契約",
-    "back": "契約 tushunchasi, ilmiy/amaliy atama (Keiyaku)",
-    "phonetic": "けいやく - keiyaku",
-    "example": "契約についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "結ぶ",
-    "back": "結ぶ tushunchasi, ilmiy/amaliy atama (Musubu)",
-    "phonetic": "むすぶ - musubu",
-    "example": "結ぶことが重要である",
-    "level": "N1"
-  },
-  {
     "front": "調理師",
     "back": "調理師 tushunchasi, ilmiy/amaliy atama (Chourishi)",
     "phonetic": "ちょうりし - chourishi",
@@ -4218,13 +3056,6 @@
     "back": "必死 tushunchasi, ilmiy/amaliy atama (Hishi)",
     "phonetic": "ひっし - hishi",
     "example": "必死についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "順序",
-    "back": "順序 tushunchasi, ilmiy/amaliy atama (Junjo)",
-    "phonetic": "じゅんじょ - junjo",
-    "example": "順序についての調査を進める",
     "level": "N1"
   },
   {
@@ -4249,13 +3080,6 @@
     "level": "N1"
   },
   {
-    "front": "誤解",
-    "back": "誤解 tushunchasi, ilmiy/amaliy atama (Gokai)",
-    "phonetic": "ごかい - gokai",
-    "example": "誤解についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "無礼",
     "back": "無礼 tushunchasi, ilmiy/amaliy atama (Burei)",
     "phonetic": "ぶれい - burei",
@@ -4263,24 +3087,10 @@
     "level": "N1"
   },
   {
-    "front": "収入",
-    "back": "収入 tushunchasi, ilmiy/amaliy atama (Shuunyuu)",
-    "phonetic": "しゅうにゅう - shuunyuu",
-    "example": "収入についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "言動",
     "back": "言動 tushunchasi, ilmiy/amaliy atama (Gendou)",
     "phonetic": "げんどう - gendou",
     "example": "言動についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "吸収",
-    "back": "吸収 tushunchasi, ilmiy/amaliy atama (Kyuushuu)",
-    "phonetic": "きゅうしゅう - kyuushuu",
-    "example": "吸収についての調査を進める",
     "level": "N1"
   },
   {
@@ -4305,52 +3115,10 @@
     "level": "N1"
   },
   {
-    "front": "恩恵",
-    "back": "恩恵 tushunchasi, ilmiy/amaliy atama (Onkei)",
-    "phonetic": "おんけい - onkei",
-    "example": "恩恵についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "気候",
-    "back": "気候 tushunchasi, ilmiy/amaliy atama (Kikou)",
-    "phonetic": "きこう - kikou",
-    "example": "気候についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "御恩",
     "back": "御恩 tushunchasi, ilmiy/amaliy atama (Goon)",
     "phonetic": "ごおん - goon",
     "example": "御恩についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "批評",
-    "back": "批評 tushunchasi, ilmiy/amaliy atama (Hihyou)",
-    "phonetic": "ひひょう - hihyou",
-    "example": "批評についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "抵抗",
-    "back": "抵抗 tushunchasi, ilmiy/amaliy atama (Teikou)",
-    "phonetic": "ていこう - teikou",
-    "example": "抵抗についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "評判",
-    "back": "評判 tushunchasi, ilmiy/amaliy atama (Hyouban)",
-    "phonetic": "ひょうばん - hyouban",
-    "example": "評判についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "暴れる",
-    "back": "暴れる tushunchasi, ilmiy/amaliy atama (Abareru)",
-    "phonetic": "あばれる - abareru",
-    "example": "暴れることが重要である",
     "level": "N1"
   },
   {
@@ -4365,13 +3133,6 @@
     "back": "勇敢な tushunchasi, ilmiy/amaliy atama (Yuukanna)",
     "phonetic": "ゆうかんな - yuukanna",
     "example": "勇敢なな状態を保つ",
-    "level": "N1"
-  },
-  {
-    "front": "登録",
-    "back": "登録 tushunchasi, ilmiy/amaliy atama (Touroku)",
-    "phonetic": "とうろく - touroku",
-    "example": "登録についての調査を進める",
     "level": "N1"
   },
   {
@@ -4396,27 +3157,6 @@
     "level": "N1"
   },
   {
-    "front": "克服",
-    "back": "克服 tushunchasi, ilmiy/amaliy atama (Kokufuku)",
-    "phonetic": "こくふく - kokufuku",
-    "example": "克服についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "冷房",
-    "back": "冷房 tushunchasi, ilmiy/amaliy atama (Reibou)",
-    "phonetic": "れいぼう - reibou",
-    "example": "冷房についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "貢献",
-    "back": "貢献 tushunchasi, ilmiy/amaliy atama (Kouken)",
-    "phonetic": "こうけん - kouken",
-    "example": "貢献についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "文房具屋",
     "back": "文房具屋 tushunchasi, ilmiy/amaliy atama (Bunbouguya)",
     "phonetic": "ぶんぼうぐや - bunbouguya",
@@ -4428,13 +3168,6 @@
     "back": "励まされた tushunchasi, ilmiy/amaliy atama (Hagemasareta)",
     "phonetic": "はげまされた - hagemasareta",
     "example": "励まされたについての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "楽器",
-    "back": "楽器 tushunchasi, ilmiy/amaliy atama (Gaki)",
-    "phonetic": "がっき - gaki",
-    "example": "楽器についての調査を進める",
     "level": "N1"
   },
   {
@@ -4452,66 +3185,10 @@
     "level": "N1"
   },
   {
-    "front": "築く",
-    "back": "築く tushunchasi, ilmiy/amaliy atama (Kizuku)",
-    "phonetic": "きずく - kizuku",
-    "example": "築くことが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "視察",
-    "back": "視察 tushunchasi, ilmiy/amaliy atama (Shisatsu)",
-    "phonetic": "しさつ - shisatsu",
-    "example": "視察についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "痛感",
     "back": "痛感 tushunchasi, ilmiy/amaliy atama (Tsuukan)",
     "phonetic": "つうかん - tsuukan",
     "example": "痛感についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "診察",
-    "back": "診察 tushunchasi, ilmiy/amaliy atama (Shinsatsu)",
-    "phonetic": "しんさつ - shinsatsu",
-    "example": "診察についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "儀式",
-    "back": "儀式 tushunchasi, ilmiy/amaliy atama (Gishiki)",
-    "phonetic": "ぎしき - gishiki",
-    "example": "儀式な状態を保つ",
-    "level": "N1"
-  },
-  {
-    "front": "応接室",
-    "back": "応接室 tushunchasi, ilmiy/amaliy atama (Ousetsushitsu)",
-    "phonetic": "おうせつしつ - ousetsushitsu",
-    "example": "応接室についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "応援",
-    "back": "応援 tushunchasi, ilmiy/amaliy atama (Ouen)",
-    "phonetic": "おうえん - ouen",
-    "example": "応援についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "衣装",
-    "back": "衣装 tushunchasi, ilmiy/amaliy atama (Ishou)",
-    "phonetic": "いしょう - ishou",
-    "example": "衣装についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "乾燥",
-    "back": "乾燥 tushunchasi, ilmiy/amaliy atama (Kansou)",
-    "phonetic": "かんそう - kansou",
-    "example": "乾燥についての調査を進める",
     "level": "N1"
   },
   {
@@ -4522,45 +3199,10 @@
     "level": "N1"
   },
   {
-    "front": "乾電池",
-    "back": "乾電池 tushunchasi, ilmiy/amaliy atama (Kandenchi)",
-    "phonetic": "かんでんち - kandenchi",
-    "example": "乾電池についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "確信",
-    "back": "確信 tushunchasi, ilmiy/amaliy atama (Kakushin)",
-    "phonetic": "かくしん - kakushin",
-    "example": "確信についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "簡潔",
     "back": "簡潔 tushunchasi, ilmiy/amaliy atama (Kanketsu)",
     "phonetic": "かんけつ - kanketsu",
     "example": "簡潔についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "確認",
-    "back": "確認 tushunchasi, ilmiy/amaliy atama (Kakunin)",
-    "phonetic": "かくにん - kakunin",
-    "example": "確認についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "述べる",
-    "back": "述べる tushunchasi, ilmiy/amaliy atama (Noberu)",
-    "phonetic": "のべる - noberu",
-    "example": "述べることが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "引力",
-    "back": "引力 tushunchasi, ilmiy/amaliy atama (Inryoku)",
-    "phonetic": "いんりょく - inryoku",
-    "example": "引力についての調査を進める",
     "level": "N1"
   },
   {
@@ -4585,13 +3227,6 @@
     "level": "N1"
   },
   {
-    "front": "特集",
-    "back": "特集 tushunchasi, ilmiy/amaliy atama (Tokushuu)",
-    "phonetic": "とくしゅう - tokushuu",
-    "example": "特集についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "有益",
     "back": "Foydali, naf keltiruvchi",
     "phonetic": "ゆうえき - yuueki",
@@ -4603,13 +3238,6 @@
     "back": "組んだ tushunchasi, ilmiy/amaliy atama (Kunda)",
     "phonetic": "くんだ - kunda",
     "example": "組んだについての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "蒸発",
-    "back": "蒸発 tushunchasi, ilmiy/amaliy atama (Jouhatsu)",
-    "phonetic": "じょうはつ - jouhatsu",
-    "example": "蒸発についての調査を進める",
     "level": "N1"
   },
   {
@@ -4641,41 +3269,6 @@
     "level": "N1"
   },
   {
-    "front": "納める",
-    "back": "納める tushunchasi, ilmiy/amaliy atama (Osameru)",
-    "phonetic": "おさめる - osameru",
-    "example": "納めることが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "精算",
-    "back": "精算 tushunchasi, ilmiy/amaliy atama (Seisan)",
-    "phonetic": "せいさん - seisan",
-    "example": "精算についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "依頼",
-    "back": "依頼 tushunchasi, ilmiy/amaliy atama (Irai)",
-    "phonetic": "いらい - irai",
-    "example": "依頼についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "雰囲気",
-    "back": "雰囲気 tushunchasi, ilmiy/amaliy atama (Funiki)",
-    "phonetic": "ふんいき - funiki",
-    "example": "雰囲気についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "膨大な",
-    "back": "膨大な tushunchasi, ilmiy/amaliy atama (Boudaina)",
-    "phonetic": "ぼうだいな - boudaina",
-    "example": "膨大なな状態を保つ",
-    "level": "N1"
-  },
-  {
     "front": "華やか",
     "back": "華やか tushunchasi, ilmiy/amaliy atama (Hanayaka)",
     "phonetic": "はなやか - hanayaka",
@@ -4697,27 +3290,6 @@
     "level": "N1"
   },
   {
-    "front": "衝突",
-    "back": "衝突 tushunchasi, ilmiy/amaliy atama (Shoutotsu)",
-    "phonetic": "しょうとつ - shoutotsu",
-    "example": "衝突についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "魅力",
-    "back": "魅力 tushunchasi, ilmiy/amaliy atama (Miryoku)",
-    "phonetic": "みりょく - miryoku",
-    "example": "魅力についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "寿命",
-    "back": "寿命 tushunchasi, ilmiy/amaliy atama (Jumyou)",
-    "phonetic": "じゅみょう - jumyou",
-    "example": "寿命についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "還暦",
     "back": "還暦 tushunchasi, ilmiy/amaliy atama (Kanreki)",
     "phonetic": "かんれき - kanreki",
@@ -4729,20 +3301,6 @@
     "back": "縮まる tushunchasi, ilmiy/amaliy atama (Chijimaru)",
     "phonetic": "ちぢまる - chijimaru",
     "example": "縮まることが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "感謝",
-    "back": "感謝 tushunchasi, ilmiy/amaliy atama (Kansha)",
-    "phonetic": "かんしゃ - kansha",
-    "example": "感謝についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "田舎",
-    "back": "田舎 tushunchasi, ilmiy/amaliy atama (Inaka)",
-    "phonetic": "いなか - inaka",
-    "example": "田舎についての調査を進める",
     "level": "N1"
   },
   {
@@ -4781,31 +3339,10 @@
     "level": "N1"
   },
   {
-    "front": "了承",
-    "back": "了承 tushunchasi, ilmiy/amaliy atama (Ryoushou)",
-    "phonetic": "りょうしょう - ryoushou",
-    "example": "了承についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "自慢",
-    "back": "自慢 tushunchasi, ilmiy/amaliy atama (Jiman)",
-    "phonetic": "じまん - jiman",
-    "example": "自慢についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "忠告",
     "back": "忠告 tushunchasi, ilmiy/amaliy atama (Chuukoku)",
     "phonetic": "ちゅうこく - chuukoku",
     "example": "忠告についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "威張る",
-    "back": "威張る tushunchasi, ilmiy/amaliy atama (Ibaru)",
-    "phonetic": "いばる - ibaru",
-    "example": "威張ることが重要である",
     "level": "N1"
   },
   {
@@ -4858,27 +3395,6 @@
     "level": "N1"
   },
   {
-    "front": "反抗",
-    "back": "反抗 tushunchasi, ilmiy/amaliy atama (Hankou)",
-    "phonetic": "はんこう - hankou",
-    "example": "反抗についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "無視",
-    "back": "無視 tushunchasi, ilmiy/amaliy atama (Mushi)",
-    "phonetic": "むし - mushi",
-    "example": "無視についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "偏見",
-    "back": "偏見 tushunchasi, ilmiy/amaliy atama (Henken)",
-    "phonetic": "へんけん - henken",
-    "example": "偏見についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "統率",
     "back": "統率 tushunchasi, ilmiy/amaliy atama (Tousotsu)",
     "phonetic": "とうそつ - tousotsu",
@@ -4890,20 +3406,6 @@
     "back": "会見 tushunchasi, ilmiy/amaliy atama (Kaiken)",
     "phonetic": "かいけん - kaiken",
     "example": "会見についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "統計",
-    "back": "統計 tushunchasi, ilmiy/amaliy atama (Toukei)",
-    "phonetic": "とうけい - toukei",
-    "example": "統計についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "緊張",
-    "back": "緊張 tushunchasi, ilmiy/amaliy atama (Kinchou)",
-    "phonetic": "きんちょう - kinchou",
-    "example": "緊張についての調査を進める",
     "level": "N1"
   },
   {
@@ -4935,20 +3437,6 @@
     "level": "N1"
   },
   {
-    "front": "名簿",
-    "back": "名簿 tushunchasi, ilmiy/amaliy atama (Meibo)",
-    "phonetic": "めいぼ - meibo",
-    "example": "名簿についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "特殊",
-    "back": "特殊 tushunchasi, ilmiy/amaliy atama (Tokushu)",
-    "phonetic": "とくしゅ - tokushu",
-    "example": "特殊についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "記載",
     "back": "記載 tushunchasi, ilmiy/amaliy atama (Kisai)",
     "phonetic": "きさい - kisai",
@@ -4970,13 +3458,6 @@
     "level": "N1"
   },
   {
-    "front": "紙幣",
-    "back": "紙幣 tushunchasi, ilmiy/amaliy atama (Shihei)",
-    "phonetic": "しへい - shihei",
-    "example": "紙幣についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "紛争",
     "back": "Nizo, ixtilof",
     "phonetic": "ふんそう - funsou",
@@ -4988,13 +3469,6 @@
     "back": "繊維 tushunchasi, ilmiy/amaliy atama (Seni)",
     "phonetic": "せんい - seni",
     "example": "繊維についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "摩擦",
-    "back": "摩擦 tushunchasi, ilmiy/amaliy atama (Masatsu)",
-    "phonetic": "まさつ - masatsu",
-    "example": "摩擦についての調査を進める",
     "level": "N1"
   },
   {
@@ -5033,13 +3507,6 @@
     "level": "N1"
   },
   {
-    "front": "幼稚園",
-    "back": "幼稚園 tushunchasi, ilmiy/amaliy atama (Youchien)",
-    "phonetic": "ようちえん - youchien",
-    "example": "幼稚園についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "山岳",
     "back": "山岳 tushunchasi, ilmiy/amaliy atama (Sangaku)",
     "phonetic": "さんがく - sangaku",
@@ -5061,20 +3528,6 @@
     "level": "N1"
   },
   {
-    "front": "回収",
-    "back": "回収 tushunchasi, ilmiy/amaliy atama (Kaishuu)",
-    "phonetic": "かいしゅう - kaishuu",
-    "example": "回収についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "分析",
-    "back": "分析 tushunchasi, ilmiy/amaliy atama (Bunseki)",
-    "phonetic": "ぶんせき - bunseki",
-    "example": "分析についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "威力",
     "back": "威力 tushunchasi, ilmiy/amaliy atama (Iryoku)",
     "phonetic": "いりょく - iryoku",
@@ -5082,80 +3535,10 @@
     "level": "N1"
   },
   {
-    "front": "一致",
-    "back": "一致 tushunchasi, ilmiy/amaliy atama (Ichi)",
-    "phonetic": "いっち - ichi",
-    "example": "一致についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "薬品",
-    "back": "薬品 tushunchasi, ilmiy/amaliy atama (Yakuhin)",
-    "phonetic": "やくひん - yakuhin",
-    "example": "薬品についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "必要",
-    "back": "必要 tushunchasi, ilmiy/amaliy atama (Hitsuyou)",
-    "phonetic": "ひつよう - hitsuyou",
-    "example": "必要についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "金庫",
-    "back": "金庫 tushunchasi, ilmiy/amaliy atama (Kinko)",
-    "phonetic": "きんこ - kinko",
-    "example": "金庫についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "期限",
-    "back": "期限 tushunchasi, ilmiy/amaliy atama (Kigen)",
-    "phonetic": "きげん - kigen",
-    "example": "期限についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "野生",
     "back": "Yovvoyi tabiat, yovvoyilik",
     "phonetic": "やせい - yasei",
     "example": "野生動物の生息地を守る",
-    "level": "N1"
-  },
-  {
-    "front": "動物",
-    "back": "動物 tushunchasi, ilmiy/amaliy atama (Doubutsu)",
-    "phonetic": "どうぶつ - doubutsu",
-    "example": "動物についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "列島",
-    "back": "列島 tushunchasi, ilmiy/amaliy atama (Retou)",
-    "phonetic": "れっとう - retou",
-    "example": "列島についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "お年寄り",
-    "back": "お年寄り tushunchasi, ilmiy/amaliy atama (Otoshiyori)",
-    "phonetic": "おとしより - otoshiyori",
-    "example": "お年寄りについての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "記録",
-    "back": "記録 tushunchasi, ilmiy/amaliy atama (Kiroku)",
-    "phonetic": "きろく - kiroku",
-    "example": "記録についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "商売",
-    "back": "商売 tushunchasi, ilmiy/amaliy atama (Shoubai)",
-    "phonetic": "しょうばい - shoubai",
-    "example": "商売についての調査を進める",
     "level": "N1"
   },
   {
@@ -5187,24 +3570,10 @@
     "level": "N1"
   },
   {
-    "front": "異文化",
-    "back": "異文化 tushunchasi, ilmiy/amaliy atama (Ibunka)",
-    "phonetic": "いぶんか - ibunka",
-    "example": "異文化についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "検出",
     "back": "Aniqlash, topib chiqarish",
     "phonetic": "けんしゅつ - kenshutsu",
     "example": "新しい成分を検出する",
-    "level": "N1"
-  },
-  {
-    "front": "被害",
-    "back": "被害 tushunchasi, ilmiy/amaliy atama (Higai)",
-    "phonetic": "ひがい - higai",
-    "example": "被害についての調査を進める",
     "level": "N1"
   },
   {
@@ -5215,34 +3584,6 @@
     "level": "N1"
   },
   {
-    "front": "交通事故",
-    "back": "交通事故 tushunchasi, ilmiy/amaliy atama (Koutsuujiko)",
-    "phonetic": "こうつうじこ - koutsuujiko",
-    "example": "交通事故についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "森林",
-    "back": "森林 tushunchasi, ilmiy/amaliy atama (Shinrin)",
-    "phonetic": "しんりん - shinrin",
-    "example": "森林についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "禁止",
-    "back": "禁止 tushunchasi, ilmiy/amaliy atama (Kinshi)",
-    "phonetic": "きんし - kinshi",
-    "example": "禁止についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "選挙",
-    "back": "選挙 tushunchasi, ilmiy/amaliy atama (Senkyo)",
-    "phonetic": "せんきょ - senkyo",
-    "example": "選挙についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "末期的",
     "back": "末期的 tushunchasi, ilmiy/amaliy atama (Makiteki)",
     "phonetic": "まっきてき - makiteki",
@@ -5250,24 +3591,10 @@
     "level": "N1"
   },
   {
-    "front": "将来",
-    "back": "将来 tushunchasi, ilmiy/amaliy atama (Shourai)",
-    "phonetic": "しょうらい - shourai",
-    "example": "将来についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "洪水",
     "back": "Suv toshqini, sel",
     "phonetic": "こうずい - kouzui",
     "example": "大雨で川が氾濫し洪水になる",
-    "level": "N1"
-  },
-  {
-    "front": "不通",
-    "back": "不通 tushunchasi, ilmiy/amaliy atama (Futsuu)",
-    "phonetic": "ふつう - futsuu",
-    "example": "不通についての調査を進める",
     "level": "N1"
   },
   {
@@ -5285,20 +3612,6 @@
     "level": "N1"
   },
   {
-    "front": "国際交流",
-    "back": "国際交流 tushunchasi, ilmiy/amaliy atama (Kokusaikouryuu)",
-    "phonetic": "こくさいこうりゅう - kokusaikouryuu",
-    "example": "国際交流についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "帰国",
-    "back": "帰国 tushunchasi, ilmiy/amaliy atama (Kikoku)",
-    "phonetic": "きこく - kikoku",
-    "example": "帰国についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "気味",
     "back": "気味 tushunchasi, ilmiy/amaliy atama (Kimi)",
     "phonetic": "きみ - kimi",
@@ -5306,24 +3619,10 @@
     "level": "N1"
   },
   {
-    "front": "反応",
-    "back": "反応 tushunchasi, ilmiy/amaliy atama (Hannou)",
-    "phonetic": "はんのう - hannou",
-    "example": "反応についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "発足",
     "back": "Ish boshlash, tashkil etilish",
     "phonetic": "ほっそく - hosoku",
     "example": "新しい組織が正式に発足した",
-    "level": "N1"
-  },
-  {
-    "front": "応用",
-    "back": "応用 tushunchasi, ilmiy/amaliy atama (Ouyou)",
-    "phonetic": "おうよう - ouyou",
-    "example": "応用についての調査を進める",
     "level": "N1"
   },
   {
@@ -5383,13 +3682,6 @@
     "level": "N1"
   },
   {
-    "front": "悪化",
-    "back": "悪化 tushunchasi, ilmiy/amaliy atama (Aka)",
-    "phonetic": "あっか - aka",
-    "example": "悪化についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "減量",
     "back": "減量 tushunchasi, ilmiy/amaliy atama (Genryou)",
     "phonetic": "げんりょう - genryou",
@@ -5404,31 +3696,10 @@
     "level": "N1"
   },
   {
-    "front": "詳細",
-    "back": "詳細 tushunchasi, ilmiy/amaliy atama (Shousai)",
-    "phonetic": "しょうさい - shousai",
-    "example": "詳細についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "参照",
-    "back": "参照 tushunchasi, ilmiy/amaliy atama (Sanshou)",
-    "phonetic": "さんしょう - sanshou",
-    "example": "参照についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "貨幣",
     "back": "貨幣 tushunchasi, ilmiy/amaliy atama (Kahei)",
     "phonetic": "かへい - kahei",
     "example": "貨幣についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "参考",
-    "back": "参考 tushunchasi, ilmiy/amaliy atama (Sankou)",
-    "phonetic": "さんこう - sankou",
-    "example": "参考についての調査を進める",
     "level": "N1"
   },
   {
@@ -5443,13 +3714,6 @@
     "back": "取引 tushunchasi, ilmiy/amaliy atama (Torihiki)",
     "phonetic": "とりひき - torihiki",
     "example": "取引についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "解釈",
-    "back": "解釈 tushunchasi, ilmiy/amaliy atama (Kaishaku)",
-    "phonetic": "かいしゃく - kaishaku",
-    "example": "解釈についての調査を進める",
     "level": "N1"
   },
   {
@@ -5471,27 +3735,6 @@
     "back": "重大 tushunchasi, ilmiy/amaliy atama (Juudai)",
     "phonetic": "じゅうだい - juudai",
     "example": "重大についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "最近",
-    "back": "最近 tushunchasi, ilmiy/amaliy atama (Saikin)",
-    "phonetic": "さいきん - saikin",
-    "example": "最近についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "開発",
-    "back": "開発 tushunchasi, ilmiy/amaliy atama (Kaihatsu)",
-    "phonetic": "かいはつ - kaihatsu",
-    "example": "開発についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "心臓",
-    "back": "心臓 tushunchasi, ilmiy/amaliy atama (Shinzou)",
-    "phonetic": "しんぞう - shinzou",
-    "example": "心臓についての調査を進める",
     "level": "N1"
   },
   {
@@ -5523,24 +3766,10 @@
     "level": "N1"
   },
   {
-    "front": "話題",
-    "back": "話題 tushunchasi, ilmiy/amaliy atama (Wadai)",
-    "phonetic": "わだい - wadai",
-    "example": "話題についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "周期的",
     "back": "周期的 tushunchasi, ilmiy/amaliy atama (Shuukiteki)",
     "phonetic": "しゅうきてき - shuukiteki",
     "example": "周期的な状態を保つ",
-    "level": "N1"
-  },
-  {
-    "front": "進歩",
-    "back": "進歩 tushunchasi, ilmiy/amaliy atama (Shinpo)",
-    "phonetic": "しんぽ - shinpo",
-    "example": "進歩についての調査を進める",
     "level": "N1"
   },
   {
@@ -5558,13 +3787,6 @@
     "level": "N1"
   },
   {
-    "front": "工場",
-    "back": "工場 tushunchasi, ilmiy/amaliy atama (Koujou)",
-    "phonetic": "こうじょう - koujou",
-    "example": "工場についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "明白",
     "back": "明白 tushunchasi, ilmiy/amaliy atama (Meihaku)",
     "phonetic": "めいはく - meihaku",
@@ -5579,73 +3801,10 @@
     "level": "N1"
   },
   {
-    "front": "発見",
-    "back": "発見 tushunchasi, ilmiy/amaliy atama (Haken)",
-    "phonetic": "はっけん - haken",
-    "example": "発見についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "景色",
-    "back": "景色 tushunchasi, ilmiy/amaliy atama (Keshiki)",
-    "phonetic": "けしき - keshiki",
-    "example": "景色についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "会議",
-    "back": "会議 tushunchasi, ilmiy/amaliy atama (Kaigi)",
-    "phonetic": "かいぎ - kaigi",
-    "example": "会議についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "景気",
-    "back": "景気 tushunchasi, ilmiy/amaliy atama (Keiki)",
-    "phonetic": "けいき - keiki",
-    "example": "景気についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "光景",
     "back": "光景 tushunchasi, ilmiy/amaliy atama (Koukei)",
     "phonetic": "こうけい - koukei",
     "example": "光景についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "巻き込む",
-    "back": "巻き込む tushunchasi, ilmiy/amaliy atama (Makikomu)",
-    "phonetic": "まきこむ - makikomu",
-    "example": "巻き込むことが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "地震",
-    "back": "地震 tushunchasi, ilmiy/amaliy atama (Jishin)",
-    "phonetic": "じしん - jishin",
-    "example": "地震についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "配慮",
-    "back": "E'tibor, g'amxo'rlik",
-    "phonetic": "はいりょ - hairyo",
-    "example": "周囲への配慮を忘れない",
-    "level": "N1"
-  },
-  {
-    "front": "高層",
-    "back": "高層 tushunchasi, ilmiy/amaliy atama (Kousou)",
-    "phonetic": "こうそう - kousou",
-    "example": "高層についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "一部",
-    "back": "一部 tushunchasi, ilmiy/amaliy atama (Ichibu)",
-    "phonetic": "いちぶ - ichibu",
-    "example": "一部についての調査を進める",
     "level": "N1"
   },
   {
@@ -5667,41 +3826,6 @@
     "back": "胸一杯 tushunchasi, ilmiy/amaliy atama (Muneipai)",
     "phonetic": "むねいっぱい - muneipai",
     "example": "胸一杯についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "注目",
-    "back": "注目 tushunchasi, ilmiy/amaliy atama (Chuuもku)",
-    "phonetic": "ちゅうもく - chuuもku",
-    "example": "注目についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "一言",
-    "back": "一言 tushunchasi, ilmiy/amaliy atama (Hitokoto)",
-    "phonetic": "ひとこと - hitokoto",
-    "example": "一言についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "現在",
-    "back": "現在 tushunchasi, ilmiy/amaliy atama (Genzai)",
-    "phonetic": "げんざい - genzai",
-    "example": "現在についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "勇気",
-    "back": "勇気 tushunchasi, ilmiy/amaliy atama (Yuuki)",
-    "phonetic": "ゆうき - yuuki",
-    "example": "勇気についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "警察",
-    "back": "警察 tushunchasi, ilmiy/amaliy atama (Keisatsu)",
-    "phonetic": "けいさつ - keisatsu",
-    "example": "警察についての調査を進める",
     "level": "N1"
   },
   {
@@ -5740,38 +3864,10 @@
     "level": "N1"
   },
   {
-    "front": "強化",
-    "back": "強化 tushunchasi, ilmiy/amaliy atama (Kyouka)",
-    "phonetic": "きょうか - kyouka",
-    "example": "強化についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "楽観的",
     "back": "楽観的 tushunchasi, ilmiy/amaliy atama (Rakanteki)",
     "phonetic": "らっかんてき - rakanteki",
     "example": "楽観的な状態を保つ",
-    "level": "N1"
-  },
-  {
-    "front": "都心",
-    "back": "都心 tushunchasi, ilmiy/amaliy atama (Toshin)",
-    "phonetic": "としん - toshin",
-    "example": "都心についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "伝統的",
-    "back": "伝統的 tushunchasi, ilmiy/amaliy atama (Dentouteki)",
-    "phonetic": "でんとうてき - dentouteki",
-    "example": "伝統的な状態を保つ",
-    "level": "N1"
-  },
-  {
-    "front": "駐車場",
-    "back": "駐車場 tushunchasi, ilmiy/amaliy atama (Chuushajou)",
-    "phonetic": "ちゅうしゃじょう - chuushajou",
-    "example": "駐車場についての調査を進める",
     "level": "N1"
   },
   {
@@ -5782,31 +3878,10 @@
     "level": "N1"
   },
   {
-    "front": "自然",
-    "back": "自然 tushunchasi, ilmiy/amaliy atama (Shizen)",
-    "phonetic": "しぜん - shizen",
-    "example": "自然な状態を保つ",
-    "level": "N1"
-  },
-  {
     "front": "技術的",
     "back": "技術的 tushunchasi, ilmiy/amaliy atama (Gijutsuteki)",
     "phonetic": "ぎじゅつてき - gijutsuteki",
     "example": "技術的な状態を保つ",
-    "level": "N1"
-  },
-  {
-    "front": "治療",
-    "back": "治療 tushunchasi, ilmiy/amaliy atama (Chiryou)",
-    "phonetic": "ちりょう - chiryou",
-    "example": "治療についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "効果",
-    "back": "効果 tushunchasi, ilmiy/amaliy atama (Kouka)",
-    "phonetic": "こうか - kouka",
-    "example": "効果についての調査を進める",
     "level": "N1"
   },
   {
@@ -5824,24 +3899,10 @@
     "level": "N1"
   },
   {
-    "front": "医師",
-    "back": "医師 tushunchasi, ilmiy/amaliy atama (Ishi)",
-    "phonetic": "いし - ishi",
-    "example": "医師についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "良質",
     "back": "良質 tushunchasi, ilmiy/amaliy atama (Ryoushitsu)",
     "phonetic": "りょうしつ - ryoushitsu",
     "example": "良質についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "組織",
-    "back": "組織 tushunchasi, ilmiy/amaliy atama (Soshiki)",
-    "phonetic": "そしき - soshiki",
-    "example": "組織についての調査を進める",
     "level": "N1"
   },
   {
@@ -5866,27 +3927,6 @@
     "level": "N1"
   },
   {
-    "front": "複雑",
-    "back": "複雑 tushunchasi, ilmiy/amaliy atama (Fukuzatsu)",
-    "phonetic": "ふくざつ - fukuzatsu",
-    "example": "複雑についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "計画",
-    "back": "計画 tushunchasi, ilmiy/amaliy atama (Keikaku)",
-    "phonetic": "けいかく - keikaku",
-    "example": "計画についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "製品",
-    "back": "製品 tushunchasi, ilmiy/amaliy atama (Seihin)",
-    "phonetic": "せいひん - seihin",
-    "example": "製品についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "応急",
     "back": "応急 tushunchasi, ilmiy/amaliy atama (Oukyuu)",
     "phonetic": "おうきゅう - oukyuu",
@@ -5894,59 +3934,10 @@
     "level": "N1"
   },
   {
-    "front": "血液",
-    "back": "血液 tushunchasi, ilmiy/amaliy atama (Ketsueki)",
-    "phonetic": "けつえき - ketsueki",
-    "example": "血液についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "丁寧",
-    "back": "丁寧 tushunchasi, ilmiy/amaliy atama (Teinei)",
-    "phonetic": "ていねい - teinei",
-    "example": "丁寧についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "手間",
-    "back": "手間 tushunchasi, ilmiy/amaliy atama (Tema)",
-    "phonetic": "てま - tema",
-    "example": "手間についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "空間",
-    "back": "空間 tushunchasi, ilmiy/amaliy atama (Kuukan)",
-    "phonetic": "くうかん - kuukan",
-    "example": "空間についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "毎晩",
     "back": "毎晩 tushunchasi, ilmiy/amaliy atama (Maiban)",
     "phonetic": "まいばん - maiban",
     "example": "毎晩についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "仲間",
-    "back": "仲間 tushunchasi, ilmiy/amaliy atama (Nakama)",
-    "phonetic": "なかま - nakama",
-    "example": "仲間についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "荷物",
-    "back": "荷物 tushunchasi, ilmiy/amaliy atama (Niもtsu)",
-    "phonetic": "にもつ - niもtsu",
-    "example": "荷物についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "交流",
-    "back": "交流 tushunchasi, ilmiy/amaliy atama (Kouryuu)",
-    "phonetic": "こうりゅう - kouryuu",
-    "example": "交流についての調査を進める",
     "level": "N1"
   },
   {
@@ -5978,45 +3969,10 @@
     "level": "N1"
   },
   {
-    "front": "発言",
-    "back": "発言 tushunchasi, ilmiy/amaliy atama (Hatsugen)",
-    "phonetic": "はつげん - hatsugen",
-    "example": "発言についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "両者",
-    "back": "両者 tushunchasi, ilmiy/amaliy atama (Ryousha)",
-    "phonetic": "りょうしゃ - ryousha",
-    "example": "両者についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "専門家",
-    "back": "専門家 tushunchasi, ilmiy/amaliy atama (Senもnka)",
-    "phonetic": "せんもんか - senもnka",
-    "example": "専門家についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "裁判",
     "back": "裁判 tushunchasi, ilmiy/amaliy atama (Saiban)",
     "phonetic": "さいばん - saiban",
     "example": "裁判についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "非常",
-    "back": "非常 tushunchasi, ilmiy/amaliy atama (Hijou)",
-    "phonetic": "ひじょう - hijou",
-    "example": "非常についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "機械",
-    "back": "機械 tushunchasi, ilmiy/amaliy atama (Kikai)",
-    "phonetic": "きかい - kikai",
-    "example": "機械についての調査を進める",
     "level": "N1"
   },
   {
@@ -6034,24 +3990,10 @@
     "level": "N1"
   },
   {
-    "front": "生活",
-    "back": "生活 tushunchasi, ilmiy/amaliy atama (Seikatsu)",
-    "phonetic": "せいかつ - seikatsu",
-    "example": "生活についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "迅速",
     "back": "迅速 tushunchasi, ilmiy/amaliy atama (Jinsoku)",
     "phonetic": "じんそく - jinsoku",
     "example": "迅速についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "意識",
-    "back": "意識 tushunchasi, ilmiy/amaliy atama (Ishiki)",
-    "phonetic": "いしき - ishiki",
-    "example": "意識についての調査を進める",
     "level": "N1"
   },
   {
@@ -6066,13 +4008,6 @@
     "back": "半ば tushunchasi, ilmiy/amaliy atama (Nakaba)",
     "phonetic": "なかば - nakaba",
     "example": "半ばについての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "対面",
-    "back": "対面 tushunchasi, ilmiy/amaliy atama (Taimen)",
-    "phonetic": "たいめん - taimen",
-    "example": "対面についての調査を進める",
     "level": "N1"
   },
   {
@@ -6097,13 +4032,6 @@
     "level": "N1"
   },
   {
-    "front": "対処",
-    "back": "対処 tushunchasi, ilmiy/amaliy atama (Taisho)",
-    "phonetic": "たいしょ - taisho",
-    "example": "対処についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "無駄",
     "back": "無駄 tushunchasi, ilmiy/amaliy atama (Muda)",
     "phonetic": "むだ - muda",
@@ -6115,20 +4043,6 @@
     "back": "対等 tushunchasi, ilmiy/amaliy atama (Taitou)",
     "phonetic": "たいとう - taitou",
     "example": "対等についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "顕微鏡",
-    "back": "顕微鏡 tushunchasi, ilmiy/amaliy atama (Kenbikyou)",
-    "phonetic": "けんびきょう - kenbikyou",
-    "example": "顕微鏡についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "以前",
-    "back": "以前 tushunchasi, ilmiy/amaliy atama (Izen)",
-    "phonetic": "いぜん - izen",
-    "example": "以前についての調査を進める",
     "level": "N1"
   },
   {
@@ -6153,27 +4067,6 @@
     "level": "N1"
   },
   {
-    "front": "科学",
-    "back": "科学 tushunchasi, ilmiy/amaliy atama (Kagaku)",
-    "phonetic": "かがく - kagaku",
-    "example": "科学についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "停止",
-    "back": "停止 tushunchasi, ilmiy/amaliy atama (Teishi)",
-    "phonetic": "ていし - teishi",
-    "example": "停止についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "一種",
-    "back": "一種 tushunchasi, ilmiy/amaliy atama (Ishu)",
-    "phonetic": "いっしゅ - ishu",
-    "example": "一種についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "青年",
     "back": "青年 tushunchasi, ilmiy/amaliy atama (Seinen)",
     "phonetic": "せいねん - seinen",
@@ -6188,24 +4081,10 @@
     "level": "N1"
   },
   {
-    "front": "免許",
-    "back": "免許 tushunchasi, ilmiy/amaliy atama (Menkyo)",
-    "phonetic": "めんきょ - menkyo",
-    "example": "免許についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "全般的",
     "back": "全般的 tushunchasi, ilmiy/amaliy atama (Zenpanteki)",
     "phonetic": "ぜんぱんてき - zenpanteki",
     "example": "全般的な状態を保つ",
-    "level": "N1"
-  },
-  {
-    "front": "輸出",
-    "back": "輸出 tushunchasi, ilmiy/amaliy atama (Yushutsu)",
-    "phonetic": "ゆしゅつ - yushutsu",
-    "example": "輸出についての調査を進める",
     "level": "N1"
   },
   {
@@ -6223,41 +4102,6 @@
     "level": "N1"
   },
   {
-    "front": "技術",
-    "back": "技術 tushunchasi, ilmiy/amaliy atama (Gijutsu)",
-    "phonetic": "ぎじゅつ - gijutsu",
-    "example": "技術についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "研究",
-    "back": "研究 tushunchasi, ilmiy/amaliy atama (Kenkyuu)",
-    "phonetic": "けんきゅう - kenkyuu",
-    "example": "研究についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "無事",
-    "back": "無事 tushunchasi, ilmiy/amaliy atama (Buji)",
-    "phonetic": "ぶじ - buji",
-    "example": "無事についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "歴史",
-    "back": "歴史 tushunchasi, ilmiy/amaliy atama (Rekishi)",
-    "phonetic": "れきし - rekishi",
-    "example": "歴史についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "予算",
-    "back": "予算 tushunchasi, ilmiy/amaliy atama (Yosan)",
-    "phonetic": "よさん - yosan",
-    "example": "予算についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "不景気",
     "back": "不景気 tushunchasi, ilmiy/amaliy atama (Fukeiki)",
     "phonetic": "ふけいき - fukeiki",
@@ -6272,45 +4116,10 @@
     "level": "N1"
   },
   {
-    "front": "続出",
-    "back": "続出 tushunchasi, ilmiy/amaliy atama (Zokushutsu)",
-    "phonetic": "ぞくしゅつ - zokushutsu",
-    "example": "続出についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "知識",
-    "back": "知識 tushunchasi, ilmiy/amaliy atama (Chishiki)",
-    "phonetic": "ちしき - chishiki",
-    "example": "知識についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "裁判官",
     "back": "裁判官 tushunchasi, ilmiy/amaliy atama (Saibankan)",
     "phonetic": "さいばんかん - saibankan",
     "example": "裁判官についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "通知",
-    "back": "通知 tushunchasi, ilmiy/amaliy atama (Tsuuchi)",
-    "phonetic": "つうち - tsuuchi",
-    "example": "通知についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "判断",
-    "back": "判断 tushunchasi, ilmiy/amaliy atama (Handan)",
-    "phonetic": "はんだん - handan",
-    "example": "判断についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "本社",
-    "back": "本社 tushunchasi, ilmiy/amaliy atama (Honsha)",
-    "phonetic": "ほんしゃ - honsha",
-    "example": "本社についての調査を進める",
     "level": "N1"
   },
   {
@@ -6321,27 +4130,6 @@
     "level": "N1"
   },
   {
-    "front": "研究室",
-    "back": "研究室 tushunchasi, ilmiy/amaliy atama (Kenkyuushitsu)",
-    "phonetic": "けんきゅうしつ - kenkyuushitsu",
-    "example": "研究室についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "避難",
-    "back": "避難 tushunchasi, ilmiy/amaliy atama (Hinan)",
-    "phonetic": "ひなん - hinan",
-    "example": "避難についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "驚く",
-    "back": "驚く tushunchasi, ilmiy/amaliy atama (Odoroku)",
-    "phonetic": "おどろく - odoroku",
-    "example": "驚くことが重要である",
-    "level": "N1"
-  },
-  {
     "front": "苦難",
     "back": "苦難 tushunchasi, ilmiy/amaliy atama (Kunan)",
     "phonetic": "くなん - kunan",
@@ -6349,31 +4137,10 @@
     "level": "N1"
   },
   {
-    "front": "加減",
-    "back": "加減 tushunchasi, ilmiy/amaliy atama (Kagen)",
-    "phonetic": "かげん - kagen",
-    "example": "加減についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "領土",
     "back": "領土 tushunchasi, ilmiy/amaliy atama (Ryoudo)",
     "phonetic": "りょうど - ryoudo",
     "example": "領土についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "都合",
-    "back": "都合 tushunchasi, ilmiy/amaliy atama (Tsugou)",
-    "phonetic": "つごう - tsugou",
-    "example": "都合についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "領事",
-    "back": "領事 tushunchasi, ilmiy/amaliy atama (Ryouji)",
-    "phonetic": "りょうじ - ryouji",
-    "example": "領事についての調査を進める",
     "level": "N1"
   },
   {
@@ -6433,13 +4200,6 @@
     "level": "N1"
   },
   {
-    "front": "休暇",
-    "back": "休暇 tushunchasi, ilmiy/amaliy atama (Kyuuka)",
-    "phonetic": "きゅうか - kyuuka",
-    "example": "休暇についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "博士論文",
     "back": "博士論文 tushunchasi, ilmiy/amaliy atama (Hakushironbun)",
     "phonetic": "はくしろんぶん - hakushironbun",
@@ -6461,38 +4221,10 @@
     "level": "N1"
   },
   {
-    "front": "風景",
-    "back": "風景 tushunchasi, ilmiy/amaliy atama (Fuukei)",
-    "phonetic": "ふうけい - fuukei",
-    "example": "風景についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "利益",
-    "back": "利益 tushunchasi, ilmiy/amaliy atama (Rieki)",
-    "phonetic": "りえき - rieki",
-    "example": "利益についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "事故",
-    "back": "事故 tushunchasi, ilmiy/amaliy atama (Jiko)",
-    "phonetic": "じこ - jiko",
-    "example": "事故についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "運搬",
     "back": "運搬 tushunchasi, ilmiy/amaliy atama (Unpan)",
     "phonetic": "うんぱん - unpan",
     "example": "運搬についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "増加",
-    "back": "増加 tushunchasi, ilmiy/amaliy atama (Zouka)",
-    "phonetic": "ぞうか - zouka",
-    "example": "増加についての調査を進める",
     "level": "N1"
   },
   {
@@ -6503,31 +4235,10 @@
     "level": "N1"
   },
   {
-    "front": "対策",
-    "back": "対策 tushunchasi, ilmiy/amaliy atama (Taisaku)",
-    "phonetic": "たいさく - taisaku",
-    "example": "対策についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "一気",
     "back": "一気 tushunchasi, ilmiy/amaliy atama (Iki)",
     "phonetic": "いっき - iki",
     "example": "一気についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "趣味",
-    "back": "趣味 tushunchasi, ilmiy/amaliy atama (Shumi)",
-    "phonetic": "しゅみ - shumi",
-    "example": "趣味についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "一斉",
-    "back": "一斉 tushunchasi, ilmiy/amaliy atama (Isei)",
-    "phonetic": "いっせい - isei",
-    "example": "一斉についての調査を進める",
     "level": "N1"
   },
   {
@@ -6538,38 +4249,10 @@
     "level": "N1"
   },
   {
-    "front": "基準",
-    "back": "基準 tushunchasi, ilmiy/amaliy atama (Kijun)",
-    "phonetic": "きじゅん - kijun",
-    "example": "基準についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "採用",
-    "back": "採用 tushunchasi, ilmiy/amaliy atama (Saiyou)",
-    "phonetic": "さいよう - saiyou",
-    "example": "採用についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "長年",
     "back": "長年 tushunchasi, ilmiy/amaliy atama (Naganen)",
     "phonetic": "ながねん - naganen",
     "example": "長年についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "支配",
-    "back": "支配 tushunchasi, ilmiy/amaliy atama (Shihai)",
-    "phonetic": "しはい - shihai",
-    "example": "支配についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "帽子",
-    "back": "帽子 tushunchasi, ilmiy/amaliy atama (Boushi)",
-    "phonetic": "ぼうし - boushi",
-    "example": "帽子についての調査を進める",
     "level": "N1"
   },
   {
@@ -6580,87 +4263,10 @@
     "level": "N1"
   },
   {
-    "front": "政治",
-    "back": "政治 tushunchasi, ilmiy/amaliy atama (Seiji)",
-    "phonetic": "せいじ - seiji",
-    "example": "政治についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "区別",
-    "back": "区別 tushunchasi, ilmiy/amaliy atama (Kubetsu)",
-    "phonetic": "くべつ - kubetsu",
-    "example": "区別についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "男女",
-    "back": "男女 tushunchasi, ilmiy/amaliy atama (Danjo)",
-    "phonetic": "だんじょ - danjo",
-    "example": "男女についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "年齢",
-    "back": "年齢 tushunchasi, ilmiy/amaliy atama (Nenrei)",
-    "phonetic": "ねんれい - nenrei",
-    "example": "年齢についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "条件",
-    "back": "条件 tushunchasi, ilmiy/amaliy atama (Jouken)",
-    "phonetic": "じょうけん - jouken",
-    "example": "条件についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "輸入",
-    "back": "輸入 tushunchasi, ilmiy/amaliy atama (Yunyuu)",
-    "phonetic": "ゆにゅう - yunyuu",
-    "example": "輸入についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "議会",
     "back": "議会 tushunchasi, ilmiy/amaliy atama (Gikai)",
     "phonetic": "ぎかい - gikai",
     "example": "議会についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "責任",
-    "back": "責任 tushunchasi, ilmiy/amaliy atama (Sekinin)",
-    "phonetic": "せきにん - sekinin",
-    "example": "責任についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "劇団",
-    "back": "劇団 tushunchasi, ilmiy/amaliy atama (Gekidan)",
-    "phonetic": "げきだん - gekidan",
-    "example": "劇団についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "小説家",
-    "back": "小説家 tushunchasi, ilmiy/amaliy atama (Shousetsuka)",
-    "phonetic": "しょうせつか - shousetsuka",
-    "example": "小説家についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "活動",
-    "back": "活動 tushunchasi, ilmiy/amaliy atama (Katsudou)",
-    "phonetic": "かつどう - katsudou",
-    "example": "活動についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "頼む",
-    "back": "頼む tushunchasi, ilmiy/amaliy atama (Tanomu)",
-    "phonetic": "たのむ - tanomu",
-    "example": "頼むことが重要である",
     "level": "N1"
   },
   {
@@ -6671,31 +4277,10 @@
     "level": "N1"
   },
   {
-    "front": "水素",
-    "back": "水素 tushunchasi, ilmiy/amaliy atama (Suiso)",
-    "phonetic": "すいそ - suiso",
-    "example": "水素についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "酸素",
     "back": "酸素 tushunchasi, ilmiy/amaliy atama (Sanso)",
     "phonetic": "さんそ - sanso",
     "example": "酸素についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "記事",
-    "back": "記事 tushunchasi, ilmiy/amaliy atama (Kiji)",
-    "phonetic": "きじ - kiji",
-    "example": "記事についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "数学",
-    "back": "数学 tushunchasi, ilmiy/amaliy atama (Suugaku)",
-    "phonetic": "すうがく - suugaku",
-    "example": "数学についての調査を進める",
     "level": "N1"
   },
   {
@@ -6713,52 +4298,10 @@
     "level": "N1"
   },
   {
-    "front": "夫婦",
-    "back": "夫婦 tushunchasi, ilmiy/amaliy atama (Fuufu)",
-    "phonetic": "ふうふ - fuufu",
-    "example": "夫婦についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "留学",
-    "back": "留学 tushunchasi, ilmiy/amaliy atama (Ryuugaku)",
-    "phonetic": "りゅうがく - ryuugaku",
-    "example": "留学についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "現地",
-    "back": "現地 tushunchasi, ilmiy/amaliy atama (Genchi)",
-    "phonetic": "げんち - genchi",
-    "example": "現地についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "努力",
-    "back": "努力 tushunchasi, ilmiy/amaliy atama (Doryoku)",
-    "phonetic": "どりょく - doryoku",
-    "example": "努力についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "借金",
     "back": "借金 tushunchasi, ilmiy/amaliy atama (Shakin)",
     "phonetic": "しゃっきん - shakin",
     "example": "借金についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "規模",
-    "back": "規模 tushunchasi, ilmiy/amaliy atama (Kibo)",
-    "phonetic": "きぼ - kibo",
-    "example": "規模についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "経営",
-    "back": "経営 tushunchasi, ilmiy/amaliy atama (Keiei)",
-    "phonetic": "けいえい - keiei",
-    "example": "経営についての調査を進める",
     "level": "N1"
   },
   {
@@ -6804,13 +4347,6 @@
     "level": "N1"
   },
   {
-    "front": "大臣",
-    "back": "大臣 tushunchasi, ilmiy/amaliy atama (Daijin)",
-    "phonetic": "だいじん - daijin",
-    "example": "大臣についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "委員長",
     "back": "委員長 tushunchasi, ilmiy/amaliy atama (Iinchou)",
     "phonetic": "いいんちょう - iinchou",
@@ -6822,48 +4358,6 @@
     "back": "聴講 tushunchasi, ilmiy/amaliy atama (Choukou)",
     "phonetic": "ちょうこう - choukou",
     "example": "聴講についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "指導",
-    "back": "指導 tushunchasi, ilmiy/amaliy atama (Shidou)",
-    "phonetic": "しどう - shidou",
-    "example": "指導についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "観察",
-    "back": "観察 tushunchasi, ilmiy/amaliy atama (Kansatsu)",
-    "phonetic": "かんさつ - kansatsu",
-    "example": "観察についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "選手",
-    "back": "選手 tushunchasi, ilmiy/amaliy atama (Senshu)",
-    "phonetic": "せんしゅ - senshu",
-    "example": "選手についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "指輪",
-    "back": "指輪 tushunchasi, ilmiy/amaliy atama (Yubiwa)",
-    "phonetic": "ゆびわ - yubiwa",
-    "example": "指輪についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "激しい",
-    "back": "激しい tushunchasi, ilmiy/amaliy atama (Hageshii)",
-    "phonetic": "はげしい - hageshii",
-    "example": "激しいな状態を保つ",
-    "level": "N1"
-  },
-  {
-    "front": "小説",
-    "back": "小説 tushunchasi, ilmiy/amaliy atama (Shousetsu)",
-    "phonetic": "しょうせつ - shousetsu",
-    "example": "小説についての調査を進める",
     "level": "N1"
   },
   {
@@ -6881,52 +4375,10 @@
     "level": "N1"
   },
   {
-    "front": "目的地",
-    "back": "目的地 tushunchasi, ilmiy/amaliy atama (もkutekichi)",
-    "phonetic": "もくてきち - もkutekichi",
-    "example": "目的地についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "犯人",
     "back": "犯人 tushunchasi, ilmiy/amaliy atama (Hannin)",
     "phonetic": "はんにん - hannin",
     "example": "犯人についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "素材",
-    "back": "素材 tushunchasi, ilmiy/amaliy atama (Sozai)",
-    "phonetic": "そざい - sozai",
-    "example": "素材についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "試験",
-    "back": "試験 tushunchasi, ilmiy/amaliy atama (Shiken)",
-    "phonetic": "しけん - shiken",
-    "example": "試験についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "価値",
-    "back": "価値 tushunchasi, ilmiy/amaliy atama (Kachi)",
-    "phonetic": "かち - kachi",
-    "example": "価値についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "事件",
-    "back": "事件 tushunchasi, ilmiy/amaliy atama (Jiken)",
-    "phonetic": "じけん - jiken",
-    "example": "事件についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "標識",
-    "back": "標識 tushunchasi, ilmiy/amaliy atama (Hyoushiki)",
-    "phonetic": "ひょうしき - hyoushiki",
-    "example": "標識についての調査を進める",
     "level": "N1"
   },
   {
@@ -6937,24 +4389,10 @@
     "level": "N1"
   },
   {
-    "front": "勝利",
-    "back": "勝利 tushunchasi, ilmiy/amaliy atama (Shouri)",
-    "phonetic": "しょうり - shouri",
-    "example": "勝利についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "雪山",
     "back": "雪山 tushunchasi, ilmiy/amaliy atama (Yukiyama)",
     "phonetic": "ゆきやま - yukiyama",
     "example": "雪山についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "議論",
-    "back": "議論 tushunchasi, ilmiy/amaliy atama (Giron)",
-    "phonetic": "ぎろん - giron",
-    "example": "議論についての調査を進める",
     "level": "N1"
   },
   {
@@ -6965,87 +4403,10 @@
     "level": "N1"
   },
   {
-    "front": "経験",
-    "back": "経験 tushunchasi, ilmiy/amaliy atama (Keiken)",
-    "phonetic": "けいけん - keiken",
-    "example": "経験についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "結論",
-    "back": "結論 tushunchasi, ilmiy/amaliy atama (Ketsuron)",
-    "phonetic": "けつろん - ketsuron",
-    "example": "結論についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "税金",
-    "back": "税金 tushunchasi, ilmiy/amaliy atama (Zeikin)",
-    "phonetic": "ぜいきん - zeikin",
-    "example": "税金についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "住宅地",
-    "back": "住宅地 tushunchasi, ilmiy/amaliy atama (Juutakuchi)",
-    "phonetic": "じゅうたくち - juutakuchi",
-    "example": "住宅地についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "両親",
-    "back": "両親 tushunchasi, ilmiy/amaliy atama (Ryoushin)",
-    "phonetic": "りょうしん - ryoushin",
-    "example": "両親についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "高齢化",
-    "back": "高齢化 tushunchasi, ilmiy/amaliy atama (Koureika)",
-    "phonetic": "こうれいか - koureika",
-    "example": "高齢化についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "面会",
-    "back": "面会 tushunchasi, ilmiy/amaliy atama (Menkai)",
-    "phonetic": "めんかい - menkai",
-    "example": "面会についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "伴う",
-    "back": "伴う tushunchasi, ilmiy/amaliy atama (Toもnau)",
-    "phonetic": "ともなう - toもnau",
-    "example": "伴うことが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "主人公",
-    "back": "主人公 tushunchasi, ilmiy/amaliy atama (Shujinkou)",
-    "phonetic": "しゅじんこう - shujinkou",
-    "example": "主人公についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "停滞",
     "back": "停滞 tushunchasi, ilmiy/amaliy atama (Teitai)",
     "phonetic": "ていたい - teitai",
     "example": "停滞についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "性格",
-    "back": "性格 tushunchasi, ilmiy/amaliy atama (Seikaku)",
-    "phonetic": "せいかく - seikaku",
-    "example": "性格についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "副社長",
-    "back": "副社長 tushunchasi, ilmiy/amaliy atama (Fukushachou)",
-    "phonetic": "ふくしゃちょう - fukushachou",
-    "example": "副社長についての調査を進める",
     "level": "N1"
   },
   {
@@ -7056,31 +4417,10 @@
     "level": "N1"
   },
   {
-    "front": "違う",
-    "back": "違う tushunchasi, ilmiy/amaliy atama (Chigau)",
-    "phonetic": "ちがう - chigau",
-    "example": "違うことが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "現場",
-    "back": "現場 tushunchasi, ilmiy/amaliy atama (Genba)",
-    "phonetic": "げんば - genba",
-    "example": "現場についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "資金援助",
     "back": "資金援助 tushunchasi, ilmiy/amaliy atama (Shikinenjo)",
     "phonetic": "しきんえんじょ - shikinenjo",
     "example": "資金援助についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "留守番",
-    "back": "留守番 tushunchasi, ilmiy/amaliy atama (Rusuban)",
-    "phonetic": "るすばん - rusuban",
-    "example": "留守番についての調査を進める",
     "level": "N1"
   },
   {
@@ -7095,20 +4435,6 @@
     "back": "狭い tushunchasi, ilmiy/amaliy atama (Semai)",
     "phonetic": "せまい - semai",
     "example": "狭いな状態を保つ",
-    "level": "N1"
-  },
-  {
-    "front": "表現",
-    "back": "表現 tushunchasi, ilmiy/amaliy atama (Hyougen)",
-    "phonetic": "ひょうげん - hyougen",
-    "example": "表現についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "過半数",
-    "back": "過半数 tushunchasi, ilmiy/amaliy atama (Kahansuu)",
-    "phonetic": "かはんすう - kahansuu",
-    "example": "過半数についての調査を進める",
     "level": "N1"
   },
   {
@@ -7133,48 +4459,6 @@
     "level": "N1"
   },
   {
-    "front": "素直",
-    "back": "素直 tushunchasi, ilmiy/amaliy atama (Sunao)",
-    "phonetic": "すなお - sunao",
-    "example": "素直についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "突然",
-    "back": "突然 tushunchasi, ilmiy/amaliy atama (Totsuzen)",
-    "phonetic": "とつぜん - totsuzen",
-    "example": "突然な状態を保つ",
-    "level": "N1"
-  },
-  {
-    "front": "常識",
-    "back": "常識 tushunchasi, ilmiy/amaliy atama (Joushiki)",
-    "phonetic": "じょうしき - joushiki",
-    "example": "常識についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "料理",
-    "back": "料理 tushunchasi, ilmiy/amaliy atama (Ryouri)",
-    "phonetic": "りょうり - ryouri",
-    "example": "料理についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "秘密",
-    "back": "秘密 tushunchasi, ilmiy/amaliy atama (Himitsu)",
-    "phonetic": "ひみつ - himitsu",
-    "example": "秘密についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "有利な",
-    "back": "有利な tushunchasi, ilmiy/amaliy atama (Yuurina)",
-    "phonetic": "ゆうりな - yuurina",
-    "example": "有利なな状態を保つ",
-    "level": "N1"
-  },
-  {
     "front": "聞き取り",
     "back": "聞き取り tushunchasi, ilmiy/amaliy atama (Kikitori)",
     "phonetic": "ききとり - kikitori",
@@ -7189,45 +4473,10 @@
     "level": "N1"
   },
   {
-    "front": "地方",
-    "back": "地方 tushunchasi, ilmiy/amaliy atama (Chihou)",
-    "phonetic": "ちほう - chihou",
-    "example": "地方についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "位置",
-    "back": "位置 tushunchasi, ilmiy/amaliy atama (Ichi)",
-    "phonetic": "いち - ichi",
-    "example": "位置についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "多少",
-    "back": "多少 tushunchasi, ilmiy/amaliy atama (Tashou)",
-    "phonetic": "たしょう - tashou",
-    "example": "多少についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "困難",
     "back": "困難 tushunchasi, ilmiy/amaliy atama (Konnan)",
     "phonetic": "こんなん - konnan",
     "example": "困難についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "解決",
-    "back": "解決 tushunchasi, ilmiy/amaliy atama (Kaiketsu)",
-    "phonetic": "かいけつ - kaiketsu",
-    "example": "解決についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "状況",
-    "back": "状況 tushunchasi, ilmiy/amaliy atama (Joukyou)",
-    "phonetic": "じょうきょう - joukyou",
-    "example": "状況についての調査を進める",
     "level": "N1"
   },
   {
@@ -7245,48 +4494,6 @@
     "level": "N1"
   },
   {
-    "front": "湯気",
-    "back": "湯気 tushunchasi, ilmiy/amaliy atama (Yuge)",
-    "phonetic": "ゆげ - yuge",
-    "example": "湯気についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "勝負",
-    "back": "勝負 tushunchasi, ilmiy/amaliy atama (Shoubu)",
-    "phonetic": "しょうぶ - shoubu",
-    "example": "勝負についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "能率",
-    "back": "能率 tushunchasi, ilmiy/amaliy atama (Nouritsu)",
-    "phonetic": "のうりつ - nouritsu",
-    "example": "能率についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "都市",
-    "back": "都市 tushunchasi, ilmiy/amaliy atama (Toshi)",
-    "phonetic": "とし - toshi",
-    "example": "都市についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "素晴らしい",
-    "back": "素晴らしい tushunchasi, ilmiy/amaliy atama (Subarashii)",
-    "phonetic": "すばらしい - subarashii",
-    "example": "素晴らしいな状態を保つ",
-    "level": "N1"
-  },
-  {
-    "front": "周辺",
-    "back": "周辺 tushunchasi, ilmiy/amaliy atama (Shuuhen)",
-    "phonetic": "しゅうへん - shuuhen",
-    "example": "周辺についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "立て直し",
     "back": "立て直し tushunchasi, ilmiy/amaliy atama (Tatenaoshi)",
     "phonetic": "たてなおし - tatenaoshi",
@@ -7298,20 +4505,6 @@
     "back": "展望 tushunchasi, ilmiy/amaliy atama (Tenbou)",
     "phonetic": "てんぼう - tenbou",
     "example": "展望についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "病気",
-    "back": "病気 tushunchasi, ilmiy/amaliy atama (Byouki)",
-    "phonetic": "びょうき - byouki",
-    "example": "病気についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "再開発",
-    "back": "再開発 tushunchasi, ilmiy/amaliy atama (Saikaihatsu)",
-    "phonetic": "さいかいはつ - saikaihatsu",
-    "example": "再開発についての調査を進める",
     "level": "N1"
   },
   {
@@ -7333,13 +4526,6 @@
     "back": "正確 tushunchasi, ilmiy/amaliy atama (Seikaku)",
     "phonetic": "せいかく - seikaku",
     "example": "正確についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "痛み",
-    "back": "痛み tushunchasi, ilmiy/amaliy atama (Itami)",
-    "phonetic": "いたみ - itami",
-    "example": "痛みについての調査を進める",
     "level": "N1"
   },
   {
@@ -7371,59 +4557,10 @@
     "level": "N1"
   },
   {
-    "front": "階段",
-    "back": "階段 tushunchasi, ilmiy/amaliy atama (Kaidan)",
-    "phonetic": "かいだん - kaidan",
-    "example": "階段についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "設計",
-    "back": "設計 tushunchasi, ilmiy/amaliy atama (Sekei)",
-    "phonetic": "せっけい - sekei",
-    "example": "設計についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "全体",
-    "back": "全体 tushunchasi, ilmiy/amaliy atama (Zentai)",
-    "phonetic": "ぜんたい - zentai",
-    "example": "全体についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "部下",
-    "back": "部下 tushunchasi, ilmiy/amaliy atama (Buka)",
-    "phonetic": "ぶか - buka",
-    "example": "部下についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "根拠",
     "back": "根拠 tushunchasi, ilmiy/amaliy atama (Konkyo)",
     "phonetic": "こんきょ - konkyo",
     "example": "根拠についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "言葉",
-    "back": "言葉 tushunchasi, ilmiy/amaliy atama (Kotoba)",
-    "phonetic": "ことば - kotoba",
-    "example": "言葉についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "主張",
-    "back": "主張 tushunchasi, ilmiy/amaliy atama (Shuchou)",
-    "phonetic": "しゅちょう - shuchou",
-    "example": "主張についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "難しい",
-    "back": "難しい tushunchasi, ilmiy/amaliy atama (Muzukashii)",
-    "phonetic": "むずかしい - muzukashii",
-    "example": "難しいな状態を保つ",
     "level": "N1"
   },
   {
@@ -7434,38 +4571,10 @@
     "level": "N1"
   },
   {
-    "front": "視力",
-    "back": "視力 tushunchasi, ilmiy/amaliy atama (Shiryoku)",
-    "phonetic": "しりょく - shiryoku",
-    "example": "視力についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "祝日",
-    "back": "祝日 tushunchasi, ilmiy/amaliy atama (Shukujitsu)",
-    "phonetic": "しゅくじつ - shukujitsu",
-    "example": "祝日についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "場合",
-    "back": "場合 tushunchasi, ilmiy/amaliy atama (Baai)",
-    "phonetic": "ばあい - baai",
-    "example": "場合についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "診て",
     "back": "診て tushunchasi, ilmiy/amaliy atama (Mite)",
     "phonetic": "みて - mite",
     "example": "診てについての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "人気",
-    "back": "人気 tushunchasi, ilmiy/amaliy atama (Ninki)",
-    "phonetic": "にんき - ninki",
-    "example": "人気についての調査を進める",
     "level": "N1"
   },
   {
@@ -7497,66 +4606,10 @@
     "level": "N1"
   },
   {
-    "front": "払う",
-    "back": "払う tushunchasi, ilmiy/amaliy atama (Harau)",
-    "phonetic": "はらう - harau",
-    "example": "払うことが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "自分",
-    "back": "自分 tushunchasi, ilmiy/amaliy atama (Jibun)",
-    "phonetic": "じぶん - jibun",
-    "example": "自分についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "考え",
     "back": "考え tushunchasi, ilmiy/amaliy atama (Kangae)",
     "phonetic": "かんがえ - kangae",
     "example": "考えについての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "実行",
-    "back": "実行 tushunchasi, ilmiy/amaliy atama (Jikou)",
-    "phonetic": "じっこう - jikou",
-    "example": "実行についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "直前",
-    "back": "直前 tushunchasi, ilmiy/amaliy atama (Chokuzen)",
-    "phonetic": "ちょくぜん - chokuzen",
-    "example": "直前についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "労働者",
-    "back": "労働者 tushunchasi, ilmiy/amaliy atama (Roudousha)",
-    "phonetic": "ろうどうしゃ - roudousha",
-    "example": "労働者についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "地面",
-    "back": "地面 tushunchasi, ilmiy/amaliy atama (Jimen)",
-    "phonetic": "じめん - jimen",
-    "example": "地面についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "防ぐ",
-    "back": "防ぐ tushunchasi, ilmiy/amaliy atama (Fusegu)",
-    "phonetic": "ふせぐ - fusegu",
-    "example": "防ぐことが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "掘る",
-    "back": "掘る tushunchasi, ilmiy/amaliy atama (Horu)",
-    "phonetic": "ほる - horu",
-    "example": "掘ることが重要である",
     "level": "N1"
   },
   {
@@ -7567,45 +4620,10 @@
     "level": "N1"
   },
   {
-    "front": "行動",
-    "back": "行動 tushunchasi, ilmiy/amaliy atama (Koudou)",
-    "phonetic": "こうどう - koudou",
-    "example": "行動についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "隠す",
-    "back": "隠す tushunchasi, ilmiy/amaliy atama (Kakusu)",
-    "phonetic": "かくす - kakusu",
-    "example": "隠すことが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "家計",
-    "back": "家計 tushunchasi, ilmiy/amaliy atama (Kakei)",
-    "phonetic": "かけい - kakei",
-    "example": "家計についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "優秀",
     "back": "優秀 tushunchasi, ilmiy/amaliy atama (Yuushuu)",
     "phonetic": "ゆうしゅう - yuushuu",
     "example": "優秀についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "苦労",
-    "back": "苦労 tushunchasi, ilmiy/amaliy atama (Kurou)",
-    "phonetic": "くろう - kurou",
-    "example": "苦労についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "健康",
-    "back": "健康 tushunchasi, ilmiy/amaliy atama (Kenkou)",
-    "phonetic": "けんこう - kenkou",
-    "example": "健康についての調査を進める",
     "level": "N1"
   },
   {
@@ -7623,41 +4641,6 @@
     "level": "N1"
   },
   {
-    "front": "触れる",
-    "back": "触れる tushunchasi, ilmiy/amaliy atama (Fureru)",
-    "phonetic": "ふれる - fureru",
-    "example": "触れることが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "伝記",
-    "back": "伝記 tushunchasi, ilmiy/amaliy atama (Denki)",
-    "phonetic": "でんき - denki",
-    "example": "伝記についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "値段",
-    "back": "値段 tushunchasi, ilmiy/amaliy atama (Nedan)",
-    "phonetic": "ねだん - nedan",
-    "example": "値段についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "祖父",
-    "back": "祖父 tushunchasi, ilmiy/amaliy atama (Sofu)",
-    "phonetic": "そふ - sofu",
-    "example": "祖父についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "家庭",
-    "back": "家庭 tushunchasi, ilmiy/amaliy atama (Katei)",
-    "phonetic": "かてい - katei",
-    "example": "家庭についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "先祖代々",
     "back": "先祖代々 tushunchasi, ilmiy/amaliy atama (Senzodaidai)",
     "phonetic": "せんぞだいだい - senzodaidai",
@@ -7669,13 +4652,6 @@
     "back": "学費 tushunchasi, ilmiy/amaliy atama (Gakuhi)",
     "phonetic": "がくひ - gakuhi",
     "example": "学費についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "看病",
-    "back": "看病 tushunchasi, ilmiy/amaliy atama (Kanbyou)",
-    "phonetic": "かんびょう - kanbyou",
-    "example": "看病についての調査を進める",
     "level": "N1"
   },
   {
@@ -7707,13 +4683,6 @@
     "level": "N1"
   },
   {
-    "front": "経済",
-    "back": "経済 tushunchasi, ilmiy/amaliy atama (Keizai)",
-    "phonetic": "けいざい - keizai",
-    "example": "経済についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "開会式",
     "back": "開会式 tushunchasi, ilmiy/amaliy atama (Kaikaishiki)",
     "phonetic": "かいかいしき - kaikaishiki",
@@ -7728,52 +4697,10 @@
     "level": "N1"
   },
   {
-    "front": "態度",
-    "back": "態度 tushunchasi, ilmiy/amaliy atama (Taido)",
-    "phonetic": "たいど - taido",
-    "example": "態度についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "宣伝",
-    "back": "宣伝 tushunchasi, ilmiy/amaliy atama (Senden)",
-    "phonetic": "せんでん - senden",
-    "example": "宣伝についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "医者",
-    "back": "医者 tushunchasi, ilmiy/amaliy atama (Isha)",
-    "phonetic": "いしゃ - isha",
-    "example": "医者についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "検査結果",
     "back": "検査結果 tushunchasi, ilmiy/amaliy atama (Kensakeka)",
     "phonetic": "けんさけっか - kensakeka",
     "example": "検査結果についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "校庭",
-    "back": "校庭 tushunchasi, ilmiy/amaliy atama (Koutei)",
-    "phonetic": "こうてい - koutei",
-    "example": "校庭についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "連絡",
-    "back": "連絡 tushunchasi, ilmiy/amaliy atama (Renraku)",
-    "phonetic": "れんらく - renraku",
-    "example": "連絡についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "居眠り",
-    "back": "居眠り tushunchasi, ilmiy/amaliy atama (Inemuri)",
-    "phonetic": "いねむり - inemuri",
-    "example": "居眠りについての調査を進める",
     "level": "N1"
   },
   {
@@ -7784,13 +4711,6 @@
     "level": "N1"
   },
   {
-    "front": "終点",
-    "back": "終点 tushunchasi, ilmiy/amaliy atama (Shuuten)",
-    "phonetic": "しゅうてん - shuuten",
-    "example": "終点についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "見舞い",
     "back": "見舞い tushunchasi, ilmiy/amaliy atama (Mimai)",
     "phonetic": "みまい - mimai",
@@ -7798,52 +4718,10 @@
     "level": "N1"
   },
   {
-    "front": "辞書",
-    "back": "辞書 tushunchasi, ilmiy/amaliy atama (Jisho)",
-    "phonetic": "じしょ - jisho",
-    "example": "辞書についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "最後",
-    "back": "最後 tushunchasi, ilmiy/amaliy atama (Saigo)",
-    "phonetic": "さいご - saigo",
-    "example": "最後についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "権威",
     "back": "権威 tushunchasi, ilmiy/amaliy atama (Keni)",
     "phonetic": "けんい - keni",
     "example": "権威についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "全力",
-    "back": "全力 tushunchasi, ilmiy/amaliy atama (Zenryoku)",
-    "phonetic": "ぜんりょく - zenryoku",
-    "example": "全力についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "店員",
-    "back": "店員 tushunchasi, ilmiy/amaliy atama (Tenin)",
-    "phonetic": "てんいん - tenin",
-    "example": "店員についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "募集",
-    "back": "募集 tushunchasi, ilmiy/amaliy atama (Boshuu)",
-    "phonetic": "ぼしゅう - boshuu",
-    "example": "募集についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "瞬間",
-    "back": "瞬間 tushunchasi, ilmiy/amaliy atama (Shunkan)",
-    "phonetic": "しゅんかん - shunkan",
-    "example": "瞬間についての調査を進める",
     "level": "N1"
   },
   {
@@ -7882,59 +4760,10 @@
     "level": "N1"
   },
   {
-    "front": "悲しい",
-    "back": "悲しい tushunchasi, ilmiy/amaliy atama (Kanashii)",
-    "phonetic": "かなしい - kanashii",
-    "example": "悲しいな状態を保つ",
-    "level": "N1"
-  },
-  {
-    "front": "困る",
-    "back": "困る tushunchasi, ilmiy/amaliy atama (Komaru)",
-    "phonetic": "こまる - komaru",
-    "example": "困ることが重要である",
-    "level": "N1"
-  },
-  {
     "front": "迎えて",
     "back": "迎えて tushunchasi, ilmiy/amaliy atama (Mukaete)",
     "phonetic": "むかえて - mukaete",
     "example": "迎えてについての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "資格",
-    "back": "資格 tushunchasi, ilmiy/amaliy atama (Shikaku)",
-    "phonetic": "しかく - shikaku",
-    "example": "資格についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "暮らす",
-    "back": "暮らす tushunchasi, ilmiy/amaliy atama (Kurasu)",
-    "phonetic": "くらす - kurasu",
-    "example": "暮らすことが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "程度",
-    "back": "程度 tushunchasi, ilmiy/amaliy atama (Teido)",
-    "phonetic": "ていど - teido",
-    "example": "程度についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "始める",
-    "back": "始める tushunchasi, ilmiy/amaliy atama (Hajimeru)",
-    "phonetic": "はじめる - hajimeru",
-    "example": "始めることが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "高速道路",
-    "back": "高速道路 tushunchasi, ilmiy/amaliy atama (Kousokudouro)",
-    "phonetic": "こうそくどうろ - kousokudouro",
-    "example": "高速道路についての調査を進める",
     "level": "N1"
   },
   {
@@ -7952,66 +4781,10 @@
     "level": "N1"
   },
   {
-    "front": "飛び込む",
-    "back": "飛び込む tushunchasi, ilmiy/amaliy atama (Tobikomu)",
-    "phonetic": "とびこむ - tobikomu",
-    "example": "飛び込むことが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "並ぶ",
-    "back": "並ぶ tushunchasi, ilmiy/amaliy atama (Narabu)",
-    "phonetic": "ならぶ - narabu",
-    "example": "並ぶことが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "満足",
-    "back": "満足 tushunchasi, ilmiy/amaliy atama (Manzoku)",
-    "phonetic": "まんぞく - manzoku",
-    "example": "満足についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "文句",
-    "back": "文句 tushunchasi, ilmiy/amaliy atama (もnku)",
-    "phonetic": "もんく - もnku",
-    "example": "文句についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "接している",
     "back": "接している tushunchasi, ilmiy/amaliy atama (Seshiteiru)",
     "phonetic": "せっしている - seshiteiru",
     "example": "接していることが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "悩む",
-    "back": "悩む tushunchasi, ilmiy/amaliy atama (Nayamu)",
-    "phonetic": "なやむ - nayamu",
-    "example": "悩むことが重要である",
-    "level": "N1"
-  },
-  {
-    "front": "定年",
-    "back": "定年 tushunchasi, ilmiy/amaliy atama (Teinen)",
-    "phonetic": "ていねん - teinen",
-    "example": "定年についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "機械化",
-    "back": "機械化 tushunchasi, ilmiy/amaliy atama (Kikaika)",
-    "phonetic": "きかいか - kikaika",
-    "example": "機械化についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "豊かな",
-    "back": "豊かな tushunchasi, ilmiy/amaliy atama (Yutakana)",
-    "phonetic": "ゆたかな - yutakana",
-    "example": "豊かなな状態を保つ",
     "level": "N1"
   },
   {
@@ -8022,45 +4795,10 @@
     "level": "N1"
   },
   {
-    "front": "名物",
-    "back": "名物 tushunchasi, ilmiy/amaliy atama (Meibutsu)",
-    "phonetic": "めいぶつ - meibutsu",
-    "example": "名物についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "他人",
-    "back": "他人 tushunchasi, ilmiy/amaliy atama (Tanin)",
-    "phonetic": "たにん - tanin",
-    "example": "他人についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "切符",
-    "back": "切符 tushunchasi, ilmiy/amaliy atama (Kipu)",
-    "phonetic": "きっぷ - kipu",
-    "example": "切符についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "温めて",
     "back": "温めて tushunchasi, ilmiy/amaliy atama (Atatamete)",
     "phonetic": "あたためて - atatamete",
     "example": "温めてについての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "投書",
-    "back": "投書 tushunchasi, ilmiy/amaliy atama (Tousho)",
-    "phonetic": "とうしょ - tousho",
-    "example": "投書についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "病院",
-    "back": "病院 tushunchasi, ilmiy/amaliy atama (Byouin)",
-    "phonetic": "びょういん - byouin",
-    "example": "病院についての調査を進める",
     "level": "N1"
   },
   {
@@ -8092,31 +4830,10 @@
     "level": "N1"
   },
   {
-    "front": "自転車",
-    "back": "自転車 tushunchasi, ilmiy/amaliy atama (Jitensha)",
-    "phonetic": "じてんしゃ - jitensha",
-    "example": "自転車についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "壊して",
     "back": "壊して tushunchasi, ilmiy/amaliy atama (Kowashite)",
     "phonetic": "こわして - kowashite",
     "example": "壊してについての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "寄付",
-    "back": "寄付 tushunchasi, ilmiy/amaliy atama (Kifu)",
-    "phonetic": "きふ - kifu",
-    "example": "寄付についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "報告",
-    "back": "報告 tushunchasi, ilmiy/amaliy atama (Houkoku)",
-    "phonetic": "ほうこく - houkoku",
-    "example": "報告についての調査を進める",
     "level": "N1"
   },
   {
@@ -8134,45 +4851,10 @@
     "level": "N1"
   },
   {
-    "front": "職業",
-    "back": "職業 tushunchasi, ilmiy/amaliy atama (Shokugyou)",
-    "phonetic": "しょくぎょう - shokugyou",
-    "example": "職業についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "免許証",
-    "back": "免許証 tushunchasi, ilmiy/amaliy atama (Menkyoshou)",
-    "phonetic": "めんきょしょう - menkyoshou",
-    "example": "免許証についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "銀行員",
     "back": "銀行員 tushunchasi, ilmiy/amaliy atama (Ginkouin)",
     "phonetic": "ぎんこういん - ginkouin",
     "example": "銀行員についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "途中",
-    "back": "途中 tushunchasi, ilmiy/amaliy atama (Tochuu)",
-    "phonetic": "とちゅう - tochuu",
-    "example": "途中についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "女性",
-    "back": "女性 tushunchasi, ilmiy/amaliy atama (Josei)",
-    "phonetic": "じょせい - josei",
-    "example": "女性についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "機会",
-    "back": "機会 tushunchasi, ilmiy/amaliy atama (Kikai)",
-    "phonetic": "きかい - kikai",
-    "example": "機会についての調査を進める",
     "level": "N1"
   },
   {
@@ -8183,38 +4865,10 @@
     "level": "N1"
   },
   {
-    "front": "発表",
-    "back": "発表 tushunchasi, ilmiy/amaliy atama (Hapyou)",
-    "phonetic": "はっぴょう - hapyou",
-    "example": "発表についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "物価",
-    "back": "物価 tushunchasi, ilmiy/amaliy atama (Buka)",
-    "phonetic": "ぶっか - buka",
-    "example": "物価についての調査を進める",
-    "level": "N1"
-  },
-  {
     "front": "人権",
     "back": "人権 tushunchasi, ilmiy/amaliy atama (Jinken)",
     "phonetic": "じんけん - jinken",
     "example": "人権についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "経済学",
-    "back": "経済学 tushunchasi, ilmiy/amaliy atama (Keizaigaku)",
-    "phonetic": "けいざいがく - keizaigaku",
-    "example": "経済学についての調査を進める",
-    "level": "N1"
-  },
-  {
-    "front": "入門",
-    "back": "入門 tushunchasi, ilmiy/amaliy atama (Nyuuもn)",
-    "phonetic": "にゅうもん - nyuuもn",
-    "example": "入門についての調査を進める",
     "level": "N1"
   },
   {
@@ -8250,13 +4904,6 @@
     "back": "qarshilik ko'rsatmoq, Reach",
     "phonetic": "Tei - Tei",
     "example": "抵拡の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "掲示",
-    "back": "Put up",
-    "phonetic": "Kei - Kei",
-    "example": "掲示の影響を分析する",
     "level": "N1"
   },
   {
@@ -8652,24 +5299,10 @@
     "level": "N1"
   },
   {
-    "front": "親戚",
-    "back": "Grieve, Relatives",
-    "phonetic": "Soku - Soku",
-    "example": "親戚の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "家系吾養",
     "back": "Lineage, System",
     "phonetic": "Kei - Kei",
     "example": "家系吾養の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "系統",
-    "back": "Lineage, System",
-    "phonetic": "Kei - Kei",
-    "example": "系統の影響を分析する",
     "level": "N1"
   },
   {
@@ -9058,13 +5691,6 @@
     "level": "N1"
   },
   {
-    "front": "倉庫",
-    "back": "Godown, Warehouse",
-    "phonetic": "Sou - Sou",
-    "example": "倉庫の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "鎌倉市",
     "back": "Sickle, Scythe",
     "phonetic": "Ren - Ren",
@@ -9132,13 +5758,6 @@
     "back": "Eminent, Table",
     "phonetic": "Taku - Taku",
     "example": "焦卓の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "卓球",
-    "back": "Eminent, Table",
-    "phonetic": "Taku - Taku",
-    "example": "卓球の影響を分析する",
     "level": "N1"
   },
   {
@@ -9240,13 +5859,6 @@
     "level": "N1"
   },
   {
-    "front": "幼稚",
-    "back": "Immature, Young",
-    "phonetic": "Chi - Chi",
-    "example": "幼稚の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "猛感",
     "back": "Fierce, Rave",
     "phonetic": "もu - もu",
@@ -9331,13 +5943,6 @@
     "level": "N1"
   },
   {
-    "front": "平凡",
-    "back": "Commonplace, Ordinary",
-    "phonetic": "Bon - Bon",
-    "example": "平凡の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "甲乙",
     "back": "The latter, Duplicate",
     "phonetic": "Otsu - Otsu",
@@ -9373,13 +5978,6 @@
     "level": "N1"
   },
   {
-    "front": "至急",
-    "back": "Climax, Arrive",
-    "phonetic": "Shi - Shi",
-    "example": "至急の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "瞬息",
     "back": "Wink, Blink",
     "phonetic": "Shun - Shun",
@@ -9387,31 +5985,10 @@
     "level": "N1"
   },
   {
-    "front": "下旬",
-    "back": "Decameron, Ten-day period",
-    "phonetic": "Jun - Jun",
-    "example": "下旬の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "初旬",
-    "back": "Decameron, Ten-day period",
-    "phonetic": "Jun - Jun",
-    "example": "初旬の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "頃合",
     "back": "Time, About",
     "phonetic": "Kei - Kei",
     "example": "頃合の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "手頃",
-    "back": "Time, About",
-    "phonetic": "Kei - Kei",
-    "example": "手頃の影響を分析する",
     "level": "N1"
   },
   {
@@ -9454,13 +6031,6 @@
     "back": "Alienate, Rough",
     "phonetic": "So - So",
     "example": "疎壊の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "過剰",
-    "back": "Surplus, Besides",
-    "phonetic": "Jou - Jou",
-    "example": "過剰の影響を分析する",
     "level": "N1"
   },
   {
@@ -9611,13 +6181,6 @@
     "level": "N1"
   },
   {
-    "front": "純粋",
-    "back": "Chic, Style",
-    "phonetic": "Sui - Sui",
-    "example": "純粋の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "熱粋",
     "back": "Chic, Style",
     "phonetic": "Sui - Sui",
@@ -9702,13 +6265,6 @@
     "level": "N1"
   },
   {
-    "front": "試行錯誤",
-    "back": "Confused, Mix",
-    "phonetic": "Saku - Saku",
-    "example": "試行錯誤の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "一貝瞭然",
     "back": "Clear",
     "phonetic": "Ryou - Ryou",
@@ -9790,13 +6346,6 @@
     "back": "Seedling, Sapling",
     "phonetic": "Byou - Byou",
     "example": "早苗の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "芝生",
-    "back": "Turf, Lawn",
-    "phonetic": "Shi - Shi",
-    "example": "芝生の影響を分析する",
     "level": "N1"
   },
   {
@@ -9954,13 +6503,6 @@
     "level": "N1"
   },
   {
-    "front": "沿線",
-    "back": "Run alongside, Follow along",
-    "phonetic": "En - En",
-    "example": "沿線の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "没意",
     "back": "cho'kmoq, g'arq bo'lmoq, cho'kmoq",
     "phonetic": "Botsu - Botsu",
@@ -10056,13 +6598,6 @@
     "back": "Bee, Wasp",
     "phonetic": "Hou - Hou",
     "example": "蜂家の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "蜂蜜",
-    "back": "Honey, Nectar",
-    "phonetic": "Mitsu - Mitsu",
-    "example": "蜂蜜の影響を分析する",
     "level": "N1"
   },
   {
@@ -10262,13 +6797,6 @@
     "level": "N1"
   },
   {
-    "front": "汽車",
-    "back": "Vapor, Steam",
-    "phonetic": "Ki - Ki",
-    "example": "汽車の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "汽笛",
     "back": "Flute, Clarinet",
     "phonetic": "Teki - Teki",
@@ -10353,13 +6881,6 @@
     "level": "N1"
   },
   {
-    "front": "栽培",
-    "back": "Cultivate, Foster",
-    "phonetic": "Bai - Bai",
-    "example": "栽培の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "選択",
     "back": "Choose, Select",
     "phonetic": "Taku - Taku",
@@ -10437,13 +6958,6 @@
     "level": "N1"
   },
   {
-    "front": "基礎",
-    "back": "Cornerstone, Foundation stone",
-    "phonetic": "So - So",
-    "example": "基礎の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "機範解答",
     "back": "Pattern, Example",
     "phonetic": "Han - Han",
@@ -10490,13 +7004,6 @@
     "back": "Philosophy, Clear",
     "phonetic": "Tetsu - Tetsu",
     "example": "和洋哲表の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "哲学",
-    "back": "Philosophy, Clear",
-    "phonetic": "Tetsu - Tetsu",
-    "example": "哲学の影響を分析する",
     "level": "N1"
   },
   {
@@ -10577,24 +7084,10 @@
     "level": "N1"
   },
   {
-    "front": "原稿",
-    "back": "Draft, Copy",
-    "phonetic": "Kou - Kou",
-    "example": "原稿の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "翻認",
     "back": "Flip, Turn over",
     "phonetic": "Hon - Hon",
     "example": "翻認の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "翻訳",
-    "back": "Flip, Turn over",
-    "phonetic": "Hon - Hon",
-    "example": "翻訳の影響を分析する",
     "level": "N1"
   },
   {
@@ -10773,13 +7266,6 @@
     "level": "N1"
   },
   {
-    "front": "撮影",
-    "back": "Snapshot, Take pictures",
-    "phonetic": "Satsu - Satsu",
-    "example": "撮影の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "海俗",
     "back": "Vulgar, Customs",
     "phonetic": "Zoku - Zoku",
@@ -10801,24 +7287,10 @@
     "level": "N1"
   },
   {
-    "front": "漫画",
-    "back": "Cartoon, Involuntarily",
-    "phonetic": "Man - Man",
-    "example": "漫画の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "漫家",
     "back": "Cartoon, Involuntarily",
     "phonetic": "Man - Man",
     "example": "漫家の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "陶器",
-    "back": "Pottery, Porcelain",
-    "phonetic": "Tou - Tou",
-    "example": "陶器の影響を分析する",
     "level": "N1"
   },
   {
@@ -10885,13 +7357,6 @@
     "level": "N1"
   },
   {
-    "front": "印鑑",
-    "back": "Specimen, Take warning from",
-    "phonetic": "Kan - Kan",
-    "example": "印鑑の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "尼僧",
     "back": "Nun",
     "phonetic": "Ni - Ni",
@@ -10945,13 +7410,6 @@
     "back": "Dart, Arrow",
     "phonetic": "Shi - Shi",
     "example": "矢面の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "剣道",
-    "back": "Sabre, Sword",
-    "phonetic": "Ken - Ken",
-    "example": "剣道の影響を分析する",
     "level": "N1"
   },
   {
@@ -11046,24 +7504,10 @@
     "level": "N1"
   },
   {
-    "front": "奨学金",
-    "back": "Exhort, Urge",
-    "phonetic": "Shou - Shou",
-    "example": "奨学金の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "傑出",
     "back": "Greatness, Excellence",
     "phonetic": "Ketsu - Ketsu",
     "example": "傑出の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "傑作",
-    "back": "Greatness, Excellence",
-    "phonetic": "Ketsu - Ketsu",
-    "example": "傑作の影響を分析する",
     "level": "N1"
   },
   {
@@ -11155,13 +7599,6 @@
     "back": "Witch, Demon",
     "phonetic": "Ma - Ma",
     "example": "感魔の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "邪魔",
-    "back": "Witch, Demon",
-    "phonetic": "Ma - Ma",
-    "example": "邪魔の影響を分析する",
     "level": "N1"
   },
   {
@@ -11260,13 +7697,6 @@
     "back": "Tomb, Mound",
     "phonetic": "Fun - Fun",
     "example": "古墳の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "故郷",
-    "back": "Home town, Village",
-    "phonetic": "Kyou - Kyou",
-    "example": "故郷の影響を分析する",
     "level": "N1"
   },
   {
@@ -11417,13 +7847,6 @@
     "level": "N1"
   },
   {
-    "front": "脇道",
-    "back": "Armpit, The other way",
-    "phonetic": "Kyou - Kyou",
-    "example": "脇道の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "目尻",
     "back": "Buttocks, Hips",
     "phonetic": "Kou - Kou",
@@ -11540,13 +7963,6 @@
     "back": "Diarrhea",
     "phonetic": "Ri - Ri",
     "example": "下痢の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "循環",
-    "back": "Sequential, Follow",
-    "phonetic": "Jun - Jun",
-    "example": "循環の影響を分析する",
     "level": "N1"
   },
   {
@@ -11732,13 +8148,6 @@
     "level": "N1"
   },
   {
-    "front": "返却",
-    "back": "Instead, On the contrary",
-    "phonetic": "Kyaku - Kyaku",
-    "example": "返却の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "焼却施設",
     "back": "Instead, On the contrary",
     "phonetic": "Kyaku - Kyaku",
@@ -11900,24 +8309,10 @@
     "level": "N1"
   },
   {
-    "front": "謙遜",
-    "back": "Humble, Modest",
-    "phonetic": "Son - Son",
-    "example": "謙遜の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "淘汰",
     "back": "Washing, Sieving",
     "phonetic": "Ta - Ta",
     "example": "淘汰の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "無沙汰",
-    "back": "Sand",
-    "phonetic": "Sa - Sa",
-    "example": "無沙汰の影響を分析する",
     "level": "N1"
   },
   {
@@ -11960,13 +8355,6 @@
     "back": "Condolences, Mourning",
     "phonetic": "Chou - Chou",
     "example": "慶弔の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "一旦",
-    "back": "Daybreak, Dawn",
-    "phonetic": "Tan - Tan",
-    "example": "一旦の影響を分析する",
     "level": "N1"
   },
   {
@@ -12163,13 +8551,6 @@
     "back": "Mediator, Go-between",
     "phonetic": "Bai - Bai",
     "example": "媒的人の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "媒体",
-    "back": "Mediator, Go-between",
-    "phonetic": "Bai - Bai",
-    "example": "媒体の影響を分析する",
     "level": "N1"
   },
   {
@@ -12439,24 +8820,10 @@
     "level": "N1"
   },
   {
-    "front": "凸凹",
-    "back": "Convex, Beetle brow",
-    "phonetic": "Totsu - Totsu",
-    "example": "凸凹の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "金塊",
     "back": "Clod, Lump",
     "phonetic": "Kai - Kai",
     "example": "金塊の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "半径",
-    "back": "Diameter, Path",
-    "phonetic": "Kei - Kei",
-    "example": "半径の影響を分析する",
     "level": "N1"
   },
   {
@@ -12551,13 +8918,6 @@
     "level": "N1"
   },
   {
-    "front": "将棋",
-    "back": "Chess piece, Japanese chess",
-    "phonetic": "Ki - Ki",
-    "example": "将棋の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "玩具売",
     "back": "Play, Take pleasure in",
     "phonetic": "Gan - Gan",
@@ -12572,24 +8932,10 @@
     "level": "N1"
   },
   {
-    "front": "稽古",
-    "back": "Think, Consider",
-    "phonetic": "Kei - Kei",
-    "example": "稽古の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "架等",
     "back": "Erect, Frame",
     "phonetic": "Ka - Ka",
     "example": "架等の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "謎謎",
-    "back": "Riddle, Puzzle",
-    "phonetic": "Mei - Mei",
-    "example": "謎謎の影響を分析する",
     "level": "N1"
   },
   {
@@ -12705,24 +9051,10 @@
     "level": "N1"
   },
   {
-    "front": "裁縫",
-    "back": "Sew, Stitch",
-    "phonetic": "Hou - Hou",
-    "example": "裁縫の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "繕含",
     "back": "Darning, Repair",
     "phonetic": "Zen - Zen",
     "example": "繕含の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "修繕",
-    "back": "Darning, Repair",
-    "phonetic": "Zen - Zen",
-    "example": "修繕の影響を分析する",
     "level": "N1"
   },
   {
@@ -12744,13 +9076,6 @@
     "back": "Fan, Folding fan",
     "phonetic": "Sen - Sen",
     "example": "扇子換気の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "扇子",
-    "back": "Fan, Folding fan",
-    "phonetic": "Sen - Sen",
-    "example": "扇子の影響を分析する",
     "level": "N1"
   },
   {
@@ -12849,13 +9174,6 @@
     "back": "Bribe",
     "phonetic": "Ro - Ro",
     "example": "賄賂の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "愚痴",
-    "back": "Stupid, Foolish",
-    "phonetic": "Chi - Chi",
-    "example": "愚痴の影響を分析する",
     "level": "N1"
   },
   {
@@ -13024,13 +9342,6 @@
     "back": "Burglar, Rebel",
     "phonetic": "Zoku - Zoku",
     "example": "海賊の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "風邪",
-    "back": "Wicked, Injustice",
-    "phonetic": "Ja - Ja",
-    "example": "風邪の影響を分析する",
     "level": "N1"
   },
   {
@@ -13248,20 +9559,6 @@
     "back": "Tray, Shallow bowl",
     "phonetic": "Ban - Ban",
     "example": "鍵盤の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "錠剤",
-    "back": "Lock, Fetters",
-    "phonetic": "Jou - Jou",
-    "example": "錠剤の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "風呂",
-    "back": "Spine, Backbone",
-    "phonetic": "Ro - Ro",
-    "example": "風呂の影響を分析する",
     "level": "N1"
   },
   {
@@ -13622,13 +9919,6 @@
     "level": "N1"
   },
   {
-    "front": "飢餓",
-    "back": "Starve, Hungry",
-    "phonetic": "Ga - Ga",
-    "example": "飢餓の影響を分析する",
-    "level": "N1"
-  },
-  {
     "front": "湖畔",
     "back": "Paddy ridge, Levee",
     "phonetic": "Han - Han",
@@ -13962,13 +10252,6 @@
     "back": "Mortar",
     "phonetic": "Kyuu - Kyuu",
     "example": "脱臼の影響を分析する",
-    "level": "N1"
-  },
-  {
-    "front": "相撲",
-    "back": "Slap, Strike",
-    "phonetic": "Boku - Boku",
-    "example": "相撲の影響を分析する",
     "level": "N1"
   },
   {
@@ -14322,13 +10605,6 @@
     "level": "N1"
   },
   {
-    "front": "あっさり",
-    "back": "Easily, readily, quickly",
-    "phonetic": "あっさり - assari",
-    "example": "彼女はあっさりと答えた。",
-    "level": "N1"
-  },
-  {
     "front": "アップ",
     "back": "Up",
     "phonetic": "あっぷ - appu",
@@ -14347,13 +10623,6 @@
     "back": "Contrary, opposite, inverse",
     "phonetic": "あべこべ - abekobe",
     "example": "あなたはシャツをあべこべに着ている。",
-    "level": "N1"
-  },
-  {
-    "front": "アマチュア",
-    "back": "Amateur",
-    "phonetic": "あまちゅあ - amachua",
-    "example": "彼はアマチュアにすぎない。",
     "level": "N1"
   },
   {
@@ -14417,13 +10686,6 @@
     "back": "Encore",
     "phonetic": "あんこーる - ankooru",
     "example": "歌手に向かって盛んなアンコールが起こった。",
-    "level": "N1"
-  },
-  {
-    "front": "いい加減",
-    "back": "Moderate, right, random, not thorough, vague, irresponsible, halfhearted",
-    "phonetic": "いいかげん - iikagen",
-    "example": "いい加減にして！",
     "level": "N1"
   },
   {
@@ -14581,13 +10843,6 @@
     "level": "N1"
   },
   {
-    "front": "オリエンテーション",
-    "back": "Orientation",
-    "phonetic": "おりえんてーしょん - orienteeshon",
-    "example": "新入生向けのオリエンテーションを行う。",
-    "level": "N1"
-  },
-  {
     "front": "オレンジ",
     "back": "An orange",
     "phonetic": "おれんじ - orenji",
@@ -14613,13 +10868,6 @@
     "back": "Thanks to god, thanks to you",
     "phonetic": "おかげさまで - okagesamade",
     "example": "",
-    "level": "N1"
-  },
-  {
-    "front": "お願いします",
-    "back": "Please",
-    "phonetic": "おねがいします - onegaishimasu",
-    "example": "お願いします。",
     "level": "N1"
   },
   {
@@ -14665,13 +10913,6 @@
     "level": "N1"
   },
   {
-    "front": "お邪魔します",
-    "back": "Excuse me for disturbing (interrupting) you",
-    "phonetic": "おじゃまします - ojamashimasu",
-    "example": "お邪魔します。",
-    "level": "N1"
-  },
-  {
     "front": "お手上げ",
     "back": "All over, given in, given up hope, bring to knees",
     "phonetic": "おてあげ - oteage",
@@ -14683,13 +10924,6 @@
     "back": "To be",
     "phonetic": "おいでになる - oideninaru",
     "example": "",
-    "level": "N1"
-  },
-  {
-    "front": "お巡りさん",
-    "back": "Policeman (friendly term)",
-    "phonetic": "おまわりさん - omawarisan",
-    "example": "お巡りさんに聞け！",
     "level": "N1"
   },
   {
@@ -14784,13 +11018,6 @@
     "level": "N1"
   },
   {
-    "front": "ガイドブック",
-    "back": "Guidebook",
-    "phonetic": "がいどぶっく - gaidobukku",
-    "example": "ガイドブックを過信しちゃいけない。",
-    "level": "N1"
-  },
-  {
     "front": "カクテル",
     "back": "Cocktail",
     "phonetic": "かくてる - kakuteru",
@@ -14882,31 +11109,10 @@
     "level": "N1"
   },
   {
-    "front": "きちっと",
-    "back": "Exactly, perfectly",
-    "phonetic": "きちっと - kichitto",
-    "example": "",
-    "level": "N1"
-  },
-  {
     "front": "きっかり",
     "back": "Exactly, precisely",
     "phonetic": "きっかり - kikkari",
     "example": "１０時きっかりです。",
-    "level": "N1"
-  },
-  {
-    "front": "きっちり",
-    "back": "Precisely, tightly",
-    "phonetic": "きっちり - kitchiri",
-    "example": "私はきっちり３時間待った。",
-    "level": "N1"
-  },
-  {
-    "front": "きっぱり",
-    "back": "Clearly, plainly, distinctly",
-    "phonetic": "きっぱり - kippari",
-    "example": "彼女はきっぱり断った。",
     "level": "N1"
   },
   {
@@ -14935,13 +11141,6 @@
     "back": "Distinctly, clearly, boldly",
     "phonetic": "くっきり - kukkiri",
     "example": "",
-    "level": "N1"
-  },
-  {
-    "front": "ぐっと",
-    "back": "Firmly, fast, much, more",
-    "phonetic": "ぐっと - gutto",
-    "example": "トムは悲鳴をぐっと堪えた。",
     "level": "N1"
   },
   {
@@ -14994,13 +11193,6 @@
     "level": "N1"
   },
   {
-    "front": "ゲスト",
-    "back": "Guest",
-    "phonetic": "げすと - gesuto",
-    "example": "誰がゲストなの？",
-    "level": "N1"
-  },
-  {
     "front": "げっそり",
     "back": "Being disheartened, losing weight",
     "phonetic": "げっそり - gessori",
@@ -15026,20 +11218,6 @@
     "back": "Corner",
     "phonetic": "こーなー - koonaa",
     "example": "それから，最終コーナーで全力疾走に入った。",
-    "level": "N1"
-  },
-  {
-    "front": "こだわる",
-    "back": "To fuss over, to be particular about, to be concerned about",
-    "phonetic": "こだわる - kodawaru",
-    "example": "細かいことにこだわるな。",
-    "level": "N1"
-  },
-  {
-    "front": "この間",
-    "back": "The other day, lately, recently",
-    "phonetic": "このあいだ - konoaida",
-    "example": "この間彼に会った。",
     "level": "N1"
   },
   {
@@ -15078,13 +11256,6 @@
     "level": "N1"
   },
   {
-    "front": "コンテスト",
-    "back": "Contest",
-    "phonetic": "こんてすと - kontesuto",
-    "example": "彼はコンテストで名を挙げた。",
-    "level": "N1"
-  },
-  {
     "front": "コントラスト",
     "back": "Contrast",
     "phonetic": "こんとらすと - kontorasuto",
@@ -15120,13 +11291,6 @@
     "level": "N1"
   },
   {
-    "front": "ご馳走",
-    "back": "Feast, treating (someone)",
-    "phonetic": "ごちそう - gochisou",
-    "example": "ご馳走様でした。",
-    "level": "N1"
-  },
-  {
     "front": "ご馳走さま",
     "back": "Feast",
     "phonetic": "ごちそうさま - gochisousama",
@@ -15145,13 +11309,6 @@
     "back": "Cycle",
     "phonetic": "さいくる - saikuru",
     "example": "リサイクルするの？",
-    "level": "N1"
-  },
-  {
-    "front": "サイズ",
-    "back": "Size",
-    "phonetic": "さいず - saizu",
-    "example": "ジャストサイズだよ。",
     "level": "N1"
   },
   {
@@ -15197,24 +11354,10 @@
     "level": "N1"
   },
   {
-    "front": "シート",
-    "back": "Seat, sheet",
-    "phonetic": "しーと - shiito",
-    "example": "これがレシートです。",
-    "level": "N1"
-  },
-  {
     "front": "ジーパン",
     "back": "Jeans (lit: jeans pants), dungarees",
     "phonetic": "じーぱん - jiipan",
     "example": "普段はジーパンだよ。",
-    "level": "N1"
-  },
-  {
-    "front": "しいんと",
-    "back": "Silent (as the grave), (deathly) quiet",
-    "phonetic": "しいんと - shiinto",
-    "example": "",
     "level": "N1"
   },
   {
@@ -15225,24 +11368,10 @@
     "level": "N1"
   },
   {
-    "front": "システム",
-    "back": "System",
-    "phonetic": "しすてむ - shisutemu",
-    "example": "トムはシステムエンジニアだ。",
-    "level": "N1"
-  },
-  {
     "front": "シック",
     "back": "Chic",
     "phonetic": "しっく - shikku",
     "example": "ホームシックです。",
-    "level": "N1"
-  },
-  {
-    "front": "じっくり",
-    "back": "Deliberately, carefully",
-    "phonetic": "じっくり - jikkuri",
-    "example": "物事をじっくり考える慎重派です。",
     "level": "N1"
   },
   {
@@ -15309,20 +11438,6 @@
     "level": "N1"
   },
   {
-    "front": "ショー",
-    "back": "Show",
-    "phonetic": "しょー - shoo",
-    "example": "いいショーでしたよ。",
-    "level": "N1"
-  },
-  {
-    "front": "ショック",
-    "back": "Shock",
-    "phonetic": "しょっく - shokku",
-    "example": "ショックでした。",
-    "level": "N1"
-  },
-  {
     "front": "しょっちゅう",
     "back": "Always, constantly",
     "phonetic": "しょっちゅう - shotchuu",
@@ -15348,13 +11463,6 @@
     "back": "Strike",
     "phonetic": "すとらいき - sutoraiki",
     "example": "労働者達はストライキ中です。",
-    "level": "N1"
-  },
-  {
-    "front": "ストレス",
-    "back": "Stress",
-    "phonetic": "すとれす - sutoresu",
-    "example": "ストレスがたまってきたよ。",
     "level": "N1"
   },
   {
@@ -15407,20 +11515,6 @@
     "level": "N1"
   },
   {
-    "front": "スペース",
-    "back": "Space",
-    "phonetic": "すぺーす - supeesu",
-    "example": "サイバースペースへようこそ。",
-    "level": "N1"
-  },
-  {
-    "front": "スポーツカー",
-    "back": "Sports car",
-    "phonetic": "すぽーつかー - supootsukaa",
-    "example": "彼はスポーツカーのマニアだ。",
-    "level": "N1"
-  },
-  {
     "front": "スラックス",
     "back": "Slacks",
     "phonetic": "すらっくす - surakkusu",
@@ -15456,13 +11550,6 @@
     "level": "N1"
   },
   {
-    "front": "すれ違う",
-    "back": "To pass by one another, to disagree, to miss each other",
-    "phonetic": "すれちがう - surechigau",
-    "example": "彼女は通りですれ違う時に私に微笑みかけた。",
-    "level": "N1"
-  },
-  {
     "front": "すんなり",
     "back": "Pass with no objection, slim, slender",
     "phonetic": "すんなり - sunnari",
@@ -15484,31 +11571,10 @@
     "level": "N1"
   },
   {
-    "front": "ゼリー",
-    "back": "1.  jelly, 2.  jerry",
-    "phonetic": "ぜりー - zerii",
-    "example": "彼の好きなのはゼリーです。",
-    "level": "N1"
-  },
-  {
     "front": "セレモニー",
     "back": "Ceremony",
     "phonetic": "せれもにー - seremonii",
     "example": "セレモニーには出席できませんでした。",
-    "level": "N1"
-  },
-  {
-    "front": "センス",
-    "back": "Good sense (for music  style  tact  etc.)",
-    "phonetic": "せんす - sensu",
-    "example": "センスが全然ないわ。",
-    "level": "N1"
-  },
-  {
-    "front": "ソース",
-    "back": "Source",
-    "phonetic": "そーす - soosu",
-    "example": "ソースとって！",
     "level": "N1"
   },
   {
@@ -15582,38 +11648,10 @@
     "level": "N1"
   },
   {
-    "front": "タイマー",
-    "back": "Timer",
-    "phonetic": "たいまー - taimaa",
-    "example": "タイマー機能は使わない。",
-    "level": "N1"
-  },
-  {
-    "front": "タイミング",
-    "back": "Timing",
-    "phonetic": "たいみんぐ - taimingu",
-    "example": "いいタイミングだ。",
-    "level": "N1"
-  },
-  {
-    "front": "タイム",
-    "back": "Time",
-    "phonetic": "たいむ - taimu",
-    "example": "ちょっとタイム。",
-    "level": "N1"
-  },
-  {
     "front": "タイムリー",
     "back": "Timely, run-batted-in (baseball), rbi",
     "phonetic": "たいむりー - taimurii",
     "example": "もし彼のタイムリーヒットがなかったら、私たちのチームは試合に負けていただろう。",
-    "level": "N1"
-  },
-  {
-    "front": "タイヤ",
-    "back": "Tire, tyre",
-    "phonetic": "たいや - taiya",
-    "example": "タイヤは大丈夫？",
     "level": "N1"
   },
   {
@@ -15635,13 +11673,6 @@
     "back": "Only, merely, but, no more than",
     "phonetic": "たった - tatta",
     "example": "暑さにあたった。",
-    "level": "N1"
-  },
-  {
-    "front": "だぶだぶ",
-    "back": "Loose, baggy",
-    "phonetic": "だぶだぶ - dabudabu",
-    "example": "このズボンはだぶだぶだ。",
     "level": "N1"
   },
   {
@@ -15754,13 +11785,6 @@
     "back": "Decoration",
     "phonetic": "でこれーしょん - dekoreeshon",
     "example": "",
-    "level": "N1"
-  },
-  {
-    "front": "デザート",
-    "back": "Dessert",
-    "phonetic": "でざーと - dezaato",
-    "example": "デザートが欲しい？",
     "level": "N1"
   },
   {
@@ -15897,13 +11921,6 @@
     "level": "N1"
   },
   {
-    "front": "ナイター",
-    "back": "Game under lights (e.g. baseball) (lit: nighter), night game",
-    "phonetic": "ないたー - naitaa",
-    "example": "私はよくテレビでナイターを見る。",
-    "level": "N1"
-  },
-  {
     "front": "ナプキン",
     "back": "Napkin",
     "phonetic": "なぷきん - napukin",
@@ -16016,13 +12033,6 @@
     "level": "N1"
   },
   {
-    "front": "パトカー",
-    "back": "Patrol car",
-    "phonetic": "ぱとかー - patokaa",
-    "example": "パトカーが必要です。",
-    "level": "N1"
-  },
-  {
     "front": "ハンガー",
     "back": "Hangar, (coat) hanger, hunger",
     "phonetic": "はんがー - hangaa",
@@ -16041,20 +12051,6 @@
     "back": "Virus",
     "phonetic": "びーるす - biirusu",
     "example": "",
-    "level": "N1"
-  },
-  {
-    "front": "ビジネス",
-    "back": "Business",
-    "phonetic": "びじねす - bijinesu",
-    "example": "父はビジネスマンです。",
-    "level": "N1"
-  },
-  {
-    "front": "びっしょり",
-    "back": "Wet through, drenched",
-    "phonetic": "びっしょり - bisshori",
-    "example": "彼は汗びっしょりだった。",
     "level": "N1"
   },
   {
@@ -16086,13 +12082,6 @@
     "level": "N1"
   },
   {
-    "front": "ファイル",
-    "back": "File",
-    "phonetic": "ふぁいる - fairu",
-    "example": "ファイルが開かない。",
-    "level": "N1"
-  },
-  {
     "front": "ファン",
     "back": "Fan, fun",
     "phonetic": "ふぁん - fan",
@@ -16111,13 +12100,6 @@
     "back": "Boots",
     "phonetic": "ぶーつ - buutsu",
     "example": "ブーツは脱いで。",
-    "level": "N1"
-  },
-  {
-    "front": "ブーム",
-    "back": "Boom",
-    "phonetic": "ぶーむ - buumu",
-    "example": "大ブームです。",
     "level": "N1"
   },
   {
@@ -16198,13 +12180,6 @@
     "level": "N1"
   },
   {
-    "front": "ぺこぺこ",
-    "back": "Fawn, be very hungry",
-    "phonetic": "ぺこぺこ - pekopeko",
-    "example": "お腹がぺこぺこです。",
-    "level": "N1"
-  },
-  {
     "front": "ベスト",
     "back": "Best, vest",
     "phonetic": "べすと - besuto",
@@ -16247,31 +12222,10 @@
     "level": "N1"
   },
   {
-    "front": "ホール",
-    "back": "Hall, hole",
-    "phonetic": "ほーる - hooru",
-    "example": "ホールは満員だった。",
-    "level": "N1"
-  },
-  {
     "front": "ポジション",
     "back": "Position",
     "phonetic": "ぽじしょん - pojishon",
     "example": "僕はバスケットボールチームの最後のポジションの申し込みをしようとスポーツ事務所へ行ったが、誰かが先を越してしまった。",
-    "level": "N1"
-  },
-  {
-    "front": "ほっと",
-    "back": "Feel relieved",
-    "phonetic": "ほっと - hotto",
-    "example": "ほっといてよ！",
-    "level": "N1"
-  },
-  {
-    "front": "ポット",
-    "back": "Pot",
-    "phonetic": "ぽっと - potto",
-    "example": "スポットも行ったの？",
     "level": "N1"
   },
   {
@@ -16307,13 +12261,6 @@
     "back": "Pump",
     "phonetic": "ぽんぷ - ponpu",
     "example": "心臓とポンプは似かよっている。",
-    "level": "N1"
-  },
-  {
-    "front": "マーク",
-    "back": "Mark",
-    "phonetic": "まーく - maaku",
-    "example": "デンマークは監獄だ。",
     "level": "N1"
   },
   {
@@ -16356,34 +12303,6 @@
     "back": "Music",
     "phonetic": "みゅーじっく - myuujikku",
     "example": "トムはポップミュージックが好きだ。",
-    "level": "N1"
-  },
-  {
-    "front": "ミリ",
-    "back": "Milli-, 10^-3",
-    "phonetic": "みり - miri",
-    "example": "エミリーってだれ？",
-    "level": "N1"
-  },
-  {
-    "front": "ムード",
-    "back": "Mood",
-    "phonetic": "むーど - muudo",
-    "example": "トムはムードメーカーだった。",
-    "level": "N1"
-  },
-  {
-    "front": "メーカー",
-    "back": "Maker",
-    "phonetic": "めーかー - meekaa",
-    "example": "トムはムードメーカーだった。",
-    "level": "N1"
-  },
-  {
-    "front": "メッセージ",
-    "back": "Message",
-    "phonetic": "めっせーじ - messeeji",
-    "example": "メッセージ残しておいたよ。",
     "level": "N1"
   },
   {
@@ -16457,13 +12376,6 @@
     "level": "N1"
   },
   {
-    "front": "ユニーク",
-    "back": "Unique",
-    "phonetic": "ゆにーく - yuniiku",
-    "example": "彼のユニークな建築スタイルの誕生についての歴史的研究である。",
-    "level": "N1"
-  },
-  {
     "front": "ユニフォーム",
     "back": "Uniform",
     "phonetic": "ゆにふぉーむ - yunifoomu",
@@ -16475,13 +12387,6 @@
     "back": "Rice",
     "phonetic": "らいす - raisu",
     "example": "オムライスを食べた。",
-    "level": "N1"
-  },
-  {
-    "front": "ラベル",
-    "back": "Label",
-    "phonetic": "らべる - raberu",
-    "example": "私はラベルを読みます。",
     "level": "N1"
   },
   {
@@ -16499,13 +12404,6 @@
     "level": "N1"
   },
   {
-    "front": "ルール",
-    "back": "Rule",
-    "phonetic": "るーる - ruuru",
-    "example": "ルール違反だぞ。",
-    "level": "N1"
-  },
-  {
     "front": "レース",
     "back": "Race, lace",
     "phonetic": "れーす - reesu",
@@ -16517,20 +12415,6 @@
     "back": "Regular",
     "phonetic": "れぎゅらー - regyuraa",
     "example": "レギュラー満タン、現金で。",
-    "level": "N1"
-  },
-  {
-    "front": "レクリエーション",
-    "back": "Recreation",
-    "phonetic": "れくりえーしょん - rekurieeshon",
-    "example": "スキーをすることは良いレクリエーションである。",
-    "level": "N1"
-  },
-  {
-    "front": "レッスン",
-    "back": "Lesson",
-    "phonetic": "れっすん - ressun",
-    "example": "彼女はレッスンを休んだ。",
     "level": "N1"
   },
   {
@@ -16611,24 +12495,10 @@
     "level": "N1"
   },
   {
-    "front": "愛想",
-    "back": "Civility, courtesy, compliments, sociability, graces",
-    "phonetic": "あいそ - aiso",
-    "example": "彼には愛想が尽きた。",
-    "level": "N1"
-  },
-  {
     "front": "愛憎",
     "back": "Likes and dislikes",
     "phonetic": "あいにく - ainiku",
     "example": "フロイトは、親子間の愛憎関係をエディプス・コンプレックスとして展開しました。",
-    "level": "N1"
-  },
-  {
-    "front": "悪",
-    "back": "Evil, wickedness",
-    "phonetic": "あく - aku",
-    "example": "美徳と悪徳。",
     "level": "N1"
   },
   {
@@ -16685,20 +12555,6 @@
     "back": "Stress, pressure",
     "phonetic": "あつりょく - atsuryoku",
     "example": "彼は圧力に屈した。",
-    "level": "N1"
-  },
-  {
-    "front": "扱い",
-    "back": "Treatment, service",
-    "phonetic": "あつかい - atsukai",
-    "example": "彼は扱いにくい。",
-    "level": "N1"
-  },
-  {
-    "front": "宛",
-    "back": "Addressed to",
-    "phonetic": "あて - ate",
-    "example": "手紙は僕宛だよ。",
     "level": "N1"
   },
   {
@@ -16912,20 +12768,6 @@
     "level": "N1"
   },
   {
-    "front": "移行",
-    "back": "Switching over to",
-    "phonetic": "いこう - ikou",
-    "example": "農場生活から都市の生活への移行は困難なことが多い。",
-    "level": "N1"
-  },
-  {
-    "front": "移住",
-    "back": "Migration, immigration",
-    "phonetic": "いじゅう - ijuu",
-    "example": "アメリカは移住者の国である。",
-    "level": "N1"
-  },
-  {
     "front": "移民",
     "back": "Emigration, immigration, emigrant, immigrant",
     "phonetic": "いみん - imin",
@@ -16951,13 +12793,6 @@
     "back": "Clothing",
     "phonetic": "いりょう - iryou",
     "example": "衣料品がだぶついている。",
-    "level": "N1"
-  },
-  {
-    "front": "衣類",
-    "back": "Clothes, clothing, garments",
-    "phonetic": "いるい - irui",
-    "example": "上着は、衣類の１つである。",
     "level": "N1"
   },
   {
@@ -17094,13 +12929,6 @@
     "level": "N1"
   },
   {
-    "front": "一定",
-    "back": "Fixed, settled, definite, uniform, regularized, defined, standardized, certain, prescribed",
-    "phonetic": "いちじょう - ichijou",
-    "example": "彼は自転車を一定の速度で走らせた。",
-    "level": "N1"
-  },
-  {
     "front": "一同",
     "back": "All present, all concerned, all of us",
     "phonetic": "いちどう - ichidou",
@@ -17122,13 +12950,6 @@
     "level": "N1"
   },
   {
-    "front": "一部分",
-    "back": "A part",
-    "phonetic": "いちぶぶん - ichibubun",
-    "example": "時とは、永遠の一部分である。",
-    "level": "N1"
-  },
-  {
     "front": "一別",
     "back": "Parting",
     "phonetic": "いちべつ - ichibetsu",
@@ -17140,20 +12961,6 @@
     "back": "Complete change, about-face",
     "phonetic": "いっぺん - ippen",
     "example": "夫妻は化学を近代科学へと一変させた。",
-    "level": "N1"
-  },
-  {
-    "front": "一面",
-    "back": "One side, one phase, front page, the other hand, the whole surface",
-    "phonetic": "いちめん - ichimen",
-    "example": "空は一面にくもった。",
-    "level": "N1"
-  },
-  {
-    "front": "一目",
-    "back": "A glance, a look, a glimpse",
-    "phonetic": "いちもく - ichimoku",
-    "example": "一目惚れなの。",
     "level": "N1"
   },
   {
@@ -17178,13 +12985,6 @@
     "level": "N1"
   },
   {
-    "front": "溢れる",
-    "back": "To flood, to overflow, to brim over",
-    "phonetic": "あふれる - afureru",
-    "example": "『うぐいす侍』人間愛とユーモア溢れる侍物語。",
-    "level": "N1"
-  },
-  {
     "front": "逸らす",
     "back": "To turn away, to avert",
     "phonetic": "そらす - sorasu",
@@ -17206,13 +13006,6 @@
     "level": "N1"
   },
   {
-    "front": "員",
-    "back": "Member",
-    "phonetic": "いん - in",
-    "example": "会社員です。",
-    "level": "N1"
-  },
-  {
     "front": "引きずる",
     "back": "To seduce, to drag along, to pull, to prolong, to support",
     "phonetic": "ひきずる - hikizuru",
@@ -17231,20 +13024,6 @@
     "back": "To cause",
     "phonetic": "ひきおこす - hikiokosu",
     "example": "肺炎は呼吸困難を引き起こす。",
-    "level": "N1"
-  },
-  {
-    "front": "引き取る",
-    "back": "To take charge of, to take over, to retire to a private place",
-    "phonetic": "ひきとる - hikitoru",
-    "example": "トムは2・3日で息を引き取るだろう。",
-    "level": "N1"
-  },
-  {
-    "front": "引き受ける",
-    "back": "To undertake, to take up, to take over, to be responsible for, to guarantee, to contract (disease)",
-    "phonetic": "ひきうける - hikiukeru",
-    "example": "もうこれ以上生徒を引き受ける時間はない。",
     "level": "N1"
   },
   {
@@ -17388,13 +13167,6 @@
     "level": "N1"
   },
   {
-    "front": "映像",
-    "back": "Reflection, image",
-    "phonetic": "えいぞう - eizou",
-    "example": "この映像はドラマだ。",
-    "level": "N1"
-  },
-  {
     "front": "栄える",
     "back": "To prosper, to flourish",
     "phonetic": "さかえる - sakaeru",
@@ -17451,13 +13223,6 @@
     "level": "N1"
   },
   {
-    "front": "園",
-    "back": "Garden (esp. man-made)",
-    "phonetic": "えん - en",
-    "example": "私は公園に歩く。",
-    "level": "N1"
-  },
-  {
     "front": "延いては",
     "back": "Not only...but also, in addition to, consequently",
     "phonetic": "ひいては - hiiteha",
@@ -17490,13 +13255,6 @@
     "back": "Coast, shore",
     "phonetic": "えんがん - engan",
     "example": "沿岸地帯には津波警報が出た。",
-    "level": "N1"
-  },
-  {
-    "front": "演じる",
-    "back": "To perform (a play), to play (a part), to act (a part), to commit (a blunder)",
-    "phonetic": "えんじる - enjiru",
-    "example": "重要な役を演じる。",
     "level": "N1"
   },
   {
@@ -17542,31 +13300,10 @@
     "level": "N1"
   },
   {
-    "front": "縁",
-    "back": "Chance, fate, destiny, relation, bonds, connection, karma",
-    "phonetic": "えん - en",
-    "example": "縁は異なもの。",
-    "level": "N1"
-  },
-  {
     "front": "縁談",
     "back": "Marriage proposal, engagement",
     "phonetic": "えんだん - endan",
     "example": "やっと、姉の縁談がまとまりました。",
-    "level": "N1"
-  },
-  {
-    "front": "艶",
-    "back": "Charming, fascinating, voluptuous",
-    "phonetic": "えん - en",
-    "example": "メアリーは艶やかな黒髪をしている。",
-    "level": "N1"
-  },
-  {
-    "front": "遠回り",
-    "back": "Detour, roundabout way",
-    "phonetic": "とおまわり - toomawari",
-    "example": "今日は遠回りをして帰ろっと。",
     "level": "N1"
   },
   {
@@ -17584,13 +13321,6 @@
     "level": "N1"
   },
   {
-    "front": "塩",
-    "back": "Salt",
-    "phonetic": "えん - en",
-    "example": "お塩とって。",
-    "level": "N1"
-  },
-  {
     "front": "於",
     "back": "At, in, on",
     "phonetic": "お - o",
@@ -17605,31 +13335,10 @@
     "level": "N1"
   },
   {
-    "front": "汚す",
-    "back": "To disgrace, to dishonour",
-    "phonetic": "けがす - kegasu",
-    "example": "いくつかの工場は環境を汚す。",
-    "level": "N1"
-  },
-  {
     "front": "汚らわしい",
     "back": "Filthy, unfair",
     "phonetic": "けがらわしい - kegarawashii",
     "example": "離してよ。汚らわしい。",
-    "level": "N1"
-  },
-  {
-    "front": "汚れ",
-    "back": "Uncleanness, impurity, disgrace",
-    "phonetic": "けがれ - kegare",
-    "example": "靴が汚れてる。",
-    "level": "N1"
-  },
-  {
-    "front": "汚れる",
-    "back": "To get dirty, to become dirty",
-    "phonetic": "けがれる - kegareru",
-    "example": "おべべが汚れるよ。",
     "level": "N1"
   },
   {
@@ -17724,24 +13433,10 @@
     "level": "N1"
   },
   {
-    "front": "音",
-    "back": "Sound, note",
-    "phonetic": "ね - ne",
-    "example": "音楽は好き？",
-    "level": "N1"
-  },
-  {
     "front": "音色",
     "back": "Tone color, tone quality, timbre, synthesizer patch",
     "phonetic": "おんいろ - on'iro",
     "example": "風鈴の音色が大好きです。",
-    "level": "N1"
-  },
-  {
-    "front": "下がる",
-    "back": "To hang down, to abate, to retire, to fall, to step back",
-    "phonetic": "さがる - sagaru",
-    "example": "温度が下がる。",
     "level": "N1"
   },
   {
@@ -17801,13 +13496,6 @@
     "level": "N1"
   },
   {
-    "front": "下品",
-    "back": "Inferior article",
-    "phonetic": "かひん - kahin",
-    "example": "下品なことを言うな。",
-    "level": "N1"
-  },
-  {
     "front": "下吏",
     "back": "Lower official",
     "phonetic": "かり - kari",
@@ -17864,13 +13552,6 @@
     "level": "N1"
   },
   {
-    "front": "何々",
-    "back": "Which (emphatic)",
-    "phonetic": "どれどれ - doredore",
-    "example": "",
-    "level": "N1"
-  },
-  {
     "front": "何しろ",
     "back": "At any rate, anyhow, anyway, in any case",
     "phonetic": "なにしろ - nanishiro",
@@ -17924,13 +13605,6 @@
     "back": "Which, what",
     "phonetic": "どの - dono",
     "example": "何のために？",
-    "level": "N1"
-  },
-  {
-    "front": "何も",
-    "back": "Nothing",
-    "phonetic": "なにも - nanimo",
-    "example": "何も言うな。",
     "level": "N1"
   },
   {
@@ -18046,13 +13720,6 @@
     "level": "N1"
   },
   {
-    "front": "加工",
-    "back": "Manufacturing, processing, treatment",
-    "phonetic": "かこう - kakou",
-    "example": "ミルクはバターに加工される。",
-    "level": "N1"
-  },
-  {
     "front": "加入",
     "back": "Becoming a member, joining, entry, admission, subscription, affiliation, adherence, signing",
     "phonetic": "かにゅう - kanyuu",
@@ -18081,24 +13748,10 @@
     "level": "N1"
   },
   {
-    "front": "可愛い",
-    "back": "Pretty, cute, lovely, charming, dear, darling, pet",
-    "phonetic": "かわいい - kawaii",
-    "example": "彼女は可愛い。",
-    "level": "N1"
-  },
-  {
     "front": "可愛がる",
     "back": "To love, to be affectionate",
     "phonetic": "かわいがる - kawaigaru",
     "example": "親というものは、どんなに腕白でも、子供を可愛がるものです。",
-    "level": "N1"
-  },
-  {
-    "front": "可愛らしい",
-    "back": "Lovely, sweet",
-    "phonetic": "かわいらしい - kawairashii",
-    "example": "その猫は可愛らしい。",
     "level": "N1"
   },
   {
@@ -18113,13 +13766,6 @@
     "back": "Considerably, fairly, quite",
     "phonetic": "かなり - kanari",
     "example": "",
-    "level": "N1"
-  },
-  {
-    "front": "家主",
-    "back": "Landlord",
-    "phonetic": "いえぬし - ienushi",
-    "example": "家主は肩と腕に銃撃を受けた。",
     "level": "N1"
   },
   {
@@ -18144,31 +13790,10 @@
     "level": "N1"
   },
   {
-    "front": "科",
-    "back": "Department, section",
-    "phonetic": "か - ka",
-    "example": "眼科医です。",
-    "level": "N1"
-  },
-  {
-    "front": "暇",
-    "back": "Free time, leisure, leave, spare time, farewell",
-    "phonetic": "いとま - itoma",
-    "example": "良い休暇を。",
-    "level": "N1"
-  },
-  {
     "front": "果たして",
     "back": "As was expected, really",
     "phonetic": "はたして - hatashite",
     "example": "水を使い果たしてしまった。",
-    "level": "N1"
-  },
-  {
-    "front": "果たす",
-    "back": "To accomplish, to fulfill, to carry out, to achieve",
-    "phonetic": "はたす - hatasu",
-    "example": "彼は約束を果たす。",
     "level": "N1"
   },
   {
@@ -18200,13 +13825,6 @@
     "level": "N1"
   },
   {
-    "front": "火傷",
-    "back": "Burn, scald",
-    "phonetic": "かしょう - kashou",
-    "example": "火傷しなかった？",
-    "level": "N1"
-  },
-  {
     "front": "火星",
     "back": "Mars (planet)",
     "phonetic": "かせい - kasei",
@@ -18225,13 +13843,6 @@
     "back": "Individual, separate",
     "phonetic": "ここ - koko",
     "example": "",
-    "level": "N1"
-  },
-  {
-    "front": "箇所",
-    "back": "Passage, place, point, part",
-    "phonetic": "かしょ - kasho",
-    "example": "この箇所が一番深いです。",
     "level": "N1"
   },
   {
@@ -18305,13 +13916,6 @@
     "level": "N1"
   },
   {
-    "front": "課題",
-    "back": "Subject, theme, task",
-    "phonetic": "かだい - kadai",
-    "example": "課題は終わった？",
-    "level": "N1"
-  },
-  {
     "front": "過ぎ",
     "back": "Past, after",
     "phonetic": "すぎ - sugi",
@@ -18375,13 +13979,6 @@
     "level": "N1"
   },
   {
-    "front": "画",
-    "back": "Stroke",
-    "phonetic": "かく - kaku",
-    "example": "彼は画家だ。",
-    "level": "N1"
-  },
-  {
     "front": "画期",
     "back": "Epoch-making",
     "phonetic": "かっき - kakki",
@@ -18403,24 +14000,10 @@
     "level": "N1"
   },
   {
-    "front": "会",
-    "back": "Understanding",
-    "phonetic": "え - e",
-    "example": "今夜会える？",
-    "level": "N1"
-  },
-  {
     "front": "会談",
     "back": "Conversation, conference, discussion, interview",
     "phonetic": "かいだん - kaidan",
     "example": "会談は２日間続いた。",
-    "level": "N1"
-  },
-  {
-    "front": "解く",
-    "back": "To unfasten",
-    "phonetic": "ほどく - hodoku",
-    "example": "彼は難問を解くのが好きだ。",
     "level": "N1"
   },
   {
@@ -18452,13 +14035,6 @@
     "level": "N1"
   },
   {
-    "front": "快い",
-    "back": "Pleasant, agreeable",
-    "phonetic": "こころよい - kokoroyoi",
-    "example": "快い笑顔で彼女は私に挨拶した。",
-    "level": "N1"
-  },
-  {
     "front": "懐く",
     "back": "To become emotionally attached",
     "phonetic": "なつく - natsuku",
@@ -18469,13 +14045,6 @@
     "front": "拐う",
     "back": "To carry off, to run away with, to kidnap, to abduct",
     "phonetic": "さらう - sarau",
-    "example": "",
-    "level": "N1"
-  },
-  {
-    "front": "改まる",
-    "back": "To be renewed",
-    "phonetic": "あらたまる - aratamaru",
     "example": "",
     "level": "N1"
   },
@@ -18512,13 +14081,6 @@
     "back": "Revision",
     "phonetic": "かいてい - kaitei",
     "example": "時刻表が改訂された。",
-    "level": "N1"
-  },
-  {
-    "front": "改良",
-    "back": "Improvement, reform",
-    "phonetic": "かいりょう - kairyou",
-    "example": "この制度には改良の余地がない。",
     "level": "N1"
   },
   {
@@ -18564,20 +14126,6 @@
     "level": "N1"
   },
   {
-    "front": "開催",
-    "back": "Holding a meeting, open an exhibition",
-    "phonetic": "かいさい - kaisai",
-    "example": "文化祭は先月開催された。",
-    "level": "N1"
-  },
-  {
-    "front": "階",
-    "back": "-floor (counter), stories",
-    "phonetic": "かい - kai",
-    "example": "何階ですか。",
-    "level": "N1"
-  },
-  {
     "front": "階級",
     "back": "Class, rank, grade",
     "phonetic": "かいきゅう - kaikyuu",
@@ -18596,13 +14144,6 @@
     "back": "Imported goods, foreign money",
     "phonetic": "がいか - gaika",
     "example": "外貨の為替レートは毎日変わる。",
-    "level": "N1"
-  },
-  {
-    "front": "外観",
-    "back": "Appearance, exterior, facade",
-    "phonetic": "がいかん - gaikan",
-    "example": "外観はあてにならない。",
     "level": "N1"
   },
   {
@@ -18655,20 +14196,6 @@
     "level": "N1"
   },
   {
-    "front": "蓋",
-    "back": "Cover, lid, cap",
-    "phonetic": "がい - gai",
-    "example": "鍋に蓋をして。",
-    "level": "N1"
-  },
-  {
-    "front": "街",
-    "back": "~street, ~quarters",
-    "phonetic": "がい - gai",
-    "example": "街に行きたい。",
-    "level": "N1"
-  },
-  {
     "front": "街道",
     "back": "Highway",
     "phonetic": "かいどう - kaidou",
@@ -18680,13 +14207,6 @@
     "back": "Each, every, either, respectively, severally",
     "phonetic": "おのおの - onoono",
     "example": "各自の部署に就け。",
-    "level": "N1"
-  },
-  {
-    "front": "各々",
-    "back": "Each, every, either, respectively, severally",
-    "phonetic": "それぞれ - sorezore",
-    "example": "各々の乗客には荷物二つの制限がある。",
     "level": "N1"
   },
   {
@@ -18718,13 +14238,6 @@
     "level": "N1"
   },
   {
-    "front": "獲得",
-    "back": "Acquisition, possession",
-    "phonetic": "かくとく - kakutoku",
-    "example": "彼は権力獲得に野心満々だ。",
-    "level": "N1"
-  },
-  {
     "front": "獲物",
     "back": "Game, spoils, trophy",
     "phonetic": "えもの - emono",
@@ -18739,13 +14252,6 @@
     "level": "N1"
   },
   {
-    "front": "確定",
-    "back": "Definition (math), decision, settlement",
-    "phonetic": "かくてい - kakutei",
-    "example": "月曜までに確定見積もりが必要です。",
-    "level": "N1"
-  },
-  {
     "front": "確立",
     "back": "Establishment",
     "phonetic": "かくりつ - kakuritsu",
@@ -18757,13 +14263,6 @@
     "back": "Memory, sense, experience",
     "phonetic": "おぼえ - oboe",
     "example": "覚えてろよ。",
-    "level": "N1"
-  },
-  {
-    "front": "角",
-    "back": "1.  angle, 2.  bishop (shogi)",
-    "phonetic": "かく - kaku",
-    "example": "氷山の一角だよ。",
     "level": "N1"
   },
   {
@@ -18823,13 +14322,6 @@
     "level": "N1"
   },
   {
-    "front": "楽しむ",
-    "back": "To enjoy oneself",
-    "phonetic": "たのしむ - tanoshimu",
-    "example": "私達は読書を楽しむ。",
-    "level": "N1"
-  },
-  {
     "front": "楽観",
     "back": "Optimism",
     "phonetic": "らっかん - rakkan",
@@ -18855,13 +14347,6 @@
     "back": "Divide, cut, halve, separate, split, rip, break, crack, smash, dilute",
     "phonetic": "かつ - katsu",
     "example": "鏡を割るな。",
-    "level": "N1"
-  },
-  {
-    "front": "割り込む",
-    "back": "To cut in, to thrust oneself into, to wedge oneself in, to muscle in on, to interrupt, to disturb",
-    "phonetic": "わりこむ - warikomu",
-    "example": "僕たちの話に割り込むなよ。",
     "level": "N1"
   },
   {
@@ -18981,13 +14466,6 @@
     "back": "Heaven, emperor",
     "phonetic": "かん - kan",
     "example": "髪乾かした？",
-    "level": "N1"
-  },
-  {
-    "front": "冠",
-    "back": "Crown, diadem, first, best, peerless, cap, naming, designating, initiating on coming of age, top character ra",
-    "phonetic": "かん - kan",
-    "example": "ここに冠がある。",
     "level": "N1"
   },
   {
@@ -19173,13 +14651,6 @@
     "level": "N1"
   },
   {
-    "front": "甘い",
-    "back": "Delicious",
-    "phonetic": "うまい - umai",
-    "example": "それは甘いの？",
-    "level": "N1"
-  },
-  {
     "front": "甘える",
     "back": "To behave like a spoiled child, to fawn on",
     "phonetic": "あまえる - amaeru",
@@ -19191,13 +14662,6 @@
     "back": "Sweet flavour, mildness, flattery, stupidity",
     "phonetic": "あまくち - amakuchi",
     "example": "そんな甘口には乗らないよ。",
-    "level": "N1"
-  },
-  {
-    "front": "看護",
-    "back": "Nursing, (army) nurse",
-    "phonetic": "かんご - kango",
-    "example": "私は看護婦です。",
     "level": "N1"
   },
   {
@@ -19320,13 +14784,6 @@
     "level": "N1"
   },
   {
-    "front": "間違う",
-    "back": "To make a mistake, to be incorrect, to be mistaken",
-    "phonetic": "まちがう - machigau",
-    "example": "誰でも間違う事はある。",
-    "level": "N1"
-  },
-  {
     "front": "間柄",
     "back": "Relation(ship)",
     "phonetic": "あいだがら - aidagara",
@@ -19338,13 +14795,6 @@
     "back": "Customs, duty, tariff",
     "phonetic": "かんぜい - kanzei",
     "example": "宝石の関税を払った。",
-    "level": "N1"
-  },
-  {
-    "front": "館",
-    "back": "House, hall, building, hotel, inn, guesthouse",
-    "phonetic": "かん - kan",
-    "example": "明日図書館でね。",
     "level": "N1"
   },
   {
@@ -19453,13 +14903,6 @@
     "level": "N1"
   },
   {
-    "front": "願書",
-    "back": "Written application or petition",
-    "phonetic": "がんしょ - gansho",
-    "example": "彼は事務所に願書を提出した。",
-    "level": "N1"
-  },
-  {
     "front": "危害",
     "back": "Injury, harm, danger",
     "phonetic": "きがい - kigai",
@@ -19478,13 +14921,6 @@
     "back": "Comedy, funny show",
     "phonetic": "きげき - kigeki",
     "example": "我々は皆その喜劇を楽しんだ。",
-    "level": "N1"
-  },
-  {
-    "front": "器",
-    "back": "Bowl, vessel, container",
-    "phonetic": "うつわ - utsuwa",
-    "example": "食器を洗おう。",
     "level": "N1"
   },
   {
@@ -19555,13 +14991,6 @@
     "back": "Period, time",
     "phonetic": "き - ki",
     "example": "後期が終わった。",
-    "level": "N1"
-  },
-  {
-    "front": "期日",
-    "back": "Fixed date, settlement date",
-    "phonetic": "きじつ - kijitsu",
-    "example": "試験期日を照会してみる必要がある。",
     "level": "N1"
   },
   {
@@ -19751,13 +15180,6 @@
     "back": "Noble, aristocrat",
     "phonetic": "きぞく - kizoku",
     "example": "彼は純粋の貴族だ。",
-    "level": "N1"
-  },
-  {
-    "front": "起こす",
-    "back": "To raise, to cause, to wake someone",
-    "phonetic": "おこす - okosu",
-    "example": "寝た子を起こすなよ。",
     "level": "N1"
   },
   {
@@ -19971,13 +15393,6 @@
     "level": "N1"
   },
   {
-    "front": "及び",
-    "back": "And, as well as",
-    "phonetic": "および - oyobi",
-    "example": "礼には及びません。",
-    "level": "N1"
-  },
-  {
     "front": "及ぶ",
     "back": "To reach, to come up to, to amount to, to befall, to happen to, to extend, to match, to equal",
     "phonetic": "およぶ - oyobu",
@@ -20097,13 +15512,6 @@
     "level": "N1"
   },
   {
-    "front": "距離",
-    "back": "Distance, range",
-    "phonetic": "きょり - kyori",
-    "example": "距離を感じる。",
-    "level": "N1"
-  },
-  {
     "front": "鋸",
     "back": "Saw",
     "phonetic": "のこぎり - nokogiri",
@@ -20167,13 +15575,6 @@
     "level": "N1"
   },
   {
-    "front": "共働き",
-    "back": "Dual income",
-    "phonetic": "ともばたらき - tomobataraki",
-    "example": "「少しうちに寄っていかない？」「いいの？」「うち共働きで親は遅いの」",
-    "level": "N1"
-  },
-  {
     "front": "共和",
     "back": "Republicanism, cooperation",
     "phonetic": "きょうわ - kyouwa",
@@ -20185,13 +15586,6 @@
     "back": "Bad harvest, poor crop",
     "phonetic": "きょうさく - kyousaku",
     "example": "米作は今年は凶作だ。",
-    "level": "N1"
-  },
-  {
-    "front": "協会",
-    "back": "Association, society, organization",
-    "phonetic": "きょうかい - kyoukai",
-    "example": "協会は彼を会長にした。",
     "level": "N1"
   },
   {
@@ -20234,13 +15628,6 @@
     "back": "To strengthen, to emphasize",
     "phonetic": "つよめる - tsuyomeru",
     "example": "霊長類の毛づくろいは集団の結合を強める。",
-    "level": "N1"
-  },
-  {
-    "front": "強気",
-    "back": "Great, grand",
-    "phonetic": "ごうぎ - gougi",
-    "example": "彼は強気だ。",
     "level": "N1"
   },
   {
@@ -20300,24 +15687,10 @@
     "level": "N1"
   },
   {
-    "front": "恐れ入る",
-    "back": "To be filled with awe, to feel small, to be amazed, to be surprised, to be disconcerted, to be sorry, to b",
-    "phonetic": "おそれいる - osoreiru",
-    "example": "",
-    "level": "N1"
-  },
-  {
     "front": "教え",
     "back": "Teachings, precept, lesson, doctrine",
     "phonetic": "おしえ - oshie",
     "example": "教えないよ。",
-    "level": "N1"
-  },
-  {
-    "front": "教員",
-    "back": "Teaching staff",
-    "phonetic": "きょういん - kyouin",
-    "example": "姉は英語の教員です。",
     "level": "N1"
   },
   {
@@ -20332,13 +15705,6 @@
     "back": "Lesson, precept, moral instruction",
     "phonetic": "きょうくん - kyoukun",
     "example": "実例は教訓にまさる。",
-    "level": "N1"
-  },
-  {
-    "front": "教材",
-    "back": "Teaching materials",
-    "phonetic": "きょうざい - kyouzai",
-    "example": "一口に英会話教材といっても、千差万別だ。",
     "level": "N1"
   },
   {
@@ -20454,13 +15820,6 @@
     "level": "N1"
   },
   {
-    "front": "業",
-    "back": "Buddhist karma, actions committed in a former life",
-    "phonetic": "ごう - gou",
-    "example": "彼は失業した。",
-    "level": "N1"
-  },
-  {
     "front": "業者",
     "back": "Trader, merchant",
     "phonetic": "ぎょうしゃ - gyousha",
@@ -20475,24 +15834,10 @@
     "level": "N1"
   },
   {
-    "front": "業務",
-    "back": "Business, affairs, duties, work",
-    "phonetic": "ぎょうむ - gyoumu",
-    "example": "日曜日は郵便業務がありますか。",
-    "level": "N1"
-  },
-  {
     "front": "局限",
     "back": "Limit, localize",
     "phonetic": "きょくげん - kyokugen",
     "example": "",
-    "level": "N1"
-  },
-  {
-    "front": "曲",
-    "back": "Tune, piece of music",
-    "phonetic": "きょく - kyoku",
-    "example": "一曲聞くか。",
     "level": "N1"
   },
   {
@@ -20514,13 +15859,6 @@
     "back": "Paradise",
     "phonetic": "ごくらく - gokuraku",
     "example": "地獄極楽は心にあり。",
-    "level": "N1"
-  },
-  {
-    "front": "玉",
-    "back": "King (shogi)",
-    "phonetic": "ぎょく - gyoku",
-    "example": "玉屋！鍵屋！",
     "level": "N1"
   },
   {
@@ -20549,13 +15887,6 @@
     "back": "Place of work",
     "phonetic": "つとめさき - tsutomesaki",
     "example": "彼の勤め先はどこですか。",
-    "level": "N1"
-  },
-  {
-    "front": "勤務",
-    "back": "Service, duty, work",
-    "phonetic": "きんむ - kinmu",
-    "example": "今勤務中です。",
     "level": "N1"
   },
   {
@@ -20594,20 +15925,6 @@
     "level": "N1"
   },
   {
-    "front": "襟",
-    "back": "Neck, collar, lapel, neckband",
-    "phonetic": "えり - eri",
-    "example": "彼はすりの襟首を掴んだ。",
-    "level": "N1"
-  },
-  {
-    "front": "近々",
-    "back": "Nearness, before long",
-    "phonetic": "きんきん - kinkin",
-    "example": "ではまた近々。",
-    "level": "N1"
-  },
-  {
     "front": "近眼",
     "back": "Nearsightedness, shortsightedness, myopia",
     "phonetic": "きんがん - kingan",
@@ -20633,13 +15950,6 @@
     "back": "1.  (iron) hammer, 2.  punishment",
     "phonetic": "かなづち - kanazuchi",
     "example": "俺、金槌なんだ。",
-    "level": "N1"
-  },
-  {
-    "front": "区",
-    "back": "Ward, district, section",
-    "phonetic": "く - ku",
-    "example": "下京区に引っ越す。",
     "level": "N1"
   },
   {
@@ -20682,13 +15992,6 @@
     "back": "(foot) race",
     "phonetic": "かけっこ - kakekko",
     "example": "あいつと駆けっこしたんだ。",
-    "level": "N1"
-  },
-  {
-    "front": "駆ける",
-    "back": "To run (race  esp. horse), to gallop, to canter",
-    "phonetic": "かける - kakeru",
-    "example": "",
     "level": "N1"
   },
   {
@@ -20804,24 +16107,10 @@
     "level": "N1"
   },
   {
-    "front": "係り",
-    "back": "Official, duty, person in charge",
-    "phonetic": "かかり - kakari",
-    "example": "こちら国際電話の係りです。",
-    "level": "N1"
-  },
-  {
     "front": "傾",
     "back": "Lean, incline",
     "phonetic": "けい - kei",
     "example": "太陽が西に傾いた。",
-    "level": "N1"
-  },
-  {
-    "front": "傾く",
-    "back": "To incline toward, to slant, to lurch, to heel over, to be disposed to, to trend toward, to be prone to, to",
-    "phonetic": "かたぶく - katabuku",
-    "example": "",
     "level": "N1"
   },
   {
@@ -20860,24 +16149,10 @@
     "level": "N1"
   },
   {
-    "front": "契機",
-    "back": "Opportunity, chance",
-    "phonetic": "けいき - keiki",
-    "example": "退職を契機に茶道を始めた。",
-    "level": "N1"
-  },
-  {
     "front": "形勢",
     "back": "Condition, situation, prospects",
     "phonetic": "けいせい - keisei",
     "example": "形勢は逆転した。",
-    "level": "N1"
-  },
-  {
-    "front": "形成",
-    "back": "Formation",
-    "phonetic": "けいせい - keisei",
-    "example": "男は社会を形成する。",
     "level": "N1"
   },
   {
@@ -20934,13 +16209,6 @@
     "back": "Passage, expiration, progress",
     "phonetic": "けいか - keika",
     "example": "彼は批判に神経過敏だ。",
-    "level": "N1"
-  },
-  {
-    "front": "経費",
-    "back": "Expenses, cost, outlay",
-    "phonetic": "けいひ - keihi",
-    "example": "勘定は経費で落とした。",
     "level": "N1"
   },
   {
@@ -21028,20 +16296,6 @@
     "level": "N1"
   },
   {
-    "front": "決まる",
-    "back": "To be decided, to be settled, to look good in (clothes)",
-    "phonetic": "きまる - kimaru",
-    "example": "仕事が決まるといいね。",
-    "level": "N1"
-  },
-  {
-    "front": "決意",
-    "back": "Decision, determination",
-    "phonetic": "けつい - ketsui",
-    "example": "父は禁煙を決意した。",
-    "level": "N1"
-  },
-  {
     "front": "決議",
     "back": "Resolution, vote, decision",
     "phonetic": "けつぎ - ketsugi",
@@ -21091,13 +16345,6 @@
     "level": "N1"
   },
   {
-    "front": "結び付ける",
-    "back": "To combine, to join, to tie on, to attach with a knot",
-    "phonetic": "むすびつける - musubitsukeru",
-    "example": "理論と実際を結び付けるべきだ。",
-    "level": "N1"
-  },
-  {
     "front": "結核",
     "back": "Tuberculosis, tubercule",
     "phonetic": "けっかく - kekkaku",
@@ -21133,13 +16380,6 @@
     "level": "N1"
   },
   {
-    "front": "月日",
-    "back": "(the) date",
-    "phonetic": "がっぴ - gappi",
-    "example": "生年月日はいつ？",
-    "level": "N1"
-  },
-  {
     "front": "月賦",
     "back": "Monthly installment",
     "phonetic": "げっぷ - geppu",
@@ -21151,13 +16391,6 @@
     "back": "Every month, common",
     "phonetic": "つきなみ - tsukinami",
     "example": "彼らの判断は月並みだ。",
-    "level": "N1"
-  },
-  {
-    "front": "件",
-    "back": "Example, precedent, the usual, the said, the above-mentioned, (man) in question",
-    "phonetic": "くだん - kudan",
-    "example": "条件を決める。",
     "level": "N1"
   },
   {
@@ -21214,13 +16447,6 @@
     "back": "Sphere, circle, range",
     "phonetic": "けん - ken",
     "example": "徒歩圏内です。",
-    "level": "N1"
-  },
-  {
-    "front": "建前",
-    "back": "Face, official stance, public position or attitude (as opposed to private thoughts)",
-    "phonetic": "たてまえ - tatemae",
-    "example": "アメリカも本音と建前を使い分ける国だ。",
     "level": "N1"
   },
   {
@@ -21364,31 +16590,10 @@
     "level": "N1"
   },
   {
-    "front": "見渡す",
-    "back": "To look out over, to survey (scene), to take an extensive view of",
-    "phonetic": "みわたす - miwatasu",
-    "example": "見渡す限り海だった。",
-    "level": "N1"
-  },
-  {
-    "front": "見逃す",
-    "back": "To miss, to overlook, to leave at large",
-    "phonetic": "みのがす - minogasu",
-    "example": "見逃すことはありませんよ。",
-    "level": "N1"
-  },
-  {
     "front": "見舞",
     "back": "Enquiry, expression of sympathy, expression of concern",
     "phonetic": "みまい - mimai",
     "example": "彼を見舞った。",
-    "level": "N1"
-  },
-  {
-    "front": "見方",
-    "back": "Viewpoint",
-    "phonetic": "みかた - mikata",
-    "example": "彼女は物の見方が広い。",
     "level": "N1"
   },
   {
@@ -21483,13 +16688,6 @@
     "level": "N1"
   },
   {
-    "front": "原作",
-    "back": "Original work",
-    "phonetic": "げんさく - gensaku",
-    "example": "そのドラマは原作と違っている。",
-    "level": "N1"
-  },
-  {
     "front": "原子",
     "back": "Atom",
     "phonetic": "げんし - genshi",
@@ -21560,20 +16758,6 @@
     "level": "N1"
   },
   {
-    "front": "減少",
-    "back": "Decrease, reduction, decline",
-    "phonetic": "げんしょう - genshou",
-    "example": "騒音は徐々に減少した。",
-    "level": "N1"
-  },
-  {
-    "front": "減点",
-    "back": "Subtract, give a demerit",
-    "phonetic": "げんてん - genten",
-    "example": "",
-    "level": "N1"
-  },
-  {
     "front": "源",
     "back": "Source, origin",
     "phonetic": "みなもと - minamoto",
@@ -21637,30 +16821,9 @@
     "level": "N1"
   },
   {
-    "front": "限定",
-    "back": "Limit, restriction",
-    "phonetic": "げんてい - gentei",
-    "example": "切符の数は限定されていた。",
-    "level": "N1"
-  },
-  {
     "front": "個",
     "back": "Article counter",
     "phonetic": "か - ka",
-    "example": "彼は個性が強い。",
-    "level": "N1"
-  },
-  {
-    "front": "個々",
-    "back": "Individual, one by one",
-    "phonetic": "ここ - koko",
-    "example": "個々の戦闘にはみな勝っても戦争に負けることがある。",
-    "level": "N1"
-  },
-  {
-    "front": "個性",
-    "back": "Individuality, personality, idiosyncrasy",
-    "phonetic": "こせい - kosei",
     "example": "彼は個性が強い。",
     "level": "N1"
   },
@@ -21669,13 +16832,6 @@
     "back": "Particular case",
     "phonetic": "こべつ - kobetsu",
     "example": "あらゆる事態を個別に分析する必要がある。",
-    "level": "N1"
-  },
-  {
-    "front": "古",
-    "back": "Antiquity, ancient times",
-    "phonetic": "いにしえ - inishie",
-    "example": "古すぎるわ。",
     "level": "N1"
   },
   {
@@ -21704,13 +16860,6 @@
     "back": "Solid (body)",
     "phonetic": "こたい - kotai",
     "example": "水は凍ると固体になる。",
-    "level": "N1"
-  },
-  {
-    "front": "固定",
-    "back": "Fixation",
-    "phonetic": "こてい - kotei",
-    "example": "それは君の固定観念だよ。",
     "level": "N1"
   },
   {
@@ -21903,13 +17052,6 @@
     "level": "N1"
   },
   {
-    "front": "誤る",
-    "back": "To make a mistake",
-    "phonetic": "あやまる - ayamaru",
-    "example": "好奇心は身を誤る。",
-    "level": "N1"
-  },
-  {
     "front": "誤差",
     "back": "Error",
     "phonetic": "ごさ - gosa",
@@ -21980,34 +17122,6 @@
     "level": "N1"
   },
   {
-    "front": "光熱費",
-    "back": "Cost of fuel and light",
-    "phonetic": "こうねつひ - kounetsuhi",
-    "example": "",
-    "level": "N1"
-  },
-  {
-    "front": "公",
-    "back": "Official, public, formal, open, governmental",
-    "phonetic": "おおやけ - ooyake",
-    "example": "私は公平だ。",
-    "level": "N1"
-  },
-  {
-    "front": "公演",
-    "back": "Public performance",
-    "phonetic": "こうえん - kouen",
-    "example": "この公演はもう終わりました。",
-    "level": "N1"
-  },
-  {
-    "front": "公開",
-    "back": "Presenting to the public",
-    "phonetic": "こうかい - koukai",
-    "example": "このエリアは、非公開です。",
-    "level": "N1"
-  },
-  {
     "front": "公然",
     "back": "Open (e.g. secret), public, official",
     "phonetic": "こうぜん - kouzen",
@@ -22040,13 +17154,6 @@
     "back": "Government business, public use, public expense",
     "phonetic": "こうよう - kouyou",
     "example": "彼は公用で大阪に行った。",
-    "level": "N1"
-  },
-  {
-    "front": "公立",
-    "back": "Public (institution)",
-    "phonetic": "こうりつ - kouritsu",
-    "example": "彼は公立学校で教育を受けた。",
     "level": "N1"
   },
   {
@@ -22092,13 +17199,6 @@
     "level": "N1"
   },
   {
-    "front": "向上",
-    "back": "Elevation, rise, improvement, advancement, progress",
-    "phonetic": "こうじょう - koujou",
-    "example": "トムには向上心がない。",
-    "level": "N1"
-  },
-  {
     "front": "垢",
     "back": "Dirt, filth",
     "phonetic": "あか - aka",
@@ -22110,13 +17210,6 @@
     "back": "Good",
     "phonetic": "よい - yoi",
     "example": "トムは格好いい。",
-    "level": "N1"
-  },
-  {
-    "front": "好ましい",
-    "back": "Nice, likeable, desirable",
-    "phonetic": "このましい - konomashii",
-    "example": "その志望者は試験官に好ましい印象を与えた。",
     "level": "N1"
   },
   {
@@ -22138,41 +17231,6 @@
     "back": "Popularity, favorable reputation",
     "phonetic": "こうひょう - kouhyou",
     "example": "その劇は好評を得た。",
-    "level": "N1"
-  },
-  {
-    "front": "工学",
-    "back": "Engineering",
-    "phonetic": "こうがく - kougaku",
-    "example": "電子工学の専門用語がわからない。",
-    "level": "N1"
-  },
-  {
-    "front": "工作",
-    "back": "Work, construction, handicraft, maneuvering",
-    "phonetic": "こうさく - kousaku",
-    "example": "彼は工作がうまい。",
-    "level": "N1"
-  },
-  {
-    "front": "広まる",
-    "back": "To spread, to be propagated",
-    "phonetic": "ひろまる - hiromaru",
-    "example": "指を使って食事をすることは、何世紀にもわたって続いてきたばかりでなく、再び広まるかもしれないと信じている学者もいる。",
-    "level": "N1"
-  },
-  {
-    "front": "慌ただしい",
-    "back": "Busy, hurried, confused, flurried",
-    "phonetic": "あわただしい - awatadashii",
-    "example": "今日は慌ただしいな。",
-    "level": "N1"
-  },
-  {
-    "front": "慌てる",
-    "back": "To become confused (disconcerted  disorganized)",
-    "phonetic": "あわてる - awateru",
-    "example": "慌てることは無駄を作る。",
     "level": "N1"
   },
   {
@@ -22204,13 +17262,6 @@
     "level": "N1"
   },
   {
-    "front": "校",
-    "back": "-school, proof",
-    "phonetic": "こう - kou",
-    "example": "学校はどう？",
-    "level": "N1"
-  },
-  {
     "front": "構え",
     "back": "Posture, pose, style",
     "phonetic": "かまえ - kamae",
@@ -22229,13 +17280,6 @@
     "back": "Plan, plot, idea, conception",
     "phonetic": "こうそう - kousou",
     "example": "彼女が建設的な構想を持つ。",
-    "level": "N1"
-  },
-  {
-    "front": "溝",
-    "back": "10^38, hundred undecillion (american), hundred sextillion (british)",
-    "phonetic": "こう - kou",
-    "example": "両者の溝が狭まった。",
     "level": "N1"
   },
   {
@@ -22285,13 +17329,6 @@
     "back": "Ruin",
     "phonetic": "こうはい - kouhai",
     "example": "戦争でその国は荒廃した。",
-    "level": "N1"
-  },
-  {
-    "front": "行",
-    "back": "Line, row, verse",
-    "phonetic": "ぎょう - gyou",
-    "example": "誰と行くの。",
     "level": "N1"
   },
   {
@@ -22386,24 +17423,10 @@
     "level": "N1"
   },
   {
-    "front": "高",
-    "back": "Quantity, amount, volume, number, amount of money",
-    "phonetic": "たか - taka",
-    "example": "高血圧です。",
-    "level": "N1"
-  },
-  {
     "front": "高まる",
     "back": "To rise, to swell, to be promoted",
     "phonetic": "たかまる - takamaru",
     "example": "ますます高まる抗議の声に彼の演説は聞こえなかった。",
-    "level": "N1"
-  },
-  {
-    "front": "号",
-    "back": "Number, issue",
-    "phonetic": "ごう - gou",
-    "example": "信号は青だ。",
     "level": "N1"
   },
   {
@@ -22432,13 +17455,6 @@
     "back": "Consultation, conference",
     "phonetic": "ごうぎ - gougi",
     "example": "",
-    "level": "N1"
-  },
-  {
-    "front": "合唱",
-    "back": "Chorus, singing in a chorus",
-    "phonetic": "がっしょう - gasshou",
-    "example": "全員で歌を合唱した。",
     "level": "N1"
   },
   {
@@ -22540,13 +17556,6 @@
     "level": "N1"
   },
   {
-    "front": "骨",
-    "back": "Knack, skill",
-    "phonetic": "こつ - kotsu",
-    "example": "骨が折れてます。",
-    "level": "N1"
-  },
-  {
     "front": "骨董品",
     "back": "Curio",
     "phonetic": "こっとうひん - kottouhin",
@@ -22582,13 +17591,6 @@
     "level": "N1"
   },
   {
-    "front": "頃",
-    "back": "Time, about, toward, approximately (time)",
-    "phonetic": "けい - kei",
-    "example": "７時頃にね。",
-    "level": "N1"
-  },
-  {
     "front": "今更",
     "back": "Now, at this late hour",
     "phonetic": "いまさら - imasara",
@@ -22617,24 +17619,10 @@
     "level": "N1"
   },
   {
-    "front": "根気",
-    "back": "Patience, perseverance, energy",
-    "phonetic": "こんき - konki",
-    "example": "外国語の習得には根気が必要だ。",
-    "level": "N1"
-  },
-  {
     "front": "根本",
     "back": "Origin, source, foundation, root, base, principle",
     "phonetic": "こんぽん - konpon",
     "example": "根本的な解決とは呼べない。",
-    "level": "N1"
-  },
-  {
-    "front": "混む",
-    "back": "To be crowded",
-    "phonetic": "こむ - komu",
-    "example": "湘南の海水浴場は日曜日にはとても混む。",
     "level": "N1"
   },
   {
@@ -22691,20 +17679,6 @@
     "back": "Good-bye",
     "phonetic": "さようなら - sayounara",
     "example": "",
-    "level": "N1"
-  },
-  {
-    "front": "左利き",
-    "back": "Left-handedness, sake drinker, left-hander",
-    "phonetic": "ひだりきき - hidarikiki",
-    "example": "左利きなの？",
-    "level": "N1"
-  },
-  {
-    "front": "差し引く",
-    "back": "To deduct",
-    "phonetic": "さしひく - sashihiku",
-    "example": "１０から２を差し引くと８です。",
     "level": "N1"
   },
   {
@@ -22806,20 +17780,6 @@
     "level": "N1"
   },
   {
-    "front": "再生",
-    "back": "Playback, regeneration, resuscitation, return to life, rebirth, reincarnation, narrow escape, reclamation, r",
-    "phonetic": "さいせい - saisei",
-    "example": "音楽を頭の中で再生してみなさい。",
-    "level": "N1"
-  },
-  {
-    "front": "最善",
-    "back": "The very best",
-    "phonetic": "さいぜん - saizen",
-    "example": "正直は最善の策。",
-    "level": "N1"
-  },
-  {
     "front": "最早",
     "back": "Already, now",
     "phonetic": "もはや - mohaya",
@@ -22845,20 +17805,6 @@
     "back": "Vote, roll call",
     "phonetic": "さいけつ - saiketsu",
     "example": "彼らはその動議について採決をした。",
-    "level": "N1"
-  },
-  {
-    "front": "採集",
-    "back": "Collecting, gathering",
-    "phonetic": "さいしゅう - saishuu",
-    "example": "趣味は昆虫採集なんだ。",
-    "level": "N1"
-  },
-  {
-    "front": "歳",
-    "back": "#name?",
-    "phonetic": "さい - sai",
-    "example": "何歳ですか。",
     "level": "N1"
   },
   {
@@ -22953,13 +17899,6 @@
     "level": "N1"
   },
   {
-    "front": "作",
-    "back": "A work, a harvest",
-    "phonetic": "さく - saku",
-    "example": "何作ったの？",
-    "level": "N1"
-  },
-  {
     "front": "作り",
     "back": "Make-up, sliced raw fish",
     "phonetic": "つくり - tsukuri",
@@ -22971,13 +17910,6 @@
     "back": "Military or naval operations, tactics, strategy",
     "phonetic": "さくせん - sakusen",
     "example": "同情作戦に出たみたいね。",
-    "level": "N1"
-  },
-  {
-    "front": "作物",
-    "back": "Literary work",
-    "phonetic": "さくぶつ - sakubutsu",
-    "example": "作物は枯れた。",
     "level": "N1"
   },
   {
@@ -23037,13 +17969,6 @@
     "level": "N1"
   },
   {
-    "front": "擦る",
-    "back": "To touch lightly, to take a percentage (from)",
-    "phonetic": "かする - kasuru",
-    "example": "",
-    "level": "N1"
-  },
-  {
     "front": "擦れる",
     "back": "To rub, to chafe, to wear, to become sophisticated",
     "phonetic": "すれる - sureru",
@@ -23097,27 +18022,6 @@
     "back": "Rust (colour)",
     "phonetic": "さび - sabi",
     "example": "休みすぎは錆びる。",
-    "level": "N1"
-  },
-  {
-    "front": "三",
-    "back": "(num) three",
-    "phonetic": "み - mi",
-    "example": "三時過ぎよ。",
-    "level": "N1"
-  },
-  {
-    "front": "三日月",
-    "back": "New moon, crescent moon",
-    "phonetic": "みかずき - mikazuki",
-    "example": "足で三日月を踏んでいる。",
-    "level": "N1"
-  },
-  {
-    "front": "三味線",
-    "back": "Three-stringed japanese guitar, shamisen",
-    "phonetic": "さみせん - samisen",
-    "example": "彼女は三味線による新しいジャズの演奏法を始めた。",
     "level": "N1"
   },
   {
@@ -23216,13 +18120,6 @@
     "back": "Acid",
     "phonetic": "さん - san",
     "example": "酸は金属を侵す。",
-    "level": "N1"
-  },
-  {
-    "front": "酸っぱい",
-    "back": "Sour, acid",
-    "phonetic": "すっぱい - suppai",
-    "example": "レモンは酸っぱい。",
     "level": "N1"
   },
   {
@@ -23331,13 +18228,6 @@
     "level": "N1"
   },
   {
-    "front": "仕様",
-    "back": "Way, method, resource, remedy, (technical) specification",
-    "phonetic": "しよう - shiyou",
-    "example": "この時計は防水仕様です。",
-    "level": "N1"
-  },
-  {
     "front": "仕立てる",
     "back": "To tailor, to make, to prepare, to train, to send (a messenger)",
     "phonetic": "したてる - shitateru",
@@ -23349,13 +18239,6 @@
     "back": "Use",
     "phonetic": "つかいみち - tsukaimichi",
     "example": "初任給の使い道は？",
-    "level": "N1"
-  },
-  {
-    "front": "使命",
-    "back": "Mission, errand, message",
-    "phonetic": "しめい - shimei",
-    "example": "彼は使命を果たした。",
     "level": "N1"
   },
   {
@@ -23408,13 +18291,6 @@
     "level": "N1"
   },
   {
-    "front": "始発",
-    "back": "First train",
-    "phonetic": "しはつ - shihatsu",
-    "example": "始発は何時に出ますか。",
-    "level": "N1"
-  },
-  {
     "front": "始末",
     "back": "Management, dealing, settlement, cleaning up afterwards",
     "phonetic": "しまつ - shimatsu",
@@ -23433,13 +18309,6 @@
     "back": "Son",
     "phonetic": "しそく - shisoku",
     "example": "ご子息のご結婚を心よりお祝い申し上げます。",
-    "level": "N1"
-  },
-  {
-    "front": "市",
-    "back": "Market, fair",
-    "phonetic": "いち - ichi",
-    "example": "市場に行く。",
     "level": "N1"
   },
   {
@@ -23506,13 +18375,6 @@
     "level": "N1"
   },
   {
-    "front": "支持",
-    "back": "Support, maintenance",
-    "phonetic": "しじ - shiji",
-    "example": "僕は彼を支持した。",
-    "level": "N1"
-  },
-  {
     "front": "施す",
     "back": "To donate, to give, to conduct, to apply, to perform",
     "phonetic": "ほどこす - hodokosu",
@@ -23520,31 +18382,10 @@
     "level": "N1"
   },
   {
-    "front": "止まる",
-    "back": "To be limited to",
-    "phonetic": "とどまる - todomaru",
-    "example": "立ち止まるな。",
-    "level": "N1"
-  },
-  {
     "front": "止むを得ない",
     "back": "Cannot be helped, unavoidable",
     "phonetic": "やむをえない - yamuwoenai",
     "example": "",
-    "level": "N1"
-  },
-  {
-    "front": "止める",
-    "back": "To stop, to cease, to put an end to",
-    "phonetic": "とどめる - todomeru",
-    "example": "あなたを止める。",
-    "level": "N1"
-  },
-  {
-    "front": "死",
-    "back": "Death, decease",
-    "phonetic": "し - shi",
-    "example": "死なないで。",
     "level": "N1"
   },
   {
@@ -23559,13 +18400,6 @@
     "back": "Family name",
     "phonetic": "うじ - uji",
     "example": "彼氏いるの？",
-    "level": "N1"
-  },
-  {
-    "front": "私",
-    "back": "I (fem)",
-    "phonetic": "あたし - atashi",
-    "example": "私も行った。",
     "level": "N1"
   },
   {
@@ -23604,13 +18438,6 @@
     "level": "N1"
   },
   {
-    "front": "試みる",
-    "back": "To try, to test",
-    "phonetic": "こころみる - kokoromiru",
-    "example": "心肺蘇生法を試みる。",
-    "level": "N1"
-  },
-  {
     "front": "諮る",
     "back": "To consult with, to confer",
     "phonetic": "はかる - hakaru",
@@ -23646,13 +18473,6 @@
     "level": "N1"
   },
   {
-    "front": "歯科",
-    "back": "Dentistry",
-    "phonetic": "しか - shika",
-    "example": "彼は歯科医師です。",
-    "level": "N1"
-  },
-  {
     "front": "歯磨",
     "back": "Dentifrice, toothpaste",
     "phonetic": "はみがき - hamigaki",
@@ -23664,13 +18484,6 @@
     "back": "Depending on the circumstances",
     "phonetic": "ことによると - kotoniyoruto",
     "example": "",
-    "level": "N1"
-  },
-  {
-    "front": "事業",
-    "back": "Project, enterprise, business, industry, operations",
-    "phonetic": "じぎょう - jigyou",
-    "example": "事業に失敗した。",
     "level": "N1"
   },
   {
@@ -23716,13 +18529,6 @@
     "level": "N1"
   },
   {
-    "front": "字",
-    "back": "Section of village",
-    "phonetic": "あざ - aza",
-    "example": "商売は赤字だ。",
-    "level": "N1"
-  },
-  {
     "front": "字体",
     "back": "Type, font, lettering",
     "phonetic": "じたい - jitai",
@@ -23758,13 +18564,6 @@
     "level": "N1"
   },
   {
-    "front": "持続",
-    "back": "Continuation",
-    "phonetic": "じぞく - jizoku",
-    "example": "彼は持続可能な開発の専門家です。",
-    "level": "N1"
-  },
-  {
     "front": "時刻表",
     "back": "Table, diagram, chart, timetable, schedule",
     "phonetic": "じこくひょう - jikokuhyou",
@@ -23772,24 +18571,10 @@
     "level": "N1"
   },
   {
-    "front": "時差",
-    "back": "Time difference",
-    "phonetic": "じさ - jisa",
-    "example": "時差ボケで辛い。",
-    "level": "N1"
-  },
-  {
     "front": "時折",
     "back": "Sometimes",
     "phonetic": "ときおり - tokiori",
     "example": "時折私は悲しくなる。",
-    "level": "N1"
-  },
-  {
-    "front": "次",
-    "back": "Order, sequence, times, next, below",
-    "phonetic": "し - shi",
-    "example": "君次第だよ。",
     "level": "N1"
   },
   {
@@ -23891,13 +18676,6 @@
     "level": "N1"
   },
   {
-    "front": "自信",
-    "back": "Self-confidence",
-    "phonetic": "じしん - jishin",
-    "example": "彼は自信過剰だ。",
-    "level": "N1"
-  },
-  {
     "front": "自尊心",
     "back": "Self-respect, conceit",
     "phonetic": "じそんしん - jisonshin",
@@ -23989,13 +18767,6 @@
     "level": "N1"
   },
   {
-    "front": "室",
-    "back": "Room",
-    "phonetic": "しつ - shitsu",
-    "example": "彼は教室だよ。",
-    "level": "N1"
-  },
-  {
     "front": "悉く",
     "back": "Altogether, entirely",
     "phonetic": "ことごとく - kotogotoku",
@@ -24024,13 +18795,6 @@
     "level": "N1"
   },
   {
-    "front": "実",
-    "back": "Truth, reality, sincerity, fidelity, kindness, faith, substance, essence",
-    "phonetic": "じつ - jitsu",
-    "example": "絶対確実だ。",
-    "level": "N1"
-  },
-  {
     "front": "実業家",
     "back": "Industrialist, businessman",
     "phonetic": "じつぎょうか - jitsugyouka",
@@ -24038,31 +18802,10 @@
     "level": "N1"
   },
   {
-    "front": "実質",
-    "back": "Substance, essence",
-    "phonetic": "じっしつ - jisshitsu",
-    "example": "彼の提案は実質上命令であった。",
-    "level": "N1"
-  },
-  {
     "front": "実情",
     "back": "Real condition, actual circumstances, actual state of affairs",
     "phonetic": "じつじょう - jitsujou",
     "example": "実情がどうなっているかはっきり言いましょう。",
-    "level": "N1"
-  },
-  {
-    "front": "実践",
-    "back": "Practice, put into practice",
-    "phonetic": "じっせん - jissen",
-    "example": "理論と実践が伴うとは限らない。",
-    "level": "N1"
-  },
-  {
-    "front": "実態",
-    "back": "Truth, fact",
-    "phonetic": "じったい - jittai",
-    "example": "放射能漏れの実態や安全確認することは難しいのです。",
     "level": "N1"
   },
   {
@@ -24091,13 +18834,6 @@
     "back": "Copy, duplicate, facsimile, transcript",
     "phonetic": "うつし - utsushi",
     "example": "これは生き写しだ。",
-    "level": "N1"
-  },
-  {
-    "front": "社",
-    "back": "Shinto shrine",
-    "phonetic": "やしろ - yashiro",
-    "example": "会社員です。",
     "level": "N1"
   },
   {
@@ -24171,20 +18907,6 @@
     "level": "N1"
   },
   {
-    "front": "弱",
-    "back": "Weakness, the weak, little less then",
-    "phonetic": "じゃく - jaku",
-    "example": "地理は弱い。",
-    "level": "N1"
-  },
-  {
-    "front": "弱まる",
-    "back": "To abate, to weaken, to be emaciated, to be dejected, to be perplexed",
-    "phonetic": "よわまる - yowamaru",
-    "example": "１９世紀になる英語圏の国ではマスターベーションにより、記憶力が弱まる、注意力が散漫になるとよく言われていた。",
-    "level": "N1"
-  },
-  {
     "front": "弱める",
     "back": "To weaken",
     "phonetic": "よわめる - yowameru",
@@ -24217,13 +18939,6 @@
     "back": "Sovereignty, supremacy, dominion",
     "phonetic": "しゅけん - shuken",
     "example": "主権は人民にある。",
-    "level": "N1"
-  },
-  {
-    "front": "主催",
-    "back": "Organization, sponsorship",
-    "phonetic": "しゅさい - shusai",
-    "example": "パーティーの主催者は誰なの？",
     "level": "N1"
   },
   {
@@ -24262,24 +18977,10 @@
     "level": "N1"
   },
   {
-    "front": "取っ手",
-    "back": "Handle, grip, knob",
-    "phonetic": "とって - totte",
-    "example": "水差しの取っ手が壊れた。",
-    "level": "N1"
-  },
-  {
     "front": "取りあえず",
     "back": "At once, first of all, for the time being",
     "phonetic": "とりあえず - toriaezu",
     "example": "取りあえず、トムはオーストラリア、嫁さんはニュージーランドで暮らしてるんだ。",
-    "level": "N1"
-  },
-  {
-    "front": "取り扱う",
-    "back": "To treat, to handle, to deal in",
-    "phonetic": "とりあつかう - toriatsukau",
-    "example": "算数は数を取り扱う。",
     "level": "N1"
   },
   {
@@ -24297,13 +18998,6 @@
     "level": "N1"
   },
   {
-    "front": "取り寄せる",
-    "back": "To order, to send away for",
-    "phonetic": "とりよせる - toriyoseru",
-    "example": "インターネットで願書を取り寄せるといいよ。",
-    "level": "N1"
-  },
-  {
     "front": "取り混ぜる",
     "back": "To mix, to put together",
     "phonetic": "とりまぜる - torimazeru",
@@ -24315,13 +19009,6 @@
     "back": "To act as an agent for, to announce (someone), to convey (a message)",
     "phonetic": "とりつぐ - toritsugu",
     "example": "",
-    "level": "N1"
-  },
-  {
-    "front": "取り組む",
-    "back": "To tackle, to wrestle with, to engage in a bout, to come to grips with",
-    "phonetic": "とりくむ - torikumu",
-    "example": "そろそろ本気で仕事に取り組むころだよ。",
     "level": "N1"
   },
   {
@@ -24364,13 +19051,6 @@
     "back": "To collect, to extort, to appoint, to promote",
     "phonetic": "とりたてる - toritateru",
     "example": "",
-    "level": "N1"
-  },
-  {
-    "front": "取材",
-    "back": "Choice of subject, collecting data",
-    "phonetic": "しゅざい - shuzai",
-    "example": "彼女は金融市場の取材を担当している。",
     "level": "N1"
   },
   {
@@ -24434,13 +19114,6 @@
     "back": "Handicrafts",
     "phonetic": "しゅげい - shugei",
     "example": "去年手芸コースを取っていたのです。",
-    "level": "N1"
-  },
-  {
-    "front": "手元",
-    "back": "On hand, at hand, at home",
-    "phonetic": "てもと - temoto",
-    "example": "手元に気をつけて！",
     "level": "N1"
   },
   {
@@ -24514,24 +19187,10 @@
     "level": "N1"
   },
   {
-    "front": "手本",
-    "back": "Model, pattern",
-    "phonetic": "てほん - tehon",
-    "example": "お手本を見せてよ。",
-    "level": "N1"
-  },
-  {
     "front": "殊に",
     "back": "Especially, above all",
     "phonetic": "ことに - kotoni",
     "example": "ロックは殊に若者に人気だ。",
-    "level": "N1"
-  },
-  {
-    "front": "種",
-    "back": "Kind, variety, species",
-    "phonetic": "しゅ - shu",
-    "example": "苦は楽の種。",
     "level": "N1"
   },
   {
@@ -24612,20 +19271,6 @@
     "level": "N1"
   },
   {
-    "front": "受け入れる",
-    "back": "To accept, to receive",
-    "phonetic": "うけいれる - ukeireru",
-    "example": "国籍に関係なく誰でも受け入れる。",
-    "level": "N1"
-  },
-  {
-    "front": "受け付ける",
-    "back": "To be accepted, to receive (an application)",
-    "phonetic": "うけつける - uketsukeru",
-    "example": "",
-    "level": "N1"
-  },
-  {
     "front": "受身",
     "back": "Passive, passive voice",
     "phonetic": "うけみ - ukemi",
@@ -24640,24 +19285,10 @@
     "level": "N1"
   },
   {
-    "front": "収まる",
-    "back": "To be obtained, to end, to settle into, to fit into, to be settled, to be paid, to be delivered",
-    "phonetic": "おさまる - osamaru",
-    "example": "収まる気配が一切ない。",
-    "level": "N1"
-  },
-  {
     "front": "収益",
     "back": "Earnings, proceeds, returns",
     "phonetic": "しゅうえき - shuueki",
     "example": "投資の収益は高いだろう。",
-    "level": "N1"
-  },
-  {
-    "front": "収集",
-    "back": "Gathering up, collection, accumulation",
-    "phonetic": "しゅうしゅう - shuushuu",
-    "example": "旅は情報収集が重要。",
     "level": "N1"
   },
   {
@@ -24752,13 +19383,6 @@
     "level": "N1"
   },
   {
-    "front": "集まる",
-    "back": "To gather, to collect, to assemble",
-    "phonetic": "あつまる - atsumaru",
-    "example": "がは灯に集まる。",
-    "level": "N1"
-  },
-  {
     "front": "集計",
     "back": "Totalization, aggregate",
     "phonetic": "しゅうけい - shuukei",
@@ -24766,24 +19390,10 @@
     "level": "N1"
   },
   {
-    "front": "住",
-    "back": "Dwelling, living",
-    "phonetic": "じゅう - juu",
-    "example": "地獄も住家。",
-    "level": "N1"
-  },
-  {
     "front": "十字路",
     "back": "Crossroads",
     "phonetic": "じゅうじろ - juujiro",
     "example": "その事故はある十字路で起こった。",
-    "level": "N1"
-  },
-  {
-    "front": "十分",
-    "back": "10 minutes",
-    "phonetic": "じっぷん - jippun",
-    "example": "もう十分よ！",
     "level": "N1"
   },
   {

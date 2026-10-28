@@ -257,6 +257,10 @@ export const OfflineSyncManager = {
   /**
    * Synchronizes all queued changes across all domains to Supabase.
    */
+  async syncAll() {
+    return this.syncAllPending();
+  },
+
   async syncAllPending(): Promise<{
     syncedCards: number;
     syncedExams: number;

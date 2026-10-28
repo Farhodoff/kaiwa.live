@@ -1,12 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Trophy, Zap, ArrowRight, Home, CheckCircle2, Layers, AlertCircle } from 'lucide-react';
+import {
+  Trophy,
+  Zap,
+  ArrowRight,
+  Home,
+  CheckCircle2,
+  Layers,
+  AlertCircle,
+  Calendar,
+} from 'lucide-react';
 import { Lesson } from '../../types/lesson';
 import { LessonService } from '../../services/LessonService';
+import { SpacedRepetitionEngine } from '../../services/SpacedRepetitionEngine';
 import { useTelegramWebApp } from '../../hooks/useTelegramWebApp';
 
 interface LessonCompletionViewProps {
   lesson: Lesson;
+  userId?: string;
   scoreData?: {
     score: number;
     total: number;
@@ -19,6 +30,7 @@ interface LessonCompletionViewProps {
 
 export const LessonCompletionView: React.FC<LessonCompletionViewProps> = ({
   lesson,
+  userId,
   scoreData,
   newCardsCount = 0,
   mistakesCount = 0,
@@ -27,6 +39,10 @@ export const LessonCompletionView: React.FC<LessonCompletionViewProps> = ({
   const navigate = useNavigate();
   const nextLesson = LessonService.getNextLesson(lesson.id);
   const { haptics } = useTelegramWebApp();
+
+  const reviewItem = useMemo(() => {
+    return SpacedRepetitionEngine.getLessonReviewItem(userId || 'guest', lesson.id);
+  }, [userId, lesson.id]);
 
   useEffect(() => {
     haptics.notification('success');
@@ -120,6 +136,23 @@ export const LessonCompletionView: React.FC<LessonCompletionViewProps> = ({
               <div className="font-black">{mistakesCount} ta xato qayd etildi</div>
               <div className="text-muted-foreground">
                 Keyingi amaliy mashg'ulotlarda ko'proq e'tibor beriladi.
+              </div>
+            </div>
+          </div>
+        )}
+
+        {reviewItem && (
+          <div className="flex items-center gap-3 rounded-2xl border border-primary/20 bg-primary/10 p-3.5 text-primary">
+            <div className="shrink-0 rounded-xl bg-primary/20 p-2 text-primary">
+              <Calendar size={18} />
+            </div>
+            <div className="text-xs">
+              <div className="font-black">
+                Darsni qayta ko'rish: {reviewItem.dueDate} ({reviewItem.interval} kundan keyin)
+              </div>
+              <div className="text-muted-foreground">
+                SM-2 algoritmi {reviewItem.quizScorePercentage}% test ballingizga ko'ra optimal
+                takrorlash vaqtini belgiladi.
               </div>
             </div>
           </div>

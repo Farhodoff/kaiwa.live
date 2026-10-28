@@ -1,5 +1,5 @@
 /**
- * Low-Latency Streaming Pipeline for Nihongo Talk AI Coach.
+ * Low-Latency Streaming Pipeline for kaiwa.live AI Coach.
  * Streams tokens via SSE and pipelines individual clauses to TTS as soon as
  * a sentence boundary is formed, achieving sub-600ms conversational turn latency.
  */

@@ -639,6 +639,62 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
           </div>
         )}
 
+      {activeTab === 'all' && content.kanji && content.kanji.length > 0 && (
+        <section aria-label="Dars kanjilari" className="space-y-3">
+          <h3 className="text-sm font-black uppercase tracking-wider text-foreground">
+            🈷️ Dars kanjilari
+          </h3>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {content.kanji.map((item) => (
+              <article key={item.id} className="rounded-2xl border border-border bg-card p-4">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <div className="text-5xl font-black" lang="ja">
+                      {item.kanji}
+                    </div>
+                    <div className="mt-2 text-sm font-semibold">{item.meanings.join(' · ')}</div>
+                  </div>
+                  {item.strokeOrderAsset || item.strokeOrderUrl ? (
+                    <img
+                      src={item.strokeOrderUrl || item.strokeOrderAsset?.split('#')[0]}
+                      alt={`${item.kanji} kanji stroke order`}
+                      className="h-20 w-20 rounded-lg border border-border object-contain"
+                      onError={(event) => {
+                        event.currentTarget.style.display = 'none';
+                      }}
+                    />
+                  ) : (
+                    <div
+                      aria-label="Stroke-order preview mavjud emas"
+                      className="grid h-20 w-20 place-items-center rounded-lg bg-muted text-4xl"
+                    >
+                      {item.kanji}
+                    </div>
+                  )}
+                </div>
+                <p className="mt-3 text-xs text-muted-foreground">
+                  音読み: {item.onyomi.join('、')}　訓読み: {item.kunyomi.join('、')}
+                </p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Chiziqlar soni: {item.strokeCount} · JLPT {item.jlptLevel}
+                </p>
+                <ul className="mt-2 space-y-1 text-sm">
+                  {item.exampleWords.map((word) => (
+                    <li key={`${item.id}-${word.word}`}>
+                      <strong>{word.word}</strong> ({word.reading}) — {word.meaning}
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-3 text-sm font-medium">
+                  <FuriganaText text={item.exampleSentence} />
+                </p>
+                <p className="text-xs text-muted-foreground">{item.exampleTranslation}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Grammar Section */}
       {(activeTab === 'all' || activeTab === 'grammar') &&
         content.grammarRules &&

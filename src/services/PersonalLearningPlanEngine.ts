@@ -382,8 +382,8 @@ export const PersonalLearningPlanEngine = {
 
       const systemPrompt = `You are ${
         isJa
-          ? 'Nihongo Talk’s Adaptive Japanese (JLPT) Learning Planner'
-          : 'Nihongo Talk’s Adaptive Learning Planner for English (IELTS/CEFR)'
+          ? 'kaiwa.live’s Adaptive Japanese (JLPT) Learning Planner'
+          : 'kaiwa.live’s Adaptive Learning Planner for English (IELTS/CEFR)'
       }.
 
 Your job is to create one realistic, personalized 7-day study plan using only the student data and valid learning routes provided below.

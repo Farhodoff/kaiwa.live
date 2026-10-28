@@ -1,5 +1,6 @@
 import { Lesson } from '../../types/lesson';
 import metadata from './curriculumMetadata.json';
+import { attachLessonKanji } from './kanjiCurriculum';
 
 export const ALL_ENGLISH_LESSONS: Lesson[] = [];
 
@@ -24,13 +25,13 @@ if (!import.meta.env.PROD) {
       import('./levels/n2/japaneseLessons.json'),
       import('./levels/n1/japaneseLessons.json'),
     ]);
-    fullLessons = [
+    fullLessons = attachLessonKanji([
       ...n5.default,
       ...n4.default,
       ...n3.default,
       ...n2.default,
       ...n1.default,
-    ] as unknown as Lesson[];
+    ] as unknown as Lesson[]);
     allJapaneseLessons.splice(0, allJapaneseLessons.length, ...fullLessons);
   } catch (_) {}
 }
@@ -54,7 +55,7 @@ export async function loadCurriculumLevel(level: string): Promise<Lesson[]> {
   const norm = level.toUpperCase();
   const loader = LEVEL_LOADERS[norm];
   if (!loader) return [];
-  const lessons = await loader();
+  const lessons = attachLessonKanji(await loader());
   const loadedIds = new Set(lessons.map((lesson) => lesson.id));
   lessons.forEach((lesson) => CURRICULUM_LESSONS_BY_ID.set(lesson.id, lesson));
   const hydratedLessons = [
@@ -67,6 +68,7 @@ export async function loadCurriculumLevel(level: string): Promise<Lesson[]> {
     return levelDifference || a.lessonNumber - b.lessonNumber;
   });
   allJapaneseLessons.splice(0, allJapaneseLessons.length, ...hydratedLessons);
+  return lessons;
   return lessons;
 }
 
@@ -113,12 +115,12 @@ function getCanonicalLessonId(id: string): string | undefined {
 
 export function getCurriculumLessonById(id: string): Lesson | undefined {
   const lesson = CURRICULUM_LESSONS_BY_ID.get(id);
-  if (lesson) return lesson;
+  if (lesson) return attachLessonKanji([lesson])[0];
 
   const canonicalId = getCanonicalLessonId(id);
   const canonicalLesson = canonicalId ? CURRICULUM_LESSONS_BY_ID.get(canonicalId) : undefined;
 
-  return canonicalLesson ? { ...canonicalLesson, id } : undefined;
+  return canonicalLesson ? attachLessonKanji([{ ...canonicalLesson, id }])[0] : undefined;
 }
 
 export function getCurriculumLessonsByLanguage(language: 'en' | 'ja'): Lesson[] {

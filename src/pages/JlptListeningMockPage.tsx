@@ -42,6 +42,7 @@ import { useGamificationStore } from '../stores/useGamificationStore';
 import { useStudyData } from '../context/StudyPlannerContext';
 import { useLanguage } from '../context/LanguageContext';
 import { toast } from '../hooks/use-toast';
+import { ErrorNotificationService } from '../services/ErrorNotificationService';
 import { resolveAudioUrl } from '../utils/audioUrl';
 
 const DRAFT_CHOUKAI_STORAGE_KEY = 'jlpt_choukai_draft_v1';
@@ -670,11 +671,12 @@ export const JlptListeningMockPage: React.FC = () => {
         description: `${cards.length} ta tinglash savoli Anki SRS fleshkartalar to'plamiga qo'shildi.`,
       });
     } catch (err) {
-      console.error(err);
-      toast({
-        title: 'Xatolik',
-        description: 'Fleshkartalarga saqlashda xatolik yuz berdi.',
-        variant: 'destructive',
+      console.error('[Choukai] Export flashcards error:', err);
+      ErrorNotificationService.notifyError({
+        title: 'Fleshkartalarga saqlashda xatolik',
+        message: "Xatolarni Anki SRS fleshkartalar bazasiga yozib bo'lmadi. Qayta urinib ko'ring.",
+        error: err,
+        retryAction: () => handleExportMistakes(),
       });
     } finally {
       setIsExporting(false);

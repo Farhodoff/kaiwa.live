@@ -344,7 +344,7 @@ export const QuickCommandPalette: React.FC<QuickCommandPaletteProps> = ({ isOpen
                   </kbd>
                 </span>
               </div>
-              <span className="font-medium text-primary">Nihongo Talk Quick Jump</span>
+              <span className="font-medium text-primary">kaiwa.live Quick Jump</span>
             </div>
           </motion.div>
         </div>

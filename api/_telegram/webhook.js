@@ -1,6 +1,15 @@
 import { createClient } from '@supabase/supabase-js';
 import { getRandomBattleQuestion } from './battle-questions.js';
 import { sendGroupPoll } from './dispatch-group-battle.js';
+import {
+  getDailyKanji,
+  getDailyVocab,
+  formatDailyKanjiMessage,
+  formatDailyVocabMessage,
+  searchDailyContent,
+  DAILY_KANJI_LIST,
+  DAILY_VOCAB_LIST,
+} from './daily-content.js';
 
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://qmuimxnknxwarvnkpnlo.supabase.co';
 const SERVICE_ROLE = process.env.SERVICE_ROLE || process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -16,8 +25,9 @@ const APP_URL = (process.env.APP_URL || process.env.VITE_APP_URL || 'https://kai
 
 const defaultKeyboard = {
   keyboard: [
-    [{ text: '🚀 Nihongo Talk-ni Ochish', web_app: { url: `${APP_URL}/` } }],
+    [{ text: '🚀 kaiwa.live-ni Ochish', web_app: { url: `${APP_URL}/` } }],
     [{ text: '📅 Bugungi reja' }, { text: '🎌 Yaponcha Quiz' }],
+    [{ text: '🈁 Kunlik Kanji' }, { text: '📝 Kunlik So\'z' }],
     [{ text: '📚 Fleshkartalar' }, { text: '🎯 Speaking Mashqi' }],
     [{ text: 'ℹ️ Yordam' }]
   ],
@@ -36,7 +46,7 @@ async function setTelegramMenuButton(chatId) {
         chat_id: chatId,
         menu_button: {
           type: 'web_app',
-          text: 'Nihongo Talk',
+          text: 'kaiwa.live',
           web_app: { url: `${APP_URL}/` }
         }
       })
@@ -137,6 +147,26 @@ async function answerCallbackQuery(callbackQueryId, text) {
   });
 }
 
+async function answerInlineQuery(inlineQueryId, results, cacheTime = 300) {
+  const botToken = process.env.TELEGRAM_BOT_TOKEN;
+  if (!botToken) return { ok: false, error: 'No bot token' };
+  try {
+    const res = await fetch(`https://api.telegram.org/bot${botToken}/answerInlineQuery`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        inline_query_id: inlineQueryId,
+        results,
+        cache_time: cacheTime,
+      }),
+    });
+    return res.json();
+  } catch (e) {
+    console.warn('answerInlineQuery error:', e.message);
+    return { ok: false, error: e.message };
+  }
+}
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -158,6 +188,112 @@ export default async function handler(req, res) {
   const supabase = createClient(SUPABASE_URL, SERVICE_ROLE);
 
   try {
+    // 0.0 Handle Inline Queries (@bot_name query in any Telegram chat)
+    if (update.inline_query) {
+      const iq = update.inline_query;
+      const qText = (iq.query || '').trim().toLowerCase();
+      const results = [];
+
+      // A. Interactive JLPT Quiz Card
+      const randQIdx = Math.floor(Math.random() * QUIZ_QUESTIONS.length);
+      const q = QUIZ_QUESTIONS[randQIdx];
+      results.push({
+        type: 'article',
+        id: `quiz_${randQIdx}_${Date.now()}`,
+        title: '🎌 JLPT Viktorina (Do\'stlar bilan o\'ynash)',
+        description: `JLPT Savoli: ${q.question.replace(/<[^>]+>/g, '').slice(0, 50)}...`,
+        input_message_content: {
+          message_text: q.question,
+          parse_mode: 'HTML',
+        },
+        reply_markup: getQuizMarkup(randQIdx),
+      });
+
+      // B. Daily Kanji Card
+      const dailyKanji = getDailyKanji();
+      results.push({
+        type: 'article',
+        id: `kanji_daily_${dailyKanji.kanji}`,
+        title: `🈁 Kun Kanjisi: 「${dailyKanji.kanji}」 (JLPT ${dailyKanji.level})`,
+        description: `${dailyKanji.meaning} | On: ${dailyKanji.onyomi}`,
+        input_message_content: {
+          message_text: formatDailyKanjiMessage(dailyKanji, APP_URL),
+          parse_mode: 'HTML',
+        },
+        reply_markup: {
+          inline_keyboard: [
+            [{ text: '🈁 Kanji Canvasda Mashq', web_app: { url: `${APP_URL}/curriculum` } }],
+            [{ text: '🚀 Nihongo Talk Ilovasi', url: APP_URL }],
+          ],
+        },
+      });
+
+      // C. Daily Vocab Card
+      const dailyVocab = getDailyVocab();
+      results.push({
+        type: 'article',
+        id: `vocab_daily_${dailyVocab.word}`,
+        title: `📝 Kun So'zi: 「${dailyVocab.word}」 [${dailyVocab.reading}]`,
+        description: `${dailyVocab.meaning} (${dailyVocab.level})`,
+        input_message_content: {
+          message_text: formatDailyVocabMessage(dailyVocab, APP_URL),
+          parse_mode: 'HTML',
+        },
+        reply_markup: {
+          inline_keyboard: [
+            [{ text: '📚 Fleshkartalarda Takrorlash', web_app: { url: `${APP_URL}/decks` } }],
+            [{ text: '🌐 Nihongo Talk Web', url: APP_URL }],
+          ],
+        },
+      });
+
+      // D. Search matches if query text is present
+      if (qText) {
+        const found = searchDailyContent(qText);
+        for (const k of found.kanji) {
+          if (k.kanji !== dailyKanji.kanji && results.length < 8) {
+            results.push({
+              type: 'article',
+              id: `kanji_${k.kanji}`,
+              title: `🈁 Kanji: 「${k.kanji}」 (${k.level})`,
+              description: k.meaning,
+              input_message_content: {
+                message_text: formatDailyKanjiMessage(k, APP_URL),
+                parse_mode: 'HTML',
+              },
+              reply_markup: {
+                inline_keyboard: [
+                  [{ text: '🈁 Kanji Canvas', web_app: { url: `${APP_URL}/curriculum` } }],
+                ],
+              },
+            });
+          }
+        }
+        for (const v of found.vocab) {
+          if (v.word !== dailyVocab.word && results.length < 8) {
+            results.push({
+              type: 'article',
+              id: `vocab_${v.word}`,
+              title: `📝 So'z: 「${v.word}」 [${v.reading}]`,
+              description: v.meaning,
+              input_message_content: {
+                message_text: formatDailyVocabMessage(v, APP_URL),
+                parse_mode: 'HTML',
+              },
+              reply_markup: {
+                inline_keyboard: [
+                  [{ text: '📚 Fleshkartalar', web_app: { url: `${APP_URL}/decks` } }],
+                ],
+              },
+            });
+          }
+        }
+      }
+
+      await answerInlineQuery(iq.id, results);
+      return res.status(200).json({ ok: true });
+    }
+
     // 0. Handle Group Membership Updates (Bot added to or removed from group)
     if (update.my_chat_member) {
       const mcm = update.my_chat_member;
@@ -324,6 +460,33 @@ export default async function handler(req, res) {
         }
       }
 
+      // Handle random Kanji / Vocab callbacks
+      if (data === 'kanji_random') {
+        const randK = DAILY_KANJI_LIST[Math.floor(Math.random() * DAILY_KANJI_LIST.length)];
+        await answerCallbackQuery(cb.id, 'Yangi Kanji yuklandi!');
+        const kanjiMarkup = {
+          inline_keyboard: [
+            [{ text: '🈁 Kanji Canvasda mashq', web_app: { url: `${APP_URL}/curriculum` } }],
+            [{ text: '🎲 Boshqa kanji', callback_data: 'kanji_random' }]
+          ]
+        };
+        await sendTelegramMessage(chatId, formatDailyKanjiMessage(randK, APP_URL), kanjiMarkup);
+        return res.status(200).json({ ok: true });
+      }
+
+      if (data === 'vocab_random') {
+        const randV = DAILY_VOCAB_LIST[Math.floor(Math.random() * DAILY_VOCAB_LIST.length)];
+        await answerCallbackQuery(cb.id, 'Yangi so\'z yuklandi!');
+        const vocabMarkup = {
+          inline_keyboard: [
+            [{ text: '📚 Fleshkartalarda takrorlash', web_app: { url: `${APP_URL}/decks` } }],
+            [{ text: '🔄 Boshqa so\'z', callback_data: 'vocab_random' }]
+          ]
+        };
+        await sendTelegramMessage(chatId, formatDailyVocabMessage(randV, APP_URL), vocabMarkup);
+        return res.status(200).json({ ok: true });
+      }
+
       await answerCallbackQuery(cb.id);
       return res.status(200).json({ ok: true });
     }
@@ -480,7 +643,7 @@ export default async function handler(req, res) {
           .maybeSingle();
 
         if (codeErr || !linkRecord) {
-          await sendTelegramMessage(chatId, `❌ <b>Noto'g'ri yoki muddati o'tgan kod!</b>\n\nIltimos, Nihongo Talk saytidagi Sozlamalar sahifasidan yangi kod oling:\n<a href="https://kaiwa.live/settings">Sozlamalar sahifasiga o'tish</a>`);
+          await sendTelegramMessage(chatId, `❌ <b>Noto'g'ri yoki muddati o'tgan kod!</b>\n\nIltimos, kaiwa.live saytidagi Sozlamalar sahifasidan yangi kod oling:\n<a href="https://kaiwa.live/settings">Sozlamalar sahifasiga o'tish</a>`);
           return res.status(200).json({ ok: true });
         }
 
@@ -499,7 +662,7 @@ export default async function handler(req, res) {
         // Mark code as used
         await supabase.from('telegram_link_codes').update({ used: true }).eq('id', linkRecord.id);
 
-        await sendTelegramMessage(chatId, `🎉 <b>Tabriklaymiz, ${escapeHTML(firstName)}!</b>\n\nTelegram bot Nihongo Talk hisobingizga muvaffaqiyatli ulandi! 🚀\n\nEndi siz:\n• Kunlik darslar va vazifalar eslatmalarini olasiz\n• Mini-quizlar orqali yapon tilini mustahkamlaysiz\n• Speaking va fleshkarta natijalaringizni kuzatib borasiz!`, defaultKeyboard);
+        await sendTelegramMessage(chatId, `🎉 <b>Tabriklaymiz, ${escapeHTML(firstName)}!</b>\n\nTelegram bot kaiwa.live hisobingizga muvaffaqiyatli ulandi! 🚀\n\nEndi siz:\n• Kunlik darslar va vazifalar eslatmalarini olasiz\n• Mini-quizlar orqali yapon tilini mustahkamlaysiz\n• Speaking va fleshkarta natijalaringizni kuzatib borasiz!`, defaultKeyboard);
         return res.status(200).json({ ok: true });
       }
 
@@ -513,29 +676,29 @@ export default async function handler(req, res) {
       await setTelegramMenuButton(chatId);
       const appInlineMarkup = {
         inline_keyboard: [
-          [{ text: '🚀 Nihongo Talk-ni Ochish', web_app: { url: `${APP_URL}/` } }]
+          [{ text: '🚀 kaiwa.live-ni Ochish', web_app: { url: `${APP_URL}/` } }]
         ]
       };
 
       if (existingUser) {
         await sendTelegramMessage(chatId, `👋 <b>Assalomu alaykum, ${escapeHTML(firstName)}!</b>\n\nHisobingiz platformaga ulangan.\n\nTelegram ichida platformani to'liq ochish uchun quyidagi tugmani bosing:`, appInlineMarkup);
       } else {
-        await sendTelegramMessage(chatId, `👋 <b>Assalomu alaykum!</b>\n\nNihongo Talk Telegram botiga xush kelibsiz.\n\nTelegramdan chiqmasdan yapon tilini o'rganishni boshlash uchun quyidagi tugmani bosing:`, appInlineMarkup);
+        await sendTelegramMessage(chatId, `👋 <b>Assalomu alaykum!</b>\n\nkaiwa.live Telegram botiga xush kelibsiz.\n\nTelegramdan chiqmasdan yapon tilini o'rganishni boshlash uchun quyidagi tugmani bosing:`, appInlineMarkup);
       }
       return res.status(200).json({ ok: true });
     }
 
     // B. Handle /app or 'Mini App'
-    if (text === '/app' || text.includes('Mini App') || text.includes('Nihongo Talk')) {
+    if (text === '/app' || text.includes('Mini App') || text.includes('kaiwa.live') || text.includes('Nihongo Talk')) {
       await setTelegramMenuButton(chatId);
       const appMarkup = {
         inline_keyboard: [
-          [{ text: '🚀 Nihongo Talk-ni Ochish', web_app: { url: `${APP_URL}/` } }]
+          [{ text: '🚀 kaiwa.live-ni Ochish', web_app: { url: `${APP_URL}/` } }]
         ]
       };
       await sendTelegramMessage(
         chatId,
-        `📱 <b>Nihongo Talk:</b>\n\nTelegramdan chiqmasdan yapon tilini to'liq o'rganing:\n• 🎴 JLPT N5–N1 Grammatika, Kanji va Quizlar\n• 🎙️ AI Speaking Coach\n• 📚 Anki SM-2 Fleshkartalar\n• 🔥 Shaxsiy kunlik reja va Pomodoro\n\nIlovani ochish uchun quyidagi tugmani bosing:`,
+        `📱 <b>kaiwa.live:</b>\n\nTelegramdan chiqmasdan yapon tilini to'liq o'rganing:\n• 🎴 JLPT N5–N1 Grammatika, Kanji va Quizlar\n• 🎙️ AI Speaking Coach\n• 📚 Anki SM-2 Fleshkartalar\n• 🔥 Shaxsiy kunlik reja va Pomodoro\n\nIlovani ochish uchun quyidagi tugmani bosing:`,
         appMarkup
       );
       return res.status(200).json({ ok: true });
@@ -549,7 +712,74 @@ export default async function handler(req, res) {
       return res.status(200).json({ ok: true });
     }
 
-    // C. Handle /flashcards or '📚 Fleshkartalar'
+    // C.1 Handle /kanji or '🈁 Kunlik Kanji'
+    if (text === '/kanji' || text.includes('Kunlik Kanji') || text === '/kunlik_kanji') {
+      const dailyKanji = getDailyKanji();
+      const kanjiMarkup = {
+        inline_keyboard: [
+          [{ text: '🈁 Kanji Canvasda Mashq', web_app: { url: `${APP_URL}/curriculum` } }],
+          [{ text: '🎲 Boshqa kanji', callback_data: 'kanji_random' }],
+        ],
+      };
+      await sendTelegramMessage(chatId, formatDailyKanjiMessage(dailyKanji, APP_URL), kanjiMarkup);
+      return res.status(200).json({ ok: true });
+    }
+
+    // C.2 Handle /vocab or '📝 Kunlik So\'z'
+    if (text === '/vocab' || text.includes('Kunlik So\'z') || text === '/lugat' || text === '/soz' || text === '/kunlik_soz') {
+      const dailyVocab = getDailyVocab();
+      const vocabMarkup = {
+        inline_keyboard: [
+          [{ text: '📚 Fleshkartalarda Takrorlash', web_app: { url: `${APP_URL}/decks` } }],
+          [{ text: '🔄 Boshqa so\'z', callback_data: 'vocab_random' }],
+        ],
+      };
+      await sendTelegramMessage(chatId, formatDailyVocabMessage(dailyVocab, APP_URL), vocabMarkup);
+      return res.status(200).json({ ok: true });
+    }
+
+    // C.3 Handle /streak or /profil
+    if (text === '/streak' || text === '/profil' || text === '/stats') {
+      const { data: userLink } = await supabase
+        .from('telegram_users')
+        .select('user_id')
+        .eq('telegram_id', telegramId)
+        .maybeSingle();
+
+      if (!userLink?.user_id) {
+        await sendTelegramMessage(chatId, "⚠️ <i>Avval hisobingizni botga ulang: /start kod</i>");
+        return res.status(200).json({ ok: true });
+      }
+
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('streak, total_xp, target_level')
+        .eq('id', userLink.user_id)
+        .maybeSingle();
+
+      const streakVal = profile?.streak || 1;
+      const xpVal = profile?.total_xp || 0;
+      const levelVal = profile?.target_level || 'N5';
+
+      const statsText =
+        `🔥 <b>O'quvchi Profili va Natijalari</b>\n\n` +
+        `👤 <b>Ism:</b> ${escapeHTML(firstName)}\n` +
+        `🎯 <b>Maqsad:</b> JLPT ${levelVal}\n` +
+        `🔥 <b>Kunlik Streak:</b> ${streakVal} kun ketma-ket!\n` +
+        `⚡ <b>Jami Tajriba:</b> ${xpVal} XP\n\n` +
+        `<i>Davom eting! Har kungi 10 daqiqa katta natijalarga olib boradi. 🚀</i>`;
+
+      const statsMarkup = {
+        inline_keyboard: [
+          [{ text: '🚀 Mini Appda O\'qish', web_app: { url: `${APP_URL}/` } }],
+          [{ text: '🎲 JLPT Viktorina', callback_data: 'quiz_next' }],
+        ],
+      };
+      await sendTelegramMessage(chatId, statsText, statsMarkup);
+      return res.status(200).json({ ok: true });
+    }
+
+    // D. Handle /flashcards or '📚 Fleshkartalar'
     if (text === '/flashcards' || text.includes('Fleshkartalar')) {
       const { data: userLink } = await supabase
         .from('telegram_users')
@@ -578,7 +808,7 @@ export default async function handler(req, res) {
       };
       await sendTelegramMessage(
         chatId,
-        `📚 <b>Nihongo Talk Fleshkartalari (SRS Tizimi):</b>\n\nSuperMemo SM-2 algoritmi asosida so'zlar va iyerogliflarni eslab qoling.${cardInfo}\n\nFleshkartalarni o'rganish uchun veb ilovaga kiring:`,
+        `📚 <b>kaiwa.live Fleshkartalari (SRS Tizimi):</b>\n\nSuperMemo SM-2 algoritmi asosida so'zlar va iyerogliflarni eslab qoling.${cardInfo}\n\nFleshkartalarni o'rganish uchun veb ilovaga kiring:`,
         flashcardMarkup
       );
       return res.status(200).json({ ok: true });
@@ -634,13 +864,27 @@ export default async function handler(req, res) {
 
     // F. Legacy fallback: /subscription
     if (text === '/subscription' || text.includes('Obuna holati')) {
-      await sendTelegramMessage(chatId, `🎁 <b>Nihongo Talk 100% Bepul va Ochiq!</b>\n\nPlatformadagi barcha imkoniyatlar (AI Speaking Coach, JLPT Mock Exam, Anki Fleshkartalar, Audio talaffuz) barcha foydalanuvchilar uchun mutlaqo bepul taqdim etiladi! 🚀\n\n🔗 Web sayt: <a href="https://kaiwa.live">Nihongo Talk Bosh Sahifa</a>`);
+      await sendTelegramMessage(chatId, `🎁 <b>kaiwa.live 100% Bepul va Ochiq!</b>\n\nPlatformadagi barcha imkoniyatlar (AI Speaking Coach, JLPT Mock Exam, Anki Fleshkartalar, Audio talaffuz) barcha foydalanuvchilar uchun mutlaqo bepul taqdim etiladi! 🚀\n\n🔗 Web sayt: <a href="https://kaiwa.live">kaiwa.live Bosh Sahifa</a>`);
       return res.status(200).json({ ok: true });
     }
 
     // G. Handle /help or 'ℹ️ Yordam'
     if (text === '/help' || text.includes('Yordam')) {
-      await sendTelegramMessage(chatId, `ℹ️ <b>Nihongo Talk Bot Yordam Qo'llanmasi:</b>\n\n/start - Akkauntni ulash yoki bosh menyu\n/app - Telegram Mini App ilovasini ochish 🚀\n/quiz - Yapon tili bo'yicha interaktiv mini-quiz\n/plan - Bugungi o'quv rejalari va vazifalar\n/flashcards - Fleshkartalar holati va takrorlash\n/speaking - Speaking Coach mashqlari\n/help - Yordam menyusi\n\n🌐 Asosiy veb-sayt: <a href="https://kaiwa.live">Nihongo Talk Platformasi</a>`);
+      const helpText =
+        `ℹ️ <b>kaiwa.live Bot Yordam Qo'llanmasi:</b>\n\n` +
+        `🚀 <b>Asosiy buyruqlar:</b>\n` +
+        `• /app — Telegram Mini App (to'liq mobil ilova)\n` +
+        `• /quiz — Interaktiv JLPT mini-viktorina\n` +
+        `• /kanji — Bugungi kun kanjisi va birikmalari\n` +
+        `• /vocab — Bugungi kun so'zi va misol gaplar\n` +
+        `• /streak — O'quv seriyangiz va XP ko'rsatkichlaringiz\n` +
+        `• /plan — Bugungi darslar va vazifalar\n` +
+        `• /flashcards — Fleshkartalar (Anki SRS) takrorlash\n` +
+        `• /speaking — Speaking Coach suhbat mashqlari\n\n` +
+        `💬 <b>Inline rejim:</b>\n` +
+        `Istalgan guruh yoki chatda <code>@nihongotalk_bot quiz</code> yoki <code>@nihongotalk_bot kanji</code> deb yozsangiz, do'stlaringizga viktorina yoki kanji kartasini yuborishingiz mumkin!\n\n` +
+        `🌐 Veb platforma: <a href="https://kaiwa.live">kaiwa.live</a>`;
+      await sendTelegramMessage(chatId, helpText, defaultKeyboard);
       return res.status(200).json({ ok: true });
     }
 

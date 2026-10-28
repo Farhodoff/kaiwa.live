@@ -132,6 +132,9 @@ describe('Data Integrity Schema Verification', () => {
         expect(Array.isArray(data)).toBe(true);
         expect(data.length).toBeGreaterThan(0);
 
+        const seenIds = new Set<string>();
+        const duplicates: string[] = [];
+
         data.forEach((item: any, idx: number) => {
           const word = item.word || item.kanji || item.term;
           expect(
@@ -144,7 +147,27 @@ describe('Data Integrity Schema Verification', () => {
           ).toBeDefined();
           const meaning = item.meaningUz || item.meaningEn || item.meaning || item.definition;
           expect(meaning, `Vocab item at index ${idx} in ${name} missing meaning`).toBeDefined();
+
+          // Ensure examples array is non-empty
+          expect(
+            Array.isArray(item.examples) && item.examples.length > 0,
+            `Vocab item "${word}" (${item.id}) in ${name} must have non-empty examples array`,
+          ).toBe(true);
+
+          const firstEx = item.examples[0];
+          expect(firstEx.ja, `Example for "${word}" in ${name} missing Japanese`).toBeTruthy();
+          expect(
+            firstEx.uz,
+            `Example for "${word}" in ${name} missing Uzbek translation`,
+          ).toBeTruthy();
+
+          if (seenIds.has(item.id)) {
+            duplicates.push(item.id);
+          }
+          seenIds.add(item.id);
         });
+
+        expect(duplicates, `Found duplicate IDs in ${name}: ${duplicates.join(', ')}`).toEqual([]);
       });
     });
   });
@@ -160,6 +183,30 @@ describe('Data Integrity Schema Verification', () => {
         expect(track.url, `Track at #${idx} missing url`).toBeDefined();
         expect(track.level, `Track at #${idx} missing level`).toBeDefined();
       });
+    });
+  });
+
+  describe('Kanji Database Integrity & Uniqueness', () => {
+    it('verifies all kanji items have unique IDs and required properties', async () => {
+      const kanjiData = (await import('../kanji/jlptKanjiDatabase.json')).default;
+      expect(Array.isArray(kanjiData)).toBe(true);
+      expect(kanjiData.length).toBeGreaterThan(0);
+
+      const seenIds = new Set<string>();
+      const duplicateIds: string[] = [];
+
+      kanjiData.forEach((item: any, idx: number) => {
+        expect(item.id, `Kanji item at #${idx} missing id`).toBeDefined();
+        expect(item.kanji, `Kanji item at #${idx} missing kanji character`).toBeDefined();
+        expect(item.level, `Kanji item ${item.id} missing level`).toBeDefined();
+
+        if (seenIds.has(item.id)) {
+          duplicateIds.push(item.id);
+        }
+        seenIds.add(item.id);
+      });
+
+      expect(duplicateIds, `Found duplicate kanji IDs: ${duplicateIds.join(', ')}`).toEqual([]);
     });
   });
 });

@@ -6,7 +6,7 @@ vi.mock('../deepseek', () => ({
   callDeepSeek: vi.fn(),
 }));
 
-describe('Nihongo Talk — Single DeepSeek Provider Architecture', () => {
+describe('kaiwa.live — Single DeepSeek Provider Architecture', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     localStorage.clear();
@@ -14,11 +14,11 @@ describe('Nihongo Talk — Single DeepSeek Provider Architecture', () => {
 
   it('generates flashcards via DeepSeek without client keys or fallbacks', async () => {
     vi.mocked(deepseekModule.callDeepSeek).mockResolvedValueOnce(
-      JSON.stringify([{ front: 'What is Nihongo Talk?', back: 'Continuous improvement' }]),
+      JSON.stringify([{ front: 'What is kaiwa.live?', back: 'Continuous improvement' }]),
     );
 
     const cards = await generateFlashcardsFromNote('Continuous improvement principles', 1);
-    expect(cards).toEqual([{ front: 'What is Nihongo Talk?', back: 'Continuous improvement' }]);
+    expect(cards).toEqual([{ front: 'What is kaiwa.live?', back: 'Continuous improvement' }]);
     expect(deepseekModule.callDeepSeek).toHaveBeenCalledTimes(1);
   });
 

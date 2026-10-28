@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
 
-console.log('🔍 Validating Nihongo Talk SEO Infrastructure...\n');
+console.log('🔍 Validating kaiwa.live SEO Infrastructure...\n');
 
 let errors = 0;
 
@@ -33,7 +33,7 @@ check('robots.txt exists and contains Sitemap and AI Bots', () => {
 // 2. Sitemap.xml
 check('sitemap.xml exists and has valid multilingual tags', () => {
   const content = fs.readFileSync(path.join(rootDir, 'public', 'sitemap.xml'), 'utf8');
-  const requiredUrls = ['/', '/jlpt', '/speaking', '/pricing', '/twa'];
+  const requiredUrls = ['/', '/jlpt', '/speaking-coach', '/flashcards', '/pricing'];
   for (const u of requiredUrls) {
     if (!content.includes(`<loc>https://kaiwa.live${u === '/' ? '/' : u}</loc>`)) {
       throw new Error(`Missing route in sitemap: ${u}`);
@@ -47,7 +47,7 @@ check('sitemap.xml exists and has valid multilingual tags', () => {
 // 3. llms.txt (GEO standard)
 check('llms.txt exists with structured platform documentation', () => {
   const content = fs.readFileSync(path.join(rootDir, 'public', 'llms.txt'), 'utf8');
-  if (!content.includes('Nihongo Talk') || !content.includes('JLPT Master Hub')) {
+  if (!content.includes('Kaiwa Live') || !content.includes('JLPT Master Hub')) {
     throw new Error('llms.txt is incomplete');
   }
 });

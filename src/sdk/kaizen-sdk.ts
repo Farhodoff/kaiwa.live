@@ -1,5 +1,5 @@
 /**
- * Nihongo Talk Universal SDK
+ * kaiwa.live Universal SDK
  * Lightweight, zero-dependency client for Sakubun Evaluation, JLPT, Flashcards, and SM-2 Spaced Repetition.
  * Works in Node.js, Next.js, React, Vue, React Native, and vanilla JavaScript.
  */

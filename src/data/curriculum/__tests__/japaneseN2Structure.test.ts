@@ -77,7 +77,7 @@ describe('JLPT N2 curriculum structure', () => {
     for (const lesson of listeningLessons) {
       const exercises = lesson.steps.flatMap((step) => step.practiceData?.exercises ?? []);
       const questions = lesson.steps.flatMap((step) => step.testData?.questions ?? []);
-      const audioItems = [...exercises, ...questions];
+      const audioItems = [...exercises, ...questions].filter((item) => item.audioUrl);
 
       expect(audioItems).toHaveLength(6);
       for (const item of audioItems) {

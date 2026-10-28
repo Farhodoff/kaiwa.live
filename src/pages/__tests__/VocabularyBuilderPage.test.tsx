@@ -143,4 +143,25 @@ describe('VocabularyBuilderPage Component', () => {
     expect(screen.getByText(/Pitch Accent \(アクセント\) Tahlili/i)).toBeInTheDocument();
     expect(screen.getAllByText(/Heiban \(平板型 ⓪ - Tekis\)/i).length).toBeGreaterThanOrEqual(1);
   });
+
+  it('verifies that Fan tanlang dropdown is removed and level filter + random suggestion buttons exist', async () => {
+    await act(async () => {
+      render(<VocabularyBuilderPage />);
+    });
+
+    // Check that "Fan tanlang" or "単語帳を選択:" dropdown is completely absent
+    expect(screen.queryByText(/Fan tanlang:/i)).toBeNull();
+    expect(screen.queryByText(/単語帳を選択:/i)).toBeNull();
+
+    // Check level chips exist
+    expect(screen.getByRole('button', { name: 'Barchasi' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'N5' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'N1' })).toBeInTheDocument();
+
+    // Check random word suggestion button
+    expect(screen.getByRole('button', { name: /Yangi tavsiya/i })).toBeInTheDocument();
+
+    // Check slow pronunciation button
+    expect(screen.getByRole('button', { name: /Sekin/i })).toBeInTheDocument();
+  });
 });

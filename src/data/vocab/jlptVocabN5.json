@@ -37,13 +37,18 @@
     "word": "彼",
     "reading": "かれ",
     "romaji": "kare",
-    "meaningUz": "U (erkak kishi)",
+    "meaningUz": "Yigit, sevgilisi",
     "partOfSpeech": "Olmosh",
     "examples": [
       {
-        "ja": "彼は日本語の先生です。",
-        "romaji": "Kare wa nihongo no sensei desu.",
-        "uz": "U yapon tili o'qituvchisi."
+        "ja": "彼女は歩く。",
+        "romaji": "kanojo ha aruku .",
+        "uz": "She walks."
+      },
+      {
+        "ja": "彼を見張れ。",
+        "romaji": "kare wo mihare .",
+        "uz": "Keep watch on him."
       }
     ]
   },
@@ -57,9 +62,14 @@
     "partOfSpeech": "Olmosh",
     "examples": [
       {
-        "ja": "彼女は親切な人です。",
-        "romaji": "Kanojo wa shinsetsu na hito desu.",
-        "uz": "U juda mehribon inson."
+        "ja": "彼女は歩く。",
+        "romaji": "kanojo ha aruku .",
+        "uz": "She walks."
+      },
+      {
+        "ja": "彼女は元気？",
+        "romaji": "kanojo ha genki ？",
+        "uz": "Is she healthy?"
       }
     ]
   },
@@ -169,9 +179,14 @@
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "あの女の人は英語が上手です。",
-        "romaji": "Ano onna no hito wa eigo ga jouzu desu.",
-        "uz": "Anavi ayol ingliz tilida zo'r gapiradi."
+        "ja": "女の人は奇麗です。",
+        "romaji": "onnanohito ha kirei desu .",
+        "uz": "The woman is beautiful."
+      },
+      {
+        "ja": "あすこの女の人見て！",
+        "romaji": "asukono onnanohito mite !",
+        "uz": "Check out that woman!"
       }
     ]
   },
@@ -341,7 +356,7 @@
     "word": "昨日",
     "reading": "きのう",
     "romaji": "kinou",
-    "meaningUz": "Kecha",
+    "meaningUz": "Kecha, kechagi kun\nTurkum: Ot",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -389,7 +404,7 @@
     "word": "昼",
     "reading": "ひる",
     "romaji": "hiru",
-    "meaningUz": "Kunduz, tush vaqti",
+    "meaningUz": "Kunduz, tush vaqti\nTurkum: Ot",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -469,7 +484,7 @@
     "word": "部屋",
     "reading": "へや",
     "romaji": "heya",
-    "meaningUz": "Xona",
+    "meaningUz": "Xona\nTurkum: Ot",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -517,7 +532,7 @@
     "word": "教室",
     "reading": "きょうしつ",
     "romaji": "kyoushitsu",
-    "meaningUz": "Sinfxona, auditoriya",
+    "meaningUz": "Sinfxona, auditoriya\nTurkum: Ot",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -549,7 +564,7 @@
     "word": "病院",
     "reading": "びょういん",
     "romaji": "byouin",
-    "meaningUz": "Shifoxona, kasalxona",
+    "meaningUz": "shifoxona, kasalxona\nTurkum: Ot",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -613,7 +628,7 @@
     "word": "辞書",
     "reading": "じしょ",
     "romaji": "jisho",
-    "meaningUz": "Lug'at",
+    "meaningUz": "Lug'at\nTurkum: Ot",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -741,7 +756,7 @@
     "word": "野菜",
     "reading": "やさい",
     "romaji": "yasai",
-    "meaningUz": "Sabzavot",
+    "meaningUz": "Sabzavotlar\nTurkum: Ot",
     "partOfSpeech": "Ot",
     "examples": [
       {
@@ -853,7 +868,7 @@
     "word": "聞く",
     "reading": "きく",
     "romaji": "kiku",
-    "meaningUz": "Eshitmoq, tinglamoq / so'ramoq",
+    "meaningUz": "Eshitmoq, tinglamoq; so'ramoq\nTurkum: Godan fe'l",
     "partOfSpeech": "Fe'l (1-guruh)",
     "examples": [
       {
@@ -901,7 +916,7 @@
     "word": "話す",
     "reading": "はなす",
     "romaji": "hanasu",
-    "meaningUz": "Gapirmoq, suhbatlashmoq",
+    "meaningUz": "gaplashmoq, so'zlamoq\nTurkum: Godan fe'l",
     "partOfSpeech": "Fe'l (1-guruh)",
     "examples": [
       {
@@ -981,7 +996,7 @@
     "word": "働く",
     "reading": "はたらく",
     "romaji": "hataraku",
-    "meaningUz": "Ishlamoq, mehnat qilmoq",
+    "meaningUz": "ishlamoq, mehnat qilmoq\nTurkum: Godan fe'l",
     "partOfSpeech": "Fe'l (1-guruh)",
     "examples": [
       {
@@ -1013,7 +1028,7 @@
     "word": "教える",
     "reading": "おしえる",
     "romaji": "oshieru",
-    "meaningUz": "O'rgatmoq, tushuntirmoq",
+    "meaningUz": "O'rgatmoq, ma'lumot bermoq",
     "partOfSpeech": "Fe'l (2-guruh)",
     "examples": [
       {
@@ -1029,7 +1044,7 @@
     "word": "習う",
     "reading": "ならう",
     "romaji": "narau",
-    "meaningUz": "O'rganmoq (ustozdan)",
+    "meaningUz": "o'rganmoq (ustozdan ta'lim olmoq)\nTurkum: Godan fe'l",
     "partOfSpeech": "Fe'l (1-guruh)",
     "examples": [
       {
@@ -1061,7 +1076,7 @@
     "word": "寝る",
     "reading": "ねる",
     "romaji": "neru",
-    "meaningUz": "Uxlashga yotmoq",
+    "meaningUz": "yotmoq, uxlamoq\nTurkum: Ichidan fe'l",
     "partOfSpeech": "Fe'l (2-guruh)",
     "examples": [
       {
@@ -1354,7 +1369,7 @@
     "examples": [
       {
         "ja": "わたしは 学生 です。",
-        "romaji": "",
+        "romaji": "Watashi wa gakusei desu.",
         "uz": "Men talabaman."
       }
     ]
@@ -1370,7 +1385,7 @@
     "examples": [
       {
         "ja": "わたしたちは 留学生 です。",
-        "romaji": "",
+        "romaji": "Watashitachi wa ryuugakusei desu.",
         "uz": "Biz xorijiy talabalarmiz."
       }
     ]
@@ -1386,7 +1401,7 @@
     "examples": [
       {
         "ja": "あの 人は だれですか。",
-        "romaji": "",
+        "romaji": "Anohito wa daredesuka.",
         "uz": "U kishi kim?"
       }
     ]
@@ -1402,7 +1417,7 @@
     "examples": [
       {
         "ja": "あの 方は どなたですか。",
-        "romaji": "",
+        "romaji": "Anokataha donatadesuka.",
         "uz": "U kishi (hurmat shakli) kimlar?"
       }
     ]
@@ -1418,7 +1433,7 @@
     "examples": [
       {
         "ja": "皆さん、おはようございます。",
-        "romaji": "",
+        "romaji": "Minasan, ohayougozaimasu.",
         "uz": "Hammaga xayrli tong."
       }
     ]
@@ -1429,12 +1444,12 @@
     "word": "～さん",
     "reading": "～さん",
     "romaji": "san",
-    "meaningUz": "janob / xonim (hurmat qo'shimchasi)",
+    "meaningUz": "Janob, xonim; ayrim kasblarga hurmat bilan qo'shiladi",
     "partOfSpeech": "Qo'shimcha / Suffiks",
     "examples": [
       {
         "ja": "田中さんは 先生 です。",
-        "romaji": "",
+        "romaji": "Tanaka sanha sensei desu.",
         "uz": "Tanaka janoblari o'qituvchi."
       }
     ]
@@ -1450,7 +1465,7 @@
     "examples": [
       {
         "ja": "タワポンちゃんの 妹は 5歳 です。",
-        "romaji": "",
+        "romaji": "Tawapon channo imouto wa 5 sai desu.",
         "uz": "Tawaponchanning singlisi 5 yoshda."
       }
     ]
@@ -1461,12 +1476,12 @@
     "word": "～君",
     "reading": "～くん",
     "romaji": "kun",
-    "meaningUz": "erkalash qo'shimchasi",
+    "meaningUz": "O'g'il bolalar yoki yosh erkaklarga qo'shiladigan hurmat shakli",
     "partOfSpeech": "Qo'shimcha / Suffiks",
     "examples": [
       {
         "ja": "山田くんは サッカーが 好きです。",
-        "romaji": "",
+        "romaji": "Yamada kunha sakkaa ga suki desu.",
         "uz": "Yamada-kun futbolni yaxshi ko'radi."
       }
     ]
@@ -1482,7 +1497,7 @@
     "examples": [
       {
         "ja": "教室に 学生が 5人 います。",
-        "romaji": "",
+        "romaji": "Kyoushitsu ni gakusei ga 5 ni n imasu.",
         "uz": "Sinfxonada 5 nafar talaba bor."
       }
     ]
@@ -1498,7 +1513,7 @@
     "examples": [
       {
         "ja": "ミラーさんは アメリカ人 です。",
-        "romaji": "",
+        "romaji": "Miraa sanha amerika jin desu.",
         "uz": "Janob Miller amerikalik."
       }
     ]
@@ -1514,7 +1529,7 @@
     "examples": [
       {
         "ja": "わたしは 教師 じゃありません。",
-        "romaji": "",
+        "romaji": "Watashi wa kyoushi jaarimasen.",
         "uz": "Men o'qituvchi emasman."
       }
     ]
@@ -1530,7 +1545,7 @@
     "examples": [
       {
         "ja": "父は 会社員 です。",
-        "romaji": "",
+        "romaji": "Chichi wa kaishain desu.",
         "uz": "Otam firma xodimi."
       }
     ]
@@ -1541,12 +1556,12 @@
     "word": "社員",
     "reading": "しゃいん",
     "romaji": "shain",
-    "meaningUz": "firma xodimi",
+    "meaningUz": "kompaniya xodimi, ishchi",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "田中さんは 社員 です。",
-        "romaji": "",
+        "romaji": "Tanaka sanha shain desu.",
         "uz": "Tanaka janoblari firma xodimi."
       }
     ]
@@ -1562,7 +1577,7 @@
     "examples": [
       {
         "ja": "山田さんは 銀行員 です。",
-        "romaji": "",
+        "romaji": "Yamada sanha ginkouin desu.",
         "uz": "Yamada janoblari bank xodimi."
       }
     ]
@@ -1573,12 +1588,12 @@
     "word": "医者",
     "reading": "いしゃ",
     "romaji": "isha",
-    "meaningUz": "shifokor",
+    "meaningUz": "Shifokor, do'xtir",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "あの 方は 病院の 医者 です。",
-        "romaji": "",
+        "romaji": "Anokataha byouin no isha desu.",
         "uz": "U kishi shifoxona shifokori."
       }
     ]
@@ -1594,7 +1609,7 @@
     "examples": [
       {
         "ja": "ワットさんは 大学の 研究者 です。",
-        "romaji": "",
+        "romaji": "Watto sanha daigaku no kenkyuusha desu.",
         "uz": "Janob Watt universitet tadqiqotchisi."
       }
     ]
@@ -1610,7 +1625,7 @@
     "examples": [
       {
         "ja": "グプタさんは IMCの エンジニアです。",
-        "romaji": "",
+        "romaji": "Guputa sanha IMC no enjinia de su.",
         "uz": "Janob Gupta IMC kompaniyasi muhandisi."
       }
     ]
@@ -1626,7 +1641,7 @@
     "examples": [
       {
         "ja": "さくら大学へ 行きます。",
-        "romaji": "",
+        "romaji": "Sakura daigaku e ikimasu.",
         "uz": "Sakura universitetiga boraman."
       }
     ]
@@ -1642,7 +1657,7 @@
     "examples": [
       {
         "ja": "電気を つけて ください。",
-        "romaji": "",
+        "romaji": "Denki o tsukete kudasai.",
         "uz": "Chiroqni yoqing, iltimos."
       }
     ]
@@ -1658,7 +1673,7 @@
     "examples": [
       {
         "ja": "あの方は どなたですか。",
-        "romaji": "",
+        "romaji": "Anokataha donatadesuka.",
         "uz": "U kishi kimlar?"
       }
     ]
@@ -1674,7 +1689,7 @@
     "examples": [
       {
         "ja": "わたしは 20歳 です。",
-        "romaji": "",
+        "romaji": "Watashi wa 20 sai desu.",
         "uz": "Men 20 yoshdaman."
       }
     ]
@@ -1690,7 +1705,7 @@
     "examples": [
       {
         "ja": "お名前と おいくつ（何歳）ですか。",
-        "romaji": "",
+        "romaji": "O namae to oikutsu ( nansai ) desuka.",
         "uz": "Ismingiz nima va yoshingiz nechada?"
       }
     ]
@@ -1706,7 +1721,7 @@
     "examples": [
       {
         "ja": "失礼ですが、おいくつですか。",
-        "romaji": "",
+        "romaji": "Shitsurei de suga, oikutsudesuka.",
         "uz": "Kechirasiz, yoshingiz nechada?"
       }
     ]
@@ -1722,7 +1737,7 @@
     "examples": [
       {
         "ja": "はい、そうです。",
-        "romaji": "",
+        "romaji": "Hai, soudesu.",
         "uz": "Ha, shunday."
       }
     ]
@@ -1738,7 +1753,7 @@
     "examples": [
       {
         "ja": "いいえ、違います。",
-        "romaji": "",
+        "romaji": "Iie, chigaimasu.",
         "uz": "Yo'q, unday emas."
       }
     ]
@@ -1749,12 +1764,12 @@
     "word": "失礼ですが",
     "reading": "しつれいですが",
     "romaji": "shitsureidesuga",
-    "meaningUz": "Kechirasiz, ~ (murojaat oldidan)",
+    "meaningUz": "aybga buyurmasangiz, kechirasiz-u (savol oldidan)",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "失礼ですが、お名前は？",
-        "romaji": "",
+        "romaji": "Shitsurei de suga, o namae wa?",
         "uz": "Kechirasiz, ismingiz nima?"
       }
     ]
@@ -1770,7 +1785,7 @@
     "examples": [
       {
         "ja": "お名前は 何ですか。",
-        "romaji": "",
+        "romaji": "O namae wa nani de suka.",
         "uz": "Ismingiz nima?"
       }
     ]
@@ -1786,7 +1801,7 @@
     "examples": [
       {
         "ja": "初めまして、マイク・ミラーです。",
-        "romaji": "",
+        "romaji": "Hajime mashite, maiku・miraa desu.",
         "uz": "Tanishganimdan xursandman, men Mayk Miller."
       }
     ]
@@ -1801,9 +1816,14 @@
     "partOfSpeech": "Fe'l",
     "examples": [
       {
-        "ja": "どうぞ よろしく お願いします。",
-        "romaji": "",
-        "uz": "Marhamat, yaxshi munosabatda bo'ling / Tanishganimdan xursandman."
+        "ja": "どうぞよろしく。",
+        "romaji": "douzoyoroshiku .",
+        "uz": "Pleased to meet you."
+      },
+      {
+        "ja": "皆さまにもどうぞよろしく。",
+        "romaji": "minasa manimodouzoyoroshiku .",
+        "uz": "My best wishes to you and yours."
       }
     ]
   },
@@ -1813,13 +1833,18 @@
     "word": "お願いします",
     "reading": "おねがいします",
     "romaji": "onegaishimasu",
-    "meaningUz": "iltimos, so'rayman",
+    "meaningUz": "iltimos qilaman, shunday qilib bersangiz",
     "partOfSpeech": "Fe'l",
     "examples": [
       {
-        "ja": "これを お願いします。",
-        "romaji": "",
-        "uz": "Buni iltimos qilaman."
+        "ja": "お願いします。",
+        "romaji": "o negai shimasu .",
+        "uz": "Please."
+      },
+      {
+        "ja": "勘定お願いします。",
+        "romaji": "kanjou o negai shimasu .",
+        "uz": "The check, please."
       }
     ]
   },
@@ -1834,7 +1859,7 @@
     "examples": [
       {
         "ja": "こちらは ミラーさんです。",
-        "romaji": "",
+        "romaji": "Kochiraha miraa sandesu.",
         "uz": "Bu kishi janob Miller."
       }
     ]
@@ -1850,7 +1875,7 @@
     "examples": [
       {
         "ja": "わたしは アメリカから 来ました。",
-        "romaji": "",
+        "romaji": "Watashi wa amerika kara kima shita.",
         "uz": "Men Amerikadan keldim."
       }
     ]
@@ -1866,7 +1891,7 @@
     "examples": [
       {
         "ja": "ミラーさんは アメリカ人です。",
-        "romaji": "",
+        "romaji": "Miraa sanha amerika jindesu.",
         "uz": "Janob Miller amerikalik."
       }
     ]
@@ -1882,7 +1907,7 @@
     "examples": [
       {
         "ja": "ワットさんは イギリスから 来ました。",
-        "romaji": "",
+        "romaji": "Watto sanha igirisu kara kima shita.",
         "uz": "Janob Watt Angliyadan kelgan."
       }
     ]
@@ -1898,7 +1923,7 @@
     "examples": [
       {
         "ja": "グプタさんは インドの 会社員です。",
-        "romaji": "",
+        "romaji": "Guputa sanha indo no kaishain de su.",
         "uz": "Janob Gupta hindistonlik firma xodimi."
       }
     ]
@@ -1914,7 +1939,7 @@
     "examples": [
       {
         "ja": "インドネシアへ 旅行に 行きます。",
-        "romaji": "",
+        "romaji": "Indoneshia e ryokou ni ikimasu.",
         "uz": "Indoneziyaga sayohatga boraman."
       }
     ]
@@ -1930,7 +1955,7 @@
     "examples": [
       {
         "ja": "韓国の 料理は からいです。",
-        "romaji": "",
+        "romaji": "Kankoku no ryouri wa karaidesu.",
         "uz": "Koreys taomlari achchiq."
       }
     ]
@@ -1946,7 +1971,7 @@
     "examples": [
       {
         "ja": "タワポンさんは タイから 来ました。",
-        "romaji": "",
+        "romaji": "Tawapon sanha tai kara kima shita.",
         "uz": "Janob Tawapon Tailanddan kelgan."
       }
     ]
@@ -1962,7 +1987,7 @@
     "examples": [
       {
         "ja": "ワンさんは 中国の 医者です。",
-        "romaji": "",
+        "romaji": "Wan sanha chuugoku no isha de su.",
         "uz": "Janob Vang Xitoy shifokori."
       }
     ]
@@ -1978,7 +2003,7 @@
     "examples": [
       {
         "ja": "これは ドイツの 車です。",
-        "romaji": "",
+        "romaji": "Kore wa doitsu no kuruma de su.",
         "uz": "Bu Germaniya mashinasi."
       }
     ]
@@ -1994,7 +2019,7 @@
     "examples": [
       {
         "ja": "日本の 生活は 楽しいです。",
-        "romaji": "",
+        "romaji": "Nippon no seikatsu wa tanoshii desu.",
         "uz": "Yaponiya hayoti maroqli."
       }
     ]
@@ -2010,7 +2035,7 @@
     "examples": [
       {
         "ja": "フランスの ワインを 飲みました。",
-        "romaji": "",
+        "romaji": "Furansu no wain o nomimashita.",
         "uz": "Fransiya vinosini ichdim."
       }
     ]
@@ -2026,7 +2051,7 @@
     "examples": [
       {
         "ja": "サントスさんは ブラジル人です。",
-        "romaji": "",
+        "romaji": "Santosu sanha burajiru jindesu.",
         "uz": "Janob Santos braziliyalik."
       }
     ]
@@ -2042,7 +2067,7 @@
     "examples": [
       {
         "ja": "妹は さくら大学の 学生です。",
-        "romaji": "",
+        "romaji": "Imouto wa sakura daigaku no gakusei de su.",
         "uz": "Singlim Sakura universiteti talabasi."
       }
     ]
@@ -2058,7 +2083,7 @@
     "examples": [
       {
         "ja": "シュミットさんは パワー電気の 社員です。",
-        "romaji": "",
+        "romaji": "Shumitto sanha pawaa denki no shain de su.",
         "uz": "Janob Shmidt Power Denki xodimi."
       }
     ]
@@ -2074,7 +2099,7 @@
     "examples": [
       {
         "ja": "あの人は 神戸病院の 医者です。",
-        "romaji": "",
+        "romaji": "Anohito wa koube byouin no isha de su.",
         "uz": "Anavi kishi Kobe shifoxonasi shifokori."
       }
     ]
@@ -2090,7 +2115,7 @@
     "examples": [
       {
         "ja": "これは 日本の 本 です。",
-        "romaji": "",
+        "romaji": "Kore wa nippon no hon desu.",
         "uz": "Bu Yaponiya kitobi."
       }
     ]
@@ -2106,7 +2131,7 @@
     "examples": [
       {
         "ja": "それは 英語の 辞書 ですか。",
-        "romaji": "",
+        "romaji": "Sore wa eigo no jisho desuka.",
         "uz": "U ingliz tili lug'atimi?"
       }
     ]
@@ -2122,7 +2147,7 @@
     "examples": [
       {
         "ja": "あれは わたしのかさです。",
-        "romaji": "",
+        "romaji": "Are wa watashi no kasadesu.",
         "uz": "Anavi mening soyabonim."
       }
     ]
@@ -2138,7 +2163,7 @@
     "examples": [
       {
         "ja": "この本は わたしのです。",
-        "romaji": "",
+        "romaji": "Kono hon wa watashi no desu.",
         "uz": "Bu kitob meniki."
       }
     ]
@@ -2154,7 +2179,7 @@
     "examples": [
       {
         "ja": "その時計は スイスの 時計です。",
-        "romaji": "",
+        "romaji": "Sono tokei wa suisu no tokei de su.",
         "uz": "U soat Shveytsariya soati."
       }
     ]
@@ -2170,7 +2195,7 @@
     "examples": [
       {
         "ja": "あの車は ドイツの 自動車 です。",
-        "romaji": "",
+        "romaji": "Ano kuruma wa doitsu no jidousha desu.",
         "uz": "Anavi mashina Germaniya avtomobili."
       }
     ]
@@ -2186,7 +2211,7 @@
     "examples": [
       {
         "ja": "カメラの 雑誌を 買いました。",
-        "romaji": "",
+        "romaji": "Kamera no zasshi o kaimashita.",
         "uz": "Kamera jurnali sotib oldim."
       }
     ]
@@ -2202,7 +2227,7 @@
     "examples": [
       {
         "ja": "毎朝 新聞を 読みます。",
-        "romaji": "",
+        "romaji": "Maiasa shinbun o yomimasu.",
         "uz": "Har kuni ertalab gazeta o'qiyman."
       }
     ]
@@ -2218,7 +2243,7 @@
     "examples": [
       {
         "ja": "新しい ノートに メモを 書きます。",
-        "romaji": "",
+        "romaji": "Atarashii nooto ni memo o kakimasu.",
         "uz": "Yangi daftarga eslatma yozaman."
       }
     ]
@@ -2229,12 +2254,12 @@
     "word": "手帳",
     "reading": "てちょう",
     "romaji": "techou",
-    "meaningUz": "yon daftar",
+    "meaningUz": "Yon daftarcha, kun tartibi daftari",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "手帳に 予定を 書きます。",
-        "romaji": "",
+        "romaji": "Techou ni yotei o kakimasu.",
         "uz": "Yon daftarchaga rejalarni yozaman."
       }
     ]
@@ -2245,12 +2270,12 @@
     "word": "名刺",
     "reading": "めいし",
     "romaji": "meishi",
-    "meaningUz": "tashrif qog`ozi",
+    "meaningUz": "Tashrif qog'ozi, vizitka",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "どうぞ 名刺を お受け取りください。",
-        "romaji": "",
+        "romaji": "Douzo meishi o o uketori kudasai.",
         "uz": "Marhamat, tashrif qog'ozimni qabul qiling."
       }
     ]
@@ -2266,7 +2291,7 @@
     "examples": [
       {
         "ja": "これは わたしの 学生カードです。",
-        "romaji": "",
+        "romaji": "Kore wa watashi no gakusei kaado de su.",
         "uz": "Bu mening talabalik guvohnomam/kartochkam."
       }
     ]
@@ -2282,7 +2307,7 @@
     "examples": [
       {
         "ja": "公衆電話で テレホンカードを 使います。",
-        "romaji": "",
+        "romaji": "Koushuudenwa de terehonkaado o tsukaimasu.",
         "uz": "Ko'cha telefonida telefon kartochkasi ishlatiladi."
       }
     ]
@@ -2298,7 +2323,7 @@
     "examples": [
       {
         "ja": "鉛筆で 名前を 書いて ください。",
-        "romaji": "",
+        "romaji": "Enpitsu de namae o kai te kudasai.",
         "uz": "Qalam bilan ismingizni yozing, iltimos."
       }
     ]
@@ -2314,7 +2339,7 @@
     "examples": [
       {
         "ja": "黒い ボールペンで サインします。",
-        "romaji": "",
+        "romaji": "Kuroi boorupen de sain shimasu.",
         "uz": "Qora sharikli ruchka bilan imzo chekaman."
       }
     ]
@@ -2330,7 +2355,7 @@
     "examples": [
       {
         "ja": "この シャープペンシルは 使いやすいです。",
-        "romaji": "",
+        "romaji": "Kono shaapupenshiru wa tsukai yasuidesu.",
         "uz": "Bu avtomat qalamdan foydalanish qulay."
       }
     ]
@@ -2346,7 +2371,7 @@
     "examples": [
       {
         "ja": "部屋の かぎを かばんから 出します。",
-        "romaji": "",
+        "romaji": "Heya no kagiwo kabankara dashimasu.",
         "uz": "Xonaning kalitini sumkamdan olaman."
       }
     ]
@@ -2357,12 +2382,12 @@
     "word": "時計",
     "reading": "とけい",
     "romaji": "tokei",
-    "meaningUz": "soat",
+    "meaningUz": "Soat (qo'l yoki devor soati)",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "この 時計は 父の 時計です。",
-        "romaji": "",
+        "romaji": "Kono tokei wa chichi no tokei de su.",
         "uz": "Bu soat otamning soati."
       }
     ]
@@ -2373,12 +2398,12 @@
     "word": "傘",
     "reading": "かさ",
     "romaji": "kasa",
-    "meaningUz": "soyabon",
+    "meaningUz": "Soyabon (Umbrella)",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "雨ですから、かさを 持って 行きます。",
-        "romaji": "",
+        "romaji": "Ame de sukara, kasawo motsu te ikimasu.",
         "uz": "Yomg'ir yog'yapti, soyabon olib boraman."
       }
     ]
@@ -2394,7 +2419,7 @@
     "examples": [
       {
         "ja": "これは 軽い かばんです。",
-        "romaji": "",
+        "romaji": "Kore wa karui kabandesu.",
         "uz": "Bu yengil sumka."
       }
     ]
@@ -2410,7 +2435,7 @@
     "examples": [
       {
         "ja": "カセットテープで 日本語を 聞きました。",
-        "romaji": "",
+        "romaji": "Kasettoteepu de nihongo o kikimashita.",
         "uz": "Kasseta tasmasida yapon tilini eshitdim."
       }
     ]
@@ -2426,7 +2451,7 @@
     "examples": [
       {
         "ja": "テープレコーダーで 発音を 録音します。",
-        "romaji": "",
+        "romaji": "Teepurekoodaa de hatsuon o rokuon shimasu.",
         "uz": "Magnitafonda talaffuzni yozib olaman."
       }
     ]
@@ -2442,7 +2467,7 @@
     "examples": [
       {
         "ja": "毎晩 テレビを 見ます。",
-        "romaji": "",
+        "romaji": "Maiban terebi o mima su.",
         "uz": "Har kuni kechqurun televizor ko'raman."
       }
     ]
@@ -2458,7 +2483,7 @@
     "examples": [
       {
         "ja": "ラジオで ニュースを 聞きます。",
-        "romaji": "",
+        "romaji": "Rajio de nyuusu o kikimasu.",
         "uz": "Radioda yangiliklarni eshitaman."
       }
     ]
@@ -2474,7 +2499,7 @@
     "examples": [
       {
         "ja": "これは 新しい カメラです。",
-        "romaji": "",
+        "romaji": "Kore wa atarashii kamera de su.",
         "uz": "Bu yangi fotoapparat."
       }
     ]
@@ -2490,7 +2515,7 @@
     "examples": [
       {
         "ja": "会社の コンピューターを 使います。",
-        "romaji": "",
+        "romaji": "Kaisha no konpyuutaa o tsukaimasu.",
         "uz": "Kompaniya kompyuteridan foydalanaman."
       }
     ]
@@ -2501,12 +2526,12 @@
     "word": "自動車",
     "reading": "じどうしゃ",
     "romaji": "jidousha",
-    "meaningUz": "avtomobil",
+    "meaningUz": "Avtomobil, mashina",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "トヨタの 自動車は 有名です。",
-        "romaji": "",
+        "romaji": "Toyota no jidousha wa yuumei de su.",
         "uz": "Toyota avtomobillari mashhurdir."
       }
     ]
@@ -2517,12 +2542,12 @@
     "word": "机",
     "reading": "つくえ",
     "romaji": "tsukue",
-    "meaningUz": "stol, parta",
+    "meaningUz": "Stol, yozuv stoli (Desk)",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "机の 上に 本が あります。",
-        "romaji": "",
+        "romaji": "Tsukue no ueni hon ga arimasu.",
         "uz": "Stol ustida kitob bor."
       }
     ]
@@ -2538,7 +2563,7 @@
     "examples": [
       {
         "ja": "いすに 座って ください。",
-        "romaji": "",
+        "romaji": "Isuni suwatsu te kudasai.",
         "uz": "Stulga o'tiring, iltimos."
       }
     ]
@@ -2554,7 +2579,7 @@
     "examples": [
       {
         "ja": "友達に チョコレートを もらいました。",
-        "romaji": "",
+        "romaji": "Tomodachi ni chokoreeto o moraimashita.",
         "uz": "Do'stimdan shokolad oldim."
       }
     ]
@@ -2570,7 +2595,7 @@
     "examples": [
       {
         "ja": "毎朝 熱い コーヒーを 飲みます。",
-        "romaji": "",
+        "romaji": "Maiasa atsui koohii o nomimasu.",
         "uz": "Har ertalab qaynoq kofe ichaman."
       }
     ]
@@ -2586,7 +2611,7 @@
     "examples": [
       {
         "ja": "スミスさんは 英語の 先生です。",
-        "romaji": "",
+        "romaji": "Sumisu sanha eigo no sensei de su.",
         "uz": "Janob Smit ingliz tili o'qituvchisi."
       }
     ]
@@ -2602,7 +2627,7 @@
     "examples": [
       {
         "ja": "毎日 日本語を 一生懸命 勉強します。",
-        "romaji": "",
+        "romaji": "Mainichi nihongo o isshoukenmei benkyou shimasu.",
         "uz": "Har kuni yapon tilini astoydil o'rganaman."
       }
     ]
@@ -2618,7 +2643,7 @@
     "examples": [
       {
         "ja": "ウズベク語を 話すことが できます。",
-        "romaji": "",
+        "romaji": "Uzubeku go o hanasu kotoga dekimasu.",
         "uz": "O'zbek tilida gaplasha olaman."
       }
     ]
@@ -2633,9 +2658,14 @@
     "partOfSpeech": "Fe'l",
     "examples": [
       {
-        "ja": "はい、その 通り そうです。",
-        "romaji": "",
-        "uz": "Ha, xuddi shunday."
+        "ja": "本当にそう。",
+        "romaji": "hontou nisou .",
+        "uz": "You can't be so sure."
+      },
+      {
+        "ja": "晴れそうだ。",
+        "romaji": "hare souda .",
+        "uz": "The sky is likely to clear up."
       }
     ]
   },
@@ -2650,7 +2680,7 @@
     "examples": [
       {
         "ja": "いいえ、違います。それは 辞書です。",
-        "romaji": "",
+        "romaji": "Iie, chigaimasu. sore wa jisho de su.",
         "uz": "Yo'q, unday emas. U lug'at."
       }
     ]
@@ -2666,7 +2696,7 @@
     "examples": [
       {
         "ja": "そうですか。よく わかりました。",
-        "romaji": "",
+        "romaji": "Soudesuka. yoku wakarimashita.",
         "uz": "Shundaymi? Yaxshi tushundim."
       }
     ]
@@ -2682,7 +2712,7 @@
     "examples": [
       {
         "ja": "あのう、すみません。駅は どちらですか。",
-        "romaji": "",
+        "romaji": "Anou, sumimasen. eki wa dochiradesuka.",
         "uz": "Haligi, kechirasiz. Bekat qaysi tomonda?"
       }
     ]
@@ -2698,7 +2728,7 @@
     "examples": [
       {
         "ja": "これは ほんの 気持ちです。どうぞ。",
-        "romaji": "",
+        "romaji": "Kore wa honno kimochi desu. douzo.",
         "uz": "Bu arzimagan sovg'am. Marhamat."
       }
     ]
@@ -2714,7 +2744,7 @@
     "examples": [
       {
         "ja": "どうぞ お入り ください。",
-        "romaji": "",
+        "romaji": "Douzo o iri kudasai.",
         "uz": "Marhamat, kiring."
       }
     ]
@@ -2730,7 +2760,7 @@
     "examples": [
       {
         "ja": "どうも ありがとうございました。",
-        "romaji": "",
+        "romaji": "Doumo arigatougozaimashita.",
         "uz": "Katta rahmat."
       }
     ]
@@ -2746,7 +2776,7 @@
     "examples": [
       {
         "ja": "親切に 教えてくれて、どうも ありがとうございます。",
-        "romaji": "",
+        "romaji": "Shinsetsu ni oshie tekurete, doumo arigatougozaimasu.",
         "uz": "Mehribonlik bilan o'rgatganingiz uchun katta rahmat."
       }
     ]
@@ -2762,7 +2792,7 @@
     "examples": [
       {
         "ja": "新入社員の ミラーです。これから お世話に なります。",
-        "romaji": "",
+        "romaji": "Shinnyuushain no miraa desu. korekara o sewa ni narimasu.",
         "uz": "Yangi xodim Millerman. Bundan buyon mehr va yordamingizga muhtojman."
       }
     ]
@@ -2778,7 +2808,7 @@
     "examples": [
       {
         "ja": "こちらこそ、どうぞ よろしく お願いします。",
-        "romaji": "",
+        "romaji": "Kochirakoso, douzo yoroshiku o negai shimasu.",
         "uz": "Men ham siz bilan tanishganimdan bag'oyat mamnunman."
       }
     ]
@@ -2794,7 +2824,7 @@
     "examples": [
       {
         "ja": "ここは 教室 です。",
-        "romaji": "",
+        "romaji": "Koko wa kyoushitsu desu.",
         "uz": "Bu yer darsxona."
       }
     ]
@@ -2810,7 +2840,7 @@
     "examples": [
       {
         "ja": "そこは 食堂 です。",
-        "romaji": "",
+        "romaji": "Soko wa shokudou desu.",
         "uz": "U yer oshxona."
       }
     ]
@@ -2826,7 +2856,7 @@
     "examples": [
       {
         "ja": "あそこは 事務所 です。",
-        "romaji": "",
+        "romaji": "Asoko wa jimusho desu.",
         "uz": "Anavi yer idora."
       }
     ]
@@ -2842,7 +2872,7 @@
     "examples": [
       {
         "ja": "こちらは わたしの 親友の サントスさんです。",
-        "romaji": "",
+        "romaji": "Kochiraha watashi no shinyuu no santosu sandesu.",
         "uz": "Bu kishi mening qadrdon do'stim janob Santos."
       }
     ]
@@ -2858,7 +2888,7 @@
     "examples": [
       {
         "ja": "エレベーターは そちらで ございます。",
-        "romaji": "",
+        "romaji": "Erebeetaa wa sochirade gozaimasu.",
         "uz": "Lift u tomonda."
       }
     ]
@@ -2874,7 +2904,7 @@
     "examples": [
       {
         "ja": "電話は あちらに ございます。",
-        "romaji": "",
+        "romaji": "Denwa wa achirani gozaimasu.",
         "uz": "Telefon ana u tarafda."
       }
     ]
@@ -2890,7 +2920,7 @@
     "examples": [
       {
         "ja": "お手洗いは どちらで ございますか。",
-        "romaji": "",
+        "romaji": "O tearai wa dochirade gozaimasuka.",
         "uz": "Hojatxona qaysi tomonda?"
       }
     ]
@@ -2901,12 +2931,12 @@
     "word": "食堂",
     "reading": "しょくどう",
     "romaji": "shokudou",
-    "meaningUz": "oshxona",
+    "meaningUz": "Oshxona, tamaddixona",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "学生食堂で 昼ご飯を 食べます。",
-        "romaji": "",
+        "romaji": "Gakusei shokudou de hiru go meshi o tabemasu.",
         "uz": "Talabalar oshxonasida tushlik qilaman."
       }
     ]
@@ -2917,13 +2947,18 @@
     "word": "事務所",
     "reading": "じむしょ",
     "romaji": "jimusho",
-    "meaningUz": "idora, ofis",
+    "meaningUz": "Hasharot (Office)",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "事務所で 書類を もらいました。",
-        "romaji": "",
-        "uz": "Idoradan hujjatlarni oldim."
+        "ja": "事務所にいます。",
+        "romaji": "jimusho niimasu .",
+        "uz": "I'm in my office."
+      },
+      {
+        "ja": "彼は事務所にいない。",
+        "romaji": "kareha jimusho niinai .",
+        "uz": "He is out of the office."
       }
     ]
   },
@@ -2933,12 +2968,12 @@
     "word": "会議室",
     "reading": "かいぎしつ",
     "romaji": "kaigishitsu",
-    "meaningUz": "majlislar zali",
+    "meaningUz": "majlislar zali, yig'ilish xonasi",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "3階の 会議室で ミーティングを します。",
-        "romaji": "",
+        "romaji": "3 kai no kaigishitsu de miiteingu o shimasu.",
         "uz": "3-qavatdagi majlislar xonasida yig'ilish o'tkazamiz."
       }
     ]
@@ -2949,12 +2984,12 @@
     "word": "受付",
     "reading": "うけつけ",
     "romaji": "uketsuke",
-    "meaningUz": "qabulxona",
+    "meaningUz": "Qabulxona, registratsiya",
     "partOfSpeech": "Olmosh",
     "examples": [
       {
         "ja": "受付で 部屋の かぎを もらいます。",
-        "romaji": "",
+        "romaji": "Uketsuke de heya no kagiwo moraimasu.",
         "uz": "Qabulxonadan xona kalitini olaman."
       }
     ]
@@ -2970,7 +3005,7 @@
     "examples": [
       {
         "ja": "1階の ロビーで 待ち合わせましょう。",
-        "romaji": "",
+        "romaji": "1 kai no robii de machiawase mashou.",
         "uz": "1-qavat kutilish zalida uchrashaylik."
       }
     ]
@@ -2986,7 +3021,7 @@
     "examples": [
       {
         "ja": "すみません、お手洗いは どこですか。",
-        "romaji": "",
+        "romaji": "Sumimasen, o tearai wa dokodesuka.",
         "uz": "Kechirasiz, hojatxona qayerda?"
       }
     ]
@@ -2997,12 +3032,12 @@
     "word": "階段",
     "reading": "かいだん",
     "romaji": "kaidan",
-    "meaningUz": "zina",
+    "meaningUz": "Zina, zinapoya",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "階段を 使いましょう。",
-        "romaji": "",
+        "romaji": "Kaidan o tsukai mashou.",
         "uz": "Keling, zinadan foydalanamiz."
       }
     ]
@@ -3018,7 +3053,7 @@
     "examples": [
       {
         "ja": "エレベーターで 5階へ 上がります。",
-        "romaji": "",
+        "romaji": "Erebeetaa de 5 kai e ue ga rimasu.",
         "uz": "Lift bilan 5-qavatga ko'tarilaman."
       }
     ]
@@ -3034,7 +3069,7 @@
     "examples": [
       {
         "ja": "エスカレーターで 2階へ 上がります。",
-        "romaji": "",
+        "romaji": "Esukareetaa de 2 kai e ue ga rimasu.",
         "uz": "Eskalatorda 2-qavatga ko'tarilaman."
       }
     ]
@@ -3050,7 +3085,7 @@
     "examples": [
       {
         "ja": "お国は どちらですか。",
-        "romaji": "",
+        "romaji": "O kuni wa dochiradesuka.",
         "uz": "Vataningiz qayerda?"
       }
     ]
@@ -3061,13 +3096,18 @@
     "word": "うち",
     "reading": "うち",
     "romaji": "uchi",
-    "meaningUz": "uy",
+    "meaningUz": "Ichida, fursatida (Within)",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "6時に うちへ 帰ります。",
-        "romaji": "",
-        "uz": "Soat 6 da uyga qaytaman."
+        "ja": "うちの旦那。",
+        "romaji": "uchino danna .",
+        "uz": "He is my husband."
+      },
+      {
+        "ja": "うちにいます。",
+        "romaji": "uchiniimasu .",
+        "uz": "I am at home."
       }
     ]
   },
@@ -3082,7 +3122,7 @@
     "examples": [
       {
         "ja": "あそこに 公衆電話が あります。",
-        "romaji": "",
+        "romaji": "Asoko ni koushuudenwa ga arimasu.",
         "uz": "Ana u yerda umumiy telefon bor."
       }
     ]
@@ -3093,12 +3133,12 @@
     "word": "靴",
     "reading": "くつ",
     "romaji": "kutsu",
-    "meaningUz": "poyafzal",
+    "meaningUz": "Poyabzal, poyafzal (Shoes)",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "デパートで 新しい 靴を 買いました。",
-        "romaji": "",
+        "romaji": "Depaato de atarashii kutsu o kaimashita.",
         "uz": "Universamda yangi poyafzal sotib oldim."
       }
     ]
@@ -3114,7 +3154,7 @@
     "examples": [
       {
         "ja": "すてきな ネクタイを しめて います。",
-        "romaji": "",
+        "romaji": "Sutekina nekutai o shimete imasu.",
         "uz": "Ajoyib bo'yinbog' taqib olgan."
       }
     ]
@@ -3130,7 +3170,7 @@
     "examples": [
       {
         "ja": "イタリアの おいしい ワインを 飲みました。",
-        "romaji": "",
+        "romaji": "Itaria no oishii wain o nomimashita.",
         "uz": "Italiyaning mazali vinosini ichdim."
       }
     ]
@@ -3146,7 +3186,7 @@
     "examples": [
       {
         "ja": "ここで たばこを 吸わないで ください。",
-        "romaji": "",
+        "romaji": "Kokode tabakowo suwa naide kudasai.",
         "uz": "Bu yerda tamaki chekmang, iltimos."
       }
     ]
@@ -3161,9 +3201,14 @@
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "ネクタイ売り場は 2階に あります。",
-        "romaji": "",
-        "uz": "Galstuk bo'limi 2-qavatda."
+        "ja": "切符売り場はどこですか。",
+        "romaji": "kippu uriba hadokodesuka .",
+        "uz": "Where is the ticket window?"
+      },
+      {
+        "ja": "切符売り場はどこですか？",
+        "romaji": "kippu uriba hadokodesuka ？",
+        "uz": "Where's the ticket counter?"
       }
     ]
   },
@@ -3178,7 +3223,7 @@
     "examples": [
       {
         "ja": "地下に 食料品売り場が あります。",
-        "romaji": "",
+        "romaji": "Chika ni shokuryouhin'uri ri ba ga arimasu.",
         "uz": "Yerto'la qavatida oziq-ovqat bo'limi bor."
       }
     ]
@@ -3194,7 +3239,7 @@
     "examples": [
       {
         "ja": "会議室は 3階に あります。",
-        "romaji": "",
+        "romaji": "Kaigishitsu wa 3 kai ni arimasu.",
         "uz": "Majlislar xonasi 3-qavatda."
       }
     ]
@@ -3210,7 +3255,7 @@
     "examples": [
       {
         "ja": "事務所は 何階ですか。",
-        "romaji": "",
+        "romaji": "Jimusho wa nankai de suka.",
         "uz": "Ofis nechanchi qavatda?"
       }
     ]
@@ -3226,7 +3271,7 @@
     "examples": [
       {
         "ja": "この 本は 1,500円です。",
-        "romaji": "",
+        "romaji": "Kono hon wa 1, 500 en de su.",
         "uz": "Bu kitob 1500 iyen."
       }
     ]
@@ -3242,7 +3287,7 @@
     "examples": [
       {
         "ja": "この ネクタイは いくらですか。",
-        "romaji": "",
+        "romaji": "Kono nekutai wa ikuradesuka.",
         "uz": "Bu bo'yinbog' (galstuk) qancha turadi?"
       }
     ]
@@ -3258,7 +3303,7 @@
     "examples": [
       {
         "ja": "百円の パンを 買いました。",
-        "romaji": "",
+        "romaji": "Hyakuen no pan o kaimashita.",
         "uz": "100 iyenlik non sotib oldim."
       }
     ]
@@ -3274,7 +3319,7 @@
     "examples": [
       {
         "ja": "千円札を 出しました。",
-        "romaji": "",
+        "romaji": "Sen'ensatsu o dashimashita.",
         "uz": "Ming iyenlik qog'oz pul berdim."
       }
     ]
@@ -3290,7 +3335,7 @@
     "examples": [
       {
         "ja": "この カメラは 三万円でした。",
-        "romaji": "",
+        "romaji": "Kono kamera wa sanman en de shita.",
         "uz": "Bu fotoapparat 30 000 iyen edi."
       }
     ]
@@ -3306,7 +3351,7 @@
     "examples": [
       {
         "ja": "すみません、駅は どちらですか。",
-        "romaji": "",
+        "romaji": "Sumimasen, eki wa dochiradesuka.",
         "uz": "Kechirasiz, bekat qaysi tomonda?"
       }
     ]
@@ -3322,7 +3367,7 @@
     "examples": [
       {
         "ja": "靴売り場は 2階で ございます。",
-        "romaji": "",
+        "romaji": "Kutsu uriba wa 2 kai de gozaimasu.",
         "uz": "Poyafzal bo'limi 2-qavatda."
       }
     ]
@@ -3338,7 +3383,7 @@
     "examples": [
       {
         "ja": "その 黒い 靴を 見せて ください。",
-        "romaji": "",
+        "romaji": "Sono kuroi kutsu o mise te kudasai.",
         "uz": "U qora poyafzalni ko'rsating, iltimos."
       }
     ]
@@ -3354,7 +3399,7 @@
     "examples": [
       {
         "ja": "じゃ、その ワインを ください。",
-        "romaji": "",
+        "romaji": "Ja, sono wain o kudasai.",
         "uz": "U holda ana u vinoni bering."
       }
     ]
@@ -3370,7 +3415,7 @@
     "examples": [
       {
         "ja": "この りんごを ください。",
-        "romaji": "",
+        "romaji": "Kono ringowo kudasai.",
         "uz": "Bu olmani bering."
       }
     ]
@@ -3386,7 +3431,7 @@
     "examples": [
       {
         "ja": "新幹線で 新大阪へ 行きます。",
-        "romaji": "",
+        "romaji": "Shinkansen de shin'oosaka e ikimasu.",
         "uz": "Shinkansen bilan Shin-Osakaga boraman."
       }
     ]
@@ -3402,7 +3447,7 @@
     "examples": [
       {
         "ja": "イタリアの 料理が 大好きです。",
-        "romaji": "",
+        "romaji": "Itaria no ryouri ga daisuki desu.",
         "uz": "Italiya taomlarini juda yoqtiraman."
       }
     ]
@@ -3418,7 +3463,7 @@
     "examples": [
       {
         "ja": "これは スイスの 有名な 時計です。",
-        "romaji": "",
+        "romaji": "Kore wa suisu no yuumei na tokei de su.",
         "uz": "Bu Shveytsariyaning mashhur soati."
       }
     ]
@@ -3434,7 +3479,7 @@
     "examples": [
       {
         "ja": "アキックスは 靴の ブランドです。",
-        "romaji": "",
+        "romaji": "Akikkusu wa kutsu no burando de su.",
         "uz": "Akiksu poyafzal brendidir."
       }
     ]
@@ -3450,7 +3495,7 @@
     "examples": [
       {
         "ja": "毎朝 6時に 起きます。",
-        "romaji": "",
+        "romaji": "Maiasa 6 tokini okimasu.",
         "uz": "Har kuni ertalab soat 6 da uyg'onaman."
       }
     ]
@@ -3466,7 +3511,7 @@
     "examples": [
       {
         "ja": "夜 11時に 寝ます。",
-        "romaji": "",
+        "romaji": "Yoru 11 tokini nema su.",
         "uz": "Kechasi soat 11 da uxlayman."
       }
     ]
@@ -3482,7 +3527,7 @@
     "examples": [
       {
         "ja": "月曜日から 金曜日まで 働きます。",
-        "romaji": "",
+        "romaji": "Getsuyoubi kara kinyoubi made hatarakimasu.",
         "uz": "Dushanbadan jumagacha ishlayman."
       }
     ]
@@ -3498,7 +3543,7 @@
     "examples": [
       {
         "ja": "日曜日に 休みます。",
-        "romaji": "",
+        "romaji": "Nichiyoubi ni yasumimasu.",
         "uz": "Yakshanba kuni dam olaman."
       }
     ]
@@ -3514,7 +3559,7 @@
     "examples": [
       {
         "ja": "図書館で 日本語を 勉強します。",
-        "romaji": "",
+        "romaji": "Toshokan de nihongo o benkyou shimasu.",
         "uz": "Kutubxonada yapon tilini o'rganaman."
       }
     ]
@@ -3530,7 +3575,7 @@
     "examples": [
       {
         "ja": "授業は 5時に 終わります。",
-        "romaji": "",
+        "romaji": "Jugyou wa 5 tokini owarimasu.",
         "uz": "Dars soat 5 da tugaydi."
       }
     ]
@@ -3546,7 +3591,7 @@
     "examples": [
       {
         "ja": "デパートは 朝 10時から 開きます。",
-        "romaji": "",
+        "romaji": "Depaato wa asa 10 toki kara hirakimasu.",
         "uz": "Universam ertalab soat 10 dan ochiladi."
       }
     ]
@@ -3562,7 +3607,7 @@
     "examples": [
       {
         "ja": "銀行は 9時から 3時までです。",
-        "romaji": "",
+        "romaji": "Ginkou wa 9 toki kara 3 toki made desu.",
         "uz": "Bank soat 9 dan 3 gacha ishlaydi."
       }
     ]
@@ -3578,7 +3623,7 @@
     "examples": [
       {
         "ja": "郵便局で 切手を 買います。",
-        "romaji": "",
+        "romaji": "Yuubinkyoku de kitte o kaimasu.",
         "uz": "Pochtada pochta markasi sotib olaman."
       }
     ]
@@ -3589,13 +3634,18 @@
     "word": "美術館",
     "reading": "びじゅつかん",
     "romaji": "bijutsukan",
-    "meaningUz": "badiiy san’at muzeyi",
+    "meaningUz": "san'at muzeyi / galereyasi",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "上野の 美術館へ 行きました。",
-        "romaji": "",
-        "uz": "Uenodagi san'at muzeyiga bordim."
+        "ja": "俺たちは美術館に行った。",
+        "romaji": "ore tachiha bijutsukan ni itta .",
+        "uz": "We went to the museum."
+      },
+      {
+        "ja": "今日は美術館に行くんだ。",
+        "romaji": "konnichiha bijutsukan ni iku nda .",
+        "uz": "I'll go to a museum today."
       }
     ]
   },
@@ -3610,7 +3660,7 @@
     "examples": [
       {
         "ja": "今 午前 9時です。",
-        "romaji": "",
+        "romaji": "Ima gozen 9 toki de su.",
         "uz": "Hozir ertalab soat 9."
       }
     ]
@@ -3626,7 +3676,7 @@
     "examples": [
       {
         "ja": "会議は 15分で 終わります。",
-        "romaji": "",
+        "romaji": "Kaigi wa 15 fun de owarimasu.",
         "uz": "Yig'ilish 15 daqiqada tugaydi."
       }
     ]
@@ -3642,7 +3692,7 @@
     "examples": [
       {
         "ja": "毎朝 6時半に 起きます。",
-        "romaji": "",
+        "romaji": "Maiasa 6 jihan ni okimasu.",
         "uz": "Har kuni ertalab 6 yarimda uyg'onaman."
       }
     ]
@@ -3658,7 +3708,7 @@
     "examples": [
       {
         "ja": "今 何時ですか。",
-        "romaji": "",
+        "romaji": "Ima nanji de suka.",
         "uz": "Hozir soat necha?"
       }
     ]
@@ -3674,7 +3724,7 @@
     "examples": [
       {
         "ja": "電車は 何分に 出ますか。",
-        "romaji": "",
+        "romaji": "Densha wa nanpun ni dema suka.",
         "uz": "Poyezd necha daqiqada jo'naydi?"
       }
     ]
@@ -3690,7 +3740,7 @@
     "examples": [
       {
         "ja": "午前の 授業は 9時から 12時までです。",
-        "romaji": "",
+        "romaji": "Gozen no jugyou wa 9 toki kara 12 toki made desu.",
         "uz": "Ertalabki dars 9 dan 12 gacha."
       }
     ]
@@ -3706,7 +3756,7 @@
     "examples": [
       {
         "ja": "午後は 図書館で 本を 読みます。",
-        "romaji": "",
+        "romaji": "Gogo wa toshokan de hon o yomimasu.",
         "uz": "Tushdan keyin kutubxonada kitob o'qiyman."
       }
     ]
@@ -3722,7 +3772,7 @@
     "examples": [
       {
         "ja": "晩 8時に 家へ 帰って テレビを 見ます。",
-        "romaji": "",
+        "romaji": "Ban 8 tokini ie e kaetsu te terebi o mima su.",
         "uz": "Kechqurun soat 8 da uyga qaytib televizor ko'raman."
       }
     ]
@@ -3737,9 +3787,14 @@
     "partOfSpeech": "Sifat",
     "examples": [
       {
-        "ja": "おととい 友達と 映画を 見ました。",
-        "romaji": "",
-        "uz": "Kechadan oldingi kuni do'stim bilan kino ko'rdim."
+        "ja": "おとといきやがれ！",
+        "romaji": "ototoikiyagare !",
+        "uz": "Don't you ever come here again!"
+      },
+      {
+        "ja": "おとといは嵐だった。",
+        "romaji": "ototoiha arashi datta .",
+        "uz": "It was stormy the day before yesterday."
       }
     ]
   },
@@ -3754,7 +3809,7 @@
     "examples": [
       {
         "ja": "きのう 図書館で 日本語を 3時間 勉強しました。",
-        "romaji": "",
+        "romaji": "Kinou toshokan de nihongo o 3 jikan benkyou shimashita.",
         "uz": "Kecha kutubxonada yapon tilini 3 soat o'rgandim."
       }
     ]
@@ -3770,7 +3825,7 @@
     "examples": [
       {
         "ja": "きょうは 朝から とても いい 天気です。",
-        "romaji": "",
+        "romaji": "Kyouha asa kara totemo ii tenki de su.",
         "uz": "Bugun ertalabdan ob-havo juda yaxshi."
       }
     ]
@@ -3786,7 +3841,7 @@
     "examples": [
       {
         "ja": "あした 東京へ 出張します。",
-        "romaji": "",
+        "romaji": "Ashita toukyou e shutchou shimasu.",
         "uz": "Ertaga Tokioga xizmat safariga boraman."
       }
     ]
@@ -3802,7 +3857,7 @@
     "examples": [
       {
         "ja": "あさって 日本語の 試験が あります。",
-        "romaji": "",
+        "romaji": "Asatte nihongo no shiken ga arimasu.",
         "uz": "Indinga yapon tili imtihoni bor."
       }
     ]
@@ -3818,7 +3873,7 @@
     "examples": [
       {
         "ja": "けさ パンと 果物を 食べました。",
-        "romaji": "",
+        "romaji": "Kesa pan to kudamono o tabemashita.",
         "uz": "Bugun ertalab non va meva yedim."
       }
     ]
@@ -3834,7 +3889,7 @@
     "examples": [
       {
         "ja": "今晩 テレビで サッカーを 見ます。",
-        "romaji": "",
+        "romaji": "Konban terebi de sakkaa o mima su.",
         "uz": "Bugun oqshom televizorda futbol ko'raman."
       }
     ]
@@ -3850,7 +3905,7 @@
     "examples": [
       {
         "ja": "会社の 休みは 土曜日と 日曜日です。",
-        "romaji": "",
+        "romaji": "Kaisha no yasumi wa doyoubi to nichiyoubi de su.",
         "uz": "Kompaniyaning dam olish kunlari shanba va yakshanba."
       }
     ]
@@ -3865,9 +3920,14 @@
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "昼休みに 友達と 食堂へ 行きます。",
-        "romaji": "",
-        "uz": "Tushlik tanaffusida do'stim bilan oshxonaga boraman."
+        "ja": "お昼休みはいつ？",
+        "romaji": "o hiruyasumi haitsu ？",
+        "uz": "When is your lunch break?"
+      },
+      {
+        "ja": "お昼休みは、１時間です。",
+        "romaji": "o hiruyasumi ha , 1 jikan desu .",
+        "uz": "Lunch break is an hour long."
       }
     ]
   },
@@ -3882,7 +3942,7 @@
     "examples": [
       {
         "ja": "毎朝 新聞を 読んでから 会社へ 行きます。",
-        "romaji": "",
+        "romaji": "Maiasa shinbun o yonde kara kaisha e ikimasu.",
         "uz": "Har ertalab gazeta o'qib, keyin ishga boraman."
       }
     ]
@@ -3898,7 +3958,7 @@
     "examples": [
       {
         "ja": "毎晩 11時に 布団に 入ります。",
-        "romaji": "",
+        "romaji": "Maiban 11 tokini futon ni irimasu.",
         "uz": "Har kecha soat 11 da o'ringa yotaman."
       }
     ]
@@ -3914,7 +3974,7 @@
     "examples": [
       {
         "ja": "月曜日から 金曜日まで 働きます。",
-        "romaji": "",
+        "romaji": "Getsuyoubi kara kinyoubi made hatarakimasu.",
         "uz": "Dushanbadan jumagacha ishlayman."
       }
     ]
@@ -3930,7 +3990,7 @@
     "examples": [
       {
         "ja": "火曜日は 日本語の 授業が あります。",
-        "romaji": "",
+        "romaji": "Kayoubi wa nihongo no jugyou ga arimasu.",
         "uz": "Seshanba kuni yapon tili darsi bor."
       }
     ]
@@ -3946,7 +4006,7 @@
     "examples": [
       {
         "ja": "水曜日の 午後は 休みです。",
-        "romaji": "",
+        "romaji": "Suiyoubi no gogo wa yasumi desu.",
         "uz": "Chorshanba tushdan keyin dam olish."
       }
     ]
@@ -3962,7 +4022,7 @@
     "examples": [
       {
         "ja": "木曜日に 病院へ 行きます。",
-        "romaji": "",
+        "romaji": "Mokuyoubi ni byouin e ikimasu.",
         "uz": "Payshanba kuni shifoxonaga boraman."
       }
     ]
@@ -3978,7 +4038,7 @@
     "examples": [
       {
         "ja": "金曜日の 夜 友達と 会います。",
-        "romaji": "",
+        "romaji": "Kinyoubi no yoru tomodachi to aimasu.",
         "uz": "Juma oqshomi do'stim bilan ko'rishaman."
       }
     ]
@@ -3994,7 +4054,7 @@
     "examples": [
       {
         "ja": "土曜日に 部屋を 掃除します。",
-        "romaji": "",
+        "romaji": "Doyoubi ni heya o souji shimasu.",
         "uz": "Shanba kuni xonani tozalayman."
       }
     ]
@@ -4010,7 +4070,7 @@
     "examples": [
       {
         "ja": "日曜日は 家族と 過ごします。",
-        "romaji": "",
+        "romaji": "Nichiyoubi wa kazoku to sugo shimasu.",
         "uz": "Yakshanba kuni oilam bilan vaqt o'tkazaman."
       }
     ]
@@ -4026,7 +4086,7 @@
     "examples": [
       {
         "ja": "きょうは 何曜日ですか。",
-        "romaji": "",
+        "romaji": "Kyouha nanyoubi de suka.",
         "uz": "Bugun haftaning qaysi kuni?"
       }
     ]
@@ -4037,12 +4097,12 @@
     "word": "番号",
     "reading": "ばんごう",
     "romaji": "bangou",
-    "meaningUz": "raqam",
+    "meaningUz": "Raqam, nomer",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "あなたの 携帯電話の 番号を 教えて ください。",
-        "romaji": "",
+        "romaji": "Anata no keitaidenwa no bangou o oshie te kudasai.",
         "uz": "Mobil telefoningiz raqamini ayting, iltimos."
       }
     ]
@@ -4058,7 +4118,7 @@
     "examples": [
       {
         "ja": "あなたの 電話番号は 何番ですか。",
-        "romaji": "",
+        "romaji": "Anata no denwabangou wa nanban de suka.",
         "uz": "Telefon raqamingiz necha?"
       }
     ]
@@ -4074,7 +4134,7 @@
     "examples": [
       {
         "ja": "時間が ありませんから、タクシーで 行きましょう。",
-        "romaji": "",
+        "romaji": "Jikan ga arimasenkara, takushii de iki mashou.",
         "uz": "Vaqt yo'q, shuning uchun taksida boraylik."
       }
     ]
@@ -4090,7 +4150,7 @@
     "examples": [
       {
         "ja": "郵便局は 5時までです。",
-        "romaji": "",
+        "romaji": "Yuubinkyoku wa 5 toki made desu.",
         "uz": "Pochta soat 5 gacha ishlaydi."
       }
     ]
@@ -4106,7 +4166,7 @@
     "examples": [
       {
         "ja": "机の 上に 本と ペンが あります。",
-        "romaji": "",
+        "romaji": "Tsukue no ueni hon to pen ga arimasu.",
         "uz": "Stol ustida kitob va ruchka bor."
       }
     ]
@@ -4122,7 +4182,7 @@
     "examples": [
       {
         "ja": "残業ですか。大変ですね。",
-        "romaji": "",
+        "romaji": "Zangyou de suka. taihen de sune.",
         "uz": "Qo'shimcha ishmi? Qiyin bo'libdi-ya."
       }
     ]
@@ -4138,7 +4198,7 @@
     "examples": [
       {
         "ja": "えーと、何時に 会いましょうか。",
-        "romaji": "",
+        "romaji": "Eeto, nanji ni ai mashouka.",
         "uz": "Xo'sh, soat nechada ko'rishaylik?"
       }
     ]
@@ -4154,7 +4214,7 @@
     "examples": [
       {
         "ja": "電話番号を 104で 調べます。",
-        "romaji": "",
+        "romaji": "Denwabangou o 104 de shirabemasu.",
         "uz": "Telefon raqamini 104 xizmatidan bilib olaman."
       }
     ]
@@ -4170,7 +4230,7 @@
     "examples": [
       {
         "ja": "かしこまりました。少々 お待ちください。",
-        "romaji": "",
+        "romaji": "Kashikomarimashita. shoushou o machi kudasai.",
         "uz": "Xo'p bo'ladi, bir oz kutib turing."
       }
     ]
@@ -4186,7 +4246,7 @@
     "examples": [
       {
         "ja": "お問い合わせの番号は 03-1234-5678です。",
-        "romaji": "",
+        "romaji": "O toiawase no bangou wa 03-1234-5678 de su.",
         "uz": "So'ralgan raqam 03-1234-5678."
       }
     ]
@@ -4202,7 +4262,7 @@
     "examples": [
       {
         "ja": "親切に 教えてくれて、どうも ありがとうございました。",
-        "romaji": "",
+        "romaji": "Shinsetsu ni oshie tekurete, doumo arigatougozaimashita.",
         "uz": "Mehribonlik bilan tushuntirganingiz uchun katta rahmat."
       }
     ]
@@ -4218,7 +4278,7 @@
     "examples": [
       {
         "ja": "ニューヨークは 今 午前 4時です。",
-        "romaji": "",
+        "romaji": "Nyuuyooku wa ima gozen 4 toki de su.",
         "uz": "Nyu-Yorkda hozir ertalab soat 4."
       }
     ]
@@ -4234,7 +4294,7 @@
     "examples": [
       {
         "ja": "ペキンは 中国の 首都です。",
-        "romaji": "",
+        "romaji": "Pekin wa chuugoku no shuto de su.",
         "uz": "Pekin Xitoyning poytaxti."
       }
     ]
@@ -4250,7 +4310,7 @@
     "examples": [
       {
         "ja": "ロンドンは 雨が 多いです。",
-        "romaji": "",
+        "romaji": "Rondon wa ame ga ooi desu.",
         "uz": "Londonda yomg'ir ko'p yog'adi."
       }
     ]
@@ -4266,7 +4326,7 @@
     "examples": [
       {
         "ja": "バンコクは とても 暑いです。",
-        "romaji": "",
+        "romaji": "Bankoku wa totemo atsui desu.",
         "uz": "Bangkok juda issiq."
       }
     ]
@@ -4282,7 +4342,7 @@
     "examples": [
       {
         "ja": "ロサンゼルスへ 飛行機で 行きます。",
-        "romaji": "",
+        "romaji": "Rosanzerusu e hikouki de ikimasu.",
         "uz": "Los-Anjelesga samolyotda boraman."
       }
     ]
@@ -4298,7 +4358,7 @@
     "examples": [
       {
         "ja": "あした やまと美術館へ 行きます。",
-        "romaji": "",
+        "romaji": "Ashita yamato bijutsukan e ikimasu.",
         "uz": "Ertaga Yamato san'at muzeyiga boraman."
       }
     ]
@@ -4314,7 +4374,7 @@
     "examples": [
       {
         "ja": "大阪デパートで お土産を 買いました。",
-        "romaji": "",
+        "romaji": "Oosaka depaato de o miyage o kaimashita.",
         "uz": "Osaka universamida sovg'a sotib oldim."
       }
     ]
@@ -4330,7 +4390,7 @@
     "examples": [
       {
         "ja": "みどり図書館は 月曜日が 休みです。",
-        "romaji": "",
+        "romaji": "Midori toshokan wa getsuyoubi ga yasumi desu.",
         "uz": "Midori kutubxonasi dushanba kuni dam oladi."
       }
     ]
@@ -4346,7 +4406,7 @@
     "examples": [
       {
         "ja": "アップル銀行で お金を 下ろします。",
-        "romaji": "",
+        "romaji": "Appuru ginkou de o kin o kudaro shimasu.",
         "uz": "Apple bankidan pul yechaman."
       }
     ]
@@ -4362,7 +4422,7 @@
     "examples": [
       {
         "ja": "あした 京都へ 行きます。",
-        "romaji": "",
+        "romaji": "Ashita kyouto e ikimasu.",
         "uz": "Ertaga Kiotoga boraman."
       }
     ]
@@ -4378,7 +4438,7 @@
     "examples": [
       {
         "ja": "友達が うちへ 来ました。",
-        "romaji": "",
+        "romaji": "Tomodachi ga uchihe kima shita.",
         "uz": "Do'stim uyimga keldi."
       }
     ]
@@ -4394,7 +4454,7 @@
     "examples": [
       {
         "ja": "午後 7時に 国へ 帰ります。",
-        "romaji": "",
+        "romaji": "Gogo 7 tokini kuni e kaerimasu.",
         "uz": "Kechqurun soat 7 da yurtimga qaytaman."
       }
     ]
@@ -4410,7 +4470,7 @@
     "examples": [
       {
         "ja": "駅の前の スーパーで 買い物を します。",
-        "romaji": "",
+        "romaji": "Eki no mae no suupaa de kaimono o shimasu.",
         "uz": "Bekat oldidagi supermarketda xarid qilaman."
       }
     ]
@@ -4426,7 +4486,7 @@
     "examples": [
       {
         "ja": "飛行機で 10時間 かかります。",
-        "romaji": "",
+        "romaji": "Hikouki de 10 jikan kakarimasu.",
         "uz": "Samolyotda 10 soat ketadi."
       }
     ]
@@ -4437,12 +4497,12 @@
     "word": "船",
     "reading": "ふね",
     "romaji": "fune",
-    "meaningUz": "kema",
+    "meaningUz": "Kema, qayiq (Ship, boat)",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "横浜から 船に 乗ります。",
-        "romaji": "",
+        "romaji": "Yokohama kara fune ni norimasu.",
         "uz": "Yokogamadan kemaga o'tiraman."
       }
     ]
@@ -4458,7 +4518,7 @@
     "examples": [
       {
         "ja": "東京の 地下鉄は 便利です。",
-        "romaji": "",
+        "romaji": "Toukyou no chikatetsu wa benri de su.",
         "uz": "Tokio metrosi juda qulaydir."
       }
     ]
@@ -4469,13 +4529,18 @@
     "word": "新幹線",
     "reading": "しんかんせん",
     "romaji": "shinkansen",
-    "meaningUz": "“sinkansen” tez yurar poyezdi",
+    "meaningUz": "Bullet train (very high speed), shinkansen",
     "partOfSpeech": "Olmosh",
     "examples": [
       {
-        "ja": "新幹線で 大阪へ 行きました。",
-        "romaji": "",
-        "uz": "Tezyurar Shinkansenda Osakaga bordim."
+        "ja": "新しい新幹線の速いこと！",
+        "romaji": "atarashii shinkansen no hayai koto !",
+        "uz": "How fast the new Shinkansen goes!"
+      },
+      {
+        "ja": "次の新幹線は９時ちょうどに出ます。",
+        "romaji": "tsugino shinkansen ha 9 toki choudoni dema su .",
+        "uz": "The next Shinkansen train leaves at just nine o'clock."
       }
     ]
   },
@@ -4490,7 +4555,7 @@
     "examples": [
       {
         "ja": "バス停で バスを 待ちます。",
-        "romaji": "",
+        "romaji": "Basu tei de basu o machimasu.",
         "uz": "Bekatda avtobus kutaman."
       }
     ]
@@ -4506,7 +4571,7 @@
     "examples": [
       {
         "ja": "雨ですから、タクシーで 行きましょう。",
-        "romaji": "",
+        "romaji": "Ame de sukara, takushii de iki mashou.",
         "uz": "Yomg'ir yog'yapti, taksida boraylik."
       }
     ]
@@ -4522,7 +4587,7 @@
     "examples": [
       {
         "ja": "弟の 自転車を 借りました。",
-        "romaji": "",
+        "romaji": "Otouto no jitensha o karimashita.",
         "uz": "Ukamning velosipedini qarzga oldim."
       }
     ]
@@ -4538,7 +4603,7 @@
     "examples": [
       {
         "ja": "駅から 家まで 歩いて 行きます。",
-        "romaji": "",
+        "romaji": "Eki kara ie made arui te ikimasu.",
         "uz": "Bekatdan uygacha piyoda boraman."
       }
     ]
@@ -4554,7 +4619,7 @@
     "examples": [
       {
         "ja": "友達と いっしょに 映画を 見ました。",
-        "romaji": "",
+        "romaji": "Tomodachi to isshoni eiga o mima shita.",
         "uz": "Do'stim bilan birga kino ko'rdim."
       }
     ]
@@ -4570,7 +4635,7 @@
     "examples": [
       {
         "ja": "一人で 部屋を 掃除しました。",
-        "romaji": "",
+        "romaji": "Hitori de heya o souji shimashita.",
         "uz": "Bir o'zim xonani tozaladim."
       }
     ]
@@ -4586,7 +4651,7 @@
     "examples": [
       {
         "ja": "先週 京都の 有名な お寺へ 行きました。",
-        "romaji": "",
+        "romaji": "Senshuu kyouto no yuumei na o tera e ikimashita.",
         "uz": "O'tgan hafta Kiotoning mashhur ibodatxonasiga bordim."
       }
     ]
@@ -4602,7 +4667,7 @@
     "examples": [
       {
         "ja": "今週は レポートの 提出で とても 忙しいです。",
-        "romaji": "",
+        "romaji": "Konshuu wa repooto no teishutsu de totemo isogashii desu.",
         "uz": "Bu hafta hisobot topshirish bilan juda bandman."
       }
     ]
@@ -4618,7 +4683,7 @@
     "examples": [
       {
         "ja": "来週の 月曜日に 日本語の 試験が あります。",
-        "romaji": "",
+        "romaji": "Raishuu no getsuyoubi ni nihongo no shiken ga arimasu.",
         "uz": "Kelasi dushanba kuni yapon tili imtihoni bor."
       }
     ]
@@ -4634,7 +4699,7 @@
     "examples": [
       {
         "ja": "先月 日本へ 来ました。",
-        "romaji": "",
+        "romaji": "Sengetsu nippon e kima shita.",
         "uz": "O'tgan oy Yaponiyaga keldim."
       }
     ]
@@ -4650,7 +4715,7 @@
     "examples": [
       {
         "ja": "今月は 休みが 少ないです。",
-        "romaji": "",
+        "romaji": "Kongetsu wa yasumi ga sukunai desu.",
         "uz": "Bu oy dam olish kunlari kam."
       }
     ]
@@ -4666,7 +4731,7 @@
     "examples": [
       {
         "ja": "来月 大阪へ 出張します。",
-        "romaji": "",
+        "romaji": "Raigetsu oosaka e shutchou shimasu.",
         "uz": "Kelasi oy Osakaga xizmat safariga boraman."
       }
     ]
@@ -4682,7 +4747,7 @@
     "examples": [
       {
         "ja": "去年 大学を 卒業しました。",
-        "romaji": "",
+        "romaji": "Kyonen daigaku o sotsugyou shimashita.",
         "uz": "O'tgan yili universitetni bitirdim."
       }
     ]
@@ -4698,7 +4763,7 @@
     "examples": [
       {
         "ja": "今年は 日本語の 試験に 合格したいです。",
-        "romaji": "",
+        "romaji": "Konnen wa nihongo no shiken ni goukaku shitaidesu.",
         "uz": "Bu yil yapon tili imtihonidan o'tmoqchiman."
       }
     ]
@@ -4714,7 +4779,7 @@
     "examples": [
       {
         "ja": "来年 日本の 会社で 働きます。",
-        "romaji": "",
+        "romaji": "Rainen nippon no kaisha de hatarakimasu.",
         "uz": "Kelasi yili Yaponiya korxonasida ishlayman."
       }
     ]
@@ -4730,7 +4795,7 @@
     "examples": [
       {
         "ja": "4月に 新しい 学期が 始まります。",
-        "romaji": "",
+        "romaji": "4 gatsu ni atarashii gakki ga hajimarimasu.",
         "uz": "Aprel oyida yangi o'quv davri boshlanadi."
       }
     ]
@@ -4746,7 +4811,7 @@
     "examples": [
       {
         "ja": "あなたの 誕生日は 何月ですか。",
-        "romaji": "",
+        "romaji": "Anata no tanjoubi wa nangatsu de suka.",
         "uz": "Tug'ilgan kuningiz qaysi oyda?"
       }
     ]
@@ -4762,7 +4827,7 @@
     "examples": [
       {
         "ja": "毎月 一日は 掃除の 日です。",
-        "romaji": "",
+        "romaji": "Maitsuki tsuitachi wa souji no nichi de su.",
         "uz": "Har oyning 1-sanasi tozalik kuni."
       }
     ]
@@ -4778,7 +4843,7 @@
     "examples": [
       {
         "ja": "二日に 友達と 会います。",
-        "romaji": "",
+        "romaji": "Futsuka ni tomodachi to aimasu.",
         "uz": "2-sanada do'stim bilan ko'rishaman."
       }
     ]
@@ -4794,7 +4859,7 @@
     "examples": [
       {
         "ja": "三日間 京都を 旅行しました。",
-        "romaji": "",
+        "romaji": "Mikkakan kyouto o ryokou shimashita.",
         "uz": "Uch kun Kioto bo'ylab sayohat qildim."
       }
     ]
@@ -4810,7 +4875,7 @@
     "examples": [
       {
         "ja": "5月四日は 祝日です。",
-        "romaji": "",
+        "romaji": "5 gatsu yokka wa shukujitsu de su.",
         "uz": "4-may bayram kuni."
       }
     ]
@@ -4826,7 +4891,7 @@
     "examples": [
       {
         "ja": "こどもの日は 5月五日です。",
-        "romaji": "",
+        "romaji": "Kodomono nichi wa 5 gatsu itsuka de su.",
         "uz": "Bolalar kuni 5-mayda."
       }
     ]
@@ -4842,7 +4907,7 @@
     "examples": [
       {
         "ja": "六日に 手紙が 届きました。",
-        "romaji": "",
+        "romaji": "Muika ni tegami ga todokimashita.",
         "uz": "6-sanada xat yetib keldi."
       }
     ]
@@ -4858,7 +4923,7 @@
     "examples": [
       {
         "ja": "七夕の お祭りは 7月七日です。",
-        "romaji": "",
+        "romaji": "Tanabata no o matsuri wa 7 gatsu nanoka de su.",
         "uz": "Tanabata bayrami 7-iyulda."
       }
     ]
@@ -4874,7 +4939,7 @@
     "examples": [
       {
         "ja": "八日に 会議が あります。",
-        "romaji": "",
+        "romaji": "Youka ni kaigi ga arimasu.",
         "uz": "8-sanada majlis bor."
       }
     ]
@@ -4890,7 +4955,7 @@
     "examples": [
       {
         "ja": "九日に 国へ 荷物を 送ります。",
-        "romaji": "",
+        "romaji": "Kokonoka ni kuni e nimotsu o okurimasu.",
         "uz": "9-sanada yurtimga posilka jo'nataman."
       }
     ]
@@ -4906,7 +4971,7 @@
     "examples": [
       {
         "ja": "十日後に また 会いましょう。",
-        "romaji": "",
+        "romaji": "Touka nochini mata ai mashou.",
         "uz": "O'n kundan so'ng yana uchrashaylik."
       }
     ]
@@ -4922,7 +4987,7 @@
     "examples": [
       {
         "ja": "2月十四日は バレンタインデーです。",
-        "romaji": "",
+        "romaji": "2 gatsu juuyon nichi wa barentaindee desu.",
         "uz": "14-fevral Sevishganlar kuni."
       }
     ]
@@ -4938,7 +5003,7 @@
     "examples": [
       {
         "ja": "二十日に 給料を もらいます。",
-        "romaji": "",
+        "romaji": "Hatsuka ni kyuuryou o moraimasu.",
         "uz": "20-sanada oylik maosh olaman."
       }
     ]
@@ -4954,7 +5019,7 @@
     "examples": [
       {
         "ja": "十二月二十四日は クリスマスイブです。",
-        "romaji": "",
+        "romaji": "Juunigatsu nijuushi nichi wa kurisumasuibu de su.",
         "uz": "24-dekabr Rojdestvo arafasi."
       }
     ]
@@ -4970,7 +5035,7 @@
     "examples": [
       {
         "ja": "きょうは 何日ですか。",
-        "romaji": "",
+        "romaji": "Kyouha nannichi de suka.",
         "uz": "Bugun nechanchi sana?"
       }
     ]
@@ -4986,7 +5051,7 @@
     "examples": [
       {
         "ja": "国へ 帰るのは 何日ですか。",
-        "romaji": "",
+        "romaji": "Kuni e kaeru noha nannichi de suka.",
         "uz": "Yurtingizga qaytish qaysi sanada?"
       }
     ]
@@ -5002,7 +5067,7 @@
     "examples": [
       {
         "ja": "誕生日 おめでとうございます。",
-        "romaji": "",
+        "romaji": "Tanjoubi omedetougozaimasu.",
         "uz": "Tug'ilgan kuningiz muborak bo'lsin!"
       }
     ]
@@ -5013,12 +5078,12 @@
     "word": "普通",
     "reading": "ふつう",
     "romaji": "futsuu",
-    "meaningUz": "oddiy poyezd",
+    "meaningUz": "Oddiy, odatiy, o'rtacha\nTurkum: Ot / No-sifat / Ravish",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "各駅停車の 普通電車で のんびり 行きます。",
-        "romaji": "",
+        "romaji": "Kakuekiteisha no futsuudensha de nonbiri ikimasu.",
         "uz": "Har bekatda to'xtaydigan oddiy poyezdda ketaman."
       }
     ]
@@ -5029,12 +5094,12 @@
     "word": "急行",
     "reading": "きゅうこう",
     "romaji": "kyuukou",
-    "meaningUz": "tez yurar poyezd",
+    "meaningUz": "tez yurar poyezd (Express)",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "急行電車に 乗ると、早く 着きます。",
-        "romaji": "",
+        "romaji": "Kyuukoudensha ni noru to, hayaku tsukimasu.",
         "uz": "Tez yurar poyezdga chiqsangiz tezroq yetib borasiz."
       }
     ]
@@ -5045,13 +5110,18 @@
     "word": "特急",
     "reading": "とっきゅう",
     "romaji": "tokyuu",
-    "meaningUz": "ekspress (tez yurar) poyezd",
+    "meaningUz": "Tezyurar ekspress poyezd (Limited express train (faster than an express train))",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "特急券を 買って、特急に 乗りました。",
-        "romaji": "",
-        "uz": "Ekspress chiptasini sotib olib, ekspress poyezdga chiqdim."
+        "ja": "特急のホームは何番ですか。",
+        "romaji": "tokkyuu no hoomu ha nanban desuka .",
+        "uz": "What's the track for the limited express?"
+      },
+      {
+        "ja": "最近、特急に乗りましたか。",
+        "romaji": "saikin , tokkyuu ni nori mashitaka .",
+        "uz": "Have you ridden on an express train lately?"
       }
     ]
   },
@@ -5066,7 +5136,7 @@
     "examples": [
       {
         "ja": "次の 角を 左へ 曲がります。",
-        "romaji": "",
+        "romaji": "Tsugino kaku o hidari e kyoku ga rimasu.",
         "uz": "Keyingi burilishdan chapga qayrilaman."
       }
     ]
@@ -5082,7 +5152,7 @@
     "examples": [
       {
         "ja": "ありがとう。― いいえ、どういたしまして。",
-        "romaji": "",
+        "romaji": "Arigatou.. iie, douitashimashite.",
         "uz": "Rahmat. - Yo'g'-e, arzimaydi."
       }
     ]
@@ -5093,12 +5163,12 @@
     "word": "～番線",
     "reading": "～ばんせん",
     "romaji": "~ bansen",
-    "meaningUz": "~yo'l, ~platforma",
+    "meaningUz": "~-raqamli poyezd yoki metro liniyasi platformasi",
     "partOfSpeech": "Qo'shimcha / Suffiks",
     "examples": [
       {
         "ja": "東京行きは 3番線から 出ます。",
-        "romaji": "",
+        "romaji": "Toukyouiki kiha 3 bansen kara dema su.",
         "uz": "Tokioga boradigan poyezd 3-yo'ldan jo'naydi."
       }
     ]
@@ -5114,7 +5184,7 @@
     "examples": [
       {
         "ja": "新幹線で 博多まで 行きました。",
-        "romaji": "",
+        "romaji": "Shinkansen de hakata made ikimashita.",
         "uz": "Shinkansen bilan Hakatagacha bordim."
       }
     ]
@@ -5130,7 +5200,7 @@
     "examples": [
       {
         "ja": "京都の 伏見稲荷へ 行きました。",
-        "romaji": "",
+        "romaji": "Kyouto no fushimi inari e ikimashita.",
         "uz": "Kiotoning Fushimi Inari ibodatxonasiga bordim."
       }
     ]
@@ -5146,7 +5216,7 @@
     "examples": [
       {
         "ja": "甲子園で 高校野球を 見ました。",
-        "romaji": "",
+        "romaji": "Koushien de koukouyakyuu o mima shita.",
         "uz": "Koshiyenda yuqori maktab beysbol o'yinini ko'rdim."
       }
     ]
@@ -5162,7 +5232,7 @@
     "examples": [
       {
         "ja": "大阪城は とても 有名な お城です。",
-        "romaji": "",
+        "romaji": "Oosakajou wa totemo yuumei na o shiro de su.",
         "uz": "Osaka qal'asi juda mashhur qal'a."
       }
     ]
@@ -5178,7 +5248,7 @@
     "examples": [
       {
         "ja": "朝ごはんに パンと 卵を 食べます。",
-        "romaji": "",
+        "romaji": "Asagohan ni pan to tamago o tabemasu.",
         "uz": "Nonushtaga non va tuxum yeyman."
       }
     ]
@@ -5194,7 +5264,7 @@
     "examples": [
       {
         "ja": "毎朝 冷たい 牛乳を 飲みます。",
-        "romaji": "",
+        "romaji": "Maiasa tsumetai gyuunyuu o nomimasu.",
         "uz": "Har ertalab sovuq sut ichaman."
       }
     ]
@@ -5210,7 +5280,7 @@
     "examples": [
       {
         "ja": "たばこを 吸いません。",
-        "romaji": "",
+        "romaji": "Tabakowo suimasen.",
         "uz": "Tamaki chekmayman."
       }
     ]
@@ -5226,7 +5296,7 @@
     "examples": [
       {
         "ja": "ここで たばこを 吸わないで ください。",
-        "romaji": "",
+        "romaji": "Kokode tabakowo suwa naide kudasai.",
         "uz": "Bu yerda tamaki chekmang, iltimos."
       }
     ]
@@ -5237,12 +5307,12 @@
     "word": "見ます",
     "reading": "みます",
     "romaji": "mimasu",
-    "meaningUz": "ko'rmoq",
+    "meaningUz": "ko'rmoq, tekshirmoq, qarab chiqmoq",
     "partOfSpeech": "Fe'l",
     "examples": [
       {
         "ja": "昨夜 テレビで サッカーの 試合を 見ました。",
-        "romaji": "",
+        "romaji": "Sakuya terebi de sakkaa no shiai o mima shita.",
         "uz": "Kecha tunda televizorda futbol o'yinini ko'rdim."
       }
     ]
@@ -5258,7 +5328,7 @@
     "examples": [
       {
         "ja": "毎朝 ラジオで ニュースを 聞きます。",
-        "romaji": "",
+        "romaji": "Maiasa rajio de nyuusu o kikimasu.",
         "uz": "Har ertalab radioda yangiliklarni tinglayman."
       }
     ]
@@ -5274,7 +5344,7 @@
     "examples": [
       {
         "ja": "図書館で 日本語の 本を 読みます。",
-        "romaji": "",
+        "romaji": "Toshokan de nihongo no hon o yomimasu.",
         "uz": "Kutubxonada yaponcha kitob o'qiyman."
       }
     ]
@@ -5290,7 +5360,7 @@
     "examples": [
       {
         "ja": "友達に 手紙を 書きました。",
-        "romaji": "",
+        "romaji": "Tomodachi ni tegami o kakimashita.",
         "uz": "Do'stimga xat yozdim."
       }
     ]
@@ -5306,7 +5376,7 @@
     "examples": [
       {
         "ja": "スーパーで 新鮮な 果物を 買いました。",
-        "romaji": "",
+        "romaji": "Suupaa de shinsen na kudamono o kaimashita.",
         "uz": "Supermarketdan yangi meva sotib oldim."
       }
     ]
@@ -5322,7 +5392,7 @@
     "examples": [
       {
         "ja": "公園で きれいな 花の 写真を 撮りました。",
-        "romaji": "",
+        "romaji": "Kouen de kireina hana no shashin o torimashita.",
         "uz": "Bog'da chiroyli gul rasmini oldim."
       }
     ]
@@ -5338,7 +5408,7 @@
     "examples": [
       {
         "ja": "京都で たくさん 写真を 撮りました。",
-        "romaji": "",
+        "romaji": "Kyouto de takusan shashin o torimashita.",
         "uz": "Kiotoda ko'p rasmga tushdim."
       }
     ]
@@ -5354,7 +5424,7 @@
     "examples": [
       {
         "ja": "土曜日に サッカーを します。",
-        "romaji": "",
+        "romaji": "Doyoubi ni sakkaa o shimasu.",
         "uz": "Shanba kuni futbol o'ynayman."
       }
     ]
@@ -5370,7 +5440,7 @@
     "examples": [
       {
         "ja": "駅前で 友達に 会いました。",
-        "romaji": "",
+        "romaji": "Ekimae de tomodachi ni aimashita.",
         "uz": "Bekat oldida do'stim bilan ko'rishdim."
       }
     ]
@@ -5386,7 +5456,7 @@
     "examples": [
       {
         "ja": "土曜日に 駅で 友達に 会います。",
-        "romaji": "",
+        "romaji": "Doyoubi ni eki de tomodachi ni aimasu.",
         "uz": "Shanba kuni bekatda do'stim bilan ko'rishaman."
       }
     ]
@@ -5402,7 +5472,7 @@
     "examples": [
       {
         "ja": "毎朝 温かい ごはんを 食べます。",
-        "romaji": "",
+        "romaji": "Maiasa atatakai gohanwo tabemasu.",
         "uz": "Har ertalab issiq oq guruch/ovqat yeyman."
       }
     ]
@@ -5418,7 +5488,7 @@
     "examples": [
       {
         "ja": "朝ごはんは いつも パンと コーヒーです。",
-        "romaji": "",
+        "romaji": "Asagohan wa itsumo pan to koohii desu.",
         "uz": "Nonushta har doim non va kofe."
       }
     ]
@@ -5434,7 +5504,7 @@
     "examples": [
       {
         "ja": "12時半に 会社の 食堂で 昼ごはんを 食べます。",
-        "romaji": "",
+        "romaji": "12 jihan ni kaisha no shokudou de hiru gohanwo tabemasu.",
         "uz": "12 yarimda kompaniya oshxonasida tushlik qilaman."
       }
     ]
@@ -5450,7 +5520,7 @@
     "examples": [
       {
         "ja": "家族と いっしょに 晩ごはんを 食べました。",
-        "romaji": "",
+        "romaji": "Kazoku to isshoni ban gohanwo tabemashita.",
         "uz": "Oilam bilan birga kechki ovqat yedim."
       }
     ]
@@ -5466,7 +5536,7 @@
     "examples": [
       {
         "ja": "パン屋で おいしい パンを 買いました。",
-        "romaji": "",
+        "romaji": "Pan ya de oishii pan o kaimashita.",
         "uz": "Novvoyxonadan mazali non sotib oldim."
       }
     ]
@@ -5477,12 +5547,12 @@
     "word": "卵",
     "reading": "たまご",
     "romaji": "tamago",
-    "meaningUz": "tuxum",
+    "meaningUz": "Tuxum (Egg)",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "毎朝 卵を 1個 食べます。",
-        "romaji": "",
+        "romaji": "Maiasa tamago o 1 ko tabemasu.",
         "uz": "Har ertalab bitta tuxum yeyman."
       }
     ]
@@ -5493,12 +5563,12 @@
     "word": "果物",
     "reading": "くだもの",
     "romaji": "kudamono",
-    "meaningUz": "meva",
+    "meaningUz": "Mevalar",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "デザートに 甘い 果物を 食べました。",
-        "romaji": "",
+        "romaji": "Dezaato ni amai kudamono o tabemashita.",
         "uz": "Shirinlikka shirin meva yedim."
       }
     ]
@@ -5514,7 +5584,7 @@
     "examples": [
       {
         "ja": "午後に レモンティー（紅茶）を 飲みました。",
-        "romaji": "",
+        "romaji": "Gogo ni remonteii ( koucha ) o nomimashita.",
         "uz": "Tushdan keyin qora choy ichdim."
       }
     ]
@@ -5525,12 +5595,12 @@
     "word": "牛乳",
     "reading": "ぎゅうにゅう",
     "romaji": "gyuunyuu",
-    "meaningUz": "sut",
+    "meaningUz": "Sigir suti",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "毎朝 牛乳を コップ1杯 飲みます。",
-        "romaji": "",
+        "romaji": "Maiasa gyuunyuu o koppu 1 hai nomimasu.",
         "uz": "Har ertalab bir stakan sut ichaman."
       }
     ]
@@ -5546,7 +5616,7 @@
     "examples": [
       {
         "ja": "コーヒーに ミラー（牛乳）を 入れます。",
-        "romaji": "",
+        "romaji": "Koohii ni miraa ( gyuunyuu ) o iremasu.",
         "uz": "Kofega sut qo'shaman."
       }
     ]
@@ -5562,7 +5632,7 @@
     "examples": [
       {
         "ja": "オレンジジュースを 注文しました。",
-        "romaji": "",
+        "romaji": "Orenjijuusu o chuumon shimashita.",
         "uz": "Apelsin sharbati buyurtma qildim."
       }
     ]
@@ -5578,7 +5648,7 @@
     "examples": [
       {
         "ja": "仕事の 後で 冷たい ビールを 飲みました。",
-        "romaji": "",
+        "romaji": "Shigoto no atode tsumetai biiru o nomimashita.",
         "uz": "Ishdan keyin sovuq pivo ichdim."
       }
     ]
@@ -5594,7 +5664,7 @@
     "examples": [
       {
         "ja": "お正月には 日本酒（酒）を 飲みます。",
-        "romaji": "",
+        "romaji": "O shougatsu ni wa nihonshu ( sake ) o nomimasu.",
         "uz": "Yangi yilda yapon sakesini ichamiz."
       }
     ]
@@ -5610,7 +5680,7 @@
     "examples": [
       {
         "ja": "休みの 日に 部屋で ビデオを 見ます。",
-        "romaji": "",
+        "romaji": "Yasumi no nichi ni heya de bideo o mima su.",
         "uz": "Dam olish kuni xonamda video ko'raman."
       }
     ]
@@ -5621,12 +5691,12 @@
     "word": "映画",
     "reading": "えいが",
     "romaji": "eiga",
-    "meaningUz": "kino",
+    "meaningUz": "Film, kino",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "きのう 映画館へ 映画を 見に 行きました。",
-        "romaji": "",
+        "romaji": "Kinou eigakan e eiga o mini ikimashita.",
         "uz": "Kecha kinoteatrga film ko'rishga bordim."
       }
     ]
@@ -5642,7 +5712,7 @@
     "examples": [
       {
         "ja": "日本の 歌手の CDを 買いました。",
-        "romaji": "",
+        "romaji": "Nippon no kashu no CD o kaimashita.",
         "uz": "Yapon qo'shiqchisining diskini sotib oldim."
       }
     ]
@@ -5658,7 +5728,7 @@
     "examples": [
       {
         "ja": "国に いる 母親に 手紙を 書きました。",
-        "romaji": "",
+        "romaji": "Kuni ni iru hahaoya ni tegami o kakimashita.",
         "uz": "Yurtimdagi onamga xat yozdim."
       }
     ]
@@ -5674,7 +5744,7 @@
     "examples": [
       {
         "ja": "パソコンで 日本語の レポートを 作成しました。",
-        "romaji": "",
+        "romaji": "Pasokon de nihongo no repooto o sakusei shimashita.",
         "uz": "Kompyuterda yapon tili hisobotini tayyorladim."
       }
     ]
@@ -5685,12 +5755,12 @@
     "word": "写真",
     "reading": "しゃしん",
     "romaji": "shashin",
-    "meaningUz": "fotosurat",
+    "meaningUz": "Fotosurat, rasm",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "京都で たくさん 写真を 撮りました。",
-        "romaji": "",
+        "romaji": "Kyouto de takusan shashin o torimashita.",
         "uz": "Kiotoda ko'p rasmga tushdim."
       }
     ]
@@ -5706,7 +5776,7 @@
     "examples": [
       {
         "ja": "誕生日に 高級な レストランへ 行きました。",
-        "romaji": "",
+        "romaji": "Tanjoubi ni koukyuu na resutoran e ikimashita.",
         "uz": "Tug'ilgan kunimda qimmat restoranga bordim."
       }
     ]
@@ -5717,12 +5787,12 @@
     "word": "庭",
     "reading": "にわ",
     "romaji": "niwa",
-    "meaningUz": "hovli, bog",
+    "meaningUz": "Bog', hovli (Garden, yard)",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "うちの 庭に きれいな 花が 咲いています。",
-        "romaji": "",
+        "romaji": "Uchino niwa ni kireina hana ga sai teimasu.",
         "uz": "Uyimiz hovlisida chiroyli gullar ochilib yotibdi."
       }
     ]
@@ -5738,7 +5808,7 @@
     "examples": [
       {
         "ja": "寝る 前に 日本語の 宿題を します。",
-        "romaji": "",
+        "romaji": "Neru mae ni nihongo no shukudai o shimasu.",
         "uz": "Uxlamasdan oldin yapon tili vazifasini bajaraman."
       }
     ]
@@ -5754,7 +5824,7 @@
     "examples": [
       {
         "ja": "毎週 日曜日に 友達と テニスを します。",
-        "romaji": "",
+        "romaji": "Maishuu nichiyoubi ni tomodachi to tenisu o shimasu.",
         "uz": "Har yakshanba do'stim bilan tennis o'ynayman."
       }
     ]
@@ -5770,7 +5840,7 @@
     "examples": [
       {
         "ja": "放課後に 公園で サッカーを しました。",
-        "romaji": "",
+        "romaji": "Houkago ni kouen de sakkaa o shimashita.",
         "uz": "Darsdan so'ng bog'da futbol o'ynadim."
       }
     ]
@@ -5786,7 +5856,7 @@
     "examples": [
       {
         "ja": "春に 桜の 木の 下で お花見を します。",
-        "romaji": "",
+        "romaji": "Haru ni sakura no ki no shita de o hanami o shimasu.",
         "uz": "Bahorda sakura daraxti tagida sayil qilamiz."
       }
     ]
@@ -5802,7 +5872,7 @@
     "examples": [
       {
         "ja": "いっしょに 京都へ 旅行に 行きませんか。",
-        "romaji": "",
+        "romaji": "Isshoni kyouto e ryokou ni iki masenka.",
         "uz": "Birga Kiotoga sayohatga bormaymizmi?"
       }
     ]
@@ -5813,12 +5883,12 @@
     "word": "ちょっと",
     "reading": "ちょっと",
     "romaji": "choto",
-    "meaningUz": "bir oz, ozgina, ozroq",
+    "meaningUz": "biroz, sal, ozgina; bir daqiqa",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "ちょっと 待って ください。",
-        "romaji": "",
+        "romaji": "Chotto matsu te kudasai.",
         "uz": "Biroz kutib turing."
       }
     ]
@@ -5834,7 +5904,7 @@
     "examples": [
       {
         "ja": "わたしは いつも 7時に 起きます。",
-        "romaji": "",
+        "romaji": "Watashi wa itsumo 7 tokini okimasu.",
         "uz": "Men har doim soat 7 da turaman."
       }
     ]
@@ -5845,12 +5915,12 @@
     "word": "時々",
     "reading": "ときどき",
     "romaji": "tokidoki",
-    "meaningUz": "ba'zan",
+    "meaningUz": "ba'zan, vaqti-vaqti bilan",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "休みの 日には 時々 映画を 見ます。",
-        "romaji": "",
+        "romaji": "Yasumi no nichi ni wa tokidoki eiga o mima su.",
         "uz": "Dam olish kunlari vaqti-vaqti bilan kino ko'raman."
       }
     ]
@@ -5866,7 +5936,7 @@
     "examples": [
       {
         "ja": "スーパーで パンを 買いました。それから 映画を 見ました。",
-        "romaji": "",
+        "romaji": "Suupaa de pan o kaimashita. sorekara eiga o mima shita.",
         "uz": "Supermarketdan non sotib oldim. So'ngra kino ko'rdim."
       }
     ]
@@ -5882,7 +5952,7 @@
     "examples": [
       {
         "ja": "いっしょに 行きませんか。― ええ、行きましょう。",
-        "romaji": "",
+        "romaji": "Isshoni iki masenka.. ee, iki mashou.",
         "uz": "Birga bormaymizmi? - Ha, ketdik."
       }
     ]
@@ -5898,7 +5968,7 @@
     "examples": [
       {
         "ja": "あした 映画を 見ませんか。― いいですね。",
-        "romaji": "",
+        "romaji": "Ashita eiga o mima senka.. iidesune.",
         "uz": "Ertaga kino ko'rmaymizmi? - Juda zo'r fikr."
       }
     ]
@@ -5914,7 +5984,7 @@
     "examples": [
       {
         "ja": "駅で 待って いてください。― はい、わかりました。",
-        "romaji": "",
+        "romaji": "Eki de matsu te itekudasai.. hai, wakarimashita.",
         "uz": "Bekatda kutib turing. - Xo'p, tushundim."
       }
     ]
@@ -5930,7 +6000,7 @@
     "examples": [
       {
         "ja": "ミラーさん。― 何ですか。",
-        "romaji": "",
+        "romaji": "Miraa san.. nani de suka.",
         "uz": "Janob Miller. - Labbay, nima deysiz?"
       }
     ]
@@ -5946,7 +6016,7 @@
     "examples": [
       {
         "ja": "じゃ、また あした。",
-        "romaji": "",
+        "romaji": "Ja, mata ashita.",
         "uz": "Mayli, ertagacha."
       }
     ]
@@ -5962,7 +6032,7 @@
     "examples": [
       {
         "ja": "サントスさんは メキシコへ 出張しました。",
-        "romaji": "",
+        "romaji": "Santosu sanha mekishiko e shutchou shimashita.",
         "uz": "Janob Santos Meksikaga xizmat safariga bordi."
       }
     ]
@@ -5978,7 +6048,7 @@
     "examples": [
       {
         "ja": "大阪城公園で ジョギングを しました。",
-        "romaji": "",
+        "romaji": "Oosakajou kouen de jogingu o shimashita.",
         "uz": "Osaka qal'asi xiyobonida yugurdim."
       }
     ]
@@ -5994,7 +6064,7 @@
     "examples": [
       {
         "ja": "はさみで 紙を 切ります。",
-        "romaji": "",
+        "romaji": "Hasamide kami o kirimasu.",
         "uz": "Qaychi bilan qog'ozni kesaman."
       }
     ]
@@ -6010,7 +6080,7 @@
     "examples": [
       {
         "ja": "雨が 降っていますから、車で 駅まで 送りましょう。",
-        "romaji": "",
+        "romaji": "Ame ga futsu teimasukara, kuruma de eki made okuri mashou.",
         "uz": "Yomg'ir yog'yapti, mashinada bekatgacha kuzatib qo'yay."
       }
     ]
@@ -6026,7 +6096,7 @@
     "examples": [
       {
         "ja": "誕生日に 母に 花を あげました。",
-        "romaji": "",
+        "romaji": "Tanjoubi ni haha ni hana o agemashita.",
         "uz": "Tug'ilgan kunga onamga gul berdim."
       }
     ]
@@ -6042,7 +6112,7 @@
     "examples": [
       {
         "ja": "先生から 本を もらいました。",
-        "romaji": "",
+        "romaji": "Sensei kara hon o moraimashita.",
         "uz": "Ustozdan kitob oldim."
       }
     ]
@@ -6058,7 +6128,7 @@
     "examples": [
       {
         "ja": "友達に 傘を 貸しました。",
-        "romaji": "",
+        "romaji": "Tomodachi ni kasa o kashimashita.",
         "uz": "Do'stimga soyabon qarzga berdim."
       }
     ]
@@ -6074,7 +6144,7 @@
     "examples": [
       {
         "ja": "図書館で 本を 借りました。",
-        "romaji": "",
+        "romaji": "Toshokan de hon o karimashita.",
         "uz": "Kutubxonadan kitob qarzga oldim."
       }
     ]
@@ -6090,7 +6160,7 @@
     "examples": [
       {
         "ja": "駅までの 道を 親切に 教えてくれました。",
-        "romaji": "",
+        "romaji": "Eki made no michi o shinsetsu ni oshie tekuremashita.",
         "uz": "Bekatgacha bo'lgan yo'lni yaxshilab tushuntirib berdi."
       }
     ]
@@ -6106,7 +6176,7 @@
     "examples": [
       {
         "ja": "先生から 生け花を 習いました。",
-        "romaji": "",
+        "romaji": "Sensei kara ikebana o naraimashita.",
         "uz": "Ustozdan ikebana san'atini o'rgandim."
       }
     ]
@@ -6122,7 +6192,7 @@
     "examples": [
       {
         "ja": "暗い ところで 本を 読む とき、眼鏡を かけます。",
-        "romaji": "",
+        "romaji": "Kurai tokorode hon o yomu toki, megane o kakemasu.",
         "uz": "Qorong'i joyda kitob o'qiganda ko'zoynak taqaman."
       }
     ]
@@ -6138,7 +6208,7 @@
     "examples": [
       {
         "ja": "家族に 電話を かけます。",
-        "romaji": "",
+        "romaji": "Kazoku ni denwa o kakemasu.",
         "uz": "Oilamga telefon qilaman."
       }
     ]
@@ -6154,7 +6224,7 @@
     "examples": [
       {
         "ja": "食事の 前に 手を 洗います。",
-        "romaji": "",
+        "romaji": "Shokuji no mae ni te o araimasu.",
         "uz": "Ovqatlanishdan oldin qo'limni yuvaman."
       }
     ]
@@ -6170,7 +6240,7 @@
     "examples": [
       {
         "ja": "箸（はし）で 日本料理を 食べます。",
-        "romaji": "",
+        "romaji": "Hashi ( hashi ) de nihonryouri o tabemasu.",
         "uz": "Chopchoqda yapon taomini yeyman."
       }
     ]
@@ -6186,7 +6256,7 @@
     "examples": [
       {
         "ja": "スプーンで カレーライスを 食べます。",
-        "romaji": "",
+        "romaji": "Supuun de kareeraisu o tabemasu.",
         "uz": "Qoshiq bilan karerays yeyman."
       }
     ]
@@ -6202,7 +6272,7 @@
     "examples": [
       {
         "ja": "ナイフと フォークで ステーキを 切ります。",
-        "romaji": "",
+        "romaji": "Naifu to fooku de suteeki o kirimasu.",
         "uz": "Pichoq va vilka bilan go'shtni kesaman."
       }
     ]
@@ -6218,7 +6288,7 @@
     "examples": [
       {
         "ja": "フォークを 落としましたから、替えてください。",
-        "romaji": "",
+        "romaji": "Fooku o raku to shimashitakara, kae tekudasai.",
         "uz": "Vilkam tushib ketdi, almashtirib bering."
       }
     ]
@@ -6234,7 +6304,7 @@
     "examples": [
       {
         "ja": "はさみで 紙を 切ります。",
-        "romaji": "",
+        "romaji": "Hasamide kami o kirimasu.",
         "uz": "Qaychi bilan qog'ozni kesaman."
       }
     ]
@@ -6250,7 +6320,7 @@
     "examples": [
       {
         "ja": "ファクスで 書類を 送信しました。",
-        "romaji": "",
+        "romaji": "Fakusu de shorui o soushin shimashita.",
         "uz": "Faks orqali hujjatlarni jo'natdim."
       }
     ]
@@ -6266,7 +6336,7 @@
     "examples": [
       {
         "ja": "昔は ワープロで 文書を 作りました。",
-        "romaji": "",
+        "romaji": "Mukashi wa waapuro de bunsho o tsukurimashita.",
         "uz": "Ilgari matn protsessorida hujjat tayyorlangan."
       }
     ]
@@ -6282,7 +6352,7 @@
     "examples": [
       {
         "ja": "パソコンで インターネットを 使います。",
-        "romaji": "",
+        "romaji": "Pasokon de intaanetto o tsukaimasu.",
         "uz": "Shaxsiy kompyuterda internetdan foydalanaman."
       }
     ]
@@ -6298,7 +6368,7 @@
     "examples": [
       {
         "ja": "パンチで 書類に 穴を あけます。",
-        "romaji": "",
+        "romaji": "Panchi de shorui ni ana o akemasu.",
         "uz": "Dirokol bilan qog'ozga teshik ochaman."
       }
     ]
@@ -6314,7 +6384,7 @@
     "examples": [
       {
         "ja": "ホッチキスで レポートを とめます。",
-        "romaji": "",
+        "romaji": "Hotchikisu de repooto o tomemasu.",
         "uz": "Stepler bilan hisobotni qadab qo'yaman."
       }
     ]
@@ -6330,7 +6400,7 @@
     "examples": [
       {
         "ja": "セロテープで ポスターを 壁に 貼ります。",
-        "romaji": "",
+        "romaji": "Seroteepu de posutaa o kabe ni harimasu.",
         "uz": "Skotch bilan devorga afishani yopishtiraman."
       }
     ]
@@ -6345,9 +6415,14 @@
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "消しゴムで 間違えた 字を 消します。",
-        "romaji": "",
-        "uz": "O'chirg'ich bilan xato yozuvni o'chiraman."
+        "ja": "消しゴム返してよ。",
+        "romaji": "keshigomu kaeshi teyo .",
+        "uz": "Give me back my eraser."
+      },
+      {
+        "ja": "消しゴム借りていい？",
+        "romaji": "keshigomu kari teii ？",
+        "uz": "May I borrow your eraser?"
       }
     ]
   },
@@ -6357,12 +6432,12 @@
     "word": "紙",
     "reading": "かみ",
     "romaji": "kami",
-    "meaningUz": "qog'oz",
+    "meaningUz": "Qog'oz (Paper)",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "白い 紙に 住所と 名前を 書いてください。",
-        "romaji": "",
+        "romaji": "Shiroi kami ni juusho to namae o kai tekudasai.",
         "uz": "Oq qog'ozga manzilingiz va ismingizni yozing."
       }
     ]
@@ -6378,7 +6453,7 @@
     "examples": [
       {
         "ja": "母の 誕生日に 赤い 花を あげました。",
-        "romaji": "",
+        "romaji": "Haha no tanjoubi ni akai hana o agemashita.",
         "uz": "Onamning tug'ilgan kuniga qizil gul berdim."
       }
     ]
@@ -6394,7 +6469,7 @@
     "examples": [
       {
         "ja": "新しい 白い シャツを 着て 行きます。",
-        "romaji": "",
+        "romaji": "Atarashii shiroi shatsu o kite ikimasu.",
         "uz": "Yangi oq ko'ylak kiyib boraman."
       }
     ]
@@ -6410,7 +6485,7 @@
     "examples": [
       {
         "ja": "友達から すてきな プレゼントを もらいました。",
-        "romaji": "",
+        "romaji": "Tomodachi kara sutekina purezento o moraimashita.",
         "uz": "Do'stimdan ajoyib sovg'a oldim."
       }
     ]
@@ -6421,12 +6496,12 @@
     "word": "荷物",
     "reading": "にもつ",
     "romaji": "nimotsu",
-    "meaningUz": "buyum, yuk",
+    "meaningUz": "Yuk, posilka, buyumlar",
     "partOfSpeech": "Olmosh",
     "examples": [
       {
         "ja": "郵便局から 重い 荷物を 送ります。",
-        "romaji": "",
+        "romaji": "Yuubinkyoku kara omoi nimotsu o okurimasu.",
         "uz": "Pochtadan og'ir posilkani jo'nataman."
       }
     ]
@@ -6442,7 +6517,7 @@
     "examples": [
       {
         "ja": "財布に お金が 少ししか ありません。",
-        "romaji": "",
+        "romaji": "Saifu ni o kin ga sukoshi shika arimasen.",
         "uz": "Hamyonimda ozgina pul bor xolos."
       }
     ]
@@ -6453,12 +6528,12 @@
     "word": "切符",
     "reading": "きっぷ",
     "romaji": "kipu",
-    "meaningUz": "chipta",
+    "meaningUz": "Chipta, bilet",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "駅の 券売機で 電車の 切符を 買います。",
-        "romaji": "",
+        "romaji": "Eki no kenbaiki de densha no kippu o kaimasu.",
         "uz": "Bekat apparatida poyezd chiptasini sotib olaman."
       }
     ]
@@ -6474,7 +6549,7 @@
     "examples": [
       {
         "ja": "クリスマスに 家族と ごちそうを 食べます。",
-        "romaji": "",
+        "romaji": "Kurisumasu ni kazoku to gochisouwo tabemasu.",
         "uz": "Rojdestvoda oilam bilan bayramona taom yeymiz."
       }
     ]
@@ -6490,7 +6565,7 @@
     "examples": [
       {
         "ja": "あなたのお父さんは どんな 仕事を していますか。",
-        "romaji": "",
+        "romaji": "Anata no o tousan wa donna shigoto o shiteimasuka.",
         "uz": "Otangiz qanday ish bilan shug'ullanadilar?"
       }
     ]
@@ -6506,7 +6581,7 @@
     "examples": [
       {
         "ja": "お母さんは 元気ですか。",
-        "romaji": "",
+        "romaji": "O kaasan wa genki de suka.",
         "uz": "Onangiz salomatmilar?"
       }
     ]
@@ -6522,7 +6597,7 @@
     "examples": [
       {
         "ja": "もう 宿題を 全部 終わりましたか。",
-        "romaji": "",
+        "romaji": "Mou shukudai o zenbu owari mashitaka.",
         "uz": "Allaqachon barcha vazifalarni tugatdingizmi?"
       }
     ]
@@ -6533,12 +6608,12 @@
     "word": "まだ",
     "reading": "まだ",
     "romaji": "mada",
-    "meaningUz": "hali ham",
+    "meaningUz": "hali, hanuz",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "もう 昼ご飯を 食べましたか。― いいえ、まだです。",
-        "romaji": "",
+        "romaji": "Mou hiru go meshi o tabe mashitaka.. iie, madadesu.",
         "uz": "Allaqachon tushlik qildingizmi? - Yo'q, hali yo'q."
       }
     ]
@@ -6553,9 +6628,14 @@
     "partOfSpeech": "Olmosh",
     "examples": [
       {
-        "ja": "これから 日本語の 勉強を 始めます。",
-        "romaji": "",
-        "uz": "Hozir yapon tili darsini boshlayman."
+        "ja": "これから帰ります。",
+        "romaji": "korekara kaeri masu .",
+        "uz": "I'm going home now."
+      },
+      {
+        "ja": "これからよろしく。",
+        "romaji": "korekarayoroshiku .",
+        "uz": "I look forward to working with you from now on."
       }
     ]
   },
@@ -6570,7 +6650,7 @@
     "examples": [
       {
         "ja": "その ネクタイ、すてきですね。",
-        "romaji": "",
+        "romaji": "Sono nekutai, sutekidesune.",
         "uz": "U bo'yinbog'ingiz ajoyib ekan-a."
       }
     ]
@@ -6586,7 +6666,7 @@
     "examples": [
       {
         "ja": "ごめんください。どなたか いらっしゃいますか。",
-        "romaji": "",
+        "romaji": "Gomenkudasai. donataka irasshaimasuka.",
         "uz": "Kechirasiz, biror kim bormi?"
       }
     ]
@@ -6602,7 +6682,7 @@
     "examples": [
       {
         "ja": "いらっしゃい。どうぞ 入って ください。",
-        "romaji": "",
+        "romaji": "Irasshai. douzo itsutsu te kudasai.",
         "uz": "Xush kelibsiz. Marhamat, kiring."
       }
     ]
@@ -6618,7 +6698,7 @@
     "examples": [
       {
         "ja": "どうぞ お上がり ください。スリッパを どうぞ。",
-        "romaji": "",
+        "romaji": "Douzo o ue ga ri kudasai. surippa o douzo.",
         "uz": "Ichkariga marhamat qiling. Shippakni kiying."
       }
     ]
@@ -6629,12 +6709,12 @@
     "word": "失礼します",
     "reading": "しつれいします",
     "romaji": "shitsurei shimasu",
-    "meaningUz": "Ruxsatingiz bilan / Xayr (xushmuomala)",
+    "meaningUz": "kechirasiz, ruxsatingiz bilan (kirishda yoki ketishda)",
     "partOfSpeech": "Fe'l",
     "examples": [
       {
         "ja": "お先に 失礼します。― お疲れ様でした。",
-        "romaji": "",
+        "romaji": "O sakini shitsurei shimasu.. o tsukare sama de shita.",
         "uz": "Ruxsatingiz bilan ketdim. - Charchamang."
       }
     ]
@@ -6650,7 +6730,7 @@
     "examples": [
       {
         "ja": "温かい お茶は いかがですか。",
-        "romaji": "",
+        "romaji": "Atatakai o cha wa ikagadesuka.",
         "uz": "Iliq choydan olmaysizmi?"
       }
     ]
@@ -6666,7 +6746,7 @@
     "examples": [
       {
         "ja": "おいしそうですね。いただきます！",
-        "romaji": "",
+        "romaji": "Oishisoudesune. itadakimasu!",
         "uz": "Juda mazali ko'rinyapti. Qani, boshladik!"
       }
     ]
@@ -6682,7 +6762,7 @@
     "examples": [
       {
         "ja": "夏休みに 北海道へ 旅行に 行きます。",
-        "romaji": "",
+        "romaji": "Natsuyasumi ni hokkaidou e ryokou ni ikimasu.",
         "uz": "Yozgi ta'tilda Xokkaydoga sayohatga boraman."
       }
     ]
@@ -6693,13 +6773,18 @@
     "word": "お土産",
     "reading": "おみやげ",
     "romaji": "omiyage",
-    "meaningUz": "esdalik sovg'a",
+    "meaningUz": "Esdalik sovg'asi, sovg'a-salom",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "京都の お土産を 買いました。",
-        "romaji": "",
-        "uz": "Kiotodan esdalik sovg'a sotib oldim."
+        "ja": "これはお土産です。",
+        "romaji": "korehao miyage desu .",
+        "uz": "This is a little gift for you."
+      },
+      {
+        "ja": "お土産何買ったの？",
+        "romaji": "o miyage nani katsu tano ？",
+        "uz": "What kind of souvenirs did you buy?"
       }
     ]
   },
@@ -6714,7 +6799,7 @@
     "examples": [
       {
         "ja": "ヨーロッパの 歴史を 勉強しています。",
-        "romaji": "",
+        "romaji": "Yooroppa no rekishi o benkyou shiteimasu.",
         "uz": "Yevropa tarixini o'rganyapman."
       }
     ]
@@ -6730,7 +6815,7 @@
     "examples": [
       {
         "ja": "スペインへ サッカーを 見に 行きたいです。",
-        "romaji": "",
+        "romaji": "Supein e sakkaa o mini iki taidesu.",
         "uz": "Ispaniyaga futbol ko'rgani bormoqchiman."
       }
     ]
@@ -6746,7 +6831,7 @@
     "examples": [
       {
         "ja": "あの 俳優は とても ハンサムです。",
-        "romaji": "",
+        "romaji": "Ano haiyuu wa totemo hansamu de su.",
         "uz": "Anavi aktyor juda kelishgan."
       }
     ]
@@ -6762,7 +6847,7 @@
     "examples": [
       {
         "ja": "公園に きれいな 花が 咲いています。",
-        "romaji": "",
+        "romaji": "Kouen ni kireina hana ga sai teimasu.",
         "uz": "Bog'da chiroyli gullar ochilib yotibdi."
       }
     ]
@@ -6773,12 +6858,12 @@
     "word": "静かな",
     "reading": "しずかな",
     "romaji": "shizukana",
-    "meaningUz": "tinch, osoyishta, osuda",
+    "meaningUz": "sokin, tinch, shovqinsiz",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "この 図書館は 静かで 勉強しやすいです。",
-        "romaji": "",
+        "romaji": "Kono toshokan wa shizuka de benkyou shiyasuidesu.",
         "uz": "Bu kutubxona tinch, dars qilish qulay."
       }
     ]
@@ -6794,7 +6879,7 @@
     "examples": [
       {
         "ja": "新宿の 夜は とても にぎやかです。",
-        "romaji": "",
+        "romaji": "Shinjuku no yoru wa totemo nigiyakadesu.",
         "uz": "Shinjukuning oqshomi juda gavjum."
       }
     ]
@@ -6805,12 +6890,12 @@
     "word": "有名な",
     "reading": "ゆうめいな",
     "romaji": "yuumeina",
-    "meaningUz": "mashhur",
+    "meaningUz": "mashhur, tanilgan",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "京都には 有名な お寺が たくさん あります。",
-        "romaji": "",
+        "romaji": "Kyouto ni wa yuumei na o tera ga takusan arimasu.",
         "uz": "Kiotoda mashhur ibodatxonalar ko'p."
       }
     ]
@@ -6821,12 +6906,12 @@
     "word": "親切な",
     "reading": "しんせつな",
     "romaji": "shinsetsuna",
-    "meaningUz": "mehribon",
+    "meaningUz": "mehribon, oqko'ngil, iltifotli",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "山田さんは 親切な 人ですから、みんなに 好かれています。",
-        "romaji": "",
+        "romaji": "Yamada sanha shinsetsu na nin de sukara, minnani suka reteimasu.",
         "uz": "Yamada mehribon inson, shuning uchun hamma uni yaxshi ko'radi."
       }
     ]
@@ -6837,12 +6922,12 @@
     "word": "元気な",
     "reading": "げんきな",
     "romaji": "genkina",
-    "meaningUz": "sog'lom, baquvvat",
+    "meaningUz": "tetik, baquvvat, sho'x, sog'-omon",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "ミラーさんは いつも 元気ですね。",
-        "romaji": "",
+        "romaji": "Miraa sanha itsumo genki de sune.",
         "uz": "Janob Miller doimo tetik-a."
       }
     ]
@@ -6858,7 +6943,7 @@
     "examples": [
       {
         "ja": "あしたの 午後は 暇ですか。",
-        "romaji": "",
+        "romaji": "Ashitano gogo wa hima de suka.",
         "uz": "Ertaga tushdan keyin bo'shmisiz?"
       }
     ]
@@ -6869,12 +6954,12 @@
     "word": "便利な",
     "reading": "べんりな",
     "romaji": "benrina",
-    "meaningUz": "qulay",
+    "meaningUz": "qulay, foydali, oson",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "地下鉄は 安くて 便利です。",
-        "romaji": "",
+        "romaji": "Chikatetsu wa yasuku te benri de su.",
         "uz": "Metro arzon va qulay."
       }
     ]
@@ -6890,7 +6975,7 @@
     "examples": [
       {
         "ja": "すてきな プレゼントを ありがとうございました。",
-        "romaji": "",
+        "romaji": "Sutekina purezento o arigatougozaimashita.",
         "uz": "Ajoyib sovg'a uchun tashakkur."
       }
     ]
@@ -6906,7 +6991,7 @@
     "examples": [
       {
         "ja": "あの 先生は とても いい 先生です。",
-        "romaji": "",
+        "romaji": "Ano sensei wa totemo ii sensei de su.",
         "uz": "U ustoz juda yaxshi o'qituvchi."
       }
     ]
@@ -6922,7 +7007,7 @@
     "examples": [
       {
         "ja": "日本の 夏は とても 暑いです。",
-        "romaji": "",
+        "romaji": "Nippon no natsu wa totemo atsui desu.",
         "uz": "Yaponiyaning yozi juda issiq."
       }
     ]
@@ -6938,7 +7023,7 @@
     "examples": [
       {
         "ja": "冷たい お茶を 飲みました。",
-        "romaji": "",
+        "romaji": "Tsumetai o cha o nomimashita.",
         "uz": "Muzdek choy ichdim."
       }
     ]
@@ -6949,12 +7034,12 @@
     "word": "難しい",
     "reading": "むずかしい",
     "romaji": "muzukashii",
-    "meaningUz": "qiyin",
+    "meaningUz": "qiyin, murakkab",
     "partOfSpeech": "Sifat",
     "examples": [
       {
         "ja": "日本語の 漢字は 難しいです。",
-        "romaji": "",
+        "romaji": "Nihongo no kanji wa muzukashii desu.",
         "uz": "Yapon tilining iyerogliflari qiyin."
       }
     ]
@@ -6965,12 +7050,12 @@
     "word": "易しい",
     "reading": "やさしい",
     "romaji": "yasashii",
-    "meaningUz": "oson",
+    "meaningUz": "oson, yengil, sodda",
     "partOfSpeech": "Sifat",
     "examples": [
       {
         "ja": "この テストは とても 易しかったです。",
-        "romaji": "",
+        "romaji": "Kono tesuto wa totemo yasashika ttadesu.",
         "uz": "Bu test juda oson edi."
       }
     ]
@@ -6986,7 +7071,7 @@
     "examples": [
       {
         "ja": "あの 建物は 低いです。",
-        "romaji": "",
+        "romaji": "Ano tatemono wa hikui desu.",
         "uz": "Anavi bino past."
       }
     ]
@@ -7002,7 +7087,7 @@
     "examples": [
       {
         "ja": "この 本は とても おもしろいです。",
-        "romaji": "",
+        "romaji": "Kono hon wa totemo omoshiroidesu.",
         "uz": "Bu kitob juda qiziqarli."
       }
     ]
@@ -7018,7 +7103,7 @@
     "examples": [
       {
         "ja": "日本の ラーメンは とても おいしいです。",
-        "romaji": "",
+        "romaji": "Nippon no raamen wa totemo oishiidesu.",
         "uz": "Yapon rameni juda mazali."
       }
     ]
@@ -7034,7 +7119,7 @@
     "examples": [
       {
         "ja": "今週は 仕事が 忙しいです。",
-        "romaji": "",
+        "romaji": "Konshuu wa shigoto ga isogashii desu.",
         "uz": "Bu hafta ishim juda band."
       }
     ]
@@ -7050,7 +7135,7 @@
     "examples": [
       {
         "ja": "白い シャツを 着ています。",
-        "romaji": "",
+        "romaji": "Shiroi shatsu o kite imasu.",
         "uz": "Oq ko'ylak kiyib olgan."
       }
     ]
@@ -7066,7 +7151,7 @@
     "examples": [
       {
         "ja": "黒い 靴を 買いました。",
-        "romaji": "",
+        "romaji": "Kuroi kutsu o kaimashita.",
         "uz": "Qora tufli sotib oldim."
       }
     ]
@@ -7082,7 +7167,7 @@
     "examples": [
       {
         "ja": "赤い りんごを 食べました。",
-        "romaji": "",
+        "romaji": "Akai ringowo tabemashita.",
         "uz": "Qizil olma yedim."
       }
     ]
@@ -7098,7 +7183,7 @@
     "examples": [
       {
         "ja": "青い 空が とても きれいです。",
-        "romaji": "",
+        "romaji": "Aoi sora ga totemo kireidesu.",
         "uz": "Moviy osmon juda chiroyli."
       }
     ]
@@ -7109,12 +7194,12 @@
     "word": "桜",
     "reading": "さくら",
     "romaji": "sakura",
-    "meaningUz": "olcha (sakura)",
+    "meaningUz": "Sakura, yapon olchasi (Cherry blossom)",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "春に 桜が 満開に なります。",
-        "romaji": "",
+        "romaji": "Haru ni sakura ga mankai ni narimasu.",
         "uz": "Bahorda sakura qiyg'os gullaydi."
       }
     ]
@@ -7130,7 +7215,7 @@
     "examples": [
       {
         "ja": "天気が いいから、山へ 登りましょう。",
-        "romaji": "",
+        "romaji": "Tenki ga iikara, yama e nobori mashou.",
         "uz": "Havo yaxshi, tog'ga chiqaylik."
       }
     ]
@@ -7141,12 +7226,12 @@
     "word": "町",
     "reading": "まち",
     "romaji": "machi",
-    "meaningUz": "(kichik) shahar",
+    "meaningUz": "Shaharcha, tuman (Town, neighborhood)",
     "partOfSpeech": "Sifat",
     "examples": [
       {
         "ja": "わたしの 故郷は 静かで きれいな 町です。",
-        "romaji": "",
+        "romaji": "Watashi no furusatoha shizuka de kireina machi de su.",
         "uz": "Mening tug'ilib o'sgan joyim tinch va chiroyli shahar."
       }
     ]
@@ -7157,12 +7242,12 @@
     "word": "食べ物",
     "reading": "たべもの",
     "romaji": "tabemono",
-    "meaningUz": "yegulik",
+    "meaningUz": "oziq-ovqat, taom",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "日本の 食べ物で 何が いちばん 好きですか。",
-        "romaji": "",
+        "romaji": "Nippon no tabemono de nani ga ichiban suki desuka.",
         "uz": "Yapon taomlaridan qaysi birini eng yaxshi ko'rasiz?"
       }
     ]
@@ -7178,7 +7263,7 @@
     "examples": [
       {
         "ja": "京都は 静かで きれいな 所です。",
-        "romaji": "",
+        "romaji": "Kyouto wa shizuka de kireina tokoro de su.",
         "uz": "Kioto tinch va chiroyli joy."
       }
     ]
@@ -7189,12 +7274,12 @@
     "word": "寮",
     "reading": "りょう",
     "romaji": "ryou",
-    "meaningUz": "yotoqxona",
+    "meaningUz": "Yotoqxona (talabalar yoki xodimlar yotoqxonasi)",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "大学の 学生寮に 住んでいます。",
-        "romaji": "",
+        "romaji": "Daigaku no gakuseiryou ni sun deimasu.",
         "uz": "Universitet talabalar yotoqxonasida yashayman."
       }
     ]
@@ -7205,12 +7290,12 @@
     "word": "勉強",
     "reading": "べんきょう",
     "romaji": "benkyou",
-    "meaningUz": "dars, mashg'ulot",
+    "meaningUz": "O'qish, tahsil olish, o'rganish",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "毎日 2時間 日本語の 勉強を します。",
-        "romaji": "",
+        "romaji": "Mainichi 2 jikan nihongo no benkyou o shimasu.",
         "uz": "Har kuni 2 soat yapon tili darsini qilaman."
       }
     ]
@@ -7221,12 +7306,12 @@
     "word": "生活",
     "reading": "せいかつ",
     "romaji": "seikatsu",
-    "meaningUz": "turmush, hayot",
+    "meaningUz": "turmush tarzi, hayot",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "一人暮らしの 生活は どうですか。",
-        "romaji": "",
+        "romaji": "Hitorigurashi no seikatsu wa doudesuka.",
         "uz": "Yolg'iz yashash hayoti qanday kechyapti?"
       }
     ]
@@ -7242,7 +7327,7 @@
     "examples": [
       {
         "ja": "お仕事は 何を されていますか。",
-        "romaji": "",
+        "romaji": "O shigoto wa naniwo sareteimasuka.",
         "uz": "Kasbingiz nima?"
       }
     ]
@@ -7258,7 +7343,7 @@
     "examples": [
       {
         "ja": "日本の 新しい 生活は どうですか。",
-        "romaji": "",
+        "romaji": "Nippon no atarashii seikatsu wa doudesuka.",
         "uz": "Yaponiyadagi yangi hayotingiz qanday?"
       }
     ]
@@ -7274,7 +7359,7 @@
     "examples": [
       {
         "ja": "どんな 音楽が 好きですか。",
-        "romaji": "",
+        "romaji": "Donna ongaku ga suki desuka.",
         "uz": "Qanday musiqani yoqtirasiz?"
       }
     ]
@@ -7290,7 +7375,7 @@
     "examples": [
       {
         "ja": "あなたの かばんは どれですか。",
-        "romaji": "",
+        "romaji": "Anata no kabanha doredesuka.",
         "uz": "Sizning sumkangiz qaysi biri?"
       }
     ]
@@ -7306,7 +7391,7 @@
     "examples": [
       {
         "ja": "富士山は とても 高くて きれいです。",
-        "romaji": "",
+        "romaji": "Fujisan wa totemo takaku te kireidesu.",
         "uz": "Fuji tog'i juda baland va chiroyli."
       }
     ]
@@ -7322,7 +7407,7 @@
     "examples": [
       {
         "ja": "きょうは あまり 寒くないです。",
-        "romaji": "",
+        "romaji": "Kyouha amari samuku naidesu.",
         "uz": "Bugun unchalik sovuq emas."
       }
     ]
@@ -7333,12 +7418,12 @@
     "word": "そして",
     "reading": "そして",
     "romaji": "soshite",
-    "meaningUz": "keyin",
+    "meaningUz": "va, keyin, shuningdek",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "日本の 料理は おいしいです。そして 体に いいです。",
-        "romaji": "",
+        "romaji": "Nippon no ryouri wa oishiidesu. soshite karada ni iidesu.",
         "uz": "Yapon taomlari mazali. Va sog'liq uchun foydali."
       }
     ]
@@ -7354,7 +7439,7 @@
     "examples": [
       {
         "ja": "日本の 生活は 楽しいですが、物価が 高いです。",
-        "romaji": "",
+        "romaji": "Nippon no seikatsu wa tanoshii desuga, bukka ga takai desu.",
         "uz": "Yaponiyadagi hayot maroqli, lekin narx-navo qimmat."
       }
     ]
@@ -7370,7 +7455,7 @@
     "examples": [
       {
         "ja": "お久しぶりです。お元気ですか。",
-        "romaji": "",
+        "romaji": "O hisashi buridesu. o genki de suka.",
         "uz": "Ko'rishmaganimizga ancha bo'ldi. Yaxshimisiz?"
       }
     ]
@@ -7386,7 +7471,7 @@
     "examples": [
       {
         "ja": "きょうは いい 天気ですね。― そうですね。",
-        "romaji": "",
+        "romaji": "Kyouha ii tenki de sune.. soudesune.",
         "uz": "Bugun havo yaxshi-ya. - Shunday-a."
       }
     ]
@@ -7402,7 +7487,7 @@
     "examples": [
       {
         "ja": "日本の 生活に 慣れましたか。― はい、慣れました。",
-        "romaji": "",
+        "romaji": "Nippon no seikatsu ni nare mashitaka.. hai, naremashita.",
         "uz": "Yaponiya hayotiga o'rgandingizmi? - Ha, ko'nikdim."
       }
     ]
@@ -7418,7 +7503,7 @@
     "examples": [
       {
         "ja": "お茶、もう一杯 いかがですか。",
-        "romaji": "",
+        "romaji": "O cha, mou ippai ikagadesuka.",
         "uz": "Yana bir piyola choy olmaysizmi?"
       }
     ]
@@ -7434,7 +7519,7 @@
     "examples": [
       {
         "ja": "もう一杯 いかがですか。― いいえ、けっこうです。",
-        "romaji": "",
+        "romaji": "Mou ippai ikagadesuka.. iie, kekkoudesu.",
         "uz": "Yana bir piyola olasizmi? - Yo'q, rahmat, yetarli."
       }
     ]
@@ -7450,7 +7535,7 @@
     "examples": [
       {
         "ja": "もう 12時ですね。そろそろ 失礼します。",
-        "romaji": "",
+        "romaji": "Mou 12 toki de sune. sorosoro shitsurei shimasu.",
         "uz": "Allaqachon 12 bo'libdi-ya. Ruxsatingiz bilan qaytay."
       }
     ]
@@ -7466,7 +7551,7 @@
     "examples": [
       {
         "ja": "もう 遅いですから、そろそろ 失礼します。",
-        "romaji": "",
+        "romaji": "Mou osoi desukara, sorosoro shitsurei shimasu.",
         "uz": "Allaqachon kech bo'ldi, ruxsatingiz bilan sekin qaytay."
       }
     ]
@@ -7482,7 +7567,7 @@
     "examples": [
       {
         "ja": "楽しかったです。また 来て ください。",
-        "romaji": "",
+        "romaji": "Tanoshika ttadesu. mata kite kudasai.",
         "uz": "Maroqli bo'ldi. Yana kelib turing."
       }
     ]
@@ -7498,7 +7583,7 @@
     "examples": [
       {
         "ja": "富士山は 日本で いちばん 高い 山です。",
-        "romaji": "",
+        "romaji": "Fujisan wa nippon de ichiban takai yama de su.",
         "uz": "Fuji tog'i Yaponiyadagi eng baland tog'."
       }
     ]
@@ -7514,7 +7599,7 @@
     "examples": [
       {
         "ja": "琵琶湖は 日本で いちばん 大きい 湖です。",
-        "romaji": "",
+        "romaji": "Biwako wa nippon de ichiban ookii mizuumi de su.",
         "uz": "Biva ko'li Yaponiyadagi eng katta ko'l."
       }
     ]
@@ -7530,7 +7615,7 @@
     "examples": [
       {
         "ja": "シャンハイは 中国の にぎやかな 大都市です。",
-        "romaji": "",
+        "romaji": "Shanhai wa chuugoku no nigiyakana daitoshi de su.",
         "uz": "Shanxay Xitoyning gavjum yirik shahr."
       }
     ]
@@ -7546,7 +7631,7 @@
     "examples": [
       {
         "ja": "「七人の侍」は 黒澤明監督の 有名な 映画です。",
-        "romaji": "",
+        "romaji": "( shichinin no samurai ) wa kurosawaakira kantoku no yuumei na eiga de su.",
         "uz": "\"Yetti samuray\" Akira Kurosavaning mashhur filmi."
       }
     ]
@@ -7562,7 +7647,7 @@
     "examples": [
       {
         "ja": "京都の 金閣寺へ 行きました。",
-        "romaji": "",
+        "romaji": "Kyouto no kinkakuji e ikimashita.",
         "uz": "Kiotodagi Oltin ibodatxonaga bordim."
       }
     ]
@@ -7578,7 +7663,7 @@
     "examples": [
       {
         "ja": "日本語の 意味が よく わかります。",
-        "romaji": "",
+        "romaji": "Nihongo no imi ga yoku wakarimasu.",
         "uz": "Yaponcha so'zning ma'nosini yaxshi tushunaman."
       }
     ]
@@ -7594,7 +7679,7 @@
     "examples": [
       {
         "ja": "机の 上に 辞書が あります。",
-        "romaji": "",
+        "romaji": "Tsukue no ueni jisho ga arimasu.",
         "uz": "Stol ustida lug'at bor."
       }
     ]
@@ -7610,7 +7695,7 @@
     "examples": [
       {
         "ja": "わたしは 日本の アニメが 好きです。",
-        "romaji": "",
+        "romaji": "Watashi wa nippon no anime ga suki desu.",
         "uz": "Men yapon animesini yoqtiraman."
       }
     ]
@@ -7626,7 +7711,7 @@
     "examples": [
       {
         "ja": "子どもの 頃、野菜が 嫌いでした。",
-        "romaji": "",
+        "romaji": "Kodomo no goro, yasai ga kirai deshita.",
         "uz": "Bolaligimda sabzavotlarni yoqtirmasdim."
       }
     ]
@@ -7642,7 +7727,7 @@
     "examples": [
       {
         "ja": "サントスさんは サッカーが 上手です。",
-        "romaji": "",
+        "romaji": "Santosu sanha sakkaa ga jouzu de su.",
         "uz": "Janob Santos futbolni zo'r o'ynaydi."
       }
     ]
@@ -7653,12 +7738,12 @@
     "word": "下手な",
     "reading": "へたな",
     "romaji": "hetana",
-    "meaningUz": "epsiz, no'noq, mahoratsiz",
+    "meaningUz": "no'noq, qo'lidan kelmaydigan",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "歌が 下手ですから、カラオケへ 行きません。",
-        "romaji": "",
+        "romaji": "Uta ga heta de sukara, karaoke e ikimasen.",
         "uz": "Qo'shiq aytishga no'noqman, shuning uchun karaokega bormayman."
       }
     ]
@@ -7669,12 +7754,12 @@
     "word": "料理",
     "reading": "りょうり",
     "romaji": "ryouri",
-    "meaningUz": "ovqat, taom",
+    "meaningUz": "Taom, ovqat tayyorlash",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "母と いっしょに 日本料理を 作りました。",
-        "romaji": "",
+        "romaji": "Haha to isshoni nihonryouri o tsukurimashita.",
         "uz": "Onam bilan birga yapon taomini tayyorladim."
       }
     ]
@@ -7690,7 +7775,7 @@
     "examples": [
       {
         "ja": "冷蔵庫に 冷たい 飲み物が あります。",
-        "romaji": "",
+        "romaji": "Reizouko ni tsumetai nomimono ga arimasu.",
         "uz": "Muzlatgichda salqin ichimliklar bor."
       }
     ]
@@ -7706,7 +7791,7 @@
     "examples": [
       {
         "ja": "どんな スポーツを しますか。",
-        "romaji": "",
+        "romaji": "Donna supootsu o shimasuka.",
         "uz": "Qanday sport bilan shug'ullanasiz?"
       }
     ]
@@ -7722,7 +7807,7 @@
     "examples": [
       {
         "ja": "週末に 友達と 野球を 観戦しました。",
-        "romaji": "",
+        "romaji": "Shuumatsu ni tomodachi to yakyuu o kansen shimashita.",
         "uz": "Dam olish kunida do'stlar bilan beysbol tomosha qildik."
       }
     ]
@@ -7738,7 +7823,7 @@
     "examples": [
       {
         "ja": "週末に クラブで ダンスを しました。",
-        "romaji": "",
+        "romaji": "Shuumatsu ni kurabu de dansu o shimashita.",
         "uz": "Dam olish kunida klubda raqsga tushdim."
       }
     ]
@@ -7754,7 +7839,7 @@
     "examples": [
       {
         "ja": "静かな 部屋で 音楽を 聞くのが 好きです。",
-        "romaji": "",
+        "romaji": "Shizuka na heya de ongaku o kiku noga suki desu.",
         "uz": "Tinch xonada musiqa tinglashni yoqtiraman."
       }
     ]
@@ -7765,12 +7850,12 @@
     "word": "歌",
     "reading": "うた",
     "romaji": "uta",
-    "meaningUz": "qo'shiq",
+    "meaningUz": "Qo'shiq (Song)",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "日本の 懐かしい 歌を 歌いました。",
-        "romaji": "",
+        "romaji": "Nippon no natsukashii utawo utaimashita.",
         "uz": "Yaponiyaning qadrdon qo'shig'ini kuyladim."
       }
     ]
@@ -7786,7 +7871,7 @@
     "examples": [
       {
         "ja": "ベートーベンの クラシック音楽を 聞きます。",
-        "romaji": "",
+        "romaji": "Beetooben no kurashikku ongaku o kikimasu.",
         "uz": "Betxovenning klassik musiqasini eshitaman."
       }
     ]
@@ -7802,7 +7887,7 @@
     "examples": [
       {
         "ja": "バーで ジャズを 聞きながら お酒を 飲みました。",
-        "romaji": "",
+        "romaji": "Baa de jazu o kiki nagara o sake o nomimashita.",
         "uz": "Barda jaz tinglab ichimlik ichdim."
       }
     ]
@@ -7818,7 +7903,7 @@
     "examples": [
       {
         "ja": "来週の 土曜日に ロックの コンサートが あります。",
-        "romaji": "",
+        "romaji": "Raishuu no doyoubi ni rokku no konsaato ga arimasu.",
         "uz": "Kelasi shanba kuni rok konserti bor."
       }
     ]
@@ -7834,7 +7919,7 @@
     "examples": [
       {
         "ja": "仕事の 帰りに 同僚と カラオケへ 行きました。",
-        "romaji": "",
+        "romaji": "Shigoto no kaeri ni douryou to karaoke e ikimashita.",
         "uz": "Ishdan qaytishda hamkasblar bilan karaokega bordim."
       }
     ]
@@ -7850,7 +7935,7 @@
     "examples": [
       {
         "ja": "銀座の 歌舞伎座で 歌舞伎を 見ました。",
-        "romaji": "",
+        "romaji": "Ginza no kabukiza de kabuki o mima shita.",
         "uz": "Ginzadagi Kabukizada teatrida kabuki ko'rdim."
       }
     ]
@@ -7861,12 +7946,12 @@
     "word": "絵",
     "reading": "え",
     "romaji": "e",
-    "meaningUz": "rasm",
+    "meaningUz": "Rasm, kartina (Picture, drawing)",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "美術館で 美しい 絵を 鑑賞しました。",
-        "romaji": "",
+        "romaji": "Bijutsukan de utsukushii e o kanshou shimashita.",
         "uz": "Muzeyda go'zal san'at asarini tomosha qildim."
       }
     ]
@@ -7877,12 +7962,12 @@
     "word": "字",
     "reading": "じ",
     "romaji": "ji",
-    "meaningUz": "harf",
+    "meaningUz": "harf, yozuv",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "田中さんは 字が とても きれいです。",
-        "romaji": "",
+        "romaji": "Tanaka sanha jiga totemo kireidesu.",
         "uz": "Janob Tanakaning husnixati juda chiroyli."
       }
     ]
@@ -7893,12 +7978,12 @@
     "word": "漢字",
     "reading": "かんじ",
     "romaji": "kanji",
-    "meaningUz": "belgi, iyeroglif",
+    "meaningUz": "Kanji (yapon iyeroglifi)",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "漢字の 読み方を 毎日 覚えます。",
-        "romaji": "",
+        "romaji": "Kanji no yomikata o mainichi oboemasu.",
         "uz": "Har kuni kanji o'qilishlarini yodlayman."
       }
     ]
@@ -7914,7 +7999,7 @@
     "examples": [
       {
         "ja": "初めに ひらがなと カタカナを 勉強しました。",
-        "romaji": "",
+        "romaji": "Hajime ni hiraganato katakana o benkyou shimashita.",
         "uz": "Avvaliga hiragana va katakanani o'rgandim."
       }
     ]
@@ -7930,7 +8015,7 @@
     "examples": [
       {
         "ja": "外来語は カタカナで 書きます。",
-        "romaji": "",
+        "romaji": "Gairaigo wa katakana de kakimasu.",
         "uz": "Chet tilidan kirib kelgan so'zlar katakanada yoziladi."
       }
     ]
@@ -7941,12 +8026,12 @@
     "word": "ローマ字",
     "reading": "ローマじ",
     "romaji": "ro-maji",
-    "meaningUz": "rim yozuvi (lotin yozuvi)",
+    "meaningUz": "Romanization, roman letters",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "駅の 看板には ローマ字も 書いて あります。",
-        "romaji": "",
+        "romaji": "Eki no kanban ni wa rooma ji mo kai te arimasu.",
         "uz": "Bekat peshlavhasida lotin yozuvi ham yozilgan."
       }
     ]
@@ -7962,7 +8047,7 @@
     "examples": [
       {
         "ja": "バスに 乗る 前に 細かいお金を 用意します。",
-        "romaji": "",
+        "romaji": "Basu ni noru mae ni komakai o kin o youishimasu.",
         "uz": "Avtobusga chiqishdan oldin mayda pul tayyorlayman."
       }
     ]
@@ -7978,7 +8063,7 @@
     "examples": [
       {
         "ja": "インターネットで 新幹線の チケットを 予約しました。",
-        "romaji": "",
+        "romaji": "Intaanetto de shinkansen no chiketto o yoyaku shimashita.",
         "uz": "Internetda Shinkansen poyezdi chiptasini band qildim."
       }
     ]
@@ -7994,7 +8079,7 @@
     "examples": [
       {
         "ja": "きょうは 宿題が 多くて 時間が ありません。",
-        "romaji": "",
+        "romaji": "Kyouha shukudai ga ooku te jikan ga arimasen.",
         "uz": "Bugun vazifa ko'p, vaqtim yo'q."
       }
     ]
@@ -8005,13 +8090,18 @@
     "word": "用事",
     "reading": "ようじ",
     "romaji": "youji",
-    "meaningUz": "ish, yumush",
+    "meaningUz": "Yumush, zarur ish (Things to do)",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "午後は 銀行に 用事が あります。",
-        "romaji": "",
-        "uz": "Tushdan keyin bankda yumushim bor."
+        "ja": "今日用事あるの？",
+        "romaji": "kyou youji aruno ？",
+        "uz": "Is there anything you need to do today?"
+      },
+      {
+        "ja": "私は街に用事がある。",
+        "romaji": "watashi ha machi ni youji gaaru .",
+        "uz": "I have an errand to do in town."
       }
     ]
   },
@@ -8021,12 +8111,12 @@
     "word": "約束",
     "reading": "やくそく",
     "romaji": "yakusoku",
-    "meaningUz": "va'da",
+    "meaningUz": "Va'da, ahd, uchrashuv vaqti\nTurkum: Ot / Suru-fe'l",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "日曜日 友達と 銀座で 会う 約束が あります。",
-        "romaji": "",
+        "romaji": "Nichiyoubi tomodachi to ginza de au yakusoku ga arimasu.",
         "uz": "Yakshanba do'stim bilan Ginzada uchrashuvim/kelishuvim bor."
       }
     ]
@@ -8042,7 +8132,7 @@
     "examples": [
       {
         "ja": "山田さんの ご主人は 銀行員です。",
-        "romaji": "",
+        "romaji": "Yamada sanno go shujin wa ginkouin de su.",
         "uz": "Yamada xonimning turmush o'rtog'i bank xodimi."
       }
     ]
@@ -8058,7 +8148,7 @@
     "examples": [
       {
         "ja": "夫は 会社員です。",
-        "romaji": "",
+        "romaji": "Otto wa kaishain de su.",
         "uz": "Erim kompaniya xodimi."
       }
     ]
@@ -8069,12 +8159,12 @@
     "word": "奥さん",
     "reading": "おくさん",
     "romaji": "okusan",
-    "meaningUz": "ayol(ingiz), xotin(ingiz)",
+    "meaningUz": "Rafiqangiz, birovning turmush o'rtog'i",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "木村さんの 奥さんは 料理研究家です。",
-        "romaji": "",
+        "romaji": "Kimura sanno okusan wa ryourikenkyuuka de su.",
         "uz": "Janob Kimuraning rafiqasi pazandachilik mutaxassisi."
       }
     ]
@@ -8090,7 +8180,7 @@
     "examples": [
       {
         "ja": "妻は 料理が とても 上手です。",
-        "romaji": "",
+        "romaji": "Tsuma wa ryouri ga totemo jouzu de su.",
         "uz": "Rafiqam ovqat pishirishga juda usta."
       }
     ]
@@ -8106,7 +8196,7 @@
     "examples": [
       {
         "ja": "この 喫茶店には よく 来ます。",
-        "romaji": "",
+        "romaji": "Kono kissaten ni wa yoku kima su.",
         "uz": "Bu qahvaxonaga tez-tez kelib turaman."
       }
     ]
@@ -8122,7 +8212,7 @@
     "examples": [
       {
         "ja": "日本語が だいたい 分かります。",
-        "romaji": "",
+        "romaji": "Nihongo ga daitai waka rimasu.",
         "uz": "Yapon tilini deyarli / asosan tushunaman."
       }
     ]
@@ -8138,7 +8228,7 @@
     "examples": [
       {
         "ja": "スーパーで 果物を たくさん 買いました。",
-        "romaji": "",
+        "romaji": "Suupaa de kudamono o takusan kaimashita.",
         "uz": "Supermarketdan ko'p meva sotib oldim."
       }
     ]
@@ -8154,7 +8244,7 @@
     "examples": [
       {
         "ja": "日本語が 少し 話せます。",
-        "romaji": "",
+        "romaji": "Nihongo ga sukoshi hanasemasu.",
         "uz": "Yaponcha ozroq gaplasha olaman."
       }
     ]
@@ -8165,12 +8255,12 @@
     "word": "全然",
     "reading": "ぜんぜん",
     "romaji": "zenzen",
-    "meaningUz": "umuman, hech",
+    "meaningUz": "Umuman, aslo (inkor bilan); juda ham",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "ロシア語が 全然 わかりません。",
-        "romaji": "",
+        "romaji": "Roshia go ga zenzen wakarimasen.",
         "uz": "Rus tilini umuman tushunmayman."
       }
     ]
@@ -8186,7 +8276,7 @@
     "examples": [
       {
         "ja": "早く 起きて、速く 走ります。",
-        "romaji": "",
+        "romaji": "Hayaku oki te, hayaku hashirimasu.",
         "uz": "Barvaqt turib, tez yuguraman."
       }
     ]
@@ -8202,7 +8292,7 @@
     "examples": [
       {
         "ja": "どうして きのう 会社を 休みましたか。",
-        "romaji": "",
+        "romaji": "Doushite kinou kaisha o yasumi mashitaka.",
         "uz": "Nima uchun kecha ishga kelmadingiz?"
       }
     ]
@@ -8218,7 +8308,7 @@
     "examples": [
       {
         "ja": "いっしょに 行けなくて、残念ですね。",
-        "romaji": "",
+        "romaji": "Isshoni ike nakute, zannen de sune.",
         "uz": "Birga bora olmasligingiz afsus-a."
       }
     ]
@@ -8234,7 +8324,7 @@
     "examples": [
       {
         "ja": "もしもし、ミラーさんのお宅ですか。",
-        "romaji": "",
+        "romaji": "Moshimoshi, miraa sannoo taku de suka.",
         "uz": "Allo, janob Millerning xonadonimi?"
       }
     ]
@@ -8245,13 +8335,18 @@
     "word": "ああ",
     "reading": "ああ",
     "romaji": "aa",
-    "meaningUz": "A",
+    "meaningUz": "Shunday, unga o'xshash (Like that)",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "ああ、佐藤さん、こんにちは。",
-        "romaji": "",
-        "uz": "Aha, xonim Sato, assalomu alaykum."
+        "ja": "ああ悲しい。",
+        "romaji": "aa kanashii .",
+        "uz": "Ah, me!"
+      },
+      {
+        "ja": "ああ嬉しい。",
+        "romaji": "aa ureshii .",
+        "uz": "How glad I am!"
       }
     ]
   },
@@ -8266,7 +8361,7 @@
     "examples": [
       {
         "ja": "お昼ご飯、いっしょに いかがですか。",
-        "romaji": "",
+        "romaji": "O hiru go meshi, isshoni ikagadesuka.",
         "uz": "Tushlikni birga qilmaysizmi?"
       }
     ]
@@ -8282,7 +8377,7 @@
     "examples": [
       {
         "ja": "日曜日は ちょっと 都合が 悪いです。",
-        "romaji": "",
+        "romaji": "Nichiyoubi wa chotto tsugou ga warui desu.",
         "uz": "Yakshanba kuni biroz noqulay edi."
       }
     ]
@@ -8298,7 +8393,7 @@
     "examples": [
       {
         "ja": "今週は だめですか。",
-        "romaji": "",
+        "romaji": "Konshuu wa damedesuka.",
         "uz": "Bu hafta bo'lmaydimi?"
       }
     ]
@@ -8314,7 +8409,7 @@
     "examples": [
       {
         "ja": "あしたの 飲み会は、また 今度 お願いします。",
-        "romaji": "",
+        "romaji": "Ashitano nomikai wa, mata kondo o negai shimasu.",
         "uz": "Ertangi o'tirish boshqa safarga qolsin, iltimos."
       }
     ]
@@ -8330,7 +8425,7 @@
     "examples": [
       {
         "ja": "小沢征爾は 世界的に 有名な 指揮者です。",
-        "romaji": "",
+        "romaji": "Ozawa seiji wa sekaiteki ni yuumei na shikisha de su.",
         "uz": "Seyji Ozava jahonga mashhur dirijyordir."
       }
     ]
@@ -8346,7 +8441,7 @@
     "examples": [
       {
         "ja": "庭に かわいい 子犬が います。",
-        "romaji": "",
+        "romaji": "Niwa ni kawaii koinu ga imasu.",
         "uz": "Hovlida yoqimtoy kuchukcha bor."
       }
     ]
@@ -8362,7 +8457,7 @@
     "examples": [
       {
         "ja": "日本で いろいろな 経験を しました。",
-        "romaji": "",
+        "romaji": "Nippon de iroirona keiken o shimashita.",
         "uz": "Yaponiyada turli-tuman tajribalarni orttirdim."
       }
     ]
@@ -8378,7 +8473,7 @@
     "examples": [
       {
         "ja": "あそこで 男の子が ボールで 遊んでいます。",
-        "romaji": "",
+        "romaji": "Asokode otoko no ko ga booru de asonde imasu.",
         "uz": "Anavi yerda o'g'il bola to'p o'ynayapti."
       }
     ]
@@ -8394,7 +8489,7 @@
     "examples": [
       {
         "ja": "かわいい 女の子が 人形を 持っています。",
-        "romaji": "",
+        "romaji": "Kawaii onna no ko ga ningyou o motsu teimasu.",
         "uz": "Yoqimtoy qizcha qo'g'irchoq ko'tarib olgan."
       }
     ]
@@ -8410,7 +8505,7 @@
     "examples": [
       {
         "ja": "庭に 白い 犬が います。",
-        "romaji": "",
+        "romaji": "Niwa ni shiroi inu ga imasu.",
         "uz": "Hovlida oq kuchuk bor."
       }
     ]
@@ -8426,7 +8521,7 @@
     "examples": [
       {
         "ja": "机の 下で 猫が 寝ています。",
-        "romaji": "",
+        "romaji": "Tsukue no shita de neko ga nete imasu.",
         "uz": "Stol tagida mushuk uxlayapti."
       }
     ]
@@ -8442,7 +8537,7 @@
     "examples": [
       {
         "ja": "公園に 大きな 桜の 木が あります。",
-        "romaji": "",
+        "romaji": "Kouen ni ooki na sakura no ki ga arimasu.",
         "uz": "Bog'da katta sakura daraxti bor."
       }
     ]
@@ -8453,12 +8548,12 @@
     "word": "物",
     "reading": "もの",
     "romaji": "mono",
-    "meaningUz": "narsa, buyum",
+    "meaningUz": "Narsa, buyum (Thing, object)",
     "partOfSpeech": "Olmosh",
     "examples": [
       {
         "ja": "かばんの 中に 大切な 物が あります。",
-        "romaji": "",
+        "romaji": "Kabanno nakani taisetsu na mono ga arimasu.",
         "uz": "Sumka ichida qimmatbaho/muhim buyum bor."
       }
     ]
@@ -8474,7 +8569,7 @@
     "examples": [
       {
         "ja": "カメラの フイルムを 買いました。",
-        "romaji": "",
+        "romaji": "Kamera no fuirumu o kaimashita.",
         "uz": "Fotoapparat plyonkasini sotib oldim."
       }
     ]
@@ -8485,13 +8580,18 @@
     "word": "電池",
     "reading": "でんち",
     "romaji": "denchi",
-    "meaningUz": "batareya",
+    "meaningUz": "Batareya, batareyka",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "リモコンの 電池を 交換しました。",
-        "romaji": "",
-        "uz": "Pultning batareyasini almashtirdim."
+        "ja": "電池が切れた。",
+        "romaji": "denchi ga kire ta .",
+        "uz": "The battery is flat."
+      },
+      {
+        "ja": "電池が切れちゃった。",
+        "romaji": "denchi ga kire chatta .",
+        "uz": "My battery ran out."
       }
     ]
   },
@@ -8501,12 +8601,12 @@
     "word": "箱",
     "reading": "はこ",
     "romaji": "hako",
-    "meaningUz": "quti",
+    "meaningUz": "Quti (Box)",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "箱を 開けると、プレゼントが 入っていました。",
-        "romaji": "",
+        "romaji": "Hako o hirake ruto, purezento ga itsutsu teimashita.",
         "uz": "Qutini ochsam, ichida sovg'a bor ekan."
       }
     ]
@@ -8522,7 +8622,7 @@
     "examples": [
       {
         "ja": "部屋の 明かりの スイッチを つけます。",
-        "romaji": "",
+        "romaji": "Heya no akari no suitchi o tsukemasu.",
         "uz": "Xona chirog'ining tugmachasini yoqaman."
       }
     ]
@@ -8533,12 +8633,12 @@
     "word": "冷蔵庫",
     "reading": "れいぞうこ",
     "romaji": "reizouko",
-    "meaningUz": "muzlatgich",
+    "meaningUz": "Sovutgich, xolodilnik",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "冷蔵庫に 牛乳と 卵が 入っています。",
-        "romaji": "",
+        "romaji": "Reizouko ni gyuunyuu to tamago ga itsutsu teimasu.",
         "uz": "Muzlatgichda sut va tuxum bor."
       }
     ]
@@ -8554,7 +8654,7 @@
     "examples": [
       {
         "ja": "テーブルの 上に 花瓶を 置きました。",
-        "romaji": "",
+        "romaji": "Teeburu no ueni kabin o okimashita.",
         "uz": "Stol ustiga guldasta qo'ydim."
       }
     ]
@@ -8570,7 +8670,7 @@
     "examples": [
       {
         "ja": "疲れたので、ベッドに 横に なりました。",
-        "romaji": "",
+        "romaji": "Tsukare tanode, beddo ni yoko ni narimashita.",
         "uz": "Charchaganim sababli krovatga cho'zildim."
       }
     ]
@@ -8581,13 +8681,18 @@
     "word": "棚",
     "reading": "たな",
     "romaji": "tana",
-    "meaningUz": "tokcha",
+    "meaningUz": "Javon, tokcha (Shelf, rack)",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "本棚の 棚に 辞書が 並んでいます。",
-        "romaji": "",
-        "uz": "Kitob javonining tokchasida lug'atlar tizilib turibdi."
+        "ja": "棚は空っぽです。",
+        "romaji": "tana ha karappo desu .",
+        "uz": "The shelves are empty."
+      },
+      {
+        "ja": "私は戸棚を覗いた。",
+        "romaji": "watashi ha todana wo nozoi ta .",
+        "uz": "I looked in the cupboard."
       }
     ]
   },
@@ -8602,7 +8707,7 @@
     "examples": [
       {
         "ja": "寒いから ドアを 閉めて ください。",
-        "romaji": "",
+        "romaji": "Samui kara doa o shime te kudasai.",
         "uz": "Sovuq, eshikni yopib qo'ying, iltimos."
       }
     ]
@@ -8613,12 +8718,12 @@
     "word": "窓",
     "reading": "まど",
     "romaji": "mado",
-    "meaningUz": "deraza",
+    "meaningUz": "Deraza, oyna (Window)",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "窓から 富士山が きれいに 見えます。",
-        "romaji": "",
+        "romaji": "Mado kara fujisan ga kireini miemasu.",
         "uz": "Derazadan Fuji tog'i chiroyli ko'rinib turibdi."
       }
     ]
@@ -8634,7 +8739,7 @@
     "examples": [
       {
         "ja": "駅前の 赤い ポストに 手紙を 入れました。",
-        "romaji": "",
+        "romaji": "Ekimae no akai posuto ni tegami o iremashita.",
         "uz": "Bekat oldidagi qizil pochta qutisiga xat tashladim."
       }
     ]
@@ -8650,7 +8755,7 @@
     "examples": [
       {
         "ja": "駅の 近くに 新しい 高層ビルが 立ちました。",
-        "romaji": "",
+        "romaji": "Eki no chikaku ni atarashii kousou biru ga tachimashita.",
         "uz": "Bekat yaqinida yangi baland bino qad ko'tardi."
       }
     ]
@@ -8661,12 +8766,12 @@
     "word": "公園",
     "reading": "こうえん",
     "romaji": "kouen",
-    "meaningUz": "xiyobon, bog', park",
+    "meaningUz": "Park, xiyobon, dam olish bog'i",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "日曜日に 公園を 散歩しました。",
-        "romaji": "",
+        "romaji": "Nichiyoubi ni kouen o sanpo shimashita.",
         "uz": "Yakshanba kuni bog'da sayr qildim."
       }
     ]
@@ -8677,12 +8782,12 @@
     "word": "喫茶店",
     "reading": "きっさてん",
     "romaji": "kissaten",
-    "meaningUz": "qahvaxona",
+    "meaningUz": "Qahvaxona, kafeteriy",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "駅前の 喫茶店で コーヒーを 飲みました。",
-        "romaji": "",
+        "romaji": "Ekimae no kissaten de koohii o nomimashita.",
         "uz": "Bekat oldidagi qahvaxonada kofe ichdim."
       }
     ]
@@ -8698,7 +8803,7 @@
     "examples": [
       {
         "ja": "本屋で 日本語の 辞書を 買いました。",
-        "romaji": "",
+        "romaji": "Honya de nihongo no jisho o kaimashita.",
         "uz": "Kitob do'konidan yapon tili lug'atini sotib oldim."
       }
     ]
@@ -8714,7 +8819,7 @@
     "examples": [
       {
         "ja": "パン屋で サンドイッチを 買いました。",
-        "romaji": "",
+        "romaji": "Pan ya de sandoitchi o kaimashita.",
         "uz": "Novvoyxonadan sendvich sotib oldim."
       }
     ]
@@ -8725,12 +8830,12 @@
     "word": "乗り場",
     "reading": "のりば",
     "romaji": "noriba",
-    "meaningUz": "bekat, chiqish/minish joyi",
+    "meaningUz": "transportga minish joyi, bekat",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "タクシー乗り場は あそこです。",
-        "romaji": "",
+        "romaji": "Takushii noriba wa asokodesu.",
         "uz": "Taksi to'xtash joyi ana u yerda."
       }
     ]
@@ -8741,12 +8846,12 @@
     "word": "県",
     "reading": "けん",
     "romaji": "ken",
-    "meaningUz": "viloyat",
+    "meaningUz": "Prefektura, viloyat (Prefecture)",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "神戸は 兵庫県に あります。",
-        "romaji": "",
+        "romaji": "Koube wa hyougoken ni arimasu.",
         "uz": "Kobe Hyogo viloyatida joylashgan."
       }
     ]
@@ -8762,7 +8867,7 @@
     "examples": [
       {
         "ja": "机の 上に 辞書が 置いて あります。",
-        "romaji": "",
+        "romaji": "Tsukue no ueni jisho ga oi te arimasu.",
         "uz": "Stol ustida lug'at turibdi."
       }
     ]
@@ -8778,7 +8883,7 @@
     "examples": [
       {
         "ja": "椅子の 下に 財布が 落ちています。",
-        "romaji": "",
+        "romaji": "Isu no shitani saifu ga ochi teimasu.",
         "uz": "Stul tagida hamyon tushib yotibdi."
       }
     ]
@@ -8794,7 +8899,7 @@
     "examples": [
       {
         "ja": "駅の 前で 友達と 待ち合わせます。",
-        "romaji": "",
+        "romaji": "Eki no mae de tomodachi to machiawasemasu.",
         "uz": "Bekat oldida do'stim bilan uchrashaman."
       }
     ]
@@ -8810,7 +8915,7 @@
     "examples": [
       {
         "ja": "わたしの 後ろに だれかが 立っています。",
-        "romaji": "",
+        "romaji": "Watashi no ushiro ni darekaga tatsu teimasu.",
         "uz": "Mening orqamda kimdir turibdi."
       }
     ]
@@ -8826,7 +8931,7 @@
     "examples": [
       {
         "ja": "交差点を 右へ 曲がると 銀行が あります。",
-        "romaji": "",
+        "romaji": "Kousaten o migi e kyoku ga ruto ginkou ga arimasu.",
         "uz": "Chorrahadan o'ngga burilsangiz bank chiqadi."
       }
     ]
@@ -8842,7 +8947,7 @@
     "examples": [
       {
         "ja": "郵便局は 病院の 左側に あります。",
-        "romaji": "",
+        "romaji": "Yuubinkyoku wa byouin no hidarigawa ni arimasu.",
         "uz": "Pochta shifoxonaning chap tomonida."
       }
     ]
@@ -8858,7 +8963,7 @@
     "examples": [
       {
         "ja": "箱の 中に 何が 入っていますか。",
-        "romaji": "",
+        "romaji": "Hako no nakani nani ga itsutsu teimasuka.",
         "uz": "Quti ichida nima bor?"
       }
     ]
@@ -8874,7 +8979,7 @@
     "examples": [
       {
         "ja": "雨が 降っていますから、外へ 出ません。",
-        "romaji": "",
+        "romaji": "Ame ga futsu teimasukara, soto e dema sen.",
         "uz": "Yomg'ir yog'yapti, tashqariga chiqmayman."
       }
     ]
@@ -8890,7 +8995,7 @@
     "examples": [
       {
         "ja": "パン屋の 隣に 花屋が あります。",
-        "romaji": "",
+        "romaji": "Pan ya no tonari ni hanaya ga arimasu.",
         "uz": "Novvoyxonaning yonida gul do'koni bor."
       }
     ]
@@ -8901,12 +9006,12 @@
     "word": "近く",
     "reading": "ちかく",
     "romaji": "chikaku",
-    "meaningUz": "yaqin",
+    "meaningUz": "Yaqinida, yaqin atrof",
     "partOfSpeech": "Fe'l",
     "examples": [
       {
         "ja": "学校の 近くに おいしい ラーメン屋が あります。",
-        "romaji": "",
+        "romaji": "Gakkou no chikaku ni oishii raamen ya ga arimasu.",
         "uz": "Maktab yaqinida mazali ramenxona bor."
       }
     ]
@@ -8917,13 +9022,18 @@
     "word": "間",
     "reading": "あいだ",
     "romaji": "aida",
-    "meaningUz": "ora, o'rta",
+    "meaningUz": "Oraliq, orasi, vaqt oralig'i (Between, interval)",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "銀行と 郵便局の 間に 薬局が あります。",
-        "romaji": "",
-        "uz": "Bank va pochta o'rtasida dorixona bor."
+        "ja": "貸し間あり。",
+        "romaji": "kashi kan ari .",
+        "uz": "Room for rent."
+      },
+      {
+        "ja": "寝る時間よ。",
+        "romaji": "neru jikan yo .",
+        "uz": "Time for bed."
       }
     ]
   },
@@ -8938,7 +9048,7 @@
     "examples": [
       {
         "ja": "かばんの 中に 本や ノートなどが あります。",
-        "romaji": "",
+        "romaji": "Kabanno nakani hon ya nooto nadoga arimasu.",
         "uz": "Sumka ichida kitob, daftar kabi narsalar bor."
       }
     ]
@@ -8954,7 +9064,7 @@
     "examples": [
       {
         "ja": "果物で いちばん りんごが 好きです。",
-        "romaji": "",
+        "romaji": "Kudamono de ichiban ringoga suki desu.",
         "uz": "Mevalar ichida eng ko'p olmani yoqtiraman."
       }
     ]
@@ -8970,7 +9080,7 @@
     "examples": [
       {
         "ja": "本棚の 上から 2段目に 辞書が あります。",
-        "romaji": "",
+        "romaji": "Hondana no ue kara 2 danme ni jisho ga arimasu.",
         "uz": "Kitob javonining tepadan 2-tokchasida lug'at bor."
       }
     ]
@@ -8986,7 +9096,7 @@
     "examples": [
       {
         "ja": "手伝ってくれて、どうも すみません。",
-        "romaji": "",
+        "romaji": "Tetsudatsu tekurete, doumo sumimasen.",
         "uz": "Yordamingiz uchun katta rahmat."
       }
     ]
@@ -9002,7 +9112,7 @@
     "examples": [
       {
         "ja": "辛い チリソースを 料理に かけます。",
-        "romaji": "",
+        "romaji": "Tsurai chirisoosu o ryouri ni kakemasu.",
         "uz": "Achchiq chili sousini ovqatga solaman."
       }
     ]
@@ -9013,12 +9123,12 @@
     "word": "奥",
     "reading": "おく",
     "romaji": "oku",
-    "meaningUz": "ichkari, to'r",
+    "meaningUz": "Ichkari, to'r, ichki tomon (Interior, inner part)",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "店の 奥に トイレが ございます。",
-        "romaji": "",
+        "romaji": "Mise no oku ni toire ga gozaimasu.",
         "uz": "Do'konning to'rida hojatxona bor."
       }
     ]
@@ -9034,7 +9144,7 @@
     "examples": [
       {
         "ja": "スーパーの スパイス・コーナーで コショウを 買いました。",
-        "romaji": "",
+        "romaji": "Suupaa no supaisu・koonaa de koshou o kaimashita.",
         "uz": "Supermarketning ziravorlar bo'limidan murch sotib oldim."
       }
     ]
@@ -9050,7 +9160,7 @@
     "examples": [
       {
         "ja": "週末に 東京ディズニーランドへ 遊びに 行きました。",
-        "romaji": "",
+        "romaji": "Shuumatsu ni toukyou dizuniirando e asobi ni ikimashita.",
         "uz": "Dam olish kunida Tokio Disneylendiga aylangani bordim."
       }
     ]
@@ -9066,7 +9176,7 @@
     "examples": [
       {
         "ja": "ユニューヤ・ストアで 新鮮な 野菜を 買いました。",
-        "romaji": "",
+        "romaji": "Yunyuuya・sutoa de shinsen na yasai o kaimashita.",
         "uz": "Yunyua do'konidan yangi sabzavotlar sotib oldim."
       }
     ]
@@ -9082,7 +9192,7 @@
     "examples": [
       {
         "ja": "わたしには 子供が 2人 います。",
-        "romaji": "",
+        "romaji": "Watashi ni wa kodomo ga futari imasu.",
         "uz": "Mening 2 ta bolam bor."
       }
     ]
@@ -9098,7 +9208,7 @@
     "examples": [
       {
         "ja": "日本に 1年間 います。",
-        "romaji": "",
+        "romaji": "Nippon ni 1 nenkan imasu.",
         "uz": "Yaponiyada 1 yil bo'laman."
       }
     ]
@@ -9114,7 +9224,7 @@
     "examples": [
       {
         "ja": "ここから 東京まで 電車で 1時間 かかります。",
-        "romaji": "",
+        "romaji": "Kokokara toukyou made densha de 1 jikan kakarimasu.",
         "uz": "Bu yerdan Tokiogacha poyezdda 1 soat ketadi."
       }
     ]
@@ -9130,7 +9240,7 @@
     "examples": [
       {
         "ja": "風邪を 引いたので、会社を 休みました。",
-        "romaji": "",
+        "romaji": "Kaze o hii tanode, kaisha o yasumimashita.",
         "uz": "Shamollab qolganim uchun ishga chiqmadim."
       }
     ]
@@ -9146,7 +9256,7 @@
     "examples": [
       {
         "ja": "りんごを 1つ ください。",
-        "romaji": "",
+        "romaji": "Ringowo 1 tsu kudasai.",
         "uz": "Bitta olma bering."
       }
     ]
@@ -9162,7 +9272,7 @@
     "examples": [
       {
         "ja": "みかんを 2つ 食べました。",
-        "romaji": "",
+        "romaji": "Mikanwo 2 tsu tabemashita.",
         "uz": "Ikkita mandarin yedim."
       }
     ]
@@ -9178,7 +9288,7 @@
     "examples": [
       {
         "ja": "パンを 3つ 買いました。",
-        "romaji": "",
+        "romaji": "Pan o 3 tsu kaimashita.",
         "uz": "Uchta non sotib oldim."
       }
     ]
@@ -9194,7 +9304,7 @@
     "examples": [
       {
         "ja": "机の 上に 卵が 4つ あります。",
-        "romaji": "",
+        "romaji": "Tsukue no ueni tamago ga 4 tsu arimasu.",
         "uz": "Stol ustida 4 ta tuxum bor."
       }
     ]
@@ -9210,7 +9320,7 @@
     "examples": [
       {
         "ja": "椅子が 5つ あります。",
-        "romaji": "",
+        "romaji": "Isu ga 5 tsu arimasu.",
         "uz": "5 ta stul bor."
       }
     ]
@@ -9226,7 +9336,7 @@
     "examples": [
       {
         "ja": "ケーキを 6つ 買いました。",
-        "romaji": "",
+        "romaji": "Keeki o 6 tsu kaimashita.",
         "uz": "Oltita pirojniy sotib oldim."
       }
     ]
@@ -9242,7 +9352,7 @@
     "examples": [
       {
         "ja": "箱が 7つ 届きました。",
-        "romaji": "",
+        "romaji": "Hako ga 7 tsu todokimashita.",
         "uz": "Yettita quti yetib keldi."
       }
     ]
@@ -9258,7 +9368,7 @@
     "examples": [
       {
         "ja": "トマトが 8つ あります。",
-        "romaji": "",
+        "romaji": "Tomato ga 8 tsu arimasu.",
         "uz": "Sakkizta pomidor bor."
       }
     ]
@@ -9274,7 +9384,7 @@
     "examples": [
       {
         "ja": "みかんが 9つ あります。",
-        "romaji": "",
+        "romaji": "Mikanga 9 tsu arimasu.",
         "uz": "To'qqizta mandarin bor."
       }
     ]
@@ -9290,7 +9400,7 @@
     "examples": [
       {
         "ja": "切手を 10枚 買いました。",
-        "romaji": "",
+        "romaji": "Kitte o 10 mai kaimashita.",
         "uz": "O'nta pochta markasi sotib oldim."
       }
     ]
@@ -9306,7 +9416,7 @@
     "examples": [
       {
         "ja": "りんごを いくつ 買いましたか。",
-        "romaji": "",
+        "romaji": "Ringowo ikutsu kai mashitaka.",
         "uz": "Nechta olma sotib oldingiz?"
       }
     ]
@@ -9322,7 +9432,7 @@
     "examples": [
       {
         "ja": "1人で 日本へ 行きました。",
-        "romaji": "",
+        "romaji": "Hitoride nippon e ikimashita.",
         "uz": "Yaponiyaga yakka o'zim bordim."
       }
     ]
@@ -9338,7 +9448,7 @@
     "examples": [
       {
         "ja": "2人で 映画を 見に 行きました。",
-        "romaji": "",
+        "romaji": "Futaride eiga o mini ikimashita.",
         "uz": "Ikkovlon kino ko'rgani bordik."
       }
     ]
@@ -9354,7 +9464,7 @@
     "examples": [
       {
         "ja": "車が 2台 あります。",
-        "romaji": "",
+        "romaji": "Kuruma ga 2 dai arimasu.",
         "uz": "2 ta mashina bor."
       }
     ]
@@ -9370,7 +9480,7 @@
     "examples": [
       {
         "ja": "切手を 5枚 買いました。",
-        "romaji": "",
+        "romaji": "Kitte o 5 mai kaimashita.",
         "uz": "5 ta pochta markasi sotib oldim."
       }
     ]
@@ -9386,7 +9496,7 @@
     "examples": [
       {
         "ja": "1週間に 2回 テニスを します。",
-        "romaji": "",
+        "romaji": "1 shuukan ni 2 kai tenisu o shimasu.",
         "uz": "Haftada 2 marta tennis o'ynayman."
       }
     ]
@@ -9402,7 +9512,7 @@
     "examples": [
       {
         "ja": "甘くて おいしい りんごを 食べました。",
-        "romaji": "",
+        "romaji": "Amaku te oishii ringowo tabemashita.",
         "uz": "Shirin va mazali olma yedim."
       }
     ]
@@ -9418,7 +9528,7 @@
     "examples": [
       {
         "ja": "冬には こたつで みかんを 食べます。",
-        "romaji": "",
+        "romaji": "Fuyu ni wa kotatsude mikanwo tabemasu.",
         "uz": "Qishda kotatsuda o'tirib mandarin yeymiz."
       }
     ]
@@ -9434,7 +9544,7 @@
     "examples": [
       {
         "ja": "コンビニで サンドイッチを 買いました。",
-        "romaji": "",
+        "romaji": "Konbini de sandoitchi o kaimashita.",
         "uz": "Do'kondan sendvich sotib oldim."
       }
     ]
@@ -9450,7 +9560,7 @@
     "examples": [
       {
         "ja": "日本の カレーライスは とても 人気があります。",
-        "romaji": "",
+        "romaji": "Nippon no kareeraisu wa totemo ninki ga arimasu.",
         "uz": "Yaponiyaning karerays taomi juda mashhur."
       }
     ]
@@ -9466,7 +9576,7 @@
     "examples": [
       {
         "ja": "夏は 冷たい アイスクリームが 食べたくなります。",
-        "romaji": "",
+        "romaji": "Natsu wa tsumetai aisukuriimu ga tabeta kunarimasu.",
         "uz": "Yozda muzdek muzqaymoq yeging keladi."
       }
     ]
@@ -9482,7 +9592,7 @@
     "examples": [
       {
         "ja": "手紙に 切手を 貼りました。",
-        "romaji": "",
+        "romaji": "Tegami ni kitte o harimashita.",
         "uz": "Xatga pochta markasini yopishtirdim."
       }
     ]
@@ -9493,12 +9603,12 @@
     "word": "はがき",
     "reading": "はがき",
     "romaji": "hagaki",
-    "meaningUz": "otkritka",
+    "meaningUz": "Pochta kartochkasi",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "旅先から 友達に 絵はがきを 送りました。",
-        "romaji": "",
+        "romaji": "Tabisaki kara tomodachi ni e wa gakiwo okurimashita.",
         "uz": "Safar joyidan do'stimga otkritka jo'natdim."
       }
     ]
@@ -9514,7 +9624,7 @@
     "examples": [
       {
         "ja": "手紙を 封筒に 入れて 切手を 貼りました。",
-        "romaji": "",
+        "romaji": "Tegami o fuutou ni ire te kitte o harimashita.",
         "uz": "Xatni konvertga solib pochta markasi yopishtirdim."
       }
     ]
@@ -9530,7 +9640,7 @@
     "examples": [
       {
         "ja": "急ぎの 書類ですから、速達で 送ります。",
-        "romaji": "",
+        "romaji": "Isogi no shorui de sukara, sokutatsu de okurimasu.",
         "uz": "Shoshilinch hujjat, shuning uchun tezkor pochtada yuboraman."
       }
     ]
@@ -9541,13 +9651,18 @@
     "word": "書留",
     "reading": "かきとめ",
     "romaji": "kakitome",
-    "meaningUz": "buyurtmali pochta",
+    "meaningUz": "Writing down, putting on record, recording, making a note of, registration (of mail)",
     "partOfSpeech": "Olmosh",
     "examples": [
       {
-        "ja": "大事な 手紙を 書留で 出しました。",
-        "romaji": "",
-        "uz": "Muhim xatni buyurtmali xat orqali jo'natdim."
+        "ja": "この手紙を書留にしたい。",
+        "romaji": "kono tegami wo kakitome nishitai .",
+        "uz": "I want to have this letter registered."
+      },
+      {
+        "ja": "これを書留でお願いします。",
+        "romaji": "korewo kakitome deo negai shimasu .",
+        "uz": "I'd like to send this by registered mail."
       }
     ]
   },
@@ -9562,7 +9677,7 @@
     "examples": [
       {
         "ja": "アメリカへ エアメールで 手紙を 出しました。",
-        "romaji": "",
+        "romaji": "Amerika e eameeru de tegami o dashimashita.",
         "uz": "Amerikaga aviapochta orqali xat jo'natdim."
       }
     ]
@@ -9578,7 +9693,7 @@
     "examples": [
       {
         "ja": "航空便で 1週間ぐらい かかります。",
-        "romaji": "",
+        "romaji": "Koukuubin de 1 shuukan gurai kakarimasu.",
         "uz": "Aviapochta bilan 1 hafta atrofida ketadi."
       }
     ]
@@ -9589,13 +9704,18 @@
     "word": "船便",
     "reading": "ふなびん",
     "romaji": "funabin",
-    "meaningUz": "dengiz pochtasi",
+    "meaningUz": "Surface mail (ship)",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "重い 荷物は 船便で 送ると 安いです。",
-        "romaji": "",
-        "uz": "Og'ir yukni kema pochtasida jo'natsa arzon bo'ladi."
+        "ja": "船便で出してください。",
+        "romaji": "funabin de dashi tekudasai .",
+        "uz": "Send this by sea mail."
+      },
+      {
+        "ja": "これを船便で送って下さい。",
+        "romaji": "korewo funabin de okutsu te kudasai .",
+        "uz": "Please send this by sea mail."
       }
     ]
   },
@@ -9610,7 +9730,7 @@
     "examples": [
       {
         "ja": "両親は 田舎で 元気に 暮らしています。",
-        "romaji": "",
+        "romaji": "Ryoushin wa inaka de genki ni kurashi teimasu.",
         "uz": "Ota-onam qishloqda sog'-omon yashayaptilar."
       }
     ]
@@ -9626,7 +9746,7 @@
     "examples": [
       {
         "ja": "兄弟が 何人 いますか。",
-        "romaji": "",
+        "romaji": "Kyoudai ga nannin imasuka.",
         "uz": "Nechta aka-uka/opa-singlingiz bor?"
       }
     ]
@@ -9642,7 +9762,7 @@
     "examples": [
       {
         "ja": "兄は 東京の IT企業で 働いています。",
-        "romaji": "",
+        "romaji": "Ani wa toukyou no IT kigyou de hatarai teimasu.",
         "uz": "Akam Tokioning IT kompaniyasida ishlaydi."
       }
     ]
@@ -9658,7 +9778,7 @@
     "examples": [
       {
         "ja": "田中さんのお兄さんは 背が 高いですね。",
-        "romaji": "",
+        "romaji": "Tanaka sannoo niisan wa sega takai desune.",
         "uz": "Janob Tanakaning akasi novcha ekan-a."
       }
     ]
@@ -9674,7 +9794,7 @@
     "examples": [
       {
         "ja": "姉は 銀行で 働いています。",
-        "romaji": "",
+        "romaji": "Ane wa ginkou de hatarai teimasu.",
         "uz": "Opam bankda ishlaydi."
       }
     ]
@@ -9690,7 +9810,7 @@
     "examples": [
       {
         "ja": "お姉さんは ピアノの 先生です。",
-        "romaji": "",
+        "romaji": "O neesan wa piano no sensei de su.",
         "uz": "Opangiz fortepiano o'qituvchisi."
       }
     ]
@@ -9706,7 +9826,7 @@
     "examples": [
       {
         "ja": "弟は 高校で サッカーを しています。",
-        "romaji": "",
+        "romaji": "Otouto wa koukou de sakkaa o shiteimasu.",
         "uz": "Ukam maktabda futbol o'ynaydi."
       }
     ]
@@ -9722,7 +9842,7 @@
     "examples": [
       {
         "ja": "弟さんは おいくつですか。",
-        "romaji": "",
+        "romaji": "Otouto sanha oikutsudesuka.",
         "uz": "Ukangiz necha yoshda?"
       }
     ]
@@ -9738,7 +9858,7 @@
     "examples": [
       {
         "ja": "妹は 大学で 英語を 勉強しています。",
-        "romaji": "",
+        "romaji": "Imouto wa daigaku de eigo o benkyou shiteimasu.",
         "uz": "Singlim universitetda ingliz tilini o'rganyapti."
       }
     ]
@@ -9754,7 +9874,7 @@
     "examples": [
       {
         "ja": "妹さんは とても かわいいですね。",
-        "romaji": "",
+        "romaji": "Imouto sanha totemo kawaiidesune.",
         "uz": "Singlingiz juda yoqimtoy ekan."
       }
     ]
@@ -9770,7 +9890,7 @@
     "examples": [
       {
         "ja": "外国へ 旅行に 行きたいです。",
-        "romaji": "",
+        "romaji": "Gaikoku e ryokou ni iki taidesu.",
         "uz": "Xorijga sayohatga borgim kelyapti."
       }
     ]
@@ -9786,7 +9906,7 @@
     "examples": [
       {
         "ja": "毎日 8時間 働きます。",
-        "romaji": "",
+        "romaji": "Mainichi 8 jikan hatarakimasu.",
         "uz": "Har kuni 8 soat ishlayman."
       }
     ]
@@ -9802,7 +9922,7 @@
     "examples": [
       {
         "ja": "京都に 2週間 滞在しました。",
-        "romaji": "",
+        "romaji": "Kyouto ni 2 shuukan taizai shimashita.",
         "uz": "Kiotoda 2 hafta turdim."
       }
     ]
@@ -9818,7 +9938,7 @@
     "examples": [
       {
         "ja": "日本に 来てから 3か月が 経ちました。",
-        "romaji": "",
+        "romaji": "Nippon ni kite kara 3 ka gatsu ga hechimashita.",
         "uz": "Yaponiyaga kelganimga 3 oy bo'ldi."
       }
     ]
@@ -9834,7 +9954,7 @@
     "examples": [
       {
         "ja": "日本で 2年間 勉強する 予定です。",
-        "romaji": "",
+        "romaji": "Nippon de 2 nenkan benkyou suru yotei de su.",
         "uz": "Yaponiyada 2 yil o'qish rejam bor."
       }
     ]
@@ -9850,7 +9970,7 @@
     "examples": [
       {
         "ja": "駅まで 15分ぐらい 歩きます。",
-        "romaji": "",
+        "romaji": "Eki made 15 fun gurai arukimasu.",
         "uz": "Bekatgacha 15 daqiqacha yuriladi."
       }
     ]
@@ -9866,7 +9986,7 @@
     "examples": [
       {
         "ja": "東京から 京都まで どのぐらい かかりますか。",
-        "romaji": "",
+        "romaji": "Toukyou kara kyouto made donogurai kakarimasuka.",
         "uz": "Tokiodan Kiotogacha qancha vaqt ketadi?"
       }
     ]
@@ -9882,7 +10002,7 @@
     "examples": [
       {
         "ja": "全部で 5,000円に なります。",
-        "romaji": "",
+        "romaji": "Zenbu de 5, 000 en ni narimasu.",
         "uz": "Hammasi bo'lib 5 000 iyen bo'ladi."
       }
     ]
@@ -9898,7 +10018,7 @@
     "examples": [
       {
         "ja": "クラスの みんなで 富士山に 登りました。",
-        "romaji": "",
+        "romaji": "Kurasu no minnade fujisan ni noborimashita.",
         "uz": "Sinfdagilar hammasi birgalikda Fuji tog'iga chiqdik."
       }
     ]
@@ -9914,7 +10034,7 @@
     "examples": [
       {
         "ja": "休みは 日曜日だけです。",
-        "romaji": "",
+        "romaji": "Yasumi wa nichiyoubi dakedesu.",
         "uz": "Dam olish kuni faqat yakshanba xolos."
       }
     ]
@@ -9930,7 +10050,7 @@
     "examples": [
       {
         "ja": "いらっしゃいませ！何名様ですか。",
-        "romaji": "",
+        "romaji": "Irasshaimase! nanmei sama de suka.",
         "uz": "Xush kelibsiz! Necha kishisiz?"
       }
     ]
@@ -9946,7 +10066,7 @@
     "examples": [
       {
         "ja": "いいお天気ですね。お出かけですか。",
-        "romaji": "",
+        "romaji": "Iio tenki de sune. o deka kedesuka.",
         "uz": "Havo ajoyib-a. Biror joyga ketyapsizmi?"
       }
     ]
@@ -9962,7 +10082,7 @@
     "examples": [
       {
         "ja": "お出かけですか。― ええ、ちょっと 郵便局まで。",
-        "romaji": "",
+        "romaji": "O deka kedesuka.. ee, chotto yuubinkyoku made.",
         "uz": "Ko'chagami? - Ha, pochtagacha boryapman."
       }
     ]
@@ -9978,7 +10098,7 @@
     "examples": [
       {
         "ja": "ちょっと 駅まで 行ってきます。",
-        "romaji": "",
+        "romaji": "Chotto eki made itte kimasu.",
         "uz": "Birpasga bekatgacha borib kelaman."
       }
     ]
@@ -9994,7 +10114,7 @@
     "examples": [
       {
         "ja": "行ってきます。― 行ってらっしゃい。",
-        "romaji": "",
+        "romaji": "Itte kimasu.. itte rasshai.",
         "uz": "Borib kelaman. - Yaxshi borib keling."
       }
     ]
@@ -10010,7 +10130,7 @@
     "examples": [
       {
         "ja": "会社へ 行ってまいります。",
-        "romaji": "",
+        "romaji": "Kaisha e itte mairimasu.",
         "uz": "Ishxonaga borib kelaman."
       }
     ]
@@ -10026,7 +10146,7 @@
     "examples": [
       {
         "ja": "オーストラリアへ 留学したいです。",
-        "romaji": "",
+        "romaji": "Oosutoraria e ryuugaku shitaidesu.",
         "uz": "Avstraliyaga o'qishga bormoqchiman."
       }
     ]
@@ -10037,12 +10157,12 @@
     "word": "簡単な",
     "reading": "かんたんな",
     "romaji": "kantanna",
-    "meaningUz": "oson",
+    "meaningUz": "oddiy, oson, sodda",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "この 日本語の 本は 簡単ですから、読めます。",
-        "romaji": "",
+        "romaji": "Kono nihongo no hon wa kantan de sukara, yomemasu.",
         "uz": "Bu yaponcha kitob oson, o'qiy olaman."
       }
     ]
@@ -10058,7 +10178,7 @@
     "examples": [
       {
         "ja": "駅は うちから 近いです。",
-        "romaji": "",
+        "romaji": "Eki wa uchikara chikai desu.",
         "uz": "Bekat uyimdan yaqin."
       }
     ]
@@ -10074,7 +10194,7 @@
     "examples": [
       {
         "ja": "会社は うちから 遠いです。",
-        "romaji": "",
+        "romaji": "Kaisha wa uchikara tooi desu.",
         "uz": "Firma uyimdan uzoq."
       }
     ]
@@ -10090,7 +10210,7 @@
     "examples": [
       {
         "ja": "新幹線は とても 速いです。",
-        "romaji": "",
+        "romaji": "Shinkansen wa totemo hayai desu.",
         "uz": "Sinkansen tezyurar poyezdi juda tez."
       }
     ]
@@ -10106,7 +10226,7 @@
     "examples": [
       {
         "ja": "雨で バスが 遅くなりました。",
-        "romaji": "",
+        "romaji": "Ame de basu ga osoku narimashita.",
         "uz": "Yomg'ir tufayli avtobus kechikdi."
       }
     ]
@@ -10122,7 +10242,7 @@
     "examples": [
       {
         "ja": "東京は 人が とても 多いです。",
-        "romaji": "",
+        "romaji": "Toukyou wa nin ga totemo ooi desu.",
         "uz": "Tokioda odam juda ko'p."
       }
     ]
@@ -10138,7 +10258,7 @@
     "examples": [
       {
         "ja": "東京は 大阪より 人が 多いです。",
-        "romaji": "",
+        "romaji": "Toukyou wa oosaka yori nin ga ooi desu.",
         "uz": "Tokioda Osakaga qaraganda odam ko'p."
       }
     ]
@@ -10154,7 +10274,7 @@
     "examples": [
       {
         "ja": "この 町は 車が 少ないです。",
-        "romaji": "",
+        "romaji": "Kono machi wa kuruma ga sukunai desu.",
         "uz": "Bu shaharchada mashina kam."
       }
     ]
@@ -10170,7 +10290,7 @@
     "examples": [
       {
         "ja": "春は 暖かくて 気持ちがいいです。",
-        "romaji": "",
+        "romaji": "Haru wa atatakaku te kimochi gaiidesu.",
         "uz": "Bahor iliq va rohatbaxsh."
       }
     ]
@@ -10186,7 +10306,7 @@
     "examples": [
       {
         "ja": "秋は 涼しくて 過ごしやすいです。",
-        "romaji": "",
+        "romaji": "Aki wa suzushiku te sugo shiyasuidesu.",
         "uz": "Kuz salqin va qulay."
       }
     ]
@@ -10197,12 +10317,12 @@
     "word": "甘い",
     "reading": "あまい",
     "romaji": "amai",
-    "meaningUz": "shirin",
+    "meaningUz": "Shirin; soddadil, qat'iyatsiz",
     "partOfSpeech": "Sifat",
     "examples": [
       {
         "ja": "この ケーキは 甘くて おいしいです。",
-        "romaji": "",
+        "romaji": "Kono keeki wa amaku te oishiidesu.",
         "uz": "Bu tort shirin va mazali."
       }
     ]
@@ -10213,12 +10333,12 @@
     "word": "辛い",
     "reading": "からい",
     "romaji": "karai",
-    "meaningUz": "achchiq (taom)",
+    "meaningUz": "achchiq (taom/qalampir)",
     "partOfSpeech": "Sifat",
     "examples": [
       {
         "ja": "この カレーは とても 辛いです。",
-        "romaji": "",
+        "romaji": "Kono karee wa totemo tsurai desu.",
         "uz": "Bu karri taomi juda achchiq."
       }
     ]
@@ -10234,7 +10354,7 @@
     "examples": [
       {
         "ja": "この 荷物は とても 重いです。",
-        "romaji": "",
+        "romaji": "Kono nimotsu wa totemo omoi desu.",
         "uz": "Bu yuk juda og'ir."
       }
     ]
@@ -10245,12 +10365,12 @@
     "word": "軽い",
     "reading": "かるい",
     "romaji": "karui",
-    "meaningUz": "yengil",
+    "meaningUz": "yengil (vazni yengil/oson)",
     "partOfSpeech": "Sifat",
     "examples": [
       {
         "ja": "この ノートパソコンは 軽くて 便利です。",
-        "romaji": "",
+        "romaji": "Kono nootopasokon wa karuku te benri de su.",
         "uz": "Bu noutbuk yengil va qulay."
       }
     ]
@@ -10266,7 +10386,7 @@
     "examples": [
       {
         "ja": "お茶と コーヒーと どちらが いいですか。",
-        "romaji": "",
+        "romaji": "O cha to koohii to dochiraga iidesuka.",
         "uz": "Choy ma'qulmi yoki kofe?"
       }
     ]
@@ -10277,12 +10397,12 @@
     "word": "季節",
     "reading": "きせつ",
     "romaji": "kisetsu",
-    "meaningUz": "fasl",
+    "meaningUz": "Fasl, mavsum\nTurkum: Ot",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "日本の 季節の 中で 秋が いちばん 好きです。",
-        "romaji": "",
+        "romaji": "Nippon no kisetsu no naka de aki ga ichiban suki desu.",
         "uz": "Yapon fasllari orasida kuzni eng yaxshi ko'raman."
       }
     ]
@@ -10298,7 +10418,7 @@
     "examples": [
       {
         "ja": "春に なると、桜の 花が 咲きます。",
-        "romaji": "",
+        "romaji": "Haru ni naruto, sakura no hana ga sakimasu.",
         "uz": "Bahor kelgach sakura gullari ochiladi."
       }
     ]
@@ -10314,7 +10434,7 @@
     "examples": [
       {
         "ja": "日本の 夏は 湿気が 多くて 暑いです。",
-        "romaji": "",
+        "romaji": "Nippon no natsu wa shikke ga ooku te atsui desu.",
         "uz": "Yaponiyaning yozi nam va issiq."
       }
     ]
@@ -10330,7 +10450,7 @@
     "examples": [
       {
         "ja": "秋には 紅葉が とても きれいです。",
-        "romaji": "",
+        "romaji": "Aki ni wa kouyou ga totemo kireidesu.",
         "uz": "Kuzda xazonrezgi juda go'zal bo'ladi."
       }
     ]
@@ -10346,7 +10466,7 @@
     "examples": [
       {
         "ja": "冬の 北海道は 雪が たくさん 降ります。",
-        "romaji": "",
+        "romaji": "Fuyu no hokkaidou wa yuki ga takusan orimasu.",
         "uz": "Qishda Xokkaydoga ko'p qor yog'adi."
       }
     ]
@@ -10362,7 +10482,7 @@
     "examples": [
       {
         "ja": "あしたの 天気予報は 晴れです。",
-        "romaji": "",
+        "romaji": "Ashitano tenkiyohou wa hare desu.",
         "uz": "Ertangi ob-havo ma'lumoti ochiq havo."
       }
     ]
@@ -10378,7 +10498,7 @@
     "examples": [
       {
         "ja": "外は 雨が 激しく 降っています。",
-        "romaji": "",
+        "romaji": "Soto wa ame ga hageshiku futsu teimasu.",
         "uz": "Tashqarida yomg'ir shiddat bilan yog'yapti."
       }
     ]
@@ -10389,12 +10509,12 @@
     "word": "雪",
     "reading": "ゆき",
     "romaji": "yuki",
-    "meaningUz": "qor",
+    "meaningUz": "Qor (Snow)",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "朝 起きたら、庭に 雪が 積もっていました。",
-        "romaji": "",
+        "romaji": "Asa oki tara, niwa ni yuki ga tsumo tteimashita.",
         "uz": "Ertalab tursam, hovliga qor tushibdi."
       }
     ]
@@ -10410,7 +10530,7 @@
     "examples": [
       {
         "ja": "きょうは 一日中 曇りでした。",
-        "romaji": "",
+        "romaji": "Kyouha ichinichijuu kumori deshita.",
         "uz": "Bugun kun bo'yi bulutli bo'ldi."
       }
     ]
@@ -10426,7 +10546,7 @@
     "examples": [
       {
         "ja": "駅の 近くの ホテルを 予約しました。",
-        "romaji": "",
+        "romaji": "Eki no chikaku no hoteru o yoyaku shimashita.",
         "uz": "Bekat yaqinidagi mehmonxonani band qildim."
       }
     ]
@@ -10442,7 +10562,7 @@
     "examples": [
       {
         "ja": "成田空港から 飛行機に 乗ります。",
-        "romaji": "",
+        "romaji": "Naritakuukou kara hikouki ni norimasu.",
         "uz": "Narita aeroportidan samolyotga chiqaman."
       }
     ]
@@ -10458,7 +10578,7 @@
     "examples": [
       {
         "ja": "夏休みに 友達と 海で 泳ぎました。",
-        "romaji": "",
+        "romaji": "Natsuyasumi ni tomodachi to umi de oyogimashita.",
         "uz": "Yozgi ta'tilda do'stlarim bilan dengizda suzdim."
       }
     ]
@@ -10469,12 +10589,12 @@
     "word": "世界",
     "reading": "せかい",
     "romaji": "sekai",
-    "meaningUz": "dunyo, olam",
+    "meaningUz": "Dunyo, olam, jahon",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "世界中を 旅行したいです。",
-        "romaji": "",
+        "romaji": "Sekaijuu o ryokou shitaidesu.",
         "uz": "Dunyo bo'ylab sayohat qilishni xohlayman."
       }
     ]
@@ -10490,7 +10610,7 @@
     "examples": [
       {
         "ja": "友人の 誕生日パーティーに 招待されました。",
-        "romaji": "",
+        "romaji": "Yuujin no tanjoubi paateii ni shoutai saremashita.",
         "uz": "Do'stimning tug'ilgan kun bazmiga taklif qilindim."
       }
     ]
@@ -10501,13 +10621,18 @@
     "word": "お祭り",
     "reading": "おまつり",
     "romaji": "omatsuri",
-    "meaningUz": "bayram",
+    "meaningUz": "Festival, sayil (Festival)",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "町で 夏の お祭りが 開催されています。",
-        "romaji": "",
-        "uz": "Shaharda yozgi festival o'tkazilyapti."
+        "ja": "彼らはお祭りを中止した。",
+        "romaji": "karera hao matsuri wo chuushi shita .",
+        "uz": "They cancelled the festival."
+      },
+      {
+        "ja": "お祭り中に高山に行きたい。",
+        "romaji": "o matsuri nakani kouzan ni iki tai .",
+        "uz": "I'd like to go to Takayama during festival time."
       }
     ]
   },
@@ -10517,13 +10642,18 @@
     "word": "試験",
     "reading": "しけん",
     "romaji": "shiken",
-    "meaningUz": "imtihon, sinov",
+    "meaningUz": "Imtihon (Examination)",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "あしたの 試験のために 一生懸命 復習します。",
-        "romaji": "",
-        "uz": "Ertangi imtihon uchun astoydil takrorlayman."
+        "ja": "来週は試験だ。",
+        "romaji": "raishuu ha shiken da .",
+        "uz": "The exam is coming up next week."
+      },
+      {
+        "ja": "試験に失敗した。",
+        "romaji": "shiken ni shippai shita .",
+        "uz": "He failed the exam."
       }
     ]
   },
@@ -10538,7 +10668,7 @@
     "examples": [
       {
         "ja": "すき焼きは 牛肉と 野菜の 鍋料理です。",
-        "romaji": "",
+        "romaji": "Suki yaki wa gyuuniku to yasai no nabe ryouri de su.",
         "uz": "Sukiyaki mol go'shti va sabzavotli taomdir."
       }
     ]
@@ -10549,13 +10679,18 @@
     "word": "刺身",
     "reading": "さしみ",
     "romaji": "sashimi",
-    "meaningUz": "sashimi",
+    "meaningUz": "Sliced raw fish",
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "新鮮な マグロの 刺身を 食べました。",
-        "romaji": "",
-        "uz": "Yangi tunets balig'i sashimisini yedim."
+        "ja": "私は刺身が大嫌いです。",
+        "romaji": "watashi ha sashimi ga daikirai desu .",
+        "uz": "I can't stand raw fish."
+      },
+      {
+        "ja": "刺身、嫌いなんだよね？",
+        "romaji": "sashimi , kirai nandayone ？",
+        "uz": "You don't like raw fish, do you?"
       }
     ]
   },
@@ -10570,7 +10705,7 @@
     "examples": [
       {
         "ja": "回転寿司で おすしを 10皿 食べました。",
-        "romaji": "",
+        "romaji": "Kaitenzushi de osushiwo 10 sara tabemashita.",
         "uz": "Konveyer sushixonada 10 likopcha sushi yedim."
       }
     ]
@@ -10586,7 +10721,7 @@
     "examples": [
       {
         "ja": "揚げたての エビの てんぷらは おいしいです。",
-        "romaji": "",
+        "romaji": "Age tateno ebi no tenpuraha oishiidesu.",
         "uz": "Yangi qovurilgan krevetka tempurasi mazali."
       }
     ]
@@ -10601,9 +10736,14 @@
     "partOfSpeech": "Ot",
     "examples": [
       {
-        "ja": "週末に 日本の 生け花を 習っています。",
-        "romaji": "",
-        "uz": "Dam olish kunida yapon gul bezash san'atini o'rganyapman."
+        "ja": "母は生け花を教えている。",
+        "romaji": "haha ha ikebana wo oshie teiru .",
+        "uz": "My mother teaches flower arranging."
+      },
+      {
+        "ja": "生け花は日本の文化です。",
+        "romaji": "ikebana ha nippon no bunka desu .",
+        "uz": "Flower arrangement is a part of Japanese culture."
       }
     ]
   },
@@ -10618,7 +10758,7 @@
     "examples": [
       {
         "ja": "京都の 嵐山へ 紅葉を 見に 行きました。",
-        "romaji": "",
+        "romaji": "Kyouto no arashiyama e kouyou o mini ikimashita.",
         "uz": "Kiotoning Arashiyama qismiga kuz yaproqlarini ko'rgani bordim."
       }
     ]
@@ -10634,7 +10774,7 @@
     "examples": [
       {
         "ja": "どちらも おいしいですから、選べません。",
-        "romaji": "",
+        "romaji": "Dochiramo oishiidesukara, erabemasen.",
         "uz": "Ikkalasi ham mazali, tanlay olmayman."
       }
     ]
@@ -10645,12 +10785,12 @@
     "word": "ずっと",
     "reading": "ずっと",
     "romaji": "zuto",
-    "meaningUz": "ancha; ancha vaqt oldin; ancha vaqt",
+    "meaningUz": "doim, to'xtovsiz; ancha (taqqoslashda)",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "新幹線は バスより ずっと 速いです。",
-        "romaji": "",
+        "romaji": "Shinkansen wa basu yori zutto hayai desu.",
         "uz": "Tezyurar poyezd avtobusdan ancha tez."
       }
     ]
@@ -10661,12 +10801,12 @@
     "word": "初めて",
     "reading": "はじめて",
     "romaji": "hajimete",
-    "meaningUz": "birinchi bor, ilk bor",
+    "meaningUz": "birinchi marta, ilk bor",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "初めて 納豆を 食べました。",
-        "romaji": "",
+        "romaji": "Hajimete nattou o tabemashita.",
         "uz": "Birinchi bor natto yedim."
       }
     ]
@@ -10682,7 +10822,7 @@
     "examples": [
       {
         "ja": "ただいま。― お帰りなさい。",
-        "romaji": "",
+        "romaji": "Tadaima.. o kaeri nasai.",
         "uz": "Men keldim. - Xush kelibsiz."
       }
     ]
@@ -10698,7 +10838,7 @@
     "examples": [
       {
         "ja": "お帰りなさい。きょうは 疲れたでしょう。",
-        "romaji": "",
+        "romaji": "O kaeri nasai. kyouha tsukare tadeshou.",
         "uz": "Yaxshi keldingizmi? Bugun charchadingiz-a."
       }
     ]
@@ -10714,7 +10854,7 @@
     "examples": [
       {
         "ja": "日本語の スピーチコンテストで 優勝したんですか。すごいですね！",
-        "romaji": "",
+        "romaji": "Nihongo no supiichikontesuto de yuushou shitandesuka. sugoidesune!",
         "uz": "Nutq tanlovida yutdingizmi? Qoyil!"
       }
     ]
@@ -10730,7 +10870,7 @@
     "examples": [
       {
         "ja": "日本料理は おいしいです。でも、少し 高いです。",
-        "romaji": "",
+        "romaji": "Nihonryouri wa oishiidesu. demo, sukoshi takai desu.",
         "uz": "Yapon taomlari mazali. Ammo biroz qimmat."
       }
     ]
@@ -10746,7 +10886,7 @@
     "examples": [
       {
         "ja": "一日中 歩いたので、とても 疲れました。",
-        "romaji": "",
+        "romaji": "Ichinichijuu arui tanode, totemo tsukaremashita.",
         "uz": "Kun bo'yi yurganim uchun juda charchadim."
       }
     ]
@@ -10762,7 +10902,7 @@
     "examples": [
       {
         "ja": "7月に 京都で 祇園祭が 行われます。",
-        "romaji": "",
+        "romaji": "7 gatsu ni kyouto de gionmatsuri ga okonawa remasu.",
         "uz": "Iyul oyida Kiotoda Gion bayrami o'tkaziladi."
       }
     ]
@@ -10778,7 +10918,7 @@
     "examples": [
       {
         "ja": "ホンコンの 夜景は とても 有名です。",
-        "romaji": "",
+        "romaji": "Honkon no yakei wa totemo yuumei de su.",
         "uz": "Gonkongning tungi manzarasi juda mashhur."
       }
     ]
@@ -10794,7 +10934,7 @@
     "examples": [
       {
         "ja": "シンガポールへ 家族旅行に 行きました。",
-        "romaji": "",
+        "romaji": "Shingapooru e kazokuryokou ni ikimashita.",
         "uz": "Singapurga oilaviy sayohatga bordim."
       }
     ]
@@ -10810,7 +10950,7 @@
     "examples": [
       {
         "ja": "毎日屋で 安い 食料品を 買いました。",
-        "romaji": "",
+        "romaji": "Mainichi ya de yasui shokuryouhin o kaimashita.",
         "uz": "Mainichiya do'konidan arzon oziq-ovqat sotib oldim."
       }
     ]
@@ -10826,7 +10966,7 @@
     "examples": [
       {
         "ja": "近くの ストアで 牛乳を 買いました。",
-        "romaji": "",
+        "romaji": "Chikaku no sutoa de gyuunyuu o kaimashita.",
         "uz": "Yaqindagi do'kondan sut sotib oldim."
       }
     ]
@@ -10842,7 +10982,7 @@
     "examples": [
       {
         "ja": "ジャパンデパートで セールが あります。",
-        "romaji": "",
+        "romaji": "Japandepaato de seeru ga arimasu.",
         "uz": "Yaponiya universamida chegirma bor."
       }
     ]
@@ -10858,7 +10998,7 @@
     "examples": [
       {
         "ja": "週末に 友達と ディズニーランドで 遊びました。",
-        "romaji": "",
+        "romaji": "Shuumatsu ni tomodachi to dizuniirando de asobimashita.",
         "uz": "Dam olish kunida do'stim bilan Disneylendda aylandik."
       }
     ]
@@ -10874,7 +11014,7 @@
     "examples": [
       {
         "ja": "夏休みに 海で 気持ちよく 泳ぎました。",
-        "romaji": "",
+        "romaji": "Natsuyasumi ni umi de kimochi yoku oyogimashita.",
         "uz": "Yozgi ta'tilda dengizda miriqib suzdim."
       }
     ]
@@ -10890,7 +11030,7 @@
     "examples": [
       {
         "ja": "駅まで 友達を 迎えに 行きました。",
-        "romaji": "",
+        "romaji": "Eki made tomodachi o mukae ni ikimashita.",
         "uz": "Bekatgacha do'stimni kutib olgani bordim."
       }
     ]
@@ -10906,7 +11046,7 @@
     "examples": [
       {
         "ja": "一日中 歩いて、とても 疲れました。",
-        "romaji": "",
+        "romaji": "Ichinichijuu arui te, totemo tsukaremashita.",
         "uz": "Kun bo'yi yurib juda charchadim."
       }
     ]
@@ -10922,7 +11062,7 @@
     "examples": [
       {
         "ja": "郵便局で 手紙を 出しました。",
-        "romaji": "",
+        "romaji": "Yuubinkyoku de tegami o dashimashita.",
         "uz": "Pochtadan xat jo'natdim."
       }
     ]
@@ -10938,7 +11078,7 @@
     "examples": [
       {
         "ja": "郵便局で 国へ 手紙を 出しました。",
-        "romaji": "",
+        "romaji": "Yuubinkyoku de kuni e tegami o dashimashita.",
         "uz": "Pochtadan yurtimga xat jo'natdim."
       }
     ]
@@ -10954,7 +11094,7 @@
     "examples": [
       {
         "ja": "寒いので、温かい お風呂に 入りました。",
-        "romaji": "",
+        "romaji": "Samui node, atatakai o furo ni irimashita.",
         "uz": "Sovuq bo'lgani sababli issiq vannaga tushdim."
       }
     ]
@@ -10970,7 +11110,7 @@
     "examples": [
       {
         "ja": "雨が 降ってきたので、喫茶店に 入りました。",
-        "romaji": "",
+        "romaji": "Ame ga futsu tekitanode, kissaten ni irimashita.",
         "uz": "Yomg'ir boshlangani sababli qahvaxonaga kirdim."
       }
     ]
@@ -10986,7 +11126,7 @@
     "examples": [
       {
         "ja": "切符を 買うと、お釣りが 出ます。",
-        "romaji": "",
+        "romaji": "Kippu o kau to, o tsuri ga dema su.",
         "uz": "Chipta sotib olsangiz qaytim chiqadi."
       }
     ]
@@ -11002,7 +11142,7 @@
     "examples": [
       {
         "ja": "コーヒーを 飲んでから、喫茶店を 出ました。",
-        "romaji": "",
+        "romaji": "Koohii o non dekara, kissaten o dema shita.",
         "uz": "Kofe ichib bo'lib qahvaxonadan chiqdim."
       }
     ]
@@ -11018,7 +11158,7 @@
     "examples": [
       {
         "ja": "来年 幼なじみと 結婚します。",
-        "romaji": "",
+        "romaji": "Rainen you najimito kekkon shimasu.",
         "uz": "Kelasi yili bolalikdagi tanishim bilan turmush quryapman."
       }
     ]
@@ -11034,7 +11174,7 @@
     "examples": [
       {
         "ja": "日曜日に デパートで 買い物しました。",
-        "romaji": "",
+        "romaji": "Nichiyoubi ni depaato de kaimono shimashita.",
         "uz": "Yakshanba kuni universamda xarid qildim."
       }
     ]
@@ -11050,7 +11190,7 @@
     "examples": [
       {
         "ja": "家族と いっしょに レストランで 食事しました。",
-        "romaji": "",
+        "romaji": "Kazoku to isshoni resutoran de shokuji shimashita.",
         "uz": "Oilam bilan birgalikda restoranda ovqatlandim."
       }
     ]
@@ -11066,7 +11206,7 @@
     "examples": [
       {
         "ja": "夕方 涼しい 風を 感じながら 散歩します。",
-        "romaji": "",
+        "romaji": "Yuugata suzushii kaze o kanji nagara sanpo shimasu.",
         "uz": "Kechqurun salqin shabadani his qilib sayr qilaman."
       }
     ]
@@ -11082,7 +11222,7 @@
     "examples": [
       {
         "ja": "毎朝 近くの 公園を 散歩します。",
-        "romaji": "",
+        "romaji": "Maiasa chikaku no kouen o sanpo shimasu.",
         "uz": "Har ertalab yaqin atrofdagi bog'da sayr qilaman."
       }
     ]
@@ -11093,12 +11233,12 @@
     "word": "大変な",
     "reading": "たいへんな",
     "romaji": "taihenna",
-    "meaningUz": "qiyin, og'ir",
+    "meaningUz": "og'ir, mashaqqatli; dahshatli",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "一人での 引っ越しは 大変でした。",
-        "romaji": "",
+        "romaji": "Hitori de no hikkoshi wa taihen de shita.",
         "uz": "Yolg'iz ko'chib o'tish ancha og'ir bo'ldi."
       }
     ]
@@ -11114,7 +11254,7 @@
     "examples": [
       {
         "ja": "新しい パソコンが 欲しいです。",
-        "romaji": "",
+        "romaji": "Atarashii pasokon ga hoshii desu.",
         "uz": "Yangi kompyuter xohlayapman."
       }
     ]
@@ -11125,12 +11265,12 @@
     "word": "寂しい",
     "reading": "さびしい",
     "romaji": "sabishii",
-    "meaningUz": "yolg'iz, ma'yus, xafa",
+    "meaningUz": "yolg'iz, g'arib, kimsasiz, sog'inchli\nTurkum: I-sifat",
     "partOfSpeech": "Sifat",
     "examples": [
       {
         "ja": "友達が 国へ 帰って 寂しいです。",
-        "romaji": "",
+        "romaji": "Tomodachi ga kuni e kaetsu te sabishii desu.",
         "uz": "Do'stim vataniga qaytib, yolg'izlanib qoldim."
       }
     ]
@@ -11141,12 +11281,12 @@
     "word": "広い",
     "reading": "ひろい",
     "romaji": "hiroi",
-    "meaningUz": "keng",
+    "meaningUz": "keng, bepoyon",
     "partOfSpeech": "Sifat",
     "examples": [
       {
         "ja": "わたしの 部屋は 広くて 明るいです。",
-        "romaji": "",
+        "romaji": "Watashi no heya wa hiroku te akarui desu.",
         "uz": "Mening xonam keng va yorug'."
       }
     ]
@@ -11162,7 +11302,7 @@
     "examples": [
       {
         "ja": "この 部屋は 少し 狭いです。",
-        "romaji": "",
+        "romaji": "Kono heya wa sukoshi semai desu.",
         "uz": "Bu xona biroz tor."
       }
     ]
@@ -11178,7 +11318,7 @@
     "examples": [
       {
         "ja": "市役所へ 登録に 行きました。",
-        "romaji": "",
+        "romaji": "Shiyakusho e touroku ni ikimashita.",
         "uz": "Shahar boshqarmasiga ro'yxatdan o'tishga bordim."
       }
     ]
@@ -11194,7 +11334,7 @@
     "examples": [
       {
         "ja": "市民プールで 1時間 泳ぎました。",
-        "romaji": "",
+        "romaji": "Shimin puuru de 1 jikan oyogimashita.",
         "uz": "Shahar basseynida 1 soat suzdim."
       }
     ]
@@ -11210,7 +11350,7 @@
     "examples": [
       {
         "ja": "川の 近くで バーベキューを しました。",
-        "romaji": "",
+        "romaji": "Kawa no chikaku de baabekyuu o shimashita.",
         "uz": "Daryo bo'yida barbekyu qildik."
       }
     ]
@@ -11226,7 +11366,7 @@
     "examples": [
       {
         "ja": "大学で 日本の 経済を 勉強しています。",
-        "romaji": "",
+        "romaji": "Daigaku de nippon no keizai o benkyou shiteimasu.",
         "uz": "Universitetda Yaponiya iqtisodiyotini o'rganyapman."
       }
     ]
@@ -11242,7 +11382,7 @@
     "examples": [
       {
         "ja": "大学で 日本の 古代美術を 研究しています。",
-        "romaji": "",
+        "romaji": "Daigaku de nippon no kodai bijutsu o kenkyuu shiteimasu.",
         "uz": "Universitetda qadimiy yapon san'atini tadqiq qilyapman."
       }
     ]
@@ -11258,7 +11398,7 @@
     "examples": [
       {
         "ja": "週末に 父親と 川へ 釣りに 行きます。",
-        "romaji": "",
+        "romaji": "Shuumatsu ni chichioya to kawa e tsuri ni ikimasu.",
         "uz": "Dam olish kunida otam bilan daryoga baliq oviga boraman."
       }
     ]
@@ -11274,7 +11414,7 @@
     "examples": [
       {
         "ja": "冬休みに 長野へ スキーに 行きました。",
-        "romaji": "",
+        "romaji": "Fuyuyasumi ni nagano e sukii ni ikimashita.",
         "uz": "Qishki ta'tilda Naganoga chang'i uchgani bordim."
       }
     ]
@@ -11290,7 +11430,7 @@
     "examples": [
       {
         "ja": "午後の 会議の 資料を 準備します。",
-        "romaji": "",
+        "romaji": "Gogo no kaigi no shiryou o junbi shimasu.",
         "uz": "Tushdan keyingi yig'ilish materiallarini tayyorlayman."
       }
     ]
@@ -11306,7 +11446,7 @@
     "examples": [
       {
         "ja": "市役所で 外国人登録を 行いました。",
-        "romaji": "",
+        "romaji": "Shiyakusho de gaikokujin touroku o okonaimashita.",
         "uz": "Shahar hokimiyatida chet ellik sifatida ro'yxatdan o'tdim."
       }
     ]
@@ -11317,12 +11457,12 @@
     "word": "週末",
     "reading": "しゅうまつ",
     "romaji": "shuumatsu",
-    "meaningUz": "hafta oxiri, dam olish kuni",
+    "meaningUz": "dam olish kunlari, hafta oxiri",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "週末は 家で ゆっくり 休みます。",
-        "romaji": "",
+        "romaji": "Shuumatsu wa ie de yukkuri yasumimasu.",
         "uz": "Hafta oxirida uyda bemalol dam olaman."
       }
     ]
@@ -11338,7 +11478,7 @@
     "examples": [
       {
         "ja": "あしたの 昼 12時ごろ 会いましょう。",
-        "romaji": "",
+        "romaji": "Ashitano hiru 12 toki goro ai mashou.",
         "uz": "Ertaga tushlik soat 12 lar atrofida ko'rishaylik."
       }
     ]
@@ -11354,7 +11494,7 @@
     "examples": [
       {
         "ja": "のどが かわいたので、何か 飲みたいです。",
-        "romaji": "",
+        "romaji": "Nodoga kawaitanode, nanika nomi taidesu.",
         "uz": "Chanqadim, biror narsa ichgim kelyapti."
       }
     ]
@@ -11370,7 +11510,7 @@
     "examples": [
       {
         "ja": "休みの 日に どこか 静かな 所へ 行きたいです。",
-        "romaji": "",
+        "romaji": "Yasumi no nichi ni dokoka shizuka na tokoro e iki taidesu.",
         "uz": "Dam olish kunida qayergadir tinch joyga borgim kelyapti."
       }
     ]
@@ -11386,7 +11526,7 @@
     "examples": [
       {
         "ja": "おなかが すきましたから、何か 食べに行きましょう。",
-        "romaji": "",
+        "romaji": "Onakaga sukimashitakara, nanika tabe ni iki mashou.",
         "uz": "Qornim ochdi, biror narsa yeyishga boraylik."
       }
     ]
@@ -11402,7 +11542,7 @@
     "examples": [
       {
         "ja": "たくさん 食べたので、おなかが いっぱいです。",
-        "romaji": "",
+        "romaji": "Takusan tabeta node, onakaga ippaidesu.",
         "uz": "Ko'p yeganim sababli qornim to'q."
       }
     ]
@@ -11418,7 +11558,7 @@
     "examples": [
       {
         "ja": "のどが かわきましたから、冷たい 水を ください。",
-        "romaji": "",
+        "romaji": "Nodoga kawakimashitakara, tsumetai mizu o kudasai.",
         "uz": "Chanqadim, muzdek suv bering."
       }
     ]
@@ -11434,7 +11574,7 @@
     "examples": [
       {
         "ja": "あした 映画を 見に 行きませんか。― ええ、そうしましょう。",
-        "romaji": "",
+        "romaji": "Ashita eiga o mini iki masenka.. ee, soushimashou.",
         "uz": "Ertaga kino ko'rgani bormaymizmi? - Mayli, shunday qilaylik."
       }
     ]
@@ -11450,7 +11590,7 @@
     "examples": [
       {
         "ja": "いらっしゃいませ。ご注文は？",
-        "romaji": "",
+        "romaji": "Irasshaimase. go chuumon wa?",
         "uz": "Xush kelibsiz. Nima buyurtma qilasiz?"
       }
     ]
@@ -11461,12 +11601,12 @@
     "word": "定食",
     "reading": "ていしょく",
     "romaji": "teishoku",
-    "meaningUz": "ovqatlar to'plami",
+    "meaningUz": "Kompleks tushlik/ovqat to'plami",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "お昼に 魚の 定食を 食べました。",
-        "romaji": "",
+        "romaji": "O hiru ni sakana no teishoku o tabemashita.",
         "uz": "Tushlikda baliqli taomlar to'plamini yedim."
       }
     ]
@@ -11482,7 +11622,7 @@
     "examples": [
       {
         "ja": "安くて おいしい 牛丼を 注文しました。",
-        "romaji": "",
+        "romaji": "Yasuku te oishii gyuudon o chuumon shimashita.",
         "uz": "Arzon va mazali mol go'shtli gyudon buyurtma qildim."
       }
     ]
@@ -11498,7 +11638,7 @@
     "examples": [
       {
         "ja": "席を ご案内しますので、少々 お待ちください。",
-        "romaji": "",
+        "romaji": "Seki o go annai shimasunode, shoushou o machi kudasai.",
         "uz": "Joyingizni ko'rsataman, bir oz kutib turing."
       }
     ]
@@ -11514,7 +11654,7 @@
     "examples": [
       {
         "ja": "お会計は 別々に お願いします。",
-        "romaji": "",
+        "romaji": "O kaikei wa betsubetsu ni o negai shimasu.",
         "uz": "Hisobni alohida-alohida qilib bersangiz."
       }
     ]
@@ -11530,7 +11670,7 @@
     "examples": [
       {
         "ja": "ロシアの 冬は とても 厳しい 寒さです。",
-        "romaji": "",
+        "romaji": "Roshia no fuyu wa totemo ikameshii samusa desu.",
         "uz": "Rossiyaning qishi juda qahraton sovuq."
       }
     ]
@@ -11546,7 +11686,7 @@
     "examples": [
       {
         "ja": "つるやで おいしい うどんを 食べました。",
-        "romaji": "",
+        "romaji": "Tsuruyade oishii udonwo tabemashita.",
         "uz": "Tsuruya oshxonasida mazali udon yedim."
       }
     ]
@@ -11562,7 +11702,7 @@
     "examples": [
       {
         "ja": "毎朝 「おはようテレビ」の ニュースを 見ます。",
-        "romaji": "",
+        "romaji": "Maiasa ( ohayou terebi ) no nyuusu o mima su.",
         "uz": "Har ertalab \"Ohayou TV\" yangiliklarini ko'raman."
       }
     ]
@@ -11578,7 +11718,7 @@
     "examples": [
       {
         "ja": "暗く なったので、電気を つけました。",
-        "romaji": "",
+        "romaji": "Kuraku nattanode, denki o tsukemashita.",
         "uz": "Qorong'i tushgach chiroqni yoqdim."
       }
     ]
@@ -11594,7 +11734,7 @@
     "examples": [
       {
         "ja": "寝る 前に 部屋の 電気を 消します。",
-        "romaji": "",
+        "romaji": "Neru mae ni heya no denki o keshimasu.",
         "uz": "Uxlamasdan oldin xona chirog'ini o'chiraman."
       }
     ]
@@ -11610,7 +11750,7 @@
     "examples": [
       {
         "ja": "窓を 開けて、涼しい 風を 入れます。",
-        "romaji": "",
+        "romaji": "Mado o hirake te, suzushii kaze o iremasu.",
         "uz": "Derazani ochib salqin havoni kiritaman."
       }
     ]
@@ -11626,7 +11766,7 @@
     "examples": [
       {
         "ja": "雨が 入るので、窓を 閉めて ください。",
-        "romaji": "",
+        "romaji": "Ame ga iru node, mado o shime te kudasai.",
         "uz": "Yomg'ir kiryapti, derazani yopib qo'ying, iltimos."
       }
     ]
@@ -11642,7 +11782,7 @@
     "examples": [
       {
         "ja": "電車に 遅れそうなので、急ぎます。",
-        "romaji": "",
+        "romaji": "Densha ni okure sounanode, isogimasu.",
         "uz": "Poyezddan kechikayotganim uchun shoshaman."
       }
     ]
@@ -11658,7 +11798,7 @@
     "examples": [
       {
         "ja": "ロビーで 友達を 待っています。",
-        "romaji": "",
+        "romaji": "Robii de tomodachi o matsu teimasu.",
         "uz": "Kutish zalida do'stimni kutyapman."
       }
     ]
@@ -11674,7 +11814,7 @@
     "examples": [
       {
         "ja": "あそこに 車を 止めて ください。",
-        "romaji": "",
+        "romaji": "Asoko ni kuruma o tome te kudasai.",
         "uz": "Anavi yerga mashinani to'xtating, iltimos."
       }
     ]
@@ -11690,7 +11830,7 @@
     "examples": [
       {
         "ja": "次の 信号を 左へ 曲がります。",
-        "romaji": "",
+        "romaji": "Tsugino shingou o hidari e kyoku ga rimasu.",
         "uz": "Keyingi svetofordan chapga burilaman."
       }
     ]
@@ -11706,7 +11846,7 @@
     "examples": [
       {
         "ja": "次の 信号を 右へ 曲がって ください。",
-        "romaji": "",
+        "romaji": "Tsugino shingou o migi e kyoku ga tte kudasai.",
         "uz": "Keyingi svetofordan o'ngga buriling."
       }
     ]
@@ -11722,7 +11862,7 @@
     "examples": [
       {
         "ja": "その 重い 荷物を お持ちしましょうか。",
-        "romaji": "",
+        "romaji": "Sono omoi nimotsu o o mochi shimashouka.",
         "uz": "U og'ir yukingizni ko'tarishib yuboraymi?"
       }
     ]
@@ -11738,7 +11878,7 @@
     "examples": [
       {
         "ja": "きれいな 花の 写真を 撮りました。",
-        "romaji": "",
+        "romaji": "Kireina hana no shashin o torimashita.",
         "uz": "Chiroyli gulning suratini oldim."
       }
     ]
@@ -11754,7 +11894,7 @@
     "examples": [
       {
         "ja": "母の 料理を 手伝いました。",
-        "romaji": "",
+        "romaji": "Haha no ryouri o tetsudaimashita.",
         "uz": "Onamning ovqat qilishiga ko'maklashdim."
       }
     ]
@@ -11770,7 +11910,7 @@
     "examples": [
       {
         "ja": "タクシーを 1台 呼んで ください。",
-        "romaji": "",
+        "romaji": "Takushii o 1 dai yon de kudasai.",
         "uz": "Bitta taksi chaqirib bering, iltimos."
       }
     ]
@@ -11786,7 +11926,7 @@
     "examples": [
       {
         "ja": "先生と 日本語で ゆっくり 話しました。",
-        "romaji": "",
+        "romaji": "Sensei to nihongo de yukkuri hanashimashita.",
         "uz": "Ustoz bilan yapon tilida bosiqlik bilan gaplashdim."
       }
     ]
@@ -11802,7 +11942,7 @@
     "examples": [
       {
         "ja": "旅行の 写真を 見せて ください。",
-        "romaji": "",
+        "romaji": "Ryokou no shashin o mise te kudasai.",
         "uz": "Sayohat rasmlarini ko'rsating, iltimos."
       }
     ]
@@ -11818,7 +11958,7 @@
     "examples": [
       {
         "ja": "友達に 新しい 住所を 聞きました。",
-        "romaji": "",
+        "romaji": "Tomodachi ni atarashii juusho o kikimashita.",
         "uz": "Do'stimdan yangi manzilini so'radim."
       }
     ]
@@ -11834,7 +11974,7 @@
     "examples": [
       {
         "ja": "9時から 試験を 始めます。",
-        "romaji": "",
+        "romaji": "9 toki kara shiken o hajimemasu.",
         "uz": "Soat 9 da imtihonni boshlaymiz."
       }
     ]
@@ -11850,7 +11990,7 @@
     "examples": [
       {
         "ja": "次の バス停で 降ります。",
-        "romaji": "",
+        "romaji": "Tsugino basu tei de orimasu.",
         "uz": "Keyingi avtobus bekatida tushaman."
       }
     ]
@@ -11866,7 +12006,7 @@
     "examples": [
       {
         "ja": "午後から 雨が 降るでしょう。",
-        "romaji": "",
+        "romaji": "Gogo kara ame ga furu deshou.",
         "uz": "Tushdan keyin yomg'ir yog'sa kerak."
       }
     ]
@@ -11882,7 +12022,7 @@
     "examples": [
       {
         "ja": "この 資料を 10部 コピーして ください。",
-        "romaji": "",
+        "romaji": "Kono shiryou o 10 bu kopii shite kudasai.",
         "uz": "Bu hujjatdan 10 nusxa ko'chirib bering."
       }
     ]
@@ -11898,7 +12038,7 @@
     "examples": [
       {
         "ja": "部屋が 暑いので、エアコンを つけました。",
-        "romaji": "",
+        "romaji": "Heya ga atsui node, eakon o tsukemashita.",
         "uz": "Xona issiq, konditsionerni yoqdim."
       }
     ]
@@ -11914,7 +12054,7 @@
     "examples": [
       {
         "ja": "空港で パスポートを 見せます。",
-        "romaji": "",
+        "romaji": "Kuukou de pasupooto o misemasu.",
         "uz": "Aeroportda pasportimni ko'rsataman."
       }
     ]
@@ -11930,7 +12070,7 @@
     "examples": [
       {
         "ja": "ここに お名前を ひらがなで 書いてください。",
-        "romaji": "",
+        "romaji": "Koko ni o namae o hiraganade kai tekudasai.",
         "uz": "Bu yerga ismingizni hiraganada yozing."
       }
     ]
@@ -11941,12 +12081,12 @@
     "word": "住所",
     "reading": "じゅうしょ",
     "romaji": "juusho",
-    "meaningUz": "manzil, turar joy",
+    "meaningUz": "Manzil, yashash manzili\nTurkum: Ot",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "ここに 住所と 名前を 書いてください。",
-        "romaji": "",
+        "romaji": "Koko ni juusho to namae o kai tekudasai.",
         "uz": "Bu yerga manzil va ismingizni yozing."
       }
     ]
@@ -11962,7 +12102,7 @@
     "examples": [
       {
         "ja": "スマートフォンの 地図アプリを 見ながら 歩きます。",
-        "romaji": "",
+        "romaji": "Sumaatofon no chizu apuri o mina gara arukimasu.",
         "uz": "Smartfon xaritasi ilovasiga qarab yuraman."
       }
     ]
@@ -11973,12 +12113,12 @@
     "word": "塩",
     "reading": "しお",
     "romaji": "shio",
-    "meaningUz": "tuz",
+    "meaningUz": "Tuz (Salt)",
     "partOfSpeech": "Ot",
     "examples": [
       {
         "ja": "すみません、そこの 塩を 取って ください。",
-        "romaji": "",
+        "romaji": "Sumimasen, soko no shio o totsu te kudasai.",
         "uz": "Kechirasiz, ana u yerdagi tuzni uzatib yuboring."
       }
     ]
@@ -11994,7 +12134,7 @@
     "examples": [
       {
         "ja": "コーヒーに 砂糖を 少し 入れます。",
-        "romaji": "",
+        "romaji": "Koohii ni satou o sukoshi iremasu.",
         "uz": "Kofega biroz shakar solaman."
       }
     ]

@@ -1,8 +1,10 @@
 import { createClient } from '@supabase/supabase-js';
+import { getDailyKanji, getDailyVocab } from './daily-content.js';
 
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://qmuimxnknxwarvnkpnlo.supabase.co';
 const SERVICE_ROLE = process.env.SERVICE_ROLE || process.env.SUPABASE_SERVICE_ROLE_KEY;
 const CRON_SECRET = process.env.CRON_SECRET;
+const APP_URL = (process.env.APP_URL || process.env.VITE_APP_URL || 'https://kaiwa.live').replace(/\/+$/, '');
 
 function escapeHTML(str) {
   if (!str) return '';
@@ -12,7 +14,7 @@ function escapeHTML(str) {
     .replace(/>/g, '&gt;');
 }
 
-async function sendTelegramMessage(chatId, text) {
+async function sendTelegramMessage(chatId, text, replyMarkup = null) {
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
   if (!botToken) return { ok: false, error: 'No bot token' };
   const body = {
@@ -20,6 +22,9 @@ async function sendTelegramMessage(chatId, text) {
     text,
     parse_mode: 'HTML'
   };
+  if (replyMarkup) {
+    body.reply_markup = replyMarkup;
+  }
   const res = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -141,9 +146,28 @@ export default async function handler(req, res) {
         taskSummary = '\n📌 <b>Kutilayotgan vazifalar:</b>\n' + tasks.map((t, i) => `${i + 1}. ⏳ ${escapeHTML(t.title)}`).join('\n');
       }
 
-      const messageText = `🌙 <b>Xayrli oqshom, ${escapeHTML(u.telegram_first_name || 'talaba')}!</b>\n\n${habitStatus}${flashcardStatus}${taskSummary}\n\n🚀 <b>Darslarni bajarish:</b>\n👉 <a href="https://kaiwa.live/speaking-coach">Speaking Coach</a> | <a href="https://kaiwa.live/decks">Fleshkartalar</a>`;
+      const dailyKanji = getDailyKanji();
+      const dailyVocab = getDailyVocab();
 
-      await sendTelegramMessage(u.chat_id, messageText);
+      const dailyBite =
+        `\n\n🈁 <b>Bugungi Kanji:</b> 「${dailyKanji.kanji}」 (${dailyKanji.level}) — ${dailyKanji.meaning}\n` +
+        `   └ <i>${dailyKanji.onyomi} / ${dailyKanji.kunyomi}</i>\n` +
+        `📝 <b>Bugungi So'z:</b> 「${dailyVocab.word}」 [${dailyVocab.reading}] — ${dailyVocab.meaning}\n` +
+        `   └ <i>${dailyVocab.exampleUzbek}</i>`;
+
+      const messageText =
+        `🌙 <b>Xayrli oqshom, ${escapeHTML(u.telegram_first_name || 'talaba')}!</b>\n\n` +
+        `${habitStatus}${flashcardStatus}${taskSummary}${dailyBite}\n\n` +
+        `🚀 <b>Darslarni bajarish:</b>\n👉 <a href="${APP_URL}/speaking">Speaking Coach</a> | <a href="${APP_URL}/decks">Fleshkartalar</a>`;
+
+      const notificationMarkup = {
+        inline_keyboard: [
+          [{ text: '🎲 Bugungi Quiz (1 daq)', callback_data: 'quiz_0' }],
+          [{ text: '🚀 Telegram Mini App', web_app: { url: `${APP_URL}/` } }],
+        ],
+      };
+
+      await sendTelegramMessage(u.chat_id, messageText, notificationMarkup);
       sentCount++;
     }
 

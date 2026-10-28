@@ -23,6 +23,7 @@ import { FlashcardStudySession } from '../components/decks/FlashcardStudySession
 import ImportModal from '../components/decks/ImportModal';
 import { PresetDeckCard } from '../components/decks/PresetDeckCard';
 import { StandaloneDeckCard, StandaloneDeckGroup } from '../components/decks/StandaloneDeckCard';
+import { SpacedRepetitionSchedule } from '../components/decks/SpacedRepetitionSchedule';
 import { ExtractVocabModal } from '../components/decks/ExtractVocabModal';
 import { AiDocumentFlashcardModal } from '../components/decks/AiDocumentFlashcardModal';
 import { AdminFlashcardManager } from '../components/decks/AdminFlashcardManager';
@@ -33,14 +34,26 @@ import { Button } from '../components/ui/Button';
 import { useStudyData } from '../context/StudyPlannerContext';
 import { useLanguage } from '../context/LanguageContext';
 import { useFlashcardImport } from '../hooks/useFlashcardImport';
+import { useSEO } from '../hooks/useSEO';
 import { isUserAdmin } from '../utils/admin';
 import { PRESET_DECKS, PresetDeck, PresetSubDeck } from '../data/presetDecks';
 import { PresetDeckService, DeckPart } from '../services/PresetDeckService';
 import { toast } from '../hooks/use-toast';
+import { ErrorNotificationService } from '../services/ErrorNotificationService';
+import { isFlashcardForLanguage } from '../utils/subjectResolver';
 
 import SubjectForm from '../components/subjects/SubjectForm';
 
 const DecksPage: React.FC = () => {
+  useSEO({
+    title: "Anki SM-2 Fleshkartalar va Minna no Nihongo Lug'ati",
+    description:
+      "Spaced repetition (SM-2) asosidagi aqlli yapon tili fleshkartalari. Minna no Nihongo 1–50 lug'ati, JLPT N5–N1 so'zlari va shaxsiy kartochkalar to'plami.",
+    canonical: '/flashcards',
+    keywords:
+      "yapon tili fleshkartalar, Anki SM-2 yaponcha, Minna no Nihongo lug'at, JLPT N5 N4 so'z boyligi, yapon tili so'z yodlash, kaiwa.live",
+  });
+
   const {
     user,
     subjects,
@@ -64,7 +77,17 @@ const DecksPage: React.FC = () => {
     }
   }, [studyQueryParam]);
 
-  const [activeTab, setActiveTab] = useState<'my' | 'library'>('my');
+  const tabQueryParam = searchParams.get('tab');
+  const [activeTab, setActiveTab] = useState<'my' | 'library' | 'srs'>(
+    tabQueryParam === 'srs' ? 'srs' : tabQueryParam === 'library' ? 'library' : 'my',
+  );
+
+  useEffect(() => {
+    if (tabQueryParam === 'srs' || tabQueryParam === 'library' || tabQueryParam === 'my') {
+      setActiveTab(tabQueryParam);
+    }
+  }, [tabQueryParam]);
+
   const [subTab, setSubTab] = useState<'active' | 'archived'>('active');
   const [selectedSubjectIds, setSelectedSubjectIds] = useState<string[]>([]);
   const [aiSubjectId, setAiSubjectId] = useState<string | null>(null);
@@ -148,14 +171,20 @@ const DecksPage: React.FC = () => {
       if (targetSubjectId) {
         const loadedCards = await preset.loadCards();
         if (loadedCards && loadedCards.length > 0) {
+          const isJapanesePreset = preset.language === 'ja';
           const existingFronts = new Set(
             flashcards
-              .filter((c) => c.subjectId === targetSubjectId)
+              .filter(
+                (c) =>
+                  c.subjectId === targetSubjectId ||
+                  (isJapanesePreset && isFlashcardForLanguage(c, subjects, 'ja')),
+              )
               .map((c) => c.front.trim().toLowerCase()),
           );
           const newCards = loadedCards.filter(
             (c) => !existingFronts.has(c.front.trim().toLowerCase()),
           );
+          const skippedCount = loadedCards.length - newCards.length;
 
           if (newCards.length > 0) {
             const batchCards = newCards.map((c) => ({
@@ -181,10 +210,12 @@ const DecksPage: React.FC = () => {
               });
             }
             setImportedDeckTitle(
-              `${cleanTitle || preset.title} (${newCards.length} ta yangi kartochka qo'shildi)`,
+              `${cleanTitle || preset.title} (${newCards.length} ta yangi kartochka qo'shildi${skippedCount > 0 ? `, ${skippedCount} ta mavjud kartochka takrorlanmasligi uchun o'tkazib yuborildi` : ''})`,
             );
           } else {
-            setImportedDeckTitle(`${cleanTitle || preset.title} (Barcha kartochkalar mavjud)`);
+            setImportedDeckTitle(
+              `${cleanTitle || preset.title} (Barcha ${loadedCards.length} ta kartochka avvaldan mavjud va SRS tizimingizda faol)`,
+            );
           }
         }
       }
@@ -192,10 +223,11 @@ const DecksPage: React.FC = () => {
       setTimeout(() => setImportedDeckTitle(null), 4000);
     } catch (err) {
       console.error('Import preset error:', err);
-      toast({
-        variant: 'destructive',
-        title: 'Xatolik',
-        description: "To'plamni saqlashda xatolik yuz berdi. Qayta urinib ko'ring.",
+      ErrorNotificationService.notifyError({
+        title: "To'plamni saqlashda xatolik",
+        message: "Lug'at to'plamini yuklash va saqlashda uzilish bo'ldi. Qayta urinib ko'ring.",
+        error: err,
+        retryAction: () => handleImportPresetDeck(preset),
       });
     } finally {
       setIsImportingPreset(false);
@@ -272,10 +304,11 @@ const DecksPage: React.FC = () => {
       }
     } catch (err) {
       console.error('Part import error:', err);
-      toast({
-        variant: 'destructive',
-        title: 'Xatolik',
-        description: "Jildni saqlashda xatolik yuz berdi. Qayta urinib ko'ring.",
+      ErrorNotificationService.notifyError({
+        title: 'Jildni saqlashda xatolik',
+        message: "Jild kartochkalarini saqlashda uzilish bo'ldi. Qayta urinib ko'ring.",
+        error: err,
+        retryAction: () => handleImportDeckPart(part),
       });
     } finally {
       setIsImportingPreset(false);
@@ -288,6 +321,12 @@ const DecksPage: React.FC = () => {
       setStandaloneAlbums(list);
     } catch (e) {
       console.error('Error loading standalone albums:', e);
+      ErrorNotificationService.notifyError({
+        title: "Albomlarni yuklab bo'lmadi",
+        message: 'Maxsus darslik albomlarini yuklashda xatolik yuz berdi.',
+        error: e,
+        retryAction: () => loadStandaloneAlbums(),
+      });
     }
   }, []);
 
@@ -490,6 +529,12 @@ const DecksPage: React.FC = () => {
       setExplorerParts(parts);
     } catch (e) {
       console.error('Error opening explorer:', e);
+      ErrorNotificationService.notifyError({
+        title: "Jildlar tafsilotini ochib bo'lmadi",
+        message: "To'plam ichidagi bo'limlarni o'qishda xatolik yuz berdi.",
+        error: e,
+        retryAction: () => handleOpenDeckExplorer(preset),
+      });
     }
   };
 
@@ -506,18 +551,30 @@ const DecksPage: React.FC = () => {
             ? `bugun ${reviewInbox.totalDue} ta karta muddati keldi — Due birinchi.`
             : 'bugun muddati kelgan karta yo‘q. Kutubxona faqat boshqaruv uchun.'}
         </span>
-        {reviewInbox.totalDue > 0 && reviewInbox.firstDueSubjectId ? (
+        <div className="flex flex-wrap items-center gap-2">
+          {reviewInbox.totalDue > 0 && reviewInbox.firstDueSubjectId ? (
+            <button
+              onClick={() => setActiveStudySubjectId(reviewInbox.firstDueSubjectId)}
+              className="shrink-0 cursor-pointer rounded-xl bg-primary px-3 py-1.5 text-xs font-bold text-primary-foreground transition-all hover:bg-primary/90 active:scale-95"
+            >
+              Hozir takrorlash ({reviewInbox.totalDue})
+            </button>
+          ) : (
+            <span className="shrink-0 rounded-xl bg-primary/10 px-3 py-1.5 text-xs font-bold text-primary">
+              Due birinchi
+            </span>
+          )}
           <button
-            onClick={() => setActiveStudySubjectId(reviewInbox.firstDueSubjectId)}
-            className="shrink-0 cursor-pointer rounded-xl bg-primary px-3 py-1.5 text-xs font-bold text-primary-foreground transition-all hover:bg-primary/90 active:scale-95"
+            onClick={() => setActiveTab('srs')}
+            className={`shrink-0 cursor-pointer rounded-xl px-3 py-1.5 text-xs font-bold transition-all ${
+              activeTab === 'srs'
+                ? 'bg-primary text-primary-foreground'
+                : 'border border-primary/30 bg-primary/10 text-primary hover:bg-primary/20'
+            }`}
           >
-            Hozir takrorlash ({reviewInbox.totalDue})
+            SRS Jadvali
           </button>
-        ) : (
-          <span className="shrink-0 rounded-xl bg-primary/10 px-3 py-1.5 text-xs font-bold text-primary">
-            Due birinchi
-          </span>
-        )}
+        </div>
       </div>
       {/* Header Area */}
       <div className="flex flex-col justify-between gap-4 border-b border-border/60 pb-4 lg:flex-row lg:items-center">
@@ -669,6 +726,16 @@ const DecksPage: React.FC = () => {
             }`}
           >
             <Library size={16} /> {t('flashcards.library')} ({visiblePresetDecks.length})
+          </button>
+          <button
+            onClick={() => setActiveTab('srs')}
+            className={`flex min-h-[44px] flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-xl px-3 py-2 text-xs font-black transition-all sm:flex-initial sm:gap-2 sm:px-5 sm:py-2.5 ${
+              activeTab === 'srs'
+                ? 'bg-primary text-primary-foreground shadow-xs'
+                : 'text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            <Sparkles size={16} /> SRS & Darslar jadvali
           </button>
         </div>
       </div>
@@ -965,6 +1032,23 @@ const DecksPage: React.FC = () => {
             </div>
           </div>
         </div>
+      )}
+
+      {activeTab === 'srs' && (
+        <SpacedRepetitionSchedule
+          flashcards={flashcards}
+          userId={user?.id}
+          firstDueSubjectId={reviewInbox.firstDueSubjectId}
+          onStartFlashcardReview={(subjectId) => {
+            if (subjectId) {
+              setActiveStudySubjectId(subjectId);
+            } else if (reviewInbox.firstDueSubjectId) {
+              setActiveStudySubjectId(reviewInbox.firstDueSubjectId);
+            } else if (activeSubjects.length > 0) {
+              setActiveStudySubjectId(activeSubjects[0].id);
+            }
+          }}
+        />
       )}
 
       {aiSubjectId && (

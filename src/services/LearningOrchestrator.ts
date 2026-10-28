@@ -18,7 +18,7 @@ import { CurriculumLessonResolver } from './CurriculumLessonResolver';
 
 import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
 import { Flashcard, Subject } from '../types';
-import { isDue, isOverdue } from '../utils/srs';
+import { isDue, isOverdue, deduplicateCardsByFront } from '../utils/srs';
 import { isFlashcardForLanguage } from '../utils/subjectResolver';
 import { supabase } from '../lib/supabase';
 
@@ -219,7 +219,7 @@ export const LearningOrchestrator = {
     language?: SupportedLanguage,
     cachedSubjects: Subject[] = [],
   ): SrsReviewSummary {
-    let cards: Flashcard[] = cachedFlashcards || [];
+    let cards: Flashcard[] = Array.isArray(cachedFlashcards) ? cachedFlashcards : [];
 
     // If not provided in options, try reading from local cache
     if (cards.length === 0) {
@@ -248,13 +248,16 @@ export const LearningOrchestrator = {
       isFlashcardForLanguage(card, cachedSubjects, filterLang),
     );
 
+    // Deduplicate cards by front so cross-deck duplicates do not distort SRS review metrics or retention score
+    const effectiveCards = deduplicateCardsByFront(filteredCards);
+
     let dueCount = 0;
     let overdueCount = 0;
     let newCount = 0;
     let learnedCount = 0;
     let totalMasterySum = 0;
 
-    for (const card of filteredCards) {
+    for (const card of effectiveCards) {
       if (isOverdue(card)) {
         overdueCount++;
         dueCount++;
@@ -277,10 +280,10 @@ export const LearningOrchestrator = {
     }
 
     const averageRetentionScore =
-      filteredCards.length > 0 ? Math.round(totalMasterySum / filteredCards.length) : 0;
+      effectiveCards.length > 0 ? Math.round(totalMasterySum / effectiveCards.length) : 0;
 
     return {
-      totalCards: filteredCards.length,
+      totalCards: effectiveCards.length,
       dueCount,
       overdueCount,
       newCount,
