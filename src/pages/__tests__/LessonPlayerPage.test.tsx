@@ -122,7 +122,7 @@ describe('LessonPlayerPage', () => {
     fireEvent.click(optButtons1[0]);
 
     // Advance through exercises until reaching the final finish button
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 25; i++) {
       const continueBtn = screen.queryByRole('button', { name: /Davom etish/i });
       if (!continueBtn) break;
       fireEvent.click(continueBtn);
