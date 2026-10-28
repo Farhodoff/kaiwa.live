@@ -1,4 +1,5 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { format } from 'date-fns';
 import { SpacedRepetitionEngine } from '../SpacedRepetitionEngine';
 import { LessonService } from '../LessonService';
 import { TaskService } from '../TaskService';
@@ -311,44 +312,48 @@ describe('SpacedRepetitionEngine (SM-2 / MF2M)', () => {
   });
 
   describe('6. Task Synchronization (generateReviewTasks)', () => {
-    it('creates tasks for due lesson reviews and skips duplicates', async () => {
-      const addTaskSpy = vi.spyOn(TaskService, 'addTask').mockResolvedValue({
-        id: 'task-new-1',
-        title: 'Takrorlash: Lesson',
-        userId: testUserId,
-        dueDate: '2026-10-19T10:00:00.000Z',
-        completed: false,
-        status: 'todo',
-        priority: 'high',
-      } as Task);
-
-      // Schedule a lesson due in the past (overdue)
-      SpacedRepetitionEngine.scheduleLessonReview(testUserId, 'ja-n3-u1-l1', {
-        quizScorePercentage: 70,
-        baseDate: new Date('2026-10-10T00:00:00.000Z'),
-      });
-
-      const created = await SpacedRepetitionEngine.generateReviewTasks(testUserId, []);
-      expect(created.length).toBe(1);
-      expect(addTaskSpy).toHaveBeenCalledTimes(1);
-
-      // Calling again with existing tasks prevents duplicates
-      const existing: Task[] = [
-        {
-          id: 'existing-1',
-          title: `🔄 Takrorlash: Passive Voice (受身形): Direct & Suffering Passive (迷惑の受身)`,
-          dueDate: `${new Date().toISOString().slice(0, 10)}T10:00:00.000Z`,
-          completed: false,
-          status: 'todo',
-          priority: 'high',
-        } as Task,
-      ];
-      addTaskSpy.mockClear();
-
-      const createdSecond = await SpacedRepetitionEngine.generateReviewTasks(testUserId, existing);
-      expect(createdSecond.length).toBe(0);
-      expect(addTaskSpy).not.toHaveBeenCalled();
+    afterEach(() => {
+      vi.useRealTimers();
+      vi.restoreAllMocks();
     });
+
+    it.each([0, 12, 23])(
+      'creates tasks for due lesson reviews and skips duplicates at local hour %i',
+      async (hour) => {
+        vi.useFakeTimers();
+        vi.setSystemTime(new Date(2026, 9, 29, hour, 55));
+        const addTaskSpy = vi.spyOn(TaskService, 'addTask').mockImplementation(
+          async (userId, taskData) =>
+            ({
+              ...taskData,
+              id: 'task-new-1',
+              userId,
+            }) as Task,
+        );
+
+        // Schedule a lesson due in the past (overdue)
+        SpacedRepetitionEngine.scheduleLessonReview(testUserId, 'ja-n3-u1-l1', {
+          quizScorePercentage: 70,
+          baseDate: new Date('2026-10-10T00:00:00.000Z'),
+        });
+
+        const created = await SpacedRepetitionEngine.generateReviewTasks(testUserId, []);
+        expect(created.length).toBe(1);
+        expect(addTaskSpy).toHaveBeenCalledTimes(1);
+        expect(created[0].dueDate).toBe(`${format(new Date(), 'yyyy-MM-dd')}T10:00:00.000Z`);
+
+        // Reuse the persisted task's date rather than a UTC date that can differ from the local day.
+        const existing: Task[] = created;
+        addTaskSpy.mockClear();
+
+        const createdSecond = await SpacedRepetitionEngine.generateReviewTasks(
+          testUserId,
+          existing,
+        );
+        expect(createdSecond.length).toBe(0);
+        expect(addTaskSpy).not.toHaveBeenCalled();
+      },
+    );
   });
 
   describe('7. LessonService Automatic Integration', () => {
