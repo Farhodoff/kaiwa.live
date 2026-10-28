@@ -13,6 +13,7 @@ export const ALL_ENGLISH_LESSONS: Lesson[] = [];
  * Total: 140 canonical high-quality lessons (zero duplicate tracks).
  */
 let fullLessons: Lesson[] = metadata.canonicalLessons as unknown as Lesson[];
+let allJapaneseLessons: Lesson[] = fullLessons;
 
 if (!import.meta.env.PROD) {
   try {
@@ -30,6 +31,7 @@ if (!import.meta.env.PROD) {
       ...n2.default,
       ...n1.default,
     ] as unknown as Lesson[];
+    allJapaneseLessons.splice(0, allJapaneseLessons.length, ...fullLessons);
   } catch (_) {}
 }
 
@@ -53,7 +55,18 @@ export async function loadCurriculumLevel(level: string): Promise<Lesson[]> {
   const loader = LEVEL_LOADERS[norm];
   if (!loader) return [];
   const lessons = await loader();
-  lessons.forEach((l) => CURRICULUM_LESSONS_BY_ID.set(l.id, l));
+  const loadedIds = new Set(lessons.map((lesson) => lesson.id));
+  lessons.forEach((lesson) => CURRICULUM_LESSONS_BY_ID.set(lesson.id, lesson));
+  const hydratedLessons = [
+    ...allJapaneseLessons.filter((lesson) => !loadedIds.has(lesson.id)),
+    ...lessons,
+  ].sort((a, b) => {
+    const levelOrder = ['N5', 'N4', 'N3', 'N2', 'N1'];
+    const levelDifference =
+      levelOrder.indexOf(a.level.toUpperCase()) - levelOrder.indexOf(b.level.toUpperCase());
+    return levelDifference || a.lessonNumber - b.lessonNumber;
+  });
+  allJapaneseLessons.splice(0, allJapaneseLessons.length, ...hydratedLessons);
   return lessons;
 }
 
@@ -75,7 +88,7 @@ export async function loadCurriculumLessonById(id: string): Promise<Lesson | und
   return getCurriculumLessonById(id) || existing;
 }
 
-export const ALL_JAPANESE_LESSONS: Lesson[] = fullLessons;
+export const ALL_JAPANESE_LESSONS: Lesson[] = allJapaneseLessons;
 export const ALL_CURRICULUM_LESSONS: Lesson[] = ALL_JAPANESE_LESSONS;
 
 export const CURRICULUM_LESSONS_BY_ID: Map<string, Lesson> = new Map([
@@ -109,7 +122,7 @@ export function getCurriculumLessonById(id: string): Lesson | undefined {
 }
 
 export function getCurriculumLessonsByLanguage(language: 'en' | 'ja'): Lesson[] {
-  return language === 'en' ? ALL_ENGLISH_LESSONS : ALL_JAPANESE_LESSONS;
+  return language === 'en' ? ALL_ENGLISH_LESSONS : allJapaneseLessons;
 }
 
 export function getCurriculumLessonsByLevel(language: 'en' | 'ja', level: string): Lesson[] {
