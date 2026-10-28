@@ -14,11 +14,12 @@ import { JlptSkillMatrixView } from '../components/analytics/JlptSkillMatrixView
 import { useStudyData } from '../context/StudyPlannerContext';
 import Skeleton from '../components/ui/Skeleton';
 import ShareCardModal from '../components/ShareCardModal';
-import { Share2, BarChart3, Globe2, BookOpen, Trophy } from 'lucide-react';
+import { Share2, BarChart3, Globe2, BookOpen, Trophy, Activity } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useGamificationInfo } from '../stores';
 import { DailyQuestsWidget } from '../components/gamification/DailyQuestsWidget';
 import { AchievementsGrid } from '../components/gamification/AchievementsGrid';
+import RealTimeAnalyticsDashboard from '../components/analytics/RealTimeAnalyticsDashboard';
 
 const ProgressPage: React.FC = () => {
   const navigate = useNavigate();
@@ -26,9 +27,9 @@ const ProgressPage: React.FC = () => {
     useStudyData();
   const { totalXp, level } = useGamificationInfo();
   const { language } = useLanguage();
-  const [activeTab, setActiveTab] = useState<'overview' | 'language' | 'subjects' | 'achievements'>(
-    'overview',
-  );
+  const [activeTab, setActiveTab] = useState<
+    'overview' | 'realtime' | 'language' | 'subjects' | 'achievements'
+  >('overview');
   const [isShareOpen, setIsShareOpen] = useState(false);
 
   const totalHours = (sessions.reduce((acc, s) => acc + s.duration, 0) / 60).toFixed(1);
@@ -101,6 +102,23 @@ const ProgressPage: React.FC = () => {
           <span>{language === 'ja' ? '総合' : language === 'en' ? 'Overview' : 'Umumiy'}</span>
         </button>
         <button
+          onClick={() => setActiveTab('realtime')}
+          className={`flex min-h-[44px] shrink-0 cursor-pointer items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-extrabold transition-all active:scale-95 ${
+            activeTab === 'realtime'
+              ? 'bg-primary text-primary-foreground shadow-sm'
+              : 'bg-muted/40 text-muted-foreground hover:bg-muted'
+          }`}
+        >
+          <Activity size={15} />
+          <span>
+            {language === 'ja'
+              ? 'リアルタイム & AI'
+              : language === 'en'
+                ? 'Real-Time & AI'
+                : 'Real-Vaqt & AI'}
+          </span>
+        </button>
+        <button
           onClick={() => setActiveTab('language')}
           className={`flex min-h-[44px] shrink-0 cursor-pointer items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-extrabold transition-all active:scale-95 ${
             activeTab === 'language'
@@ -138,6 +156,13 @@ const ProgressPage: React.FC = () => {
           </span>
         </button>
       </div>
+
+      {/* Tab: Real-Time Analytics & Personalized AI Feedback */}
+      {activeTab === 'realtime' && (
+        <div className="space-y-8 duration-300 animate-in fade-in">
+          <RealTimeAnalyticsDashboard />
+        </div>
+      )}
 
       {/* Tab 1: Overview & Time Activity */}
       {activeTab === 'overview' && (
