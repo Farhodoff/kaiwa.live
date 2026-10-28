@@ -1,4 +1,4 @@
-import { Trophy, ArrowRight, Clock, Map, Sparkles, Loader2 } from 'lucide-react';
+import { Trophy, ArrowRight, Clock, Map, Sparkles, Loader2, PenTool } from 'lucide-react';
 import React, { useMemo, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useStudyData } from '../context/StudyPlannerContext';
@@ -500,6 +500,60 @@ const DashboardPage: React.FC = () => {
               </div>
             </div>
           </Link>
+
+          {lessonKanjiSummary && (
+            <Link
+              to="/progress"
+              className="glass-card group flex items-center gap-3 rounded-2xl border border-amber-500/30 bg-amber-500/5 p-2.5 px-4 shadow-xs transition-all hover:border-amber-500/60 hover:bg-amber-500/10"
+              title={
+                language === 'ja'
+                  ? `${lessonKanjiSummary.level} 漢字の学習進捗`
+                  : `${lessonKanjiSummary.level} lesson kanji progress`
+              }
+            >
+              <div className="flex items-center justify-center rounded-xl bg-amber-500/20 p-2 text-amber-600 transition-transform group-hover:scale-110 dark:text-amber-400">
+                <PenTool size={18} />
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center justify-between gap-2 text-[10px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300">
+                  <span>
+                    {language === 'ja'
+                      ? `${lessonKanjiSummary.level} 漢字`
+                      : language === 'en'
+                        ? `${lessonKanjiSummary.level} Lesson Kanji`
+                        : `${lessonKanjiSummary.level} dars kanjilari`}
+                  </span>
+                  <span className="font-black">
+                    {lessonKanjiSummary.masteredKanji}/{lessonKanjiSummary.totalKanji}
+                  </span>
+                </div>
+                <div className="mt-1 flex items-center gap-2">
+                  <div className="h-1.5 min-w-20 flex-1 overflow-hidden rounded-full bg-amber-500/20">
+                    <div
+                      className="h-full rounded-full bg-amber-500 transition-all duration-700"
+                      style={{
+                        width: `${
+                          lessonKanjiSummary.totalKanji > 0
+                            ? Math.min(
+                                100,
+                                Math.round(
+                                  (lessonKanjiSummary.masteredKanji /
+                                    lessonKanjiSummary.totalKanji) *
+                                    100,
+                                ),
+                              )
+                            : 0
+                        }%`,
+                      }}
+                    />
+                  </div>
+                  <span className="shrink-0 text-[10px] font-bold text-foreground">
+                    {lessonKanjiSummary.reviewedKanji} {language === 'ja' ? '復習済' : 'reviewed'}
+                  </span>
+                </div>
+              </div>
+            </Link>
+          )}
         </div>
       </div>
 
