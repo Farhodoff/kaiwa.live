@@ -10,6 +10,19 @@ export interface VocabItem {
   exampleTranslation?: string;
 }
 
+export interface LessonKanji {
+  kanji: string;
+  onyomi?: string;
+  kunyomi?: string;
+  meaningUz: string;
+  strokeCount?: number;
+  examples?: {
+    word: string;
+    reading: string;
+    meaning: string;
+  }[];
+}
+
 export interface GrammarRule {
   pattern: string;
   meaning: string;
@@ -105,6 +118,7 @@ export interface Lesson {
   description: string;
   estimatedDurationMinutes: number;
   icon?: string;
+  kanji?: LessonKanji[];
   steps: LessonStep[];
 }
 
