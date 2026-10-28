@@ -146,7 +146,7 @@ export const RatingReviewModal: React.FC<RatingReviewModalProps> = ({
             </div>
             <h3 className="text-2xl font-bold text-foreground">Katta rahmat!</h3>
             <p className="mt-2 text-sm text-muted-foreground">
-              Baho va fikringiz qabul qilindi. Sizning fikringiz Nihongo Talk loyihasini yanada
+              Baho va fikringiz qabul qilindi. Sizning fikringiz kaiwa.live loyihasini yanada
               rivojlantirishga xizmat qiladi.
             </p>
           </div>
@@ -161,7 +161,7 @@ export const RatingReviewModal: React.FC<RatingReviewModalProps> = ({
                 id="rating-modal-title"
                 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl"
               >
-                Nihongo Talk ilovasi sizga yoqdimi?
+                kaiwa.live ilovasi sizga yoqdimi?
               </h2>
               <p className="mt-1 text-xs text-muted-foreground sm:text-sm">
                 Fikr va bahoingiz ilovani mukammallashtirishga yordam beradi

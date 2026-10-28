@@ -70,9 +70,7 @@ describe('JlptListeningMockPage Component Tests', () => {
   });
 
   it('starts test, toggles script visibility, and allows clicking a dialogue line', () => {
-    const playLineSpy = vi
-      .spyOn(ListeningAudioSyncService, 'playLine')
-      .mockImplementation(() => null);
+    const playLineSpy = vi.spyOn(ListeningAudioSyncService, 'getLineStartTime');
 
     render(
       <MemoryRouter initialEntries={['/listening?level=N5']}>
@@ -92,10 +90,14 @@ describe('JlptListeningMockPage Component Tests', () => {
 
     expect(screen.getByText(/Sinxron Subtitrlar/i)).toBeInTheDocument();
 
-    // Find and click on a dialogue line
-    const dialogueLine = screen.getByText(/雨が降ってきましたね/i);
-    expect(dialogueLine).toBeInTheDocument();
-    fireEvent.click(dialogueLine);
+    // Find and click on a dialogue line seek button
+    const seekButtons = screen.getAllByTitle(/Audioni ayni shu vaqtdan boshlash/i);
+    if (seekButtons.length > 0) {
+      fireEvent.click(seekButtons[0]);
+    } else {
+      const dialogueLine = screen.getByText(/雨が降ってきましたね/i);
+      fireEvent.click(dialogueLine);
+    }
 
     expect(playLineSpy).toHaveBeenCalled();
   });

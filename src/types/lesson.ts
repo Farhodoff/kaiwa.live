@@ -10,6 +10,23 @@ export interface VocabItem {
   exampleTranslation?: string;
 }
 
+export type JlptLevel = 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
+
+export interface KanjiLessonItem {
+  id: string;
+  kanji: string;
+  meanings: string[];
+  onyomi: string[];
+  kunyomi: string[];
+  strokeCount: number;
+  exampleWords: { word: string; reading: string; meaning: string }[];
+  exampleSentence: string;
+  exampleTranslation: string;
+  jlptLevel: JlptLevel;
+  strokeOrderAsset?: string;
+  strokeOrderUrl?: string;
+}
+
 export interface GrammarRule {
   pattern: string;
   meaning: string;
@@ -46,6 +63,7 @@ export interface LearnContent {
   explanation: string;
   keyPoints?: string[];
   vocabulary?: VocabItem[];
+  kanji?: KanjiLessonItem[];
   grammarRules?: GrammarRule[];
   culturalNotes?: string;
   dialogue?: LessonDialogue;
@@ -54,6 +72,20 @@ export interface LearnContent {
 export interface PracticeExercise {
   id: string;
   type: 'multiple-choice' | 'true-false' | 'fill-in-blank' | 'sentence-order';
+  category?:
+    | 'guided-practice'
+    | 'grammar-drill'
+    | 'vocabulary-drill'
+    | 'reading-application'
+    | 'listening-application'
+    | 'sentence-building'
+    | 'translation'
+    | 'speaking-prompt'
+    | 'writing-prompt'
+    | 'kanji-reading'
+    | 'kanji-meaning'
+    | 'kanji-compound'
+    | 'kanji-writing';
   prompt: string;
   audioUrl?: string; // Real CD audio track for listening practice
   audioTitle?: string;
@@ -74,6 +106,7 @@ export interface TestQuestion {
   options: string[];
   correctAnswerIndex: number;
   explanation: string;
+  category?: 'kanji' | 'vocabulary' | 'grammar' | 'reading' | 'listening';
 }
 
 export interface LessonStep {

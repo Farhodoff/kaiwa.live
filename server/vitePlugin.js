@@ -74,7 +74,7 @@ export function telegramApiPlugin() {
           res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
           res.setHeader(
             'Access-Control-Allow-Headers',
-            'Content-Type, Authorization, X-Nihongo-Talk-Key, X-Nihon Talk-Key',
+            'Content-Type, Authorization, X-Kaiwa-Live-Key',
           );
           if (req.method === 'OPTIONS') {
             res.statusCode = 204;
@@ -239,8 +239,8 @@ export function telegramApiPlugin() {
           return;
         }
 
-        // Handle /api/v1/ielts-evaluate
-        if (pathname === '/api/v1/ielts-evaluate') {
+        // Handle /api/v1/sakubun-evaluate & legacy /api/v1/ielts-evaluate
+        if (pathname === '/api/v1/sakubun-evaluate' || pathname === '/api/v1/ielts-evaluate') {
           res.setHeader('Content-Type', 'application/json');
           try {
             const chunks = [];
@@ -248,6 +248,24 @@ export function telegramApiPlugin() {
             const raw = Buffer.concat(chunks).toString();
             const b = raw ? JSON.parse(raw) : {};
             const essay = b.essay || '';
+
+            if (pathname === '/api/v1/sakubun-evaluate') {
+              const kanjiCount = (essay.match(/[\u4e00-\u9faf]/g) || []).length;
+              const score = kanjiCount > 10 ? 90 : kanjiCount > 3 ? 82 : 75;
+              res.end(
+                JSON.stringify({
+                  success: true,
+                  data: {
+                    score,
+                    kanjiRating: kanjiCount > 8 ? "A'lo darajada Kanji qo'llangan" : "Qoniqarli",
+                    grammarFeedback: "Grammatik konstruksiyalar va Desu/Masu ohangi to'g'ri shakllantirilgan.",
+                    correctedText: essay,
+                    suggestions: ["Mavzuni yanada boyitish uchun murakkabroq bog'lovchilardan foydalaning."],
+                  },
+                }),
+              );
+              return;
+            }
 
             const words = essay.trim().split(/\s+/).filter(Boolean).length;
             const band = words > 150 ? 7.5 : words > 80 ? 6.5 : 5.5;

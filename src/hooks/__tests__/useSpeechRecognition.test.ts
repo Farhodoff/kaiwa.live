@@ -11,6 +11,10 @@ describe('useSpeechRecognition Adaptive Silence & VAD Detection Tests', () => {
       expect(isSentenceTerminal('美味しいですね', 'ja')).toBe(true);
       expect(isSentenceTerminal('頑張りましょう！', 'ja')).toBe(true);
       expect(isSentenceTerminal('どうでしょうか', 'ja')).toBe(true);
+      expect(isSentenceTerminal('宿題を忘れませんでした', 'ja')).toBe(true);
+      expect(isSentenceTerminal('ゆっくり話してください', 'ja')).toBe(true);
+      expect(isSentenceTerminal('日本に行きたいです', 'ja')).toBe(true);
+      expect(isSentenceTerminal('実はそうなんです', 'ja')).toBe(true);
     });
 
     it('returns false for incomplete Japanese phrases', () => {
@@ -33,11 +37,16 @@ describe('useSpeechRecognition Adaptive Silence & VAD Detection Tests', () => {
       expect(isMidSentenceConjunction('図書館に行ってから', 'ja')).toBe(true);
       expect(isMidSentenceConjunction('日本語は難しいけれど', 'ja')).toBe(true);
       expect(isMidSentenceConjunction('雨が降ったら', 'ja')).toBe(true);
+      expect(isMidSentenceConjunction('雨が降っても', 'ja')).toBe(true);
+      expect(isMidSentenceConjunction('失礼ですが', 'ja')).toBe(true);
+      expect(isMidSentenceConjunction('忙しいので', 'ja')).toBe(true);
       expect(isMidSentenceConjunction('ええと', 'ja')).toBe(true);
       expect(isMidSentenceConjunction('あのー', 'ja')).toBe(true);
       expect(isMidSentenceConjunction('えーと', 'ja')).toBe(true);
       expect(isMidSentenceConjunction('まあ', 'ja')).toBe(true);
       expect(isMidSentenceConjunction('うーん', 'ja')).toBe(true);
+      expect(isMidSentenceConjunction('なんか', 'ja')).toBe(true);
+      expect(isMidSentenceConjunction('えっと', 'ja')).toBe(true);
     });
 
     it('returns false for completed terminal sentences', () => {

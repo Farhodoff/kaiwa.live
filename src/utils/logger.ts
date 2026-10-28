@@ -1,7 +1,7 @@
 import { sanitizeErrorMessage } from '../components/ErrorBoundary';
 
 /**
- * Universal Production-Grade Logger for Nihongo Talk
+ * Universal Production-Grade Logger for kaiwa.live
  * Automatically redacts API keys, bearer tokens, passwords, and sensitive strings.
  * Suppresses debug and verbose logs in production environments.
  */

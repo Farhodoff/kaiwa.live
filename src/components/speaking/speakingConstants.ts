@@ -28,58 +28,32 @@ export const PROMPT_SUGGESTIONS_BY_LANG: Record<
   ],
   ja: [
     {
-      title: '自己紹介 (Jikoshoukai)',
-      text: 'はじめまして。自己紹介の練習をしたいです。',
-      icon: '🙋',
-    },
-    {
-      title: 'カフェ・買い物 (Shopping & Cafe)',
-      text: 'カフェでの注文やお店での買い物の練習をしたいです。',
-      icon: '☕',
-    },
-    {
-      title: '日常会話 (Daily Japanese)',
+      title: '日常会話',
       text: '日本語で楽しい日常会話をしましょう！今日の予定や趣味を話したいです。',
-      icon: '🗣️',
+      icon: '🏠',
     },
     {
-      title: '敬語・面接 (Interview & Keigo)',
-      text: '丁寧な敬語や面接の練習をお願いします。',
+      title: '旅行',
+      text: '旅行について日本語で話しましょう。行きたい場所や旅の計画を練習したいです。',
+      icon: '✈️',
+    },
+    {
+      title: 'レストラン',
+      text: 'レストランで注文する会話を練習したいです。店員さんになってください。',
+      icon: '🍜',
+    },
+    {
+      title: '仕事',
+      text: '日本語で仕事の会話を練習したいです。面接の質問をしてください。',
       icon: '💼',
     },
   ],
 };
 
-export const getCoachInitialGreeting = (lang: 'en' | 'ja', p: CoachPersona): string => {
+export const getCoachInitialGreeting = (lang: 'en' | 'ja', _p?: CoachPersona): string => {
   if (lang === 'ja') {
-    switch (p) {
-      case 'roast':
-        return 'こんにちは！鬼の雪先生です。遠慮せずに日本語で話してください！';
-      case 'gentle':
-        return 'こんにちは！雪先生です。いつでもリラックスしてお話ししてくださいね。';
-      case 'ielts':
-        return 'こんにちは！雪先生です。JLPTスピーキングの練習を始めましょう！';
-      case 'interview':
-        return 'こんにちは。本日のIT面接を担当いたします。自己紹介をお願いします。';
-      case 'travel':
-        return 'いらっしゃいませ！成田空港へようこそ。どこへ行きますか？';
-      case 'casual':
-        return 'やあ！ユキだよ。元気？今日は何について話そうか！';
-    }
+    return 'こんにちは！調子はどうですか？今日はどんなことについて話しましょうか？';
   } else {
-    switch (p) {
-      case 'roast':
-        return 'Hello! Strict Oni Yuki-sensei here. Speak in Japanese and prepare for corrections!';
-      case 'gentle':
-        return "Hello! I'm Yuki-sensei, your Japanese language tutor. Feel free to talk whenever you're ready!";
-      case 'ielts':
-        return "Good day! I'm Yuki-sensei. Let's practice Japanese JLPT Speaking. Shall we begin?";
-      case 'interview':
-        return "Hello! Welcome to your Japanese IT Job Mock Interview. Let's start with a self-introduction in Japanese.";
-      case 'travel':
-        return "Konnichiwa! Welcome to Narita Airport. Let's practice travel Japanese.";
-      case 'casual':
-        return "Hey friend! I'm Yuki. Let's chat in casual Japanese. What's on your mind today?";
-    }
+    return 'Hello! How are you doing today? What would you like to talk about?';
   }
 };

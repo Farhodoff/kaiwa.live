@@ -7,7 +7,7 @@
 import { supabase } from '../lib/supabase';
 import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
 
-const TELEGRAM_VAULT_CHAT_ID_KEY = 'nihon_talk_telegram_dataset_chat_id';
+const TELEGRAM_VAULT_CHAT_ID_KEY = 'kaiwa_live_telegram_dataset_chat_id';
 
 export interface DailySpeechSummary {
   date: string;
@@ -64,7 +64,7 @@ export class TelegramDatasetService {
     const effectiveChatId = (maybeChatId !== undefined ? maybeChatId : chatIdOrBotToken) || '';
     safeLocalStorage.setItem(TELEGRAM_VAULT_CHAT_ID_KEY, effectiveChatId.trim());
     // Proactively clean up any legacy bot token from localStorage
-    safeLocalStorage.removeItem('nihon_talk_telegram_dataset_bot_token');
+    safeLocalStorage.removeItem('kaiwa_live_telegram_dataset_bot_token');
   }
 
   /**
@@ -160,7 +160,7 @@ export class TelegramDatasetService {
     // 3. Fallback to local storage history if Supabase is offline
     if (allSessions.length === 0 && typeof window !== 'undefined') {
       try {
-        const localHistory = safeLocalStorage.getJSON<any[]>('nihon_talk_scenario_history', []);
+        const localHistory = safeLocalStorage.getJSON<any[]>('kaiwa_live_scenario_history', []);
         allSessions = localHistory.filter((s: any) => {
           const d = s.created_at || s.timestamp || new Date().toISOString();
           if (todayStr === 'ALL') return true;
@@ -260,7 +260,7 @@ export class TelegramDatasetService {
     const summary = customSummary || (await this.getDailySummary());
 
     // 1. Build Header & High-level Stats Message
-    let messageText = `📊 <b>Nihongo Talk — KUNLIK OVOZLI SUHBATLAR HISOBOTI (${summary.date})</b>\n`;
+    let messageText = `📊 <b>kaiwa.live — KUNLIK OVOZLI SUHBATLAR HISOBOTI (${summary.date})</b>\n`;
     messageText += `━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
     messageText += `🗣 <b>Jami suhbatlar:</b> ${summary.totalSessions} ta\n`;
     messageText += `⏱ <b>Umumiy suhbat vaqti:</b> ${summary.totalDurationMinutes} daqiqa\n`;
@@ -300,7 +300,7 @@ export class TelegramDatasetService {
       messageText += `<i>Bugun hali yangi suhbatlar yozilmadi.</i>\n`;
     }
 
-    messageText += `\n🤖 <i>Nihongo Talk Speech Dataset Engine</i>`;
+    messageText += `\n🤖 <i>kaiwa.live Speech Dataset Engine</i>`;
 
     try {
       let sentSuccessfully = false;
@@ -461,15 +461,15 @@ export class TelegramDatasetService {
       const now = new Date();
       const currentHour = now.getHours();
       const todayStr = now.toISOString().split('T')[0];
-      const lastDispatched = safeLocalStorage.getItem('nihon_talk_telegram_last_dispatched_date');
+      const lastDispatched = safeLocalStorage.getItem('kaiwa_live_telegram_last_dispatched_date');
 
       // Agar kechki soat 22:00 (yoki keyinroq) bo'lsa va bugun hali yuborilmagan bo'lsa
       if (currentHour >= 22 && lastDispatched !== todayStr) {
         try {
           const result = await TelegramDatasetService.sendDailyReportToTelegram();
           if (result.success) {
-            safeLocalStorage.setItem('nihon_talk_telegram_last_dispatched_date', todayStr);
-            console.log('✅ Nihongo Talk Daily 22:00 Telegram Telemetry Dispatched Successfully');
+            safeLocalStorage.setItem('kaiwa_live_telegram_last_dispatched_date', todayStr);
+            console.log('✅ kaiwa.live Daily 22:00 Telegram Telemetry Dispatched Successfully');
           }
         } catch (e) {
           console.warn('Auto 22:00 dispatch warning:', e);

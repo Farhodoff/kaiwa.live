@@ -160,7 +160,21 @@ export const pwaRuntimeCaching: WorkboxRuntimeCachingRule[] = [
     options: {
       cacheName: 'audio-assets-cache',
       expiration: {
-        maxEntries: 100,
+        maxEntries: 350,
+        maxAgeSeconds: 60 * 60 * 24 * 30, // 30 days
+      },
+      cacheableResponse: {
+        statuses: [0, 200],
+      },
+    },
+  },
+  {
+    urlPattern: /\/api\/tts(?:\?.*)?$/i,
+    handler: 'CacheFirst',
+    options: {
+      cacheName: 'tts-api-cache',
+      expiration: {
+        maxEntries: 200,
         maxAgeSeconds: 60 * 60 * 24 * 30, // 30 days
       },
       cacheableResponse: {

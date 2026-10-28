@@ -188,14 +188,11 @@ export const FlashcardService = {
     const dbCardIds = new Set(dbCards.map((c) => c.id));
     const missingLocalCards = localCached.filter((c) => !dbCardIds.has(c.id) && !c.deletedAt);
 
-    // Only sync if there are a few missing local cards and DB actually returned items
-    if (
-      dbCards.length > 0 &&
-      missingLocalCards.length > 0 &&
-      missingLocalCards.length <= 10 &&
-      !isNetworkError
-    ) {
-      this.addFlashcardsBatch(userId, missingLocalCards).catch(() => {});
+    // Sync missing local cards to DB if authenticated and online (safe chunks)
+    if (dbCards.length > 0 && missingLocalCards.length > 0 && !isNetworkError) {
+      this.addFlashcardsBatch(userId, missingLocalCards.slice(0, 50)).catch((err) => {
+        console.warn('[fetchFlashcards] Background sync missing cards warning:', err);
+      });
     }
 
     const rawMerged = [...dbCards, ...missingLocalCards];

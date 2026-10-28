@@ -158,5 +158,325 @@
     "example": "赤ちゃんの可愛い笑顔を見ると、笑わずにはいられない。(Chaqaloqning tabassumini ko'rib kulmasdan turolmaysan.)",
     "category": "500 Mon N3: 文法 (Grammatika)",
     "level": "N3"
+  },
+  {
+    "front": "最近、気温の変化が激しいです。\n「激しい」のよみかたは？",
+    "back": "1. はげしい (Hageshii)\nTarjima: So'nggi paytlarda havo haroratining o'zgarishi juda shiddatli/keskin bo'lmoqda.\nQoida: 激 (げき / はげ・しい) = shiddatli, kuchli.",
+    "phonetic": "はげしい - Hageshii",
+    "example": "激しい雨が降り続いています。(Shiddatli jala yog'ishda davom etmoqda.)",
+    "category": "500 Mon N3: 文字 (Kanji)",
+    "level": "N3"
+  },
+  {
+    "front": "毎日の勉強を（　）することが合格への一番の近道だ。\n（　）にはいるただしいことばは？",
+    "back": "2. 継続[けいぞく] (Keizoku)\nTarjima: Har kungi o'qishni davom ettirish (uzluksiz olib borish) imtihondan o'tishning eng yaqin yo'lidir.\nQoida: 継続[けいぞく]する = biror faoliyatni to'xtatmay davom ettirmoq.",
+    "phonetic": "けいぞく - Keizoku",
+    "example": "努力を継続することが大切です。(Harakatni to'xtovsiz davom ettirish muhim.)",
+    "category": "500 Mon N3: 語彙 (Lug'at)",
+    "level": "N3"
+  },
+  {
+    "front": "熱が39度もある。仕事に行く（　）。\n（　）にはいるただしいぶんぽうは？",
+    "back": "3. わけにはいかない (Wake ni wa ikanai)\nTarjima: Isitma 39 daraja bo'lib turibdi. Ishga borishning aslo iloji yo'q (ahvol yo'l qo'ymaydi).\nQoida: Fe'l lug'at shakli + わけにはいかない: Ijtimoiy, axloqiy yoki jismoniy sababga ko'ra qila olmaslik.",
+    "phonetic": "いくわけにはいかない - Iku wake ni wa ikanai",
+    "example": "明日は大事な試験だから、風邪でも休むわけにはいかない。(Ertaga muhim imtihon, shuning uchun hatto shamollagan bo'lsam ham qoldira olmayman.)",
+    "category": "500 Mon N3: 文法 (Grammatika)",
+    "level": "N3"
+  },
+  {
+    "front": "彼は誰に対しても礼儀正しい人だ。\n「礼儀」のよみかたは？",
+    "back": "1. れいぎ (Reigi)\nTarjima: U har qanday insonga nisbatan odobli va xushmuomala shaxsdir.\nQoida: 礼 (れい) + 儀 (ぎ) = 礼儀 (odob-axloq, etiket).",
+    "phonetic": "れいぎ - Reigi",
+    "example": "日本のビジネス礼儀を学びます。(Yapon biznes etiketini o'rganaman.)",
+    "category": "500 Mon N3: 文字 (Kanji)",
+    "level": "N3"
+  },
+  {
+    "front": "急な用事で（　）会議を欠席することになった。\n（　）にはいるただしいことばは？",
+    "back": "4. やむを得ず (Yamu o ezu)\nTarjima: Kutilmagan zarur ish sababli ilojsizlikdan majbur bo'lib majlisda qatnasha olmaydigan bo'ldim.\nQoida: やむを得ず[やむをえず] = chora yo'qligidan, noiloj.",
+    "phonetic": "やむをえず - Yamu o ezu",
+    "example": "やむを得ず計画を中止した。(Ilojsizlikdan rejani bekor qildik.)",
+    "category": "500 Mon N3: 語彙 (Lug'at)",
+    "level": "N3"
+  },
+  {
+    "front": "あの真面目な彼が嘘をつく（　）。\n（　）にはいるただしいぶんぽうは？",
+    "back": "1. はずがない (Hazu ga nai)\nTarjima: O'sha jiddiy va to'g'riso'z insonning yolg'on gapirishi aslo mumkin emas!\nQoida: Fe'l oddiy shakli + はずがない / わけがない: Mantiqiy 100% inkor.",
+    "phonetic": "うそをつくはずがない - Uso o tsuku hazu ga nai",
+    "example": "鍵をかけたのだから、泥棒が入るはずがない。(Qulflagan edim-ku, o'g'ri kirishi aslo mumkin emas.)",
+    "category": "500 Mon N3: 文法 (Grammatika)",
+    "level": "N3"
+  },
+  {
+    "front": "将来の進路について真剣に悩んでいる。\n「真剣」のよみかたは？",
+    "back": "2. しんけん (Shinken)\nTarjima: Kelajakdagi yo'nalishim (kasbim) haqida jiddiy bosh qotiryapman.\nQoida: 真 (chin) + 剣 (qilich) -> 真剣 (o'ta jiddiy / samimiy).",
+    "phonetic": "しんけん - Shinken",
+    "example": "先生の話を真剣に聞いています。(O'qituvchining gapini jiddiy tinglamoqda.)",
+    "category": "500 Mon N3: 文字 (Kanji)",
+    "level": "N3"
+  },
+  {
+    "front": "朝からずっと忙しくて、（　）休む暇もなかった。\n（　）にはいるただしいことばは？",
+    "back": "3. ろくに (Roku ni)\nTarjima: Ertalabdan beri shu qadar band edimki, durustroq dam olishga ham fursat bo'lmadi.\nQoida: ろくに〜ない = yetarlicha / durustroq emas (inkor bilan keladi).",
+    "phonetic": "ろくに - Roku ni",
+    "example": "昨夜は忙しくてろくに寝ていない。(Kecha tunda durustroq uxlay ham olmadim.)",
+    "category": "500 Mon N3: 語彙 (Lug'at)",
+    "level": "N3"
+  },
+  {
+    "front": "散歩の（　）、郵便局に寄って手紙を出してきた。\n（　）にはいるただしいぶんぽうは？",
+    "back": "1. ついでに (Tsuide ni)\nTarjima: Sayr qilish bahonasida (ketayotib yo'l-yo'lakay), pochtaga kirib xatni jo'natib keldim.\nQoida: Ot + の / Fe'l + ついでに: Asosiy ishni qilayotgan paytda qo'shimcha ishni ham yo'l-yo'lakay bajarib ketish.",
+    "phonetic": "ついでに - Tsuide ni",
+    "example": "買い物のついでに本屋に寄る。(Bozorlik qilayotib yo'l-yo'lakay kitob do'koniga ham kirish.)",
+    "category": "500 Mon N3: 文法 (Grammatika)",
+    "level": "N3"
+  },
+  {
+    "front": "この提案にはいくつかの欠点がある。\n「欠点」のよみかたは？",
+    "back": "4. けってん (Ketten)\nTarjima: Ushbu taklifning bir nechta kamchiliklari (nuqsonlari) mavjud.\nQoida: 欠 (kemtik/yetishmaslik) + 点 (nuqta) = 欠点 (kamchilik).",
+    "phonetic": "けってん - Ketten",
+    "example": "誰にでも長所と短所（欠点）がある。(Har kimda yutuq va kamchiliklar bor.)",
+    "category": "500 Mon N3: 文字 (Kanji)",
+    "level": "N3"
+  },
+  {
+    "front": "彼女はどんなに辛い時でも、（　）笑顔を絶やさない。\n（　）にはいるただしいことばは？",
+    "back": "2. 常に[つねに] (Tsune ni)\nTarjima: U qanchalik og'ir damlarda ham doimo yuzidan tabassumini arritmaydi.\nQoida: 常に[つねに] = doimo, har doim (always).",
+    "phonetic": "つねに - Tsune ni",
+    "example": "常に安全運転を心がけてください。(Doimo xavfsiz haydashga e'tibor bering.)",
+    "category": "500 Mon N3: 語彙 (Lug'at)",
+    "level": "N3"
+  },
+  {
+    "front": "子供（　）、大人顔負けの意見を言う。\n（　）にはいるただしいぶんぽうは？",
+    "back": "3. のくせに (No kuse ni)\nTarjima: Bola bo'la turib (bolaligiga qaramasdan), kattalarni ham lol qoldiradigan fikr aytadi.\nQoida: Ot + のくせに / Fe'l oddiy + くせに: Salbiy yoki tanqidiy kinoya bilan ajablanish («...bo'la turib»).",
+    "phonetic": "こどものくせに - Kodomo no kuse ni",
+    "example": "知っているくせに教えてくれない。(Bila turib menga aytmayapti.)",
+    "category": "500 Mon N3: 文法 (Grammatika)",
+    "level": "N3"
+  },
+  {
+    "front": "環境保護に対する国民の意識が高まっている。\n「意識」のよみかたは？",
+    "back": "1. いしき (Ishiki)\nTarjima: Atrof-muhitni muhofaza qilish bo'yicha fuqarolarning ongi/tushunchasi oshib bormoqda.\nQoida: 意 (fikr/ong) + 識 (bilish/tushunish) = 意識 (ong, hush).",
+    "phonetic": "いしき - Ishiki",
+    "example": "事故で意識を失った。(Avariyada hushidan ketdi.)",
+    "category": "500 Mon N3: 文字 (Kanji)",
+    "level": "N3"
+  },
+  {
+    "front": "約束の時間に（　）遅れるわけにはいかない。\n（　）にはいるただしいことばは？",
+    "back": "4. 決して[けっして] (Kesshite)\nTarjima: Va'dalashilgan vaqtdan aslo kechikishim mumkin emas.\nQoida: 決して〜ない = aslo / sira ham (hech qachon).",
+    "phonetic": "けっして - Kesshite",
+    "example": "この秘密は決して他人に言わないで。(Bu sirni aslo boshqalarga aytma.)",
+    "category": "500 Mon N3: 語彙 (Lug'at)",
+    "level": "N3"
+  },
+  {
+    "front": "日本語の上達は、練習量に（　）決まる。\n（　）にはいるただしいぶんぽうは？",
+    "back": "2. よって (Yotte)\nTarjima: Yapon tilining rivojlanishi mashq qilish hajmiga qarab belgilanadi.\nQoida: 〜によって: 1) Sabab; 2) Vosita; 3) Bog'liqlik («...ga qarab / ...ga ko'ra»).",
+    "phonetic": "れんしゅうりょうによって - Renshuuryou ni yotte",
+    "example": "人によって考え方が違う。(Odamiga qarab fikrlash boshqacha bo'ladi.)",
+    "category": "500 Mon N3: 文法 (Grammatika)",
+    "level": "N3"
+  },
+  {
+    "front": "この書類に署名と押印をお願いします。\n「署名」のよみかたは？",
+    "back": "1. しょめい (Shomei)\nTarjima: Ushbu hujjatga imzo chekib, muhr bosib berishingizni so'raymiz.\nQoida: 署 (imzo/idora) + 名 (ism) = 署名 (shaxsiy imzo).",
+    "phonetic": "しょめい - Shomei",
+    "example": "契約書に署名する。(Shartnomaga imzo chekmoq.)",
+    "category": "500 Mon N3: 文字 (Kanji)",
+    "level": "N3"
+  },
+  {
+    "front": "あの二人は（　）性格が合わないようだ。\n（　）にはいるただしいことばは？",
+    "back": "3. どうも (Doumo)\nTarjima: U ikkalasining fe'l-atvori nega bilmadim-u, aslo to'g'ri kelmayotganga o'xshaydi.\nQoida: どうも〜ようだ / らしい = Nega ekanini aniq bilmasdan qilingan shubha/taxmin.",
+    "phonetic": "どうも - Doumo",
+    "example": "どうも雨が降りそうだ。(Nega bilmadim-u, yomg'ir yog'adiganga o'xshaydi.)",
+    "category": "500 Mon N3: 語彙 (Lug'at)",
+    "level": "N3"
+  },
+  {
+    "front": "忙しい（　）、わざわざお越しいただきありがとうございます。\n（　）にはいるただしいぶんぽうは？",
+    "back": "4. ところを (Tokoro o)\nTarjima: Band bo'lishingizga qaramasdan, ataylab tashrif buyurganingiz uchun tashakkur.\nQoida: sifat / fe'l + ところを: Odob bilan uzr yoki minnatdorchilik bildirishda («...vaziyatda bo'lishingizga qaramay»).",
+    "phonetic": "いそがしいところを - Isogashii tokoro o",
+    "example": "お休みのところをお邪魔して申し訳ありません。(Dam olayotgan paytingizda bezovta qilganim uchun uzr.)",
+    "category": "500 Mon N3: 文法 (Grammatika)",
+    "level": "N3"
+  },
+  {
+    "front": "祖父は非常に頑固な人だった。\n「頑固」のよみかたは？",
+    "back": "2. がんこ (Ganko)\nTarjima: Bobom juda o'jar va o'z so'zida qat'iy turuvchi inson edilar.\nQoida: 頑 (o'jar) + 固 (qattiq/mahkam) = 頑固 (o'jar, qaysar).",
+    "phonetic": "がんこ - Ganko",
+    "example": "頑固な汚れを落とす。(Ketishi qiyin bo'lgan qaysar dog'ni tozalash.)",
+    "category": "500 Mon N3: 文字 (Kanji)",
+    "level": "N3"
+  },
+  {
+    "front": "彼の提案は非常に（　）的で、実現性が高い。\n（　）にはいるただしいことばは？",
+    "back": "1. 現実[げんじつ] (Genjitsu)\nTarjima: Uning taklifi juda real (amaliy) bo'lib, amalga oshish ehtimoli yuqori.\nQoida: 現実的[げんじつてき] = real, voqelikka asoslangan.",
+    "phonetic": "げんじつてき - Genjitsuteki",
+    "example": "現実的な解決策を考える。(Amaliy va real yechim ustida o'ylash.)",
+    "category": "500 Mon N3: 語彙 (Lug'at)",
+    "level": "N3"
+  },
+  {
+    "front": "お金がないなら、旅行に行く（　）。\n（　）にはいるただしいぶんぽうは？",
+    "back": "3. べきではない (Beki dewa nai)\nTarjima: Agar puling yo'q bo'lsa, sayohatga bormasliging kerak.\nQoida: Fe'l lug'at shakli + べき / べきではない: Ijtimoiy burch yoki aqlan to'g'ri maslahat («kerak / kerak emas»).",
+    "phonetic": "いくべきではない - Iku beki dewa nai",
+    "example": "約束は守るべきだ。(Va'daga vafo qilish kerak.)",
+    "category": "500 Mon N3: 文法 (Grammatika)",
+    "level": "N3"
+  },
+  {
+    "front": "事件の真相を解明するために捜査が続いている。\n「解明」のよみかたは？",
+    "back": "1. かいめい (Kaimei)\nTarjima: Hodisaning asl haqiqatini aniqlash (oydinlashtirish) uchun tergov davom etmoqda.\nQoida: 解 (yechmoq/ochmoq) + 明 (yorug'/ravshan) = 解明 (oydinlik kiritish, fosh qilish).",
+    "phonetic": "かいめい - Kaimei",
+    "example": "原因を解明する。(Sababini to'liq aniqlab oydinlashtirmoq.)",
+    "category": "500 Mon N3: 文字 (Kanji)",
+    "level": "N3"
+  },
+  {
+    "front": "試験の時間が足りなくて、（　）最後まで解けなかった。\n（　）にはいるただしいことばは？",
+    "back": "4. とうとう (Toutou)\nTarjima: Imtihonda vaqt yetmay, oxir-oqibat oxirigacha yecha olmadim.\nQoida: とうとう = oqibatda, nihoyat (ko'pincha achinarli natija bilan keladi).",
+    "phonetic": "とうとう - Toutou",
+    "example": "飼っていた猫がとうとう死んでしまった。(Boqayotgan mushugim nihoyat vafot etdi.)",
+    "category": "500 Mon N3: 語彙 (Lug'at)",
+    "level": "N3"
+  },
+  {
+    "front": "雪が降る（　）、寒くなる一方だ。\n（　）にはいるただしいぶんぽうは？",
+    "back": "2. につれて (Ni tsurete)\nTarjima: Qor yog'ishi bilan birga (qor kuchaygan sari), havo sovuqlashib bormoqda.\nQoida: Fe'l lug'at shakli / Ot + につれて: Bir hodisa o'zgarishi bilan parallel ikkinchisi ham mutanosib o'zgaradi.",
+    "phonetic": "ふるにつれて - Furu ni tsurete",
+    "example": "年をとるにつれて、物忘れが多くなる。(Yosh o'tgan sari esdan chiqarish ko'payadi.)",
+    "category": "500 Mon N3: 文法 (Grammatika)",
+    "level": "N3"
+  },
+  {
+    "front": "新しい制度を導入することに決定した。\n「導入」のよみかたは？",
+    "back": "3. どうにゅう (Dounyuu)\nTarjima: Yangi tizimni joriy etishga qaror qilindi.\nQoida: 導 (yo'naltirmoq) + 入 (kiritmoq) = 導入 (joriy etish, hayotga tatbiq qilish).",
+    "phonetic": "どうにゅう - Dounyuu",
+    "example": "最新設備を導入する。(Eng yangi uskunalarni joriy qilmoq.)",
+    "category": "500 Mon N3: 文字 (Kanji)",
+    "level": "N3"
+  },
+  {
+    "front": "彼は誰が見ても（　）のリーダーだ。\n（　）にはいるただしいことばは？",
+    "back": "1. 典型[てんけい] (Tenkei)\nTarjima: U kim ko'rsa ham tan oladigan tipik (haqiqiy namuna) yetakchidir.\nQoida: 典型的[てんけいてき] = tipik, yorqin namunali.",
+    "phonetic": "てんけい - Tenkei",
+    "example": "これは典型的な日本の家屋です。(Bu an'anaviy tipik yapon uyidir.)",
+    "category": "500 Mon N3: 語彙 (Lug'at)",
+    "level": "N3"
+  },
+  {
+    "front": "一度決めた（　）、最後までやり抜くつもりだ。\n（　）にはいるただしいぶんぽうは？",
+    "back": "2. からには (Kara ni wa)\nTarjima: Bir marta qaror qilgan ekanman, oxirigacha oxiriga yetkazish niyatidaman.\nQoida: Fe'l oddiy o'tgan zamon + からには: «...ekanman / ...bo'lgach, albatta oxiriga yetkazishim shart».",
+    "phonetic": "きめたからには - Kimeta kara ni wa",
+    "example": "引き受けたからには責任を持つ。(Zimmamga olgan ekanman, mas'uliyatni his qilaman.)",
+    "category": "500 Mon N3: 文法 (Grammatika)",
+    "level": "N3"
+  },
+  {
+    "front": "この小説の主人公は架空の人物だ。\n「架空」のよみかたは？",
+    "back": "4. かくう (Kakuu)\nTarjima: Bu romanning bosh qahramoni to'qima (uydirma) shaxsdir.\nQoida: 架 (ko'prik qurmoq/chizmoq) + 空 (bo'shliq/osmon) = 架空 (to'qima, xayoliy).",
+    "phonetic": "かくう - Kakuu",
+    "example": "架空の話を作る。(To'qima hikoya yaratmoq.)",
+    "category": "500 Mon N3: 文字 (Kanji)",
+    "level": "N3"
+  },
+  {
+    "front": "あの人の話は（　）大げさで信用できない。\n（　）にはいるただしいことばは？",
+    "back": "3. いかにも (Ikanimo)\nTarjima: U odamning gapi rostdan ham juda bo'rttirilgan bo'lib, ishonib bo'lmaydi.\nQoida: いかにも = haqiqatan ham, chindan ham (xuddi shunday).",
+    "phonetic": "いかにも - Ikanimo",
+    "example": "いかにも彼が言いそうな冗談だ。(Haqiqatan ham u aytadigan latifaga o'xshaydi.)",
+    "category": "500 Mon N3: 語彙 (Lug'at)",
+    "level": "N3"
+  },
+  {
+    "front": "雨が降らない（　）、明日はピクニックに行きます。\n（　）にはいるただしいぶんぽうは？",
+    "back": "1. かぎり (Kagiri)\nTarjima: Yomg'ir yog'mas ekan (yog'magan taqdirda), ertaga piknikka boramiz.\nQoida: 〜かぎり = «...bo'lib turgan muddatda / ...ekan». Shart davomiyligi.",
+    "phonetic": "ふらないかぎり - Furanai kagiri",
+    "example": "生きている限り学び続ける。(Tirik ekanman o'rganishda davom etaman.)",
+    "category": "500 Mon N3: 文法 (Grammatika)",
+    "level": "N3"
+  },
+  {
+    "front": "彼はいつも冷静に状況を判断する。\n「冷静」のよみかたは？",
+    "back": "2. れいせい (Reisei)\nTarjima: U doimo sovuqqonlik bilan vaziyatni to'g'ri baholaydi.\nQoida: 冷 (sovuq) + 静 (tinch/vazmin) = 冷静 (sovuqqon, bosiq).",
+    "phonetic": "れいせい - Reisei",
+    "example": "パニックにならず、冷静に行動してください。(Sarosimaga tushmay, bosiqlik bilan harakat qiling.)",
+    "category": "500 Mon N3: 文字 (Kanji)",
+    "level": "N3"
+  },
+  {
+    "front": "長年の努力が（　）実を結び、優勝することができた。\n（　）にはいるただしいことばは？",
+    "back": "4. ついに (Tsuini)\nTarjima: Ko'p yillik mehnat nihoyat o'z mevasini berdi va g'olib bo'lishga muvaffaq bo'ldim.\nQoida: ついに = uzoq kutish va harakatdan keyin qo'lga kiritilgan ijobiy xulosa.",
+    "phonetic": "ついに - Tsuini",
+    "example": "ついに研究が完成した。(Nihoyat ilmiy ish yakunlandi.)",
+    "category": "500 Mon N3: 語彙 (Lug'at)",
+    "level": "N3"
+  },
+  {
+    "front": "最近の若者は本を読まない（　）、スマートフォンばかり見ている。\n（　）にはいるただしいぶんぽうは？",
+    "back": "1. どころか (Dokoroka)\nTarjima: Hozirgi yoshlar kitob o'qish u yoqda tursin, faqat smartfonga qarab o'tirishadi.\nQoida: 〜どころか = «...u yoqda tursin, aksincha / undan ham battar».",
+    "phonetic": "よまないどころか - Yomanai dokoroka",
+    "example": "漢字どころか平仮名も書けない。(Kanji u yoqda tursin, hatto hiraganani ham yozolmaydi.)",
+    "category": "500 Mon N3: 文法 (Grammatika)",
+    "level": "N3"
+  },
+  {
+    "front": "契約の条件について詳細に検討する。\n「詳細」のよみかたは？",
+    "back": "3. しょうさい (Shousai)\nTarjima: Shartnoma shartlari bo'yicha batafsil ko'rib chiqamiz.\nQoida: 詳 (batafsil) + 細 (mayda/nozik) = 詳細 (batafsil ma'lumot).",
+    "phonetic": "しょうさい - Shousai",
+    "example": "詳細はウェブサイトをご覧ください。(Batafsil ma'lumotni veb-saytdan ko'ring.)",
+    "category": "500 Mon N3: 文字 (Kanji)",
+    "level": "N3"
+  },
+  {
+    "front": "あの店の料理は（　）美味しくて、値段も手頃だ。\n（　）にはいるただしいことばは？",
+    "back": "2. 実に[じつに] (Jitsuni)\nTarjima: U oshxonaning taomlari chindan ham (juda) mazali va narxi ham hamyonbop.\nQoida: 実に[じつに] = haqiqatan ham, chindan ham (juda).",
+    "phonetic": "じつに - Jitsuni",
+    "example": "実に素晴らしい発表でした。(Chindan ham ajoyib taqdimot bo'ldi.)",
+    "category": "500 Mon N3: 語彙 (Lug'at)",
+    "level": "N3"
+  },
+  {
+    "front": "子供のころ、よく川で泳いだ（　）。\n（　）にはいるただしいぶんぽうは？",
+    "back": "4. ものだ (Mono da)\nTarjima: Bolaligimda daryoda ko'p suzar edim (o'tmishdagi qadrdon xotira).\nQoida: Fe'l-ta + ものだ: O'tmishdagi nostalgiya va odatlarni eslash («...qilar edim»).",
+    "phonetic": "およいだものだ - Oyoida mono da",
+    "example": "昔はよく夜更かしをしたものだ。(Ilgari tez-tez tonggacha uxlamay yurar edim.)",
+    "category": "500 Mon N3: 文法 (Grammatika)",
+    "level": "N3"
+  },
+  {
+    "front": "彼は自分の意見を明確に主張した。\n「明確」のよみかたは？",
+    "back": "1. めいかく (Meikaku)\nTarjima: U o'z fikrini aniq va ravshan qilib himoya qildi (bayon etdi).\nQoida: 明 (yorug'/ochiq) + 確 (aniq) = 明確 (aniq-ravshan).",
+    "phonetic": "めいかく - Meikaku",
+    "example": "目標を明確にする。(Maqsadni aniq belgilab olmoq.)",
+    "category": "500 Mon N3: 文字 (Kanji)",
+    "level": "N3"
+  },
+  {
+    "front": "会議の開始時間が（　）変更になった。\n（　）にはいるただしいことばは？",
+    "back": "3. 若干[じゃっかん] (Jakkan)\nTarjima: Yig'ilishning boshlanish vaqti biroz (ozgina) o'zgardi.\nQoida: 若干[じゃっかん] = bir oz, oz miqdorda (formal rasmiy so'z).",
+    "phonetic": "じゃっかん - Jakkan",
+    "example": "予算に若干の余裕がある。(Byudjetda ozgina zaxira mablag' bor.)",
+    "category": "500 Mon N3: 語彙 (Lug'at)",
+    "level": "N3"
+  },
+  {
+    "front": "いくら頼まれた（　）、不正なことには協力できない。\n（　）にはいるただしいぶんぽうは？",
+    "back": "2. からといって (Kara to itte)\nTarjima: Qanchalik iltimos qilishgan bo'lmasin, noqonuniy ishga yordam bera olmayman.\nQoida: いくら / たとえ + Fe'l-ta からといって: «...bo'lgan taqdirda ham, baribir...».",
+    "phonetic": "たのまれたからといって - Tanomareta kara to itte",
+    "example": "お金があるからといって幸せとは限らない。(Puli bor bo'lgani bilan baxtli bo'ladi degani emas.)",
+    "category": "500 Mon N3: 文法 (Grammatika)",
+    "level": "N3"
+  },
+  {
+    "front": "都市と地方の格差が広がっている。\n「格差」のよみかたは？",
+    "back": "1. かくさ (Kakusa)\nTarjima: Shahar va chekka hududlar o'rtasidagi tafovut (farq) kengayib bormoqda.\nQoida: 格 (daraja) + 差 (farq) = 格差 (ijtimoiy-iqtisodiy tabaqalanish, tafovut).",
+    "phonetic": "かくさ - Kakusa",
+    "example": "貧富の格差を是正する。(Boylik va kambag'allik orasidagi tafovutni qisqartirish.)",
+    "category": "500 Mon N3: 文字 (Kanji)",
+    "level": "N3"
   }
 ]

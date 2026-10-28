@@ -23,6 +23,7 @@ vi.mock('../../context/StudyPlannerContext', () => ({
   }),
 }));
 
+const mockStartTimer = vi.fn();
 vi.mock('../../context/FocusTimerContext', () => ({
   useFocusTimerContext: () => ({
     focusState: {
@@ -32,7 +33,7 @@ vi.mock('../../context/FocusTimerContext', () => ({
       selectedTaskId: null,
       selectedSubjectId: null,
     },
-    startTimer: vi.fn(),
+    startTimer: mockStartTimer,
     pauseTimer: vi.fn(),
     resetTimer: vi.fn(),
     switchMode: vi.fn(),
@@ -93,5 +94,24 @@ describe('FocusPage', () => {
 
     fireEvent.click(joinBtn);
     expect(mockNavigate).toHaveBeenCalledWith('/room/library');
+  });
+
+  it('starts timer immediately when Boshlash is clicked without asking for mood', () => {
+    render(
+      <MemoryRouter initialEntries={['/focus']}>
+        <Routes>
+          <Route path="/focus" element={<FocusPage />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    const startBtn = screen.getByRole('button', { name: /Boshlash/i });
+    expect(startBtn).toBeInTheDocument();
+
+    fireEvent.click(startBtn);
+
+    // Timer starts immediately without any mood check-in
+    expect(mockStartTimer).toHaveBeenCalled();
+    expect(screen.queryByText(/his qilyapsiz/i)).not.toBeInTheDocument();
   });
 });

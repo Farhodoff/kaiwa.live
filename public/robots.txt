@@ -1,71 +1,97 @@
 # ==============================================================================
-# Nihongo Talk Robots Configuration
+# kaiwa.live Robots Configuration
 # Production URL: https://kaiwa.live
 # ==============================================================================
 
-# Default Crawlers (Googlebot, Bingbot, Yandex, DuckDuckBot, Baiduspider)
+# Default Search Engine Crawlers (Googlebot, Bingbot, Yandex, DuckDuckBot, Baiduspider)
 User-agent: *
 Allow: /
+Allow: /landing
 Allow: /jlpt
-Allow: /speaking
 Allow: /speaking-coach
+Allow: /scenarios
+Allow: /flashcards
+Allow: /roadmap
+Allow: /monologue
+Allow: /diagnostic
 Allow: /pricing
-Allow: /developers
-Allow: /twa
 Allow: /llms.txt
 Disallow: /api/
 Disallow: /admin
 Disallow: /dashboard
 Disallow: /settings
 Disallow: /room/
-Disallow: /diagnostic
-Disallow: /personal-plan
 
-# Generative AI & Search Engine Crawlers (ChatGPT Search, Perplexity, Claude, Apple Intelligence)
+# Generative AI & Answer Engine Crawlers (ChatGPT Search, Perplexity, Claude, Apple Intelligence)
 User-agent: GPTBot
 Allow: /
+Allow: /landing
 Allow: /jlpt
-Allow: /speaking
+Allow: /speaking-coach
+Allow: /scenarios
+Allow: /flashcards
+Allow: /roadmap
+Allow: /monologue
+Allow: /diagnostic
 Allow: /pricing
-Allow: /developers
 Allow: /llms.txt
 Disallow: /api/
 Disallow: /admin
 
 User-agent: PerplexityBot
 Allow: /
+Allow: /landing
 Allow: /jlpt
-Allow: /speaking
+Allow: /speaking-coach
+Allow: /scenarios
+Allow: /flashcards
+Allow: /roadmap
+Allow: /monologue
+Allow: /diagnostic
 Allow: /pricing
-Allow: /developers
 Allow: /llms.txt
 Disallow: /api/
 Disallow: /admin
 
 User-agent: ClaudeBot
 Allow: /
+Allow: /landing
 Allow: /jlpt
-Allow: /speaking
+Allow: /speaking-coach
+Allow: /scenarios
+Allow: /flashcards
+Allow: /roadmap
+Allow: /monologue
+Allow: /diagnostic
 Allow: /pricing
-Allow: /developers
 Allow: /llms.txt
 Disallow: /api/
 Disallow: /admin
 
 User-agent: Google-Extended
 Allow: /
+Allow: /landing
 Allow: /jlpt
-Allow: /speaking
+Allow: /speaking-coach
+Allow: /scenarios
+Allow: /flashcards
+Allow: /roadmap
+Allow: /monologue
+Allow: /diagnostic
 Allow: /pricing
-Allow: /developers
 Allow: /llms.txt
 
 User-agent: Applebot-Extended
 Allow: /
+Allow: /landing
 Allow: /jlpt
-Allow: /speaking
+Allow: /speaking-coach
+Allow: /scenarios
+Allow: /flashcards
+Allow: /roadmap
+Allow: /monologue
+Allow: /diagnostic
 Allow: /pricing
-Allow: /developers
 Allow: /llms.txt
 
 # Host and Sitemap Declarations

@@ -10,9 +10,9 @@ const DeveloperApiPage: React.FC = () => {
   useSEO({
     title: 'Developer Portal & REST API Documentation',
     description:
-      'Nihongo Talk Developer API va TypeScript SDK. JLPT Scoring, Flashcard AI Generator va Anki SM-2 SRS API integratsiyasi.',
+      'kaiwa.live Developer API va TypeScript SDK. JLPT Scoring, Flashcard AI Generator va Anki SM-2 SRS API integratsiyasi.',
     canonical: '/developers',
-    keywords: 'Nihongo Talk API, JLPT API, Flashcard API, Anki SM-2 REST API, educational API SDK',
+    keywords: 'kaiwa.live API, JLPT API, Flashcard API, Anki SM-2 REST API, educational API SDK',
   });
 
   const navigate = useNavigate();
@@ -170,14 +170,14 @@ print("Keyingi takrorlash:", response.json())`;
           <div>
             <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-bold text-primary">
               <Terminal size={14} />
-              Nihongo Talk Developer Suite & Public API
+              kaiwa.live Developer Suite & Public API
             </div>
             <h1 className="text-3xl font-black tracking-tight text-foreground">
               Dasturchilar Uchun Ochiq API & SDK
             </h1>
             <p className="mt-1 text-xs text-muted-foreground md:text-sm">
               Istalgan tashqi loyihangizdan (Telegram bot, Mobil ilova, React/Next.js, Python)
-              Nihongo Talk imkoniyatlarini chaqiring.
+              kaiwa.live imkoniyatlarini chaqiring.
             </p>
           </div>
 

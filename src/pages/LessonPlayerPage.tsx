@@ -23,6 +23,7 @@ import { ActivityLoggingService } from '../services/ActivityLoggingService';
 import { useGamificationStore } from '../stores/useGamificationStore';
 import { useSEO } from '../hooks/useSEO';
 import { toast } from '../hooks/use-toast';
+import { ErrorNotificationService } from '../services/ErrorNotificationService';
 
 export const LessonPlayerPage: React.FC = () => {
   const { lessonId } = useParams<{ lessonId: string }>();
@@ -54,13 +55,14 @@ export const LessonPlayerPage: React.FC = () => {
   const completionInFlightRef = useRef(false);
 
   useSEO({
-    title: lesson ? `${lesson.title} - Dars Mashg'uloti` : "O'quv Darsi - Nihongo Talk",
+    title: lesson ? `${lesson.title} - Dars Mashg'uloti` : "O'quv Darsi - kaiwa.live",
     description: lesson ? lesson.description : "Interaktiv til o'rganish darsi.",
     canonical: `/lesson/${lessonId || ''}`,
   });
 
   useEffect(() => {
     if (!lessonId) {
+      setLesson(null);
       setLoading(false);
       return;
     }
@@ -382,6 +384,13 @@ export const LessonPlayerPage: React.FC = () => {
       }
     } catch (err) {
       console.error('[LessonPlayerPage] Failed to complete lesson mastery pipeline:', err);
+      ErrorNotificationService.notifyError({
+        title: 'Dars natijasini saqlashda xatolik',
+        message: "Natijani to'liq saqlab bo'lmadi. Iltimos, qayta saqlash tugmasini bosing.",
+        error: err,
+        retryLabel: 'Qayta saqlash',
+        retryAction: () => handleCompleteLesson(score, mistakes),
+      });
     } finally {
       completionInFlightRef.current = false;
     }
@@ -559,6 +568,7 @@ export const LessonPlayerPage: React.FC = () => {
         {isLessonCompleted ? (
           <LessonCompletionView
             lesson={lesson}
+            userId={user?.id}
             scoreData={quizResult}
             newCardsCount={srsSummary.newCardsCount}
             mistakesCount={srsSummary.mistakesCount}
@@ -598,6 +608,7 @@ export const LessonPlayerPage: React.FC = () => {
                 instructions={currentStep.practiceData.instructions}
                 exercises={currentStep.practiceData.exercises}
                 onIncorrectAnswer={handlePracticeIncorrectAnswer}
+                onNextStep={handleNextStep}
               />
             )}
 

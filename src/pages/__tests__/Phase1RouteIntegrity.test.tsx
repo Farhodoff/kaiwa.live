@@ -274,7 +274,6 @@ describe('Phase 1 — Route Integrity & StudyMode Global Entry Tests', () => {
     await waitFor(() => {
       expect(screen.getByRole('button', { name: /Filter: Barchasi/i })).toBeInTheDocument();
       expect(screen.getByRole('button', { name: /Filter: Yaponcha/i })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /Filter: Inglizcha/i })).toBeInTheDocument();
     });
   });
 

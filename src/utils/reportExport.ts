@@ -47,7 +47,7 @@ export function generateReportShareCard(
   // 2. Header Branding
   ctx.font = 'bold 28px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
   ctx.fillStyle = '#818cf8';
-  ctx.fillText('🌸 NIHONGO TALK', 60, 75);
+  ctx.fillText('🌸 KAIWA.LIVE', 60, 75);
 
   ctx.font = '16px -apple-system, BlinkMacSystemFont, sans-serif';
   ctx.fillStyle = '#9ca3af';
@@ -183,7 +183,7 @@ export async function downloadReportAsPNG(
   const canvas = generateReportShareCard(report, personaTitle);
   const dataUrl = canvas.toDataURL('image/png');
   const link = document.createElement('a');
-  link.download = `nihongo-talk-report-${Date.now()}.png`;
+  link.download = `kaiwa-live-report-${Date.now()}.png`;
   link.href = dataUrl;
   document.body.appendChild(link);
   link.click();
@@ -232,7 +232,7 @@ export function printReportViaIframe(report: SessionAnalysisReport, personaTitle
       </style>
     </head>
     <body>
-      <h1>🌸 Nihongo Talk — Speaking Coach Tahlil Hisoboti</h1>
+      <h1>🌸 kaiwa.live — Speaking Coach Tahlil Hisoboti</h1>
       <div class="subtitle">Ssenariy: <strong>${eT}</strong> | Sana: ${new Date().toLocaleDateString('uz-UZ')}</div>
 
       <div class="score-card">

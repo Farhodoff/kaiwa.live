@@ -1,5 +1,7 @@
 export interface ExamQuestion {
   id: number;
+  originalId?: string;
+  displayNumber?: number;
   section: 'knowledge' | 'reading' | 'listening';
   questionText: string;
   passageText?: string;
@@ -2921,7 +2923,7 @@ export const JLPT_N1_MOCK_SET_2: ExamQuestion[] = [
   {
     id: 545,
     section: 'listening',
-    audioUrl: '',
+    audioUrl: '/audio/choukai/n1/n1_track_78.mp3',
     script:
       '環境フォーラムで研究者が登壇しています。\n研究者：海洋プラスチックゴミの削減に向けて、生分解性素材の開発が進んでいますが、それだけで海洋汚染の根本的な解決には至りません。廃棄物処理インフラの未整備な途上国への技術支援と、使い捨てプラスチックそのものを減らす国際条約の締結が急務なのです。',
     questionText: '研究者が最も早急に取り組むべきだと主張しているのは何ですか？',
@@ -2938,7 +2940,7 @@ export const JLPT_N1_MOCK_SET_2: ExamQuestion[] = [
   {
     id: 546,
     section: 'listening',
-    audioUrl: '',
+    audioUrl: '/audio/choukai/n1/n1_track_79.mp3',
     script:
       '歴史学の講義で准教授が話しています。\n准教授：ある歴史的事件を客観的に評価するためには、勝者の側が遺した公式記録だけでなく、敗者や市井の名もなき庶民の手記や書簡といった多角的な史料を突き合わせることが不可欠です。歴史の真実は、単一の記録の枠内には収まりきらないのです。',
     questionText: '歴史的事件を正当に評価するために不可欠な方法は何ですか？',
@@ -2955,7 +2957,7 @@ export const JLPT_N1_MOCK_SET_2: ExamQuestion[] = [
   {
     id: 547,
     section: 'listening',
-    audioUrl: '',
+    audioUrl: '/audio/choukai/n1/n1_track_80.mp3',
     script:
       'IT企業の開発会議でプロダクトマネージャーが話しています。\nマネージャー：新機能の追加を急ぐあまり、既存システムの動作安定性を損なっては本末転倒です。今四半期は新機能開発を一時凍結し、コードのリファクタリングとセキュリティの脆弱性対策に全力を注ぎましょう。',
     questionText: '今四半期において最優先される方針は何ですか？',
@@ -2972,7 +2974,7 @@ export const JLPT_N1_MOCK_SET_2: ExamQuestion[] = [
   {
     id: 548,
     section: 'listening',
-    audioUrl: '',
+    audioUrl: '/audio/choukai/n1/n1_track_83.mp3',
     script:
       '都市社会学のシンポジウムで専門家が話しています。\n専門家：少子高齢化が進む地方都市の再生には、単なるハコモノ（公共施設）の建設ではなく、医療・福祉・商業機能を中心部に集約する「コンパクトシティ」の構築と、公共交通網の再編が不可欠な鍵となります。',
     questionText: '地方都市の再生に向けて提唱されている施策は何ですか？',
@@ -2989,7 +2991,7 @@ export const JLPT_N1_MOCK_SET_2: ExamQuestion[] = [
   {
     id: 549,
     section: 'listening',
-    audioUrl: '',
+    audioUrl: '/audio/choukai/n1/n1_track_84.mp3',
     script:
       '医学シンポジウムで脳科学者が講演しています。\n脳科学者：睡眠不足が長期化すると、脳内の老廃物排出システムが正常に機能しなくなり、認知機能の低下や神経変性疾患のリスクが跳ね上がります。十分な睡眠時間を確保することは、怠惰ではなく、脳の健康維持における必須の投資なのです。',
     questionText: '脳科学者が睡眠に関して強調しているポイントは何ですか？',
@@ -3006,7 +3008,7 @@ export const JLPT_N1_MOCK_SET_2: ExamQuestion[] = [
   {
     id: 550,
     section: 'listening',
-    audioUrl: '',
+    audioUrl: '/audio/choukai/n1/n1_track_85.mp3',
     script:
       '建築デザインの講義で建築家が語っています。\n建築家：日本の伝統建築が木造でありながら数百年もの風雪に耐えうるのは、地震の揺れを剛性で押さえつけるのではなく、各接合部がしなやかに変形してエネルギーを分散吸収する「柔構造」の叡智があるからです。自然に抗うのではなく、いなす思想が息づいています。',
     questionText: '日本伝統建築の耐震性の本質として説明されているものはどれですか？',

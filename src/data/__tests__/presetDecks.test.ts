@@ -35,19 +35,19 @@ describe('PRESET_DECKS Integrity & Quality Tests', () => {
     expect(n5Deck).toBeDefined();
     expect(n5Deck!.level).toBe('JLPT N5');
     const n5Cards = await n5Deck!.loadCards();
-    expect(n5Cards.length).toBe(33);
+    expect(n5Cards.length).toBe(70);
 
     const n3Deck = PRESET_DECKS.find((d) => d.id === 'deck_n3_confusing_grammar');
     expect(n3Deck).toBeDefined();
     expect(n3Deck!.level).toBe('JLPT N3');
     const n3Cards = await n3Deck!.loadCards();
-    expect(n3Cards.length).toBe(22);
+    expect(n3Cards.length).toBe(45);
 
     const n3MonDeck = PRESET_DECKS.find((d) => d.id === 'deck_n3_500_mon');
     expect(n3MonDeck).toBeDefined();
     expect(n3MonDeck!.level).toBe('JLPT N3');
     const n3MonCards = await n3MonDeck!.loadCards();
-    expect(n3MonCards.length).toBe(20);
+    expect(n3MonCards.length).toBe(60);
 
     const n3ThematicDeck = PRESET_DECKS.find((d) => d.id === 'deck_n3_thematic_vocab');
     expect(n3ThematicDeck).toBeDefined();
@@ -66,7 +66,7 @@ describe('PRESET_DECKS Integrity & Quality Tests', () => {
     expect(n4MonDeck).toBeDefined();
     expect(n4MonDeck!.level).toBe('JLPT N4');
     const n4MonCards = await n4MonDeck!.loadCards();
-    expect(n4MonCards.length).toBe(24);
+    expect(n4MonCards.length).toBe(84);
 
     const n1MonDeck = PRESET_DECKS.find((d) => d.id === 'deck_n1_500_mon');
     expect(n1MonDeck).toBeDefined();

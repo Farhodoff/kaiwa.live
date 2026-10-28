@@ -129,7 +129,36 @@ export function useSpeakingSessionOrchestrator({
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
+  const autoListenTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isMutedRef = useRef(isMuted);
+
+  useEffect(() => {
+    isMutedRef.current = isMuted;
+    if (isMuted) {
+      if (autoListenTimerRef.current) {
+        clearTimeout(autoListenTimerRef.current);
+        autoListenTimerRef.current = null;
+      }
+      if (recognitionRef.current) {
+        try {
+          recognitionRef.current.abort();
+        } catch {}
+      }
+    } else if (
+      isLiveSessionRef.current &&
+      !isSpeakingRef.current &&
+      !isThinking &&
+      !isProcessingRef.current
+    ) {
+      startListeningRef.current?.();
+    }
+  }, [isMuted, isThinking]);
+
   const handleSpeakStart = useCallback(() => {
+    if (autoListenTimerRef.current) {
+      clearTimeout(autoListenTimerRef.current);
+      autoListenTimerRef.current = null;
+    }
     setIsSpeaking(true);
     isSpeakingRef.current = true;
     if (recognitionRef.current) {
@@ -145,6 +174,27 @@ export function useSpeakingSessionOrchestrator({
     setIsSpeaking(false);
     isSpeakingRef.current = false;
     isProcessingRef.current = false;
+
+    if (autoListenTimerRef.current) {
+      clearTimeout(autoListenTimerRef.current);
+      autoListenTimerRef.current = null;
+    }
+
+    // Continuous Hands-Free Turn-Taking:
+    // Once AI Coach finishes speaking, hand the turn automatically to the user and start listening.
+    // 350ms acoustic delay ensures speaker audio & room reverberation have completely cleared.
+    if (isLiveSessionRef.current && !isMutedRef.current) {
+      autoListenTimerRef.current = setTimeout(() => {
+        if (
+          isLiveSessionRef.current &&
+          !isSpeakingRef.current &&
+          !isProcessingRef.current &&
+          !isMutedRef.current
+        ) {
+          startListeningRef.current?.();
+        }
+      }, 350);
+    }
   }, []);
 
   const {
@@ -174,6 +224,37 @@ export function useSpeakingSessionOrchestrator({
     }
   }, [language, persona, activeScenario]);
 
+  // Dynamically calibrate speech tempo based on Persona & JLPT Target Level
+  useEffect(() => {
+    try {
+      const manualSpeed =
+        typeof window !== 'undefined' ? localStorage.getItem('speaking_coach_manual_speed') : null;
+      if (manualSpeed) return;
+
+      let baseline = 0.95;
+      if (persona === 'roast') {
+        baseline = 1.05; // Sharp, brisk drill master tempo
+      } else if (persona === 'gentle') {
+        baseline = 0.85; // Relaxed, patient cadence
+      } else if (persona === 'ielts' || persona === 'interview') {
+        baseline = 0.95; // Balanced, professional cadence
+      } else if (persona === 'travel') {
+        baseline = 0.9; // Clear, friendly cadence
+      } else if (persona === 'casual') {
+        baseline = 1.0; // Everyday natural speed
+      }
+
+      // Gentle easing for beginner JLPT levels (N5/N4) so mora sounds are distinct
+      if (targetJlptLevel === 'N5' && baseline > 0.88) {
+        baseline = 0.88;
+      } else if (targetJlptLevel === 'N4' && baseline > 0.92) {
+        baseline = 0.92;
+      }
+
+      setSpeechSpeed(baseline);
+    } catch {}
+  }, [persona, targetJlptLevel, setSpeechSpeed]);
+
   const handleSendUserText = useCallback(
     async (text: string) => {
       const cleanText = (text || '').trim();
@@ -189,6 +270,13 @@ export function useSpeakingSessionOrchestrator({
         setIsThinking(false);
         setCurrentTranscript('');
         transcriptBufferRef.current = '';
+        if (isLiveSessionRef.current && !isMutedRef.current) {
+          autoListenTimerRef.current = setTimeout(() => {
+            if (isLiveSessionRef.current && !isSpeakingRef.current && !isMutedRef.current) {
+              startListeningRef.current?.();
+            }
+          }, 350);
+        }
         return;
       }
 
@@ -416,6 +504,13 @@ export function useSpeakingSessionOrchestrator({
         }
         console.error('[SpeakingCoach] Dialogue error:', err);
         setError('Xatolik yuz berdi. Iltimos qaytadan urinib ko‘ring.');
+        if (isLiveSessionRef.current && !isMutedRef.current) {
+          autoListenTimerRef.current = setTimeout(() => {
+            if (isLiveSessionRef.current && !isSpeakingRef.current && !isMutedRef.current) {
+              startListeningRef.current?.();
+            }
+          }, 1000);
+        }
       } finally {
         setIsThinking(false);
         isProcessingRef.current = false;
@@ -556,14 +651,10 @@ export function useSpeakingSessionOrchestrator({
         : vocab.word;
 
       let back = '';
-      if (isJa) {
-        if (uzbekMeaning && englishMeaning) {
-          back = `📌 O'zbekcha: ${uzbekMeaning}\n🌐 English: ${englishMeaning}`;
-        } else if (uzbekMeaning) {
-          back = `📌 Ma'nosi: ${uzbekMeaning}`;
-        } else {
-          back = `📌 Ma'nosi: ${vocab.meaning}`;
-        }
+      if (uzbekMeaning && englishMeaning) {
+        back = `📌 O'zbekcha: ${uzbekMeaning}\n🌐 English: ${englishMeaning}`;
+      } else if (uzbekMeaning) {
+        back = `📌 O'zbekcha: ${uzbekMeaning}`;
       } else {
         back = `📌 Ma'nosi: ${vocab.meaning}`;
       }
@@ -706,6 +797,11 @@ export function useSpeakingSessionOrchestrator({
     const durSecs = sessionSeconds;
 
     const audioBlob = await voiceRecorder.stopRecording();
+
+    if (autoListenTimerRef.current) {
+      clearTimeout(autoListenTimerRef.current);
+      autoListenTimerRef.current = null;
+    }
 
     setIsLiveSession(false);
     isLiveSessionRef.current = false;

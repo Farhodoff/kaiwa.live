@@ -1,5 +1,5 @@
 /**
- * Low-Latency Streaming Pipeline for Nihongo Talk AI Coach.
+ * Low-Latency Streaming Pipeline for kaiwa.live AI Coach.
  * Streams tokens via SSE and pipelines individual clauses to TTS as soon as
  * a sentence boundary is formed, achieving sub-600ms conversational turn latency.
  */
@@ -67,9 +67,9 @@ export class IncrementalReplyExtractor {
       const activeSlice =
         stringEnd !== -1 ? this.replyBuffer.slice(0, stringEnd) : this.replyBuffer;
 
-      // Detect sentence boundaries: Japanese (。！？\n) or Latin (.!?\n)
+      // Detect sentence boundaries: Japanese (。！？\n, or 、 when clause is >= 12 chars) or Latin (.!?\n)
       const delimiterRegex = this.isJa
-        ? /([^\n。！？]+[。！？\n]+)/g
+        ? /([^\n。！？]+[。！？\n]+|[^\n。！？、]{12,}、)/g
         : /([^\n.!?]+[.!?\n]+(?:\s+|$))/g;
 
       let match: RegExpExecArray | null;

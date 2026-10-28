@@ -26,8 +26,18 @@ import { CurriculumLessonResolver } from '../services/CurriculumLessonResolver';
 import { MasteryEngine } from '../services/MasteryEngine';
 import { speakJapaneseText, stopAllAudio } from '../utils/audioTts';
 import { FuriganaText } from '../components/jlpt/FuriganaText';
+import { useSEO } from '../hooks/useSEO';
 
 export const DiagnosticPage: React.FC = () => {
+  useSEO({
+    title: 'Yapon Tili Darajangizni Aniqlang (JLPT Diagnostika Testi)',
+    description:
+      "JLPT darajangizni (N5, N4, N3, N2, N1) bir necha daqiqada bepul aniqlang. Kanji, grammatika va eshitish (listening) ko'nikmalarini baholash.",
+    canonical: '/diagnostic',
+    keywords:
+      'yapon tili darajani aniqlash, yapon tili test, JLPT test topshirish, JLPT level test online, kaiwa.live',
+  });
+
   const { targetLevel, user } = useStudyData();
   const effectiveLang = 'ja';
   const { language } = useLanguage();

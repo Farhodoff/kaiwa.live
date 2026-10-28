@@ -81,7 +81,7 @@ export const TelegramMiniAppPage: React.FC = () => {
       icon: BookOpen,
       color: 'from-blue-500 to-indigo-600',
       badge: targetLevel,
-      route: '/curriculum',
+      route: '/jlpt?tab=lessons',
     },
     {
       id: 'flashcards',
@@ -90,7 +90,7 @@ export const TelegramMiniAppPage: React.FC = () => {
       icon: Layers,
       color: 'from-amber-500 to-orange-600',
       badge: '5 daq',
-      route: '/decks',
+      route: '/flashcards',
     },
     {
       id: 'speaking',
@@ -151,7 +151,7 @@ export const TelegramMiniAppPage: React.FC = () => {
                 <Sparkles size={14} className="fill-amber-400 text-amber-400" />
               </div>
               <p className="text-xs text-muted-foreground">
-                {username ? `@${username}` : 'Nihongo Talk Mini App'}
+                {username ? `@${username}` : 'kaiwa.live Mini App'}
               </p>
             </div>
           </div>
@@ -274,7 +274,7 @@ export const TelegramMiniAppPage: React.FC = () => {
         <p className="text-center text-[10px] text-muted-foreground">
           {isTelegramWebApp()
             ? '⚡ Telegram WebApp orqali sinxronlashtirildi'
-            : '🌐 Nihongo Talk Mobile Rejimida ishlamoqda'}
+            : '🌐 kaiwa.live Mobile Rejimida ishlamoqda'}
         </p>
       </div>
 

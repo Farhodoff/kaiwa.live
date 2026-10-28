@@ -9,7 +9,7 @@ vi.mock('../../context/StudyPlannerContext', () => ({
   useStudyData: () => ({
     user: { id: 'test-user-123' },
     primaryLanguage: 'ja',
-    awardXP: vi.fn(),
+    awardXP: vi.fn().mockResolvedValue(undefined),
     settings: {},
   }),
 }));
@@ -21,6 +21,39 @@ vi.mock('../../services/LearningOrchestrator', () => ({
     getPrimaryLanguage: () => 'en',
     getUserTarget: () => ({ targetLevel: 'N3', targetGoal: '', currentLevel: 'N3' }),
   },
+}));
+
+vi.mock('../../services/ActivityLoggingService', () => ({
+  ActivityLoggingService: {
+    logActivity: vi.fn().mockResolvedValue({ id: 'test-activity-id' }),
+    calculateSpeakingXP: vi.fn().mockReturnValue({ xp: 15 }),
+    calculateFlashcardMilestoneXP: vi.fn().mockReturnValue({ milestoneXp: 0 }),
+  },
+}));
+
+vi.mock('../../lib/supabase', () => ({
+  supabase: {
+    auth: {
+      getSession: vi.fn().mockResolvedValue({ data: { session: null }, error: null }),
+      getUser: vi.fn().mockResolvedValue({ data: { user: null }, error: null }),
+      onAuthStateChange: vi.fn(() => ({ data: { subscription: { unsubscribe: vi.fn() } } })),
+    },
+    from: vi.fn(() => ({
+      insert: vi.fn().mockResolvedValue({ data: null, error: null }),
+      select: vi.fn().mockReturnThis(),
+      upsert: vi.fn().mockResolvedValue({ data: null, error: null }),
+      update: vi.fn().mockResolvedValue({ data: null, error: null }),
+      delete: vi.fn().mockResolvedValue({ data: null, error: null }),
+      eq: vi.fn().mockReturnThis(),
+      single: vi.fn().mockResolvedValue({ data: null, error: null }),
+    })),
+  },
+}));
+
+vi.mock('../../components/lesson/LessonAudioPlayer', () => ({
+  LessonAudioPlayer: ({ audioTitle }: { audioTitle?: string }) => (
+    <div data-testid="lesson-audio-player">{audioTitle || 'Audio Player'}</div>
+  ),
 }));
 
 vi.mock('../../utils/audioTts', () => ({
@@ -67,7 +100,7 @@ describe('LessonPlayerPage', () => {
     expect(screen.getAllByText(/Perseverance/i).length).toBeGreaterThan(0);
   });
 
-  it('navigates from Learn to Practice step and enables checking answers', async () => {
+  it('navigates from Learn to Practice step and enables seamless answer selection and review', async () => {
     render(
       <MemoryRouter initialEntries={['/lesson/ja-n3-u1-l1']}>
         <Routes>
@@ -83,14 +116,27 @@ describe('LessonPlayerPage', () => {
     // Now in Practice step (real curriculum content)
     expect(screen.getByText(/To'g'ri majhul nisbat shaklini tanlang/i)).toBeInTheDocument();
 
-    // Select the first (correct) option
-    const optionA = screen.getByText(/誰/);
-    fireEvent.click(optionA);
+    // Select the first option for Exercise 1
+    const optButtons1 = screen.getAllByRole('button').filter((b) => b.textContent?.includes('A'));
+    expect(optButtons1.length).toBeGreaterThan(0);
+    fireEvent.click(optButtons1[0]);
 
-    const checkBtn = screen.getByRole('button', { name: /Javobni Tekshirish/i });
-    fireEvent.click(checkBtn);
+    // Advance through exercises until reaching the final finish button
+    for (let i = 0; i < 12; i++) {
+      const continueBtn = screen.queryByRole('button', { name: /Davom etish/i });
+      if (!continueBtn) break;
+      fireEvent.click(continueBtn);
+      const optButtons = screen.getAllByRole('button').filter((b) => b.textContent?.includes('A'));
+      if (optButtons.length > 0) {
+        fireEvent.click(optButtons[0]);
+      }
+    }
 
-    expect(screen.getByText(/To'g'ri javob!/i)).toBeInTheDocument();
+    // Click Natijalarni Ko'rish
+    const finishBtn = screen.getByRole('button', { name: /Natijalarni Ko'rish/i });
+    fireEvent.click(finishBtn);
+
+    expect(screen.getByText(/Mashqlar Tahlili va To'g'ri Javoblar/i)).toBeInTheDocument();
   });
 
   it('displays error UI when invalid lessonId is provided', () => {
@@ -128,17 +174,12 @@ describe('LessonPlayerPage', () => {
     // Finish lesson
     fireEvent.click(screen.getByRole('button', { name: /Darsni Yakunlash/i }));
 
-    await waitFor(
-      () => {
-        expect(srsSpy).toHaveBeenCalled();
-      },
-      { timeout: 4000 },
-    );
+    await waitFor(() => {
+      expect(srsSpy).toHaveBeenCalled();
+    });
+    expect(await screen.findByText(/Dars Yakunlandi! 🎉/i)).toBeInTheDocument();
     expect(
-      await screen.findByText(/Dars Yakunlandi! 🎉/i, {}, { timeout: 4000 }),
-    ).toBeInTheDocument();
-    expect(
-      await screen.findByText(/4 ta yangi so'z Fleshkartalarga qo'shildi/i, {}, { timeout: 4000 }),
+      await screen.findByText(/4 ta yangi so'z Fleshkartalarga qo'shildi/i),
     ).toBeInTheDocument();
   });
 

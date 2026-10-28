@@ -611,7 +611,8 @@ export const buildCoachPrompts = (
         personaPrompt = `IDENTITY: 旅行会話コーチ「雪先生（ゆきせんせい、Yuki-sensei）」（空港・ホテル・駅・レストラン等）。旅行で役立つ実践的で自然な日本語を指導します。`;
         break;
       case 'casual':
-        personaPrompt = `IDENTITY: 東京在住の親しい友達「ユキ（Yuki）」。自然な日常会話とタメ口（カジュアル表現）でリアルな日本語を教えます。`;
+        personaPrompt = `IDENTITY: 自然な日本語の会話パートナー（フリートーク）。
+INSTRUCTION: 特定のテーマや台本に縛られず、ユーザーが話した内容（日常、趣味、仕事、予定、質問など）に合わせて、自然でフレンドリーな日本語で楽しく会話をキャッチボールしてください。質問があれば答え、相槌を打ちながら会話を広げてください。`;
         break;
       default: // 'roast' -> 鬼の雪先生 (Strict Drill Master Oni Yuki-sensei)
         personaPrompt = `IDENTITY: 妥協を一切許さない超激辛・毒舌指導官「鬼の雪先生（おにのゆきせんせい、Oni Yuki-sensei）」。
@@ -694,11 +695,12 @@ You MUST respond with a VALID JSON object matching this schema exactly:
     {
       "word": "Useful word or collocation",
       "reading": "",
-      "meaning": "Meaning or definition",
+      "meaning": "Meaning in Uzbek language (O'zbekcha tarjimasi). Example: 'Qaror qabul qilmoq (To make a decision)'",
       "example": "Contextual example sentence"
     }
   ]
-}`;
+}
+`;
 
   const systemPrompt = `
       ${personaPrompt}
@@ -720,7 +722,9 @@ You MUST respond with a VALID JSON object matching this schema exactly:
              ? `ROAST MODE IS ACTIVE: Call out errors with playful strictness and witty sarcasm calibrated strictly to ${effectiveLevel}. If the student gives an overly short answer, drops particles, or makes a grammar slip, roast them sharply using vocabulary and explanations suited for ${effectiveLevel}. Do NOT demand grammar or words beyond ${effectiveLevel}!`
              : `Correct ONLY meaningful mistakes matching ${effectiveLevel} expectations (incorrect particles は/が/に/で/を, wrong verb/adjective forms, incorrect tenses, or unnatural vocabulary). Do NOT nitpick minor stylistic variations. If the student made no mistake, set "hasError": false. Keep explanations concise (1 short sentence).`
          }
-      6. Vocabulary Engine: Provide 1 to 3 truly useful, contextual words or collocations with reading, meaning, and contextual example. For Japanese, the "meaning" field MUST prioritize the Uzbek explanation followed by English in parentheses, e.g. "O'zini tanishtirish va kuchli tomonlarini ko'rsatish (Self-promotion)". The student is studying Japanese and speaks Uzbek, so the Uzbek explanation is required.
+      6. Vocabulary Engine: Provide 1 to 3 truly useful, contextual words or collocations with reading, meaning, and contextual example.
+         CRITICAL REQUIREMENT FOR "meaning" FIELD:
+         The student is studying this language and speaks Uzbek. Therefore, the "meaning" field MUST ALWAYS be provided in Uzbek language (O'zbekcha tarjimasi / ma'nosi), optionally followed by English in parentheses, e.g. "Ishga topshirish maqsadi (Reason for applying)" or "Qaror qabul qilish (Decision making)". The Uzbek translation is required for every single vocabulary item so the student immediately understands it.
       7. Scenario & Topic Adherence: Stay in character and context throughout the dialogue.
     `;
 
@@ -788,6 +792,8 @@ export interface SessionAnalysisReport {
   grammar_score: number;
   fluency_score: number;
   pronunciation_score: number;
+  naturalness_score?: number;
+  hesitation_score?: number;
   overall_score: number;
   user_level_eng?: string;
   user_level_jp?: string;
@@ -864,11 +870,13 @@ export const analyzeSpeakingSession = async (
       Full Conversation Transcript:
       ${conversationText}
 
-      Task: Perform a FORMAL MULTI-DIMENSIONAL LINGUISTIC ASSESSMENT using 4 weighted pillars:
-      1. Lexical Resource (30%): Analyze vocabulary depth, idioms, kanji/keigo or C1/C2 terms used.
-      2. Grammatical Range & Accuracy (30%): Sentence complexity ratio & error density.
-      3. Fluency & Coherence (25%): Turn length & logical connectors used.
-      4. Pronunciation & Intonation (15%): Pitch accent, stress, and clarity.
+      Task: Perform a FORMAL MULTI-DIMENSIONAL LINGUISTIC ASSESSMENT using 6 criteria:
+      1. Lexical Resource (25%): Analyze vocabulary depth, idioms, kanji/keigo or C1/C2 terms used.
+      2. Grammatical Range & Accuracy (25%): Sentence complexity ratio & error density.
+      3. Fluency & Coherence (20%): Turn length & logical connectors used.
+      4. Pronunciation & Intonation (10%): Pitch accent, stress, and clarity.
+      5. Naturalness (10%): Contextual nuance, natural collocations, and idiomatic appropriateness.
+      6. Hesitation Management (10%): Lack of excessive pauses, smooth transitions.
 
       Provide JSON feedback in natural Uzbek (O'zbek tilida).
 
@@ -878,6 +886,8 @@ export const analyzeSpeakingSession = async (
         "grammar_score": 7.0,
         "fluency_score": 7.5,
         "pronunciation_score": 8.0,
+        "naturalness_score": 7.5,
+        "hesitation_score": 8.0,
         "user_level_eng": "CEFR B2 (IELTS Band 6.5)",
         "user_level_jp": "JLPT N3 (中級 - Intermediate)",
         "pronunciation_feedback": "Intonatsiya, nutq tempi va urg'u bo'yicha chuqur tahlil (O'zbek tilida)...",
@@ -922,6 +932,8 @@ export const analyzeSpeakingSession = async (
     const fluency = typeof data.fluency_score === 'number' ? data.fluency_score : 7.0;
     const pronunciation =
       typeof data.pronunciation_score === 'number' ? data.pronunciation_score : 7.5;
+    const naturalness = typeof data.naturalness_score === 'number' ? data.naturalness_score : 7.5;
+    const hesitation = typeof data.hesitation_score === 'number' ? data.hesitation_score : 7.5;
     const overall = calculateWeightedOverallScore(lexical, grammar, fluency, pronunciation);
 
     return {
@@ -929,6 +941,8 @@ export const analyzeSpeakingSession = async (
       grammar_score: grammar,
       fluency_score: fluency,
       pronunciation_score: pronunciation,
+      naturalness_score: naturalness,
+      hesitation_score: hesitation,
       overall_score: overall,
       user_level_eng: data.user_level_eng || getCEFRLevelFromScore(overall),
       user_level_jp: data.user_level_jp || getJLPTLevelFromScore(overall),

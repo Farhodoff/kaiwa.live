@@ -39,20 +39,20 @@ describe('Scenario Session Audio and Echo Suppression Integrity Tests', () => {
     expect(isAcousticEcho('禁煙席は空いていますか？', coachLine)).toBe(false);
   });
 
-  it('4. Detects acoustic echo loopback for English scenario openings', () => {
-    const checkinScenario = DEFAULT_SCENARIOS.find((s) => s.id === 'hotel_concierge_checkin');
-    expect(checkinScenario).toBeDefined();
-    const coachLine = checkinScenario!.opening_line_en!;
+  it('4. Detects acoustic echo loopback for Japanese introduction scenario openings', () => {
+    const jikoScenario = DEFAULT_SCENARIOS.find((s) => s.id === 'jikoshoukai');
+    expect(jikoScenario).toBeDefined();
+    const coachLine = jikoScenario!.opening_line_ja!;
 
     // Full loopback
     expect(isAcousticEcho(coachLine, coachLine)).toBe(true);
 
     // Partial substring picked up by mic
-    const subChunk = coachLine.slice(0, 20);
+    const subChunk = coachLine.slice(0, 15);
     expect(isAcousticEcho(subChunk, coachLine)).toBe(true);
 
     // Genuine user reply
-    expect(isAcousticEcho('Yes, I booked a double room under John Smith.', coachLine)).toBe(false);
-    expect(isAcousticEcho('Could you check under my name, Farhod?', coachLine)).toBe(false);
+    expect(isAcousticEcho('初めまして、ファルホドと申します。', coachLine)).toBe(false);
+    expect(isAcousticEcho('ウズベキスタンから来ました。', coachLine)).toBe(false);
   });
 });

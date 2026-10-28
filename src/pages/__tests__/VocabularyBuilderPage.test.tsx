@@ -44,24 +44,24 @@ describe('VocabularyBuilderPage Component', () => {
 
     expect(screen.getByText(/Smart Vocabulary Builder/i)).toBeInTheDocument();
     expect(screen.getByPlaceholderText(/So'z kiritib Enter bosing/i)).toBeInTheDocument();
-    expect(screen.getByText('paramount (C1)')).toBeInTheDocument();
+    expect(screen.getByText('勉強 (N5)')).toBeInTheDocument();
   });
 
   it('performs AI search when sample button is clicked', async () => {
     const mockResponse = JSON.stringify({
-      word: 'paramount',
-      language: 'en',
-      phonetic: '/ˈpær.ə.maʊnt/',
-      level: 'C1',
-      partOfSpeech: 'adjective',
-      uzbekTranslation: 'eng muhim, asosiy',
-      definition: 'More important than anything else.',
-      synonyms: ['supreme', 'chief'],
-      collocations: ['paramount importance'],
+      word: '約束',
+      language: 'ja',
+      phonetic: 'やくそく (yakusoku)',
+      level: 'N4',
+      partOfSpeech: 'noun / suru-verb',
+      uzbekTranslation: "va'da, kelishuv",
+      definition: 'Kelajakda bajarishga berilgan so‘z yoki ahd.',
+      synonyms: ['契り', '契機'],
+      collocations: ['約束を守る'],
       examples: [
         {
-          sentence: 'Health is of paramount importance.',
-          translation: 'Salomatlik eng muhim ahamiyatga ega.',
+          sentence: '友達と約束を守りました。',
+          translation: 'Do‘stim bilan bergan va’dani bajardim.',
         },
       ],
     });
@@ -72,16 +72,16 @@ describe('VocabularyBuilderPage Component', () => {
       render(<VocabularyBuilderPage />);
     });
 
-    const sampleBtn = screen.getByText('paramount (C1)');
+    const sampleBtn = screen.getByText('約束 (N4)');
     await act(async () => {
       fireEvent.click(sampleBtn);
     });
 
     await waitFor(() => {
-      expect(screen.getByText(/eng muhim, asosiy/i)).toBeInTheDocument();
+      expect(screen.getByText(/va'da, kelishuv/i)).toBeInTheDocument();
     });
 
-    expect(screen.getByText(/Health is of paramount importance/i)).toBeInTheDocument();
+    expect(screen.getByText(/友達と約束を守りました。/i)).toBeInTheDocument();
   });
 
   it("creates flashcard when Fleshkartalarga Qo'shish button is clicked", async () => {
@@ -142,5 +142,26 @@ describe('VocabularyBuilderPage Component', () => {
 
     expect(screen.getByText(/Pitch Accent \(アクセント\) Tahlili/i)).toBeInTheDocument();
     expect(screen.getAllByText(/Heiban \(平板型 ⓪ - Tekis\)/i).length).toBeGreaterThanOrEqual(1);
+  });
+
+  it('verifies that Fan tanlang dropdown is removed and level filter + random suggestion buttons exist', async () => {
+    await act(async () => {
+      render(<VocabularyBuilderPage />);
+    });
+
+    // Check that "Fan tanlang" or "単語帳を選択:" dropdown is completely absent
+    expect(screen.queryByText(/Fan tanlang:/i)).toBeNull();
+    expect(screen.queryByText(/単語帳を選択:/i)).toBeNull();
+
+    // Check level chips exist
+    expect(screen.getByRole('button', { name: 'Barchasi' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'N5' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'N1' })).toBeInTheDocument();
+
+    // Check random word suggestion button
+    expect(screen.getByRole('button', { name: /Yangi tavsiya/i })).toBeInTheDocument();
+
+    // Check slow pronunciation button
+    expect(screen.getByRole('button', { name: /Sekin/i })).toBeInTheDocument();
   });
 });

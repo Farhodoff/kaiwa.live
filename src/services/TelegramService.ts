@@ -291,7 +291,7 @@ class TelegramService {
    * Send a subscription expiry or upgrade alert via Telegram
    */
   async sendSubscriptionAlert(rawUserId: string, tier: string, daysLeft: number): Promise<boolean> {
-    const text = `👑 <b>Nihongo Talk Obuna Bildirishnomasi</b>\n\nSizning <b>${tier.toUpperCase()}</b> tarifingiz tugashiga <b>${daysLeft} kun</b> qoldi.\nAI speaking va barcha premium imkoniyatlardan uzluksiz foydalanish uchun obunani yangilang:\n👉 <a href="https://kaiwa.live/pricing">Obunani uzaytirish</a>`;
+    const text = `👑 <b>kaiwa.live Obuna Bildirishnomasi</b>\n\nSizning <b>${tier.toUpperCase()}</b> tarifingiz tugashiga <b>${daysLeft} kun</b> qoldi.\nAI speaking va barcha premium imkoniyatlardan uzluksiz foydalanish uchun obunani yangilang:\n👉 <a href="https://kaiwa.live/pricing">Obunani uzaytirish</a>`;
     return this.sendNotification(rawUserId, text);
   }
 

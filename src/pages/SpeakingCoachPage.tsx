@@ -3,7 +3,6 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Mic, ShieldAlert, X, ExternalLink } from 'lucide-react';
 import { useStudyData } from '../context/StudyPlannerContext';
 import { useTelegramWebApp } from '../hooks/useTelegramWebApp';
-import { isSuperAdmin, isUserAdmin } from '../utils/admin';
 import { useSEO } from '../hooks/useSEO';
 import SessionReportModal from '../components/speaking/SessionReportModal';
 import { PERSONAS_BY_LANG, CoachPersona } from '../components/speaking/speakingTypes';
@@ -15,7 +14,6 @@ import { CoachWelcomeScreen } from '../components/speaking/CoachWelcomeScreen';
 import { CoachChatArea } from '../components/speaking/CoachChatArea';
 import { CoachControlBar } from '../components/speaking/CoachControlBar';
 import { CoachSettingsModal } from '../components/speaking/CoachSettingsModal';
-import { CoachProgressDashboard } from '../components/speaking/CoachProgressDashboard';
 import { RealtimeVoiceOverlay } from '../components/speaking/RealtimeVoiceOverlay';
 import { PitchAccentService, PitchAccentInfo } from '../services/PitchAccentService';
 import { PitchAccentModal } from '../components/speaking/PitchAccentModal';
@@ -33,12 +31,12 @@ export { getCoachInitialGreeting };
 
 const SpeakingCoachPage: React.FC = () => {
   useSEO({
-    title: 'AI Yapon Tili Muloqot Murabbiyi (Yuki-sensei)',
+    title: 'AI Yapon Tili Muloqot Murabbiyi (Speaking Sensei)',
     description:
-      "Yapon tilida erkin gapirishni o'rganing. Real vaqtda talaffuz, xatolar tahlili va interaktiv hayotiy dialoglar.",
-    canonical: '/speaking',
+      "Yapon tilida erkin gapirishni o'rganing. Real vaqtda ovozli muloqot, talaffuz tekshirish, xatolar tahlili va interaktiv hayotiy dialoglar.",
+    canonical: '/speaking-coach',
     keywords:
-      'yapon tili speaking, AI yapon tili suhbatdosh, Yuki sensei, yaponcha talaffuz, JLPT kaiwa',
+      "yapon tili speaking, yaponcha so'zlashuv, AI yapon tili suhbatdosh, Yuki sensei, yaponcha talaffuz, JLPT kaiwa, yapon tili muloqot",
   });
 
   const [searchParams] = useSearchParams();
@@ -53,8 +51,6 @@ const SpeakingCoachPage: React.FC = () => {
     targetLevel,
     awardXP,
   } = useStudyData();
-  const isAdmin = isUserAdmin(user);
-  const isSuper = isSuperAdmin(user?.email, (user as any)?.role);
   const { isTwa, openLink, haptics } = useTelegramWebApp();
 
   // Clean up legacy flashcards
@@ -86,7 +82,7 @@ const SpeakingCoachPage: React.FC = () => {
     return immediate.find((s) => s.id === scenarioIdParam || s.id === normalizedParam) || null;
   });
 
-  const [persona, setPersona] = useState<CoachPersona>('roast');
+  const [persona] = useState<CoachPersona>('casual');
   const [targetJlptLevel, setTargetJlptLevel] = useState<'N5' | 'N4' | 'N3' | 'N2' | 'N1'>(() => {
     if (
       activeScenario?.difficulty &&
@@ -101,7 +97,6 @@ const SpeakingCoachPage: React.FC = () => {
     return 'N5';
   });
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
-  const [showPersonaSelector, setShowPersonaSelector] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   // Modals state
@@ -306,10 +301,19 @@ const SpeakingCoachPage: React.FC = () => {
       className={`pb-safe relative flex h-[100dvh] w-full select-none flex-col overflow-hidden ${
         isFullscreen ? 'fixed inset-0 z-50 m-0 h-screen w-screen bg-background p-0' : ''
       }`}
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(7, 12, 24, 0.34), rgba(7, 12, 24, 0.42)), url('/images/speaking-japan-night.png')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
     >
-      <div
-        className={`absolute inset-0 bg-gradient-to-br ${currentPersona.gradientBg} pointer-events-none transition-all duration-1000`}
-      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-slate-950/25 via-transparent to-slate-950/65" />
+      {isLiveSession && (
+        <div
+          className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${currentPersona.gradientBg} transition-all duration-1000`}
+        />
+      )}
       <div className="pointer-events-none absolute left-0 top-0 -z-10 h-full w-full overflow-hidden">
         <div className="absolute -left-40 -top-40 h-[500px] w-[500px] animate-pulse rounded-full bg-primary/10 blur-[120px]" />
         <div
@@ -326,26 +330,9 @@ const SpeakingCoachPage: React.FC = () => {
         persona={persona}
         isLiveSession={isLiveSession}
         sessionSeconds={sessionSeconds}
-        chatHistoryLength={chatHistory.length}
-        showPersonaSelector={showPersonaSelector}
-        setShowPersonaSelector={setShowPersonaSelector}
-        handleLanguageChange={() => {}}
-        setPersona={setPersona}
-        targetLevel={targetJlptLevel}
-        setTargetLevel={setTargetJlptLevel}
-        targetBand={targetJlptLevel}
-        setTargetBand={setTargetJlptLevel}
-        isPaidUser={true}
-        isAdmin={isAdmin}
-        isSuperAdmin={isSuper}
-        isFullscreen={isFullscreen}
-        onToggleFullscreen={toggleFullscreen}
         onOpenSettings={() => setIsSettingsOpen(true)}
-        onOpenPitchTrainer={() => setIsPitchTrainerOpen(true)}
-        formatTimer={formatTimer}
         activeScenario={activeScenario}
-        speechSpeed={speechSpeed}
-        onSpeedChange={setSpeechSpeed}
+        formatTimer={formatTimer}
       />
 
       <SpeakingScenarioBanner
@@ -434,22 +421,13 @@ const SpeakingCoachPage: React.FC = () => {
         </div>
       )}
 
-      <div className="relative mx-3 mb-2 flex min-h-0 flex-1 flex-col overflow-hidden md:mx-5">
+      <div className="relative z-10 mx-3 mb-2 flex min-h-0 flex-1 flex-col overflow-hidden md:mx-5">
         {chatHistory.length === 0 && !isLiveSession ? (
-          <div className="flex-1 space-y-6 overflow-y-auto pr-1">
+          <div className="flex min-h-0 flex-1 overflow-hidden">
             <CoachWelcomeScreen
-              currentPersona={currentPersona}
-              isLiveSession={isLiveSession}
-              isSpeaking={isSpeaking}
-              isThinking={isThinking}
-              isListening={isListening}
               promptSuggestions={PROMPT_SUGGESTIONS}
-              onStartSession={() => startSession()}
-              onPromptClick={(topicTitle) => startSession(topicTitle)}
+              onStartSession={(topicTitle) => startSession(topicTitle)}
             />
-            <div className="mx-auto max-w-2xl pb-8">
-              <CoachProgressDashboard />
-            </div>
           </div>
         ) : (
           <div className="flex flex-1 flex-col gap-2.5 overflow-hidden sm:gap-4">
@@ -505,7 +483,16 @@ const SpeakingCoachPage: React.FC = () => {
         onSendText={handleSendUserText}
       />
 
-      <CoachSettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
+      <CoachSettingsModal
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
+        targetLevel={targetJlptLevel}
+        onTargetLevelChange={(level) => setTargetJlptLevel(level as typeof targetJlptLevel)}
+        speechSpeed={speechSpeed}
+        onSpeechSpeedChange={setSpeechSpeed}
+        onOpenPitchTrainer={() => setIsPitchTrainerOpen(true)}
+        onToggleFullscreen={toggleFullscreen}
+      />
 
       <SessionReportModal
         isOpen={isReportOpen}

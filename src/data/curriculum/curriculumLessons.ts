@@ -1,5 +1,6 @@
 import { Lesson } from '../../types/lesson';
 import metadata from './curriculumMetadata.json';
+import { attachLessonKanji } from './kanjiCurriculum';
 
 export const ALL_ENGLISH_LESSONS: Lesson[] = [];
 
@@ -26,13 +27,13 @@ if (!import.meta.env.PROD) {
       import('./levels/n5/japaneseLessons.json'),
       import('./levels/n4/japaneseLessons.json'),
     ]);
-    fullLessons = [
+    fullLessons = attachLessonKanji([
       ...n5.default,
       ...n4.default,
       ...n3.default,
       ...n2.default,
       ...n1.default,
-    ] as unknown as Lesson[];
+    ] as unknown as Lesson[]);
     fullLegacy = [...legN5.default, ...legN4.default] as unknown as Lesson[];
   } catch (_) {}
 }
@@ -56,7 +57,7 @@ export async function loadCurriculumLevel(level: string): Promise<Lesson[]> {
   const norm = level.toUpperCase();
   const loader = LEVEL_LOADERS[norm];
   if (!loader) return [];
-  const lessons = await loader();
+  const lessons = attachLessonKanji(await loader());
   lessons.forEach((l) => CURRICULUM_LESSONS_BY_ID.set(l.id, l));
   return lessons;
 }
@@ -88,7 +89,8 @@ export const CURRICULUM_LESSONS_BY_ID: Map<string, Lesson> = new Map([
 ]);
 
 export function getCurriculumLessonById(id: string): Lesson | undefined {
-  return CURRICULUM_LESSONS_BY_ID.get(id);
+  const lesson = CURRICULUM_LESSONS_BY_ID.get(id);
+  return lesson ? attachLessonKanji([lesson])[0] : lesson;
 }
 
 export function getCurriculumLessonsByLanguage(language: 'en' | 'ja'): Lesson[] {

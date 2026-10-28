@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <!-- Homepage / Landing -->
+  <!-- Homepage -->
   <url>
     <loc>https://kaiwa.live/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="uz" href="https://kaiwa.live/?lang=uz" />
@@ -12,52 +12,102 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kaiwa.live/" />
   </url>
 
-  <!-- JLPT Preparation Hub (Kanji, Grammar, Mock Exams) -->
+  <!-- Landing Presentation Page -->
+  <url>
+    <loc>https://kaiwa.live/landing</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://kaiwa.live/landing?lang=uz" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://kaiwa.live/landing?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kaiwa.live/landing" />
+  </url>
+
+  <!-- JLPT Preparation Hub (Kanji, Grammar, Dokkai, Choukai, Mock Exams) -->
   <url>
     <loc>https://kaiwa.live/jlpt</loc>
-    <lastmod>2026-09-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="uz" href="https://kaiwa.live/jlpt?lang=uz" />
     <xhtml:link rel="alternate" hreflang="ja" href="https://kaiwa.live/jlpt?lang=ja" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kaiwa.live/jlpt" />
   </url>
 
-  <!-- AI Japanese Speaking Coach -->
+  <!-- AI Japanese Speaking Coach (Yuki-sensei) -->
   <url>
-    <loc>https://kaiwa.live/speaking</loc>
-    <lastmod>2026-09-04</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://kaiwa.live/speaking-coach</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.95</priority>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://kaiwa.live/speaking?lang=uz" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://kaiwa.live/speaking?lang=ja" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://kaiwa.live/speaking" />
+    <xhtml:link rel="alternate" hreflang="uz" href="https://kaiwa.live/speaking-coach?lang=uz" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://kaiwa.live/speaking-coach?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kaiwa.live/speaking-coach" />
   </url>
 
-  <!-- 100% Free Open Model / Pricing -->
+  <!-- Interactive Japanese Conversation Scenarios -->
+  <url>
+    <loc>https://kaiwa.live/scenarios</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://kaiwa.live/scenarios?lang=uz" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://kaiwa.live/scenarios?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kaiwa.live/scenarios" />
+  </url>
+
+  <!-- Spaced Repetition (Anki SM-2) Flashcards & Minna no Nihongo Decks -->
+  <url>
+    <loc>https://kaiwa.live/flashcards</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://kaiwa.live/flashcards?lang=uz" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://kaiwa.live/flashcards?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kaiwa.live/flashcards" />
+  </url>
+
+  <!-- JLPT Learning Roadmap (N5 to N1 progression) -->
+  <url>
+    <loc>https://kaiwa.live/roadmap</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://kaiwa.live/roadmap?lang=uz" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://kaiwa.live/roadmap?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kaiwa.live/roadmap" />
+  </url>
+
+  <!-- Japanese Monologue & Shadowing Fluency Training -->
+  <url>
+    <loc>https://kaiwa.live/monologue</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://kaiwa.live/monologue?lang=uz" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://kaiwa.live/monologue?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kaiwa.live/monologue" />
+  </url>
+
+  <!-- Diagnostic Level Test (Placement Exam) -->
+  <url>
+    <loc>https://kaiwa.live/diagnostic</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://kaiwa.live/diagnostic?lang=uz" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://kaiwa.live/diagnostic?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kaiwa.live/diagnostic" />
+  </url>
+
+  <!-- 100% Free Open Educational Model / Pricing -->
   <url>
     <loc>https://kaiwa.live/pricing</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="uz" href="https://kaiwa.live/pricing?lang=uz" />
     <xhtml:link rel="alternate" hreflang="ja" href="https://kaiwa.live/pricing?lang=ja" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kaiwa.live/pricing" />
-  </url>
-
-  <!-- Telegram Mini App (TWA) -->
-  <url>
-    <loc>https://kaiwa.live/twa</loc>
-    <lastmod>2026-09-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <!-- Developer API Docs -->
-  <url>
-    <loc>https://kaiwa.live/developers</loc>
-    <lastmod>2026-09-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 </urlset>

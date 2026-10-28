@@ -81,7 +81,7 @@ export function createTelegramUser(tgUser: TelegramWebAppUser): User {
     tgUser.username ||
     "O'quvchi";
 
-  const email = isSuper ? 'fsoyilov@gmail.com' : `tg_${tgUser.id}@nihontalk.app`;
+  const email = isSuper ? 'fsoyilov@gmail.com' : `tg_${tgUser.id}@kaiwa.live`;
   const userId = toDeterministicUUID(`tg-user-${tgUser.id}`);
   const role = isSuper ? 'superadmin' : 'student';
 

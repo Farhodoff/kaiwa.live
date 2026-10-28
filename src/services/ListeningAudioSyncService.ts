@@ -69,6 +69,8 @@ export class ListeningAudioSyncService {
           '男',
           '男の人',
           '男性',
+          '男の学生',
+          '男子学生',
           '息子',
           '彼',
           '山田',
@@ -77,25 +79,57 @@ export class ListeningAudioSyncService {
           '課長',
           '部長',
           '社長',
+          '役員',
+          'チーフ',
         ].includes(speaker)
       ) {
         gender = 'male';
-        speakerRoleUz = 'Erkak';
-      } else if (['女', '女の人', '女性', '母', '母親', '彼女', '佐藤', '住人'].includes(speaker)) {
+        speakerRoleUz = 'Erkak / Xodim';
+      } else if (
+        [
+          '女',
+          '女の人',
+          '女性',
+          '女の学生',
+          '女子学生',
+          '母',
+          '母親',
+          '彼女',
+          '佐藤',
+          '住人',
+          '女性社員',
+        ].includes(speaker)
+      ) {
         gender = 'female';
         speakerRoleUz = 'Ayol';
-      } else if (['先生', '教授', '講師', '学者', '有識者', '評論家', '弁護士'].includes(speaker)) {
+      } else if (
+        [
+          '先生',
+          '教授',
+          '講師',
+          '学者',
+          '有識者',
+          '評論家',
+          '弁護士',
+          '専門家',
+          '研究者',
+          '医師',
+          '医者',
+        ].includes(speaker)
+      ) {
         gender = 'male';
-        speakerRoleUz = "O'qituvchi / Mutaxassis";
+        speakerRoleUz = "Mutaxassis / O'qituvchi";
       } else if (['学生', '生徒'].includes(speaker)) {
         gender = 'neutral';
         speakerRoleUz = 'Talaba';
       } else if (
-        ['店員', '店長', '係員', '係の人', 'フロント', '薬剤師', 'ガイド'].includes(speaker)
+        ['店員', '店長', '係員', '係の人', 'フロント', '薬剤師', 'ガイド', '看護師'].includes(
+          speaker,
+        )
       ) {
         gender = 'neutral';
         speakerRoleUz = 'Xodim / Sotuvchi';
-      } else if (['アナウンサー', 'アナウンス'].includes(speaker)) {
+      } else if (['アナウンサー', 'アナウンス', '司会', 'リポーター'].includes(speaker)) {
         gender = 'neutral';
         speakerRoleUz = "E'lon / Diktor";
       } else if (speaker === 'あなた') {
@@ -190,15 +224,33 @@ export class ListeningAudioSyncService {
       }
     } catch {}
 
+    let hasEnded = false;
+    let watchdogTimer: any = null;
+
+    const safeEnd = () => {
+      if (hasEnded) return;
+      hasEnded = true;
+      if (watchdogTimer) clearTimeout(watchdogTimer);
+      onEnd?.();
+    };
+
     utterance.onstart = () => {
+      // Calculate realistic max duration: 350ms per character divided by speed + 2.5s buffer
+      const estimatedDurationMs = Math.max(2500, (cleanText.length * 350) / speed);
+      watchdogTimer = setTimeout(() => {
+        console.warn('[ListeningAudioSyncService] Watchdog timer fired for line utterance');
+        safeEnd();
+      }, estimatedDurationMs + 2500);
+
       onStart?.();
     };
 
     utterance.onend = () => {
-      onEnd?.();
+      safeEnd();
     };
 
     utterance.onerror = (e) => {
+      if (watchdogTimer) clearTimeout(watchdogTimer);
       console.warn('[ListeningAudioSyncService] Line utterance error:', e);
       onError?.();
     };
@@ -377,8 +429,9 @@ export class ListeningAudioSyncService {
     const availableDialogueTime = Math.max(1.0, totalDuration - leadIn - tailOut);
 
     // Calculate line weights
-    const weights = lines.map((l) => {
-      const cleanLen = l.japanese.replace(/[\s\n。、！？,.!?]/g, '').length;
+    const weights = lines.map((l: any) => {
+      const lineStr = (l.japanese || l.text || '').toString();
+      const cleanLen = lineStr.replace(/[\s\n。、！？,.!?]/g, '').length;
       return Math.max(5, cleanLen);
     });
 

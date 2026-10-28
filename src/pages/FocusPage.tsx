@@ -6,7 +6,6 @@ import { useFocusTimerContext } from '../context/FocusTimerContext';
 import { useLanguage } from '../context/LanguageContext';
 import FocusControls from '../components/focus/FocusControls';
 import FocusTimer from '../components/focus/FocusTimer';
-import MoodCheckOverlay from '../components/focus/MoodCheckOverlay';
 import { PersonalLearningPlanService } from '../services/PersonalLearningPlanService';
 import { LearningSignalService } from '../services/LearningSignalService';
 import { ActivityLoggingService } from '../services/ActivityLoggingService';
@@ -34,9 +33,6 @@ const FocusPage: React.FC = () => {
   const { language } = useLanguage();
   const { haptics } = useTelegramWebApp();
 
-  // Mood State
-  const [moodBefore, setMoodBefore] = useState<number | null>(null);
-  const [showMoodCheck, setShowMoodCheck] = useState<'before' | 'after' | null>(null);
   const [activeDurationMins, setActiveDurationMins] = useState<number>(25);
 
   // Ringtone State
@@ -46,57 +42,7 @@ const FocusPage: React.FC = () => {
   const progress =
     ((activeDurationMins * 60 - focusState.timeLeft) / (activeDurationMins * 60)) * 100;
 
-  const handleTimerEnd = useCallback(() => {
-    haptics.notification('success');
-    if (focusState.mode === 'focus') {
-      if (!showMoodCheck) setShowMoodCheck('after');
-    } else {
-      resetTimer();
-    }
-  }, [focusState.mode, showMoodCheck, resetTimer, haptics]);
-
-  // Watch for timer completion via focusState to trigger mood check
-  useEffect(() => {
-    if (focusState.timeLeft === 0 && !focusState.isActive) {
-      handleTimerEnd();
-    }
-  }, [focusState.timeLeft, focusState.isActive, handleTimerEnd]);
-
-  const handleStartClick = () => {
-    haptics.impact('medium');
-    if (focusState.isActive) {
-      pauseTimer();
-      return;
-    }
-
-    if (focusState.mode === 'focus' && !moodBefore) {
-      setShowMoodCheck('before'); // Ask mood first
-    } else {
-      startTimer();
-    }
-  };
-
-  const handleSelectDuration = (mins: number) => {
-    haptics.selection();
-    setActiveDurationMins(mins);
-    setCustomTime(mins * 60);
-  };
-
-  const handleMoodSelect = (value: number) => {
-    haptics.selection();
-    if (showMoodCheck === 'before') {
-      setMoodBefore(value);
-      setShowMoodCheck(null);
-      startTimer();
-    } else if (showMoodCheck === 'after') {
-      saveSession(value);
-      setShowMoodCheck(null);
-      setMoodBefore(null); // Reset
-      resetTimer();
-    }
-  };
-
-  const saveSession = async (moodAfterValue: number) => {
+  const saveSession = useCallback(async () => {
     let taskCompleted = false;
 
     if (focusState.selectedTaskId) {
@@ -112,8 +58,6 @@ const FocusPage: React.FC = () => {
       duration: activeDurationMins,
       type: 'focus',
       completed: true,
-      moodBefore: moodBefore || undefined,
-      moodAfter: moodAfterValue,
     });
 
     // Dynamic XP Award: 10 XP per minute completed
@@ -127,11 +71,9 @@ const FocusPage: React.FC = () => {
           activityTitle: `${activeDurationMins} daqiqalik Pomodoro Fokus`,
           durationMinutes: activeDurationMins,
           itemsCount: 1,
-          xpEarned: 0, // already awarded via awardXP above
+          xpEarned: 0,
           metadata: {
             mode: focusState.mode,
-            moodBefore,
-            moodAfter: moodAfterValue,
             taskId: focusState.selectedTaskId,
           },
         },
@@ -165,6 +107,47 @@ const FocusPage: React.FC = () => {
     }
 
     if (taskCompleted) setFocusTask(null);
+  }, [
+    activeDurationMins,
+    addSession,
+    awardXP,
+    focusState.mode,
+    focusState.selectedSubjectId,
+    focusState.selectedTaskId,
+    primaryLanguage,
+    setFocusTask,
+    updateTaskStatus,
+    user?.id,
+  ]);
+
+  const handleTimerEnd = useCallback(() => {
+    haptics.notification('success');
+    if (focusState.mode === 'focus') {
+      saveSession();
+    }
+    resetTimer();
+  }, [focusState.mode, resetTimer, haptics, saveSession]);
+
+  // Watch for timer completion via focusState
+  useEffect(() => {
+    if (focusState.timeLeft === 0 && !focusState.isActive) {
+      handleTimerEnd();
+    }
+  }, [focusState.timeLeft, focusState.isActive, handleTimerEnd]);
+
+  const handleStartClick = () => {
+    haptics.impact('medium');
+    if (focusState.isActive) {
+      pauseTimer();
+      return;
+    }
+    startTimer();
+  };
+
+  const handleSelectDuration = (mins: number) => {
+    haptics.selection();
+    setActiveDurationMins(mins);
+    setCustomTime(mins * 60);
   };
 
   return (
@@ -172,13 +155,6 @@ const FocusPage: React.FC = () => {
       <audio
         ref={ringtoneRef}
         src="https://cdn.pixabay.com/audio/2021/08/04/audio_0625c1539c.mp3"
-      />
-
-      <MoodCheckOverlay
-        isVisible={!!showMoodCheck}
-        checkType={showMoodCheck}
-        onSelect={handleMoodSelect}
-        onSkip={() => setShowMoodCheck(null)}
       />
 
       {/* Mode & Deep Work Duration Switcher */}
@@ -243,7 +219,6 @@ const FocusPage: React.FC = () => {
         timeLeft={focusState.timeLeft}
         progress={progress}
         mode={focusState.mode}
-        moodBefore={moodBefore}
         isActive={focusState.isActive}
       />
 

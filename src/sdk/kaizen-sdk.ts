@@ -1,6 +1,6 @@
 /**
- * Nihongo Talk Universal SDK
- * Lightweight, zero-dependency client for IELTS Evaluation, JLPT, Flashcards, and SM-2 Spaced Repetition.
+ * kaiwa.live Universal SDK
+ * Lightweight, zero-dependency client for Sakubun Evaluation, JLPT, Flashcards, and SM-2 Spaced Repetition.
  * Works in Node.js, Next.js, React, Vue, React Native, and vanilla JavaScript.
  */
 
@@ -9,12 +9,28 @@ export interface KaizenConfig {
   apiKey?: string;
 }
 
+export interface SakubunEvaluateParams {
+  essay: string;
+  level?: 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
+  topic?: string;
+}
+
+export interface SakubunEvaluateResult {
+  score: number;
+  kanjiRating: string;
+  grammarFeedback: string;
+  correctedText: string;
+  suggestions: string[];
+}
+
+/** @deprecated Use SakubunEvaluateParams instead */
 export interface IeltsEvaluateParams {
   essay: string;
   topic?: string;
   taskType?: 'task1' | 'task2';
 }
 
+/** @deprecated Use SakubunEvaluateResult instead */
 export interface IeltsEvaluateResult {
   overallBand: number;
   scores: {
@@ -92,6 +108,16 @@ export class KaizenAI {
     return resJson.data ?? resJson;
   }
 
+  public sakubun = {
+    evaluate: async (params: SakubunEvaluateParams): Promise<SakubunEvaluateResult> => {
+      return this.request<SakubunEvaluateResult>('/api/v1/sakubun-evaluate', {
+        method: 'POST',
+        body: JSON.stringify(params),
+      });
+    },
+  };
+
+  /** @deprecated Use client.sakubun.evaluate instead */
   public ielts = {
     evaluateEssay: async (params: IeltsEvaluateParams): Promise<IeltsEvaluateResult> => {
       return this.request<IeltsEvaluateResult>('/api/v1/ielts-evaluate', {

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { Award, CheckCircle2, XCircle, ChevronRight, RotateCcw, Headphones } from 'lucide-react';
 import { TestQuestion } from '../../types/lesson';
 import { FuriganaText, FuriganaMode } from '../jlpt/FuriganaText';
@@ -66,12 +66,44 @@ export const TestStepView: React.FC<TestStepViewProps> = ({
     return currentQuestion.options.every((opt) => opt.length <= 24 && !opt.includes('\n'));
   }, [currentQuestion]);
 
+  const autoAdvanceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (autoAdvanceTimerRef.current) {
+        clearTimeout(autoAdvanceTimerRef.current);
+      }
+    };
+  }, []);
+
   const handleSelectOption = (optionIdx: number) => {
     if (isCompleted) return;
     setSelectedAnswers((prev) => ({
       ...prev,
       [currentIdx]: optionIdx,
     }));
+
+    if (autoAdvanceTimerRef.current) {
+      clearTimeout(autoAdvanceTimerRef.current);
+    }
+
+    autoAdvanceTimerRef.current = setTimeout(() => {
+      if (currentIdx < totalQuestions - 1) {
+        setCurrentIdx((prev) => prev + 1);
+      }
+    }, 320);
+  };
+
+  const handlePrevQuestion = () => {
+    if (autoAdvanceTimerRef.current) clearTimeout(autoAdvanceTimerRef.current);
+    setCurrentIdx((prev) => Math.max(0, prev - 1));
+  };
+
+  const handleNextQuestion = () => {
+    if (autoAdvanceTimerRef.current) clearTimeout(autoAdvanceTimerRef.current);
+    if (currentIdx < totalQuestions - 1) {
+      setCurrentIdx((prev) => prev + 1);
+    }
   };
 
   const handleFinishTest = () => {
@@ -134,155 +166,191 @@ export const TestStepView: React.FC<TestStepViewProps> = ({
           </p>
         </div>
         {!isCompleted && (
-          <div className="rounded-full bg-secondary px-3 py-1 text-xs font-bold text-foreground">
-            {currentIdx + 1} / {totalQuestions}
+          <div className="flex items-center gap-2">
+            <span className="rounded-full bg-primary/10 px-2.5 py-1 text-xs font-bold text-primary">
+              {answeredCount}/{totalQuestions} belgilandi
+            </span>
+            <div className="rounded-full bg-secondary px-3 py-1 text-xs font-bold text-foreground">
+              {currentIdx + 1} / {totalQuestions}
+            </div>
           </div>
         )}
       </div>
 
       {!isCompleted ? (
-        /* Active Question Card */
-        <div className="space-y-4 rounded-2xl border border-border bg-card p-4 shadow-sm sm:space-y-6 sm:rounded-3xl sm:p-6">
-          {currentQuestion.audioUrl && (
-            <div className="space-y-2">
-              <div className="flex items-center justify-between rounded-xl border border-amber-500/25 bg-amber-500/10 px-3 py-1.5 text-amber-700 dark:text-amber-300">
-                <div className="flex items-center gap-2 text-xs font-bold">
-                  <Headphones size={15} className="text-amber-600 dark:text-amber-400" />
-                  <span>Mondai Tinglash Topshirig'i</span>
-                </div>
-                <span className="hidden text-[11px] font-medium text-muted-foreground sm:inline">
-                  Audioni tinglang va to'g'ri javobni tanlang
-                </span>
-              </div>
-              <LessonAudioPlayer
-                key={`audio-${currentQuestion.id}-${currentIdx}`}
-                audioUrl={currentQuestion.audioUrl}
-                audioTitle={currentQuestion.audioTitle || 'Minna no Nihongo Mondai CD Audiosi'}
-              />
-            </div>
-          )}
-
-          {/* Prompt Header with Furigana Peek Controls */}
-          <div className="flex items-center justify-between gap-2 border-b border-border/40 pb-2">
-            <span className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
-              {currentQuestion.audioUrl ? '🎧 Savol:' : 'Savol matni:'}
-            </span>
-
-            {/* Furigana Mode Pills */}
-            <div className="flex items-center rounded-lg border border-border/60 bg-muted/40 p-0.5 text-xs font-medium">
-              <button
-                type="button"
-                onClick={() => setFuriganaMode('always')}
-                className={`rounded-md px-2 py-0.5 text-[11px] font-bold transition-all ${
-                  furiganaMode === 'always'
-                    ? 'bg-background text-foreground shadow-xs'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-                title="Barcha furiganani ko'rsatish"
-              >
-                振 ON
-              </button>
-              <button
-                type="button"
-                onClick={() => setFuriganaMode('hover')}
-                className={`rounded-md px-2 py-0.5 text-[11px] font-bold transition-all ${
-                  furiganaMode === 'hover'
-                    ? 'bg-background text-foreground shadow-xs'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-                title="Faqat ustiga borganda ko'rsatish"
-              >
-                👁️ Hover
-              </button>
-              <button
-                type="button"
-                onClick={() => setFuriganaMode('never')}
-                className={`rounded-md px-2 py-0.5 text-[11px] font-bold transition-all ${
-                  furiganaMode === 'never'
-                    ? 'bg-background text-foreground shadow-xs'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-                title="Furiganani yashirish"
-              >
-                🚫 OFF
-              </button>
-            </div>
-          </div>
-
-          <div className="break-words text-base font-bold leading-snug text-foreground sm:text-lg md:text-xl">
-            <FuriganaText text={currentQuestion.question} mode={furiganaMode} />
-          </div>
-
-          <div
-            className={
-              isTwoColumns ? 'grid grid-cols-2 gap-2.5 sm:gap-3' : 'space-y-2 sm:space-y-2.5'
-            }
-          >
-            {currentQuestion.options.map((opt, optIdx) => {
-              const isSelected = selectedAnswers[currentIdx] === optIdx;
+        <>
+          {/* Question Navigator Pills */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {activeQuestions.map((_, idx) => {
+              const isSelected = selectedAnswers[idx] !== undefined;
+              const isCurrent = currentIdx === idx;
               return (
                 <button
-                  key={optIdx}
-                  onClick={() => handleSelectOption(optIdx)}
-                  className={`flex min-h-[50px] w-full cursor-pointer touch-manipulation select-none items-center justify-between gap-2 rounded-2xl border p-3 text-left text-sm transition-all active:scale-[0.99] sm:min-h-[56px] sm:gap-3 sm:p-4 sm:text-base ${
-                    isSelected
-                      ? 'border-primary bg-primary/10 font-bold text-primary shadow-sm'
-                      : 'border-border bg-secondary/30 text-foreground hover:bg-secondary'
+                  key={idx}
+                  type="button"
+                  onClick={() => {
+                    if (autoAdvanceTimerRef.current) clearTimeout(autoAdvanceTimerRef.current);
+                    setCurrentIdx(idx);
+                  }}
+                  className={`flex h-8 items-center justify-center gap-1.5 rounded-xl px-3 text-xs font-bold transition-all active:scale-95 ${
+                    isCurrent
+                      ? 'border-2 border-primary bg-primary/15 text-primary shadow-xs ring-1 ring-primary/40'
+                      : isSelected
+                        ? 'border border-emerald-500/40 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
+                        : 'border border-border bg-card text-muted-foreground hover:bg-secondary hover:text-foreground'
                   }`}
+                  title={`${idx + 1}-savol`}
                 >
-                  <div className="flex min-w-0 items-center gap-2 sm:gap-3">
-                    <span
-                      className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-xl text-xs font-black sm:h-8 sm:w-8 sm:text-sm ${
-                        isSelected
-                          ? 'bg-primary text-primary-foreground'
-                          : 'border border-border bg-card text-muted-foreground'
-                      }`}
-                    >
-                      {String.fromCharCode(65 + optIdx)}
-                    </span>
-                    <span className="break-words font-medium leading-relaxed">
-                      <FuriganaText text={opt} mode={furiganaMode} />
-                    </span>
-                  </div>
-                  {isSelected && (
-                    <CheckCircle2 size={18} className="shrink-0 text-primary sm:h-5 sm:w-5" />
-                  )}
+                  <span>{idx + 1}</span>
+                  {isSelected && <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />}
                 </button>
               );
             })}
           </div>
 
-          {/* Footer Nav Controls */}
-          <div className="flex items-center justify-between gap-2.5 pt-2 sm:gap-3">
-            <button
-              onClick={() => setCurrentIdx((prev) => Math.max(0, prev - 1))}
-              disabled={currentIdx === 0}
-              className="h-11 cursor-pointer touch-manipulation select-none rounded-xl border border-border px-3.5 text-xs font-bold text-muted-foreground hover:text-foreground active:scale-95 disabled:cursor-not-allowed disabled:opacity-30 sm:px-4 sm:text-sm"
-            >
-              Oldingisi
-            </button>
-
-            {currentIdx < totalQuestions - 1 ? (
-              <button
-                onClick={() => setCurrentIdx((prev) => prev + 1)}
-                disabled={selectedAnswers[currentIdx] === undefined}
-                className="flex h-11 flex-1 cursor-pointer touch-manipulation select-none items-center justify-center gap-2 rounded-xl bg-primary px-4 text-xs font-bold text-primary-foreground shadow-md transition-all hover:opacity-90 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 sm:h-12 sm:text-sm"
-              >
-                <span>Davom etish</span>
-                <ChevronRight size={16} />
-              </button>
-            ) : (
-              <button
-                onClick={handleFinishTest}
-                disabled={answeredCount < totalQuestions}
-                className="flex h-11 flex-1 cursor-pointer touch-manipulation select-none items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 text-xs font-black text-white shadow-md shadow-emerald-600/30 transition-all hover:bg-emerald-500 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 sm:h-12 sm:text-sm"
-              >
-                <CheckCircle2 size={16} />
-                <span>Testni Yakunlash</span>
-              </button>
+          {/* Active Question Card */}
+          <div className="space-y-4 rounded-2xl border border-border bg-card p-4 shadow-sm sm:space-y-6 sm:rounded-3xl sm:p-6">
+            {currentQuestion.audioUrl && (
+              <div className="space-y-2">
+                <div className="flex items-center justify-between rounded-xl border border-amber-500/25 bg-amber-500/10 px-3 py-1.5 text-amber-700 dark:text-amber-300">
+                  <div className="flex items-center gap-2 text-xs font-bold">
+                    <Headphones size={15} className="text-amber-600 dark:text-amber-400" />
+                    <span>Mondai Tinglash Topshirig'i</span>
+                  </div>
+                  <span className="hidden text-[11px] font-medium text-muted-foreground sm:inline">
+                    Audioni tinglang va to'g'ri javobni tanlang
+                  </span>
+                </div>
+                <LessonAudioPlayer
+                  key={`audio-${currentQuestion.id}-${currentIdx}`}
+                  audioUrl={currentQuestion.audioUrl}
+                  audioTitle={currentQuestion.audioTitle || 'Minna no Nihongo Mondai CD Audiosi'}
+                />
+              </div>
             )}
+
+            {/* Prompt Header with Furigana Peek Controls */}
+            <div className="flex items-center justify-between gap-2 border-b border-border/40 pb-2">
+              <span className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+                {currentQuestion.audioUrl ? '🎧 Savol:' : 'Savol matni:'}
+              </span>
+
+              {/* Furigana Mode Pills */}
+              <div className="flex items-center rounded-lg border border-border/60 bg-muted/40 p-0.5 text-xs font-medium">
+                <button
+                  type="button"
+                  onClick={() => setFuriganaMode('always')}
+                  className={`rounded-md px-2 py-0.5 text-[11px] font-bold transition-all ${
+                    furiganaMode === 'always'
+                      ? 'bg-background text-foreground shadow-xs'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                  title="Barcha furiganani ko'rsatish"
+                >
+                  振 ON
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setFuriganaMode('hover')}
+                  className={`rounded-md px-2 py-0.5 text-[11px] font-bold transition-all ${
+                    furiganaMode === 'hover'
+                      ? 'bg-background text-foreground shadow-xs'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                  title="Faqat ustiga borganda ko'rsatish"
+                >
+                  👁️ Hover
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setFuriganaMode('never')}
+                  className={`rounded-md px-2 py-0.5 text-[11px] font-bold transition-all ${
+                    furiganaMode === 'never'
+                      ? 'bg-background text-foreground shadow-xs'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                  title="Furiganani yashirish"
+                >
+                  🚫 OFF
+                </button>
+              </div>
+            </div>
+
+            <div className="break-words text-base font-bold leading-snug text-foreground sm:text-lg md:text-xl">
+              <FuriganaText text={currentQuestion.question} mode={furiganaMode} />
+            </div>
+
+            <div
+              className={
+                isTwoColumns ? 'grid grid-cols-2 gap-2.5 sm:gap-3' : 'space-y-2 sm:space-y-2.5'
+              }
+            >
+              {currentQuestion.options.map((opt, optIdx) => {
+                const isSelected = selectedAnswers[currentIdx] === optIdx;
+                return (
+                  <button
+                    key={optIdx}
+                    onClick={() => handleSelectOption(optIdx)}
+                    className={`flex min-h-[50px] w-full cursor-pointer touch-manipulation select-none items-center justify-between gap-2 rounded-2xl border p-3 text-left text-sm transition-all active:scale-[0.99] sm:min-h-[56px] sm:gap-3 sm:p-4 sm:text-base ${
+                      isSelected
+                        ? 'border-primary bg-primary/10 font-bold text-primary shadow-sm'
+                        : 'border-border bg-secondary/30 text-foreground hover:bg-secondary'
+                    }`}
+                  >
+                    <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+                      <span
+                        className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-xl text-xs font-black sm:h-8 sm:w-8 sm:text-sm ${
+                          isSelected
+                            ? 'bg-primary text-primary-foreground'
+                            : 'border border-border bg-card text-muted-foreground'
+                        }`}
+                      >
+                        {String.fromCharCode(65 + optIdx)}
+                      </span>
+                      <span className="break-words font-medium leading-relaxed">
+                        <FuriganaText text={opt} mode={furiganaMode} />
+                      </span>
+                    </div>
+                    {isSelected && (
+                      <CheckCircle2 size={18} className="shrink-0 text-primary sm:h-5 sm:w-5" />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Footer Nav Controls */}
+            <div className="flex items-center justify-between gap-2.5 pt-2 sm:gap-3">
+              <button
+                onClick={handlePrevQuestion}
+                disabled={currentIdx === 0}
+                className="h-11 cursor-pointer touch-manipulation select-none rounded-xl border border-border px-3.5 text-xs font-bold text-muted-foreground hover:text-foreground active:scale-95 disabled:cursor-not-allowed disabled:opacity-30 sm:px-4 sm:text-sm"
+              >
+                Oldingisi
+              </button>
+
+              {currentIdx < totalQuestions - 1 ? (
+                <button
+                  onClick={handleNextQuestion}
+                  disabled={selectedAnswers[currentIdx] === undefined}
+                  className="flex h-11 flex-1 cursor-pointer touch-manipulation select-none items-center justify-center gap-2 rounded-xl bg-primary px-4 text-xs font-bold text-primary-foreground shadow-md transition-all hover:opacity-90 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 sm:h-12 sm:text-sm"
+                >
+                  <span>Davom etish</span>
+                  <ChevronRight size={16} />
+                </button>
+              ) : (
+                <button
+                  onClick={handleFinishTest}
+                  disabled={answeredCount < totalQuestions}
+                  className="flex h-11 flex-1 cursor-pointer touch-manipulation select-none items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 text-xs font-black text-white shadow-md shadow-emerald-600/30 transition-all hover:bg-emerald-500 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 sm:h-12 sm:text-sm"
+                >
+                  <CheckCircle2 size={16} />
+                  <span>Testni Yakunlash</span>
+                </button>
+              )}
+            </div>
           </div>
-        </div>
+        </>
       ) : (
         /* Test Summary & Question Review Card */
         <div className="space-y-6">

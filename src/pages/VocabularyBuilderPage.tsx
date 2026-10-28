@@ -11,9 +11,10 @@ import {
   Trash2,
   ArrowRight,
   TrendingUp,
+  Shuffle,
 } from 'lucide-react';
 import { generateAIResponse, extractJsonFromAiResponse } from '../utils/ai/aiCore';
-import { speakText } from '../utils/audioTts';
+import { speakText, stopAllAudio } from '../utils/audioTts';
 import { useStudyData } from '../context/StudyPlannerContext';
 import { FuriganaText } from '../components/jlpt/FuriganaText';
 import { supabase } from '../lib/supabase';
@@ -123,6 +124,119 @@ export const VocabularyBuilderPage: React.FC = () => {
         },
       ],
     },
+    約束: {
+      word: '約束',
+      language: 'ja',
+      phonetic: 'やくそく (yakusoku)',
+      furigana: '約[やく]束[そく]',
+      level: 'N4',
+      partOfSpeech: '名詞・サ変 (Noun, suru verb)',
+      uzbekTranslation: "Va'da, kelishuv (Promise)",
+      definition: '将来ある事柄を行うこと、または行わないことを互いに決め合うこと。',
+      synonyms: ['誓い (ちかい)', '契り (ちぎり)', 'アポイント'],
+      collocations: ['約束を守る', '約束を破る', '約束の時間'],
+      examples: [
+        {
+          sentence: '友達と約束を守りました。',
+          translation: 'Do‘stim bilan bergan va’dani bajardim.',
+        },
+        {
+          sentence: '明日の午後3時に面接の約束があります。',
+          translation: "Ertaga soat 3 da suhbat (intervyu) va'dalashilgan.",
+        },
+      ],
+    },
+    習慣: {
+      word: '習慣',
+      language: 'ja',
+      phonetic: 'しゅうかん (shuukan)',
+      furigana: '習[しゅう]慣[かん]',
+      level: 'N3',
+      partOfSpeech: '名詞 (Noun)',
+      uzbekTranslation: "Odat, an'ana, ko'nikma (Habit / Custom)",
+      definition: '繰り返し行うことで身についた行動の様式。社会的なしきたり。',
+      synonyms: ['慣習 (かんしゅう)', '風習 (ふうしゅう)', 'ルーティン'],
+      collocations: ['毎朝の習慣', '良い習慣を身につける', '習慣化する'],
+      examples: [
+        {
+          sentence: '毎朝起きてすぐに日本語の単語を復習する習慣があります。',
+          translation: "Har tong uyg'ongach darhol yaponcha so'zlarni takrorlash odatim bor.",
+        },
+      ],
+    },
+    継続: {
+      word: '継続',
+      language: 'ja',
+      phonetic: 'けいぞく (keizoku)',
+      furigana: '継[けい]続[ぞく]',
+      level: 'N1',
+      partOfSpeech: '名詞・サ変 (Noun, suru verb)',
+      uzbekTranslation: "Davomiylik, to'xtovsiz davom ettirish (Continuity)",
+      definition: '前から行っていることをそのまま続けて行うこと。',
+      synonyms: ['持続 (じぞく)', '続行 (ぞっこう)', '連綿 (れんめん)'],
+      collocations: ['継続は力なり', '事業の継続', '継続的な支援'],
+      examples: [
+        {
+          sentence: '「継続は力なり」の言葉通り、毎日の積み重ねが成功を生みます。',
+          translation:
+            '«Davomiylik — qudratdir» naqlidek, har kungi mehnat muvaffaqiyat keltiradi.',
+        },
+      ],
+    },
+    妥協: {
+      word: '妥協',
+      language: 'ja',
+      phonetic: 'だきょう (dakyou)',
+      furigana: '妥[だ]協[きょう]',
+      level: 'N1',
+      partOfSpeech: '名詞・サ変 (Noun, suru verb)',
+      uzbekTranslation: 'Murosaga kelish, kelishuv (Compromise)',
+      definition: '互いに主張を譲り合って争いをやめ、穏便に解決すること。',
+      synonyms: ['和解 (わかい)', '折り合い (おりあい)', '譲歩 (じょうほ)'],
+      collocations: ['妥協案を探る', '品質に一切妥協しない', '妥協を許さない'],
+      examples: [
+        {
+          sentence: 'プロフェッショナルとして、品質に対して妥協することはできません。',
+          translation: 'Professional sifatida sifat borasida aslo murosaga kelolmayman.',
+        },
+      ],
+    },
+    友達: {
+      word: '友達',
+      language: 'ja',
+      phonetic: 'ともだち (tomodachi)',
+      furigana: '友[とも]達[だち]',
+      level: 'N5',
+      partOfSpeech: '名詞 (Noun)',
+      uzbekTranslation: "Do'st, o'rtoq (Friend)",
+      definition: '互いに親しく交わっている人。',
+      synonyms: ['友人 (ゆうじん)', '仲間 (なかま)'],
+      collocations: ['友達と遊ぶ', '友達を作る', '昔からの友達'],
+      examples: [
+        {
+          sentence: '週末に友達と一緒に日本料理を食べに行きました。',
+          translation: "Dam olish kuni do'stlarim bilan yapon taomini yeyishga bordim.",
+        },
+      ],
+    },
+    準備: {
+      word: '準備',
+      language: 'ja',
+      phonetic: 'じゅんび (junbi)',
+      furigana: '準[じゅん]備[び]',
+      level: 'N4',
+      partOfSpeech: '名詞・サ変 (Noun, suru verb)',
+      uzbekTranslation: 'Tayyorgarlik, hozirlik (Preparation)',
+      definition: 'ある行動や催しを行うためにあらかじめ態勢を整えること。',
+      synonyms: ['用意 (ようい)', '手配 (てはい)'],
+      collocations: ['試験の準備をする', '心の準備', '準備万端'],
+      examples: [
+        {
+          sentence: '明日のプレゼンテーションの準備を夜遅くまで入念に行いました。',
+          translation: 'Ertangi taqdimot tayyorgarligini tun yarmigacha puxta bajardim.',
+        },
+      ],
+    },
   };
 
   const [query, setQuery] = useState('維持');
@@ -146,24 +260,59 @@ export const VocabularyBuilderPage: React.FC = () => {
   const [history, setHistory] = useState<VocabWordDetails[]>(() => [BUILTIN_VOCAB_DB['維持']]);
   const [savedWords, setSavedWords] = useState<VocabWordDetails[]>([]);
 
-  const SAMPLE_WORDS =
-    !isSuper || primaryLanguage === 'ja'
-      ? [
-          { label: '勉強 (N5)', query: '勉強' },
-          { label: '維持 (N2)', query: '維持' },
-          { label: '習慣 (N3)', query: '習慣' },
-          { label: '挑戦 (N2)', query: '挑戦' },
-          { label: '継続 (N1)', query: '継続' },
-          { label: '成長 (N3)', query: '成長' },
-        ]
-      : [
-          { label: 'paramount (C1)', query: 'paramount' },
-          { label: 'ubiquitous (C2)', query: 'ubiquitous' },
-          { label: 'resilient (B2)', query: 'resilient' },
-          { label: 'pragmatic (C1)', query: 'pragmatic' },
-          { label: 'perseverance (C1)', query: 'perseverance' },
-          { label: 'meticulous (C2)', query: 'meticulous' },
-        ];
+  // Level selector state & dynamic suggestions list
+  const [selectedLevel, setSelectedLevel] = useState<'all' | 'N5' | 'N4' | 'N3' | 'N2' | 'N1'>(
+    'all',
+  );
+
+  const RECOMMENDED_VOCAB_LIST: {
+    label: string;
+    query: string;
+    level: 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
+  }[] = [
+    { label: '勉強 (N5)', query: '勉強', level: 'N5' },
+    { label: '友達 (N5)', query: '友達', level: 'N5' },
+    { label: '約束 (N4)', query: '約束', level: 'N4' },
+    { label: '準備 (N4)', query: '準備', level: 'N4' },
+    { label: '習慣 (N3)', query: '習慣', level: 'N3' },
+    { label: '維持 (N2)', query: '維持', level: 'N2' },
+    { label: '挑戦 (N2)', query: '挑戦', level: 'N2' },
+    { label: '継続 (N1)', query: '継続', level: 'N1' },
+    { label: '妥協 (N1)', query: '妥協', level: 'N1' },
+  ];
+
+  const displayedSampleWords = React.useMemo(() => {
+    if (selectedLevel === 'all') return RECOMMENDED_VOCAB_LIST;
+    return RECOMMENDED_VOCAB_LIST.filter((w) => w.level === selectedLevel);
+  }, [selectedLevel]);
+
+  const speakSlowly = (text: string) => {
+    stopAllAudio();
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      try {
+        const UtteranceClass = (window as any).SpeechSynthesisUtterance || SpeechSynthesisUtterance;
+        const utterance = new UtteranceClass(text);
+        utterance.lang = 'ja-JP';
+        utterance.rate = 0.65;
+        utterance.pitch = 1.0;
+        window.speechSynthesis.speak(utterance);
+        return;
+      } catch {}
+    }
+    speakText(text, 'ja-JP');
+  };
+
+  const handleRandomWord = () => {
+    haptics.impact('medium');
+    const pool = displayedSampleWords.length > 0 ? displayedSampleWords : RECOMMENDED_VOCAB_LIST;
+    const available = pool.filter((w) => w.query !== currentResult?.word);
+    const chosen =
+      available.length > 0 ? available[Math.floor(Math.random() * available.length)] : pool[0];
+    if (chosen) {
+      setQuery(chosen.query);
+      handleSearch(chosen.query);
+    }
+  };
 
   useEffect(() => {
     // Load from localStorage as fallback
@@ -573,23 +722,58 @@ Return ONLY a raw valid JSON object (no markdown, no backticks) with this struct
               </button>
             </div>
 
-            {/* Sample topics */}
-            <div className="flex flex-wrap items-center gap-2 pt-1">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
-                {language === 'ja' ? 'おすすめ単語:' : 'Namunalar:'}
-              </span>
-              {SAMPLE_WORDS.map((w, idx) => (
+            {/* Sample topics with Level Filters & Random Generator */}
+            <div className="space-y-2 border-t border-border/60 pt-1">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <span className="mr-1 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                    Daraja:
+                  </span>
+                  {(['all', 'N5', 'N4', 'N3', 'N2', 'N1'] as const).map((lvl) => (
+                    <button
+                      key={lvl}
+                      onClick={() => {
+                        haptics.selection();
+                        setSelectedLevel(lvl);
+                      }}
+                      className={`cursor-pointer rounded-lg px-2.5 py-1 text-[11px] font-bold transition-all ${
+                        selectedLevel === lvl
+                          ? 'bg-primary text-primary-foreground shadow-xs'
+                          : 'bg-muted text-muted-foreground hover:text-foreground'
+                      }`}
+                    >
+                      {lvl === 'all' ? 'Barchasi' : lvl}
+                    </button>
+                  ))}
+                </div>
+
                 <button
-                  key={idx}
-                  onClick={() => {
-                    setQuery(w.query);
-                    handleSearch(w.query);
-                  }}
-                  className="cursor-pointer rounded-full border border-border bg-muted px-3 py-1 text-[11px] font-medium text-muted-foreground transition-all hover:bg-muted/80 hover:text-foreground active:scale-95"
+                  onClick={handleRandomWord}
+                  className="flex cursor-pointer items-center gap-1.5 rounded-lg border border-primary/30 bg-primary/10 px-2.5 py-1 text-[11px] font-bold text-primary transition-all hover:bg-primary/20 active:scale-95"
+                  title="Tasodifiy yangi so'z tavsiya qilish"
                 >
-                  {w.label}
+                  <Shuffle size={13} />
+                  <span>Yangi tavsiya</span>
                 </button>
-              ))}
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                  {language === 'ja' ? 'おすすめ単語:' : 'Namunalar:'}
+                </span>
+                {displayedSampleWords.map((w, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => {
+                      setQuery(w.query);
+                      handleSearch(w.query);
+                    }}
+                    className="cursor-pointer rounded-full border border-border bg-muted px-3 py-1 text-[11px] font-medium text-muted-foreground transition-all hover:bg-muted/80 hover:text-foreground active:scale-95"
+                  >
+                    {w.label}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -605,7 +789,7 @@ Return ONLY a raw valid JSON object (no markdown, no backticks) with this struct
             <div className="space-y-6 rounded-3xl border border-border bg-card p-6 shadow-sm md:p-8">
               {/* Word Top Header */}
               <div className="flex flex-col items-start justify-between gap-4 border-b border-border pb-6 sm:flex-row sm:items-center">
-                <div>
+                <div className="w-full sm:w-auto">
                   <div className="flex flex-wrap items-center gap-3">
                     <h2 className="font-display text-3xl font-black text-foreground">
                       {currentResult.furigana ? (
@@ -641,19 +825,62 @@ Return ONLY a raw valid JSON object (no markdown, no backticks) with this struct
                       {currentResult.phonetic}
                     </p>
                   )}
+
+                  {/* Visual Mora-by-Mora Pitch Accent Track */}
+                  {currentPitchInfo && (
+                    <div className="mt-3 flex flex-wrap items-center gap-2 rounded-2xl border border-indigo-500/25 bg-indigo-500/10 p-2.5 sm:p-3">
+                      <div className="flex items-center gap-1.5">
+                        <TrendingUp size={15} className="shrink-0 text-indigo-400" />
+                        <span className="text-xs font-black text-indigo-400">
+                          {currentPitchInfo.pitchTypeNameUz} [{currentPitchInfo.pitchPatternNumber}]
+                        </span>
+                        <span className="font-mono text-[11px] font-bold text-muted-foreground">
+                          ({currentPitchInfo.pitchFormula})
+                        </span>
+                      </div>
+
+                      {/* Mora visual pills */}
+                      <div className="flex items-center gap-1">
+                        {currentPitchInfo.morae.map((m, i) => (
+                          <span
+                            key={i}
+                            className={`inline-flex items-center rounded-md px-2 py-0.5 text-xs font-bold transition-all ${
+                              m.isHigh
+                                ? 'border-t-2 border-emerald-500 bg-emerald-500/20 text-emerald-400'
+                                : 'border-b-2 border-slate-400 bg-slate-500/20 text-slate-400'
+                            }`}
+                            title={`${m.mora}: ${m.isHigh ? 'Baland (H)' : 'Past (L)'}${m.isDrop ? ' — Tushish (Drop)' : ''}`}
+                          >
+                            {m.mora}
+                            {m.isDrop && <span className="ml-0.5 font-black text-rose-400">↓</span>}
+                          </span>
+                        ))}
+                      </div>
+
+                      <button
+                        onClick={() => {
+                          haptics.selection();
+                          setPitchModalOpen(true);
+                        }}
+                        className="ml-auto cursor-pointer text-[11px] font-bold text-indigo-400 hover:underline"
+                      >
+                        Batafsil tahlil ➔
+                      </button>
+                    </div>
+                  )}
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   {currentPitchInfo && (
                     <button
                       onClick={() => {
                         haptics.selection();
                         setPitchModalOpen(true);
                       }}
-                      className="flex cursor-pointer items-center gap-2 rounded-2xl border border-indigo-500/30 bg-indigo-500/10 p-3 text-xs font-bold text-indigo-500 transition-all hover:bg-indigo-500/20 active:scale-95 dark:text-indigo-400"
+                      className="flex cursor-pointer items-center gap-1.5 rounded-2xl border border-indigo-500/30 bg-indigo-500/10 p-2.5 text-xs font-bold text-indigo-500 transition-all hover:bg-indigo-500/20 active:scale-95 dark:text-indigo-400 sm:px-3 sm:py-2.5"
                       title="Pitch Accent Tahlili"
                     >
-                      <TrendingUp size={18} />
+                      <TrendingUp size={16} />
                       <span>{language === 'ja' ? 'アクセント' : 'Ohang'}</span>
                     </button>
                   )}
@@ -665,20 +892,34 @@ Return ONLY a raw valid JSON object (no markdown, no backticks) with this struct
                         currentResult.language === 'ja' ? 'ja-JP' : 'en-US',
                       );
                     }}
-                    className="flex cursor-pointer items-center gap-2 rounded-2xl border border-border bg-muted p-3 text-xs font-bold text-foreground transition-all hover:bg-muted/80 active:scale-95"
+                    className="flex cursor-pointer items-center gap-1.5 rounded-2xl border border-border bg-muted p-2.5 text-xs font-bold text-foreground transition-all hover:bg-muted/80 active:scale-95 sm:px-3 sm:py-2.5"
+                    title="Normal tezlikda talaffuz (1.0x)"
                   >
-                    <Volume2 size={18} className="text-primary" />
+                    <Volume2 size={16} className="text-primary" />
                     <span>{language === 'ja' ? '発音' : 'Talaffuz'}</span>
                   </button>
+                  {currentResult.language === 'ja' && (
+                    <button
+                      onClick={() => {
+                        haptics.impact('light');
+                        speakSlowly(currentResult.word);
+                      }}
+                      className="flex cursor-pointer items-center gap-1 rounded-2xl border border-border bg-muted/60 p-2.5 text-xs font-semibold text-muted-foreground transition-all hover:text-foreground active:scale-95 sm:px-2.5 sm:py-2.5"
+                      title="Sekin talaffuz (0.65x)"
+                    >
+                      <span>🐢</span>
+                      <span className="text-[11px]">Sekin</span>
+                    </button>
+                  )}
                   <button
                     onClick={() => toggleSaveWord(currentResult)}
-                    className={`flex cursor-pointer items-center gap-2 rounded-2xl border p-3 text-xs font-bold transition-all active:scale-95 ${
+                    className={`flex cursor-pointer items-center gap-1.5 rounded-2xl border p-2.5 text-xs font-bold transition-all active:scale-95 sm:px-3 sm:py-2.5 ${
                       isCurrentSaved
-                        ? 'border-[#C9A961]/40 bg-[#C9A961]/15 text-[#C9A961]'
+                        ? 'border-[#C9A961]/40 bg-[#C9A961]/15 text-[#C9A961] shadow-xs'
                         : 'border-border bg-muted text-foreground hover:bg-muted/80'
                     }`}
                   >
-                    <Bookmark size={18} className={isCurrentSaved ? 'fill-current' : ''} />
+                    <Bookmark size={16} className={isCurrentSaved ? 'fill-current' : ''} />
                     <span>
                       {language === 'ja'
                         ? isCurrentSaved
@@ -751,7 +992,7 @@ Return ONLY a raw valid JSON object (no markdown, no backticks) with this struct
                 )}
               </div>
 
-              {/* Example Sentences — first visible, rest collapsed on mobile */}
+              {/* Example Sentences — first visible, rest collapsed on mobile with audio buttons */}
               {currentResult.examples.length > 0 && (
                 <div className="space-y-3">
                   <h4 className="text-xs font-bold uppercase tracking-wider text-foreground">
@@ -759,13 +1000,28 @@ Return ONLY a raw valid JSON object (no markdown, no backticks) with this struct
                       ? '実践例文'
                       : `Kontekstual Misollar (${currentResult.examples.length} ta gap)`}
                   </h4>
-                  <div className="space-y-1 rounded-2xl border border-border bg-muted/20 p-4">
-                    <p className="text-xs font-bold italic text-foreground">
-                      1. "{currentResult.examples[0].sentence}"
-                    </p>
-                    <p className="text-[11px] font-medium text-muted-foreground">
-                      ➔ {currentResult.examples[0].translation}
-                    </p>
+                  <div className="flex items-start justify-between gap-3 rounded-2xl border border-border bg-muted/20 p-4">
+                    <div className="min-w-0 flex-1 space-y-1">
+                      <p className="text-xs font-bold italic text-foreground">
+                        1. "{currentResult.examples[0].sentence}"
+                      </p>
+                      <p className="text-[11px] font-medium text-muted-foreground">
+                        ➔ {currentResult.examples[0].translation}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => {
+                        haptics.impact('light');
+                        speakText(
+                          currentResult.examples[0].sentence,
+                          currentResult.language === 'ja' ? 'ja-JP' : 'en-US',
+                        );
+                      }}
+                      className="shrink-0 rounded-lg p-1.5 text-muted-foreground transition-all hover:bg-muted hover:text-primary"
+                      title="Gapni tinglash"
+                    >
+                      <Volume2 size={16} />
+                    </button>
                   </div>
                   {currentResult.examples.length > 1 && (
                     <details className="rounded-2xl border border-border bg-muted/20">
@@ -776,13 +1032,31 @@ Return ONLY a raw valid JSON object (no markdown, no backticks) with this struct
                       </summary>
                       <div className="space-y-3 px-4 pb-4">
                         {currentResult.examples.slice(1).map((ex, i) => (
-                          <div key={i} className="space-y-1">
-                            <p className="text-xs font-bold italic text-foreground">
-                              {i + 2}. "{ex.sentence}"
-                            </p>
-                            <p className="text-[11px] font-medium text-muted-foreground">
-                              ➔ {ex.translation}
-                            </p>
+                          <div
+                            key={i}
+                            className="flex items-start justify-between gap-3 border-t border-border/40 pt-2.5"
+                          >
+                            <div className="min-w-0 flex-1 space-y-1">
+                              <p className="text-xs font-bold italic text-foreground">
+                                {i + 2}. "{ex.sentence}"
+                              </p>
+                              <p className="text-[11px] font-medium text-muted-foreground">
+                                ➔ {ex.translation}
+                              </p>
+                            </div>
+                            <button
+                              onClick={() => {
+                                haptics.impact('light');
+                                speakText(
+                                  ex.sentence,
+                                  currentResult.language === 'ja' ? 'ja-JP' : 'en-US',
+                                );
+                              }}
+                              className="shrink-0 rounded-lg p-1.5 text-muted-foreground transition-all hover:bg-muted hover:text-primary"
+                              title="Gapni tinglash"
+                            >
+                              <Volume2 size={16} />
+                            </button>
                           </div>
                         ))}
                       </div>
@@ -791,51 +1065,41 @@ Return ONLY a raw valid JSON object (no markdown, no backticks) with this struct
                 </div>
               )}
 
-              {/* 1-Click Flashcard Creator Bar — open to all users (Discover -> SRS) */}
-              {
-                <div className="flex flex-col items-center justify-between gap-4 border-t border-border pt-4 sm:flex-row">
-                  <div className="flex w-full items-center gap-3 sm:w-auto">
-                    <span className="whitespace-nowrap text-xs font-bold text-muted-foreground">
-                      {language === 'ja' ? '単語帳を選択:' : 'Fan tanlang:'}
-                    </span>
-                    <select
-                      value={selectedSubjectId}
-                      onChange={(e) => setSelectedSubjectId(e.target.value)}
-                      className="rounded-xl border border-border bg-background px-3 py-2 text-xs font-bold text-foreground focus:border-primary focus:outline-none"
-                    >
-                      {subjects.map((s) => (
-                        <option key={s.id} value={s.id}>
-                          {s.name}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <button
-                    onClick={handleCreateFlashcard}
-                    disabled={isAddedToFlashcards}
-                    className={`flex cursor-pointer items-center gap-2 rounded-xl px-5 py-2.5 text-xs font-bold transition-all ${
-                      isAddedToFlashcards
-                        ? 'bg-emerald-500 text-white'
-                        : 'bg-primary text-primary-foreground shadow-sm shadow-primary/20 hover:bg-primary/90'
-                    }`}
-                  >
-                    {isAddedToFlashcards ? (
-                      <>
-                        <Check size={16} />
-                        <span>{language === 'ja' ? '追加完了！' : "Qo'shildi!"}</span>
-                      </>
-                    ) : (
-                      <>
-                        <Plus size={16} />
-                        <span>
-                          {language === 'ja' ? 'フラッシュカードに追加' : "Fleshkardga qo'shish"}
-                        </span>
-                      </>
-                    )}
-                  </button>
+              {/* 1-Click Flashcard Creator Bar — seamless, NO 'Fan tanlang' dropdown! */}
+              <div className="flex flex-col items-center justify-between gap-4 border-t border-border pt-4 sm:flex-row">
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <Sparkles size={15} className="text-[#C9A961]" />
+                  <span>
+                    {language === 'ja'
+                      ? 'ワンクリックで単語帳 (Anki SRS) に登録できます'
+                      : "1 marta bosish bilan ushbu so'zni Fleshkartalar (Anki SRS) tizimiga qo'shing"}
+                  </span>
                 </div>
-              }
+
+                <button
+                  onClick={handleCreateFlashcard}
+                  disabled={isAddedToFlashcards}
+                  className={`flex cursor-pointer items-center gap-2 rounded-xl px-5 py-2.5 text-xs font-bold transition-all ${
+                    isAddedToFlashcards
+                      ? 'bg-emerald-500 text-white'
+                      : 'bg-primary text-primary-foreground shadow-sm shadow-primary/20 hover:bg-primary/90'
+                  }`}
+                >
+                  {isAddedToFlashcards ? (
+                    <>
+                      <Check size={16} />
+                      <span>{language === 'ja' ? '追加完了！' : "Qo'shildi!"}</span>
+                    </>
+                  ) : (
+                    <>
+                      <Plus size={16} />
+                      <span>
+                        {language === 'ja' ? 'フラッシュカードに追加' : "Fleshkardga qo'shish"}
+                      </span>
+                    </>
+                  )}
+                </button>
+              </div>
             </div>
           )}
         </div>
@@ -854,43 +1118,94 @@ Return ONLY a raw valid JSON object (no markdown, no backticks) with this struct
             </div>
           ) : (
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {savedWords.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="group relative space-y-3 rounded-3xl border border-border bg-card p-5 shadow-sm transition-all hover:border-primary/40"
-                >
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <span className="text-[10px] font-black uppercase tracking-wider text-[#C9A961]">
-                        {item.level}
-                      </span>
-                      <h3 className="mt-0.5 font-display text-xl font-black text-foreground">
-                        {item.furigana ? <FuriganaText text={item.furigana} /> : item.word}
-                      </h3>
-                    </div>
-                    <button
-                      onClick={() => toggleSaveWord(item)}
-                      className="cursor-pointer p-1 text-muted-foreground transition-colors hover:text-primary"
-                      title="Saqlanganlardan o'chirish"
-                    >
-                      <Trash2 size={16} />
-                    </button>
-                  </div>
-                  <p className="text-xs font-bold text-foreground">{item.uzbekTranslation}</p>
-                  <p className="line-clamp-2 text-[11px] text-muted-foreground">
-                    {item.definition}
-                  </p>
-                  <button
-                    onClick={() => {
-                      setCurrentResult(item);
-                      setActiveTab('search');
-                    }}
-                    className="flex cursor-pointer items-center gap-1 pt-1 text-[11px] font-bold text-primary hover:underline"
+              {savedWords.map((item, idx) => {
+                const pInfo =
+                  item.language === 'ja'
+                    ? PitchAccentService.getPitchAccent(item.word, item.furigana || item.phonetic)
+                    : null;
+                return (
+                  <div
+                    key={idx}
+                    className="group relative space-y-3 rounded-3xl border border-border bg-card p-5 shadow-sm transition-all hover:border-primary/40"
                   >
-                    Batafsil ko'rish <ArrowRight size={12} />
-                  </button>
-                </div>
-              ))}
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <div className="flex flex-wrap items-center gap-1.5">
+                          <span className="text-[10px] font-black uppercase tracking-wider text-[#C9A961]">
+                            {item.level}
+                          </span>
+                          {pInfo && (
+                            <span className="rounded-md border border-indigo-500/30 bg-indigo-500/10 px-2 py-0.5 text-[10px] font-bold text-indigo-400">
+                              {pInfo.pitchTypeNameUz} [{pInfo.pitchPatternNumber}]
+                            </span>
+                          )}
+                        </div>
+                        <h3 className="mt-1 font-display text-xl font-black text-foreground">
+                          {item.furigana ? <FuriganaText text={item.furigana} /> : item.word}
+                        </h3>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <button
+                          onClick={() => {
+                            haptics.impact('light');
+                            speakText(item.word, item.language === 'ja' ? 'ja-JP' : 'en-US');
+                          }}
+                          className="cursor-pointer rounded-lg p-1.5 text-muted-foreground transition-colors hover:text-primary"
+                          title="Talaffuzni tinglash"
+                        >
+                          <Volume2 size={16} />
+                        </button>
+                        <button
+                          onClick={() => toggleSaveWord(item)}
+                          className="cursor-pointer rounded-lg p-1.5 text-muted-foreground transition-colors hover:text-rose-400"
+                          title="Saqlanganlardan o'chirish"
+                        >
+                          <Trash2 size={16} />
+                        </button>
+                      </div>
+                    </div>
+                    <p className="text-xs font-bold text-foreground">{item.uzbekTranslation}</p>
+                    <p className="line-clamp-2 text-[11px] text-muted-foreground">
+                      {item.definition}
+                    </p>
+                    <div className="flex items-center justify-between border-t border-border/50 pt-2">
+                      <button
+                        onClick={() => {
+                          setCurrentResult(item);
+                          setActiveTab('search');
+                        }}
+                        className="flex cursor-pointer items-center gap-1 text-[11px] font-bold text-primary hover:underline"
+                      >
+                        Batafsil ko'rish <ArrowRight size={12} />
+                      </button>
+                      <button
+                        onClick={async () => {
+                          haptics.notification('success');
+                          let targetSubId = selectedSubjectId;
+                          if (!targetSubId) {
+                            targetSubId = await getOrEnsureLanguageSubject(
+                              subjects,
+                              addSubject,
+                              item.language || 'ja',
+                            );
+                            setSelectedSubjectId(targetSubId);
+                          }
+                          await addFlashcard({
+                            subjectId: targetSubId || undefined,
+                            front: item.furigana || item.word,
+                            back: `Tarjimasi: ${item.uzbekTranslation}\nTa'rifi: ${item.definition}`,
+                          });
+                        }}
+                        className="flex cursor-pointer items-center gap-1 rounded-lg border border-border bg-muted/60 px-2.5 py-1 text-[10px] font-bold text-foreground transition-all hover:bg-primary hover:text-primary-foreground"
+                        title="Fleshkardga o'tkazish"
+                      >
+                        <Plus size={12} />
+                        <span>Fleshkardga</span>
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           )}
         </div>

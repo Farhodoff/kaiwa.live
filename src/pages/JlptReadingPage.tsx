@@ -346,6 +346,19 @@ export const JlptReadingPage: React.FC = () => {
 
   const getPassageTypeLabel = (type?: string) => {
     switch (type) {
+      case 'editorial':
+        return {
+          uz: 'Tahririyat / Shasetsu (社説)',
+          ja: '社説・論説',
+          color: 'bg-rose-500/10 text-rose-400 border-rose-500/30',
+        };
+      case 'academic':
+      case 'long':
+        return {
+          uz: 'Uzun / Ilmiy Matn (長文・論文)',
+          ja: '長編・学術',
+          color: 'bg-purple-500/10 text-purple-400 border-purple-500/30',
+        };
       case 'medium':
         return {
           uz: "O'rta Matn (中文)",
@@ -412,6 +425,30 @@ export const JlptReadingPage: React.FC = () => {
           ))}
         </div>
       </div>
+
+      {/* N1 Advanced Hub Promo Callout */}
+      {selectedLevel === 'N1' && (
+        <div className="flex flex-col items-start justify-between gap-3 rounded-2xl border border-amber-500/30 bg-amber-500/10 p-4 text-xs sm:flex-row sm:items-center">
+          <div className="flex items-center gap-3">
+            <span className="text-xl">👑</span>
+            <div>
+              <div className="font-bold text-amber-300">
+                N1 Oliy Daraja: Shasetsu, Rasmiy Biznes E-mail, Murakkab Keigo va Nozik Sinonimlar
+              </div>
+              <div className="mt-0.5 text-[11px] text-slate-300">
+                Yaponiyaning yetakchi tahririyat maqolalari, ilmiy-falsafiy matnlar va rasmiy
+                korporativ yozishmalar moduli.
+              </div>
+            </div>
+          </div>
+          <button
+            onClick={() => navigate('/jlpt?tab=n1_mastery')}
+            className="shrink-0 cursor-pointer rounded-xl bg-amber-500 px-3.5 py-2 font-black text-slate-950 shadow-xs transition-all hover:bg-amber-400 active:scale-95"
+          >
+            N1 Master Hubga o&apos;tish →
+          </button>
+        </div>
+      )}
 
       {/* Mode Switcher & Carousel Controls Row */}
       <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-800/80 bg-slate-900/70 p-3.5 backdrop-blur-md">

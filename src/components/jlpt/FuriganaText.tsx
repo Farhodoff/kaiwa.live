@@ -23,7 +23,7 @@ interface FuriganaTextProps {
 export const FuriganaText: React.FC<FuriganaTextProps> = ({
   text,
   className = '',
-  rubyClassName = 'text-xs text-indigo-400 font-normal select-none',
+  rubyClassName = 'text-[0.62em] font-japanese font-normal select-none text-muted-foreground/90',
   forceShow,
   mode,
 }) => {
@@ -63,7 +63,9 @@ export const FuriganaText: React.FC<FuriganaTextProps> = ({
   }
 
   return (
-    <span className={`inline-flex flex-wrap items-baseline leading-relaxed ${className}`}>
+    <span
+      className={`font-japanese inline-flex flex-wrap items-baseline leading-relaxed ${className}`}
+    >
       {parts.map((part, idx) => {
         if (part.type === 'text') {
           return <span key={idx}>{part.content}</span>;

@@ -1,6 +1,11 @@
+# Version Control
+.git/
+.github/
+
 # Build and bundle outputs
 build/
 dist/
+.vercel/
 .vercel
 bundle-analysis.html
 *.tsbuildinfo
