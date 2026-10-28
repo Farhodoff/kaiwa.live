@@ -13,18 +13,15 @@ export const ALL_ENGLISH_LESSONS: Lesson[] = [];
  * Total: 140 canonical high-quality lessons (zero duplicate tracks).
  */
 let fullLessons: Lesson[] = metadata.canonicalLessons as unknown as Lesson[];
-let fullLegacy: Lesson[] = metadata.legacyLessons as unknown as Lesson[];
 
 if (!import.meta.env.PROD) {
   try {
-    const [n5, n4, n3, n2, n1, legN5, legN4] = await Promise.all([
+    const [n5, n4, n3, n2, n1] = await Promise.all([
       import('./levels/n5/minnaLessons.json'),
       import('./levels/n4/minnaLessons.json'),
       import('./levels/n3/japaneseLessons.json'),
       import('./levels/n2/japaneseLessons.json'),
       import('./levels/n1/japaneseLessons.json'),
-      import('./levels/n5/japaneseLessons.json'),
-      import('./levels/n4/japaneseLessons.json'),
     ]);
     fullLessons = [
       ...n5.default,
@@ -33,7 +30,6 @@ if (!import.meta.env.PROD) {
       ...n2.default,
       ...n1.default,
     ] as unknown as Lesson[];
-    fullLegacy = [...legN5.default, ...legN4.default] as unknown as Lesson[];
   } catch (_) {}
 }
 
@@ -76,19 +72,40 @@ export async function loadCurriculumLessonById(id: string): Promise<Lesson | und
     }
   }
   await loadCurriculumLevel(level);
-  return CURRICULUM_LESSONS_BY_ID.get(id) || existing;
+  return getCurriculumLessonById(id) || existing;
 }
 
 export const ALL_JAPANESE_LESSONS: Lesson[] = fullLessons;
 export const ALL_CURRICULUM_LESSONS: Lesson[] = ALL_JAPANESE_LESSONS;
 
 export const CURRICULUM_LESSONS_BY_ID: Map<string, Lesson> = new Map([
-  ...fullLegacy.map((l) => [l.id, l] as [string, Lesson]),
   ...ALL_CURRICULUM_LESSONS.map((l) => [l.id, l] as [string, Lesson]),
 ]);
 
+function getCanonicalLessonId(id: string): string | undefined {
+  const n5Match = id.match(/^ja-n5-u\d+-l(\d+)$/);
+  if (n5Match) {
+    const lessonNumber = Number(n5Match[1]);
+    return lessonNumber >= 1 && lessonNumber <= 25 ? `ja-minna-l${lessonNumber}` : undefined;
+  }
+
+  const n4Match = id.match(/^ja-n4-u\d+-l(\d+)$/);
+  if (n4Match) {
+    const lessonNumber = Number(n4Match[1]);
+    return lessonNumber >= 1 && lessonNumber <= 25 ? `ja-minna-l${lessonNumber + 25}` : undefined;
+  }
+
+  return undefined;
+}
+
 export function getCurriculumLessonById(id: string): Lesson | undefined {
-  return CURRICULUM_LESSONS_BY_ID.get(id);
+  const lesson = CURRICULUM_LESSONS_BY_ID.get(id);
+  if (lesson) return lesson;
+
+  const canonicalId = getCanonicalLessonId(id);
+  const canonicalLesson = canonicalId ? CURRICULUM_LESSONS_BY_ID.get(canonicalId) : undefined;
+
+  return canonicalLesson ? { ...canonicalLesson, id } : undefined;
 }
 
 export function getCurriculumLessonsByLanguage(language: 'en' | 'ja'): Lesson[] {

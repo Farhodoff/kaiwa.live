@@ -201,10 +201,10 @@ export default defineConfig(({ mode }) => {
             if (id.includes('japaneseN3') || id.includes('levels/n3/japaneseLessons')) {
               return 'curriculum-n3';
             }
-            if (id.includes('japaneseN4') || id.includes('levels/n4/japaneseLessons')) {
+            if (id.includes('japaneseN4') || id.includes('levels/n4/minnaLessons')) {
               return 'curriculum-n4';
             }
-            if (id.includes('japaneseN5') || id.includes('levels/n5/japaneseLessons')) {
+            if (id.includes('japaneseN5') || id.includes('levels/n5/minnaLessons')) {
               return 'curriculum-n5';
             }
             if (id.includes('curriculumLessons') || id.includes('sampleCurriculum')) {

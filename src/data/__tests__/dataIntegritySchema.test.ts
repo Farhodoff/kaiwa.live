@@ -2,10 +2,8 @@ import { describe, it, expect } from 'vitest';
 import n1Lessons from '../curriculum/levels/n1/japaneseLessons.json';
 import n2Lessons from '../curriculum/levels/n2/japaneseLessons.json';
 import n3Lessons from '../curriculum/levels/n3/japaneseLessons.json';
-import n4Lessons from '../curriculum/levels/n4/japaneseLessons.json';
 import n4Minna from '../curriculum/levels/n4/minnaLessons.json';
 import n4MinnaQuiz from '../curriculum/levels/n4/minnaQuizDatabase.json';
-import n5Lessons from '../curriculum/levels/n5/japaneseLessons.json';
 import n5Minna from '../curriculum/levels/n5/minnaLessons.json';
 import n5MinnaQuiz from '../curriculum/levels/n5/minnaQuizDatabase.json';
 
@@ -29,9 +27,7 @@ describe('Data Integrity Schema Verification', () => {
       { name: 'N1 Lessons', data: n1Lessons },
       { name: 'N2 Lessons', data: n2Lessons },
       { name: 'N3 Lessons', data: n3Lessons },
-      { name: 'N4 Lessons', data: n4Lessons },
       { name: 'N4 Minna Lessons', data: n4Minna },
-      { name: 'N5 Lessons', data: n5Lessons },
       { name: 'N5 Minna Lessons', data: n5Minna },
     ];
 
