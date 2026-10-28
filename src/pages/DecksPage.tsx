@@ -23,6 +23,7 @@ import { FlashcardStudySession } from '../components/decks/FlashcardStudySession
 import ImportModal from '../components/decks/ImportModal';
 import { PresetDeckCard } from '../components/decks/PresetDeckCard';
 import { StandaloneDeckCard, StandaloneDeckGroup } from '../components/decks/StandaloneDeckCard';
+import { SpacedRepetitionSchedule } from '../components/decks/SpacedRepetitionSchedule';
 import { ExtractVocabModal } from '../components/decks/ExtractVocabModal';
 import { AiDocumentFlashcardModal } from '../components/decks/AiDocumentFlashcardModal';
 import { AdminFlashcardManager } from '../components/decks/AdminFlashcardManager';
@@ -76,7 +77,17 @@ const DecksPage: React.FC = () => {
     }
   }, [studyQueryParam]);
 
-  const [activeTab, setActiveTab] = useState<'my' | 'library'>('my');
+  const tabQueryParam = searchParams.get('tab');
+  const [activeTab, setActiveTab] = useState<'my' | 'library' | 'srs'>(
+    tabQueryParam === 'srs' ? 'srs' : tabQueryParam === 'library' ? 'library' : 'my',
+  );
+
+  useEffect(() => {
+    if (tabQueryParam === 'srs' || tabQueryParam === 'library' || tabQueryParam === 'my') {
+      setActiveTab(tabQueryParam);
+    }
+  }, [tabQueryParam]);
+
   const [subTab, setSubTab] = useState<'active' | 'archived'>('active');
   const [selectedSubjectIds, setSelectedSubjectIds] = useState<string[]>([]);
   const [aiSubjectId, setAiSubjectId] = useState<string | null>(null);
@@ -540,18 +551,30 @@ const DecksPage: React.FC = () => {
             ? `bugun ${reviewInbox.totalDue} ta karta muddati keldi — Due birinchi.`
             : 'bugun muddati kelgan karta yo‘q. Kutubxona faqat boshqaruv uchun.'}
         </span>
-        {reviewInbox.totalDue > 0 && reviewInbox.firstDueSubjectId ? (
+        <div className="flex flex-wrap items-center gap-2">
+          {reviewInbox.totalDue > 0 && reviewInbox.firstDueSubjectId ? (
+            <button
+              onClick={() => setActiveStudySubjectId(reviewInbox.firstDueSubjectId)}
+              className="shrink-0 cursor-pointer rounded-xl bg-primary px-3 py-1.5 text-xs font-bold text-primary-foreground transition-all hover:bg-primary/90 active:scale-95"
+            >
+              Hozir takrorlash ({reviewInbox.totalDue})
+            </button>
+          ) : (
+            <span className="shrink-0 rounded-xl bg-primary/10 px-3 py-1.5 text-xs font-bold text-primary">
+              Due birinchi
+            </span>
+          )}
           <button
-            onClick={() => setActiveStudySubjectId(reviewInbox.firstDueSubjectId)}
-            className="shrink-0 cursor-pointer rounded-xl bg-primary px-3 py-1.5 text-xs font-bold text-primary-foreground transition-all hover:bg-primary/90 active:scale-95"
+            onClick={() => setActiveTab('srs')}
+            className={`shrink-0 cursor-pointer rounded-xl px-3 py-1.5 text-xs font-bold transition-all ${
+              activeTab === 'srs'
+                ? 'bg-primary text-primary-foreground'
+                : 'border border-primary/30 bg-primary/10 text-primary hover:bg-primary/20'
+            }`}
           >
-            Hozir takrorlash ({reviewInbox.totalDue})
+            SRS Jadvali
           </button>
-        ) : (
-          <span className="shrink-0 rounded-xl bg-primary/10 px-3 py-1.5 text-xs font-bold text-primary">
-            Due birinchi
-          </span>
-        )}
+        </div>
       </div>
       {/* Header Area */}
       <div className="flex flex-col justify-between gap-4 border-b border-border/60 pb-4 lg:flex-row lg:items-center">
@@ -703,6 +726,16 @@ const DecksPage: React.FC = () => {
             }`}
           >
             <Library size={16} /> {t('flashcards.library')} ({visiblePresetDecks.length})
+          </button>
+          <button
+            onClick={() => setActiveTab('srs')}
+            className={`flex min-h-[44px] flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-xl px-3 py-2 text-xs font-black transition-all sm:flex-initial sm:gap-2 sm:px-5 sm:py-2.5 ${
+              activeTab === 'srs'
+                ? 'bg-primary text-primary-foreground shadow-xs'
+                : 'text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            <Sparkles size={16} /> SRS & Darslar jadvali
           </button>
         </div>
       </div>
@@ -999,6 +1032,23 @@ const DecksPage: React.FC = () => {
             </div>
           </div>
         </div>
+      )}
+
+      {activeTab === 'srs' && (
+        <SpacedRepetitionSchedule
+          flashcards={flashcards}
+          userId={user?.id}
+          firstDueSubjectId={reviewInbox.firstDueSubjectId}
+          onStartFlashcardReview={(subjectId) => {
+            if (subjectId) {
+              setActiveStudySubjectId(subjectId);
+            } else if (reviewInbox.firstDueSubjectId) {
+              setActiveStudySubjectId(reviewInbox.firstDueSubjectId);
+            } else if (activeSubjects.length > 0) {
+              setActiveStudySubjectId(activeSubjects[0].id);
+            }
+          }}
+        />
       )}
 
       {aiSubjectId && (

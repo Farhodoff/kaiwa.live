@@ -568,6 +568,7 @@ export const LessonPlayerPage: React.FC = () => {
         {isLessonCompleted ? (
           <LessonCompletionView
             lesson={lesson}
+            userId={user?.id}
             scoreData={quizResult}
             newCardsCount={srsSummary.newCardsCount}
             mistakesCount={srsSummary.mistakesCount}

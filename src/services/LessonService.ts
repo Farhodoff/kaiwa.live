@@ -9,6 +9,7 @@ import { supabase } from '../lib/supabase';
 import { toDeterministicUUID } from '../utils/uuid';
 import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
 import { OfflineSyncManager, type QueuedLessonProgress } from './OfflineSyncManager';
+import { SpacedRepetitionEngine } from './SpacedRepetitionEngine';
 
 const PROGRESS_STORAGE_PREFIX = 'study_planner_lesson_progress_';
 
@@ -110,6 +111,24 @@ export const LessonService = {
     const storageKey = `${PROGRESS_STORAGE_PREFIX}${activeUserId}_${progress.lessonId}`;
     safeLocalStorage.setJSON(storageKey, progress);
 
+    // Auto-schedule spaced repetition review if completed and not already scheduled
+    if (progress.isCompleted) {
+      try {
+        const existingReview = SpacedRepetitionEngine.getLessonReviewItem(
+          activeUserId,
+          progress.lessonId,
+        );
+        if (!existingReview) {
+          SpacedRepetitionEngine.scheduleLessonReview(activeUserId, progress.lessonId, {
+            quizScorePercentage: progress.quizScore?.percentage ?? 80,
+            completedAt: progress.completedAt,
+          });
+        }
+      } catch (e) {
+        console.warn('[LessonService] Auto-scheduling spaced repetition failed:', e);
+      }
+    }
+
     if (!activeUserId || activeUserId === 'guest') return;
 
     // 1. Asynchronous write to Supabase lesson_progress table with offline fallback queue
@@ -210,6 +229,7 @@ export const LessonService = {
     };
 
     await this.saveLessonProgress(userId, completedProgress);
+
     return completedProgress;
   },
 
