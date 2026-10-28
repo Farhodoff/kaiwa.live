@@ -10,11 +10,13 @@ import {
   Pause,
   Disc,
 } from 'lucide-react';
-import { LearnContent, SupportedLanguage } from '../../types/lesson';
+import { LearnContent, Lesson, LessonKanji, SupportedLanguage } from '../../types/lesson';
 import { speakText, speakJapaneseText } from '../../utils/audioTts';
 import { FuriganaText } from '../jlpt/FuriganaText';
 import { ListeningAudioSyncService } from '../../services/ListeningAudioSyncService';
 import { resolveAudioUrl } from '../../utils/audioUrl';
+import { LessonKanjiService, LessonKanjiProgress } from '../../services/LessonKanjiService';
+import { KanjiStrokeOrderModal } from '../jlpt/KanjiStrokeOrderModal';
 
 const formatAudioTime = (seconds: number) => {
   if (isNaN(seconds) || seconds <= 0) return '00:00';
@@ -26,10 +28,46 @@ const formatAudioTime = (seconds: number) => {
 interface LearnStepViewProps {
   content: LearnContent;
   language: SupportedLanguage;
+  lesson?: Lesson;
+  userId?: string;
 }
 
-export const LearnStepView: React.FC<LearnStepViewProps> = ({ content, language }) => {
-  const [activeTab, setActiveTab] = useState<'all' | 'vocab' | 'grammar' | 'dialogue'>('all');
+export const LearnStepView: React.FC<LearnStepViewProps> = ({
+  content,
+  language,
+  lesson,
+  userId = 'guest',
+}) => {
+  const [activeTab, setActiveTab] = useState<'all' | 'vocab' | 'grammar' | 'kanji' | 'dialogue'>(
+    'all',
+  );
+  const lessonKanji = useMemo<LessonKanji[]>(
+    () => (lesson ? LessonKanjiService.getLessonKanji(lesson) : []),
+    [lesson],
+  );
+  const [kanjiProgress, setKanjiProgress] = useState<LessonKanjiProgress[]>([]);
+  const [strokeModalKanji, setStrokeModalKanji] = useState<LessonKanji | null>(null);
+
+  useEffect(() => {
+    if (!lesson || lessonKanji.length === 0) {
+      setKanjiProgress([]);
+      return;
+    }
+    setKanjiProgress(LessonKanjiService.getLessonProgress(userId, lesson.id, lessonKanji));
+    void LessonKanjiService.syncProgressFromDatabase(userId, lesson.id).then((remoteProgress) => {
+      if (remoteProgress.length > 0) setKanjiProgress(remoteProgress);
+    });
+  }, [lesson, lessonKanji, userId]);
+
+  const getKanjiProgress = (kanji: string) =>
+    kanjiProgress.find((progress) => progress.kanji === kanji);
+
+  const handleKanjiReview = (kanji: string, result: 'correct' | 'incorrect') => {
+    if (!lesson) return;
+    const progress = LessonKanjiService.recordReview(userId, lesson.id, kanji, result);
+    setKanjiProgress((current) => [...current.filter((item) => item.kanji !== kanji), progress]);
+    void LessonKanjiService.syncProgress(userId, progress);
+  };
   const [playingLineIdx, setPlayingLineIdx] = useState<number | null>(null);
   const [isAutoPlayingDialogue, setIsAutoPlayingDialogue] = useState(false);
   const autoPlayTimeoutRef = useRef<any>(null);
@@ -343,7 +381,9 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({ content, language 
       </div>
 
       {/* Filter Tabs if multiple sections exist */}
-      {((content.vocabulary && content.grammarRules) || content.dialogue) && (
+      {((content.vocabulary && content.grammarRules) ||
+        content.dialogue ||
+        lessonKanji.length > 0) && (
         <div className="scrollbar-none flex touch-pan-x items-center gap-1.5 overflow-x-auto border-b border-border pb-2 sm:gap-2">
           <button
             onClick={() => setActiveTab('all')}
@@ -379,6 +419,18 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({ content, language 
               Grammatika ({content.grammarRules.length})
             </button>
           )}
+          {lessonKanji.length > 0 && (
+            <button
+              onClick={() => setActiveTab('kanji')}
+              className={`shrink-0 cursor-pointer touch-manipulation select-none rounded-xl px-3 py-1.5 text-xs font-bold transition-all sm:px-3.5 ${
+                activeTab === 'kanji'
+                  ? 'bg-primary text-primary-foreground shadow-sm'
+                  : 'text-muted-foreground hover:bg-secondary hover:text-foreground'
+              }`}
+            >
+              Kanji ({lessonKanji.length})
+            </button>
+          )}
           {content.dialogue && (
             <button
               onClick={() => setActiveTab('dialogue')}
@@ -393,6 +445,129 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({ content, language 
             </button>
           )}
         </div>
+      )}
+
+      {/* Kanji Section */}
+      {(activeTab === 'all' || activeTab === 'kanji') && lessonKanji.length > 0 && (
+        <div className="space-y-3">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h3 className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground">
+              <span>🈴 Dars Kanji</span>
+              <span className="text-xs font-normal text-muted-foreground">
+                ({lessonKanji.length} ta)
+              </span>
+            </h3>
+            <span className="text-xs text-muted-foreground">
+              To'g'ri javoblar 2 marta takrorlansa o'zlashtirilgan hisoblanadi
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {lessonKanji.map((item) => {
+              const progress = getKanjiProgress(item.kanji);
+              return (
+                <div
+                  key={item.kanji}
+                  className="rounded-2xl border border-border bg-card p-4 shadow-sm"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex items-start gap-3">
+                      <div className="text-4xl font-black leading-none text-primary">
+                        {item.kanji}
+                      </div>
+                      <div className="space-y-0.5">
+                        <div className="text-sm font-bold text-foreground">{item.meaningUz}</div>
+                        {item.onyomi && (
+                          <div className="text-xs text-muted-foreground">On: {item.onyomi}</div>
+                        )}
+                        {item.kunyomi && (
+                          <div className="text-xs text-muted-foreground">Kun: {item.kunyomi}</div>
+                        )}
+                        {item.strokeCount && (
+                          <div className="text-[11px] text-muted-foreground">
+                            Chiziqlar: {item.strokeCount}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => handleSpeak(item.kanji)}
+                      className="rounded-xl bg-secondary/80 p-2 text-muted-foreground transition-all hover:bg-primary/15 hover:text-primary"
+                      title="Kanji talaffuzini eshitish"
+                      aria-label={`Kanji talaffuzi: ${item.kanji}`}
+                    >
+                      <Volume2 size={16} />
+                    </button>
+                  </div>
+
+                  {item.examples && item.examples.length > 0 && (
+                    <div className="mt-3 border-t border-border/60 pt-2.5 text-xs text-muted-foreground">
+                      {item.examples.slice(0, 2).map((example) => (
+                        <div
+                          key={`${item.kanji}-${example.word}`}
+                          className="flex justify-between gap-2"
+                        >
+                          <span className="font-semibold text-foreground">
+                            <FuriganaText text={example.word} />{' '}
+                            <span className="font-normal text-primary">{example.reading}</span>
+                          </span>
+                          <span className="text-right">{example.meaning}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="mt-3 flex items-center justify-between gap-2">
+                    <span
+                      className={`text-xs font-bold ${
+                        progress?.mastered ? 'text-emerald-500' : 'text-muted-foreground'
+                      }`}
+                    >
+                      {progress?.mastered
+                        ? 'O‘zlashtirilgan'
+                        : progress
+                          ? `${progress.correctAttempts}/${progress.attempts} to‘g‘ri`
+                          : 'Hali ko‘rilmagan'}
+                    </span>
+                    <div className="flex gap-1.5">
+                      <button
+                        onClick={() => setStrokeModalKanji(item)}
+                        className="rounded-lg border border-primary/30 px-2.5 py-1.5 text-xs font-bold text-primary transition-colors hover:bg-primary/10"
+                      >
+                        Stroke tartibi
+                      </button>
+                      <button
+                        onClick={() => handleKanjiReview(item.kanji, 'incorrect')}
+                        className="rounded-lg border border-border px-2.5 py-1.5 text-xs font-bold text-muted-foreground transition-colors hover:border-rose-400 hover:text-rose-500"
+                      >
+                        Qayta ko‘rish
+                      </button>
+                      <button
+                        onClick={() => handleKanjiReview(item.kanji, 'correct')}
+                        className="rounded-lg bg-primary px-2.5 py-1.5 text-xs font-bold text-primary-foreground transition-colors hover:bg-primary/90"
+                      >
+                        Bilaman
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {strokeModalKanji && (
+        <KanjiStrokeOrderModal
+          kanji={strokeModalKanji.kanji}
+          meaningUz={strokeModalKanji.meaningUz}
+          onyomi={strokeModalKanji.onyomi || '-'}
+          kunyomi={strokeModalKanji.kunyomi || '-'}
+          strokeCount={strokeModalKanji.strokeCount || 1}
+          level={lesson?.level || 'N5'}
+          isOpen
+          onClose={() => setStrokeModalKanji(null)}
+        />
       )}
 
       {/* Vocabulary Section */}

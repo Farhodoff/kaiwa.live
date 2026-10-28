@@ -23,7 +23,7 @@ import RealTimeAnalyticsDashboard from '../components/analytics/RealTimeAnalytic
 
 const ProgressPage: React.FC = () => {
   const navigate = useNavigate();
-  const { sessions, subjects, tasks, settings, flashcards, coachSessions, loading } =
+  const { sessions, subjects, tasks, settings, flashcards, coachSessions, loading, user } =
     useStudyData();
   const { totalXp, level } = useGamificationInfo();
   const { language } = useLanguage();
@@ -184,7 +184,7 @@ const ProgressPage: React.FC = () => {
       {activeTab === 'language' && (
         <div className="space-y-8 duration-300 animate-in fade-in">
           <JlptSkillMatrixView />
-          <JlptProgressAnalytics />
+          <JlptProgressAnalytics userId={user?.id} />
           <CoachAnalytics sessions={coachSessions} />
           <ExamHistoryAnalytics />
         </div>

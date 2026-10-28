@@ -9,6 +9,7 @@ import { supabase } from '../lib/supabase';
 import { toDeterministicUUID } from '../utils/uuid';
 import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
 import { OfflineSyncManager, type QueuedLessonProgress } from './OfflineSyncManager';
+import { LessonKanjiService } from './LessonKanjiService';
 import { SpacedRepetitionEngine } from './SpacedRepetitionEngine';
 
 const PROGRESS_STORAGE_PREFIX = 'study_planner_lesson_progress_';
@@ -35,6 +36,14 @@ export const LessonService = {
     return (
       getCurriculumLessonById(lessonId) || SAMPLE_LESSONS.find((l) => l.id === lessonId) || null
     );
+  },
+
+  /**
+   * Retrieve kanji associated with a lesson for lesson-level practice.
+   */
+  getLessonKanji(lessonId: string) {
+    const lesson = this.getLessonById(lessonId);
+    return lesson ? LessonKanjiService.getLessonKanji(lesson) : [];
   },
 
   /**

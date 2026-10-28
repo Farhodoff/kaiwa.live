@@ -74,6 +74,9 @@ export interface UserSkillStats {
   vocabCount: number;
   vocabRetentionRate?: number; // 0-100
   kanjiCount: number;
+  lessonKanjiMasteredCount?: number;
+  lessonKanjiReviewedCount?: number;
+  lessonKanjiTotalCount?: number;
   grammarMasteredCount: number;
   readingCompletedCount?: number;
   readingAccuracy?: number; // 0-100
@@ -208,8 +211,8 @@ export class JlptReadinessService {
         name: { uz: 'Kanji Iyerogliflari', ja: '漢字認識・筆記', en: 'Kanji' },
         shortName: '漢字 (Kanji)',
         score: kanjiScore,
-        currentCount: stats.kanjiCount,
-        targetCount: benchmark.kanjiTarget,
+        currentCount: stats.lessonKanjiMasteredCount ?? stats.kanjiCount,
+        targetCount: stats.lessonKanjiTotalCount ?? benchmark.kanjiTarget,
         status: getStatus(kanjiScore),
       },
       {

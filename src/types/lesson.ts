@@ -10,6 +10,19 @@ export interface VocabItem {
   exampleTranslation?: string;
 }
 
+export interface LessonKanji {
+  kanji: string;
+  onyomi?: string;
+  kunyomi?: string;
+  meaningUz: string;
+  strokeCount?: number;
+  examples?: {
+    word: string;
+    reading: string;
+    meaning: string;
+  }[];
+}
+
 export type JlptLevel = 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
 
 export interface KanjiLessonItem {
@@ -138,6 +151,7 @@ export interface Lesson {
   description: string;
   estimatedDurationMinutes: number;
   icon?: string;
+  kanji?: LessonKanji[];
   steps: LessonStep[];
 }
 

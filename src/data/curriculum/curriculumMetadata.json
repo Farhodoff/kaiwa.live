@@ -10,9 +10,8 @@
       "lessonNumber": 1,
       "title": "1-dars: Tanishuv va O'zini tanishtirish",
       "description": "Minna no Nihongo Shokyu 1: 1-dars: Tanishuv va O'zini tanishtirish. Darsda 50 ta yangi so'z, audio talaffuzli Furigana misollar va 6 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -25,9 +24,8 @@
       "lessonNumber": 2,
       "title": "2-dars: Buyumlar va Ko'rsatish olmoshlari",
       "description": "Minna no Nihongo Shokyu 1: 2-dars: Buyumlar va Ko'rsatish olmoshlari. Darsda 48 ta yangi so'z, audio talaffuzli Furigana misollar va 6 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -40,9 +38,8 @@
       "lessonNumber": 3,
       "title": "3-dars: Joylar va Narx-navo",
       "description": "Minna no Nihongo Shokyu 1: 3-dars: Joylar va Narx-navo. Darsda 46 ta yangi so'z, audio talaffuzli Furigana misollar va 6 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -55,9 +52,8 @@
       "lessonNumber": 4,
       "title": "4-dars: Vaqt, Soatlar va Fe'llar (Ertalabdan kechgacha)",
       "description": "Minna no Nihongo Shokyu 1: 4-dars: Vaqt, Soatlar va Fe'llar (Ertalabdan kechgacha). Darsda yangi so'zlar, audio talaffuzli Furigana misollar va 7 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -70,9 +66,8 @@
       "lessonNumber": 5,
       "title": "5-dars: Harakat, Transport va Safar",
       "description": "Minna no Nihongo Shokyu 1: 5-dars: Harakat, Transport va Safar. Darsda yangi so'zlar, audio talaffuzli Furigana misollar va 7 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -85,9 +80,8 @@
       "lessonNumber": 6,
       "title": "6-dars: Kundalik faoliyat va Obyekt (Harakat fe'llari)",
       "description": "Minna no Nihongo Shokyu 1: 6-dars: Kundalik faoliyat va Obyekt (Harakat fe'llari). Darsda 59 ta yangi so'z, audio talaffuzli Furigana misollar va 8 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -100,9 +94,8 @@
       "lessonNumber": 7,
       "title": "7-dars: Qurol, Til va Sovg'a almashish (Bermoq/Olmoq)",
       "description": "Minna no Nihongo Shokyu 1: 7-dars: Qurol, Til va Sovg'a almashish (Bermoq/Olmoq). Darsda 50 ta yangi so'z, audio talaffuzli Furigana misollar va 5 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -115,9 +108,8 @@
       "lessonNumber": 8,
       "title": "8-dars: Sifatlar (I-sifat va Na-sifatlar)",
       "description": "Minna no Nihongo Shokyu 1: 8-dars: Sifatlar (I-sifat va Na-sifatlar). Darsda 63 ta yangi so'z, audio talaffuzli Furigana misollar va 8 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -130,9 +122,8 @@
       "lessonNumber": 9,
       "title": "9-dars: Qobiliyat, Xohish va Sabab (Yoqtirish/Tushunish)",
       "description": "Minna no Nihongo Shokyu 1: 9-dars: Qobiliyat, Xohish va Sabab (Yoqtirish/Tushunish). Darsda 52 ta yangi so'z, audio talaffuzli Furigana misollar va 5 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -145,9 +136,8 @@
       "lessonNumber": 10,
       "title": "10-dars: Mavjudlik va Joylashuv (Insonlar va Buyumlar)",
       "description": "Minna no Nihongo Shokyu 1: 10-dars: Mavjudlik va Joylashuv (Insonlar va Buyumlar). Darsda 50 ta yangi so'z, audio talaffuzli Furigana misollar va 7 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -160,9 +150,8 @@
       "lessonNumber": 11,
       "title": "11-dars: Sanoq so'zlar, Muddat va Miqdor",
       "description": "Minna no Nihongo Shokyu 1: 11-dars: Sanoq so'zlar, Muddat va Miqdor. Darsda 65 ta yangi so'z, audio talaffuzli Furigana misollar va 3 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -175,9 +164,8 @@
       "lessonNumber": 12,
       "title": "12-dars: O'tgan zamon va Taqqoslash (Eng va Ko'ra)",
       "description": "Minna no Nihongo Shokyu 1: 12-dars: O'tgan zamon va Taqqoslash (Eng va Ko'ra). Darsda 54 ta yangi so'z, audio talaffuzli Furigana misollar va 5 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -190,9 +178,8 @@
       "lessonNumber": 13,
       "title": "13-dars: Istak-xohish va Maqsad (Xohlamoq/Bormoq)",
       "description": "Minna no Nihongo Shokyu 1: 13-dars: Istak-xohish va Maqsad (Xohlamoq/Bormoq). Darsda 47 ta yangi so'z, audio talaffuzli Furigana misollar va 6 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -205,9 +192,8 @@
       "lessonNumber": 14,
       "title": "14-dars: Fe'lning Te-shakli va Iltimos (Buyruq va Iltimos)",
       "description": "Minna no Nihongo Shokyu 1: 14-dars: Fe'lning Te-shakli va Iltimos (Buyruq va Iltimos). Darsda 45 ta yangi so'z, audio talaffuzli Furigana misollar va 8 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -220,9 +206,8 @@
       "lessonNumber": 15,
       "title": "15-dars: Ruxsat, Taqiq va Holat fe'llari",
       "description": "Minna no Nihongo Shokyu 1: 15-dars: Ruxsat, Taqiq va Holat fe'llari. Darsda 30 ta yangi so'z, audio talaffuzli Furigana misollar va 5 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -235,9 +220,8 @@
       "lessonNumber": 16,
       "title": "16-dars: Harakatlar ketma-ketligi va Sifatlarni bog'lash",
       "description": "Minna no Nihongo Shokyu 1: 16-dars: Harakatlar ketma-ketligi va Sifatlarni bog'lash. Darsda 61 ta yangi so'z, audio talaffuzli Furigana misollar va 7 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -250,9 +234,8 @@
       "lessonNumber": 17,
       "title": "17-dars: Fe'lning Nai-shakli va Majburiyat",
       "description": "Minna no Nihongo Shokyu 1: 17-dars: Fe'lning Nai-shakli va Majburiyat. Darsda 42 ta yangi so'z, audio talaffuzli Furigana misollar va 6 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -265,9 +248,8 @@
       "lessonNumber": 18,
       "title": "18-dars: Lug'at shakli (Jishokei) va Qobiliyat/Qiziqish",
       "description": "Minna no Nihongo Shokyu 1: 18-dars: Lug'at shakli (Jishokei) va Qobiliyat/Qiziqish. Darsda 30 ta yangi so'z, audio talaffuzli Furigana misollar va 6 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -280,9 +262,8 @@
       "lessonNumber": 19,
       "title": "19-dars: Fe'lning Ta-shakli, Tajriba va O'zgarish",
       "description": "Minna no Nihongo Shokyu 1: 19-dars: Fe'lning Ta-shakli, Tajriba va O'zgarish. Darsda 34 ta yangi so'z, audio talaffuzli Furigana misollar va 5 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -295,9 +276,8 @@
       "lessonNumber": 20,
       "title": "20-dars: Oddiy uslub (Futsuugo) va Do'stona muloqot",
       "description": "Minna no Nihongo Shokyu 1: 20-dars: Oddiy uslub (Futsuugo) va Do'stona muloqot. Darsda 31 ta yangi so'z, audio talaffuzli Furigana misollar va 3 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -310,9 +290,8 @@
       "lessonNumber": 21,
       "title": "21-dars: Shaxsiy fikr va Iqtibos keltirish",
       "description": "Minna no Nihongo Shokyu 1: 21-dars: Shaxsiy fikr va Iqtibos keltirish. Darsda 40 ta yangi so'z, audio talaffuzli Furigana misollar va 7 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -325,9 +304,8 @@
       "lessonNumber": 22,
       "title": "22-dars: Aniqlovchi gaplar (Kanshi / Modifying Clauses)",
       "description": "Minna no Nihongo Shokyu 1: 22-dars: Aniqlovchi gaplar (Kanshi / Modifying Clauses). Darsda 29 ta yangi so'z, audio talaffuzli Furigana misollar va 4 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -340,9 +318,8 @@
       "lessonNumber": 23,
       "title": "23-dars: Shart va Vaqt (Qachonki / Qilsa)",
       "description": "Minna no Nihongo Shokyu 1: 23-dars: Shart va Vaqt (Qachonki / Qilsa). Darsda 42 ta yangi so'z, audio talaffuzli Furigana misollar va 5 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -355,9 +332,8 @@
       "lessonNumber": 24,
       "title": "24-dars: Muruvvat va Yordam (Bermoq, Olib bermoq)",
       "description": "Minna no Nihongo Shokyu 1: 24-dars: Muruvvat va Yordam (Bermoq, Olib bermoq). Darsda 22 ta yangi so'z, audio talaffuzli Furigana misollar va 4 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -370,9 +346,8 @@
       "lessonNumber": 25,
       "title": "25-dars: Shartli mayl va Davomiylik (Tara va Temo)",
       "description": "Minna no Nihongo Shokyu 1: 25-dars: Shartli mayl va Davomiylik (Tara va Temo). Darsda 20 ta yangi so'z, audio talaffuzli Furigana misollar va 5 ta asosiy grammatik formula o'rganiladi.",
-      "estimatedDurationMinutes": 25,
+      "estimatedDurationMinutes": 33,
       "icon": "🌸",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -385,9 +360,8 @@
       "lessonNumber": 26,
       "title": "26-Dars: 〜んです / 〜んですが (Izoh, sabab va iltimos bildirish)",
       "description": "Og'zaki nutqda sabab, vaziyat va izoh berishda qo'llaniladigan 〜んです strukturasi, muloyim iltimos (〜ていただけませんか) va maslahat so'rash (〜たらいいですか).",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "🌿",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -400,9 +374,8 @@
       "lessonNumber": 27,
       "title": "27-Dars: 可能動詞 (Qobiliyat va imkoniyat fe'llari: 〜られる / 〜れる)",
       "description": "Fe'llarning imkoniyat/qobiliyat shakli (Kanou-doushi), obyektga 'が' qo'shimchasi, 見える va 聞こえる ning farqi hamda 〜しか〜ない cheklovi.",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "🌿",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -415,9 +388,8 @@
       "lessonNumber": 28,
       "title": "28-Dars: 〜ながら / 〜ています (Odat) / 〜し、〜し (Sabablarni sanash)",
       "description": "Bir vaqtning o'zida ikkita ishni bajarish (〜ながら), doimiy takrorlanuvchi odat va faoliyat (〜ています), hamda bir nechta sabab va sifatlarni biriktirish (〜し、〜し).",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "🌿",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -430,9 +402,8 @@
       "lessonNumber": 29,
       "title": "29-Dars: 自動詞・他動詞 (O'zlik va o'zgalik fe'llari) / 〜てしまいました",
       "description": "Harakat natijasida yuzaga kelgan joriy holatni ifodalash (自動詞＋ています) hamda ish-harakatning to'liq tugashi yoki pushaymonlik (〜てしまいました).",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "🌿",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -445,9 +416,8 @@
       "lessonNumber": 30,
       "title": "30-Dars: 他動詞＋てあります / 〜ておきます (Tayyorgarlik choralari)",
       "description": "Birov tomonidan maqsadli bajarilgan ish natijasi (他動詞＋てあります), kelgusi ishlar uchun oldindan tayyorgarlik ko'rish (〜ておきます), hamda 'まだ〜ています'.",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "🌿",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -460,9 +430,8 @@
       "lessonNumber": 31,
       "title": "31-Dars: 意向形 (Volitional form) / 〜と思っています / 〜つもりです",
       "description": "Fe'lning xohish-istak shakli (Ikou-kei: 〜よう), uzoq muddatli niyatni bildirish (〜と思っています), qat'iy reja (〜つもりです) va rasmiy jadval (〜予定です).",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "🎯",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -475,9 +444,8 @@
       "lessonNumber": 32,
       "title": "32-Dars: 〜ほうがいいです (Maslahat) / 〜でしょう / 〜かもしれません",
       "description": "Foydali maslahat berish (〜た/ない ほうがいいです), ob-havo va ehtimollarni taxmin qilish (〜でしょう - 80% ishonch) hamda noaniq taxmin (〜かもしれません - 50% ehtimol).",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "🎯",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -490,9 +458,8 @@
       "lessonNumber": 33,
       "title": "33-Dars: 命令形・禁止形 (Buyruq va taqiq) / 〜という意味です",
       "description": "Erkaklar nutqi, favqulodda vaziyat va sportdagi qat'iy buyruq (Meirei-kei) va taqiq (Kinshi-kei), belgilar ma'nosini tushuntirish (〜という意味です) va boshqalar so'zini yetkazish.",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "🎯",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -505,9 +472,8 @@
       "lessonNumber": 34,
       "title": "34-Dars: 〜とおりに (Xuddi shunday) / 〜あとで (Keyin) / 〜て・ないで",
       "description": "Ko'rsatilgan yoki eshitilganidek bajarish (〜とおりに), bir ish yakunidan so'ng boshqasini qilish (〜あとで), hamda biror holatsiz/holatda harakat qilish (〜ないで).",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "🎯",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -520,9 +486,8 @@
       "lessonNumber": 35,
       "title": "35-Dars: 条件形 (Shart shakli: 〜ば) / 〜なら (Tavsiya va chegara)",
       "description": "Fe'l va sifatlarning shart mayli (Jouken-kei: 〜ば), otlar uchun 〜なら hamda maslahat so'rash (〜ばいいですか) va mutanosiblik (〜ば〜ほど).",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "🎯",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -535,9 +500,8 @@
       "lessonNumber": 36,
       "title": "36-Dars: 〜ように (Maqsad) / 〜ようになります / 〜ようにします",
       "description": "Muayyan maqsadga erishish uchun harakat qilish (〜ように), yangi qobiliyat va odatning shakllanishi (〜ようになります), hamda o'ziga odat qilib olish (〜ようにします).",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "⚡",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -550,9 +514,8 @@
       "lessonNumber": 37,
       "title": "37-Dars: 受身動詞 (Majhul nisbat: 〜られる) / 〜によって",
       "description": "Fe'lning majhul nisbati (Ukemi-kei: 〜られる), bevosita majhullik, noqulaylik/ziyon ko'rish majhulligi (Meiwaku ukemi) hamda ixtirochi/muallifni ko'rsatuvchi 〜によって.",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "⚡",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -565,9 +528,8 @@
       "lessonNumber": 38,
       "title": "38-Dars: 動詞の名詞化 (Fe'lning otlashishi: 〜のは / 〜のが / 〜のを)",
       "description": "Fe'l harakatini gapda otga aylantirish (Nominalizatsiya: 〜の), uning xususiyatlarini tavsiflash (〜のは〜です), qobiliyat va qiziqish (〜のが好きです) hamda unutish/bilish (〜のを忘れました/知っています).",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "⚡",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -580,9 +542,8 @@
       "lessonNumber": 39,
       "title": "39-Dars: 原因・理由 (Sabab-oqibat: 〜て / 〜で / 〜ので)",
       "description": "Hissiyotlar, tabiiy hodisalar va imkonsizlikning sababini ko'rsatish (〜て形 / 〜で), hamda xolis, muloyim sabab bildiruvchi 〜ので.",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "⚡",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -595,9 +556,8 @@
       "lessonNumber": 40,
       "title": "40-Dars: 疑問詞＋か / 〜かどうか / 〜てみます",
       "description": "Gap ichidagi so'roq (Koshma gap: 疑問詞＋か), ikkilanish va noma'lumlik (〜かどうか), hamda tajriba qilib ko'rish (〜てみます).",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "⚡",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -610,9 +570,8 @@
       "lessonNumber": 41,
       "title": "41-Dars: 授受動詞 (いただきます・くださいます・やります / 〜ていただきます)",
       "description": "Hurmat darajasiga ko'ra berish-olish fe'llari (いただきます, くださいます, やります), xizmat ko'rsatish (〜ていただきます) hamda o'ta muloyim iltimos (〜てくださいませんか).",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "🌟",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -625,9 +584,8 @@
       "lessonNumber": 42,
       "title": "42-Dars: 目的 (〜ために / 〜のに使います)",
       "description": "Kuchli irodaviy maqsad (〜ために) hamda asbob-uskuna yoki buyumlarning nima maqsadga mo'ljallanganligini ifodalovchi 〜のに.",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "🌟",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -640,9 +598,8 @@
       "lessonNumber": 43,
       "title": "43-Dars: 様態 (〜そうです: ...ko'rinadi, tuyuladi) / 行動の移動 (〜てきます)",
       "description": "Tashqi ko'rinish va alomatlarga qarab xulosa chiqarish (〜そうです: mazalidek ko'rinadi, yog'adiganga o'xshaydi) hamda biror joyga borib, ishni bajarib qaytish (〜てきます).",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "🌟",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -655,9 +612,8 @@
       "lessonNumber": 44,
       "title": "44-Dars: 過度 (〜すぎます) / 難易 (〜やすい / 〜にくい) / 変化 (〜くします)",
       "description": "Me'yordan ortiq darajada oshib ketish (〜すぎます), ish-harakatning oson yoki qiyinligi (〜やすい / 〜にくい), hamda subyektning xohishi bilan holatni o'zgartirish (〜くします / 〜にします).",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "🌟",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -670,9 +626,8 @@
       "lessonNumber": 45,
       "title": "45-Dars: 条件・仮定 (〜場合は) / 逆接 (〜のに: holbuki, kutilganga zid)",
       "description": "Muayyan vaziyat yoki hodisa ro'y bergan taqdirda (〜場合は), hamda kutilgan natijaga zid ravishda yuz bergan norozilik va taajjub (〜のに).",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "🌟",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -685,9 +640,8 @@
       "lessonNumber": 46,
       "title": "46-Dars: 局面 (〜ところです: Boshlanish/jarayon/yakun) / 直後 (〜ばかりです)",
       "description": "Harakatning ayni qaysi pallasida ekanligini bildirish (〜辞書形/ている/た形 ところです), hozirgina sodir bo'lgan voqea (〜ばかりです), hamda qat'iy ishonch bilan taxmin (〜はずです).",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "⛩️",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -700,9 +654,8 @@
       "lessonNumber": 47,
       "title": "47-Dars: 伝聞 (〜そうです: Eshitishimcha) / 推量 (〜ようです: Ko'rinishidan)",
       "description": "Boshqalardan yoki ommaviy axborot vositalaridan eshitilgan xabarni yetkazish (〜そうです - Denbun) hamda his-tuyg'u va alomatlarga asoslangan xulosa (〜ようです).",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "⛩️",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -715,9 +668,8 @@
       "lessonNumber": 48,
       "title": "48-Dars: 使役動詞 (Majburlash yoki ijozat berish: 〜させる) / 〜させていただけませんか",
       "description": "Fe'lning majburlash yoki ijozat berish nisbati (Shieki-kei: 〜せる / 〜させる) hamda o'ziga ruxsat so'rashning eng ehtiromli shakli (〜させていただけませんか).",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "⛩️",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -730,9 +682,8 @@
       "lessonNumber": 49,
       "title": "49-Dars: 尊敬語 (Sonkeigo: Hurmat shakli) / お〜になります / 特殊尊敬語",
       "description": "Yuqori martabali shaxslar, mijozlar va kattalarning harakatini ulug'lash (Sonkeigo), maxsus hurmat fe'llari (いらっしゃる, 召し上がる, おっしゃる) va taklif shakli (お〜ください).",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "⛩️",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -745,9 +696,8 @@
       "lessonNumber": 50,
       "title": "50-Dars: 謙譲語 (Kenjougo: Kamtarlik shakli) / お〜します / 特殊謙譲語",
       "description": "O'z harakatini kamtar tutib, suhbatdoshni e'zozlash (Kenjougo), maxsus kamtarlik fe'llari (参る, 申す, いたす, 拝見する, 存じる) hamda o'ta xushmuomala Teineigo (ございます).",
-      "estimatedDurationMinutes": 22,
+      "estimatedDurationMinutes": 30,
       "icon": "⛩️",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -762,7 +712,6 @@
       "description": "Majhul nisbat (Ukemi) va yapon tiliga xos \"zararlangan/noqulaylik his qilgan majhul\" shakli.",
       "estimatedDurationMinutes": 20,
       "icon": "🛡️",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -777,7 +726,6 @@
       "description": "Orttirma nisbat (Shieki): birovni qilishga majburlash yoki ruxsat berish.",
       "estimatedDurationMinutes": 20,
       "icon": "⚙️",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -792,7 +740,6 @@
       "description": "Majburan qildirildi: xohlamasa ham biror ishni qilishga majbur bo'lish (Shieki-Ukemi).",
       "estimatedDurationMinutes": 20,
       "icon": "⛓️",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -807,7 +754,6 @@
       "description": "Oldindan tayyorlab qo'yish (Te oku) va kimdir tomonidan bajarilgan tayyor holat (Te aru).",
       "estimatedDurationMinutes": 20,
       "icon": "📦",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -822,7 +768,6 @@
       "description": "Tugallanganlik va afsuslanish ma'nolari (Te shimau / Chatte).",
       "estimatedDurationMinutes": 20,
       "icon": "😔",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -837,7 +782,6 @@
       "description": "Shaxsiy qat'iy qaror (koto ni suru) va tashqi qaror/qoida (koto ni naru).",
       "estimatedDurationMinutes": 20,
       "icon": "⚖️",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -852,7 +796,6 @@
       "description": "Harakat qilishga tirishish (you ni suru) va maqsad ergash gap (you ni).",
       "estimatedDurationMinutes": 20,
       "icon": "🎯",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -867,7 +810,6 @@
       "description": "Tashqi ko'rinishdan xulosa (sou da - o'xshaydi) va eshitilgan xabar (sou da - deyishyapti).",
       "estimatedDurationMinutes": 20,
       "icon": "👀",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -882,7 +824,6 @@
       "description": "Kutilganiga zid holat (warini - qaramay) va tanqidiy norozilik (kuseni - bo'la turib).",
       "estimatedDurationMinutes": 20,
       "icon": "⚡",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -897,7 +838,6 @@
       "description": "Yaponiyadagi zamonaviy ish madaniyati (Telework, Work-Life Balance) haqidagi N3 o'qish matni.",
       "estimatedDurationMinutes": 20,
       "icon": "💼",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -912,7 +852,6 @@
       "description": "Mijoz va ustoz harakatini ulug'lovchi hurmat tili (Sonkeigo: いらっしゃる, おっしゃる, なさる).",
       "estimatedDurationMinutes": 20,
       "icon": "👑",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -927,7 +866,6 @@
       "description": "O'z harakatini kamtar tutib suhbatdoshni yuksaltirish tili (Kenjougo: 参る, 申す, いたす, 拝見する).",
       "estimatedDurationMinutes": 20,
       "icon": "🙇",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -942,7 +880,6 @@
       "description": "Iqtisodiyot, jamiyat, ta'sir va munosabatlarni ifodalovchi N3 iyerogliflari.",
       "estimatedDurationMinutes": 20,
       "icon": "🈴",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -957,7 +894,6 @@
       "description": "Zilzila, to'fon, harorat o'zgarishi va tabiiy ofatlar kanjilari.",
       "estimatedDurationMinutes": 20,
       "icon": "🈴",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -972,7 +908,6 @@
       "description": "JLPT N3 eshitish imtihonining eng tezkor bo'limi: qisqa iboraga bir zumda to'g'ri javob qaytarish.",
       "estimatedDurationMinutes": 20,
       "icon": "⚡",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -987,7 +922,6 @@
       "description": "Taqqoslashdagi keskin farq (taishite) va bir narsaning ikki qarama-qarshi tomoni (hanmen).",
       "estimatedDurationMinutes": 20,
       "icon": "☯️",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1002,7 +936,6 @@
       "description": "Sabab va vosita (ni yotte - orqali/sababli) hamda ayblovchi salbiy sabab (sei de - dastidan).",
       "estimatedDurationMinutes": 20,
       "icon": "🌧️",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1017,7 +950,6 @@
       "description": "Faqatgina (dake - aniq chegara), faqat shu ishni qilaverish (bakari - salbiy ko'p takrorlanish).",
       "estimatedDurationMinutes": 20,
       "icon": "🔄",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1032,7 +964,6 @@
       "description": "O'rta hajmdagi tahliliy matnlarni o'qib muallifning asosiy xulosasini topish.",
       "estimatedDurationMinutes": 20,
       "icon": "📖",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1047,7 +978,6 @@
       "description": "Mantiqiy ishonch (hazu da - bo'lishi kerak), tabiiy xulosa (wake da - shunday ekanda), axloqiy burch (beki da).",
       "estimatedDurationMinutes": 20,
       "icon": "💡",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1062,7 +992,6 @@
       "description": "Fan, texnika, ixtiro va tadqiqotlarni ifodalovchi N3 iyerogliflari.",
       "estimatedDurationMinutes": 20,
       "icon": "🔬",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1077,7 +1006,6 @@
       "description": "Tug'g'ular, asabiylashish, murakkablik va oddiylik iyerogliflari.",
       "estimatedDurationMinutes": 20,
       "icon": "🈴",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1092,7 +1020,6 @@
       "description": "To'rtta yapon shart ergash shaklining aniq chegaralari va nozik farqlari.",
       "estimatedDurationMinutes": 20,
       "icon": "🔀",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1107,7 +1034,6 @@
       "description": "Insholar, ilmiy maqolalar va gazetalarning rasmiy yozma tili (Da / Dearu).",
       "estimatedDurationMinutes": 20,
       "icon": "✍️",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1122,7 +1048,6 @@
       "description": "Ikki xil muallifning bir mavzudagi fikrlarini qiyosiy tahlil qilish.",
       "estimatedDurationMinutes": 20,
       "icon": "📑",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1137,7 +1062,6 @@
       "description": "Eshitishning umumiy mazmun tushunish qismi: batafsil raqamlar emas, balki asosiy mavzuni anglash.",
       "estimatedDurationMinutes": 20,
       "icon": "🎧",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1152,7 +1076,6 @@
       "description": "JLPT ning yulduzcha (*) grammatik topshiriqlarini mantiqiy sintaksis orqali yechish texnikasi.",
       "estimatedDurationMinutes": 20,
       "icon": "⭐",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1167,7 +1090,6 @@
       "description": "Yapon kompaniyasida telefon orqali muloqot va uchrashuvlarni tasdiqlash Keigosi.",
       "estimatedDurationMinutes": 20,
       "icon": "📞",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1182,7 +1104,6 @@
       "description": "JLPT N3 imtihonining to'liq formatli va vaqt chegaralangan simulatsiya testi.",
       "estimatedDurationMinutes": 21,
       "icon": "📝",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1197,7 +1118,6 @@
       "description": "JLPT N3 darajasini to'liq yakunlash va N2 darajasiga o'tish rasmiy sertifikatsiya sinovi.",
       "estimatedDurationMinutes": 22,
       "icon": "🏆",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1212,7 +1132,6 @@
       "description": "Boshqa biror hodisa o'zgargani sari ikkinchi hodisaning parallel o'zgarishi.",
       "estimatedDurationMinutes": 16,
       "icon": "📈",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1227,7 +1146,6 @@
       "description": "Talab va ehtiyojga mos holda (ni oujite), qoida va reja bo'yicha (ni sotte), dalilga asoslanib (ni motozuite).",
       "estimatedDurationMinutes": 16,
       "icon": "📐",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1242,7 +1160,6 @@
       "description": "Rad etish muloyimligi (kaneru - qila olmayman) va xavfli ehtimol (kanenai - bo'lib qolishi mumkin!).",
       "estimatedDurationMinutes": 16,
       "icon": "⚠️",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1257,7 +1174,6 @@
       "description": "Mutlaqo ilojsiz ekanini qat'iy ta'kidlash (kkonai) va tuyg'u belgisi (ge: sabishige, ureshige).",
       "estimatedDurationMinutes": 16,
       "icon": "❌",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1272,7 +1188,6 @@
       "description": "Sun'iy intellekt, avtomatlashtirish va insoniyat axloqi haqidagi gazeta tahririyat maqolasi tahlili.",
       "estimatedDurationMinutes": 18,
       "icon": "🤖",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1287,7 +1202,6 @@
       "description": "Rasmiy korporativ yozishmalar va diplomatik ehtirom formulalari.",
       "estimatedDurationMinutes": 16,
       "icon": "💼",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1302,7 +1216,6 @@
       "description": "Bank krediti, bozor konyunkturasi, shartnomalar va huquqiy javobgarlik kanjilari.",
       "estimatedDurationMinutes": 16,
       "icon": "🈴",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1317,7 +1230,6 @@
       "description": "Majburlikdan qilishdan o'zga chora yo'qligi (zaru o enai) va axloqan/vaziyat sababli qila olmaslik (wake ni wa ikanai).",
       "estimatedDurationMinutes": 16,
       "icon": "⚖️",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1332,7 +1244,6 @@
       "description": "N2 課題理解 va 統合理解: audio orqali vazifa, shartlar va keyingi harakatni aniqlash.",
       "estimatedDurationMinutes": 16,
       "icon": "🎧",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1347,7 +1258,6 @@
       "description": "1–10-darslarda o‘rganilgan N2 grammatikasi, biznes yapon tili, kanji va tinglab tushunish strategiyalarini mustahkamlash.",
       "estimatedDurationMinutes": 20,
       "icon": "✅",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1362,7 +1272,6 @@
       "description": "Cheklov va kamtarinlik ifodasi: \"Shunchaki ...dan iborat, xolos\".",
       "estimatedDurationMinutes": 16,
       "icon": "📌",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1377,7 +1286,6 @@
       "description": "Muammo yoki munozara atrofida bahslashish: \"...atrofida / ...xususida\".",
       "estimatedDurationMinutes": 16,
       "icon": "💬",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1392,7 +1300,6 @@
       "description": "Rasmiy tadbir yoki muhim hodisa munosabati bilan: \"...munosabati bilan / ...olida\".",
       "estimatedDurationMinutes": 16,
       "icon": "🎉",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1407,7 +1314,6 @@
       "description": "Kutilgan natijaga zid holatni rasmiy va yozma uslubda ifodalash: “... bo‘lsa-da / shunday deyilsa-da”.",
       "estimatedDurationMinutes": 16,
       "icon": "⚖️",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1422,7 +1328,6 @@
       "description": "Qat'iy xulosa: \"...dan boshqa narsa emas / aynan ...dir\".",
       "estimatedDurationMinutes": 16,
       "icon": "🎯",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1437,7 +1342,6 @@
       "description": "Ekologiya va texnologiyaga oid N2 uzun matnlarni tahlil qilish va muallif g'oyasini topish.",
       "estimatedDurationMinutes": 18,
       "icon": "🌱",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1452,7 +1356,6 @@
       "description": "Tadbir yoki loyiha oldidan tayyorgarlik ko'rish: \"...dan oldin / ...ga tayyorgarlik ko'rib\".",
       "estimatedDurationMinutes": 16,
       "icon": "📅",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1467,7 +1370,6 @@
       "description": "Katta o'zgarishga turtki bo'lgan hodisa: \"...munosabati bilan / ...turtki bo'lib\".",
       "estimatedDurationMinutes": 16,
       "icon": "🚀",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1482,7 +1384,6 @@
       "description": "Hissiyot va tilaklarni bag'ishlash: \"...mehr bilan / ...tilaklar bilan\".",
       "estimatedDurationMinutes": 16,
       "icon": "💖",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1497,7 +1398,6 @@
       "description": "JLPT N2 即時応答・ポイント理解・概要理解 bo‘yicha real audio trekli mashqlar.",
       "estimatedDurationMinutes": 18,
       "icon": "🎧",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1512,7 +1412,6 @@
       "description": "Ish va biznesga oid N2 kanjilar (職, 企, 業, 採).",
       "estimatedDurationMinutes": 16,
       "icon": "🏢",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1527,7 +1426,6 @@
       "description": "Qonunchilik va davlat boshqaruvi kanjilari (法, 律, 規, 政).",
       "estimatedDurationMinutes": 16,
       "icon": "🏛️",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1542,7 +1440,6 @@
       "description": "Qo‘shma fe’llar: harakatni qaytadan bajarish, yakunlash, oxirigacha bajarish va qiyinchilikka qaramay davom ettirish.",
       "estimatedDurationMinutes": 16,
       "icon": "🔄",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1557,7 +1454,6 @@
       "description": "Tavsifiy taqlid so'zlar: \"Sukkiri\", \"Giri-giri\", \"Waku-waku\", \"Ira-ira\".",
       "estimatedDurationMinutes": 16,
       "icon": "✨",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1572,7 +1468,6 @@
       "description": "Sinonimlar va ma'nodosh N2 so'zlarni moslashtirish mashg'uloti.",
       "estimatedDurationMinutes": 16,
       "icon": "📚",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1587,7 +1482,6 @@
       "description": "Hurmat va kamtarinlik iboralarining biznes darajasidagi to'liq sinovidan o'tish.",
       "estimatedDurationMinutes": 18,
       "icon": "🙇",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1602,7 +1496,6 @@
       "description": "JLPT N2 darajasidagi barcha 50+ grammatik qoidalarni aralash test orqali tekshirish.",
       "estimatedDurationMinutes": 18,
       "icon": "📝",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1617,7 +1510,6 @@
       "description": "JLPT N2 \"Jouhou Kensaku\" — E'lonlar, jadval va hujjatlardan tezkor ma'lumot qidirish.",
       "estimatedDurationMinutes": 18,
       "icon": "🔍",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1632,7 +1524,6 @@
       "description": "JLPT N2 bo‘limlari bo‘yicha qisqa formatdagi integratsiyalashgan sinov va vaqt boshqaruvi mashqi.",
       "estimatedDurationMinutes": 20,
       "icon": "📊",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1647,7 +1538,6 @@
       "description": "N2 kursi bo‘yicha yakuniy ichki baholash va N1 materiallariga tayyorlikni tekshirish.",
       "estimatedDurationMinutes": 20,
       "icon": "🏆",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1662,7 +1552,6 @@
       "description": "Mumtoz yapon tili grammatikasining oliy ifodasi: qanday holat bo'lishidan qat'i nazar (De are / Dearou to).",
       "estimatedDurationMinutes": 18,
       "icon": "📜",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1677,7 +1566,6 @@
       "description": "Sharafli maqomga loyiqlik (tarumono - mavqeiga xos) va mutlaqo yarashmaydigan xatti-harakat (majiki).",
       "estimatedDurationMinutes": 18,
       "icon": "⚖️",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1692,7 +1580,6 @@
       "description": "Faqat shu narsaga xos yagona fazilat (naradehawa) va undan o'zga muqobil yo'qligi (o oite hoka ni nai).",
       "estimatedDurationMinutes": 18,
       "icon": "💎",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1707,7 +1594,6 @@
       "description": "Mutlaqo qamrab olganlik (zukume - faqat shunday hodisalar), kirlanganlik (mamire - qonga/loyga belanish), tartibsizlik (darake).",
       "estimatedDurationMinutes": 18,
       "icon": "✨",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1722,7 +1608,6 @@
       "description": "Til falsafasi, Vitgenshteyn va strukturalizm bo'yicha yapon tilidagi chuqur ilmiy traktat mutolaasi.",
       "estimatedDurationMinutes": 20,
       "icon": "🏛️",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1737,7 +1622,6 @@
       "description": "Tafakkurdagi kelishmovchilik, uzilish, noaniqlik va ziddiyatlarni ifodalovchi N1 iyerogliflari.",
       "estimatedDurationMinutes": 18,
       "icon": "🈴",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1752,7 +1636,6 @@
       "description": "Davlat xavfsizligi, chuqur xavotir, zaiflik, gegemoniya va yashirish kanjilari.",
       "estimatedDurationMinutes": 18,
       "icon": "🈴",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1767,7 +1650,6 @@
       "description": "Universitet professori ma'ruzasidagi ko'p o'lchovli ilmiy sintezni to'liq tushunish.",
       "estimatedDurationMinutes": 18,
       "icon": "🎓",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1782,7 +1664,6 @@
       "description": "JLPT N1 oliy darajali to'liq vaqtli imtihon sinovi va xatolar ustida ishlash.",
       "estimatedDurationMinutes": 20,
       "icon": "📝",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1797,7 +1678,6 @@
       "description": "Yapon tili bo'yicha dunyo miqyosidagi eng oliy sertifikatlash bitiruv imtihoni (JLPT N1 Grand Pinnacle).",
       "estimatedDurationMinutes": 20,
       "icon": "👑",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1812,7 +1692,6 @@
       "description": "Burch va mas'uliyat: \"Ma'lum oliy maqom egasi sifatida...\".",
       "estimatedDurationMinutes": 18,
       "icon": "👑",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1827,7 +1706,6 @@
       "description": "Chegara va yakuniy bosqich: \"...darajasigacha yetib borish\".",
       "estimatedDurationMinutes": 18,
       "icon": "📍",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1842,7 +1720,6 @@
       "description": "Vaziyat taqozo etgan noiloj majburiyat: \"...majburiyatida qolmoq\".",
       "estimatedDurationMinutes": 18,
       "icon": "⚠️",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1857,7 +1734,6 @@
       "description": "Vaqt bo'yicha ketma-ket dalahol sodir bo'lgan shiddatli harakat: \"...bahamanoz / ...bilan birga\".",
       "estimatedDurationMinutes": 18,
       "icon": "⚡",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1872,7 +1748,6 @@
       "description": "Ahloqiy va kasbiy nuqtai nazardan aslo yo'l qo'yib bo'lmaydigan harakat.",
       "estimatedDurationMinutes": 18,
       "icon": "🛑",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1887,7 +1762,6 @@
       "description": "Falsafiy va sotsiologik murakkab N1 matnlarini chuqur tahlil qilish.",
       "estimatedDurationMinutes": 20,
       "icon": "📖",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1902,7 +1776,6 @@
       "description": "Yuksak maqsad yo'lida harakat qilish: \"...maqsadida / ...ni niyat qilib\".",
       "estimatedDurationMinutes": 18,
       "icon": "🎯",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1917,7 +1790,6 @@
       "description": "Tengsiz va yagona ekanligini ta'kidlash: \"...dan bo'lak / ...dan o'zga yo'q\".",
       "estimatedDurationMinutes": 18,
       "icon": "🌟",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1932,7 +1804,6 @@
       "description": "Juda yuqori darajadagi holat yoki hissiyot: \"O'ta ... / Cheksiz ...\".",
       "estimatedDurationMinutes": 18,
       "icon": "🌋",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1947,7 +1818,6 @@
       "description": "JLPT N1 Chokkai tinglab tushunish: Murakkab bir nechta spikerlar bahsi va muallifning yashirin g'oyasi.",
       "estimatedDurationMinutes": 20,
       "icon": "🎧",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1962,7 +1832,6 @@
       "description": "JLPT N1 ning 2000 ta kanji bazasidagi eng murakkab akademik va adabiy kanjilar.",
       "estimatedDurationMinutes": 20,
       "icon": "✒️",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1977,7 +1846,6 @@
       "description": "4 ta kanjidan iborat yapon klassik idiomalar: \"Ichi-go ichi-e\", \"Shin-ro ku-kurou\", \"Ki-ten ret-tsu\".",
       "estimatedDurationMinutes": 20,
       "icon": "🀄",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -1992,7 +1860,6 @@
       "description": "N1 darajasidagi barcha 100+ grammatik qoidalarning kompleks sinovi.",
       "estimatedDurationMinutes": 20,
       "icon": "📚",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -2007,7 +1874,6 @@
       "description": "JLPT N1 Rasmiy Imtihonining to'liq simulyatsiyasi va baholanishi.",
       "estimatedDurationMinutes": 22,
       "icon": "📊",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -2022,7 +1888,6 @@
       "description": "JLPT N1 Cho'qqisining to'liq va rasmiy oliy sertifikatlash va bitiruv imtihoni.",
       "estimatedDurationMinutes": 25,
       "icon": "👑",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -2037,7 +1902,6 @@
       "description": "Sun'iy intellekt, axborot asri etikasi va inson ongi haqidagi ilmiy-falsafiy maqolalar tahlili.",
       "estimatedDurationMinutes": 22,
       "icon": "🤖",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -2052,7 +1916,6 @@
       "description": "N1 darajasining muhim grammatik konstruksiyalari: chalg'ish oqibatlari va katta tadbirlarning boshlanishi.",
       "estimatedDurationMinutes": 20,
       "icon": "⚡",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -2067,7 +1930,6 @@
       "description": "Ichki his-tuyg'ularning to'lib-toshishi: to'xtovsiz samimiy tilaklar va o'zini tiyib bo'lmas tuyg'ular.",
       "estimatedDurationMinutes": 20,
       "icon": "💖",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -2082,7 +1944,6 @@
       "description": "Murakkab reklamalar, shartnomalar, biznes hisobotlari va qiyosiy matnlarni tezkor skanerlash strategiyalari.",
       "estimatedDurationMinutes": 22,
       "icon": "⚡",
-      "skill": "grammar",
       "steps": []
     },
     {
@@ -2097,759 +1958,6 @@
       "description": "kaiwa.live platformasining eng oliy bosqichi: N1 sertifikatsiyasi va yapon tili professional mutaxassis darajasi.",
       "estimatedDurationMinutes": 25,
       "icon": "👑",
-      "skill": "grammar",
-      "steps": []
-    }
-  ],
-  "legacyLessons": [
-    {
-      "id": "ja-n5-u1-l1",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u1",
-      "unitTitle": "Unit 1: Writing Systems & Greetings",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 1,
-      "title": "Hiragana Mastery: あ・い・う・え・お & Greetings",
-      "description": "Xiragana alifbosining asosiy unlilari va kundalik salomlashish iboralari.",
-      "estimatedDurationMinutes": 12,
-      "icon": "🎌",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n5-u1-l2",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u1",
-      "unitTitle": "Unit 1: Writing Systems & Greetings",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 2,
-      "title": "Katakana Essentials & Common Loanwords",
-      "description": "Katakana alifbosi va chet tilidan kirib kelgan so'zlar (Gairaigo).",
-      "estimatedDurationMinutes": 12,
-      "icon": "🔤",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n5-u1-l3",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u1",
-      "unitTitle": "Unit 1: Writing Systems & Greetings",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 3,
-      "title": "Basic Grammar: Noun + です / ではありません (Affirmative & Negative)",
-      "description": "Ot kesim gaplar: ~dir (desu) va ~emasdir (dewa arimasen).",
-      "estimatedDurationMinutes": 12,
-      "icon": "📋",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n5-u1-l4",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u1",
-      "unitTitle": "Unit 1: Writing Systems & Greetings",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 4,
-      "title": "Demonstratives: これ, それ, あれ, どれ (Ko-So-A-Do)",
-      "description": "Yaqin, o'rtacha va uzoqdagi buyumlarni ko'rsatish olmoshlari.",
-      "estimatedDurationMinutes": 12,
-      "icon": "👉",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n5-u1-l5",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u1",
-      "unitTitle": "Unit 1: Writing Systems & Greetings",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 5,
-      "title": "Possessive Particle: の (No) & Self Introductions (自己紹介)",
-      "description": "Egalik va tegishlilik yuklamasi (No) hamda o'zini tanishtirish.",
-      "estimatedDurationMinutes": 14,
-      "icon": "🤝",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n5-u2-l1",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u2",
-      "unitTitle": "Unit 2: Locations & Movement",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 6,
-      "title": "Places & Direction Particles: ここ, そこ, あそこ & へ (E)",
-      "description": "Joy nomlari va harakat yo'nalishi yuklamasi (へ - e talaffuz qilinadi).",
-      "estimatedDurationMinutes": 12,
-      "icon": "📍",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n5-u2-l2",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u2",
-      "unitTitle": "Unit 2: Locations & Movement",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 7,
-      "title": "Verbs of Movement: 行きます, 来ます, 帰ります & Transportation (で)",
-      "description": "Bormoq, kelmoq, qaytmoq fe'llari va transport vositasi yuklamasi (de).",
-      "estimatedDurationMinutes": 12,
-      "icon": "🚆",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n5-u2-l3",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u2",
-      "unitTitle": "Unit 2: Locations & Movement",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 8,
-      "title": "Action Object Particle: を (O) & Basic Transitive Verbs",
-      "description": "To'ldiruvchi yuklamasi (を - o) va asosiy o'timli fe'llar (yemoq, ichmoq, ko'rmoq).",
-      "estimatedDurationMinutes": 14,
-      "icon": "🍱",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n5-u2-l4",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u2",
-      "unitTitle": "Unit 2: Locations & Movement",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 9,
-      "title": "Action Location: で (De) vs Existence Location: に (Ni)",
-      "description": "Harakat sodir bo'ladigan joy (de) va mavjudlik joylashuvi (ni) farqlari.",
-      "estimatedDurationMinutes": 14,
-      "icon": "⚖️",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n5-u2-l5",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u2",
-      "unitTitle": "Unit 2: Locations & Movement",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 10,
-      "title": "Giving & Asking for Assistance: Invitation Form (〜ませんか / 〜ましょう)",
-      "description": "Birgalikda biror ish qilishga taklif bildirish va rozi bo'lish.",
-      "estimatedDurationMinutes": 12,
-      "icon": "🍵",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n5-u3-l1",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u3",
-      "unitTitle": "Unit 3: Time, Days & Counting",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 11,
-      "title": "Telling Time (時 / 分) & Days of the Week (曜日)",
-      "description": "Soat va daqiqalarni aytish hamda hafta kunlari.",
-      "estimatedDurationMinutes": 14,
-      "icon": "⏰",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n5-u3-l2",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u3",
-      "unitTitle": "Unit 3: Time, Days & Counting",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 12,
-      "title": "Numbers (1-100,000), Money (円) & Prices (いくら)",
-      "description": "Sonlar, yapon iyenasi (円 - en) va narx so'rash.",
-      "estimatedDurationMinutes": 14,
-      "icon": "💴",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n5-u3-l3",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u3",
-      "unitTitle": "Unit 3: Time, Days & Counting",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 13,
-      "title": "Counters (人, 冊, 本, 枚, つ)",
-      "description": "Sanoq suffikslari: odamlar (nin), kitoblar (satsu), uzun buyumlar (hon), yupqa narsalar (mai), umumiy donalar (tsu).",
-      "estimatedDurationMinutes": 14,
-      "icon": "🔢",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n5-u3-l4",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u3",
-      "unitTitle": "Unit 3: Time, Days & Counting",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 14,
-      "title": "Past Tense of Verbs: 〜ました / 〜ませんでした",
-      "description": "Fe'llarning o'tgan zamon tasdiq va inkor shakllari.",
-      "estimatedDurationMinutes": 14,
-      "icon": "⏳",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n5-u3-l5",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u3",
-      "unitTitle": "Unit 3: Time, Days & Counting",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 15,
-      "title": "N5 Listening: Daily Conversations & Asking Directions",
-      "description": "Vokzalda va ko'chada yo'l so'rash, xarid qilish dialoglarini tinglab tushunish.",
-      "estimatedDurationMinutes": 14,
-      "icon": "🎧",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n5-u4-l1",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u4",
-      "unitTitle": "Unit 4: Adjectives & Existence",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 16,
-      "title": "I-Adjectives (い形容詞) Conjugation",
-      "description": "い-sifatlarning hozirgi va o'tgan zamon tasdiq va inkor turlanishi.",
-      "estimatedDurationMinutes": 14,
-      "icon": "🏷️",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n5-u4-l2",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u4",
-      "unitTitle": "Unit 4: Adjectives & Existence",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 17,
-      "title": "Na-Adjectives (な形容詞) & Noun Modification",
-      "description": "な-sifatlarning turlanishi va ot bilan birikishi (kirei na hana).",
-      "estimatedDurationMinutes": 14,
-      "icon": "🌸",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n5-u4-l3",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u4",
-      "unitTitle": "Unit 4: Adjectives & Existence",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 18,
-      "title": "Existence Verbs: あります (Inanimate) vs います (Animate)",
-      "description": "Jonsiz narsalar/o'simliklar (arimasu) va tirik jonivorlar/insonlar (imasu) mavjudligi.",
-      "estimatedDurationMinutes": 14,
-      "icon": "🐱",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n5-u4-l4",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u4",
-      "unitTitle": "Unit 4: Adjectives & Existence",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 19,
-      "title": "Desires: 〜が ほしい (Want Noun) & 〜たい (Want to do)",
-      "description": "Narsalarni xohlash (hoshii) va harakatni bajarishni istash (V-tai desu).",
-      "estimatedDurationMinutes": 14,
-      "icon": "⭐",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n5-u4-l5",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u4",
-      "unitTitle": "Unit 4: Adjectives & Existence",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 20,
-      "title": "N5 Reading: 田中さんの一日 (Tanaka's Daily Life)",
-      "description": "Tanaka sanning kun tartibi haqidagi N5 o'qish matni va tahlil.",
-      "estimatedDurationMinutes": 15,
-      "icon": "📖",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n5-u5-l1",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u5",
-      "unitTitle": "Unit 5: N5 Kanji & Capstone Mastery",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 21,
-      "title": "N5 Basic Kanji 1: Numbers & Nature (一, 二, 三, 日, 月, 木, 水, 火)",
-      "description": "N5 asosiy raqamlar va tabiat iyerogliflari.",
-      "estimatedDurationMinutes": 14,
-      "icon": "🈴",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n5-u5-l2",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u5",
-      "unitTitle": "Unit 5: N5 Kanji & Capstone Mastery",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 22,
-      "title": "N5 Basic Kanji 2: People, Directions & Sizes (人, 男, 女, 大, 小, 中, 上, 下)",
-      "description": "Odamlar, o'lchamlar va yo'nalish iyerogliflari.",
-      "estimatedDurationMinutes": 14,
-      "icon": "🈴",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n5-u5-l3",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u5",
-      "unitTitle": "Unit 5: N5 Kanji & Capstone Mastery",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 23,
-      "title": "N5 Basic Kanji 3: School, Study & Places (学, 校, 先, 生, 本, 車, 電)",
-      "description": "Ta'lim, maktab va transport iyerogliflari.",
-      "estimatedDurationMinutes": 14,
-      "icon": "🈴",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n5-u5-l4",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u5",
-      "unitTitle": "Unit 5: N5 Kanji & Capstone Mastery",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 24,
-      "title": "JLPT N5 Mini-Mock Exam: Grammar & Reading",
-      "description": "JLPT N5 imtihoni formati bo'yicha grammatika va o'qish sinov testi.",
-      "estimatedDurationMinutes": 16,
-      "icon": "📝",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n5-u5-l5",
-      "courseId": "japanese-n5",
-      "unitId": "ja-n5-u5",
-      "unitTitle": "Unit 5: N5 Kanji & Capstone Mastery",
-      "language": "ja",
-      "level": "N5",
-      "lessonNumber": 25,
-      "title": "JLPT N5 Capstone Mastery & N4 Transition Assessment",
-      "description": "JLPT N5 darajasini to'liq yakunlash va N4 darajasiga o'tish imtihoni.",
-      "estimatedDurationMinutes": 18,
-      "icon": "🏆",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u1-l1",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u1",
-      "unitTitle": "Unit 1: Te-Form & Requests",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 1,
-      "title": "Te-Form (て形) Conjugation: Groups 1, 2, 3",
-      "description": "Fe'llarning て-shakliga o'tish qoidalari (Guruh 1, Guruh 2 va Guruh 3 fe'llari).",
-      "estimatedDurationMinutes": 16,
-      "icon": "🔄",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u1-l2",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u1",
-      "unitTitle": "Unit 1: Te-Form & Requests",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 2,
-      "title": "Polite Requests: 〜てください (Please do)",
-      "description": "Muloyim iltimos va ko'rsatmalar berish (〜te kudasai).",
-      "estimatedDurationMinutes": 14,
-      "icon": "🙏",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u1-l3",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u1",
-      "unitTitle": "Unit 1: Te-Form & Requests",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 3,
-      "title": "Permission (〜てもいいです) & Prohibition (〜てはいけません)",
-      "description": "Ruxsat so'rash (qilsam maylimi?) va qat'iy taqiq (qilish taqiqlanadi).",
-      "estimatedDurationMinutes": 14,
-      "icon": "🚫",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u1-l4",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u1",
-      "unitTitle": "Unit 1: Te-Form & Requests",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 4,
-      "title": "Continuous Action & State: 〜ている (Present Continuous & Resultant State)",
-      "description": "Hozir davom etayotgan harakat (shiteru) va natijaviy holat (kekkon shiteru, sunderu).",
-      "estimatedDurationMinutes": 15,
-      "icon": "🔄",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u1-l5",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u1",
-      "unitTitle": "Unit 1: Te-Form & Requests",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 5,
-      "title": "Sequential Actions: 〜てから (After doing) & 〜たあとで",
-      "description": "Ketma-ket harakatlar: bir ishni qilib bo'lgach (te kara) ikkinchisini qilish.",
-      "estimatedDurationMinutes": 14,
-      "icon": "⏭️",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u2-l1",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u2",
-      "unitTitle": "Unit 2: Nai-Form & Experience",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 6,
-      "title": "Nai-Form (ない形) & Negative Requests: 〜ないでください",
-      "description": "Fe'llarning oddiy inkor shakli (Nai-form) va \"... qilmang, iltimos\" (naide kudasai).",
-      "estimatedDurationMinutes": 14,
-      "icon": "⛔",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u2-l2",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u2",
-      "unitTitle": "Unit 2: Nai-Form & Experience",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 7,
-      "title": "Experience: 〜たことがある (Have done before)",
-      "description": "Hayotiy tajribani ifodalash: \"... qilganman / tajribam bor\" (Ta-form + koto ga aru).",
-      "estimatedDurationMinutes": 14,
-      "icon": "🌟",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u2-l3",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u2",
-      "unitTitle": "Unit 2: Nai-Form & Experience",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 8,
-      "title": "Comparison: 〜のほうが〜より & 〜の中で〜が一番",
-      "description": "Taqqoslama (A ga qaraganda B ko'proq...) va orttirma daraja (orasida eng...).",
-      "estimatedDurationMinutes": 14,
-      "icon": "⚖️",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u2-l4",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u2",
-      "unitTitle": "Unit 2: Nai-Form & Experience",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 9,
-      "title": "Obligation (〜なければならない) & Non-obligation (〜なくてもいい)",
-      "description": "Majburiyat (\"... qilish shart/kerak\") va majburiyat yo'qligi (\"... qilmasa ham mayli\").",
-      "estimatedDurationMinutes": 14,
-      "icon": "⚠️",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u2-l5",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u2",
-      "unitTitle": "Unit 2: Nai-Form & Experience",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 10,
-      "title": "N4 Reading: Short Public Notices & Information Retrieval",
-      "description": "E'lonlar, muzey qoidalari va jadvallarni o'qib kerakli ma'lumotni topish.",
-      "estimatedDurationMinutes": 15,
-      "icon": "📑",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u3-l1",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u3",
-      "unitTitle": "Unit 3: Potential & Giving/Receiving",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 11,
-      "title": "Potential Form: 〜ことができる vs 〜(ら)れる (Ability & Possibility)",
-      "description": "Imkoniyat shakli: bajara olmoq (dekimasu, taberareru, hanaseru).",
-      "estimatedDurationMinutes": 15,
-      "icon": "💪",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u3-l2",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u3",
-      "unitTitle": "Unit 3: Potential & Giving/Receiving",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 12,
-      "title": "Giving & Receiving: あげる, もらう, くれる (Yarimorai)",
-      "description": "Sovg'a va yaxshilik berish/olish munosabatlari (Ageru, Morau, Kureru).",
-      "estimatedDurationMinutes": 16,
-      "icon": "🎁",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u3-l3",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u3",
-      "unitTitle": "Unit 3: Potential & Giving/Receiving",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 13,
-      "title": "N4 Kanji 1: Daily Verbs & Actions (行, 来, 帰, 買, 見, 聞, 書, 読)",
-      "description": "N4 asosiy harakat fe'llarining kanjilari va birikmalari.",
-      "estimatedDurationMinutes": 14,
-      "icon": "🈴",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u3-l4",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u3",
-      "unitTitle": "Unit 3: Potential & Giving/Receiving",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 14,
-      "title": "N4 Kanji 2: Society, Time & Opposites (社, 会, 駅, 店, 多, 少, 高, 安, 新, 古)",
-      "description": "Jamiyat, joylar va sifatlarning qarama-qarshi juftliklari.",
-      "estimatedDurationMinutes": 14,
-      "icon": "🈴",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u3-l5",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u3",
-      "unitTitle": "Unit 3: Potential & Giving/Receiving",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 15,
-      "title": "N4 Listening: Transit Instructions & Public Announcements",
-      "description": "Poyezdlarni almashtirish (norikae) va jamoat transporti eshittirishlarini tushunish.",
-      "estimatedDurationMinutes": 15,
-      "icon": "🚆",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u4-l1",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u4",
-      "unitTitle": "Unit 4: Intentions & Reasoning",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 16,
-      "title": "Intention & Plans: 〜つもりです & 〜予定です",
-      "description": "Rejalar va qat'iy niyatlar (\"... qilish niyatidaman / rejalashtirganman\").",
-      "estimatedDurationMinutes": 14,
-      "icon": "🎯",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u4-l2",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u4",
-      "unitTitle": "Unit 4: Intentions & Reasoning",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 17,
-      "title": "Volitional Form (意向形): 〜(よ)う (Let's do / Intent)",
-      "description": "Fe'lning xohish-niyat shakli (Ikoukei): birgalikda qilish va niyat qilish.",
-      "estimatedDurationMinutes": 14,
-      "icon": "🔥",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u4-l3",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u4",
-      "unitTitle": "Unit 4: Intentions & Reasoning",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 18,
-      "title": "Reason & Cause: 〜から vs 〜ので (Subjective vs Objective Reason)",
-      "description": "Sabab ko'rsatish: shaxsiy fikr (kara) va muloyim ob'ektiv sabab (node).",
-      "estimatedDurationMinutes": 14,
-      "icon": "💡",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u4-l4",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u4",
-      "unitTitle": "Unit 4: Intentions & Reasoning",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 19,
-      "title": "N4 Conditionals: 〜たら (When / If) & 〜ば",
-      "description": "Shart ergash gaplar: \"... bo'lsa / qilgandan so'ng\" (tara) va umumiy qoida (ba).",
-      "estimatedDurationMinutes": 15,
-      "icon": "🔀",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u4-l5",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u4",
-      "unitTitle": "Unit 4: Intentions & Reasoning",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 20,
-      "title": "N4 Reading: Letters & Everyday Communications",
-      "description": "Do'stlar va o'qituvchilarga yozilgan xatlar va taklifnomalarni o'qib tushunish.",
-      "estimatedDurationMinutes": 15,
-      "icon": "✉️",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u5-l1",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u5",
-      "unitTitle": "Unit 5: N4 Capstone Mastery",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 21,
-      "title": "N4 Grammar Review: Particle Combinations (には, では, とも, からの)",
-      "description": "Murakkab qo'shma yuklamalar va ularning nozik ma'nolari.",
-      "estimatedDurationMinutes": 15,
-      "icon": "🧩",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u5-l2",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u5",
-      "unitTitle": "Unit 5: N4 Capstone Mastery",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 22,
-      "title": "N4 Health & Hospital Situations (Describing Symptoms)",
-      "description": "Shifoxonada kasallik alomatlarini tushuntirish va dori qabul qilish.",
-      "estimatedDurationMinutes": 14,
-      "icon": "🩺",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u5-l3",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u5",
-      "unitTitle": "Unit 5: N4 Capstone Mastery",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 23,
-      "title": "N4 Choukai: Task-Based Listening & Problem Solving",
-      "description": "Vazifaga asoslangan eshitish topshiriqlari: qahramon endi nima qilishi kerakligini aniqlash.",
-      "estimatedDurationMinutes": 15,
-      "icon": "🎧",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u5-l4",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u5",
-      "unitTitle": "Unit 5: N4 Capstone Mastery",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 24,
-      "title": "JLPT N4 Mock Practice: Grammar & Dokkai",
-      "description": "JLPT N4 imtihonining to'liq grammatik va o'qish sinov mashg'uloti.",
-      "estimatedDurationMinutes": 16,
-      "icon": "📝",
-      "skill": "grammar",
-      "steps": []
-    },
-    {
-      "id": "ja-n4-u5-l5",
-      "courseId": "japanese-n4",
-      "unitId": "ja-n4-u5",
-      "unitTitle": "Unit 5: N4 Capstone Mastery",
-      "language": "ja",
-      "level": "N4",
-      "lessonNumber": 25,
-      "title": "JLPT N4 Capstone Mastery & N3 Advancement Assessment",
-      "description": "JLPT N4 darajasini to'liq tasdiqlash va N3 o'rta darajaga o'tish sinovi.",
-      "estimatedDurationMinutes": 18,
-      "icon": "🏆",
-      "skill": "grammar",
       "steps": []
     }
   ]

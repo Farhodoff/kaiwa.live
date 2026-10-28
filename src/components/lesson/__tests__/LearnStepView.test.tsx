@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { LearnStepView } from '../LearnStepView';
-import { LearnContent } from '../../../types/lesson';
+import { LearnContent, Lesson } from '../../../types/lesson';
 import * as audioTts from '../../../utils/audioTts';
 
 vi.mock('../../../context/StudyPlannerContext', () => ({
@@ -65,6 +65,28 @@ describe('LearnStepView Component with Dialogue Support', () => {
         },
       ],
     },
+  };
+
+  const mockLesson: Lesson = {
+    id: 'ja-minna-l1',
+    courseId: 'japanese-n5',
+    unitId: 'ja-minna-u1',
+    unitTitle: 'Unit 1',
+    language: 'ja',
+    level: 'N5',
+    lessonNumber: 1,
+    title: 'Tanishuv',
+    description: 'Test lesson',
+    estimatedDurationMinutes: 10,
+    steps: [
+      {
+        id: 'ja-minna-l1-s1',
+        title: 'Learn',
+        type: 'learn',
+        estimatedMinutes: 10,
+        learnData: mockContent,
+      },
+    ],
   };
 
   it('renders lesson headers, key points, vocab and grammar', () => {
@@ -139,6 +161,18 @@ describe('LearnStepView Component with Dialogue Support', () => {
 
     expect(screen.getByText("📚 Yangi So'zlar")).toBeInTheDocument();
     expect(screen.queryByText('💬 Amaliy Dialog (Kaiwa)')).not.toBeInTheDocument();
+  });
+
+  it('renders lesson kanji and records review progress', () => {
+    render(
+      <LearnStepView content={mockContent} language="ja" lesson={mockLesson} userId="test-user" />,
+    );
+
+    expect(screen.getByRole('button', { name: /Kanji \(2\)/i })).toBeInTheDocument();
+    expect(screen.getByText('学')).toBeInTheDocument();
+
+    fireEvent.click(screen.getAllByRole('button', { name: 'Bilaman' })[0]);
+    expect(screen.getByText('1/1 to‘g‘ri')).toBeInTheDocument();
   });
 
   it('renders authentic studio CD audio player when audioUrl is present', async () => {

@@ -9,7 +9,7 @@
     "lessonNumber": 26,
     "title": "26-Dars: 〜んです / 〜んですが (Izoh, sabab va iltimos bildirish)",
     "description": "Og'zaki nutqda sabab, vaziyat va izoh berishda qo'llaniladigan 〜んです strukturasi, muloyim iltimos (〜ていただけませんか) va maslahat so'rash (〜たらいいですか).",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "🌿",
     "steps": [
       {
@@ -633,7 +633,7 @@
     "lessonNumber": 27,
     "title": "27-Dars: 可能動詞 (Qobiliyat va imkoniyat fe'llari: 〜られる / 〜れる)",
     "description": "Fe'llarning imkoniyat/qobiliyat shakli (Kanou-doushi), obyektga 'が' qo'shimchasi, 見える va 聞こえる ning farqi hamda 〜しか〜ない cheklovi.",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "🌿",
     "steps": [
       {
@@ -1215,7 +1215,7 @@
     "lessonNumber": 28,
     "title": "28-Dars: 〜ながら / 〜ています (Odat) / 〜し、〜し (Sabablarni sanash)",
     "description": "Bir vaqtning o'zida ikkita ishni bajarish (〜ながら), doimiy takrorlanuvchi odat va faoliyat (〜ています), hamda bir nechta sabab va sifatlarni biriktirish (〜し、〜し).",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "🌿",
     "steps": [
       {
@@ -1781,7 +1781,7 @@
     "lessonNumber": 29,
     "title": "29-Dars: 自動詞・他動詞 (O'zlik va o'zgalik fe'llari) / 〜てしまいました",
     "description": "Harakat natijasida yuzaga kelgan joriy holatni ifodalash (自動詞＋ています) hamda ish-harakatning to'liq tugashi yoki pushaymonlik (〜てしまいました).",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "🌿",
     "steps": [
       {
@@ -2350,7 +2350,7 @@
     "lessonNumber": 30,
     "title": "30-Dars: 他動詞＋てあります / 〜ておきます (Tayyorgarlik choralari)",
     "description": "Birov tomonidan maqsadli bajarilgan ish natijasi (他動詞＋てあります), kelgusi ishlar uchun oldindan tayyorgarlik ko'rish (〜ておきます), hamda 'まだ〜ています'.",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "🌿",
     "steps": [
       {
@@ -2938,7 +2938,7 @@
     "lessonNumber": 31,
     "title": "31-Dars: 意向形 (Volitional form) / 〜と思っています / 〜つもりです",
     "description": "Fe'lning xohish-istak shakli (Ikou-kei: 〜よう), uzoq muddatli niyatni bildirish (〜と思っています), qat'iy reja (〜つもりです) va rasmiy jadval (〜予定です).",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "🎯",
     "steps": [
       {
@@ -3501,7 +3501,7 @@
     "lessonNumber": 32,
     "title": "32-Dars: 〜ほうがいいです (Maslahat) / 〜でしょう / 〜かもしれません",
     "description": "Foydali maslahat berish (〜た/ない ほうがいいです), ob-havo va ehtimollarni taxmin qilish (〜でしょう - 80% ishonch) hamda noaniq taxmin (〜かもしれません - 50% ehtimol).",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "🎯",
     "steps": [
       {
@@ -4054,7 +4054,7 @@
     "lessonNumber": 33,
     "title": "33-Dars: 命令形・禁止形 (Buyruq va taqiq) / 〜という意味です",
     "description": "Erkaklar nutqi, favqulodda vaziyat va sportdagi qat'iy buyruq (Meirei-kei) va taqiq (Kinshi-kei), belgilar ma'nosini tushuntirish (〜という意味です) va boshqalar so'zini yetkazish.",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "🎯",
     "steps": [
       {
@@ -4603,7 +4603,7 @@
     "lessonNumber": 34,
     "title": "34-Dars: 〜とおりに (Xuddi shunday) / 〜あとで (Keyin) / 〜て・ないで",
     "description": "Ko'rsatilgan yoki eshitilganidek bajarish (〜とおりに), bir ish yakunidan so'ng boshqasini qilish (〜あとで), hamda biror holatsiz/holatda harakat qilish (〜ないで).",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "🎯",
     "steps": [
       {
@@ -5113,7 +5113,7 @@
     "lessonNumber": 35,
     "title": "35-Dars: 条件形 (Shart shakli: 〜ば) / 〜なら (Tavsiya va chegara)",
     "description": "Fe'l va sifatlarning shart mayli (Jouken-kei: 〜ば), otlar uchun 〜なら hamda maslahat so'rash (〜ばいいですか) va mutanosiblik (〜ば〜ほど).",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "🎯",
     "steps": [
       {
@@ -5633,7 +5633,7 @@
     "lessonNumber": 36,
     "title": "36-Dars: 〜ように (Maqsad) / 〜ようになります / 〜ようにします",
     "description": "Muayyan maqsadga erishish uchun harakat qilish (〜ように), yangi qobiliyat va odatning shakllanishi (〜ようになります), hamda o'ziga odat qilib olish (〜ようにします).",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "⚡",
     "steps": [
       {
@@ -6218,7 +6218,7 @@
     "lessonNumber": 37,
     "title": "37-Dars: 受身動詞 (Majhul nisbat: 〜られる) / 〜によって",
     "description": "Fe'lning majhul nisbati (Ukemi-kei: 〜られる), bevosita majhullik, noqulaylik/ziyon ko'rish majhulligi (Meiwaku ukemi) hamda ixtirochi/muallifni ko'rsatuvchi 〜によって.",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "⚡",
     "steps": [
       {
@@ -6757,7 +6757,7 @@
     "lessonNumber": 38,
     "title": "38-Dars: 動詞の名詞化 (Fe'lning otlashishi: 〜のは / 〜のが / 〜のを)",
     "description": "Fe'l harakatini gapda otga aylantirish (Nominalizatsiya: 〜の), uning xususiyatlarini tavsiflash (〜のは〜です), qobiliyat va qiziqish (〜のが好きです) hamda unutish/bilish (〜のを忘れました/知っています).",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "⚡",
     "steps": [
       {
@@ -7277,7 +7277,7 @@
     "lessonNumber": 39,
     "title": "39-Dars: 原因・理由 (Sabab-oqibat: 〜て / 〜で / 〜ので)",
     "description": "Hissiyotlar, tabiiy hodisalar va imkonsizlikning sababini ko'rsatish (〜て形 / 〜で), hamda xolis, muloyim sabab bildiruvchi 〜ので.",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "⚡",
     "steps": [
       {
@@ -7822,7 +7822,7 @@
     "lessonNumber": 40,
     "title": "40-Dars: 疑問詞＋か / 〜かどうか / 〜てみます",
     "description": "Gap ichidagi so'roq (Koshma gap: 疑問詞＋か), ikkilanish va noma'lumlik (〜かどうか), hamda tajriba qilib ko'rish (〜てみます).",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "⚡",
     "steps": [
       {
@@ -8353,7 +8353,7 @@
     "lessonNumber": 41,
     "title": "41-Dars: 授受動詞 (いただきます・くださいます・やります / 〜ていただきます)",
     "description": "Hurmat darajasiga ko'ra berish-olish fe'llari (いただきます, くださいます, やります), xizmat ko'rsatish (〜ていただきます) hamda o'ta muloyim iltimos (〜てくださいませんか).",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "🌟",
     "steps": [
       {
@@ -8857,7 +8857,7 @@
     "lessonNumber": 42,
     "title": "42-Dars: 目的 (〜ために / 〜のに使います)",
     "description": "Kuchli irodaviy maqsad (〜ために) hamda asbob-uskuna yoki buyumlarning nima maqsadga mo'ljallanganligini ifodalovchi 〜のに.",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "🌟",
     "steps": [
       {
@@ -9376,7 +9376,7 @@
     "lessonNumber": 43,
     "title": "43-Dars: 様態 (〜そうです: ...ko'rinadi, tuyuladi) / 行動の移動 (〜てきます)",
     "description": "Tashqi ko'rinish va alomatlarga qarab xulosa chiqarish (〜そうです: mazalidek ko'rinadi, yog'adiganga o'xshaydi) hamda biror joyga borib, ishni bajarib qaytish (〜てきます).",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "🌟",
     "steps": [
       {
@@ -9874,7 +9874,7 @@
     "lessonNumber": 44,
     "title": "44-Dars: 過度 (〜すぎます) / 難易 (〜やすい / 〜にくい) / 変化 (〜くします)",
     "description": "Me'yordan ortiq darajada oshib ketish (〜すぎます), ish-harakatning oson yoki qiyinligi (〜やすい / 〜にくい), hamda subyektning xohishi bilan holatni o'zgartirish (〜くします / 〜にします).",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "🌟",
     "steps": [
       {
@@ -10435,7 +10435,7 @@
     "lessonNumber": 45,
     "title": "45-Dars: 条件・仮定 (〜場合は) / 逆接 (〜のに: holbuki, kutilganga zid)",
     "description": "Muayyan vaziyat yoki hodisa ro'y bergan taqdirda (〜場合は), hamda kutilgan natijaga zid ravishda yuz bergan norozilik va taajjub (〜のに).",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "🌟",
     "steps": [
       {
@@ -10967,7 +10967,7 @@
     "lessonNumber": 46,
     "title": "46-Dars: 局面 (〜ところです: Boshlanish/jarayon/yakun) / 直後 (〜ばかりです)",
     "description": "Harakatning ayni qaysi pallasida ekanligini bildirish (〜辞書形/ている/た形 ところです), hozirgina sodir bo'lgan voqea (〜ばかりです), hamda qat'iy ishonch bilan taxmin (〜はずです).",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "⛩️",
     "steps": [
       {
@@ -11477,7 +11477,7 @@
     "lessonNumber": 47,
     "title": "47-Dars: 伝聞 (〜そうです: Eshitishimcha) / 推量 (〜ようです: Ko'rinishidan)",
     "description": "Boshqalardan yoki ommaviy axborot vositalaridan eshitilgan xabarni yetkazish (〜そうです - Denbun) hamda his-tuyg'u va alomatlarga asoslangan xulosa (〜ようです).",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "⛩️",
     "steps": [
       {
@@ -11993,7 +11993,7 @@
     "lessonNumber": 48,
     "title": "48-Dars: 使役動詞 (Majburlash yoki ijozat berish: 〜させる) / 〜させていただけませんか",
     "description": "Fe'lning majburlash yoki ijozat berish nisbati (Shieki-kei: 〜せる / 〜させる) hamda o'ziga ruxsat so'rashning eng ehtiromli shakli (〜させていただけませんか).",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "⛩️",
     "steps": [
       {
@@ -12500,7 +12500,7 @@
     "lessonNumber": 49,
     "title": "49-Dars: 尊敬語 (Sonkeigo: Hurmat shakli) / お〜になります / 特殊尊敬語",
     "description": "Yuqori martabali shaxslar, mijozlar va kattalarning harakatini ulug'lash (Sonkeigo), maxsus hurmat fe'llari (いらっしゃる, 召し上がる, おっしゃる) va taklif shakli (お〜ください).",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "⛩️",
     "steps": [
       {
@@ -13018,7 +13018,7 @@
     "lessonNumber": 50,
     "title": "50-Dars: 謙譲語 (Kenjougo: Kamtarlik shakli) / お〜します / 特殊謙譲語",
     "description": "O'z harakatini kamtar tutib, suhbatdoshni e'zozlash (Kenjougo), maxsus kamtarlik fe'llari (参る, 申す, いたす, 拝見する, 存じる) hamda o'ta xushmuomala Teineigo (ございます).",
-    "estimatedDurationMinutes": 22,
+    "estimatedDurationMinutes": 30,
     "icon": "⛩️",
     "steps": [
       {
