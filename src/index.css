@@ -83,7 +83,7 @@
   }
 
   ruby {
-    ruby-align: center;
+    text-align: center;
     ruby-position: over;
   }
 

@@ -38,7 +38,7 @@ function versionGeneratorPlugin() {
         fs.writeFileSync(versionFile, JSON.stringify(versionData, null, 2), 'utf-8');
       }
     },
-    generateBundle() {
+    generateBundle(this: any) {
       this.emitFile({
         type: 'asset',
         fileName: 'version.json',
