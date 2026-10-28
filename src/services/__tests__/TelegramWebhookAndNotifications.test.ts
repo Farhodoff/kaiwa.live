@@ -33,24 +33,22 @@ vi.mock('@supabase/supabase-js', () => {
         }
 
         if (table === 'telegram_users') {
-          return {
-            select: vi.fn().mockReturnThis(),
-            eq: vi.fn().mockReturnThis(),
-            maybeSingle: vi.fn().mockImplementation(async () => {
-              return {
-                data: {
-                  id: 'tg_user_1',
-                  user_id: 'user_uuid_123',
-                  telegram_id: 998877,
-                  chat_id: 998877,
-                  telegram_first_name: 'Farhod',
-                  notifications_enabled: true,
-                },
-                error: null,
-              };
-            }),
-            upsert: vi.fn().mockResolvedValue({ error: null }),
+          const userObj = {
+            id: 'tg_user_1',
+            user_id: 'user_uuid_123',
+            telegram_id: 998877,
+            chat_id: 998877,
+            telegram_first_name: 'Farhod',
+            notifications_enabled: true,
           };
+          const chain: any = {
+            select: vi.fn(() => chain),
+            eq: vi.fn(() => chain),
+            maybeSingle: vi.fn().mockResolvedValue({ data: userObj, error: null }),
+            upsert: vi.fn().mockResolvedValue({ error: null }),
+            then: (resolve: any) => resolve({ data: [userObj], error: null }),
+          };
+          return chain;
         }
 
         if (table === 'user_subscriptions') {
@@ -72,10 +70,11 @@ vi.mock('@supabase/supabase-js', () => {
         }
 
         if (table === 'tasks') {
-          return {
-            select: vi.fn().mockReturnThis(),
-            eq: vi.fn().mockReturnThis(),
-            order: vi.fn().mockReturnThis(),
+          const taskChain: any = {
+            select: vi.fn(() => taskChain),
+            eq: vi.fn(() => taskChain),
+            neq: vi.fn(() => taskChain),
+            order: vi.fn(() => taskChain),
             limit: vi.fn().mockImplementation(async () => {
               return {
                 data: [
@@ -85,14 +84,28 @@ vi.mock('@supabase/supabase-js', () => {
                 error: null,
               };
             }),
+            then: (resolve: any) =>
+              resolve({
+                data: [
+                  { id: 'task_1', title: 'JLPT N3 Kanji 20 cards', completed: false },
+                  { id: 'task_2', title: 'Speaking Coach IELTS Part 2', completed: true },
+                ],
+                error: null,
+              }),
           };
+          return taskChain;
         }
 
-        return {
-          select: vi.fn().mockReturnThis(),
-          eq: vi.fn().mockReturnThis(),
+        const defaultChain: any = {
+          select: vi.fn(() => defaultChain),
+          eq: vi.fn(() => defaultChain),
+          neq: vi.fn(() => defaultChain),
+          lte: vi.fn(() => defaultChain),
+          gte: vi.fn(() => defaultChain),
           maybeSingle: vi.fn().mockResolvedValue({ data: null, error: null }),
+          then: (resolve: any) => resolve({ data: null, count: 0, error: null }),
         };
+        return defaultChain;
       }),
     })),
   };
@@ -277,5 +290,154 @@ describe('Telegram Webhook & Notifications End-to-End Suite', () => {
     await notifyDailyHandler(req as any, res);
     expect(res.statusCode).toBe(200);
     expect(res.data).toMatchObject({ success: true });
+    // Verify that daily notification includes daily kanji and reply_markup
+    expect(global.fetch).toHaveBeenCalledWith(
+      expect.stringContaining('sendMessage'),
+      expect.objectContaining({
+        body: expect.stringContaining('Bugungi Kanji'),
+      }),
+    );
+  });
+
+  it('8. handles inline queries and returns rich quiz, kanji and vocab articles', async () => {
+    const res = createMockRes();
+    const req = {
+      method: 'POST',
+      headers: {},
+      body: {
+        inline_query: {
+          id: 'iq_test_123',
+          from: { id: 998877, first_name: 'Farhod' },
+          query: 'kanji',
+        },
+      },
+    };
+
+    await webhookHandler(req as any, res);
+    expect(res.statusCode).toBe(200);
+    expect(global.fetch).toHaveBeenCalledWith(
+      expect.stringContaining('answerInlineQuery'),
+      expect.objectContaining({
+        body: expect.stringContaining('iq_test_123'),
+      }),
+    );
+  });
+
+  it('9. handles /kanji and /vocab commands with learning cards', async () => {
+    const res1 = createMockRes();
+    const req1 = {
+      method: 'POST',
+      headers: {},
+      body: {
+        message: {
+          message_id: 10,
+          chat: { id: 998877 },
+          from: { id: 998877, first_name: 'Farhod' },
+          text: '/kanji',
+        },
+      },
+    };
+    await webhookHandler(req1 as any, res1);
+    expect(res1.statusCode).toBe(200);
+    expect(global.fetch).toHaveBeenCalledWith(
+      expect.stringContaining('sendMessage'),
+      expect.objectContaining({
+        body: expect.stringContaining('KUN KANJISI'),
+      }),
+    );
+
+    const res2 = createMockRes();
+    const req2 = {
+      method: 'POST',
+      headers: {},
+      body: {
+        message: {
+          message_id: 11,
+          chat: { id: 998877 },
+          from: { id: 998877, first_name: 'Farhod' },
+          text: '/vocab',
+        },
+      },
+    };
+    await webhookHandler(req2 as any, res2);
+    expect(res2.statusCode).toBe(200);
+    expect(global.fetch).toHaveBeenCalledWith(
+      expect.stringContaining('sendMessage'),
+      expect.objectContaining({
+        body: expect.stringContaining("KUN SO'ZI"),
+      }),
+    );
+  });
+
+  it('10. handles /streak command returning user streak and XP stats', async () => {
+    const res = createMockRes();
+    const req = {
+      method: 'POST',
+      headers: {},
+      body: {
+        message: {
+          message_id: 12,
+          chat: { id: 998877 },
+          from: { id: 998877, first_name: 'Farhod' },
+          text: '/streak',
+        },
+      },
+    };
+
+    await webhookHandler(req as any, res);
+    expect(res.statusCode).toBe(200);
+    expect(global.fetch).toHaveBeenCalledWith(
+      expect.stringContaining('sendMessage'),
+      expect.objectContaining({
+        body: expect.stringContaining('Kunlik Streak'),
+      }),
+    );
+  });
+
+  it('11. handles kanji_random and vocab_random callback queries', async () => {
+    const res1 = createMockRes();
+    const req1 = {
+      method: 'POST',
+      headers: {},
+      body: {
+        callback_query: {
+          id: 'cb_kanji_rnd',
+          data: 'kanji_random',
+          message: { chat: { id: 998877 } },
+        },
+      },
+    };
+    await webhookHandler(req1 as any, res1);
+    expect(res1.statusCode).toBe(200);
+
+    const res2 = createMockRes();
+    const req2 = {
+      method: 'POST',
+      headers: {},
+      body: {
+        callback_query: {
+          id: 'cb_vocab_rnd',
+          data: 'vocab_random',
+          message: { chat: { id: 998877 } },
+        },
+      },
+    };
+    await webhookHandler(req2 as any, res2);
+    expect(res2.statusCode).toBe(200);
+  });
+
+  it('12. sends daily quiz reminder via telegramService', async () => {
+    const reminderSpy = vi.spyOn(telegramService, 'sendNotification').mockResolvedValue(true);
+    const ok = await telegramService.sendDailyQuizReminder(
+      '00000000-0000-0000-0000-000000000001',
+      '日 (Quyosh)',
+      '頑張る (Tirishmoq)',
+      7,
+    );
+    expect(ok).toBe(true);
+    expect(reminderSpy).toHaveBeenCalledWith(
+      '00000000-0000-0000-0000-000000000001',
+      expect.stringContaining('7 kun'),
+    );
   });
 });

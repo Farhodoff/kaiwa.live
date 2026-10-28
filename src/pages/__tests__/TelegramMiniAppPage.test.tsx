@@ -68,4 +68,23 @@ describe('TelegramMiniAppPage', () => {
     expect(initSpy).toHaveBeenCalled();
     expect(screen.getByTestId('jlpt-hub')).toBeInTheDocument();
   });
+
+  it('opens in-app JLPT quiz modal when JLPT Tezkor Quiz is clicked', () => {
+    vi.spyOn(telegramAuth, 'initTelegramAuth').mockImplementation(() => null);
+    vi.spyOn(telegramAuth, 'getTelegramWebAppUser').mockReturnValue(null);
+
+    render(
+      <MemoryRouter initialEntries={['/twa']}>
+        <Routes>
+          <Route path="/twa" element={<TelegramMiniAppPage />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    const quizActionBtn = screen.getByText('JLPT Tezkor Quiz');
+    fireEvent.click(quizActionBtn);
+
+    expect(screen.getByRole('dialog', { name: /JLPT Tezkor Quiz/i })).toBeInTheDocument();
+    expect(screen.getByText(/JLPT Tezkor Mini-Quiz/i)).toBeInTheDocument();
+  });
 });

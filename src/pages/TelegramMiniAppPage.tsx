@@ -13,6 +13,7 @@ import {
   GraduationCap,
 } from 'lucide-react';
 import { useAuthStore, useGamificationInfo, useSettingsStore } from '../stores';
+import { TelegramQuizModal } from '../components/telegram/TelegramQuizModal';
 
 export const TelegramMiniAppPage: React.FC = () => {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ export const TelegramMiniAppPage: React.FC = () => {
   const shouldAutoRedirect = searchParams.get('redirect') === 'true';
 
   const [tgUser, setTgUser] = useState(() => getTelegramWebAppUser());
+  const [isQuizModalOpen, setIsQuizModalOpen] = useState(false);
 
   useEffect(() => {
     initTelegramAuth();
@@ -110,8 +112,12 @@ export const TelegramMiniAppPage: React.FC = () => {
     },
   ];
 
-  const handleActionClick = (route: string) => {
+  const handleActionClick = (actionId: string, route: string) => {
     triggerHaptic('medium');
+    if (actionId === 'quiz') {
+      setIsQuizModalOpen(true);
+      return;
+    }
     navigate(route);
   };
 
@@ -225,7 +231,7 @@ export const TelegramMiniAppPage: React.FC = () => {
                 <button
                   key={action.id}
                   type="button"
-                  onClick={() => handleActionClick(action.route)}
+                  onClick={() => handleActionClick(action.id, action.route)}
                   className="group flex h-32 flex-col justify-between rounded-2xl border border-border bg-card p-3.5 text-left shadow-sm transition-all duration-150 hover:border-indigo-500/40 hover:bg-muted/60 active:scale-[0.97]"
                 >
                   <div className="flex w-full items-start justify-between">
@@ -271,6 +277,15 @@ export const TelegramMiniAppPage: React.FC = () => {
             : '🌐 kaiwa.live Mobile Rejimida ishlamoqda'}
         </p>
       </div>
+
+      {/* Interactive In-App JLPT Quiz Modal */}
+      <TelegramQuizModal
+        isOpen={isQuizModalOpen}
+        onClose={() => setIsQuizModalOpen(false)}
+        defaultLevel={
+          ['N5', 'N4', 'N3'].includes(targetLevel) ? (targetLevel as 'N5' | 'N4' | 'N3') : 'ALL'
+        }
+      />
     </div>
   );
 };
