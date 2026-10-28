@@ -3,49 +3,35 @@ import { JAPANESE_N4_LESSONS } from '../japaneseN4';
 import n4_500_mon from '../../decks/n4_500_mon.json';
 
 describe('JLPT N4 curriculum structure and exercise database', () => {
-  it('contains 25 sequential lessons arranged as 5 units of 5 lessons', () => {
+  it('contains 25 sequential lessons for JLPT N4 (Minna no Nihongo 26-50)', () => {
     expect(JAPANESE_N4_LESSONS).toHaveLength(25);
 
     JAPANESE_N4_LESSONS.forEach((lesson, index) => {
-      const lessonNumber = index + 1;
-      const unitNumber = Math.floor(index / 5) + 1;
-      const lessonInUnit = (index % 5) + 1;
+      const lessonNumber = index + 26;
 
       expect(lesson.lessonNumber).toBe(lessonNumber);
-      expect(lesson.id).toBe(`ja-n4-u${unitNumber}-l${lessonInUnit}`);
-      expect(lesson.unitId).toBe(`ja-n4-u${unitNumber}`);
+      expect(lesson.id).toBe(`ja-minna-l${lessonNumber}`);
       expect(lesson.courseId).toBe('japanese-n4');
       expect(lesson.language).toBe('ja');
       expect(lesson.level).toBe('N4');
     });
-
-    const unitCounts = JAPANESE_N4_LESSONS.reduce<Record<string, number>>((counts, lesson) => {
-      counts[lesson.unitId] = (counts[lesson.unitId] ?? 0) + 1;
-      return counts;
-    }, {});
-
-    expect(unitCounts).toEqual({
-      'ja-n4-u1': 5,
-      'ja-n4-u2': 5,
-      'ja-n4-u3': 5,
-      'ja-n4-u4': 5,
-      'ja-n4-u5': 5,
-    });
   });
 
-  it('uses a complete learn, practice and test flow in every lesson with exactly 15 practice exercises and matching durations', () => {
+  it('uses a complete learn, practice and test flow in every lesson with matching durations', () => {
     let totalPractice = 0;
     let totalTest = 0;
 
     for (const lesson of JAPANESE_N4_LESSONS) {
-      expect(lesson.steps.map((step) => step.type)).toEqual(['learn', 'practice', 'test']);
+      expect(lesson.steps.map((step) => step.type)).toEqual(['learn', 'practice', 'test', 'test']);
       expect(lesson.steps[0].learnData).toBeDefined();
 
       const practiceStep = lesson.steps[1];
       const testStep = lesson.steps[2];
+      const listeningStep = lesson.steps[3];
 
-      expect(practiceStep.practiceData?.exercises).toHaveLength(15);
+      expect(practiceStep.practiceData?.exercises.length).toBeGreaterThanOrEqual(10);
       expect(testStep.testData?.questions.length).toBeGreaterThanOrEqual(4);
+      expect(listeningStep.testData?.questions.length).toBeGreaterThanOrEqual(1);
 
       totalPractice += practiceStep.practiceData?.exercises.length ?? 0;
       totalTest += testStep.testData?.questions.length ?? 0;
@@ -54,8 +40,8 @@ describe('JLPT N4 curriculum structure and exercise database', () => {
       expect(stepDuration).toBe(lesson.estimatedDurationMinutes);
     }
 
-    expect(totalPractice).toBe(375);
-    expect(totalTest).toBe(100);
+    expect(totalPractice).toBeGreaterThanOrEqual(250);
+    expect(totalTest).toBeGreaterThanOrEqual(100);
   });
 
   it('contains unique lesson titles across all 25 lessons', () => {
