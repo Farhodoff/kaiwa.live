@@ -21,7 +21,7 @@ import { AchievementsGrid } from '../components/gamification/AchievementsGrid';
 
 const ProgressPage: React.FC = () => {
   const navigate = useNavigate();
-  const { sessions, subjects, tasks, settings, flashcards, coachSessions, loading } =
+  const { sessions, subjects, tasks, settings, flashcards, coachSessions, loading, user } =
     useStudyData();
   const { totalXp, level } = useGamificationInfo();
   const { language } = useLanguage();
@@ -157,7 +157,7 @@ const ProgressPage: React.FC = () => {
       {/* Tab 2: Language, JLPT & Coach */}
       {activeTab === 'language' && (
         <div className="space-y-8 duration-300 animate-in fade-in">
-          <JlptProgressAnalytics />
+          <JlptProgressAnalytics userId={user?.id} />
           <CoachAnalytics sessions={coachSessions} />
           <ExamHistoryAnalytics />
         </div>

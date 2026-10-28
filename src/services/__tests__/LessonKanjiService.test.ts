@@ -72,4 +72,15 @@ describe('LessonKanjiService', () => {
     expect(progress.attempts).toBe(3);
     expect(progress.correctAttempts).toBe(2);
   });
+
+  it('summarizes mastered lesson kanji for a JLPT level', async () => {
+    LessonKanjiService.recordReview('user-1', lesson.id, '日', 'correct');
+    LessonKanjiService.recordReview('user-1', lesson.id, '日', 'correct');
+
+    const summary = await LessonKanjiService.getLevelProgressSummary('user-1', 'N5');
+
+    expect(summary.totalKanji).toBeGreaterThan(0);
+    expect(summary.reviewedKanji).toBe(1);
+    expect(summary.masteredKanji).toBe(1);
+  });
 });

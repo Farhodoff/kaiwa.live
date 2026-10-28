@@ -8,10 +8,18 @@ import { JlptReadinessCard } from './JlptReadinessCard';
 import { JlptSkillsBreakdown } from './JlptSkillsBreakdown';
 import { Sparkles, Trophy, Flame, BookOpen, Volume2, History, Award } from 'lucide-react';
 import { SvgLineChart } from '../ui/SvgCharts';
+import { LessonKanjiService, LessonKanjiLevelSummary } from '../../services/LessonKanjiService';
 
-export const JlptProgressAnalytics: React.FC = () => {
+export interface JlptProgressAnalyticsProps {
+  userId?: string;
+}
+
+export const JlptProgressAnalytics: React.FC<JlptProgressAnalyticsProps> = ({ userId }) => {
   const [jlptExams, setJlptExams] = useState<MockExamItem[]>([]);
   const [jlptSpeaking, setJlptSpeaking] = useState<SpeakingSessionItem[]>([]);
+  const [lessonKanjiSummary, setLessonKanjiSummary] = useState<LessonKanjiLevelSummary | null>(
+    null,
+  );
   const [loading, setLoading] = useState(true);
   const [breakdownMode, setBreakdownMode] = useState<'4pillar' | '5pillar'>('4pillar');
 
@@ -74,7 +82,14 @@ export const JlptProgressAnalytics: React.FC = () => {
     return {
       vocabCount: Math.max(cards.length, meta.flashcardsReviewed || 0),
       vocabRetentionRate: 85,
-      kanjiCount: Math.max(kanjiFromCards, meta.kanjiMastered || 0),
+      kanjiCount: Math.max(
+        kanjiFromCards,
+        meta.kanjiMastered || 0,
+        lessonKanjiSummary?.masteredKanji || 0,
+      ),
+      lessonKanjiMasteredCount: lessonKanjiSummary?.masteredKanji,
+      lessonKanjiReviewedCount: lessonKanjiSummary?.reviewedKanji,
+      lessonKanjiTotalCount: lessonKanjiSummary?.totalKanji,
       grammarMasteredCount: Math.max(
         grammarFromCards,
         meta.listeningQuestionsCompleted > 0 ? 30 : 15,
@@ -92,9 +107,28 @@ export const JlptProgressAnalytics: React.FC = () => {
       unresolvedMistakesCount: mistakeStats.unresolved,
       mistakesByCategory: mistakeStats.byCategory,
     };
-  }, [flashcards, meta, jlptExams.length, jlptSpeaking.length, avgFluency, highestScore]);
+  }, [
+    flashcards,
+    meta,
+    jlptExams.length,
+    jlptSpeaking.length,
+    avgFluency,
+    highestScore,
+    lessonKanjiSummary,
+  ]);
 
   const activeLevel = (targetPlan?.currentLevel || 'N5') as any;
+
+  useEffect(() => {
+    let cancelled = false;
+    void LessonKanjiService.getLevelProgressSummary(userId || '', activeLevel).then((summary) => {
+      if (!cancelled) setLessonKanjiSummary(summary);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [activeLevel, userId]);
+
   const readinessReport = useMemo(() => {
     return JlptReadinessService.calculateReadiness(userStats, activeLevel);
   }, [userStats, activeLevel]);
@@ -174,6 +208,41 @@ export const JlptProgressAnalytics: React.FC = () => {
 
       {/* 4/5-Pillar Radar & JLPT Readiness Assessment Card */}
       <JlptReadinessCard stats={userStats} initialLevel={activeLevel} />
+
+      {lessonKanjiSummary && (
+        <div className="rounded-2xl border border-amber-500/20 bg-amber-500/5 p-4">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-xs font-black uppercase tracking-wider text-amber-700 dark:text-amber-300">
+                Lesson Kanji Progress — {lessonKanjiSummary.level}
+              </p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                {lessonKanjiSummary.masteredKanji} / {lessonKanjiSummary.totalKanji} kanji mastered
+                {' · '}
+                {lessonKanjiSummary.reviewedKanji} reviewed
+              </p>
+            </div>
+            <div className="h-2 w-full overflow-hidden rounded-full bg-amber-500/15 sm:w-56">
+              <div
+                className="h-full rounded-full bg-amber-500 transition-all"
+                style={{
+                  width: `${
+                    lessonKanjiSummary.totalKanji > 0
+                      ? Math.min(
+                          100,
+                          Math.round(
+                            (lessonKanjiSummary.masteredKanji / lessonKanjiSummary.totalKanji) *
+                              100,
+                          ),
+                        )
+                      : 0
+                  }%`,
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Skills Breakdown with Action Buttons */}
       <div className="space-y-3">

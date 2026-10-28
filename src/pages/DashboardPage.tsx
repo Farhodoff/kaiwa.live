@@ -20,6 +20,7 @@ import { LevelUpModal } from '../components/gamification/LevelUpModal';
 import { JlptReadinessService, UserSkillStats, JlptLevel } from '../services/JlptReadinessService';
 import { DailyQuestService } from '../services/DailyQuestService';
 import { MistakeVaultService } from '../services/MistakeVaultService';
+import { LessonKanjiLevelSummary, LessonKanjiService } from '../services/LessonKanjiService';
 
 const DashboardPage: React.FC = () => {
   const navigate = useNavigate();
@@ -58,6 +59,25 @@ const DashboardPage: React.FC = () => {
   const [promotionCandidate, setPromotionCandidate] = useState<LevelPromotionCandidate | null>(
     null,
   );
+  const [lessonKanjiSummary, setLessonKanjiSummary] = useState<LessonKanjiLevelSummary | null>(
+    null,
+  );
+
+  const dashboardJlptLevel = (
+    ['N5', 'N4', 'N3', 'N2', 'N1'].includes(targetLevel) ? targetLevel : 'N5'
+  ) as JlptLevel;
+
+  useEffect(() => {
+    let cancelled = false;
+    void LessonKanjiService.getLevelProgressSummary(user?.id || '', dashboardJlptLevel).then(
+      (summary) => {
+        if (!cancelled) setLessonKanjiSummary(summary);
+      },
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, [dashboardJlptLevel, user?.id]);
 
   const resolveDashboardRoute = (route?: string) => {
     if (!route) return '/jlpt';
@@ -104,7 +124,14 @@ const DashboardPage: React.FC = () => {
     const stats: UserSkillStats = {
       vocabCount: Math.max(cards.length, meta.flashcardsReviewed || 0),
       vocabRetentionRate: 85,
-      kanjiCount: Math.max(kanjiCount, meta.kanjiMastered || 0),
+      kanjiCount: Math.max(
+        kanjiCount,
+        meta.kanjiMastered || 0,
+        lessonKanjiSummary?.masteredKanji || 0,
+      ),
+      lessonKanjiMasteredCount: lessonKanjiSummary?.masteredKanji,
+      lessonKanjiReviewedCount: lessonKanjiSummary?.reviewedKanji,
+      lessonKanjiTotalCount: lessonKanjiSummary?.totalKanji,
       grammarMasteredCount: Math.max(grammarCount, meta.listeningQuestionsCompleted > 0 ? 35 : 20),
       readingCompletedCount: (meta as any).readingPassagesCompleted || 0,
       readingAccuracy: 80,
@@ -122,7 +149,7 @@ const DashboardPage: React.FC = () => {
     ) as JlptLevel;
 
     return JlptReadinessService.calculateReadiness(stats, targetLvl);
-  }, [flashcards, targetLevel, user?.id]);
+  }, [flashcards, targetLevel, user?.id, lessonKanjiSummary]);
 
   const greetingSubtitle = useMemo(() => {
     if (totalTodayItems === 0) {

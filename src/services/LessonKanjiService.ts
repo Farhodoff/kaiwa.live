@@ -1,5 +1,6 @@
 import type { Lesson, LessonKanji } from '../types/lesson';
 import { getKanjiByLevel } from '../data/jlptKanjiDatabase';
+import { ALL_JAPANESE_LESSONS } from '../data/curriculum/curriculumLessons';
 import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
 import { supabase } from '../lib/supabase';
 import { isUuid, toDeterministicUUID } from '../utils/uuid';
@@ -14,6 +15,13 @@ export interface LessonKanjiProgress {
   correctAttempts: number;
   mastered: boolean;
   lastReviewedAt: string;
+}
+
+export interface LessonKanjiLevelSummary {
+  level: Lesson['level'];
+  totalKanji: number;
+  reviewedKanji: number;
+  masteredKanji: number;
 }
 
 const PROGRESS_KEY_PREFIX = 'study_planner_lesson_kanji_progress_';
@@ -34,6 +42,14 @@ function getVocabularyCharacters(lesson: Lesson): string[] {
     }
   }
   return [...characters];
+}
+
+function belongsToLevel(lessonId: string, level: Lesson['level'], knownIds: Set<string>): boolean {
+  if (knownIds.has(lessonId)) return true;
+  const normalized = lessonId.toLowerCase();
+  if (level === 'N5') return normalized.startsWith('ja-n5-');
+  if (level === 'N4') return normalized.startsWith('ja-n4-');
+  return normalized.startsWith(`ja-${level.toLowerCase()}-`);
 }
 
 function toLessonKanji(kanji: ReturnType<typeof getKanjiByLevel>[number]): LessonKanji {
@@ -190,6 +206,65 @@ export const LessonKanjiService = {
       console.warn('[LessonKanjiService] Failed to load kanji progress:', error);
       return [];
     }
+  },
+
+  async getLevelProgressSummary(
+    userId: string,
+    level: Lesson['level'],
+  ): Promise<LessonKanjiLevelSummary> {
+    const levelLessons = ALL_JAPANESE_LESSONS.filter(
+      (lesson) => lesson.language === 'ja' && lesson.level === level,
+    );
+    const lessonIds = new Set(levelLessons.map((lesson) => lesson.id));
+    const levelKanji = new Set(
+      getKanjiByLevel(level as 'N5' | 'N4' | 'N3' | 'N2' | 'N1').map((item) => item.kanji),
+    );
+    const reviewed = new Set<string>();
+    const mastered = new Set<string>();
+
+    for (const lesson of levelLessons) {
+      for (const item of this.getLessonKanji(lesson)) {
+        const progress = this.getProgress(userId, lesson.id, item.kanji);
+        if (!progress) continue;
+        reviewed.add(progress.kanji);
+        if (progress.mastered) mastered.add(progress.kanji);
+      }
+    }
+
+    for (const key of safeLocalStorage.getAllKeys()) {
+      if (!key.startsWith(PROGRESS_KEY_PREFIX) || !key.includes(`${userId}_`)) continue;
+      const progress = safeLocalStorage.getJSON<LessonKanjiProgress | null>(key, null);
+      if (!progress || !belongsToLevel(progress.lessonId, level, lessonIds)) continue;
+      reviewed.add(progress.kanji);
+      if (progress.mastered) mastered.add(progress.kanji);
+    }
+
+    if (isUuid(userId)) {
+      try {
+        const { data, error } = await supabase
+          .from('lesson_kanji_progress')
+          .select('lesson_id, kanji, mastered')
+          .eq('user_id', userId)
+          .in('lesson_id', [...lessonIds]);
+        if (!error && Array.isArray(data)) {
+          for (const row of data) {
+            if (!belongsToLevel(row.lesson_id, level, lessonIds) || !levelKanji.has(row.kanji))
+              continue;
+            reviewed.add(row.kanji);
+            if (row.mastered) mastered.add(row.kanji);
+          }
+        }
+      } catch (error) {
+        console.warn('[LessonKanjiService] Failed to load level kanji summary:', error);
+      }
+    }
+
+    return {
+      level,
+      totalKanji: levelKanji.size,
+      reviewedKanji: reviewed.size,
+      masteredKanji: mastered.size,
+    };
   },
 
   getLessonProgress(
