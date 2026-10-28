@@ -590,7 +590,12 @@ export const LessonPlayerPage: React.FC = () => {
 
             {/* Step Renderers */}
             {currentStep.type === 'learn' && currentStep.learnData && (
-              <LearnStepView content={currentStep.learnData} language={lesson.language} />
+              <LearnStepView
+                content={currentStep.learnData}
+                language={lesson.language}
+                lesson={lesson}
+                userId={user?.id || 'guest'}
+              />
             )}
 
             {currentStep.type === 'practice' && currentStep.practiceData && (
