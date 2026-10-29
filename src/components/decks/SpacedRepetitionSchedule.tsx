@@ -24,6 +24,7 @@ import {
 import { Rating, Grade } from '../../utils/srs';
 import { toast } from '../../hooks/use-toast';
 import { Button } from '../ui/Button';
+import { useStudyData } from '../../context/StudyPlannerContext';
 
 interface SpacedRepetitionScheduleProps {
   flashcards: Flashcard[];
@@ -39,6 +40,7 @@ export const SpacedRepetitionSchedule: React.FC<SpacedRepetitionScheduleProps> =
   firstDueSubjectId,
 }) => {
   const navigate = useNavigate();
+  const { refreshData } = useStudyData();
   const [lessonReviews, setLessonReviews] = useState<LessonReviewItem[]>([]);
   const [lessonFilter, setLessonFilter] = useState<'all' | 'due' | 'upcoming'>('all');
   const [isSyncingTasks, setIsSyncingTasks] = useState(false);
@@ -86,6 +88,7 @@ export const SpacedRepetitionSchedule: React.FC<SpacedRepetitionScheduleProps> =
     try {
       const created = await SpacedRepetitionEngine.generateReviewTasks(userId);
       if (created.length > 0) {
+        await refreshData();
         toast({
           title: "Vazifalar qo'shildi! 📅",
           description: `${created.length} ta dars takrorlash vazifasi rejalashtiruvchiga muvaffaqiyatli qo'shildi.`,

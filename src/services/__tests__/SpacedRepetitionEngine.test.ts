@@ -312,6 +312,24 @@ describe('SpacedRepetitionEngine (SM-2 / MF2M)', () => {
   });
 
   describe('6. Task Synchronization (generateReviewTasks)', () => {
+    beforeEach(() => {
+      vi.useFakeTimers();
+      vi.setSystemTime(new Date(2026, 9, 29, 0, 55));
+      vi.spyOn(TaskService, 'addTask').mockImplementation(
+        async (userId, taskData) =>
+          ({
+            ...taskData,
+            id: `task-${userId}-${taskData.title}`,
+            userId,
+            createdAt: new Date().toISOString(),
+          }) as Task,
+      );
+      SpacedRepetitionEngine.scheduleLessonReview(testUserId, 'ja-n3-u1-l1', {
+        quizScorePercentage: 70,
+        baseDate: new Date('2026-10-10T00:00:00.000Z'),
+      });
+    });
+
     afterEach(() => {
       vi.useRealTimers();
       vi.restoreAllMocks();
@@ -354,6 +372,98 @@ describe('SpacedRepetitionEngine (SM-2 / MF2M)', () => {
         expect(addTaskSpy).not.toHaveBeenCalled();
       },
     );
+
+    it('loads existing tasks when the UI supplies only a user ID and persists local fallbacks', async () => {
+      const fetchSpy = vi.spyOn(TaskService, 'fetchTasks');
+      const created = await SpacedRepetitionEngine.generateReviewTasks(testUserId);
+      expect(created).toHaveLength(1);
+      expect(fetchSpy).toHaveBeenCalledWith(testUserId);
+      expect(JSON.parse(localStorage.getItem(`study_planner_tasks_${testUserId}`)!)).toEqual(
+        created,
+      );
+
+      const second = await SpacedRepetitionEngine.generateReviewTasks(testUserId);
+      expect(second).toEqual([]);
+      expect(TaskService.addTask).toHaveBeenCalledTimes(1);
+    });
+
+    it('skips a review task already saved on the server', async () => {
+      const created = await SpacedRepetitionEngine.generateReviewTasks(testUserId, []);
+      localStorage.clear();
+      SpacedRepetitionEngine.scheduleLessonReview(testUserId, 'ja-n3-u1-l1', {
+        quizScorePercentage: 70,
+        baseDate: new Date('2026-10-10T00:00:00.000Z'),
+      });
+      vi.spyOn(TaskService, 'fetchTasks').mockResolvedValue(created);
+      vi.mocked(TaskService.addTask).mockClear();
+
+      expect(await SpacedRepetitionEngine.generateReviewTasks(testUserId)).toEqual([]);
+      expect(TaskService.addTask).not.toHaveBeenCalled();
+    });
+
+    it('does not insert duplicates during concurrent sync requests', async () => {
+      const fetchSpy = vi.spyOn(TaskService, 'fetchTasks');
+      const results = await Promise.all([
+        SpacedRepetitionEngine.generateReviewTasks(testUserId),
+        SpacedRepetitionEngine.generateReviewTasks(testUserId),
+        SpacedRepetitionEngine.generateReviewTasks(testUserId),
+      ]);
+
+      expect(results.map((tasks) => tasks.length)).toEqual([1, 0, 0]);
+      expect(fetchSpy).toHaveBeenCalledTimes(1);
+      expect(TaskService.addTask).toHaveBeenCalledTimes(1);
+    });
+
+    it.each(['completed', 'legacy title', 'deadline'])(
+      'recognizes an existing %s task',
+      async (kind) => {
+        const [task] = await SpacedRepetitionEngine.generateReviewTasks(testUserId, []);
+        localStorage.removeItem(`study_planner_tasks_${testUserId}`);
+        const existing = { ...task };
+        if (kind === 'completed') {
+          existing.completed = true;
+          existing.status = 'done';
+        } else if (kind === 'legacy title') {
+          existing.title = existing.title.replace(/ \([^()]+\)$/, '');
+        } else {
+          existing.deadline = existing.dueDate;
+          existing.dueDate = undefined;
+        }
+        vi.mocked(TaskService.addTask).mockClear();
+
+        expect(await SpacedRepetitionEngine.generateReviewTasks(testUserId, [existing])).toEqual(
+          [],
+        );
+        expect(TaskService.addTask).not.toHaveBeenCalled();
+      },
+    );
+
+    it.each(['deleted', 'different day', 'unrelated title', 'different user'])(
+      'does not let a %s task block creation',
+      async (kind) => {
+        const [task] = await SpacedRepetitionEngine.generateReviewTasks(testUserId, []);
+        localStorage.removeItem(`study_planner_tasks_${testUserId}`);
+        const existing = { ...task };
+        if (kind === 'deleted') existing.deletedAt = new Date().toISOString();
+        if (kind === 'different day') existing.dueDate = '2026-10-28T10:00:00.000Z';
+        if (kind === 'unrelated title') existing.title = `Notes: ${task.title}`;
+        if (kind === 'different user') existing.userId = 'another-user';
+        vi.mocked(TaskService.addTask).mockClear();
+
+        expect(
+          await SpacedRepetitionEngine.generateReviewTasks(testUserId, [existing]),
+        ).toHaveLength(1);
+        expect(TaskService.addTask).toHaveBeenCalledTimes(1);
+      },
+    );
+
+    it('releases the sync lock after a fetch failure so retry works', async () => {
+      vi.spyOn(TaskService, 'fetchTasks').mockRejectedValueOnce(new Error('Fetch failed'));
+      await expect(SpacedRepetitionEngine.generateReviewTasks(testUserId)).rejects.toThrow(
+        'Fetch failed',
+      );
+      expect(await SpacedRepetitionEngine.generateReviewTasks(testUserId)).toHaveLength(1);
+    });
   });
 
   describe('7. LessonService Automatic Integration', () => {

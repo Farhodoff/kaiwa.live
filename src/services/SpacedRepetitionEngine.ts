@@ -41,6 +41,8 @@ export interface SrsQueueSummary {
 const LESSON_REVIEWS_STORAGE_PREFIX = 'study_planner_lesson_srs_reviews_';
 
 export class SpacedRepetitionEngine {
+  private static taskSyncs = new Map<string, Promise<Task[]>>();
+
   // ==========================================
   // 1. FLASHCARD SPACED REPETITION (SM-2 / MF2M)
   // ==========================================
@@ -419,33 +421,62 @@ export class SpacedRepetitionEngine {
    */
   static async generateReviewTasks(
     userId: string = 'guest',
-    existingTasks: Task[] = [],
+    existingTasks?: Task[],
   ): Promise<Task[]> {
+    const pending = this.taskSyncs.get(userId);
+    if (pending) {
+      await pending;
+      return [];
+    }
+
+    const sync = this.syncReviewTasks(userId, existingTasks);
+    this.taskSyncs.set(userId, sync);
+    try {
+      return await sync;
+    } finally {
+      this.taskSyncs.delete(userId);
+    }
+  }
+
+  private static async syncReviewTasks(userId: string, existingTasks?: Task[]): Promise<Task[]> {
     const dueReviews = this.getDueLessonReviews(userId);
+    if (dueReviews.length === 0) return [];
+
+    const cacheKey = `study_planner_tasks_${userId}`;
+    const cachedTasks = safeLocalStorage.getJSON<Task[]>(cacheKey, []);
+    const knownTasks = new Map(
+      [...cachedTasks, ...(existingTasks ?? (await TaskService.fetchTasks(userId)))]
+        .filter((task) => !task.userId || task.userId === userId)
+        .map((task) => [task.id, task]),
+    );
     const createdTasks: Task[] = [];
     const todayStr = format(new Date(), 'yyyy-MM-dd');
 
     for (const review of dueReviews) {
-      // Check if task already exists for this lesson today
-      const alreadyHasTask = existingTasks.some(
+      const title = `🔄 Takrorlash: ${review.lessonTitle} (${review.level})`;
+      const legacyTitle = `🔄 Takrorlash: ${review.lessonTitle}`;
+      const alreadyHasTask = [...knownTasks.values()].some(
         (t) =>
           !t.deletedAt &&
-          t.title.includes(review.lessonTitle) &&
-          t.dueDate &&
-          t.dueDate.startsWith(todayStr),
+          (t.title === title || t.title === legacyTitle) &&
+          (t.dueDate || t.deadline)?.startsWith(todayStr),
       );
 
       if (!alreadyHasTask) {
         try {
           const newTask = await TaskService.addTask(userId, {
-            title: `🔄 Takrorlash: ${review.lessonTitle} (${review.level})`,
+            title,
             dueDate: `${todayStr}T10:00:00.000Z`,
             priority: review.status === 'overdue' ? 'high' : 'medium',
             status: 'todo',
             completed: false,
           });
           if (newTask) {
-            createdTasks.push(newTask);
+            const task = { ...newTask, userId };
+            createdTasks.push(task);
+            knownTasks.set(task.id, task);
+            // TaskService can return a local fallback; retain it across syncs and page reloads.
+            safeLocalStorage.setJSON(cacheKey, [...knownTasks.values()]);
           }
         } catch (e) {
           console.warn('[SpacedRepetitionEngine] Task creation warning:', e);
