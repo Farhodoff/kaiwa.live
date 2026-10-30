@@ -2,6 +2,7 @@ import { SupportedLanguage } from '../types/lesson';
 import { CurriculumCourse, CurriculumLevelNode, CurriculumLessonNode } from '../types/curriculum';
 import { CurriculumLessonResolver } from './CurriculumLessonResolver';
 import { getCurriculumLessonById } from '../data/curriculum/curriculumLessons';
+import { CurriculumPrerequisiteValidatorService } from './CurriculumPrerequisiteValidatorService';
 
 function createLessonNode(
   id: string,
@@ -1068,9 +1069,17 @@ export const CurriculumService = {
 
   /**
    * Phase 15: Get prerequisite lesson IDs for a given lesson.
+   * Checks the canonical prerequisite validator service first (covers all 140 Japanese lessons and aliases),
+   * then falls back to traversing the hardcoded curriculum tree.
    * Returns empty array if not found or no prerequisites.
    */
   getLessonPrerequisites(lessonId: string): string[] {
+    const canonicalPrereqs =
+      CurriculumPrerequisiteValidatorService.getPrerequisitesForLesson(lessonId);
+    if (canonicalPrereqs.length > 0) {
+      return canonicalPrereqs;
+    }
+
     for (const course of [this.getEnglishCurriculum(), this.getJapaneseCurriculum()]) {
       for (const level of course.levels) {
         for (const unit of level.units) {
