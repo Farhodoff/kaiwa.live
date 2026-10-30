@@ -1,4 +1,5 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+import { supabase } from '../../lib/supabase';
 import {
   ContentAuditQuestionInput,
   ContentQualityAuditService,
@@ -70,8 +71,8 @@ describe('ContentQualityAuditService', () => {
       { generatedAt: '2026-10-24T00:00:00.000Z' },
     );
 
-    expect(report.levels.map((level) => level.level)).toEqual(['N3', 'N2', 'N1']);
-    const n3 = report.levels[0];
+    expect(report.levels.map((level) => level.level)).toEqual(['N3', 'N2', 'N1', 'N4', 'N5']);
+    const n3 = report.levels.find((l) => l.level === 'N3')!;
     expect(n3.totalQuestions).toBe(3);
     expect(n3.skillCounts).toMatchObject({ vocabulary: 1, grammar: 1, reading: 1 });
     expect(n3.statusCounts).toMatchObject({
@@ -180,7 +181,7 @@ describe('ContentQualityAuditService', () => {
     expect(report.levels[1].coveredSkills).toBe(1);
     expect(report.levels[1].coveragePercent).toBe(20);
     expect(report.levels[2].coveragePercent).toBe(0);
-    expect(report.totals.coveragePercent).toBe(40);
+    expect(report.totals.coveragePercent).toBe(24);
   });
 
   it('7. ranks the most error-prone questions by wrong count and exposes level lists', () => {
@@ -218,9 +219,13 @@ describe('ContentQualityAuditService', () => {
       wrongCount: 1,
       errorRate: 33,
     });
-    expect(report.levels[0].topErrorQuestions.map((item) => item.questionId)).toEqual(['q1']);
-    expect(report.levels[1].topErrorQuestions.map((item) => item.questionId)).toEqual(['q2']);
-    expect(report.levels[2].topErrorQuestions).toEqual([]);
+    expect(
+      report.levels.find((l) => l.level === 'N3')?.topErrorQuestions.map((item) => item.questionId),
+    ).toEqual(['q1']);
+    expect(
+      report.levels.find((l) => l.level === 'N2')?.topErrorQuestions.map((item) => item.questionId),
+    ).toEqual(['q2']);
+    expect(report.levels.find((l) => l.level === 'N1')?.topErrorQuestions).toEqual([]);
   });
 
   it('8. exports a complete JSON and CSV audit report', () => {
@@ -240,13 +245,100 @@ describe('ContentQualityAuditService', () => {
 
     const json = ContentQualityAuditService.toJSON(report);
     const parsed = JSON.parse(json);
-    expect(parsed.levels[0].level).toBe('N3');
-    expect(parsed.levels[0].missingFields.audio).toBe(1);
+    const n3Level = parsed.levels.find((l: any) => l.level === 'N3');
+    expect(n3Level.level).toBe('N3');
+    expect(n3Level.missingFields.audio).toBe(1);
     expect(parsed.topErrorQuestions[0].questionId).toBe('export-1');
 
     const csv = ContentQualityAuditService.toCSV(report);
     expect(csv).toContain('"Workflow holati","N3","approved","1"');
     expect(csv).toContain('"Missing field","N3","audio","1"');
     expect(csv).toContain('"Xato savol","N3","export-1"');
+  });
+
+  it('9. supports completeness tracking and truncation warning in buildReport', () => {
+    const report = ContentQualityAuditService.buildReport(
+      [question({ id: 'q1', level: 'N3', skill: 'vocabulary' })],
+      [],
+      {
+        completeness: {
+          questions: { fetched: 1000, total: 1500, isTruncated: true },
+          exams: { fetched: 10, total: 10, isTruncated: false },
+        },
+        warnings: ['Savollar soni limitdan oshib ketdi'],
+      },
+    );
+
+    expect(report.completeness?.questions.isTruncated).toBe(true);
+    expect(report.completeness?.questions.total).toBe(1500);
+    expect(report.warnings).toContain('Savollar soni limitdan oshib ketdi');
+  });
+
+  it('10. fetchPagedTable paginates through multiple chunks seamlessly', async () => {
+    let callCount = 0;
+    const mockFrom = vi.spyOn(supabase, 'from').mockImplementation(() => {
+      return {
+        select: vi.fn().mockReturnValue({
+          order: vi.fn().mockReturnThis(),
+          range: vi.fn().mockImplementation((from: number) => {
+            callCount++;
+            if (from === 0) {
+              return Promise.resolve({
+                data: Array.from({ length: 100 }, (_, i) => ({ id: `q-${i}` })),
+                count: 150,
+                error: null,
+              });
+            } else {
+              return Promise.resolve({
+                data: Array.from({ length: 50 }, (_, i) => ({ id: `q-${100 + i}` })),
+                count: 150,
+                error: null,
+              });
+            }
+          }),
+        }),
+      } as any;
+    });
+
+    const result = await ContentQualityAuditService.fetchPagedTable('exam_questions', '*', {
+      pageSize: 100,
+      maxRows: 1000,
+    });
+
+    expect(callCount).toBe(2);
+    expect(result.data.length).toBe(150);
+    expect(result.totalCount).toBe(150);
+    expect(result.isTruncated).toBe(false);
+    expect(result.error).toBeNull();
+
+    mockFrom.mockRestore();
+  });
+
+  it('11. fetchPagedTable marks isTruncated when totalCount exceeds maxRows limit', async () => {
+    const mockFrom = vi.spyOn(supabase, 'from').mockImplementation(() => {
+      return {
+        select: vi.fn().mockReturnValue({
+          order: vi.fn().mockReturnThis(),
+          range: vi.fn().mockImplementation(() => {
+            return Promise.resolve({
+              data: Array.from({ length: 50 }, (_, i) => ({ id: `ans-${i}` })),
+              count: 200,
+              error: null,
+            });
+          }),
+        }),
+      } as any;
+    });
+
+    const result = await ContentQualityAuditService.fetchPagedTable('exam_answers', '*', {
+      pageSize: 50,
+      maxRows: 50, // Capped at 50
+    });
+
+    expect(result.data.length).toBe(50);
+    expect(result.totalCount).toBe(200);
+    expect(result.isTruncated).toBe(true);
+
+    mockFrom.mockRestore();
   });
 });

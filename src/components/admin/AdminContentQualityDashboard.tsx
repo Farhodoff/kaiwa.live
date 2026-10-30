@@ -179,7 +179,7 @@ export const AdminContentQualityDashboard: React.FC = () => {
         <div>
           <h2 className="flex items-center gap-2 text-base font-black text-foreground">
             <BarChart3 className="h-5 w-5 text-primary" />
-            {isJa ? 'JLPT N3–N1 コンテンツ品質監査' : 'JLPT N3–N1 Kontent Quality Audit'}
+            {isJa ? 'JLPT N5–N1 コンテンツ品質監査' : 'JLPT N5–N1 Kontent Quality Audit'}
           </h2>
           <p className="mt-1 text-xs text-muted-foreground">
             {isJa
@@ -188,6 +188,21 @@ export const AdminContentQualityDashboard: React.FC = () => {
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
+          {report.completeness && (
+            <div className="inline-flex min-h-[34px] items-center gap-1.5 rounded-xl border border-border bg-card px-2.5 py-1 text-xs">
+              {Object.values(report.completeness).some((c) => c.isTruncated) ? (
+                <span className="flex items-center gap-1 font-semibold text-amber-600 dark:text-amber-400">
+                  <AlertTriangle size={13} />
+                  {isJa ? '一部データ取得' : 'Qisman yuklandi'}
+                </span>
+              ) : (
+                <span className="flex items-center gap-1 font-semibold text-emerald-600 dark:text-emerald-400">
+                  <CheckCircle2 size={13} />
+                  {isJa ? '全データ完了' : "To'liq yuklandi"}
+                </span>
+              )}
+            </div>
+          )}
           <button
             onClick={() => void loadReport()}
             className="inline-flex min-h-[34px] items-center gap-1.5 rounded-xl border border-border bg-muted px-3 py-1.5 text-xs font-bold text-foreground hover:bg-muted/80"
