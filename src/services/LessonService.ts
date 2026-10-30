@@ -8,7 +8,6 @@ import {
 import { supabase } from '../lib/supabase';
 import { toDeterministicUUID } from '../utils/uuid';
 import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
-import { OfflineSyncManager, type QueuedLessonProgress } from './OfflineSyncManager';
 import { LessonKanjiService } from './LessonKanjiService';
 import { SpacedRepetitionEngine } from './SpacedRepetitionEngine';
 
@@ -140,54 +139,29 @@ export const LessonService = {
 
     if (!activeUserId || activeUserId === 'guest') return;
 
-    // 1. Asynchronous write to Supabase lesson_progress table with offline fallback queue
+    // 1. Persist lesson progress in Supabase
     if (supabase?.from) {
       const lesson = this.getLessonById(progress.lessonId);
       const language = lesson?.language || 'en';
       const uuid = toDeterministicUUID(`lesson_prog_${activeUserId}_${progress.lessonId}`);
 
-      const queuedPayload: QueuedLessonProgress = {
+      const { error } = await supabase.from('lesson_progress').upsert({
         id: uuid,
-        userId: activeUserId,
-        lessonId: progress.lessonId,
+        user_id: activeUserId,
+        lesson_id: progress.lessonId,
         language,
-        currentStepIndex: progress.currentStepIndex || 0,
-        isCompleted: progress.isCompleted || false,
+        current_step_index: progress.currentStepIndex || 0,
+        is_completed: progress.isCompleted || false,
         score: progress.quizScore?.score ?? 0,
         answers: {
           quizScore: progress.quizScore,
           completedStepIds: progress.completedStepIds,
         },
-        completedAt: progress.completedAt || null,
-        updatedAt: new Date().toISOString(),
-      };
-
-      if (typeof navigator !== 'undefined' && !navigator.onLine) {
-        await OfflineSyncManager.enqueueLessonProgress(queuedPayload);
-      } else {
-        try {
-          const { error } = await supabase.from('lesson_progress').upsert({
-            id: uuid,
-            user_id: activeUserId,
-            lesson_id: progress.lessonId,
-            language,
-            current_step_index: progress.currentStepIndex || 0,
-            is_completed: progress.isCompleted || false,
-            score: progress.quizScore?.score ?? 0,
-            answers: {
-              quizScore: progress.quizScore,
-              completedStepIds: progress.completedStepIds,
-            },
-            completed_at: progress.completedAt || null,
-            updated_at: new Date().toISOString(),
-          });
-          if (error) {
-            await OfflineSyncManager.enqueueLessonProgress(queuedPayload);
-          }
-        } catch (err) {
-          console.warn('[LessonService] DB write error, enqueued offline:', err);
-          await OfflineSyncManager.enqueueLessonProgress(queuedPayload);
-        }
+        completed_at: progress.completedAt || null,
+        updated_at: new Date().toISOString(),
+      });
+      if (error) {
+        console.error('[LessonService] Failed to persist lesson progress:', error);
       }
     }
 

@@ -422,7 +422,6 @@ const App: React.FC = () => {
                 </Suspense>
                 <GlobalAudioPlayer />
 
-                {/* PWA Prompts */}
                 <PushNotificationPrompt />
 
                 <Toaster />

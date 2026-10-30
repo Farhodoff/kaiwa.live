@@ -2,7 +2,6 @@ import { supabase } from '../lib/supabase';
 import { Flashcard } from '../types';
 import { generateUUID, isUuid, toDeterministicUUID } from '../utils/uuid';
 import { PRESET_DECKS } from '../data/presetDecks';
-import { FlashcardOfflineSync } from './FlashcardOfflineSync';
 import { GlobalFlashcardOverrideService } from './GlobalFlashcardOverrideService';
 import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
 
@@ -174,13 +173,6 @@ export const FlashcardService = {
       if (localCached.length > 0) {
         return localCached;
       }
-      // Fallback to IndexedDB cache (larger capacity, async)
-      try {
-        const idbCached = await FlashcardOfflineSync.getCachedDeck(userId);
-        if (idbCached && idbCached.cards.length > 0) {
-          return idbCached.cards;
-        }
-      } catch {}
       // If both caches are empty and it's a network error, return empty
       if (isNetworkError) return [];
     }
@@ -196,25 +188,6 @@ export const FlashcardService = {
     }
 
     const rawMerged = [...dbCards, ...missingLocalCards];
-
-    // Apply any pending offline updates so user doesn't lose offline review progress before sync completes
-    try {
-      const pendingUpdates = await FlashcardOfflineSync.getPendingUpdates();
-      if (pendingUpdates && pendingUpdates.length > 0) {
-        const pendingMap = new Map(pendingUpdates.map((u) => [u.id, u.updates]));
-        for (const card of rawMerged) {
-          const updates = pendingMap.get(card.id);
-          if (updates) {
-            if (updates.next_review_date) card.nextReviewDate = updates.next_review_date;
-            if (updates.ease_factor !== undefined) card.easeFactor = updates.ease_factor;
-            if (updates.interval !== undefined) card.interval = updates.interval;
-            if (updates.repetitions !== undefined) card.repetitions = updates.repetitions;
-            if (updates.front) card.front = updates.front;
-            if (updates.back) card.back = updates.back;
-          }
-        }
-      }
-    } catch {}
 
     // Sanitize any corrupted placeholder cards in memory
     const sanitizedMerged: Flashcard[] = rawMerged.map((card) => {
@@ -256,8 +229,6 @@ export const FlashcardService = {
     }
 
     setLocalFlashcardCache(userId, sanitizedMerged);
-    // Persist full deck to IndexedDB for high-capacity offline access
-    FlashcardOfflineSync.cacheDeck(userId, sanitizedMerged).catch(() => {});
     return sanitizedMerged;
   },
 
@@ -487,21 +458,10 @@ export const FlashcardService = {
     if (updates.repetitions !== undefined) dbUpdates.repetitions = updates.repetitions;
     if (updates.subjectId) dbUpdates.subject_id = updates.subjectId;
 
-    // If browser is offline, store in IndexedDB queue for later sync
-    if (typeof navigator !== 'undefined' && !navigator.onLine) {
-      await FlashcardOfflineSync.enqueueUpdate(id, dbUpdates);
-      return;
-    }
-
-    try {
-      const { error } = await supabase.from('flashcards').update(dbUpdates).eq('id', id);
-      if (error) {
-        // Enqueue offline update on DB failure
-        await FlashcardOfflineSync.enqueueUpdate(id, dbUpdates);
-      }
-    } catch (error) {
-      console.warn('Update flashcard error, enqueued offline:', error);
-      await FlashcardOfflineSync.enqueueUpdate(id, dbUpdates);
+    const { error } = await supabase.from('flashcards').update(dbUpdates).eq('id', id);
+    if (error) {
+      console.error('Update flashcard error:', error);
+      throw error;
     }
   },
 

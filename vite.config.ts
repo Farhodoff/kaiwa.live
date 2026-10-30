@@ -2,10 +2,8 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import fs from 'fs';
 import { defineConfig } from 'vitest/config';
-import { VitePWA } from 'vite-plugin-pwa';
 import { telegramApiPlugin } from './server/vitePlugin.js';
 import { visualizer } from 'rollup-plugin-visualizer';
-import { pwaGlobIgnores, pwaRuntimeCaching } from './src/config/pwaRuntimeCaching';
 
 const buildTimestamp = Date.now();
 
@@ -70,85 +68,6 @@ export default defineConfig(({ mode }) => {
         : []),
       react(),
       telegramApiPlugin(),
-      VitePWA({
-        registerType: 'autoUpdate',
-        includeAssets: ['favicon.svg'],
-        manifest: {
-          name: 'kaiwa.live',
-          short_name: 'kaiwa.live',
-          description: "kaiwa.live — Aqlli yapon tili o'quv platformasi va AI Speaking Coach",
-          theme_color: '#E8483A',
-          background_color: '#0F1419',
-          display: 'standalone',
-          orientation: 'portrait',
-          scope: '/',
-          start_url: '/',
-          id: '/',
-          display_override: ['standalone', 'window-controls-overlay'],
-          categories: ['education', 'productivity'],
-          shortcuts: [
-            {
-              name: 'JLPT Hub',
-              short_name: 'JLPT',
-              description: 'JLPT N5-N1 darslari',
-              url: '/jlpt',
-              icons: [{ src: 'favicon.svg', sizes: '192x192', type: 'image/svg+xml' }],
-            },
-            {
-              name: 'Speaking Coach',
-              short_name: 'Speaking',
-              description: 'AI Yuki-sensei muloqoti',
-              url: '/speaking',
-              icons: [{ src: 'favicon.svg', sizes: '192x192', type: 'image/svg+xml' }],
-            },
-            {
-              name: 'Fleshkartalar (SRS)',
-              short_name: 'Fleshkartalar',
-              description: 'Anki SM-2 takrorlash to‘plamlari',
-              url: '/decks',
-              icons: [{ src: 'favicon.svg', sizes: '192x192', type: 'image/svg+xml' }],
-            },
-            {
-              name: 'Focus Taymer',
-              short_name: 'Focus',
-              description: 'Pomodoro o‘quv taymeri',
-              url: '/focus',
-              icons: [{ src: 'favicon.svg', sizes: '192x192', type: 'image/svg+xml' }],
-            },
-          ],
-          icons: [
-            {
-              src: 'favicon.svg',
-              sizes: '192x192',
-              type: 'image/svg+xml',
-              purpose: 'any',
-            },
-            {
-              src: 'favicon.svg',
-              sizes: '512x512',
-              type: 'image/svg+xml',
-              purpose: 'any',
-            },
-            {
-              src: 'favicon.svg',
-              sizes: '512x512',
-              type: 'image/svg+xml',
-              purpose: 'maskable',
-            },
-          ],
-        },
-        workbox: {
-          maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
-          skipWaiting: true,
-          clientsClaim: true,
-          cleanupOutdatedCaches: true,
-          globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
-          globIgnores: pwaGlobIgnores,
-          navigateFallback: '/index.html',
-          navigateFallbackDenylist: [/^\/api/, /^\/version\.json/],
-          runtimeCaching: pwaRuntimeCaching,
-        },
-      }),
     ],
     resolve: {
       alias: {
@@ -157,7 +76,7 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       outDir: 'build', // Vercel uchun output papkasini 'build' ga o'zgartirish
-      modulePreload: false, // PWA Service Worker bilan cross-world preload warning'larini oldini olish
+      modulePreload: false,
       rollupOptions: {
         output: {
           manualChunks(id) {

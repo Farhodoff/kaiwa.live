@@ -1,5 +1,4 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { FlashcardOfflineSync } from '../FlashcardOfflineSync';
 import { FlashcardService, getLocalFlashcardCache } from '../FlashcardService';
 import {
   calculateReview,
@@ -15,42 +14,10 @@ import { toDeterministicUUID, isUuid } from '../../utils/uuid';
 import { Flashcard } from '../../types';
 
 describe('SRS Flashcards & Spaced Repetition Integration Tests', () => {
-  beforeEach(async () => {
+  beforeEach(() => {
     vi.clearAllMocks();
-    await FlashcardOfflineSync.clearQueue();
   });
-
-  describe('1. FlashcardOfflineSync getPendingUpdates & Conflict-Free Merge', () => {
-    it('enqueues updates and returns them via getPendingUpdates()', async () => {
-      expect(await FlashcardOfflineSync.getPendingCount()).toBe(0);
-      expect(await FlashcardOfflineSync.getPendingUpdates()).toEqual([]);
-
-      await FlashcardOfflineSync.enqueueUpdate('card-101', {
-        interval: 3,
-        repetitions: 2,
-        ease_factor: 2.6,
-        next_review_date: '2026-10-03T00:00:00.000Z',
-      });
-
-      const pending = await FlashcardOfflineSync.getPendingUpdates();
-      expect(pending.length).toBe(1);
-      expect(pending[0].id).toBe('card-101');
-      expect(pending[0].updates.interval).toBe(3);
-      expect(pending[0].updates.ease_factor).toBe(2.6);
-    });
-
-    it('merges multiple updates for the same card into a single latest entry', async () => {
-      await FlashcardOfflineSync.enqueueUpdate('card-202', { interval: 1 });
-      await FlashcardOfflineSync.enqueueUpdate('card-202', { interval: 4, repetitions: 1 });
-
-      const pending = await FlashcardOfflineSync.getPendingUpdates();
-      expect(pending.length).toBe(1);
-      expect(pending[0].updates.interval).toBe(4);
-      expect(pending[0].updates.repetitions).toBe(1);
-    });
-  });
-
-  describe('2. Deterministic UUID & User ID Resolution', () => {
+  describe('1. Deterministic UUID & User ID Resolution', () => {
     it('produces valid consistent UUID for Telegram and non-UUID user strings', () => {
       const tgUserId = 'tg-user-998877';
       const uuid1 = toDeterministicUUID(tgUserId);

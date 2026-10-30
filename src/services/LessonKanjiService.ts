@@ -4,7 +4,6 @@ import { ALL_JAPANESE_LESSONS } from '../data/curriculum/curriculumLessons';
 import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
 import { supabase } from '../lib/supabase';
 import { isUuid, toDeterministicUUID } from '../utils/uuid';
-import { OfflineSyncManager, type QueuedKanjiProgress } from './OfflineSyncManager';
 
 export type KanjiReviewResult = 'correct' | 'incorrect';
 
@@ -129,7 +128,7 @@ export const LessonKanjiService = {
   async syncProgress(userId: string, progress: LessonKanjiProgress): Promise<void> {
     if (!isUuid(userId)) return;
 
-    const payload: QueuedKanjiProgress = {
+    const payload = {
       id: toDeterministicUUID(`lesson_kanji_${userId}_${progress.lessonId}_${progress.kanji}`),
       userId,
       lessonId: progress.lessonId,
@@ -140,30 +139,23 @@ export const LessonKanjiService = {
       lastReviewedAt: progress.lastReviewedAt,
     };
 
-    if (typeof navigator !== 'undefined' && !navigator.onLine) {
-      await OfflineSyncManager.enqueueKanjiProgress(payload);
-      return;
-    }
-
-    try {
-      const { error } = await supabase.from('lesson_kanji_progress').upsert(
-        {
-          id: payload.id,
-          user_id: payload.userId,
-          lesson_id: payload.lessonId,
-          kanji: payload.kanji,
-          attempts: payload.attempts,
-          correct_attempts: payload.correctAttempts,
-          mastered: payload.mastered,
-          last_reviewed_at: payload.lastReviewedAt,
-          updated_at: payload.lastReviewedAt,
-        },
-        { onConflict: 'user_id,lesson_id,kanji' },
-      );
-      if (error) await OfflineSyncManager.enqueueKanjiProgress(payload);
-    } catch (error) {
-      console.warn('[LessonKanjiService] Failed to sync kanji progress:', error);
-      await OfflineSyncManager.enqueueKanjiProgress(payload);
+    const { error } = await supabase.from('lesson_kanji_progress').upsert(
+      {
+        id: payload.id,
+        user_id: payload.userId,
+        lesson_id: payload.lessonId,
+        kanji: payload.kanji,
+        attempts: payload.attempts,
+        correct_attempts: payload.correctAttempts,
+        mastered: payload.mastered,
+        last_reviewed_at: payload.lastReviewedAt,
+        updated_at: payload.lastReviewedAt,
+      },
+      { onConflict: 'user_id,lesson_id,kanji' },
+    );
+    if (error) {
+      console.error('[LessonKanjiService] Failed to sync kanji progress:', error);
+      throw error;
     }
   },
 

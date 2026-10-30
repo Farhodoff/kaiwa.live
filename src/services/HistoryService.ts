@@ -1,7 +1,6 @@
 import { supabase } from '../lib/supabase';
 import { logger } from '../utils/logger';
 import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
-import { OfflineSyncManager } from './OfflineSyncManager';
 import { toDeterministicUUID } from '../utils/uuid';
 
 export interface WritingHistoryItem {
@@ -146,17 +145,6 @@ export class HistoryService {
     const scopedKey = getStorageKey('study_planner_jlpt_writing_history', userId);
     const legacyScopedKey = getStorageKey('study_planner_ielts_writing_history', userId);
 
-    if (typeof navigator !== 'undefined' && !navigator.onLine) {
-      const local = userId
-        ? safeLocalStorage.getItem(scopedKey) ||
-          safeLocalStorage.getItem(legacyScopedKey) ||
-          safeLocalStorage.getItem('study_planner_jlpt_writing_history') ||
-          safeLocalStorage.getItem('study_planner_ielts_writing_history')
-        : safeLocalStorage.getItem('study_planner_jlpt_writing_history') ||
-          safeLocalStorage.getItem('study_planner_ielts_writing_history');
-      return local ? JSON.parse(local) : [];
-    }
-
     if (!isTableDisabled('ielts_writing_history') && userId) {
       try {
         const safeUserId = toDeterministicUUID(userId);
@@ -209,7 +197,6 @@ export class HistoryService {
     };
 
     let userId: string | null = null;
-    let dbSuccess = false;
     try {
       const {
         data: { user },
@@ -254,25 +241,10 @@ export class HistoryService {
         });
 
         if (!res1?.error || !res2?.error) {
-          dbSuccess = true;
         }
       }
     } catch (e) {
       console.warn('[HistoryService] DB speaking session insert notice:', e);
-    }
-
-    if (!dbSuccess && userId) {
-      OfflineSyncManager.enqueueSpeakingSession({
-        id: newItem.id,
-        userId,
-        topic: newItem.persona,
-        fluencyScore: newItem.fluencyScore,
-        grammarScore: 8.0,
-        pronunciationScore: newItem.pronunciationScore,
-        vocabularyScore: 8.0,
-        durationSeconds: newItem.durationSeconds,
-        createdAt: newItem.createdAt,
-      }).catch(() => {});
     }
 
     const scopedKey = getStorageKey('study_planner_speaking_coach_sessions', userId);
@@ -301,14 +273,6 @@ export class HistoryService {
     }
 
     const scopedKey = getStorageKey('study_planner_speaking_coach_sessions', userId);
-
-    if (typeof navigator !== 'undefined' && !navigator.onLine) {
-      const local = userId
-        ? safeLocalStorage.getItem(scopedKey) ||
-          safeLocalStorage.getItem('study_planner_speaking_coach_sessions')
-        : safeLocalStorage.getItem('study_planner_speaking_coach_sessions');
-      return local ? JSON.parse(local) : [];
-    }
 
     if (!isTableDisabled('speaking_coach_sessions') && userId) {
       try {
@@ -357,7 +321,6 @@ export class HistoryService {
     };
 
     let userId: string | null = null;
-    let dbSuccess = false;
     if (!isTableDisabled('mock_exams_history')) {
       try {
         const {
@@ -378,25 +341,11 @@ export class HistoryService {
           if (error) {
             handleTableError('mock_exams_history', error);
           } else {
-            dbSuccess = true;
           }
         }
       } catch (e) {
         handleTableError('mock_exams_history', e);
       }
-    }
-
-    if (!dbSuccess && userId) {
-      OfflineSyncManager.enqueueMockExam({
-        id: newItem.id,
-        userId,
-        examType: newItem.examType,
-        level: newItem.level,
-        score: newItem.score,
-        totalQuestions: newItem.totalQuestions,
-        bandScore: newItem.bandScore,
-        createdAt: newItem.createdAt,
-      }).catch(() => {});
     }
 
     const scopedKey = getStorageKey('study_planner_mock_exams_history', userId);
@@ -425,14 +374,6 @@ export class HistoryService {
     }
 
     const scopedKey = getStorageKey('study_planner_mock_exams_history', userId);
-
-    if (typeof navigator !== 'undefined' && !navigator.onLine) {
-      const local = userId
-        ? safeLocalStorage.getItem(scopedKey) ||
-          safeLocalStorage.getItem('study_planner_mock_exams_history')
-        : safeLocalStorage.getItem('study_planner_mock_exams_history');
-      return local ? JSON.parse(local) : [];
-    }
 
     if (!isTableDisabled('mock_exams_history') && userId) {
       try {

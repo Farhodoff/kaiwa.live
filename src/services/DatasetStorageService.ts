@@ -1,8 +1,5 @@
-import { idbGet, idbSet } from '../utils/storage/indexedDb';
 import { supabase } from '../lib/supabase';
 import { ErrorNotificationService } from './ErrorNotificationService';
-
-const DATASET_CACHE_PREFIX = 'study_planner_dataset_';
 
 export interface DatasetFetchOptions<T> {
   datasetKey: string;
@@ -16,16 +13,15 @@ export interface DatasetFetchOptions<T> {
  * DatasetStorageService:
  * Unified high-performance loader for large JSON datasets (Kanji VG strokes, JLPT Vocab, Curriculum Lessons).
  * Architecture:
- * 1. Checks fast local IndexedDB cache (instant offline load).
+ * 1. Checks the in-memory cache for the current session.
  * 2. Fetches from Supabase Storage / static CDN endpoint (/data/*.json).
- * 3. Saves to IndexedDB for offline resilience and reduced PWA precache overhead.
- * 4. Gracefully falls back to bundled loader if network is unavailable.
+ * 3. Falls back to the bundled loader when the network resource is unavailable.
  */
 export class DatasetStorageService {
   private static inMemoryCache = new Map<string, any>();
 
   /**
-   * Loads dataset with offline-first IndexedDB caching and CDN/Supabase fallback
+   * Loads a dataset with in-memory caching and CDN/Supabase fallback
    */
   static async loadDataset<T>(options: DatasetFetchOptions<T>): Promise<T> {
     const { datasetKey, localPath, supabaseBucket, supabasePath, fallbackLoader } = options;
@@ -35,22 +31,10 @@ export class DatasetStorageService {
       return this.inMemoryCache.get(datasetKey) as T;
     }
 
-    // 2. IndexedDB local storage check
-    const cacheKey = `${DATASET_CACHE_PREFIX}${datasetKey}`;
-    try {
-      const cached = await idbGet<T>(cacheKey);
-      if (cached) {
-        this.inMemoryCache.set(datasetKey, cached);
-        return cached;
-      }
-    } catch {
-      // Non-blocking if IndexedDB is unavailable
-    }
-
-    // 3. Attempt CDN / Supabase Storage fetch with automatic retry
+    // 2. Attempt CDN / Supabase Storage fetch with automatic retry
     let fetchedData: T | null = null;
 
-    // 3A. Supabase Storage public bucket
+    // 2A. Supabase Storage public bucket
     if (supabaseBucket && supabasePath) {
       try {
         const { data: publicUrlData } = supabase.storage
@@ -72,7 +56,7 @@ export class DatasetStorageService {
       }
     }
 
-    // 3B. Local static CDN endpoint (e.g. /data/*.json)
+    // 2B. Local static CDN endpoint (e.g. /data/*.json)
     const hasBrowserOrigin =
       typeof window !== 'undefined' &&
       Boolean(window.location?.origin && window.location.origin !== 'null');
@@ -91,7 +75,7 @@ export class DatasetStorageService {
       }
     }
 
-    // 3C. Fallback loader (bundled dynamic import)
+    // 3. Fallback loader (bundled dynamic import)
     if (!fetchedData && fallbackLoader) {
       try {
         fetchedData = await fallbackLoader();
@@ -104,13 +88,8 @@ export class DatasetStorageService {
       throw new Error(`[DatasetStorageService] Failed to load dataset: ${datasetKey}`);
     }
 
-    // Cache in memory and persist in IndexedDB asynchronously
+    // Cache only for the current browser session.
     this.inMemoryCache.set(datasetKey, fetchedData);
-    try {
-      await idbSet(cacheKey, fetchedData);
-    } catch {
-      // Silent error handling for storage quota limits
-    }
 
     return fetchedData;
   }
