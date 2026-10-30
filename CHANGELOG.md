@@ -7,6 +7,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.3.0] - 2026-10-30
+
+### 🚀 Added
+
+- **N2/N1 Pedagogical Enrichment & Authentic Content (`src/data/n2AdvancedContent.ts`, `src/data/n1AdvancedContent.ts`):**
+  - Authentic Reading Materials: Business emails, official announcements, newspaper editorial columns (社説 - Shasetsu), and philosophical critique articles (学術論説).
+  - Keigo Verb Matrix: Situational rules for Sonkeigo, Kenjougo, and Teineigo, plus Nijyuu Keigo (二重敬語) trap exercises.
+  - Collocations (連語) & Contextual Idioms: High-frequency JLPT patterns like `拍車をかける`, `目処が立つ`, `筋が通る`, and `手を打つ`.
+  - Real-speed natural multi-speaker listening scenarios focusing on speaker intention and contextual inference.
+- **Curriculum Coverage Reporter (`CurriculumCoverageReportService.ts`):**
+  - Automated 5-skill multidimensional evaluation (Vocabulary, Grammar, Kanji, Reading, Listening) covering all 60 lessons across N2 and N1 with markdown export capabilities.
+- **Admin Exam Workflow Hardening & Version Restore (`ExamWorkflowService.ts`, `ExamImportHistoryModal.tsx`):**
+  - Transactional rollback for partial exam imports.
+  - Mandatory publish snapshot gates saving content states to `exam_content_versions` before transitioning to `published`.
+  - Compensating rollback on audit log failure.
+  - Historical rollback and version restore UI on every exam card in the admin portal.
+- **Dedicated API Reference Documentation (`docs/API.md`):**
+  - Comprehensive reference for Vercel Serverless & Edge endpoints, Supabase auth headers, Upstash rate limiting, and daily AI quotas.
+
+### 🛡 Security & Reliability
+
+- **Spaced Repetition Review Idempotency (`tasks_srs_review_idempotency.sql`):**
+  - Enforced unique review constraint on `(user_id, srs_lesson_id, srs_review_date)` preventing duplicate tasks.
+  - Automated cross-user RLS isolation tests in `complete_production_release_audit.test.ts`.
+- **Quality Gate Automation:**
+  - Enforced required checks on `main` branch: TypeScript, Vite bundle build, Vitest unit/integration tests, Playwright E2E, ESLint, and SEO checks.
+- **Legacy Cleanup:**
+  - Removed outdated `kamchilik.md` checklist file after 100% resolution of all reported items.
+
+---
+
 ## [1.2.0] - 2026-10-20
 
 ### 🚀 Added

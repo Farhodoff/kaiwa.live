@@ -19,28 +19,35 @@ A full-stack, AI-powered **Japanese Language (JLPT N5 – N1 & 0-Level Beginners
 
 ### ✨ Asosiy Imkoniyatlar:
 
-- 🌸 **Minna no Nihongo Shokyu 1 (1–25 Darslar To'liq O'zbekcha Baza):**
-  - **1,135 ta Tayanch So'z (Goi):** Rasmiy darslikdan olingan barcha 25 ta dars so'zlari, kanji, furigana va o'zbekcha aniq tarjimalari bilan.
-  - **144 ta Grammatik Qoida (Bunpou):** Har bir darsning grammatik formulasi, o'zbekcha tushuntirishi va misol gaplari.
-  - **25 ta Interaktiv Dars:** Learn (o'rganish), Practice (mustahkamlash mashqlari) va Test (80% o'tish balli sinov) tizimi.
-  - **25 ta Kaiwa Suhbat Stsenariysi:** Yuki Sensei bilan darslikdagi rasmiy suhbatlar asosida jonli ovozli muloqot mashqi.
+- 🌸 **140 ta Darsdan Iborat To'liq O'quv Dasturi (N5 – N1):**
+  - **Minna no Nihongo Shokyu 1 & 2 (N5 – N4: 50 Dars):** 1,135+ tayanch so'z, 144+ grammatik formula, Furigana, interaktiv Learn/Practice/Test bosqichlari va jonli audio dialoglar.
+  - **N3 O'rta Bosqich (30 Dars):** Kundalik ijtimoiy hayot, do'kon, sayohat va idora muloqotlari.
+  - **N2 Yuqori Bosqich (30 Dars):** Rasmiy ish yozishmalari (Business E-mail), e'lonlar, gazeta maqolalari, Keigo fe'llar matritsasi (Sonkeigo, Kenjougo, Teineigo) va 6 xil asosiy turg'un ibora (Collocations).
+  - **N1 Mukammal Bosqich (30 Dars):** Ijtimoiy-siyosiy publitsistika (社説 - Shasetsu), falsafiy va ilmiy maqolalar (学術論説), abstrakt dalillar tahlili, ikkilangan hurmat xatolari (二重敬語) va sinonimlar nozik farqi.
+  - **Curriculum Coverage Reporter (`CurriculumCoverageReportService`):** Barcha 60 ta N2/N1 darsini 5 ta mahorat (Vocabulary, Grammar, Kanji, Reading, Listening) bo'yicha avtomatik audit qiluvchi tahlil xizmati.
 
 - ⛩️ **JLPT Master Hub (N5–N1 & 0-Level):**
   - **Hiragana & Katakana 0-Level:** Alifboni noldan boshlovchilar uchun interaktiv kartochkalar va talaffuz audiolari.
-  - **Kanji Canvas & Stroke Practice:** Iyerogliflarni to'g'ri chiziqlar tartibi (stroke order) bilan yozish uchun interaktiv chizish kanvasi.
+  - **Kanji Canvas & Stroke Practice:** KanjiVG xalqaro standarti asosida chiziqlar tartibi animatsiyasi va interaktiv chizish kanvasi.
   - **Furigana Engine:** Barcha yaponcha matnlarda kanji ustida o'qilishini (hiragana) avtomatik ko'rsatish.
   - **Bunpou & Dokkai:** Har bir daraja bo'yicha grammatika qoidalari, jonli misol gaplar va o'qish matnlari.
   - **JLPT Mock Imtihonlari:** N5 dan N1 gacha Moji/Goi, Dokkai va Choukai (tinglash) formatidagi amaliy testlar va rasmiy vaqt mezonidagi sinovlar.
+
+- 🏛️ **Admin Imtihon Boshqaruvi va Xavfsiz Workflow (Exam Governance):**
+  - **Tranzaksion Rollback:** Imtihon savollarini ommaviy yuklashda bitta savol xato bo'lsa ham butun import xavfsiz bekor qilinadi.
+  - **Publish Snapshot Gate:** Imtihonni `published` holatiga o'tkazishdan oldin `exam_content_versions` jadvaliga avtomatik snapshot olinadi; agar xato bo'lsa e'lon qilish bloklanadi.
+  - **Audit Log Kafolati:** Xavfsizlik auditi yozilishi muvaffaqiyatsiz bo'lsa holat o'zgarishi darhol orqaga qaytariladi.
+  - **Admin Tarix va Rollback UI:** Har bir imtihon kartasida oldingi versiyalarga bir tugma bilan qaytish (Version Restore) imkoniyati.
 
 - 🎙️ **Real-Time AI Speaking Sensei (Yuki Sensei):**
   - Web Speech API va DeepSeek Reasoner orqali erkin ovozli suhbat qurish.
   - Yaponcha personalar: _Sabrli Sensei (Yasashii)_, _Qattiqqo'l Murabbiy (Kibishii)_, _Arubaito & Kafe_, _Biznes & Keigo_, _Sayohat & Poezd_ hamda _IT & Menya (ishga kirish suhbati)_.
   - Jonli talaffuz, ravonlik va grammatik xatolarni real-vaqtda tushuntirish va sessiya yakunida batafsil AI hisoboti.
 
-- ⚡ **Anki SM-2 Fleshkartalar (Spaced Repetition):**
-  - JLPT N5–N1 darajalari bo'yicha 5,000 dan ortiq saralangan (curated) so'zlar to'plami (100 tadan bo'lingan qulay jildlarda).
-  - 1 soniyada 1,000+ kartochkani yuklovchi yuqori tezlikdagi bulk import tizimi.
+- ⚡ **Anki SM-2 Fleshkartalar & Takrorlash Idempotentligi:**
+  - JLPT N5–N1 darajalari bo'yicha 5,000 dan ortiq saralangan (curated) so'zlar to'plami.
   - Ebbinghaus unutilish egri chizig'iga asoslangan aqlli interval takrorlash algoritmi.
+  - `tasks_srs_review_idempotency` migratsiyasi orqali bir kunda bir xil dars bo'yicha takroriy vazifalar hosil bo'lishining oldi olingan.
 
 - 🧠 **Smart Vocabulary Builder:**
   - Kanji, Furigana, ma'no va misol gaplarni AI orqali bir soniyada tahlil qilish va bir tugma bilan shaxsiy to'plamga saqlash.
@@ -61,29 +68,33 @@ A full-stack, AI-powered **Japanese Language (JLPT N5 – N1 & 0-Level Beginners
 
 「**Kaiwa Live（カイワ・ライブ - kaiwa.live）**」は、日本語能力試験（**JLPT N5〜N1**）および初学者（0レベル）の日本語習得を支援するフルスタックAI学習プラットフォームです。
 
+- **全140レッスンの体系的カリキュラム:** みんなの日本語初級I・II（N5〜N4）から、N3中級、N2ビジネス・敬語、N1学術論説・社説まで網羅。
+- **カリキュラム・カバレッジ・レポーター:** N2およびN1の全60レッスンを語彙・文法・漢字・読解・聴解の5軸で多次元監査。
 - **AI会話コーチ (Yuki Sensei):** 音声認識（STT）と音声合成（TTS）を活用し、自然な日本語会話・文法修正・発音フィードバックをリアルタイムで提供。
 - **漢字・文法マスター (Kanji & Grammar Hub):** 書き順キャンバス、ふりがな表示、聴解オーディオ、模擬試験（Mock Exam）を完全網羅。
 - **SM-2暗記カード (Anki Spaced Repetition):** JLPT各レベル対応の5,000語以上の公式語彙を瞬時にロードする高速バッチシステム。
+- **試験管理ガバナンス (Exam Governance):** トランザクション対応のロールバック、公開時スナップショット保証、監査ログ管理。
 - **リアルタイム自習室 (Study Room):** WebRTCビデオ通話および共有ホワイトボード（`tldraw`）によるグループ学習。
 
 ---
 
 ## 🛠️ Texnologiyalar (Tech Stack)
 
-| Qatlam                 | Texnologiyalar                                                                 |
-| :--------------------- | :----------------------------------------------------------------------------- |
-| **Frontend**           | React 18, TypeScript (Strict), Vite, Tailwind CSS, Lucide Icons, Framer Motion |
-| **Backend & Database** | Supabase (PostgreSQL, Row Level Security, Realtime WebSockets, Auth)           |
-| **AI Modellari**       | DeepSeek Reasoner & Chat / Google Gemini 2.0 / Audio STT & TTS                 |
-| **Offline & PWA**      | VitePWA, Service Workers, IndexedDB, Safe LocalStorage                         |
-| **Hamkorlik (Collab)** | WebRTC P2P Video/Audio Mesh, `tldraw` cheksiz doskasi                          |
-| **Deployment**         | Vercel (Edge Network, Fast CDN, Automated CI/CD)                               |
+| Qatlam                 | Texnologiyalar                                                                        |
+| :--------------------- | :------------------------------------------------------------------------------------ |
+| **Frontend**           | React 18, TypeScript (Strict), Vite, Tailwind CSS, Lucide Icons, Framer Motion        |
+| **Backend & Database** | Supabase (PostgreSQL 15+, Row Level Security, Realtime WebSockets, Auth)              |
+| **AI Modellari**       | DeepSeek Reasoner & Chat / Google Gemini 2.0 / Neural Audio STT & TTS                 |
+| **Serverless & Edge**  | Vercel Edge Runtime, Serverless Functions, Upstash Redis Rate Limiting                |
+| **Offline & PWA**      | VitePWA, Service Workers, IndexedDB, Safe LocalStorage                                |
+| **Hamkorlik (Collab)** | WebRTC P2P Video/Audio Mesh, `tldraw` cheksiz doskasi                                 |
+| **CI/CD Quality Gate** | GitHub Actions (TypeScript, Vite Build, Vitest, Playwright, ESLint, SEO, GitGuardian) |
 
 ---
 
 ## 🏛️ Tizim Arxitekturasi (System Architecture)
 
-Quyidagi diagrammada **Kaiwa Live** platformasining ko'p qatlamli (Multi-Tier) arxitekturasi, klient-tomon dvigatellari, real-vaqt muloqot tizimi, AI tahlil oqimi hamda Supabase ma'lumotlar bazasi bilan integratsiyasi aks ettirilgan:
+Quyidagi diagrammada **Kaiwa Live** platformasining ko'p qatlamli (Multi-Tier) arxitekturasi aks ettirilgan:
 
 ```mermaid
 flowchart TD
@@ -105,12 +116,12 @@ flowchart TD
     subgraph ClientEngines["⚙️ Klient-tomon Dvigatellar (Client-Side Engines)"]
         SpeechEngine["🎙️ Web Speech API Engine<br/>(STT Ovoz Tanish & TTS Qayta Eshitish)"]:::engine
         SM2["⚡ Anki SM-2 Spaced Repetition<br/>(Optimal Takrorlash Algoritmi)"]:::engine
-        WorkerSearch["🔍 Web Worker Instant Search<br/>(5,000+ So'z va Grammatika Bazasini Qidirish)"]:::engine
+        CoverageEngine["📊 Curriculum Coverage Reporter<br/>(N2/N1 5-Skill Audit Dvigateli)"]:::engine
         RoadmapCalc["🗺️ Adaptive Roadmap Engine<br/>(Next Best Action & Imtihon Kalkulyatori)"]:::engine
     end
 
     subgraph EdgeServices["🛡️ Serverless & Edge Qatlami (Vercel & Edge Functions)"]
-        VercelAPI["⚡ Vercel Edge API<br/>(/api/deepseek, /api/sakubun-evaluate)"]:::edge
+        VercelAPI["⚡ Vercel Edge API<br/>(/api/deepseek, /api/v1/sakubun-evaluate, /api/v1/srs)"]:::edge
         TelegramWebhook["🤖 Telegram Bot Webhook<br/>(Daily Dispatch & Group Battle)"]:::edge
         SupabaseEdge["🚀 Supabase Edge Functions<br/>(XP hisoblash & AI proxy)"]:::edge
     end
@@ -136,7 +147,7 @@ flowchart TD
     WebApp --> SpeechEngine
     WebApp --> SM2
     WebApp --> KanjiCanvas
-    WebApp --> WorkerSearch
+    WebApp --> CoverageEngine
     WebApp --> RoadmapCalc
     TWA --> WebApp
     PWA -.-> WebApp
@@ -165,12 +176,23 @@ flowchart TD
     TelegramWebhook <--> SupaDB
 ```
 
-### 🔄 Asosiy Ma'lumotlar Oqimi (Data Flow)
+---
 
-1. **Ovozli Muloqot (AI Kaiwa):** Foydalanuvchi ovozi Web Speech API orqali matnga aylantiriladi (STT) $\rightarrow$ Vercel Edge API orqali DeepSeek Reasoner modeliga yuboriladi $\rightarrow$ Yuki Sensei kontekstida javob va grammatik tavsiyalar olinadi $\rightarrow$ TTS orqali tabiiy yapon ovozi bilan ijro etiladi.
-2. **Interval Takrorlash (SM-2):** Kartochkalar holati (Interval, Repetitions, Ease Factor) to'g'ridan-to'g'ri klient dvigatelida hisoblanadi va Supabase PostgreSQL bazasiga asinxron sinxronlanadi.
-3. **Jonli O'quv Xonasi (Study Room):** P2P WebRTC tarmog'i orqali o'quvchilar video/audio muloqot qiladilar, `tldraw` orqali kanji va mashqlarni bir vaqtda umumiy doskada bajara oladilar.
-4. **Telegram TWA Integratsiyasi:** Telegram ichidan kirgan foydalanuvchilar maxsus sessiya orqali avtomatik aniqlanib, shaxsiy progress saqlanadi.
+## 📖 API Dokumentatsiyasi
+
+API marshrutlari, so'rov va javob namunalari, rate-limiting hamda autentifikatsiya bo'yicha batafsil qo'llanma uchun alohida hujjatga qarang:
+
+👉 **[Batafsil API Spetsifikatsiyasi (docs/API.md)](file:///Users/farhod/Desktop/github/kaiwa.live/docs/API.md)**
+
+Qisqacha asosiy endpointlar:
+
+- `POST /api/deepseek` — Yuki Sensei bilan jonli muloqot va AI grammatika tahlili.
+- `POST /api/v1/sakubun-evaluate` — Yaponcha insholarni JLPT standartida baholash.
+- `POST /api/v1/srs` — SM-2 oraliq takrorlash sanalarini hisoblash.
+- `POST /api/v1/flashcards-generate` — AI orqali ikki tomonlama kartochkalar yaratish.
+- `POST /api/tts` — Ko'p tilli audio talaffuz sintezi.
+- `POST /api/telegram` — Telegram TWA autentifikatsiyasi va kunlik viktorinalar.
+- `GET /api/seo/ratings` — Qidiruv tizimlari uchun platforma reytingi.
 
 ---
 
