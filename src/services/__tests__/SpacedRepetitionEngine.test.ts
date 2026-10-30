@@ -315,7 +315,7 @@ describe('SpacedRepetitionEngine (SM-2 / MF2M)', () => {
     beforeEach(() => {
       vi.useFakeTimers();
       vi.setSystemTime(new Date(2026, 9, 29, 0, 55));
-      vi.spyOn(TaskService, 'addTask').mockImplementation(
+      vi.spyOn(TaskService, 'addReviewTask').mockImplementation(
         async (userId, taskData) =>
           ({
             ...taskData,
@@ -340,7 +340,7 @@ describe('SpacedRepetitionEngine (SM-2 / MF2M)', () => {
       async (hour) => {
         vi.useFakeTimers();
         vi.setSystemTime(new Date(2026, 9, 29, hour, 55));
-        const addTaskSpy = vi.spyOn(TaskService, 'addTask').mockImplementation(
+        const addTaskSpy = vi.spyOn(TaskService, 'addReviewTask').mockImplementation(
           async (userId, taskData) =>
             ({
               ...taskData,
@@ -384,7 +384,7 @@ describe('SpacedRepetitionEngine (SM-2 / MF2M)', () => {
 
       const second = await SpacedRepetitionEngine.generateReviewTasks(testUserId);
       expect(second).toEqual([]);
-      expect(TaskService.addTask).toHaveBeenCalledTimes(1);
+      expect(TaskService.addReviewTask).toHaveBeenCalledTimes(1);
     });
 
     it('skips a review task already saved on the server', async () => {
@@ -395,10 +395,10 @@ describe('SpacedRepetitionEngine (SM-2 / MF2M)', () => {
         baseDate: new Date('2026-10-10T00:00:00.000Z'),
       });
       vi.spyOn(TaskService, 'fetchTasks').mockResolvedValue(created);
-      vi.mocked(TaskService.addTask).mockClear();
+      vi.mocked(TaskService.addReviewTask).mockClear();
 
       expect(await SpacedRepetitionEngine.generateReviewTasks(testUserId)).toEqual([]);
-      expect(TaskService.addTask).not.toHaveBeenCalled();
+      expect(TaskService.addReviewTask).not.toHaveBeenCalled();
     });
 
     it('does not insert duplicates during concurrent sync requests', async () => {
@@ -411,7 +411,7 @@ describe('SpacedRepetitionEngine (SM-2 / MF2M)', () => {
 
       expect(results.map((tasks) => tasks.length)).toEqual([1, 0, 0]);
       expect(fetchSpy).toHaveBeenCalledTimes(1);
-      expect(TaskService.addTask).toHaveBeenCalledTimes(1);
+      expect(TaskService.addReviewTask).toHaveBeenCalledTimes(1);
     });
 
     it.each(['completed', 'legacy title', 'deadline'])(
@@ -424,17 +424,19 @@ describe('SpacedRepetitionEngine (SM-2 / MF2M)', () => {
           existing.completed = true;
           existing.status = 'done';
         } else if (kind === 'legacy title') {
+          existing.srsLessonId = undefined;
+          existing.srsReviewDate = undefined;
           existing.title = existing.title.replace(/ \([^()]+\)$/, '');
         } else {
           existing.deadline = existing.dueDate;
           existing.dueDate = undefined;
         }
-        vi.mocked(TaskService.addTask).mockClear();
+        vi.mocked(TaskService.addReviewTask).mockClear();
 
         expect(await SpacedRepetitionEngine.generateReviewTasks(testUserId, [existing])).toEqual(
           [],
         );
-        expect(TaskService.addTask).not.toHaveBeenCalled();
+        expect(TaskService.addReviewTask).not.toHaveBeenCalled();
       },
     );
 
@@ -445,17 +447,54 @@ describe('SpacedRepetitionEngine (SM-2 / MF2M)', () => {
         localStorage.removeItem(`study_planner_tasks_${testUserId}`);
         const existing = { ...task };
         if (kind === 'deleted') existing.deletedAt = new Date().toISOString();
-        if (kind === 'different day') existing.dueDate = '2026-10-28T10:00:00.000Z';
-        if (kind === 'unrelated title') existing.title = `Notes: ${task.title}`;
+        if (kind === 'different day') {
+          existing.dueDate = '2026-10-28T10:00:00.000Z';
+          existing.srsReviewDate = '2026-10-28';
+        }
+        if (kind === 'unrelated title') {
+          existing.title = `Notes: ${task.title}`;
+          existing.srsLessonId = undefined;
+          existing.srsReviewDate = undefined;
+        }
         if (kind === 'different user') existing.userId = 'another-user';
-        vi.mocked(TaskService.addTask).mockClear();
+        vi.mocked(TaskService.addReviewTask).mockClear();
 
         expect(
           await SpacedRepetitionEngine.generateReviewTasks(testUserId, [existing]),
         ).toHaveLength(1);
-        expect(TaskService.addTask).toHaveBeenCalledTimes(1);
+        expect(TaskService.addReviewTask).toHaveBeenCalledTimes(1);
       },
     );
+
+    it('identifies renamed or rescheduled review tasks by stable SRS metadata', async () => {
+      const [task] = await SpacedRepetitionEngine.generateReviewTasks(testUserId, []);
+      localStorage.removeItem(`study_planner_tasks_${testUserId}`);
+      vi.mocked(TaskService.addReviewTask).mockClear();
+      expect(
+        await SpacedRepetitionEngine.generateReviewTasks(testUserId, [
+          {
+            ...task,
+            title: 'My renamed review',
+            dueDate: '2026-11-01',
+          },
+        ]),
+      ).toEqual([]);
+      expect(TaskService.addReviewTask).not.toHaveBeenCalled();
+    });
+
+    it('does not report a database race conflict as a newly created task', async () => {
+      vi.mocked(TaskService.addReviewTask).mockResolvedValueOnce(null);
+      expect(await SpacedRepetitionEngine.generateReviewTasks(testUserId, [])).toEqual([]);
+    });
+
+    it('propagates insert failures and allows retry without caching a fake task', async () => {
+      vi.mocked(TaskService.addReviewTask).mockRejectedValueOnce(new Error('Migration required'));
+      await expect(SpacedRepetitionEngine.generateReviewTasks(testUserId, [])).rejects.toThrow(
+        'Migration required',
+      );
+      expect(localStorage.getItem(`study_planner_tasks_${testUserId}`)).toBeNull();
+      expect(await SpacedRepetitionEngine.generateReviewTasks(testUserId, [])).toHaveLength(1);
+    });
 
     it('releases the sync lock after a fetch failure so retry works', async () => {
       vi.spyOn(TaskService, 'fetchTasks').mockRejectedValueOnce(new Error('Fetch failed'));

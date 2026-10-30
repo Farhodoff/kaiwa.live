@@ -30,6 +30,8 @@ export interface Task {
   createdAt: string;
   googleEventId?: string;
   deletedAt?: string;
+  srsLessonId?: string;
+  srsReviewDate?: string;
 }
 
 export interface Subject {
