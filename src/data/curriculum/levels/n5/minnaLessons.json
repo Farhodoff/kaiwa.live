@@ -1300,22 +1300,22 @@
               "term": "どうぞ。",
               "reading": "どうぞ。",
               "meaning": "Marhamat.",
-              "exampleSentence": "これは わたしが 買[か]った どうぞ。 です。",
-              "exampleTranslation": "Bu men sotib olgan marhamat.."
+              "exampleSentence": "どうぞ、入[はい]って ください。",
+              "exampleTranslation": "Marhamat, kiring."
             },
             {
               "term": "どうも。",
               "reading": "どうも。",
               "meaning": "Rahmat.",
-              "exampleSentence": "これは わたしが 買[か]った どうも。 です。",
-              "exampleTranslation": "Bu men sotib olgan rahmat.."
+              "exampleSentence": "あ、どうも すみません。",
+              "exampleTranslation": "A, rahmat, kechirasiz."
             },
             {
               "term": "どうもありがとうございます",
               "reading": "どうもありがとうございます",
               "meaning": "Katta rahmat",
-              "exampleSentence": "毎日[まいにち] [どうも]ありがとう[ございます。",
-              "exampleTranslation": "Har kuni katta rahmat."
+              "exampleSentence": "親切[しんせつ]に してくれて どうも ありがとうございます。",
+              "exampleTranslation": "Yaxshiligingiz uchun katta rahmat."
             },
             {
               "term": "これからお世話になります",
@@ -4850,11 +4850,11 @@
               "exampleTranslation": "Har kuni olmoq."
             },
             {
-              "term": "しゃしんを～写真を～",
-              "reading": "しゃしんを～写真を～",
-              "meaning": "] (fotosuratga olmoq)",
-              "exampleSentence": "山田[やまだ][しゃしんを][写真をは 親切[しんせつ]な 人[ひと]です。",
-              "exampleTranslation": "Yamada ] (fotosuratga olmoq) samimiy inson."
+              "term": "写真[しゃしん]を 撮[と]ります",
+              "reading": "しゃしんをとります",
+              "meaning": "suratga olmoq, rasmga tushirmoq",
+              "exampleSentence": "公園[こうえん]で 写真[しゃしん]を 撮[と]りました。",
+              "exampleTranslation": "Bog'da suratga tushirdim."
             },
             {
               "term": "します",
@@ -4997,11 +4997,11 @@
               "exampleTranslation": "Bu men sotib olgan pivo."
             },
             {
-              "term": "酒 (おさけお)",
-              "reading": "おさけお",
-              "meaning": "guruchdan tayyorlangan yapon arog'i",
-              "exampleSentence": "これは わたしが 買[か]った ]酒[[お]さけ[お] です。",
-              "exampleTranslation": "Bu men sotib olgan guruchdan tayyorlangan yapon arog'i."
+              "term": "お酒[さけ]",
+              "reading": "おさけ",
+              "meaning": "yapon arog'i (sake), spirtli ichimlik",
+              "exampleSentence": "晩[ばん]ごはんの とき お酒[さけ]を 飲[の]みます。",
+              "exampleTranslation": "Kechki ovqat paytida sake ichaman."
             },
             {
               "term": "ビデオ",
@@ -5088,11 +5088,11 @@
               "exampleTranslation": "Bu men sotib olgan futbol ( ～します futbol o'ynamoq)."
             },
             {
-              "term": "お花見 (おはなみ)",
+              "term": "お花見[はなみ]",
               "reading": "おはなみ",
-              "meaning": "gullagan sakura daraxtini tomosha qilish",
-              "exampleSentence": "これは わたしが 買[か]った お]花見[[お]はなみ[] です。",
-              "exampleTranslation": "Bu men sotib olgan gullagan sakura daraxtini tomosha qilish."
+              "meaning": "sakura gulini tomosha qilish bayrami",
+              "exampleSentence": "春[はる]に 友[とも]だちと お花見[はなみ]を します。",
+              "exampleTranslation": "Bahorda do'stlarim bilan sakurani tomosha qilamiz."
             },
             {
               "term": "何",
@@ -5165,11 +5165,11 @@
               "exampleTranslation": "Bu men sotib olgan nima?."
             },
             {
-              "term": "。 (じゃ、またあした)",
+              "term": "じゃ、また 明日[あした]",
               "reading": "じゃ、またあした",
-              "meaning": "Ko'rishguncha.",
-              "exampleSentence": "これは わたしが 買[か]った ]。[じゃ、また[あした] です。",
-              "exampleTranslation": "Bu men sotib olgan ko'rishguncha.."
+              "meaning": "Unda, ertagacha (xayrlashuv)",
+              "exampleSentence": "今日[きょう]は これで 終[お]わります。じゃ、また 明日[あした]。",
+              "exampleTranslation": "Bugunga yetadi. Unda, ertagacha."
             },
             {
               "term": "メキシコ",
@@ -6430,11 +6430,11 @@
               "exampleTranslation": "Bu men sotib olgan xushro'y, chiroyli, go'zal; toza."
             },
             {
-              "term": "静かな (しずかな)",
+              "term": "静[しず]かな",
               "reading": "しずかな",
-              "meaning": "tinch, osoyishta, osuda",
-              "exampleSentence": "これは わたしが 買[か]った 静か[な][しずか[な]] です。",
-              "exampleTranslation": "Bu men sotib olgan tinch, osoyishta, osuda."
+              "meaning": "tinch, osoyishta",
+              "exampleSentence": "この 図書館[としょかん]は とても 静[しず]かです。",
+              "exampleTranslation": "Bu kutubxona juda tinch."
             },
             {
               "term": "にぎやかな",
@@ -6444,39 +6444,39 @@
               "exampleTranslation": "Bu men sotib olgan gavjum, sershovqin."
             },
             {
-              "term": "有名な (ゆうめいな)",
+              "term": "有名[ゆうめい]な",
               "reading": "ゆうめいな",
               "meaning": "mashhur",
-              "exampleSentence": "これは わたしが 買[か]った 有名[な][ゆうめい[な]] です。",
-              "exampleTranslation": "Bu men sotib olgan mashhur."
+              "exampleSentence": "富士山[ふじさん]は 日本[にほん]で 有名[ゆうめい]な 山[やま]です。",
+              "exampleTranslation": "Fudzi tog'i Yaponiyada mashhur tog'."
             },
             {
-              "term": "親切な (しんせつな)",
+              "term": "親切[しんせつ]な",
               "reading": "しんせつな",
-              "meaning": "mehribon",
-              "exampleSentence": "これは わたしが 買[か]った 親切[な][しんせつ[な]] です。",
-              "exampleTranslation": "Bu men sotib olgan mehribon."
+              "meaning": "mehribon, samimiy",
+              "exampleSentence": "山田[やまだ]さんは とても 親切[しんせつ]な 人[ひと]です。",
+              "exampleTranslation": "Yamada juda mehribon inson."
             },
             {
-              "term": "元気な (げんきな)",
+              "term": "元気[げんき]な",
               "reading": "げんきな",
-              "meaning": "sog'lom, baquvvat",
-              "exampleSentence": "これは わたしが 買[か]った 元気[な][げんき[な]] です。",
-              "exampleTranslation": "Bu men sotib olgan sog'lom, baquvvat."
+              "meaning": "tetik, baquvvat, sog'lom",
+              "exampleSentence": "ミラーさんは いつも 元気[げんき]です。",
+              "exampleTranslation": "Miller janoblari har doim tetik va baquvvat."
             },
             {
-              "term": "暇な (ひまな)",
+              "term": "暇[ひま]な",
               "reading": "ひまな",
-              "meaning": "bo'sh (vaqt),",
-              "exampleSentence": "これは わたしが 買[か]った 暇[な][ひま[な]] です。",
-              "exampleTranslation": "Bu men sotib olgan bo'sh (vaqt),."
+              "meaning": "bo'sh (vaqti bor)",
+              "exampleSentence": "明日[あした]は 暇[ひま]ですから、映画[えいが]を 見[み]に 行[い]きます。",
+              "exampleTranslation": "Ertaga bo'sh bo'lganim uchun kinoga boraman."
             },
             {
-              "term": "便利な (べんりな)",
+              "term": "便利[べんり]な",
               "reading": "べんりな",
               "meaning": "qulay",
-              "exampleSentence": "これは わたしが 買[か]った 便利[な][べんり[な]] です。",
-              "exampleTranslation": "Bu men sotib olgan qulay."
+              "exampleSentence": "地下鉄[ちかてつ]は 速[はや]くて 便利[べんり]です。",
+              "exampleTranslation": "Metro tezyurar va qulay."
             },
             {
               "term": "すてきな",
@@ -6703,11 +6703,11 @@
               "exampleTranslation": "Bu men sotib olgan turmush, hayot."
             },
             {
-              "term": "お仕事 (おしごと)",
+              "term": "お仕事[しごと]",
               "reading": "おしごと",
-              "meaning": "ish ( ～をします ishlamoq)",
-              "exampleSentence": "これは わたしが 買[か]った [お]仕事[[お]しごと] です。",
-              "exampleTranslation": "Bu men sotib olgan ish ( ～をします ishlamoq)."
+              "meaning": "ish, xizmat (hurmat ma'nosida)",
+              "exampleSentence": "お仕事[しごと]は 何[なん]時[じ]からですか。",
+              "exampleTranslation": "Ishingiz soat nechadan boshlanadi?"
             },
             {
               "term": "どう",
@@ -7329,32 +7329,32 @@
               "exampleTranslation": "Har kuni bor (bo'lmoq)."
             },
             {
-              "term": "好きな (すきな)",
+              "term": "好[す]きな",
               "reading": "すきな",
-              "meaning": "yoqimli, yoqtirgan, suygan",
-              "exampleSentence": "これは わたしが 買[か]った 好き[な][すき[な]] です。",
-              "exampleTranslation": "Bu men sotib olgan yoqimli, yoqtirgan, suygan."
+              "meaning": "yoqimli, sevimli",
+              "exampleSentence": "わたしは 日本[にほん]の 料理[りょうり]が 好[す]きです。",
+              "exampleTranslation": "Men yapon taomlarini yoqtiraman."
             },
             {
-              "term": "嫌いな (きらいな)",
+              "term": "嫌[きら]いな",
               "reading": "きらいな",
-              "meaning": "yoqimsiz, yoqtirmagan, suymagan",
-              "exampleSentence": "これは わたしが 買[か]った 嫌い[な][きらい[な]] です。",
-              "exampleTranslation": "Bu men sotib olgan yoqimsiz, yoqtirmagan, suymagan."
+              "meaning": "yoqimsiz, yoqtirmaydigan",
+              "exampleSentence": "魚[さかな]が あまり 好[す]きじゃ ありません。",
+              "exampleTranslation": "Baliqni unchalik yoqtirmayman."
             },
             {
-              "term": "上手な (じょうずな)",
+              "term": "上手[じょうず]な",
               "reading": "じょうずな",
-              "meaning": "mohir, usta, epli, zo'r",
-              "exampleSentence": "これは わたしが 買[か]った 上手[な][じょうず[な]] です。",
-              "exampleTranslation": "Bu men sotib olgan mohir, usta, epli, zo'r."
+              "meaning": "mohir, usta",
+              "exampleSentence": "マイクさんは テニスが 上手[じょうず]です。",
+              "exampleTranslation": "Mayk tennisni mohirona o'ynaydi."
             },
             {
-              "term": "下手な (へたな)",
+              "term": "下手[へた]な",
               "reading": "へたな",
-              "meaning": "epsiz, no'noq, mahoratsiz",
-              "exampleSentence": "これは わたしが 買[か]った 下手[な][へた[な]] です。",
-              "exampleTranslation": "Bu men sotib olgan epsiz, no'noq, mahoratsiz."
+              "meaning": "no'noq, tajribasiz",
+              "exampleSentence": "わたしは カラオケが 下手[へた]です。",
+              "exampleTranslation": "Men ashula aytishda no'noqman."
             },
             {
               "term": "料理 (りょうり)",
@@ -7609,11 +7609,11 @@
               "exampleTranslation": "Bu men sotib olgan nima uchun."
             },
             {
-              "term": "残念ですね。 (ざんねんですね。)",
-              "reading": "ざんねんですね。",
-              "meaning": "Afsus.",
-              "exampleSentence": "これは わたしが 買[か]った 残念です[ね]。[ざんねんです[ね]。] です。",
-              "exampleTranslation": "Bu men sotib olgan afsus.."
+              "term": "残念[ざんねん]ですね",
+              "reading": "ざんねんですね",
+              "meaning": "Afsus, achinarli",
+              "exampleSentence": "明日[あした] 行[い]けなくて 残念[ざんねん]ですね。",
+              "exampleTranslation": "Ertaga bora olmasligingiz afsus."
             },
             {
               "term": "すみません。",
@@ -9766,11 +9766,11 @@
           ],
           "vocabulary": [
             {
-              "term": "簡単な (かんたんな)",
+              "term": "簡単[かんたん]な",
               "reading": "かんたんな",
-              "meaning": "oson",
-              "exampleSentence": "これは わたしが 買[か]った 簡単[な][かんたん[な]] です。",
-              "exampleTranslation": "Bu men sotib olgan oson."
+              "meaning": "oddiy, oson",
+              "exampleSentence": "今日[きょう]の 宿題[しゅくだい]は とても 簡単[かんたん]でした。",
+              "exampleTranslation": "Bugungi vazifa juda oson edi."
             },
             {
               "term": "近い (ちかい)",
@@ -9976,11 +9976,11 @@
               "exampleTranslation": "Bu men sotib olgan kecha, ziyofat, bazm."
             },
             {
-              "term": "お祭り (おまつり)",
+              "term": "お祭[まつ]り",
               "reading": "おまつり",
-              "meaning": "bayram",
-              "exampleSentence": "これは わたしが 買[か]った [お]祭り[[お]まつり] です。",
-              "exampleTranslation": "Bu men sotib olgan bayram."
+              "meaning": "festival, an'anaviy xalq bayrami",
+              "exampleSentence": "昨日[きのう] 神社[じんじゃ]の お祭[まつ]りに 行[い]きました。",
+              "exampleTranslation": "Kecha ibodatxona bayramiga bordim."
             },
             {
               "term": "試験 (しけん)",
@@ -10662,11 +10662,11 @@
               "exampleTranslation": "Yamada (xiyobonda sayr qilmoq) samimiy inson."
             },
             {
-              "term": "大変な (たいへんな)",
+              "term": "大変[たいへん]な",
               "reading": "たいへんな",
-              "meaning": "qiyin, og'ir",
-              "exampleSentence": "これは わたしが 買[か]った 大変[な][たいへん[な]] です。",
-              "exampleTranslation": "Bu men sotib olgan qiyin, og'ir."
+              "meaning": "og'ir, mashaqqatli",
+              "exampleSentence": "毎日の 残業[ざんぎょう]は 大変[たいへん]ですね。",
+              "exampleTranslation": "Har kunlik ortiqcha ish og'ir-a."
             },
             {
               "term": "欲しい (ほしい)",
@@ -10844,11 +10844,11 @@
               "exampleTranslation": "Bu men sotib olgan gyudon- qaynatilgan guruch ustida mol go'shti."
             },
             {
-              "term": "少々しょうしょうお待まちください。",
-              "reading": "少々しょうしょうお待まちください。",
-              "meaning": "Bir oz kutib turing.",
-              "exampleSentence": "これは わたしが 買[か]った [少々[しょうしょう]]お待[ま]ちください。 です。",
-              "exampleTranslation": "Bu men sotib olgan bir oz kutib turing.."
+              "term": "少々[しょうしょう] お待[ま]ちください",
+              "reading": "しょうしょうおまちください",
+              "meaning": "Bir oz kutib turing",
+              "exampleSentence": "確認[かくにん]しますので、少々[しょうしょう] お待[ま]ちください。",
+              "exampleTranslation": "Tekshirib beraman, bir oz kutib turing."
             },
             {
               "term": "別々べつべつに",
@@ -12992,11 +12992,11 @@
               "exampleTranslation": "Bu men sotib olgan yashil; yashilliklar."
             },
             {
-              "term": "お寺 (おてら)",
+              "term": "お寺[てら]",
               "reading": "おてら",
               "meaning": "budda ibodatxonasi",
-              "exampleSentence": "これは わたしが 買[か]った [お]寺[[お]てら] です。",
-              "exampleTranslation": "Bu men sotib olgan budda ibodatxonasi."
+              "exampleSentence": "京都[きょうと]の 古[ふる]い お寺[てら]を 見学[けんがく]しました。",
+              "exampleTranslation": "Kyotodagi qadimiy ibodatxonani ziyorat qildik."
             },
             {
               "term": "神社 (じんじゃ)",
@@ -13728,18 +13728,18 @@
               "exampleTranslation": "Yamada (hammomga kirmoq) samimiy inson."
             },
             {
-              "term": "大切な (たいせつな)",
+              "term": "大切[たいせつ]な",
               "reading": "たいせつな",
-              "meaning": "muhim",
-              "exampleSentence": "これは わたしが 買[か]った 大切[な][たいせつ[な]] です。",
-              "exampleTranslation": "Bu men sotib olgan muhim."
+              "meaning": "muhim, qadrli",
+              "exampleSentence": "パスポートは 大切[たいせつ]ですから、忘[わす]れないで ください。",
+              "exampleTranslation": "Pasport muhim, shuning uchun esdan chiqarmang."
             },
             {
-              "term": "大丈夫な (だいじょうぶな)",
+              "term": "大丈夫[だいじょうぶ]な",
               "reading": "だいじょうぶな",
               "meaning": "hammasi joyida, xavotirga o'rin yo'q",
-              "exampleSentence": "これは わたしが 買[か]った 大丈夫[な][だいじょうぶ[な]] です。",
-              "exampleTranslation": "Bu men sotib olgan hammasi joyida, xavotirga o'rin yo'q."
+              "exampleSentence": "熱[ねつ]が 下[さ]がりましたから、もう 大丈夫[だいじょうぶ]です。",
+              "exampleTranslation": "Isitma tushdi, endi hammasi joyida."
             },
             {
               "term": "危ない (あぶない)",
@@ -13770,11 +13770,11 @@
               "exampleTranslation": "Bu men sotib olgan chekish taqiqlanadi."
             },
             {
-              "term": "健康保険証 (けんこうほけんしょう)",
+              "term": "健康[けんこう]保険証[ほけんしょう]",
               "reading": "けんこうほけんしょう",
-              "meaning": "tibbiy sug'urta guvohnomasi",
-              "exampleSentence": "毎日[まいにち] [健康]保険証[[けんこう]ほけんしょう]。",
-              "exampleTranslation": "Har kuni tibbiy sug'urta guvohnomasi."
+              "meaning": "tibbiy sug'urta daftarchasi",
+              "exampleSentence": "病院[びょういん]の 受付[うけつけ]で 健康[けんこう]保険証[ほけんしょう]を 出[だ]します。",
+              "exampleTranslation": "Kasalxona qabulxonasida sug'urta daftarchasini ko'rsataman."
             },
             {
               "term": "風邪 (かぜ)",
@@ -13805,11 +13805,11 @@
               "exampleTranslation": "Bu men sotib olgan dori."
             },
             {
-              "term": "お風呂 (おふろ)",
+              "term": "お風呂[ふろ]",
               "reading": "おふろ",
-              "meaning": "hammom",
-              "exampleSentence": "これは わたしが 買[か]った [お]風呂[[お]ふろ] です。",
-              "exampleTranslation": "Bu men sotib olgan hammom."
+              "meaning": "vanna, hammom",
+              "exampleSentence": "毎晩[まいばん] お風呂[ふろ]に 入[はい]ってから 寝[ね]ます。",
+              "exampleTranslation": "Har oqshom vannaga tushib, keyin uxlayman."
             },
             {
               "term": "上着 (うわぎ)",
