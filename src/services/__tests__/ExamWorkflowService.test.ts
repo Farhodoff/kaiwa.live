@@ -4,6 +4,7 @@ import {
   EXAM_STATUS_CONFIG,
   QUESTION_STATUS_CONFIG,
 } from '../ExamWorkflowService';
+import { ExamImportHistoryService } from '../ExamImportHistoryService';
 import { supabase } from '../../lib/supabase';
 
 vi.mock('../../lib/supabase', () => ({
@@ -66,6 +67,46 @@ function mockWorkflowTables(
     }
     if (table === 'exam_workflow_events') {
       return { insert: eventsInsert };
+    }
+    if (table === 'exam_content_versions') {
+      return {
+        select: vi.fn().mockReturnValue({
+          eq: vi.fn().mockReturnValue({
+            order: vi.fn().mockReturnValue({
+              limit: vi.fn().mockReturnValue({
+                maybeSingle: vi
+                  .fn()
+                  .mockResolvedValue({ data: { version_number: 1 }, error: null }),
+              }),
+            }),
+          }),
+        }),
+        update: vi.fn().mockReturnValue({
+          eq: vi.fn().mockResolvedValue({ error: null }),
+        }),
+        insert: vi.fn().mockReturnValue({
+          select: vi.fn().mockReturnValue({
+            single: vi.fn().mockResolvedValue({
+              data: {
+                id: 'ver-1',
+                version_number: 2,
+                label: 'Test snapshot',
+                is_current: true,
+              },
+              error: null,
+            }),
+          }),
+        }),
+      };
+    }
+    if (table === 'exam_sections' || table === 'reading_passages' || table === 'listening_audios') {
+      return {
+        select: vi.fn().mockReturnValue({
+          eq: vi.fn().mockReturnValue({
+            order: vi.fn().mockResolvedValue({ data: [], error: null }),
+          }),
+        }),
+      };
     }
     return {};
   });
@@ -470,6 +511,41 @@ describe('ExamWorkflowService Unit Tests (Task 6)', () => {
           reviewed_by: 'admin@kaiwa.live',
         }),
       );
+    });
+
+    it('blocks publishing when version snapshot creation fails', async () => {
+      vi.spyOn(ExamWorkflowService, 'validateForPublish').mockResolvedValueOnce({
+        isValid: true,
+        errors: [],
+        warnings: [],
+        summary: {
+          totalSections: 1,
+          totalQuestions: 1,
+          approvedCount: 1,
+          reviewCount: 0,
+          draftCount: 0,
+          rejectedCount: 0,
+        },
+      });
+
+      const { examUpdate } = mockWorkflowTables({ examStatus: 'approved' });
+
+      const snapSpy = vi
+        .spyOn(ExamImportHistoryService, 'createVersionSnapshot')
+        .mockRejectedValueOnce(new Error('Snapshot database failure'));
+
+      await expect(
+        ExamWorkflowService.transitionExamStatus(
+          'exam-1',
+          'published',
+          'admin@kaiwa.live',
+          undefined,
+          'admin',
+        ),
+      ).rejects.toThrow(/Snapshot yaratishda xatolik yuz berdi/);
+
+      expect(examUpdate).not.toHaveBeenCalled();
+      snapSpy.mockRestore();
     });
 
     it('Task 17: blocks publishing when the actor is a reviewer', async () => {

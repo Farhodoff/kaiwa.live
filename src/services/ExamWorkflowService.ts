@@ -21,6 +21,7 @@ import {
   type ExamSourceLicenseMeta,
   normalizeLicenseType,
 } from '../types/examMetadata';
+import { ExamImportHistoryService } from './ExamImportHistoryService';
 
 export type ExamWorkflowStatus = 'draft' | 'review' | 'approved' | 'published' | 'archived';
 export type QuestionWorkflowStatus = 'draft' | 'review' | 'approved' | 'rejected';
@@ -512,6 +513,25 @@ export class ExamWorkflowService {
       if (!validation.isValid) {
         throw new Error(
           `Nashr qilish rad etildi! Quyidagi kamchiliklarni bartaraf qiling:\n\n• ${validation.errors.join('\n• ')}`,
+        );
+      }
+
+      // Snapshot yaratish xatosida publish’ni bloklash:
+      try {
+        const publishSnapshot = await ExamImportHistoryService.createVersionSnapshot(examId, {
+          label: `Chop etilgan versiya snapshot (${actor.email || 'Admin'})`,
+          actor: {
+            id: actor.id || undefined,
+            email: actor.email || undefined,
+            role: actor.role || undefined,
+          },
+        });
+        if (!publishSnapshot) {
+          throw new Error("Versiya snapshoti bo'sh qaytdi.");
+        }
+      } catch (snapshotErr: any) {
+        throw new Error(
+          `Snapshot yaratishda xatolik yuz berdi: ${snapshotErr?.message || 'Nomaʼlum snapshot xatoligi'}. Xavfsizlik yuzasidan publish bekor qilindi.`,
         );
       }
     }

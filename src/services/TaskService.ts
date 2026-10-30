@@ -62,6 +62,8 @@ export const TaskService = {
         createdAt: t.created_at,
         googleEventId: t.google_event_id,
         deletedAt: t.deleted_at || undefined,
+        srsLessonId: t.srs_lesson_id || undefined,
+        srsReviewDate: t.srs_review_date || undefined,
       })) as Task[];
 
       // Merge with local tasks scoped to this user so offline changes are preserved without cross-user leakage
@@ -89,6 +91,84 @@ export const TaskService = {
         safeLocalStorage.getJSON<Task[]>('study_planner_tasks', []),
       );
     }
+  },
+
+  async addReviewTask(
+    userId: string,
+    taskData: Partial<Task> & { srsLessonId: string; srsReviewDate: string },
+  ): Promise<Task | null> {
+    if (!taskData.srsLessonId.trim() || !/^\d{4}-\d{2}-\d{2}$/.test(taskData.srsReviewDate)) {
+      throw new Error('SRS task requires a lesson ID and review date.');
+    }
+
+    const localTask: Task = {
+      id: generateUUID(),
+      userId,
+      title: taskData.title || '',
+      dueDate: taskData.dueDate,
+      status: 'todo',
+      priority: taskData.priority || 'medium',
+      completed: false,
+      createdAt: new Date().toISOString(),
+      srsLessonId: taskData.srsLessonId,
+      srsReviewDate: taskData.srsReviewDate,
+    };
+    if (!isUuid(userId)) return localTask;
+
+    const { data, error } = await supabase
+      .from('tasks')
+      .insert({
+        user_id: userId,
+        title: localTask.title,
+        due_date: localTask.dueDate,
+        status: localTask.status,
+        priority: localTask.priority,
+        completed: false,
+        srs_lesson_id: taskData.srsLessonId,
+        srs_review_date: taskData.srsReviewDate,
+      })
+      .select()
+      .single();
+
+    // Only this specific uniqueness violation is a successful idempotent no-op.
+    if (error?.code === '23505' && String(error.message).includes('tasks_srs_review_unique')) {
+      return null;
+    }
+    if (error) throw error;
+    if (!data) throw new Error('SRS task insert returned no saved task.');
+
+    const task: Task = {
+      ...localTask,
+      id: data.id,
+      title: data.title,
+      dueDate: data.due_date,
+      deadline: data.due_date,
+      completed: data.completed,
+      status: data.status as TaskStatus,
+      createdAt: data.created_at,
+    };
+
+    // External side effects must happen only after winning the database insert race.
+    try {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      if (session?.provider_token && task.dueDate) {
+        const googleEventId = await GoogleCalendarService.createEvent(session.provider_token, task);
+        if (googleEventId) {
+          const { error: calendarError } = await supabase
+            .from('tasks')
+            .update({ google_event_id: googleEventId })
+            .eq('id', task.id)
+            .eq('user_id', userId);
+          if (calendarError) throw calendarError;
+          task.googleEventId = googleEventId;
+        }
+      }
+    } catch (calendarError) {
+      logger.warn('TaskService', 'SRS task saved, but calendar sync failed', calendarError);
+    }
+    return task;
   },
 
   async addTask(userId: string, taskData: Partial<Task>): Promise<Task | null> {
