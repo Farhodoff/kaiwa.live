@@ -66,12 +66,18 @@ export interface ContentAuditAnswerInput {
   isCorrect?: boolean | null;
 }
 
+export type DuplicateConfidence = 'exact' | 'probable';
+
 export interface ContentQualityDuplicateGroup {
   key: string;
   level: ContentAuditLevel;
   questionIds: string[];
   count: number;
   sampleText: string;
+  confidence?: DuplicateConfidence;
+  optionsSignature?: string;
+  correctAnswerSignature?: string;
+  passageId?: string | null;
 }
 
 export interface ContentSkillCount {
@@ -150,12 +156,15 @@ export interface ContentQualityReport {
   completeness?: Record<string, ContentQualityCompleteness>;
 }
 
-interface PreparedQuestion {
+export interface PreparedQuestion {
   input: ContentAuditQuestionInput;
   level: ContentAuditLevel;
   skill: ContentQualitySkill;
   status: ContentWorkflowStatus;
   fingerprint: string;
+  optionsSignature: string;
+  correctAnswerSignature: string;
+  passageId: string | null;
   missing: ContentMissingField[];
   hasAudio: boolean;
 }
@@ -239,6 +248,43 @@ const normalizeForDuplicate = (value: unknown): string => {
     : normalized;
 };
 
+const normalizeOptionForSignature = (value: unknown): string => {
+  return normalizeForDuplicate(value);
+};
+
+const buildOptionsSignature = (options: unknown): string => {
+  const list = parseOptions(options);
+  if (list.length === 0) return '';
+  // Normalize each option, sort them alphabetically so order doesn't mask duplicates
+  const normalizedList = list
+    .map((opt) => normalizeOptionForSignature(opt))
+    .filter(Boolean)
+    .sort();
+  return normalizedList.join('|||');
+};
+
+const buildCorrectAnswerSignature = (correctAnswer: unknown, options: unknown): string => {
+  if (correctAnswer === null || correctAnswer === undefined) return '';
+  const list = parseOptions(options);
+
+  // If correctAnswer is numeric index
+  if (typeof correctAnswer === 'number' && Number.isFinite(correctAnswer)) {
+    if (correctAnswer >= 0 && correctAnswer < list.length) {
+      return normalizeOptionForSignature(list[correctAnswer]);
+    }
+    return String(correctAnswer);
+  }
+
+  // If correctAnswer is string (e.g. text of the correct option)
+  const str = String(correctAnswer).trim();
+  const numericIndex = Number(str);
+  if (!Number.isNaN(numericIndex) && numericIndex >= 0 && numericIndex < list.length) {
+    return normalizeOptionForSignature(list[numericIndex]);
+  }
+
+  return normalizeOptionForSignature(str);
+};
+
 export class ContentQualityAuditService {
   static classifySkill(input: {
     level?: string | null;
@@ -307,6 +353,12 @@ export class ContentQualityAuditService {
         skill,
         status,
         fingerprint: normalizeForDuplicate(question.questionText),
+        optionsSignature: buildOptionsSignature(question.options),
+        correctAnswerSignature: buildCorrectAnswerSignature(
+          question.correctAnswer,
+          question.options,
+        ),
+        passageId: question.passageId ? String(question.passageId).trim() : null,
         missing,
         hasAudio,
       });
@@ -394,24 +446,58 @@ export class ContentQualityAuditService {
     level: ContentAuditLevel,
     questions: PreparedQuestion[],
   ): ContentQualityDuplicateGroup[] {
-    const groups = new Map<string, PreparedQuestion[]>();
+    const rawGroups = new Map<string, PreparedQuestion[]>();
     for (const question of questions) {
       if (!question.fingerprint) continue;
-      const list = groups.get(question.fingerprint) || [];
+      const list = rawGroups.get(question.fingerprint) || [];
       list.push(question);
-      groups.set(question.fingerprint, list);
+      rawGroups.set(question.fingerprint, list);
     }
 
-    return Array.from(groups.entries())
-      .filter(([, list]) => list.length > 1)
-      .map(([key, list]) => ({
-        key,
+    const result: ContentQualityDuplicateGroup[] = [];
+
+    for (const [fingerprint, list] of rawGroups.entries()) {
+      if (list.length <= 1) continue;
+
+      // Check if all questions in this group share identical options and correct answer
+      // or belong to the same reading passage context
+      const first = list[0];
+      const allSameOptions = list.every(
+        (q) => q.optionsSignature === first.optionsSignature && q.optionsSignature.length > 0,
+      );
+      const allSameAnswer = list.every(
+        (q) =>
+          q.correctAnswerSignature === first.correctAnswerSignature &&
+          q.correctAnswerSignature.length > 0,
+      );
+      const samePassage =
+        first.passageId !== null && list.every((q) => q.passageId === first.passageId);
+
+      // If options match AND answers match -> exact duplicate.
+      // If either options match or same reading passage -> exact duplicate.
+      // Otherwise -> probable duplicate (same question text/stem but different distractors or different passage)
+      const isExact = (allSameOptions && allSameAnswer) || (first.passageId && samePassage);
+      const confidence: DuplicateConfidence = isExact ? 'exact' : 'probable';
+
+      result.push({
+        key: fingerprint,
         level,
         questionIds: list.map((item) => String(item.input.id)),
         count: list.length,
-        sampleText: String(list[0].input.questionText || '').slice(0, 160),
-      }))
-      .sort((a, b) => b.count - a.count || a.key.localeCompare(b.key));
+        sampleText: String(first.input.questionText || '').slice(0, 160),
+        confidence,
+        optionsSignature: first.optionsSignature || undefined,
+        correctAnswerSignature: first.correctAnswerSignature || undefined,
+        passageId: first.passageId,
+      });
+    }
+
+    return result.sort((a, b) => {
+      // Prioritize exact duplicates first, then highest count, then key
+      if (a.confidence === 'exact' && b.confidence !== 'exact') return -1;
+      if (a.confidence !== 'exact' && b.confidence === 'exact') return 1;
+      return b.count - a.count || a.key.localeCompare(b.key);
+    });
   }
 
   private static buildErrorProneQuestions(
@@ -549,7 +635,7 @@ export class ContentQualityAuditService {
       ]);
       for (const group of level.duplicateGroups) {
         rows.push([
-          'Duplicate group',
+          `Duplicate group (${group.confidence || 'probable'})`,
           level.level,
           group.questionIds.join(' | '),
           group.sampleText,
