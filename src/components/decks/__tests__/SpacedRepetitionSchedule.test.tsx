@@ -33,7 +33,7 @@ describe('SpacedRepetitionSchedule task synchronization', () => {
       quizScorePercentage: 70,
       baseDate: new Date('2026-10-10T00:00:00.000Z'),
     });
-    vi.spyOn(TaskService, 'addTask').mockImplementation(
+    vi.spyOn(TaskService, 'addReviewTask').mockImplementation(
       async (_, taskData) =>
         ({
           ...taskData,
@@ -61,7 +61,7 @@ describe('SpacedRepetitionSchedule task synchronization', () => {
         }),
       ),
     );
-    expect(TaskService.addTask).toHaveBeenCalledTimes(1);
+    expect(TaskService.addReviewTask).toHaveBeenCalledTimes(1);
     expect(refreshData).toHaveBeenCalledTimes(1);
 
     view.unmount();
@@ -75,12 +75,29 @@ describe('SpacedRepetitionSchedule task synchronization', () => {
         }),
       ),
     );
-    expect(TaskService.addTask).toHaveBeenCalledTimes(1);
+    expect(TaskService.addReviewTask).toHaveBeenCalledTimes(1);
+  });
+
+  it('shows an error rather than success when database task creation fails', async () => {
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+    vi.mocked(TaskService.addReviewTask).mockRejectedValueOnce(new Error('Migration required'));
+    renderSchedule();
+    fireEvent.click(screen.getByRole('button', { name: 'Rejaga Vazifa Qilish' }));
+    await waitFor(() =>
+      expect(toast).toHaveBeenCalledWith(
+        expect.objectContaining({
+          variant: 'destructive',
+          title: 'Xatolik yuz berdi',
+        }),
+      ),
+    );
+    expect(refreshData).not.toHaveBeenCalled();
+    expect(screen.getByRole('button', { name: 'Rejaga Vazifa Qilish' })).toBeEnabled();
   });
 
   it('disables synchronization while task creation is pending', async () => {
     let finishCreation!: () => void;
-    vi.mocked(TaskService.addTask).mockImplementationOnce(
+    vi.mocked(TaskService.addReviewTask).mockImplementationOnce(
       (_, taskData) =>
         new Promise((resolve) => {
           finishCreation = () =>
@@ -97,7 +114,7 @@ describe('SpacedRepetitionSchedule task synchronization', () => {
     const pendingButton = screen.getByRole('button', { name: "Bog'lanmoqda..." });
     expect(pendingButton).toBeDisabled();
     fireEvent.click(pendingButton);
-    await waitFor(() => expect(TaskService.addTask).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(TaskService.addReviewTask).toHaveBeenCalledTimes(1));
 
     await act(async () => {
       finishCreation();

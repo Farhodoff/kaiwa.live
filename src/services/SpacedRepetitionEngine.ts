@@ -455,31 +455,30 @@ export class SpacedRepetitionEngine {
     for (const review of dueReviews) {
       const title = `🔄 Takrorlash: ${review.lessonTitle} (${review.level})`;
       const legacyTitle = `🔄 Takrorlash: ${review.lessonTitle}`;
-      const alreadyHasTask = [...knownTasks.values()].some(
-        (t) =>
-          !t.deletedAt &&
-          (t.title === title || t.title === legacyTitle) &&
-          (t.dueDate || t.deadline)?.startsWith(todayStr),
-      );
+      const alreadyHasTask = [...knownTasks.values()].some((task) => {
+        if (task.deletedAt) return false;
+        if (task.srsLessonId) {
+          return task.srsLessonId === review.lessonId && task.srsReviewDate === todayStr;
+        }
+        return (
+          (task.title === title || task.title === legacyTitle) &&
+          (task.dueDate || task.deadline)?.startsWith(todayStr)
+        );
+      });
 
       if (!alreadyHasTask) {
-        try {
-          const newTask = await TaskService.addTask(userId, {
-            title,
-            dueDate: `${todayStr}T10:00:00.000Z`,
-            priority: review.status === 'overdue' ? 'high' : 'medium',
-            status: 'todo',
-            completed: false,
-          });
-          if (newTask) {
-            const task = { ...newTask, userId };
-            createdTasks.push(task);
-            knownTasks.set(task.id, task);
-            // TaskService can return a local fallback; retain it across syncs and page reloads.
-            safeLocalStorage.setJSON(cacheKey, [...knownTasks.values()]);
-          }
-        } catch (e) {
-          console.warn('[SpacedRepetitionEngine] Task creation warning:', e);
+        const newTask = await TaskService.addReviewTask(userId, {
+          title,
+          dueDate: `${todayStr}T10:00:00.000Z`,
+          priority: review.status === 'overdue' ? 'high' : 'medium',
+          srsLessonId: review.lessonId,
+          srsReviewDate: todayStr,
+        });
+        if (newTask) {
+          const task = { ...newTask, userId };
+          createdTasks.push(task);
+          knownTasks.set(task.id, task);
+          safeLocalStorage.setJSON(cacheKey, [...knownTasks.values()]);
         }
       }
     }
