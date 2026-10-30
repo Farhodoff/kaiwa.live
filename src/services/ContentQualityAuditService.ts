@@ -8,7 +8,7 @@
 import { supabase } from '../lib/supabase';
 import { normalizeJlptQuestionType } from '../types/jlptQuestionType';
 
-export const CONTENT_AUDIT_LEVELS = ['N3', 'N2', 'N1'] as const;
+export const CONTENT_AUDIT_LEVELS = ['N3', 'N2', 'N1', 'N4', 'N5'] as const;
 export type ContentAuditLevel = (typeof CONTENT_AUDIT_LEVELS)[number];
 
 export const CONTENT_QUALITY_SKILLS = [
@@ -127,6 +127,19 @@ export interface ContentQualityTotals {
   coveragePercent: number;
 }
 
+export interface ContentQualityCompleteness {
+  fetched: number;
+  total: number;
+  isTruncated: boolean;
+}
+
+export interface PagedFetchResult<T> {
+  data: T[];
+  totalCount: number;
+  isTruncated: boolean;
+  error: Error | null;
+}
+
 export interface ContentQualityReport {
   generatedAt: string;
   levels: ContentLevelQualityReport[];
@@ -134,6 +147,7 @@ export interface ContentQualityReport {
   topErrorQuestions: ContentErrorProneQuestion[];
   errorStatsAvailable: boolean;
   warnings: string[];
+  completeness?: Record<string, ContentQualityCompleteness>;
 }
 
 interface PreparedQuestion {
@@ -262,6 +276,7 @@ export class ContentQualityAuditService {
       generatedAt?: string;
       errorStatsAvailable?: boolean;
       warnings?: string[];
+      completeness?: Record<string, ContentQualityCompleteness>;
     } = {},
   ): ContentQualityReport {
     const prepared: PreparedQuestion[] = [];
@@ -313,6 +328,7 @@ export class ContentQualityAuditService {
       topErrorQuestions: errorQuestions.slice(0, MAX_GLOBAL_ERROR_QUESTIONS),
       errorStatsAvailable: options.errorStatsAvailable !== false,
       warnings: options.warnings || [],
+      completeness: options.completeness,
     };
   }
 
@@ -551,16 +567,91 @@ export class ContentQualityAuditService {
     return rows.map((row) => row.map(escape).join(',')).join('\n');
   }
 
+  static async fetchPagedTable<T = any>(
+    table: string,
+    columns = '*',
+    options?: {
+      pageSize?: number;
+      maxRows?: number;
+      orderBy?: string;
+      ascending?: boolean;
+    },
+  ): Promise<PagedFetchResult<T>> {
+    const pageSize = options?.pageSize ?? 1000;
+    const maxRows = options?.maxRows ?? 50000;
+    const allData: T[] = [];
+    let from = 0;
+    let hasMore = true;
+    let totalCount = 0;
+    let isTruncated = false;
+
+    while (hasMore) {
+      let query: any = supabase.from(table).select(columns, { count: 'exact' });
+
+      if (options?.orderBy) {
+        query = query.order(options.orderBy, { ascending: options.ascending ?? true });
+      }
+
+      query = query.range(from, from + pageSize - 1);
+
+      const { data, error, count } = await query;
+      if (error) {
+        return {
+          data: allData,
+          totalCount: totalCount || allData.length,
+          isTruncated: false,
+          error: new Error(error.message),
+        };
+      }
+
+      if (typeof count === 'number') {
+        totalCount = count;
+      }
+
+      if (data && data.length > 0) {
+        allData.push(...data);
+        from += data.length;
+
+        if (data.length < pageSize || (totalCount > 0 && allData.length >= totalCount)) {
+          hasMore = false;
+        }
+      } else {
+        hasMore = false;
+      }
+
+      if (allData.length >= maxRows) {
+        isTruncated = true;
+        hasMore = false;
+      }
+    }
+
+    if (totalCount > allData.length) {
+      isTruncated = true;
+    }
+
+    return {
+      data: allData,
+      totalCount: totalCount || allData.length,
+      isTruncated,
+      error: null,
+    };
+  }
+
   static async fetchReport(): Promise<ContentQualityReport> {
     const warnings: string[] = [];
     const [examsRes, sectionsRes, questionsRes, passagesRes, audiosRes, answersRes] =
       await Promise.all([
-        supabase.from('exams').select('*'),
-        supabase.from('exam_sections').select('*'),
-        supabase.from('exam_questions').select('*'),
-        supabase.from('reading_passages').select('*'),
-        supabase.from('listening_audios').select('*'),
-        supabase.from('exam_answers').select('question_id, is_correct'),
+        this.fetchPagedTable('exams', '*', { pageSize: 1000, maxRows: 10000 }),
+        this.fetchPagedTable('exam_sections', '*', { pageSize: 1000, maxRows: 20000 }),
+        this.fetchPagedTable('exam_questions', '*', { pageSize: 1000, maxRows: 50000 }),
+        this.fetchPagedTable('reading_passages', '*', { pageSize: 1000, maxRows: 10000 }),
+        this.fetchPagedTable('listening_audios', '*', { pageSize: 1000, maxRows: 10000 }),
+        this.fetchPagedTable('exam_answers', 'question_id, is_correct', {
+          pageSize: 1000,
+          maxRows: 15000,
+          orderBy: 'created_at',
+          ascending: false,
+        }),
       ]);
 
     if (examsRes.error || sectionsRes.error || questionsRes.error) {
@@ -569,15 +660,62 @@ export class ContentQualityAuditService {
       throw new Error(`Kontent audit ma’lumotlarini yuklab bo‘lmadi: ${message}`);
     }
 
-    const exams = examsRes.data || [];
-    const sections = sectionsRes.data || [];
-    const questions = questionsRes.data || [];
-    const passages = passagesRes.error ? [] : passagesRes.data || [];
-    const audios = audiosRes.error ? [] : audiosRes.data || [];
-    if (passagesRes.error)
+    if (passagesRes.error) {
       warnings.push(`Reading passage ma’lumotlari yuklanmadi: ${passagesRes.error.message}`);
-    if (audiosRes.error)
+    }
+    if (audiosRes.error) {
       warnings.push(`Listening audio ma’lumotlari yuklanmadi: ${audiosRes.error.message}`);
+    }
+
+    if (questionsRes.isTruncated) {
+      warnings.push(
+        `DIQQAT: Savollar soni limitdan oshib ketdi (${questionsRes.totalCount} tadan ${questionsRes.data.length} tasi olindi). Audit to‘liq emas bo‘lishi mumkin.`,
+      );
+    }
+    if (answersRes.isTruncated) {
+      warnings.push(
+        `Savol xatoliklari statistikasi so‘nggi ${answersRes.data.length} ta javob namunasi asosida hisoblandi (umumiy javoblar soni: ${answersRes.totalCount}).`,
+      );
+    }
+
+    const completeness: Record<string, ContentQualityCompleteness> = {
+      exams: {
+        fetched: examsRes.data.length,
+        total: examsRes.totalCount,
+        isTruncated: examsRes.isTruncated,
+      },
+      sections: {
+        fetched: sectionsRes.data.length,
+        total: sectionsRes.totalCount,
+        isTruncated: sectionsRes.isTruncated,
+      },
+      questions: {
+        fetched: questionsRes.data.length,
+        total: questionsRes.totalCount,
+        isTruncated: questionsRes.isTruncated,
+      },
+      reading_passages: {
+        fetched: passagesRes.data.length,
+        total: passagesRes.totalCount,
+        isTruncated: passagesRes.isTruncated,
+      },
+      listening_audios: {
+        fetched: audiosRes.data.length,
+        total: audiosRes.totalCount,
+        isTruncated: audiosRes.isTruncated,
+      },
+      exam_answers: {
+        fetched: answersRes.data.length,
+        total: answersRes.totalCount,
+        isTruncated: answersRes.isTruncated,
+      },
+    };
+
+    const exams = examsRes.data;
+    const sections = sectionsRes.data;
+    const questions = questionsRes.data;
+    const passages = passagesRes.data;
+    const audios = audiosRes.data;
 
     const examById = new Map<string, any>();
     for (const exam of exams) examById.set(String(exam.id), exam);
@@ -640,12 +778,12 @@ export class ContentQualityAuditService {
       errorStatsAvailable = false;
       warnings.push(`Savol xatolari statistikasi yuklanmadi: ${answersRes.error.message}`);
     } else {
-      answers = (answersRes.data || []).map((row: any) => ({
+      answers = answersRes.data.map((row: any) => ({
         questionId: String(row.question_id ?? ''),
         isCorrect: row.is_correct,
       }));
     }
 
-    return this.buildReport(inputs, answers, { warnings, errorStatsAvailable });
+    return this.buildReport(inputs, answers, { warnings, errorStatsAvailable, completeness });
   }
 }
