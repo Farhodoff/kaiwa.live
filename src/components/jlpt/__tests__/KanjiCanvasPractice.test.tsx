@@ -1,7 +1,9 @@
 import { render, screen, fireEvent, act } from '@testing-library/react';
-import { describe, expect, it, vi, beforeEach, beforeAll } from 'vitest';
+import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { KanjiCanvasPractice } from '../KanjiCanvasPractice';
 import { KanjiPracticeService } from '../../../services/KanjiPracticeService';
+import * as writing from '../../../services/KanjiWritingEvaluator';
+import { LessonKanjiService } from '../../../services/LessonKanjiService';
 
 const mockAwardXP = vi.fn();
 
@@ -22,12 +24,56 @@ vi.mock('../../../utils/audioTts', () => ({
 }));
 
 describe('KanjiCanvasPractice Component', () => {
-  beforeAll(async () => {
-    await KanjiPracticeService.preloadStrokes();
-  });
-
+  const reference = [
+    [
+      { x: 60, y: 40 },
+      { x: 60, y: 250 },
+    ],
+    [
+      { x: 60, y: 40 },
+      { x: 240, y: 40 },
+      { x: 240, y: 250 },
+    ],
+    [
+      { x: 60, y: 140 },
+      { x: 240, y: 140 },
+    ],
+    [
+      { x: 60, y: 250 },
+      { x: 240, y: 250 },
+    ],
+  ];
+  const drawReference = () => {
+    const canvas = screen.getByLabelText('Kanji yozish maydoni');
+    reference.forEach((points) => {
+      fireEvent.mouseDown(canvas, { clientX: points[0].x, clientY: points[0].y });
+      points
+        .slice(1)
+        .forEach((point) => fireEvent.mouseMove(canvas, { clientX: point.x, clientY: point.y }));
+      fireEvent.mouseUp(canvas);
+    });
+  };
   beforeEach(() => {
+    vi.restoreAllMocks();
     vi.clearAllMocks();
+    localStorage.clear();
+    vi.spyOn(KanjiPracticeService, 'getStrokeData').mockReturnValue({
+      paths: ['M1 1L2 2', 'M1 1L2 2', 'M1 1L2 2', 'M1 1L2 2'],
+      numbers: [],
+    });
+    vi.spyOn(writing, 'sampleKanjiPaths').mockReturnValue(reference);
+    vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue({
+      clearRect: vi.fn(),
+      save: vi.fn(),
+      restore: vi.fn(),
+      scale: vi.fn(),
+      strokeRect: vi.fn(),
+      setLineDash: vi.fn(),
+      beginPath: vi.fn(),
+      moveTo: vi.fn(),
+      lineTo: vi.fn(),
+      stroke: vi.fn(),
+    } as unknown as CanvasRenderingContext2D);
   });
 
   it('renders correctly with default N5 active kanji, readings, and meanings', () => {
@@ -39,7 +85,7 @@ describe('KanjiCanvasPractice Component', () => {
     expect(screen.getByText(/Quyosh/i)).toBeInTheDocument();
     expect(screen.getByText(/音読み/i)).toBeInTheDocument();
     expect(screen.getByText(/訓読み/i)).toBeInTheDocument();
-    expect(screen.getByText(/日本/i)).toBeInTheDocument();
+    expect(screen.getByText('日本', { exact: true })).toBeInTheDocument();
   });
 
   it('switches levels and updates quick kanji chips tray', () => {
@@ -108,13 +154,39 @@ describe('KanjiCanvasPractice Component', () => {
     vi.useRealTimers();
   });
 
-  it('awards XP and displays completion badge when finishing practice', () => {
+  it('does not award XP or save progress for a blank drawing', () => {
     render(<KanjiCanvasPractice />);
+    fireEvent.click(screen.getByRole('button', { name: /Mashqni Yakunlash/i }));
+    expect(mockAwardXP).not.toHaveBeenCalled();
+    expect(screen.getByText(/Avval kanjini yozing/)).toBeInTheDocument();
+    expect(LessonKanjiService.getAllUserProgress('guest')).toHaveLength(0);
+  });
 
-    const finishBtn = screen.getByRole('button', { name: /Mashqni Yakunlash/i });
-    fireEvent.click(finishBtn);
-
-    expect(mockAwardXP).toHaveBeenCalledWith(15);
+  it('evaluates writing, saves lesson-scoped results, and only rewards a character once', () => {
+    render(<KanjiCanvasPractice initialKanji="日" lessonId="ja-minna-l1" hideProgressPanel />);
+    drawReference();
+    fireEvent.click(screen.getByRole('button', { name: /Mashqni Yakunlash/i }));
+    expect(LessonKanjiService.getProgress('guest', 'ja-minna-l1', '日')).toMatchObject({
+      writingAccuracy: 100,
+      strokeOrderPassed: true,
+      totalWrittenCount: 1,
+    });
+    expect(mockAwardXP).toHaveBeenCalledExactlyOnceWith(15);
     expect(screen.getByText(/Ajoyib! Mashq yakunlandi/i)).toBeInTheDocument();
+    fireEvent.click(screen.getByTitle('Tozalash'));
+    drawReference();
+    fireEvent.click(screen.getByRole('button', { name: /Mashqni Yakunlash/i }));
+    expect(mockAwardXP).toHaveBeenCalledTimes(1);
+    expect(LessonKanjiService.getProgress('guest', 'ja-minna-l1', '日')?.totalWrittenCount).toBe(2);
+  });
+
+  it('does not invent a score when SVG geometry is unavailable', () => {
+    vi.spyOn(writing, 'sampleKanjiPaths').mockReturnValue(null);
+    render(<KanjiCanvasPractice hideProgressPanel />);
+    drawReference();
+    fireEvent.click(screen.getByRole('button', { name: /Mashqni Yakunlash/i }));
+    expect(mockAwardXP).not.toHaveBeenCalled();
+    expect(screen.getByText(/baholash hozir mavjud emas/)).toBeInTheDocument();
+    expect(LessonKanjiService.getAllUserProgress('guest')).toHaveLength(0);
   });
 });

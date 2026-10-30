@@ -119,13 +119,28 @@ export const safeLocalStorage: SafeLocalStorage = {
 
   getAllKeys(): string[] {
     try {
-      if (typeof window === 'undefined' || !window.localStorage) return [];
-      const keys: string[] = [];
-      for (let i = 0; i < window.localStorage.length; i++) {
-        const k = window.localStorage.key(i);
-        if (k) keys.push(k);
-      }
-      return keys;
+      const storage =
+        typeof window !== 'undefined' && window.localStorage
+          ? window.localStorage
+          : typeof localStorage !== 'undefined'
+            ? localStorage
+            : null;
+      if (!storage) return [];
+      const keySet = new Set<string>();
+      try {
+        for (let i = 0; i < storage.length; i++) {
+          const k = storage.key(i);
+          if (k) keySet.add(k);
+        }
+      } catch {}
+      try {
+        for (const k of Object.keys(storage)) {
+          if (typeof storage.getItem(k) === 'string') {
+            keySet.add(k);
+          }
+        }
+      } catch {}
+      return [...keySet];
     } catch {
       return [];
     }

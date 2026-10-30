@@ -29,6 +29,13 @@ import { useGamificationStore } from '../../stores/useGamificationStore';
 import { ActivityLoggingService } from '../../services/ActivityLoggingService';
 import { useTelegramWebApp } from '../../hooks/useTelegramWebApp';
 import type { JlptKanjiItem } from '../../data/jlptGrammarKanji';
+import { LessonKanjiService } from '../../services/LessonKanjiService';
+import {
+  assessKanjiWriting,
+  sampleKanjiPaths,
+  type WritingAssessment,
+} from '../../services/KanjiWritingEvaluator';
+import { KanjiProgressPanel } from './KanjiProgressPanel';
 
 interface DrawnStroke {
   points: { x: number; y: number }[];
@@ -36,16 +43,29 @@ interface DrawnStroke {
   size: number;
 }
 
-export const KanjiCanvasPractice: React.FC = () => {
+interface KanjiCanvasPracticeProps {
+  initialKanji?: string;
+  lessonId?: string;
+  hideProgressPanel?: boolean;
+}
+
+export const KanjiCanvasPractice: React.FC<KanjiCanvasPracticeProps> = ({
+  initialKanji = '日',
+  lessonId,
+  hideProgressPanel = false,
+}) => {
   const { language } = useLanguage();
   const isJa = language === 'ja';
   const { awardXP, user } = useStudyData();
   const { haptics } = useTelegramWebApp();
 
   // Filters & Selection
-  const [level, setLevel] = useState<JlptLevelFilter>('N5');
+  const [level, setLevel] = useState<JlptLevelFilter>(
+    () => KanjiPracticeService.getKanjiByChar(initialKanji)?.level || 'N5',
+  );
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedKanjiChar, setSelectedKanjiChar] = useState('日');
+  const [selectedKanjiChar, setSelectedKanjiChar] = useState(initialKanji);
+  const [reviewScope, setReviewScope] = useState({ kanji: initialKanji, lessonId });
 
   // Resolved Kanji & Stroke Data
   const activeKanji: JlptKanjiItem = useMemo(() => {
@@ -67,11 +87,16 @@ export const KanjiCanvasPractice: React.FC = () => {
       return;
     }
 
-    KanjiPracticeService.getStrokeDataAsync(activeKanji.kanji).then((data) => {
-      if (!isCancelled) {
-        setStrokeData(data);
-      }
-    });
+    setStrokeData(null);
+    KanjiPracticeService.getStrokeDataAsync(activeKanji.kanji)
+      .then((data) => {
+        if (!isCancelled) {
+          setStrokeData(data);
+        }
+      })
+      .catch(() => {
+        if (!isCancelled) setStrokeData(null);
+      });
 
     return () => {
       isCancelled = true;
@@ -93,6 +118,15 @@ export const KanjiCanvasPractice: React.FC = () => {
   const [userStrokes, setUserStrokes] = useState<DrawnStroke[]>([]);
   const [isDrawing, setIsDrawing] = useState(false);
   const [completedSuccess, setCompletedSuccess] = useState(false);
+  const [assessment, setAssessment] = useState<WritingAssessment | null>(null);
+  const [feedback, setFeedback] = useState('');
+  const submittedDrawing = useRef(false);
+  const rewardedCharacters = useRef(new Set<string>());
+  const compounds = useMemo(
+    () => LessonKanjiService.getKanjiCompounds(selectedKanjiChar).slice(0, 6),
+    [selectedKanjiChar],
+  );
+  const [revealedCompounds, setRevealedCompounds] = useState(false);
 
   // Canvas Refs
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -201,7 +235,11 @@ export const KanjiCanvasPractice: React.FC = () => {
     setIsAnimPlaying(false);
     setAnimStep(0);
     setCompletedSuccess(false);
-  }, [activeKanji.kanji]);
+    setAssessment(null);
+    setFeedback('');
+    setRevealedCompounds(false);
+    submittedDrawing.current = false;
+  }, [activeKanji.kanji, user?.id, reviewScope.lessonId]);
 
   // Animation timer
   useEffect(() => {
@@ -246,6 +284,10 @@ export const KanjiCanvasPractice: React.FC = () => {
     const coords = getCoordinates(e);
     if (!coords) return;
     setIsDrawing(true);
+    setCompletedSuccess(false);
+    setAssessment(null);
+    setFeedback('');
+    submittedDrawing.current = false;
     currentStrokePoints.current = [coords];
 
     const canvas = canvasRef.current;
@@ -285,11 +327,13 @@ export const KanjiCanvasPractice: React.FC = () => {
     if (!isDrawing) return;
     setIsDrawing(false);
 
-    if (currentStrokePoints.current.length > 0) {
+    if (currentStrokePoints.current.length > 1) {
+      // Capture before clearing the ref: React may run the state updater later.
+      const points = [...currentStrokePoints.current];
       setUserStrokes((prev) => [
         ...prev,
         {
-          points: [...currentStrokePoints.current],
+          points,
           color: brushColor,
           size: brushSize,
         },
@@ -306,6 +350,10 @@ export const KanjiCanvasPractice: React.FC = () => {
   };
 
   const handleUndo = () => {
+    submittedDrawing.current = false;
+    setCompletedSuccess(false);
+    setAssessment(null);
+    setFeedback('');
     setUserStrokes((prev) => {
       const updated = prev.slice(0, -1);
       return updated;
@@ -314,6 +362,10 @@ export const KanjiCanvasPractice: React.FC = () => {
   };
 
   const handleClear = () => {
+    submittedDrawing.current = false;
+    setCompletedSuccess(false);
+    setAssessment(null);
+    setFeedback('');
     setUserStrokes([]);
     currentStrokePoints.current = [];
     redrawCanvas();
@@ -322,11 +374,49 @@ export const KanjiCanvasPractice: React.FC = () => {
 
   // Completion Award
   const handleFinishPractice = () => {
+    if (submittedDrawing.current || isDrawing) return;
+    if (userStrokes.length === 0) {
+      setFeedback('Avval kanjini yozing. Bo‘sh mashq baholanmaydi.');
+      return;
+    }
+    const reference = sampleKanjiPaths(strokeData?.paths || []);
+    const result =
+      reference &&
+      assessKanjiWriting(
+        userStrokes.map((stroke) => stroke.points),
+        reference,
+      );
+    if (!result) {
+      setFeedback(
+        'Bu kanji uchun yozuvni baholash hozir mavjud emas. Stroke tartibini kuzatib mashq qiling.',
+      );
+      return;
+    }
+    submittedDrawing.current = true;
+    setAssessment(result);
+    const progressScope =
+      reviewScope.kanji === activeKanji.kanji && reviewScope.lessonId
+        ? reviewScope.lessonId
+        : `jlpt-${activeKanji.level}`;
+    const progress = LessonKanjiService.recordWritingPractice(
+      user?.id || 'guest',
+      progressScope,
+      activeKanji.kanji,
+      result,
+    );
+    setFeedback(
+      `Natija saqlandi. Keyingi takrorlash: ${new Date(progress.nextReviewAt!).toLocaleDateString('uz-UZ')}.`,
+    );
+    if (!result.passed) {
+      haptics.notification('warning');
+      return;
+    }
     setCompletedSuccess(true);
     haptics.notification('success');
-    if (awardXP) {
-      awardXP(15);
-    }
+    const rewardKey = `${user?.id || 'guest'}:${activeKanji.kanji}`;
+    if (rewardedCharacters.current.has(rewardKey)) return;
+    rewardedCharacters.current.add(rewardKey);
+    if (awardXP) awardXP(15);
     const currentUserId = user?.id || null;
     try {
       DailyQuestService.incrementMetaCounter(currentUserId, 'kanjiMastered', 1);
@@ -351,6 +441,22 @@ export const KanjiCanvasPractice: React.FC = () => {
 
   return (
     <div className="max-w-full space-y-6 overflow-hidden rounded-3xl border border-border bg-card p-4 shadow-xs sm:p-6">
+      {!hideProgressPanel && (
+        <KanjiProgressPanel
+          key={user?.id || 'guest'}
+          userId={user?.id || 'guest'}
+          level={level}
+          onPractice={(item) => {
+            setReviewScope({ kanji: item.kanji, lessonId: item.lessonId });
+            setSelectedKanjiChar(item.kanji);
+            if (item.level && ['N5', 'N4', 'N3', 'N2', 'N1'].includes(item.level))
+              setLevel(item.level as JlptLevelFilter);
+            setSearchQuery('');
+            handleClear();
+            canvasRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }}
+        />
+      )}
       {/* Header Banner */}
       <div className="flex flex-col gap-3 border-b border-border pb-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
@@ -390,6 +496,7 @@ export const KanjiCanvasPractice: React.FC = () => {
             <button
               key={lvl}
               onClick={() => {
+                if (!lessonId) setReviewScope({ kanji: '', lessonId: undefined });
                 setLevel(lvl);
                 const quicks = KanjiPracticeService.getQuickKanjis(lvl);
                 if (quicks.length > 0 && !quicks.includes(selectedKanjiChar)) {
@@ -427,7 +534,10 @@ export const KanjiCanvasPractice: React.FC = () => {
         {(searchQuery.trim() ? availableKanjis.map((k) => k.kanji) : quickPills).map((char) => (
           <button
             key={char}
-            onClick={() => setSelectedKanjiChar(char)}
+            onClick={() => {
+              if (!lessonId) setReviewScope({ kanji: '', lessonId: undefined });
+              setSelectedKanjiChar(char);
+            }}
             className={`font-japanese flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border text-base font-black transition-all ${
               selectedKanjiChar === char
                 ? 'scale-105 border-primary bg-primary text-primary-foreground shadow-xs'
@@ -446,7 +556,7 @@ export const KanjiCanvasPractice: React.FC = () => {
           {/* Canvas Box with Grid & Guide Overlay */}
           <div className="relative aspect-square w-full max-w-[340px] select-none overflow-hidden rounded-3xl border-2 border-border bg-card shadow-inner">
             {/* Background Ghost / Tracing Template */}
-            {practiceMode === 'ghost' && (
+            {practiceMode === 'ghost' && !strokeData && (
               <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-15">
                 <span className="font-japanese text-[190px] font-light text-foreground">
                   {activeKanji.kanji}
@@ -455,7 +565,7 @@ export const KanjiCanvasPractice: React.FC = () => {
             )}
 
             {/* SVG Stroke Order Overlay (when animating or step mode) */}
-            {strokeData && (animStep > 0 || practiceMode === 'step') && (
+            {strokeData && (animStep > 0 || practiceMode !== 'blind') && (
               <svg
                 viewBox="0 0 109 109"
                 className="pointer-events-none absolute inset-0 h-full w-full"
@@ -472,11 +582,11 @@ export const KanjiCanvasPractice: React.FC = () => {
                         key={idx}
                         d={pathD}
                         fill="none"
-                        stroke={idx === 0 ? '#E8483A' : '#e2e8f0'}
-                        strokeWidth={idx === 0 ? '4' : '2'}
+                        stroke={idx === userStrokes.length ? '#E8483A' : '#e2e8f0'}
+                        strokeWidth={idx === userStrokes.length ? '4' : '2'}
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        opacity={idx === 0 ? 0.8 : 0.25}
+                        opacity={idx === userStrokes.length ? 0.8 : 0.25}
                       />
                     );
                   }
@@ -493,7 +603,9 @@ export const KanjiCanvasPractice: React.FC = () => {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       className={isCurrent ? 'animate-pulse' : ''}
-                      opacity={isCurrent ? 1 : 0.65}
+                      opacity={
+                        isCurrent ? 1 : animStep === 0 && practiceMode === 'ghost' ? 0.18 : 0.65
+                      }
                     />
                   );
                 })}
@@ -524,6 +636,7 @@ export const KanjiCanvasPractice: React.FC = () => {
 
             {/* Drawing HTML5 Canvas */}
             <canvas
+              aria-label="Kanji yozish maydoni"
               ref={canvasRef}
               onMouseDown={startDrawing}
               onMouseMove={draw}
@@ -761,9 +874,16 @@ export const KanjiCanvasPractice: React.FC = () => {
             <span className="text-[10px] font-extrabold uppercase tracking-wider text-muted-foreground">
               {isJa ? '代表的な熟語・単語' : 'Misol So‘z Birikmalari'}
             </span>
+            <button
+              type="button"
+              onClick={() => setRevealedCompounds((value) => !value)}
+              className="ml-2 text-xs font-bold text-primary"
+            >
+              {revealedCompounds ? 'Javoblarni yashirish' : 'O‘qilishi va ma’nosini ko‘rsatish'}
+            </button>
             <div className="space-y-2 pt-1">
-              {activeKanji.examples && activeKanji.examples.length > 0 ? (
-                activeKanji.examples.map((ex, idx) => (
+              {compounds.length > 0 ? (
+                compounds.map((ex, idx) => (
                   <div
                     key={idx}
                     className="flex items-center justify-between rounded-xl border border-border/60 bg-muted/30 p-2.5 transition hover:bg-muted/60"
@@ -773,10 +893,12 @@ export const KanjiCanvasPractice: React.FC = () => {
                         <span className="font-japanese text-base font-black text-foreground">
                           {ex.word}
                         </span>
-                        <span className="text-xs text-muted-foreground">({ex.reading})</span>
+                        {revealedCompounds && (
+                          <span className="text-xs text-muted-foreground">({ex.reading})</span>
+                        )}
                       </div>
                       <p className="mt-0.5 text-[11px] font-medium text-muted-foreground">
-                        {ex.meaning}
+                        {revealedCompounds ? ex.meaningUz : 'O‘qilishi va ma’nosini eslab ko‘ring'}
                       </p>
                     </div>
                     <button
@@ -797,13 +919,32 @@ export const KanjiCanvasPractice: React.FC = () => {
           </div>
 
           {/* Practice Action / XP Reward */}
-          <div className="pt-1">
+          <div className="space-y-2 pt-1">
+            <p className="text-xs text-muted-foreground">
+              Muvaffaqiyatli mashq uchun +15 XP (har bir kanjiga ushbu ochilgan mashqda bir marta).
+            </p>
+            <p className="text-xs text-muted-foreground">
+              Taxminiy geometrik baho: shakl, chiziqlar ketma-ketligi va yo‘nalishi solishtiriladi.
+              Bu rasmiy yozuv imtihoni emas.
+            </p>
+            {assessment && (
+              <p role="status" className="text-sm font-bold">
+                Yozish aniqligi: {assessment.writingAccuracy}% · Stroke-order:{' '}
+                {assessment.strokeOrderPassed ? 'To‘g‘ri' : 'Qayta mashq qiling'} ·{' '}
+                {assessment.drawnStrokes}/{assessment.expectedStrokes} chiziq
+              </p>
+            )}
+            {feedback && (
+              <p role="status" className="text-xs">
+                {feedback}
+              </p>
+            )}
             {completedSuccess ? (
               <div className="flex items-center justify-between rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-3.5 text-emerald-600 dark:text-emerald-400">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 size={18} />
                   <span className="text-xs font-black">
-                    {isJa ? '練習完了！ +15 XP 獲得！' : 'Ajoyib! Mashq yakunlandi (+15 XP)'}
+                    {isJa ? '練習完了！' : 'Ajoyib! Mashq yakunlandi'}
                   </span>
                 </div>
                 <Award size={18} />
@@ -811,10 +952,11 @@ export const KanjiCanvasPractice: React.FC = () => {
             ) : (
               <Button
                 onClick={handleFinishPractice}
+                disabled={isDrawing || assessment !== null}
                 className="active:scale-98 flex w-full items-center justify-center gap-2 rounded-2xl bg-primary py-3 text-xs font-black text-primary-foreground shadow-xs transition hover:bg-primary/90"
               >
                 <PenTool size={15} />
-                <span>{isJa ? '書き練習を完了する (+15 XP)' : 'Mashqni Yakunlash (+15 XP)'}</span>
+                <span>{isJa ? '書き練習を完了する' : 'Mashqni Yakunlash — tekshirish'}</span>
               </Button>
             )}
           </div>

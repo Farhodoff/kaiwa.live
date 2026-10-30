@@ -18,6 +18,8 @@ import { resolveAudioUrl } from '../../utils/audioUrl';
 import { LessonKanjiService, LessonKanjiProgress } from '../../services/LessonKanjiService';
 import { KanjiStrokeOrderModal } from '../jlpt/KanjiStrokeOrderModal';
 
+const KanjiCanvasPractice = React.lazy(() => import('../jlpt/KanjiCanvasPractice'));
+
 const formatAudioTime = (seconds: number) => {
   if (isNaN(seconds) || seconds <= 0) return '00:00';
   const mins = Math.floor(seconds / 60);
@@ -47,20 +49,28 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
   );
   const [kanjiProgress, setKanjiProgress] = useState<LessonKanjiProgress[]>([]);
   const [strokeModalKanji, setStrokeModalKanji] = useState<LessonKanji | null>(null);
+  const [writingKanji, setWritingKanji] = useState<string | null>(null);
 
   useEffect(() => {
     if (!lesson || lessonKanji.length === 0) {
       setKanjiProgress([]);
       return;
     }
-    setKanjiProgress(LessonKanjiService.getLessonProgress(userId, lesson.id, lessonKanji));
-    void LessonKanjiService.syncProgressFromDatabase(userId, lesson.id).then((remoteProgress) => {
-      if (remoteProgress.length > 0) setKanjiProgress(remoteProgress);
-    });
+    const refresh = () =>
+      setKanjiProgress(LessonKanjiService.getLessonProgress(userId, lesson.id, lessonKanji));
+    setWritingKanji(null);
+    refresh();
+    window.addEventListener('kanji-progress-updated', refresh);
+    window.addEventListener('storage', refresh);
+    void LessonKanjiService.syncProgressFromDatabase(userId, lesson.id);
+    return () => {
+      window.removeEventListener('kanji-progress-updated', refresh);
+      window.removeEventListener('storage', refresh);
+    };
   }, [lesson, lessonKanji, userId]);
 
   const getKanjiProgress = (kanji: string) =>
-    kanjiProgress.find((progress) => progress.kanji === kanji);
+    kanjiProgress.find((progress) => progress.kanji === kanji && progress.attempts > 0);
 
   const handleKanjiReview = (kanji: string, result: 'correct' | 'incorrect') => {
     if (!lesson) return;
@@ -517,7 +527,19 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
                     </div>
                   )}
 
-                  <div className="mt-3 flex items-center justify-between gap-2">
+                  {progress?.nextReviewAt && (
+                    <p className="mt-2 text-xs text-muted-foreground">
+                      SRS: {progress.intervalDays} kun · Keyingi takrorlash:{' '}
+                      {new Date(progress.nextReviewAt).toLocaleDateString('uz-UZ')}
+                    </p>
+                  )}
+                  {progress?.writingAccuracy !== undefined && (
+                    <p className="text-xs text-muted-foreground">
+                      Yozish: {Math.round(progress.writingAccuracy)}% · Stroke-order:{' '}
+                      {progress.strokeOrderPassed ? 'To‘g‘ri' : 'Qayta mashq qiling'}
+                    </p>
+                  )}
+                  <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
                     <span
                       className={`text-xs font-bold ${
                         progress?.mastered ? 'text-emerald-500' : 'text-muted-foreground'
@@ -529,7 +551,14 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
                           ? `${progress.correctAttempts}/${progress.attempts} to‘g‘ri`
                           : 'Hali ko‘rilmagan'}
                     </span>
-                    <div className="flex gap-1.5">
+                    <div className="flex flex-wrap gap-1.5">
+                      <button
+                        type="button"
+                        onClick={() => setWritingKanji(item.kanji)}
+                        className="rounded-lg border border-primary/30 px-2.5 py-1.5 text-xs font-bold text-primary"
+                      >
+                        Yozish mashqi
+                      </button>
                       <button
                         onClick={() => setStrokeModalKanji(item)}
                         className="rounded-lg border border-primary/30 px-2.5 py-1.5 text-xs font-bold text-primary transition-colors hover:bg-primary/10"
@@ -555,6 +584,29 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
             })}
           </div>
         </div>
+      )}
+
+      {writingKanji && lesson && (
+        <section aria-label="Lesson kanji yozish mashqi" className="space-y-2">
+          <div className="flex items-center justify-between">
+            <h3 className="font-bold">Dars kanjisi: {writingKanji}</h3>
+            <button
+              type="button"
+              onClick={() => setWritingKanji(null)}
+              className="text-sm text-primary"
+            >
+              Mashqni yopish
+            </button>
+          </div>
+          <React.Suspense fallback={<p>Mashq yuklanmoqda…</p>}>
+            <KanjiCanvasPractice
+              key={`${lesson.id}-${writingKanji}`}
+              lessonId={lesson.id}
+              initialKanji={writingKanji}
+              hideProgressPanel
+            />
+          </React.Suspense>
+        </section>
       )}
 
       {strokeModalKanji && (

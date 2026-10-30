@@ -8,6 +8,7 @@ describe('safeLocalStorage Resiliency & Quota Recovery Tests', () => {
 
   afterEach(() => {
     vi.restoreAllMocks();
+    vi.unstubAllGlobals();
   });
 
   it('1. correctly writes and reads strings', () => {
@@ -42,6 +43,42 @@ describe('safeLocalStorage Resiliency & Quota Recovery Tests', () => {
     expect(safeLocalStorage.getItem('important_user_data')).toBe('saved');
     // Ensure cache keys were purged during recovery
     expect(safeLocalStorage.getItem('study_planner_analytics_cache')).toBeNull();
+  });
+
+  it('enumerates stored keys without including Storage methods or duplicate entries', () => {
+    safeLocalStorage.setItem('kanji_user_a', 'one');
+    safeLocalStorage.setItem('kanji_user_b', 'two');
+    expect(safeLocalStorage.getAllKeys().sort()).toEqual(['kanji_user_a', 'kanji_user_b']);
+    safeLocalStorage.removeItem('kanji_user_a');
+    expect(safeLocalStorage.getAllKeys()).toEqual(['kanji_user_b']);
+  });
+
+  it('falls back to a global Storage implementation outside a window environment', () => {
+    vi.stubGlobal('window', undefined);
+    vi.stubGlobal('localStorage', {
+      length: 2,
+      key: (index: number) => ['first', 'second'][index] ?? null,
+      getItem: (key: string) => (['first', 'second'].includes(key) ? 'stored' : null),
+    });
+    expect(safeLocalStorage.getAllKeys()).toEqual(['first', 'second']);
+  });
+
+  it('uses enumerable stored entries when indexed key enumeration is unavailable', () => {
+    vi.stubGlobal('window', undefined);
+    vi.stubGlobal('localStorage', {
+      first: 'stored',
+      get length(): number {
+        throw new Error('Unavailable Storage length');
+      },
+      getItem: (key: string) => (key === 'first' ? 'stored' : null),
+    });
+    expect(safeLocalStorage.getAllKeys()).toEqual(['first']);
+  });
+
+  it('returns an empty key list when no Storage implementation exists', () => {
+    vi.stubGlobal('window', undefined);
+    vi.stubGlobal('localStorage', undefined);
+    expect(safeLocalStorage.getAllKeys()).toEqual([]);
   });
 
   it('5. gracefully handles removal and clear', () => {

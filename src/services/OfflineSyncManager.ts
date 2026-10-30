@@ -67,6 +67,32 @@ export interface QueuedKanjiProgress {
   correctAttempts: number;
   mastered: boolean;
   lastReviewedAt: string;
+  srsStage?: number;
+  intervalDays?: number;
+  nextReviewAt?: string;
+  writingAccuracy?: number;
+  strokeOrderPassed?: boolean;
+  totalWrittenCount?: number;
+}
+
+export function kanjiProgressRow(item: QueuedKanjiProgress) {
+  return {
+    id: item.id,
+    user_id: item.userId,
+    lesson_id: item.lessonId,
+    kanji: item.kanji,
+    attempts: item.attempts,
+    correct_attempts: item.correctAttempts,
+    mastered: item.mastered,
+    last_reviewed_at: item.lastReviewedAt,
+    updated_at: item.lastReviewedAt,
+    srs_stage: item.srsStage ?? 0,
+    interval_days: item.intervalDays ?? 0,
+    next_review_at: item.nextReviewAt ?? null,
+    writing_accuracy: item.writingAccuracy ?? null,
+    stroke_order_passed: item.strokeOrderPassed ?? null,
+    total_written_count: item.totalWrittenCount ?? 0,
+  };
 }
 
 export interface StorageDiagnostics {
@@ -91,6 +117,21 @@ const LAST_SYNC_KEY = 'study_planner_last_offline_sync_time';
 
 let isSyncingAll = false;
 let isListenerInitialized = false;
+let kanjiQueueOperation: Promise<void> = Promise.resolve();
+
+function withKanjiQueueLock<T>(operation: () => Promise<T>): Promise<T> {
+  const result = kanjiQueueOperation.then(async (): Promise<T> => {
+    if (typeof navigator !== 'undefined' && navigator.locks) {
+      return await navigator.locks.request('kanji-progress-queue', operation);
+    }
+    return await operation();
+  });
+  kanjiQueueOperation = result.then(
+    () => undefined,
+    () => undefined,
+  );
+  return result;
+}
 
 export const OfflineSyncManager = {
   // ─── Queuing Operations ─────────────────────────────────────────
@@ -172,21 +213,25 @@ export const OfflineSyncManager = {
   },
 
   async enqueueKanjiProgress(progress: QueuedKanjiProgress): Promise<void> {
-    try {
-      const queue = (await idbGet<QueuedKanjiProgress[]>(KANJI_PROGRESS_QUEUE_KEY)) || [];
-      const existingIdx = queue.findIndex(
-        (item) =>
-          item.id === progress.id ||
-          (item.userId === progress.userId &&
-            item.lessonId === progress.lessonId &&
-            item.kanji === progress.kanji),
-      );
-      if (existingIdx >= 0) queue[existingIdx] = progress;
-      else queue.push(progress);
-      await idbSet(KANJI_PROGRESS_QUEUE_KEY, queue);
-    } catch (e) {
-      console.warn('[OfflineSyncManager] Failed to enqueue kanji progress:', e);
-    }
+    return withKanjiQueueLock(async () => {
+      try {
+        const queue = (await idbGet<QueuedKanjiProgress[]>(KANJI_PROGRESS_QUEUE_KEY)) || [];
+        const existingIdx = queue.findIndex(
+          (item) =>
+            item.id === progress.id ||
+            (item.userId === progress.userId &&
+              item.lessonId === progress.lessonId &&
+              item.kanji === progress.kanji),
+        );
+        if (existingIdx >= 0) {
+          if (Date.parse(queue[existingIdx].lastReviewedAt) <= Date.parse(progress.lastReviewedAt))
+            queue[existingIdx] = progress;
+        } else queue.push(progress);
+        await idbSet(KANJI_PROGRESS_QUEUE_KEY, queue);
+      } catch (e) {
+        console.warn('[OfflineSyncManager] Failed to enqueue kanji progress:', e);
+      }
+    });
   },
 
   // ─── Queue Counters ─────────────────────────────────────────────
@@ -446,43 +491,34 @@ export const OfflineSyncManager = {
         await idbSet(LESSON_PROGRESS_QUEUE_KEY, remainingLessons);
       }
 
-      // 6. Sync lesson kanji review progress
-      const kanjiQueue = (await idbGet<QueuedKanjiProgress[]>(KANJI_PROGRESS_QUEUE_KEY)) || [];
-      if (kanjiQueue.length > 0) {
-        const remainingKanji: QueuedKanjiProgress[] = [];
-        for (const item of kanjiQueue) {
-          try {
-            if (item.userId && item.userId !== 'guest') {
-              const { error } = await supabase.from('lesson_kanji_progress').upsert(
-                {
-                  id: item.id,
-                  user_id: item.userId,
-                  lesson_id: item.lessonId,
-                  kanji: item.kanji,
-                  attempts: item.attempts,
-                  correct_attempts: item.correctAttempts,
-                  mastered: item.mastered,
-                  last_reviewed_at: item.lastReviewedAt,
-                  updated_at: item.lastReviewedAt,
-                },
-                { onConflict: 'user_id,lesson_id,kanji' },
-              );
-              if (error) {
-                remainingKanji.push(item);
-                totalFailed++;
+      // Serialize the snapshot and drain with enqueues so new offline writes are not discarded.
+      await withKanjiQueueLock(async () => {
+        const kanjiQueue = (await idbGet<QueuedKanjiProgress[]>(KANJI_PROGRESS_QUEUE_KEY)) || [];
+        if (kanjiQueue.length > 0) {
+          const remainingKanji: QueuedKanjiProgress[] = [];
+          for (const item of kanjiQueue) {
+            try {
+              if (item.userId && item.userId !== 'guest') {
+                const { error } = await supabase
+                  .from('lesson_kanji_progress')
+                  .upsert(kanjiProgressRow(item), { onConflict: 'user_id,lesson_id,kanji' });
+                if (error) {
+                  remainingKanji.push(item);
+                  totalFailed++;
+                } else {
+                  syncedKanji++;
+                }
               } else {
                 syncedKanji++;
               }
-            } else {
-              syncedKanji++;
+            } catch {
+              remainingKanji.push(item);
+              totalFailed++;
             }
-          } catch {
-            remainingKanji.push(item);
-            totalFailed++;
           }
+          await idbSet(KANJI_PROGRESS_QUEUE_KEY, remainingKanji);
         }
-        await idbSet(KANJI_PROGRESS_QUEUE_KEY, remainingKanji);
-      }
+      });
 
       const totalSynced =
         syncedCards +
