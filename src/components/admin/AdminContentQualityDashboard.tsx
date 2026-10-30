@@ -466,24 +466,48 @@ export const AdminContentQualityDashboard: React.FC = () => {
               </p>
             ) : (
               <div className="mt-3 space-y-2">
-                {selected.duplicateGroups.map((group) => (
-                  <div
-                    key={`${group.level}-${group.key}`}
-                    className="rounded-xl border border-amber-500/20 bg-amber-500/5 px-3 py-2"
-                  >
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-xs font-bold text-foreground">
-                        {group.count}× {group.sampleText || '(matnsiz)'}
-                      </span>
-                      <span className="shrink-0 text-[10px] font-bold text-amber-600 dark:text-amber-400">
-                        {group.questionIds.length} ID
-                      </span>
+                {selected.duplicateGroups.map((group) => {
+                  const isExact = group.confidence === 'exact';
+                  return (
+                    <div
+                      key={`${group.level}-${group.key}`}
+                      className={`rounded-xl border px-3 py-2 ${
+                        isExact
+                          ? 'border-red-500/30 bg-red-500/5'
+                          : 'border-amber-500/20 bg-amber-500/5'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-1.5 overflow-hidden">
+                          <span
+                            className={`shrink-0 rounded px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wider ${
+                              isExact
+                                ? 'bg-red-500/20 text-red-700 dark:text-red-300'
+                                : 'bg-amber-500/20 text-amber-700 dark:text-amber-300'
+                            }`}
+                          >
+                            {isExact
+                              ? isJa
+                                ? '完全重複'
+                                : 'Aniq dublikat'
+                              : isJa
+                                ? '類似重複'
+                                : 'Ehtimoliy dublikat'}
+                          </span>
+                          <span className="truncate text-xs font-bold text-foreground">
+                            {group.count}× {group.sampleText || '(matnsiz)'}
+                          </span>
+                        </div>
+                        <span className="shrink-0 text-[10px] font-bold text-muted-foreground">
+                          {group.questionIds.length} ID
+                        </span>
+                      </div>
+                      <p className="mt-1 break-all text-[10px] text-muted-foreground">
+                        {group.questionIds.join(', ')}
+                      </p>
                     </div>
-                    <p className="mt-1 break-all text-[10px] text-muted-foreground">
-                      {group.questionIds.join(', ')}
-                    </p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>

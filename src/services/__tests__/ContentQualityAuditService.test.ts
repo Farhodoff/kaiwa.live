@@ -132,17 +132,67 @@ describe('ContentQualityAuditService', () => {
 
   it('4. detects duplicate questions after normalizing punctuation and whitespace', () => {
     const report = ContentQualityAuditService.buildReport([
-      question({ id: 'd1', level: 'N3', questionText: '「同じ」問題 を選んでください。' }),
-      question({ id: 'd2', level: 'N3', questionText: '同じ 問題を選んでください' }),
-      question({ id: 'd3', level: 'N3', questionText: 'まったく別の問題' }),
-      question({ id: 'd4', level: 'N2', questionText: '「同じ」問題 を選んでください。' }),
+      question({
+        id: 'd1',
+        level: 'N3',
+        questionText: '「同じ」問題 を選んでください。',
+        options: ['A', 'B', 'C', 'D'],
+        correctAnswer: 0,
+      }),
+      question({
+        id: 'd2',
+        level: 'N3',
+        questionText: '同じ 問題を選んでください',
+        options: ['A', 'B', 'C', 'D'],
+        correctAnswer: 0,
+      }),
+      question({
+        id: 'd3',
+        level: 'N3',
+        questionText: 'まったく別の問題',
+        options: ['X', 'Y'],
+        correctAnswer: 1,
+      }),
+      question({
+        id: 'd4',
+        level: 'N2',
+        questionText: '「同じ」問題 を選んでください。',
+        options: ['A', 'B', 'C', 'D'],
+        correctAnswer: 0,
+      }),
     ]);
 
     const n3 = report.levels.find((level) => level.level === 'N3')!;
     expect(n3.duplicateGroups).toHaveLength(1);
     expect(n3.duplicateGroups[0].questionIds).toEqual(['d1', 'd2']);
+    expect(n3.duplicateGroups[0].confidence).toBe('exact');
     expect(n3.duplicateQuestionCount).toBe(2);
     expect(report.levels.find((level) => level.level === 'N2')!.duplicateQuestionCount).toBe(0);
+  });
+
+  it('4b. distinguishes exact duplicates from probable stem duplicates (different options or answers)', () => {
+    const report = ContentQualityAuditService.buildReport([
+      // Probable duplicate: identical stem, but different options/distractors
+      question({
+        id: 'p1',
+        level: 'N3',
+        questionText: '次の文の（ ）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。',
+        options: ['行く', '行かない', '行った', '行けば'],
+        correctAnswer: 0,
+      }),
+      question({
+        id: 'p2',
+        level: 'N3',
+        questionText: '次の文の（ ）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。',
+        options: ['食べる', '食べない', '食べた', '食べれば'],
+        correctAnswer: 2,
+      }),
+    ]);
+
+    const n3 = report.levels.find((level) => level.level === 'N3')!;
+    expect(n3.duplicateGroups).toHaveLength(1);
+    expect(n3.duplicateGroups[0].confidence).toBe('probable');
+    expect(n3.duplicateGroups[0].questionIds).toEqual(['p1', 'p2']);
   });
 
   it('5. reports listening audio availability separately per level', () => {
