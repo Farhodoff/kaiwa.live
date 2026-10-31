@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mic, Settings as SettingsIcon } from 'lucide-react';
+import { Mic, Settings as SettingsIcon, Clock } from 'lucide-react';
 import { CoachPersona, PERSONAS_BY_LANG } from './speakingTypes';
 
 interface CoachTopBarProps {
@@ -8,6 +8,8 @@ interface CoachTopBarProps {
   isLiveSession: boolean;
   sessionSeconds: number;
   onOpenSettings: () => void;
+  onOpenHistory?: () => void;
+  historyCount?: number;
   activeScenario?: any;
   formatTimer: (sec: number) => string;
   isAdmin?: boolean;
@@ -26,16 +28,18 @@ export const CoachTopBar: React.FC<CoachTopBarProps> = ({
   isLiveSession,
   sessionSeconds,
   onOpenSettings,
+  onOpenHistory,
+  historyCount = 0,
   activeScenario,
   formatTimer,
 }) => {
   const personas = PERSONAS_BY_LANG[language];
   const currentPersona = personas[persona];
   const Icon = currentPersona.icon || Mic;
-  const title = isLiveSession ? activeScenario?.title_uz || currentPersona.name : 'Yapon tili';
+  const title = isLiveSession ? activeScenario?.title_uz || currentPersona.name : 'Speaking Sensei';
 
   return (
-    <header className="relative z-10 flex h-14 shrink-0 items-center justify-between border-b border-white/10 bg-slate-950/20 px-4 text-white backdrop-blur-sm sm:px-6">
+    <header className="relative z-10 flex h-14 shrink-0 items-center justify-between border-b border-white/10 bg-slate-950/40 px-4 text-white backdrop-blur-md sm:px-6">
       <div className="flex min-w-0 items-center gap-2.5">
         <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-primary">
           {isLiveSession && activeScenario?.emoji ? (
@@ -45,29 +49,51 @@ export const CoachTopBar: React.FC<CoachTopBarProps> = ({
           )}
         </span>
         <div className="min-w-0">
-          <h1 className="truncate text-sm font-bold tracking-tight text-foreground sm:text-base">
+          <h1 className="truncate text-sm font-bold tracking-tight text-white sm:text-base">
             {title}
           </h1>
           {isLiveSession ? (
-            <p className="flex items-center gap-1.5 text-[10px] font-medium text-white/65 sm:text-xs">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-              Suhbat davom etmoqda · {formatTimer(sessionSeconds)}
+            <p className="flex items-center gap-1.5 text-[10px] font-medium text-emerald-400 sm:text-xs">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+              Suhbat faol · {formatTimer(sessionSeconds)}
             </p>
-          ) : null}
+          ) : (
+            <p className="text-[10px] text-slate-400 sm:text-xs">Faqat ovozli jonli muloqot</p>
+          )}
         </div>
       </div>
 
-      {isLiveSession && (
-        <button
-          type="button"
-          onClick={onOpenSettings}
-          aria-label="Speaking sozlamalari"
-          title="Sozlamalar"
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-slate-950/45 text-white/75 transition hover:bg-slate-900 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-        >
-          <SettingsIcon size={18} />
-        </button>
-      )}
+      <div className="flex items-center gap-2">
+        {onOpenHistory && (
+          <button
+            type="button"
+            onClick={onOpenHistory}
+            aria-label="Suhbatlar tarixi"
+            title="Suhbatlar tarixi"
+            className="flex h-10 items-center gap-1.5 rounded-xl border border-white/15 bg-slate-950/50 px-3 text-xs font-semibold text-white/80 transition hover:bg-slate-900 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          >
+            <Clock size={16} />
+            <span className="hidden sm:inline">Tarix</span>
+            {historyCount > 0 && (
+              <span className="py-0.2 ml-0.5 rounded-full bg-primary/20 px-1.5 text-[10px] font-bold text-primary">
+                {historyCount}
+              </span>
+            )}
+          </button>
+        )}
+
+        {isLiveSession && (
+          <button
+            type="button"
+            onClick={onOpenSettings}
+            aria-label="Speaking sozlamalari"
+            title="Sozlamalar"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-slate-950/45 text-white/75 transition hover:bg-slate-900 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          >
+            <SettingsIcon size={18} />
+          </button>
+        )}
+      </div>
     </header>
   );
 };

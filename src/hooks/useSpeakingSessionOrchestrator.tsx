@@ -5,6 +5,7 @@ import {
   converseWithCoachStructured,
   CoachStructuredResponse,
   CoachVocabularyItem,
+  CoachNewWord,
   analyzeSpeakingSession,
   SessionAnalysisReport,
   translateTextToUzbek,
@@ -73,6 +74,7 @@ export function useSpeakingSessionOrchestrator({
   const [sessionSeconds, setSessionSeconds] = useState(0);
   const [chatHistory, setChatHistory] = useState<CoachChatMessage[]>([]);
   const [liveErrors, setLiveErrors] = useState<ErrorTag[]>([]);
+  const [accumulatedNewWords, setAccumulatedNewWords] = useState<CoachNewWord[]>([]);
 
   const activeScenarioRef = useRef(activeScenario);
   const isProcessingRef = useRef(false);
@@ -407,12 +409,48 @@ export function useSpeakingSessionOrchestrator({
               : "Understood! Let's continue speaking practice.";
         }
 
+        const corrected = structured.corrected || structured.correction?.corrected || '';
+        const explanation_uz =
+          structured.explanation_uz || structured.correction?.explanation || '';
+        const new_words = structured.new_words || [];
+
+        if (new_words.length > 0) {
+          setAccumulatedNewWords((prev) => {
+            const seen = new Set(prev.map((w) => w.word.trim()));
+            const toAdd = new_words.filter((w) => w.word && !seen.has(w.word.trim()));
+            return [...prev, ...toAdd];
+          });
+        }
+
+        // Attach green correction and explanation_uz directly to the user's message
+        setChatHistory((prev) => {
+          const next = [...prev];
+          for (let i = next.length - 1; i >= 0; i--) {
+            if (next[i].role === 'user') {
+              next[i] = {
+                ...next[i],
+                corrected: corrected && corrected.trim().length > 0 ? corrected.trim() : undefined,
+                explanation_uz:
+                  explanation_uz && explanation_uz.trim().length > 0
+                    ? explanation_uz.trim()
+                    : undefined,
+              };
+              break;
+            }
+          }
+          chatHistoryRef.current = next;
+          return next;
+        });
+
         const aiMsg: CoachChatMessage = {
           role: 'assistant',
           content: cleanReply,
           romaji: structured.romaji,
           ttsText: structured.ttsText,
           correction: structured.correction,
+          corrected,
+          explanation_uz,
+          new_words,
           vocabulary: structured.vocabulary,
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         };
@@ -734,6 +772,7 @@ export function useSpeakingSessionOrchestrator({
     isProcessingRef.current = false;
     setChatHistory([]);
     chatHistoryRef.current = [];
+    setAccumulatedNewWords([]);
     setSessionSeconds(0);
     setCurrentTranscript('');
     transcriptBufferRef.current = '';
@@ -751,6 +790,7 @@ export function useSpeakingSessionOrchestrator({
       unlockAudio();
       setIsLiveSession(true);
       isLiveSessionRef.current = true;
+      setAccumulatedNewWords([]);
       setCurrentTranscript('');
       setError(null);
 
@@ -985,6 +1025,8 @@ export function useSpeakingSessionOrchestrator({
     setChatHistory,
     liveErrors,
     setLiveErrors,
+    accumulatedNewWords,
+    setAccumulatedNewWords,
     currentTranscript,
     audioVolume,
     isSupported,

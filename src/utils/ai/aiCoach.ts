@@ -57,12 +57,21 @@ export interface CoachVocabularyItem {
   example?: string;
 }
 
+export interface CoachNewWord {
+  word: string;
+  reading?: string;
+  translation_uz: string;
+}
+
 export interface CoachStructuredResponse {
   language: 'ja' | 'en';
   reply: string;
   ttsText: string;
   romaji?: string;
   correction?: CoachCorrection | null;
+  corrected?: string;
+  explanation_uz?: string;
+  new_words?: CoachNewWord[];
   vocabulary?: CoachVocabularyItem[];
   rawText?: string;
 }
@@ -211,6 +220,10 @@ export const parseCoachResponse = (
       }
 
       let correction: CoachCorrection = { hasError: false };
+      const topCorrected = typeof parsed.corrected === 'string' ? parsed.corrected.trim() : '';
+      const topExplanationUz =
+        typeof parsed.explanation_uz === 'string' ? parsed.explanation_uz.trim() : '';
+
       if (parsed.correction && typeof parsed.correction === 'object') {
         if (Array.isArray(parsed.correction.errors) && parsed.correction.errors.length > 0) {
           const firstErr = parsed.correction.errors[0];
@@ -224,13 +237,13 @@ export const parseCoachResponse = (
           const corrected =
             typeof parsed.correction.corrected === 'string'
               ? parsed.correction.corrected.trim()
-              : '';
+              : topCorrected;
           const original =
             typeof parsed.correction.original === 'string' ? parsed.correction.original.trim() : '';
           const explanation =
             typeof parsed.correction.explanation === 'string'
               ? parsed.correction.explanation.trim()
-              : '';
+              : topExplanationUz;
           const hasErr =
             parsed.correction.hasError === true ||
             parsed.correction.hasError === 'true' ||
@@ -243,6 +256,13 @@ export const parseCoachResponse = (
             explanation,
           };
         }
+      } else if (topCorrected) {
+        correction = {
+          hasError: true,
+          original: '',
+          corrected: topCorrected,
+          explanation: topExplanationUz,
+        };
       }
 
       // If reply is empty or raw JSON, fallback to correction advice or clean greeting
@@ -284,6 +304,20 @@ export const parseCoachResponse = (
         ttsText = cleanJapaneseTTS(ttsText);
       }
 
+      const rawNewWords = Array.isArray(parsed.new_words)
+        ? parsed.new_words
+        : Array.isArray(parsed.vocabulary)
+          ? parsed.vocabulary
+          : [];
+
+      const new_words: CoachNewWord[] = rawNewWords
+        .map((v: any) => ({
+          word: String(v.word || '').trim(),
+          reading: String(v.reading || v.romaji || '').trim(),
+          translation_uz: String(v.translation_uz || v.meaning || v.meaningUz || '').trim(),
+        }))
+        .filter((w: CoachNewWord) => w.word.length > 0);
+
       const vocabulary: CoachVocabularyItem[] = Array.isArray(parsed.vocabulary)
         ? parsed.vocabulary
             .map((v: any) => ({
@@ -293,7 +327,14 @@ export const parseCoachResponse = (
               example: String(v.example || ''),
             }))
             .filter((v: CoachVocabularyItem) => v.word.trim().length > 0)
-        : [];
+        : new_words.map((nw) => ({
+            word: nw.word,
+            reading: nw.reading,
+            meaning: nw.translation_uz,
+          }));
+
+      const effectiveCorrected = topCorrected || correction.corrected || undefined;
+      const effectiveExplanationUz = topExplanationUz || correction.explanation || undefined;
 
       return {
         language: lang,
@@ -301,6 +342,9 @@ export const parseCoachResponse = (
         ttsText,
         romaji,
         correction,
+        corrected: effectiveCorrected,
+        explanation_uz: effectiveExplanationUz,
+        new_words,
         vocabulary,
         rawText: raw,
       };
@@ -419,12 +463,30 @@ export const parseCoachResponse = (
     }
   }
 
+  const corrRegex = raw.match(/"corrected"\s*:\s*"((?:[^"\\]|\\.)*)"/i);
+  const expUzRegex = raw.match(/"explanation_uz"\s*:\s*"((?:[^"\\]|\\.)*)"/i);
+  const regexCorrected = corrRegex
+    ? corrRegex[1].replace(/\\"/g, '"').trim()
+    : fallbackCorrection.corrected || '';
+  const regexExpUz = expUzRegex
+    ? expUzRegex[1].replace(/\\"/g, '"').trim()
+    : fallbackCorrection.explanation || '';
+
+  const regexNewWords: CoachNewWord[] = fallbackVocab.map((v) => ({
+    word: v.word,
+    reading: v.reading,
+    translation_uz: v.meaning,
+  }));
+
   return {
     language: lang,
     reply: finalReply,
     ttsText,
     romaji: extractedRomaji,
     correction: fallbackCorrection,
+    corrected: regexCorrected || undefined,
+    explanation_uz: regexExpUz || undefined,
+    new_words: regexNewWords,
     vocabulary: fallbackVocab,
     rawText: raw,
   };
@@ -659,24 +721,18 @@ INSTRUCTION: 特定のテーマや台本に縛られず、ユーザーが話し�
       ? `STRICT JSON OUTPUT CONTRACT:
 You MUST respond with a VALID JSON object matching this schema exactly:
 {
-  "language": "ja",
   "reply": "自然な日本語での返答と次の質問1つ（漢字・ひらがな・カタカナのみ。1〜2文）",
-  "ttsText": "音声読み上げ用の純粋な日本語テキスト（replyと同一または簡潔な日本語。ローマ字・英語・記号不可）",
-  "romaji": "replyのローマ字表記（画面表示用）",
-  "correction": {
-    "hasError": true/false,
-    "original": "学生が間違えた表現（なければ空文字）",
-    "corrected": "自然な正しい日本語（なければ空文字）",
-    "explanation": "助詞や文法の短い解説（なければ空文字）"
-  },
-  "vocabulary": [
+  "corrected": "学生の直前の発話に文法・助詞・不自然な表現の誤りがある場合の正しい自然な日本語。誤りがなければ空文字 ''",
+  "explanation_uz": "誤りがある場合の1行の簡潔なウズベク語解説。誤りがなければ空文字 ''",
+  "new_words": [
     {
-      "word": "単語（漢字・かな）",
-      "reading": "読み",
-      "meaning": "意味（ウズベク語と英語を併記。例: 『Ishga topshirish maqsadi (Reason for applying)』のように、必ずウズベク語の意味を第一に記載すること）",
-      "example": "短い例文"
+      "word": "会話中の新しい重要単語（漢字・かな）",
+      "reading": "読み（ひらがな）",
+      "translation_uz": "ウズベク語訳（例: 'Buyurtma berish'）"
     }
-  ]
+  ],
+  "ttsText": "音声読み上げ用の純粋な日本語テキスト（replyと同一または簡潔な日本語。ローマ字・英語・記号不可）",
+  "romaji": "replyのローマ字表記（画面表示用）"
 }`
       : `STRICT JSON OUTPUT CONTRACT:
 You MUST respond with a VALID JSON object matching this schema exactly:
