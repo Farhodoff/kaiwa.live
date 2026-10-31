@@ -208,6 +208,7 @@ export function useSpeakingSessionOrchestrator({
     endStreamPlayback,
     speechSpeed,
     setSpeechSpeed,
+    ttsAudioVolume,
   } = useTTS({
     language,
     isLiveSessionRef,
@@ -257,10 +258,38 @@ export function useSpeakingSessionOrchestrator({
     } catch {}
   }, [persona, targetJlptLevel, setSpeechSpeed]);
 
+  // Requirement 5: 30-second silence inactivity follow-up
+  const inactivityTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const inactivityNudgeCountRef = useRef<number>(0);
+
+  const clearInactivityTimer = useCallback(() => {
+    if (inactivityTimerRef.current) {
+      clearTimeout(inactivityTimerRef.current);
+      inactivityTimerRef.current = null;
+    }
+  }, []);
+
   const handleSendUserText = useCallback(
     async (text: string) => {
       const cleanText = (text || '').trim();
-      if (!cleanText || cleanText.length < 2) return;
+      if (!cleanText || cleanText.length < 2) {
+        // Discard empty/noise and unblock continuous listening without freezing
+        isProcessingRef.current = false;
+        setIsThinking(false);
+        setCurrentTranscript('');
+        transcriptBufferRef.current = '';
+        if (isLiveSessionRef.current && !isMutedRef.current) {
+          autoListenTimerRef.current = setTimeout(() => {
+            if (isLiveSessionRef.current && !isSpeakingRef.current && !isMutedRef.current) {
+              startListeningRef.current?.();
+            }
+          }, 200);
+        }
+        return;
+      }
+
+      inactivityNudgeCountRef.current = 0;
+      clearInactivityTimer();
 
       const lastCoachText =
         lastCoachSpokenTextRef.current ||
@@ -556,8 +585,26 @@ export function useSpeakingSessionOrchestrator({
         transcriptBufferRef.current = '';
       }
     },
-    [speakText, stopSpeaking, enqueueStreamSentence, endStreamPlayback, user],
+    [speakText, stopSpeaking, enqueueStreamSentence, endStreamPlayback, user, clearInactivityTimer],
   );
+
+  const handleBargeIn = useCallback(() => {
+    if (streamAbortControllerRef.current) {
+      streamAbortControllerRef.current.abort();
+      streamAbortControllerRef.current = null;
+    }
+    if (isSpeakingRef.current) {
+      playConversationChime('barge_in');
+      stopSpeaking();
+      setIsSpeaking(false);
+      isSpeakingRef.current = false;
+      isProcessingRef.current = false;
+      setIsThinking(false);
+      setTimeout(() => {
+        startListeningRef.current?.();
+      }, 100);
+    }
+  }, [stopSpeaking]);
 
   const {
     recognitionRef,
@@ -583,27 +630,77 @@ export function useSpeakingSessionOrchestrator({
       handleSendUserText(spokenText);
     },
     onResumeListening: () => {},
+    onBargeIn: handleBargeIn,
   });
 
   useEffect(() => {
     startListeningRef.current = startListening;
   }, [startListening]);
 
-  const handleBargeIn = useCallback(() => {
-    if (streamAbortControllerRef.current) {
-      streamAbortControllerRef.current.abort();
-      streamAbortControllerRef.current = null;
+  // Requirement 5: 30-second silence inactivity follow-up
+  useEffect(() => {
+    clearInactivityTimer();
+
+    if (
+      isLiveSession &&
+      isListening &&
+      !isSpeaking &&
+      !isThinking &&
+      !currentTranscript &&
+      inactivityNudgeCountRef.current < 2
+    ) {
+      inactivityTimerRef.current = setTimeout(() => {
+        if (
+          !isLiveSessionRef.current ||
+          isSpeakingRef.current ||
+          isThinking ||
+          isProcessingRef.current
+        ) {
+          return;
+        }
+
+        const promptsJa = [
+          '大丈夫ですか？何か言ってみてくださいね。',
+          '聞こえていますか？準備ができたら、何でもお話しください！',
+          'どう思われますか？気軽に日本語で教えてください。',
+        ];
+        const promptsEn = [
+          'Are you there? Feel free to say anything in English!',
+          'Take your time! Whenever you are ready, I am listening.',
+        ];
+        const pool = languageRef.current === 'ja' ? promptsJa : promptsEn;
+        const prompt = pool[Math.floor(Math.random() * pool.length)];
+
+        inactivityNudgeCountRef.current += 1;
+        const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const nudgeMsg: CoachChatMessage = {
+          role: 'assistant',
+          content: prompt,
+          timestamp: timeStr,
+        };
+
+        setChatHistory((prev) => {
+          const next = [...prev, nudgeMsg];
+          chatHistoryRef.current = next;
+          return next;
+        });
+
+        const speechAudio = extractSpeechAudioText(prompt);
+        lastCoachSpokenTextRef.current = speechAudio;
+        speakText(speechAudio);
+      }, 30000);
     }
-    if (isSpeaking) {
-      playConversationChime('barge_in');
-      stopSpeaking();
-      setIsSpeaking(false);
-      isProcessingRef.current = false;
-      setTimeout(() => {
-        startListening();
-      }, 100);
-    }
-  }, [isSpeaking, stopSpeaking, startListening]);
+
+    return () => clearInactivityTimer();
+  }, [
+    isLiveSession,
+    isListening,
+    isSpeaking,
+    isThinking,
+    currentTranscript,
+    clearInactivityTimer,
+    speakText,
+  ]);
 
   const toggleMic = useCallback(() => {
     unlockAudio();
@@ -790,6 +887,8 @@ export function useSpeakingSessionOrchestrator({
       unlockAudio();
       setIsLiveSession(true);
       isLiveSessionRef.current = true;
+      inactivityNudgeCountRef.current = 0;
+      clearInactivityTimer();
       setAccumulatedNewWords([]);
       setCurrentTranscript('');
       setError(null);
@@ -848,6 +947,8 @@ export function useSpeakingSessionOrchestrator({
     isProcessingRef.current = false;
     setIsSpeaking(false);
     setIsThinking(false);
+    inactivityNudgeCountRef.current = 0;
+    clearInactivityTimer();
     setCurrentTranscript('');
     transcriptBufferRef.current = '';
     if (recognitionRef.current) {
@@ -1011,6 +1112,8 @@ export function useSpeakingSessionOrchestrator({
     }
   }, [isLiveSession, endSession, startSession]);
 
+  const effectiveAudioVolume = isSpeaking ? ttsAudioVolume : audioVolume;
+
   return {
     isLiveSession,
     setIsLiveSession,
@@ -1028,7 +1131,7 @@ export function useSpeakingSessionOrchestrator({
     accumulatedNewWords,
     setAccumulatedNewWords,
     currentTranscript,
-    audioVolume,
+    audioVolume: effectiveAudioVolume,
     isSupported,
     error,
     setError,

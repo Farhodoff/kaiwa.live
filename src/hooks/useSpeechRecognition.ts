@@ -11,6 +11,7 @@ interface UseSpeechRecognitionOptions {
   isMuted: boolean;
   onValidSpeech: (text: string) => void;
   onResumeListening: () => void;
+  onBargeIn?: () => void;
 }
 
 export interface UseSpeechRecognitionReturn {
@@ -80,6 +81,7 @@ export const useSpeechRecognition = ({
   isMuted,
   onValidSpeech,
   onResumeListening,
+  onBargeIn,
 }: UseSpeechRecognitionOptions): UseSpeechRecognitionReturn => {
   const recognitionRef = useRef<any>(null);
   const transcriptBufferRef = useRef('');
@@ -87,6 +89,8 @@ export const useSpeechRecognition = ({
   const speechStartTimeRef = useRef<number>(0);
   const lastSpeechTimeRef = useRef<number>(0);
   const isSilenceTimeoutRef = useRef<boolean>(false);
+  const bargeInStartTimeRef = useRef<number>(0);
+  const restartAttemptsRef = useRef<number[]>([]);
 
   const [isListening, setIsListening] = useState(false);
   const [currentTranscript, setCurrentTranscript] = useState('');
@@ -173,6 +177,24 @@ export const useSpeechRecognition = ({
           setAudioVolume(normalized);
         }
 
+        // Check for user barge-in when AI coach is speaking (Requirement 4)
+        if (isSpeakingRef.current && isLiveSessionRef.current) {
+          // Hardware echoCancellation filters room speaker playback from mic.
+          // Volume >= 42 held continuously for >= 300ms detects intentional user interruption.
+          if (normalized >= 42) {
+            if (bargeInStartTimeRef.current === 0) {
+              bargeInStartTimeRef.current = now;
+            } else if (now - bargeInStartTimeRef.current >= 300) {
+              bargeInStartTimeRef.current = 0;
+              onBargeInRef.current?.();
+            }
+          } else if (normalized < 28) {
+            bargeInStartTimeRef.current = 0;
+          }
+        } else {
+          bargeInStartTimeRef.current = 0;
+        }
+
         animFrameRef.current = requestAnimationFrame(checkVolume);
       };
 
@@ -236,12 +258,16 @@ export const useSpeechRecognition = ({
 
   const onValidSpeechRef = useRef(onValidSpeech);
   const onResumeListeningRef = useRef(onResumeListening);
+  const onBargeInRef = useRef(onBargeIn);
   useEffect(() => {
     onValidSpeechRef.current = onValidSpeech;
   }, [onValidSpeech]);
   useEffect(() => {
     onResumeListeningRef.current = onResumeListening;
   }, [onResumeListening]);
+  useEffect(() => {
+    onBargeInRef.current = onBargeIn;
+  }, [onBargeIn]);
 
   const commitSpeechNow = useCallback(() => {
     if (isProcessingRef.current || isSpeakingRef.current || isThinkingRef.current) return;
@@ -442,7 +468,7 @@ export const useSpeechRecognition = ({
         lastSpeechTimeRef.current = Date.now();
       }
 
-      // COMFORTABLE ADAPTIVE SPEECH PAUSE TIMEOUT
+      // COMFORTABLE ADAPTIVE SPEECH PAUSE TIMEOUT (Requirement 2)
       const userCustomDelay =
         typeof window !== 'undefined'
           ? parseInt(localStorage.getItem('speaking_coach_pause_delay') || '0', 10)
@@ -451,23 +477,23 @@ export const useSpeechRecognition = ({
       const isMidConjunction = isMidSentenceConjunction(cleanText, languageRef.current);
 
       // Adaptive Smart Silence Delay:
-      // - Clearly complete terminal sentences: 1100ms (fast conversational turn)
-      // - Mid-sentence clause / connective particle: 2400ms (comfortable thinking time)
-      // - General neutral pause: 1700ms
-      let silenceThreshold = 1700;
+      // - Clearly complete terminal sentences: 1000ms (fast conversational turn)
+      // - Mid-sentence clause / connective particle: 1800ms (comfortable thinking time)
+      // - General neutral pause: 1200ms (~1.2 seconds as requested)
+      let silenceThreshold = 1200;
       if (userCustomDelay > 0) {
         silenceThreshold = userCustomDelay;
       } else if (isMidConjunction) {
-        silenceThreshold = 2400;
+        silenceThreshold = 1800;
       } else if (isTerminal) {
-        silenceThreshold = 1100;
+        silenceThreshold = 1000;
       }
 
       if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
       silenceTimerRef.current = setTimeout(() => {
-        // Acoustic VAD check: if user is still vocalizing or breathing actively (volume > 18),
-        // give an additional 600ms grace period to prevent cutting off mid-speech
-        if (audioVolumeRef.current > 18) {
+        // Acoustic VAD check: if user is still vocalizing actively (volume > 20),
+        // give an additional 400ms grace period to prevent cutting off mid-speech
+        if (audioVolumeRef.current > 20) {
           silenceTimerRef.current = setTimeout(() => {
             if (
               isLiveSessionRef.current &&
@@ -481,7 +507,7 @@ export const useSpeechRecognition = ({
                 console.debug('Recognition stop failed:', e);
               }
             }
-          }, 600);
+          }, 400);
           return;
         }
 
@@ -540,8 +566,11 @@ export const useSpeechRecognition = ({
       setIsListening(false);
 
       const spokenText = transcriptBufferRef.current.trim();
-      if (spokenText.length >= 1) {
-        stopVolumeMeter();
+      // Requirement 2: Bo'sh yoki shovqin natijalar yuborilmasin (at least 2 valid characters)
+      const isNoiseOrEmpty =
+        spokenText.length < 2 || /^[\s.,?!。、！？・…\-_/\\~`]+$/.test(spokenText);
+
+      if (!isNoiseOrEmpty) {
         if (silenceTimerRef.current) {
           clearTimeout(silenceTimerRef.current);
           silenceTimerRef.current = null;
@@ -550,7 +579,7 @@ export const useSpeechRecognition = ({
         speechStartTimeRef.current = 0;
         lastSpeechTimeRef.current = 0;
 
-        // Always clear buffers upon submission
+        // Clear buffers upon submission
         transcriptBufferRef.current = '';
         setCurrentTranscript('');
 
@@ -570,6 +599,37 @@ export const useSpeechRecognition = ({
         !isSpeakingRef.current &&
         !isThinkingRef.current
       ) {
+        // Discarded noise or empty speech, keep session rolling smoothly
+        transcriptBufferRef.current = '';
+        setCurrentTranscript('');
+
+        // Requirement 5: Rapid restart loop protection
+        const now = Date.now();
+        restartAttemptsRef.current = restartAttemptsRef.current.filter((t) => now - t < 3000);
+        if (restartAttemptsRef.current.length >= 6) {
+          console.warn(
+            '[useSpeechRecognition] Rapid restart throttled for 1s to prevent infinite loop',
+          );
+          setTimeout(() => {
+            if (
+              isLiveSessionRef.current &&
+              !isProcessingRef.current &&
+              !isMutedRef.current &&
+              !isSpeakingRef.current &&
+              !isThinkingRef.current &&
+              recognitionRef.current
+            ) {
+              try {
+                recognitionRef.current.lang = languageRef.current === 'ja' ? 'ja-JP' : 'en-US';
+                recognitionRef.current.start();
+                setIsListening(true);
+              } catch {}
+            }
+          }, 1000);
+          return;
+        }
+        restartAttemptsRef.current.push(now);
+
         // Continuous listening auto-recovery: keep listening active with slight backoff
         setTimeout(() => {
           if (
@@ -577,11 +637,12 @@ export const useSpeechRecognition = ({
             !isProcessingRef.current &&
             !isMutedRef.current &&
             !isSpeakingRef.current &&
-            !isThinkingRef.current
+            !isThinkingRef.current &&
+            recognitionRef.current
           ) {
             try {
-              recognition.lang = languageRef.current === 'ja' ? 'ja-JP' : 'en-US';
-              recognition.start();
+              recognitionRef.current.lang = languageRef.current === 'ja' ? 'ja-JP' : 'en-US';
+              recognitionRef.current.start();
               setIsListening(true);
             } catch (e) {
               // Recognition may already be starting or active
@@ -589,7 +650,9 @@ export const useSpeechRecognition = ({
           }
         }, 150);
       } else {
-        stopVolumeMeter();
+        if (!isLiveSessionRef.current) {
+          stopVolumeMeter();
+        }
       }
     };
 
