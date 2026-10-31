@@ -571,7 +571,7 @@ const SpeakingCoachPage: React.FC = () => {
           <div
             onClick={handleToggleSession}
             className="cursor-pointer transition-transform hover:scale-105 active:scale-95"
-            title={isLiveSession ? "Suhbatni to'xtatish uchun bosing" : 'Gapirish uchun bosing'}
+            title={isLiveSession ? 'Suhbatni yakunlash uchun bosing' : 'Gapirish uchun bosing'}
           >
             <ProjectOrb
               state={orbState}
@@ -579,14 +579,18 @@ const SpeakingCoachPage: React.FC = () => {
               size={170}
               interactive={false}
               ariaLabel={
-                isLiveSession
-                  ? "AI suhbatda faol. To'xtatish uchun bosing."
-                  : 'Gapirish uchun bosing.'
+                !isLiveSession
+                  ? 'Gapirish uchun bosing'
+                  : isSpeaking
+                    ? 'Murabbiy gapiryapti'
+                    : isThinking
+                      ? 'O‘ylayapman'
+                      : 'Tinglayapman'
               }
             />
           </div>
 
-          {/* Action / Status Pill */}
+          {/* Action / Status Pill (Requirement 1) */}
           <div className="mt-2 flex flex-col items-center gap-1">
             {!isLiveSession ? (
               <button
@@ -599,23 +603,21 @@ const SpeakingCoachPage: React.FC = () => {
               </button>
             ) : (
               <div className="flex items-center gap-2">
-                <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-950/60 px-3.5 py-1 text-xs font-medium backdrop-blur">
-                  {isListening && (
-                    <span className="flex items-center gap-1.5 font-bold text-emerald-400">
-                      <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
-                      Sizni tinglayapman... (Gapiring)
+                <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-950/60 px-4 py-1.5 text-xs font-medium backdrop-blur">
+                  {isSpeaking ? (
+                    <span className="flex items-center gap-2 font-bold text-amber-300">
+                      <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-amber-400 shadow-sm shadow-amber-400/50" />
+                      Murabbiy gapiryapti
                     </span>
-                  )}
-                  {isThinking && (
-                    <span className="flex items-center gap-1.5 font-bold text-purple-300">
-                      <span className="h-2 w-2 animate-ping rounded-full bg-purple-400" />
-                      Sensei o&apos;ylanmoqda...
+                  ) : isThinking ? (
+                    <span className="flex items-center gap-2 font-bold text-purple-300">
+                      <span className="h-2.5 w-2.5 animate-ping rounded-full bg-purple-400 shadow-sm shadow-purple-400/50" />
+                      O‘ylayapman...
                     </span>
-                  )}
-                  {isSpeaking && (
-                    <span className="flex items-center gap-1.5 font-bold text-amber-300">
-                      <span className="h-2 w-2 animate-pulse rounded-full bg-amber-400" />
-                      Sensei gapirmoqda...
+                  ) : (
+                    <span className="flex items-center gap-2 font-bold text-emerald-400">
+                      <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-emerald-400 shadow-sm shadow-emerald-400/50" />
+                      Tinglayapman...
                     </span>
                   )}
                 </div>
@@ -623,11 +625,11 @@ const SpeakingCoachPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleStopSession}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-rose-500/40 bg-rose-500/20 px-3 py-1 text-xs font-bold text-rose-300 shadow transition hover:bg-rose-500/30 active:scale-95"
-                  title="Suhbatni to'xtatish va saqlash"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-rose-500/40 bg-rose-500/20 px-3.5 py-1.5 text-xs font-bold text-rose-300 shadow transition hover:bg-rose-500/30 active:scale-95"
+                  title="Suhbatni yakunlash va saqlash"
                 >
                   <Square size={12} className="fill-current text-rose-400" />
-                  <span>Tugatish</span>
+                  <span>Suhbatni yakunlash</span>
                 </button>
               </div>
             )}

@@ -56,6 +56,7 @@ export interface UseTTSReturn {
   isPreparingAudio: boolean;
   speechSpeed: number;
   setSpeechSpeed: (speed: number) => void;
+  ttsAudioVolume: number;
 }
 
 /**
@@ -390,6 +391,40 @@ export const useTTS = ({
   }, [onAudioPreparing]);
 
   const [isPreparingAudio, setIsPreparingAudio] = useState(false);
+  const [ttsAudioVolume, setTtsAudioVolume] = useState<number>(0);
+  const volumeAnimIdRef = useRef<number | null>(null);
+
+  const startVolumeSimulation = useCallback(() => {
+    if (typeof window === 'undefined') return;
+    if (volumeAnimIdRef.current) cancelAnimationFrame(volumeAnimIdRef.current);
+    const start = performance.now();
+    const tick = () => {
+      const elapsed = (performance.now() - start) / 1000;
+      // Multi-harmonic modulation simulating Japanese mora rhythm (~4.5 mora/sec)
+      const primaryMora = Math.sin(elapsed * 9);
+      const secondaryStress = Math.sin(elapsed * 3.5);
+      const microJitter = (Math.random() - 0.5) * 0.15;
+      const combined = 0.55 + 0.3 * primaryMora + 0.15 * secondaryStress + microJitter;
+      const volumeNormalized = Math.max(15, Math.min(95, Math.round(combined * 75)));
+      setTtsAudioVolume(volumeNormalized);
+      volumeAnimIdRef.current = requestAnimationFrame(tick);
+    };
+    volumeAnimIdRef.current = requestAnimationFrame(tick);
+  }, []);
+
+  const stopVolumeSimulation = useCallback(() => {
+    if (volumeAnimIdRef.current) {
+      cancelAnimationFrame(volumeAnimIdRef.current);
+      volumeAnimIdRef.current = null;
+    }
+    setTtsAudioVolume(0);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (volumeAnimIdRef.current) cancelAnimationFrame(volumeAnimIdRef.current);
+    };
+  }, []);
   const [speechSpeed, setSpeechSpeedState] = useState<number>(() => {
     if (typeof window !== 'undefined') {
       const saved = safeLocalStorage.getItem('speaking_coach_speech_speed');
@@ -606,7 +641,8 @@ export const useTTS = ({
       clearTimeout(ttsSafetyTimeoutRef.current);
       ttsSafetyTimeoutRef.current = null;
     }
-  }, []);
+    stopVolumeSimulation();
+  }, [stopVolumeSimulation]);
 
   const fallbackWebAudio = useCallback(
     async (blob: Blob, playbackId: number, onDone: () => void) => {
@@ -926,6 +962,7 @@ export const useTTS = ({
     isStreamingPlaybackActiveRef.current = true;
     const playbackId = activePlaybackIdRef.current;
     onSpeakStartRef.current();
+    startVolumeSimulation();
 
     const isJa = languageRef.current === 'ja';
 
@@ -945,8 +982,9 @@ export const useTTS = ({
     isStreamingPlaybackActiveRef.current = false;
     if (!isCancelledRef.current && activePlaybackIdRef.current === playbackId) {
       onSpeakEndRef.current();
+      stopVolumeSimulation();
     }
-  }, [playSingleClause]);
+  }, [playSingleClause, stopVolumeSimulation]);
 
   const enqueueStreamSentence = useCallback(
     (sentence: string) => {
@@ -982,8 +1020,9 @@ export const useTTS = ({
     isStreamCompletedRef.current = true;
     if (!isStreamingPlaybackActiveRef.current && streamQueueRef.current.length === 0) {
       onSpeakEndRef.current();
+      stopVolumeSimulation();
     }
-  }, []);
+  }, [stopVolumeSimulation]);
 
   const speakText = useCallback(
     async (text: string) => {
@@ -1038,6 +1077,7 @@ export const useTTS = ({
         }
         trackTTSTelemetry({ durationMs: Date.now() - startTime, success, error });
         onSpeakEndRef.current();
+        stopVolumeSimulation();
       };
 
       const safetyTimeoutMs = Math.min(60000, Math.max(15000, chunks.length * 9000));
@@ -1065,6 +1105,7 @@ export const useTTS = ({
       const useNetworkTTS = isJa || !synth || !hasLanguageVoice;
 
       onSpeakStartRef.current();
+      startVolumeSimulation();
 
       if (useNetworkTTS) {
         // --- HIGH-SPEED PARALLEL PREFETCH & STREAMING PLAYBACK ---
@@ -1126,5 +1167,6 @@ export const useTTS = ({
     isPreparingAudio,
     speechSpeed,
     setSpeechSpeed,
+    ttsAudioVolume,
   };
 };

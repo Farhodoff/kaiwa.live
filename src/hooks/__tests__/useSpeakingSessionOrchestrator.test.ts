@@ -25,6 +25,7 @@ vi.mock('../useTTS', () => ({
     endStreamPlayback: vi.fn(),
     speechSpeed: 1,
     setSpeechSpeed: vi.fn(),
+    ttsAudioVolume: 65,
   }),
   fetchTTSAudioBlob: vi.fn().mockResolvedValue(null),
 }));
@@ -138,5 +139,37 @@ describe('useSpeakingSessionOrchestrator', () => {
       await result.current.toggleSession();
     });
     expect(result.current.isLiveSession).toBe(false);
+  });
+
+  it('discards empty or noise speech (length < 2) without crashing', async () => {
+    const { result } = renderHook(() => useSpeakingSessionOrchestrator(defaultProps));
+
+    act(() => {
+      result.current.startSession();
+    });
+
+    await act(async () => {
+      await result.current.handleSendUserText(' ');
+      await result.current.handleSendUserText('あ');
+    });
+
+    // Only initial assistant greeting exists, noise was not added
+    expect(result.current.chatHistory.length).toBe(1);
+    expect(result.current.isThinking).toBe(false);
+  });
+
+  it('handles barge-in cleanly by stopping speech and transitioning to listening', () => {
+    const { result } = renderHook(() => useSpeakingSessionOrchestrator(defaultProps));
+
+    act(() => {
+      result.current.startSession();
+    });
+
+    act(() => {
+      result.current.handleBargeIn();
+    });
+
+    expect(result.current.isSpeaking).toBe(false);
+    expect(result.current.isThinking).toBe(false);
   });
 });
