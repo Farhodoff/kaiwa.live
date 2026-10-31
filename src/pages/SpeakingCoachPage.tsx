@@ -35,7 +35,8 @@ import { PitchAccentModal } from '../components/speaking/PitchAccentModal';
 import { PitchAccentTrainer } from '../components/speaking/PitchAccentTrainer';
 import { useSpeakingSessionOrchestrator } from '../hooks/useSpeakingSessionOrchestrator';
 import { SpeakingScenarioBanner } from '../components/speaking/SpeakingScenarioBanner';
-import { KaiwaOrbCharacter, OrbState } from '../components/character/KaiwaOrbCharacter';
+import { ProjectOrb, OrbState } from '../components/character/ProjectOrb';
+import { useAudioLevel } from '../hooks/useAudioLevel';
 import { SpeakingHistoryModal } from '../components/speaking/SpeakingHistoryModal';
 import { SpeakingConversationHistoryService } from '../services/SpeakingConversationHistoryService';
 import {
@@ -437,10 +438,7 @@ const SpeakingCoachPage: React.FC = () => {
 
   // State calculation for ProjectOrb
   const orbState: OrbState = isSpeaking ? 'speaking' : isListening ? 'listening' : 'idle';
-  const normalizedVolume = Math.min(
-    1,
-    Math.max(0, audioVolume > 1 ? audioVolume / 60 : audioVolume),
-  );
+  const audioLevel = useAudioLevel(audioVolume);
 
   const PERSONAS = PERSONAS_BY_LANG[language];
   const PROMPT_SUGGESTIONS = PROMPT_SUGGESTIONS_BY_LANG[language];
@@ -575,9 +573,9 @@ const SpeakingCoachPage: React.FC = () => {
             className="cursor-pointer transition-transform hover:scale-105 active:scale-95"
             title={isLiveSession ? "Suhbatni to'xtatish uchun bosing" : 'Gapirish uchun bosing'}
           >
-            <KaiwaOrbCharacter
+            <ProjectOrb
               state={orbState}
-              audioVolume={normalizedVolume}
+              audioVolume={audioLevel}
               size={170}
               interactive={false}
               ariaLabel={

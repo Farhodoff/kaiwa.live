@@ -35,6 +35,12 @@ export const SpeakingHistoryModal: React.FC<SpeakingHistoryModalProps> = ({
     if (isOpen) {
       setSessions(SpeakingConversationHistoryService.getSessions());
       setSelectedSession(null);
+      // Seamlessly fetch server records for multi-device synchronization
+      SpeakingConversationHistoryService.fetchSessionsFromServer()
+        .then((merged) => {
+          setSessions(merged);
+        })
+        .catch(() => {});
     }
   }, [isOpen]);
 

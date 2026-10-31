@@ -200,11 +200,11 @@ export class HistoryService {
 
   // === Speaking Coach Sessions ===
   static async saveSpeakingSession(
-    item: Omit<SpeakingSessionItem, 'id' | 'createdAt'>,
+    item: Omit<SpeakingSessionItem, 'id' | 'createdAt'> & { id?: string },
   ): Promise<SpeakingSessionItem> {
     const newItem: SpeakingSessionItem = {
       ...item,
-      id: generateUUID(),
+      id: item.id || generateUUID(),
       createdAt: new Date().toISOString(),
     };
 

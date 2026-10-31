@@ -311,6 +311,14 @@ export const KaiwaOrbCharacter: React.FC<KaiwaOrbCharacterProps> = ({
         .kaiwa-eyes-idle {
           animation: kaiwa-eyes-drift 5s ease-in-out infinite;
         }
+
+        @media (prefers-reduced-motion: reduce) {
+          .kaiwa-breathe-idle,
+          .kaiwa-shadow-idle,
+          .kaiwa-eyes-idle {
+            animation: none !important;
+          }
+        }
       `}</style>
 
       {/* MAIN ORB WRAPPER (Handles overall scaling, breathing, and jump) */}
