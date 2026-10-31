@@ -1,5 +1,6 @@
 import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
 import { HistoryService } from './HistoryService';
+import { generateUUID } from '../utils/uuid';
 
 export interface SpeakingConversationMessage {
   role: 'user' | 'assistant';
@@ -97,10 +98,7 @@ export class SpeakingConversationHistoryService {
 
     const now = new Date();
     const isoString = now.toISOString();
-    const id =
-      typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
-        ? crypto.randomUUID()
-        : `spk_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
+    const id = generateUUID();
 
     // Collect errors from user messages
     const errors: SpeakingConversationErrorItem[] = [];
@@ -131,9 +129,10 @@ export class SpeakingConversationHistoryService {
     const updated = [newSession, ...existing].slice(0, 50); // Keep last 50
     safeLocalStorage.setJSON(STORAGE_KEY, updated);
 
-    // Sync to backend history non-blockingly
+    // Sync to backend history directly (Server-first with offline queue fallback)
     try {
       HistoryService.saveSpeakingSession({
+        id: newSession.id,
         language: 'ja',
         persona: scenarioTitle || 'Yapon tili suhbati',
         durationSeconds,
@@ -141,10 +140,79 @@ export class SpeakingConversationHistoryService {
         pronunciationScore: 8.0,
         transcript: JSON.stringify(messages),
         feedback: JSON.stringify({ errors, newWords }),
-      }).catch(() => {});
-    } catch {}
+      }).catch((err) => {
+        console.warn('[SpeakingConversationHistoryService] Server save notice:', err);
+      });
+    } catch (e) {
+      console.warn('[SpeakingConversationHistoryService] Sync dispatch error:', e);
+    }
 
     return newSession;
+  }
+
+  /**
+   * Pulls speaking sessions from the server (multi-device sync)
+   * and merges them into localStorage without duplicates.
+   */
+  static async fetchSessionsFromServer(): Promise<SpeakingConversationSession[]> {
+    try {
+      const serverSessions = await HistoryService.getSpeakingHistory(50);
+      if (!serverSessions || serverSessions.length === 0) {
+        return this.getSessions();
+      }
+
+      const localSessions = this.getSessions();
+      const sessionMap = new Map<string, SpeakingConversationSession>();
+
+      // Populate local first
+      localSessions.forEach((s) => sessionMap.set(s.id, s));
+
+      // Merge server records
+      serverSessions.forEach((remote) => {
+        if (!sessionMap.has(remote.id)) {
+          let parsedMessages: SpeakingConversationMessage[] = [];
+          let parsedErrors: SpeakingConversationErrorItem[] = [];
+          let parsedNewWords: SpeakingConversationNewWord[] = [];
+
+          try {
+            if (typeof remote.transcript === 'string' && remote.transcript.startsWith('[')) {
+              parsedMessages = JSON.parse(remote.transcript);
+            }
+          } catch {}
+
+          try {
+            if (typeof remote.feedback === 'string' && remote.feedback.startsWith('{')) {
+              const fb = JSON.parse(remote.feedback);
+              if (fb.errors && Array.isArray(fb.errors)) parsedErrors = fb.errors;
+              if (fb.newWords && Array.isArray(fb.newWords)) parsedNewWords = fb.newWords;
+            }
+          } catch {}
+
+          const reconstructed: SpeakingConversationSession = {
+            id: remote.id,
+            createdAt: remote.createdAt,
+            dateFormatted: this.formatDate(remote.createdAt),
+            durationSeconds: remote.durationSeconds || 0,
+            durationFormatted: this.formatDuration(remote.durationSeconds || 0),
+            scenarioTitle: remote.persona || 'Suhbat',
+            messages: parsedMessages,
+            errors: parsedErrors,
+            newWords: parsedNewWords,
+          };
+          sessionMap.set(remote.id, reconstructed);
+        }
+      });
+
+      const merged = Array.from(sessionMap.values())
+        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+        .slice(0, 50);
+
+      safeLocalStorage.setJSON(STORAGE_KEY, merged);
+      return merged;
+    } catch (err) {
+      console.warn('[SpeakingConversationHistoryService] fetchSessionsFromServer error:', err);
+      return this.getSessions();
+    }
   }
 
   static deleteSession(id: string): void {
