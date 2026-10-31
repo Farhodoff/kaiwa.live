@@ -7,7 +7,7 @@
  */
 
 import { idbGet, idbSet, idbDelete } from '../utils/storage/indexedDb';
-import { supabase } from '../lib/supabase';
+import { supabase, getIsSigningOut } from '../lib/supabase';
 import { FlashcardOfflineSync } from './FlashcardOfflineSync';
 import { toast } from '../hooks/use-toast';
 import { toDeterministicUUID, isUuid } from '../utils/uuid';
@@ -323,7 +323,7 @@ export const OfflineSyncManager = {
     totalSynced: number;
     totalFailed: number;
   }> {
-    if (isSyncingAll) {
+    if (isSyncingAll || getIsSigningOut()) {
       return {
         syncedCards: 0,
         syncedExams: 0,

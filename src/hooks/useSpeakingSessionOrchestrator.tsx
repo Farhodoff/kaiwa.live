@@ -927,182 +927,238 @@ export function useSpeakingSessionOrchestrator({
     [language, persona, unlockAudio, speakText],
   );
 
-  const endSession = useCallback(async () => {
-    if (streamAbortControllerRef.current) {
-      streamAbortControllerRef.current.abort();
-      streamAbortControllerRef.current = null;
-    }
-    const historyToAnalyze = [...chatHistoryRef.current];
-    const durSecs = sessionSeconds;
-
-    const audioBlob = await voiceRecorder.stopRecording();
-
-    if (autoListenTimerRef.current) {
-      clearTimeout(autoListenTimerRef.current);
-      autoListenTimerRef.current = null;
-    }
-
-    setIsLiveSession(false);
-    isLiveSessionRef.current = false;
-    isProcessingRef.current = false;
-    setIsSpeaking(false);
-    setIsThinking(false);
-    inactivityNudgeCountRef.current = 0;
-    clearInactivityTimer();
-    setCurrentTranscript('');
-    transcriptBufferRef.current = '';
-    if (recognitionRef.current) {
-      try {
-        recognitionRef.current.stop();
-      } catch (e) {}
-    }
-    stopSpeaking();
-
-    const sessionUuid: string =
-      typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
-        ? crypto.randomUUID()
-        : `${Date.now().toString(16).padStart(8, '0')}-0000-4000-8000-000000000000`;
-
-    let uploadedAudioPath: string | undefined;
-    if (audioBlob && audioBlob.size > 0 && user?.id) {
-      try {
-        const uploadResult = await AudioStorageService.uploadSpeakingAudio(
-          user.id,
-          sessionUuid || `rec_${Date.now()}`,
-          audioBlob,
-        );
-        if (uploadResult) {
-          uploadedAudioPath = uploadResult;
-        }
-      } catch (storageErr) {
-        console.warn('[SpeakingCoach] Audio upload skipped (non-blocking):', storageErr);
+  // Global cancellation listener for rapid logout or unmount
+  useEffect(() => {
+    const handleCancelSpeech = () => {
+      if (streamAbortControllerRef.current) {
+        streamAbortControllerRef.current.abort();
+        streamAbortControllerRef.current = null;
       }
-    }
-
-    const userSpoke = historyToAnalyze.some((h) => h.role === 'user');
-    if (userSpoke) {
-      if (activeScenarioRef.current) {
+      stopSpeaking();
+      if (recognitionRef.current) {
         try {
-          const evalResult = await evaluateScenarioSession({
-            scenario: activeScenarioRef.current,
-            chatHistory: historyToAnalyze.map((h) => ({ role: h.role, content: h.content })),
-            durationSeconds: durSecs,
-            recordedUrl: voiceRecorder.recordedUrl,
-          });
+          recognitionRef.current.stop();
+        } catch {}
+      }
+      if (autoListenTimerRef.current) {
+        clearTimeout(autoListenTimerRef.current);
+        autoListenTimerRef.current = null;
+      }
+      setIsLiveSession(false);
+      isLiveSessionRef.current = false;
+      isProcessingRef.current = false;
+      setIsSpeaking(false);
+      setIsThinking(false);
+      clearInactivityTimer();
+    };
 
-          evalResult.transcript = historyToAnalyze.map((h) => ({
-            role: h.role,
-            content: h.content,
-            timestamp: h.timestamp,
-            translation: h.translation,
-          }));
-          evalResult.audio_path = uploadedAudioPath;
-          evalResult.audio_url = uploadedAudioPath;
-          if (sessionUuid) {
-            evalResult.id = sessionUuid;
-          }
+    window.addEventListener('app:cancel-all-speech', handleCancelSpeech);
+    return () => {
+      window.removeEventListener('app:cancel-all-speech', handleCancelSpeech);
+    };
+  }, [stopSpeaking, clearInactivityTimer]);
 
-          if (onScenarioEvaluated) {
-            onScenarioEvaluated(evalResult);
-          }
-          await ScenarioService.saveSessionResult(evalResult, user?.id);
+  const endSession = useCallback(
+    async (options?: { skipEvaluation?: boolean }) => {
+      if (streamAbortControllerRef.current) {
+        streamAbortControllerRef.current.abort();
+        streamAbortControllerRef.current = null;
+      }
+      const historyToAnalyze = [...chatHistoryRef.current];
+      const durSecs = sessionSeconds;
 
-          try {
-            await HistoryService.saveSpeakingSession({
-              language: languageRef.current,
-              persona: evalResult.scenario_title || 'Ssenariy suhbati',
-              durationSeconds: durSecs,
-              fluencyScore: evalResult.fluency_score || 7.0,
-              pronunciationScore: evalResult.pronunciation_score || 7.0,
-              transcript: JSON.stringify(chatHistoryRef.current),
-              feedback: JSON.stringify(evalResult),
-            });
-          } catch (e) {
-            console.warn('[SpeakingOrchestrator] Save speaking session history warning:', e);
-          }
+      let audioBlob: Blob | null = null;
+      try {
+        audioBlob = await Promise.race([
+          voiceRecorder.stopRecording(),
+          new Promise<null>((r) => setTimeout(() => r(null), 500)),
+        ]);
+      } catch {
+        audioBlob = null;
+      }
 
-          const { xp: scenarioXp, badge: scenarioBadge } =
-            ActivityLoggingService.calculateSpeakingXP(durSecs, evalResult.fluency_score);
-          await ActivityLoggingService.logActivity({
-            id: sessionUuid,
-            activityType: 'speaking',
-            activityTitle: `AI Coach: ${evalResult.scenario_title || 'Ssenariy suhbati'}`,
-            durationMinutes: Math.max(1, Math.round(durSecs / 60)),
-            itemsCount: 1,
-            xpEarned: scenarioXp,
-            metadata: {
-              scenarioId: evalResult.scenario_id,
-              fluencyScore: evalResult.fluency_score,
-              overallScore: evalResult.overall_score,
-              badge: scenarioBadge,
-            },
-          });
-        } catch (err) {
-          console.error('Scenario evaluation error:', err);
-        }
-      } else {
+      if (autoListenTimerRef.current) {
+        clearTimeout(autoListenTimerRef.current);
+        autoListenTimerRef.current = null;
+      }
+
+      setIsLiveSession(false);
+      isLiveSessionRef.current = false;
+      isProcessingRef.current = false;
+      setIsSpeaking(false);
+      setIsThinking(false);
+      inactivityNudgeCountRef.current = 0;
+      clearInactivityTimer();
+      setCurrentTranscript('');
+      transcriptBufferRef.current = '';
+      if (recognitionRef.current) {
         try {
-          const report = await analyzeSpeakingSession(
-            historyToAnalyze.map((h) => ({ role: h.role, content: h.content })),
-            languageRef.current,
-            personaRef.current,
+          recognitionRef.current.stop();
+        } catch (e) {}
+      }
+      stopSpeaking();
+
+      const sessionUuid: string =
+        typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
+          ? crypto.randomUUID()
+          : `${Date.now().toString(16).padStart(8, '0')}-0000-4000-8000-000000000000`;
+
+      const skipEval = Boolean(options?.skipEvaluation);
+      const userSpoke = historyToAnalyze.some((h) => h.role === 'user');
+
+      if (userSpoke && skipEval) {
+        // Fire-and-forget lightweight history save without burning API quota or stalling logout/unmount
+        HistoryService.saveSpeakingSession({
+          language: languageRef.current,
+          persona: activeScenarioRef.current?.title_uz || personaRef.current || 'Ssenariy suhbati',
+          durationSeconds: durSecs,
+          fluencyScore: 7.0,
+          pronunciationScore: 7.0,
+          transcript: JSON.stringify(historyToAnalyze),
+          feedback: JSON.stringify({ note: 'Session finished during navigation/logout' }),
+        }).catch(() => {});
+        return;
+      }
+
+      let uploadedAudioPath: string | undefined;
+      if (audioBlob && audioBlob.size > 0 && user?.id) {
+        try {
+          const uploadResult = await AudioStorageService.uploadSpeakingAudio(
+            user.id,
+            sessionUuid || `rec_${Date.now()}`,
+            audioBlob,
           );
+          if (uploadResult) {
+            uploadedAudioPath = uploadResult;
+          }
+        } catch (storageErr) {
+          console.warn('[SpeakingCoach] Audio upload skipped (non-blocking):', storageErr);
+        }
+      }
 
-          if (report.grammar_corrections && report.grammar_corrections.length > 0) {
-            ErrorVaultService.logErrors(
-              report.grammar_corrections.map((c) => ({
-                verbatim: c.original,
-                correction: c.corrected,
-                explanation: c.explanation || '',
-                category: 'grammar',
+      if (userSpoke) {
+        if (activeScenarioRef.current) {
+          try {
+            const evalResult = await evaluateScenarioSession({
+              scenario: activeScenarioRef.current,
+              chatHistory: historyToAnalyze.map((h) => ({ role: h.role, content: h.content })),
+              durationSeconds: durSecs,
+              recordedUrl: voiceRecorder.recordedUrl,
+            });
+
+            evalResult.transcript = historyToAnalyze.map((h) => ({
+              role: h.role,
+              content: h.content,
+              timestamp: h.timestamp,
+              translation: h.translation,
+            }));
+            evalResult.audio_path = uploadedAudioPath;
+            evalResult.audio_url = uploadedAudioPath;
+            if (sessionUuid) {
+              evalResult.id = sessionUuid;
+            }
+
+            if (onScenarioEvaluated) {
+              onScenarioEvaluated(evalResult);
+            }
+            await ScenarioService.saveSessionResult(evalResult, user?.id);
+
+            try {
+              await HistoryService.saveSpeakingSession({
                 language: languageRef.current,
-              })),
-            );
-          }
+                persona: evalResult.scenario_title || 'Ssenariy suhbati',
+                durationSeconds: durSecs,
+                fluencyScore: evalResult.fluency_score || 7.0,
+                pronunciationScore: evalResult.pronunciation_score || 7.0,
+                transcript: JSON.stringify(chatHistoryRef.current),
+                feedback: JSON.stringify(evalResult),
+              });
+            } catch (e) {
+              console.warn('[SpeakingOrchestrator] Save speaking session history warning:', e);
+            }
 
-          if (onSessionAnalyzed) {
-            onSessionAnalyzed(report);
-          }
-
-          try {
-            await HistoryService.saveSpeakingSession({
-              language: languageRef.current,
-              persona:
-                PERSONAS_BY_LANG[languageRef.current]?.[personaRef.current]?.name ||
-                personaRef.current,
-              durationSeconds: durSecs,
-              fluencyScore: report.fluency_score || report.overall_score || 7.0,
-              pronunciationScore: report.pronunciation_score || 7.0,
-              transcript: JSON.stringify(chatHistoryRef.current),
-              feedback: JSON.stringify(report),
+            const { xp: scenarioXp, badge: scenarioBadge } =
+              ActivityLoggingService.calculateSpeakingXP(durSecs, evalResult.fluency_score);
+            await ActivityLoggingService.logActivity({
+              id: sessionUuid,
+              activityType: 'speaking',
+              activityTitle: `AI Coach: ${evalResult.scenario_title || 'Ssenariy suhbati'}`,
+              durationMinutes: Math.max(1, Math.round(durSecs / 60)),
+              itemsCount: 1,
+              xpEarned: scenarioXp,
+              metadata: {
+                scenarioId: evalResult.scenario_id,
+                fluencyScore: evalResult.fluency_score,
+                overallScore: evalResult.overall_score,
+                badge: scenarioBadge,
+              },
             });
-          } catch (e) {
-            console.warn('[SpeakingOrchestrator] Save speaking session history warning:', e);
+          } catch (err) {
+            console.error('Scenario evaluation error:', err);
           }
+        } else {
+          try {
+            const report = await analyzeSpeakingSession(
+              historyToAnalyze.map((h) => ({ role: h.role, content: h.content })),
+              languageRef.current,
+              personaRef.current,
+            );
 
-          const { xp: sessionXp, badge: sessionBadge } = ActivityLoggingService.calculateSpeakingXP(
-            durSecs,
-            report.overall_score * 10,
-          );
-          await ActivityLoggingService.logActivity({
-            id: sessionUuid,
-            activityType: 'speaking',
-            activityTitle: `AI Coach: ${PERSONAS_BY_LANG[languageRef.current]?.[personaRef.current]?.name || 'Suhbat'}`,
-            durationMinutes: Math.max(1, Math.round(durSecs / 60)),
-            itemsCount: 1,
-            xpEarned: sessionXp,
-            metadata: {
-              overallBand: report.overall_score,
-              badge: sessionBadge,
-              correctionsCount: report.grammar_corrections?.length || 0,
-            },
-          });
-        } catch (err) {
-          console.error('Session analysis error:', err);
+            if (report.grammar_corrections && report.grammar_corrections.length > 0) {
+              ErrorVaultService.logErrors(
+                report.grammar_corrections.map((c) => ({
+                  verbatim: c.original,
+                  correction: c.corrected,
+                  explanation: c.explanation || '',
+                  category: 'grammar',
+                  language: languageRef.current,
+                })),
+              );
+            }
+
+            if (onSessionAnalyzed) {
+              onSessionAnalyzed(report);
+            }
+
+            try {
+              await HistoryService.saveSpeakingSession({
+                language: languageRef.current,
+                persona:
+                  PERSONAS_BY_LANG[languageRef.current]?.[personaRef.current]?.name ||
+                  personaRef.current,
+                durationSeconds: durSecs,
+                fluencyScore: report.fluency_score || report.overall_score || 7.0,
+                pronunciationScore: report.pronunciation_score || 7.0,
+                transcript: JSON.stringify(chatHistoryRef.current),
+                feedback: JSON.stringify(report),
+              });
+            } catch (e) {
+              console.warn('[SpeakingOrchestrator] Save speaking session history warning:', e);
+            }
+
+            const { xp: sessionXp, badge: sessionBadge } =
+              ActivityLoggingService.calculateSpeakingXP(durSecs, report.overall_score * 10);
+            await ActivityLoggingService.logActivity({
+              id: sessionUuid,
+              activityType: 'speaking',
+              activityTitle: `AI Coach: ${PERSONAS_BY_LANG[languageRef.current]?.[personaRef.current]?.name || 'Suhbat'}`,
+              durationMinutes: Math.max(1, Math.round(durSecs / 60)),
+              itemsCount: 1,
+              xpEarned: sessionXp,
+              metadata: {
+                overallBand: report.overall_score,
+                badge: sessionBadge,
+                correctionsCount: report.grammar_corrections?.length || 0,
+              },
+            });
+          } catch (err) {
+            console.error('Session analysis error:', err);
+          }
         }
       }
-    }
-  }, [sessionSeconds, user, voiceRecorder, onScenarioEvaluated, onSessionAnalyzed, stopSpeaking]);
+    },
+    [sessionSeconds, user, voiceRecorder, onScenarioEvaluated, onSessionAnalyzed, stopSpeaking],
+  );
 
   const toggleSession = useCallback(() => {
     if (isLiveSession) {

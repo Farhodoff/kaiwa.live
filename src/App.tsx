@@ -236,29 +236,46 @@ const App: React.FC = () => {
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, newSession) => {
-      if (newSession) {
+    } = supabase.auth.onAuthStateChange((event, newSession) => {
+      if (
+        event === 'SIGNED_OUT' ||
+        (!newSession && !isTelegramWebApp() && !isPublicPreviewActive())
+      ) {
+        setSession(null);
+        useAuthStore.getState().setUser(null);
+        useAuthStore.getState().setLoading(false);
+        safeLocalStorage.removeItem('study_planner_user_cache');
+      } else if (newSession) {
         setSession(newSession);
       } else if (isTelegramWebApp()) {
         const tgAuth = initTelegramAuth();
         if (tgAuth?.session) {
           setSession(tgAuth.session);
+        } else {
+          setSession(null);
         }
       } else if (isPublicPreviewActive()) {
         setSession(MOCK_PREVIEW_SESSION as unknown as Session);
+      } else {
+        setSession(null);
       }
     });
 
     const handleStorageAuth = (e: StorageEvent) => {
       if (
         e.key &&
-        (e.key.includes('auth-token') || e.key.includes('supabase.auth.token')) &&
+        (e.key.includes('auth-token') ||
+          e.key.includes('supabase.auth.token') ||
+          e.key.startsWith('sb-') ||
+          e.key === 'study_planner_user_cache') &&
         !e.newValue
       ) {
         if (isPublicPreviewActive()) {
           setSession(MOCK_PREVIEW_SESSION as unknown as Session);
         } else {
           setSession(null);
+          useAuthStore.getState().setUser(null);
+          useAuthStore.getState().setLoading(false);
         }
       }
     };

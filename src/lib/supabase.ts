@@ -157,31 +157,53 @@ const notifyAuthExpired = () => {
   } catch {}
 };
 
+// Sign-out state tracker to prevent resurrecting sessions or retrying during logout
+let isSigningOut = false;
+
+export const setSigningOut = (val: boolean) => {
+  isSigningOut = val;
+  if (val) {
+    refreshSessionPromise = null;
+    inFlightGetMap.clear();
+  }
+};
+
+export const getIsSigningOut = () => isSigningOut;
+
 // Singleton promise to prevent concurrent duplicate session refresh requests
 let refreshSessionPromise: Promise<string | null> | null = null;
 const attemptTokenRefresh = async (): Promise<string | null> => {
+  if (isSigningOut) {
+    logger.info('SupabaseClient', 'Sign-out in progress. Skipping token refresh.');
+    return null;
+  }
   if (refreshSessionPromise) return refreshSessionPromise;
 
   refreshSessionPromise = (async () => {
     try {
+      if (isSigningOut) return null;
       logger.info(
         'SupabaseClient',
         'Access token expired (401). Attempting automatic session refresh...',
       );
       const { data, error } = await supabase.auth.refreshSession();
-      if (error || !data?.session?.access_token) {
-        logger.warn(
-          'SupabaseClient',
-          `Session refresh failed: ${error?.message || 'No active session found'}`,
-        );
-        notifyAuthExpired();
+      if (isSigningOut || error || !data?.session?.access_token) {
+        if (!isSigningOut) {
+          logger.warn(
+            'SupabaseClient',
+            `Session refresh failed: ${error?.message || 'No active session found'}`,
+          );
+          notifyAuthExpired();
+        }
         return null;
       }
       logger.info('SupabaseClient', 'Session successfully refreshed with new access token.');
       return data.session.access_token;
     } catch (err) {
-      logger.error('SupabaseClient', 'Session refresh exception:', err);
-      notifyAuthExpired();
+      if (!isSigningOut) {
+        logger.error('SupabaseClient', 'Session refresh exception:', err);
+        notifyAuthExpired();
+      }
       return null;
     } finally {
       refreshSessionPromise = null;
@@ -278,6 +300,9 @@ const customFetch = async (input: RequestInfo | URL, init?: RequestInit): Promis
     try {
       const res = await fetchWithRetry(input, init, 1);
       if (res.status === 401 && !isAuth) {
+        if (isSigningOut) {
+          return res;
+        }
         logSupabaseError(method, urlStr, res);
         const newAccessToken = await attemptTokenRefresh();
         if (newAccessToken) {

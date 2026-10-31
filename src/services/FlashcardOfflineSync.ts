@@ -1,5 +1,5 @@
 import { idbGet, idbSet, idbDelete } from '../utils/storage/indexedDb';
-import { supabase } from '../lib/supabase';
+import { supabase, getIsSigningOut } from '../lib/supabase';
 import { toast } from '../hooks/use-toast';
 
 export interface QueuedFlashcardUpdate {
@@ -82,7 +82,7 @@ export const FlashcardOfflineSync = {
    * Syncs all queued updates to Supabase when network is restored.
    */
   async syncPending(forceManual = false): Promise<{ synced: number; failed: number }> {
-    if (isSyncing) return { synced: 0, failed: 0 };
+    if (isSyncing || getIsSigningOut()) return { synced: 0, failed: 0 };
     if (typeof navigator !== 'undefined' && !navigator.onLine) {
       return { synced: 0, failed: 0 };
     }

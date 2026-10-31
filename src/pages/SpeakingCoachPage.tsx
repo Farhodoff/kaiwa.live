@@ -243,7 +243,8 @@ const SpeakingCoachPage: React.FC = () => {
 
       // 1. Immediately shut off speech and cancel AI requests
       stopSpeaking();
-      endSession();
+      const skipEval = reason !== 'manual';
+      endSession({ skipEvaluation: skipEval }).catch(() => {});
 
       // 2. Save only if user spoke
       const saved = SpeakingConversationHistoryService.saveSession({
