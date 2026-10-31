@@ -11,6 +11,7 @@ import {
 import { OfflineSyncManager, StorageDiagnostics } from '../../services/OfflineSyncManager';
 import { useStudyData } from '../../context/StudyPlannerContext';
 import { useLanguage } from '../../context/LanguageContext';
+import { toast } from '../../hooks/use-toast';
 
 export const OfflineSyncStatusBar: React.FC = () => {
   const { user } = useStudyData();
@@ -64,8 +65,30 @@ export const OfflineSyncStatusBar: React.FC = () => {
     if (isSyncing || !isOnline) return;
     setIsSyncing(true);
     try {
-      await OfflineSyncManager.syncAll();
+      const res = await OfflineSyncManager.syncAll(true);
       await refreshStatus();
+      if (res.totalFailed === 0) {
+        toast({
+          title: isJa ? '同期完了' : 'Sinxronlash muvaffaqiyatli',
+          description: isJa
+            ? `${res.totalSynced}件の結果がサーバーに正常に同期されました。`
+            : `${res.totalSynced} ta natija serverga muvaffaqiyatli saqlandi.`,
+        });
+      } else {
+        toast({
+          variant: 'destructive',
+          title: isJa ? '同期保留' : 'Qisman sinxronlanmadi',
+          description: isJa
+            ? `${res.totalSynced}件成功、${res.totalFailed}件失敗。再試行されます。`
+            : `${res.totalSynced} ta saqlandi, ${res.totalFailed} ta natija navbatda qoldi. Qayta uriniladi.`,
+        });
+      }
+    } catch (err: unknown) {
+      toast({
+        variant: 'destructive',
+        title: isJa ? '同期エラー' : 'Sinxronlash xatosi',
+        description: err instanceof Error ? err.message : String(err),
+      });
     } finally {
       setIsSyncing(false);
     }

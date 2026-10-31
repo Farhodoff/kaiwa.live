@@ -215,12 +215,12 @@ describe('HistoryService', () => {
 
   describe('saveSpeakingSession & getSpeakingHistory', () => {
     it('saves speaking session to Supabase & localStorage and retrieves it', async () => {
-      const mockInsert = vi.fn().mockResolvedValue({ error: null });
+      const mockUpsert = vi.fn().mockResolvedValue({ error: null });
       vi.mocked(supabase.auth.getUser).mockResolvedValue({
         data: { user: { id: 'user-123' } },
         error: null,
       } as any);
-      vi.mocked(supabase.from).mockReturnValue({ insert: mockInsert } as any);
+      vi.mocked(supabase.from).mockReturnValue({ upsert: mockUpsert, insert: mockUpsert } as any);
 
       const saved = await HistoryService.saveSpeakingSession({
         language: 'ja',
@@ -233,18 +233,18 @@ describe('HistoryService', () => {
       });
 
       expect(saved.id).toBeDefined();
-      expect(mockInsert).toHaveBeenCalled();
+      expect(mockUpsert).toHaveBeenCalled();
     });
 
     it('handles Supabase insert error and offline exception catch for speaking session', async () => {
-      const mockInsert = vi
+      const mockUpsert = vi
         .fn()
         .mockResolvedValue({ error: { status: 404, message: 'DB Error 404' } });
       vi.mocked(supabase.auth.getUser).mockResolvedValue({
         data: { user: { id: 'user-123' } },
         error: null,
       } as any);
-      vi.mocked(supabase.from).mockReturnValue({ insert: mockInsert } as any);
+      vi.mocked(supabase.from).mockReturnValue({ upsert: mockUpsert, insert: mockUpsert } as any);
 
       const result = await HistoryService.saveSpeakingSession({
         language: 'en',
@@ -302,12 +302,12 @@ describe('HistoryService', () => {
 
   describe('saveMockExam & getMockExamsHistory', () => {
     it('saves mock exam with level & bandScore and retrieves history', async () => {
-      const mockInsert = vi.fn().mockResolvedValue({ error: null });
+      const mockUpsert = vi.fn().mockResolvedValue({ error: null });
       vi.mocked(supabase.auth.getUser).mockResolvedValue({
         data: { user: { id: 'user-123' } },
         error: null,
       } as any);
-      vi.mocked(supabase.from).mockReturnValue({ insert: mockInsert } as any);
+      vi.mocked(supabase.from).mockReturnValue({ upsert: mockUpsert, insert: mockUpsert } as any);
 
       const result = await HistoryService.saveMockExam({
         examType: 'ielts_reading',
@@ -318,21 +318,22 @@ describe('HistoryService', () => {
       });
 
       expect(result.id).toBeDefined();
-      expect(mockInsert).toHaveBeenCalledWith(
+      expect(mockUpsert).toHaveBeenCalledWith(
         expect.objectContaining({
           level: 'Band 7',
           band_score: 7.0,
         }),
+        { onConflict: 'id' },
       );
     });
 
     it('saves mock exam with undefined optional fields setting nulls in Supabase insert', async () => {
-      const mockInsert = vi.fn().mockResolvedValue({ error: null });
+      const mockUpsert = vi.fn().mockResolvedValue({ error: null });
       vi.mocked(supabase.auth.getUser).mockResolvedValue({
         data: { user: { id: 'user-123' } },
         error: null,
       } as any);
-      vi.mocked(supabase.from).mockReturnValue({ insert: mockInsert } as any);
+      vi.mocked(supabase.from).mockReturnValue({ upsert: mockUpsert, insert: mockUpsert } as any);
 
       await HistoryService.saveMockExam({
         examType: 'jlpt',
@@ -340,11 +341,12 @@ describe('HistoryService', () => {
         totalQuestions: 180,
       });
 
-      expect(mockInsert).toHaveBeenCalledWith(
+      expect(mockUpsert).toHaveBeenCalledWith(
         expect.objectContaining({
           level: null,
           band_score: null,
         }),
+        { onConflict: 'id' },
       );
     });
 

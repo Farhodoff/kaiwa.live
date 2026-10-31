@@ -12,7 +12,13 @@ import { FlashcardOfflineSync } from './FlashcardOfflineSync';
 import { toast } from '../hooks/use-toast';
 import { toDeterministicUUID, isUuid } from '../utils/uuid';
 
-export interface QueuedMockExam {
+export interface QueueItemMetadata {
+  retryCount?: number;
+  nextRetryTime?: number;
+  lastError?: string;
+}
+
+export interface QueuedMockExam extends QueueItemMetadata {
   id: string;
   userId?: string | null;
   examType: string;
@@ -23,9 +29,10 @@ export interface QueuedMockExam {
   createdAt: string;
 }
 
-export interface QueuedSpeakingSession {
+export interface QueuedSpeakingSession extends QueueItemMetadata {
   id: string;
   userId?: string | null;
+  persona?: string;
   topic?: string;
   mode?: string;
   fluencyScore: number;
@@ -36,7 +43,7 @@ export interface QueuedSpeakingSession {
   createdAt: string;
 }
 
-export interface QueuedGamificationProfile {
+export interface QueuedGamificationProfile extends QueueItemMetadata {
   userId: string;
   totalXp: number;
   level: number;
@@ -45,7 +52,7 @@ export interface QueuedGamificationProfile {
   timestamp: number;
 }
 
-export interface QueuedLessonProgress {
+export interface QueuedLessonProgress extends QueueItemMetadata {
   id: string;
   userId: string;
   lessonId: string;
@@ -58,7 +65,7 @@ export interface QueuedLessonProgress {
   updatedAt: string;
 }
 
-export interface QueuedKanjiProgress {
+export interface QueuedKanjiProgress extends QueueItemMetadata {
   id: string;
   userId: string;
   lessonId: string;
@@ -69,6 +76,19 @@ export interface QueuedKanjiProgress {
   lastReviewedAt: string;
 }
 
+export interface QueuedStudySession extends QueueItemMetadata {
+  id: string;
+  userId: string;
+  startTime: string;
+  endTime?: string | null;
+  duration: number;
+  type?: string;
+  subjectId?: string | null;
+  notes?: string | null;
+  completed?: boolean;
+  createdAt: string;
+}
+
 export interface StorageDiagnostics {
   isOnline: boolean;
   pendingFlashcards: number;
@@ -77,16 +97,24 @@ export interface StorageDiagnostics {
   pendingGamification: number;
   pendingLessonProgress: number;
   pendingKanjiProgress: number;
+  pendingStudySessions: number;
   totalPending: number;
   cachedFlashcardsCount: number;
   lastSyncTimestamp: number | null;
 }
+
+const BACKOFF_SCHEDULE = [2000, 5000, 15000, 60000]; // 2s, 5s, 15s, 60s
+const calculateBackoff = (retryCount: number): number => {
+  const index = Math.min(Math.max(0, retryCount - 1), BACKOFF_SCHEDULE.length - 1);
+  return Date.now() + BACKOFF_SCHEDULE[index];
+};
 
 const EXAMS_QUEUE_KEY = 'study_planner_offline_exams_queue';
 const SPEAKING_QUEUE_KEY = 'study_planner_offline_speaking_queue';
 const GAMIFICATION_QUEUE_KEY = 'study_planner_offline_gamification_queue';
 const LESSON_PROGRESS_QUEUE_KEY = 'study_planner_offline_lesson_progress_queue';
 const KANJI_PROGRESS_QUEUE_KEY = 'study_planner_offline_kanji_progress_queue';
+const STUDY_SESSIONS_QUEUE_KEY = 'study_planner_offline_study_sessions_queue';
 const LAST_SYNC_KEY = 'study_planner_last_offline_sync_time';
 
 let isSyncingAll = false;
@@ -189,6 +217,18 @@ export const OfflineSyncManager = {
     }
   },
 
+  async enqueueStudySession(session: QueuedStudySession): Promise<void> {
+    try {
+      const queue = (await idbGet<QueuedStudySession[]>(STUDY_SESSIONS_QUEUE_KEY)) || [];
+      const existingIdx = queue.findIndex((item) => item.id === session.id);
+      if (existingIdx >= 0) queue[existingIdx] = session;
+      else queue.push(session);
+      await idbSet(STUDY_SESSIONS_QUEUE_KEY, queue);
+    } catch (e) {
+      console.warn('[OfflineSyncManager] Failed to enqueue study session:', e);
+    }
+  },
+
   // ─── Queue Counters ─────────────────────────────────────────────
 
   async getPendingExamsCount(): Promise<number> {
@@ -236,20 +276,31 @@ export const OfflineSyncManager = {
     }
   },
 
+  async getPendingStudySessionsCount(): Promise<number> {
+    try {
+      const queue = await idbGet<QueuedStudySession[]>(STUDY_SESSIONS_QUEUE_KEY);
+      return queue ? queue.length : 0;
+    } catch {
+      return 0;
+    }
+  },
+
   /**
    * Returns total count of pending mutations across all domains.
    */
   async getOverallPendingCount(): Promise<number> {
-    const [flashcards, exams, speaking, gamification, lessons, kanji] = await Promise.all([
-      FlashcardOfflineSync.getPendingCount(),
-      this.getPendingExamsCount(),
-      this.getPendingSpeakingCount(),
-      this.getPendingGamificationCount(),
-      this.getPendingLessonProgressCount(),
-      this.getPendingKanjiProgressCount(),
-    ]);
+    const [flashcards, exams, speaking, gamification, lessons, kanji, studySessions] =
+      await Promise.all([
+        FlashcardOfflineSync.getPendingCount(),
+        this.getPendingExamsCount(),
+        this.getPendingSpeakingCount(),
+        this.getPendingGamificationCount(),
+        this.getPendingLessonProgressCount(),
+        this.getPendingKanjiProgressCount(),
+        this.getPendingStudySessionsCount(),
+      ]);
 
-    return flashcards + exams + speaking + gamification + lessons + kanji;
+    return flashcards + exams + speaking + gamification + lessons + kanji + studySessions;
   },
 
   // ─── Queue Flush / Sync ─────────────────────────────────────────
@@ -257,17 +308,18 @@ export const OfflineSyncManager = {
   /**
    * Synchronizes all queued changes across all domains to Supabase.
    */
-  async syncAll() {
-    return this.syncAllPending();
+  async syncAll(forceManual = true) {
+    return this.syncAllPending(forceManual);
   },
 
-  async syncAllPending(): Promise<{
+  async syncAllPending(forceManual = false): Promise<{
     syncedCards: number;
     syncedExams: number;
     syncedSpeaking: number;
     syncedGamification: number;
     syncedLessons: number;
     syncedKanji: number;
+    syncedStudySessions: number;
     totalSynced: number;
     totalFailed: number;
   }> {
@@ -279,6 +331,7 @@ export const OfflineSyncManager = {
         syncedGamification: 0,
         syncedLessons: 0,
         syncedKanji: 0,
+        syncedStudySessions: 0,
         totalSynced: 0,
         totalFailed: 0,
       };
@@ -292,6 +345,7 @@ export const OfflineSyncManager = {
         syncedGamification: 0,
         syncedLessons: 0,
         syncedKanji: 0,
+        syncedStudySessions: 0,
         totalSynced: 0,
         totalFailed: 0,
       };
@@ -302,32 +356,48 @@ export const OfflineSyncManager = {
     let syncedExams = 0;
     let syncedSpeaking = 0;
     let syncedGamification = 0;
+    let syncedLessons = 0;
     let syncedKanji = 0;
+    let syncedStudySessions = 0;
     let totalFailed = 0;
+    const now = Date.now();
 
     try {
       // 1. Sync Flashcards
-      const cardResult = await FlashcardOfflineSync.syncPending();
+      const cardResult = await FlashcardOfflineSync.syncPending(forceManual);
       syncedCards = cardResult.synced;
       totalFailed += cardResult.failed;
 
-      // 2. Sync Mock Exams
+      // 2. Sync Mock Exams (idempotent upsert by id)
       const examQueue = (await idbGet<QueuedMockExam[]>(EXAMS_QUEUE_KEY)) || [];
       if (examQueue.length > 0) {
         const remainingExams: QueuedMockExam[] = [];
         for (const exam of examQueue) {
+          if (!forceManual && exam.nextRetryTime && now < exam.nextRetryTime) {
+            remainingExams.push(exam);
+            continue;
+          }
+
           try {
             if (exam.userId) {
-              const { error } = await supabase.from('mock_exams_history').insert({
-                user_id: exam.userId,
-                exam_type: exam.examType,
-                level: exam.level || null,
-                score: exam.score,
-                total_questions: exam.totalQuestions,
-                band_score: exam.bandScore || null,
-                created_at: exam.createdAt,
-              });
+              const examId = isUuid(exam.id) ? exam.id : toDeterministicUUID(exam.id);
+              const { error } = await supabase.from('mock_exams_history').upsert(
+                {
+                  id: examId,
+                  user_id: exam.userId,
+                  exam_type: exam.examType,
+                  level: exam.level || null,
+                  score: exam.score,
+                  total_questions: exam.totalQuestions,
+                  band_score: exam.bandScore || null,
+                  created_at: exam.createdAt,
+                },
+                { onConflict: 'id' },
+              );
               if (error) {
+                exam.retryCount = (exam.retryCount || 0) + 1;
+                exam.nextRetryTime = calculateBackoff(exam.retryCount);
+                exam.lastError = error.message;
                 remainingExams.push(exam);
                 totalFailed++;
               } else {
@@ -336,7 +406,10 @@ export const OfflineSyncManager = {
             } else {
               syncedExams++;
             }
-          } catch {
+          } catch (err: any) {
+            exam.retryCount = (exam.retryCount || 0) + 1;
+            exam.nextRetryTime = calculateBackoff(exam.retryCount);
+            exam.lastError = err?.message || 'Network exception';
             remainingExams.push(exam);
             totalFailed++;
           }
@@ -344,25 +417,40 @@ export const OfflineSyncManager = {
         await idbSet(EXAMS_QUEUE_KEY, remainingExams);
       }
 
-      // 3. Sync Speaking Sessions
+      // 3. Sync Speaking Sessions (idempotent upsert with persona to satisfy DB not-null constraint)
       const speakingQueue = (await idbGet<QueuedSpeakingSession[]>(SPEAKING_QUEUE_KEY)) || [];
       if (speakingQueue.length > 0) {
         const remainingSpeaking: QueuedSpeakingSession[] = [];
         for (const session of speakingQueue) {
+          if (!forceManual && session.nextRetryTime && now < session.nextRetryTime) {
+            remainingSpeaking.push(session);
+            continue;
+          }
+
           try {
             if (session.userId) {
-              const { error } = await supabase.from('speaking_coach_sessions').insert({
-                user_id: session.userId,
-                topic: session.topic || 'General Practice',
-                mode: session.mode || 'scenario',
-                fluency_score: session.fluencyScore,
-                grammar_score: session.grammarScore,
-                pronunciation_score: session.pronunciationScore,
-                vocabulary_score: session.vocabularyScore,
-                duration_seconds: session.durationSeconds,
-                created_at: session.createdAt,
-              });
+              const sessionId = isUuid(session.id) ? session.id : toDeterministicUUID(session.id);
+              const persona = session.persona || session.topic || 'AI Sensei';
+              const { error } = await supabase.from('speaking_coach_sessions').upsert(
+                {
+                  id: sessionId,
+                  user_id: session.userId,
+                  persona,
+                  topic: session.topic || persona,
+                  mode: session.mode || 'scenario',
+                  fluency_score: session.fluencyScore,
+                  grammar_score: session.grammarScore,
+                  pronunciation_score: session.pronunciationScore,
+                  vocabulary_score: session.vocabularyScore,
+                  duration_seconds: session.durationSeconds,
+                  created_at: session.createdAt,
+                },
+                { onConflict: 'id' },
+              );
               if (error) {
+                session.retryCount = (session.retryCount || 0) + 1;
+                session.nextRetryTime = calculateBackoff(session.retryCount);
+                session.lastError = error.message;
                 remainingSpeaking.push(session);
                 totalFailed++;
               } else {
@@ -371,7 +459,10 @@ export const OfflineSyncManager = {
             } else {
               syncedSpeaking++;
             }
-          } catch {
+          } catch (err: any) {
+            session.retryCount = (session.retryCount || 0) + 1;
+            session.nextRetryTime = calculateBackoff(session.retryCount);
+            session.lastError = err?.message || 'Network exception';
             remainingSpeaking.push(session);
             totalFailed++;
           }
@@ -379,29 +470,43 @@ export const OfflineSyncManager = {
         await idbSet(SPEAKING_QUEUE_KEY, remainingSpeaking);
       }
 
-      // 4. Sync Gamification Profiles
+      // 4. Sync Gamification Profiles (idempotent upsert by id)
       const gamificationQueue =
         (await idbGet<QueuedGamificationProfile[]>(GAMIFICATION_QUEUE_KEY)) || [];
       if (gamificationQueue.length > 0) {
         const remainingGamification: QueuedGamificationProfile[] = [];
         for (const item of gamificationQueue) {
+          if (!forceManual && item.nextRetryTime && now < item.nextRetryTime) {
+            remainingGamification.push(item);
+            continue;
+          }
+
           try {
             const dbUserId = isUuid(item.userId) ? item.userId : toDeterministicUUID(item.userId);
-            const { error } = await supabase.from('profiles').upsert({
-              id: dbUserId,
-              total_xp: item.totalXp,
-              level: item.level,
-              current_streak: item.currentStreak,
-              last_activity_date: item.lastActivityDate,
-              updated_at: new Date().toISOString(),
-            });
+            const { error } = await supabase.from('profiles').upsert(
+              {
+                id: dbUserId,
+                total_xp: item.totalXp,
+                level: item.level,
+                current_streak: item.currentStreak,
+                last_activity_date: item.lastActivityDate,
+                updated_at: new Date().toISOString(),
+              },
+              { onConflict: 'id' },
+            );
             if (error) {
+              item.retryCount = (item.retryCount || 0) + 1;
+              item.nextRetryTime = calculateBackoff(item.retryCount);
+              item.lastError = error.message;
               remainingGamification.push(item);
               totalFailed++;
             } else {
               syncedGamification++;
             }
-          } catch {
+          } catch (err: any) {
+            item.retryCount = (item.retryCount || 0) + 1;
+            item.nextRetryTime = calculateBackoff(item.retryCount);
+            item.lastError = err?.message || 'Network exception';
             remainingGamification.push(item);
             totalFailed++;
           }
@@ -409,27 +514,37 @@ export const OfflineSyncManager = {
         await idbSet(GAMIFICATION_QUEUE_KEY, remainingGamification);
       }
 
-      // 5. Sync Lesson Progress
-      let syncedLessons = 0;
+      // 5. Sync Lesson Progress (idempotent upsert by id)
       const lessonQueue = (await idbGet<QueuedLessonProgress[]>(LESSON_PROGRESS_QUEUE_KEY)) || [];
       if (lessonQueue.length > 0) {
         const remainingLessons: QueuedLessonProgress[] = [];
         for (const lp of lessonQueue) {
+          if (!forceManual && lp.nextRetryTime && now < lp.nextRetryTime) {
+            remainingLessons.push(lp);
+            continue;
+          }
+
           try {
             if (lp.userId && lp.userId !== 'guest') {
-              const { error } = await supabase.from('lesson_progress').upsert({
-                id: lp.id,
-                user_id: lp.userId,
-                lesson_id: lp.lessonId,
-                language: lp.language,
-                current_step_index: lp.currentStepIndex,
-                is_completed: lp.isCompleted,
-                score: lp.score,
-                answers: lp.answers,
-                completed_at: lp.completedAt,
-                updated_at: lp.updatedAt,
-              });
+              const { error } = await supabase.from('lesson_progress').upsert(
+                {
+                  id: lp.id,
+                  user_id: lp.userId,
+                  lesson_id: lp.lessonId,
+                  language: lp.language,
+                  current_step_index: lp.currentStepIndex,
+                  is_completed: lp.isCompleted,
+                  score: lp.score,
+                  answers: lp.answers,
+                  completed_at: lp.completedAt,
+                  updated_at: lp.updatedAt,
+                },
+                { onConflict: 'id' },
+              );
               if (error) {
+                lp.retryCount = (lp.retryCount || 0) + 1;
+                lp.nextRetryTime = calculateBackoff(lp.retryCount);
+                lp.lastError = error.message;
                 remainingLessons.push(lp);
                 totalFailed++;
               } else {
@@ -438,7 +553,10 @@ export const OfflineSyncManager = {
             } else {
               syncedLessons++;
             }
-          } catch {
+          } catch (err: any) {
+            lp.retryCount = (lp.retryCount || 0) + 1;
+            lp.nextRetryTime = calculateBackoff(lp.retryCount);
+            lp.lastError = err?.message || 'Network exception';
             remainingLessons.push(lp);
             totalFailed++;
           }
@@ -446,11 +564,16 @@ export const OfflineSyncManager = {
         await idbSet(LESSON_PROGRESS_QUEUE_KEY, remainingLessons);
       }
 
-      // 6. Sync lesson kanji review progress
+      // 6. Sync Lesson Kanji Review Progress (idempotent upsert by user_id, lesson_id, kanji)
       const kanjiQueue = (await idbGet<QueuedKanjiProgress[]>(KANJI_PROGRESS_QUEUE_KEY)) || [];
       if (kanjiQueue.length > 0) {
         const remainingKanji: QueuedKanjiProgress[] = [];
         for (const item of kanjiQueue) {
+          if (!forceManual && item.nextRetryTime && now < item.nextRetryTime) {
+            remainingKanji.push(item);
+            continue;
+          }
+
           try {
             if (item.userId && item.userId !== 'guest') {
               const { error } = await supabase.from('lesson_kanji_progress').upsert(
@@ -468,6 +591,9 @@ export const OfflineSyncManager = {
                 { onConflict: 'user_id,lesson_id,kanji' },
               );
               if (error) {
+                item.retryCount = (item.retryCount || 0) + 1;
+                item.nextRetryTime = calculateBackoff(item.retryCount);
+                item.lastError = error.message;
                 remainingKanji.push(item);
                 totalFailed++;
               } else {
@@ -476,12 +602,65 @@ export const OfflineSyncManager = {
             } else {
               syncedKanji++;
             }
-          } catch {
+          } catch (err: any) {
+            item.retryCount = (item.retryCount || 0) + 1;
+            item.nextRetryTime = calculateBackoff(item.retryCount);
+            item.lastError = err?.message || 'Network exception';
             remainingKanji.push(item);
             totalFailed++;
           }
         }
         await idbSet(KANJI_PROGRESS_QUEUE_KEY, remainingKanji);
+      }
+
+      // 7. Sync Study Sessions (idempotent upsert by id)
+      const studyQueue = (await idbGet<QueuedStudySession[]>(STUDY_SESSIONS_QUEUE_KEY)) || [];
+      if (studyQueue.length > 0) {
+        const remainingStudy: QueuedStudySession[] = [];
+        for (const ss of studyQueue) {
+          if (!forceManual && ss.nextRetryTime && now < ss.nextRetryTime) {
+            remainingStudy.push(ss);
+            continue;
+          }
+
+          try {
+            if (ss.userId && ss.userId !== 'local_user') {
+              const ssId = isUuid(ss.id) ? ss.id : toDeterministicUUID(ss.id);
+              const { error } = await supabase.from('study_sessions').upsert(
+                {
+                  id: ssId,
+                  user_id: ss.userId,
+                  start_time: ss.startTime,
+                  end_time: ss.endTime,
+                  duration: ss.duration,
+                  type: ss.type,
+                  subject_id: ss.subjectId,
+                  notes: ss.notes,
+                  completed: ss.completed,
+                },
+                { onConflict: 'id' },
+              );
+              if (error) {
+                ss.retryCount = (ss.retryCount || 0) + 1;
+                ss.nextRetryTime = calculateBackoff(ss.retryCount);
+                ss.lastError = error.message;
+                remainingStudy.push(ss);
+                totalFailed++;
+              } else {
+                syncedStudySessions++;
+              }
+            } else {
+              syncedStudySessions++;
+            }
+          } catch (err: any) {
+            ss.retryCount = (ss.retryCount || 0) + 1;
+            ss.nextRetryTime = calculateBackoff(ss.retryCount);
+            ss.lastError = err?.message || 'Network exception';
+            remainingStudy.push(ss);
+            totalFailed++;
+          }
+        }
+        await idbSet(STUDY_SESSIONS_QUEUE_KEY, remainingStudy);
       }
 
       const totalSynced =
@@ -490,7 +669,8 @@ export const OfflineSyncManager = {
         syncedSpeaking +
         syncedGamification +
         syncedLessons +
-        syncedKanji;
+        syncedKanji +
+        syncedStudySessions;
 
       if (totalSynced > 0) {
         try {
@@ -499,7 +679,7 @@ export const OfflineSyncManager = {
           }
           toast({
             title: '✅ Sinxronlash muvaffaqiyatli',
-            description: `${totalSynced} ta oflayn o'zgarish bazaga saqlandi.`,
+            description: `${totalSynced} ta oflayn natija serverga muvaffaqiyatli saqlandi.`,
           });
         } catch {}
       }
@@ -511,6 +691,7 @@ export const OfflineSyncManager = {
         syncedGamification,
         syncedLessons,
         syncedKanji,
+        syncedStudySessions,
         totalSynced,
         totalFailed,
       };
@@ -529,6 +710,7 @@ export const OfflineSyncManager = {
       pendingGamification,
       pendingLessonProgress,
       pendingKanjiProgress,
+      pendingStudySessions,
     ] = await Promise.all([
       FlashcardOfflineSync.getPendingCount(),
       this.getPendingExamsCount(),
@@ -536,6 +718,7 @@ export const OfflineSyncManager = {
       this.getPendingGamificationCount(),
       this.getPendingLessonProgressCount(),
       this.getPendingKanjiProgressCount(),
+      this.getPendingStudySessionsCount(),
     ]);
 
     let cachedFlashcardsCount = 0;
@@ -554,6 +737,15 @@ export const OfflineSyncManager = {
       }
     } catch {}
 
+    const totalPending =
+      pendingCards +
+      pendingExams +
+      pendingSpeaking +
+      pendingGamification +
+      pendingLessonProgress +
+      pendingKanjiProgress +
+      pendingStudySessions;
+
     return {
       isOnline: typeof navigator !== 'undefined' ? navigator.onLine : true,
       pendingFlashcards: pendingCards,
@@ -562,13 +754,8 @@ export const OfflineSyncManager = {
       pendingGamification,
       pendingLessonProgress,
       pendingKanjiProgress,
-      totalPending:
-        pendingCards +
-        pendingExams +
-        pendingSpeaking +
-        pendingGamification +
-        pendingLessonProgress +
-        pendingKanjiProgress,
+      pendingStudySessions,
+      totalPending,
       cachedFlashcardsCount,
       lastSyncTimestamp,
     };
@@ -584,6 +771,7 @@ export const OfflineSyncManager = {
       idbDelete(GAMIFICATION_QUEUE_KEY),
       idbDelete(LESSON_PROGRESS_QUEUE_KEY),
       idbDelete(KANJI_PROGRESS_QUEUE_KEY),
+      idbDelete(STUDY_SESSIONS_QUEUE_KEY),
     ]);
   },
 
@@ -596,19 +784,33 @@ export const OfflineSyncManager = {
     // Attach Flashcard auto-sync
     FlashcardOfflineSync.initAutoSync();
 
+    // 1. Online event
     window.addEventListener('online', () => {
-      OfflineSyncManager.syncAllPending();
+      OfflineSyncManager.syncAllPending(true);
     });
 
+    // 2. Visibility change (user returns to tab)
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'visible' && navigator.onLine) {
-        OfflineSyncManager.syncAllPending();
+        OfflineSyncManager.syncAllPending(false);
       }
     });
 
-    // Trigger sync if already online on startup
+    // 3. User login / token refresh event via Supabase Auth
+    if (typeof supabase?.auth?.onAuthStateChange === 'function') {
+      supabase.auth.onAuthStateChange((event, session) => {
+        if (
+          session &&
+          (event === 'SIGNED_IN' || event === 'USER_UPDATED' || event === 'TOKEN_REFRESHED')
+        ) {
+          OfflineSyncManager.syncAllPending(true);
+        }
+      });
+    }
+
+    // 4. Initial online check on startup
     if (navigator.onLine) {
-      OfflineSyncManager.syncAllPending();
+      OfflineSyncManager.syncAllPending(false);
     }
   },
 };

@@ -2,7 +2,7 @@ import { supabase } from '../lib/supabase';
 import { logger } from '../utils/logger';
 import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
 import { OfflineSyncManager } from './OfflineSyncManager';
-import { toDeterministicUUID } from '../utils/uuid';
+import { toDeterministicUUID, generateUUID, isUuid } from '../utils/uuid';
 
 export interface WritingHistoryItem {
   id: string;
@@ -204,7 +204,7 @@ export class HistoryService {
   ): Promise<SpeakingSessionItem> {
     const newItem: SpeakingSessionItem = {
       ...item,
-      id: crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2),
+      id: generateUUID(),
       createdAt: new Date().toISOString(),
     };
 
@@ -216,45 +216,35 @@ export class HistoryService {
       } = await supabase.auth.getUser();
       if (user) {
         userId = user.id;
-        const safeUserId = toDeterministicUUID(user.id);
+        if (typeof navigator !== 'undefined' && navigator.onLine) {
+          const safeUserId = isUuid(user.id) ? user.id : toDeterministicUUID(user.id);
 
-        // 1. Primary insert into speaking_sessions
-        const res1 = await supabase.from('speaking_sessions').insert({
-          id: newItem.id,
-          user_id: safeUserId,
-          user_email: user.email,
-          language: newItem.language,
-          persona_title: newItem.persona,
-          topic: newItem.persona,
-          duration_seconds: newItem.durationSeconds,
-          fluency_score: newItem.fluencyScore,
-          pronunciation_score: newItem.pronunciationScore,
-          overall_score: newItem.fluencyScore,
-          transcript:
-            typeof newItem.transcript === 'string'
-              ? [{ speaker: 'user', text: newItem.transcript }]
-              : newItem.transcript,
-          feedback: newItem.feedback,
-          ai_feedback: newItem.feedback,
-          created_at: newItem.createdAt,
-        });
+          const { error } = await supabase.from('speaking_coach_sessions').upsert(
+            {
+              id: newItem.id,
+              user_id: safeUserId,
+              language: newItem.language,
+              persona: newItem.persona || 'AI Sensei',
+              topic: newItem.persona || 'General Practice',
+              duration_seconds: newItem.durationSeconds,
+              fluency_score: newItem.fluencyScore,
+              pronunciation_score: newItem.pronunciationScore,
+              transcript:
+                typeof newItem.transcript === 'string'
+                  ? newItem.transcript
+                  : JSON.stringify(newItem.transcript),
+              feedback:
+                typeof newItem.feedback === 'string'
+                  ? newItem.feedback
+                  : JSON.stringify(newItem.feedback),
+              created_at: newItem.createdAt,
+            },
+            { onConflict: 'id' },
+          );
 
-        // 2. Fallback insert into speaking_coach_sessions
-        const res2 = await supabase.from('speaking_coach_sessions').insert({
-          id: newItem.id,
-          user_id: safeUserId,
-          language: newItem.language,
-          persona: newItem.persona,
-          duration_seconds: newItem.durationSeconds,
-          fluency_score: newItem.fluencyScore,
-          pronunciation_score: newItem.pronunciationScore,
-          transcript: newItem.transcript,
-          feedback: newItem.feedback,
-          created_at: newItem.createdAt,
-        });
-
-        if (!res1?.error || !res2?.error) {
-          dbSuccess = true;
+          if (!error) {
+            dbSuccess = true;
+          }
         }
       }
     } catch (e) {
@@ -262,7 +252,7 @@ export class HistoryService {
     }
 
     if (!dbSuccess && userId) {
-      OfflineSyncManager.enqueueSpeakingSession({
+      await OfflineSyncManager.enqueueSpeakingSession({
         id: newItem.id,
         userId,
         topic: newItem.persona,
@@ -352,7 +342,7 @@ export class HistoryService {
   static async saveMockExam(item: Omit<MockExamItem, 'id' | 'createdAt'>): Promise<MockExamItem> {
     const newItem: MockExamItem = {
       ...item,
-      id: crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2),
+      id: generateUUID(),
       createdAt: new Date().toISOString(),
     };
 
@@ -365,20 +355,26 @@ export class HistoryService {
         } = await supabase.auth.getUser();
         if (user) {
           userId = user.id;
-          const safeUserId = toDeterministicUUID(user.id);
-          const { error } = await supabase.from('mock_exams_history').insert({
-            user_id: safeUserId,
-            exam_type: newItem.examType,
-            level: newItem.level || null,
-            score: newItem.score,
-            total_questions: newItem.totalQuestions,
-            band_score: newItem.bandScore || null,
-            created_at: newItem.createdAt,
-          });
-          if (error) {
-            handleTableError('mock_exams_history', error);
-          } else {
-            dbSuccess = true;
+          if (typeof navigator !== 'undefined' && navigator.onLine) {
+            const safeUserId = isUuid(user.id) ? user.id : toDeterministicUUID(user.id);
+            const { error } = await supabase.from('mock_exams_history').upsert(
+              {
+                id: newItem.id,
+                user_id: safeUserId,
+                exam_type: newItem.examType,
+                level: newItem.level || null,
+                score: newItem.score,
+                total_questions: newItem.totalQuestions,
+                band_score: newItem.bandScore || null,
+                created_at: newItem.createdAt,
+              },
+              { onConflict: 'id' },
+            );
+            if (error) {
+              handleTableError('mock_exams_history', error);
+            } else {
+              dbSuccess = true;
+            }
           }
         }
       } catch (e) {
@@ -387,7 +383,7 @@ export class HistoryService {
     }
 
     if (!dbSuccess && userId) {
-      OfflineSyncManager.enqueueMockExam({
+      await OfflineSyncManager.enqueueMockExam({
         id: newItem.id,
         userId,
         examType: newItem.examType,
