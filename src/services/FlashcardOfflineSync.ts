@@ -6,7 +6,16 @@ export interface QueuedFlashcardUpdate {
   id: string;
   updates: Record<string, any>;
   timestamp: number;
+  retryCount?: number;
+  nextRetryTime?: number;
+  lastError?: string;
 }
+
+const BACKOFF_SCHEDULE = [2000, 5000, 15000, 60000]; // 2s, 5s, 15s, 60s
+const calculateBackoff = (retryCount: number): number => {
+  const index = Math.min(Math.max(0, retryCount - 1), BACKOFF_SCHEDULE.length - 1);
+  return Date.now() + BACKOFF_SCHEDULE[index];
+};
 
 const OFFLINE_QUEUE_KEY = 'study_planner_flashcard_offline_queue';
 let isSyncing = false;
@@ -72,7 +81,7 @@ export const FlashcardOfflineSync = {
   /**
    * Syncs all queued updates to Supabase when network is restored.
    */
-  async syncPending(): Promise<{ synced: number; failed: number }> {
+  async syncPending(forceManual = false): Promise<{ synced: number; failed: number }> {
     if (isSyncing) return { synced: 0, failed: 0 };
     if (typeof navigator !== 'undefined' && !navigator.onLine) {
       return { synced: 0, failed: 0 };
@@ -90,20 +99,32 @@ export const FlashcardOfflineSync = {
       }
 
       const remaining: QueuedFlashcardUpdate[] = [];
+      const now = Date.now();
 
       for (const item of queue) {
+        if (!forceManual && item.nextRetryTime && now < item.nextRetryTime) {
+          remaining.push(item);
+          continue;
+        }
+
         try {
           const { error } = await supabase
             .from('flashcards')
             .update(item.updates)
             .eq('id', item.id);
           if (error) {
+            item.retryCount = (item.retryCount || 0) + 1;
+            item.nextRetryTime = calculateBackoff(item.retryCount);
+            item.lastError = error.message;
             remaining.push(item);
             failed++;
           } else {
             synced++;
           }
-        } catch {
+        } catch (e: any) {
+          item.retryCount = (item.retryCount || 0) + 1;
+          item.nextRetryTime = calculateBackoff(item.retryCount);
+          item.lastError = e?.message || 'Network error';
           remaining.push(item);
           failed++;
         }

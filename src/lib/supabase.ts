@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { logger } from '../utils/logger';
+import { toast } from '../hooks/use-toast';
 
 const rawUrl = import.meta.env.VITE_SUPABASE_URL || import.meta.env.NEXT_PUBLIC_SUPABASE_URL;
 const rawKey =
@@ -89,12 +90,17 @@ const fetchWithRetry = async (
   init?: RequestInit,
   maxRetries = 1,
 ): Promise<Response> => {
+  if (typeof navigator !== 'undefined' && !navigator.onLine) {
+    throw new Error('Device is offline');
+  }
+
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
     try {
       return await fetch(input, init);
     } catch (err: any) {
       // Aborted requests must never be retried
       if (err?.name === 'AbortError') throw err;
+      if (typeof navigator !== 'undefined' && !navigator.onLine) throw err;
       // Connection resets mean server overload — retrying makes it WORSE
       const msg = String(err?.message || '');
       if (
@@ -111,6 +117,78 @@ const fetchWithRetry = async (
     }
   }
   throw new Error('Fetch failed after retries');
+};
+
+// Structured error logger for Supabase HTTP responses
+const logSupabaseError = (method: string, url: string, response: Response) => {
+  if (response.ok) return;
+  try {
+    response
+      .clone()
+      .text()
+      .then((bodyText) => {
+        let parsed: any = null;
+        try {
+          parsed = JSON.parse(bodyText);
+        } catch {}
+        const code = parsed?.code || parsed?.error_code || response.statusText || 'ERROR';
+        const msg = parsed?.message || parsed?.hint || parsed?.msg || bodyText.slice(0, 200);
+        logger.warn(
+          'SupabaseClient',
+          `[HTTP ${response.status}] ${method} ${url} -> Code: ${code} | Message: ${msg}`,
+        );
+      })
+      .catch(() => {});
+  } catch {}
+};
+
+// Debounced notification when session expires and refresh fails
+let lastAuthToastTime = 0;
+const notifyAuthExpired = () => {
+  const now = Date.now();
+  if (now - lastAuthToastTime < 30000) return; // at most once every 30s
+  lastAuthToastTime = now;
+  try {
+    toast({
+      variant: 'destructive',
+      title: '🔒 Sessiya muddati tugadi',
+      description: 'Natijalar serverga sinxronlanishi uchun iltimos hisobingizga qayta kiring.',
+    });
+  } catch {}
+};
+
+// Singleton promise to prevent concurrent duplicate session refresh requests
+let refreshSessionPromise: Promise<string | null> | null = null;
+const attemptTokenRefresh = async (): Promise<string | null> => {
+  if (refreshSessionPromise) return refreshSessionPromise;
+
+  refreshSessionPromise = (async () => {
+    try {
+      logger.info(
+        'SupabaseClient',
+        'Access token expired (401). Attempting automatic session refresh...',
+      );
+      const { data, error } = await supabase.auth.refreshSession();
+      if (error || !data?.session?.access_token) {
+        logger.warn(
+          'SupabaseClient',
+          `Session refresh failed: ${error?.message || 'No active session found'}`,
+        );
+        notifyAuthExpired();
+        return null;
+      }
+      logger.info('SupabaseClient', 'Session successfully refreshed with new access token.');
+      return data.session.access_token;
+    } catch (err) {
+      logger.error('SupabaseClient', 'Session refresh exception:', err);
+      notifyAuthExpired();
+      return null;
+    } finally {
+      refreshSessionPromise = null;
+    }
+  })();
+
+  return refreshSessionPromise;
 };
 
 // Custom fetch wrapper that handles network offline/AdBlocker/Connection Reset fetch errors gracefully
@@ -198,17 +276,15 @@ const customFetch = async (input: RequestInfo | URL, init?: RequestInit): Promis
   const executeFetch = async (): Promise<Response> => {
     await acquireSlot();
     try {
-      const res = await fetchWithRetry(input, init, 2);
-      if (res.status === 401) {
-        if (isAuth) {
-          return res;
-        }
-        // For RPC and REST queries with expired auth token or invalid auth header, try once with verified anon key
-        try {
+      const res = await fetchWithRetry(input, init, 1);
+      if (res.status === 401 && !isAuth) {
+        logSupabaseError(method, urlStr, res);
+        const newAccessToken = await attemptTokenRefresh();
+        if (newAccessToken) {
           const cleanHeaders = new Headers(
             init?.headers || (input instanceof Request ? input.headers : {}),
           );
-          cleanHeaders.set('Authorization', `Bearer ${supabaseAnonKey}`);
+          cleanHeaders.set('Authorization', `Bearer ${newAccessToken}`);
           cleanHeaders.set('apikey', supabaseAnonKey);
           const reqUrl =
             typeof input === 'string'
@@ -218,12 +294,17 @@ const customFetch = async (input: RequestInfo | URL, init?: RequestInit): Promis
                 : input.toString();
           const retryInit = { ...init, headers: cleanHeaders };
           const retryRes = await fetchWithRetry(reqUrl, retryInit, 1);
-          if (retryRes.ok) {
-            return retryRes;
+          if (!retryRes.ok) {
+            logSupabaseError(method, reqUrl, retryRes);
           }
-        } catch {}
+          return retryRes;
+        }
 
         return res;
+      }
+
+      if (!res.ok) {
+        logSupabaseError(method, urlStr, res);
       }
       return res;
     } catch (err: unknown) {

@@ -92,19 +92,18 @@ describe('OfflineSyncManager Service', () => {
   });
 
   it('syncs all pending queues to Supabase when online', async () => {
-    const mockInsert = vi.fn().mockResolvedValue({ error: null });
     const mockUpsert = vi.fn().mockResolvedValue({ error: null });
     const mockUpdate = vi.fn().mockReturnValue({
       eq: vi.fn().mockResolvedValue({ error: null }),
     });
 
     vi.spyOn(supabase, 'from').mockImplementation((table: string) => {
-      if (table === 'mock_exams_history') return { insert: mockInsert } as any;
-      if (table === 'speaking_coach_sessions') return { insert: mockInsert } as any;
+      if (table === 'mock_exams_history') return { upsert: mockUpsert } as any;
+      if (table === 'speaking_coach_sessions') return { upsert: mockUpsert } as any;
       if (table === 'profiles') return { upsert: mockUpsert } as any;
       if (table === 'flashcards') return { update: mockUpdate } as any;
       if (table === 'lesson_progress') return { upsert: mockUpsert } as any;
-      return {} as any;
+      return { upsert: mockUpsert } as any;
     });
 
     await OfflineSyncManager.enqueueMockExam({
@@ -173,7 +172,7 @@ describe('OfflineSyncManager Service', () => {
   it('preserves failed items in their respective queues if Supabase rejects', async () => {
     vi.spyOn(supabase, 'from').mockImplementation((table: string) => {
       if (table === 'mock_exams_history') {
-        return { insert: vi.fn().mockResolvedValue({ error: new Error('DB Error') }) } as any;
+        return { upsert: vi.fn().mockResolvedValue({ error: new Error('DB Error') }) } as any;
       }
       return {
         update: vi.fn().mockReturnValue({ eq: vi.fn().mockResolvedValue({ error: null }) }),
