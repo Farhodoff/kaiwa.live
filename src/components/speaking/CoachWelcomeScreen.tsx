@@ -1,5 +1,6 @@
 import React from 'react';
 import { Briefcase, Home, Mic, Plane, Utensils } from 'lucide-react';
+import { KaiwaOrbCharacter } from '../character/KaiwaOrbCharacter';
 
 interface CoachWelcomeScreenProps {
   promptSuggestions?: { title: string; text: string; icon: string }[];
@@ -21,16 +22,19 @@ export const CoachWelcomeScreen: React.FC<CoachWelcomeScreenProps> = ({
 
   return (
     <section className="relative flex min-h-0 flex-1 flex-col items-center justify-between overflow-y-auto px-4 pb-5 pt-3 text-center sm:px-8 sm:pb-8">
-      <div className="flex flex-1 flex-col items-center justify-center py-8">
-        <p className="mb-5 text-sm font-medium tracking-wide text-white/80">Erkin suhbat</p>
+      <div className="flex flex-1 flex-col items-center justify-center py-6">
+        <p className="mb-2 text-sm font-medium tracking-wide text-white/80">Erkin suhbat</p>
         <button
           type="button"
           onClick={() => onStartSession(selectedTopic || undefined)}
           aria-label="Gapirishni boshlash"
-          className="group flex h-28 w-28 flex-col items-center justify-center gap-2 rounded-full border-[3px] border-primary bg-slate-950/65 text-white shadow-[0_0_0_10px_rgba(232,72,58,0.12),0_16px_50px_-12px_rgba(232,72,58,0.65)] backdrop-blur transition hover:scale-105 hover:bg-slate-900/80 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/40 active:scale-95 sm:h-32 sm:w-32"
+          className="group relative flex flex-col items-center justify-center rounded-full transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/40 active:scale-95"
         >
-          <Mic size={30} className="text-white transition-transform group-hover:scale-110" />
-          <span className="text-xs font-bold uppercase tracking-[0.16em]">Gapirish</span>
+          <KaiwaOrbCharacter size={140} state="idle" interactive={false} />
+          <span className="-mt-3 inline-flex items-center gap-1.5 rounded-full border border-primary/50 bg-slate-950/80 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-white shadow-xl backdrop-blur transition-all group-hover:border-primary group-hover:bg-primary/25">
+            <Mic size={14} className="text-primary transition-transform group-hover:scale-110" />
+            <span>Gapirish</span>
+          </span>
         </button>
       </div>
 

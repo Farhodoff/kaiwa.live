@@ -44,6 +44,9 @@ const StudyModePage = lazyWithRetry(() => import('./pages/StudyModePage'));
 const ScenarioPickerPage = lazyWithRetry(() =>
   import('./pages/ScenarioPickerPage').then((m) => ({ default: m.ScenarioPickerPage })),
 );
+const KaiwaOrbShowcase = lazyWithRetry(() =>
+  import('./components/character/KaiwaOrbShowcase').then((m) => ({ default: m.KaiwaOrbShowcase })),
+);
 const ProgressPage = lazyWithRetry(() => import('./pages/ProgressPage'));
 const DashboardPage = lazyWithRetry(() => import('./pages/DashboardPage'));
 const LandingPage = lazyWithRetry(() => import('./pages/LandingPage'));
@@ -306,6 +309,8 @@ const App: React.FC = () => {
                       <Route path="diagnostic" element={<DiagnosticPage />} />
                       <Route path="lesson/:lessonId" element={<LessonPlayerPage />} />
                       <Route path="speaking-coach" element={<SpeakingCoachPage />} />
+                      <Route path="character" element={<KaiwaOrbShowcase />} />
+                      <Route path="orb" element={<Navigate to="/character" replace />} />
                       <Route path="monologue" element={<MonologuePage />} />
                       <Route
                         path="speaking"
