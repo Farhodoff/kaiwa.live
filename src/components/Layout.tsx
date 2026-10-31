@@ -16,10 +16,12 @@ import {
   Radio,
   Sun,
   Moon,
+  LogOut,
 } from 'lucide-react';
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { SessionCompleteModal } from './SessionCompleteModal';
 import { RatingReviewModal } from './feedback';
+import { AuthService } from '../services/AuthService';
 import { useRatingModalStore } from '../stores';
 import { useLanguage } from '../context/LanguageContext';
 import { useStudyData } from '../context/StudyPlannerContext';
@@ -225,6 +227,21 @@ const Layout: React.FC = () => {
       return isJa ? '個人学習プラン' : isEn ? 'My Study Plan' : 'Shaxsiy Rejam';
     if (location.pathname === '/settings') return isJa ? '設定' : isEn ? 'Settings' : 'Sozlamalar';
     return 'kaiwa.live';
+  };
+
+  const handleDirectSignOut = async () => {
+    if (
+      typeof window === 'undefined' ||
+      window.confirm(
+        language === 'ja'
+          ? 'ログアウトしますか？'
+          : language === 'en'
+            ? 'Are you sure you want to log out?'
+            : 'Tizimdan chiqishni tasdiqlaysizmi?',
+      )
+    ) {
+      await AuthService.signOut('/login');
+    }
   };
 
   const NavLinks = ({ onClick }: { onClick?: () => void }) => {
@@ -449,6 +466,23 @@ const Layout: React.FC = () => {
             >
               {renderLanguageFlagAndCode('h-2.5 w-3.5')}
             </button>
+
+            {/* Logout Button */}
+            <button
+              type="button"
+              onClick={handleDirectSignOut}
+              className="flex shrink-0 items-center justify-center rounded-xl border border-destructive/20 bg-destructive/10 p-2 text-destructive shadow-xs transition-all hover:bg-destructive/20 active:scale-95"
+              title={
+                language === 'ja'
+                  ? 'ログアウト'
+                  : language === 'en'
+                    ? 'Log out'
+                    : 'Tizimdan chiqish'
+              }
+              aria-label="Tizimdan chiqish"
+            >
+              <LogOut size={15} />
+            </button>
           </div>
         </div>
       </aside>
@@ -647,6 +681,26 @@ const Layout: React.FC = () => {
                 }
               >
                 {renderLanguageFlagAndCode('h-2.5 w-3.5')}
+              </button>
+
+              {/* Mobile Logout Button */}
+              <button
+                type="button"
+                onClick={() => {
+                  setSidebarOpen(false);
+                  handleDirectSignOut();
+                }}
+                className="flex shrink-0 items-center justify-center rounded-xl border border-destructive/20 bg-destructive/10 p-2 text-destructive shadow-xs transition-all hover:bg-destructive/20 active:scale-95"
+                title={
+                  language === 'ja'
+                    ? 'ログアウト'
+                    : language === 'en'
+                      ? 'Log out'
+                      : 'Tizimdan chiqish'
+                }
+                aria-label="Tizimdan chiqish"
+              >
+                <LogOut size={15} />
               </button>
             </div>
           </div>

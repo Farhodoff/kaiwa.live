@@ -24,6 +24,7 @@ import { isAdminEmail, isSuperAdmin } from '../../utils/admin';
 import { PersonalizedOnboardingModal } from '../onboarding/PersonalizedOnboardingModal';
 import { LearningTrackStorage } from '../../utils/storage/LearningTrackStorage';
 import { useRatingModalStore } from '../../stores';
+import { AuthService } from '../../services/AuthService';
 
 const AccountSection: React.FC = () => {
   const { user, settings, resetXP, getRank, primaryLanguage } = useStudyData();
@@ -80,15 +81,8 @@ const AccountSection: React.FC = () => {
   };
 
   const handleLogout = async () => {
-    if (confirm('Tizimdan chiqishni tasdiqlaysizmi?')) {
-      try {
-        await supabase.auth.signOut();
-      } catch (e) {
-        console.error('Sign out error', e);
-      } finally {
-        localStorage.clear();
-        window.location.href = '/';
-      }
+    if (typeof window === 'undefined' || window.confirm('Tizimdan chiqishni tasdiqlaysizmi?')) {
+      await AuthService.signOut('/login');
     }
   };
 
