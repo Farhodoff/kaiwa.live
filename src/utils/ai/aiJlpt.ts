@@ -104,7 +104,7 @@ export const generateJlptStudyPlan = async (
     `;
 
   const { generateAlgorithmicJlptPlan } = await import('../curriculum/jlptAlgorithmicPlanner');
-  const algorithmicDailyPlan = generateAlgorithmicJlptPlan(
+  const algorithmicDailyPlan = await generateAlgorithmicJlptPlan(
     currentLevel,
     targetLevel,
     durationDays,

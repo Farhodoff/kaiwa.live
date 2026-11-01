@@ -296,7 +296,7 @@ export default defineConfig(({ mode }) => {
     test: {
       globals: true,
       environment: 'jsdom',
-      setupFiles: path.resolve(__dirname, './vitest.setup.ts'),
+      setupFiles: path.resolve(import.meta.dirname, './vitest.setup.ts'),
       testTimeout: 15000,
       hookTimeout: 15000,
       include: ['src/**/*.{test,spec}.{ts,tsx}'],

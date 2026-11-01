@@ -1,6 +1,6 @@
 import { JLPT_KANJI_DATABASE } from '../../data/jlptKanjiDatabase';
 import { JLPT_GRAMMAR_DATABASE } from '../../data/jlptGrammarDatabase';
-import { JLPT_PRESET_DECKS } from '../../data/jlptPresetDecks';
+import { loadPresetDecksByLevel, JlptDeckLevel } from '../../data/jlptPresetDecks';
 import type { JlptStudyPlanDay } from '../ai/aiJlpt';
 
 // ─── Phase structure ──────────────────────────────────────────────────────────
@@ -313,13 +313,13 @@ const MENSETSU_PHRASES = [
 ];
 
 // ─── MAIN FUNCTION ─────────────────────────────────────────────────────────────
-export const generateAlgorithmicJlptPlan = (
+export const generateAlgorithmicJlptPlan = async (
   _currentLevel: string,
   targetLevel: string,
   durationDays: number,
   planType: string = 'jlpt',
   specialGoal: string = '',
-): JlptStudyPlanDay[] => {
+): Promise<JlptStudyPlanDay[]> => {
   // 1. Get data pools for target level
   const kanjiForLevel = JLPT_KANJI_DATABASE.filter((k) => {
     if (targetLevel === 'N3') return ['N5', 'N4', 'N3'].includes(k.level);
@@ -335,8 +335,10 @@ export const generateAlgorithmicJlptPlan = (
     return g.level === targetLevel;
   });
 
-  const vocabDecks = JLPT_PRESET_DECKS.filter(
-    (d) => d.level === targetLevel && d.id.includes('vocab'),
+  const normalizedTargetLevel = (targetLevel || 'N5').toUpperCase() as JlptDeckLevel;
+  const levelDecks = await loadPresetDecksByLevel(normalizedTargetLevel);
+  const vocabDecks = levelDecks.filter(
+    (d) => d.level === normalizedTargetLevel && d.id.includes('vocab'),
   );
   const vocabForLevel = vocabDecks.flatMap((d) => d.cards.filter((c) => c.type === 'vocab'));
 
