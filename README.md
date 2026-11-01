@@ -19,6 +19,11 @@ A full-stack, AI-powered **Japanese Language (JLPT N5 – N1 & 0-Level Beginners
 
 ### ✨ Asosiy Imkoniyatlar:
 
+- 🎙️ **Speaking Sensei (Hands-free Ovozli Muloqot & ProjectOrb):**
+  - **ProjectOrb Hamrohi:** Real-time ovoz balandligiga moslashuvchi (Idle, Listening, Speaking) interaktiv gradient sharcha.
+  - **To'liq Hands-free Tartib:** Tugmalarsiz, tabiiy navbat almashinuvchi (turn-taking), so'zlashuv to'xtashini avtomatik sezuvchi ovozli suhbat.
+  - **Xatolarni Jonli Tuzatish & Yangi So'zlar:** Suhbat davomida real-time transkripsiya, grammatik tuzatishlar va furigana/tarjimasi bilan yangi lug'at yig'uvchi panel.
+
 - 🌸 **140 ta Darsdan Iborat To'liq O'quv Dasturi (N5 – N1):**
   - **Minna no Nihongo Shokyu 1 & 2 (N5 – N4: 50 Dars):** 1,135+ tayanch so'z, 144+ grammatik formula, Furigana, interaktiv Learn/Practice/Test bosqichlari va jonli audio dialoglar.
   - **N3 O'rta Bosqich (30 Dars):** Kundalik ijtimoiy hayot, do'kon, sayohat va idora muloqotlari.
