@@ -5,7 +5,7 @@ import { defineConfig } from 'vitest/config';
 import { VitePWA } from 'vite-plugin-pwa';
 import { telegramApiPlugin } from './server/vitePlugin.js';
 import { visualizer } from 'rollup-plugin-visualizer';
-import { pwaGlobIgnores, pwaRuntimeCaching } from './src/config/pwaRuntimeCaching';
+import { pwaGlobIgnores, pwaRuntimeCaching } from './src/config/pwaRuntimeCaching.ts';
 
 const buildTimestamp = Date.now();
 
@@ -29,7 +29,7 @@ function versionGeneratorPlugin() {
       });
     },
     buildStart() {
-      const publicDir = path.resolve(__dirname, 'public');
+      const publicDir = path.resolve(import.meta.dirname, 'public');
       const versionFile = path.resolve(publicDir, 'version.json');
       if (process.env.RELEASE_VERSION_SYNC === 'true' || !fs.existsSync(versionFile)) {
         if (!fs.existsSync(publicDir)) {
@@ -152,7 +152,7 @@ export default defineConfig(({ mode }) => {
     ],
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, './src'),
+        '@': path.resolve(import.meta.dirname, './src'),
       },
     },
     build: {

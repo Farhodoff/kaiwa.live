@@ -36,27 +36,67 @@ export interface WorkboxRuntimeCachingRule {
 }
 
 export const pwaGlobIgnores = [
+  '**/images/**',
+  '**/og-image.png',
   '**/kanji-strokes-*.js',
   '**/jlpt-vocab-*.js',
   '**/jlpt-deck-*.js',
   '**/curriculum-*.js',
+  '**/jlpt_n1-*.js',
   '**/jlpt_n2-*.js',
   '**/jlpt_n3-*.js',
+  '**/jlpt_n4-*.js',
+  '**/jlpt_n5-*.js',
   '**/AdminDashboardPage-*.js',
+  '**/Admin*.js',
+  '**/*Modal-*.js',
+  '**/*Page-*.js',
+  '**/dnd-kit-*.js',
+  '**/analytics-*.js',
+  '**/framer-motion-*.js',
   '**/JlptGrammarKanjiMaster-*.js',
   '**/jlpt-grammar-kanji-data-*.js',
   '**/minna_shokyu*.js',
+  '**/pdf.worker-*.js',
+  '**/pdf.worker-*.mjs',
+  '**/pdf-*.js',
+  '**/*_500_mon-*.js',
+  '**/*_thematic_*.js',
+  '**/*_collocations-*.js',
+  '**/*_yojijukugo-*.js',
+  '**/listening_data-*.js',
+  '**/Exam*.js',
+  '**/CustomContent*.js',
+  '**/JlptMockExamPage-*.js',
+  '**/JlptListeningMockPage-*.js',
+  '**/kanji_master_*.js',
+  '**/n1AdvancedContent-*.js',
+  '**/japaneseDiagnosticBank-*.js',
 ];
 
 export const pwaRuntimeCaching: WorkboxRuntimeCachingRule[] = [
   {
     urlPattern:
-      /assets\/(?:kanji-strokes|jlpt-vocab|jlpt-deck|curriculum-|jlpt_n[1-5]|jlpt-grammar-kanji-data|AdminDashboardPage|JlptGrammarKanjiMaster|minna_shokyu).*\.js$/i,
+      /assets\/(?:kanji-strokes|jlpt-vocab|jlpt-deck|curriculum-|jlpt_n[1-5]|jlpt-grammar-kanji-data|Admin|.*Modal|.*Page|dnd-kit|analytics|framer-motion|JlptGrammarKanjiMaster|minna_shokyu|pdf|.*_500_mon|.*_thematic_.*|.*_collocations|.*_yojijukugo|listening_data|Exam|CustomContent|JlptMockExam|JlptListeningMock|kanji_master|n1AdvancedContent|japaneseDiagnosticBank).*\.(?:js|mjs)$/i,
     handler: 'StaleWhileRevalidate',
     options: {
       cacheName: 'large-data-chunks-cache',
       expiration: {
-        maxEntries: 60,
+        maxEntries: 120,
+        maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+      },
+      cacheableResponse: {
+        statuses: [0, 200],
+      },
+    },
+  },
+  {
+    urlPattern: /\.(?:png|jpg|jpeg|webp|gif|ico)$/i,
+    handler: 'CacheFirst',
+    options: {
+      cacheName: 'images-cache',
+      expiration: {
+        maxEntries: 80,
         maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
       },
       cacheableResponse: {
