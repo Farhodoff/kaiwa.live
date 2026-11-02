@@ -257,4 +257,70 @@ describe('TTS Security Hardening & Edge API Test Suite (/api/tts)', () => {
     expect(res.status).toBe(200);
     expect(res.headers.get('Content-Type')).toBe('audio/mpeg');
   });
+
+  it('TEST 14: Synthesizes with Azure Neural TTS when AZURE_SPEECH_KEY is provided and sets X-TTS-Provider header', async () => {
+    process.env.AZURE_SPEECH_KEY = 'mock-azure-speech-key-123456';
+    process.env.AZURE_SPEECH_REGION = 'swedencentral';
+
+    let interceptedUrl = '';
+    let interceptedHeaders: any = {};
+    const fakeAudioBuffer = new Uint8Array([0xff, 0xfb, 0x90, 0x44]).buffer;
+
+    vi.spyOn(globalThis, 'fetch').mockImplementationOnce(async (url, init: any) => {
+      interceptedUrl = String(url);
+      interceptedHeaders = init?.headers || {};
+      return new Response(fakeAudioBuffer, {
+        status: 200,
+        headers: { 'Content-Type': 'audio/mpeg' },
+      });
+    });
+
+    const req = new Request('https://studyplanner.app/api/tts?text=Konnichiwa&lang=ja', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${authModule.SUPABASE_ANON_KEY}`,
+      },
+    });
+
+    const res = await ttsHandler(req);
+    expect(res.status).toBe(200);
+    expect(res.headers.get('X-TTS-Provider')).toBe('azure-neural');
+    expect(interceptedUrl).toContain('swedencentral.tts.speech.microsoft.com');
+    expect(interceptedHeaders['Ocp-Apim-Subscription-Key']).toBe('mock-azure-speech-key-123456');
+
+    delete process.env.AZURE_SPEECH_KEY;
+    delete process.env.AZURE_SPEECH_REGION;
+  });
+
+  it('TEST 15: Falls back to Google TTS when Azure Neural TTS fails', async () => {
+    process.env.AZURE_SPEECH_KEY = 'mock-azure-speech-key-123456';
+    process.env.AZURE_SPEECH_REGION = 'swedencentral';
+
+    const fakeAudioBuffer = new Uint8Array([0xff, 0xfb, 0x90, 0x44]).buffer;
+
+    // 1st call to Azure fails with 500
+    // 2nd call to Google fallback succeeds with 200
+    vi.spyOn(globalThis, 'fetch')
+      .mockResolvedValueOnce(new Response('Azure error', { status: 500 }))
+      .mockResolvedValueOnce(
+        new Response(fakeAudioBuffer, {
+          status: 200,
+          headers: { 'Content-Type': 'audio/mpeg' },
+        }),
+      );
+
+    const req = new Request('https://studyplanner.app/api/tts?text=Konnichiwa&lang=ja', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${authModule.SUPABASE_ANON_KEY}`,
+      },
+    });
+
+    const res = await ttsHandler(req);
+    expect(res.status).toBe(200);
+    expect(res.headers.get('X-TTS-Provider')).toBe('google-tts');
+
+    delete process.env.AZURE_SPEECH_KEY;
+    delete process.env.AZURE_SPEECH_REGION;
+  });
 });
