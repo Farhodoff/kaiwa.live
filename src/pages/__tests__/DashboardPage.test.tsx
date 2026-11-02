@@ -387,4 +387,42 @@ describe('Phase 8.8 — Dashboard Page Render & UX Hardening Tests', () => {
     const heroLink = container.querySelector('a[href="/lesson/present-perfect-quiz"]');
     expect(heroLink).toBeInTheDocument();
   });
+
+  // 25. Night greeting at midnight
+  it('25. should render Good night / Xayrli tun at midnight hours (00:00 - 04:59)', async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2026, 10, 3, 0, 48, 0)); // 00:48 midnight
+    vi.spyOn(LearningPathEngine, 'getLearningPathState').mockResolvedValue(mockEngineState as any);
+    await renderDashboard();
+    // Default mocked language is 'en' -> 'Good night'
+    expect(screen.getByText(/Good night/i)).toBeInTheDocument();
+    vi.useRealTimers();
+  });
+
+  // 26. CTA button emoji deduplication
+  it('26. should deduplicate leading emoji in Hero CTA button to prevent double icons', async () => {
+    const doubleEmojiState = {
+      ...mockEngineState,
+      nextAction: {
+        ...mockEngineState.nextAction,
+        badgeIcon: '🧠',
+        ctaLabel: '🧠 Takrorlash',
+        route: '/study-mode?lang=ja',
+      },
+    };
+    vi.spyOn(LearningPathEngine, 'getLearningPathState').mockResolvedValue(doubleEmojiState as any);
+    const { container } = await renderDashboard();
+    const ctaLink = container.querySelector('a[href="/study-mode?lang=ja"]');
+    expect(ctaLink?.textContent).toContain('Takrorlash');
+    expect(ctaLink?.textContent).not.toContain('🧠🧠');
+  });
+
+  // 27. Modern status panorama bar
+  it('27. should render modern compact status panorama bar with key metrics', async () => {
+    vi.spyOn(LearningPathEngine, 'getLearningPathState').mockResolvedValue(mockEngineState as any);
+    const { container } = await renderDashboard();
+    expect(screen.getByText(/SRS:/i)).toBeInTheDocument();
+    const links = container.querySelectorAll('a[href="/progress"]');
+    expect(links.length).toBeGreaterThanOrEqual(1);
+  });
 });
