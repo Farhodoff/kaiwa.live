@@ -1199,9 +1199,13 @@ export const LearningPathEngine = {
           type: srsSummary.overdueCount > 0 ? 'overdue_srs' : 'due_srs',
           title: 'SRS Review',
           description:
-            srsSummary.overdueCount > 0
-              ? `${srsSummary.overdueCount} flashcards are overdue.`
-              : `${srsSummary.dueCount} cards ready for review.`,
+            state.primaryLanguage === 'ja'
+              ? srsSummary.overdueCount > 0
+                ? `${srsSummary.overdueCount} ta so'zning muddati o'tib ketgan.`
+                : `${srsSummary.dueCount} ta so'zni takrorlash vaqti keldi.`
+              : srsSummary.overdueCount > 0
+                ? `${srsSummary.overdueCount} flashcards are overdue.`
+                : `${srsSummary.dueCount} cards ready for review.`,
           evidence: { dueCount: srsSummary.dueCount },
           priority: srsSummary.overdueCount > 0 ? 92 : 78,
         },
@@ -1209,13 +1213,31 @@ export const LearningPathEngine = {
     }
 
     // 2. Next Best Action core learning activity Setup
+    // If nextAction is ALSO srs_review and we already have act-srs, resolve the next non-SRS action to avoid duplicate review steps in the daily plan.
+    let coreAction = nextAction;
+    if (srsTime > 0 && nextAction.type === 'srs_review') {
+      try {
+        const dummyReasons: LearningReason[] = [];
+        const isZero = state.currentLevel === 'ZERO' || !state.currentLevel;
+        const nonSrsAction = this.evalNextBestAction(state, isZero, dummyReasons, undefined, {
+          ...options,
+          skipSrs: true,
+        });
+        if (nonSrsAction && nonSrsAction.type !== 'srs_review') {
+          coreAction = nonSrsAction;
+        }
+      } catch (err) {
+        console.warn('[LearningPathEngine] Secondary action fallback:', err);
+      }
+    }
+
     const actualSrsTime = isSrsCompleted ? 0 : srsTime;
     const mainTime = Math.max(0, totalMinutes - actualSrsTime);
     let mainStatus: 'pending' | 'in_progress' | 'completed' | 'skipped' = 'pending';
-    if (nextAction.lessonId) {
-      const isCompleted = state.recentActivity?.lastCompletedLessonId === nextAction.lessonId;
+    if (coreAction.lessonId) {
+      const isCompleted = state.recentActivity?.lastCompletedLessonId === coreAction.lessonId;
       const isInProgress = state.unfinishedLessons?.some(
-        (l: any) => l.lessonId === nextAction.lessonId,
+        (l: any) => l.lessonId === coreAction.lessonId,
       );
       if (isCompleted) {
         mainStatus = 'completed';
@@ -1223,7 +1245,7 @@ export const LearningPathEngine = {
         mainStatus = 'in_progress';
       }
     } else {
-      if (nextAction.type === 'diagnostic' && state.completedLessonsCount > 0) {
+      if (coreAction.type === 'diagnostic' && state.completedLessonsCount > 0) {
         mainStatus = 'completed';
       }
     }
@@ -1231,18 +1253,18 @@ export const LearningPathEngine = {
 
     const mainActivity: DailyPlanActivity = {
       id: 'act-main',
-      type: nextAction.type,
-      title: nextAction.title,
-      skill: nextAction.skill,
+      type: coreAction.type,
+      title: coreAction.title,
+      skill: coreAction.skill,
       estimatedMinutes: mainTime,
       minutes: mainTime,
-      route: nextAction.route,
-      contentId: nextAction.contentId,
-      lessonId: nextAction.lessonId,
-      priority: nextAction.priority,
+      route: coreAction.route,
+      contentId: coreAction.contentId,
+      lessonId: coreAction.lessonId,
+      priority: coreAction.priority,
       isCompleted: isMainCompleted,
       status: mainStatus,
-      reason: nextAction.reason,
+      reason: coreAction.reason,
     };
     activities.push(mainActivity);
 

@@ -168,19 +168,32 @@ const DashboardPage: React.FC = () => {
   const greeting = useMemo(() => {
     const hour = new Date().getHours();
     if (language === 'ja') {
-      if (hour < 12) return 'おはようございます';
-      if (hour < 18) return 'こんにちは';
+      if (hour >= 5 && hour < 11) return 'おはようございます';
+      if (hour >= 11 && hour < 18) return 'こんにちは';
       return 'こんばんは';
     }
     if (language === 'en') {
-      if (hour < 12) return 'Good morning';
-      if (hour < 18) return 'Good afternoon';
-      return 'Good evening';
+      if (hour >= 5 && hour < 12) return 'Good morning';
+      if (hour >= 12 && hour < 18) return 'Good afternoon';
+      if (hour >= 18 && hour < 22) return 'Good evening';
+      return 'Good night';
     }
-    if (hour < 12) return 'Xayrli tong';
-    if (hour < 18) return 'Xayrli kun';
-    return 'Xayrli kech';
+    if (hour >= 5 && hour < 11) return 'Xayrli tong';
+    if (hour >= 11 && hour < 18) return 'Xayrli kun';
+    if (hour >= 18 && hour < 22) return 'Xayrli kech';
+    return 'Xayrli tun';
   }, [language]);
+
+  const cleanCtaLabel = useMemo(() => {
+    if (!nextAction?.ctaLabel) {
+      return language === 'ja' ? 'スタート' : language === 'en' ? 'Start' : 'Boshlash';
+    }
+    const words = nextAction.ctaLabel.trim().split(/\s+/);
+    if (words.length > 1 && /\p{Extended_Pictographic}/u.test(words[0])) {
+      return words.slice(1).join(' ');
+    }
+    return nextAction.ctaLabel;
+  }, [nextAction?.ctaLabel, language]);
 
   const handleManualPromotion = async () => {
     setIsPromoting(true);
@@ -546,7 +559,8 @@ const DashboardPage: React.FC = () => {
                     />
                   </div>
                   <span className="shrink-0 text-[10px] font-bold text-foreground">
-                    {lessonKanjiSummary.reviewedKanji} {language === 'ja' ? '復習済' : 'reviewed'}
+                    {lessonKanjiSummary.reviewedKanji}{' '}
+                    {language === 'ja' ? '復習済' : language === 'uz' ? 'takrorlangan' : 'reviewed'}
                   </span>
                 </div>
               </div>
@@ -622,10 +636,10 @@ const DashboardPage: React.FC = () => {
             {nextAction && (
               <Link
                 to={resolveDashboardRoute(nextAction.route)}
-                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-rose-600 px-6 py-3.5 text-sm font-black text-white shadow-lg shadow-rose-600/30 transition-all hover:scale-[1.02] hover:bg-rose-500 active:scale-[0.98] sm:w-auto"
+                className="flex w-full items-center justify-center gap-2.5 rounded-2xl bg-rose-600 px-7 py-3.5 text-sm font-black text-white shadow-lg shadow-rose-600/30 transition-all hover:scale-[1.02] hover:bg-rose-500 active:scale-[0.98] sm:w-auto"
               >
-                <span>{nextAction.badgeIcon || '🚀'}</span>
-                <span>{nextAction.ctaLabel}</span>
+                <span className="text-base">{nextAction.badgeIcon || '🚀'}</span>
+                <span>{cleanCtaLabel}</span>
                 <ArrowRight size={16} />
               </Link>
             )}
@@ -633,32 +647,40 @@ const DashboardPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Compact status panorama — clean badges without emoji clutter */}
-      <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-        <span className="rounded-full border border-border bg-card px-3 py-1 font-semibold text-foreground">
-          JLPT {effectiveTargetLevel}
-        </span>
-        {progression && (
-          <span className="rounded-full border border-border bg-card px-3 py-1">
-            {progression.currentLevel} → {progression.nextLevel || 'Max'} •{' '}
-            {progression.readinessScore || 0}%
+      {/* Modern Compact Status Panorama Bar */}
+      <div className="backdrop-blur-xs flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border/60 bg-card/50 p-2.5 px-4 text-xs">
+        <div className="flex flex-wrap items-center gap-2 text-muted-foreground">
+          <span className="inline-flex items-center gap-1.5 rounded-xl border border-rose-500/20 bg-rose-500/10 px-2.5 py-1 font-black text-rose-500 dark:text-rose-400">
+            <span>🎯</span> JLPT {effectiveTargetLevel}
           </span>
-        )}
-        {roadmapSummary && (
-          <span className="rounded-full border border-border bg-card px-3 py-1">
-            Xarita: {roadmapSummary.completedCount}/{roadmapSummary.totalCount}
+          {progression && (
+            <span className="inline-flex items-center gap-1 rounded-xl border border-border/80 bg-background/60 px-2.5 py-1 font-semibold text-foreground">
+              <span>📈</span> {progression.currentLevel} → {progression.nextLevel || 'Max'} •{' '}
+              {progression.readinessScore || 0}%
+            </span>
+          )}
+          {roadmapSummary && (
+            <span className="inline-flex items-center gap-1 rounded-xl border border-border/80 bg-background/60 px-2.5 py-1 text-muted-foreground">
+              <Map size={13} className="text-primary" /> Xarita: {roadmapSummary.completedCount}/
+              {roadmapSummary.totalCount}
+            </span>
+          )}
+          <span className="inline-flex items-center gap-1 rounded-xl border border-border/80 bg-background/60 px-2.5 py-1 text-muted-foreground">
+            <span>🧠</span> SRS: <strong className="text-foreground">{srsDueCount}</strong>{' '}
+            {language === 'ja' ? '件' : 'ta'}
           </span>
-        )}
-        <span className="rounded-full border border-border bg-card px-3 py-1">
-          SRS due: {srsDueCount}
-        </span>
-        {dailyPlan && (
-          <span className="rounded-full border border-border bg-card px-3 py-1">
-            {dailyPlan.totalMinutes} daq
-          </span>
-        )}
-        <Link to="/progress" className="font-semibold text-primary hover:underline">
-          {language === 'ja' ? '詳細' : 'Batafsil →'}
+          {dailyPlan && (
+            <span className="inline-flex items-center gap-1 rounded-xl border border-border/80 bg-background/60 px-2.5 py-1 text-muted-foreground">
+              <Clock size={13} className="text-amber-500" /> {dailyPlan.totalMinutes} daq
+            </span>
+          )}
+        </div>
+        <Link
+          to="/progress"
+          className="inline-flex items-center gap-1 text-xs font-bold text-primary transition-colors hover:text-primary/80"
+        >
+          <span>{language === 'ja' ? '詳細を見る' : 'Batafsil'}</span>
+          <ArrowRight size={13} />
         </Link>
       </div>
 
