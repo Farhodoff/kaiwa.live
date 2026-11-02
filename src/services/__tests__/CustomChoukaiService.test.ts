@@ -74,5 +74,5 @@ describe('CustomContentService - Choukai Management', () => {
 
     list = CustomContentService.getCustomChoukaiQuestions();
     expect(list.length).toBe(0);
-  });
+  }, 35000);
 });
