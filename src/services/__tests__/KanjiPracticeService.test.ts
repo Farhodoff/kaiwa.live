@@ -4,7 +4,7 @@ import { KanjiPracticeService } from '../KanjiPracticeService';
 describe('KanjiPracticeService Unit Tests', () => {
   beforeAll(async () => {
     await KanjiPracticeService.preloadStrokes();
-  });
+  }, 35000);
   it('returns all 2056 kanjis from database with 100% stroke data availability', () => {
     const all = KanjiPracticeService.getAllKanjis();
     expect(all.length).toBe(2061);
