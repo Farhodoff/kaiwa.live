@@ -20,6 +20,7 @@ import { UzbekistanFlag, JapanFlag } from '../components/common/FlagIcons';
 import { useSEO } from '../hooks/useSEO';
 import { useLanguage } from '../context/LanguageContext';
 import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
+import { speakJapaneseText, stopAllAudio } from '../utils/audioTts';
 
 /* ------------------------------------------------------------------ */
 /*  Animated Section Wrapper                                          */
@@ -53,6 +54,16 @@ const FadeIn: React.FC<{
 /* ------------------------------------------------------------------ */
 const HeroPhoneMockup: React.FC = () => {
   const [isTranslating, setIsTranslating] = useState(true);
+  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+
+  const handleAudioDemo = () => {
+    stopAllAudio();
+    setIsPlayingAudio(true);
+    speakJapaneseText('いいですね！からいのはだいじょうぶですか？');
+    setTimeout(() => {
+      setIsPlayingAudio(false);
+    }, 3200);
+  };
 
   return (
     <div className="mx-auto flex w-full max-w-[340px] select-none justify-center [perspective:1200px] sm:max-w-[360px]">
@@ -67,19 +78,24 @@ const HeroPhoneMockup: React.FC = () => {
         <div className="mx-auto mb-2 h-6 w-28 shrink-0 rounded-b-2xl bg-foreground/10" />
 
         {/* Sensei Header */}
-        <div className="flex shrink-0 items-center gap-2.5 border-b border-border/80 pb-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-rose-400 text-sm font-bold text-white shadow-sm">
-            先
-          </div>
-          <div>
-            <div className="flex items-center gap-1.5">
-              <span className="text-sm font-bold text-foreground">Yuki-sensei</span>
-              <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
+        <div className="flex shrink-0 items-center justify-between border-b border-border/80 pb-3">
+          <div className="flex items-center gap-2.5">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-rose-400 text-sm font-bold text-white shadow-sm">
+              先
             </div>
-            <span className="text-[11px] font-medium text-emerald-500">
-              ● onlayn · Restoran mavzusi
-            </span>
+            <div>
+              <div className="flex items-center gap-1.5">
+                <span className="text-sm font-bold text-foreground">Yuki-sensei</span>
+                <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
+              </div>
+              <span className="text-[11px] font-medium text-emerald-500">
+                ● onlayn · Restoran mavzusi
+              </span>
+            </div>
           </div>
+          <span className="rounded-full border border-primary/20 bg-primary/10 px-2 py-0.5 text-[10px] font-bold text-primary">
+            Interaktiv Demo
+          </span>
         </div>
 
         {/* Chat Bubbles */}
@@ -149,14 +165,27 @@ const HeroPhoneMockup: React.FC = () => {
 
         {/* Bottom Input Area */}
         <div className="flex h-12 shrink-0 items-center justify-between rounded-full border border-border bg-background px-4 text-xs text-muted-foreground shadow-inner">
-          <span>Yozing yoki gapiring…</span>
           <button
             onClick={() => setIsTranslating(!isTranslating)}
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-md shadow-primary/30 transition-transform hover:scale-105 active:scale-95"
-            title="Ovozli gapirish"
+            className="cursor-pointer truncate hover:text-foreground"
+            title="Tarjimani yoqish/o'chirish"
           >
-            <Mic size={15} />
+            {isTranslating ? '🇺🇿 Tarjima yoqilgan' : '🇺🇿 Tarjimani ko‘rish'}
           </button>
+          <div className="flex items-center gap-1.5">
+            <button
+              onClick={handleAudioDemo}
+              className={`flex h-8 items-center gap-1.5 rounded-full px-2.5 text-xs font-semibold shadow-md transition-all active:scale-95 ${
+                isPlayingAudio
+                  ? 'animate-pulse bg-rose-500 text-white'
+                  : 'bg-primary text-primary-foreground shadow-primary/30 hover:scale-105'
+              }`}
+              title="Ovozli demo tinglash"
+            >
+              <Volume2 size={13} />
+              <span>{isPlayingAudio ? 'Tinglanyapti…' : 'Ovozli demo'}</span>
+            </button>
+          </div>
         </div>
       </motion.div>
     </div>
@@ -167,13 +196,24 @@ const HeroPhoneMockup: React.FC = () => {
 /*  Product UI Showcase Mockup                                        */
 /* ------------------------------------------------------------------ */
 const ProductShowcase: React.FC = () => {
+  const navigate = useNavigate();
   const [selectedLevel, setSelectedLevel] = useState('N4');
   const [selectedTopic, setSelectedTopic] = useState('🍜 Restoran');
   const [showTranslation, setShowTranslation] = useState(true);
   const [activeHeart, setActiveHeart] = useState<Record<string, boolean>>({ 塩: true });
+  const [playingKey, setPlayingKey] = useState<string | null>(null);
 
   const toggleHeart = (word: string) => {
     setActiveHeart((prev) => ({ ...prev, [word]: !prev[word] }));
+  };
+
+  const handlePlayVoice = (key: string, text: string) => {
+    stopAllAudio();
+    setPlayingKey(key);
+    speakJapaneseText(text);
+    setTimeout(() => {
+      setPlayingKey((prev) => (prev === key ? null : prev));
+    }, 3000);
   };
 
   const topics = [
@@ -265,6 +305,9 @@ const ProductShowcase: React.FC = () => {
             <div className="flex items-center gap-1.5 text-xs font-bold text-foreground">
               <span>Yuki-sensei</span>
               <span className="h-2 w-2 rounded-full bg-emerald-500" />
+              <span className="py-0.2 ml-1 rounded-full border border-primary/25 bg-primary/10 px-1.5 text-[9px] font-bold text-primary">
+                Demo
+              </span>
             </div>
             <span className="text-[11px] text-muted-foreground">
               {selectedTopic.replace(/^[^\s]+\s*/, '')} · {selectedLevel} · oddiy nutq
@@ -307,17 +350,21 @@ const ProductShowcase: React.FC = () => {
                 べますか？
               </div>
               <div className="flex flex-wrap gap-1.5 text-[11px] font-semibold text-muted-foreground">
-                <button className="flex items-center gap-1 rounded-md bg-muted px-2.5 py-1 hover:bg-muted/80">
-                  <Volume2 size={12} /> Tinglash
+                <button
+                  onClick={() => handlePlayVoice('msg1', 'きょうはなにをたべますか？')}
+                  className={`flex items-center gap-1 rounded-md px-2.5 py-1 transition-all ${
+                    playingKey === 'msg1'
+                      ? 'animate-pulse bg-rose-500 text-white'
+                      : 'bg-muted hover:bg-muted/80'
+                  }`}
+                >
+                  <Volume2 size={12} /> {playingKey === 'msg1' ? 'O‘qilmoqda…' : 'Tinglash'}
                 </button>
                 <button
                   onClick={() => setShowTranslation(!showTranslation)}
                   className="flex items-center gap-1 rounded-md bg-muted px-2.5 py-1 hover:bg-muted/80"
                 >
-                  🇺🇿 Tarjima
-                </button>
-                <button className="flex items-center gap-1 rounded-md bg-muted px-2.5 py-1 hover:bg-muted/80">
-                  🐢 Sekin
+                  🇺🇿 Tarjima {showTranslation ? 'yoqilgan' : 'yashiringan'}
                 </button>
               </div>
             </div>
@@ -375,10 +422,22 @@ const ProductShowcase: React.FC = () => {
                 ラーメンはどうですか？
               </div>
               <div className="flex flex-wrap gap-1.5 text-[11px] font-semibold text-muted-foreground">
-                <button className="flex items-center gap-1 rounded-md bg-muted px-2.5 py-1 hover:bg-muted/80">
-                  <Volume2 size={12} /> Tinglash
+                <button
+                  onClick={() =>
+                    handlePlayVoice('msg2', 'いいですね！じゃあ、しおラーメンはどうですか？')
+                  }
+                  className={`flex items-center gap-1 rounded-md px-2.5 py-1 transition-all ${
+                    playingKey === 'msg2'
+                      ? 'animate-pulse bg-rose-500 text-white'
+                      : 'bg-muted hover:bg-muted/80'
+                  }`}
+                >
+                  <Volume2 size={12} /> {playingKey === 'msg2' ? 'O‘qilmoqda…' : 'Tinglash'}
                 </button>
-                <button className="flex items-center gap-1 rounded-md bg-muted px-2.5 py-1 hover:bg-muted/80">
+                <button
+                  onClick={() => setShowTranslation(!showTranslation)}
+                  className="flex items-center gap-1 rounded-md bg-muted px-2.5 py-1 hover:bg-muted/80"
+                >
                   🇺🇿 Tarjima
                 </button>
               </div>
@@ -389,15 +448,29 @@ const ProductShowcase: React.FC = () => {
         {/* Chat Input Bar */}
         <div className="border-t border-border bg-card/40 p-4">
           <div className="flex h-12 items-center gap-2 rounded-full border border-border bg-background px-4 text-xs text-muted-foreground shadow-xs">
-            <span className="flex-1 truncate">Yozing yoki bosib turib gapiring…</span>
+            <span className="flex-1 truncate">Bu interaktiv demo ko‘rinishi…</span>
             <span className="hidden items-center gap-1 rounded-full border border-border bg-muted/40 px-2.5 py-1 text-[11px] font-medium sm:inline-flex">
               ⌨️ Romaji
             </span>
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary">
-              <Mic size={16} />
-            </span>
-            <button className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-xs hover:opacity-90">
-              <ArrowRight size={14} />
+            <button
+              onClick={() => handlePlayVoice('input', 'わたしはラーメンをたべたいです。')}
+              className={`flex h-8 items-center gap-1 rounded-full px-2 text-xs font-semibold transition-all ${
+                playingKey === 'input'
+                  ? 'animate-pulse bg-rose-500 text-white'
+                  : 'bg-primary/10 text-primary hover:bg-primary/20'
+              }`}
+              title="Ovozli demo talaffuz"
+            >
+              <Mic size={15} />
+              <span className="hidden sm:inline">Demo ovoz</span>
+            </button>
+            <button
+              onClick={() => navigate('/dashboard')}
+              className="flex h-8 items-center gap-1.5 rounded-full bg-primary px-3 text-xs font-bold text-primary-foreground shadow-xs hover:opacity-90 active:scale-95"
+              title="Jonli suhbatni boshlash"
+            >
+              <span>Boshlash</span>
+              <ArrowRight size={13} />
             </button>
           </div>
         </div>
