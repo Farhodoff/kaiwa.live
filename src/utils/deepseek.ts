@@ -122,6 +122,15 @@ export const callDeepSeek = async (
 
   const directUrl = `${supabaseUrl.replace(/\/$/, '')}/functions/v1/deepseek`;
   const anonKey = supabaseAnonKey;
+  let bearerToken = anonKey;
+  try {
+    const sessionRes = await supabase.auth.getSession();
+    if (sessionRes.data?.session?.access_token) {
+      bearerToken = sessionRes.data.session.access_token;
+    }
+  } catch {
+    // Keep anonKey fallback
+  }
 
   // 1. Primary Direct Route: Supabase Edge Function (Low latency, authoritative)
   try {
@@ -130,7 +139,7 @@ export const callDeepSeek = async (
       method: 'POST',
       headers: {
         apikey: anonKey,
-        Authorization: `Bearer ${anonKey}`,
+        Authorization: `Bearer ${bearerToken}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(payload),
@@ -208,7 +217,7 @@ export const callDeepSeek = async (
       headers: {
         'Content-Type': 'application/json',
         apikey: anonKey,
-        Authorization: `Bearer ${anonKey}`,
+        Authorization: `Bearer ${bearerToken}`,
       },
       body: JSON.stringify(payload),
       signal:
@@ -259,6 +268,15 @@ export const streamDeepSeekTokens = async (
 
   const directUrl = `${supabaseUrl.replace(/\/$/, '')}/functions/v1/deepseek`;
   const anonKey = supabaseAnonKey;
+  let bearerToken = anonKey;
+  try {
+    const sessionRes = await supabase.auth.getSession();
+    if (sessionRes.data?.session?.access_token) {
+      bearerToken = sessionRes.data.session.access_token;
+    }
+  } catch {
+    // Keep anonKey fallback
+  }
 
   const payload: Record<string, unknown> = {
     model: 'deepseek-chat',
@@ -274,7 +292,7 @@ export const streamDeepSeekTokens = async (
     method: 'POST',
     headers: {
       apikey: anonKey,
-      Authorization: `Bearer ${anonKey}`,
+      Authorization: `Bearer ${bearerToken}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(payload),

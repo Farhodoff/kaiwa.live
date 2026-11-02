@@ -48,7 +48,7 @@ export async function checkRateLimit(req, userId = null, customMaxLimit = null) 
   const rateLimitKey = userId ? `ratelimit:user:${userId}` : `ratelimit:ip:${clientIp}`;
   const maxLimit =
     customMaxLimit !== null
-      ? (userId ? customMaxLimit : Math.max(30, Math.floor(customMaxLimit / 2)))
+      ? (userId ? customMaxLimit : Math.max(2, Math.floor(customMaxLimit / 2)))
       : (userId ? MAX_REQUESTS_PER_WINDOW : Math.floor(MAX_REQUESTS_PER_WINDOW / 2));
 
   // 1. If Upstash Redis is configured, execute atomic distributed INCR + EXPIRE

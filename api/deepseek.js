@@ -1,15 +1,15 @@
 import { verifyAuth } from './_auth.js';
 import { checkRateLimit } from './_rateLimit.js';
 import { checkDailyQuota } from './_quota.js';
+import { setCorsHeaders } from './_cors.js';
 
 export const config = {
   maxDuration: 60,
 };
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, apikey');
+  // 1. Strict Origin-validated CORS
+  setCorsHeaders(req, res);
 
   if (req.method === 'OPTIONS') {
     return res.status(204).end();
@@ -44,11 +44,13 @@ export default async function handler(req, res) {
   const rawServerKey = process.env.DEEPSEEK_API_KEY;
 
   let authenticatedUserId = null;
+  let userRole = 'user';
 
-  // Verify optional Supabase user for rate-limiting and quota tracking
+  // 2. Verify Supabase JWT user for rate-limiting, role evaluation, and quota tracking
   const { user } = await verifyAuth(req);
   if (user && user.id) {
     authenticatedUserId = user.id;
+    userRole = user.role || user.app_metadata?.role || 'user';
 
     const rateCheck = await checkRateLimit(req, authenticatedUserId);
     if (!rateCheck.allowed) {
@@ -60,7 +62,7 @@ export default async function handler(req, res) {
       });
     }
 
-    const quotaCheck = await checkDailyQuota(authenticatedUserId, user.role, rawBody);
+    const quotaCheck = await checkDailyQuota(authenticatedUserId, userRole, rawBody, req);
     if (!quotaCheck.allowed) {
       return res.status(403).json({
         error: 'Quota Exceeded',
@@ -78,16 +80,54 @@ export default async function handler(req, res) {
         retryAfter: ipRate.retryAfter,
       });
     }
-  }
 
-  // SECURITY & BUFFER PROTECTION: clamp client-controlled parameters
-  if (payload && typeof payload === 'object') {
-    if (typeof payload.max_tokens === 'number') {
-      payload.max_tokens = Math.min(Math.max(Math.floor(payload.max_tokens), 1), 4096);
+    // Guest Daily Quota check by IP
+    const guestQuota = await checkDailyQuota(null, 'guest', rawBody, req);
+    if (!guestQuota.allowed) {
+      return res.status(403).json({
+        error: 'Quota Exceeded',
+        message: guestQuota.reason,
+      });
     }
   }
 
-  // 1. Direct upstream to DeepSeek API if server key is configured in Vercel
+  // 3. SECURITY & BUFFER PROTECTION: clamp client-controlled parameters & trim conversation history
+  if (payload && typeof payload === 'object') {
+    if (Array.isArray(payload.messages)) {
+      const rawMessages = payload.messages;
+      const systemMessages = rawMessages.filter((m) => m && m.role === 'system');
+      const nonSystemMessages = rawMessages.filter((m) => m && m.role !== 'system');
+
+      // Keep last 20 conversational turns to avoid buffer bloat & runaway tokens
+      const trimmedNonSystem = nonSystemMessages.slice(-20).map((msg) => ({
+        role: msg.role === 'assistant' ? 'assistant' : 'user',
+        content: typeof msg.content === 'string' ? msg.content.substring(0, 8000) : String(msg.content || '').substring(0, 8000),
+      }));
+
+      payload.messages = [...systemMessages.slice(0, 2), ...trimmedNonSystem];
+    }
+
+    const tokenLimit = authenticatedUserId ? 4096 : 500;
+    if (typeof payload.max_tokens === 'number') {
+      payload.max_tokens = Math.min(Math.max(Math.floor(payload.max_tokens), 1), tokenLimit);
+    } else {
+      payload.max_tokens = Math.min(tokenLimit, 1024);
+    }
+
+    if (typeof payload.temperature === 'number') {
+      payload.temperature = Math.min(Math.max(payload.temperature, 0), 2);
+    }
+
+    if (payload.model !== 'deepseek-chat' && payload.model !== 'deepseek-reasoner') {
+      payload.model = 'deepseek-chat';
+    }
+    // Only authenticated users may invoke the reasoning model
+    if (!authenticatedUserId && payload.model === 'deepseek-reasoner') {
+      payload.model = 'deepseek-chat';
+    }
+  }
+
+  // 4. Direct upstream to DeepSeek API if server key is configured in Vercel
   if (rawServerKey && rawServerKey.trim().length > 10) {
     try {
       const cleanKey = rawServerKey.trim().replace(/^["']|["']$/g, '').replace(/^Bearer\s+/i, '');
@@ -107,7 +147,7 @@ export default async function handler(req, res) {
     }
   }
 
-  // 2. Authoritative Supabase Edge Function fallback
+  // 5. Authoritative Supabase Edge Function fallback
   try {
     const edgeUrl = process.env.VITE_SUPABASE_URL
       ? `${process.env.VITE_SUPABASE_URL.replace(/\/$/, '')}/functions/v1/deepseek`
