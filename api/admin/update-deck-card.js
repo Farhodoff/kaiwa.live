@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { createClient } from '@supabase/supabase-js';
 import { verifyAuth, SUPABASE_ANON_KEY } from '../_auth.js';
+import { setCorsHeaders } from '../_cors.js';
 
 const SUPABASE_URL =
   process.env.VITE_SUPABASE_URL ||
@@ -43,9 +44,7 @@ function normalizeKey(text) {
 }
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  setCorsHeaders(req, res);
 
   if (req.method === 'OPTIONS') {
     return res.status(204).end();
@@ -55,18 +54,18 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  // 1. Verify Authentication
+  // 1. Verify Authentication & Admin Role
   const { user, error: authError } = await verifyAuth(req);
   const userEmail = (user?.email || '').toLowerCase().trim();
   const userRole = user?.app_metadata?.role || user?.user_metadata?.role || user?.role;
 
   const isAdmin =
-    ADMIN_EMAILS.has(userEmail) ||
+    (user && ADMIN_EMAILS.has(userEmail)) ||
     userRole === 'admin' ||
     userRole === 'superadmin' ||
-    process.env.NODE_ENV === 'development';
+    (process.env.NODE_ENV === 'development' && user);
 
-  if (!isAdmin && authError) {
+  if (!isAdmin || !user) {
     return res.status(401).json({ error: 'Unauthorized: Admin access required.' });
   }
 

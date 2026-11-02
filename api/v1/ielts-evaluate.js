@@ -1,7 +1,8 @@
-import { verifyAuth, getBearerToken } from '../_auth.js';
+import { verifyAuth } from '../_auth.js';
 import { checkRateLimit } from '../_rateLimit.js';
 import { checkDailyQuota } from '../_quota.js';
 import { validateIeltsResponse } from '../_validators.js';
+import { setCorsHeaders } from '../_cors.js';
 
 export const config = {
   runtime: 'edge',
@@ -26,24 +27,31 @@ function safeParseJson(rawContent, fallback = {}) {
   }
 }
 
+function createJsonResponse(req, data, status = 200, extraHeaders = {}) {
+  const headers = {
+    'Content-Type': 'application/json',
+    ...extraHeaders,
+  };
+  setCorsHeaders(req, headers);
+  return new Response(JSON.stringify(data), {
+    status,
+    headers,
+  });
+}
+
 export default async function handler(req) {
   // CORS preflight
   if (req.method === 'OPTIONS') {
+    const headers = {};
+    setCorsHeaders(req, headers);
     return new Response(null, {
       status: 204,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      },
+      headers,
     });
   }
 
   if (req.method !== 'POST') {
-    return new Response(JSON.stringify({ error: 'Method Not Allowed. Use POST.' }), {
-      status: 405,
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-    });
+    return createJsonResponse(req, { error: 'Method Not Allowed. Use POST.' }, 405);
   }
 
   const rawBodyText = await req.text().catch(() => '');
@@ -51,92 +59,73 @@ export default async function handler(req) {
   try {
     body = JSON.parse(rawBodyText || '{}');
   } catch {
-    return new Response(JSON.stringify({ error: 'Invalid JSON payload' }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-    });
+    return createJsonResponse(req, { error: 'Invalid JSON payload' }, 400);
   }
 
   const serverKey = process.env.DEEPSEEK_API_KEY;
   if (!serverKey) {
-    return new Response(JSON.stringify({
+    return createJsonResponse(req, {
       error: 'AI_UNAVAILABLE',
       message: 'Serverda DeepSeek API kaliti sozlanmagan.',
-    }), {
-      status: 503,
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-    });
+    }, 503);
   }
 
-  const effectiveApiKey = serverKey;
+  const effectiveApiKey = serverKey.trim().replace(/^["']|["']$/g, '').replace(/^Bearer\s+/i, '');
   let authenticatedUserId = null;
 
-  const { user, error: authError } = await verifyAuth(req);
+  const { user } = await verifyAuth(req);
   if (user && user.id) {
     authenticatedUserId = user.id;
 
     // Rate limiting for shared server API key
     const rateCheck = await checkRateLimit(req, authenticatedUserId);
     if (!rateCheck.allowed) {
-      return new Response(JSON.stringify({
+      return createJsonResponse(req, {
         error: 'Too Many Requests',
         message: `IELTS baholash so'rovlari tezligi oshdi. Iltimos ${rateCheck.retryAfter} soniyadan so'ng qayta urinib ko'ring.`,
         retryAfter: rateCheck.retryAfter,
-      }), {
-        status: 429,
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Retry-After': String(rateCheck.retryAfter),
-        },
-      });
+      }, 429, { 'Retry-After': String(rateCheck.retryAfter) });
     }
 
     // Daily quota & Request size check
-    const quotaCheck = await checkDailyQuota(authenticatedUserId, user.role, rawBodyText);
+    const quotaCheck = await checkDailyQuota(authenticatedUserId, user.role, rawBodyText, req);
     if (!quotaCheck.allowed) {
-      return new Response(JSON.stringify({
+      return createJsonResponse(req, {
         error: 'Quota Exceeded',
         message: quotaCheck.reason,
-      }), {
-        status: 403,
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-        },
-      });
+      }, 403);
     }
   } else {
     // Guest IP rate limit
     const ipRate = await checkRateLimit(req, null);
     if (!ipRate.allowed) {
-      return new Response(JSON.stringify({
+      return createJsonResponse(req, {
         error: 'Too Many Requests',
         message: `So'rovlar tezligi oshdi. Iltimos ${ipRate.retryAfter} soniyadan so'ng qayta urinib ko'ring.`,
         retryAfter: ipRate.retryAfter,
-      }), {
-        status: 429,
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Retry-After': String(ipRate.retryAfter),
-        },
-      });
+      }, 429, { 'Retry-After': String(ipRate.retryAfter) });
+    }
+
+    // Guest Daily Quota check by IP
+    const guestQuota = await checkDailyQuota(null, 'guest', rawBodyText, req);
+    if (!guestQuota.allowed) {
+      return createJsonResponse(req, {
+        error: 'Quota Exceeded',
+        message: guestQuota.reason,
+      }, 403);
     }
   }
 
   const { essay, topic = 'General IELTS Task', taskType = 'task2' } = body;
 
   if (!essay || typeof essay !== 'string' || essay.trim().length < 20) {
-    return new Response(JSON.stringify({ error: 'Please provide an essay with at least 20 characters.' }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-    });
+    return createJsonResponse(req, { error: 'Please provide an essay with at least 20 characters.' }, 400);
   }
 
+  const safeTopic = String(topic).substring(0, 500);
   const prompt = `You are a certified IELTS Senior Examiner.
 Evaluate the following IELTS ${taskType === 'task1' ? 'Task 1 Report' : 'Task 2 Essay'}.
-Topic/Prompt: "${topic}"
+Topic/Prompt: "${safeTopic}"
 Student Essay:
 """
 ${essay.substring(0, 8000)}
@@ -177,10 +166,7 @@ Provide your assessment strictly in the following JSON format without markdown f
 
     if (!aiResponse.ok) {
       const errText = await aiResponse.text();
-      return new Response(JSON.stringify({ error: 'AI evaluation failed', details: errText }), {
-        status: 502,
-        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-      });
+      return createJsonResponse(req, { error: 'AI evaluation failed', details: errText }, 502);
     }
 
     const aiData = await aiResponse.json();
@@ -188,17 +174,8 @@ Provide your assessment strictly in the following JSON format without markdown f
     const rawParsed = safeParseJson(content, {});
     const validatedData = validateIeltsResponse(rawParsed, essay);
 
-    return new Response(JSON.stringify({ success: true, data: validatedData }), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      },
-    });
+    return createJsonResponse(req, { success: true, data: validatedData }, 200);
   } catch (error) {
-    return new Response(JSON.stringify({ error: 'Internal API Server Error', message: error?.message }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-    });
+    return createJsonResponse(req, { error: 'Internal API Server Error', message: error?.message }, 500);
   }
 }

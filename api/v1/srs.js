@@ -1,3 +1,5 @@
+import { setCorsHeaders } from '../_cors.js';
+
 export const config = {
   runtime: 'edge',
 };
@@ -76,14 +78,15 @@ function calculateSM2(quality, repetitions = 0, interval = 0, easeFactor = 2.5, 
 }
 
 export default async function handler(req) {
+  const corsHeaders = {
+    'Content-Type': 'application/json',
+  };
+  setCorsHeaders(req, corsHeaders);
+
   if (req.method === 'OPTIONS') {
     return new Response(null, {
       status: 204,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      },
+      headers: corsHeaders,
     });
   }
 
@@ -105,20 +108,20 @@ export default async function handler(req) {
     } catch {
       return new Response(JSON.stringify({ error: 'Invalid JSON payload' }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+        headers: corsHeaders,
       });
     }
   } else {
     return new Response(JSON.stringify({ error: 'Method Not Allowed' }), {
       status: 405,
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+      headers: corsHeaders,
     });
   }
 
   if (quality === undefined || quality === null) {
     return new Response(JSON.stringify({ error: 'Please provide a "quality" (0 to 5).' }), {
       status: 400,
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+      headers: corsHeaders,
     });
   }
 
@@ -126,9 +129,6 @@ export default async function handler(req) {
 
   return new Response(JSON.stringify({ success: true, data: result }), {
     status: 200,
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-    },
+    headers: corsHeaders,
   });
 }
