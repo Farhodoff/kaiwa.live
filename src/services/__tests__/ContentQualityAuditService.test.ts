@@ -278,6 +278,32 @@ describe('ContentQualityAuditService', () => {
     expect(report.levels.find((l) => l.level === 'N1')?.topErrorQuestions).toEqual([]);
   });
 
+  it('7b. filters error questions with minAttemptsThreshold and marks isStatisticallySignificant', () => {
+    const report = ContentQualityAuditService.buildReport(
+      [
+        question({ id: 'q_rare', level: 'N3', skill: 'grammar' }), // 1 attempt, 1 wrong (100% error rate, but low data)
+        question({ id: 'q_frequent', level: 'N3', skill: 'grammar' }), // 6 attempts, 4 wrong (67% error rate, statistically significant)
+      ],
+      [
+        { questionId: 'q_rare', isCorrect: false },
+        { questionId: 'q_frequent', isCorrect: false },
+        { questionId: 'q_frequent', isCorrect: false },
+        { questionId: 'q_frequent', isCorrect: false },
+        { questionId: 'q_frequent', isCorrect: false },
+        { questionId: 'q_frequent', isCorrect: true },
+        { questionId: 'q_frequent', isCorrect: true },
+      ],
+      { errorStatsAvailable: true, minAttemptsThreshold: 2 },
+    );
+
+    // q_rare is excluded because attempts (1) < minAttemptsThreshold (2)
+    expect(report.topErrorQuestions).toHaveLength(1);
+    expect(report.topErrorQuestions[0].questionId).toBe('q_frequent');
+    expect(report.topErrorQuestions[0].attempts).toBe(6);
+    expect(report.topErrorQuestions[0].wrongCount).toBe(4);
+    expect(report.topErrorQuestions[0].isStatisticallySignificant).toBe(true);
+  });
+
   it('8. exports a complete JSON and CSV audit report', () => {
     const report = ContentQualityAuditService.buildReport(
       [

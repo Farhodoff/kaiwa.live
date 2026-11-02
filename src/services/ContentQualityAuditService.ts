@@ -93,6 +93,8 @@ export interface ContentAudioAvailability {
   availabilityPercent: number;
 }
 
+export const DEFAULT_MIN_ATTEMPTS_THRESHOLD = 5;
+
 export interface ContentErrorProneQuestion {
   questionId: string;
   questionText: string;
@@ -103,6 +105,7 @@ export interface ContentErrorProneQuestion {
   wrongCount: number;
   accuracy: number;
   errorRate: number;
+  isStatisticallySignificant?: boolean;
 }
 
 export interface ContentLevelQualityReport {
@@ -323,6 +326,7 @@ export class ContentQualityAuditService {
       errorStatsAvailable?: boolean;
       warnings?: string[];
       completeness?: Record<string, ContentQualityCompleteness>;
+      minAttemptsThreshold?: number;
     } = {},
   ): ContentQualityReport {
     const prepared: PreparedQuestion[] = [];
@@ -364,7 +368,8 @@ export class ContentQualityAuditService {
       });
     }
 
-    const errorQuestions = this.buildErrorProneQuestions(prepared, answers);
+    const minAttemptsThreshold = options.minAttemptsThreshold ?? 1;
+    const errorQuestions = this.buildErrorProneQuestions(prepared, answers, minAttemptsThreshold);
     const levels = CONTENT_AUDIT_LEVELS.map((level) =>
       this.buildLevelReport(
         level,
@@ -503,6 +508,7 @@ export class ContentQualityAuditService {
   private static buildErrorProneQuestions(
     questions: PreparedQuestion[],
     answers: ContentAuditAnswerInput[],
+    minAttemptsThreshold = 1,
   ): ContentErrorProneQuestion[] {
     const byId = new Map<string, PreparedQuestion>();
     for (const question of questions) byId.set(String(question.input.id), question);
@@ -520,7 +526,7 @@ export class ContentQualityAuditService {
 
     const rows: ContentErrorProneQuestion[] = [];
     for (const [questionId, aggregate] of aggregates) {
-      if (aggregate.attempts <= 0 || aggregate.wrongCount <= 0) continue;
+      if (aggregate.attempts < minAttemptsThreshold || aggregate.wrongCount <= 0) continue;
       const question = byId.get(questionId);
       if (!question) continue;
       const accuracy = Math.round(
@@ -536,11 +542,13 @@ export class ContentQualityAuditService {
         wrongCount: aggregate.wrongCount,
         accuracy,
         errorRate: Math.max(0, 100 - accuracy),
+        isStatisticallySignificant: aggregate.attempts >= DEFAULT_MIN_ATTEMPTS_THRESHOLD,
       });
     }
 
     return rows.sort(
       (a, b) =>
+        (b.isStatisticallySignificant ? 1 : 0) - (a.isStatisticallySignificant ? 1 : 0) ||
         b.wrongCount - a.wrongCount ||
         b.errorRate - a.errorRate ||
         b.attempts - a.attempts ||

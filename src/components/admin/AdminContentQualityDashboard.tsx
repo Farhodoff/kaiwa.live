@@ -586,6 +586,9 @@ const ErrorQuestionTable: React.FC<{
               <th className="pb-2 pr-3 text-right font-bold">{isJa ? '試行' : 'Attempt'}</th>
               <th className="pb-2 pr-3 text-right font-bold">{isJa ? '誤答' : 'Xato'}</th>
               <th className="pb-2 text-right font-bold">{isJa ? '誤答率' : 'Xato %'}</th>
+              <th className="pb-2 pl-2 text-center font-bold">
+                {isJa ? '信頼性' : 'Ishonchlilik'}
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border/60">
@@ -610,6 +613,32 @@ const ErrorQuestionTable: React.FC<{
                 </td>
                 <td className="py-2 text-right font-black tabular-nums text-red-500">
                   {item.errorRate}%
+                </td>
+                <td className="py-2 pl-2 text-center">
+                  <span
+                    className={`inline-block rounded px-1.5 py-0.5 text-[9px] font-bold ${
+                      item.isStatisticallySignificant
+                        ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
+                        : 'bg-muted text-muted-foreground'
+                    }`}
+                    title={
+                      item.isStatisticallySignificant
+                        ? isJa
+                          ? '十分な試行回数 (5回以上)'
+                          : 'Yetarli urinish (5+ marta)'
+                        : isJa
+                          ? '試行データ不足 (<5回)'
+                          : 'Kam urinish (<5 marta)'
+                    }
+                  >
+                    {item.isStatisticallySignificant
+                      ? isJa
+                        ? '十分'
+                        : 'Yetarli'
+                      : isJa
+                        ? '少サンプル'
+                        : 'Kam data'}
+                  </span>
                 </td>
               </tr>
             ))}
