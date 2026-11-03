@@ -73,17 +73,13 @@ export default async function handler(req) {
     }, 429, { 'Retry-After': String(rateCheck.retryAfter) });
   }
 
-  // 4. Daily quota check
-  const quotaCheck = await checkDailyQuota(req, authenticatedUserId, userRole);
+  // 4. Daily quota check (evaluated per-user or per-client IP for guest)
+  const quotaCheck = await checkDailyQuota(authenticatedUserId, userRole, '', req);
   if (!quotaCheck.allowed) {
     return jsonResponse(req, {
-      error: 'Forbidden',
-      message: quotaCheck.message || 'Kunlik so‘rovlar limiti tugadi.',
-      quota: {
-        limit: quotaCheck.limit,
-        used: quotaCheck.used,
-        tier: quotaCheck.tier,
-      },
+      error: 'Quota Exceeded',
+      message: quotaCheck.reason || 'Kunlik so‘rovlar limiti tugadi.',
+      remainingQuota: quotaCheck.remainingQuota ?? 0,
     }, 403);
   }
 

@@ -83,6 +83,55 @@ export function telegramApiPlugin() {
           }
         }
 
+        // Handle /api/speech-token (Dev Proxy to Azure STS)
+        if (pathname === '/api/speech-token') {
+          const azureKey = (env.AZURE_SPEECH_KEY || process.env.AZURE_SPEECH_KEY || '').trim();
+          const azureRegion = (env.AZURE_SPEECH_REGION || process.env.AZURE_SPEECH_REGION || 'swedencentral').trim();
+
+          if (!azureKey) {
+            res.statusCode = 503;
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({ error: 'Service Unavailable', message: 'Azure Speech xizmati sozlanmagan.' }));
+            return;
+          }
+
+          try {
+            const stsUrl = `https://${azureRegion}.api.cognitive.microsoft.com/sts/v1.0/issueToken`;
+            const stsResponse = await fetch(stsUrl, {
+              method: 'POST',
+              headers: {
+                'Ocp-Apim-Subscription-Key': azureKey,
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Length': '0',
+              },
+            });
+
+            if (!stsResponse.ok) {
+              const errText = await stsResponse.text();
+              res.statusCode = 502;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ error: 'Azure STS Error', details: errText }));
+              return;
+            }
+
+            const token = await stsResponse.text();
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.setHeader('X-Speech-Provider', 'azure');
+            res.end(JSON.stringify({
+              token: token.trim(),
+              region: azureRegion,
+              expiresIn: 600,
+            }));
+            return;
+          } catch (e) {
+            res.statusCode = 500;
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({ error: 'Internal Error', message: e?.message }));
+            return;
+          }
+        }
+
         // Handle /api/tts (Dev Proxy to Google TTS)
         if (pathname === '/api/tts') {
           let text = url.searchParams.get('text');
