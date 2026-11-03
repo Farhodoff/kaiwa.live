@@ -78,9 +78,7 @@ describe('Speech Token Security & Edge API Test Suite (/api/speech-token)', () =
     });
     vi.spyOn(quotaModule, 'checkDailyQuota').mockResolvedValueOnce({
       allowed: true,
-      used: 1,
-      limit: 100,
-      tier: 'standard',
+      remainingQuota: 34,
     });
 
     const req = new Request('https://kaiwa.live/api/speech-token', {
@@ -109,9 +107,7 @@ describe('Speech Token Security & Edge API Test Suite (/api/speech-token)', () =
     });
     vi.spyOn(quotaModule, 'checkDailyQuota').mockResolvedValueOnce({
       allowed: true,
-      used: 1,
-      limit: 100,
-      tier: 'standard',
+      remainingQuota: 34,
     });
 
     // Mock fetch for Azure STS
@@ -141,5 +137,35 @@ describe('Speech Token Security & Edge API Test Suite (/api/speech-token)', () =
     expect(data.expiresIn).toBe(600);
 
     fetchSpy.mockRestore();
+  });
+
+  it('TEST 7: Daily quota exceeded returns 403 Quota Exceeded and passes correct arguments', async () => {
+    vi.spyOn(rateLimitModule, 'checkRateLimit').mockResolvedValueOnce({
+      allowed: true,
+      retryAfter: 0,
+      remaining: 29,
+    });
+    const quotaSpy = vi.spyOn(quotaModule, 'checkDailyQuota').mockResolvedValueOnce({
+      allowed: false,
+      remainingQuota: 0,
+      reason: "Bugungi kunlik AI so'rovlar limitingiz (35 ta) tugadi.",
+    });
+
+    const req = new Request('https://kaiwa.live/api/speech-token', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${authModule.SUPABASE_ANON_KEY}`,
+      },
+    });
+
+    const res = await speechTokenHandler(req);
+    expect(res.status).toBe(403);
+    const data = await res.json();
+    expect(data.error).toBe('Quota Exceeded');
+    expect(data.message).toContain('limitingiz (35 ta) tugadi');
+    expect(data.remainingQuota).toBe(0);
+
+    // Verify correct argument order: (userId, userRole, bodyString, req)
+    expect(quotaSpy).toHaveBeenCalledWith(null, 'user', '', req);
   });
 });
