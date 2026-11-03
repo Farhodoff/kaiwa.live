@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '../ui/Button';
 import {
   Mic,
@@ -12,6 +12,10 @@ import {
 } from 'lucide-react';
 import { aiEvaluationService, AiEvaluationResult } from '../../services/aiEvaluationService';
 import { ErrorNotificationService } from '../../services/ErrorNotificationService';
+import {
+  AzureSpeechService,
+  AzureContinuousRecognizerController,
+} from '../../services/AzureSpeechService';
 
 interface SpeakingSectionProps {
   examType: 'IELTS' | 'JLPT';
@@ -35,52 +39,100 @@ export const SpeakingSection: React.FC<SpeakingSectionProps> = ({
   const [error, setError] = useState<string | null>(null);
 
   const recognitionRef = useRef<any>(null);
+  const azureRecognizerRef = useRef<AzureContinuousRecognizerController | null>(null);
 
-  const startRecording = () => {
+  useEffect(() => {
+    return () => {
+      if (recognitionRef.current) {
+        try {
+          recognitionRef.current.stop();
+        } catch {}
+      }
+      if (azureRecognizerRef.current) {
+        try {
+          azureRecognizerRef.current.close();
+        } catch {}
+      }
+    };
+  }, []);
+
+  const startRecording = async () => {
     setError(null);
     const SpeechRecognition =
       (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
 
-    if (!SpeechRecognition) {
-      setError(
-        "Brauzeringiz nutqni tanib olishni (Speech Recognition) qo'llab-quvvatlamaydi. Javobingizni matn ko'rinishida yozib kiriting.",
-      );
-      return;
+    if (SpeechRecognition) {
+      try {
+        const recognition = new SpeechRecognition();
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        recognition.lang = examType === 'JLPT' ? 'ja-JP' : 'en-US';
+
+        recognition.onresult = (event: any) => {
+          let currentTranscript = '';
+          for (let i = 0; i < event.results.length; i++) {
+            currentTranscript += event.results[i][0].transcript + ' ';
+          }
+          setTranscript(currentTranscript);
+        };
+
+        recognition.onerror = (event: any) => {
+          console.error('Speech recognition error', event.error);
+          setIsRecording(false);
+        };
+
+        recognition.start();
+        recognitionRef.current = recognition;
+        setIsRecording(true);
+        return;
+      } catch (err) {
+        console.warn('Native SpeechRecognition failed, falling back to Azure Speech:', err);
+      }
     }
 
+    // Fallback to Azure Neural Speech-to-Text (e.g. iOS Safari or unsupported browsers)
     try {
-      const recognition = new SpeechRecognition();
-      recognition.continuous = true;
-      recognition.interimResults = true;
-      recognition.lang = examType === 'JLPT' ? 'ja-JP' : 'en-US';
+      const recognizer = await AzureSpeechService.createContinuousRecognizer({
+        language: examType === 'JLPT' ? 'ja-JP' : 'en-US',
+        onRecognizing: (text) => setTranscript(text),
+        onRecognized: (text) => setTranscript((prev) => (prev ? prev.trim() + ' ' : '') + text),
+        onError: (errMsg) => {
+          setError(errMsg);
+          setIsRecording(false);
+        },
+      });
 
-      recognition.onresult = (event: any) => {
-        let currentTranscript = '';
-        for (let i = 0; i < event.results.length; i++) {
-          currentTranscript += event.results[i][0].transcript + ' ';
-        }
-        setTranscript(currentTranscript);
-      };
+      if (!recognizer) {
+        setError(
+          "Brauzeringiz nutqni tanib olishni qo'llab-quvvatlamaydi. Javobingizni matn ko'rinishida yozib kiriting.",
+        );
+        return;
+      }
 
-      recognition.onerror = (event: any) => {
-        console.error('Speech recognition error', event.error);
-        setIsRecording(false);
-      };
-
-      recognition.start();
-      recognitionRef.current = recognition;
+      azureRecognizerRef.current = recognizer;
+      await recognizer.start();
       setIsRecording(true);
-    } catch (err) {
-      console.error(err);
-      setError('Mikrofonni ishga tushirishda xatolik.');
+    } catch (azureErr) {
+      console.error('Azure STT start error:', azureErr);
+      setError('Mikrofonni ishga tushirishda xatolik yuz berdi.');
     }
   };
 
   const stopRecording = () => {
     if (recognitionRef.current) {
-      recognitionRef.current.stop();
-      setIsRecording(false);
+      try {
+        recognitionRef.current.stop();
+      } catch {}
+      recognitionRef.current = null;
     }
+    if (azureRecognizerRef.current) {
+      try {
+        azureRecognizerRef.current.stop();
+        azureRecognizerRef.current.close();
+      } catch {}
+      azureRecognizerRef.current = null;
+    }
+    setIsRecording(false);
   };
 
   const handleSubmit = async () => {

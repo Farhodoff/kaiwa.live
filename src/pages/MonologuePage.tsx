@@ -31,6 +31,10 @@ import {
   MONOLOGUE_CATEGORIES,
 } from '../services/MonologueService';
 import { useVoiceRecorder } from '../hooks/useVoiceRecorder';
+import {
+  AzureSpeechService,
+  AzureContinuousRecognizerController,
+} from '../services/AzureSpeechService';
 
 export const MonologuePage: React.FC = () => {
   useSEO({
@@ -64,6 +68,7 @@ export const MonologuePage: React.FC = () => {
   const [liveTranscript, setLiveTranscript] = useState('');
   const [isRecognizing, setIsRecognizing] = useState(false);
   const recognitionRef = useRef<any>(null);
+  const azureRecognizerRef = useRef<AzureContinuousRecognizerController | null>(null);
 
   // Analysis state
   const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -122,6 +127,11 @@ export const MonologuePage: React.FC = () => {
           recognitionRef.current.stop();
         } catch (_) {}
       }
+      if (azureRecognizerRef.current) {
+        try {
+          azureRecognizerRef.current.close();
+        } catch (_) {}
+      }
     };
   }, []);
 
@@ -134,12 +144,34 @@ export const MonologuePage: React.FC = () => {
     try {
       await voiceRecorder.startRecording();
 
+      let started = false;
       if (recognitionRef.current) {
         try {
           recognitionRef.current.start();
           setIsRecognizing(true);
+          started = true;
         } catch (e) {
-          console.warn('Speech recognition start error:', e);
+          console.warn('Native speech recognition start error, falling back to Azure:', e);
+        }
+      }
+
+      if (!started) {
+        try {
+          const recognizer = await AzureSpeechService.createContinuousRecognizer({
+            language: 'ja-JP',
+            onRecognizing: (text) => setLiveTranscript(text),
+            onRecognized: (text) =>
+              setLiveTranscript((prev) => (prev ? prev.trim() + ' ' : '') + text),
+            onError: (err) => console.warn('Azure recognizer status:', err),
+          });
+
+          if (recognizer) {
+            azureRecognizerRef.current = recognizer;
+            await recognizer.start();
+            setIsRecognizing(true);
+          }
+        } catch (azErr) {
+          console.warn('Azure recognition start error:', azErr);
         }
       }
     } catch (err) {
@@ -155,6 +187,13 @@ export const MonologuePage: React.FC = () => {
         try {
           recognitionRef.current.stop();
         } catch (_) {}
+      }
+      if (azureRecognizerRef.current) {
+        try {
+          azureRecognizerRef.current.stop();
+          azureRecognizerRef.current.close();
+        } catch (_) {}
+        azureRecognizerRef.current = null;
       }
       setIsRecognizing(false);
     } catch (err) {
