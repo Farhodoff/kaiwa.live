@@ -266,7 +266,6 @@ export const streamDeepSeekTokens = async (
 ): Promise<string> => {
   purgeOversizedCookies();
 
-  const directUrl = `${supabaseUrl.replace(/\/$/, '')}/functions/v1/deepseek`;
   const anonKey = supabaseAnonKey;
   let bearerToken = anonKey;
   try {
@@ -288,7 +287,7 @@ export const streamDeepSeekTokens = async (
     payload.response_format = { type: 'json_object' };
   }
 
-  const response = await fetch(directUrl, {
+  const response = await fetch('/api/deepseek', {
     method: 'POST',
     headers: {
       apikey: anonKey,
@@ -305,60 +304,65 @@ export const streamDeepSeekTokens = async (
   }
 
   let accumulated = '';
-  const rawText = await response.text();
-
-  // 1. Check if Supabase wrapped the SSE in a JSON object: {"raw": "data: ...\n\ndata: ..."}
-  let sseString = '';
-  try {
-    const parsedObj = JSON.parse(rawText);
-    if (parsedObj && typeof parsedObj.raw === 'string') {
-      sseString = parsedObj.raw;
-    } else if (parsedObj?.choices?.[0]?.message?.content) {
-      const fullContent = parsedObj.choices[0].message.content;
-      accumulated = fullContent;
-      onToken(fullContent);
-      return accumulated;
-    }
-  } catch {
-    // Not a JSON object, raw SSE text
-    sseString = rawText;
-  }
-
-  if (!sseString && rawText.includes('data: ')) {
-    sseString = rawText;
-  }
-
-  if (sseString) {
-    const lines = sseString.split('\n');
-    for (const line of lines) {
-      const trimmed = line.trim();
-      if (!trimmed || trimmed.startsWith(':') || trimmed === 'data: [DONE]') continue;
-      if (trimmed.startsWith('data: ')) {
-        try {
-          const parsed = JSON.parse(trimmed.slice(6));
-          const delta = parsed.choices?.[0]?.delta?.content || '';
-          if (delta) {
-            accumulated += delta;
-            onToken(delta);
-          }
-        } catch {}
-      }
-    }
-  }
-
-  if (!accumulated && rawText) {
+  const consumeLine = (line: string) => {
+    const trimmed = line.trim();
+    if (!trimmed.startsWith('data:') || trimmed === 'data: [DONE]') return;
+    let parsed;
     try {
-      const fallbackObj = JSON.parse(rawText);
-      accumulated =
-        fallbackObj.reply ||
-        fallbackObj.choices?.[0]?.text ||
-        fallbackObj.choices?.[0]?.message?.content ||
-        '';
-      if (accumulated) {
-        onToken(accumulated);
-      }
-    } catch {}
-  }
+      parsed = JSON.parse(trimmed.slice(5).trimStart());
+    } catch {
+      return;
+    }
+    if (parsed.error) throw new Error('AI stream returned an upstream error.');
+    const delta = parsed.choices?.[0]?.delta?.content || '';
+    if (delta) {
+      accumulated += delta;
+      onToken(delta);
+    }
+  };
 
+  // Decode each network chunk immediately, preserving split UTF-8 characters and SSE lines.
+  if (response.headers.get('content-type')?.includes('text/event-stream') && response.body) {
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let pending = '';
+    let completed = false;
+    try {
+      while (!completed) {
+        if (signal?.aborted) throw new DOMException('Aborted', 'AbortError');
+        const { done, value } = await reader.read();
+        if (done) {
+          pending += decoder.decode();
+          if (pending.trim()) consumeLine(pending);
+          completed = true;
+          break;
+        }
+        pending += decoder.decode(value, { stream: true });
+        const lines = pending.split('\n');
+        pending = lines.pop() || '';
+        lines.forEach(consumeLine);
+      }
+    } finally {
+      if (!completed) await reader.cancel().catch(() => {});
+      reader.releaseLock();
+    }
+  } else {
+    // Compatibility with older gateways that wrap SSE in { raw: "data: ..." }.
+    const rawText = await response.text();
+    let data;
+    try {
+      data = JSON.parse(rawText);
+    } catch {
+      /* Raw SSE response. */
+    }
+    const sseText = typeof data?.raw === 'string' ? data.raw : rawText;
+    if (sseText.includes('data:')) {
+      sseText.split('\n').forEach(consumeLine);
+    } else {
+      accumulated = data?.choices?.[0]?.message?.content || data?.reply || '';
+      if (accumulated) onToken(accumulated);
+    }
+  }
+  if (!accumulated.trim()) throw new Error('AI_EMPTY_RESPONSE: AI returned no dialogue.');
   return accumulated;
 };

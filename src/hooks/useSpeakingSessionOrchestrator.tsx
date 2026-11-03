@@ -24,7 +24,7 @@ import { getOrEnsureSpeakingDeck } from '../utils/subjectResolver';
 import { playConversationChime } from '../utils/audioChime';
 import { isAcousticEcho } from '../utils/echoFilter';
 import { useSpeechRecognition } from './useSpeechRecognition';
-import { useTTS, fetchTTSAudioBlob } from './useTTS';
+import { useTTS } from './useTTS';
 import { useVoiceRecorder } from './useVoiceRecorder';
 import { toast } from './use-toast';
 import { supabase } from '../lib/supabase';
@@ -35,7 +35,7 @@ import {
 } from '../components/speaking/speakingTypes';
 import { ConversationScenario, ScenarioSessionResult } from '../components/speaking/scenarioTypes';
 import { ErrorTag } from '../components/speaking/RealtimeVoiceOverlay';
-import { getCoachInitialGreeting } from '../components/speaking/speakingConstants';
+import { getCoachConversationOpener } from '../components/speaking/speakingConstants';
 
 export interface UseSpeakingSessionOrchestratorOptions {
   language?: 'en' | 'ja';
@@ -71,6 +71,7 @@ export function useSpeakingSessionOrchestrator({
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isThinking, setIsThinking] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [audioError, setAudioError] = useState<string | null>(null);
   const [sessionSeconds, setSessionSeconds] = useState(0);
   const [chatHistory, setChatHistory] = useState<CoachChatMessage[]>([]);
   const [liveErrors, setLiveErrors] = useState<ErrorTag[]>([]);
@@ -134,28 +135,6 @@ export function useSpeakingSessionOrchestrator({
   const autoListenTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isMutedRef = useRef(isMuted);
 
-  useEffect(() => {
-    isMutedRef.current = isMuted;
-    if (isMuted) {
-      if (autoListenTimerRef.current) {
-        clearTimeout(autoListenTimerRef.current);
-        autoListenTimerRef.current = null;
-      }
-      if (recognitionRef.current) {
-        try {
-          recognitionRef.current.abort();
-        } catch {}
-      }
-    } else if (
-      isLiveSessionRef.current &&
-      !isSpeakingRef.current &&
-      !isThinking &&
-      !isProcessingRef.current
-    ) {
-      startListeningRef.current?.();
-    }
-  }, [isMuted, isThinking]);
-
   const handleSpeakStart = useCallback(() => {
     if (autoListenTimerRef.current) {
       clearTimeout(autoListenTimerRef.current);
@@ -199,6 +178,14 @@ export function useSpeakingSessionOrchestrator({
     }
   }, []);
 
+  const handleSpeakError = useCallback((message: string) => {
+    isMutedRef.current = true;
+    setIsMuted(true);
+    setAudioError(message);
+    setError(message);
+    recognitionRef.current?.abort();
+  }, []);
+
   const {
     speakText,
     stopSpeaking,
@@ -215,17 +202,8 @@ export function useSpeakingSessionOrchestrator({
     isProcessingRef,
     onSpeakStart: handleSpeakStart,
     onSpeakEnd: handleSpeakEnd,
+    onSpeakError: handleSpeakError,
   });
-
-  // Pre-cache active greeting
-  useEffect(() => {
-    if (!activeScenario) {
-      const activeGreeting = getCoachInitialGreeting(language, persona);
-      if (activeGreeting) {
-        fetchTTSAudioBlob(activeGreeting, language)?.catch?.(() => {});
-      }
-    }
-  }, [language, persona, activeScenario]);
 
   // Dynamically calibrate speech tempo based on Persona & JLPT Target Level
   useEffect(() => {
@@ -258,17 +236,6 @@ export function useSpeakingSessionOrchestrator({
     } catch {}
   }, [persona, targetJlptLevel, setSpeechSpeed]);
 
-  // Requirement 5: 30-second silence inactivity follow-up
-  const inactivityTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const inactivityNudgeCountRef = useRef<number>(0);
-
-  const clearInactivityTimer = useCallback(() => {
-    if (inactivityTimerRef.current) {
-      clearTimeout(inactivityTimerRef.current);
-      inactivityTimerRef.current = null;
-    }
-  }, []);
-
   const handleSendUserText = useCallback(
     async (text: string) => {
       const cleanText = (text || '').trim();
@@ -287,9 +254,6 @@ export function useSpeakingSessionOrchestrator({
         }
         return;
       }
-
-      inactivityNudgeCountRef.current = 0;
-      clearInactivityTimer();
 
       const lastCoachText =
         lastCoachSpokenTextRef.current ||
@@ -397,6 +361,14 @@ export function useSpeakingSessionOrchestrator({
             streamErr,
           );
           stopSpeaking();
+          if (streamedSentences > 0) {
+            setChatHistory((prev) => {
+              const next = prev[prev.length - 1]?.role === 'assistant' ? prev.slice(0, -1) : prev;
+              chatHistoryRef.current = next;
+              return next;
+            });
+          }
+          streamedSentences = 0;
           structured = await converseWithCoachStructured(
             cleanText,
             updatedHistory.map((h) => ({ role: h.role, content: h.content })),
@@ -585,7 +557,7 @@ export function useSpeakingSessionOrchestrator({
         transcriptBufferRef.current = '';
       }
     },
-    [speakText, stopSpeaking, enqueueStreamSentence, endStreamPlayback, user, clearInactivityTimer],
+    [speakText, stopSpeaking, enqueueStreamSentence, endStreamPlayback, user],
   );
 
   const handleBargeIn = useCallback(() => {
@@ -616,6 +588,7 @@ export function useSpeakingSessionOrchestrator({
     setError,
     isSupported,
     audioVolume,
+    speechProvider,
     startListening,
     commitSpeechNow,
   } = useSpeechRecognition({
@@ -630,77 +603,34 @@ export function useSpeakingSessionOrchestrator({
       handleSendUserText(spokenText);
     },
     onResumeListening: () => {},
-    onBargeIn: handleBargeIn,
+    // Half-duplex: speaker playback cannot interrupt the coach through microphone VAD.
   });
 
   useEffect(() => {
     startListeningRef.current = startListening;
   }, [startListening]);
 
-  // Requirement 5: 30-second silence inactivity follow-up
   useEffect(() => {
-    clearInactivityTimer();
-
-    if (
-      isLiveSession &&
-      isListening &&
-      !isSpeaking &&
+    isMutedRef.current = isMuted;
+    if (isMuted) {
+      if (autoListenTimerRef.current) {
+        clearTimeout(autoListenTimerRef.current);
+        autoListenTimerRef.current = null;
+      }
+      if (recognitionRef.current) {
+        try {
+          recognitionRef.current.abort();
+        } catch {}
+      }
+    } else if (
+      isLiveSessionRef.current &&
+      !isSpeakingRef.current &&
       !isThinking &&
-      !currentTranscript &&
-      inactivityNudgeCountRef.current < 2
+      !isProcessingRef.current
     ) {
-      inactivityTimerRef.current = setTimeout(() => {
-        if (
-          !isLiveSessionRef.current ||
-          isSpeakingRef.current ||
-          isThinking ||
-          isProcessingRef.current
-        ) {
-          return;
-        }
-
-        const promptsJa = [
-          '大丈夫ですか？何か言ってみてくださいね。',
-          '聞こえていますか？準備ができたら、何でもお話しください！',
-          'どう思われますか？気軽に日本語で教えてください。',
-        ];
-        const promptsEn = [
-          'Are you there? Feel free to say anything in English!',
-          'Take your time! Whenever you are ready, I am listening.',
-        ];
-        const pool = languageRef.current === 'ja' ? promptsJa : promptsEn;
-        const prompt = pool[Math.floor(Math.random() * pool.length)];
-
-        inactivityNudgeCountRef.current += 1;
-        const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        const nudgeMsg: CoachChatMessage = {
-          role: 'assistant',
-          content: prompt,
-          timestamp: timeStr,
-        };
-
-        setChatHistory((prev) => {
-          const next = [...prev, nudgeMsg];
-          chatHistoryRef.current = next;
-          return next;
-        });
-
-        const speechAudio = extractSpeechAudioText(prompt);
-        lastCoachSpokenTextRef.current = speechAudio;
-        speakText(speechAudio);
-      }, 30000);
+      startListeningRef.current?.();
     }
-
-    return () => clearInactivityTimer();
-  }, [
-    isLiveSession,
-    isListening,
-    isSpeaking,
-    isThinking,
-    currentTranscript,
-    clearInactivityTimer,
-    speakText,
-  ]);
+  }, [isMuted, isThinking]);
 
   const toggleMic = useCallback(() => {
     unlockAudio();
@@ -885,10 +815,11 @@ export function useSpeakingSessionOrchestrator({
   const startSession = useCallback(
     (topicTitle?: unknown) => {
       unlockAudio();
+      if (isLiveSessionRef.current) return;
+      setIsMuted(false);
+      isMutedRef.current = false;
       setIsLiveSession(true);
       isLiveSessionRef.current = true;
-      inactivityNudgeCountRef.current = 0;
-      clearInactivityTimer();
       setAccumulatedNewWords([]);
       setCurrentTranscript('');
       setError(null);
@@ -905,7 +836,8 @@ export function useSpeakingSessionOrchestrator({
           ? topicTitle.trim()
           : undefined;
 
-      let greeting = getCoachInitialGreeting(language, persona);
+      setAudioError(null);
+      let greeting = getCoachConversationOpener(language);
       if (currentScenario) {
         greeting = currentScenario.opening_line_ja || 'こんにちは！会話を始めましょう。';
       } else if (cleanTopic) {
@@ -926,6 +858,19 @@ export function useSpeakingSessionOrchestrator({
     },
     [language, persona, unlockAudio, speakText],
   );
+
+  const retryCoachAudio = useCallback(() => {
+    unlockAudio();
+    setError(null);
+    setAudioError(null);
+    isMutedRef.current = false;
+    setIsMuted(false);
+    const lastReply = [...chatHistoryRef.current]
+      .reverse()
+      .find((message) => message.role === 'assistant');
+    const speech = lastReply?.ttsText || lastReply?.content;
+    if (speech) void speakText(extractSpeechAudioText(speech));
+  }, [unlockAudio, speakText]);
 
   // Global cancellation listener for rapid logout or unmount
   useEffect(() => {
@@ -949,14 +894,13 @@ export function useSpeakingSessionOrchestrator({
       isProcessingRef.current = false;
       setIsSpeaking(false);
       setIsThinking(false);
-      clearInactivityTimer();
     };
 
     window.addEventListener('app:cancel-all-speech', handleCancelSpeech);
     return () => {
       window.removeEventListener('app:cancel-all-speech', handleCancelSpeech);
     };
-  }, [stopSpeaking, clearInactivityTimer]);
+  }, [stopSpeaking]);
 
   const endSession = useCallback(
     async (options?: { skipEvaluation?: boolean }) => {
@@ -966,6 +910,11 @@ export function useSpeakingSessionOrchestrator({
       }
       const historyToAnalyze = [...chatHistoryRef.current];
       const durSecs = sessionSeconds;
+
+      isLiveSessionRef.current = false;
+      setIsLiveSession(false);
+      recognitionRef.current?.abort();
+      stopSpeaking();
 
       let audioBlob: Blob | null = null;
       try {
@@ -987,8 +936,6 @@ export function useSpeakingSessionOrchestrator({
       isProcessingRef.current = false;
       setIsSpeaking(false);
       setIsThinking(false);
-      inactivityNudgeCountRef.current = 0;
-      clearInactivityTimer();
       setCurrentTranscript('');
       transcriptBufferRef.current = '';
       if (recognitionRef.current) {
@@ -1189,6 +1136,9 @@ export function useSpeakingSessionOrchestrator({
     currentTranscript,
     audioVolume: effectiveAudioVolume,
     isSupported,
+    speechProvider,
+    audioError,
+    retryCoachAudio,
     error,
     setError,
     isPreparingAudio,

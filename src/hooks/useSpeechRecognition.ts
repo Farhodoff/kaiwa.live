@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { playConversationChime } from '../utils/audioChime';
+import { CoachSpeechRecognition, CoachSpeechProvider } from '../utils/coachSpeechRecognition';
 
 interface UseSpeechRecognitionOptions {
   language: 'en' | 'ja';
@@ -25,6 +26,7 @@ export interface UseSpeechRecognitionReturn {
   setError: React.Dispatch<React.SetStateAction<string | null>>;
   isSupported: boolean;
   audioVolume: number;
+  speechProvider: CoachSpeechProvider;
   startListening: () => void;
   commitSpeechNow: () => void;
 }
@@ -91,11 +93,13 @@ export const useSpeechRecognition = ({
   const isSilenceTimeoutRef = useRef<boolean>(false);
   const bargeInStartTimeRef = useRef<number>(0);
   const restartAttemptsRef = useRef<number[]>([]);
+  const fatalErrorRef = useRef(false);
 
   const [isListening, setIsListening] = useState(false);
   const [currentTranscript, setCurrentTranscript] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [isSupported, setIsSupported] = useState(true);
+  const [speechProvider, setSpeechProvider] = useState<CoachSpeechProvider>('idle');
   const [audioVolume, setAudioVolume] = useState<number>(0);
   const audioVolumeRef = useRef<number>(0);
   const lastVolumeUpdateRef = useRef<number>(0);
@@ -231,8 +235,10 @@ export const useSpeechRecognition = ({
         } catch {}
       }
       setIsListening(false);
+      stopVolumeMeter();
+      stopMicrophoneStream();
     }
-  }, [isSpeaking, isSpeakingRef]);
+  }, [isSpeaking, isSpeakingRef, stopVolumeMeter, stopMicrophoneStream]);
 
   useEffect(() => {
     isThinkingRef.current = isThinking;
@@ -304,6 +310,7 @@ export const useSpeechRecognition = ({
     transcriptBufferRef.current = '';
     setCurrentTranscript('');
     setError(null);
+    fatalErrorRef.current = false;
     isSilenceTimeoutRef.current = false;
     lastSpeechTimeRef.current = Date.now();
 
@@ -315,6 +322,7 @@ export const useSpeechRecognition = ({
         !isThinkingRef.current
       ) {
         try {
+          recognitionRef.current.stream = mediaStreamRef.current;
           recognitionRef.current.lang = languageRef.current === 'ja' ? 'ja-JP' : 'en-US';
           recognitionRef.current.start();
         } catch (e) {
@@ -349,6 +357,15 @@ export const useSpeechRecognition = ({
         .getUserMedia(audioConstraints)
         .catch(() => navigator.mediaDevices.getUserMedia({ audio: true }))
         .then((stream) => {
+          if (
+            !isLiveSessionRef.current ||
+            isMutedRef.current ||
+            isSpeakingRef.current ||
+            isThinkingRef.current
+          ) {
+            stream.getTracks().forEach((track) => track.stop());
+            return;
+          }
           mediaStreamRef.current = stream;
           startVolumeMeter(stream);
           startRecognitionInstance();
@@ -371,6 +388,18 @@ export const useSpeechRecognition = ({
     }
   }, [isLiveSessionRef, isProcessingRef, startVolumeMeter, stopVolumeMeter, stopMicrophoneStream]);
 
+  useEffect(() => {
+    if (!isLiveSessionRef.current || isMuted) {
+      recognitionRef.current?.abort();
+      setIsListening(false);
+      stopVolumeMeter();
+      stopMicrophoneStream();
+      if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
+      transcriptBufferRef.current = '';
+      setCurrentTranscript('');
+    }
+  });
+
   // Auto-resume audioContext when coming back to foreground
   useEffect(() => {
     if (typeof document === 'undefined') return;
@@ -392,20 +421,10 @@ export const useSpeechRecognition = ({
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const win = window as any;
-    const SpeechRecognition = win.SpeechRecognition || win.webkitSpeechRecognition;
-    if (!SpeechRecognition) {
-      setIsSupported(false);
-      setError(
-        'Brauzeringizda avtomatik ovoz tanish (Web Speech) mavjud emas. Matn kiritish orqali ham muloqotni davom ettirishingiz mumkin.',
-      );
-      return;
-    }
-
-    const recognition = new SpeechRecognition();
-    recognition.continuous = true;
-    recognition.interimResults = true;
-    recognition.maxAlternatives = 3;
+    const recognition = new CoachSpeechRecognition((provider) => {
+      setSpeechProvider(provider);
+      setIsSupported(provider !== 'unavailable');
+    });
     recognitionRef.current = recognition;
 
     recognition.onstart = () => {
@@ -527,7 +546,20 @@ export const useSpeechRecognition = ({
     };
 
     recognition.onerror = (event: any) => {
-      if (event.error === 'not-allowed' || event.error === 'permission-denied') {
+      if (
+        ['service-unavailable', 'not-allowed', 'permission-denied', 'audio-capture'].includes(
+          event.error,
+        )
+      )
+        fatalErrorRef.current = true;
+      if (event.error === 'service-unavailable') {
+        setError(
+          'Azure nutqni tanish xizmati bilan bog‘lanib bo‘lmadi. Qayta urinib ko‘ring yoki Chrome brauzerida oching.',
+        );
+        setIsListening(false);
+        stopVolumeMeter();
+        stopMicrophoneStream();
+      } else if (event.error === 'not-allowed' || event.error === 'permission-denied') {
         setError(
           'Mikrofon ruxsati berilmadi. Iltimos brauzeringiz sozlamalaridan mikrofonga ruxsat bering.',
         );
@@ -564,6 +596,7 @@ export const useSpeechRecognition = ({
 
     recognition.onend = () => {
       setIsListening(false);
+      if (fatalErrorRef.current) return;
 
       const spokenText = transcriptBufferRef.current.trim();
       // Requirement 2: Bo'sh yoki shovqin natijalar yuborilmasin (at least 2 valid characters)
@@ -661,7 +694,7 @@ export const useSpeechRecognition = ({
       stopMicrophoneStream();
       if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
       try {
-        recognition.stop();
+        recognition.abort();
       } catch (e) {
         console.debug('Cleanup recognition stop failed:', e);
       }
@@ -679,6 +712,7 @@ export const useSpeechRecognition = ({
     setError,
     isSupported,
     audioVolume,
+    speechProvider,
     startListening,
     commitSpeechNow,
   };

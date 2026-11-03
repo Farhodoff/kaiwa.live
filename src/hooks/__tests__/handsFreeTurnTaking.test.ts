@@ -56,6 +56,8 @@ vi.mock('../useTTS', () => ({
   fetchTTSAudioBlob: vi.fn().mockResolvedValue(null),
 }));
 
+const { mockStartListening } = vi.hoisted(() => ({ mockStartListening: vi.fn() }));
+
 let mockOnValidSpeech: ((text: string) => void) | null = null;
 let mockOnBargeIn: (() => void) | null = null;
 
@@ -73,7 +75,7 @@ vi.mock('../useSpeechRecognition', () => ({
       setError: vi.fn(),
       isSupported: true,
       audioVolume: 30,
-      startListening: vi.fn(),
+      startListening: mockStartListening,
       commitSpeechNow: vi.fn(),
     };
   },
@@ -109,10 +111,10 @@ describe('Speaking Coach Hands-Free 5-Turn Real-Time Simulation', () => {
     vi.clearAllMocks();
   });
 
-  it('runs 5 consecutive hands-free dialogue turns, barge-in interruption, and saves history upon completion', async () => {
+  it('runs 5 alternating voice turns without acoustic interruption and saves history upon completion', async () => {
     const { result } = renderHook(() => useSpeakingSessionOrchestrator(defaultProps));
 
-    // Step 1: User clicks Orb ONCE to initiate session
+    // Step 1: User clicks Start ONCE to initiate session
     act(() => {
       result.current.startSession();
     });
@@ -177,7 +179,7 @@ describe('Speaking Coach Hands-Free 5-Turn Real-Time Simulation', () => {
     });
     expect(result.current.chatHistory.length).toBe(11);
 
-    // Now while Coach is actively speaking (AI_SPEAKING), User triggers BARGE-IN!
+    // Acoustic input must not interrupt the coach during its speaking turn.
     act(() => {
       mockOnSpeakStart?.();
     });
@@ -186,7 +188,16 @@ describe('Speaking Coach Hands-Free 5-Turn Real-Time Simulation', () => {
     act(() => {
       mockOnBargeIn?.();
     });
-    // Coach speech is immediately silenced! State transitions back to LISTENING
+    expect(mockOnBargeIn).toBeUndefined();
+    expect(result.current.isSpeaking).toBe(true);
+    mockStartListening.mockClear();
+    expect(mockStartListening).not.toHaveBeenCalled();
+
+    // Only completed playback automatically hands the microphone back to the learner.
+    await act(async () => {
+      mockOnSpeakEnd?.();
+      await vi.waitFor(() => expect(mockStartListening).toHaveBeenCalledOnce());
+    });
     expect(result.current.isSpeaking).toBe(false);
 
     // Step 2: User ends session

@@ -99,3 +99,55 @@ describe('AzureSpeechService Test Suite', () => {
     expect(globalThis.fetch).toHaveBeenCalledTimes(2);
   });
 });
+
+// A continuous session must renew the token on the recognizer itself, not only its config.
+describe('Azure continuous session lifecycle', () => {
+  it('shares the microphone stream, refreshes authorization and cancels refresh on close', async () => {
+    vi.useFakeTimers();
+    const stream = {} as MediaStream;
+    const fromStreamInput = vi.fn().mockReturnValue({});
+    class FakeRecognizer {
+      static instances: FakeRecognizer[] = [];
+      authorizationToken = '';
+      startContinuousRecognitionAsync = vi.fn((done) => done());
+      stopContinuousRecognitionAsync = vi.fn((done) => done?.());
+      close = vi.fn();
+      constructor() {
+        FakeRecognizer.instances.push(this);
+      }
+    }
+    vi.spyOn(AzureSpeechService, 'getSDK').mockResolvedValue({
+      SpeechConfig: { fromAuthorizationToken: () => ({ setProfanity: vi.fn() }) },
+      ProfanityOption: { Raw: 0 },
+      AudioConfig: { fromStreamInput },
+      SpeechRecognizer: FakeRecognizer,
+    } as any);
+    const getToken = vi.spyOn(AzureSpeechService, 'getSpeechToken').mockResolvedValue({
+      token: 'initial',
+      region: 'swedencentral',
+      expiresAt: Date.now() + 600000,
+    });
+    try {
+      const controller = await AzureSpeechService.createContinuousRecognizer({ stream });
+      await controller!.start();
+      const recognizer = FakeRecognizer.instances[0];
+      expect(fromStreamInput).toHaveBeenCalledWith(stream);
+      getToken.mockResolvedValue({
+        token: 'renewed',
+        region: 'swedencentral',
+        expiresAt: Date.now() + 600000,
+      });
+      await vi.advanceTimersByTimeAsync(8 * 60 * 1000);
+      expect(getToken).toHaveBeenLastCalledWith(true);
+      expect(recognizer.authorizationToken).toBe('renewed');
+      controller!.close();
+      const calls = getToken.mock.calls.length;
+      await vi.advanceTimersByTimeAsync(8 * 60 * 1000);
+      expect(getToken).toHaveBeenCalledTimes(calls);
+      expect(recognizer.close).toHaveBeenCalledOnce();
+    } finally {
+      vi.useRealTimers();
+      vi.restoreAllMocks();
+    }
+  });
+});

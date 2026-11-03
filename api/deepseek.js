@@ -7,6 +7,32 @@ export const config = {
   maxDuration: 60,
 };
 
+// Forward SSE without collecting the entire answer before sending its first token.
+async function forwardStream(response, res) {
+  res.status(response.status);
+  res.setHeader('Content-Type', 'text/event-stream; charset=utf-8');
+  res.setHeader('Cache-Control', 'no-cache, no-transform');
+  res.setHeader('X-Accel-Buffering', 'no');
+  res.flushHeaders?.();
+  const reader = response.body.getReader();
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      if (res.destroyed) {
+        await reader.cancel();
+        break;
+      }
+      res.write(Buffer.from(value));
+    }
+  } catch {
+    // Headers are already sent; the client can retry without a second upstream generation.
+  } finally {
+    reader.releaseLock();
+    res.end();
+  }
+}
+
 export default async function handler(req, res) {
   // 1. Strict Origin-validated CORS
   setCorsHeaders(req, res);
@@ -23,7 +49,7 @@ export default async function handler(req, res) {
       available: true,
       provider: 'DeepSeek via Supabase Edge Function',
       model: 'deepseek-chat',
-      hint: 'AI gateway is active and routed to Supabase Edge Function.'
+      hint: 'AI gateway is active and routed to Supabase Edge Function.',
     });
   }
 
@@ -101,7 +127,10 @@ export default async function handler(req, res) {
       // Keep last 20 conversational turns to avoid buffer bloat & runaway tokens
       const trimmedNonSystem = nonSystemMessages.slice(-20).map((msg) => ({
         role: msg.role === 'assistant' ? 'assistant' : 'user',
-        content: typeof msg.content === 'string' ? msg.content.substring(0, 8000) : String(msg.content || '').substring(0, 8000),
+        content:
+          typeof msg.content === 'string'
+            ? msg.content.substring(0, 8000)
+            : String(msg.content || '').substring(0, 8000),
       }));
 
       payload.messages = [...systemMessages.slice(0, 2), ...trimmedNonSystem];
@@ -130,7 +159,10 @@ export default async function handler(req, res) {
   // 4. Direct upstream to DeepSeek API if server key is configured in Vercel
   if (rawServerKey && rawServerKey.trim().length > 10) {
     try {
-      const cleanKey = rawServerKey.trim().replace(/^["']|["']$/g, '').replace(/^Bearer\s+/i, '');
+      const cleanKey = rawServerKey
+        .trim()
+        .replace(/^["']|["']$/g, '')
+        .replace(/^Bearer\s+/i, '');
       const upstreamRes = await fetch('https://api.deepseek.com/chat/completions', {
         method: 'POST',
         headers: {
@@ -140,6 +172,14 @@ export default async function handler(req, res) {
         body: JSON.stringify(payload),
       });
 
+      if (
+        payload.stream === true &&
+        upstreamRes.ok &&
+        upstreamRes.body &&
+        upstreamRes.headers.get('content-type')?.includes('text/event-stream')
+      ) {
+        return await forwardStream(upstreamRes, res);
+      }
       const upstreamData = await upstreamRes.json();
       return res.status(upstreamRes.status).json(upstreamData);
     } catch (upstreamErr) {
@@ -153,8 +193,7 @@ export default async function handler(req, res) {
       ? `${process.env.VITE_SUPABASE_URL.replace(/\/$/, '')}/functions/v1/deepseek`
       : 'https://qmuimxnknxwarvnkpnlo.supabase.co/functions/v1/deepseek';
     const anonKey =
-      process.env.VITE_SUPABASE_ANON_KEY ||
-      'sb_publishable_6g0Ei_1Cw46e1mJLKj_1Ug_sOmhlgoI';
+      process.env.VITE_SUPABASE_ANON_KEY || 'sb_publishable_6g0Ei_1Cw46e1mJLKj_1Ug_sOmhlgoI';
 
     const edgeRes = await fetch(edgeUrl, {
       method: 'POST',
@@ -166,6 +205,14 @@ export default async function handler(req, res) {
       body: JSON.stringify(payload),
     });
 
+    if (
+      payload.stream === true &&
+      edgeRes.ok &&
+      edgeRes.body &&
+      edgeRes.headers.get('content-type')?.includes('text/event-stream')
+    ) {
+      return await forwardStream(edgeRes, res);
+    }
     const edgeData = await edgeRes.json();
     return res.status(edgeRes.status).json(edgeData);
   } catch (edgeProxyErr) {
