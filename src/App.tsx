@@ -65,8 +65,7 @@ const AdminRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [checkingDb, setCheckingDb] = useState(false);
   const [isDbAdmin, setIsDbAdmin] = useState<boolean | null>(null);
 
-  const cachedUser = safeLocalStorage.getJSON<any>('study_planner_user_cache', null);
-  const effectiveUser = user || cachedUser;
+  const effectiveUser = user;
   const isPreview = isPublicPreviewActive();
 
   useEffect(() => {
@@ -158,39 +157,6 @@ const App: React.FC = () => {
         return tgAuth.session;
       }
     }
-    if (typeof window !== 'undefined') {
-      try {
-        const rawUser = localStorage.getItem('study_planner_user_cache');
-        if (rawUser) {
-          const parsed = JSON.parse(rawUser);
-          if (parsed && parsed.email) {
-            return {
-              access_token: 'cached-token',
-              token_type: 'bearer',
-              expires_in: 360000,
-              refresh_token: 'cached-refresh',
-              user: parsed,
-            } as unknown as Session;
-          }
-        }
-        for (let i = 0; i < localStorage.length; i++) {
-          const key = localStorage.key(i);
-          if (key && (key.includes('auth-token') || key.includes('supabase.auth.token'))) {
-            const raw = localStorage.getItem(key);
-            if (raw) {
-              const parsed = JSON.parse(raw);
-              if (
-                parsed &&
-                (parsed.access_token ||
-                  (parsed.currentSession && parsed.currentSession.access_token))
-              ) {
-                return parsed.currentSession || parsed;
-              }
-            }
-          }
-        }
-      } catch {}
-    }
     return null;
   });
   const [isLoading, setIsLoading] = useState<boolean>(() => !session && !isPublicPreviewActive());
@@ -210,13 +176,18 @@ const App: React.FC = () => {
         clearTimeout(safetyTimer);
         if (fetchedSession) {
           setSession(fetchedSession);
+          useAuthStore.getState().setUser(fetchedSession.user);
         } else if (isTelegramWebApp()) {
           const tgAuth = initTelegramAuth();
           if (tgAuth?.session) {
             setSession(tgAuth.session);
+            useAuthStore.getState().setUser(tgAuth.session.user);
           }
         } else if (isPublicPreviewActive()) {
           setSession(MOCK_PREVIEW_SESSION as unknown as Session);
+        } else {
+          setSession(null);
+          useAuthStore.getState().setUser(null);
         }
         setIsLoading(false);
       })
@@ -227,9 +198,13 @@ const App: React.FC = () => {
           const tgAuth = initTelegramAuth();
           if (tgAuth?.session) {
             setSession(tgAuth.session);
+            useAuthStore.getState().setUser(tgAuth.session.user);
           }
         } else if (isPublicPreviewActive()) {
           setSession(MOCK_PREVIEW_SESSION as unknown as Session);
+        } else {
+          setSession(null);
+          useAuthStore.getState().setUser(null);
         }
         setIsLoading(false);
       });
@@ -247,12 +222,15 @@ const App: React.FC = () => {
         safeLocalStorage.removeItem('study_planner_user_cache');
       } else if (newSession) {
         setSession(newSession);
+        useAuthStore.getState().setUser(newSession.user);
       } else if (isTelegramWebApp()) {
         const tgAuth = initTelegramAuth();
         if (tgAuth?.session) {
           setSession(tgAuth.session);
+          useAuthStore.getState().setUser(tgAuth.session.user);
         } else {
           setSession(null);
+          useAuthStore.getState().setUser(null);
         }
       } else if (isPublicPreviewActive()) {
         setSession(MOCK_PREVIEW_SESSION as unknown as Session);

@@ -1,5 +1,9 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { playConversationChime } from '../utils/audioChime';
+import {
+  AzureSpeechService,
+  AzureContinuousRecognizerController,
+} from '../services/AzureSpeechService';
 
 interface UseSpeechRecognitionOptions {
   language: 'en' | 'ja';
@@ -84,6 +88,8 @@ export const useSpeechRecognition = ({
   onBargeIn,
 }: UseSpeechRecognitionOptions): UseSpeechRecognitionReturn => {
   const recognitionRef = useRef<any>(null);
+  const azureRecognizerRef = useRef<AzureContinuousRecognizerController | null>(null);
+  const azureCommitTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const transcriptBufferRef = useRef('');
   const silenceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const speechStartTimeRef = useRef<number>(0);
@@ -116,6 +122,100 @@ export const useSpeechRecognition = ({
       mediaStreamRef.current = null;
     }
   }, []);
+
+  const stopAzureRecognizer = useCallback(async () => {
+    if (azureCommitTimerRef.current) {
+      clearTimeout(azureCommitTimerRef.current);
+      azureCommitTimerRef.current = null;
+    }
+    const recognizer = azureRecognizerRef.current;
+    azureRecognizerRef.current = null;
+    if (!recognizer) return;
+    try {
+      await recognizer.stop();
+    } catch {}
+    recognizer.close();
+  }, []);
+
+  const startAzureRecognizer = useCallback(async () => {
+    if (
+      azureRecognizerRef.current ||
+      !isLiveSessionRef.current ||
+      isMutedRef.current ||
+      isSpeakingRef.current ||
+      isThinkingRef.current
+    ) {
+      return;
+    }
+
+    const recognizer = await AzureSpeechService.createContinuousRecognizer({
+      language: languageRef.current === 'ja' ? 'ja-JP' : 'en-US',
+      onRecognizing: (partialText) => {
+        if (!partialText || isSpeakingRef.current || isThinkingRef.current) return;
+        setCurrentTranscript(partialText);
+      },
+      onRecognized: (finalText) => {
+        const cleanText = finalText.replace(/\s+/g, ' ').trim();
+        if (
+          cleanText.length < 2 ||
+          isProcessingRef.current ||
+          isSpeakingRef.current ||
+          isThinkingRef.current ||
+          isMutedRef.current ||
+          !isLiveSessionRef.current
+        ) {
+          return;
+        }
+
+        transcriptBufferRef.current = cleanText;
+        setCurrentTranscript(cleanText);
+        if (azureCommitTimerRef.current) clearTimeout(azureCommitTimerRef.current);
+        azureCommitTimerRef.current = setTimeout(() => {
+          azureCommitTimerRef.current = null;
+          if (
+            transcriptBufferRef.current &&
+            isLiveSessionRef.current &&
+            !isProcessingRef.current &&
+            !isSpeakingRef.current &&
+            !isThinkingRef.current &&
+            !isMutedRef.current
+          ) {
+            const text = transcriptBufferRef.current.trim();
+            transcriptBufferRef.current = '';
+            setCurrentTranscript('');
+            onValidSpeechRef.current(text);
+          }
+        }, 500);
+      },
+      onError: (message) => {
+        console.warn('[useSpeechRecognition] Azure Speech error:', message);
+        setError('Azure Speech bilan aloqa uzildi. Qayta ulanmoqda...');
+        void stopAzureRecognizer();
+      },
+    });
+
+    if (!recognizer) {
+      setError(
+        'Ovoz tanish xizmati mavjud emas. Azure Speech sozlamalarini yoki mikrofon ruxsatini tekshiring.',
+      );
+      return;
+    }
+
+    azureRecognizerRef.current = recognizer;
+    try {
+      await recognizer.start();
+      setIsSupported(true);
+      setIsListening(true);
+      setError(null);
+      playConversationChime('listen_start');
+    } catch (error) {
+      console.warn('[useSpeechRecognition] Azure recognizer start failed:', error);
+      recognizer.close();
+      azureRecognizerRef.current = null;
+      setIsListening(false);
+      setError('Azure Speech mikrofonni ishga tushira olmadi.');
+    }
+  }, [isLiveSessionRef, isProcessingRef, stopAzureRecognizer]);
 
   const stopVolumeMeter = useCallback(() => {
     if (animFrameRef.current) {
@@ -230,9 +330,10 @@ export const useSpeechRecognition = ({
           recognitionRef.current.abort();
         } catch {}
       }
+      void stopAzureRecognizer();
       setIsListening(false);
     }
-  }, [isSpeaking, isSpeakingRef]);
+  }, [isSpeaking, isSpeakingRef, stopAzureRecognizer]);
 
   useEffect(() => {
     isThinkingRef.current = isThinking;
@@ -248,9 +349,10 @@ export const useSpeechRecognition = ({
           recognitionRef.current.abort();
         } catch {}
       }
+      void stopAzureRecognizer();
       setIsListening(false);
     }
-  }, [isThinking]);
+  }, [isThinking, stopAzureRecognizer]);
 
   useEffect(() => {
     isMutedRef.current = isMuted;
@@ -323,6 +425,11 @@ export const useSpeechRecognition = ({
       }
     };
 
+    if (!recognitionRef.current) {
+      void startAzureRecognizer();
+      return;
+    }
+
     // Re-use active media stream if audio tracks are already live (prevents audio pops and echo)
     const existingStream = mediaStreamRef.current;
     const hasLiveTracks =
@@ -369,7 +476,14 @@ export const useSpeechRecognition = ({
         console.debug('Recognition start failed:', e);
       }
     }
-  }, [isLiveSessionRef, isProcessingRef, startVolumeMeter, stopVolumeMeter, stopMicrophoneStream]);
+  }, [
+    isLiveSessionRef,
+    isProcessingRef,
+    startAzureRecognizer,
+    startVolumeMeter,
+    stopVolumeMeter,
+    stopMicrophoneStream,
+  ]);
 
   // Auto-resume audioContext when coming back to foreground
   useEffect(() => {
@@ -396,9 +510,7 @@ export const useSpeechRecognition = ({
     const SpeechRecognition = win.SpeechRecognition || win.webkitSpeechRecognition;
     if (!SpeechRecognition) {
       setIsSupported(false);
-      setError(
-        'Brauzeringizda avtomatik ovoz tanish (Web Speech) mavjud emas. Matn kiritish orqali ham muloqotni davom ettirishingiz mumkin.',
-      );
+      setError('Browser Web Speech mavjud emas. Azure Speech fallback tayyorlanmoqda...');
       return;
     }
 
@@ -535,22 +647,12 @@ export const useSpeechRecognition = ({
         stopVolumeMeter();
         stopMicrophoneStream();
       } else if (event.error === 'network') {
-        console.warn('Speech recognition network timeout, checking reconnect...');
-        setError('Nutqni aniqlash serveri bilan aloqa sekinlashdi. Qayta ulanmoqda...');
-        setTimeout(() => {
-          if (
-            isLiveSessionRef.current &&
-            !isSpeakingRef.current &&
-            !isProcessingRef.current &&
-            !isMutedRef.current
-          ) {
-            try {
-              recognition.lang = languageRef.current === 'ja' ? 'ja-JP' : 'en-US';
-              recognition.start();
-              setError(null);
-            } catch {}
-          }
-        }, 1200);
+        console.warn('Speech recognition network timeout, switching to Azure Speech...');
+        setError('Browser speech tarmog‘i ishlamadi. Azure Speech’ga ulanmoqda...');
+        try {
+          recognition.abort();
+        } catch {}
+        void startAzureRecognizer();
       } else if (event.error === 'audio-capture') {
         setError(
           'Mikrofondan ovoz olinmadi. Mikrofon ulanganini va boshqa dastur tomonidan band qilinmaganini tekshiring.',
@@ -659,6 +761,7 @@ export const useSpeechRecognition = ({
     return () => {
       stopVolumeMeter();
       stopMicrophoneStream();
+      void stopAzureRecognizer();
       if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
       try {
         recognition.stop();
@@ -666,7 +769,7 @@ export const useSpeechRecognition = ({
         console.debug('Cleanup recognition stop failed:', e);
       }
     };
-  }, [stopVolumeMeter, stopMicrophoneStream]);
+  }, [startAzureRecognizer, stopAzureRecognizer, stopVolumeMeter, stopMicrophoneStream]);
 
   return {
     recognitionRef,

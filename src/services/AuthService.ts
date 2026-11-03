@@ -68,7 +68,8 @@ export class AuthService {
           // Preserve UI theme preference across logouts
           const savedTheme = localStorage.getItem('study_planner_theme');
 
-          // Purge all user, session, and Supabase cache from storage
+          // Clear browser-local identity and offline state so the next account
+          // cannot inherit data from the previous account.
           localStorage.clear();
           sessionStorage.clear();
 

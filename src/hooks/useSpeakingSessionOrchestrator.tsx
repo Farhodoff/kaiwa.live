@@ -132,6 +132,7 @@ export function useSpeakingSessionOrchestrator({
   };
 
   const autoListenTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const initialListenTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isMutedRef = useRef(isMuted);
 
   useEffect(() => {
@@ -140,6 +141,10 @@ export function useSpeakingSessionOrchestrator({
       if (autoListenTimerRef.current) {
         clearTimeout(autoListenTimerRef.current);
         autoListenTimerRef.current = null;
+      }
+      if (initialListenTimerRef.current) {
+        clearTimeout(initialListenTimerRef.current);
+        initialListenTimerRef.current = null;
       }
       if (recognitionRef.current) {
         try {
@@ -922,9 +927,38 @@ export function useSpeakingSessionOrchestrator({
 
       const speechAudio = extractSpeechAudioText(greeting);
       lastCoachSpokenTextRef.current = speechAudio;
-      speakText(speechAudio);
+      const greetingPlayback = speakText(speechAudio);
+      const startListeningAfterGreeting = () => {
+        if (initialListenTimerRef.current) {
+          clearTimeout(initialListenTimerRef.current);
+          initialListenTimerRef.current = null;
+        }
+        if (
+          isLiveSessionRef.current &&
+          !isSpeakingRef.current &&
+          !isProcessingRef.current &&
+          !isMutedRef.current
+        ) {
+          startListeningRef.current?.();
+        }
+      };
+
+      // Do not make microphone activation depend solely on the audio element's
+      // onended callback. Network TTS can fail or remain pending on mobile.
+      if (greetingPlayback && typeof greetingPlayback.finally === 'function') {
+        void greetingPlayback.finally(startListeningAfterGreeting);
+      }
+      initialListenTimerRef.current = setTimeout(() => {
+        initialListenTimerRef.current = null;
+        if (isSpeakingRef.current) {
+          stopSpeaking();
+          setIsSpeaking(false);
+          isSpeakingRef.current = false;
+        }
+        startListeningAfterGreeting();
+      }, 8000);
     },
-    [language, persona, unlockAudio, speakText],
+    [language, persona, unlockAudio, speakText, stopSpeaking],
   );
 
   // Global cancellation listener for rapid logout or unmount
@@ -943,6 +977,10 @@ export function useSpeakingSessionOrchestrator({
       if (autoListenTimerRef.current) {
         clearTimeout(autoListenTimerRef.current);
         autoListenTimerRef.current = null;
+      }
+      if (initialListenTimerRef.current) {
+        clearTimeout(initialListenTimerRef.current);
+        initialListenTimerRef.current = null;
       }
       setIsLiveSession(false);
       isLiveSessionRef.current = false;
@@ -980,6 +1018,10 @@ export function useSpeakingSessionOrchestrator({
       if (autoListenTimerRef.current) {
         clearTimeout(autoListenTimerRef.current);
         autoListenTimerRef.current = null;
+      }
+      if (initialListenTimerRef.current) {
+        clearTimeout(initialListenTimerRef.current);
+        initialListenTimerRef.current = null;
       }
 
       setIsLiveSession(false);

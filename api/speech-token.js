@@ -86,6 +86,7 @@ export default async function handler(req) {
   // 5. Azure Speech Credentials Verification
   const azureKey = (process.env.AZURE_SPEECH_KEY || '').trim();
   const azureRegion = (process.env.AZURE_SPEECH_REGION || 'swedencentral').trim();
+  const configuredEndpoint = (process.env.AZURE_SPEECH_ENDPOINT || '').trim().replace(/\/+$/, '');
 
   if (!azureKey) {
     return jsonResponse(req, {
@@ -96,7 +97,7 @@ export default async function handler(req) {
 
   // 6. Fetch Ephemeral Token from Azure Cognitive Services STS
   try {
-    const stsUrl = `https://${azureRegion}.api.cognitive.microsoft.com/sts/v1.0/issueToken`;
+    const stsUrl = `${configuredEndpoint || `https://${azureRegion}.api.cognitive.microsoft.com`}/sts/v1.0/issueToken`;
     const stsResponse = await fetch(stsUrl, {
       method: 'POST',
       headers: {

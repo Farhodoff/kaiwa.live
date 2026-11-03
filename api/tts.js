@@ -90,7 +90,10 @@ async function synthesizeWithAzure(text, lang, key, region, signal) {
     escapeXml(text) +
     `</voice></speak>`;
 
-  const endpoint = `https://${region}.tts.speech.microsoft.com/cognitiveservices/v1`;
+  const configuredEndpoint = (process.env.AZURE_SPEECH_ENDPOINT || '').trim().replace(/\/+$/, '');
+  const endpoint = configuredEndpoint
+    ? `${configuredEndpoint}/cognitiveservices/v1`
+    : `https://${region}.tts.speech.microsoft.com/cognitiveservices/v1`;
   const response = await fetch(endpoint, {
     method: 'POST',
     headers: {

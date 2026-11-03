@@ -95,6 +95,25 @@ A full-stack, AI-powered **Japanese Language (JLPT N5 – N1 & 0-Level Beginners
 | **Hamkorlik (Collab)** | WebRTC P2P Video/Audio Mesh, `tldraw` cheksiz doskasi                                 |
 | **CI/CD Quality Gate** | GitHub Actions (TypeScript, Vite Build, Vitest, Playwright, ESLint, SEO, GitGuardian) |
 
+### Azure Speech configuration
+
+Kaiwa Live uses the Azure Cognitive Services Speech resource `kaiwa-speech-live`
+in `swedencentral` for browser speech recognition tokens, pronunciation
+assessment, and Neural TTS. The subscription key must remain server-side.
+
+Configure these variables in Vercel (and in `.env` for local development):
+
+```bash
+AZURE_SPEECH_KEY=<server-only Azure Speech key>
+AZURE_SPEECH_REGION=swedencentral
+# Optional when using a custom/private endpoint:
+AZURE_SPEECH_ENDPOINT=
+```
+
+The local Vite proxy and Vercel API routes both use Azure-first Speech
+integration. Never add `AZURE_SPEECH_KEY` or `AZURE_SPEECH_ENDPOINT` with a
+`VITE_` prefix, because Vite exposes `VITE_*` variables to the browser.
+
 ---
 
 ## 🏛️ Tizim Arxitekturasi (System Architecture)

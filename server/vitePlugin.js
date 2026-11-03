@@ -87,6 +87,7 @@ export function telegramApiPlugin() {
         if (pathname === '/api/speech-token') {
           const azureKey = (env.AZURE_SPEECH_KEY || process.env.AZURE_SPEECH_KEY || '').trim();
           const azureRegion = (env.AZURE_SPEECH_REGION || process.env.AZURE_SPEECH_REGION || 'swedencentral').trim();
+          const configuredEndpoint = (env.AZURE_SPEECH_ENDPOINT || process.env.AZURE_SPEECH_ENDPOINT || '').trim().replace(/\/+$/, '');
 
           if (!azureKey) {
             res.statusCode = 503;
@@ -96,7 +97,7 @@ export function telegramApiPlugin() {
           }
 
           try {
-            const stsUrl = `https://${azureRegion}.api.cognitive.microsoft.com/sts/v1.0/issueToken`;
+            const stsUrl = `${configuredEndpoint || `https://${azureRegion}.api.cognitive.microsoft.com`}/sts/v1.0/issueToken`;
             const stsResponse = await fetch(stsUrl, {
               method: 'POST',
               headers: {
@@ -132,7 +133,7 @@ export function telegramApiPlugin() {
           }
         }
 
-        // Handle /api/tts (Dev Proxy to Google TTS)
+        // Handle /api/tts (Dev Proxy to Azure Neural TTS)
         if (pathname === '/api/tts') {
           let text = url.searchParams.get('text');
           let lang = url.searchParams.get('lang') || 'ja';
@@ -162,30 +163,49 @@ export function telegramApiPlugin() {
             .replace(/\s+/g, ' ')
             .trim()
             .slice(0, 200);
-          const cleanLang = (lang || 'ja').toLowerCase().startsWith('ja')
-            ? 'ja'
-            : (lang || 'en').toLowerCase().startsWith('en')
-              ? 'en'
-              : 'ja';
-          const gUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(cleanText)}&tl=${encodeURIComponent(cleanLang)}&client=tw-ob`;
+          const cleanLang = (lang || 'ja').toLowerCase().split(/[-_]/)[0];
+          const voiceMap = {
+            ja: { voice: 'ja-JP-NanamiNeural', locale: 'ja-JP' },
+            en: { voice: 'en-US-JennyNeural', locale: 'en-US' },
+            uz: { voice: 'uz-UZ-MadinaNeural', locale: 'uz-UZ' },
+          };
+          const voice = voiceMap[cleanLang] || voiceMap.ja;
+          const azureKey = (env.AZURE_SPEECH_KEY || process.env.AZURE_SPEECH_KEY || '').trim();
+          const azureRegion = (env.AZURE_SPEECH_REGION || process.env.AZURE_SPEECH_REGION || 'swedencentral').trim();
+          const configuredEndpoint = (env.AZURE_SPEECH_ENDPOINT || process.env.AZURE_SPEECH_ENDPOINT || '').trim().replace(/\/+$/, '');
+          const azureEndpoint = configuredEndpoint
+            ? `${configuredEndpoint}/cognitiveservices/v1`
+            : `https://${azureRegion}.tts.speech.microsoft.com/cognitiveservices/v1`;
+          const ssml = `<speak version="1.0" xml:lang="${voice.locale}"><voice xml:lang="${voice.locale}" name="${voice.voice}">${cleanText.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;')}</voice></speak>`;
 
           try {
-            const gRes = await fetch(gUrl, {
-              headers: {
-                'User-Agent':
-                  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-              },
-            });
-            if (!gRes.ok) {
-              res.statusCode = 502;
+            if (!azureKey) {
+              res.statusCode = 503;
               res.setHeader('Content-Type', 'application/json');
-              res.end(JSON.stringify({ error: 'TTS Provider Error' }));
+              res.end(JSON.stringify({ error: 'Azure Speech is not configured' }));
               return;
             }
-            const arrayBuf = await gRes.arrayBuffer();
+            const azureRes = await fetch(azureEndpoint, {
+              method: 'POST',
+              headers: {
+                'Ocp-Apim-Subscription-Key': azureKey,
+                'Content-Type': 'application/ssml+xml',
+                'X-Microsoft-OutputFormat': 'audio-16khz-128kbitrate-mono-mp3',
+                'User-Agent': 'kaiwa-live-tts',
+              },
+              body: ssml,
+            });
+            if (!azureRes.ok) {
+              res.statusCode = 502;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ error: 'Azure TTS Provider Error' }));
+              return;
+            }
+            const arrayBuf = await azureRes.arrayBuffer();
             res.statusCode = 200;
             res.setHeader('Content-Type', 'audio/mpeg');
             res.setHeader('Content-Length', String(arrayBuf.byteLength));
+            res.setHeader('X-TTS-Provider', 'azure-neural');
             res.end(Buffer.from(arrayBuf));
             return;
           } catch (e) {

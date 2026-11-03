@@ -12,8 +12,6 @@ export interface AuthState {
 }
 
 const getInitialUser = (): User | null => {
-  const cached = safeLocalStorage.getJSON<User | null>('study_planner_user_cache', null);
-  if (cached) return cached;
   if (isPublicPreviewActive()) return MOCK_PREVIEW_USER as unknown as User;
   if (typeof window !== 'undefined' && isTelegramWebApp()) {
     const tgAuth = initTelegramAuth();
@@ -32,7 +30,11 @@ export const useAuthStore = create<AuthState>((set) => ({
       ? false
       : true,
   setUser: (user) => {
-    safeLocalStorage.setJSON('study_planner_user_cache', user);
+    if (user) {
+      safeLocalStorage.setJSON('study_planner_user_cache', user);
+    } else {
+      safeLocalStorage.removeItem('study_planner_user_cache');
+    }
     set({ user });
   },
   setLoading: (loading) => set({ loading }),
