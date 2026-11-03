@@ -3,11 +3,7 @@ import { test, expect } from '@playwright/test';
 test.use({
   permissions: ['microphone'],
   launchOptions: {
-    args: [
-      '--use-fake-device-for-media-stream',
-      '--use-fake-ui-for-media-stream',
-      '--autoplay-policy=no-user-gesture-required',
-    ],
+    args: ['--use-fake-device-for-media-stream', '--use-fake-ui-for-media-stream'],
   },
 });
 
@@ -59,24 +55,31 @@ test('hands-free conversation resumes after a reply and after microphone pause',
       onend?: () => void;
       start() {
         win.__coachRecognition = this;
+        win.__coachRecognitionActive = true;
         setTimeout(() => this.onstart?.(), 0);
       }
       stop() {
+        win.__coachRecognitionActive = false;
         this.onend?.();
       }
-      abort() {}
+      abort() {
+        win.__coachRecognitionActive = false;
+      }
     };
   });
   await page.goto('/speaking-coach?preview=true');
   await page.getByRole('button', { name: 'Speaking sozlamalari' }).click();
   await expect(page.getByRole('dialog', { name: 'Speaking Coach Sozlamalari' })).toBeVisible();
   await page.keyboard.press('Escape');
-  await page.getByRole('button', { name: 'Gapirish uchun bosing', exact: true }).click();
+  await page.getByRole('button', { name: 'Suhbatni boshlash', exact: true }).click();
+  await expect(page.getByText('Murabbiy gapiryapti', { exact: true })).toBeVisible();
+  expect(await page.evaluate(() => (window as any).__coachRecognitionActive || false)).toBe(false);
   await expect(page.getByText('Tinglayapman...', { exact: true })).toBeVisible({ timeout: 20000 });
   await page.evaluate(() => {
     const result = Object.assign([{ transcript: '今日は本を読みました。' }], { isFinal: true });
     (window as any).__coachRecognition.onresult({ results: [result] });
   });
+  await page.getByRole('button', { name: 'Suhbat matnini ko‘rsatish' }).click();
   await expect(page.getByRole('log')).toContainText(/いいですね。\s*今日は何をしましたか？/, {
     timeout: 15000,
   });
@@ -86,7 +89,85 @@ test('hands-free conversation resumes after a reply and after microphone pause',
   await page.getByRole('button', { name: 'Mikrofonni yoqish' }).click();
   await expect(page.getByText('Tinglayapman...', { exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Suhbatni yakunlash', exact: true }).click();
-  await expect(
-    page.getByRole('button', { name: 'Gapirish uchun bosing', exact: true }),
-  ).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Suhbatni boshlash', exact: true })).toBeVisible();
+});
+
+test('blocked audio pauses the conversation and can be retried with a user click', async ({
+  page,
+}) => {
+  test.setTimeout(45000);
+  await page.route('**/*', (route) =>
+    ['localhost', '127.0.0.1'].includes(new URL(route.request().url()).hostname)
+      ? route.continue()
+      : route.abort(),
+  );
+  await page.route('**/api/speech-token', (route) =>
+    route.fulfill({ status: 503, contentType: 'application/json', body: '{}' }),
+  );
+  await page.route('**/api/tts', (route) =>
+    route.fulfill({ status: 200, contentType: 'audio/wav', body: silentAudio() }),
+  );
+  await page.addInitScript(() => {
+    const win = window as any;
+    win.__blockCoachAudio = true;
+    const play = HTMLMediaElement.prototype.play;
+    HTMLMediaElement.prototype.play = function () {
+      if (win.__blockCoachAudio && this.src.startsWith('blob:'))
+        return Promise.reject(new DOMException('Playback blocked', 'NotAllowedError'));
+      return play.call(this);
+    };
+    Object.defineProperty(window, 'AudioContext', { configurable: true, value: undefined });
+    Object.defineProperty(window, 'webkitAudioContext', { configurable: true, value: undefined });
+    Object.defineProperty(window, 'speechSynthesis', { configurable: true, value: undefined });
+    win.SpeechRecognition = class {
+      onstart?: () => void;
+      onend?: () => void;
+      start() {
+        win.__coachRecognitionActive = true;
+        setTimeout(() => this.onstart?.(), 0);
+      }
+      stop() {
+        win.__coachRecognitionActive = false;
+        this.onend?.();
+      }
+      abort() {
+        win.__coachRecognitionActive = false;
+      }
+    };
+  });
+  await page.goto('/speaking-coach?preview=true');
+  await page.getByRole('button', { name: 'Suhbatni boshlash', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Ovozni qayta yoqish' })).toBeVisible({
+    timeout: 20000,
+  });
+  await expect(page.getByText('Mikrofon pauzada', { exact: true })).toBeVisible();
+  expect(await page.evaluate(() => (window as any).__coachRecognitionActive || false)).toBe(false);
+  await page.evaluate(() => {
+    (window as any).__blockCoachAudio = false;
+  });
+  await page.getByRole('button', { name: 'Ovozni qayta yoqish' }).click();
+  await expect(page.getByText('Tinglayapman...', { exact: true })).toBeVisible({ timeout: 15000 });
+});
+
+test('voice-first screen has one start control on desktop and mobile', async ({ page }) => {
+  await page.route('**/*', (route) =>
+    ['localhost', '127.0.0.1'].includes(new URL(route.request().url()).hostname)
+      ? route.continue()
+      : route.abort(),
+  );
+  for (const [name, width, height] of [
+    ['desktop', 1440, 900],
+    ['mobile', 390, 844],
+  ] as const) {
+    await page.setViewportSize({ width, height });
+    await page.goto('/speaking-coach?preview=true');
+    await expect(page.getByRole('button', { name: 'Suhbatni boshlash', exact: true })).toHaveCount(
+      1,
+    );
+    await expect(page.getByRole('log')).toHaveCount(0);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(
+      false,
+    );
+    await page.screenshot({ path: `/tmp/kaiwa-voice-turn-${name}.png` });
+  }
 });

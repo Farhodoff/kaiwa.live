@@ -29,3 +29,14 @@ Date: 2026-11-03
 - Physical microphone quality, real speaker echo cancellation, interruptions in a noisy room and end-to-end live AI latency still need a real-device session after deployment.
 - A Node 26 SDK WebSocket probe returned `Canceled`; the separate REST recognition probe succeeded. This probe does not establish the browser SDK connection outcome. The browser Azure adapter is covered with mocked SDK/controller tests, while the browser conversation test uses an explicit fallback fixture.
 - This remains an STT → DeepSeek → TTS conversation pipeline, not an Azure native full-duplex speech-to-speech model. Azure credit supports the Speech calls; the dialogue model still uses the existing DeepSeek configuration.
+
+## Follow-up: explicit voice turns and audible playback
+
+The requested flow is now one start action, a randomly selected short spoken opening question, the learner's response, and alternating AI/learner turns. Transcript history is optional and initially collapsed. The orb is decorative rather than a second start/interrupt control.
+
+- Fixed a race where the asynchronous audio-unlock promise could pause a greeting that had already replaced the silent priming source.
+- HTML audio, Web Audio fallback and native synthesis now report playback success/failure. Failure pauses the microphone and exposes an explicit audio-retry button instead of silently pretending the coach spoke. Retrying replays the last assistant line within a user gesture.
+- Closed microphone tracks while the coach speaks and removed acoustic barge-in and unsolicited silence nudges from the coach flow. The learner's turn resumes after playback finishes.
+- Removed page-load greeting prefetch; speech requests begin when the learner starts. Free conversation uses a pool of short opening questions.
+- Follow-up validation: 50 targeted tests passed, changed-file lint and production build passed. Three Playwright cases passed without an autoplay-policy bypass: alternating conversation, blocked-audio recovery, and one-start-button desktop/mobile UI. These browser cases use local audio and provider fixtures, not a physical microphone or live dialogue model.
+- At verification, PR #135 was still open and all existing CI checks had passed. Production deployment had been skipped because the PR was not merged. Therefore the user's production screenshot still showed the prior implementation.

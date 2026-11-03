@@ -57,3 +57,23 @@ export const getCoachInitialGreeting = (lang: 'en' | 'ja', _p?: CoachPersona): s
     return 'Hello! How are you doing today? What would you like to talk about?';
   }
 };
+
+// Short openings invite a real spoken answer instead of waiting for a typed topic.
+export const COACH_CONVERSATION_OPENERS = {
+  ja: [
+    'こんにちは！今日はどんな一日でしたか？',
+    'こんにちは！休みの日は何をするのが好きですか？',
+    'こんにちは！今日、何かおいしいものを食べましたか？',
+    'こんにちは！日本で行ってみたい場所はどこですか？',
+    'こんにちは！最近、何か楽しいことがありましたか？',
+  ],
+  en: [
+    'Hello! How has your day been?',
+    'Hi! What do you enjoy doing on your days off?',
+    'Hi! Have you eaten anything delicious today?',
+  ],
+};
+export function getCoachConversationOpener(language: 'ja' | 'en'): string {
+  const pool = COACH_CONVERSATION_OPENERS[language];
+  return pool[Math.floor(Math.random() * pool.length)];
+}

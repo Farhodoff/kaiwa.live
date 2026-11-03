@@ -42,6 +42,7 @@ interface UseTTSOptions {
   isProcessingRef?: React.MutableRefObject<boolean>;
   onSpeakStart: () => void;
   onSpeakEnd: () => void;
+  onSpeakError?: (message: string) => void;
   onAudioPreparing?: (isPreparing: boolean) => void;
 }
 
@@ -373,8 +374,19 @@ export const useTTS = ({
   language,
   onSpeakStart,
   onSpeakEnd,
+  onSpeakError,
   onAudioPreparing,
 }: UseTTSOptions): UseTTSReturn => {
+  const onSpeakErrorRef = useRef(onSpeakError);
+  onSpeakErrorRef.current = onSpeakError;
+  const playbackErrorRef = useRef(false);
+  const reportAudioFailure = useCallback(() => {
+    if (playbackErrorRef.current) return;
+    playbackErrorRef.current = true;
+    onSpeakErrorRef.current?.(
+      'Murabbiy ovozini ijro qilib bo‘lmadi. Qurilma ovozini tekshiring va ovozni qayta yoqing.',
+    );
+  }, []);
   const onSpeakStartRef = useRef(onSpeakStart);
   useEffect(() => {
     onSpeakStartRef.current = onSpeakStart;
@@ -558,9 +570,12 @@ export const useTTS = ({
           audio.src =
             'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA';
           audio.volume = 0.01;
+          const primingSource = audio.src;
           audio
             .play()
             .then(() => {
+              // A late unlock promise must never pause a real greeting loaded meanwhile.
+              if (audio.src !== primingSource) return;
               audio.pause();
               audio.currentTime = 0;
               audio.volume = 1.0;
@@ -645,33 +660,34 @@ export const useTTS = ({
   }, [stopVolumeSimulation]);
 
   const fallbackWebAudio = useCallback(
-    async (blob: Blob, playbackId: number, onDone: () => void) => {
+    async (blob: Blob, playbackId: number, onDone: (success: boolean) => void) => {
       try {
         if (activePlaybackIdRef.current !== playbackId) {
-          onDone();
+          onDone(false);
           return;
         }
         let ctx = sharedAudioCtxRef.current;
         if (!ctx || ctx.state === 'closed') {
           const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
           if (!AudioCtx) {
-            onDone();
+            onDone(false);
             return;
           }
           ctx = new AudioCtx();
           sharedAudioCtxRef.current = ctx;
         }
         if (ctx.state === 'suspended') {
-          await ctx.resume().catch(() => {});
+          await ctx.resume();
+          if (String(ctx.state) !== 'running') throw new Error('Audio context is blocked');
         }
         if (activePlaybackIdRef.current !== playbackId) {
-          onDone();
+          onDone(false);
           return;
         }
         const arrayBuf = await blob.arrayBuffer();
         const audioBuffer = await ctx.decodeAudioData(arrayBuf);
         if (activePlaybackIdRef.current !== playbackId) {
-          onDone();
+          onDone(false);
           return;
         }
 
@@ -693,12 +709,12 @@ export const useTTS = ({
           if (activeWebAudioSourceRef.current === source) {
             activeWebAudioSourceRef.current = null;
           }
-          onDone();
+          onDone(activePlaybackIdRef.current === playbackId && !isCancelledRef.current);
         };
         source.start(0);
       } catch (e) {
         console.warn('[useTTS] Web Audio API fallback failed:', e);
-        onDone();
+        onDone(false);
       }
     },
     [],
@@ -708,19 +724,20 @@ export const useTTS = ({
    * Plays a pre-fetched Audio Blob directly with near 0ms latency.
    */
   const playAudioBlob = useCallback(
-    async (blob: Blob, playbackId: number): Promise<void> => {
-      if (activePlaybackIdRef.current !== playbackId || isCancelledRef.current || !blob) return;
+    async (blob: Blob, playbackId: number): Promise<boolean> => {
+      if (activePlaybackIdRef.current !== playbackId || isCancelledRef.current || !blob)
+        return false;
 
       const objectUrl = URL.createObjectURL(blob);
       currentObjectUrlRef.current = objectUrl;
 
-      await new Promise<void>((resolve) => {
+      return await new Promise<boolean>((resolve) => {
         if (activePlaybackIdRef.current !== playbackId || isCancelledRef.current) {
           URL.revokeObjectURL(objectUrl);
           if (currentObjectUrlRef.current === objectUrl) {
             currentObjectUrlRef.current = null;
           }
-          resolve();
+          resolve(false);
           return;
         }
 
@@ -736,7 +753,7 @@ export const useTTS = ({
         } catch {}
 
         let isCleanedUp = false;
-        const cleanup = () => {
+        const cleanup = (success = false) => {
           if (isCleanedUp) return;
           isCleanedUp = true;
           activeBlobResolverRef.current = null;
@@ -746,18 +763,24 @@ export const useTTS = ({
             URL.revokeObjectURL(objectUrl);
             currentObjectUrlRef.current = null;
           }
-          resolve();
+          resolve(success);
         };
 
-        activeBlobResolverRef.current = cleanup;
+        activeBlobResolverRef.current = () => cleanup(false);
+        let fallbackStarted = false;
+        const playFallback = () => {
+          if (fallbackStarted || isCleanedUp) return;
+          fallbackStarted = true;
+          void fallbackWebAudio(blob, playbackId, cleanup);
+        };
 
-        audio.onended = cleanup;
+        audio.onended = () => cleanup(true);
         audio.onerror = () => {
           if (activePlaybackIdRef.current !== playbackId) {
             cleanup();
             return;
           }
-          fallbackWebAudio(blob, playbackId, cleanup);
+          playFallback();
         };
 
         audio.play().catch((err: any) => {
@@ -770,7 +793,7 @@ export const useTTS = ({
             cleanup();
             return;
           }
-          fallbackWebAudio(blob, playbackId, cleanup);
+          playFallback();
         });
       });
     },
@@ -787,8 +810,7 @@ export const useTTS = ({
       const blob = await fetchTTSAudioBlob(clause, isJa ? 'ja' : 'en');
       if (activePlaybackIdRef.current !== playbackId || isCancelledRef.current || !blob)
         return false;
-      await playAudioBlob(blob, playbackId);
-      return true;
+      return await playAudioBlob(blob, playbackId);
     },
     [playAudioBlob],
   );
@@ -798,13 +820,13 @@ export const useTTS = ({
    * but seamlessly falls back to native browser SpeechSynthesis if network fails.
    */
   const playSingleClause = useCallback(
-    async (clause: string, isJa: boolean, playbackId: number): Promise<void> => {
-      if (activePlaybackIdRef.current !== playbackId || isCancelledRef.current) return;
+    async (clause: string, isJa: boolean, playbackId: number): Promise<boolean> => {
+      if (activePlaybackIdRef.current !== playbackId || isCancelledRef.current) return false;
 
       // 1. Try High-Quality Network Google TTS first (works for both ja and en)
       try {
         const played = await playNetworkClause(clause, isJa, playbackId);
-        if (played) return;
+        if (played) return true;
         console.warn(
           `[useTTS] Network TTS unavailable for "${clause.substring(0, 25)}...", falling back to browser SpeechSynthesis`,
         );
@@ -812,12 +834,12 @@ export const useTTS = ({
         console.warn('[useTTS] Network TTS failed:', netErr);
       }
 
-      if (activePlaybackIdRef.current !== playbackId || isCancelledRef.current) return;
+      if (activePlaybackIdRef.current !== playbackId || isCancelledRef.current) return false;
 
       // 2. Native SpeechSynthesis Fallback
       const synth =
         synthRef.current || (typeof window !== 'undefined' ? window.speechSynthesis : null);
-      if (!synth) return;
+      if (!synth) return false;
 
       let currentVoices = voicesRef.current;
       if (!currentVoices || currentVoices.length === 0) {
@@ -853,7 +875,7 @@ export const useTTS = ({
         });
       }
 
-      if (activePlaybackIdRef.current !== playbackId || isCancelledRef.current) return;
+      if (activePlaybackIdRef.current !== playbackId || isCancelledRef.current) return false;
 
       const selectedVoice = selectBestVoice(currentVoices, isJa);
 
@@ -861,9 +883,9 @@ export const useTTS = ({
         if (synth && synth.paused) synth.resume();
       } catch {}
 
-      await new Promise<void>((resolve) => {
+      return await new Promise<boolean>((resolve) => {
         if (activePlaybackIdRef.current !== playbackId || isCancelledRef.current || !synth) {
-          resolve();
+          resolve(false);
           return;
         }
 
@@ -873,13 +895,13 @@ export const useTTS = ({
         let startWatchdog: ReturnType<typeof setTimeout> | null = null;
         let watchdogTimer: ReturnType<typeof setTimeout> | null = null;
 
-        const finish = () => {
+        const finish = (success = false) => {
           if (isFinished) return;
           isFinished = true;
           if (startWatchdog) clearTimeout(startWatchdog);
           if (watchdogTimer) clearTimeout(watchdogTimer);
           activeUtteranceRef.current = null;
-          resolve();
+          resolve(success);
         };
 
         // Fast 800ms start watchdog: if native speech synthesis hasn't fired onstart within 800ms, finish
@@ -929,7 +951,7 @@ export const useTTS = ({
           };
 
           utterance.onend = () => {
-            finish();
+            finish(true);
           };
 
           utterance.onerror = (event: any) => {
@@ -969,7 +991,12 @@ export const useTTS = ({
     while (!isCancelledRef.current && activePlaybackIdRef.current === playbackId) {
       if (streamQueueRef.current.length > 0) {
         const nextSentence = streamQueueRef.current.shift()!;
-        await playSingleClause(nextSentence, isJa, playbackId);
+        const played = await playSingleClause(nextSentence, isJa, playbackId);
+        if (!played && activePlaybackIdRef.current === playbackId && !isCancelledRef.current) {
+          streamQueueRef.current = [];
+          reportAudioFailure();
+          break;
+        }
       } else {
         if (isStreamCompletedRef.current) {
           break;
@@ -984,10 +1011,11 @@ export const useTTS = ({
       onSpeakEndRef.current();
       stopVolumeSimulation();
     }
-  }, [playSingleClause, stopVolumeSimulation]);
+  }, [playSingleClause, stopVolumeSimulation, reportAudioFailure]);
 
   const enqueueStreamSentence = useCallback(
     (sentence: string) => {
+      if (playbackErrorRef.current) return;
       isCancelledRef.current = false;
       const rawClean = (sentence || '').trim();
       if (!rawClean) return;
@@ -1010,6 +1038,7 @@ export const useTTS = ({
       if (!isStreamingPlaybackActiveRef.current) {
         activePlaybackIdRef.current += 1;
         isStreamCompletedRef.current = false;
+        playbackErrorRef.current = false;
         processStreamQueue();
       }
     },
@@ -1036,6 +1065,7 @@ export const useTTS = ({
       stopSpeaking();
       const playbackId = activePlaybackIdRef.current;
       isCancelledRef.current = false;
+      playbackErrorRef.current = false;
 
       const isJa =
         languageRef.current === 'ja' || /[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff]/.test(rawClean);
@@ -1075,6 +1105,7 @@ export const useTTS = ({
         if (typeof window !== 'undefined') {
           (window as any).__speakingUtterance = null;
         }
+        if (!success) reportAudioFailure();
         trackTTSTelemetry({ durationMs: Date.now() - startTime, success, error });
         onSpeakEndRef.current();
         stopVolumeSimulation();
@@ -1107,6 +1138,7 @@ export const useTTS = ({
       onSpeakStartRef.current();
       startVolumeSimulation();
 
+      let playbackSucceeded = true;
       if (useNetworkTTS) {
         // --- HIGH-SPEED PARALLEL PREFETCH & STREAMING PLAYBACK ---
         // 1. Kick off network requests for ALL chunks in parallel AT THE SAME TIME!
@@ -1129,13 +1161,14 @@ export const useTTS = ({
             console.log(
               `[useTTS] Chunk ${i + 1}/${chunks.length} playback started at +${Date.now() - startTime}ms: "${chunks[i].substring(0, 30)}..."`,
             );
-            await playAudioBlob(blob, playbackId);
+            playbackSucceeded = await playAudioBlob(blob, playbackId);
           } else {
             console.warn(
               `[useTTS] Network chunk ${i + 1} unavailable, fallback to browser SpeechSynthesis: "${chunks[i].substring(0, 30)}..."`,
             );
-            await playSingleClause(chunks[i], isJa, playbackId);
+            playbackSucceeded = await playSingleClause(chunks[i], isJa, playbackId);
           }
+          if (!playbackSucceeded) break;
         }
       } else {
         // --- NATIVE BROWSER SPEECH SYNTHESIS ---
@@ -1145,15 +1178,16 @@ export const useTTS = ({
             setIsPreparingAudio(false);
             onAudioPreparingRef.current?.(false);
           }
-          await playSingleClause(chunks[i], isJa, playbackId);
+          playbackSucceeded = await playSingleClause(chunks[i], isJa, playbackId);
+          if (!playbackSucceeded) break;
         }
       }
 
       if (activePlaybackIdRef.current === playbackId) {
-        onSpeechFinish(true);
+        onSpeechFinish(playbackSucceeded, playbackSucceeded ? undefined : 'Audio playback failed');
       }
     },
-    [stopSpeaking, playSingleClause, playAudioBlob],
+    [stopSpeaking, playSingleClause, playAudioBlob, reportAudioFailure],
   );
 
   return {

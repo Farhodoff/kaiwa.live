@@ -235,8 +235,10 @@ export const useSpeechRecognition = ({
         } catch {}
       }
       setIsListening(false);
+      stopVolumeMeter();
+      stopMicrophoneStream();
     }
-  }, [isSpeaking, isSpeakingRef]);
+  }, [isSpeaking, isSpeakingRef, stopVolumeMeter, stopMicrophoneStream]);
 
   useEffect(() => {
     isThinkingRef.current = isThinking;
