@@ -4,7 +4,7 @@
  * a sentence boundary is formed, achieving sub-600ms conversational turn latency.
  */
 
-import { streamDeepSeekTokens } from '../deepseek';
+import { streamCoachTokens } from '../coachAI';
 import { buildCoachPrompts, parseCoachResponse, CoachStructuredResponse } from './aiCoach';
 import { ConversationScenario } from '../../components/speaking/scenarioTypes';
 
@@ -146,7 +146,7 @@ export const streamCoachDialogue = async (
   const isJa = language === 'ja';
   const extractor = onSentenceReady ? new IncrementalReplyExtractor(isJa, onSentenceReady) : null;
 
-  const fullRaw = await streamDeepSeekTokens(
+  const fullRaw = await streamCoachTokens(
     messages,
     (token) => {
       if (extractor) {

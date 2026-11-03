@@ -9,8 +9,8 @@ import {
 import { DEFAULT_SCENARIOS } from '../../data/defaultScenarios';
 import { FlashcardService } from '../../services/FlashcardService';
 
-vi.mock('../ai/aiCore', () => ({
-  callSelectedAIProvider: vi.fn(),
+vi.mock('../coachAI', () => ({
+  callCoachAI: vi.fn(),
   getGenAI: vi.fn(),
   isAIKeyConfigured: vi.fn(() => true),
 }));
@@ -39,7 +39,7 @@ vi.mock('../../lib/supabase', () => ({
   },
 }));
 
-import { callSelectedAIProvider } from '../ai/aiCore';
+import { callCoachAI } from '../coachAI';
 
 describe('JAPANESE AI COACH & SYSTEM INTEGRITY SUITE', () => {
   beforeEach(() => {
@@ -192,7 +192,7 @@ describe('JAPANESE AI COACH & SYSTEM INTEGRITY SUITE', () => {
     const ramenScenario =
       DEFAULT_SCENARIOS.find((s) => s.id === 'sc_restaurant_ramen') || DEFAULT_SCENARIOS[0];
 
-    (callSelectedAIProvider as any).mockResolvedValueOnce(
+    (callCoachAI as any).mockResolvedValueOnce(
       JSON.stringify({
         language: 'ja',
         reply: 'いらっしゃいませ！何名様でしょうか？',
@@ -221,7 +221,7 @@ describe('JAPANESE AI COACH & SYSTEM INTEGRITY SUITE', () => {
 
     expect(result.language).toBe('ja');
     expect(result.reply).toContain('いらっしゃいませ');
-    expect(callSelectedAIProvider).toHaveBeenCalledWith(
+    expect(callCoachAI).toHaveBeenCalledWith(
       expect.any(String),
       expect.stringContaining(ramenScenario.title_ja || ramenScenario.title_uz),
       true,

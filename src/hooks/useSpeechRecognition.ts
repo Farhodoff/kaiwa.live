@@ -27,6 +27,8 @@ export interface UseSpeechRecognitionReturn {
   isSupported: boolean;
   audioVolume: number;
   speechProvider: CoachSpeechProvider;
+  speechConnectionIssue: string | null;
+  retrySpeechConnection: () => void;
   startListening: () => void;
   commitSpeechNow: () => void;
 }
@@ -100,6 +102,7 @@ export const useSpeechRecognition = ({
   const [error, setError] = useState<string | null>(null);
   const [isSupported, setIsSupported] = useState(true);
   const [speechProvider, setSpeechProvider] = useState<CoachSpeechProvider>('idle');
+  const [speechConnectionIssue, setSpeechConnectionIssue] = useState<string | null>(null);
   const [audioVolume, setAudioVolume] = useState<number>(0);
   const audioVolumeRef = useRef<number>(0);
   const lastVolumeUpdateRef = useRef<number>(0);
@@ -421,8 +424,9 @@ export const useSpeechRecognition = ({
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const recognition = new CoachSpeechRecognition((provider) => {
+    const recognition = new CoachSpeechRecognition((provider, reason) => {
       setSpeechProvider(provider);
+      setSpeechConnectionIssue(reason || null);
       setIsSupported(provider !== 'unavailable');
     });
     recognitionRef.current = recognition;
@@ -701,6 +705,13 @@ export const useSpeechRecognition = ({
     };
   }, [stopVolumeMeter, stopMicrophoneStream]);
 
+  const retrySpeechConnection = useCallback(() => {
+    recognitionRef.current?.resetProvider();
+    setIsListening(false);
+    setSpeechConnectionIssue(null);
+    startListening();
+  }, [startListening]);
+
   return {
     recognitionRef,
     isListening,
@@ -713,6 +724,8 @@ export const useSpeechRecognition = ({
     isSupported,
     audioVolume,
     speechProvider,
+    speechConnectionIssue,
+    retrySpeechConnection,
     startListening,
     commitSpeechNow,
   };

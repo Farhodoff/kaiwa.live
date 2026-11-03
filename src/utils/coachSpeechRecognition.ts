@@ -21,8 +21,9 @@ export class CoachSpeechRecognition {
   private running = false;
   private finalResults: any[] = [];
   private useBrowser = false;
+  private fallbackReason = '';
 
-  constructor(private onProvider: (provider: CoachSpeechProvider) => void) {}
+  constructor(private onProvider: (provider: CoachSpeechProvider, reason?: string) => void) {}
 
   start() {
     if (this.running) return;
@@ -57,8 +58,8 @@ export class CoachSpeechRecognition {
           onError: () => {
             if (generation !== this.generation || !this.running) return;
             this.useBrowser = true;
+            this.fallbackReason = 'Azure bilan jonli nutq ulanishi uzildi.';
             this.abort();
-            this.onerror?.({ error: 'network' });
             this.onend?.();
           },
         });
@@ -77,7 +78,10 @@ export class CoachSpeechRecognition {
           this.onstart?.();
           return;
         }
+        this.fallbackReason =
+          AzureSpeechService.getLastConnectionError?.() || 'Azure nutq xizmati ishga tushmadi.';
       } catch {
+        this.fallbackReason = 'Azure nutq xizmati ishga tushmadi.';
         this.controller?.close();
         this.controller = null;
       }
@@ -101,7 +105,7 @@ export class CoachSpeechRecognition {
     const current = () => generation === this.generation && this.running;
     browser.onstart = () => {
       if (!current()) return;
-      this.onProvider('browser');
+      this.onProvider('browser', this.fallbackReason);
       this.onstart?.();
     };
     browser.onresult = (event: any) => {
@@ -150,6 +154,13 @@ export class CoachSpeechRecognition {
 
   abort() {
     this.finish(true);
+  }
+
+  resetProvider() {
+    this.abort();
+    this.useBrowser = false;
+    this.fallbackReason = '';
+    AzureSpeechService.clearTokenCache?.();
   }
 
   private finish(aborted: boolean) {

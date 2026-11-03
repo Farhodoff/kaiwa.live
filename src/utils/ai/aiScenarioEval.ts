@@ -2,7 +2,7 @@ import {
   ConversationScenario,
   ScenarioSessionResult,
 } from '../../components/speaking/scenarioTypes';
-import { callSelectedAIProvider } from './aiCore';
+import { callCoachAI } from '../coachAI';
 
 export interface EvaluateScenarioParams {
   scenario: ConversationScenario;
@@ -62,7 +62,7 @@ export const evaluateScenarioSession = async ({
     `;
 
   try {
-    const response = await callSelectedAIProvider(prompt, undefined, true);
+    const response = await callCoachAI(prompt, undefined, true);
     const cleanedText = response
       .replace(/```json/g, '')
       .replace(/```/g, '')

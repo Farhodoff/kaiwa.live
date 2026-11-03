@@ -1,12 +1,14 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { generateFlashcardsFromNote, validateSpeechInput, converseWithCoach } from '../ai';
 import * as deepseekModule from '../deepseek';
+import { callCoachAI } from '../coachAI';
+vi.mock('../coachAI', () => ({ callCoachAI: vi.fn(), streamCoachTokens: vi.fn() }));
 
 vi.mock('../deepseek', () => ({
   callDeepSeek: vi.fn(),
 }));
 
-describe('kaiwa.live — Single DeepSeek Provider Architecture', () => {
+describe('kaiwa.live — Feature AI provider routing', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     localStorage.clear();
@@ -22,11 +24,12 @@ describe('kaiwa.live — Single DeepSeek Provider Architecture', () => {
     expect(deepseekModule.callDeepSeek).toHaveBeenCalledTimes(1);
   });
 
-  it('returns response from DeepSeek in converseWithCoach', async () => {
-    vi.mocked(deepseekModule.callDeepSeek).mockResolvedValueOnce('DeepSeek response from coach');
+  it('returns response from Azure in converseWithCoach', async () => {
+    vi.mocked(callCoachAI).mockResolvedValueOnce('Azure response from coach');
     const response = await converseWithCoach('Hello coach', []);
-    expect(response).toBe('DeepSeek response from coach');
-    expect(deepseekModule.callDeepSeek).toHaveBeenCalledTimes(1);
+    expect(response).toBe('Azure response from coach');
+    expect(callCoachAI).toHaveBeenCalledTimes(1);
+    expect(deepseekModule.callDeepSeek).not.toHaveBeenCalled();
   });
 });
 

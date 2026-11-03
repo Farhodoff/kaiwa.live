@@ -111,3 +111,14 @@ describe('Speaking Coach session and controls', () => {
     );
   });
 });
+
+it('keeps a conversation alive when switching tabs', () => {
+  state.isLiveSession = true;
+  render(renderPage());
+  Object.defineProperty(document, 'visibilityState', { configurable: true, value: 'hidden' });
+  fireEvent(document, new Event('visibilitychange'));
+  expect(state.endSession).not.toHaveBeenCalled();
+  Object.defineProperty(document, 'visibilityState', { configurable: true, value: 'visible' });
+  fireEvent(document, new Event('visibilitychange'));
+  expect(state.endSession).not.toHaveBeenCalled();
+});

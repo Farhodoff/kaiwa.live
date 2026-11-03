@@ -62,6 +62,9 @@ export function telegramApiPlugin() {
       if (env.DEEPSEEK_API_KEY) {
         process.env.DEEPSEEK_API_KEY = env.DEEPSEEK_API_KEY;
       }
+      for (const name of ['AZURE_OPENAI_API_KEY','AZURE_OPENAI_ENDPOINT','AZURE_OPENAI_DEPLOYMENT','AZURE_SPEECH_KEY','AZURE_SPEECH_REGION','VITE_SUPABASE_URL','VITE_SUPABASE_ANON_KEY']) {
+        if (env[name]) process.env[name] = env[name];
+      }
       console.log('✅ Telegram API plugin loaded (SERVICE_ROLE found)');
 
       server.middlewares.use(async (req, res, next) => {
@@ -83,117 +86,27 @@ export function telegramApiPlugin() {
           }
         }
 
-        // Handle /api/speech-token (Dev Proxy to Azure STS)
-        if (pathname === '/api/speech-token') {
-          const azureKey = (env.AZURE_SPEECH_KEY || process.env.AZURE_SPEECH_KEY || '').trim();
-          const azureRegion = (env.AZURE_SPEECH_REGION || process.env.AZURE_SPEECH_REGION || 'swedencentral').trim();
-
-          if (!azureKey) {
-            res.statusCode = 503;
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify({ error: 'Service Unavailable', message: 'Azure Speech xizmati sozlanmagan.' }));
-            return;
+        // Run the production Speech handlers locally as well, including Azure TTS.
+        if (pathname === '/api/speech-token' || pathname === '/api/tts') {
+          const handler = pathname === '/api/tts'
+            ? (await import('../api/tts.js')).default
+            : (await import('../api/speech-token.js')).default;
+          const chunks = [];
+          for await (const chunk of req) chunks.push(chunk);
+          const headers = new Headers();
+          for (const [key, value] of Object.entries(req.headers)) {
+            if (value) headers.set(key, Array.isArray(value) ? value.join(', ') : value);
           }
-
-          try {
-            const stsUrl = `https://${azureRegion}.api.cognitive.microsoft.com/sts/v1.0/issueToken`;
-            const stsResponse = await fetch(stsUrl, {
-              method: 'POST',
-              headers: {
-                'Ocp-Apim-Subscription-Key': azureKey,
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Content-Length': '0',
-              },
-            });
-
-            if (!stsResponse.ok) {
-              const errText = await stsResponse.text();
-              res.statusCode = 502;
-              res.setHeader('Content-Type', 'application/json');
-              res.end(JSON.stringify({ error: 'Azure STS Error', details: errText }));
-              return;
-            }
-
-            const token = await stsResponse.text();
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.setHeader('X-Speech-Provider', 'azure');
-            res.end(JSON.stringify({
-              token: token.trim(),
-              region: azureRegion,
-              expiresIn: 600,
-            }));
-            return;
-          } catch (e) {
-            res.statusCode = 500;
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify({ error: 'Internal Error', message: e?.message }));
-            return;
-          }
-        }
-
-        // Handle /api/tts (Dev Proxy to Google TTS)
-        if (pathname === '/api/tts') {
-          let text = url.searchParams.get('text');
-          let lang = url.searchParams.get('lang') || 'ja';
-
-          if (req.method === 'POST') {
-            try {
-              const chunks = [];
-              for await (const chunk of req) chunks.push(chunk);
-              const raw = Buffer.concat(chunks).toString();
-              if (raw) {
-                const b = JSON.parse(raw);
-                text = b.text || text;
-                lang = b.lang || lang;
-              }
-            } catch {}
-          }
-
-          if (!text) {
-            res.statusCode = 400;
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify({ error: 'Missing text parameter' }));
-            return;
-          }
-
-          const cleanText = String(text)
-            .replace(/[*_#`~[\]()（）]/g, ' ')
-            .replace(/\s+/g, ' ')
-            .trim()
-            .slice(0, 200);
-          const cleanLang = (lang || 'ja').toLowerCase().startsWith('ja')
-            ? 'ja'
-            : (lang || 'en').toLowerCase().startsWith('en')
-              ? 'en'
-              : 'ja';
-          const gUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(cleanText)}&tl=${encodeURIComponent(cleanLang)}&client=tw-ob`;
-
-          try {
-            const gRes = await fetch(gUrl, {
-              headers: {
-                'User-Agent':
-                  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-              },
-            });
-            if (!gRes.ok) {
-              res.statusCode = 502;
-              res.setHeader('Content-Type', 'application/json');
-              res.end(JSON.stringify({ error: 'TTS Provider Error' }));
-              return;
-            }
-            const arrayBuf = await gRes.arrayBuffer();
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'audio/mpeg');
-            res.setHeader('Content-Length', String(arrayBuf.byteLength));
-            res.end(Buffer.from(arrayBuf));
-            return;
-          } catch (e) {
-            res.statusCode = 500;
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify({ error: 'TTS Fetch Failed', details: e.message }));
-            return;
-          }
+          const request = new Request(url.href, {
+            method: req.method,
+            headers,
+            ...(['GET', 'HEAD'].includes(req.method) ? {} : { body: Buffer.concat(chunks) }),
+          });
+          const response = await handler(request);
+          res.statusCode = response.status;
+          response.headers.forEach((value, key) => res.setHeader(key, value));
+          res.end(Buffer.from(await response.arrayBuffer()));
+          return;
         }
 
         // Handle /api/v1/srs
@@ -345,9 +258,11 @@ export function telegramApiPlugin() {
         }
 
         // Handle /api/deepseek
-        if (pathname === '/api/deepseek') {
+        if (pathname === '/api/deepseek' || pathname === '/api/coach') {
           try {
-            const deepseekHandler = (await import('../api/deepseek.js')).default;
+            const deepseekHandler = pathname === '/api/coach'
+              ? (await import('../api/coach.js')).default
+              : (await import('../api/deepseek.js')).default;
             let payload = {};
             if (req.method === 'POST') {
               const chunks = [];
@@ -368,6 +283,7 @@ export function telegramApiPlugin() {
               write: (chunk) => res.write(chunk),
               flushHeaders: () => res.flushHeaders(),
               get destroyed() { return res.destroyed; },
+              get headersSent() { return res.headersSent; },
               end: () => res.end(),
             };
             return await deepseekHandler({ ...req, body: payload, method: req.method }, mockRes);

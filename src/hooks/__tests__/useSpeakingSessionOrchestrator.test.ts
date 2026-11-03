@@ -1,5 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
+import { streamCoachDialogue, converseWithCoachStructured } from '../../utils/ai';
+import { AIServiceError } from '../../utils/aiServiceError';
 import { useSpeakingSessionOrchestrator } from '../useSpeakingSessionOrchestrator';
 
 vi.mock('react-router-dom', () => ({
@@ -172,4 +174,33 @@ describe('useSpeakingSessionOrchestrator', () => {
     expect(result.current.isSpeaking).toBe(false);
     expect(result.current.isThinking).toBe(false);
   });
+});
+
+it('pauses on a rejected AI request without provider fallback or ending the conversation', async () => {
+  vi.mocked(streamCoachDialogue).mockRejectedValueOnce(new AIServiceError(503));
+  const { result } = renderHook(() =>
+    useSpeakingSessionOrchestrator({
+      language: 'ja',
+      persona: 'casual',
+      activeScenario: null,
+      user: null,
+      subjects: [],
+      addSubject: vi.fn(),
+      flashcards: [],
+      addFlashcardsBatch: vi.fn(),
+    }),
+  );
+  act(() => {
+    result.current.startSession();
+  });
+  await act(async () => {
+    await result.current.handleSendUserText('今日は本を読みました。');
+  });
+  expect(converseWithCoachStructured).not.toHaveBeenCalled();
+  expect(result.current.isLiveSession).toBe(true);
+  expect(result.current.isMuted).toBe(true);
+  expect(result.current.replyError).toBeTruthy();
+  expect(result.current.chatHistory[result.current.chatHistory.length - 1]?.content).toBe(
+    '今日は本を読みました。',
+  );
 });

@@ -36,6 +36,7 @@ export interface AzureContinuousRecognizerController {
   isRecognizing: () => boolean;
 }
 
+let lastConnectionError: string | null = null;
 let cachedSpeechToken: AzureSpeechToken | null = null;
 let tokenFetchPromise: Promise<AzureSpeechToken | null> | null = null;
 
@@ -84,15 +85,25 @@ export const AzureSpeechService = {
         });
 
         if (!res.ok) {
+          lastConnectionError =
+            res.status === 401
+              ? 'Azure uchun kirish sessiyasi tasdiqlanmadi.'
+              : res.status === 403
+                ? 'Azure nutqni tanish so‘rovlari limiti tugagan.'
+                : res.status === 429
+                  ? 'Azure so‘rovlari juda tez yuborildi. Biroz kuting.'
+                  : 'Azure tokenini olib bo‘lmadi. Xizmat ulanishini tekshirish kerak.';
           console.warn(`[AzureSpeechService] Failed to obtain speech token: HTTP ${res.status}`);
           return null;
         }
 
         const data = await res.json();
         if (!data?.token || !data?.region) {
+          lastConnectionError = 'Azure token javobi yaroqsiz.';
           return null;
         }
 
+        lastConnectionError = null;
         cachedSpeechToken = {
           token: data.token,
           region: data.region,
@@ -100,6 +111,7 @@ export const AzureSpeechService = {
         };
         return cachedSpeechToken;
       } catch (err) {
+        lastConnectionError = 'Azure token serveriga ulanish uzildi.';
         console.warn('[AzureSpeechService] Network error fetching speech token:', err);
         return null;
       } finally {
@@ -113,6 +125,10 @@ export const AzureSpeechService = {
   /**
    * Quick verification whether Azure Speech services are ready and configured.
    */
+  getLastConnectionError(): string | null {
+    return lastConnectionError;
+  },
+
   async isAzureSpeechAvailable(): Promise<boolean> {
     const tokenData = await this.getSpeechToken();
     return Boolean(tokenData?.token && tokenData?.region);
@@ -124,6 +140,7 @@ export const AzureSpeechService = {
   clearTokenCache(): void {
     cachedSpeechToken = null;
     tokenFetchPromise = null;
+    lastConnectionError = null;
   },
 
   /**
