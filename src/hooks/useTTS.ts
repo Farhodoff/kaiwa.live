@@ -231,7 +231,7 @@ export function selectBestVoice(
   }
 }
 
-export const TTS_CACHE_NAME = 'tts-audio-v1';
+export const TTS_CACHE_NAME = 'tts-audio-v2-azure';
 export const MAX_TTS_DISK_ENTRIES = 120;
 
 export async function prunePersistentAudioCache(
@@ -288,7 +288,7 @@ async function setPersistentAudioBlob(cacheKey: string, blob: Blob): Promise<voi
 }
 
 /**
- * Fetches high-quality Google TTS audio from the serverless /api/tts endpoint
+ * Fetches Azure Neural TTS audio (with server-side fallback) from the serverless /api/tts endpoint
  * with in-memory (0ms) and CacheStorage persistence
  */
 export async function fetchTTSAudioBlob(text: string, lang: 'ja' | 'en'): Promise<Blob | null> {

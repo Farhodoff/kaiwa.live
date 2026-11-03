@@ -82,17 +82,15 @@ export const CoachTopBar: React.FC<CoachTopBarProps> = ({
           </button>
         )}
 
-        {isLiveSession && (
-          <button
-            type="button"
-            onClick={onOpenSettings}
-            aria-label="Speaking sozlamalari"
-            title="Sozlamalar"
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-slate-950/45 text-white/75 transition hover:bg-slate-900 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-          >
-            <SettingsIcon size={18} />
-          </button>
-        )}
+        <button
+          type="button"
+          onClick={onOpenSettings}
+          aria-label="Speaking sozlamalari"
+          title="Sozlamalar"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-slate-950/45 text-white/75 transition hover:bg-slate-900 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        >
+          <SettingsIcon size={18} />
+        </button>
       </div>
     </header>
   );

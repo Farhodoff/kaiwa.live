@@ -26,35 +26,41 @@ Deno.serve(async (req: Request) => {
         model: 'deepseek-chat',
         hint: isConfigured
           ? 'DeepSeek AI Gateway is active and configured.'
-          : 'DEEPSEEK_API_KEY is missing in Supabase Edge Function Secrets.'
+          : 'DEEPSEEK_API_KEY is missing in Supabase Edge Function Secrets.',
       }),
       {
         status: 200,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-      }
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      },
     );
   }
 
   if (req.method !== 'POST') {
-    return new Response(
-      JSON.stringify({ error: 'Method Not Allowed' }),
-      { status: 405, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-    );
+    return new Response(JSON.stringify({ error: 'Method Not Allowed' }), {
+      status: 405,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
   }
 
   // 3. Verify Server API Key
   const rawKey = Deno.env.get('DEEPSEEK_API_KEY');
-  const serverKey = rawKey ? rawKey.trim().replace(/^["']|["']$/g, '').replace(/^Bearer\s+/i, '') : null;
+  const serverKey = rawKey
+    ? rawKey
+        .trim()
+        .replace(/^["']|["']$/g, '')
+        .replace(/^Bearer\s+/i, '')
+    : null;
 
   if (!serverKey || serverKey.length < 10) {
     return new Response(
       JSON.stringify({
         error: {
           code: 'AI_NOT_CONFIGURED',
-          message: 'AI service is temporarily unavailable. DEEPSEEK_API_KEY is not configured in Supabase Secrets.'
-        }
+          message:
+            'AI service is temporarily unavailable. DEEPSEEK_API_KEY is not configured in Supabase Secrets.',
+        },
       }),
-      { status: 503, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      { status: 503, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
     );
   }
 
@@ -63,10 +69,10 @@ Deno.serve(async (req: Request) => {
     try {
       payload = await req.json();
     } catch {
-      return new Response(
-        JSON.stringify({ error: 'Invalid JSON payload' }),
-        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+      return new Response(JSON.stringify({ error: 'Invalid JSON payload' }), {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
     }
 
     // 4. Sanitize and clamp payload
@@ -79,7 +85,7 @@ Deno.serve(async (req: Request) => {
         // Keep last 20 conversational turns to avoid buffer bloat
         const trimmedNonSystem = nonSystemMessages.slice(-20).map((msg: any) => ({
           role: msg.role === 'assistant' ? 'assistant' : 'user',
-          content: typeof msg.content === 'string' ? msg.content : String(msg.content || '')
+          content: typeof msg.content === 'string' ? msg.content : String(msg.content || ''),
         }));
 
         payload.messages = [...systemMessages.slice(0, 2), ...trimmedNonSystem];
@@ -106,11 +112,26 @@ Deno.serve(async (req: Request) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${serverKey}`,
+        Authorization: `Bearer ${serverKey}`,
       },
       body: JSON.stringify(payload),
     });
 
+    if (
+      payload.stream === true &&
+      response.ok &&
+      response.body &&
+      response.headers.get('content-type')?.includes('text/event-stream')
+    ) {
+      return new Response(response.body, {
+        status: response.status,
+        headers: {
+          ...corsHeaders,
+          'Content-Type': 'text/event-stream; charset=utf-8',
+          'Cache-Control': 'no-cache, no-transform',
+        },
+      });
+    }
     const resText = await response.text();
     let resJson;
     try {
@@ -119,23 +140,20 @@ Deno.serve(async (req: Request) => {
       resJson = { raw: resText };
     }
 
-    return new Response(
-      JSON.stringify(resJson),
-      {
-        status: response.status,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-      }
-    );
+    return new Response(JSON.stringify(resJson), {
+      status: response.status,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
   } catch (error: any) {
     console.error('Supabase Edge DeepSeek Gateway error:', error);
     return new Response(
       JSON.stringify({
         error: {
           code: 'AI_UPSTREAM_ERROR',
-          message: error?.message || 'Network error connecting to AI provider'
-        }
+          message: error?.message || 'Network error connecting to AI provider',
+        },
       }),
-      { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
     );
   }
 });

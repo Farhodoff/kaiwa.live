@@ -134,28 +134,6 @@ export function useSpeakingSessionOrchestrator({
   const autoListenTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isMutedRef = useRef(isMuted);
 
-  useEffect(() => {
-    isMutedRef.current = isMuted;
-    if (isMuted) {
-      if (autoListenTimerRef.current) {
-        clearTimeout(autoListenTimerRef.current);
-        autoListenTimerRef.current = null;
-      }
-      if (recognitionRef.current) {
-        try {
-          recognitionRef.current.abort();
-        } catch {}
-      }
-    } else if (
-      isLiveSessionRef.current &&
-      !isSpeakingRef.current &&
-      !isThinking &&
-      !isProcessingRef.current
-    ) {
-      startListeningRef.current?.();
-    }
-  }, [isMuted, isThinking]);
-
   const handleSpeakStart = useCallback(() => {
     if (autoListenTimerRef.current) {
       clearTimeout(autoListenTimerRef.current);
@@ -397,6 +375,14 @@ export function useSpeakingSessionOrchestrator({
             streamErr,
           );
           stopSpeaking();
+          if (streamedSentences > 0) {
+            setChatHistory((prev) => {
+              const next = prev[prev.length - 1]?.role === 'assistant' ? prev.slice(0, -1) : prev;
+              chatHistoryRef.current = next;
+              return next;
+            });
+          }
+          streamedSentences = 0;
           structured = await converseWithCoachStructured(
             cleanText,
             updatedHistory.map((h) => ({ role: h.role, content: h.content })),
@@ -616,6 +602,7 @@ export function useSpeakingSessionOrchestrator({
     setError,
     isSupported,
     audioVolume,
+    speechProvider,
     startListening,
     commitSpeechNow,
   } = useSpeechRecognition({
@@ -636,6 +623,28 @@ export function useSpeakingSessionOrchestrator({
   useEffect(() => {
     startListeningRef.current = startListening;
   }, [startListening]);
+
+  useEffect(() => {
+    isMutedRef.current = isMuted;
+    if (isMuted) {
+      if (autoListenTimerRef.current) {
+        clearTimeout(autoListenTimerRef.current);
+        autoListenTimerRef.current = null;
+      }
+      if (recognitionRef.current) {
+        try {
+          recognitionRef.current.abort();
+        } catch {}
+      }
+    } else if (
+      isLiveSessionRef.current &&
+      !isSpeakingRef.current &&
+      !isThinking &&
+      !isProcessingRef.current
+    ) {
+      startListeningRef.current?.();
+    }
+  }, [isMuted, isThinking]);
 
   // Requirement 5: 30-second silence inactivity follow-up
   useEffect(() => {
@@ -885,6 +894,9 @@ export function useSpeakingSessionOrchestrator({
   const startSession = useCallback(
     (topicTitle?: unknown) => {
       unlockAudio();
+      if (isLiveSessionRef.current) return;
+      setIsMuted(false);
+      isMutedRef.current = false;
       setIsLiveSession(true);
       isLiveSessionRef.current = true;
       inactivityNudgeCountRef.current = 0;
@@ -966,6 +978,11 @@ export function useSpeakingSessionOrchestrator({
       }
       const historyToAnalyze = [...chatHistoryRef.current];
       const durSecs = sessionSeconds;
+
+      isLiveSessionRef.current = false;
+      setIsLiveSession(false);
+      recognitionRef.current?.abort();
+      stopSpeaking();
 
       let audioBlob: Blob | null = null;
       try {
@@ -1189,6 +1206,7 @@ export function useSpeakingSessionOrchestrator({
     currentTranscript,
     audioVolume: effectiveAudioVolume,
     isSupported,
+    speechProvider,
     error,
     setError,
     isPreparingAudio,

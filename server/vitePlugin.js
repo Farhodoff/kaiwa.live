@@ -365,6 +365,9 @@ export function telegramApiPlugin() {
                 res.setHeader('Content-Type', 'application/json');
                 res.end(JSON.stringify(d));
               },
+              write: (chunk) => res.write(chunk),
+              flushHeaders: () => res.flushHeaders(),
+              get destroyed() { return res.destroyed; },
               end: () => res.end(),
             };
             return await deepseekHandler({ ...req, body: payload, method: req.method }, mockRes);

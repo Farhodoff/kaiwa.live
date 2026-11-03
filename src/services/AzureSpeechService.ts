@@ -22,6 +22,8 @@ export interface AzureSpeechToken {
 
 export interface AzureContinuousRecognizerOptions {
   language?: 'ja-JP' | 'en-US' | 'uz-UZ' | string;
+  stream?: MediaStream;
+  onSessionStopped?: () => void;
   onRecognizing?: (partialText: string) => void;
   onRecognized?: (finalText: string) => void;
   onError?: (errorMessage: string) => void;
@@ -155,7 +157,9 @@ export const AzureSpeechService = {
 
     let audioConfig: any;
     try {
-      audioConfig = SpeechSDK.AudioConfig.fromDefaultMicrophoneInput();
+      audioConfig = options.stream
+        ? SpeechSDK.AudioConfig.fromStreamInput(options.stream)
+        : SpeechSDK.AudioConfig.fromDefaultMicrophoneInput();
     } catch (micErr) {
       console.warn('[AzureSpeechService] Microphone input configuration error:', micErr);
       options.onError?.('Mikrofonga ulanishda xatolik yuz berdi.');
@@ -164,6 +168,33 @@ export const AzureSpeechService = {
 
     const recognizer = new SpeechSDK.SpeechRecognizer(speechConfig, audioConfig);
     let active = false;
+    let closed = false;
+    let refreshTimer: ReturnType<typeof setTimeout> | null = null;
+    const clearRefreshTimer = () => {
+      if (refreshTimer) clearTimeout(refreshTimer);
+      refreshTimer = null;
+    };
+    const refreshAuthorization = async (forceRefresh = false) => {
+      const freshToken = await this.getSpeechToken(forceRefresh);
+      if (closed) return;
+      if (!freshToken) throw new Error('Azure Speech tokenini yangilab bo‘lmadi.');
+      recognizer.authorizationToken = freshToken.token;
+    };
+    const scheduleRefresh = () => {
+      clearRefreshTimer();
+      refreshTimer = setTimeout(
+        async () => {
+          if (!active || closed) return;
+          try {
+            await refreshAuthorization(true);
+            if (active && !closed) scheduleRefresh();
+          } catch {
+            options.onError?.('Azure Speech bilan aloqa uzildi. Qayta urinib ko‘ring.');
+          }
+        },
+        8 * 60 * 1000,
+      );
+    };
 
     recognizer.recognizing = (_sender: any, event: any) => {
       if (event?.result?.text) {
@@ -177,7 +208,15 @@ export const AzureSpeechService = {
       }
     };
 
+    recognizer.sessionStopped = () => {
+      active = false;
+      clearRefreshTimer();
+      if (!closed) options.onSessionStopped?.();
+    };
+
     recognizer.canceled = (_sender: any, event: any) => {
+      active = false;
+      clearRefreshTimer();
       if (event?.errorDetails) {
         console.warn('[AzureSpeechService] Recognizer canceled/error:', event.errorDetails);
         options.onError?.(event.errorDetails);
@@ -186,11 +225,14 @@ export const AzureSpeechService = {
 
     return {
       start: async () => {
-        if (active) return;
+        if (active || closed) return;
+        await refreshAuthorization();
+        if (closed) return;
         return new Promise<void>((resolve, reject) => {
           recognizer.startContinuousRecognitionAsync(
             () => {
               active = true;
+              scheduleRefresh();
               resolve();
             },
             (err: any) => {
@@ -201,6 +243,7 @@ export const AzureSpeechService = {
         });
       },
       stop: async () => {
+        clearRefreshTimer();
         if (!active) return;
         return new Promise<void>((resolve, reject) => {
           recognizer.stopContinuousRecognitionAsync(
@@ -215,6 +258,8 @@ export const AzureSpeechService = {
         });
       },
       close: () => {
+        closed = true;
+        clearRefreshTimer();
         try {
           if (active) {
             recognizer.stopContinuousRecognitionAsync();

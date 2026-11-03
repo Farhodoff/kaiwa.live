@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   Mic,
+  MicOff,
+  Loader2,
   ShieldAlert,
   X,
   ExternalLink,
@@ -174,6 +176,10 @@ const SpeakingCoachPage: React.FC = () => {
     isSpeaking,
     isThinking,
     isListening,
+    isMuted,
+    setIsMuted,
+    speechProvider,
+    isPreparingAudio,
     sessionSeconds,
     chatHistory,
     setChatHistory,
@@ -189,7 +195,6 @@ const SpeakingCoachPage: React.FC = () => {
     startSession,
     endSession,
     toggleMic,
-    unlockAudio,
     speakText,
     stopSpeaking,
     formatTimer,
@@ -233,6 +238,7 @@ const SpeakingCoachPage: React.FC = () => {
   const endSessionAndSave = useCallback(
     (reason: 'manual' | 'visibility_hidden' | 'pagehide' | 'unmount') => {
       if (!isLiveSessionRef.current) return;
+      isLiveSessionRef.current = false;
 
       const durSecs = sessionSecondsRef.current;
       const history = [...chatHistoryRef.current];
@@ -280,12 +286,15 @@ const SpeakingCoachPage: React.FC = () => {
     [stopSpeaking, endSession],
   );
 
+  const endSessionAndSaveRef = useRef(endSessionAndSave);
+  endSessionAndSaveRef.current = endSessionAndSave;
+
   // Requirement 6 & 7: Auto-termination on visibilitychange, pagehide, and unmount
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'hidden') {
         if (isLiveSessionRef.current) {
-          endSessionAndSave('visibility_hidden');
+          endSessionAndSaveRef.current('visibility_hidden');
         }
       } else if (document.visibilityState === 'visible') {
         // User returned to tab
@@ -302,7 +311,7 @@ const SpeakingCoachPage: React.FC = () => {
 
     const handlePageHide = () => {
       if (isLiveSessionRef.current) {
-        endSessionAndSave('pagehide');
+        endSessionAndSaveRef.current('pagehide');
       }
     };
 
@@ -315,10 +324,10 @@ const SpeakingCoachPage: React.FC = () => {
       window.removeEventListener('pagehide', handlePageHide);
       window.removeEventListener('beforeunload', handlePageHide);
       if (isLiveSessionRef.current) {
-        endSessionAndSave('unmount');
+        endSessionAndSaveRef.current('unmount');
       }
     };
-  }, [endSessionAndSave]);
+  }, []);
 
   // Scenario loading and greeting
   useEffect(() => {
@@ -384,7 +393,13 @@ const SpeakingCoachPage: React.FC = () => {
         (activeEl.tagName === 'INPUT' ||
           activeEl.tagName === 'TEXTAREA' ||
           (activeEl as HTMLElement).isContentEditable);
-      if (isInput) return;
+      if (
+        isInput ||
+        activeEl?.tagName === 'BUTTON' ||
+        document.querySelector('[role="dialog"]') ||
+        e.repeat
+      )
+        return;
 
       if (e.code === 'Space') {
         e.preventDefault();
@@ -429,14 +444,6 @@ const SpeakingCoachPage: React.FC = () => {
     endSessionAndSave('manual');
   };
 
-  const handleToggleSession = () => {
-    if (isLiveSession) {
-      handleStopSession();
-    } else {
-      handleStartSession();
-    }
-  };
-
   // State calculation for ProjectOrb
   const orbState: OrbState = isSpeaking ? 'speaking' : isListening ? 'listening' : 'idle';
   const audioLevel = useAudioLevel(audioVolume);
@@ -448,8 +455,7 @@ const SpeakingCoachPage: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      onTouchStart={() => unlockAudio()}
-      className={`pb-safe relative flex h-[100dvh] w-full select-none flex-col overflow-hidden bg-[#0a0b1f] text-slate-100 ${
+      className={`pb-safe relative flex h-full min-h-0 w-full flex-1 flex-col overflow-hidden bg-[#0a0b1f] text-slate-100 ${
         isFullscreen ? 'fixed inset-0 z-50 m-0 h-screen w-screen p-0' : ''
       }`}
       style={{
@@ -565,19 +571,25 @@ const SpeakingCoachPage: React.FC = () => {
       )}
 
       {/* MAIN SINGLE VIEW CONTENT */}
-      <main className="relative z-10 mx-auto flex w-full max-w-4xl flex-1 flex-col overflow-hidden px-3 py-2 sm:px-6">
+      <main className="relative z-10 mx-auto flex min-h-0 w-full max-w-6xl flex-1 flex-col gap-3 overflow-y-auto px-3 py-3 sm:px-6 lg:grid lg:grid-cols-[minmax(260px,0.85fr)_minmax(0,1.35fr)] lg:grid-rows-[minmax(0,1fr)_auto] lg:gap-5 lg:overflow-hidden lg:py-5">
         {/* UPPER HERO: ProjectOrb (KaiwaOrbCharacter) */}
-        <div className="flex shrink-0 flex-col items-center justify-center pb-3 pt-1 text-center">
+        <div className="flex shrink-0 flex-col items-center justify-center rounded-2xl border border-white/10 bg-slate-950/45 px-3 py-4 text-center backdrop-blur-sm lg:min-h-0 lg:py-8">
           {/* Clickable Orb triggers start/stop in same window without navigation */}
-          <div
-            onClick={handleToggleSession}
-            className="cursor-pointer transition-transform hover:scale-105 active:scale-95"
-            title={isLiveSession ? 'Suhbatni yakunlash uchun bosing' : 'Gapirish uchun bosing'}
+          <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-rose-200">
+            Yuki Sensei · {targetJlptLevel}
+          </p>
+          <p className="mb-2 text-xs text-slate-300">Yaponcha gapiring, birga mashq qilamiz</p>
+          <button
+            type="button"
+            onClick={isLiveSession ? toggleMic : handleStartSession}
+
+            className="rounded-full transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300 active:scale-95 disabled:opacity-50"
+            aria-label={isLiveSession ? 'Gapirish navbatini olish' : 'Ovozli suhbatni boshlash'}
           >
             <ProjectOrb
               state={orbState}
               audioVolume={audioLevel}
-              size={170}
+              size={140}
               interactive={false}
               ariaLabel={
                 !isLiveSession
@@ -589,7 +601,7 @@ const SpeakingCoachPage: React.FC = () => {
                       : 'Tinglayapman'
               }
             />
-          </div>
+          </button>
 
           {/* Action / Status Pill (Requirement 1) */}
           <div className="mt-2 flex flex-col items-center gap-1">
@@ -597,32 +609,57 @@ const SpeakingCoachPage: React.FC = () => {
               <button
                 type="button"
                 onClick={handleStartSession}
-                className="group inline-flex items-center gap-2 rounded-full border border-primary/50 bg-gradient-to-r from-rose-600 to-indigo-600 px-5 py-2 text-xs font-bold uppercase tracking-wider text-white shadow-xl shadow-rose-600/25 backdrop-blur transition-all hover:scale-105 hover:opacity-95 active:scale-95"
+
+                className="group inline-flex items-center gap-2 rounded-full border border-primary/50 bg-gradient-to-r from-rose-600 to-indigo-600 px-5 py-2 text-xs font-bold uppercase tracking-wider text-white shadow-xl shadow-rose-600/25 backdrop-blur transition-all hover:scale-105 hover:opacity-95 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <Mic size={14} className="text-white transition-transform group-hover:scale-110" />
                 <span>Gapirish uchun bosing</span>
               </button>
             ) : (
-              <div className="flex items-center gap-2">
-                <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-950/60 px-4 py-1.5 text-xs font-medium backdrop-blur">
-                  {isSpeaking ? (
+              <div className="flex flex-wrap items-center justify-center gap-2">
+                <div
+                  role="status"
+                  aria-live="polite"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-950/60 px-4 py-1.5 text-xs font-medium backdrop-blur"
+                >
+                  {isMuted ? (
+                    <span className="flex items-center gap-2 text-slate-300">
+                      <MicOff size={14} />
+                      Mikrofon pauzada
+                    </span>
+                  ) : isSpeaking ? (
                     <span className="flex items-center gap-2 font-bold text-amber-300">
                       <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-amber-400 shadow-sm shadow-amber-400/50" />
                       Murabbiy gapiryapti
                     </span>
-                  ) : isThinking ? (
+                  ) : isThinking || isPreparingAudio ? (
                     <span className="flex items-center gap-2 font-bold text-purple-300">
                       <span className="h-2.5 w-2.5 animate-ping rounded-full bg-purple-400 shadow-sm shadow-purple-400/50" />
-                      O‘ylayapman...
+                      {isPreparingAudio ? 'Ovoz tayyorlanmoqda...' : 'Javob tayyorlanmoqda...'}
                     </span>
-                  ) : (
+                  ) : isListening ? (
                     <span className="flex items-center gap-2 font-bold text-emerald-400">
                       <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-emerald-400 shadow-sm shadow-emerald-400/50" />
                       Tinglayapman...
                     </span>
+                  ) : (
+                    <span className="flex items-center gap-2 text-slate-300">
+                      <Loader2 size={14} className="animate-spin" />
+                      Mikrofonga ulanmoqda...
+                    </span>
                   )}
                 </div>
 
+                <button
+                  type="button"
+                  onClick={() => setIsMuted(!isMuted)}
+                  aria-label={isMuted ? 'Mikrofonni yoqish' : 'Mikrofonni pauza qilish'}
+                  aria-pressed={isMuted}
+                  className="inline-flex min-h-10 items-center gap-1.5 rounded-full border border-white/20 bg-slate-900/80 px-3 text-xs text-white hover:bg-slate-800"
+                >
+                  {isMuted ? <MicOff size={14} /> : <Mic size={14} />}
+                  {isMuted ? 'Davom etish' : 'Pauza'}
+                </button>
                 <button
                   type="button"
                   onClick={handleStopSession}
@@ -635,13 +672,36 @@ const SpeakingCoachPage: React.FC = () => {
               </div>
             )}
           </div>
+          <p className="mt-3 max-w-xs text-xs leading-relaxed text-slate-300">
+            {isLiveSession
+              ? 'Javobdan so‘ng mikrofon avtomatik tinglaydi. Gapni bo‘lish uchun sharchani bosing.'
+              : 'Bir marta boshlang. Murabbiy javobidan so‘ng bemalol gapirishda davom eting.'}
+          </p>
+          <p role="status" className="mt-2 text-[11px] text-slate-400">
+            {speechProvider === 'azure'
+              ? 'Nutqni tanish: Azure Speech'
+              : speechProvider === 'browser'
+                ? 'Nutqni tanish: brauzer · Azure ulanmagan'
+                : speechProvider === 'connecting'
+                  ? 'Ovoz xizmatiga ulanmoqda…'
+                  : 'Mikrofonga ruxsat suhbat boshlanganda so‘raladi'}
+          </p>
         </div>
 
         {/* TRANSKRIPSIYA (CHAT KO'RINISHIDA) */}
-        <div className="relative flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border border-white/10 bg-slate-950/40 shadow-inner backdrop-blur-md">
+        <div className="relative flex min-h-[240px] flex-1 flex-col overflow-hidden rounded-2xl border border-white/10 bg-slate-950/40 shadow-inner backdrop-blur-md lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:min-h-0">
+          <div className="flex shrink-0 items-center justify-between gap-2 border-b border-white/10 px-4 py-3">
+            <h2 className="text-sm font-semibold text-slate-100">Suhbat</h2>
+            <span className="text-[11px] text-slate-400">
+              {isLiveSession ? formatTimer(sessionSeconds) : 'Jonli transkripsiya'}
+            </span>
+          </div>
           <div
             ref={chatContainerRef}
-            className="scrollbar-thin scrollbar-thumb-white/10 flex-1 space-y-3 overflow-y-auto p-3.5 sm:p-4"
+            role="log"
+            aria-label="Suhbat transkripsiyasi"
+            aria-live="polite"
+            className="scrollbar-thin scrollbar-thumb-white/10 max-h-[45dvh] min-h-0 flex-1 space-y-3 overflow-y-auto p-3.5 sm:p-4 lg:max-h-none"
           >
             {chatHistory.length === 0 && !currentTranscript && (
               <div className="flex h-full flex-col items-center justify-center py-6 text-center text-slate-400">
@@ -650,7 +710,7 @@ const SpeakingCoachPage: React.FC = () => {
                   Suhbat transkripsiyasi shu yerda chiqadi
                 </p>
                 <p className="mt-1 max-w-xs text-[11px] text-slate-400">
-                  Sharchani bosing va yapon tilida erkin so‘zlang. Xatolaringiz shu yerda yashil
+                  Suhbatni boshlang va yapon tilida erkin so‘zlang. Xatolaringiz shu yerda yashil
                   rangda to‘g‘rilanadi.
                 </p>
               </div>
@@ -778,19 +838,21 @@ const SpeakingCoachPage: React.FC = () => {
         </div>
 
         {/* SSENARIYLAR BLOKI (Joyida qoladi, tanlangan ssenariy suhbat mavzusi bo'ladi) */}
-        <div className="mt-2.5 shrink-0 rounded-2xl border border-white/10 bg-slate-950/40 p-2.5 backdrop-blur-md sm:p-3">
-          <div className="mb-2 flex items-center justify-between">
+        <div className="shrink-0 rounded-2xl border border-white/10 bg-slate-950/40 p-2.5 backdrop-blur-md sm:p-3 lg:col-start-1 lg:row-start-2">
+          <div className="mb-2 flex flex-wrap items-center justify-between gap-1">
             <span className="text-xs font-bold uppercase tracking-wider text-slate-300">
               Ssenariylar
             </span>
             <span className="text-[11px] text-slate-400">
               {activeScenario
                 ? `Mavzu: ${activeScenario.title_uz}`
-                : 'Mavzuni tanlang yoki erkin gapiring'}
+                : isLiveSession
+                  ? 'Mavzuni yangi suhbatda almashtirish mumkin'
+                  : 'Mavzuni tanlang yoki erkin gapiring'}
             </span>
           </div>
 
-          <div className="scrollbar-hide flex gap-2 overflow-x-auto pb-1">
+          <div className="flex flex-wrap gap-2 pb-1">
             {TOPIC_PRESETS.map((preset, index) => {
               const promptTitle = PROMPT_SUGGESTIONS[index]?.title || preset.label;
               const isSelected =
@@ -803,6 +865,8 @@ const SpeakingCoachPage: React.FC = () => {
                 <button
                   key={preset.id}
                   type="button"
+                  disabled={isLiveSession}
+                  aria-pressed={isSelected}
                   onClick={() => {
                     if (isSelected) {
                       setSelectedTopicTitle(null);
@@ -810,6 +874,7 @@ const SpeakingCoachPage: React.FC = () => {
                     } else {
                       setSelectedTopicTitle(promptTitle);
                       const immediate = ScenarioService.getImmediateScenarios();
+                      setActiveScenario(null);
                       const match = immediate.find(
                         (s) =>
                           s.title_uz.toLowerCase().includes(preset.label.toLowerCase()) ||
@@ -820,7 +885,7 @@ const SpeakingCoachPage: React.FC = () => {
                       }
                     }
                   }}
-                  className={`flex min-h-[40px] shrink-0 items-center gap-2 rounded-xl border px-3 text-xs font-medium transition active:scale-95 ${
+                  className={`flex min-h-[40px] shrink-0 items-center gap-2 rounded-xl border px-3 text-xs font-medium transition active:scale-95 disabled:cursor-not-allowed disabled:opacity-60 ${
                     isSelected
                       ? 'border-primary/80 bg-primary/20 text-white shadow-md'
                       : 'border-white/10 bg-white/5 text-slate-200 hover:border-white/20 hover:bg-white/10'
