@@ -1,5 +1,5 @@
 import { parseAIError } from './aiConfig';
-import { callSelectedAIProvider } from './aiCore';
+import { callCoachAI } from '../coachAI';
 import { ErrorVaultService } from '../../services/ErrorVaultService';
 import { ConversationScenario } from '../../components/speaking/scenarioTypes';
 
@@ -32,7 +32,7 @@ export const analyzeSpeech = async (
     `;
 
   try {
-    const text = await callSelectedAIProvider(prompt, undefined, true);
+    const text = await callCoachAI(prompt, undefined, true);
     const cleanedText = text
       .replace(/```json/g, '')
       .replace(/```/g, '')
@@ -813,7 +813,7 @@ export const converseWithCoachStructured = async (
     level,
   );
 
-  const dsResult = await callSelectedAIProvider(userPrompt, systemPrompt, true);
+  const dsResult = await callCoachAI(userPrompt, systemPrompt, true);
   if (!dsResult || dsResult.trim().length === 0) {
     throw new Error(
       "AI_EMPTY_RESPONSE: AI xizmati bo'sh javob qaytardi. Iltimos qaytadan gapiring.",
@@ -976,7 +976,7 @@ export const analyzeSpeakingSession = async (
     `;
 
   try {
-    const response = await callSelectedAIProvider(prompt, undefined, true);
+    const response = await callCoachAI(prompt, undefined, true);
     const cleanedText = response
       .replace(/```json/g, '')
       .replace(/```/g, '')
@@ -1089,7 +1089,7 @@ export const translateTextToUzbek = async (text: string): Promise<string> => {
     `;
 
   try {
-    const dsResult = await callSelectedAIProvider(
+    const dsResult = await callCoachAI(
       prompt,
       'You are an expert real-time translator from Japanese and English to Uzbek. Translate accurately into Uzbek. Output only the pure Uzbek translation.',
       false,

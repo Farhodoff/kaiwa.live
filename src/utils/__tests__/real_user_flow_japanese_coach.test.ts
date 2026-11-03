@@ -10,8 +10,8 @@ import { DEFAULT_SCENARIOS } from '../../data/defaultScenarios';
 import { FlashcardService } from '../../services/FlashcardService';
 import { ScenarioService } from '../../services/ScenarioService';
 
-vi.mock('../ai/aiCore', () => ({
-  callSelectedAIProvider: vi.fn(),
+vi.mock('../coachAI', () => ({
+  callCoachAI: vi.fn(),
   getGenAI: vi.fn(),
   isAIKeyConfigured: vi.fn(() => true),
 }));
@@ -54,7 +54,7 @@ vi.mock('../../lib/supabase', () => ({
   },
 }));
 
-import { callSelectedAIProvider } from '../ai/aiCore';
+import { callCoachAI } from '../coachAI';
 
 describe('REAL USER JOURNEY AUDIT: JAPANESE AI COACH (18-STEP E2E TRACE)', () => {
   beforeEach(() => {
@@ -80,7 +80,7 @@ describe('REAL USER JOURNEY AUDIT: JAPANESE AI COACH (18-STEP E2E TRACE)', () =>
   it('STEPS 7-8: Final transcript sent to AI preserves scenario context and generates pure Japanese response', async () => {
     const restaurantScenario = DEFAULT_SCENARIOS.find((s) => s.id === 'restaurant')!;
 
-    (callSelectedAIProvider as any).mockResolvedValueOnce(
+    (callCoachAI as any).mockResolvedValueOnce(
       JSON.stringify({
         language: 'ja',
         reply: 'かしこまりました。麺の硬さはいかがなさいますか？',

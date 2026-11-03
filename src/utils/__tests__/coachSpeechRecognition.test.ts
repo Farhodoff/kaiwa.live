@@ -96,7 +96,9 @@ describe('Coach speech recognition provider integration', () => {
     const provider = vi.fn();
     const recognition = new CoachSpeechRecognition(provider);
     recognition.start();
-    await vi.waitFor(() => expect(provider).toHaveBeenLastCalledWith('browser'));
+    await vi.waitFor(() =>
+      expect(provider).toHaveBeenLastCalledWith('browser', expect.any(String)),
+    );
     recognition.abort();
   });
 

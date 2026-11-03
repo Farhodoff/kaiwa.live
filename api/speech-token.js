@@ -60,7 +60,7 @@ export default async function handler(req) {
       }, 401);
     }
     authenticatedUserId = user.id;
-    userRole = user.role || 'user';
+    userRole = user.app_metadata?.role || user.role || 'user';
   }
 
   // 3. Distributed Rate Limiter (30 token requests/min per client)

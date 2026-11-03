@@ -65,6 +65,8 @@ const StudyRoomPage: React.FC = () => {
   const [isScreenSharing, setIsScreenSharing] = useState(false);
 
   const pcsRef = useRef<Record<string, RTCPeerConnection>>({});
+  const pendingIceCandidatesRef = useRef<Record<string, RTCIceCandidateInit[]>>({});
+  const renegotiatePeerRef = useRef<((peerId: string) => Promise<void>) | null>(null);
   const localStreamRef = useRef<MediaStream | null>(null);
   const screenStreamRef = useRef<MediaStream | null>(null);
   const userProfileRef = useRef<UserProfile | null>(null);
@@ -73,6 +75,31 @@ const StudyRoomPage: React.FC = () => {
   useEffect(() => {
     userProfileRef.current = userProfile;
   }, [userProfile]);
+
+  // Media permission can resolve after a peer has already been discovered.
+  // Attach late tracks and renegotiate so the existing peer receives audio/video.
+  useEffect(() => {
+    if (!localStream || !joinedCallRef.current || !userProfile) return;
+
+    Object.entries(pcsRef.current).forEach(([peerId, pc]) => {
+      const existingKinds = new Set(
+        pc
+          .getSenders()
+          .map((sender) => sender.track?.kind)
+          .filter((kind): kind is 'audio' | 'video' => Boolean(kind)),
+      );
+
+      localStream.getTracks().forEach((track) => {
+        if (!existingKinds.has(track.kind as 'audio' | 'video')) {
+          pc.addTrack(track, localStream);
+        }
+      });
+
+      if (userProfile.id < peerId) {
+        void renegotiatePeerRef.current?.(peerId);
+      }
+    });
+  }, [localStream, userProfile]);
 
   // Realtime channel
   const channelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
@@ -324,6 +351,7 @@ const StudyRoomPage: React.FC = () => {
 
     const initiateCall = async (peerId: string) => {
       const pc = createPeerConnection(peerId);
+      if (pc.signalingState !== 'stable') return;
       try {
         const offer = await pc.createOffer();
         await pc.setLocalDescription(offer);
@@ -341,6 +369,7 @@ const StudyRoomPage: React.FC = () => {
         console.error(`Error creating offer for ${peerId}:`, e);
       }
     };
+    renegotiatePeerRef.current = initiateCall;
 
     const setupChannel = async () => {
       // Determine friendly display name
@@ -511,6 +540,11 @@ const StudyRoomPage: React.FC = () => {
               const pc = createPeerConnection(data.senderId);
               try {
                 await pc.setRemoteDescription(new RTCSessionDescription(data.offer));
+                const pendingCandidates = pendingIceCandidatesRef.current[data.senderId] || [];
+                for (const candidate of pendingCandidates) {
+                  await pc.addIceCandidate(new RTCIceCandidate(candidate));
+                }
+                delete pendingIceCandidatesRef.current[data.senderId];
                 const answer = await pc.createAnswer();
                 await pc.setLocalDescription(answer);
 
@@ -541,6 +575,11 @@ const StudyRoomPage: React.FC = () => {
               if (pc) {
                 try {
                   await pc.setRemoteDescription(new RTCSessionDescription(data.answer));
+                  const pendingCandidates = pendingIceCandidatesRef.current[data.senderId] || [];
+                  for (const candidate of pendingCandidates) {
+                    await pc.addIceCandidate(new RTCIceCandidate(candidate));
+                  }
+                  delete pendingIceCandidatesRef.current[data.senderId];
                 } catch (e) {
                   console.error('Failed to handle answer:', e);
                 }
@@ -558,7 +597,12 @@ const StudyRoomPage: React.FC = () => {
               const pc = pcsRef.current[data.senderId];
               if (pc) {
                 try {
-                  await pc.addIceCandidate(new RTCIceCandidate(data.candidate));
+                  if (pc.remoteDescription) {
+                    await pc.addIceCandidate(new RTCIceCandidate(data.candidate));
+                  } else {
+                    pendingIceCandidatesRef.current[data.senderId] ||= [];
+                    pendingIceCandidatesRef.current[data.senderId].push(data.candidate);
+                  }
                 } catch (e) {
                   console.error('Failed to add ICE candidate:', e);
                 }
@@ -595,9 +639,11 @@ const StudyRoomPage: React.FC = () => {
       if (channel) {
         supabase.removeChannel(channel);
       }
+      renegotiatePeerRef.current = null;
       Object.keys(currentPcs).forEach((peerId) => {
         cleanupPeerConnection(peerId);
       });
+      pendingIceCandidatesRef.current = {};
     };
   }, [userProfile, roomId]); // Removed timeLeft, isRunning, pomodoroMode, joinedCall to prevent continuous channel recreation
 

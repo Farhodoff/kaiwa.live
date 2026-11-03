@@ -180,8 +180,12 @@ const SpeakingCoachPage: React.FC = () => {
     isMuted,
     setIsMuted,
     speechProvider,
+    speechConnectionIssue,
+    retrySpeechConnection,
     isPreparingAudio,
     audioError,
+    replyError,
+    retryCoachReply,
     retryCoachAudio,
     sessionSeconds,
     chatHistory,
@@ -211,7 +215,6 @@ const SpeakingCoachPage: React.FC = () => {
   const accumulatedNewWordsRef = useRef(accumulatedNewWords);
   const activeScenarioRef = useRef(activeScenario);
   const selectedTopicTitleRef = useRef(selectedTopicTitle);
-  const wasInterruptedByTabSwitchRef = useRef(false);
 
   useEffect(() => {
     isLiveSessionRef.current = isLiveSession;
@@ -239,7 +242,7 @@ const SpeakingCoachPage: React.FC = () => {
 
   // Save session to history helper
   const endSessionAndSave = useCallback(
-    (reason: 'manual' | 'visibility_hidden' | 'pagehide' | 'unmount') => {
+    (reason: 'manual' | 'pagehide' | 'unmount') => {
       if (!isLiveSessionRef.current) return;
       isLiveSessionRef.current = false;
 
@@ -276,9 +279,7 @@ const SpeakingCoachPage: React.FC = () => {
 
       if (saved) {
         setHistoryCount(SpeakingConversationHistoryService.getSessions().length);
-        if (reason === 'visibility_hidden') {
-          wasInterruptedByTabSwitchRef.current = true;
-        } else if (reason === 'manual') {
+        if (reason === 'manual') {
           toast({
             title: 'Suhbat yakunlandi va tarixga saqlandi',
             description: `${durSecs} soniya davom etdi. Tarix bo'limidan ko'rishingiz mumkin.`,
@@ -292,38 +293,18 @@ const SpeakingCoachPage: React.FC = () => {
   const endSessionAndSaveRef = useRef(endSessionAndSave);
   endSessionAndSaveRef.current = endSessionAndSave;
 
-  // Requirement 6 & 7: Auto-termination on visibilitychange, pagehide, and unmount
+  // Leaving the page ends a session. Switching tabs or opening browser tools does not.
   useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === 'hidden') {
-        if (isLiveSessionRef.current) {
-          endSessionAndSaveRef.current('visibility_hidden');
-        }
-      } else if (document.visibilityState === 'visible') {
-        // User returned to tab
-        if (wasInterruptedByTabSwitchRef.current) {
-          wasInterruptedByTabSwitchRef.current = false;
-          toast({
-            title: 'Suhbat tugatildi va tarixga saqlandi',
-            description:
-              'Boshqa oynaga o‘tganingiz sababli suhbat avtomatik yakunlandi va saqlandi.',
-          });
-        }
-      }
-    };
-
     const handlePageHide = () => {
       if (isLiveSessionRef.current) {
         endSessionAndSaveRef.current('pagehide');
       }
     };
 
-    document.addEventListener('visibilitychange', handleVisibilityChange);
     window.addEventListener('pagehide', handlePageHide);
     window.addEventListener('beforeunload', handlePageHide);
 
     return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener('pagehide', handlePageHide);
       window.removeEventListener('beforeunload', handlePageHide);
       if (isLiveSessionRef.current) {
@@ -555,6 +536,15 @@ const SpeakingCoachPage: React.FC = () => {
               <X size={16} />
             </button>
           </div>
+          {replyError && (
+            <button
+              type="button"
+              onClick={retryCoachReply}
+              className="mt-2 inline-flex min-h-10 items-center gap-2 rounded-lg bg-rose-600 px-3 text-xs font-semibold text-white"
+            >
+              Javobni qayta olish
+            </button>
+          )}
           {audioError && (
             <button
               type="button"
@@ -691,6 +681,22 @@ const SpeakingCoachPage: React.FC = () => {
             >
               {currentTranscript || chatHistory[chatHistory.length - 1]?.content}
             </p>
+          )}
+          {speechProvider === 'browser' && (
+            <div className="mt-3 max-w-md text-xs text-amber-200">
+              <p>
+                {speechConnectionIssue ||
+                  'Azure ulanishi ishga tushmagan; zaxira nutq xizmati ishlayapti.'}
+              </p>
+              <button
+                type="button"
+                disabled={!isLiveSession || isSpeaking || isThinking || isMuted}
+                onClick={retrySpeechConnection}
+                className="mt-1 min-h-10 rounded-lg border border-amber-300/30 px-3 disabled:opacity-50"
+              >
+                Azure’ni qayta ulash
+              </button>
+            </div>
           )}
           <p role="status" className="mt-2 text-[11px] text-slate-400">
             {speechProvider === 'azure'

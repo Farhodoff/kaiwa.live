@@ -22,6 +22,7 @@ import { ActivityLoggingService } from '../services/ActivityLoggingService';
 import { HistoryService } from '../services/HistoryService';
 import { getOrEnsureSpeakingDeck } from '../utils/subjectResolver';
 import { playConversationChime } from '../utils/audioChime';
+import { AIServiceError, isBlockedAIRequest } from '../utils/aiServiceError';
 import { isAcousticEcho } from '../utils/echoFilter';
 import { useSpeechRecognition } from './useSpeechRecognition';
 import { useTTS } from './useTTS';
@@ -72,6 +73,7 @@ export function useSpeakingSessionOrchestrator({
   const [isThinking, setIsThinking] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [audioError, setAudioError] = useState<string | null>(null);
+  const [replyError, setReplyError] = useState<string | null>(null);
   const [sessionSeconds, setSessionSeconds] = useState(0);
   const [chatHistory, setChatHistory] = useState<CoachChatMessage[]>([]);
   const [liveErrors, setLiveErrors] = useState<ErrorTag[]>([]);
@@ -237,7 +239,7 @@ export function useSpeakingSessionOrchestrator({
   }, [persona, targetJlptLevel, setSpeechSpeed]);
 
   const handleSendUserText = useCallback(
-    async (text: string) => {
+    async (text: string, retry = false) => {
       const cleanText = (text || '').trim();
       if (!cleanText || cleanText.length < 2) {
         // Discard empty/noise and unblock continuous listening without freezing
@@ -277,6 +279,7 @@ export function useSpeakingSessionOrchestrator({
 
       isProcessingRef.current = true;
       setIsThinking(true);
+      setReplyError(null);
       setError(null);
 
       stopSpeaking();
@@ -291,7 +294,10 @@ export function useSpeakingSessionOrchestrator({
 
       const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
       const userMsg: CoachChatMessage = { role: 'user', content: cleanText, timestamp: timeStr };
-      const updatedHistory = [...chatHistoryRef.current, userMsg];
+      const updatedHistory =
+        retry && chatHistoryRef.current[chatHistoryRef.current.length - 1]?.role === 'user'
+          ? [...chatHistoryRef.current]
+          : [...chatHistoryRef.current, userMsg];
 
       setChatHistory(updatedHistory);
       chatHistoryRef.current = updatedHistory;
@@ -356,6 +362,7 @@ export function useSpeakingSessionOrchestrator({
           if (abortController.signal.aborted || streamErr?.name === 'AbortError') {
             return;
           }
+          if (isBlockedAIRequest(streamErr)) throw streamErr;
           console.warn(
             '[SpeakingCoach] Streaming dialogue failed, fallback to non-streaming:',
             streamErr,
@@ -541,15 +548,15 @@ export function useSpeakingSessionOrchestrator({
         if (err?.name === 'AbortError' || abortController.signal.aborted) {
           return;
         }
-        console.error('[SpeakingCoach] Dialogue error:', err);
-        setError('Xatolik yuz berdi. Iltimos qaytadan urinib ko‘ring.');
-        if (isLiveSessionRef.current && !isMutedRef.current) {
-          autoListenTimerRef.current = setTimeout(() => {
-            if (isLiveSessionRef.current && !isSpeakingRef.current && !isMutedRef.current) {
-              startListeningRef.current?.();
-            }
-          }, 1000);
-        }
+        console.error('[SpeakingCoach] Dialogue request failed:', err?.name, err?.status);
+        const message =
+          err instanceof AIServiceError
+            ? err.message
+            : 'AI javobini olib bo‘lmadi. Suhbat pauzada; qayta urinib ko‘ring.';
+        isMutedRef.current = true;
+        setIsMuted(true);
+        setReplyError(message);
+        setError(message);
       } finally {
         setIsThinking(false);
         isProcessingRef.current = false;
@@ -589,6 +596,8 @@ export function useSpeakingSessionOrchestrator({
     isSupported,
     audioVolume,
     speechProvider,
+    speechConnectionIssue,
+    retrySpeechConnection,
     startListening,
     commitSpeechNow,
   } = useSpeechRecognition({
@@ -837,6 +846,7 @@ export function useSpeakingSessionOrchestrator({
           : undefined;
 
       setAudioError(null);
+      setReplyError(null);
       let greeting = getCoachConversationOpener(language);
       if (currentScenario) {
         greeting = currentScenario.opening_line_ja || 'こんにちは！会話を始めましょう。';
@@ -871,6 +881,17 @@ export function useSpeakingSessionOrchestrator({
     const speech = lastReply?.ttsText || lastReply?.content;
     if (speech) void speakText(extractSpeechAudioText(speech));
   }, [unlockAudio, speakText]);
+
+  const retryCoachReply = useCallback(() => {
+    const lastUser = [...chatHistoryRef.current]
+      .reverse()
+      .find((message) => message.role === 'user');
+    if (!lastUser || !isLiveSessionRef.current || isProcessingRef.current) return;
+    unlockAudio();
+    isMutedRef.current = false;
+    setIsMuted(false);
+    void handleSendUserText(lastUser.content, true);
+  }, [unlockAudio, handleSendUserText]);
 
   // Global cancellation listener for rapid logout or unmount
   useEffect(() => {
@@ -1137,7 +1158,11 @@ export function useSpeakingSessionOrchestrator({
     audioVolume: effectiveAudioVolume,
     isSupported,
     speechProvider,
+    speechConnectionIssue,
+    retrySpeechConnection,
     audioError,
+    replyError,
+    retryCoachReply,
     retryCoachAudio,
     error,
     setError,

@@ -40,7 +40,7 @@ test('hands-free conversation resumes after a reply and after microphone pause',
   await page.route('**/api/tts', (route) =>
     route.fulfill({ status: 200, contentType: 'audio/wav', body: silentAudio() }),
   );
-  await page.route('**/api/deepseek', (route) => {
+  await page.route('**/api/coach', (route) => {
     const content = JSON.stringify({ reply: 'いいですね。今日は何をしましたか？', new_words: [] });
     return route.fulfill({
       status: 200,
