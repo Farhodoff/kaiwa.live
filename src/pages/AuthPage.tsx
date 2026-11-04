@@ -5,11 +5,14 @@ import { supabase } from '../lib/supabase';
 import ForgotPasswordModal from '../components/auth/ForgotPasswordModal';
 import { AppLogo } from '../components/AppLogo';
 import { motion, AnimatePresence } from 'framer-motion';
+import { getSafeRedirectUrl } from '../utils/redirect';
 
 const AuthPage: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchParams] = useSearchParams();
+  const redirectParam = searchParams.get('redirect');
+  const targetPath = getSafeRedirectUrl(redirectParam, '/');
 
   const isRegisterPath =
     location.pathname === '/register' ||
@@ -44,18 +47,26 @@ const AuthPage: React.FC = () => {
       setIsResetPassword(true);
     }
 
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session && !isResetPassword) {
+        navigate(targetPath, { replace: true });
+      }
+    });
+
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((event) => {
+    } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'PASSWORD_RECOVERY') {
         setIsResetPassword(true);
+      } else if (event === 'SIGNED_IN' && session && !isResetPassword) {
+        navigate(targetPath, { replace: true });
       }
     });
 
     return () => {
       subscription.unsubscribe();
     };
-  }, [location.pathname, searchParams, isRegisterPath]);
+  }, [location.pathname, searchParams, isRegisterPath, targetPath, navigate, isResetPassword]);
 
   const [resetSuccess, setResetSuccess] = useState(false);
   const [email, setEmail] = useState('');
@@ -118,11 +129,15 @@ const AuthPage: React.FC = () => {
 
     try {
       if (isLogin) {
-        const { error } = await supabase.auth.signInWithPassword({
+        const { data: loginData, error } = await supabase.auth.signInWithPassword({
           email,
           password,
         });
         if (error) throw error;
+        if (loginData?.session) {
+          navigate(targetPath, { replace: true });
+          return;
+        }
       } else {
         const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
           email,
@@ -138,7 +153,7 @@ const AuthPage: React.FC = () => {
         if (signUpError) throw signUpError;
 
         if (signUpData?.session) {
-          navigate('/');
+          navigate(targetPath, { replace: true });
           return;
         }
 
@@ -149,7 +164,7 @@ const AuthPage: React.FC = () => {
             password,
           });
           if (!loginErr && loginData?.session) {
-            navigate('/');
+            navigate(targetPath, { replace: true });
             return;
           }
         } catch {
@@ -484,7 +499,10 @@ const AuthPage: React.FC = () => {
                     setIsResetPassword(false);
                     setIsLogin(true);
                     setError('');
-                    navigate('/login', { replace: true });
+                    const redirectQuery = redirectParam
+                      ? `?redirect=${encodeURIComponent(redirectParam)}`
+                      : '';
+                    navigate(`/login${redirectQuery}`, { replace: true });
                   }}
                   className="cursor-pointer text-xs text-muted-foreground transition-colors hover:text-primary"
                 >
@@ -503,7 +521,12 @@ const AuthPage: React.FC = () => {
                     const nextState = !isLogin;
                     setIsLogin(nextState);
                     setError('');
-                    navigate(nextState ? '/login' : '/register', { replace: true });
+                    const redirectQuery = redirectParam
+                      ? `?redirect=${encodeURIComponent(redirectParam)}`
+                      : '';
+                    navigate(nextState ? `/login${redirectQuery}` : `/register${redirectQuery}`, {
+                      replace: true,
+                    });
                   }}
                   className="cursor-pointer font-bold text-primary transition-colors hover:underline"
                 >

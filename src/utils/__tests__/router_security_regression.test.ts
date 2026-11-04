@@ -37,4 +37,19 @@ describe('Router Security & Navigation Closure (BUG #19)', () => {
     expect(isAdminEmail('attacker_fsoyilov@gmail.com')).toBe(false);
     expect(isAdminEmail('fsoyilov@notgmail.com')).toBe(false);
   });
+
+  it('4. Auth redirect parameter safely routes legitimate internal paths and blocks open redirects', async () => {
+    const { getSafeRedirectUrl } = await import('../redirect');
+
+    // Valid destinations
+    expect(getSafeRedirectUrl('/dashboard')).toBe('/dashboard');
+    expect(getSafeRedirectUrl('/settings')).toBe('/settings');
+    expect(getSafeRedirectUrl('/flashcards')).toBe('/flashcards');
+
+    // Open-redirect payloads rejected to fallback
+    expect(getSafeRedirectUrl('//evil.com')).toBe('/');
+    expect(getSafeRedirectUrl('https://evil.com')).toBe('/');
+    expect(getSafeRedirectUrl('/\\evil.com')).toBe('/');
+    expect(getSafeRedirectUrl(null, '/dashboard')).toBe('/dashboard');
+  });
 });
