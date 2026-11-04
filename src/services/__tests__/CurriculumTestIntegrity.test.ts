@@ -27,7 +27,11 @@ describe('Curriculum Test & Practice Integrity Suite', () => {
               if (step.type === 'test' && step.testData?.questions) {
                 for (const q of step.testData.questions) {
                   totalQuestions++;
-                  const norm = q.question
+                  const keySource =
+                    q.audioScript || q.audioUrl
+                      ? `${q.question}::${q.audioScript || q.audioUrl}`
+                      : q.question;
+                  const norm = keySource
                     .trim()
                     .toLowerCase()
                     .replace(/[\s\u3000]+/g, ' ');

@@ -52,7 +52,7 @@ describe('JLPT N3 curriculum structure', () => {
     expect(new Set(titles).size).toBe(titles.length);
   });
 
-  it('uses authentic N3 audio assets in listening lessons that exist on disk', () => {
+  it('checks that referenced N3 listening audio files exist on disk', () => {
     const listeningLessons = JAPANESE_N3_LESSONS.filter((lesson) =>
       lesson.title.match(/Listening|Choukai|聴解/i),
     );
@@ -71,6 +71,24 @@ describe('JLPT N3 curriculum structure', () => {
         expect(fs.existsSync(diskPath)).toBe(true);
       }
     }
+  });
+
+  it.each([
+    ['ja-n3-u1-l2-practice-06', '4: 会社'],
+    ['ja-n3-u1-l3-practice-06', '1: 歌'],
+    ['ja-n3-u2-l2-practice-06', '1: 帰宅後'],
+    ['ja-n3-u3-l1-practice-06', '2: 出張'],
+    ['ja-n3-u3-l2-practice-06', '2: 喜'],
+    ['ja-n3-u3-l3-practice-06', '4: 大'],
+    ['ja-n3-u4-l1-practice-06', '1: 優'],
+    ['ja-n3-u4-l4-practice-06', '3: 伝'],
+    ['ja-n3-u4-l5-practice-06', '2: 手'],
+  ])('scores the third blank correctly for %s', (id, expected) => {
+    const exercise = JAPANESE_N3_LESSONS.flatMap((lesson) => lesson.steps)
+      .flatMap((step) => step.practiceData?.exercises ?? [])
+      .find((item) => item.id === id);
+    expect(exercise).toBeDefined();
+    expect(exercise!.options![exercise!.correctAnswer as number]).toContain(expected);
   });
 
   it('does not reuse identical practice prompts across different lessons', () => {

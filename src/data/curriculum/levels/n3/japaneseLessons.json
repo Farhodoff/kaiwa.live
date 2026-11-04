@@ -19,7 +19,7 @@
         "estimatedMinutes": 5,
         "learnData": {
           "title": "Passive Voice Formation & Meiwaku Passive",
-          "explanation": "1. Guruh 1: Oxirgi \"u\" tovushi \"areru\" ga o'zgaradi: 叱[しか]る -> 叱[しか]られる (urushilmoq), 踏[ふ]む -> 踏[ふ]まれる (bosilmoq). 2. Guruh 2: 食べる -> 食べられる, 褒[ほ]める -> 褒[ほ]められる (maqtashmoq). 3. Guruh 3: する -> される, 来る -> こられる (Korareru). 4. Meiwaku no Ukemi (zararlangan majhul): 雨[あめ]に 降[ふ]られた (Yomg'ir yog'ib noqulay ahvolda qoldim), 電車[でんしゃ]で 足[あし]を 踏[ふ]まれた (Poyezdda oyog'imni bosib olishdi).",
+          "explanation": "1. Guruh 1: Oxirgi \"u\" tovushi \"areru\" ga o'zgaradi: 叱[しか]る -> 叱[しか]られる (urushilmoq), 踏[ふ]む -> 踏[ふ]まれる (bosilmoq). 2. Guruh 2: 食べる -> 食べられる, 褒[ほ]める -> 褒[ほ]められる (maqtalmoq). 3. Guruh 3: する -> される, 来る -> こられる (Korareru). 4. Meiwaku no Ukemi (zararlangan majhul): 雨[あめ]に 降[ふ]られた (Yomg'ir yog'ib noqulay ahvolda qoldim), 電車[でんしゃ]で 足[あし]を 踏[ふ]まれた (Poyezdda oyog'imni bosib olishdi).",
           "vocabulary": [
             {
               "term": "褒[ほ]める",
@@ -68,7 +68,7 @@
             {
               "pattern": "Passive Voice (受身形): Direct & Suffering Passive (迷惑の受身)",
               "meaning": "Majhul nisbat (Ukemi) va yapon tiliga xos \"zararlangan/noqulaylik his qilgan majhul\" shakli.",
-              "usageNotes": "1. Guruh 1: Oxirgi \"u\" tovushi \"areru\" ga o'zgaradi: 叱[しか]る -> 叱[しか]られる (urushilmoq), 踏[ふ]む -> 踏[ふ]まれる (bosilmoq). 2. Guruh 2: 食べる -> 食べられる, 褒[ほ]める -> 褒[ほ]められる (maqtashmoq). 3. Guruh 3: する -> される, 来る -> こられる (Korareru). 4. Meiwaku no Ukemi (zararlangan majhul): 雨[あめ]に 降[ふ]られた (Yomg'ir yog'ib noqulay ahvolda qoldim), 電車[でんしゃ]で 足[あし]を 踏[ふ]まれた (Poyezdda oyog'imni bosib olishdi).",
+              "usageNotes": "1. Guruh 1: Oxirgi \"u\" tovushi \"areru\" ga o'zgaradi: 叱[しか]る -> 叱[しか]られる (urushilmoq), 踏[ふ]む -> 踏[ふ]まれる (bosilmoq). 2. Guruh 2: 食べる -> 食べられる, 褒[ほ]める -> 褒[ほ]められる (maqtalmoq). 3. Guruh 3: する -> される, 来る -> こられる (Korareru). 4. Meiwaku no Ukemi (zararlangan majhul): 雨[あめ]に 降[ふ]られた (Yomg'ir yog'ib noqulay ahvolda qoldim), 電車[でんしゃ]で 足[あし]を 踏[ふ]まれた (Poyezdda oyog'imni bosib olishdi).",
               "examples": [
                 {
                   "sentence": "先生[せんせい]に 褒[ほ]められました。",
@@ -151,7 +151,7 @@
               "id": "ja-n3-u1-l1-practice-05",
               "type": "multiple-choice",
               "prompt": "To'g'ri zarrachani tanlang:\n「この 小説[しょうせつ]は 夏目漱石[なつめそうせき]（　　） 書[か]かれました。」",
-              "options": ["に", "によって", "で", "を"],
+              "options": ["から", "によって", "で", "を"],
               "correctAnswer": 1,
               "explanation": "San'at asari, ilmiy kashfiyot yoki bino muallifi bilan majhul nisbatda ko'pincha 「〜によって」 (tomonidan) qo'llanadi: 漱石によって書かれました.",
               "category": "guided-practice"
@@ -230,7 +230,7 @@
               "id": "ja-n3-u1-l1-practice-11",
               "type": "multiple-choice",
               "category": "grammar-drill",
-              "prompt": "文法ドリル: Passive Voice (受身形): Direct & Suffering Passive (迷惑の受身) の用法を選んでください。 [ja-n3-u1-l1]",
+              "prompt": "Ustoz meni maqtaganini majhul nisbatda ifodalovchi gapni tanlang.",
               "options": [
                 "先生[せんせい]に 褒[ほ]められました。",
                 "部長[ぶちょう]に 叱[しか]られました。",
@@ -258,7 +258,7 @@
               "id": "ja-n3-u1-l1-practice-13",
               "type": "multiple-choice",
               "category": "sentence-building",
-              "prompt": "文脈に合わせて一文を組み立ててください: Majhul nisbat (Ukemi) va yapon tiliga xos \"zararlangan/noqulaylik his qilgan majhul\" shakli. [ja-n3-u1-l1]",
+              "prompt": "«Ustoz tomonidan maqtaldim» ma’nosidagi yaponcha gapni tanlang.",
               "options": [
                 "先生[せんせい]に 褒[ほ]められました。",
                 "部長[ぶちょう]に 叱[しか]られました。",
@@ -547,8 +547,8 @@
                 "3: 悪[わる]いので",
                 "1: 休[やす]ませて"
               ],
-              "correctAnswer": 3,
-              "explanation": "To'g'ri tartib: 「今日は 気分が (2) 悪いので (3) 会社を (4) 休ませて (1★) いただけませんか。」 Yulduzcha 1-variantdagi 休ませて ga to'g'ri keladi.",
+              "correctAnswer": 1,
+              "explanation": "To‘g‘ri tartib: 今日は 気分が → 悪いので → 会社を（★）→ 休ませて いただけませんか。 ★ — 4: 会社を.",
               "category": "guided-practice"
             },
             {
@@ -787,8 +787,8 @@
               "usageNotes": "O'zi xohlamagan holda boshqa birovning tazyiqi yoki talabi bilan biror ishni bajarishga majbur bo'lish. 1. Guruh 1: 書[か]く -> 書[か]かせられる (qisqartmasi: 書[か]かされる), 待[ま]つ -> 待[ま]たされる. 2. Guruh 2: 食べる -> 食べさせられる. 3. Guruh 3: する -> させられる, 来る -> こさせられる.",
               "examples": [
                 {
-                  "sentence": "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                  "translation": "Har kuni yapon tilini o'rganaman."
+                  "sentence": "先生[せんせい]に 日本語[にほんご]を 勉強[べんきょう]させられました。",
+                  "translation": "Ustoz meni yapon tilini o‘rganishga majbur qildi."
                 }
               ]
             }
@@ -927,8 +927,8 @@
                 "3: 歌[うた]わされて",
                 "1: 歌[うた]を"
               ],
-              "correctAnswer": 2,
-              "explanation": "To'g'ri tartib: 「カラオケで 先輩に (2) 苦手な (4) 歌を (1) 歌わされて (3★) しまいました。」 Yulduzcha 3-variantdagi 歌わされて ga to'g'ri keladi.",
+              "correctAnswer": 3,
+              "explanation": "To‘g‘ri tartib: カラオケで 先輩に → 苦手な → 歌を（★）→ 歌わされて しまいました。 ★ — 1: 歌を.",
               "category": "guided-practice"
             },
             {
@@ -993,7 +993,7 @@
               "category": "grammar-drill",
               "prompt": "文法ドリル: Causative-Passive Voice (使役受身形): 〜(さ)せられる (Forced to do) の用法を選んでください。 [ja-n3-u1-l3]",
               "options": [
-                "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
+                "先生[せんせい]に 日本語[にほんご]を 勉強[べんきょう]させられました。",
                 "文脈に合わない表現",
                 "文法的に不自然な表現",
                 "意味が異なる表現"
@@ -1021,7 +1021,7 @@
               "category": "sentence-building",
               "prompt": "文脈に合わせて一文を組み立ててください: Majburan qildirildi: xohlamasa ham biror ishni qilishga majbur bo'lish (Shieki-Ukemi). [ja-n3-u1-l3]",
               "options": [
-                "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
+                "先生[せんせい]に 日本語[にほんご]を 勉強[べんきょう]させられました。",
                 "文脈と無関係な文",
                 "意味の異なる文",
                 "文法の誤った文"
@@ -1033,9 +1033,9 @@
               "id": "ja-n3-u1-l3-practice-14",
               "type": "multiple-choice",
               "category": "reading-application",
-              "prompt": "読解応用: 日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。 この文脈から正しく読み取れる内容はどれですか。 [ja-n3-u1-l3]",
+              "prompt": "読解応用: 先生[せんせい]に 日本語[にほんご]を 勉強[べんきょう]させられました。 この文脈から正しく読み取れる内容はどれですか。 [ja-n3-u1-l3]",
               "options": [
-                "Har kuni yapon tilini o'rganaman.",
+                "Ustoz meni yapon tilini o‘rganishga majbur qildi.",
                 "本文にない情報である",
                 "反対の内容である",
                 "文法形式だけを述べた選択肢"
@@ -1687,7 +1687,7 @@
             {
               "id": "ja-n3-u1-l5-practice-06",
               "type": "multiple-choice",
-              "prompt": "JLPT Yulduzcha (★) savoli:\n「急[いそ]いで　＿＿　＿＿　★　＿＿　しまいました。」",
+              "prompt": "JLPT Yulduzcha (★) savoli:\n「急[いそ]いで　＿＿　＿＿　★　＿＿　痛[いた]めて しまいました。」",
               "options": [
                 "1: 階段[かいだん]で",
                 "2: 転[ころ]んで",
@@ -1695,7 +1695,7 @@
                 "3: 走[はし]ったら"
               ],
               "correctAnswer": 1,
-              "explanation": "To'g'ri tartib: 「急いで 走ったら (3) 階段で (1) 転んで (2★) 足を 痛めてしまいました。」 Yulduzcha 2-variantdagi 転んで ga to'g'ri keladi.",
+              "explanation": "To‘g‘ri tartib: 急いで 走ったら → 階段で → 転んで（★）→ 足を 痛めてしまいました。 ★ — 2: 転んで.",
               "category": "guided-practice"
             },
             {
@@ -2430,9 +2430,14 @@
               "id": "ja-n3-u2-l2-practice-06",
               "type": "multiple-choice",
               "prompt": "JLPT Yulduzcha (★) savoli:\n「風邪[かぜ]を　＿＿　＿＿　★　＿＿　手[て]を 洗[あら]います。」",
-              "options": ["1: 帰宅後[きたくご]に", "4: うがいと", "3: 引[ひ]かない", "2: ように、"],
-              "correctAnswer": 3,
-              "explanation": "To'g'ri tartib: 「風邪を 引かない (3) ように、(2★) 帰宅後に (1) うがいと (4) 手を 洗います。」 Yulduzcha 2-variantdagi ように、 ga to'g'ri keladi.",
+              "options": [
+                "1: 帰宅後[きたくご]に",
+                "4: うがいを して",
+                "3: 引[ひ]かない",
+                "2: ように、"
+              ],
+              "correctAnswer": 0,
+              "explanation": "To‘g‘ri tartib: 風邪を 引かない → ように → 帰宅後に（★）→ うがいをして 手を洗います。 ★ — 1: 帰宅後に.",
               "category": "guided-practice"
             },
             {
@@ -3932,15 +3937,15 @@
             {
               "id": "ja-n3-u3-l1-practice-06",
               "type": "multiple-choice",
-              "prompt": "JLPT Yulduzcha (★) savoli:\n「部長[ぶちょう]は　＿＿　＿＿　★　＿＿　なられました。」",
+              "prompt": "JLPT Yulduzcha (★) savoli:\n「部長[ぶちょう]は　＿＿　＿＿　★　＿＿　なりました。」",
               "options": [
                 "2: 出張[しゅっちょう]に",
                 "4: お出[で]かけに",
                 "1: 新幹線[しんかんせん]で",
                 "3: 大阪[おおさか]へ"
               ],
-              "correctAnswer": 1,
-              "explanation": "To'g'ri tartib: 「部長は 新幹線で (1) 大阪へ (3) 出張に (2) お出かけに (4★) なられました。」 Yulduzcha 4-variantdagi お出かけに ga to'g'ri keladi.",
+              "correctAnswer": 0,
+              "explanation": "To‘g‘ri tartib: 部長は 新幹線で → 大阪へ → 出張に（★）→ お出かけに なりました。 ★ — 2: 出張に.",
               "category": "guided-practice"
             },
             {
@@ -4329,8 +4334,8 @@
                 "1: 参[まい]りたいと",
                 "4: ぜひ"
               ],
-              "correctAnswer": 2,
-              "explanation": "To'g'ri tartib: 「明日の パーティーには (3) ぜひ (4) 喜んで (2) 参りたいと (1★) 存じます。」 Yulduzcha 1-variantdagi 参りたいと ga to'g'ri keladi.",
+              "correctAnswer": 0,
+              "explanation": "To‘g‘ri tartib: 明日の パーティーには → ぜひ → 喜んで（★）→ 参りたいと 存じます。 ★ — 2: 喜んで.",
               "category": "guided-practice"
             },
             {
@@ -4699,8 +4704,8 @@
                 "2: 私[わたし]たちの",
                 "1: 影響[えいきょう]を"
               ],
-              "correctAnswer": 3,
-              "explanation": "To'g'ri tartib: 「環境問題は 私たちの (2) 生活に (3) 大きな (4) 影響を (1★) 与えます。」 Yulduzcha 1-variantdagi 影響を ga to'g'ri keladi.",
+              "correctAnswer": 0,
+              "explanation": "To‘g‘ri tartib: 環境問題は 私たちの → 生活に → 大きな（★）→ 影響を 与えます。 ★ — 4: 大きな.",
               "category": "guided-practice"
             },
             {
@@ -5845,11 +5850,11 @@
               "options": [
                 "3: 誰[だれ]にでも",
                 "1: 優[やさ]しい",
-                "4: 親切[しんせつ]な",
-                "2: 性格[せいかく]で"
+                "4: 親切[しんせつ]で",
+                "2: 性格[せいかく]である"
               ],
-              "correctAnswer": 3,
-              "explanation": "To'g'ri tartib: 「彼は 誰にでも (3) 親切な (4) 優しい (1★) 性格で (2) ある 反面、頑固なところがある。」 Yulduzcha 1-variantdagi 優しい ga to'g'ri keladi.",
+              "correctAnswer": 1,
+              "explanation": "To‘g‘ri tartib: 彼は 誰にでも → 親切で → 優しい（★）→ 性格である 反面、頑固なところがある。 ★ — 1: 優しい.",
               "category": "guided-practice"
             },
             {
@@ -6968,7 +6973,7 @@
             {
               "id": "ja-n3-u4-l4-practice-06",
               "type": "multiple-choice",
-              "prompt": "JLPT Yulduzcha (★) savoli:\n「筆者[ひっしゃ]が　＿＿　＿＿　★　＿＿　大切[たいせつ]です。」",
+              "prompt": "JLPT Yulduzcha (★) savoli:\n「＿＿　筆者[ひっしゃ]が　＿＿　★　＿＿　大切[たいせつ]です。」",
               "options": [
                 "2: 読解[どっかい]では",
                 "3: 伝[つた]えたい 主張[しゅちょう]を",
@@ -6976,7 +6981,7 @@
                 "4: つかむことが"
               ],
               "correctAnswer": 1,
-              "explanation": "To'g'ri tartib: 「読解では (2) 筆者が (1) 最も (3★) 伝えたい 主張を (3) つかむことが (4) 大切です。」 Yulduzcha 3-variantdagi 主張を ga to'g'ri keladi.",
+              "explanation": "To‘g‘ri tartib: 読解では → 筆者が 最も → 伝えたい主張を（★）→ つかむことが 大切です。 ★ — 3: 伝えたい主張を.",
               "category": "guided-practice"
             },
             {
@@ -7391,8 +7396,8 @@
                 "1: 見[み]かけたら、",
                 "4: 人[ひと]を"
               ],
-              "correctAnswer": 1,
-              "explanation": "To'g'ri tartib: 「困っている 人を (4) 見かけたら、(1) 手を (2) 貸してあげる (3★) べきだ。」 Yulduzcha 3-variantdagi 貸してあげる ga to'g'ri keladi.",
+              "correctAnswer": 0,
+              "explanation": "To‘g‘ri tartib: 困っている 人を → 見かけたら → 手を（★）→ 貸してあげる べきだ。 ★ — 2: 手を.",
               "category": "guided-practice"
             },
             {

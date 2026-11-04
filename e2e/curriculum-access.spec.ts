@@ -40,3 +40,12 @@ test('N4 listening opens directly without showing the audio transcript', async (
   });
   await expect(page.getByText('どうして 遅れたんですか。')).not.toBeVisible();
 });
+
+test('a learner can open the N3 course and its first lesson', async ({ page }) => {
+  await page.goto('/jlpt?level=n3');
+  await page.getByRole('button', { name: /^Passive Voice.*darsni boshlash/i }).click();
+  await expect(page).toHaveURL(/\/lesson\/ja-n3-u1-l1$/);
+  await expect(page.getByRole('heading', { level: 1, name: /Passive Voice/ })).toBeVisible();
+  await page.getByRole('button', { name: 'Chiqish' }).click();
+  await expect(page).toHaveURL(/\/jlpt\?level=n3/);
+});
