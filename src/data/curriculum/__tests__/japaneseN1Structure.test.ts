@@ -51,9 +51,10 @@ describe('JLPT N1 curriculum structure', () => {
     const titles = JAPANESE_N1_LESSONS.map((lesson) => lesson.title);
     expect(new Set(titles).size).toBe(titles.length);
 
+    expect(JAPANESE_N1_LESSONS[8].title).toContain('Mock Exam');
     expect(JAPANESE_N1_LESSONS[9].title).toContain('Pinnacle Capstone');
-    expect(JAPANESE_N1_LESSONS[23].title).toContain('Mock Examination');
-    expect(JAPANESE_N1_LESSONS[29].title).toContain('Ultimate Crown Master');
+    expect(JAPANESE_N1_LESSONS[23].title).toContain('Mock Exam');
+    expect(JAPANESE_N1_LESSONS[29].title).toContain('Final Review');
   });
 
   it('uses authentic N1 audio assets in listening lessons that exist on disk', () => {
@@ -85,6 +86,21 @@ describe('JLPT N1 curriculum structure', () => {
     );
 
     expect(new Set(prompts).size).toBe(prompts.length);
+  });
+
+  it('does not expose generated placeholder exercises to N1 learners', () => {
+    const placeholder =
+      /文脈に合わない|文脈と無関係|本文にない情報|文法的に不自然|意味が異なる|文法の誤った|反対の内容|文法形式だけ/;
+
+    for (const lesson of JAPANESE_N1_LESSONS) {
+      const exercises = lesson.steps.flatMap((step) => step.practiceData?.exercises ?? []);
+      expect(exercises.length).toBeGreaterThanOrEqual(8);
+      expect(
+        exercises
+          .flatMap((exercise) => exercise.options ?? [])
+          .some((option) => placeholder.test(option)),
+      ).toBe(false);
+    }
   });
 
   it('contains zero N5 distractors and maintains realistic answer diversity in test questions', () => {

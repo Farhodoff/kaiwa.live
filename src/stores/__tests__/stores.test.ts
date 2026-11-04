@@ -13,6 +13,7 @@ vi.mock('../../utils/storage/safeLocalStorage', () => ({
   safeLocalStorage: {
     getJSON: vi.fn(),
     setJSON: vi.fn(),
+    removeItem: vi.fn(),
   },
 }));
 
@@ -30,6 +31,15 @@ describe('Zustand Stores', () => {
 
       expect(useAuthStore.getState().user).toEqual(mockUser);
       expect(safeLocalStorage.setJSON).toHaveBeenCalledWith('study_planner_user_cache', mockUser);
+    });
+
+    it('should clear user and remove cache when user is null', () => {
+      const { setUser } = useAuthStore.getState();
+
+      setUser(null);
+
+      expect(useAuthStore.getState().user).toBeNull();
+      expect(safeLocalStorage.removeItem).toHaveBeenCalledWith('study_planner_user_cache');
     });
 
     it('should set loading state', () => {

@@ -32,7 +32,11 @@ export const useAuthStore = create<AuthState>((set) => ({
       ? false
       : true,
   setUser: (user) => {
-    safeLocalStorage.setJSON('study_planner_user_cache', user);
+    if (user) {
+      safeLocalStorage.setJSON('study_planner_user_cache', user);
+    } else {
+      safeLocalStorage.removeItem('study_planner_user_cache');
+    }
     set({ user });
   },
   setLoading: (loading) => set({ loading }),

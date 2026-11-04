@@ -160,31 +160,22 @@ const App: React.FC = () => {
     }
     if (typeof window !== 'undefined') {
       try {
-        const rawUser = localStorage.getItem('study_planner_user_cache');
-        if (rawUser) {
-          const parsed = JSON.parse(rawUser);
-          if (parsed && parsed.email) {
-            return {
-              access_token: 'cached-token',
-              token_type: 'bearer',
-              expires_in: 360000,
-              refresh_token: 'cached-refresh',
-              user: parsed,
-            } as unknown as Session;
-          }
-        }
         for (let i = 0; i < localStorage.length; i++) {
           const key = localStorage.key(i);
           if (key && (key.includes('auth-token') || key.includes('supabase.auth.token'))) {
             const raw = localStorage.getItem(key);
             if (raw) {
               const parsed = JSON.parse(raw);
+              const candidate = parsed.currentSession || parsed;
               if (
-                parsed &&
-                (parsed.access_token ||
-                  (parsed.currentSession && parsed.currentSession.access_token))
+                candidate &&
+                candidate.access_token &&
+                candidate.access_token !== 'cached-token'
               ) {
-                return parsed.currentSession || parsed;
+                if (candidate.expires_at && candidate.expires_at * 1000 < Date.now()) {
+                  continue;
+                }
+                return candidate;
               }
             }
           }
@@ -214,9 +205,17 @@ const App: React.FC = () => {
           const tgAuth = initTelegramAuth();
           if (tgAuth?.session) {
             setSession(tgAuth.session);
+          } else {
+            setSession(null);
+            useAuthStore.getState().setUser(null);
+            safeLocalStorage.removeItem('study_planner_user_cache');
           }
         } else if (isPublicPreviewActive()) {
           setSession(MOCK_PREVIEW_SESSION as unknown as Session);
+        } else {
+          setSession(null);
+          useAuthStore.getState().setUser(null);
+          safeLocalStorage.removeItem('study_planner_user_cache');
         }
         setIsLoading(false);
       })
@@ -227,9 +226,17 @@ const App: React.FC = () => {
           const tgAuth = initTelegramAuth();
           if (tgAuth?.session) {
             setSession(tgAuth.session);
+          } else {
+            setSession(null);
+            useAuthStore.getState().setUser(null);
+            safeLocalStorage.removeItem('study_planner_user_cache');
           }
         } else if (isPublicPreviewActive()) {
           setSession(MOCK_PREVIEW_SESSION as unknown as Session);
+        } else {
+          setSession(null);
+          useAuthStore.getState().setUser(null);
+          safeLocalStorage.removeItem('study_planner_user_cache');
         }
         setIsLoading(false);
       });

@@ -97,6 +97,21 @@ describe('JLPT N2 curriculum structure', () => {
     expect(new Set(prompts).size).toBe(prompts.length);
   });
 
+  it('does not expose generated placeholder exercises to N2 learners', () => {
+    const placeholder =
+      /文脈に合わない|文脈と無関係|本文にない情報|文法的に不自然|意味が異なる|文法の誤った|反対の内容|文法形式だけ/;
+
+    for (const lesson of JAPANESE_N2_LESSONS) {
+      const exercises = lesson.steps.flatMap((step) => step.practiceData?.exercises ?? []);
+      expect(exercises.length).toBeGreaterThanOrEqual(8);
+      expect(
+        exercises
+          .flatMap((exercise) => exercise.options ?? [])
+          .some((option) => placeholder.test(option)),
+      ).toBe(false);
+    }
+  });
+
   it('contains zero dummy/placeholder distractors and maintains realistic answer diversity', () => {
     const forbiddenPhrases = [
       "Umuman aloqasi bo'lmagan so'z",

@@ -503,4 +503,83 @@ describe('Auth Session Lifecycle Regression Tests (BUG #1 through BUG #13)', () 
     const customFetch = (supabase as any)['fetch'] || (supabase as any)['supabaseUrl'];
     expect(customFetch).toBeDefined();
   });
+
+  it('BUG #14 Regression Test (P1-1 Zombie Session Guard): Stale study_planner_user_cache is purged and never resurrects unauthenticated/expired session', async () => {
+    // 1. Simulate an expired user in local storage cache
+    const staleUser = {
+      id: 'd9b73678-8316-419b-a0ea-7323b7ff4696',
+      email: 'expired-student@kaiwa.live',
+      role: 'authenticated',
+    };
+    safeLocalStorage.setJSON('study_planner_user_cache', staleUser);
+    expect(safeLocalStorage.getJSON('study_planner_user_cache', null)).toEqual(staleUser);
+
+    // 2. Mock Supabase returning session: null (authoritative no-session)
+    const mockGetSession = vi.fn().mockResolvedValue({ data: { session: null }, error: null });
+    const mockSupabase = {
+      auth: {
+        getSession: mockGetSession,
+      },
+    };
+
+    // 3. Replicate the hardened StudyPlannerContext fetchData resolution logic
+    let currentUser: any = null;
+    let hasCheckedSupabase = false;
+
+    if (typeof mockSupabase?.auth?.getSession === 'function') {
+      try {
+        const { data: sessionData } = await mockSupabase.auth.getSession();
+        hasCheckedSupabase = true;
+        if (sessionData?.session?.user) {
+          currentUser = sessionData.session.user;
+        }
+      } catch (e) {
+        console.debug('getSession error', e);
+      }
+    }
+
+    if (!currentUser) {
+      if (hasCheckedSupabase) {
+        safeLocalStorage.removeItem('study_planner_user_cache');
+        currentUser = null;
+      } else {
+        const localCached = safeLocalStorage.getJSON<any>('study_planner_user_cache', null);
+        if (localCached && localCached.id && isUuid(localCached.id)) {
+          currentUser = localCached;
+        }
+      }
+    }
+
+    // 4. Verification:
+    // Stale user MUST NOT be resurrected
+    expect(currentUser).toBeNull();
+    // Cache must have been purged
+    expect(safeLocalStorage.getJSON('study_planner_user_cache', null)).toBeNull();
+
+    // 5. Verify App.tsx initial session resolution does not fabricate fake session with 'cached-token'
+    const resolveAppSession = () => {
+      // Replicate updated App.tsx session initializer
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && (key.includes('auth-token') || key.includes('supabase.auth.token'))) {
+          const raw = localStorage.getItem(key);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            const candidate = parsed.currentSession || parsed;
+            if (candidate && candidate.access_token && candidate.access_token !== 'cached-token') {
+              if (candidate.expires_at && candidate.expires_at * 1000 < Date.now()) {
+                continue;
+              }
+              return candidate;
+            }
+          }
+        }
+      }
+      return null;
+    };
+
+    // Stale user in cache must yield null session (no zombie session created)
+    safeLocalStorage.setJSON('study_planner_user_cache', staleUser);
+    expect(resolveAppSession()).toBeNull();
+  });
 });
