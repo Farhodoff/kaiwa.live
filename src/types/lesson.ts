@@ -101,6 +101,7 @@ export interface PracticeExercise {
     | 'kanji-writing';
   prompt: string;
   audioUrl?: string; // Real CD audio track for listening practice
+  audioScript?: string; // Text used to synthesize question-specific listening audio
   audioTitle?: string;
   options?: string[];
   correctAnswer: string | number;

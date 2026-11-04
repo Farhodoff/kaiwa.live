@@ -5346,7 +5346,7 @@
             {
               "id": "ja-n3-u3-l5-practice-01",
               "type": "multiple-choice",
-              "audioUrl": "/audio/choukai/n3/40 Track 40.mp3",
+              "audioScript": "今度の日曜日、一緒に映画を見に行きませんか。",
               "prompt": "【聴解[ちょうかい]・即時応答[そくじおうとう]】\nAudioni tinglang va savolga eng to'g'ri, tabiiy javobni tanlang:",
               "options": [
                 "いいえ、行[い]きませんでした",
@@ -10095,42 +10095,42 @@
             {
               "id": "ja-n3-u6-l2-practice-02",
               "type": "multiple-choice",
-              "prompt": "Gapni to'g'ri tartibda yig'ing va ★ o'rnidagi so'zni toping:\n「どんなに （　） （　） （★） （　） あきらめない。」\n1. 困難[こんなん]でも　2. 夢[ゆめ]を　3. ことがあっても　4. 私は",
+              "prompt": "Gapni to'g'ri tartibda yig'ing va ★ o'rnidagi so'zni toping:\n「どんなに （　） （　） （★） （　） あきらめない。」\n1. 困難[こんなん]な　2. 夢[ゆめ]を　3. ことがあっても　4. 私は",
               "options": ["2 (夢を)", "1 (困難でも)", "3 (ことがあっても)", "4 (私は)"],
-              "correctAnswer": 0,
-              "explanation": "To'g'ri tartib: どんなに [1. 困難な] (yoki 4. 私は 1. 困難な / どんなに 1. 困難な 3. ことがあっても ★2. 夢を あきらめない). 3-o'rindagi ★ — 2 (夢を).",
+              "correctAnswer": 3,
+              "explanation": "To'g'ri tartib: どんなに 困難なことがあっても、私は夢をあきらめない。 3-o'rindagi ★ — 4 (私は).",
               "category": "guided-practice"
             },
             {
               "id": "ja-n3-u6-l2-practice-03",
               "type": "multiple-choice",
-              "prompt": "Gapni yig'ing va ★ o'rnini aniqlang:\n「健康の （　） （★） （　） （　） 運動を 始めている。」\n1. ために　2. 毎日　3. ジョギングなどの　4. なにかしらの",
-              "options": ["3 (ジョギングなどの)", "1 (ために)", "2 (毎日)", "4 (なにかしらの)"],
-              "correctAnswer": 3,
-              "explanation": "Tartib: 健康の [1. ために] [★4. なにかしらの] [3. ジョギングなどの] [2. 毎日] 運動を始めている (yoki 1 -> 4 -> 3 -> 2). ★ o'rnida 4.",
+              "prompt": "Gapni yig'ing va ★ o'rnini aniqlang:\n「健康[けんこう]を （　） （　） （★） （　）。」\n1. 維持[いじ]　2. する　3. ために　4. 毎日[まいにち] 運動[うんどう]している",
+              "options": ["3 (ために)", "1 (維持)", "2 (する)", "4 (毎日運動している)"],
+              "correctAnswer": 0,
+              "explanation": "Tartib: 健康を維持するために、毎日運動している。 3-o'rindagi ★ — 3 (ために).",
               "category": "guided-practice"
             },
             {
               "id": "ja-n3-u6-l2-practice-04",
               "type": "multiple-choice",
-              "prompt": "Gapni yig'ing va ★ o'rnidagi variantni toping:\n「試験に （　） （　） （★） （　） 悔[くや]しい。」\n1. 一生懸命[いっしょうけんめい]　2. 落ちてしまって　3. 勉強したのに　4. 合格のために",
+              "prompt": "Gapni yig'ing va ★ o'rnidagi variantni toping:\n「試験[しけん]に 合格[ごうかく]する （　） （　） （★） （　）。」\n1. ために　2. 一生懸命[いっしょうけんめい]　3. 勉強[べんきょう]した　4. のに 落[お]ちてしまって 悔[くや]しい",
               "options": [
-                "3 (勉強したのに)",
-                "4 (合格のために)",
-                "2 (落ちてしまって)",
-                "1 (一生懸命)"
+                "3 (勉強した)",
+                "4 (のに落ちてしまって悔しい)",
+                "2 (一生懸命)",
+                "1 (ために)"
               ],
-              "correctAnswer": 2,
-              "explanation": "Tartib: 試験に [4. 合格のために] [1. 一生懸命] [3. 勉強したのに] [★2. 落ちてしまって] 悔しい. ★ — 2 (yoki 4-1-3-2 tartibida 3-o'rin 3).",
+              "correctAnswer": 0,
+              "explanation": "Tartib: 試験に合格するために一生懸命勉強したのに、落ちてしまって悔しい。 3-o'rindagi ★ — 3 (勉強した).",
               "category": "guided-practice"
             },
             {
               "id": "ja-n3-u6-l2-practice-05",
               "type": "multiple-choice",
-              "prompt": "«〜わけにはいかない» grammatikasini o'z ichiga olgan gap tartibida ★ o'rnini toping:\n「大切な （　） （★） （　） （　） 休むわけにはいかない。」\n1. だから　2. 会議が　3. ある日　4. 今日は",
-              "options": ["1 (だから)", "3 (ある日)", "4 (今日は)", "2 (会議が)"],
-              "correctAnswer": 3,
-              "explanation": "Tartib: 大切な [2. 会議が] [★3. ある日] [1. だから] (yoki 4. 今日は 大切な 2. 会議が ★3. ある日 だから...).",
+              "prompt": "«〜わけにはいかない» grammatikasini o'z ichiga olgan gap tartibida ★ o'rnini toping:\n「今日[きょう]は （　） （　） （★） （　）休[やす]むわけにはいかない。」\n1. 大切[たいせつ]な　2. 会議[かいぎ]が　3. ある　4. から",
+              "options": ["4 (から)", "3 (ある)", "1 (大切な)", "2 (会議が)"],
+              "correctAnswer": 1,
+              "explanation": "Tartib: 今日は大切な会議があるから休むわけにはいかない。 3-o'rindagi ★ — 3 (ある).",
               "category": "guided-practice"
             },
             {
@@ -10147,8 +10147,8 @@
               "type": "multiple-choice",
               "prompt": "«〜さえ〜ば» qolipidagi gap tartibi va ★ pozitsiyasi:\n「携帯電話 （　） （★） （　） （　） 困らない。」\n1. あれ[ば]　2. さえ　3. どこへ行っても　4. 一台",
               "options": ["4 (一台)", "3 (どこへ行っても)", "2 (さえ)", "1 (あれば)"],
-              "correctAnswer": 2,
-              "explanation": "Tartib: 携帯電話 [4. 一台] [★2. さえ] [1. あれば] [3. どこへ行っても] 困らない. ★ o'rni — 2 (さえ).",
+              "correctAnswer": 3,
+              "explanation": "Tartib: 携帯電話一台さえあれば、どこへ行っても困らない。 3-o'rindagi ★ — 1 (あれば).",
               "category": "guided-practice"
             },
             {
@@ -10163,10 +10163,10 @@
             {
               "id": "ja-n3-u6-l2-practice-09",
               "type": "multiple-choice",
-              "prompt": "Yulduzcha savollarida «〜だけでなく〜も» (faqatgina emas, balki ... ham) qolipini joylashtirish:\n「彼は （　） （★） （　） （　） 英語も 流暢[りゅうちょう]だ。」\n1. 日本語　2. のみならず　3. はもちろん　4. 話せる",
-              "options": ["1 (日本語)", "4 (話せる)", "3 (はもちろん)", "2 (のみならず)"],
+              "prompt": "Yulduzcha savollarida «〜だけでなく〜も» (faqatgina emas, balki ... ham) qolipini joylashtirish:\n「彼[かれ]は （　） （　） （★） （　）英語[えいご]も 流暢[りゅうちょう]だ。」\n1. 日本語[にほんご]が　2. とても　3. 話[はな]せる　4. だけでなく、",
+              "options": ["1 (日本語が)", "4 (だけでなく)", "3 (話せる)", "2 (とても)"],
               "correctAnswer": 2,
-              "explanation": "Tartib: 彼は [1. 日本語] [★3. はもちろん] (yoki 1. 日本語が 4. 話せる 2. のみならず...). Bloklash qoidasi grammatik bog'lovchini darhol ochib beradi.",
+              "explanation": "Tartib: 彼は日本語がとても話せるだけでなく、英語も流暢だ。 3-o'rindagi ★ — 3 (話せる).",
               "category": "guided-practice"
             },
             {
@@ -10187,15 +10187,10 @@
               "id": "ja-n3-u6-l2-practice-11",
               "type": "multiple-choice",
               "category": "grammar-drill",
-              "prompt": "文法ドリル: Star (*) Grammar Mastery: Scrambled Sentence Logic の用法を選んでください。 [ja-n3-u6-l2]",
-              "options": [
-                "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
-              ],
+              "prompt": "文法ドリル: 並[なら]べ替[か]え問題[もんだい]で、助詞[じょし]「を」の後[うしろ]に続[つづ]く自然[しぜん]な組[く]み合[あ]わせを選[えら]んでください。",
+              "options": ["本[ほん]を 読[よ]む", "本を 静[しず]か", "本を だから", "本を しかし"],
               "correctAnswer": 0,
-              "explanation": "本文の文法説明「JLPT ning yulduzcha (*) grammatik topshiriqlarini mantiqiy sintaksis orqali yechish texnikasi.」に基づきます。"
+              "explanation": "「を」は動作の対象を示す助詞です。この場合は動詞「読む」と自然につながります。"
             },
             {
               "id": "ja-n3-u6-l2-practice-12",
@@ -10215,29 +10210,29 @@
               "id": "ja-n3-u6-l2-practice-13",
               "type": "multiple-choice",
               "category": "sentence-building",
-              "prompt": "文脈に合わせて一文を組み立ててください: JLPT ning yulduzcha (*) grammatik topshiriqlarini mantiqiy sintaksis orqali yechish texnikasi. [ja-n3-u6-l2]",
+              "prompt": "次[つぎ]の4つの語句[ごく]を自然[しぜん]な文[ぶん]にしたものを選[えら]んでください: 私[わたし]／毎日[まいにち]／日本語[にほんご]／勉強[べんきょう]する",
               "options": [
-                "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "私[わたし]は 毎日[まいにち] 日本語[にほんご]を 勉強[べんきょう]する。",
+                "私を 毎日は 日本語が 勉強する。",
+                "毎日を 私が 日本語に 勉強する。",
+                "日本語は 私を 毎日が 勉強する。"
               ],
               "correctAnswer": 0,
-              "explanation": "学習した「Star (*) Grammar Mastery: Scrambled Sentence Logic」を使い、提示された文脈に合う文を選びます。"
+              "explanation": "主題「私は」+ 時間「毎日」+ 対象「日本語を」+ 動詞「勉強する」の順が自然です。"
             },
             {
               "id": "ja-n3-u6-l2-practice-14",
               "type": "multiple-choice",
               "category": "reading-application",
-              "prompt": "読解応用: 日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。 この文脈から正しく読み取れる内容はどれですか。 [ja-n3-u6-l2]",
+              "prompt": "読解応用: 「私[わたし]は 毎日[まいにち] 日本語[にほんご]を 勉強[べんきょう]する。」この文[ぶん]から正[ただ]しく読[よ]み取[と]れる内容[ないよう]はどれですか。",
               "options": [
-                "Har kuni yapon tilini o'rganaman.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Har kuni yapon tilini o‘rganadi.",
+                "Faqat dam olish kunlari yapon tilini o‘rganadi.",
+                "Har kuni ingliz tilini o‘rganadi.",
+                "Yapon tilini umuman o‘rganmaydi."
               ],
               "correctAnswer": 0,
-              "explanation": "本文の文脈と「JLPT ning yulduzcha (*) grammatik topshiriqlarini mantiqiy sintaksis orqali yechish texnikasi.」を照合します。"
+              "explanation": "「毎日」は har kuni, 「日本語を勉強する」は yapon tilini o‘rganish degani."
             }
           ]
         }
