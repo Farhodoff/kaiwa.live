@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterAll } from 'vitest';
 // @ts-expect-error - Edge serverless module
 import ttsHandler from '../../../api/tts.js';
 // @ts-expect-error - Edge serverless module
@@ -9,8 +9,18 @@ import * as rateLimitModule from '../../../api/_rateLimit.js';
 import * as quotaModule from '../../../api/_quota.js';
 
 describe('TTS Security Hardening & Edge API Test Suite (/api/tts)', () => {
+  const originalSpeechKey = process.env.AZURE_SPEECH_KEY;
+  const originalSpeechRegion = process.env.AZURE_SPEECH_REGION;
+
   beforeEach(() => {
     vi.restoreAllMocks();
+    delete process.env.AZURE_SPEECH_KEY;
+    delete process.env.AZURE_SPEECH_REGION;
+  });
+
+  afterAll(() => {
+    if (originalSpeechKey) process.env.AZURE_SPEECH_KEY = originalSpeechKey;
+    if (originalSpeechRegion) process.env.AZURE_SPEECH_REGION = originalSpeechRegion;
   });
 
   it('TEST 1: No Authorization header returns 401 Unauthorized', async () => {

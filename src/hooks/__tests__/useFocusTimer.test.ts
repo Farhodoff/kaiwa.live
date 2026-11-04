@@ -3,169 +3,171 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { useFocusTimer } from '../useFocusTimer';
 
 describe('useFocusTimer', () => {
-    beforeEach(() => {
-        vi.useFakeTimers();
-        localStorage.clear();
+  beforeEach(() => {
+    vi.useFakeTimers();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+    localStorage.clear();
+  });
+
+  it('should initialize with default 25 minutes in focus mode', () => {
+    const { result } = renderHook(() => useFocusTimer(false));
+
+    expect(result.current.focusState.mode).toBe('focus');
+    expect(result.current.focusState.timeLeft).toBe(25 * 60);
+    expect(result.current.focusState.isActive).toBe(false);
+  });
+
+  it('should start timer', () => {
+    const { result } = renderHook(() => useFocusTimer(false));
+
+    act(() => {
+      result.current.startTimer();
     });
 
-    afterEach(() => {
-        vi.useRealTimers();
-        localStorage.clear();
+    expect(result.current.focusState.isActive).toBe(true);
+  });
+
+  it('should decrease time when active', () => {
+    const { result } = renderHook(() => useFocusTimer(false));
+
+    act(() => {
+      result.current.startTimer();
     });
 
-    it('should initialize with default 25 minutes in focus mode', () => {
-        const { result } = renderHook(() => useFocusTimer(false));
-
-        expect(result.current.focusState.mode).toBe('focus');
-        expect(result.current.focusState.timeLeft).toBe(25 * 60);
-        expect(result.current.focusState.isActive).toBe(false);
+    act(() => {
+      vi.advanceTimersByTime(1000);
     });
 
-    it('should start timer', () => {
-        const { result } = renderHook(() => useFocusTimer(false));
+    expect(result.current.focusState.timeLeft).toBe(25 * 60 - 1);
+  });
 
-        act(() => {
-            result.current.startTimer();
-        });
+  it('should pause timer', () => {
+    const { result } = renderHook(() => useFocusTimer(false));
 
-        expect(result.current.focusState.isActive).toBe(true);
+    act(() => {
+      result.current.startTimer();
     });
 
-    it('should decrease time when active', () => {
-        const { result } = renderHook(() => useFocusTimer(false));
-
-        act(() => {
-            result.current.startTimer();
-        });
-
-        act(() => {
-            vi.advanceTimersByTime(1000);
-        });
-
-        expect(result.current.focusState.timeLeft).toBe(25 * 60 - 1);
+    act(() => {
+      vi.advanceTimersByTime(5000);
     });
 
-    it('should pause timer', () => {
-        const { result } = renderHook(() => useFocusTimer(false));
-
-        act(() => {
-            result.current.startTimer();
-        });
-
-        act(() => {
-            vi.advanceTimersByTime(5000);
-        });
-
-        act(() => {
-            result.current.pauseTimer();
-        });
-
-        expect(result.current.focusState.isActive).toBe(false);
-        expect(result.current.focusState.timeLeft).toBe(25 * 60 - 5);
-
-        // Ensure time doesn't change after pause
-        act(() => {
-            vi.advanceTimersByTime(5000);
-        });
-        expect(result.current.focusState.timeLeft).toBe(25 * 60 - 5);
+    act(() => {
+      result.current.pauseTimer();
     });
 
-    it('should reset timer', () => {
-        const { result } = renderHook(() => useFocusTimer(false));
+    expect(result.current.focusState.isActive).toBe(false);
+    expect(result.current.focusState.timeLeft).toBe(25 * 60 - 5);
 
-        act(() => {
-            result.current.startTimer();
-        });
+    // Ensure time doesn't change after pause
+    act(() => {
+      vi.advanceTimersByTime(5000);
+    });
+    expect(result.current.focusState.timeLeft).toBe(25 * 60 - 5);
+  });
 
-        act(() => {
-            vi.advanceTimersByTime(5000);
-        });
+  it('should reset timer', () => {
+    const { result } = renderHook(() => useFocusTimer(false));
 
-        act(() => {
-            result.current.resetTimer();
-        });
-
-        expect(result.current.focusState.isActive).toBe(false);
-        expect(result.current.focusState.timeLeft).toBe(25 * 60);
+    act(() => {
+      result.current.startTimer();
     });
 
-    it('should switch mode', () => {
-        const { result } = renderHook(() => useFocusTimer(false));
-
-        act(() => {
-            result.current.switchMode('short_break');
-        });
-
-        expect(result.current.focusState.mode).toBe('short_break');
-        expect(result.current.focusState.timeLeft).toBe(5 * 60);
-        expect(result.current.focusState.isActive).toBe(false);
+    act(() => {
+      vi.advanceTimersByTime(5000);
     });
 
-    it('should complete session when time reaches 0', () => {
-        const { result } = renderHook(() => useFocusTimer(false));
-
-        act(() => {
-            result.current.startTimer();
-        });
-
-        act(() => {
-            // Advance full duration 25 mins
-            vi.advanceTimersByTime(25 * 60 * 1000);
-        });
-
-        act(() => {
-            // One more tick to trigger the completion logic strictly
-            vi.advanceTimersByTime(1000);
-        });
-
-        expect(result.current.focusState.timeLeft).toBe(0);
-        expect(result.current.focusState.isActive).toBe(false);
-        expect(result.current.focusState.isSessionCompleted).toBe(true);
+    act(() => {
+      result.current.resetTimer();
     });
 
-    it('should synchronize timer state across tabs on storage event', () => {
-        const { result } = renderHook(() => useFocusTimer(false));
+    expect(result.current.focusState.isActive).toBe(false);
+    expect(result.current.focusState.timeLeft).toBe(25 * 60);
+  });
 
-        const externalTabState = {
-            mode: 'short_break',
-            timeLeft: 300,
-            isActive: true,
-            lastUpdated: Date.now() - 10000 // 10 seconds ago
-        };
+  it('should switch mode', () => {
+    const { result } = renderHook(() => useFocusTimer(false));
 
-        act(() => {
-            window.dispatchEvent(new StorageEvent('storage', {
-                key: 'study_planner_focus_state',
-                newValue: JSON.stringify(externalTabState)
-            }));
-        });
-
-        expect(result.current.focusState.mode).toBe('short_break');
-        expect(result.current.focusState.isActive).toBe(true);
-        expect(result.current.focusState.timeLeft).toBeLessThanOrEqual(290);
+    act(() => {
+      result.current.switchMode('short_break');
     });
 
-    it('should recalculate elapsed time on visibilitychange when tab becomes visible', () => {
-        const { result } = renderHook(() => useFocusTimer(false));
+    expect(result.current.focusState.mode).toBe('short_break');
+    expect(result.current.focusState.timeLeft).toBe(5 * 60);
+    expect(result.current.focusState.isActive).toBe(false);
+  });
 
-        const backgroundState = {
-            mode: 'focus',
-            timeLeft: 1500,
-            isActive: true,
-            lastUpdated: Date.now() - 30000 // 30 seconds passed while tab was in background
-        };
-        localStorage.setItem('study_planner_focus_state', JSON.stringify(backgroundState));
+  it('should complete session when time reaches 0', () => {
+    const { result } = renderHook(() => useFocusTimer(false));
 
-        act(() => {
-            Object.defineProperty(document, 'visibilityState', {
-                value: 'visible',
-                writable: true,
-                configurable: true
-            });
-            document.dispatchEvent(new Event('visibilitychange'));
-        });
-
-        expect(result.current.focusState.timeLeft).toBeLessThanOrEqual(1470);
-        expect(result.current.focusState.isActive).toBe(true);
+    act(() => {
+      result.current.startTimer();
     });
+
+    act(() => {
+      // Advance full duration 25 mins
+      vi.advanceTimersByTime(25 * 60 * 1000);
+    });
+
+    act(() => {
+      // One more tick to trigger the completion logic strictly
+      vi.advanceTimersByTime(1000);
+    });
+
+    expect(result.current.focusState.timeLeft).toBe(0);
+    expect(result.current.focusState.isActive).toBe(false);
+    expect(result.current.focusState.isSessionCompleted).toBe(true);
+  });
+
+  it('should synchronize timer state across tabs on storage event', () => {
+    const { result } = renderHook(() => useFocusTimer(false));
+
+    const externalTabState = {
+      mode: 'short_break',
+      timeLeft: 300,
+      isActive: true,
+      lastUpdated: Date.now() - 10000, // 10 seconds ago
+    };
+
+    act(() => {
+      window.dispatchEvent(
+        new StorageEvent('storage', {
+          key: 'study_planner_focus_state',
+          newValue: JSON.stringify(externalTabState),
+        }),
+      );
+    });
+
+    expect(result.current.focusState.mode).toBe('short_break');
+    expect(result.current.focusState.isActive).toBe(true);
+    expect(result.current.focusState.timeLeft).toBeLessThanOrEqual(290);
+  });
+
+  it('should recalculate elapsed time on visibilitychange when tab becomes visible', () => {
+    const { result } = renderHook(() => useFocusTimer(false));
+
+    const backgroundState = {
+      mode: 'focus',
+      timeLeft: 1500,
+      isActive: true,
+      lastUpdated: Date.now() - 30000, // 30 seconds passed while tab was in background
+    };
+    localStorage.setItem('study_planner_focus_state', JSON.stringify(backgroundState));
+
+    act(() => {
+      Object.defineProperty(document, 'visibilityState', {
+        value: 'visible',
+        writable: true,
+        configurable: true,
+      });
+      document.dispatchEvent(new Event('visibilitychange'));
+    });
+
+    expect(result.current.focusState.timeLeft).toBeLessThanOrEqual(1470);
+    expect(result.current.focusState.isActive).toBe(true);
+  });
 });

@@ -161,6 +161,9 @@ test('voice-first screen has one start control on desktop and mobile', async ({ 
   ] as const) {
     await page.setViewportSize({ width, height });
     await page.goto('/speaking-coach?preview=true');
+    await expect(page.getByRole('button', { name: 'Suhbatni boshlash', exact: true })).toBeVisible({
+      timeout: 15000,
+    });
     await expect(page.getByRole('button', { name: 'Suhbatni boshlash', exact: true })).toHaveCount(
       1,
     );

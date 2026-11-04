@@ -291,7 +291,7 @@ export default async function handler(req) {
         audioBuffer = await synthesizeWithAzure(cleanText, validatedLang, azureKey, azureRegion, controller.signal);
         activeProvider = 'azure-neural';
       } catch (azureError) {
-        if (controller.signal.aborted) {
+        if (controller.signal.aborted || azureError?.name === 'AbortError') {
           throw azureError;
         }
         console.warn('[TTS] Azure Neural synthesis failed, falling back to Google TTS:', azureError?.message);
