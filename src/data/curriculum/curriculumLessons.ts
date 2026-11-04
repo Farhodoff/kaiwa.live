@@ -69,7 +69,6 @@ export async function loadCurriculumLevel(level: string): Promise<Lesson[]> {
   });
   allJapaneseLessons.splice(0, allJapaneseLessons.length, ...hydratedLessons);
   return lessons;
-  return lessons;
 }
 
 export async function loadCurriculumLessonById(id: string): Promise<Lesson | undefined> {
@@ -98,15 +97,21 @@ export const CURRICULUM_LESSONS_BY_ID: Map<string, Lesson> = new Map([
 ]);
 
 function getCanonicalLessonId(id: string): string | undefined {
-  const n5Match = id.match(/^ja-n5-u\d+-l(\d+)$/);
+  const n5Match = id.match(/^ja-n5-u(\d+)-l(\d+)$/);
   if (n5Match) {
-    const lessonNumber = Number(n5Match[1]);
+    const unitNumber = Number(n5Match[1]);
+    const withinUnit = Number(n5Match[2]);
+    if (unitNumber < 1 || unitNumber > 5 || withinUnit < 1 || withinUnit > 5) return undefined;
+    const lessonNumber = (unitNumber - 1) * 5 + withinUnit;
     return lessonNumber >= 1 && lessonNumber <= 25 ? `ja-minna-l${lessonNumber}` : undefined;
   }
 
-  const n4Match = id.match(/^ja-n4-u\d+-l(\d+)$/);
+  const n4Match = id.match(/^ja-n4-u(\d+)-l(\d+)$/);
   if (n4Match) {
-    const lessonNumber = Number(n4Match[1]);
+    const unitNumber = Number(n4Match[1]);
+    const withinUnit = Number(n4Match[2]);
+    if (unitNumber < 1 || unitNumber > 5 || withinUnit < 1 || withinUnit > 5) return undefined;
+    const lessonNumber = (unitNumber - 1) * 5 + withinUnit;
     return lessonNumber >= 1 && lessonNumber <= 25 ? `ja-minna-l${lessonNumber + 25}` : undefined;
   }
 

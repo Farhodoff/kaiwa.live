@@ -150,7 +150,7 @@ export const JlptHubPage: React.FC = () => {
         <div className="no-scrollbar flex items-center gap-2 overflow-x-auto pb-1">
           <button
             onClick={() => handleTabChange('lessons')}
-            className={`flex min-h-[40px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
+            className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
               activeTab === 'lessons'
                 ? 'bg-primary text-primary-foreground shadow-xs'
                 : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
@@ -162,19 +162,19 @@ export const JlptHubPage: React.FC = () => {
 
           <button
             onClick={() => handleTabChange('grammar')}
-            className={`flex min-h-[40px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
+            className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
               activeTab === 'grammar'
                 ? 'bg-primary text-primary-foreground shadow-xs'
                 : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
             }`}
           >
             <Sparkles size={15} />
-            <span>{language === 'ja' ? '文法' : 'Bunpou'}</span>
+            <span>{language === 'ja' ? '文法' : 'Grammatika'}</span>
           </button>
 
           <button
             onClick={() => handleTabChange('kanji')}
-            className={`flex min-h-[40px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
+            className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
               activeTab === 'kanji'
                 ? 'bg-primary text-primary-foreground shadow-xs'
                 : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
@@ -186,67 +186,67 @@ export const JlptHubPage: React.FC = () => {
 
           <button
             onClick={() => handleTabChange('goi')}
-            className={`flex min-h-[40px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
+            className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
               activeTab === 'goi'
                 ? 'bg-primary text-primary-foreground shadow-xs'
                 : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
             }`}
           >
             <Languages size={15} />
-            <span>{language === 'ja' ? '語彙' : 'Goi'}</span>
+            <span>{language === 'ja' ? '語彙' : 'Lug‘at'}</span>
           </button>
 
           <button
             onClick={() => handleTabChange('reading')}
-            className={`flex min-h-[40px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
+            className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
               activeTab === 'reading'
                 ? 'bg-primary text-primary-foreground shadow-xs'
                 : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
             }`}
           >
             <FileText size={15} />
-            <span>{language === 'ja' ? '読解' : 'Dokkai'}</span>
+            <span>{language === 'ja' ? '読解' : 'O‘qish'}</span>
           </button>
 
           <button
             onClick={() => handleTabChange('listening')}
-            className={`flex min-h-[40px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
+            className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
               activeTab === 'listening'
                 ? 'bg-primary text-primary-foreground shadow-xs'
                 : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
             }`}
           >
             <Headphones size={15} />
-            <span>{language === 'ja' ? '聴解' : 'Choukai'}</span>
+            <span>{language === 'ja' ? '聴解' : 'Tinglash'}</span>
           </button>
 
           <button
             onClick={() => handleTabChange('writing')}
-            className={`flex min-h-[40px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
+            className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
               activeTab === 'writing'
                 ? 'bg-primary text-primary-foreground shadow-xs'
                 : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
             }`}
           >
             <FileText size={15} />
-            <span>{language === 'ja' ? '作文' : 'Sakubun'}</span>
+            <span>{language === 'ja' ? '作文' : 'Yozish'}</span>
           </button>
 
           <button
             onClick={() => handleTabChange('mock')}
-            className={`flex min-h-[40px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
+            className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
               activeTab === 'mock'
                 ? 'bg-primary text-primary-foreground shadow-xs'
                 : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
             }`}
           >
             <Target size={15} />
-            <span>{language === 'ja' ? 'JLPT模擬' : 'JLPT Exam'}</span>
+            <span>{language === 'ja' ? 'JLPT模擬' : 'JLPT imtihoni'}</span>
           </button>
 
           <button
             onClick={() => handleTabChange('mistakes')}
-            className={`flex min-h-[40px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
+            className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
               activeTab === 'mistakes'
                 ? 'bg-primary text-primary-foreground shadow-xs'
                 : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
@@ -258,7 +258,7 @@ export const JlptHubPage: React.FC = () => {
 
           <button
             onClick={() => handleTabChange('n1_mastery')}
-            className={`flex min-h-[40px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
+            className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
               activeTab === 'n1_mastery'
                 ? 'border border-primary/30 bg-primary/10 font-black text-primary shadow-xs'
                 : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'

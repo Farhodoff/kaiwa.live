@@ -41,6 +41,8 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
   const [activeTab, setActiveTab] = useState<'all' | 'vocab' | 'grammar' | 'kanji' | 'dialogue'>(
     'all',
   );
+  const [visibleVocabulary, setVisibleVocabulary] = useState(12);
+  useEffect(() => setVisibleVocabulary(12), [content]);
   const lessonKanji = useMemo<LessonKanji[]>(
     () => (lesson ? LessonKanjiService.getLessonKanji(lesson) : []),
     [lesson],
@@ -583,7 +585,7 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
             </h3>
 
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {content.vocabulary.map((vocab, idx) => (
+              {content.vocabulary.slice(0, visibleVocabulary).map((vocab, idx) => (
                 <div
                   key={idx}
                   className="group flex flex-col justify-between rounded-2xl border border-border bg-card p-4 shadow-sm transition-all hover:border-primary/40"
@@ -636,6 +638,15 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
                 </div>
               ))}
             </div>
+            {visibleVocabulary < content.vocabulary.length && (
+              <button
+                type="button"
+                onClick={() => setVisibleVocabulary((count) => count + 12)}
+                className="rounded-xl border border-border px-4 py-2 text-sm font-semibold text-foreground hover:bg-secondary"
+              >
+                Keyingi so‘zlar ({Math.min(12, content.vocabulary.length - visibleVocabulary)} ta)
+              </button>
+            )}
           </div>
         )}
 

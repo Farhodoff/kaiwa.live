@@ -392,7 +392,12 @@ export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({ init
         const inDesc = lesson.description.toLowerCase().includes(query);
         const inSubtitle =
           lesson.steps[0]?.learnData?.subtitle?.toLowerCase().includes(query) || false;
-        return inTitle || inDesc || inSubtitle;
+        const inGrammar = lesson.steps[0]?.learnData?.grammarRules?.some((rule) =>
+          `${rule.pattern} ${rule.meaning}`.toLowerCase().includes(query),
+        );
+        return (
+          inTitle || inDesc || inSubtitle || inGrammar || String(lesson.lessonNumber) === query
+        );
       }
 
       return true;
@@ -421,11 +426,13 @@ export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({ init
               onClick={() => {
                 setActiveLevel(lvl);
                 setSelectedUnit('all');
+                setSearchQuery('');
                 const newParams = new URLSearchParams(searchParams);
                 newParams.set('level', lvl);
                 setSearchParams(newParams, { replace: true });
               }}
-              className={`flex shrink-0 cursor-pointer touch-manipulation select-none items-center justify-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold transition-all sm:px-3.5 sm:py-2 sm:text-sm ${
+              aria-pressed={isActive}
+              className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center justify-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:px-3.5 sm:py-2 sm:text-sm ${
                 isActive
                   ? 'border border-border bg-card text-foreground shadow-xs'
                   : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground'
@@ -449,24 +456,26 @@ export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({ init
       <div
         className={`relative overflow-hidden rounded-2xl border p-3.5 shadow-xs transition-colors duration-300 sm:rounded-3xl sm:p-6 ${cfg.bannerGradient}`}
       >
-        <div className="relative z-10 flex flex-col justify-between gap-3 sm:gap-4 md:flex-row md:items-center">
-          <div className="space-y-1.5 sm:space-y-2">
+        <div className="relative z-10 flex items-center justify-between gap-3 sm:gap-4">
+          <div className="min-w-0 space-y-1.5 sm:space-y-2">
             <div
-              className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] font-bold sm:px-3 sm:py-1 sm:text-xs ${cfg.badgeClass}`}
+              className={`hidden items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] font-bold sm:inline-flex sm:px-3 sm:py-1 sm:text-xs ${cfg.badgeClass}`}
             >
               <Sparkles size={12} />
               <span>{cfg.badge}</span>
             </div>
-            <h2 className="text-base font-black text-foreground sm:text-2xl">{cfg.title}</h2>
+            <h2 className="text-sm font-bold leading-snug text-foreground sm:text-2xl sm:font-black">
+              {cfg.title}
+            </h2>
             <p className="hidden max-w-2xl text-xs leading-relaxed text-muted-foreground sm:block sm:text-sm">
               {cfg.description}
             </p>
           </div>
 
           {/* Stats card */}
-          <div className="flex shrink-0 items-center gap-2.5 rounded-xl border border-border bg-card/80 p-2.5 backdrop-blur-md sm:rounded-2xl sm:p-3.5">
+          <div className="flex shrink-0 items-center gap-2.5 rounded-xl border border-border bg-card/80 p-2.5 sm:rounded-2xl sm:p-3.5">
             <div
-              className={`flex h-9 w-9 items-center justify-center rounded-lg text-base sm:h-12 sm:w-12 sm:rounded-xl sm:text-xl ${cfg.numberBadgeClass}`}
+              className={`hidden items-center justify-center rounded-lg text-base sm:flex sm:h-12 sm:w-12 sm:rounded-xl sm:text-xl ${cfg.numberBadgeClass}`}
             >
               🎓
             </div>
@@ -510,7 +519,8 @@ export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({ init
               <button
                 key={tab.id}
                 onClick={() => setSelectedUnit(tab.id)}
-                className={`flex shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-bold transition-all ${
+                aria-pressed={isActive}
+                className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-bold transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${
                   isActive
                     ? 'scale-[1.02] bg-primary text-primary-foreground shadow-xs'
                     : 'border border-border bg-card text-muted-foreground hover:bg-muted/70 hover:text-foreground'
@@ -530,6 +540,7 @@ export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({ init
           />
           <input
             type="text"
+            aria-label="Dars yoki grammatikani qidirish"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Dars yoki qoidani qidirish..."
@@ -537,6 +548,10 @@ export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({ init
           />
         </div>
       </div>
+
+      <p aria-live="polite" className="text-sm text-muted-foreground">
+        {filteredLessons.length} ta dars ko‘rsatilmoqda
+      </p>
 
       {/* Lessons Grid */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -579,7 +594,7 @@ export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({ init
                 </div>
 
                 {/* Title */}
-                <h3 className="line-clamp-1 text-sm font-bold text-foreground transition-colors group-hover:text-primary sm:text-base">
+                <h3 className="line-clamp-2 text-sm font-bold leading-relaxed text-foreground transition-colors group-hover:text-primary sm:text-base">
                   {lesson.title}
                 </h3>
                 {subtitle && (
@@ -606,7 +621,7 @@ export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({ init
                   {(activeLevel === 'n5' || activeLevel === 'n4') && (
                     <span className="flex items-center gap-1 font-bold text-rose-500 dark:text-rose-400">
                       <Headphones size={12} />
-                      <span>CD Tinglash</span>
+                      <span>Tinglash</span>
                     </span>
                   )}
                 </div>
@@ -635,6 +650,7 @@ export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({ init
               <div className="mt-5 flex items-center justify-between gap-2 border-t border-border pt-4">
                 <button
                   onClick={() => navigate(`/lesson/${lesson.id}`)}
+                  aria-label={`${lesson.title}: ${prog?.completed ? 'qayta o‘qish' : 'darsni boshlash'}`}
                   className="flex h-10 flex-1 cursor-pointer touch-manipulation select-none items-center justify-center gap-1.5 rounded-xl bg-primary px-3 py-2 text-xs font-bold text-primary-foreground shadow-xs transition-all hover:bg-primary/90 active:scale-95"
                 >
                   <Play size={13} fill="currentColor" />
@@ -646,11 +662,12 @@ export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({ init
                 {(activeLevel === 'n5' || activeLevel === 'n4') && (
                   <button
                     onClick={() => navigate(`/lesson/${lesson.id}?step=mondai`)}
-                    title="Mondai Tinglash Testi (CD Audio)"
+                    title="Tinglash mashqini ochish"
+                    aria-label={`${lesson.title}: tinglash mashqi`}
                     className="flex h-10 shrink-0 cursor-pointer touch-manipulation select-none items-center justify-center gap-1.5 rounded-xl border border-rose-500/30 bg-rose-500/10 px-3 text-xs font-bold text-rose-600 transition-all hover:bg-rose-500/20 active:scale-95 dark:text-rose-400"
                   >
                     <Headphones size={14} />
-                    <span>Mondai</span>
+                    <span>Tinglash</span>
                   </button>
                 )}
 
@@ -663,6 +680,7 @@ export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({ init
                     )
                   }
                   title="AI Speaking Coach bilan suhbat"
+                  aria-label={`${lesson.title}: Speaking Coach`}
                   className="flex h-10 w-10 shrink-0 cursor-pointer touch-manipulation select-none items-center justify-center rounded-xl border border-border bg-muted/50 text-muted-foreground transition-all hover:bg-muted hover:text-foreground active:scale-95"
                 >
                   <MessageSquare size={15} />
@@ -678,6 +696,16 @@ export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({ init
           <p className="text-sm font-medium text-muted-foreground">
             Qidiruvingiz bo'yicha darslar topilmadi.
           </p>
+          <button
+            type="button"
+            onClick={() => {
+              setSearchQuery('');
+              setSelectedUnit('all');
+            }}
+            className="mt-4 min-h-[44px] rounded-xl border border-border px-4 text-sm font-semibold text-foreground hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          >
+            Filtrlarni tozalash
+          </button>
         </div>
       )}
     </div>

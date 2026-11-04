@@ -326,15 +326,15 @@ function validateStep(
       }
     }
     if (profile.requiresListeningStep && stepIndex === 3) {
-      const audioQuestions = data.questions.filter((question) =>
-        isNonEmptyString(question.audioUrl),
+      const audioQuestions = data.questions.filter(
+        (question) => isNonEmptyString(question.audioUrl) || isNonEmptyString(question.audioScript),
       );
       if (audioQuestions.length !== data.questions.length) {
         addIssue(
           issues,
           lesson.id,
           `${path}.testData.questions`,
-          'Every listening question needs an audioUrl.',
+          'Every listening question needs audio or an audio script.',
         );
       }
     }

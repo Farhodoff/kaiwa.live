@@ -37,7 +37,7 @@
         "id": "ja-minna-l26-ex5",
         "type": "multiple-choice",
         "prompt": "Maslahat so'rash iborasini to'ldiring:\n「カメラを 買いたいんですが、どこで（　）いいですか。」",
-        "options": ["買えば", "買ったら", "買うなら", "買っても"],
+        "options": ["買う", "買ったら", "買うなら", "買っても"],
         "correctAnswer": 1,
         "explanation": "Eng qulay maslahat so'rash shakli: 「〜たら いいですか」 (qayerdan sotib olsam yaxshi bo'ladi?)."
       },
@@ -102,7 +102,7 @@
       },
       {
         "id": "ja-minna-l26-q2",
-        "question": "【Mondai 1: Moji/Goi】「ごみ捨[す]て場[ば]」の 読[よ]み方[かた]は どれですか。",
+        "question": "【Mondai 1: Moji/Goi】「ごみ捨て場」の 読[よ]み方[かた]は どれですか。",
         "options": ["ごみすてじょう", "ごみとりば", "ごみおきば", "ごみすてば"],
         "correctAnswerIndex": 3,
         "explanation": "「ごみ捨て場」 ning to'g'ri o'qilishi: 「ごみすてば」 (chiqindi tashlash joyi)."
@@ -182,9 +182,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l26-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_001.mp3",
-        "audioTitle": "26-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「どうして 遅[おく]れたんですか。」",
+        "audioScript": "「どうして 遅[おく]れたんですか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "道[みち]が 混[こ]んでいたんです。",
           "駅[えき]に 行[い]きます。",
@@ -196,9 +196,9 @@
       },
       {
         "id": "ja-minna-l26-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_001.mp3",
-        "audioTitle": "26-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「日本語[にほんご]が お上手[じょうず]ですね。どこで 習[なら]ったんですか。」",
+        "audioScript": "「日本語[にほんご]が お上手[じょうず]ですね。どこで 習[なら]ったんですか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "大学[だいがく]で 勉強[べんきょう]したんです。",
           "いいえ、下手[へた]です。",
@@ -210,9 +210,9 @@
       },
       {
         "id": "ja-minna-l26-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_001.mp3",
-        "audioTitle": "26-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「頭[あたま]が 痛[いた]いんですが、どうしたら いいですか。」",
+        "audioScript": "「頭[あたま]が 痛[いた]いんですが、どうしたら いいですか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "薬[くすり]を 飲[の]んで、休[やす]んだら いいですよ。",
           "痛[いた]くないです。",
@@ -224,9 +224,9 @@
       },
       {
         "id": "ja-minna-l26-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_002.mp3",
-        "audioTitle": "26-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「レポートの 書[か]き方[かた]が 分[わ]からないんですが、教[おし]えて いただけませんか。」\n\n男[おとこ]の 人[ひと]は 何[なに]を 頼[たの]んでいますか。",
+        "audioScript": "「レポートの 書[か]き方[かた]が 分[わ]からないんですが、教[おし]えて いただけませんか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\nレポートの 書き方が 分からない 人は 何[なに]を 頼[たの]んでいますか。",
         "options": [
           "レポートの 書き方を 教えてもらうこと",
           "レポートを 書いてあげること",
@@ -238,27 +238,27 @@
       },
       {
         "id": "ja-minna-l26-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_002.mp3",
-        "audioTitle": "26-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「すみません、パスポートを 落[お]として しまったんですが、どうしたら いいですか。交番[こうばん]へ 行[い]ったら いいですよ。」\n\nパスポートを 落とした 人は まず どこへ 行きますか。",
+        "audioScript": "「すみません、パスポートを 落[お]として しまったんですが、どうしたら いいですか。交番[こうばん]へ 行[い]ったら いいですよ。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\nパスポートを 落とした 人は まず どこへ 行きますか。",
         "options": ["交番[こうばん]", "大使館[たいしかん]", "駅[えき]", "空港[くうこう]"],
         "correctAnswerIndex": 0,
         "explanation": "Pasportini tushirib qoldirgan shaxsga militsiya tayanch punkti (交番)ga borish maslahat berildi."
       },
       {
         "id": "ja-minna-l26-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_002.mp3",
-        "audioTitle": "26-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「生花[いけばな]を 習[なら]いたいんですが、いい 先生[せんせい]を 紹介[しょうかい]して いただけませんか。鈴木[すずき]先生が 親切[しんせつ]ですよ。」\nBayonot: 「女[おんな]の 人[ひと]は 鈴木先生を 紹介[しょうかい]して もらいました。」",
+        "audioScript": "「生花[いけばな]を 習[なら]いたいんですが、いい 先生[せんせい]を 紹介[しょうかい]して いただけませんか。鈴木[すずき]先生が 親切[しんせつ]ですよ。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「先生を 探していた 人は 鈴木先生を 紹介[しょうかい]して もらいました。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 0,
         "explanation": "Ayol kishi gul bezash (Ikebana) o'qituvchisini so'radi va unga Suzuki sensei tavsiya etildi. Bayonot to'g'ri (〇)."
       },
       {
         "id": "ja-minna-l26-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_002.mp3",
-        "audioTitle": "26-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「運動会[うんどうかい]に 行[い]かないんですか。ええ、用事[ようじ]が あるんです。」\nBayonot: 「男[おとこ]の 人[ひと]は 運動会に 行きます。」",
+        "audioScript": "「運動会[うんどうかい]に 行[い]かないんですか。ええ、用事[ようじ]が あるんです。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「用事が ある 人は 運動会に 行きます。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Erkak kishi ishi borligi sababli sport musobaqasiga (運動会) bormasligini aytdi (行かないんですか -> ええ、用事があるんです). Shuning uchun bayonot noto'g'ri (✕)."
@@ -318,7 +318,7 @@
       {
         "id": "ja-minna-l27-ex7",
         "type": "multiple-choice",
-        "prompt": "「〜しか」 zarrachasi bilan fe'l qaysi shaklda keladi?\n「ひらがな（　）書けません。」",
+        "prompt": "Qaysi zarracha inkor fe'l bilan «faqat ... qila olaman» ma'nosini bildiradi?\n「ひらがな（　）書けません。」",
         "options": ["だけ", "でも", "しか", "ほど"],
         "correctAnswer": 2,
         "explanation": "「しか」 faqat inkor fe'llar bilan ishlatilib, \"...dan boshqa hech narsa qila olmayman / faqatgina\" ma'nosini beradi."
@@ -351,7 +351,7 @@
     "test": [
       {
         "id": "ja-minna-l27-q1",
-        "question": "【Mondai 1: Moji/Goi】「景色（けしき）」の 読[よ]み方[かた]は どれですか。",
+        "question": "【Mondai 1: Moji/Goi】「景色」の 読[よ]み方[かた]は どれですか。",
         "options": ["けいしき", "けしき", "ふうけい", "ばしょ"],
         "correctAnswerIndex": 1,
         "explanation": "「景色」 ning to'g'ri o'qilishi: 「けしき」 (manzara)."
@@ -448,9 +448,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l27-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_003.mp3",
-        "audioTitle": "27-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「漢字[かんじ]が 書[か]けますか。」",
+        "audioScript": "「漢字[かんじ]が 書[か]けますか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "はい、少[すこ]し 書[か]けます。",
           "いいえ、書[か]きません。",
@@ -462,9 +462,9 @@
       },
       {
         "id": "ja-minna-l27-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_003.mp3",
-        "audioTitle": "27-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「富士山[ふじさん]が 見[み]えますか。」",
+        "audioScript": "「富士山[ふじさん]が 見[み]えますか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "はい、きれいに 見[み]えます。",
           "いいえ、見[み]ません。",
@@ -476,9 +476,9 @@
       },
       {
         "id": "ja-minna-l27-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_003.mp3",
-        "audioTitle": "27-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「お金[かね]は いくら ありますか。」",
+        "audioScript": "「お金[かね]は いくら ありますか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "1000円[えん]しか ありません。",
           "たくさん ありません。",
@@ -490,9 +490,9 @@
       },
       {
         "id": "ja-minna-l27-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_004.mp3",
-        "audioTitle": "27-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「この マンションから 海[うみ]が 見[み]えますか。ええ、天[てん]気[き]が いい 日[ひ]は よく 見[み]えますよ。波[なみ]の 音[おと]も 聞[き]こえます。」\n\nこの マンションの 特徴[とくちょう]は 何[なに]ですか。",
+        "audioScript": "「この マンションから 海[うみ]が 見[み]えますか。ええ、天[てん]気[き]が いい 日[ひ]は よく 見[み]えますよ。波[なみ]の 音[おと]も 聞[き]こえます。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\nこの マンションの 特徴[とくちょう]は 何[なに]ですか。",
         "options": [
           "海[うみ]が 見[み]えて、波[なみ]の 音[おと]が 聞[き]こえること",
           "駅[えき]から 近[ちか]いこと",
@@ -504,9 +504,9 @@
       },
       {
         "id": "ja-minna-l27-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_004.mp3",
-        "audioTitle": "27-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「日本語[にほんご]の 新聞[しんぶん]が 読[よ]めますか。いいえ、漢字[かんじ]が 難[むずか]しいですから、読[よ]めません。ひらがなしか 読[よ]めません。」\n\nこの 人[ひと]は 何[なに]が 読[よ]めますか。",
+        "audioScript": "「日本語[にほんご]の 新聞[しんぶん]が 読[よ]めますか。いいえ、漢字[かんじ]が 難[むずか]しいですから、読[よ]めません。ひらがなしか 読[よ]めません。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\nこの 人[ひと]は 何[なに]が 読[よ]めますか。",
         "options": [
           "ひらがな",
           "漢字[かんじ]の 新聞[しんぶん]",
@@ -518,18 +518,18 @@
       },
       {
         "id": "ja-minna-l27-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_004.mp3",
-        "audioTitle": "27-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「新[あたら]しい 空港[くうこう]は いつ できますか。来年[らいねん]の 4月[しがつ]に できる 予定[よてい]です。」\nBayonot: 「来年[らいねん]の 4月[しがつ]に 空港[くうこう]が 完成[かんせい]します。」",
+        "audioScript": "「新[あたら]しい 空港[くうこう]は いつ できますか。来年[らいねん]の 4月[しがつ]に できる 予定[よてい]です。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「来年[らいねん]の 4月[しがつ]に 空港[くうこう]が 完成[かんせい]します。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 0,
         "explanation": "Yangi aeroport kelasi yilning aprel oyida qurib bitkazilishi (できる) rejalashtirilgan. Bayonot to'g'ri (〇)."
       },
       {
         "id": "ja-minna-l27-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_004.mp3",
-        "audioTitle": "27-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「駅前[えきまえ]に 大[おお]きな スーパーが できましたね。ええ、便利[べんり]に なりましたが、夜[よる]は 8時[はちじ]までしか 開[あ]いて いません。」\nBayonot: 「新[あたら]しい スーパーは 夜[よる] 遅[おそ]くまで 開[あ]いて います。」",
+        "audioScript": "「駅前[えきまえ]に 大[おお]きな スーパーが できましたね。ええ、便利[べんり]に なりましたが、夜[よる]は 8時[はちじ]までしか 開[あ]いて いません。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「新[あたら]しい スーパーは 夜[よる] 遅[おそ]くまで 開[あ]いて います。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Yangi supermarket kechasi faqat soat 8 gacha ochiq xolos (8時までしか開いていません), kechgacha emas. Shuning uchun bayonot noto'g'ri (✕)."
@@ -558,7 +558,7 @@
         "id": "ja-minna-l28-ex3",
         "type": "multiple-choice",
         "prompt": "Doimiy odat va kasbiy faoliyat shaklini tanlang:\n「毎朝[まいあさ] ジョギングを （　）。」",
-        "options": ["しています", "します", "した", "しよう"],
+        "options": ["しています", "しませんでした", "した", "しよう"],
         "correctAnswer": 0,
         "explanation": "Doimiy takrorlanuvchi odatni ifodalash uchun 「〜ています」 ishlatiladi."
       },
@@ -566,7 +566,7 @@
         "id": "ja-minna-l28-ex4",
         "type": "multiple-choice",
         "prompt": "Bir nechta sabablarni sanab ko'rsatish bog'lovchisi qaysi?\n「熱[ねつ]も （　）、頭[あたま]も 痛いので、帰ります。」",
-        "options": ["あって", "あるし", "あるから", "あれば"],
+        "options": ["あった", "あるし", "あるから", "あれば"],
         "correctAnswer": 1,
         "explanation": "Bir necha sababni sanashda oddiy shakl + し qo'llaniladi: 「熱も あるし」."
       },
@@ -598,7 +598,7 @@
         "id": "ja-minna-l28-ex8",
         "type": "multiple-choice",
         "prompt": "Sababdan kelib chiqqan natija bog'lovchisi qaysi?",
-        "options": ["それに", "でも", "それで", "ですから"],
+        "options": ["それに", "でも", "それで", "たとえば"],
         "correctAnswer": 2,
         "explanation": "Sabablar sanalgach xulosa chiqarishda 「それで」 (shu sababli ham) ishlatiladi."
       },
@@ -629,7 +629,7 @@
       },
       {
         "id": "ja-minna-l28-q2",
-        "question": "【Mondai 1: Moji/Goi】「経験（けいけん）」の 読[よ]み方[かた]は どれですか。",
+        "question": "【Mondai 1: Moji/Goi】「経験」の 読[よ]み方[かた]は どれですか。",
         "options": ["けいかん", "けいけん", "げんけん", "こうけん"],
         "correctAnswerIndex": 1,
         "explanation": "「経験」 ning to'g'ri o'qilishi: 「けいけん」 (tajriba)."
@@ -709,9 +709,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l28-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_005.mp3",
-        "audioTitle": "28-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「いつも 音楽[おんがく]を 聞[き]きながら 勉強[べんきょう]するんですか。」",
+        "audioScript": "「いつも 音楽[おんがく]を 聞[き]きながら 勉強[べんきょう]するんですか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "はい、いつも そうして います。",
           "いいえ、音楽[おんがく]は 聞[き]きません。",
@@ -723,9 +723,9 @@
       },
       {
         "id": "ja-minna-l28-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_005.mp3",
-        "audioTitle": "28-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「どうして この レストランに よく 来[く]るんですか。」",
+        "audioScript": "「どうして この レストランに よく 来[く]るんですか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "おいしいし、値段[ねだん]も 安[やす]いからです。",
           "高[たか]いからです。",
@@ -737,9 +737,9 @@
       },
       {
         "id": "ja-minna-l28-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_005.mp3",
-        "audioTitle": "28-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「休[やす]みの 日[ひ]は いつも 何[なに]を して いますか。」",
+        "audioScript": "「休[やす]みの 日[ひ]は いつも 何[なに]を して いますか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "本[ほん]を 読[よ]んだり、テレビを 見[み]たり して います。",
           "働[はたら]きます。",
@@ -751,9 +751,9 @@
       },
       {
         "id": "ja-minna-l28-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_006.mp3",
-        "audioTitle": "28-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「山田[やまだ]さんは 真面目[まじめ]だし、親切[しんせつ]だし、それに 英語[えいご]も 上手[じょうず]ですね。ええ、ですから みんなに 人気[にんき]が あるんですよ。」\n\n山田[やまだ]さんは どうして 人気[にんき]が ありますか。",
+        "audioScript": "「山田[やまだ]さんは 真面目[まじめ]だし、親切[しんせつ]だし、それに 英語[えいご]も 上手[じょうず]ですね。ええ、ですから みんなに 人気[にんき]が あるんですよ。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n山田[やまだ]さんは どうして 人気[にんき]が ありますか。",
         "options": [
           "真面目[まじめ]で 親切[しんせつ]で、英語[えいご]も 上手[じょうず]だから",
           "スポーツが 得意[とくい]だから",
@@ -765,9 +765,9 @@
       },
       {
         "id": "ja-minna-l28-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_006.mp3",
-        "audioTitle": "28-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「お茶[ちゃ]を 飲[の]みながら、少[すこ]し 話[はな]しませんか。ええ、いいですね。そうしましょう。」\n\n2人[ふたり]は これから 何[なに]を しますか。",
+        "audioScript": "「お茶[ちゃ]を 飲[の]みながら、少[すこ]し 話[はな]しませんか。ええ、いいですね。そうしましょう。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n2人[ふたり]は これから 何[なに]を しますか。",
         "options": [
           "お茶[ちゃ]を 飲[の]みながら 話[はな]す",
           "食事[しょくじ]を する",
@@ -779,18 +779,18 @@
       },
       {
         "id": "ja-minna-l28-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_006.mp3",
-        "audioTitle": "28-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「田中[たなか]さんは 歌[うた]を 歌[うた]いながら 運転[うんてん]して います。危[あぶ]ないですよ。」\nBayonot: 「田中[たなか]さんは 静[しず]かに 運転[うんてん]して います。」",
+        "audioScript": "「田中[たなか]さんは 歌[うた]を 歌[うた]いながら 運転[うんてん]して います。危[あぶ]ないですよ。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「田中[たなか]さんは 静[しず]かに 運転[うんてん]して います。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Tanaka san qo'shiq aytib mashina haydamoqda (歌を歌いながら運転しています), u xotirjam va jim haydamayapti. Bayonot noto'g'ri (✕)."
       },
       {
         "id": "ja-minna-l28-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_006.mp3",
-        "audioTitle": "28-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「この アパートは 駅[えき]から 近[ちか]いし、家賃[やちん]も 安[やす]いです。ですから、ここに 決[き]めました。」\nBayonot: 「この 人[ひと]は 駅[えき]から 近[ちか]くて 安[やす]いので、アパートを 決[き]めました。」",
+        "audioScript": "「この アパートは 駅[えき]から 近[ちか]いし、家賃[やちん]も 安[やす]いです。ですから、ここに 決[き]めました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「この 人[ひと]は 駅[えき]から 近[ちか]くて 安[やす]いので、アパートを 決[き]めました。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 0,
         "explanation": "Kvartira bekatga yaqin va ijarasi arzon bo'lgani uchun tanlandi. Bayonot to'g'ri (〇)."
@@ -970,9 +970,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l29-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_007.mp3",
-        "audioTitle": "29-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「窓[まど]が 開[あ]いて いますね。寒[さむ]いですか。」",
+        "audioScript": "「窓[まど]が 開[あ]いて いますね。寒[さむ]いですか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "はい、閉[し]めて ください。",
           "はい、開[あ]けました。",
@@ -984,9 +984,9 @@
       },
       {
         "id": "ja-minna-l29-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_007.mp3",
-        "audioTitle": "29-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「電車[でんしゃ]の 中[なか]に かばんを 忘[わす]れて しまったんです。」",
+        "audioScript": "「電車[でんしゃ]の 中[なか]に かばんを 忘[わす]れて しまったんです。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "それは 大変[たいへん]でしたね。すぐ 駅員[えきいん]に 言[い]いましょう。",
           "おめでとうございます。",
@@ -998,9 +998,9 @@
       },
       {
         "id": "ja-minna-l29-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_007.mp3",
-        "audioTitle": "29-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「この パソコンは 壊[こわ]れて いますか。」",
+        "audioScript": "「この パソコンは 壊[こわ]れて いますか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "はい、動[うご]きません。",
           "いいえ、壊[こわ]しました。",
@@ -1012,9 +1012,9 @@
       },
       {
         "id": "ja-minna-l29-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_008.mp3",
-        "audioTitle": "29-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「あれ？ 会議室[かいぎしつ]の 電気が 消[き]えて いますね。もう 誰[だれ]も いないんですか。ええ、5時[ごじ]に 終[お]わりましたから。」\n\n会議室[かいぎしつ]は 今[いま] どうなって いますか。",
+        "audioScript": "「あれ？ 会議室[かいぎしつ]の 電気が 消[き]えて いますね。もう 誰[だれ]も いないんですか。ええ、5時[ごじ]に 終[お]わりましたから。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n会議室[かいぎしつ]は 今[いま] どうなって いますか。",
         "options": [
           "電気が 消えていて、誰も いない",
           "まだ 会議をして いる",
@@ -1026,9 +1026,9 @@
       },
       {
         "id": "ja-minna-l29-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_008.mp3",
-        "audioTitle": "29-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「宿題[しゅくだい]は もう やりましたか。すみません、昨日[きのう] 熱[ねつ]が 出[で]て しまって、できませんでした。」\n\nどうして 宿題[しゅくだい]が できませんでしたか。",
+        "audioScript": "「宿題[しゅくだい]は もう やりましたか。すみません、昨日[きのう] 熱[ねつ]が 出[で]て しまって、できませんでした。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\nどうして 宿題[しゅくだい]が できませんでしたか。",
         "options": [
           "熱[ねつ]が 出[で]て しまったから",
           "宿題[しゅくだい]を 忘[わす]れたから",
@@ -1040,18 +1040,18 @@
       },
       {
         "id": "ja-minna-l29-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_008.mp3",
-        "audioTitle": "29-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「この 皿[さら]は 割[わ]れて いますから、使[つか]わないで ください。分[わ]かりました。」\nBayonot: 「この 皿[さら]は まだ 使[つか]えます。」",
+        "audioScript": "「この 皿[さら]は 割[わ]れて いますから、使[つか]わないで ください。分[わ]かりました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「この 皿[さら]は まだ 使[つか]えます。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Tarelka singanligi sababli ishlatmaslik aytildi. Demak, undan foydalanib bo'lmaydi. Bayonot noto'g'ri (✕)."
       },
       {
         "id": "ja-minna-l29-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_008.mp3",
-        "audioTitle": "29-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「買[か]い物[もの]の お金[かね]を 全部[ぜんぶ] 使[つか]って しまいました。」\nBayonot: 「お金[かね]が まだ 残[のこ]って います。」",
+        "audioScript": "「買[か]い物[もの]の お金[かね]を 全部[ぜんぶ] 使[つか]って しまいました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「お金[かね]が まだ 残[のこ]って います。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Barcha xarid pullari sarflab tugatilgan (全部使ってしまいました). Shuning uchun pul qolmagan. Bayonot noto'g'ri (✕)."
@@ -1161,7 +1161,7 @@
       },
       {
         "id": "ja-minna-l30-q2",
-        "question": "【Mondai 1: Moji/Goi】「並（なら）べます」の 読[よ]み方[かた]は どれですか。",
+        "question": "【Mondai 1: Moji/Goi】「並べます」の 読[よ]み方[かた]は どれですか。",
         "options": ["くらべます", "しらべます", "えらびます", "ならべます"],
         "correctAnswerIndex": 3,
         "explanation": "「並べます」 ning to'g'ri o'qilishi: 「ならべます」 (qator qilib termoq)."
@@ -1246,9 +1246,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l30-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_009.mp3",
-        "audioTitle": "30-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「カレンダーに 何[なに]か 書[か]いて ありますか。」",
+        "audioScript": "「カレンダーに 何[なに]か 書[か]いて ありますか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "はい、今月[こんげつ]の 予定[よてい]が 書[か]いて あります。",
           "いいえ、カレンダーは ありません。",
@@ -1260,9 +1260,9 @@
       },
       {
         "id": "ja-minna-l30-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_009.mp3",
-        "audioTitle": "30-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「会議[かいぎ]の 前[まえ]に 資料[しりょう]を コピーして おきましょうか。」",
+        "audioScript": "「会議[かいぎ]の 前[まえ]に 資料[しりょう]を コピーして おきましょうか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "ええ、20部[ぶ] コピーして おいて ください。",
           "いいえ、コピーしました。",
@@ -1274,9 +1274,9 @@
       },
       {
         "id": "ja-minna-l30-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_009.mp3",
-        "audioTitle": "30-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「ハサミを 使[つか]った 後[あと]で、どこに 置[お]きますか。」",
+        "audioScript": "「ハサミを 使[つか]った 後[あと]で、どこに 置[お]きますか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "元[もと]の 所[ところ]に 戻[もど]して おいて ください。",
           "ゴミ箱[ばこ]に 捨[す]てます。",
@@ -1288,9 +1288,9 @@
       },
       {
         "id": "ja-minna-l30-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_010.mp3",
-        "audioTitle": "30-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「壁[かべ]に 綺麗[きれい]な 絵[え]が 掛[か]けて ありますね。ええ、誕生日に 友達が くれた 絵なんです。」\n\n壁[かべ]の 絵[え]は どうした ものですか。",
+        "audioScript": "「壁[かべ]に 綺麗[きれい]な 絵[え]が 掛[か]けて ありますね。ええ、誕生日に 友達が くれた 絵なんです。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n壁[かべ]の 絵[え]は どうした ものですか。",
         "options": [
           "友達[ともだち]が くれた 絵[え]",
           "自分[じぶん]で 描[か]いた 絵[え]",
@@ -1302,9 +1302,9 @@
       },
       {
         "id": "ja-minna-l30-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_010.mp3",
-        "audioTitle": "30-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「旅行[りょこう]の 前[まえ]に ホテルを 予約[よやく]して おきましたか。ええ、もう インターネットで 予約[よやく]して ありますよ。」\n\nホテルは どうなって いますか。",
+        "audioScript": "「旅行[りょこう]の 前[まえ]に ホテルを 予約[よやく]して おきましたか。ええ、もう インターネットで 予約[よやく]して ありますよ。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\nホテルは どうなって いますか。",
         "options": [
           "もう 予約[よやく]して ある",
           "これから 予約[よやく]する",
@@ -1316,18 +1316,18 @@
       },
       {
         "id": "ja-minna-l30-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_010.mp3",
-        "audioTitle": "30-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「パーティーの 準備[じゅんび]は もう できましたか。ビールと ワインは 冷蔵庫[れいぞうこ]に 入[い]れて あります。」\nBayonot: 「飲[の]み物[もの]は 冷[つめ]たくなって います。」",
+        "audioScript": "「パーティーの 準備[じゅんび]は もう できましたか。ビールと ワインは 冷蔵庫[れいぞうこ]に 入[い]れて あります。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「飲[の]み物[もの]は 冷[つめ]たくなって います。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 0,
         "explanation": "Ichimliklar muzlatgichga solib qo'yilgan (入れてあります), demak ular sovutilgan holatda. Bayonot to'g'ri (〇)."
       },
       {
         "id": "ja-minna-l30-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_010.mp3",
-        "audioTitle": "30-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「道具[どうぐ]を 片付[かたづ]けましょうか。いいえ、明日[あした]も 使[つか]いますから、そのままに して おいて ください。」\nBayonot: 「道具[どうぐ]を すぐ 箱[はこ]に しまいます。」",
+        "audioScript": "「道具[どうぐ]を 片付[かたづ]けましょうか。いいえ、明日[あした]も 使[つか]いますから、そのままに して おいて ください。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「道具[どうぐ]を すぐ 箱[はこ]に しまいます。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Ertaga ham ishlatilishi sababli asboblarni yig'ishtirmasdan shunday qoldirish (そのままにしておいて) aytildi. Shuning uchun bayonot noto'g'ri (✕)."
@@ -1420,7 +1420,7 @@
     "test": [
       {
         "id": "ja-minna-l31-q1",
-        "question": "【Mondai 1: Moji/Goi】「展覧会（てんらんかい）」の 読[よ]み方[かた]は どれですか。",
+        "question": "【Mondai 1: Moji/Goi】「展覧会」の 読[よ]み方[かた]は どれですか。",
         "options": ["てんらかい", "てんらんかい", "けんらんかい", "てんかんかい"],
         "correctAnswerIndex": 1,
         "explanation": "「展覧会」 ning to'g'ri o'qilishi: 「てんらんかい」 (ko'rgazma)."
@@ -1512,9 +1512,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l31-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_011.mp3",
-        "audioTitle": "31-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「夏休[なつやす]みは どこか 行[い]くの？」",
+        "audioScript": "「夏休[なつやす]みは どこか 行[い]くの？」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "北海道[ほっかいどう]へ 行[い]こうと 思[おも]って いるんだ。",
           "行[い]きませんでした。",
@@ -1526,9 +1526,9 @@
       },
       {
         "id": "ja-minna-l31-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_011.mp3",
-        "audioTitle": "31-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「週末[しゅうまつ]は 何[なに]を する つもりですか。」",
+        "audioScript": "「週末[しゅうまつ]は 何[なに]を する つもりですか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "家[いえ]で ゆっくり 休[やす]む つもりです。",
           "はい、休[やす]みます。",
@@ -1540,9 +1540,9 @@
       },
       {
         "id": "ja-minna-l31-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_011.mp3",
-        "audioTitle": "31-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「飛行機[ひこうき]の 時間[じかん]は 何時[なんじ]の 予定[よてい]ですか。」",
+        "audioScript": "「飛行機[ひこうき]の 時間[じかん]は 何時[なんじ]の 予定[よてい]ですか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "午後[ごご] 3時[さんじ]に 出発[しゅっぱつ]する 予定[よてい]です。",
           "昨日[きのう] 乗[の]りました。",
@@ -1554,9 +1554,9 @@
       },
       {
         "id": "ja-minna-l31-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_012.mp3",
-        "audioTitle": "31-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「大学[だいがく]を 卒業[そつぎょう]した 後[あと]、どうするの？ 日本[にほん]の 会社[かいしゃ]に 就職[しゅうしょく]しようと 思[おも]って いるんだ。」\n\n男[おとこ]の 人[ひと]の 卒業後[そつぎょうご]の 予定[よてい]は 何[なに]ですか。",
+        "audioScript": "「大学[だいがく]を 卒業[そつぎょう]した 後[あと]、どうするの？ 日本[にほん]の 会社[かいしゃ]に 就職[しゅうしょく]しようと 思[おも]って いるんだ。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n質問に 答えた 人の 卒業後[そつぎょうご]の 予定[よてい]は 何[なに]ですか。",
         "options": [
           "日本[にほん]の 会社[かいしゃ]に 就職[しゅうしょく]すること",
           "国[くに]へ 帰[かえ]ること",
@@ -1568,9 +1568,9 @@
       },
       {
         "id": "ja-minna-l31-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_012.mp3",
-        "audioTitle": "31-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「明日[あした]の 日曜日[にちようび]、映画[えいが]を 見[み]に 行[い]こうよ。いいね、行[い]こう！」\n\n2人[ふたり]は 明日[あした] 何[なに]を しますか。",
+        "audioScript": "「明日[あした]の 日曜日[にちようび]、映画[えいが]を 見[み]に 行[い]こうよ。いいね、行[い]こう！」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n2人[ふたり]は 明日[あした] 何[なに]を しますか。",
         "options": [
           "映画[えいが]を 見[み]に 行[い]く",
           "勉強[べんきょう]する",
@@ -1582,18 +1582,18 @@
       },
       {
         "id": "ja-minna-l31-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_012.mp3",
-        "audioTitle": "31-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「将来[しょうらい] 自分[じぶん]の 会社[かいしゃ]を 作[つく]る つもりです。そのために 今[いま] 一生懸命[いっしょうけんめい] 働[はたら]いて います。」\nBayonot: 「この 人[ひと]は 会社[かいしゃ]を 作[つく]る 計画[けいかく]が あります。」",
+        "audioScript": "「将来[しょうらい] 自分[じぶん]の 会社[かいしゃ]を 作[つく]る つもりです。そのために 今[いま] 一生懸命[いっしょうけんめい] 働[はたら]いて います。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「この 人[ひと]は 会社[かいしゃ]を 作[つく]る 計画[けいかく]が あります。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 0,
         "explanation": "Kelajakda o'z kompaniyasini ochmoqchi bo'lib (作るつもり) harakat qilmoqda. Bayonot to'g'ri (〇)."
       },
       {
         "id": "ja-minna-l31-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_012.mp3",
-        "audioTitle": "31-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「銀行[ぎんこう]は まだ 開[あ]いて いますか。いいえ、もう 3時[さんじ]ですから、閉[し]まった はずですよ。」\nBayonot: 「銀行[ぎんこう]は 今[いま] 開[あ]いて います。」",
+        "audioScript": "「銀行[ぎんこう]は まだ 開[あ]いて いますか。いいえ、もう 3時[さんじ]ですから、閉[し]まった はずですよ。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「銀行[ぎんこう]は 今[いま] 開[あ]いて います。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Soat 3 bo'lgani sababli bank yopilgan bo'lishi kerak. Demak hozir ochiq emas. Bayonot noto'g'ri (✕)."
@@ -1773,9 +1773,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l32-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_013.mp3",
-        "audioTitle": "32-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「風邪[かぜ]を ひいたんですが、どうしたら いいですか。」",
+        "audioScript": "「風邪[かぜ]を ひいたんですが、どうしたら いいですか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "温[あたた]かくして、早[はや]く 寝[ね]たほうが いいですよ。",
           "元気[げんき]ですね。",
@@ -1787,9 +1787,9 @@
       },
       {
         "id": "ja-minna-l32-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_013.mp3",
-        "audioTitle": "32-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「明日[あした]は 雨[あめ]が 降[ふ]るでしょうか。」",
+        "audioScript": "「明日[あした]は 雨[あめ]が 降[ふ]るでしょうか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "ええ、天気予報[てんきよほう]に よると、降[ふ]るそうですよ。",
           "降[ふ]りませんでした。",
@@ -1801,9 +1801,9 @@
       },
       {
         "id": "ja-minna-l32-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_013.mp3",
-        "audioTitle": "32-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「約束[やくそく]の 時間[じかん]に 間[ま]に合[あ]いますか。」",
+        "audioScript": "「約束[やくそく]の 時間[じかん]に 間[ま]に合[あ]いますか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "道[みち]が 混[こ]んで いますから、遅[おく]れるかもしれません。",
           "間[ま]に合[あ]いました。",
@@ -1815,9 +1815,9 @@
       },
       {
         "id": "ja-minna-l32-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_014.mp3",
-        "audioTitle": "32-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「熱[ねつ]が 38度[ど]も あるんです。それは 大変[たいへん]ですね。今日[きょう]は 無理[むり]を しないで、会社[かいしゃ]を 休[やす]んだほうが いいですよ。」\n\n女[おんな]の 人[ひと]は 男[おとこ]の 人[ひと]に 何[なに]を 勧[すす]めて いますか。",
+        "audioScript": "「熱[ねつ]が 38度[ど]も あるんです。それは 大変[たいへん]ですね。今日[きょう]は 無理[むり]を しないで、会社[かいしゃ]を 休[やす]んだほうが いいですよ。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n熱が ある 人に 何を 勧めて いますか。",
         "options": [
           "会社[かいしゃ]を 休[やす]むこと",
           "会社[かいしゃ]へ 行[い]くこと",
@@ -1829,9 +1829,9 @@
       },
       {
         "id": "ja-minna-l32-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_016.mp3",
-        "audioTitle": "32-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「最近[さいきん] 胃[い]が 痛[いた]いんです。それは いけませんね。一度[いちど] 病院[びょういん]で 診[み]てもらったほうが いいですよ。」\n\n男[おとこ]の 人[ひと]は どうしたほうが いいですか。",
+        "audioScript": "「最近[さいきん] 胃[い]が 痛[いた]いんです。それは いけませんね。一度[いちど] 病院[びょういん]で 診[み]てもらったほうが いいですよ。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n胃が 痛い 人は どうしたほうが いいですか。",
         "options": [
           "病院[びょういん]で 診[み]てもらう",
           "薬[くすり]を たくさん 買[か]う",
@@ -1843,18 +1843,18 @@
       },
       {
         "id": "ja-minna-l32-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_014.mp3",
-        "audioTitle": "32-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「午後[ごご]から 雪[ゆき]が 降[ふ]るかもしれませんから、傘[かさ]を 持[も]って 行[い]ったほうが いいですよ。」\nBayonot: 「午後[ごご]は 必ず[かならず] 晴[は]れます。」",
+        "audioScript": "「午後[ごご]から 雪[ゆき]が 降[ふ]るかもしれませんから、傘[かさ]を 持[も]って 行[い]ったほうが いいですよ。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「午後[ごご]は 必ず[かならず] 晴[は]れます。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Qor yog'ishi mumkinligi aytilgan, quyoshli bo'ladi deyilmagan. Bayonot noto'g'ri (✕)."
       },
       {
         "id": "ja-minna-l32-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_016.mp3",
-        "audioTitle": "32-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「明日[あした]は 寒[さむ]く なるでしょう。コートを 準備[じゅんび]して ください。」\nBayonot: 「明日[あした]は とても 暑[あつ]い 日[ひ]に なります。」",
+        "audioScript": "「明日[あした]は 寒[さむ]く なるでしょう。コートを 準備[じゅんび]して ください。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「明日[あした]は とても 暑[あつ]い 日[ひ]に なります。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Ertaga sovuq bo'lishi taxmin qilinmoqda, issiq emas. Shuning uchun bayonot noto'g'ri (✕)."
@@ -1875,7 +1875,7 @@
         "id": "ja-minna-l33-ex2",
         "type": "multiple-choice",
         "prompt": "Guruh 2 fe'llarining 命令形 shakli qaysi?\n「食[た]べます」 -> （　）",
-        "options": ["食べれ", "食べよ", "食べろ", "食べえ"],
+        "options": ["食べれ", "食べない", "食べろ", "食べえ"],
         "correctAnswer": 2,
         "explanation": "Guruh 2 fe'llarida ます o'rniga ろ qo'yiladi: 食べろ (tabero)."
       },
@@ -2039,9 +2039,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l33-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_015.mp3",
-        "audioTitle": "33-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「あそこに「止[と]まれ」と 書[か]いて ありますよ。」",
+        "audioScript": "「あそこに「止[と]まれ」と 書[か]いて ありますよ。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "はい、車[くるま]を 止[と]めましょう。",
           "走[はし]りましょう。",
@@ -2053,9 +2053,9 @@
       },
       {
         "id": "ja-minna-l33-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_015.mp3",
-        "audioTitle": "33-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「この マークは どういう 意味[いみ]ですか。」",
+        "audioScript": "「この マークは どういう 意味[いみ]ですか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "ここで 写真[しゃしん]を 撮[と]るなという 意味[いみ]です。",
           "写真[しゃしん]を 撮[と]って ください。",
@@ -2067,9 +2067,9 @@
       },
       {
         "id": "ja-minna-l33-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_015.mp3",
-        "audioTitle": "33-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「部長[ぶちょう]は 何[なに]と おっしゃいましたか。」",
+        "audioScript": "「部長[ぶちょう]は 何[なに]と おっしゃいましたか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "明日[あした] 9時[くじ]に 集[あつ]まれと 言[い]っていました。",
           "集[あつ]まりました。",
@@ -2081,9 +2081,9 @@
       },
       {
         "id": "ja-minna-l33-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_016.mp3",
-        "audioTitle": "33-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「すみません、あの 漢字[かんじ]は 何[なに]と 読[よ]むんですか。「立入禁止[たちいりきんし]」ですよ。入[はい]るなという 意味[いみ]です。」\n\nあの 場所[ばしょ]に 入[はい]っても いいですか。",
+        "audioScript": "「すみません、あの 漢字[かんじ]は 何[なに]と 読[よ]むんですか。「立入禁止[たちいりきんし]」ですよ。入[はい]るなという 意味[いみ]です。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\nあの 場所[ばしょ]に 入[はい]っても いいですか。",
         "options": [
           "いいえ、入[はい]ってはいけない",
           "はい、入[はい]ってもいい",
@@ -2095,27 +2095,27 @@
       },
       {
         "id": "ja-minna-l33-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_018.mp3",
-        "audioTitle": "33-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「この レバーを 下[さ]げろと 言[い]われました。はい、すぐ 下[さ]げましょう。」\n\n2人[ふたり]は レバーを どうしますか。",
+        "audioScript": "「この レバーを 下[さ]げろと 言[い]われました。はい、すぐ 下[さ]げましょう。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n2人[ふたり]は レバーを どうしますか。",
         "options": ["下[さ]げる", "上[あ]げる", "壊[こわ]す", "触[さわ]らない"],
         "correctAnswerIndex": 0,
         "explanation": "Tutqichni pastga tushirish (下げる) aytilgan edi."
       },
       {
         "id": "ja-minna-l33-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_016.mp3",
-        "audioTitle": "33-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「先生[せんせい]は 田中[たなか]さんに もっと 勉強[べんきょう]しろと 言[い]いました。」\nBayonot: 「田中[たなか]さんは 先生[せんせい]に 褒[ほ]められました。」",
+        "audioScript": "「先生[せんせい]は 田中[たなか]さんに もっと 勉強[べんきょう]しろと 言[い]いました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「田中[たなか]さんは 先生[せんせい]に 褒[ほ]められました。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Ustoz unga ko'proq o'qishni buyurdi (勉強しろ), maqtamadi. Bayonot noto'g'ri (✕)."
       },
       {
         "id": "ja-minna-l33-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_018.mp3",
-        "audioTitle": "33-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「「使用禁止[しようきんし]」と 書[か]いて あります。使[つか]ってはいけません。」\nBayonot: 「この 物[もの]は 自由[じゆう]に 使[つか]って いいです。」",
+        "audioScript": "「「使用禁止[しようきんし]」と 書[か]いて あります。使[つか]ってはいけません。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「この 物[もの]は 自由[じゆう]に 使[つか]って いいです。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "«使用禁止» - ishlatish taqiqlangan deganidir. Demak erkin ishlatib bo'lmaydi. Bayonot noto'g'ri (✕)."
@@ -2227,7 +2227,7 @@
       },
       {
         "id": "ja-minna-l34-q3",
-        "question": "【Mondai 1: Moji/Goi】「説明書（せつめいしょ）」の 読[よ]み方[かた]は どれですか。",
+        "question": "【Mondai 1: Moji/Goi】「説明書」の 読[よ]み方[かた]は どれですか。",
         "options": ["せつめいしょ", "せつめいほん", "しょうめいしょ", "あんないしょ"],
         "correctAnswerIndex": 0,
         "explanation": "「説明書」 ning to'g'ri o'qilishi: 「せつめいしょ」 (yo'riqnoma)."
@@ -2295,9 +2295,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l34-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_017.mp3",
-        "audioTitle": "34-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「この プラモデルは どうやって 作[つく]るんですか。」",
+        "audioScript": "「この プラモデルは どうやって 作[つく]るんですか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "説明書[せつめいしょ]の とおりに 作[つく]って ください。",
           "上手に 作[つく]りました。",
@@ -2309,9 +2309,9 @@
       },
       {
         "id": "ja-minna-l34-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_017.mp3",
-        "audioTitle": "34-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「いつ ジョギングを しますか。」",
+        "audioScript": "「いつ ジョギングを しますか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "仕事[しごと]が 終[お]わった あとで、走[はし]ります。",
           "仕事[しごと]の 前[まえ]です。",
@@ -2323,9 +2323,9 @@
       },
       {
         "id": "ja-minna-l34-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_017.mp3",
-        "audioTitle": "34-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「コーヒーに 砂糖[さとう]を 入[い]れますか。」",
+        "audioScript": "「コーヒーに 砂糖[さとう]を 入[い]れますか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "いいえ、砂糖[さとう]を 入[い]れないで 飲[の]みます。",
           "はい、入[い]れません。",
@@ -2337,11 +2337,11 @@
       },
       {
         "id": "ja-minna-l34-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_018.mp3",
-        "audioTitle": "34-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「新[あたら]しい 機械[きかい]の 使[つか]い方[かた]が 分[わ]かりません。まず 私[わたし]が やる とおりに、見[み]て いて ください。はい、分[わ]かりました。」\n\n女[おんな]の 人[ひと]は これから 何[なに]を しますか。",
+        "audioScript": "「新[あたら]しい 機械[きかい]の 使[つか]い方[かた]が 分[わ]かりません。まず 私[わたし]が やる とおりに、見[み]て いて ください。はい、分[わ]かりました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n使い方が 分からない 人は これから 何[なに]を しますか。",
         "options": [
-          "男[おとこ]の 人[ひと]が やるのを 見[み]る",
+          "説明する 人が やるのを 見[み]る",
           "機械[きかい]を 買[か]いに行[い]く",
           "説明書[せつめいしょ]を 読[よ]む",
           "機械[きかい]を 直[なお]す"
@@ -2351,9 +2351,9 @@
       },
       {
         "id": "ja-minna-l34-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_020.mp3",
-        "audioTitle": "34-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「お湯[ゆ]を 入[い]れてから、3分[さんぷん] 待[ま]って ください。はい、時計[とけい]を 見[み]ます。」\n\nカップラーメンは いつ 食[た]べられますか。",
+        "audioScript": "「お湯[ゆ]を 入[い]れてから、3分[さんぷん] 待[ま]って ください。はい、時計[とけい]を 見[み]ます。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\nカップラーメンは いつ 食[た]べられますか。",
         "options": [
           "3分[さんぷん] 待[ま]った あと",
           "すぐ",
@@ -2365,18 +2365,18 @@
       },
       {
         "id": "ja-minna-l34-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_018.mp3",
-        "audioTitle": "34-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「ご飯[はん]を 食[た]べた あとで、歯[は]を 磨[みが]きます。」\nBayonot: 「歯[は]を 磨[みが]いてから、ご飯[はん]を 食[た]べます。」",
+        "audioScript": "「ご飯[はん]を 食[た]べた あとで、歯[は]を 磨[みが]きます。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「歯[は]を 磨[みが]いてから、ご飯[はん]を 食[た]べます。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Avval ovqat yeb, so'ng tish yuviladi. Bayonot teskari qilib aytilgan, shuning uchun noto'g'ri (✕)."
       },
       {
         "id": "ja-minna-l34-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_020.mp3",
-        "audioTitle": "34-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「砂糖[さとう]を 入[い]れないで、ブラックコーヒーを 飲[の]みます。」\nBayonot: 「この 人[ひと]は 甘[あま]い コーヒーが 大好[だいす]きです。」",
+        "audioScript": "「砂糖[さとう]を 入[い]れないで、ブラックコーヒーを 飲[の]みます。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「この 人[ひと]は 甘[あま]い コーヒーが 大好[だいす]きです。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Shakar solmasdan qora kofe ichadi, demak u shirin kofeni yaxshi ko'rmaydi. Bayonot noto'g'ri (✕)."
@@ -2481,7 +2481,7 @@
       },
       {
         "id": "ja-minna-l35-q2",
-        "question": "【Mondai 1: Moji/Goi】「島（しま）」の 読[よ]み方[かた]は どれですか。",
+        "question": "【Mondai 1: Moji/Goi】「島」の 読[よ]み方[かた]は どれですか。",
         "options": ["やま", "かわ", "しま", "まち"],
         "correctAnswerIndex": 2,
         "explanation": "「島」 ning to'g'ri o'qilishi: 「しま」 (orol)."
@@ -2551,9 +2551,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l35-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_019.mp3",
-        "audioTitle": "35-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「ボタンを 押[お]せば、切符[きっぷ]が 出[で]ますか。」",
+        "audioScript": "「ボタンを 押[お]せば、切符[きっぷ]が 出[で]ますか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "はい、お釣[つ]りも 一緒[いっしょ]に 出[で]ますよ。",
           "押[お]しませんでした。",
@@ -2565,9 +2565,9 @@
       },
       {
         "id": "ja-minna-l35-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_019.mp3",
-        "audioTitle": "35-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「安[やす]い パソコンを 買[か]いたいんですが、どこが いいですか。」",
+        "audioScript": "「安[やす]い パソコンを 買[か]いたいんですが、どこが いいですか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "パソコンなら、秋葉原[あきはばら]が 安[やす]くて いいですよ。",
           "高[たか]いです。",
@@ -2579,9 +2579,9 @@
       },
       {
         "id": "ja-minna-l35-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_019.mp3",
-        "audioTitle": "35-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「明日[あした] 雨[あめ]が 降[ふ]れば、試合[しあい]は どうなりますか。」",
+        "audioScript": "「明日[あした] 雨[あめ]が 降[ふ]れば、試合[しあい]は どうなりますか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "中止[ちゅうし]に なります。",
           "試合[しあい]を します。",
@@ -2593,9 +2593,9 @@
       },
       {
         "id": "ja-minna-l35-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_020.mp3",
-        "audioTitle": "35-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「どうすれば、日本語[にほんご]が 上手[じょうず]に なりますか。毎日[まいにち] 日本人[にほんじん]と 話[はな]せば、上手[じょうず]に なりますよ。」\n\n日本語[にほんご]が 上手[じょうず]に なるために、何[なに]を すれば いいですか。",
+        "audioScript": "「どうすれば、日本語[にほんご]が 上手[じょうず]に なりますか。毎日[まいにち] 日本人[にほんじん]と 話[はな]せば、上手[じょうず]に なりますよ。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n日本語[にほんご]が 上手[じょうず]に なるために、何[なに]を すれば いいですか。",
         "options": [
           "毎日[まいにち] 日本人[にほんじん]と 話[はな]すこと",
           "本[ほん]を 1冊[いっさつ]だけ 読[よ]むこと",
@@ -2607,9 +2607,9 @@
       },
       {
         "id": "ja-minna-l35-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_022.mp3",
-        "audioTitle": "35-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「安[やす]ければ、買[か]いますか。ええ、1万円[いちまんえん]以下[いか]なら 買[か]いますよ。」\n\n男[おとこ]の 人[ひと]は いくらなら 買[か]いますか。",
+        "audioScript": "「安[やす]ければ、買[か]いますか。ええ、1万円[いちまんえん]以下[いか]なら 買[か]いますよ。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n買うと 答えた 人は いくらなら 買[か]いますか。",
         "options": [
           "1万円[いちまんえん]以下[いか]",
           "10万円[じゅうまんえん]",
@@ -2621,18 +2621,18 @@
       },
       {
         "id": "ja-minna-l35-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_020.mp3",
-        "audioTitle": "35-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「時間[じかん]が なければ、明日[あした]でも いいですよ。じゃ、明日[あした] お願[ねが]いします。」\nBayonot: 「今日[きょう] 必ず[かならず] 終[お]わらせなければ なりません。」",
+        "audioScript": "「時間[じかん]が なければ、明日[あした]でも いいですよ。じゃ、明日[あした] お願[ねが]いします。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「今日[きょう] 必ず[かならず] 終[お]わらせなければ なりません。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Vaqt bo'lmasa ertaga qilsa ham bo'lishi aytildi. Bayonot noto'g'ri (✕)."
       },
       {
         "id": "ja-minna-l35-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_022.mp3",
-        "audioTitle": "35-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「質問[しつもん]が あれば、いつでも 手[て]を 挙[あ]げて ください。」\nBayonot: 「質問[しつもん]が あっても、話[はな]してはいけません。」",
+        "audioScript": "「質問[しつもん]が あれば、いつでも 手[て]を 挙[あ]げて ください。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「質問[しつもん]が あっても、話[はな]してはいけません。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Savol bo'lsa bemalol qo'l ko'tarishi so'ralgan. Bayonot noto'g'ri (✕)."
@@ -2752,7 +2752,7 @@
       },
       {
         "id": "ja-minna-l36-q2",
-        "question": "【Mondai 1: Moji/Goi】「工場（こうじょう）」の 読[よ]み方[かた]は どれですか。",
+        "question": "【Mondai 1: Moji/Goi】「工場」の 読[よ]み方[かた]は どれですか。",
         "options": ["こうば", "こうじょう", "こうばしょ", "さぎょうじょう"],
         "correctAnswerIndex": 1,
         "explanation": "「工場」 ning asosiy rasmiy o'qilishi: 「こうじょう」 (zavod, fabrika)."
@@ -2832,9 +2832,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l36-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_021.mp3",
-        "audioTitle": "36-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「健康[けんこう]のために、何[なに]を して いますか。」",
+        "audioScript": "「健康[けんこう]のために、何[なに]を して いますか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "毎日[まいにち] 野菜[やさい]を 食[た]べるように して います。",
           "野菜[やさい]が 嫌[きら]いです。",
@@ -2846,9 +2846,9 @@
       },
       {
         "id": "ja-minna-l36-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_021.mp3",
-        "audioTitle": "36-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「日本[にほん]の 刺身[さしみ]が 食[た]べられるように なりましたか。」",
+        "audioScript": "「日本[にほん]の 刺身[さしみ]が 食[た]べられるように なりましたか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "はい、初[はじ]めは だめでしたが、今[いま]は 大好[だいす]きです。",
           "いいえ、食[た]べました。",
@@ -2860,9 +2860,9 @@
       },
       {
         "id": "ja-minna-l36-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_021.mp3",
-        "audioTitle": "36-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「約束[やくそく]の 時間[じかん]に 遅[おく]れないように して くださいね。」",
+        "audioScript": "「約束[やくそく]の 時間[じかん]に 遅[おく]れないように して くださいね。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "はい、気[き]を つけます。",
           "遅[おく]れました。",
@@ -2874,9 +2874,9 @@
       },
       {
         "id": "ja-minna-l36-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_022.mp3",
-        "audioTitle": "36-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「最近[さいきん] 体重[たいじゅう]が 増[ふ]えたので、甘[あま]い 物[もの]を 食[た]べないように して いるんです。偉[えら]いですね。」\n\nこの 人[ひと]は 今[いま] どうして いますか。",
+        "audioScript": "「最近[さいきん] 体重[たいじゅう]が 増[ふ]えたので、甘[あま]い 物[もの]を 食[た]べないように して いるんです。偉[えら]いですね。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\nこの 人[ひと]は 今[いま] どうして いますか。",
         "options": [
           "甘[あま]い 物[もの]を 食[た]べないように 努力[どりょく]して いる",
           "甘[あま]い 物[もの]を たくさん 食[た]べて いる",
@@ -2888,9 +2888,9 @@
       },
       {
         "id": "ja-minna-l36-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_024.mp3",
-        "audioTitle": "36-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「エレベーターを 使[つか]わないで、階段[かいだん]を 使[つか]うように して います。いい 運動[うんどう]に なりますね。」\n\nこの 人[ひと]は 毎日[まいにち] どうして いますか。",
+        "audioScript": "「エレベーターを 使[つか]わないで、階段[かいだん]を 使[つか]うように して います。いい 運動[うんどう]に なりますね。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\nこの 人[ひと]は 毎日[まいにち] どうして いますか。",
         "options": [
           "階段[かいだん]を 使[つか]うように して いる",
           "エレベーターに 乗[の]る",
@@ -2902,18 +2902,18 @@
       },
       {
         "id": "ja-minna-l36-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_022.mp3",
-        "audioTitle": "36-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「練習[れんしゅう]したら、自転車[じてんしゃ]に 乗[の]れるように なりました。」\nBayonot: 「まだ 自転車[じてんしゃ]に 乗[の]れません。」",
+        "audioScript": "「練習[れんしゅう]したら、自転車[じてんしゃ]に 乗[の]れるように なりました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「まだ 自転車[じてんしゃ]に 乗[の]れません。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Mashq qilib velosiped minishni o'rganib oldi. Bayonot noto'g'ri (✕)."
       },
       {
         "id": "ja-minna-l36-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_024.mp3",
-        "audioTitle": "36-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「メガネを かけたら、遠[とお]くの 字[じ]が 見[み]えるように なりました。」\nBayonot: 「メガネを かけても、字[じ]が 見[み]えません。」",
+        "audioScript": "「メガネを かけたら、遠[とお]くの 字[じ]が 見[み]えるように なりました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「メガネを かけても、字[じ]が 見[み]えません。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Ko'zoynak taqqach uzoqdagi harflar ko'rinadigan bo'ldi (見えるようになりました). Bayonot noto'g'ri (✕)."
@@ -3098,9 +3098,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l37-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_023.mp3",
-        "audioTitle": "37-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「どうして 嬉[うれ]しそうな 顔[かお]を して いるの？」",
+        "audioScript": "「どうして 嬉[うれ]しそうな 顔[かお]を して いるの？」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "先生[せんせい]に スピーチを 褒[ほ]められたんだ。",
           "先生[せんせい]を 褒[ほ]めました。",
@@ -3112,9 +3112,9 @@
       },
       {
         "id": "ja-minna-l37-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_023.mp3",
-        "audioTitle": "37-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「電車[でんしゃ]の 中[なか]で 足[あし]を 踏[ふ]まれて しまいました。」",
+        "audioScript": "「電車[でんしゃ]の 中[なか]で 足[あし]を 踏[ふ]まれて しまいました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "それは 痛[いた]かったですね。",
           "よかったですね。",
@@ -3126,9 +3126,9 @@
       },
       {
         "id": "ja-minna-l37-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_023.mp3",
-        "audioTitle": "37-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「この 寺[てら]は いつ 建[た]てられたんですか。」",
+        "audioScript": "「この 寺[てら]は いつ 建[た]てられたんですか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "500年[ねん]前[まえ]に 建[た]てられました。",
           "建[た]てました。",
@@ -3140,9 +3140,9 @@
       },
       {
         "id": "ja-minna-l37-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_024.mp3",
-        "audioTitle": "37-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「昨日[きのう] 母[はは]に 部屋[へや]の 掃除[そうじ]を しろと 叱[しか]られたよ。大変[たいへん]だったね。」\n\n男[おとこ]の 人[ひと]は どうして 叱[しか]られましたか。",
+        "audioScript": "「部屋[へや]を 掃除[そうじ]しなかったので、昨日[きのう] 母[はは]に 叱[しか]られたよ。大変[たいへん]だったね。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n話している 人は どうして 叱[しか]られましたか。",
         "options": [
           "部屋[へや]を 掃除[そうじ]しなかったから",
           "宿題[しゅくだい]を 忘[わす]れたから",
@@ -3154,9 +3154,9 @@
       },
       {
         "id": "ja-minna-l37-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_026.mp3",
-        "audioTitle": "37-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「犬[いぬ]に 手[て]を 噛[か]まれて しまいました。すぐ 消毒[しょうどく]して くださいね。」\n\n男[おとこ]の 人[ひと]は どうしましたか。",
+        "audioScript": "「犬[いぬ]に 手[て]を 噛[か]まれて しまいました。すぐ 消毒[しょうどく]して くださいね。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n話している 人は どうしましたか。",
         "options": [
           "犬[いぬ]に 手[て]を 噛[か]まれた",
           "犬[いぬ]を 買[か]った",
@@ -3168,18 +3168,18 @@
       },
       {
         "id": "ja-minna-l37-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_024.mp3",
-        "audioTitle": "37-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「私[わたし]の 傘[かさ]は 誰[だれ]かに 持[も]って 行[い]かれて しまいました。」\nBayonot: 「傘[かさ]は まだ 手元[てもと]に あります。」",
+        "audioScript": "「私[わたし]の 傘[かさ]は 誰[だれ]かに 持[も]って 行[い]かれて しまいました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「傘[かさ]は まだ 手元[てもと]に あります。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Zontik birov tomonidan olib ketilgan, qo'lida yo'q. Bayonot noto'g'ri (✕)."
       },
       {
         "id": "ja-minna-l37-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_026.mp3",
-        "audioTitle": "37-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「弟[おとうと]に 私[わたし]の ケーキを 食[た]べられて しまいました。」\nBayonot: 「私[わたし]が ケーキを 全部[ぜんぶ] 食[た]べました。」",
+        "audioScript": "「弟[おとうと]に 私[わたし]の ケーキを 食[た]べられて しまいました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「私[わたし]が ケーキを 全部[ぜんぶ] 食[た]べました。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Tort ukasi tomonidan yeb qo'yilgan (食べられてしまいました). Bayonot noto'g'ri (✕)."
@@ -3272,7 +3272,7 @@
     "test": [
       {
         "id": "ja-minna-l38-q1",
-        "question": "【Mondai 1: Moji/Goi】「海岸（かいがん）」の 読[よ]み方[かた]は どれですか。",
+        "question": "【Mondai 1: Moji/Goi】「海岸」の 読[よ]み方[かた]は どれですか。",
         "options": ["うみがん", "かいきし", "かいがん", "うみきし"],
         "correctAnswerIndex": 2,
         "explanation": "「海岸」 ning to'g'ri o'qilishi: 「かいがん」 (dengiz sohili/qirg'og'i)."
@@ -3364,9 +3364,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l38-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_025.mp3",
-        "audioTitle": "38-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「趣味[しゅみ]は 何[なに]ですか。」",
+        "audioScript": "「趣味[しゅみ]は 何[なに]ですか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "写真[しゃしん]を 撮[と]るのが 好[す]きです。",
           "写真[しゃしん]を 撮[と]りました。",
@@ -3378,9 +3378,9 @@
       },
       {
         "id": "ja-minna-l38-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_025.mp3",
-        "audioTitle": "38-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「薬[くすり]を 飲[の]むのを 忘[わす]れないで くださいね。」",
+        "audioScript": "「薬[くすり]を 飲[の]むのを 忘[わす]れないで くださいね。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "はい、食後[しょくご]に 飲[の]みます。",
           "忘[わす]れました。",
@@ -3392,9 +3392,9 @@
       },
       {
         "id": "ja-minna-l38-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_025.mp3",
-        "audioTitle": "38-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「一人[ひとり]で 外国[がいこく]へ 行[い]くのは 不安[ふあん]ですか。」",
+        "audioScript": "「一人[ひとり]で 外国[がいこく]へ 行[い]くのは 不安[ふあん]ですか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "ええ、少[すこ]し 不安[ふあん]ですが、楽[たの]しみです。",
           "いいえ、行[い]きません。",
@@ -3406,9 +3406,9 @@
       },
       {
         "id": "ja-minna-l38-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_026.mp3",
-        "audioTitle": "38-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「木村[きむら]さんが 結婚[けっこん]したのを 知[し]って いますか。いいえ、ちっとも 知[し]りませんでした！ 驚[おどろ]きました。」\n\n女[おんな]の 人[ひと]は 木村[きむら]さんの 結婚[けっこん]を 知[し]って いましたか。",
+        "audioScript": "「木村[きむら]さんが 結婚[けっこん]したのを 知[し]って いますか。いいえ、ちっとも 知[し]りませんでした！ 驚[おどろ]きました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n質問に 答えた 人は 木村[きむら]さんの 結婚[けっこん]を 知[し]って いましたか。",
         "options": [
           "知[し]らなかった",
           "前[まえ]から 知[し]っていた",
@@ -3420,9 +3420,9 @@
       },
       {
         "id": "ja-minna-l38-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_028.mp3",
-        "audioTitle": "38-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「車[くるま]の 窓[まど]を 閉[し]めるのを 忘[わす]れました。雨[あめ]が 降[ふ]る前[まえ]に 閉[し]めましょう。」\n\n何[なに]を 忘[わす]れましたか。",
+        "audioScript": "「車[くるま]の 窓[まど]を 閉[し]めるのを 忘[わす]れました。雨[あめ]が 降[ふ]る前[まえ]に 閉[し]めましょう。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n何[なに]を 忘[わす]れましたか。",
         "options": [
           "窓[まど]を 閉[し]めること",
           "鍵[かぎ]を かけること",
@@ -3434,18 +3434,18 @@
       },
       {
         "id": "ja-minna-l38-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_026.mp3",
-        "audioTitle": "38-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「朝[あさ] 早[はや]く 起[お]きるのは 体[からだ]に いいです。」\nBayonot: 「早起[はやお]きは 体[からだ]に 悪[わる]いです。」",
+        "audioScript": "「朝[あさ] 早[はや]く 起[お]きるのは 体[からだ]に いいです。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「早起[はやお]きは 体[からだ]に 悪[わる]いです。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Ertalab barvaqt turish sog'liq uchun foydali deyilgan. Bayonot noto'g'ri (✕)."
       },
       {
         "id": "ja-minna-l38-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_028.mp3",
-        "audioTitle": "38-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「外国語[がいこくご]を 習[なら]うのは 面白[おもしろ]いです。」\nBayonot: 「外国語[がいこくご]の 勉強[べんきょう]は 退屈[たいくつ]です。」",
+        "audioScript": "「外国語[がいこくご]を 習[なら]うのは 面白[おもしろ]いです。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「外国語[がいこくご]の 勉強[べんきょう]は 退屈[たいくつ]です。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Chet tili o'rganish maroqli ekani aytilgan. Bayonot noto'g'ri (✕)."
@@ -3655,9 +3655,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l39-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_027.mp3",
-        "audioTitle": "39-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「どうして パーティーに 来[こ]られなかったんですか。」",
+        "audioScript": "「どうして パーティーに 来[こ]られなかったんですか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "用事[ようじ]が あって、行[い]けなかったんです。",
           "パーティーは 楽[たの]しかったです。",
@@ -3669,9 +3669,9 @@
       },
       {
         "id": "ja-minna-l39-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_027.mp3",
-        "audioTitle": "39-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「地震[じしん]の ニュースを 聞[き]いて、驚[おどろ]きました。」",
+        "audioScript": "「地震[じしん]の ニュースを 聞[き]いて、驚[おどろ]きました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "本当[ほんとう]に びっくりしましたね。",
           "面白[おもしろ]かったですね。",
@@ -3683,9 +3683,9 @@
       },
       {
         "id": "ja-minna-l39-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_027.mp3",
-        "audioTitle": "39-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「危[あぶ]ないので、機械[きかい]に 触[さわ]らないで ください。」",
+        "audioScript": "「危[あぶ]ないので、機械[きかい]に 触[さわ]らないで ください。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "はい、分[わ]かりました。",
           "触[さわ]ります。",
@@ -3697,9 +3697,9 @@
       },
       {
         "id": "ja-minna-l39-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_028.mp3",
-        "audioTitle": "39-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「バスが 遅[おく]れたので、授業[じゅぎょう]に 遅刻[ちこく]して しまいました。先生[せんせい]に 怒[おこ]られたよ。」\n\n男[おとこ]の 人[ひと]が 遅刻[ちこく]した 理由[りゆう]は 何[なに]ですか。",
+        "audioScript": "「バスが 遅[おく]れたので、授業[じゅぎょう]に 遅刻[ちこく]して しまいました。先生[せんせい]に 怒[おこ]られたよ。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n話している 人が 遅刻[ちこく]した 理由[りゆう]は 何[なに]ですか。",
         "options": [
           "バスが 遅[おく]れたから",
           "寝坊[ねぼう]したから",
@@ -3711,9 +3711,9 @@
       },
       {
         "id": "ja-minna-l39-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_030.mp3",
-        "audioTitle": "39-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「事故[じこ]が あって、電車[でんしゃ]が 止[と]まって います。困[こま]りましたね、タクシーに しましょう。」\n\n2人[ふたり]は どうして タクシーに 乗[の]りますか。",
+        "audioScript": "「事故[じこ]が あって、電車[でんしゃ]が 止[と]まって います。困[こま]りましたね、タクシーに しましょう。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n2人[ふたり]は どうして タクシーに 乗[の]りますか。",
         "options": [
           "電車[でんしゃ]が 止[と]まったから",
           "タクシーが 好[す]きだから",
@@ -3725,18 +3725,18 @@
       },
       {
         "id": "ja-minna-l39-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_028.mp3",
-        "audioTitle": "39-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「家族[かぞく]に 会[あ]えなくて、とても 寂[さび]しいです。」\nBayonot: 「この 人[ひと]は 家族[かぞく]と 一緒[いっしょ]に 住[す]んで います。」",
+        "audioScript": "「家族[かぞく]に 会[あ]えなくて、とても 寂[さび]しいです。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「この 人[ひと]は 家族[かぞく]と 一緒[いっしょ]に 住[す]んで います。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Oilasi bilan ko'risha olmagani uchun sog'inmoqda, birga yashamayapti. Bayonot noto'g'ri (✕)."
       },
       {
         "id": "ja-minna-l39-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_030.mp3",
-        "audioTitle": "39-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「台風[たいふう]で 木[き]が 倒[たお]れました。」\nBayonot: 「木[き]は 倒[たお]れませんでした。」",
+        "audioScript": "「台風[たいふう]で 木[き]が 倒[たお]れました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「木[き]は 倒[たお]れませんでした。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Tayfun sababli daraxt qulab tushgani aytilgan. Bayonot noto'g'ri (✕)."
@@ -3926,9 +3926,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l40-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_029.mp3",
-        "audioTitle": "40-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「明日[あした] 雨[あめ]が 降[ふ]るかどうか、分[わ]かりますか。」",
+        "audioScript": "「明日[あした] 雨[あめ]が 降[ふ]るかどうか、分[わ]かりますか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "いいえ、天気予報[てんきよほう]を 見[み]て みます。",
           "降[ふ]りません。",
@@ -3940,9 +3940,9 @@
       },
       {
         "id": "ja-minna-l40-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_029.mp3",
-        "audioTitle": "40-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「鍵[かぎ]が どこに あるか、知[し]って いますか。」",
+        "audioScript": "「鍵[かぎ]が どこに あるか、知[し]って いますか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "机[つくえ]の 引[ひ]き出[だ]しを 調[しら]べて みて ください。",
           "鍵[かぎ]を かけました。",
@@ -3954,9 +3954,9 @@
       },
       {
         "id": "ja-minna-l40-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_029.mp3",
-        "audioTitle": "40-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「この 靴[くつ]を 履[は]いて みても いいですか。」",
+        "audioScript": "「この 靴[くつ]を 履[は]いて みても いいですか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "はい、どうぞ サイズを 確[たし]かめて ください。",
           "脱[ぬ]いで ください。",
@@ -3968,9 +3968,9 @@
       },
       {
         "id": "ja-minna-l40-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_030.mp3",
-        "audioTitle": "40-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「忘[わす]れ物[もの]が ないかどうか、もう 一度[いちど] 部屋[へや]を 確認[かくにん]して ください。はい、見[み]て きます。」\n\n2人[ふたり]は これから 何[なに]を しますか。",
+        "audioScript": "「忘[わす]れ物[もの]が ないかどうか、もう 一度[いちど] 部屋[へや]を 確認[かくにん]して ください。はい、見[み]て きます。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n2人[ふたり]は これから 何[なに]を しますか。",
         "options": [
           "部屋[へや]に 忘れ物[わすれもの]が ないか 確認[かくにん]する",
           "出[で]かけるのを やめる",
@@ -3982,9 +3982,9 @@
       },
       {
         "id": "ja-minna-l40-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_032.mp3",
-        "audioTitle": "40-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「いつ 日本[にほん]へ 来[き]たか、覚[おぼ]えて いますか。2年[にねん]前[まえ]の 春[はる]ですよ。」\n\nこの 人[ひと]は いつ 日本[にほん]に 来[き]ましたか。",
+        "audioScript": "「いつ 日本[にほん]へ 来[き]たか、覚[おぼ]えて いますか。2年[にねん]前[まえ]の 春[はる]ですよ。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\nこの 人[ひと]は いつ 日本[にほん]に 来[き]ましたか。",
         "options": [
           "2年[にねん]前[まえ]の 春[はる]",
           "去年[きょねん]の 夏[なつ]",
@@ -3996,18 +3996,18 @@
       },
       {
         "id": "ja-minna-l40-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_030.mp3",
-        "audioTitle": "40-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「美味[おい]しいかどうか、食[た]べて みなければ 分[わ]かりません。」\nBayonot: 「食[た]べなくても 味[あじ]が 分[わ]かります。」",
+        "audioScript": "「美味[おい]しいかどうか、食[た]べて みなければ 分[わ]かりません。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「食[た]べなくても 味[あじ]が 分[わ]かります。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Tatib ko'rmasdan ta'mini bilib bo'lmaydi. Shuning uchun bayonot noto'g'ri (✕)."
       },
       {
         "id": "ja-minna-l40-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_032.mp3",
-        "audioTitle": "40-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「箱[はこ]の 中[なか]に 何[なに]が あるか、分[わ]かりません。」\nBayonot: 「箱[はこ]の 中身[なかみ]を よく 知[し]って います。」",
+        "audioScript": "「箱[はこ]の 中[なか]に 何[なに]が あるか、分[わ]かりません。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「箱[はこ]の 中身[なかみ]を よく 知[し]って います。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Qutining ichida nima borligi noma'lum. Bayonot noto'g'ri (✕)."
@@ -4187,9 +4187,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l41-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_031.mp3",
-        "audioTitle": "41-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「部長[ぶちょう]に お土産[みやげ]を いただきました。」",
+        "audioScript": "「部長[ぶちょう]に お土産[みやげ]を いただきました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "どんな お土産[みやげ]でしたか。",
           "部長[ぶちょう]に あげました。",
@@ -4201,9 +4201,9 @@
       },
       {
         "id": "ja-minna-l41-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_031.mp3",
-        "audioTitle": "41-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「先生[せんせい]が 本[ほん]を 貸[か]して くださったんです。」",
+        "audioScript": "「先生[せんせい]が 本[ほん]を 貸[か]して くださったんです。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "親切[しんせつ]な 先生[せんせい]ですね。",
           "先生[せんせい]に 貸[か]しました。",
@@ -4215,9 +4215,9 @@
       },
       {
         "id": "ja-minna-l41-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_031.mp3",
-        "audioTitle": "41-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「犬[いぬ]に 餌[えさ]を やりましたか。」",
+        "audioScript": "「犬[いぬ]に 餌[えさ]を やりましたか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "はい、さっき やりましたよ。",
           "犬[いぬ]に もらいました。",
@@ -4229,18 +4229,18 @@
       },
       {
         "id": "ja-minna-l41-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_032.mp3",
-        "audioTitle": "41-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「その ネクタイ、素敵[すてき]ですね。社長[しゃちょう]が くださったんです。大切[たいせつ]に して います。」\n\n男[おとこ]の 人[ひと]の ネクタイは 誰[だれ]から もらったものですか。",
+        "audioScript": "「その ネクタイ、素敵[すてき]ですね。社長[しゃちょう]が くださったんです。大切[たいせつ]に して います。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\nネクタイを している 人の ネクタイは 誰[だれ]から もらったものですか。",
         "options": ["社長[しゃちょう]", "友達[ともだち]", "家族[かぞく]", "先生[せんせい]"],
         "correctAnswerIndex": 0,
         "explanation": "Bo'yinbog' shaxsan kompaniya rahbari (shachou) sovg'a qilgani ta'kidlandi."
       },
       {
         "id": "ja-minna-l41-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_034.mp3",
-        "audioTitle": "41-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「先生[せんせい]が 発音[はつおん]を 直[なお]して くだすったんです。良[よ]かったですね。」\n\n先生[せんせい]は 何[なに]を して くれましたか。",
+        "audioScript": "「先生[せんせい]が 発音[はつおん]を 直[なお]して くだすったんです。良[よ]かったですね。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n先生[せんせい]は 何[なに]を して くれましたか。",
         "options": [
           "発音[はつおん]を 直[なお]してくれた",
           "本[ほん]を くれた",
@@ -4252,18 +4252,18 @@
       },
       {
         "id": "ja-minna-l41-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_032.mp3",
-        "audioTitle": "41-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「子供[こども]に 新[あたら]しい おもちゃを やりました。」\nBayonot: 「子供[こども]から おもちゃを もらいました。」",
+        "audioScript": "「子供[こども]に 新[あたら]しい おもちゃを やりました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「子供[こども]から おもちゃを もらいました。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Bolaga o'yinchoq berildi, undan olinmadi. Bayonot noto'g'ri (✕)."
       },
       {
         "id": "ja-minna-l41-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_034.mp3",
-        "audioTitle": "41-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「花[はな]に 水[みず]を やりました。」\nBayonot: 「花[はな]から 水[みず]を もらいました。」",
+        "audioScript": "「花[はな]に 水[みず]を やりました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「花[はな]から 水[みず]を もらいました。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Gulga suv quyildi (やりました). Bayonot noto'g'ri (✕)."
@@ -4299,7 +4299,7 @@
       {
         "id": "ja-minna-l42-ex4",
         "type": "multiple-choice",
-        "prompt": "Baholash sifati («qulay / oson») bilan «のに» qolipi qaysi?\n「この カバンは 旅行に 行く（　）便利です。」",
+        "prompt": "Maqsadni bildirib, «qulay» sifati bilan keladigan qolipni tanlang.\n「この カバンは 旅行に 行く（　）便利です。」",
         "options": ["ために", "ように", "ので", "のに"],
         "correctAnswer": 3,
         "explanation": "Baholash: V-辞書形＋のに 便利です (sayohatga borish uchun juda qulay)."
@@ -4356,7 +4356,7 @@
     "test": [
       {
         "id": "ja-minna-l42-q1",
-        "question": "【Mondai 1: Moji/Goi】「法律（ほうりつ）」の 読[よ]み方[かた]は どれですか。",
+        "question": "【Mondai 1: Moji/Goi】「法律」の 読[よ]み方[かた]は どれですか。",
         "options": ["ほうりく", "ほりつ", "ほうりつ", "ほうりき"],
         "correctAnswerIndex": 2,
         "explanation": "「法律」 ning to'g'ri o'qilishi: 「ほうりつ」 (qonun)."
@@ -4438,9 +4438,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l42-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_033.mp3",
-        "audioTitle": "42-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「何[なに]のために 貯金[ちょきん]して いるんですか。」",
+        "audioScript": "「何[なに]のために 貯金[ちょきん]して いるんですか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "将来[しょうらい] 家[いえ]を 買[か]うために 貯金[ちょきん]して います。",
           "お金[かね]が ありません。",
@@ -4452,9 +4452,9 @@
       },
       {
         "id": "ja-minna-l42-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_033.mp3",
-        "audioTitle": "42-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「この ハサミは 何[なに]に 使[つか]うんですか。」",
+        "audioScript": "「この ハサミは 何[なに]に 使[つか]うんですか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "花[はな]を 切[き]るのに 使[つか]います。",
           "花[はな]を 買[か]います。",
@@ -4466,9 +4466,9 @@
       },
       {
         "id": "ja-minna-l42-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_033.mp3",
-        "audioTitle": "42-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「日本[にほん]で アパートを 探[さが]すのに 時間[じかん]が かかりましたか。」",
+        "audioScript": "「日本[にほん]で アパートを 探[さが]すのに 時間[じかん]が かかりましたか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "ええ、2週間[にしゅうかん]ぐらい かかりました。",
           "探[さが]しませんでした。",
@@ -4480,9 +4480,9 @@
       },
       {
         "id": "ja-minna-l42-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_034.mp3",
-        "audioTitle": "42-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「健康[けんこう]のために、毎朝[まいあさ] 走[はし]るように して います。雨[あめ]の 日[ひ]も 体育館[たいいくかん]で 走[はし]りますよ。」\n\nこの 人[ひと]は どうして 走[はし]って いますか。",
+        "audioScript": "「健康[けんこう]のために、毎朝[まいあさ] 走[はし]るように して います。雨[あめ]の 日[ひ]も 体育館[たいいくかん]で 走[はし]りますよ。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\nこの 人[ひと]は どうして 走[はし]って いますか。",
         "options": [
           "健康[けんこう]の ため",
           "大会[たいかい]に 出[で]る ため",
@@ -4494,9 +4494,9 @@
       },
       {
         "id": "ja-minna-l42-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_036.mp3",
-        "audioTitle": "42-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「この ナイフは チーズを 切[き]るのに 便利[べんり]ですよ。そうですね、買[か]いましょう。」\n\nこの ナイフの 役目[やくめ]は 何[なに]ですか。",
+        "audioScript": "「この ナイフは チーズを 切[き]るのに 便利[べんり]ですよ。そうですね、買[か]いましょう。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\nこの ナイフの 役目[やくめ]は 何[なに]ですか。",
         "options": [
           "チーズを 切[き]るため",
           "肉[にく]を 焼[や]くため",
@@ -4508,18 +4508,18 @@
       },
       {
         "id": "ja-minna-l42-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_034.mp3",
-        "audioTitle": "42-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「この 本[ほん]は 日本語[にほんご]を 勉強[べんきょう]するのに 役[やく]に 立[た]ちます。」\nBayonot: 「この 本[ほん]は 役[やく]に 立[た]ちません。」",
+        "audioScript": "「この 本[ほん]は 日本語[にほんご]を 勉強[べんきょう]するのに 役[やく]に 立[た]ちます。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「この 本[ほん]は 役[やく]に 立[た]ちません。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Kitob yapon tilini o'rganishda foydali (役に立つ) ekani aytildi. Bayonot noto'g'ri (✕)."
       },
       {
         "id": "ja-minna-l42-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_036.mp3",
-        "audioTitle": "42-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「試験[しけん]に 合格[ごうかく]する ために、一生懸命[いっしょうけんめい] 勉強[べんきょう]します。」\nBayonot: 「試験[しけん]は どうでも いいと 思[おも]って います。」",
+        "audioScript": "「試験[しけん]に 合格[ごうかく]する ために、一生懸命[いっしょうけんめい] 勉強[べんきょう]します。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「試験[しけん]は どうでも いいと 思[おも]って います。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Imtihondan o'tish maqsadida astoydil o'qimoqda. Bayonot noto'g'ri (✕)."
@@ -4709,9 +4709,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l43-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_035.mp3",
-        "audioTitle": "43-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「空[そら]が 暗[くら]く なって きましたね。」",
+        "audioScript": "「空[そら]が 暗[くら]く なって きましたね。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "ええ、今[いま]にも 雨[あめ]が 降[ふ]りそうですね。",
           "雨[あめ]が 降[ふ]りました。",
@@ -4723,9 +4723,9 @@
       },
       {
         "id": "ja-minna-l43-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_035.mp3",
-        "audioTitle": "43-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「この ケーキ、とても おいしそうですね。」",
+        "audioScript": "「この ケーキ、とても おいしそうですね。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "ええ、有名[ゆうめい]な 店[みせ]の ケーキなんですよ。",
           "まずいです。",
@@ -4737,9 +4737,9 @@
       },
       {
         "id": "ja-minna-l43-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_035.mp3",
-        "audioTitle": "43-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「ちょっと 喉[のど]が 渇[かわ]きましたね。」",
+        "audioScript": "「ちょっと 喉[のど]が 渇[かわ]きましたね。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "自販機[じはんき]で ジュースを 買[か]って 来[き]ますね。",
           "水[みず]を 飲[の]みませんでした。",
@@ -4751,11 +4751,11 @@
       },
       {
         "id": "ja-minna-l43-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_036.mp3",
-        "audioTitle": "43-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「荷物[にもつ]が 重[おも]そうですね。お持[も]ちしましょうか。ありがとうございます。助[たす]かります。」\n\n男[おとこ]の 人[ひと]は 何[なに]を しますか。",
+        "audioScript": "「荷物[にもつ]が 重[おも]そうですね。お持[も]ちしましょうか。ありがとうございます。助[たす]かります。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n相手を 手伝う 人は 何[なに]を しますか。",
         "options": [
-          "女[おんな]の 人[ひと]の 荷物[にもつ]を 持[も]つ",
+          "相手[あいて]の 荷物[にもつ]を 持[も]つ",
           "荷物[にもつ]を 捨[す]てる",
           "タクシーを 呼[よ]ぶ",
           "見[み]て いるだけ"
@@ -4765,27 +4765,27 @@
       },
       {
         "id": "ja-minna-l43-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_038.mp3",
-        "audioTitle": "43-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「この 料理[りょうり]、辛[から]そうですね。ええ、唐辛子[とうがらし]が 入[はい]って いますから。」\n\n料理[りょうり]の 見[み]た目[め]は どうですか。",
+        "audioScript": "「この 料理[りょうり]、辛[から]そうですね。ええ、唐辛子[とうがらし]が 入[はい]って いますから。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n料理[りょうり]の 見[み]た目[め]は どうですか。",
         "options": ["辛[から]そう", "甘[あま]そう", "苦[にが]そう", "冷[つめ]たそう"],
         "correctAnswerIndex": 0,
         "explanation": "Qalampir solingani sababli taom achchiqqa o'xshab ko'rinmoqda."
       },
       {
         "id": "ja-minna-l43-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_036.mp3",
-        "audioTitle": "43-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「この ボタンが 外[はず]れそうです。」\nBayonot: 「ボタンは もう 完全[かんぜん]に 取[と]れました。」",
+        "audioScript": "「この ボタンが 外[はず]れそうです。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「ボタンは もう 完全[かんぜん]に 取[と]れました。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Tugma uzilib tushish arafasida (外れそう), hali butunlay tushib ketmagan. Bayonot noto'g'ri (✕)."
       },
       {
         "id": "ja-minna-l43-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_038.mp3",
-        "audioTitle": "43-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「ちょっと 切符[きっぷ]を 買[か]って 来[き]ますから、ここで 待[ま]って いて ください。」\nBayonot: 「この 人[ひと]は もう 切符[きっぷ]を 買[か]いました。」",
+        "audioScript": "「ちょっと 切符[きっぷ]を 買[か]って 来[き]ますから、ここで 待[ま]って いて ください。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「この 人[ひと]は もう 切符[きっぷ]を 買[か]いました。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Bilet sotib olish uchun borib kelishini aytmoqda, hali sotib olmagan. Bayonot noto'g'ri (✕)."
@@ -4907,7 +4907,7 @@
       },
       {
         "id": "ja-minna-l44-q3",
-        "question": "【Mondai 1: Moji/Goi】「空気（くうき）」の 読[よ]み方[かた]は どれですか。",
+        "question": "【Mondai 1: Moji/Goi】「空気」の 読[よ]み方[かた]は どれですか。",
         "options": ["そらき", "くうげ", "くうき", "からき"],
         "correctAnswerIndex": 2,
         "explanation": "「空気」 ning to'g'ri o'qilishi: 「くうき」 (havo/atmosfera)."
@@ -4975,9 +4975,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l44-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_037.mp3",
-        "audioTitle": "44-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「夕べ[ゆうべ] お酒[さけ]を 飲[の]みすぎました。」",
+        "audioScript": "「夕べ[ゆうべ] お酒[さけ]を 飲[の]みすぎました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "お酒[さけ]は ほどほどに したほうが いいですよ。",
           "たくさん 飲[の]みましょう。",
@@ -4989,9 +4989,9 @@
       },
       {
         "id": "ja-minna-l44-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_037.mp3",
-        "audioTitle": "44-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「この ペンは とても 書[か]きやすいですね。」",
+        "audioScript": "「この ペンは とても 書[か]きやすいですね。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "ええ、手[て]が 疲[つか]れませんよ。",
           "書[か]けません。",
@@ -5003,9 +5003,9 @@
       },
       {
         "id": "ja-minna-l44-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_037.mp3",
-        "audioTitle": "44-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「東京[とうきょう]の 地下鉄[ちかてつ]は 乗[の]り換[か]えが 複雑[ふくざつ]で、分[わ]かりにくいです。」",
+        "audioScript": "「東京[とうきょう]の 地下鉄[ちかてつ]は 乗[の]り換[か]えが 複雑[ふくざつ]で、分[わ]かりにくいです。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "慣[な]れるまで 大変[たいへん]ですね。",
           "簡単[かんたん]ですね。",
@@ -5017,9 +5017,9 @@
       },
       {
         "id": "ja-minna-l44-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_038.mp3",
-        "audioTitle": "44-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「この 辞書[じしょ]は 説明[せつめい]が 詳[くわ]しくて、使[つか]いやすいですよ。じゃ、これに します。」\n\n男[おとこ]の 人[ひと]が この 辞書[じしょ]を 選[えら]んだ 理由[りゆう]は 何[なに]ですか。",
+        "audioScript": "「この 辞書[じしょ]は 説明[せつめい]が 詳[くわ]しくて、使[つか]いやすいですよ。じゃ、これに します。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n辞書を 買う 人が この 辞書[じしょ]を 選[えら]んだ 理由[りゆう]は 何[なに]ですか。",
         "options": [
           "説明[せつめい]が 詳[くわ]しくて 使[つか]いやすいから",
           "値段[ねだん]が 一番[いちばん] 安[やす]いから",
@@ -5031,27 +5031,27 @@
       },
       {
         "id": "ja-minna-l44-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_040.mp3",
-        "audioTitle": "44-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「この 靴[くつ]は 軽[かる]くて、歩[ある]きやすいですね。じゃ、これに 決[き]めます。」\n\n靴[くつ]の 特徴[とくちょう]は 何[なに]ですか。",
+        "audioScript": "「この 靴[くつ]は 軽[かる]くて、歩[ある]きやすいですね。じゃ、これに 決[き]めます。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n靴[くつ]の 特徴[とくちょう]は 何[なに]ですか。",
         "options": ["歩[ある]きやすい", "重[おも]い", "痛[いた]い", "高[たか]い"],
         "correctAnswerIndex": 0,
         "explanation": "Poyabzal yengil va yurishga qulay (歩きやすい)."
       },
       {
         "id": "ja-minna-l44-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_038.mp3",
-        "audioTitle": "44-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「ご飯[はん]を 食[た]べすぎて、お腹[なか]が 痛[いた]いです。」\nBayonot: 「この 人[ひと]は お腹[なか]が すいて います。」",
+        "audioScript": "「ご飯[はん]を 食[た]べすぎて、お腹[なか]が 痛[いた]いです。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「この 人[ひと]は お腹[なか]が すいて います。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Ko'p yeb qo'yganidan qorni og'rimoqda, och emas. Bayonot noto'g'ri (✕)."
       },
       {
         "id": "ja-minna-l44-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_040.mp3",
-        "audioTitle": "44-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「テレビを 見[み]すぎて、目[め]が 疲[つか]れました。」\nBayonot: 「テレビを ちっとも 見[み]ませんでした。」",
+        "audioScript": "「テレビを 見[み]すぎて、目[め]が 疲[つか]れました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「テレビを ちっとも 見[み]ませんでした。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Televizorni ko'p ko'rib yuborganidan ko'zi toliqqan. Bayonot noto'g'ri (✕)."
@@ -5246,9 +5246,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l45-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_039.mp3",
-        "audioTitle": "45-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「火事[かじ]や 地震[じしん]の 場合[ばあい]は、どうしますか。」",
+        "audioScript": "「火事[かじ]や 地震[じしん]の 場合[ばあい]は、どうしますか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "エレベーターを 使[つか]わないで、階段[かいだん]で 避難[ひなん]します。",
           "エレベーターに 乗[の]ります。",
@@ -5260,9 +5260,9 @@
       },
       {
         "id": "ja-minna-l45-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_039.mp3",
-        "audioTitle": "45-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「約束[やくそく]したのに、どうして 来[こ]なかったんですか。」",
+        "audioScript": "「約束[やくそく]したのに、どうして 来[こ]なかったんですか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "すみません、急[きゅう]な 用事[ようじ]が 入[はい]って しまったんです。",
           "楽[たの]しかったです。",
@@ -5274,9 +5274,9 @@
       },
       {
         "id": "ja-minna-l45-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_039.mp3",
-        "audioTitle": "45-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「一生懸命[いっしょうけんめい] 勉強[べんきょう]したのに、不合格[ふごうかく]でした。」",
+        "audioScript": "「一生懸命[いっしょうけんめい] 勉強[べんきょう]したのに、不合格[ふごうかく]でした。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "それは 残念[ざんねん]でしたね。次回[じかい] 頑張[がんば]りましょう。",
           "おめでとうございます。",
@@ -5288,9 +5288,9 @@
       },
       {
         "id": "ja-minna-l45-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_040.mp3",
-        "audioTitle": "45-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「領収書[りょうしゅうしょ]が 必要[ひつよう]な 場合は、ボタンを 押[お]して ください。はい、押[お]しました。」\n\n男[おとこ]の 人[ひと]は いつ ボタンを 押[お]しますか。",
+        "audioScript": "「領収書[りょうしゅうしょ]が 必要[ひつよう]な 場合は、ボタンを 押[お]して ください。はい、押[お]しました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\nボタンを 押す 人は いつ ボタンを 押[お]しますか。",
         "options": [
           "領収書[りょうしゅうしょ]が 欲[ほ]しい とき",
           "お釣[つ]りが 欲[ほ]しい とき",
@@ -5302,27 +5302,27 @@
       },
       {
         "id": "ja-minna-l45-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_042.mp3",
-        "audioTitle": "45-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「パスポートを 紛失[ふんしつ]した 場合は、大使館[たいしかん]へ 連絡[れんらく]して ください。はい、メモしました。」\n\nパスポートが なくなった とき、どこへ 行[い]きますか。",
+        "audioScript": "「パスポートを 紛失[ふんしつ]した 場合は、大使館[たいしかん]へ 連絡[れんらく]して ください。はい、メモしました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\nパスポートが なくなった とき、どこへ 連絡[れんらく]しますか。",
         "options": ["大使館[たいしかん]", "ホテル", "病院[びょういん]", "空港[くうこう]"],
         "correctAnswerIndex": 0,
         "explanation": "Pasport yo'qolgan taqdirda elchixonaga murojaat qilinadi."
       },
       {
         "id": "ja-minna-l45-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_040.mp3",
-        "audioTitle": "45-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「薬[くすり]を 飲[の]んだのに、まだ 頭[あたま]が 痛[いた]いです。」\nBayonot: 「薬[くすり]を 飲[の]んで、頭痛[ずつう]が 完全[かんぜん]に 治[なお]りました。」",
+        "audioScript": "「薬[くすり]を 飲[の]んだのに、まだ 頭[あたま]が 痛[いた]いです。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「薬[くすり]を 飲[の]んで、頭痛[ずつう]が 完全[かんぜん]に 治[なお]りました。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Dori ichgan bo'lsa-da hali bosh og'rig'i qolmagan. Bayonot noto'g'ri (✕)."
       },
       {
         "id": "ja-minna-l45-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_042.mp3",
-        "audioTitle": "45-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「たくさん 練習[れんしゅう]したのに、試合[しあい]で 負[ま]けて しまいました。」\nBayonot: 「試合[しあい]で 勝[か]ちました。」",
+        "audioScript": "「たくさん 練習[れんしゅう]したのに、試合[しあい]で 負[ま]けて しまいました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「試合[しあい]で 勝[か]ちました。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Ko'p mashq qilgan bo'lsa-da mag'lub bo'ldi. Bayonot noto'g'ri (✕)."
@@ -5413,7 +5413,7 @@
       {
         "id": "ja-minna-l46-ex9",
         "type": "multiple-choice",
-        "prompt": "Otga «はずです» qanday ulanadi?\n「彼は 今日 休みの （　）です。」",
+        "prompt": "Ot bilan kelib, kutilayotgan holatni bildiradigan shaklni tanlang.\n「彼は 今日 休みの （　）です。」",
         "options": ["なはず", "であるはず", "はず", "にはず"],
         "correctAnswer": 2,
         "explanation": "Ot bilan birikishi: 「休みの はずです」."
@@ -5430,7 +5430,7 @@
     "test": [
       {
         "id": "ja-minna-l46-q1",
-        "question": "【Mondai 1: Moji/Goi】「原因（げんいん）」の 読[よ]み方[かた]は どれですか。",
+        "question": "【Mondai 1: Moji/Goi】「原因」の 読[よ]み方[かた]は どれですか。",
         "options": ["げんじん", "もといん", "げんいん", "げんおん"],
         "correctAnswerIndex": 2,
         "explanation": "「原因」 ning to'g'ri o'qilishi: 「げんいん」 (sabab)."
@@ -5512,9 +5512,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l46-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_041.mp3",
-        "audioTitle": "46-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「昼[ひる]ご飯[はん]は もう 食[た]べましたか。」",
+        "audioScript": "「昼[ひる]ご飯[はん]は もう 食[た]べましたか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "今[いま]から 食[た]べるところです。一緒[いっしょ]に いかがですか。",
           "昨日[きのう] 食[た]べました。",
@@ -5526,9 +5526,9 @@
       },
       {
         "id": "ja-minna-l46-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_041.mp3",
-        "audioTitle": "46-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「田中[たなか]さんは まだ 会議室[かいぎしつ]に いますか。」",
+        "audioScript": "「田中[たなか]さんは まだ 会議室[かいぎしつ]に いますか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "いえ、たった今[いま] 帰[かえ]ったところですよ。",
           "はい、会議[かいぎ]は 始[はじ]まりません。",
@@ -5540,9 +5540,9 @@
       },
       {
         "id": "ja-minna-l46-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_041.mp3",
-        "audioTitle": "46-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「先月[せんげつ] 車[くるま]を 買[か]ったばかりなのに、もう 故障[こしょう]して しまいました。」",
+        "audioScript": "「先月[せんげつ] 車[くるま]を 買[か]ったばかりなのに、もう 故障[こしょう]して しまいました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "それは ひどいですね。保証[ほしょう]は ありますか。",
           "よかったですね。",
@@ -5554,9 +5554,9 @@
       },
       {
         "id": "ja-minna-l46-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_042.mp3",
-        "audioTitle": "46-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「今[いま] お時間[じかん] よろしいですか。すみません、今[いま]から 出[で]かけるところなんです。後[あと]で お願[ねが]いできますか。」\n\n男[おとこ]の 人[ひと]は 今[いま]から 何[なに]を しますか。",
+        "audioScript": "「今[いま] お時間[じかん] よろしいですか。すみません、今[いま]から 出[で]かけるところなんです。後[あと]で お願[ねが]いできますか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n質問に 答えた 人は 今[いま]から 何[なに]を しますか。",
         "options": [
           "外出[がいしゅつ]する",
           "電話[でんわ]で 話[はな]す",
@@ -5568,9 +5568,9 @@
       },
       {
         "id": "ja-minna-l46-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_044.mp3",
-        "audioTitle": "46-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「仕事[しごと]は もう 終[お]わりましたか。いえ、今[いま]から 始[はじ]めるところです。」\n\n仕事[しごと]は どの 段階[だんかい]ですか。",
+        "audioScript": "「仕事[しごと]は もう 終[お]わりましたか。いえ、今[いま]から 始[はじ]めるところです。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n仕事[しごと]は どの 段階[だんかい]ですか。",
         "options": [
           "これから 始[はじ]まる ところ",
           "もう 終[お]わった ところ",
@@ -5582,18 +5582,18 @@
       },
       {
         "id": "ja-minna-l46-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_042.mp3",
-        "audioTitle": "46-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「さっき 昼[ひる]ご飯[はん]を 食[た]べたばかりですから、お腹[なか]が すいて いません。」\nBayonot: 「この 人[ひと]は 今[いま] とても お腹[なか]が すいて います。」",
+        "audioScript": "「さっき 昼[ひる]ご飯[はん]を 食[た]べたばかりですから、お腹[なか]が すいて いません。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「この 人[ひと]は 今[いま] とても お腹[なか]が すいて います。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Yaqindagina ovqatlanganligi uchun qorni och emas. Bayonot noto'g'ri (✕)."
       },
       {
         "id": "ja-minna-l46-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_044.mp3",
-        "audioTitle": "46-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「先週[せんしゅう] 日本[にほん]に 来[き]たばかりですから、まだ 道[みち]が よく 分[わ]かりません。」\nBayonot: 「日本[にほん]に 長[なが]い 間[あいだ] 住[す]んで います。」",
+        "audioScript": "「先週[せんしゅう] 日本[にほん]に 来[き]たばかりですから、まだ 道[みち]が よく 分[わ]かりません。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「日本[にほん]に 長[なが]い 間[あいだ] 住[す]んで います。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "O'tgan haftagina Yaponiyaga kelgan, uzoq vaqtdan beri yashamayapti. Bayonot noto'g'ri (✕)."
@@ -5696,7 +5696,7 @@
     "test": [
       {
         "id": "ja-minna-l47-q1",
-        "question": "【Mondai 1: Moji/Goi】「人口（じんこう）」の 読[よ]み方[かた]は どれですか。",
+        "question": "【Mondai 1: Moji/Goi】「人口」の 読[よ]み方[かた]は どれですか。",
         "options": ["にんこう", "じんこう", "じんぐち", "ひとぐち"],
         "correctAnswerIndex": 1,
         "explanation": "「人口」 ning to'g'ri o'qilishi: 「じんこう」 (aholi soni)."
@@ -5783,9 +5783,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l47-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_043.mp3",
-        "audioTitle": "47-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「天気予報[てんきよほう]に よると、明日[あした]は 寒[さむ]く なるそうですね。」",
+        "audioScript": "「天気予報[てんきよほう]に よると、明日[あした]は 寒[さむ]く なるそうですね。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "ええ、コートを 着[き]て 行[い]ったほうが いいですね。",
           "寒[さむ]くなかったです。",
@@ -5797,9 +5797,9 @@
       },
       {
         "id": "ja-minna-l47-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_043.mp3",
-        "audioTitle": "47-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「外[そと]が 騒[さわ]がしいですね。何[なに]か あったんでしょうか。」",
+        "audioScript": "「外[そと]が 騒[さわ]がしいですね。何[なに]か あったんでしょうか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "事故[じこ]が あったようですよ。パトカーが 来[き]て います。",
           "静[しず]かですね。",
@@ -5811,9 +5811,9 @@
       },
       {
         "id": "ja-minna-l47-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_043.mp3",
-        "audioTitle": "47-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「山田[やまだ]さんは 来月[らいげつ] 会社[かいしゃ]を 辞[や]めるそうですよ。」",
+        "audioScript": "「山田[やまだ]さんは 来月[らいげつ] 会社[かいしゃ]を 辞[や]めるそうですよ。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "えっ、本当[ほんとう]ですか。全然[ぜんぜん] 知[し]りませんでした。",
           "辞[や]めました。",
@@ -5825,18 +5825,18 @@
       },
       {
         "id": "ja-minna-l47-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_044.mp3",
-        "audioTitle": "47-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「噂[うわさ]に よると、駅前[えきまえ]に 大[おお]きな 映画館[えいがかん]が できるそうですよ。へえ、便利[べんり]に なりますね。」\n\n駅前[えきまえ]に 何[なに]が できると 言[い]って いますか。",
+        "audioScript": "「噂[うわさ]に よると、駅前[えきまえ]に 大[おお]きな 映画館[えいがかん]が できるそうですよ。へえ、便利[べんり]に なりますね。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n駅前[えきまえ]に 何[なに]が できると 言[い]って いますか。",
         "options": ["映画館[えいがかん]", "病院[びょういん]", "スーパー", "学校[がっこう]"],
         "correctAnswerIndex": 0,
         "explanation": "Mish-mishlarga ko'ra vokzal oldida katta kinoteatr qurilar emish."
       },
       {
         "id": "ja-minna-l47-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_046.mp3",
-        "audioTitle": "47-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「明日[あした]は 暖[あたた]かく なるそうですよ。じゃ、ピクニックに 行[い]きましょう。」\n\n明日[あした]の 天気[てんき]は どうですか。",
+        "audioScript": "「明日[あした]は 暖[あたた]かく なるそうですよ。じゃ、ピクニックに 行[い]きましょう。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n明日[あした]の 天気[てんき]は どうですか。",
         "options": [
           "暖[あたた]かくなる そう",
           "大雨[おおあめ]に なる そう",
@@ -5848,18 +5848,18 @@
       },
       {
         "id": "ja-minna-l47-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_044.mp3",
-        "audioTitle": "47-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「咳[せき]が 出[で]るし、熱[ねつ]も あります。風邪[かぜ]を ひいたようです。」\nBayonot: 「この 人[ひと]は とても 元気[げんき]です。」",
+        "audioScript": "「咳[せき]が 出[で]るし、熱[ねつ]も あります。風邪[かぜ]を ひいたようです。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「この 人[ひと]は とても 元気[げんき]です。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Yo'talyapti va isitmasi bor, shamollaganga o'xshaydi. Demak uning ahvoli yaxshi emas. Bayonot noto'g'ri (✕)."
       },
       {
         "id": "ja-minna-l47-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_046.mp3",
-        "audioTitle": "47-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「部屋[へや]に 明[あ]かりが ついて います。誰[だれ]か いるようです。」\nBayonot: 「部屋[へや]には 絶対[ぜったい]に 誰[だれ]も いません。」",
+        "audioScript": "「部屋[へや]に 明[あ]かりが ついて います。誰[だれ]か いるようです。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「部屋[へや]には 絶対[ぜったい]に 誰[だれ]も いません。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Xonada chiroq yoqilgan, kimdir borga o'xshaydi (いるようです). Bayonot noto'g'ri (✕)."
@@ -5959,7 +5959,7 @@
       },
       {
         "id": "ja-minna-l48-q2",
-        "question": "【Mondai 1: Moji/Goi】「運（はこ）びます」の 読[よ]み方[かた]は どれですか。",
+        "question": "【Mondai 1: Moji/Goi】「運びます」の 読[よ]み方[かた]は どれですか。",
         "options": ["えらびます", "はこびます", "ならびます", "あそびます"],
         "correctAnswerIndex": 1,
         "explanation": "「運びます」 ning to'g'ri o'qilishi: 「はこびます」 (tashimoq)."
@@ -6039,9 +6039,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l48-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_045.mp3",
-        "audioTitle": "48-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「部長[ぶちょう]、この 仕事[しごと]は 私[わたし]に やらせて いただけませんか。」",
+        "audioScript": "「部長[ぶちょう]、この 仕事[しごと]は 私[わたし]に やらせて いただけませんか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "ええ、じゃ、君[きみ]に 任[まか]せよう。",
           "やりませんでした。",
@@ -6053,9 +6053,9 @@
       },
       {
         "id": "ja-minna-l48-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_045.mp3",
-        "audioTitle": "48-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「お母[かあ]さんは 子供[こども]に 毎日[まいにち] ピアノを 練習[れんしゅう]させて います。」",
+        "audioScript": "「お母[かあ]さんは 子供[こども]に 毎日[まいにち] ピアノを 練習[れんしゅう]させて います。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "熱心[ねっしん]な お母[かあ]さんですね。",
           "ピアノを 弾[ひ]きません。",
@@ -6067,9 +6067,9 @@
       },
       {
         "id": "ja-minna-l48-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_045.mp3",
-        "audioTitle": "48-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「気分[きぶん]が 悪[わる]いので、早[はや]く 帰[かえ]らせて ください。」",
+        "audioScript": "「気分[きぶん]が 悪[わる]いので、早[はや]く 帰[かえ]らせて ください。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "無理[むり]を しないで、早[はや]く 病院[びょういん]へ 行[い]きなさい。",
           "帰[かえ]りました。",
@@ -6081,36 +6081,36 @@
       },
       {
         "id": "ja-minna-l48-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_046.mp3",
-        "audioTitle": "48-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「先生[せんせい]、気分[きぶん]が 悪[わる]いので、保健室[ほけんしつ]へ 行[い]かせて いただけませんか。ええ、すぐ 行[い]って 休[やす]みなさい。」\n\n生徒[せいと]は これから どこへ 行[い]きますか。",
+        "audioScript": "「先生[せんせい]、気分[きぶん]が 悪[わる]いので、保健室[ほけんしつ]へ 行[い]かせて いただけませんか。ええ、すぐ 行[い]って 休[やす]みなさい。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n生徒[せいと]は これから どこへ 行[い]きますか。",
         "options": ["保健室[ほけんしつ]", "職員室[しょくいんしつ]", "家[いえ]", "教室[きょうしつ]"],
         "correctAnswerIndex": 0,
         "explanation": "Ahvoli yomonlashgan o'quvchiga tibbiyot xonasiga (保健室) borishga ruxsat berildi."
       },
       {
         "id": "ja-minna-l48-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_048.mp3",
-        "audioTitle": "48-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「子供[こども]に 部屋[へや]を 片付[かたづ]けさせました。綺麗[きれい]に なりましたね。」\n\n誰[だれ]が 部屋[へや]を 掃除[そうじ]しましたか。",
+        "audioScript": "「子供[こども]に 部屋[へや]を 片付[かたづ]けさせました。綺麗[きれい]に なりましたね。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n誰[だれ]が 部屋[へや]を 掃除[そうじ]しましたか。",
         "options": ["子供[こども]", "お父[とう]さん", "お母[かあ]さん", "先生[せんせい]"],
         "correctAnswerIndex": 0,
         "explanation": "Bolaga xonani tozalattirildi (片付けさせました)."
       },
       {
         "id": "ja-minna-l48-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_046.mp3",
-        "audioTitle": "48-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「父[ちち]は 私[わたし]に 自由[じゆう]に 留学[りゅうがく]させて くれました。」\nBayonot: 「父[ちち]は 留学[りゅうがく]に 反対[はんたい]しました。」",
+        "audioScript": "「父[ちち]は 私[わたし]に 自由[じゆう]に 留学[りゅうがく]させて くれました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「父[ちち]は 留学[りゅうがく]に 反対[はんたい]しました。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Otasi chet elda o'qishiga erkin ruxsat bergan, qarshi bo'lmagan. Bayonot noto'g'ri (✕)."
       },
       {
         "id": "ja-minna-l48-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_048.mp3",
-        "audioTitle": "48-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「先生[せんせい]は 生徒[せいと]に 宿題[しゅくだい]を やらせました。」\nBayonot: 「先生[せんせい]が 生徒[せいと]の 宿題[しゅくだい]を やってあげました。」",
+        "audioScript": "「先生[せんせい]は 生徒[せいと]に 宿題[しゅくだい]を やらせました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「先生[せんせい]が 生徒[せいと]の 宿題[しゅくだい]を やってあげました。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "O'qituvchi o'quvchiga vazifani bajartirdi, o'zi qilib bermadi. Bayonot noto'g'ri (✕)."
@@ -6213,7 +6213,7 @@
     "test": [
       {
         "id": "ja-minna-l49-q1",
-        "question": "【Mondai 1: Moji/Goi】「旅館（りょかん）」の 読[よ]み方[かた]は どれですか。",
+        "question": "【Mondai 1: Moji/Goi】「旅館」の 読[よ]み方[かた]は どれですか。",
         "options": ["りょけん", "りょこう", "ホテル", "りょかん"],
         "correctAnswerIndex": 3,
         "explanation": "「旅館」 ning to'g'ri o'qilishi: 「りょかん」 (an'anaviy yapon mehmonxonasi)."
@@ -6300,9 +6300,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l49-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_047.mp3",
-        "audioTitle": "49-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「社長[しゃちょう]は もう お帰[かえ]りに なりましたか。」",
+        "audioScript": "「社長[しゃちょう]は もう お帰[かえ]りに なりましたか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "はい、先[さき]ほど お帰[かえ]りに なりました。",
           "はい、帰[かえ]ります。",
@@ -6314,9 +6314,9 @@
       },
       {
         "id": "ja-minna-l49-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_047.mp3",
-        "audioTitle": "49-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「何[なに]を 召[め]し上[あ]がりますか。」",
+        "audioScript": "「何[なに]を 召[め]し上[あ]がりますか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "コーヒーを お願[ねが]いします。",
           "召[め]し上[あ]がります。",
@@ -6328,9 +6328,9 @@
       },
       {
         "id": "ja-minna-l49-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_047.mp3",
-        "audioTitle": "49-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「先生[せんせい]は 明日[あした] 研究室[けんきゅうしつ]に いらっしゃいますか。」",
+        "audioScript": "「先生[せんせい]は 明日[あした] 研究室[けんきゅうしつ]に いらっしゃいますか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "ええ、午後[ごご]なら ずっと おりますよ。",
           "来[き]ません。",
@@ -6342,9 +6342,9 @@
       },
       {
         "id": "ja-minna-l49-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_048.mp3",
-        "audioTitle": "49-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「鈴木[すずき]先生[せんせい]、昨日[きのう]の テレビを ご覧[らん]に なりましたか。ええ、とても 面白[おもしろ]かったですね。」\n\n先生[せんせい]は テレビを 見[み]ましたか。",
+        "audioScript": "「鈴木[すずき]先生[せんせい]、昨日[きのう]の テレビを ご覧[らん]に なりましたか。ええ、とても 面白[おもしろ]かったですね。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n先生[せんせい]は テレビを 見[み]ましたか。",
         "options": [
           "はい、見[み]ました",
           "いいえ、見[み]ませんでした",
@@ -6356,27 +6356,27 @@
       },
       {
         "id": "ja-minna-l49-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_050.mp3",
-        "audioTitle": "49-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「社長[しゃちょう]は 何時[なんじ]に いらっしゃいますか。10時[じゅうじ]に お見[み]えに なります。」\n\n社長[しゃちょう]は いつ 来[き]ますか。",
+        "audioScript": "「社長[しゃちょう]は 何時[なんじ]に いらっしゃいますか。10時[じゅうじ]に お見[み]えに なります。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n社長[しゃちょう]は いつ 来[き]ますか。",
         "options": ["10時[じゅうじ]", "12時[じゅうにじ]", "明日[あした]", "来[き]ません"],
         "correctAnswerIndex": 0,
         "explanation": "Prezident soat 10 da tashrif buyurishlari (お見えになる = 来る) bildirildi."
       },
       {
         "id": "ja-minna-l49-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_048.mp3",
-        "audioTitle": "49-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「社長[しゃちょう]は ゴルフを なさいます。」\nBayonot: 「社長[しゃちょう]は ゴルフを 全然[ぜんぜん] しません。」",
+        "audioScript": "「社長[しゃちょう]は ゴルフを なさいます。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「社長[しゃちょう]は ゴルフを 全然[ぜんぜん] しません。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Prezident golf o'ynaydilar (なさいます = されます). Bayonot noto'g'ri (✕)."
       },
       {
         "id": "ja-minna-l49-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_050.mp3",
-        "audioTitle": "49-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「先生[せんせい]は もう お帰[かえ]りに なりました。」\nBayonot: 「先生[せんせい]は まだ 教室[きょうしつ]に います。」",
+        "audioScript": "「先生[せんせい]は もう お帰[かえ]りに なりました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「先生[せんせい]は まだ 教室[きょうしつ]に います。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "Ustoz allaqachon uylariga jo'nab ketganlar (お帰りになりました). Bayonot noto'g'ri (✕)."
@@ -6556,9 +6556,9 @@
     "mondaiListening": [
       {
         "id": "ja-minna-l50-m1-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_049.mp3",
-        "audioTitle": "50-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:\n「お名前[なまえ]は 何[なん]と おっしゃいますか。」",
+        "audioScript": "「お名前[なまえ]は 何[なん]と おっしゃいますか。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "スミスと 申[もう]します。どうぞ よろしく お願[ねが]いします。",
           "スミスさんです。",
@@ -6570,9 +6570,9 @@
       },
       {
         "id": "ja-minna-l50-m1-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_049.mp3",
-        "audioTitle": "50-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:\n「明日[あした] 10時[じゅうじ]に そちらへ 伺[うかが]います。」",
+        "audioScript": "「明日[あした] 10時[じゅうじ]に そちらへ 伺[うかが]います。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "お待[ま]ちして おります。気[き]を つけて お越[こ]しください。",
           "参[まい]りません。",
@@ -6584,9 +6584,9 @@
       },
       {
         "id": "ja-minna-l50-m1-q3",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_049.mp3",
-        "audioTitle": "50-dars Mondai 1: Savollarga javob",
-        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:\n「先生[せんせい]の 新[あたら]しい ご著書[ちょしょ]を 拝見[はいけん]しました。」",
+        "audioScript": "「先生[せんせい]の 新[あたら]しい ご著書[ちょしょ]を 拝見[はいけん]しました。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
         "options": [
           "読[よ]んで くださって ありがとうございます。",
           "見[み]ませんでした。",
@@ -6598,9 +6598,9 @@
       },
       {
         "id": "ja-minna-l50-m2-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_050.mp3",
-        "audioTitle": "50-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\n「IMCの ミラーと 申[もう]します。社長[しゃちょう]に お目[め]に かかりたいんですが。少々[しょうしょう] お待[ま]ちください、呼[よ]んで まいります。」\n\nミラーさんは 何[なに]をしに 来[き]ましたか。",
+        "audioScript": "「IMCの ミラーと 申[もう]します。社長[しゃちょう]に お目[め]に かかりたいんですが。少々[しょうしょう] お待[ま]ちください、呼[よ]んで まいります。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 1】Suhbatni tinglang:\nミラーさんは 何[なに]をしに 来[き]ましたか。",
         "options": [
           "社長[しゃちょう]に 会[あ]いに 来[き]た",
           "書類[しょるい]を 届[とど]けに 来[き]た",
@@ -6612,9 +6612,9 @@
       },
       {
         "id": "ja-minna-l50-m2-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_052.mp3",
-        "audioTitle": "50-dars Mondai 2: Qisqa suhbat",
-        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\n「明日[あした]の スケジュールを ご説明[せつめい]いたします。はい、お願[ねが]いします。」\n\nこの 人[ひと]は 何[なに]を しますか。",
+        "audioScript": "「明日[あした]の スケジュールを ご説明[せつめい]いたします。はい、お願[ねが]いします。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 2 - Suhbat 2】Suhbatni tinglang:\nこの 人[ひと]は 何[なに]を しますか。",
         "options": [
           "スケジュールを 説明[せつめい]する",
           "スケジュールを 聞[き]く",
@@ -6626,18 +6626,18 @@
       },
       {
         "id": "ja-minna-l50-m3-q1",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_050.mp3",
-        "audioTitle": "50-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「重[おも]そうな お荷物[にもつ]ですね。私[わたし]が お持[も]ちします。」\nBayonot: 「この 人[ひと]は 相手[あいて]の 荷物[にもつ]を 持[も]ちたいと 思[おも]って います。」",
+        "audioScript": "「重[おも]そうな お荷物[にもつ]ですね。私[わたし]が お持[も]ちします。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 1-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「この 人[ひと]は 相手[あいて]の 荷物[にもつ]を 持[も]ちたいと 思[おも]って います。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 0,
         "explanation": "Birovning og'ir yukini ko'tarib berish taklifi kamtarlik shaklida ifodalangan: «お持ちします». Bayonot to'g'ri (〇)."
       },
       {
         "id": "ja-minna-l50-m3-q2",
-        "audioUrl": "/audio/choukai/n4/shinkanzen_chokai_n4_CD-A_052.mp3",
-        "audioTitle": "50-dars Mondai 3: To'g'ri (〇) yoki Noto'g'ri (✕)",
-        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nSuhbat: 「明日[あした] 社長[しゃちょう]の お宅[たく]に 伺[うかが]います。」\nBayonot: 「明日[あした] 社長[しゃちょう]が 私[わたし]の 家[いえ]に 来[き]ます。」",
+        "audioScript": "「明日[あした] 社長[しゃちょう]の お宅[たく]に 伺[うかが]います。」",
+        "audioTitle": "Sun’iy yaponcha ovoz",
+        "question": "【Mondai 3 - 2-gap】Audioni tinglab, bayonot to'g'riligini aniqlang:\nBayonot: 「明日[あした] 社長[しゃちょう]が 私[わたし]の 家[いえ]に 来[き]ます。」",
         "options": ["〇 正[ただ]しい (To'g'ri)", "✕ 間違[まちが]い (Noto'g'ri)"],
         "correctAnswerIndex": 1,
         "explanation": "So'zlovchi rahbarning xonadoniga tashrif buyuradi (伺います = 行きます). Rahbar uning uyiga kelmaydi. Bayonot noto'g'ri (✕)."

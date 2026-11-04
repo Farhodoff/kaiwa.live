@@ -52,7 +52,7 @@ describe('JLPT N3 curriculum structure', () => {
     expect(new Set(titles).size).toBe(titles.length);
   });
 
-  it('uses authentic N3 audio assets in listening lessons that exist on disk', () => {
+  it('checks that referenced N3 listening audio files exist on disk', () => {
     const listeningLessons = JAPANESE_N3_LESSONS.filter((lesson) =>
       lesson.title.match(/Listening|Choukai|聴解/i),
     );
@@ -62,15 +62,57 @@ describe('JLPT N3 curriculum structure', () => {
     for (const lesson of listeningLessons) {
       const exercises = lesson.steps.flatMap((step) => step.practiceData?.exercises ?? []);
       const questions = lesson.steps.flatMap((step) => step.testData?.questions ?? []);
-      const audioItems = [...exercises, ...questions].filter((item) => item.audioUrl);
+      const audioItems = [...exercises, ...questions].filter(
+        (item) => item.audioUrl || item.audioScript,
+      );
 
       expect(audioItems.length).toBeGreaterThanOrEqual(5);
       for (const item of audioItems) {
-        expect(item.audioUrl).toMatch(/^\/audio\/choukai\/n3\/.+\.mp3$/);
-        const diskPath = path.resolve('public', item.audioUrl!.replace(/^\//, ''));
-        expect(fs.existsSync(diskPath)).toBe(true);
+        if (item.audioUrl) {
+          expect(item.audioUrl).toMatch(/^\/audio\/choukai\/n3\/.+\.mp3$/);
+          const diskPath = path.resolve('public', item.audioUrl.replace(/^\//, ''));
+          expect(fs.existsSync(diskPath)).toBe(true);
+        } else {
+          expect(item.audioScript?.trim().length).toBeGreaterThan(0);
+        }
       }
     }
+  });
+
+  it.each([
+    ['ja-n3-u1-l2-practice-06', '4: 会社'],
+    ['ja-n3-u1-l3-practice-06', '1: 歌'],
+    ['ja-n3-u2-l2-practice-06', '1: 帰宅後'],
+    ['ja-n3-u3-l1-practice-06', '2: 出張'],
+    ['ja-n3-u3-l2-practice-06', '2: 喜'],
+    ['ja-n3-u3-l3-practice-06', '4: 大'],
+    ['ja-n3-u4-l1-practice-06', '1: 優'],
+    ['ja-n3-u4-l4-practice-06', '3: 伝'],
+    ['ja-n3-u4-l5-practice-06', '2: 手'],
+    ['ja-n3-u6-l2-practice-02', '4 (私は)'],
+    ['ja-n3-u6-l2-practice-03', '3 (ために)'],
+    ['ja-n3-u6-l2-practice-04', '3 (勉強した)'],
+    ['ja-n3-u6-l2-practice-05', '3 (ある)'],
+    ['ja-n3-u6-l2-practice-07', '1 (あれば)'],
+    ['ja-n3-u6-l2-practice-09', '3 (話せる)'],
+  ])('scores the third blank correctly for %s', (id, expected) => {
+    const exercise = JAPANESE_N3_LESSONS.flatMap((lesson) => lesson.steps)
+      .flatMap((step) => step.practiceData?.exercises ?? [])
+      .find((item) => item.id === id);
+    expect(exercise).toBeDefined();
+    expect(exercise!.options![exercise!.correctAnswer as number]).toContain(expected);
+  });
+
+  it('uses a verified script instead of the mismatched track in the quick-response exercise', () => {
+    const exercise = JAPANESE_N3_LESSONS.flatMap((lesson) => lesson.steps)
+      .flatMap((step) => step.practiceData?.exercises ?? [])
+      .find((item) => item.id === 'ja-n3-u3-l5-practice-01');
+
+    expect(exercise?.audioUrl).toBeUndefined();
+    expect(exercise?.audioScript).toBe('今度の日曜日、一緒に映画を見に行きませんか。');
+    expect(exercise?.options?.[exercise.correctAnswer as number]).toBe(
+      'ええ、ぜひ お願[ねが]いします',
+    );
   });
 
   it('does not reuse identical practice prompts across different lessons', () => {

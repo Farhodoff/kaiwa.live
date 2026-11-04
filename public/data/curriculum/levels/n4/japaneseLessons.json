@@ -224,7 +224,7 @@
             {
               "id": "ja-n4-u1-l2-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「この 説明[せつめい]は 少[すこ]し 複雑[ふくざつ]です。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「この 説明[せつめい]は 少[すこ]し ＿＿＿です。」",
               "options": ["散歩[さんぽ]", "運転[うんてん]", "食事[しょくじ]", "複雑[ふくざつ]"],
               "correctAnswer": 3,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"複雑[ふくざつ]\" (Murakkab, chigal)."
@@ -694,7 +694,7 @@
             {
               "id": "ja-n4-u1-l5-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「試験[しけん]の 準備[じゅんび]を 始[はじ]めましょう。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「試験[しけん]の ＿＿＿を 始[はじ]めましょう。」",
               "options": ["準備[じゅんび]", "運転[うんてん]", "食事[しょくじ]", "散歩[さんぽ]"],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"準備[じゅんび]\" (Tayyorgarlik)."
@@ -1316,7 +1316,7 @@
             {
               "id": "ja-n4-u2-l4-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「試験[しけん]の 準備[じゅんび]を 始[はじ]めましょう。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「試験[しけん]の ＿＿＿を 始[はじ]めましょう。」",
               "options": ["食事[しょくじ]", "散歩[さんぽ]", "準備[じゅんび]", "運転[うんてん]"],
               "correctAnswer": 2,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"準備[じゅんび]\" (Tayyorgarlik)."
@@ -1468,7 +1468,7 @@
             {
               "id": "ja-n4-u2-l5-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「本[ほん]の 返却[へんきゃく]。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「本[ほん]の ＿＿＿。」",
               "options": ["散歩[さんぽ]", "運転[うんてん]", "食事[しょくじ]", "返却[へんきゃく]"],
               "correctAnswer": 3,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"返却[へんきゃく]\" (Qaytarib berish (kitobni))."
@@ -1919,7 +1919,7 @@
             {
               "id": "ja-n4-u3-l3-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「旅行[りょこう]に 行[い]きます。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「＿＿＿に 行[い]きます。」",
               "options": ["旅行[りょこう]", "食事[しょくじ]", "運転[うんてん]", "散歩[さんぽ]"],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"旅行[りょこう]\" (Sayohat)."
@@ -2056,7 +2056,7 @@
             {
               "id": "ja-n4-u3-l4-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「安全[あんぜん]な 町[まち]。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「＿＿＿な 町[まち]。」",
               "options": ["散歩[さんぽ]", "運転[うんてん]", "食事[しょくじ]", "安全[あんぜん]"],
               "correctAnswer": 3,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"安全[あんぜん]\" (Xavfsiz)."
@@ -2360,7 +2360,7 @@
             {
               "id": "ja-n4-u4-l1-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「大阪[おおさか]へ 出張[しゅっちょう]します。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「大阪[おおさか]へ ＿＿＿します。」",
               "options": ["散歩[さんぽ]", "運転[うんてん]", "食事[しょくじ]", "出張[しゅっちょう]"],
               "correctAnswer": 3,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"出張[しゅっちょう]\" (Xizmat safari)."
@@ -2507,7 +2507,7 @@
             {
               "id": "ja-n4-u4-l2-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「試験[しけん]の 準備[じゅんび]を 始[はじ]めましょう。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「試験[しけん]の ＿＿＿を 始[はじ]めましょう。」",
               "options": ["食事[しょくじ]", "散歩[さんぽ]", "準備[じゅんび]", "運転[うんてん]"],
               "correctAnswer": 2,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"準備[じゅんび]\" (Tayyorgarlik)."
@@ -2648,7 +2648,7 @@
             {
               "id": "ja-n4-u4-l3-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「この 説明[せつめい]は 少[すこ]し 複雑[ふくざつ]です。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「この 説明[せつめい]は 少[すこ]し ＿＿＿です。」",
               "options": ["運転[うんてん]", "複雑[ふくざつ]", "散歩[さんぽ]", "食事[しょくじ]"],
               "correctAnswer": 1,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"複雑[ふくざつ]\" (Murakkab, chigal)."
@@ -2965,7 +2965,7 @@
             {
               "id": "ja-n4-u4-l5-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「お返事[へんじ]を ください。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「お＿＿＿を ください。」",
               "options": ["散歩[さんぽ]", "食事[しょくじ]", "運転[うんてん]", "返事[へんじ]"],
               "correctAnswer": 3,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"返事[へんじ]\" (Javob)."
@@ -3108,7 +3108,7 @@
             {
               "id": "ja-n4-u5-l1-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「試験[しけん]の 準備[じゅんび]を 始[はじ]めましょう。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「試験[しけん]の ＿＿＿を 始[はじ]めましょう。」",
               "options": ["準備[じゅんび]", "運転[うんてん]", "食事[しょくじ]", "散歩[さんぽ]"],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"準備[じゅんび]\" (Tayyorgarlik)."
@@ -3260,7 +3260,7 @@
             {
               "id": "ja-n4-u5-l2-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「食後[しょくご]に 薬[くすり]を 飲[の]みます。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「食後[しょくご]に ＿＿＿を 飲[の]みます。」",
               "options": ["運転[うんてん]", "薬[くすり]", "散歩[さんぽ]", "食事[しょくじ]"],
               "correctAnswer": 1,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"薬[くすり]\" (Dori)."
@@ -3710,7 +3710,7 @@
             {
               "id": "ja-n4-u5-l5-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「試験[しけん]の 準備[じゅんび]を 始[はじ]めましょう。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「試験[しけん]の ＿＿＿を 始[はじ]めましょう。」",
               "options": ["準備[じゅんび]", "食事[しょくじ]", "運転[うんてん]", "散歩[さんぽ]"],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"準備[じゅんび]\" (Tayyorgarlik)."
