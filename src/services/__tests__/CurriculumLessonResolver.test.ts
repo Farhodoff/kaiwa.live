@@ -36,6 +36,16 @@ describe('CurriculumLessonResolver Unit Tests', () => {
       expect(ALL_CURRICULUM_LESSONS).not.toContain(legacyN4);
     });
 
+    it('maps legacy units to the corresponding sequential Minna lesson', () => {
+      expect(getCurriculumLessonById('ja-n5-u2-l1')?.title).toBe(
+        getCurriculumLessonById('ja-minna-l6')?.title,
+      );
+      expect(getCurriculumLessonById('ja-n4-u2-l1')?.title).toBe(
+        getCurriculumLessonById('ja-minna-l31')?.title,
+      );
+      expect(getCurriculumLessonById('ja-n5-u6-l1')).toBeUndefined();
+    });
+
     it('3. representative Japanese N5 and N3 lessons resolve with real titles', () => {
       const n5 = CurriculumLessonResolver.resolveLesson('ja-n5-u1-l1', 'ja');
       expect(n5.route).toBe('/lesson/ja-n5-u1-l1');

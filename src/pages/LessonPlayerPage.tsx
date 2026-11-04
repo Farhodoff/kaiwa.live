@@ -47,6 +47,8 @@ export const LessonPlayerPage: React.FC = () => {
     if (!initial) return false;
     return !(initial.steps && initial.steps.length > 0);
   });
+  const [loadError, setLoadError] = useState(false);
+  const [loadAttempt, setLoadAttempt] = useState(0);
   const [sessionErrors, setSessionErrors] = useState<IncorrectAnswerSignal[]>([]);
   const [srsSummary, setSrsSummary] = useState<{ newCardsCount: number; mistakesCount: number }>({
     newCardsCount: 0,
@@ -61,6 +63,7 @@ export const LessonPlayerPage: React.FC = () => {
   });
 
   useEffect(() => {
+    setLoadError(false);
     if (!lessonId) {
       setLesson(null);
       setLoading(false);
@@ -78,7 +81,12 @@ export const LessonPlayerPage: React.FC = () => {
 
     const setupLesson = (foundLesson: Lesson) => {
       // Phase 15: Service-level prerequisite and access validation
-      const access = LearningOrchestrator.canAccessLesson(lessonId, user?.id || '');
+      // The course catalogue lets learners choose any Japanese lesson explicitly.
+      // Progression recommendations must not silently override that choice.
+      const access =
+        foundLesson.language === 'ja'
+          ? { allowed: true, reason: '', redirectTo: undefined }
+          : LearningOrchestrator.canAccessLesson(lessonId, user?.id || '', foundLesson.language);
       if (!access.allowed) {
         console.warn(`[LessonPlayer] Access denied: ${access.reason}`);
         toast({
@@ -91,6 +99,7 @@ export const LessonPlayerPage: React.FC = () => {
         return;
       }
       setLesson(foundLesson);
+      setLoadError(false);
 
       // Handle direct step navigation via query param (e.g. ?step=mondai or ?step=3)
       const stepParam = searchParams.get('step');
@@ -138,20 +147,27 @@ export const LessonPlayerPage: React.FC = () => {
       setupLesson(syncLesson);
     } else {
       setLoading(true);
-      LessonService.loadLessonById(lessonId).then((foundLesson) => {
-        if (!isMounted) return;
-        if (foundLesson) {
-          setupLesson(foundLesson);
-        } else {
+      LessonService.loadLessonById(lessonId)
+        .then((foundLesson) => {
+          if (!isMounted) return;
+          if (foundLesson) {
+            setupLesson(foundLesson);
+          } else {
+            setLoading(false);
+          }
+        })
+        .catch(() => {
+          if (!isMounted) return;
+          setLesson(null);
+          setLoadError(true);
           setLoading(false);
-        }
-      });
+        });
     }
 
     return () => {
       isMounted = false;
     };
-  }, [lessonId, user?.id, searchParams, navigate]);
+  }, [lessonId, user?.id, searchParams, navigate, loadAttempt]);
 
   const totalSteps = lesson ? lesson.steps.length : 0;
   const progressPercentage =
@@ -397,7 +413,8 @@ export const LessonPlayerPage: React.FC = () => {
   };
 
   const handleExit = () => {
-    navigate('/jlpt');
+    const level = lesson?.language === 'ja' ? `?level=${lesson.level.toLowerCase()}` : '';
+    navigate(`/jlpt${level}`);
   };
 
   if (loading) {
@@ -416,13 +433,24 @@ export const LessonPlayerPage: React.FC = () => {
         </div>
         <h2 className="text-xl font-bold text-foreground">Dars Topilmadi</h2>
         <p className="text-xs text-muted-foreground">
-          Siz qidirayotgan dars ID si mavjud emas yoki o'chirilgan bo'lishi mumkin.
+          {loadError
+            ? 'Darsni yuklab bo‘lmadi. Internetni tekshirib, qayta urinib ko‘ring.'
+            : "Siz qidirayotgan dars mavjud emas yoki o'chirilgan bo'lishi mumkin."}
         </p>
+        {loadError && (
+          <button
+            type="button"
+            onClick={() => setLoadAttempt((attempt) => attempt + 1)}
+            className="mr-2 min-h-[44px] rounded-xl border border-border px-5 text-sm font-bold text-foreground hover:bg-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          >
+            Qayta urinish
+          </button>
+        )}
         <button
           onClick={handleExit}
           className="rounded-xl bg-primary px-5 py-2.5 text-xs font-bold text-primary-foreground shadow-md transition-all hover:opacity-90"
         >
-          Bosh Sahifaga Qaytish
+          Darslarga qaytish
         </button>
       </div>
     );

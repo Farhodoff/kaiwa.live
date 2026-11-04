@@ -3052,8 +3052,8 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 10,
-    "title": "JLPT N1 Pinnacle Capstone: Native-Equivalent Master Certification",
-    "description": "Yapon tili bo'yicha dunyo miqyosidagi eng oliy sertifikatlash bitiruv imtihoni (JLPT N1 Grand Pinnacle).",
+    "title": "JLPT N1 Advanced Kanji and Academic Register Review",
+    "description": "N1 kanji va akademik uslub mavzularini takrorlash mashqlari.",
     "estimatedDurationMinutes": 23,
     "icon": "👑",
     "steps": [
@@ -3064,17 +3064,17 @@
         "estimatedMinutes": 5,
         "learnData": {
           "title": "Pinnacle of Japanese Language Mastery (JLPT N1)",
-          "explanation": "Siz Yapon tilining eng yuksak cho'qqisi — JLPT N1 darajasini to'liq zabt etdingiz! Sizning bilimingiz Yaponiya vazirliklari, Oliy sud, Tokio Universiteti ilmiy kengashlari va xalqaro korporatsiyalarda ona tili darajasidagi tengma-teng ilmiy va kasbiy salohiyat sifatida to'liq e'tirof etiladi.",
+          "explanation": "N1 kanji va akademik uslub bo‘yicha o‘rganganlaringizni keyingi darslardan oldin takrorlang.",
           "keyPoints": [
             "2000+ Kanji absolute fluency",
             "Classical Bungo syntax & profound modern philosophy mastery",
-            "JLPT N1 certified peak capability"
+            "N1 bo‘yicha mustaqil bilimni tekshirish"
           ],
           "grammarRules": [
             {
-              "pattern": "JLPT N1 Pinnacle Capstone: Native-Equivalent Master Certification",
-              "meaning": "Yapon tili bo'yicha dunyo miqyosidagi eng oliy sertifikatlash bitiruv imtihoni (JLPT N1 Grand Pinnacle).",
-              "usageNotes": "Siz Yapon tilining eng yuksak cho'qqisi — JLPT N1 darajasini to'liq zabt etdingiz! Sizning bilimingiz Yaponiya vazirliklari, Oliy sud, Tokio Universiteti ilmiy kengashlari va xalqaro korporatsiyalarda ona tili darajasidagi tengma-teng ilmiy va kasbiy salohiyat sifatida to'liq e'tirof etiladi.",
+              "pattern": "JLPT N1 Advanced Kanji and Academic Register Review",
+              "meaning": "N1 kanji va akademik uslub mavzularini takrorlash mashqlari.",
+              "usageNotes": "N1 kanji va akademik uslub bo‘yicha o‘rganganlaringizni keyingi darslardan oldin takrorlang.",
               "examples": [
                 {
                   "sentence": "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
@@ -3124,7 +3124,7 @@
       },
       {
         "id": "ja-n1-u2-l5-s2",
-        "title": "Oliy Bitiruv Mashqi",
+        "title": "N1 takrorlash mashqi",
         "type": "practice",
         "estimatedMinutes": 10,
         "practiceData": {
@@ -3207,7 +3207,7 @@
               "id": "ja-n1-u2-l5-practice-08",
               "type": "multiple-choice",
               "category": "grammar-drill",
-              "prompt": "文法ドリル: JLPT N1 Pinnacle Capstone: Native-Equivalent Master Certification の用法を選んでください。 [ja-n1-u2-l5]",
+              "prompt": "文法ドリル: JLPT N1 Advanced Kanji and Academic Register Review の用法を選んでください。 [ja-n1-u2-l5]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
                 "文脈に合わない表現",
@@ -3215,7 +3215,7 @@
                 "意味が異なる表現"
               ],
               "correctAnswer": 0,
-              "explanation": "本文の文法説明「Yapon tili bo'yicha dunyo miqyosidagi eng oliy sertifikatlash bitiruv imtihoni (JLPT N1 Grand Pinnacle).」に基づきます。"
+              "explanation": "本文の文法説明「N1 kanji va akademik uslub mavzularini takrorlash mashqlari.」に基づきます。"
             },
             {
               "id": "ja-n1-u2-l5-practice-09",
@@ -3235,7 +3235,7 @@
               "id": "ja-n1-u2-l5-practice-10",
               "type": "multiple-choice",
               "category": "sentence-building",
-              "prompt": "文脈に合わせて一文を組み立ててください: Yapon tili bo'yicha dunyo miqyosidagi eng oliy sertifikatlash bitiruv imtihoni (JLPT N1 Grand Pinnacle). [ja-n1-u2-l5]",
+              "prompt": "文脈に合わせて一文を組み立ててください: N1 kanji va akademik uslub mavzularini takrorlash mashqlari. [ja-n1-u2-l5]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
                 "文脈と無関係な文",
@@ -3243,7 +3243,7 @@
                 "文法の誤った文"
               ],
               "correctAnswer": 0,
-              "explanation": "学習した「JLPT N1 Pinnacle Capstone: Native-Equivalent Master Certification」を使い、提示された文脈に合う文を選びます。"
+              "explanation": "学習した「JLPT N1 Advanced Kanji and Academic Register Review」を使い、提示された文脈に合う文を選びます。"
             },
             {
               "id": "ja-n1-u2-l5-practice-11",
@@ -3257,7 +3257,7 @@
                 "文法形式だけを述べた選択肢"
               ],
               "correctAnswer": 0,
-              "explanation": "本文の文脈と「Yapon tili bo'yicha dunyo miqyosidagi eng oliy sertifikatlash bitiruv imtihoni (JLPT N1 Grand Pinnacle).」を照合します。"
+              "explanation": "本文の文脈と「N1 kanji va akademik uslub mavzularini takrorlash mashqlari.」を照合します。"
             }
           ]
         }
@@ -6835,7 +6835,7 @@
     "id": "ja-n1-u5-l1",
     "courseId": "jlpt-n1",
     "unitId": "ja-n1-u5",
-    "unitTitle": "Unit 5: N1 Capstone & Graduation",
+    "unitTitle": "Unit 5: N1 Review & Practice",
     "language": "ja",
     "level": "N1",
     "lessonNumber": 21,
@@ -7186,7 +7186,7 @@
     "id": "ja-n1-u5-l2",
     "courseId": "jlpt-n1",
     "unitId": "ja-n1-u5",
-    "unitTitle": "Unit 5: N1 Capstone & Graduation",
+    "unitTitle": "Unit 5: N1 Review & Practice",
     "language": "ja",
     "level": "N1",
     "lessonNumber": 22,
@@ -7547,7 +7547,7 @@
     "id": "ja-n1-u5-l3",
     "courseId": "jlpt-n1",
     "unitId": "ja-n1-u5",
-    "unitTitle": "Unit 5: N1 Capstone & Graduation",
+    "unitTitle": "Unit 5: N1 Review & Practice",
     "language": "ja",
     "level": "N1",
     "lessonNumber": 23,
@@ -7885,7 +7885,7 @@
     "id": "ja-n1-u5-l4",
     "courseId": "jlpt-n1",
     "unitId": "ja-n1-u5",
-    "unitTitle": "Unit 5: N1 Capstone & Graduation",
+    "unitTitle": "Unit 5: N1 Review & Practice",
     "language": "ja",
     "level": "N1",
     "lessonNumber": 24,
@@ -8216,33 +8216,33 @@
     "id": "ja-n1-u5-l5",
     "courseId": "jlpt-n1",
     "unitId": "ja-n1-u5",
-    "unitTitle": "Unit 5: N1 Capstone & Graduation",
+    "unitTitle": "Unit 5: N1 Review & Practice",
     "language": "ja",
     "level": "N1",
     "lessonNumber": 25,
-    "title": "JLPT N1 Grand Master Certification & Graduation Exam",
-    "description": "JLPT N1 Cho'qqisining to'liq va rasmiy oliy sertifikatlash va bitiruv imtihoni.",
+    "title": "JLPT N1 Intermediate Review & Practice",
+    "description": "N1 mavzularini takrorlash va keyingi darslarga tayyorgarlik mashqlari.",
     "estimatedDurationMinutes": 27,
     "icon": "👑",
     "steps": [
       {
         "id": "ja-n1-u5-l5-s1",
-        "title": "JLPT N1 Ultimate Crown Summary",
+        "title": "N1 mavzularini takrorlash",
         "type": "learn",
         "estimatedMinutes": 7,
         "learnData": {
-          "title": "JLPT N1 Grand Master Peak",
-          "explanation": "Tabriklaymiz! Siz Yapon tili bo'yicha eng oliy daraja — JLPT N1 ni tamomladingiz!",
+          "title": "N1 oraliq takrorlash",
+          "explanation": "N1 mavzularini takrorlang va keyingi darslarga tayyorlaning.",
           "keyPoints": [
             "Native-level academic and professional Japanese mastery",
             "Complete mastery of 2000+ Kanji, 10,000+ Vocabulary, and Classical Grammar",
-            "Highest legal, academic, and professional accreditation worldwide"
+            "N1 mavzularini keyingi darslardan oldin mustahkamlash"
           ],
           "grammarRules": [
             {
-              "pattern": "JLPT N1 Grand Master Certification & Graduation Exam",
-              "meaning": "JLPT N1 Cho'qqisining to'liq va rasmiy oliy sertifikatlash va bitiruv imtihoni.",
-              "usageNotes": "Tabriklaymiz! Siz Yapon tili bo'yicha eng oliy daraja — JLPT N1 ni tamomladingiz!",
+              "pattern": "JLPT N1 Intermediate Review & Practice",
+              "meaning": "N1 mavzularini takrorlash va keyingi darslarga tayyorgarlik mashqlari.",
+              "usageNotes": "N1 mavzularini takrorlang va keyingi darslarga tayyorlaning.",
               "examples": [
                 {
                   "sentence": "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
@@ -8292,11 +8292,11 @@
       },
       {
         "id": "ja-n1-u5-l5-s2",
-        "title": "Grand Master Capstone Practice",
+        "title": "N1 takrorlash mashqlari",
         "type": "practice",
         "estimatedMinutes": 10,
         "practiceData": {
-          "instructions": "JLPT N1 Bitiruv savoliga javob bering.",
+          "instructions": "N1 mavzulari bo‘yicha savollarga javob bering.",
           "exercises": [
             {
               "id": "ja-n1-u5-l5-practice-01",
@@ -8370,7 +8370,7 @@
               "id": "ja-n1-u5-l5-practice-08",
               "type": "multiple-choice",
               "category": "grammar-drill",
-              "prompt": "文法ドリル: JLPT N1 Grand Master Certification & Graduation Exam の用法を選んでください。 [ja-n1-u5-l5]",
+              "prompt": "文法ドリル: JLPT N1 Intermediate Review & Practice の用法を選んでください。 [ja-n1-u5-l5]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
                 "文脈に合わない表現",
@@ -8378,7 +8378,7 @@
                 "意味が異なる表現"
               ],
               "correctAnswer": 0,
-              "explanation": "本文の文法説明「JLPT N1 Cho'qqisining to'liq va rasmiy oliy sertifikatlash va bitiruv imtihoni.」に基づきます。"
+              "explanation": "本文の文法説明「N1 mavzularini takrorlash va keyingi darslarga tayyorgarlik mashqlari.」に基づきます。"
             },
             {
               "id": "ja-n1-u5-l5-practice-09",
@@ -8398,7 +8398,7 @@
               "id": "ja-n1-u5-l5-practice-10",
               "type": "multiple-choice",
               "category": "sentence-building",
-              "prompt": "文脈に合わせて一文を組み立ててください: JLPT N1 Cho'qqisining to'liq va rasmiy oliy sertifikatlash va bitiruv imtihoni. [ja-n1-u5-l5]",
+              "prompt": "文脈に合わせて一文を組み立ててください: N1 mavzularini takrorlash va keyingi darslarga tayyorgarlik mashqlari. [ja-n1-u5-l5]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
                 "文脈と無関係な文",
@@ -8406,7 +8406,7 @@
                 "文法の誤った文"
               ],
               "correctAnswer": 0,
-              "explanation": "学習した「JLPT N1 Grand Master Certification & Graduation Exam」を使い、提示された文脈に合う文を選びます。"
+              "explanation": "学習した「JLPT N1 Intermediate Review & Practice」を使い、提示された文脈に合う文を選びます。"
             },
             {
               "id": "ja-n1-u5-l5-practice-11",
@@ -8420,14 +8420,14 @@
                 "文法形式だけを述べた選択肢"
               ],
               "correctAnswer": 0,
-              "explanation": "本文の文脈と「JLPT N1 Cho'qqisining to'liq va rasmiy oliy sertifikatlash va bitiruv imtihoni.」を照合します。"
+              "explanation": "本文の文脈と「N1 mavzularini takrorlash va keyingi darslarga tayyorgarlik mashqlari.」を照合します。"
             }
           ]
         }
       },
       {
         "id": "ja-n1-u5-l5-s3",
-        "title": "JLPT N1 Grand Master Promotion Certification Exam",
+        "title": "N1 oraliq bilim sinovi",
         "type": "test",
         "estimatedMinutes": 10,
         "testData": {

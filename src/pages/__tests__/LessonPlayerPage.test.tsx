@@ -4,6 +4,7 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { LessonPlayerPage } from '../LessonPlayerPage';
 import { LearningSignalService } from '../../services/LearningSignalService';
 import { LessonService } from '../../services/LessonService';
+import { LearningOrchestrator } from '../../services/LearningOrchestrator';
 
 vi.mock('../../context/StudyPlannerContext', () => ({
   useStudyData: () => ({
@@ -85,6 +86,25 @@ describe('LessonPlayerPage', () => {
     expect(screen.getAllByText(/叱/).length).toBeGreaterThan(0);
   });
 
+  it('opens a selected N4 lesson even when the learner has not completed N5', async () => {
+    const access = vi.spyOn(LearningOrchestrator, 'canAccessLesson').mockReturnValue({
+      allowed: false,
+      reason: 'Lesson requires level N4',
+      redirectTo: '/jlpt',
+    });
+    render(
+      <MemoryRouter initialEntries={['/lesson/ja-minna-l26']}>
+        <Routes>
+          <Route path="/lesson/:lessonId" element={<LessonPlayerPage />} />
+          <Route path="/jlpt" element={<div>Darsga qaytarildi</div>} />
+        </Routes>
+      </MemoryRouter>,
+    );
+    expect(await screen.findByRole('heading', { name: /26-Dars/, level: 1 })).toBeInTheDocument();
+    expect(screen.queryByText('Darsga qaytarildi')).not.toBeInTheDocument();
+    access.mockRestore();
+  });
+
   it('renders English B2 lesson properly with academic vocabulary and Inversion grammar', () => {
     render(
       <MemoryRouter initialEntries={['/lesson/en-b2-u1-l1']}>
@@ -149,7 +169,7 @@ describe('LessonPlayerPage', () => {
     );
 
     expect(screen.getByText(/Dars Topilmadi/i)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Bosh Sahifaga Qaytish/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Darslarga qaytish/i })).toBeInTheDocument();
   });
 
   it('processes lesson completion and displays SRS summary badge', async () => {

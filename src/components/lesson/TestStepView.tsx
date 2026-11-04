@@ -3,6 +3,7 @@ import { Award, CheckCircle2, XCircle, ChevronRight, RotateCcw, Headphones } fro
 import { TestQuestion } from '../../types/lesson';
 import { FuriganaText, FuriganaMode } from '../jlpt/FuriganaText';
 import { LessonAudioPlayer } from './LessonAudioPlayer';
+import { useTTS } from '../../hooks/useTTS';
 
 export interface MissedQuestionInfo {
   questionId: string;
@@ -35,6 +36,23 @@ export const TestStepView: React.FC<TestStepViewProps> = ({
   const [isCompleted, setIsCompleted] = useState(false);
   const [attemptSeed, setAttemptSeed] = useState(0);
   const [furiganaMode, setFuriganaMode] = useState<FuriganaMode>('hover');
+  const [audioError, setAudioError] = useState('');
+  const [speaking, setSpeaking] = useState(false);
+  const { speakText, stopSpeaking, unlockAudio, isPreparingAudio } = useTTS({
+    language: 'ja',
+    onSpeakStart: () => setSpeaking(true),
+    onSpeakEnd: () => setSpeaking(false),
+    onSpeakError: () =>
+      setAudioError(
+        'Ovozni ijro qilib bo‘lmadi. Ovoz va internetni tekshirib, qayta urinib ko‘ring.',
+      ),
+  });
+
+  useEffect(() => {
+    stopSpeaking();
+    setAudioError('');
+    setSpeaking(false);
+  }, [currentIdx, isCompleted, stopSpeaking]);
 
   // Shuffle options for each question dynamically per attempt
   const activeQuestions = useMemo(() => {
@@ -210,7 +228,7 @@ export const TestStepView: React.FC<TestStepViewProps> = ({
 
           {/* Active Question Card */}
           <div className="space-y-4 rounded-2xl border border-border bg-card p-4 shadow-sm sm:space-y-6 sm:rounded-3xl sm:p-6">
-            {currentQuestion.audioUrl && (
+            {(currentQuestion.audioUrl || currentQuestion.audioScript) && (
               <div className="space-y-2">
                 <div className="flex items-center justify-between rounded-xl border border-amber-500/25 bg-amber-500/10 px-3 py-1.5 text-amber-700 dark:text-amber-300">
                   <div className="flex items-center gap-2 text-xs font-bold">
@@ -221,18 +239,56 @@ export const TestStepView: React.FC<TestStepViewProps> = ({
                     Audioni tinglang va to'g'ri javobni tanlang
                   </span>
                 </div>
-                <LessonAudioPlayer
-                  key={`audio-${currentQuestion.id}-${currentIdx}`}
-                  audioUrl={currentQuestion.audioUrl}
-                  audioTitle={currentQuestion.audioTitle || 'Minna no Nihongo Mondai CD Audiosi'}
-                />
+                {currentQuestion.audioScript ? (
+                  <div className="space-y-2">
+                    <button
+                      type="button"
+                      disabled={isPreparingAudio}
+                      onClick={() => {
+                        setAudioError('');
+                        if (speaking) {
+                          stopSpeaking();
+                          setSpeaking(false);
+                          return;
+                        }
+                        unlockAudio();
+                        void speakText(currentQuestion.audioScript!);
+                      }}
+                      className="rounded-xl bg-primary px-4 py-2 font-bold text-primary-foreground disabled:opacity-60"
+                    >
+                      {isPreparingAudio
+                        ? 'Ovoz tayyorlanmoqda…'
+                        : speaking
+                          ? 'Ovozni to‘xtatish'
+                          : 'Ovozni tinglash'}
+                    </button>
+                    <p className="text-xs text-muted-foreground">
+                      Savol uchun yaratilgan sun’iy yaponcha ovoz
+                    </p>
+                    {audioError && (
+                      <p role="alert" className="text-sm text-rose-500">
+                        {audioError}
+                      </p>
+                    )}
+                  </div>
+                ) : (
+                  currentQuestion.audioUrl && (
+                    <LessonAudioPlayer
+                      key={`audio-${currentQuestion.id}-${currentIdx}`}
+                      audioUrl={currentQuestion.audioUrl}
+                      audioTitle={currentQuestion.audioTitle || 'Tinglash audiosi'}
+                    />
+                  )
+                )}
               </div>
             )}
 
             {/* Prompt Header with Furigana Peek Controls */}
             <div className="flex items-center justify-between gap-2 border-b border-border/40 pb-2">
               <span className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
-                {currentQuestion.audioUrl ? '🎧 Savol:' : 'Savol matni:'}
+                {currentQuestion.audioUrl || currentQuestion.audioScript
+                  ? '🎧 Savol:'
+                  : 'Savol matni:'}
               </span>
 
               {/* Furigana Mode Pills */}
@@ -464,6 +520,12 @@ export const TestStepView: React.FC<TestStepViewProps> = ({
                       <div className="mt-0.5 text-[11px] text-muted-foreground">
                         💡 <FuriganaText text={q.explanation} mode={furiganaMode} />
                       </div>
+                    )}
+                    {q.audioScript && (
+                      <p>
+                        <span className="font-semibold">Tinglash matni: </span>
+                        <FuriganaText text={q.audioScript} mode={furiganaMode} />
+                      </p>
                     )}
                     {q.audioUrl && (
                       <div className="pt-2">

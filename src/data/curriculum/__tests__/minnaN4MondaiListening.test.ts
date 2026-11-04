@@ -13,7 +13,7 @@ describe('Minna no Nihongo 26-50 (N4) Mondai Listening Dataset', () => {
     }
   });
 
-  it('verifies all N4 questions have valid authentic audio tracks, options, answers, and explanations', () => {
+  it('verifies legacy listening records have track references, options, answers, and explanations', () => {
     for (let l = 26; l <= 50; l++) {
       const { questions } = MINNA_MONDAI_LISTENING_DATA[l];
       questions.forEach((q, idx) => {
@@ -33,7 +33,7 @@ describe('Minna no Nihongo 26-50 (N4) Mondai Listening Dataset', () => {
     }
   });
 
-  it('confirms every lesson in MINNA_N4_LESSONS has Step 4 for Mondai CD Audio', () => {
+  it('confirms every N4 lesson has a question-specific listening script', () => {
     expect(MINNA_N4_LESSONS.length).toBe(25);
     MINNA_N4_LESSONS.forEach((lesson, index) => {
       const lessonNumber = index + 26;
@@ -43,7 +43,11 @@ describe('Minna no Nihongo 26-50 (N4) Mondai Listening Dataset', () => {
       expect(step4.type).toBe('test');
       expect(step4.title).toContain('Mondai Tinglash Testi');
       expect(step4.testData?.questions.length).toBeGreaterThanOrEqual(7);
-      expect(step4.testData?.questions[0].audioUrl).toBeDefined();
+      for (const question of step4.testData?.questions ?? []) {
+        expect(question.audioScript).toBeTruthy();
+        expect(question.audioUrl).toBeUndefined();
+        expect(question.question).not.toContain(question.audioScript);
+      }
     });
   });
 

@@ -6,6 +6,7 @@ import n4Lessons from '../levels/n4/minnaLessons.json';
 import n5Lessons from '../levels/n5/minnaLessons.json';
 import { validateCurriculum, validateCurriculumLesson } from '../validateCurriculumStructure';
 import type { Lesson } from '../../../types/lesson';
+import metadata from '../curriculumMetadata.json';
 
 const asLessons = (value: unknown) => value as Lesson[];
 
@@ -64,5 +65,50 @@ describe('curriculum structure validator', () => {
         }),
       ]),
     );
+  });
+
+  it.each([
+    ['N5', n5Lessons],
+    ['N4', n4Lessons],
+    ['N3', n3Lessons],
+    ['N2', n2Lessons],
+    ['N1', n1Lessons],
+  ] as const)('keeps %s metadata ordered and consistent with loaded lessons', (level, data) => {
+    const lessons = asLessons(data);
+    const records = metadata.canonicalLessons.filter((lesson) => lesson.level === level);
+    expect(records.map(({ id, title }) => ({ id, title }))).toEqual(
+      lessons.map(({ id, title }) => ({ id, title })),
+    );
+    expect(new Set(lessons.map((lesson) => lesson.id)).size).toBe(lessons.length);
+  });
+
+  it('does not reveal the target in the reviewed N4 completion prompts', () => {
+    for (const id of ['ja-minna-l27-ex7', 'ja-minna-l42-ex4', 'ja-minna-l46-ex9']) {
+      const exercise = asLessons(n4Lessons)
+        .flatMap((lesson) => lesson.steps)
+        .flatMap((step) => step.practiceData?.exercises ?? [])
+        .find((item) => item.id === id);
+      expect(exercise).toBeDefined();
+      expect(exercise!.prompt).not.toContain(exercise!.options![exercise!.correctAnswer as number]);
+    }
+  });
+
+  it('does not show the reading in N4 kanji-reading prompts', () => {
+    const questions = asLessons(n4Lessons)
+      .flatMap((lesson) => lesson.steps)
+      .flatMap((step) => step.testData?.questions ?? [])
+      .filter((question) => /読(?:\[よ\])?み方/.test(question.question));
+    expect(questions.length).toBeGreaterThan(0);
+    for (const question of questions) {
+      const target = question.question.match(/「([^」]+)」/)?.[1];
+      expect(target, question.id).toBeTruthy();
+      expect(target, question.id).not.toMatch(/（|\[/);
+    }
+  });
+
+  it('keeps the N1 review before the last unit without calling it graduation', () => {
+    expect(n1Lessons[24].title).toMatch(/Review/);
+    expect(n1Lessons[24].title).not.toMatch(/Graduation|Certification/i);
+    expect(n1Lessons[29].lessonNumber).toBe(30);
   });
 });

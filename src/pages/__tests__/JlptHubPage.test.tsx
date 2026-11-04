@@ -74,13 +74,13 @@ describe('JlptHubPage', () => {
     );
 
     expect(screen.getByText(/Darsliklar/i)).toBeInTheDocument();
-    expect(screen.getByText(/Bunpou/i)).toBeInTheDocument();
+    expect(screen.getByText(/Grammatika/i)).toBeInTheDocument();
     expect(screen.getByText(/Kanji/i)).toBeInTheDocument();
-    expect(screen.getByText(/Goi/i)).toBeInTheDocument();
-    expect(screen.getByText(/Dokkai/i)).toBeInTheDocument();
-    expect(screen.getByText(/Choukai/i)).toBeInTheDocument();
-    expect(screen.getByText(/Sakubun/i)).toBeInTheDocument();
-    expect(screen.getByText(/JLPT Exam/i)).toBeInTheDocument();
+    expect(screen.getByText(/Lug‘at/i)).toBeInTheDocument();
+    expect(screen.getByText(/O‘qish/i)).toBeInTheDocument();
+    expect(screen.getByText(/Tinglash/i)).toBeInTheDocument();
+    expect(screen.getByText(/Yozish/i)).toBeInTheDocument();
+    expect(screen.getByText(/JLPT imtihoni/i)).toBeInTheDocument();
     expect(screen.getByText(/Xatolar daftari/i)).toBeInTheDocument();
   });
 

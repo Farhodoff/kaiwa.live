@@ -98,6 +98,22 @@ describe('LearnStepView Component with Dialogue Support', () => {
     expect(screen.getByText('OT 1 は OT 2 です')).toBeInTheDocument();
   });
 
+  it('reveals a long vocabulary list gradually without losing words', () => {
+    const content = {
+      ...mockContent,
+      vocabulary: Array.from({ length: 15 }, (_, index) => ({
+        term: `so'z-${index + 1}`,
+        reading: `o'qish-${index + 1}`,
+        meaning: `ma'no-${index + 1}`,
+      })),
+    };
+    render(<LearnStepView content={content} language="ja" />);
+    expect(screen.getByText("so'z-12")).toBeInTheDocument();
+    expect(screen.queryByText("so'z-13")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /Keyingi so‘zlar/ }));
+    expect(screen.getByText("so'z-15")).toBeInTheDocument();
+  });
+
   it('renders dialogue tab button with line count', () => {
     render(<LearnStepView content={mockContent} language="ja" />);
 

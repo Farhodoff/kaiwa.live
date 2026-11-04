@@ -96,7 +96,7 @@
             {
               "id": "ja-n5-u1-l1-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「先生[せんせい]、おはようございます。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「先生[せんせい]、＿＿＿。」",
               "options": ["食事[しょくじ]", "運転[うんてん]", "散歩[さんぽ]", "おはようございます"],
               "correctAnswer": 3,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"おはようございます\" (Xayrli tong)."
@@ -238,7 +238,7 @@
             {
               "id": "ja-n5-u1-l2-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「朝[あさ]ごはんに パンを 食[た]べます。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「朝[あさ]ごはんに ＿＿＿を 食[た]べます。」",
               "options": ["パン", "散歩[さんぽ]", "食事[しょくじ]", "運転[うんてん]"],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"パン\" (Non (portugalcha pão))."
@@ -379,7 +379,7 @@
             {
               "id": "ja-n5-u1-l3-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「彼[かれ]は 学生[がくせい]です。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「彼[かれ]は ＿＿＿です。」",
               "options": ["散歩[さんぽ]", "運転[うんてん]", "学生[がくせい]", "食事[しょくじ]"],
               "correctAnswer": 2,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"学生[がくせい]\" (Talaba / O'quvchi)."
@@ -526,7 +526,7 @@
             {
               "id": "ja-n5-u1-l4-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「これ は 傘[かさ]です。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「これ は ＿＿＿です。」",
               "options": ["傘[かさ]", "食事[しょくじ]", "運転[うんてん]", "散歩[さんぽ]"],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"傘[かさ]\" (Soyabon)."
@@ -672,7 +672,7 @@
             {
               "id": "ja-n5-u1-l5-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「父[ちち]の 車[くるま]。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「父[ちち]の ＿＿＿。」",
               "options": ["散歩[さんぽ]", "運転[うんてん]", "食事[しょくじ]", "車[くるま]"],
               "correctAnswer": 3,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"車[くるま]\" (Mashina)."
@@ -814,7 +814,7 @@
             {
               "id": "ja-n5-u2-l1-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「駅[えき]は どこですか。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「＿＿＿は どこですか。」",
               "options": ["食事[しょくじ]", "運転[うんてん]", "駅[えき]", "散歩[さんぽ]"],
               "correctAnswer": 2,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"駅[えき]\" (Vokzal / Stansiya)."
@@ -956,7 +956,7 @@
             {
               "id": "ja-n5-u2-l2-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「飛行機[ひこうき]で 来[き]ました。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「＿＿＿で 来[き]ました。」",
               "options": ["散歩[さんぽ]", "飛行機[ひこうき]", "運転[うんてん]", "食事[しょくじ]"],
               "correctAnswer": 1,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"飛行機[ひこうき]\" (Samolyot)."
@@ -1099,7 +1099,7 @@
             {
               "id": "ja-n5-u2-l3-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「お茶[ちゃ]を 飲[の]みます。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「お茶[ちゃ]を ＿＿＿。」",
               "options": ["飲[の]みます", "食事[しょくじ]", "散歩[さんぽ]", "運転[うんてん]"],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"飲[の]みます\" (Ichmoq)."
@@ -1246,7 +1246,7 @@
             {
               "id": "ja-n5-u2-l4-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「友達[ともだち]と 図書館[としょかん]へ 行[い]きます。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「＿＿＿と 図書館[としょかん]へ 行[い]きます。」",
               "options": ["散歩[さんぽ]", "食事[しょくじ]", "運転[うんてん]", "友達[ともだち]"],
               "correctAnswer": 3,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"友達[ともだち]\" (Doʻst)."
@@ -1398,7 +1398,7 @@
             {
               "id": "ja-n5-u2-l5-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「毎日[まいにち] 朝[あさ]６時[ろくじ]に 起[お]きます。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「＿＿＿ 朝[あさ]６時[ろくじ]に 起[お]きます。」",
               "options": ["毎日[まいにち]", "運転[うんてん]", "食事[しょくじ]", "散歩[さんぽ]"],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"毎日[まいにち]\" (Har kuni)."
@@ -1550,7 +1550,7 @@
             {
               "id": "ja-n5-u3-l1-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「日曜日[にちようび]は 休[やす]みです。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「＿＿＿は 休[やす]みです。」",
               "options": ["散歩[さんぽ]", "日曜日[にちようび]", "運転[うんてん]", "食事[しょくじ]"],
               "correctAnswer": 1,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"日曜日[にちようび]\" (Yakshanba)."
@@ -1836,7 +1836,7 @@
             {
               "id": "ja-n5-u3-l3-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「二人[ふたり]で 食[た]べます。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「＿＿＿で 食[た]べます。」",
               "options": ["運転[うんてん]", "二人[ふたり]", "散歩[さんぽ]", "食事[しょくじ]"],
               "correctAnswer": 1,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"二人[ふたり]\" (Ikki kishi)."
@@ -1982,7 +1982,7 @@
             {
               "id": "ja-n5-u3-l4-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「先週[せんしゅう] 日本[にほん]へ 来[き]ました。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「＿＿＿ 日本[にほん]へ 来[き]ました。」",
               "options": ["食事[しょくじ]", "散歩[さんぽ]", "先週[せんしゅう]", "運転[うんてん]"],
               "correctAnswer": 2,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"先週[せんしゅう]\" (O'tgan hafta)."
@@ -2129,7 +2129,7 @@
             {
               "id": "ja-n5-u3-l5-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「銀行[ぎんこう]の 隣[となり]。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「＿＿＿の 隣[となり]。」",
               "options": ["散歩[さんぽ]", "運転[うんてん]", "食事[しょくじ]", "銀行[ぎんこう]"],
               "correctAnswer": 3,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"銀行[ぎんこう]\" (Bank)."
@@ -2281,7 +2281,7 @@
             {
               "id": "ja-n5-u4-l1-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「この店[みせ]は 安[やす]いです。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「この店[みせ]は ＿＿＿です。」",
               "options": ["安[やす]い", "散歩[さんぽ]", "食事[しょくじ]", "運転[うんてん]"],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"安[やす]い\" (Arzon)."
@@ -2580,7 +2580,7 @@
             {
               "id": "ja-n5-u4-l3-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「猫[ねこ]が 好[す]きです。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「＿＿＿が 好[す]きです。」",
               "options": ["猫[ねこ]", "食事[しょくじ]", "運転[うんてん]", "散歩[さんぽ]"],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"猫[ねこ]\" (Mushuk)."
@@ -2727,7 +2727,7 @@
             {
               "id": "ja-n5-u4-l4-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「時間[じかん]は とても 大切[たいせつ]です。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「時間[じかん]は とても ＿＿＿です。」",
               "options": ["散歩[さんぽ]", "運転[うんてん]", "食事[しょくじ]", "大切[たいせつ]"],
               "correctAnswer": 3,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"大切[たいせつ]\" (Muhim, qadrli)."
@@ -2880,7 +2880,7 @@
             {
               "id": "ja-n5-u4-l5-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「日本語[にほんご]を 勉強[べんきょう]します。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「日本語[にほんご]を ＿＿＿。」",
               "options": [
                 "食事[しょくじ]",
                 "散歩[さんぽ]",
@@ -3037,7 +3037,7 @@
             {
               "id": "ja-n5-u5-l1-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「水曜日[すいようび]に 会[あ]いましょう。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「＿＿＿に 会[あ]いましょう。」",
               "options": ["散歩[さんぽ]", "水曜日[すいようび]", "運転[うんてん]", "食事[しょくじ]"],
               "correctAnswer": 1,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"水曜日[すいようび]\" (Chorshanba (Suv kuni))."
@@ -3169,7 +3169,7 @@
             {
               "id": "ja-n5-u5-l2-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「大学[だいがく]で 学[まな]びます。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「＿＿＿で 学[まな]びます。」",
               "options": ["大学[だいがく]", "食事[しょくじ]", "散歩[さんぽ]", "運転[うんてん]"],
               "correctAnswer": 0,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"大学[だいがく]\" (Universitet (Katta ta'lim))."
@@ -3306,7 +3306,7 @@
             {
               "id": "ja-n5-u5-l3-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「電車[でんしゃ]に 乗[の]ります。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「＿＿＿に 乗[の]ります。」",
               "options": ["散歩[さんぽ]", "食事[しょくじ]", "運転[うんてん]", "電車[でんしゃ]"],
               "correctAnswer": 3,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"電車[でんしゃ]\" (Poyezd (Elektr mashina))."
@@ -3438,7 +3438,7 @@
             {
               "id": "ja-n5-u5-l4-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「日本語[にほんご]を 勉強[べんきょう]します。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「日本語[にほんご]を ＿＿＿。」",
               "options": [
                 "勉強[べんきょう]します",
                 "運転[うんてん]",
@@ -3595,7 +3595,7 @@
             {
               "id": "ja-n5-u5-l5-ex-2",
               "type": "multiple-choice",
-              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「友達[ともだち]と 図書館[としょかん]へ 行[い]きます。」",
+              "prompt": "Quyidagi jumlada qoldirilgan to'g'ri so'zni tanlang: 「＿＿＿と 図書館[としょかん]へ 行[い]きます。」",
               "options": ["運転[うんてん]", "友達[ともだち]", "散歩[さんぽ]", "食事[しょくじ]"],
               "correctAnswer": 1,
               "explanation": "Jumlaga mazmun jihatidan eng to'g'ri keladigan so'z: \"友達[ともだち]\" (Doʻst)."
