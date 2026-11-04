@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect, useState } from 'react';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes, useSearchParams } from 'react-router-dom';
 import { Session } from '@supabase/supabase-js';
 import ErrorBoundary from './components/ErrorBoundary';
 import GlobalAudioPlayer from './components/GlobalAudioPlayer';
@@ -12,6 +12,7 @@ import { PushNotificationPrompt } from './components/pwa/PushNotificationPrompt'
 import { Toaster } from './components/ui/toaster';
 import { GlobalFlashcardOverrideService } from './services/GlobalFlashcardOverrideService';
 import { lazyWithRetry } from './utils/lazyRetry';
+import { getSafeRedirectUrl } from './utils/redirect';
 
 const CalendarPage = lazyWithRetry(() => import('./pages/CalendarPage'));
 const DecksPage = lazyWithRetry(() => import('./pages/DecksPage'));
@@ -58,6 +59,13 @@ import { useAuthStore } from './stores';
 import { safeLocalStorage } from './utils/storage/safeLocalStorage';
 import { isPublicPreviewActive, MOCK_PREVIEW_SESSION } from './config/previewMode';
 import { isTelegramWebApp, initTelegramAuth } from './utils/telegramAuth';
+
+const AuthenticatedAuthRedirect: React.FC = () => {
+  const [searchParams] = useSearchParams();
+  const redirectParam = searchParams.get('redirect');
+  const target = getSafeRedirectUrl(redirectParam, '/dashboard');
+  return <Navigate to={target} replace />;
+};
 
 const AdminRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const user = useAuthStore((s) => s.user);
@@ -442,11 +450,11 @@ const App: React.FC = () => {
                     </Route>
                     <Route path="/auth/reset-password" element={<AuthPage />} />
                     <Route path="/reset-password" element={<AuthPage />} />
-                    <Route path="/auth" element={<Navigate to="/dashboard" replace />} />
-                    <Route path="/admin/login" element={<Navigate to="/auth" replace />} />
-                    <Route path="/login" element={<Navigate to="/dashboard" replace />} />
-                    <Route path="/register" element={<Navigate to="/dashboard" replace />} />
-                    <Route path="/signup" element={<Navigate to="/dashboard" replace />} />
+                    <Route path="/auth" element={<AuthenticatedAuthRedirect />} />
+                    <Route path="/admin/login" element={<AuthenticatedAuthRedirect />} />
+                    <Route path="/login" element={<AuthenticatedAuthRedirect />} />
+                    <Route path="/register" element={<AuthenticatedAuthRedirect />} />
+                    <Route path="/signup" element={<AuthenticatedAuthRedirect />} />
                     <Route path="*" element={<Navigate to="/dashboard" replace />} />
                   </Routes>
                 </Suspense>
