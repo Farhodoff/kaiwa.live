@@ -2716,8 +2716,8 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 9,
-    "title": "Ultimate JLPT N1 Full Simulation Exam: Grand Mastery",
-    "description": "JLPT N1 oliy darajali to'liq vaqtli imtihon sinovi va xatolar ustida ishlash.",
+    "title": "JLPT N1 Mock Exam: Grammar & Reading Checkpoint",
+    "description": "N1 grammatika va o‘qish bo‘yicha 10 savollik checkpoint; xatolarni tahlil qilish uchun.",
     "estimatedDurationMinutes": 23,
     "icon": "📝",
     "steps": [
@@ -2735,8 +2735,8 @@
           ],
           "grammarRules": [
             {
-              "pattern": "Ultimate JLPT N1 Full Simulation Exam: Grand Mastery",
-              "meaning": "JLPT N1 oliy darajali to'liq vaqtli imtihon sinovi va xatolar ustida ishlash.",
+              "pattern": "JLPT N1 Mock Exam: Grammar & Reading Checkpoint",
+              "meaning": "N1 grammatika va o'qish bo'yicha 10 savollik checkpoint; xatolarni tahlil qilish uchun.",
               "usageNotes": "N1 imtihoni 2000+ kanji, 10,000+ so'z boyligi va 110 daqiqalik intensiv Language Knowledge/Reading bo'limidan iborat.",
               "examples": [
                 {
@@ -2865,7 +2865,7 @@
               "id": "ja-n1-u2-l4-practice-08",
               "type": "multiple-choice",
               "category": "grammar-drill",
-              "prompt": "文法ドリル: Ultimate JLPT N1 Full Simulation Exam: Grand Mastery の用法を選んでください。 [ja-n1-u2-l4]",
+              "prompt": "文法ドリル: JLPT N1 Mock Exam: Grammar & Reading Checkpoint の内容を確認してください。 [ja-n1-u2-l4]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
                 "文脈に合わない表現",
@@ -2901,7 +2901,7 @@
                 "文法の誤った文"
               ],
               "correctAnswer": 0,
-              "explanation": "学習した「Ultimate JLPT N1 Full Simulation Exam: Grand Mastery」を使い、提示された文脈に合う文を選びます。"
+              "explanation": "文法と読解のcheckpointで、提示された文脈に合う表現を選びます。"
             },
             {
               "id": "ja-n1-u2-l4-practice-11",
@@ -7889,8 +7889,8 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 24,
-    "title": "N1 Full Scale Simulation Mock Examination",
-    "description": "JLPT N1 Rasmiy Imtihonining to'liq simulyatsiyasi va baholanishi.",
+    "title": "JLPT N1 Mock Exam: Comprehensive Practice",
+    "description": "N1 bo‘limlari bo‘yicha 10 savollik kompleks mashq va natijani tahlil qilish.",
     "estimatedDurationMinutes": 24,
     "icon": "📊",
     "steps": [
@@ -7901,16 +7901,16 @@
         "estimatedMinutes": 6,
         "learnData": {
           "title": "N1 Full Mock Readiness",
-          "explanation": "Yapon tili bo'yicha dunyodagi eng oliy daraja simulyatsiyasi.",
+          "explanation": "N1 bo'limlarini 10 savollik checkpoint orqali takrorlash mashqi.",
           "keyPoints": [
             "Gengo Chishiki + Dokkai + Chokkai integratsiyasi",
             "Oliy o'zlashtirish ko'rsatkichi (80%+)"
           ],
           "grammarRules": [
             {
-              "pattern": "N1 Full Scale Simulation Mock Examination",
-              "meaning": "JLPT N1 Rasmiy Imtihonining to'liq simulyatsiyasi va baholanishi.",
-              "usageNotes": "Yapon tili bo'yicha dunyodagi eng oliy daraja simulyatsiyasi.",
+              "pattern": "JLPT N1 Mock Exam: Comprehensive Practice",
+              "meaning": "N1 bo'limlari bo'yicha 10 savollik kompleks mashq va natijani tahlil qilish.",
+              "usageNotes": "Bu to'liq rasmiy imtihon emas, N1 bo'limlarini takrorlash checkpointidir.",
               "examples": [
                 {
                   "sentence": "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
@@ -8038,7 +8038,7 @@
               "id": "ja-n1-u5-l4-practice-08",
               "type": "multiple-choice",
               "category": "grammar-drill",
-              "prompt": "文法ドリル: N1 Full Scale Simulation Mock Examination の用法を選んでください。 [ja-n1-u5-l4]",
+              "prompt": "文法ドリル: JLPT N1 Mock Exam: Comprehensive Practice の内容を確認してください。 [ja-n1-u5-l4]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
                 "文脈に合わない表現",
@@ -8074,7 +8074,7 @@
                 "文法の誤った文"
               ],
               "correctAnswer": 0,
-              "explanation": "学習した「N1 Full Scale Simulation Mock Examination」を使い、提示された文脈に合う文を選びます。"
+              "explanation": "N1 bo'limlarini takrorlash checkpointida mazmunga mos ifodani tanlang."
             },
             {
               "id": "ja-n1-u5-l4-practice-11",
@@ -8220,7 +8220,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 25,
-    "title": "JLPT N1 Intermediate Review & Practice",
+    "title": "JLPT N1 Comprehensive Review & Practice",
     "description": "N1 mavzularini takrorlash va keyingi darslarga tayyorgarlik mashqlari.",
     "estimatedDurationMinutes": 27,
     "icon": "👑",
@@ -8231,7 +8231,7 @@
         "type": "learn",
         "estimatedMinutes": 7,
         "learnData": {
-          "title": "N1 oraliq takrorlash",
+          "title": "N1 umumiy takrorlash",
           "explanation": "N1 mavzularini takrorlang va keyingi darslarga tayyorlaning.",
           "keyPoints": [
             "Native-level academic and professional Japanese mastery",
@@ -8240,7 +8240,7 @@
           ],
           "grammarRules": [
             {
-              "pattern": "JLPT N1 Intermediate Review & Practice",
+              "pattern": "JLPT N1 Comprehensive Review & Practice",
               "meaning": "N1 mavzularini takrorlash va keyingi darslarga tayyorgarlik mashqlari.",
               "usageNotes": "N1 mavzularini takrorlang va keyingi darslarga tayyorlaning.",
               "examples": [
@@ -8370,7 +8370,7 @@
               "id": "ja-n1-u5-l5-practice-08",
               "type": "multiple-choice",
               "category": "grammar-drill",
-              "prompt": "文法ドリル: JLPT N1 Intermediate Review & Practice の用法を選んでください。 [ja-n1-u5-l5]",
+              "prompt": "文法ドリル: JLPT N1 Comprehensive Review & Practice の内容を確認してください。 [ja-n1-u5-l5]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
                 "文脈に合わない表現",
@@ -8406,7 +8406,7 @@
                 "文法の誤った文"
               ],
               "correctAnswer": 0,
-              "explanation": "学習した「JLPT N1 Intermediate Review & Practice」を使い、提示された文脈に合う文を選びます。"
+              "explanation": "N1 umumiy takrorlashida, mazmunga mos ifodani tanlang。"
             },
             {
               "id": "ja-n1-u5-l5-practice-11",
@@ -10036,8 +10036,8 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 30,
-    "title": "JLPT N1 Ultimate Crown Master Graduation (全領域総仕上げ・N1完全合格証明)",
-    "description": "kaiwa.live platformasining eng oliy bosqichi: N1 sertifikatsiyasi va yapon tili professional mutaxassis darajasi.",
+    "title": "JLPT N1 Final Review & Completion (全領域総仕上げ)",
+    "description": "N1 mavzularini yakuniy takrorlash va keyingi mustaqil tayyorgarlik uchun yo‘nalish.",
     "estimatedDurationMinutes": 27,
     "icon": "👑",
     "steps": [

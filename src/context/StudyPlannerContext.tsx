@@ -406,10 +406,12 @@ export const StudyPlannerProvider: React.FC<{ children: React.ReactNode }> = ({ 
       }
 
       let currentUser: any = null;
+      let hasCheckedSupabase = false;
 
       if (typeof supabase?.auth?.getSession === 'function') {
         try {
           const { data: sessionData } = await supabase.auth.getSession();
+          hasCheckedSupabase = true;
           if (sessionData?.session?.user) {
             currentUser = sessionData.session.user;
           }
@@ -419,21 +421,34 @@ export const StudyPlannerProvider: React.FC<{ children: React.ReactNode }> = ({ 
       }
 
       if (!currentUser) {
-        const localCached = safeLocalStorage.getJSON<User | null>('study_planner_user_cache', null);
-        if (localCached && localCached.id && isUuid(localCached.id)) {
-          currentUser = localCached;
-        } else if (isTelegramWebApp()) {
+        if (isTelegramWebApp()) {
           const tgAuth = initTelegramAuth();
           if (tgAuth?.user) currentUser = tgAuth.user;
         } else if (isPublicPreviewActive()) {
           currentUser = MOCK_PREVIEW_USER as unknown as User;
+        } else if (hasCheckedSupabase) {
+          // Supabase explicitly returned no session (or session expired).
+          // Stale cache must NOT resurrect an unauthenticated or logged-out user!
+          safeLocalStorage.removeItem('study_planner_user_cache');
+          currentUser = null;
+        } else {
+          // Fallback only if Supabase getSession could not be checked (e.g. uninitialized client)
+          const localCached = safeLocalStorage.getJSON<User | null>(
+            'study_planner_user_cache',
+            null,
+          );
+          if (localCached && localCached.id && isUuid(localCached.id)) {
+            currentUser = localCached;
+          }
         }
       }
 
       if (fetchSeqRef.current !== currentSeq) return;
 
       if (!currentUser) {
-        // If completely unauthenticated and no cache, set loading to false and return
+        // If unauthenticated, ensure user is cleared, auth store is updated, and return
+        setUser(null);
+        useAuthStore.getState().setUser(null);
         setLoading(false);
         return;
       }
@@ -857,9 +872,13 @@ export const StudyPlannerProvider: React.FC<{ children: React.ReactNode }> = ({ 
     let subscription: any = null;
     if (typeof supabase?.auth?.onAuthStateChange === 'function') {
       const authSub = supabase.auth.onAuthStateChange((event, session) => {
-        if (event === 'SIGNED_OUT') {
+        if (
+          event === 'SIGNED_OUT' ||
+          (!session && !isTelegramWebApp() && !isPublicPreviewActive())
+        ) {
           fetchSeqRef.current++;
           setUser(null);
+          useAuthStore.getState().setUser(null);
           safeLocalStorage.removeItem('study_planner_user_cache');
           setGamificationState(INITIAL_GAMIFICATION_STATE);
           setTasks([]);
