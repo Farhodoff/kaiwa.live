@@ -25,6 +25,7 @@ import { supabase } from '../lib/supabase';
 import { recordTelemetryEvent } from '../lib/errorTracking';
 import { ActivityLoggingService } from '../services/ActivityLoggingService';
 import { useTelegramWebApp } from '../hooks/useTelegramWebApp';
+import { getWebRtcIceServers } from '../config/webrtc';
 
 interface UserProfile {
   id: string;
@@ -252,27 +253,8 @@ const StudyRoomPage: React.FC = () => {
     const createPeerConnection = (peerId: string) => {
       if (pcsRef.current[peerId]) return pcsRef.current[peerId];
 
-      // Enterprise TURN server configuration (configured via env or fallback to openrelay)
-      const configuredTurnUrls = import.meta.env.VITE_TURN_URLS
-        ? import.meta.env.VITE_TURN_URLS.split(',')
-        : [
-            'turn:openrelay.metered.ca:80',
-            'turn:openrelay.metered.ca:443',
-            'turn:openrelay.metered.ca:443?transport=tcp',
-          ];
-      const configuredTurnUsername = import.meta.env.VITE_TURN_USERNAME || 'openrelayproject';
-      const configuredTurnCredential = import.meta.env.VITE_TURN_CREDENTIAL || 'openrelayproject';
-
       const pc = new RTCPeerConnection({
-        iceServers: [
-          { urls: 'stun:stun.l.google.com:19302' },
-          { urls: 'stun:stun1.l.google.com:19302' },
-          {
-            urls: configuredTurnUrls,
-            username: configuredTurnUsername,
-            credential: configuredTurnCredential,
-          },
-        ],
+        iceServers: getWebRtcIceServers(),
       });
 
       // Add local tracks
