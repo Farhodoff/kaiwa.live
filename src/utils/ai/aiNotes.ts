@@ -2,11 +2,11 @@ import { parseAIError } from './aiConfig';
 import { callSelectedAIProvider } from './aiCore';
 
 export const expandNoteWithAI = async (
-    content: string,
-    subjectName: string = 'Umumiy',
-    _userKey?: string
+  content: string,
+  subjectName: string = 'Umumiy',
+  _userKey?: string,
 ): Promise<string> => {
-    const prompt = `
+  const prompt = `
       Fan: "${subjectName}"
       Konspekt matni: "${content.substring(0, 4000)}"
       
@@ -17,21 +17,21 @@ export const expandNoteWithAI = async (
       Cheklov: Faqat yangilangan, kengaytirilgan konspekt matnini qaytaring, boshqa hech qanday izoh, sarlavha yoki kirish so'zlarini yozmang.
     `;
 
-    try {
-        const text = await callSelectedAIProvider(prompt, undefined, false);
-        return text ? text.trim() : content;
-    } catch (error: unknown) {
-        console.error('AI Expand Note Error:', error);
-        throw new Error(parseAIError(error));
-    }
+  try {
+    const text = await callSelectedAIProvider(prompt, undefined, false);
+    return text ? text.trim() : content;
+  } catch (error: unknown) {
+    console.error('AI Expand Note Error:', error);
+    throw new Error(parseAIError(error));
+  }
 };
 
 export const summarizeNoteWithAI = async (
-    content: string,
-    _subjectName?: string,
-    _userKey?: string
+  content: string,
+  _subjectName?: string,
+  _userKey?: string,
 ): Promise<string> => {
-    const prompt = `
+  const prompt = `
       Konspekt matni: "${content.substring(0, 4000)}"
       
       Vazifa: Ushbu konspekt matnining eng muhim va asosiy g'oyalarini qisqa, tushunarli qilib xulosa qiling (Executive Summary).
@@ -40,40 +40,40 @@ export const summarizeNoteWithAI = async (
       Cheklov: Faqat xulosa matnini qaytaring. Boshqa kirish so'zlar yozmang.
     `;
 
-    try {
-        const text = await callSelectedAIProvider(prompt, undefined, false);
-        return text ? text.trim() : content;
-    } catch (error: unknown) {
-        console.error('AI Summarize Note Error:', error);
-        throw new Error(parseAIError(error));
-    }
+  try {
+    const text = await callSelectedAIProvider(prompt, undefined, false);
+    return text ? text.trim() : content;
+  } catch (error: unknown) {
+    console.error('AI Summarize Note Error:', error);
+    throw new Error(parseAIError(error));
+  }
 };
 
 export const fixNoteSpellingWithAI = async (
-    content: string,
-    _subjectName?: string,
-    _userKey?: string
+  content: string,
+  _subjectName?: string,
+  _userKey?: string,
 ): Promise<string> => {
-    const prompt = `
+  const prompt = `
       Vazifa: Ushbu konspekt matnidagi imlo va grammatik xatolarni to'g'rilab, matnni toza Markdown formatida qaytaring.
       Matn: "${content.substring(0, 4000)}"
       Til: O'zbek tili.
       Cheklov: Faqat to'g'rilangan matnni qaytaring.
     `;
-    try {
-        const text = await callSelectedAIProvider(prompt, undefined, false);
-        return text ? text.trim() : content;
-    } catch {
-        return content;
-    }
+  try {
+    const text = await callSelectedAIProvider(prompt, undefined, false);
+    return text ? text.trim() : content;
+  } catch {
+    return content;
+  }
 };
 
 export const generateQuizFromNote = async (
-    content: string,
-    questionCount: number = 3,
-    _userKey?: string
+  content: string,
+  questionCount: number = 3,
+  _userKey?: string,
 ): Promise<{ question: string; options: string[]; answerIndex: number; explanation: string }[]> => {
-    const prompt = `
+  const prompt = `
       Konspekt matni: "${content.substring(0, 4000)}"
       Vazifa: Ushbu konspekt asosida ${questionCount} ta ko'p variantli (Multiple Choice) test savollari yarating.
       Format: FAQAT QUYIDAGI VALID JSON ARRAY BO'LSIN:
@@ -88,26 +88,29 @@ export const generateQuizFromNote = async (
       Cheklov: JSON dan tashqari hech qanday matn qaytarmang!
     `;
 
-    try {
-        const text = await callSelectedAIProvider(prompt, undefined, true);
-        const cleanedText = text.replace(/```json/g, "").replace(/```/g, "").trim();
-        const json = JSON.parse(cleanedText);
-        if (Array.isArray(json)) {
-            return json;
-        }
-        return [];
-    } catch (error: unknown) {
-        console.error('AI Quiz Error:', error);
-        throw new Error(parseAIError(error));
+  try {
+    const text = await callSelectedAIProvider(prompt, undefined, true);
+    const cleanedText = text
+      .replace(/```json/g, '')
+      .replace(/```/g, '')
+      .trim();
+    const json = JSON.parse(cleanedText);
+    if (Array.isArray(json)) {
+      return json;
     }
+    return [];
+  } catch (error: unknown) {
+    console.error('AI Quiz Error:', error);
+    throw new Error(parseAIError(error));
+  }
 };
 
 export const explainComplexTopic = async (
-    topic: string,
-    context: string = '',
-    _userKey?: string
+  topic: string,
+  context: string = '',
+  _userKey?: string,
 ): Promise<string> => {
-    const prompt = `
+  const prompt = `
       Mavzu: "${topic}"
       ${context ? `Kontekst: "${context.substring(0, 2000)}"` : ''}
       
@@ -116,32 +119,36 @@ export const explainComplexTopic = async (
       Format: Chiroyli Markdown.
     `;
 
-    try {
-        const text = await callSelectedAIProvider(prompt, undefined, false);
-        return text ? text.trim() : "Mavzuni tushuntirishda xatolik yuz berdi.";
-    } catch (error: unknown) {
-        console.error('AI Feynman Explain Error:', error);
-        throw new Error(parseAIError(error));
-    }
+  try {
+    const text = await callSelectedAIProvider(prompt, undefined, false);
+    return text ? text.trim() : 'Mavzuni tushuntirishda xatolik yuz berdi.';
+  } catch (error: unknown) {
+    console.error('AI Feynman Explain Error:', error);
+    throw new Error(parseAIError(error));
+  }
 };
 
 export const generateSmartSummary = async (
-    rawText: string,
-    mode: 'key_takeaways' | 'action_items' | 'mindmap_tree' | 'qa_breakdown' = 'key_takeaways',
-    _userKey?: string
+  rawText: string,
+  mode: 'key_takeaways' | 'action_items' | 'mindmap_tree' | 'qa_breakdown' = 'key_takeaways',
+  _userKey?: string,
 ): Promise<string> => {
-    let modeInstruction = "";
-    if (mode === 'key_takeaways') {
-        modeInstruction = "Eng muhim 5 ta asosiy xulosani 💡 belgilari bilan tartiblangan ro'yxat qiling.";
-    } else if (mode === 'action_items') {
-        modeInstruction = "Ushbu matndan kelib chiqib bajarilishi kerak bo'lgan amaliy vazifalar (Action Items) ro'yxatini 🎯 belgilari bilan chiqaring.";
-    } else if (mode === 'mindmap_tree') {
-        modeInstruction = "Ushbu matn tarkibini iyerarxik Mind-map ko'rinishida (Daraxtsimon ro'yxat) tuzing.";
-    } else if (mode === 'qa_breakdown') {
-        modeInstruction = "Ushbu matn bo'yicha eng ko'p beriladigan 3 ta savol va ularga javob (Q&A) shaklida shakllantiring.";
-    }
+  let modeInstruction = '';
+  if (mode === 'key_takeaways') {
+    modeInstruction =
+      "Eng muhim 5 ta asosiy xulosani 💡 belgilari bilan tartiblangan ro'yxat qiling.";
+  } else if (mode === 'action_items') {
+    modeInstruction =
+      "Ushbu matndan kelib chiqib bajarilishi kerak bo'lgan amaliy vazifalar (Action Items) ro'yxatini 🎯 belgilari bilan chiqaring.";
+  } else if (mode === 'mindmap_tree') {
+    modeInstruction =
+      "Ushbu matn tarkibini iyerarxik Mind-map ko'rinishida (Daraxtsimon ro'yxat) tuzing.";
+  } else if (mode === 'qa_breakdown') {
+    modeInstruction =
+      "Ushbu matn bo'yicha eng ko'p beriladigan 3 ta savol va ularga javob (Q&A) shaklida shakllantiring.";
+  }
 
-    const prompt = `
+  const prompt = `
       Boshlang'ich Matn: "${rawText.substring(0, 5000)}"
       
       Vazifa: ${modeInstruction}
@@ -150,11 +157,11 @@ export const generateSmartSummary = async (
       Cheklov: Faqat tayyorlangan natijani qaytaring.
     `;
 
-    try {
-        const response = await callSelectedAIProvider(prompt, undefined, false);
-        return response ? response.trim() : "Xulosa shakllantirishda xatolik yuz berdi.";
-    } catch (error) {
-        console.error("Smart Summary Error:", error);
-        throw new Error(parseAIError(error));
-    }
+  try {
+    const response = await callSelectedAIProvider(prompt, undefined, false);
+    return response ? response.trim() : 'Xulosa shakllantirishda xatolik yuz berdi.';
+  } catch (error) {
+    console.error('Smart Summary Error:', error);
+    throw new Error(parseAIError(error));
+  }
 };
