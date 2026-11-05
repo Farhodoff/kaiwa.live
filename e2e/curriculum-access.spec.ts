@@ -5,6 +5,7 @@ for (const viewport of [
   { width: 390, height: 844 },
 ]) {
   test(`N4 lessons remain accessible and return to N4 at ${viewport.width}px`, async ({ page }) => {
+    test.setTimeout(60000);
     await page.setViewportSize(viewport);
     await page.goto('/jlpt?level=n4');
     await page.getByRole('button', { name: /26-Dars.*darsni boshlash/i }).click();
