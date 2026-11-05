@@ -82,7 +82,7 @@ export const SpacedRepetitionSchedule: React.FC<SpacedRepetitionScheduleProps> =
     return lessonReviews.filter((r) => r.status === 'overdue' || r.status === 'due_today').length;
   }, [lessonReviews]);
 
-  // Handle task sync to Study Planner
+  // Handle task sync to Kaiwa schedule
   const handleSyncToTasks = async () => {
     setIsSyncingTasks(true);
     try {

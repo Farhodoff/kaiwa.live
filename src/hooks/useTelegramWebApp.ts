@@ -56,7 +56,9 @@ export function useTelegramWebApp(): UseTelegramWebAppReturn {
 
       // Respect user's explicit theme choice if stored
       const savedTheme =
-        typeof window !== 'undefined' ? localStorage.getItem('study_planner_theme') : null;
+        typeof window !== 'undefined'
+          ? localStorage.getItem('kaiwa_theme') || localStorage.getItem('study_planner_theme')
+          : null;
 
       if (!savedTheme) {
         if (scheme === 'light') {
@@ -71,7 +73,9 @@ export function useTelegramWebApp(): UseTelegramWebAppReturn {
         if (tg.colorScheme) {
           setColorScheme(tg.colorScheme);
           const currentSaved =
-            typeof window !== 'undefined' ? localStorage.getItem('study_planner_theme') : null;
+            typeof window !== 'undefined'
+              ? localStorage.getItem('kaiwa_theme') || localStorage.getItem('study_planner_theme')
+              : null;
           if (!currentSaved) {
             if (tg.colorScheme === 'light') {
               document.documentElement.classList.remove('dark');

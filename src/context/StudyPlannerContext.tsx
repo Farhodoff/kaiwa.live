@@ -1271,3 +1271,9 @@ export const useStudyData = () => {
   if (!context) throw new Error('useStudyData must be used within StudyPlannerProvider');
   return context;
 };
+
+// Aliases for Kaiwa rebranding
+export { StudyPlannerContext };
+export const KaiwaContext = StudyPlannerContext;
+export const KaiwaProvider = StudyPlannerProvider;
+export const useKaiwaData = useStudyData;

@@ -12,7 +12,7 @@ import json
 import fitz
 
 PDF_PATH = "/Users/farhod/Desktop/みんなの日本語初級1_翻訳•文法解説ウズベク語版.pdf"
-OUTPUT_JSON = "/Users/farhod/Documents/github/study_planner/src/data/minna_shokyu1_complete.json"
+OUTPUT_JSON = "/Users/farhod/Documents/github/kaiwa.live/src/data/minna_shokyu1_complete.json"
 
 LESSON_TITLES = {
     1: {"uz": "1-dars: Tanishuv va O'zini tanishtirish", "ja": "第1課：自己紹介と挨拶"},

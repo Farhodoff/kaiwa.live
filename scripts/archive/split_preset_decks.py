@@ -2,7 +2,7 @@ import json
 import re
 import os
 
-preset_decks_path = "/Users/farhod/Desktop/github/study_planner/src/data/presetDecks.ts"
+preset_decks_path = "/Users/farhod/Desktop/github/kaiwa.live/src/data/presetDecks.ts"
 
 with open(preset_decks_path, "r", encoding="utf-8") as f:
     content = f.read()
@@ -12,7 +12,7 @@ starter_cards_match = re.search(r"id:\s*'deck_starter_a1_a2'.*?cards:\s*(\[.*?\]
 academic_cards_match = re.search(r"id:\s*'deck_intermediate_b1_b2'.*?cards:\s*(\[.*?\])\n\s*\},", content, re.DOTALL)
 c1_c2_cards_match = re.search(r"id:\s*'deck_master_c1_c2'.*?cards:\s*(\[.*?\])\n\s*\}", content, re.DOTALL)
 
-decks_dir = "/Users/farhod/Desktop/github/study_planner/src/data/decks"
+decks_dir = "/Users/farhod/Desktop/github/kaiwa.live/src/data/decks"
 os.makedirs(decks_dir, exist_ok=True)
 
 starter_json = []

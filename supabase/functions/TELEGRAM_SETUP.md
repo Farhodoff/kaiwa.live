@@ -79,7 +79,7 @@ Telegram appda botingizni oching va `/start` yuboring!
 **Expected response:**
 
 ```
-👋 Salom! Study Planner botiga xush kelibsiz! 🎓
+👋 Salom! kaiwa.live botiga xush kelibsiz! 🎓
 
 Men sizning o'quv rejalaringizni boshqarishga yordam beraman.
 
