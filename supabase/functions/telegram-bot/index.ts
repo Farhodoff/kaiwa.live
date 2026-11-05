@@ -241,7 +241,7 @@ Yordam: /help`,
     // Welcome message - not linked yet
     return sendMessage(
       chatId,
-      `Salom! Study Planner botiga xush kelibsiz!
+      `Salom! kaiwa.live botiga xush kelibsiz!
 
 Akkauntingizni bog'lash uchun:
 1. <a href="https://kaiwa.live">kaiwa.live</a> saytiga kiring.

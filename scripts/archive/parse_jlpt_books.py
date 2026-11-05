@@ -3,10 +3,10 @@ import re
 import json
 from pypdf import PdfReader
 
-DECKS_DIR = '/Users/farhod/Desktop/github/study_planner/src/data/decks'
+DECKS_DIR = '/Users/farhod/Desktop/github/kaiwa.live/src/data/decks'
 os.makedirs(DECKS_DIR, exist_ok=True)
 
-BOOKS_DIR = '/Users/farhod/Desktop/github/study_planner/books'
+BOOKS_DIR = '/Users/farhod/Desktop/github/kaiwa.live/books'
 
 # Helper regex to recognize Japanese characters (Kanji, Hiragana, Katakana)
 JP_RE = re.compile(r'[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF]')

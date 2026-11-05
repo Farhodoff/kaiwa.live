@@ -3,12 +3,15 @@ import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
 
 export type Theme = 'light' | 'dark';
 
-const THEME_STORAGE_KEY = 'study_planner_theme';
+const THEME_STORAGE_KEY = 'kaiwa_theme';
+const LEGACY_THEME_STORAGE_KEY = 'study_planner_theme';
 
 const getInitialTheme = (): Theme => {
   if (typeof window === 'undefined') return 'dark';
   try {
-    const saved = safeLocalStorage.getItem(THEME_STORAGE_KEY);
+    const saved =
+      safeLocalStorage.getItem(THEME_STORAGE_KEY) ||
+      safeLocalStorage.getItem(LEGACY_THEME_STORAGE_KEY);
     if (saved === 'light' || saved === 'dark') return saved;
     if (document.documentElement.classList.contains('dark')) return 'dark';
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
@@ -40,6 +43,7 @@ export const useTheme = () => {
   const setTheme = useCallback((newTheme: Theme) => {
     setThemeState(newTheme);
     safeLocalStorage.setItem(THEME_STORAGE_KEY, newTheme);
+    safeLocalStorage.setItem(LEGACY_THEME_STORAGE_KEY, newTheme);
     applyThemeToDOM(newTheme);
     window.dispatchEvent(new CustomEvent('themechange', { detail: newTheme }));
   }, []);

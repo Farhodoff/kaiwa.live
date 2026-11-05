@@ -46,9 +46,13 @@ export const safeLocalStorage: SafeLocalStorage = {
       // Auto-recovery: Clean temporary/old caches to free up quota
       try {
         const keysToClean = [
+          'kaiwa_analytics_cache',
           'study_planner_analytics_cache',
+          'kaiwa_whiteboards_cache',
           'study_planner_whiteboards_cache',
+          'kaiwa_events_cache',
           'study_planner_events_cache',
+          'kaiwa_history_cache',
           'study_planner_history_cache',
         ];
 

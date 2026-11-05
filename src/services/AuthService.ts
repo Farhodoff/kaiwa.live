@@ -21,6 +21,10 @@ export const isAuthStorageKey = (key: string): boolean => {
 
   // Active user identity & role cache
   const authIdentityKeys = [
+    'kaiwa_user_cache',
+    'kaiwa_user_email',
+    'kaiwa_user_name',
+    'kaiwa_admin_api_key',
     'study_planner_user_cache',
     'study_planner_user_email',
     'study_planner_user_name',
@@ -64,6 +68,10 @@ export const purgeAuthSessionStorage = (): void => {
 
     // 3. Explicit check for well-known auth keys to guarantee deterministic purge
     const wellKnownAuthKeys = [
+      'kaiwa_user_cache',
+      'kaiwa_user_email',
+      'kaiwa_user_name',
+      'kaiwa_admin_api_key',
       'study_planner_user_cache',
       'study_planner_user_email',
       'study_planner_user_name',

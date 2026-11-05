@@ -121,7 +121,7 @@ const GoogleCalendarSection: React.FC = () => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `study_planner_schedule_${new Date().toISOString().split('T')[0]}.ics`;
+      a.download = `kaiwa_schedule_${new Date().toISOString().split('T')[0]}.ics`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);

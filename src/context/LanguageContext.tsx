@@ -61,7 +61,8 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         return langParam as Language;
       }
       // Fallback to safeLocalStorage
-      const saved = safeLocalStorage.getItem('study_planner_lang');
+      const saved =
+        safeLocalStorage.getItem('kaiwa_lang') || safeLocalStorage.getItem('study_planner_lang');
       if (saved === 'ja' || saved === 'uz' || saved === 'en') {
         return saved as Language;
       }
@@ -71,6 +72,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   const setLanguage = useCallback((lang: Language) => {
     setLanguageState(lang);
+    safeLocalStorage.setItem('kaiwa_lang', lang);
     safeLocalStorage.setItem('study_planner_lang', lang);
 
     // Update URL query parameter without full reload

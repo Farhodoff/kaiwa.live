@@ -137,7 +137,7 @@ class ExportImportService {
 
       const jsonStr = JSON.stringify(backup, null, 2);
       const dateStr = new Date().toISOString().split('T')[0];
-      this.downloadFile(jsonStr, `study_planner_backup_${dateStr}.json`, 'application/json');
+      this.downloadFile(jsonStr, `kaiwa_backup_${dateStr}.json`, 'application/json');
     } catch (error) {
       console.error('JSON export error:', error);
       throw new Error('Eksport qilishda xatolik yuz berdi.');
@@ -261,11 +261,7 @@ class ExportImportService {
       ].join('\n');
 
       const dateStr = new Date().toISOString().split('T')[0];
-      this.downloadFile(
-        csvContent,
-        `study_planner_tasks_${dateStr}.csv`,
-        'text/csv;charset=utf-8;',
-      );
+      this.downloadFile(csvContent, `kaiwa_tasks_${dateStr}.csv`, 'text/csv;charset=utf-8;');
     } catch (error) {
       console.error('CSV export tasks error:', error);
       throw new Error('Vazifalarni eksport qilishda xatolik yuz berdi.');
@@ -363,11 +359,7 @@ class ExportImportService {
       ].join('\n');
 
       const dateStr = new Date().toISOString().split('T')[0];
-      this.downloadFile(
-        csvContent,
-        `study_planner_flashcards_${dateStr}.csv`,
-        'text/csv;charset=utf-8;',
-      );
+      this.downloadFile(csvContent, `kaiwa_flashcards_${dateStr}.csv`, 'text/csv;charset=utf-8;');
     } catch (error) {
       console.error('CSV export flashcards error:', error);
       throw new Error('Flashcardlarni eksport qilishda xatolik yuz berdi.');
