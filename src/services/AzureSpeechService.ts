@@ -1,4 +1,5 @@
 import { supabase } from '../lib/supabase';
+import { purgeOversizedCookies } from '../lib/consoleFilter';
 
 export interface AzurePronunciationWord {
   word: string;
@@ -73,16 +74,31 @@ export const AzureSpeechService = {
 
     tokenFetchPromise = (async () => {
       try {
+        // Telegram WebView/browser sessions can accumulate cookies after app
+        // startup. Clear browser-readable cookies immediately before this
+        // sensitive request so the local proxy does not reject it with HTTP 431.
+        purgeOversizedCookies();
         const authToken = await getClientAuthToken();
         const headers: Record<string, string> = {};
         if (authToken) {
           headers['Authorization'] = `Bearer ${authToken}`;
         }
 
-        const res = await fetch('/api/speech-token', {
+        let res = await fetch('/api/speech-token', {
           method: 'GET',
+          credentials: 'omit',
           headers,
         });
+
+        // A stale browser session must not block an otherwise public, rate-limited
+        // speech-token request. Retry once with the project anon key instead.
+        if (res.status === 401 && supabaseAnonKey && authToken !== supabaseAnonKey) {
+          res = await fetch('/api/speech-token', {
+            method: 'GET',
+            credentials: 'omit',
+            headers: { Authorization: `Bearer ${supabaseAnonKey}` },
+          });
+        }
 
         if (!res.ok) {
           lastConnectionError =
@@ -92,7 +108,9 @@ export const AzureSpeechService = {
                 ? 'Azure nutqni tanish so‘rovlari limiti tugagan.'
                 : res.status === 429
                   ? 'Azure so‘rovlari juda tez yuborildi. Biroz kuting.'
-                  : 'Azure tokenini olib bo‘lmadi. Xizmat ulanishini tekshirish kerak.';
+                  : res.status === 431
+                    ? 'Brauzer sessiyasi haddan tashqari katta. Sahifani yangilang; davom etsa, localhost sayt ma’lumotlarini tozalang.'
+                    : 'Azure tokenini olib bo‘lmadi. Xizmat ulanishini tekshirish kerak.';
           console.warn(`[AzureSpeechService] Failed to obtain speech token: HTTP ${res.status}`);
           return null;
         }

@@ -4,7 +4,7 @@
   "description": "AI-powered Japanese language mastery & JLPT N5–N1 prep platform featuring real-time AI voice conversation, Minna no Nihongo, interactive mock tests, and smart SRS flashcards.",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "NODE_OPTIONS=--max-http-header-size=65536 vite",
     "build": "tsc && vite build",
     "analyze": "ANALYZE=true npm run build",
     "preview": "vite preview",

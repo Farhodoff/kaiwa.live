@@ -45,7 +45,22 @@ export const isValidAnonKey = (key?: string | null): boolean => {
   return false;
 };
 
-export const supabaseUrl = isValidUrl(rawUrl) ? rawUrl!.trim() : DEFAULT_SUPABASE_URL;
+// Direct Supabase requests are the default in development as well. The browser
+// already supports the service's CORS response and this avoids localhost's
+// cookie header limit. The Vite proxy remains available only for an explicitly
+// opted-in embedded browser that blocks cross-origin requests.
+const useLocalSupabaseProxy =
+  import.meta.env.DEV &&
+  import.meta.env.VITE_USE_LOCAL_SUPABASE_PROXY === 'true' &&
+  typeof window !== 'undefined' &&
+  window.location.hostname === 'localhost';
+
+// Production always uses the real URL. The local proxy is opt-in only.
+export const supabaseUrl = useLocalSupabaseProxy
+  ? `${window.location.origin}/supabase`
+  : isValidUrl(rawUrl)
+    ? rawUrl!.trim()
+    : DEFAULT_SUPABASE_URL;
 export const supabaseAnonKey = isValidAnonKey(rawKey) ? rawKey!.trim() : DEFAULT_SUPABASE_ANON_KEY;
 
 if (!isValidUrl(rawUrl) || !isValidAnonKey(rawKey)) {
@@ -298,7 +313,12 @@ const customFetch = async (input: RequestInfo | URL, init?: RequestInit): Promis
   const executeFetch = async (): Promise<Response> => {
     await acquireSlot();
     try {
-      const res = await fetchWithRetry(input, init, 1);
+      // The local proxy uses explicit headers, so browser cookies are unnecessary.
+      // Omitting them avoids HTTP 431 from oversized localhost cookie headers.
+      const requestInit = useLocalSupabaseProxy
+        ? { ...init, credentials: 'omit' as RequestCredentials }
+        : init;
+      const res = await fetchWithRetry(input, requestInit, 1);
       if (res.status === 401 && !isAuth) {
         if (isSigningOut) {
           return res;
@@ -307,7 +327,7 @@ const customFetch = async (input: RequestInfo | URL, init?: RequestInit): Promis
         const newAccessToken = await attemptTokenRefresh();
         if (newAccessToken) {
           const cleanHeaders = new Headers(
-            init?.headers || (input instanceof Request ? input.headers : {}),
+            requestInit?.headers || (input instanceof Request ? input.headers : {}),
           );
           cleanHeaders.set('Authorization', `Bearer ${newAccessToken}`);
           cleanHeaders.set('apikey', supabaseAnonKey);
@@ -317,7 +337,7 @@ const customFetch = async (input: RequestInfo | URL, init?: RequestInit): Promis
               : input instanceof Request
                 ? input.url
                 : input.toString();
-          const retryInit = { ...init, headers: cleanHeaders };
+          const retryInit = { ...requestInit, headers: cleanHeaders };
           const retryRes = await fetchWithRetry(reqUrl, retryInit, 1);
           if (!retryRes.ok) {
             logSupabaseError(method, reqUrl, retryRes);

@@ -2,6 +2,7 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import fs from 'fs';
 import { defineConfig } from 'vitest/config';
+import { loadEnv } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import { telegramApiPlugin } from './server/vitePlugin.js';
 import { visualizer } from 'rollup-plugin-visualizer';
@@ -51,6 +52,8 @@ function versionGeneratorPlugin() {
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const isProd = mode === 'production';
+  const localEnv = loadEnv(mode, process.cwd(), '');
+  const localSupabaseUrl = localEnv.VITE_SUPABASE_URL || 'https://qmuimxnknxwarvnkpnlo.supabase.co';
   return {
     define: {
       __APP_BUILD_TIMESTAMP__: buildTimestamp,
@@ -275,6 +278,22 @@ export default defineConfig(({ mode }) => {
     server: {
       port: 5173,
       proxy: {
+        // Keep local Supabase calls same-origin. This avoids CORS interference
+        // from browser extensions and embedded Telegram web views.
+        '/supabase': {
+          target: localSupabaseUrl,
+          changeOrigin: true,
+          ws: true,
+          rewrite: (path) => path.replace(/^\/supabase/, ''),
+          configure: (proxy) => {
+            proxy.on('proxyReq', (proxyReq) => {
+              // Local app cookies do not belong to Supabase and can become very
+              // large in embedded browsers, so never forward them upstream.
+              proxyReq.removeHeader('cookie');
+              proxyReq.removeHeader('origin');
+            });
+          },
+        },
         '/api/deepseek': {
           target: 'https://api.deepseek.com',
           changeOrigin: true,

@@ -3,30 +3,9 @@
  * Routes /api/telegram/* requests to the local API handler instead of the browser
  * trying to reach Supabase directly (which may be blocked by adblockers/VPN).
  */
-import { readFileSync } from 'fs';
-import { resolve } from 'path';
+import { loadEnv } from 'vite';
 import { createClient } from '@supabase/supabase-js';
 
-function loadEnv() {
-  try {
-    const envPath = resolve(process.cwd(), '.env');
-    const envContent = readFileSync(envPath, 'utf-8');
-    const envVars = {};
-    for (const line of envContent.split('\n')) {
-      const trimmed = line.trim();
-      if (!trimmed || trimmed.startsWith('#')) continue;
-      const eqIndex = trimmed.indexOf('=');
-      if (eqIndex === -1) continue;
-      const key = trimmed.slice(0, eqIndex).trim();
-      const value = trimmed.slice(eqIndex + 1).trim();
-      envVars[key] = value;
-    }
-    return envVars;
-  } catch (e) {
-    console.warn('Could not load .env:', e.message);
-    return {};
-  }
-}
 
 function isValidUuid(id) {
   if (!id || typeof id !== 'string') return false;
@@ -47,8 +26,9 @@ export function telegramApiPlugin() {
   return {
     name: 'telegram-api',
     configureServer(server) {
-      // Load env INSIDE configureServer so it runs at server start time
-      const env = loadEnv();
+      // Use Vite's quote handling, mode-specific files and process.env precedence.
+      // The empty prefix loads server secrets here only; it does not expose them to the client.
+      const env = loadEnv(server.config.mode, server.config.envDir, '');
       const supabaseUrl = env.VITE_SUPABASE_URL || 'https://qmuimxnknxwarvnkpnlo.supabase.co';
       const serviceRole = env.SERVICE_ROLE;
       const botToken = env.TELEGRAM_BOT_TOKEN || env.VITE_TELEGRAM_BOT_TOKEN;
@@ -286,7 +266,18 @@ export function telegramApiPlugin() {
               get headersSent() { return res.headersSent; },
               end: () => res.end(),
             };
-            return await deepseekHandler({ ...req, body: payload, method: req.method }, mockRes);
+            // This header is created only by the local Vite proxy. It lets the
+            // quota guard distinguish a real local coaching session from
+            // production traffic and from unit-test request objects.
+            return await deepseekHandler(
+              {
+                ...req,
+                body: payload,
+                method: req.method,
+                headers: { ...req.headers, 'x-kaiwa-local-dev': 'true' },
+              },
+              mockRes,
+            );
           } catch (e) {
             res.statusCode = 500;
             res.setHeader('Content-Type', 'application/json');
