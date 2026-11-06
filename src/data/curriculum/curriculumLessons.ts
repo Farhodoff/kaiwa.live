@@ -16,6 +16,29 @@ export const ALL_ENGLISH_LESSONS: Lesson[] = [];
 let fullLessons: Lesson[] = metadata.canonicalLessons as unknown as Lesson[];
 let allJapaneseLessons: Lesson[] = fullLessons;
 
+/**
+ * Course content must use recorded audio only. Older curriculum JSON includes
+ * `audioScript` fields that were read aloud by browser/Azure TTS. Strip those
+ * fields as each level is loaded so generated voices cannot surface in a lesson.
+ * This intentionally does not affect the separate live Speaking Coach feature.
+ */
+function stripSyntheticLessonAudio<T>(value: T): T {
+  if (!value || typeof value !== 'object') return value;
+  if (Array.isArray(value)) return value.map(stripSyntheticLessonAudio) as T;
+
+  const record = value as Record<string, unknown>;
+  const sanitized = Object.fromEntries(
+    Object.entries(record)
+      .filter(([key]) => key !== 'audioScript')
+      .map(([key, child]) => [key, stripSyntheticLessonAudio(child)]),
+  );
+  return sanitized as T;
+}
+
+function prepareLessons(lessons: Lesson[]): Lesson[] {
+  return attachLessonKanji(stripSyntheticLessonAudio(lessons));
+}
+
 if (!import.meta.env.PROD) {
   try {
     const [n5, n4, n3, n2, n1] = await Promise.all([
@@ -25,7 +48,7 @@ if (!import.meta.env.PROD) {
       import('./levels/n2/japaneseLessons.json'),
       import('./levels/n1/japaneseLessons.json'),
     ]);
-    fullLessons = attachLessonKanji([
+    fullLessons = prepareLessons([
       ...n5.default,
       ...n4.default,
       ...n3.default,
@@ -41,21 +64,33 @@ if (!import.meta.env.PROD) {
  * In production, each level is loaded on-demand when user enters that level or lesson.
  */
 export const LEVEL_LOADERS: Record<string, () => Promise<Lesson[]>> = {
-  N5: () => import('./levels/n5/minnaLessons.json').then((m) => m.default as unknown as Lesson[]),
-  N4: () => import('./levels/n4/minnaLessons.json').then((m) => m.default as unknown as Lesson[]),
+  N5: () =>
+    import('./levels/n5/minnaLessons.json').then((m) =>
+      prepareLessons(m.default as unknown as Lesson[]),
+    ),
+  N4: () =>
+    import('./levels/n4/minnaLessons.json').then((m) =>
+      prepareLessons(m.default as unknown as Lesson[]),
+    ),
   N3: () =>
-    import('./levels/n3/japaneseLessons.json').then((m) => m.default as unknown as Lesson[]),
+    import('./levels/n3/japaneseLessons.json').then((m) =>
+      prepareLessons(m.default as unknown as Lesson[]),
+    ),
   N2: () =>
-    import('./levels/n2/japaneseLessons.json').then((m) => m.default as unknown as Lesson[]),
+    import('./levels/n2/japaneseLessons.json').then((m) =>
+      prepareLessons(m.default as unknown as Lesson[]),
+    ),
   N1: () =>
-    import('./levels/n1/japaneseLessons.json').then((m) => m.default as unknown as Lesson[]),
+    import('./levels/n1/japaneseLessons.json').then((m) =>
+      prepareLessons(m.default as unknown as Lesson[]),
+    ),
 };
 
 export async function loadCurriculumLevel(level: string): Promise<Lesson[]> {
   const norm = level.toUpperCase();
   const loader = LEVEL_LOADERS[norm];
   if (!loader) return [];
-  const lessons = attachLessonKanji(await loader());
+  const lessons = await loader();
   const loadedIds = new Set(lessons.map((lesson) => lesson.id));
   lessons.forEach((lesson) => CURRICULUM_LESSONS_BY_ID.set(lesson.id, lesson));
   const hydratedLessons = [

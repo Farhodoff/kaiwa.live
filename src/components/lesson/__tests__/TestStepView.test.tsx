@@ -10,11 +10,6 @@ vi.mock('../../../context/StudyPlannerContext', () => ({
   }),
 }));
 
-const tts = vi.hoisted(() => ({ speakText: vi.fn(), stopSpeaking: vi.fn(), unlockAudio: vi.fn() }));
-vi.mock('../../../hooks/useTTS', () => ({
-  useTTS: () => ({ ...tts, isPreparingAudio: false }),
-}));
-
 describe('TestStepView', () => {
   beforeEach(() => {
     class MockAudio {
@@ -53,7 +48,7 @@ describe('TestStepView', () => {
     expect(screen.getByText(/Studiya CD Audiosi/i)).toBeInTheDocument();
   });
 
-  it('plays only the matching script and reveals it after completing the test', () => {
+  it('does not render synthetic audio controls or reveal synthetic scripts', () => {
     const question: TestQuestion = {
       id: 'listening',
       question: 'Qayerga boradi?',
@@ -64,11 +59,10 @@ describe('TestStepView', () => {
     };
     render(<TestStepView instructions="Tinglang" questions={[question]} />);
     expect(screen.queryByText('駅へ 行きます。')).not.toBeInTheDocument();
-    fireEvent.click(screen.getByRole('button', { name: 'Ovozni tinglash' }));
-    expect(tts.speakText).toHaveBeenCalledWith('駅へ 行きます。');
+    expect(screen.queryByRole('button', { name: 'Ovozni tinglash' })).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: /駅/ }));
     fireEvent.click(screen.getByRole('button', { name: /Testni Yakunlash/i }));
-    expect(screen.getByText('駅へ 行きます。')).toBeInTheDocument();
+    expect(screen.queryByText('駅へ 行きます。')).not.toBeInTheDocument();
   });
 
   it('provides furigana mode toggles (ON, Hover, OFF)', () => {
