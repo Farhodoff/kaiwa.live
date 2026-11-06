@@ -50,7 +50,13 @@ class ErrorBoundary extends Component<Props, State> {
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     const safeMessage = sanitizeErrorMessage(error?.message || '');
     this.setState({ errorInfo });
-    logger.error('ErrorBoundary', safeMessage, errorInfo?.componentStack?.slice(0, 300));
+    if (import.meta.env.DEV) {
+      console.error('[ErrorBoundary caught error]:', error);
+      if (errorInfo?.componentStack) {
+        console.error('[ErrorBoundary componentStack]:', errorInfo.componentStack);
+      }
+    }
+    logger.error('ErrorBoundary', safeMessage, error);
     try {
       recordTelemetryEvent('unhandled', `[ErrorBoundary] ${safeMessage}`, {
         success: false,
