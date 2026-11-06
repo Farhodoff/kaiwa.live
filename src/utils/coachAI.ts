@@ -22,6 +22,7 @@ export async function callCoachAI(
   ];
   const response = await fetch('/api/coach', {
     method: 'POST',
+    credentials: 'omit',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${data?.session?.access_token || supabaseAnonKey}`,

@@ -34,6 +34,8 @@ export const streamChatTokens = async (
 
   const response = await fetch(gateway, {
     method: 'POST',
+    // Auth is sent below; unrelated localhost cookies can cause HTTP 431.
+    credentials: 'omit',
     headers: {
       apikey: anonKey,
       Authorization: `Bearer ${bearerToken}`,

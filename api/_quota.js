@@ -42,8 +42,19 @@ export async function checkDailyQuota(userId, userRole = 'user', bodyString = ''
   const isAdmin = userRole === 'admin' || userRole === 'superadmin';
   const isGuest = !userId;
 
+  // Never rely on a process-wide development flag: Vitest may load the Vite
+  // plugin in the same process. The header is added exclusively by our local
+  // Vite middleware immediately before it invokes an API handler.
+  const isLocalDevelopment =
+    req?.headers?.['x-kaiwa-local-dev'] === 'true' ||
+    req?.headers?.get?.('x-kaiwa-local-dev') === 'true';
   const maxQuota = isAdmin
     ? DEFAULT_DAILY_QUOTA_ADMIN
+    // Local Vite testing has no durable quota store. Give guests the same
+    // bounded allowance as signed-in users so a short test session does not
+    // lock the coach after its first few turns. Production is unchanged.
+    : isLocalDevelopment
+      ? DEFAULT_DAILY_QUOTA_FREE
     : isGuest
       ? DEFAULT_DAILY_QUOTA_GUEST
       : DEFAULT_DAILY_QUOTA_FREE;

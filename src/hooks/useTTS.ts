@@ -315,6 +315,7 @@ export async function fetchTTSAudioBlob(text: string, lang: 'ja' | 'en'): Promis
 
       const response = await fetch('/api/tts', {
         method: 'POST',
+        credentials: 'omit',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,

@@ -490,7 +490,8 @@ export function useSpeakingSessionOrchestrator({
             },
           ]);
 
-          const activeUserId = user?.id || 'default-user';
+          // Guests keep evidence locally; never send a placeholder into a UUID column.
+          const activeUserId = user?.id || 'guest';
           MasteryEngine.recordEvidence(activeUserId, languageRef.current, {
             id: `ev_spk_err_${Date.now()}`,
             skill: 'speaking',
@@ -504,7 +505,8 @@ export function useSpeakingSessionOrchestrator({
           if (extractedErrs.length > 0) {
             setLiveErrors((prev) => [...extractedErrs, ...prev].slice(0, 10));
           } else {
-            const activeUserId = user?.id || 'default-user';
+            // Guests keep evidence locally; never send a placeholder into a UUID column.
+            const activeUserId = user?.id || 'guest';
             MasteryEngine.recordEvidence(activeUserId, languageRef.current, {
               id: `ev_spk_turn_${Date.now()}`,
               skill: 'speaking',
