@@ -39,6 +39,16 @@ export const logger = {
 
   error(context: string, message: unknown, error?: unknown) {
     const formatted = formatLogMessage(context, message);
+    if (!isProduction) {
+      if (error instanceof Error) {
+        console.error(formatted, error);
+      } else if (error) {
+        console.error(formatted, error);
+      } else {
+        console.error(formatted);
+      }
+      return;
+    }
     if (error instanceof Error) {
       console.error(formatted, sanitizeErrorMessage(error.message), error.stack?.slice(0, 300));
     } else if (error) {

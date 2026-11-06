@@ -91,6 +91,12 @@ export function installConsoleShield(): void {
 
   purgeOversizedCookies();
 
+  // In local development, preserve native browser console logs and errors
+  // so developers can see full errors, clickable source stacks, and network failures.
+  if (import.meta.env.DEV) {
+    return;
+  }
+
   const originalError = console.error;
   const originalWarn = console.warn;
   const originalLog = console.log;
