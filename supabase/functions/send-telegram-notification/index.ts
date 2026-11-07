@@ -1,3 +1,4 @@
+import { getCorsHeaders } from '../_shared/cors.ts';
 // @ts-expect-error: Deno imports
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts';
 // @ts-expect-error: Deno imports
@@ -10,11 +11,6 @@ const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
 // Supabase Secret key (sb_secret_...) — legacy SUPABASE_SERVICE_ROLE_KEY emas.
 // Admin JWT yo'li bilan birga trusted server-to-server bearer solishtirishda ham ishlatiladi.
 const SUPABASE_KEY = getSupabaseSecretKey();
-
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-};
 
 // Mirrors public.is_admin() from the database (profiles.role OR owner email).
 async function isAuthorizedAdmin(supabase: any, token: string): Promise<boolean> {
@@ -42,9 +38,10 @@ async function isAuthorizedAdmin(supabase: any, token: string): Promise<boolean>
 }
 
 serve(async (req: Request) => {
+  const corsHeaders = getCorsHeaders(req);
   // Handle CORS preflight
   if (req.method === 'OPTIONS') {
-    return new Response('ok', { headers: corsHeaders });
+    return new Response(null, { status: 204, headers: corsHeaders });
   }
 
   try {

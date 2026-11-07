@@ -1,3 +1,4 @@
+import { setCorsHeaders } from '../_cors.js';
 import { createClient } from '@supabase/supabase-js';
 import { getRandomBattleQuestion } from './battle-questions.js';
 import { sendGroupPoll } from './dispatch-group-battle.js';
@@ -168,9 +169,7 @@ async function answerInlineQuery(inlineQueryId, results, cacheTime = 300) {
 }
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Telegram-Bot-Api-Secret-Token');
+  setCorsHeaders(req, res);
 
   if (req.method === 'OPTIONS') {
     return res.status(204).end();

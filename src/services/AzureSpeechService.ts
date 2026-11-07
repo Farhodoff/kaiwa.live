@@ -1,5 +1,4 @@
 import { supabase, supabaseAnonKey } from '../lib/supabase';
-import { purgeOversizedCookies } from '../lib/consoleFilter';
 
 export interface AzurePronunciationWord {
   word: string;
@@ -41,18 +40,32 @@ let lastConnectionError: string | null = null;
 let cachedSpeechToken: AzureSpeechToken | null = null;
 let tokenFetchPromise: Promise<AzureSpeechToken | null> | null = null;
 
-async function getClientAuthToken(): Promise<string> {
-  try {
-    if (typeof supabase?.auth?.getSession === 'function') {
-      const { data } = await supabase.auth.getSession();
-      if (data?.session?.access_token) {
-        return data.session.access_token;
-      }
-    }
-  } catch {
-    // Fall back to anon key if session retrieval fails
-  }
-  return supabaseAnonKey;
+export type SpeechAuthState =
+  'authenticated' | 'refreshing' | 'session_expired' | 'anonymous' | 'error';
+
+export const SPEECH_SESSION_EXPIRED =
+  'Sessiyangiz tugadi. Gapirish mashqini davom ettirish uchun qayta kiring.';
+let authState: SpeechAuthState = 'error';
+let cachedAuthorization: string | null = null;
+let sessionGeneration = 0;
+let requiresSignIn = false;
+
+function expireSession(): null {
+  requiresSignIn = true;
+  cachedSpeechToken = null;
+  authState = 'session_expired';
+  lastConnectionError = SPEECH_SESSION_EXPIRED;
+  return null;
+}
+
+function requestSpeechToken(accessToken: string, guest: boolean) {
+  const signal = typeof AbortSignal.timeout === 'function' ? AbortSignal.timeout(15000) : undefined;
+  return fetch(guest ? '/api/speech-token?mode=guest' : '/api/speech-token', {
+    method: 'GET',
+    credentials: 'omit',
+    headers: { Authorization: `Bearer ${accessToken}` },
+    signal,
+  });
 }
 
 export const AzureSpeechService = {
@@ -61,44 +74,56 @@ export const AzureSpeechService = {
    * Caches for 9 minutes to guarantee freshness.
    */
   async getSpeechToken(forceRefresh = false): Promise<AzureSpeechToken | null> {
-    const now = Date.now();
-    if (!forceRefresh && cachedSpeechToken && cachedSpeechToken.expiresAt > now + 60000) {
-      return cachedSpeechToken;
-    }
-
-    if (tokenFetchPromise && !forceRefresh) {
-      return tokenFetchPromise;
-    }
-
+    if (tokenFetchPromise) return tokenFetchPromise;
+    const generation = sessionGeneration;
     tokenFetchPromise = (async () => {
       try {
-        // Telegram WebView/browser sessions can accumulate cookies after app
-        // startup. Clear browser-readable cookies immediately before this
-        // sensitive request so the local proxy does not reject it with HTTP 431.
-        purgeOversizedCookies();
-        const authToken = await getClientAuthToken();
-        const headers: Record<string, string> = {};
-        if (authToken) {
-          headers['Authorization'] = `Bearer ${authToken}`;
+        const { data, error } = await supabase.auth.getSession();
+        if (generation !== sessionGeneration) return null;
+        if (error) return expireSession();
+        let accessToken = data.session?.access_token;
+        const guest = !data.session;
+        if (!guest && (!accessToken || accessToken === supabaseAnonKey)) return expireSession();
+        if (guest && requiresSignIn) return expireSession();
+        accessToken = accessToken || supabaseAnonKey;
+        if (!guest) requiresSignIn = true;
+        authState = guest ? 'anonymous' : 'authenticated';
+        if (
+          !forceRefresh &&
+          cachedAuthorization === accessToken &&
+          cachedSpeechToken &&
+          cachedSpeechToken.expiresAt > Date.now() + 60000
+        ) {
+          return cachedSpeechToken;
         }
 
-        let res = await fetch('/api/speech-token', {
-          method: 'GET',
-          credentials: 'omit',
-          headers,
-        });
-
-        // A stale browser session must not block an otherwise public, rate-limited
-        // speech-token request. Retry once with the project anon key instead.
-        if (res.status === 401 && supabaseAnonKey && authToken !== supabaseAnonKey) {
-          res = await fetch('/api/speech-token', {
-            method: 'GET',
-            credentials: 'omit',
-            headers: { Authorization: `Bearer ${supabaseAnonKey}` },
-          });
+        let res = await requestSpeechToken(accessToken, guest);
+        if (generation !== sessionGeneration) return null;
+        if (res.status === 401 && !guest) {
+          authState = 'refreshing';
+          const { data: refreshed, error: refreshError } = await supabase.auth.refreshSession();
+          if (generation !== sessionGeneration) return null;
+          const refreshedToken = refreshed.session?.access_token;
+          if (
+            refreshError ||
+            !refreshedToken ||
+            refreshedToken === accessToken ||
+            refreshedToken === supabaseAnonKey ||
+            refreshed.session?.user?.id !== data.session?.user?.id
+          ) {
+            return expireSession();
+          }
+          accessToken = refreshedToken;
+          authState = 'authenticated';
+          res = await requestSpeechToken(accessToken, false);
+          if (generation !== sessionGeneration) return null;
+          if (res.status === 401) return expireSession();
+          authState = 'authenticated';
         }
 
         if (!res.ok) {
+          authState = 'error';
+          cachedSpeechToken = null;
           lastConnectionError =
             res.status === 401
               ? 'Azure uchun kirish sessiyasi tasdiqlanmadi.'
@@ -113,22 +138,27 @@ export const AzureSpeechService = {
           return null;
         }
 
-        const data = await res.json();
-        if (!data?.token || !data?.region) {
+        const issued = await res.json();
+        if (generation !== sessionGeneration) return null;
+        if (!issued?.token || !issued?.region) {
+          authState = 'error';
           lastConnectionError = 'Azure token javobi yaroqsiz.';
           return null;
         }
 
         lastConnectionError = null;
+        cachedAuthorization = accessToken;
         cachedSpeechToken = {
-          token: data.token,
-          region: data.region,
-          expiresAt: Date.now() + (data.expiresIn || 600) * 1000,
+          token: issued.token,
+          region: issued.region,
+          expiresAt: Date.now() + (issued.expiresIn || 600) * 1000,
         };
         return cachedSpeechToken;
-      } catch (err) {
+      } catch {
+        if (generation !== sessionGeneration) return null;
+        if (authState === 'refreshing') return expireSession();
+        authState = 'error';
         lastConnectionError = 'Azure token serveriga ulanish uzildi.';
-        console.warn('[AzureSpeechService] Network error fetching speech token:', err);
         return null;
       } finally {
         tokenFetchPromise = null;
@@ -153,9 +183,15 @@ export const AzureSpeechService = {
   /**
    * Clears the cached speech token (e.g. upon user logout or authentication error).
    */
+  getAuthState(): SpeechAuthState {
+    return authState;
+  },
+
   clearTokenCache(): void {
+    sessionGeneration++;
+    authState = 'error';
+    cachedAuthorization = null;
     cachedSpeechToken = null;
-    tokenFetchPromise = null;
     lastConnectionError = null;
   },
 

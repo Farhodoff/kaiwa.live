@@ -1,3 +1,5 @@
+import AuthService from '../../services/AuthService';
+import { SPEECH_SESSION_EXPIRED } from '../../services/AzureSpeechService';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
@@ -31,6 +33,8 @@ vi.mock('../../components/speaking/SpeakingHistoryModal', () => ({
 }));
 vi.mock('../../components/speaking/PitchAccentTrainer', () => ({ PitchAccentTrainer: () => null }));
 vi.mock('../../components/speaking/PitchAccentModal', () => ({ PitchAccentModal: () => null }));
+
+vi.mock('../../services/AuthService', () => ({ default: { signOut: vi.fn() } }));
 
 const renderPage = () => (
   <MemoryRouter>
@@ -121,4 +125,15 @@ it('keeps a conversation alive when switching tabs', () => {
   Object.defineProperty(document, 'visibilityState', { configurable: true, value: 'visible' });
   fireEvent(document, new Event('visibilitychange'));
   expect(state.endSession).not.toHaveBeenCalled();
+});
+
+it('shows a sign-in action and a stopped microphone when the session expires', () => {
+  state.isLiveSession = true;
+  state.error = SPEECH_SESSION_EXPIRED;
+  render(renderPage());
+  expect(screen.getByRole('alert')).toHaveTextContent(SPEECH_SESSION_EXPIRED);
+  expect(screen.getByText('Mikrofon to‘xtatildi')).toBeVisible();
+  expect(screen.queryByText('Tinglayapman...')).not.toBeInTheDocument();
+  fireEvent.click(screen.getByRole('button', { name: 'Qayta kirish' }));
+  expect(AuthService.signOut).toHaveBeenCalledOnce();
 });

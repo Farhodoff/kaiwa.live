@@ -1,3 +1,4 @@
+import { setCorsHeaders } from '../_cors.js';
 import { verifyAuth } from '../_auth.js';
 import { checkRateLimit } from '../_rateLimit.js';
 
@@ -25,14 +26,14 @@ function safeParseJson(rawContent, fallback = {}) {
 }
 
 export default async function handler(req) {
+  const corsHeaders = {};
+  setCorsHeaders(req, corsHeaders);
   // 1. CORS Preflight
   if (req.method === 'OPTIONS') {
     return new Response(null, {
       status: 204,
       headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        ...corsHeaders,
       },
     });
   }
@@ -50,7 +51,7 @@ export default async function handler(req) {
         status: 200,
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
+          ...corsHeaders,
         },
       },
     );
@@ -59,7 +60,7 @@ export default async function handler(req) {
   if (req.method !== 'POST') {
     return new Response(JSON.stringify({ error: 'Method Not Allowed. Use POST or GET.' }), {
       status: 405,
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+      headers: { 'Content-Type': 'application/json', ...corsHeaders },
     });
   }
 
@@ -84,7 +85,7 @@ export default async function handler(req) {
         status: 429,
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
+          ...corsHeaders,
           'Retry-After': String(rateLimit.retryAfter || 60),
         },
       },
@@ -99,7 +100,7 @@ export default async function handler(req) {
   } catch {
     return new Response(JSON.stringify({ error: 'Invalid JSON payload' }), {
       status: 400,
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+      headers: { 'Content-Type': 'application/json', ...corsHeaders },
     });
   }
 
@@ -125,7 +126,7 @@ export default async function handler(req) {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
+        ...corsHeaders,
       },
     });
   }
@@ -201,7 +202,7 @@ Evaluate student and output strict JSON.`;
           status: 200,
           headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
+            ...corsHeaders,
           },
         },
       );
@@ -215,7 +216,7 @@ Evaluate student and output strict JSON.`;
       status: 200,
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
+        ...corsHeaders,
       },
     });
   }

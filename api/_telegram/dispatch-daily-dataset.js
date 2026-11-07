@@ -1,3 +1,4 @@
+import { setCorsHeaders } from '../_cors.js';
 import { createClient } from '@supabase/supabase-js';
 
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://qmuimxnknxwarvnkpnlo.supabase.co';
@@ -18,9 +19,7 @@ function toAnonymousUserId(userIdOrEmail) {
 }
 
 export default async function handler(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, x-cron-secret');
+    setCorsHeaders(req, res);
 
     if (req.method === 'OPTIONS') {
         return res.status(204).end();

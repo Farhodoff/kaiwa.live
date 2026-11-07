@@ -61,35 +61,11 @@ function isBenignNetworkNoise(args: any[]): boolean {
   return BENIGN_NETWORK_ERRORS.some((err) => text.includes(err));
 }
 
-/**
- * Clears accumulated or oversized browser cookies to avoid HTTP 494 (Request Header Too Large)
- */
-export function purgeOversizedCookies(): void {
-  if (typeof document === 'undefined') return;
-  try {
-    const cookies = document.cookie.split(';');
-    for (const cookie of cookies) {
-      const eqPos = cookie.indexOf('=');
-      const name = eqPos > -1 ? cookie.substring(0, eqPos).trim() : cookie.trim();
-      if (name) {
-        document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
-        if (typeof window !== 'undefined' && window.location?.hostname) {
-          document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=${window.location.hostname}`;
-        }
-      }
-    }
-  } catch {
-    // Safe ignore
-  }
-}
-
 let isShieldInstalled = false;
 
 export function installConsoleShield(): void {
   if (isShieldInstalled || typeof window === 'undefined') return;
   isShieldInstalled = true;
-
-  purgeOversizedCookies();
 
   // In local development, preserve native browser console logs and errors
   // so developers can see full errors, clickable source stacks, and network failures.
