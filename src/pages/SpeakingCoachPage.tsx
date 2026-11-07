@@ -439,7 +439,8 @@ const SpeakingCoachPage: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className={`pb-safe relative flex h-full min-h-0 w-full flex-1 flex-col overflow-hidden bg-[#0a0b1f] text-slate-100 ${
+      translate="no"
+      className={`notranslate pb-safe relative flex h-full min-h-0 w-full flex-1 flex-col overflow-hidden bg-[#0a0b1f] text-slate-100 ${
         isFullscreen ? 'fixed inset-0 z-50 m-0 h-screen w-screen p-0' : ''
       }`}
       style={{
