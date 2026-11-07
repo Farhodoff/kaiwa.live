@@ -2,10 +2,8 @@ import React, { Suspense, useEffect, useState } from 'react';
 import { BrowserRouter, Navigate, Route, Routes, useSearchParams } from 'react-router-dom';
 import { Session } from '@supabase/supabase-js';
 import ErrorBoundary from './components/ErrorBoundary';
-import GlobalAudioPlayer from './components/GlobalAudioPlayer';
 import Layout from './components/Layout';
 import { StudyPlannerProvider } from './context/StudyPlannerContext';
-import { FocusTimerProvider } from './context/FocusTimerContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { supabase } from './lib/supabase';
 import { PushNotificationPrompt } from './components/pwa/PushNotificationPrompt';
@@ -14,7 +12,6 @@ import { GlobalFlashcardOverrideService } from './services/GlobalFlashcardOverri
 import { lazyWithRetry } from './utils/lazyRetry';
 import { getSafeRedirectUrl } from './utils/redirect';
 
-const CalendarPage = lazyWithRetry(() => import('./pages/CalendarPage'));
 const DecksPage = lazyWithRetry(() => import('./pages/DecksPage'));
 const FlashcardForm = lazyWithRetry(() => import('./pages/FlashcardForm'));
 const SettingsPage = lazyWithRetry(() => import('./pages/SettingsPage'));
@@ -35,18 +32,9 @@ const QuestionEditor = lazyWithRetry(() => import('./pages/admin/QuestionEditor'
 const ExamTake = lazyWithRetry(() => import('./pages/exams/ExamTake'));
 const LessonPlayerPage = lazyWithRetry(() => import('./pages/LessonPlayerPage'));
 const RoadmapPage = lazyWithRetry(() => import('./pages/RoadmapPage'));
-const DiagnosticPage = lazyWithRetry(() =>
-  import('./pages/DiagnosticPage').then((m) => ({ default: m.DiagnosticPage })),
-);
-const PersonalPlanPage = lazyWithRetry(() =>
-  import('./pages/PersonalPlanPage').then((m) => ({ default: m.PersonalPlanPage })),
-);
 const StudyModePage = lazyWithRetry(() => import('./pages/StudyModePage'));
 const ScenarioPickerPage = lazyWithRetry(() =>
   import('./pages/ScenarioPickerPage').then((m) => ({ default: m.ScenarioPickerPage })),
-);
-const KaiwaOrbShowcase = lazyWithRetry(() =>
-  import('./components/character/KaiwaOrbShowcase').then((m) => ({ default: m.KaiwaOrbShowcase })),
 );
 const ProgressPage = lazyWithRetry(() => import('./pages/ProgressPage'));
 const DashboardPage = lazyWithRetry(() => import('./pages/DashboardPage'));
@@ -319,154 +307,137 @@ const App: React.FC = () => {
     <ErrorBoundary>
       <LanguageProvider>
         <StudyPlannerProvider>
-          <FocusTimerProvider>
-            <BrowserRouter>
-              <div className="relative h-screen overflow-hidden bg-background text-foreground transition-colors duration-200">
-                <Suspense fallback={<PageLoader />}>
-                  <Routes>
-                    {/* Public marketing page must not inherit the authenticated app shell */}
-                    <Route path="/landing" element={<LandingPage />} />
-                    <Route path="/" element={<Layout />}>
-                      <Route index element={<Navigate to="/dashboard" replace />} />
-                      <Route path="dashboard" element={<DashboardPage />} />
-                      <Route
-                        path="admin"
-                        element={
-                          <AdminRoute>
-                            <AdminDashboardPage />
-                          </AdminRoute>
-                        }
-                      />
-                      <Route path="roadmap" element={<RoadmapPage />} />
-                      <Route path="personal-plan" element={<PersonalPlanPage />} />
-                      <Route path="diagnostic" element={<DiagnosticPage />} />
-                      <Route path="lesson/:lessonId" element={<LessonPlayerPage />} />
-                      <Route path="speaking-coach" element={<SpeakingCoachPage />} />
-                      <Route path="character" element={<KaiwaOrbShowcase />} />
-                      <Route path="orb" element={<Navigate to="/character" replace />} />
-                      <Route path="monologue" element={<MonologuePage />} />
-                      <Route
-                        path="speaking"
-                        element={<Navigate to="/speaking-coach?lang=ja" replace />}
-                      />
-                      {/* IELTS Legacy Routes -> Redirect to JLPT */}
-                      <Route path="ielts/*" element={<Navigate to="/jlpt" replace />} />
-                      <Route path="ielts" element={<Navigate to="/jlpt" replace />} />
-                      <Route path="ielts-writing" element={<Navigate to="/jlpt" replace />} />
-                      <Route path="jlpt" element={<JlptHubPage />} />
-                      <Route path="scenarios" element={<ScenarioPickerPage />} />
-                      <Route
-                        path="coach"
-                        element={<Navigate to="/speaking-coach?lang=ja" replace />}
-                      />
-                      <Route
-                        path="jlpt-speaking"
-                        element={<Navigate to="/speaking-coach?lang=ja" replace />}
-                      />
-                      <Route
-                        path="jlpt-writing"
-                        element={<Navigate to="/jlpt?tab=writing" replace />}
-                      />
-                      <Route path="minna" element={<Navigate to="/jlpt?tab=lessons" replace />} />
-                      <Route path="lessons" element={<Navigate to="/jlpt?tab=lessons" replace />} />
-                      <Route
-                        path="curriculum"
-                        element={<Navigate to="/jlpt?tab=lessons" replace />}
-                      />
-                      <Route
-                        path="jlpt/lessons"
-                        element={<Navigate to="/jlpt?tab=lessons" replace />}
-                      />
-                      <Route
-                        path="jlpt/listening"
-                        element={<Navigate to="/jlpt?tab=listening" replace />}
-                      />
-                      <Route
-                        path="jlpt/grammar"
-                        element={<Navigate to="/jlpt?tab=grammar" replace />}
-                      />
-                      <Route
-                        path="jlpt/grammar-quiz"
-                        element={<Navigate to="/jlpt?tab=grammar" replace />}
-                      />
-                      <Route
-                        path="jlpt/writing"
-                        element={<Navigate to="/jlpt?tab=writing" replace />}
-                      />
-                      <Route
-                        path="jlpt/sakubun"
-                        element={<Navigate to="/jlpt?tab=writing" replace />}
-                      />
-                      <Route
-                        path="jlpt/reading"
-                        element={<Navigate to="/jlpt?tab=reading" replace />}
-                      />
-                      <Route
-                        path="jlpt/mock-exam"
-                        element={<Navigate to="/jlpt?tab=mock" replace />}
-                      />
-                      <Route path="exams" element={<Navigate to="/jlpt?tab=mock" replace />} />
-                      <Route path="calendar" element={<CalendarPage />} />
-                      <Route path="subjects" element={<SubjectsPage />} />
-                      <Route path="subjects/:id" element={<SubjectDetailPage />} />
-                      <Route path="plan" element={<Navigate to="/personal-plan" replace />} />
-                      <Route path="goals" element={<Navigate to="/personal-plan" replace />} />
-                      <Route path="tasks" element={<Navigate to="/personal-plan" replace />} />
-                      <Route path="focus" element={<Navigate to="/dashboard" replace />} />
-                      <Route path="ai" element={<Navigate to="/speaking-coach" replace />} />
-                      <Route path="flashcards" element={<DecksPage />} />
-                      <Route path="deck" element={<Navigate to="/flashcards" replace />} />
-                      <Route path="decks" element={<Navigate to="/flashcards" replace />} />
-                      <Route path="deck/:id" element={<Navigate to="/flashcards" replace />} />
-                      <Route path="decks/:id" element={<Navigate to="/flashcards" replace />} />
-                      <Route path="flashcards/new" element={<FlashcardForm />} />
-                      <Route path="study-mode" element={<StudyModePage />} />
-                      <Route path="study-mode/:subjectId" element={<StudyModePage />} />
-                      <Route path="flashcards/study/:subjectId" element={<StudyModePage />} />
-                      <Route path="progress" element={<ProgressPage />} />
-                      <Route path="vocabulary" element={<Navigate to="/flashcards" replace />} />
-                      <Route path="pricing" element={<PricingPage />} />
-                      <Route path="room/:roomId" element={<StudyRoomPage />} />
-                      <Route path="settings" element={<SettingsPage />} />
-                      <Route path="twa" element={<TelegramMiniAppPage />} />
-                      <Route path="telegram-app" element={<TelegramMiniAppPage />} />
-                      <Route
-                        path="admin/exams"
-                        element={
-                          <AdminRoute>
-                            <ExamsManager />
-                          </AdminRoute>
-                        }
-                      />
-                      <Route
-                        path="admin/exams/:id"
-                        element={
-                          <AdminRoute>
-                            <QuestionEditor />
-                          </AdminRoute>
-                        }
-                      />
-                      <Route path="exams/:id" element={<ExamTake />} />
-                    </Route>
-                    <Route path="/auth/reset-password" element={<AuthPage />} />
-                    <Route path="/reset-password" element={<AuthPage />} />
-                    <Route path="/auth" element={<AuthenticatedAuthRedirect />} />
-                    <Route path="/admin/login" element={<AuthenticatedAuthRedirect />} />
-                    <Route path="/login" element={<AuthenticatedAuthRedirect />} />
-                    <Route path="/register" element={<AuthenticatedAuthRedirect />} />
-                    <Route path="/signup" element={<AuthenticatedAuthRedirect />} />
-                    <Route path="*" element={<Navigate to="/dashboard" replace />} />
-                  </Routes>
-                </Suspense>
-                <GlobalAudioPlayer />
+          <BrowserRouter>
+            <div className="relative h-screen overflow-hidden bg-background text-foreground transition-colors duration-200">
+              <Suspense fallback={<PageLoader />}>
+                <Routes>
+                  {/* Public marketing page must not inherit the authenticated app shell */}
+                  <Route path="/landing" element={<LandingPage />} />
+                  <Route path="/" element={<Layout />}>
+                    <Route index element={<Navigate to="/dashboard" replace />} />
+                    <Route path="dashboard" element={<DashboardPage />} />
+                    <Route
+                      path="admin"
+                      element={
+                        <AdminRoute>
+                          <AdminDashboardPage />
+                        </AdminRoute>
+                      }
+                    />
+                    <Route path="roadmap" element={<RoadmapPage />} />
+                    <Route path="lesson/:lessonId" element={<LessonPlayerPage />} />
+                    <Route path="speaking-coach" element={<SpeakingCoachPage />} />
+                    <Route path="monologue" element={<MonologuePage />} />
+                    <Route
+                      path="speaking"
+                      element={<Navigate to="/speaking-coach?lang=ja" replace />}
+                    />
+                    <Route path="jlpt" element={<JlptHubPage />} />
+                    <Route path="scenarios" element={<ScenarioPickerPage />} />
+                    <Route
+                      path="coach"
+                      element={<Navigate to="/speaking-coach?lang=ja" replace />}
+                    />
+                    <Route
+                      path="jlpt-speaking"
+                      element={<Navigate to="/speaking-coach?lang=ja" replace />}
+                    />
+                    <Route
+                      path="jlpt-writing"
+                      element={<Navigate to="/jlpt?tab=writing" replace />}
+                    />
+                    <Route path="minna" element={<Navigate to="/jlpt?tab=lessons" replace />} />
+                    <Route path="lessons" element={<Navigate to="/jlpt?tab=lessons" replace />} />
+                    <Route
+                      path="curriculum"
+                      element={<Navigate to="/jlpt?tab=lessons" replace />}
+                    />
+                    <Route
+                      path="jlpt/lessons"
+                      element={<Navigate to="/jlpt?tab=lessons" replace />}
+                    />
+                    <Route
+                      path="jlpt/listening"
+                      element={<Navigate to="/jlpt?tab=listening" replace />}
+                    />
+                    <Route
+                      path="jlpt/grammar"
+                      element={<Navigate to="/jlpt?tab=grammar" replace />}
+                    />
+                    <Route
+                      path="jlpt/grammar-quiz"
+                      element={<Navigate to="/jlpt?tab=grammar" replace />}
+                    />
+                    <Route
+                      path="jlpt/writing"
+                      element={<Navigate to="/jlpt?tab=writing" replace />}
+                    />
+                    <Route
+                      path="jlpt/sakubun"
+                      element={<Navigate to="/jlpt?tab=writing" replace />}
+                    />
+                    <Route
+                      path="jlpt/reading"
+                      element={<Navigate to="/jlpt?tab=reading" replace />}
+                    />
+                    <Route
+                      path="jlpt/mock-exam"
+                      element={<Navigate to="/jlpt?tab=mock" replace />}
+                    />
+                    <Route path="exams" element={<Navigate to="/jlpt?tab=mock" replace />} />
+                    <Route path="subjects" element={<SubjectsPage />} />
+                    <Route path="subjects/:id" element={<SubjectDetailPage />} />
+                    <Route path="ai" element={<Navigate to="/speaking-coach" replace />} />
+                    <Route path="flashcards" element={<DecksPage />} />
+                    <Route path="deck" element={<Navigate to="/flashcards" replace />} />
+                    <Route path="decks" element={<Navigate to="/flashcards" replace />} />
+                    <Route path="deck/:id" element={<Navigate to="/flashcards" replace />} />
+                    <Route path="decks/:id" element={<Navigate to="/flashcards" replace />} />
+                    <Route path="flashcards/new" element={<FlashcardForm />} />
+                    <Route path="study-mode" element={<StudyModePage />} />
+                    <Route path="study-mode/:subjectId" element={<StudyModePage />} />
+                    <Route path="flashcards/study/:subjectId" element={<StudyModePage />} />
+                    <Route path="progress" element={<ProgressPage />} />
+                    <Route path="pricing" element={<PricingPage />} />
+                    <Route path="room/:roomId" element={<StudyRoomPage />} />
+                    <Route path="settings" element={<SettingsPage />} />
+                    <Route path="twa" element={<TelegramMiniAppPage />} />
+                    <Route path="telegram-app" element={<TelegramMiniAppPage />} />
+                    <Route
+                      path="admin/exams"
+                      element={
+                        <AdminRoute>
+                          <ExamsManager />
+                        </AdminRoute>
+                      }
+                    />
+                    <Route
+                      path="admin/exams/:id"
+                      element={
+                        <AdminRoute>
+                          <QuestionEditor />
+                        </AdminRoute>
+                      }
+                    />
+                    <Route path="exams/:id" element={<ExamTake />} />
+                  </Route>
+                  <Route path="/auth/reset-password" element={<AuthPage />} />
+                  <Route path="/reset-password" element={<AuthPage />} />
+                  <Route path="/auth" element={<AuthenticatedAuthRedirect />} />
+                  <Route path="/admin/login" element={<AuthenticatedAuthRedirect />} />
+                  <Route path="/login" element={<AuthenticatedAuthRedirect />} />
+                  <Route path="/register" element={<AuthenticatedAuthRedirect />} />
+                  <Route path="/signup" element={<AuthenticatedAuthRedirect />} />
+                  <Route path="*" element={<Navigate to="/dashboard" replace />} />
+                </Routes>
+              </Suspense>
 
-                {/* PWA Prompts */}
-                <PushNotificationPrompt />
+              {/* PWA Prompts */}
+              <PushNotificationPrompt />
 
-                <Toaster />
-              </div>
-            </BrowserRouter>
-          </FocusTimerProvider>
+              <Toaster />
+            </div>
+          </BrowserRouter>
         </StudyPlannerProvider>
       </LanguageProvider>
     </ErrorBoundary>

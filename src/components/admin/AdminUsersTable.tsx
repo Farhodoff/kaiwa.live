@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, ArrowUpDown, Search, AlertTriangle, ChevronRight, Eye } from 'lucide-react';
+import { Users, ArrowUpDown, Search, AlertTriangle, ChevronRight, Eye, Trash2 } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { RoleBadge } from './RoleBadge';
 
@@ -50,6 +50,8 @@ export interface AdminUsersTableProps {
   isSuperAdmin: (email: string, role?: string) => boolean;
   isAdminEmail: (email: string, role?: string) => boolean;
   usersPerPage: number;
+  onDeleteUser?: (user: UserRecord) => void;
+  deletingUserId?: string | null;
 }
 
 export const AdminUsersTable: React.FC<AdminUsersTableProps> = ({
@@ -76,6 +78,8 @@ export const AdminUsersTable: React.FC<AdminUsersTableProps> = ({
   isSuperAdmin,
   isAdminEmail,
   usersPerPage,
+  onDeleteUser,
+  deletingUserId,
 }) => {
   return (
     <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-xs">
@@ -294,6 +298,19 @@ export const AdminUsersTable: React.FC<AdminUsersTableProps> = ({
                         >
                           {isJa ? 'メッセージ' : 'Xabar'}
                         </Button>
+                        {onDeleteUser && !isAdminEmail(u.email, u.role) && (
+                          <Button
+                            type="button"
+                            size="sm"
+                            variant="ghost"
+                            disabled={Boolean(deletingUserId)}
+                            onClick={() => onDeleteUser(u)}
+                            className="h-7 gap-1 px-2 text-xs text-destructive"
+                          >
+                            <Trash2 size={13} />
+                            {deletingUserId === u.id ? 'O‘chirilmoqda…' : 'O‘chirish'}
+                          </Button>
+                        )}
                         {!isSuperAdmin(u.email, u.role) && (
                           <Button
                             size="sm"

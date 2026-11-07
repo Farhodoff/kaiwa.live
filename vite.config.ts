@@ -113,13 +113,6 @@ export default defineConfig(({ mode }) => {
               url: '/decks',
               icons: [{ src: 'favicon.svg', sizes: '192x192', type: 'image/svg+xml' }],
             },
-            {
-              name: 'Focus Taymer',
-              short_name: 'Focus',
-              description: 'Pomodoro o‘quv taymeri',
-              url: '/focus',
-              icons: [{ src: 'favicon.svg', sizes: '192x192', type: 'image/svg+xml' }],
-            },
           ],
           icons: [
             {

@@ -35,16 +35,12 @@
    - Mastery engine tracking daily progress, review queues, and study streaks.
    - URL: https://kaiwa.live/roadmap
 
-5. **Diagnostic Placement Test**
-   - Adaptive evaluation of Kanji, Grammar, and Listening skills to recommend the optimal starting level.
-   - URL: https://kaiwa.live/diagnostic
-
-6. **Telegram Web App (TWA) Mini-App Integration**
+5. **Telegram Web App (TWA) Mini-App Integration**
    - Seamless 1-tap mobile learning directly inside Telegram without separate app installation.
    - Native Telegram theme sync, haptic vibration feedback, and automated daily study reminders.
    - URL: https://t.me/kaiwa_superapp_bot
 
-7. **100% Free Open Educational Model**
+6. **100% Free Open Educational Model**
    - Zero subscription fees, zero paywalls, zero premium tiers.
    - Full access to all AI models, JLPT mock exams, and personalized study roadmaps is available completely free of charge.
    - URL: https://kaiwa.live/pricing

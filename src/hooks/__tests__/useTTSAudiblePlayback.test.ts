@@ -43,7 +43,7 @@ describe('Audible coach playback', () => {
       play: vi.fn().mockReturnValueOnce(priming).mockResolvedValue(undefined),
     };
     const { result } = renderHook(() =>
-      useTTS({ language: 'ja', onSpeakStart: vi.fn(), onSpeakEnd: vi.fn() }),
+      useTTS({ language: 'ja', useAzure: true, onSpeakStart: vi.fn(), onSpeakEnd: vi.fn() }),
     );
     result.current.audioPlayerRef.current = audio;
     let playback!: Promise<void>;
@@ -78,7 +78,7 @@ describe('Audible coach playback', () => {
       play: vi.fn().mockRejectedValue(new DOMException('Playback blocked', 'NotAllowedError')),
     };
     const { result } = renderHook(() =>
-      useTTS({ language: 'ja', onSpeakStart: vi.fn(), onSpeakEnd, onSpeakError }),
+      useTTS({ language: 'ja', useAzure: true, onSpeakStart: vi.fn(), onSpeakEnd, onSpeakError }),
     );
     result.current.audioPlayerRef.current = audio;
     await act(async () => {

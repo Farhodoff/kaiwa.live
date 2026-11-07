@@ -348,9 +348,11 @@ export function telegramApiPlugin() {
         }
 
         // Handle /api/admin/update-deck-card
-        if (pathname === '/api/admin/update-deck-card') {
+        if (pathname === '/api/admin/update-deck-card' || pathname === '/api/admin/delete-user') {
           try {
-            const handler = (await import('../api/admin/update-deck-card.js')).default;
+            const handler = pathname === '/api/admin/delete-user'
+              ? (await import('../api/admin/delete-user.js')).default
+              : (await import('../api/admin/update-deck-card.js')).default;
             const chunks = [];
             for await (const chunk of req) chunks.push(chunk);
             const raw = Buffer.concat(chunks).toString();

@@ -3,14 +3,12 @@ import {
   BookOpen,
   ChevronLeft,
   ChevronRight,
-  Compass,
   Copy,
   Home,
   Menu,
   MessageSquare,
   Mic,
   Settings as SettingsIcon,
-  Shield,
   BarChart3,
   Star,
   Radio,
@@ -18,13 +16,10 @@ import {
   Moon,
 } from 'lucide-react';
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { SessionCompleteModal } from './SessionCompleteModal';
 import { RatingReviewModal } from './feedback';
 import { useRatingModalStore } from '../stores';
 import { useLanguage } from '../context/LanguageContext';
-import { useStudyData } from '../context/StudyPlannerContext';
 import { useTheme } from '../hooks/useTheme';
-import { isAdminEmail, isUserAdmin } from '../utils/admin';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Sheet, SheetContent } from './ui/sheet';
 import { Button } from './ui/Button';
@@ -72,12 +67,6 @@ const Layout: React.FC = () => {
 
   const { language, setLanguage, t } = useLanguage();
   const { isDark, toggleTheme } = useTheme();
-  const { user } = useStudyData();
-  const displayEmail = user?.email || '';
-  const isAdmin = Boolean(
-    isUserAdmin(user) || (displayEmail && isAdminEmail(displayEmail, (user as any)?.role)),
-  );
-
   const isRatingOpen = useRatingModalStore((s) => s.isOpen);
   const isRatingSubmitting = useRatingModalStore((s) => s.isSubmitting);
   const closeRatingModal = useRatingModalStore((s) => s.closeModal);
@@ -159,11 +148,6 @@ const Layout: React.FC = () => {
         icon: Copy,
       },
       { name: isJa ? '進捗・分析' : 'Progress', path: '/progress', icon: BarChart3 },
-      {
-        name: isJa ? 'レベル診断' : isEn ? 'Diagnostic' : 'Diagnostika',
-        path: '/diagnostic',
-        icon: Compass,
-      },
     ];
   }, [language]);
 
@@ -221,8 +205,6 @@ const Layout: React.FC = () => {
         : isEn
           ? 'Super Admin Dashboard'
           : 'Super Admin Paneli';
-    if (location.pathname === '/personal-plan')
-      return isJa ? '個人学習プラン' : isEn ? 'My Study Plan' : 'Shaxsiy Rejam';
     if (location.pathname === '/settings') return isJa ? '設定' : isEn ? 'Settings' : 'Sozlamalar';
     return 'kaiwa.live';
   };
@@ -330,11 +312,11 @@ const Layout: React.FC = () => {
 
       {/* Desktop Sidebar */}
       <aside
-        className={`relative hidden translate-x-0 flex-col md:flex ${isCollapsed ? 'w-20' : 'w-64'} z-30 border-r border-border/70 bg-card/95 backdrop-blur-md transition-all duration-300 ease-in-out`}
+        className={`relative hidden shrink-0 translate-x-0 flex-col md:flex ${isCollapsed ? 'w-20' : 'w-64'} z-30 border-r border-border/70 bg-card/95 backdrop-blur-md transition-all duration-300 ease-in-out`}
       >
         {/* Logo Area */}
         <div
-          className={`flex h-16 items-center px-4 py-3 ${isCollapsed ? 'justify-center' : 'justify-between'} border-b border-border bg-card`}
+          className={`flex shrink-0 items-center ${isCollapsed ? 'flex-col gap-1.5 px-2 py-2.5' : 'h-16 justify-between px-4 py-3'} border-b border-border bg-card`}
         >
           <AppLogo size="md" collapsed={isCollapsed} />
 
@@ -342,7 +324,7 @@ const Layout: React.FC = () => {
             variant="ghost"
             size="icon"
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="hidden rounded-xl text-muted-foreground hover:bg-muted/80 hover:text-foreground md:flex"
+            className={`hidden shrink-0 rounded-xl text-muted-foreground hover:bg-muted/80 hover:text-foreground md:flex ${isCollapsed ? 'h-8 w-10' : ''}`}
             aria-label={isCollapsed ? 'Sidebar-ni ochish' : 'Sidebar-ni yopish'}
           >
             {isCollapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
@@ -352,25 +334,10 @@ const Layout: React.FC = () => {
         {/* Navigation Links */}
         <NavLinks />
 
-        {/* Bottom Section: Settings, Theme & Admin */}
-        <div className="space-y-2 border-t border-border/60 bg-card/80 p-3.5">
-          {isAdmin && (
-            <NavLink
-              to="/admin"
-              className={({ isActive }) =>
-                `flex w-full items-center ${isCollapsed ? 'justify-center' : ''} gap-3 rounded-xl px-3 py-2 text-xs font-bold transition-all duration-200 ${
-                  isActive
-                    ? 'border border-rose-500/30 bg-rose-500/15 text-rose-400 shadow-xs'
-                    : 'border border-rose-500/20 text-rose-400/90 hover:bg-rose-500/10 hover:text-rose-400'
-                }`
-              }
-              title={isCollapsed ? 'Admin Panel' : ''}
-            >
-              <Shield size={16} className="shrink-0 text-rose-500" />
-              {!isCollapsed && <span>{language === 'ja' ? '管理コンソール' : 'Admin Panel'}</span>}
-            </NavLink>
-          )}
-
+        {/* Bottom Section: Settings, Theme & Language */}
+        <div
+          className={`shrink-0 space-y-2 border-t border-border/60 bg-card/80 ${isCollapsed ? 'px-2 py-2.5' : 'p-3.5'}`}
+        >
           {/* Quick Rate App & Feedback Button */}
           <button
             type="button"
@@ -392,7 +359,9 @@ const Layout: React.FC = () => {
             )}
           </button>
 
-          <div className="flex items-center gap-1.5">
+          <div
+            className={`flex items-center gap-1.5 ${isCollapsed ? 'flex-col [&>*]:min-h-9 [&>*]:w-full [&>*]:justify-center' : ''}`}
+          >
             <NavLink
               to="/settings"
               className={({ isActive }) =>
@@ -587,22 +556,6 @@ const Layout: React.FC = () => {
               </span>
             </button>
 
-            {isAdmin && (
-              <NavLink
-                to="/admin"
-                onClick={() => setSidebarOpen(false)}
-                className={({ isActive }) =>
-                  `flex w-full items-center gap-3 rounded-xl px-3 py-2 text-xs font-bold transition-all duration-200 ${
-                    isActive
-                      ? 'border border-rose-500/30 bg-rose-500/15 text-rose-400 shadow-xs'
-                      : 'border border-rose-500/20 text-rose-400/90 hover:bg-rose-500/10 hover:text-rose-400'
-                  }`
-                }
-              >
-                <Shield size={16} className="shrink-0 text-rose-500" />
-                <span>Admin Panel</span>
-              </NavLink>
-            )}
             <div className="flex items-center gap-1.5 pt-1">
               <NavLink
                 to="/settings"
@@ -654,7 +607,6 @@ const Layout: React.FC = () => {
       </Sheet>
 
       {/* Global Modals */}
-      <SessionCompleteModal />
       <RatingReviewModal
         isOpen={isRatingOpen}
         onClose={closeRatingModal}

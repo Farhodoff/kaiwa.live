@@ -16,7 +16,7 @@ import {
   Mail,
   Star,
 } from 'lucide-react';
-import { isAdminEmail, isSuperAdmin } from '../utils/admin';
+import { isSuperAdmin, isUserAdmin } from '../utils/admin';
 import { toast } from '../hooks/use-toast';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -33,7 +33,7 @@ const SettingsPage: React.FC = () => {
 
   const displayEmail = user?.email || '';
   const isCurrentSuperAdmin = Boolean(displayEmail && isSuperAdmin(displayEmail));
-  const isCurrentAdmin = Boolean(displayEmail && isAdminEmail(displayEmail, (user as any)?.role));
+  const isCurrentAdmin = isUserAdmin(user);
 
   const tabs = [
     {
@@ -257,7 +257,7 @@ const SettingsPage: React.FC = () => {
             <PreferencesSection settings={settings} onToggleNotifications={toggleNotifications} />
           )}
 
-          {activeTab === 'admin' && <AdminDashboardPage />}
+          {activeTab === 'admin' && isCurrentAdmin && <AdminDashboardPage />}
         </motion.div>
       </AnimatePresence>
     </div>
