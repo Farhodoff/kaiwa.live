@@ -56,6 +56,9 @@ ALTER TABLE public.curriculum_quality_revisions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.curriculum_quality_events ENABLE ROW LEVEL SECURITY;
 
 -- Clients can read the queue only if they have an authenticated reviewer/admin role.
+DROP POLICY IF EXISTS "curriculum quality issues reviewer select" ON public.curriculum_quality_issues;
+DROP POLICY IF EXISTS "curriculum quality revisions reviewer select" ON public.curriculum_quality_revisions;
+DROP POLICY IF EXISTS "curriculum quality events reviewer select" ON public.curriculum_quality_events;
 CREATE POLICY "curriculum quality issues reviewer select" ON public.curriculum_quality_issues FOR SELECT TO authenticated USING (public.is_reviewer());
 CREATE POLICY "curriculum quality revisions reviewer select" ON public.curriculum_quality_revisions FOR SELECT TO authenticated USING (public.is_reviewer());
 CREATE POLICY "curriculum quality events reviewer select" ON public.curriculum_quality_events FOR SELECT TO authenticated USING (public.is_reviewer());
