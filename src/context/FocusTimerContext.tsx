@@ -1,7 +1,7 @@
 import React, { createContext, useContext } from 'react';
 import { useFocusTimer } from '../hooks/useFocusTimer';
 import { FocusState } from '../types/focus';
-import { useStudyData } from './StudyPlannerContext';
+import { useOptionalStudyData } from './StudyPlannerContext';
 import { FocusMode } from '../types/focus';
 
 interface FocusTimerContextType {
@@ -20,9 +20,10 @@ interface FocusTimerContextType {
 const FocusTimerContext = createContext<FocusTimerContextType | undefined>(undefined);
 
 export const FocusTimerProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // notificationsEnabled comes from StudyPlannerContext
-  const { settings } = useStudyData();
-  const notificationsEnabled = settings.notificationsEnabled;
+  // Safe consumption of StudyPlannerContext: during Vite HMR or isolated rendering,
+  // StudyPlannerContext may be undefined/remounting. Fallback gracefully instead of crashing.
+  const studyData = useOptionalStudyData();
+  const notificationsEnabled = studyData?.settings?.notificationsEnabled ?? true;
 
   const timerControls = useFocusTimer(notificationsEnabled);
 
