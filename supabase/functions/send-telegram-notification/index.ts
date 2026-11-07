@@ -12,7 +12,7 @@ const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
 // Admin JWT yo'li bilan birga trusted server-to-server bearer solishtirishda ham ishlatiladi.
 const SUPABASE_KEY = getSupabaseSecretKey();
 
-// Mirrors public.is_admin() from the database (profiles.role OR owner email).
+// Mirrors public.is_admin() from the database using trusted profile roles.
 async function isAuthorizedAdmin(supabase: any, token: string): Promise<boolean> {
   // Server-to-server (cron) calls pass the service role key as the bearer.
   if (token === SUPABASE_KEY) return true;
@@ -25,16 +25,12 @@ async function isAuthorizedAdmin(supabase: any, token: string): Promise<boolean>
 
   const { data: profile } = await supabase
     .from('profiles')
-    .select('role, email')
+    .select('role')
     .eq('id', user.id)
     .maybeSingle();
 
   if (!profile) return false;
-  return (
-    profile.role === 'admin' ||
-    profile.role === 'superadmin' ||
-    profile.email === 'fsoyilov@gmail.com'
-  );
+  return profile.role === 'admin' || profile.role === 'superadmin';
 }
 
 serve(async (req: Request) => {

@@ -77,3 +77,14 @@ export async function verifyAuth(req) {
     return { user: null, error: err?.message || 'Authentication verification failed.' };
   }
 }
+
+/** Server-side privilege check using trusted database roles only. */
+export async function hasDatabaseRole(userId, allowedRoles) {
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SERVICE_ROLE;
+  if (!userId || !serviceKey || !Array.isArray(allowedRoles) || allowedRoles.length === 0) return false;
+  const client = createClient(SUPABASE_URL, serviceKey, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
+  const { data, error } = await client.from('profiles').select('role').eq('id', userId).maybeSingle();
+  return !error && Boolean(data?.role && allowedRoles.includes(data.role));
+}

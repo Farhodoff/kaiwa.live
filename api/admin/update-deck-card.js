@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { createClient } from '@supabase/supabase-js';
-import { verifyAuth, SUPABASE_ANON_KEY } from '../_auth.js';
+import { hasDatabaseRole, verifyAuth, SUPABASE_ANON_KEY } from '../_auth.js';
 import { setCorsHeaders } from '../_cors.js';
 
 const SUPABASE_URL =
@@ -9,13 +9,6 @@ const SUPABASE_URL =
   process.env.NEXT_PUBLIC_SUPABASE_URL ||
   'https://qmuimxnknxwarvnkpnlo.supabase.co';
 const SERVICE_ROLE = process.env.SERVICE_ROLE || process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-const ADMIN_EMAILS = new Set([
-  'fsoyilov@gmail.com',
-  'admin@kaiwa.live',
-  'fsoyilovv@gmail.com',
-  'xmprofile42@gmail.com',
-]);
 
 const DECK_FILE_MAP = {
   deck_minna_shokyu1: 'minna_shokyu1.json',
@@ -57,13 +50,7 @@ export default async function handler(req, res) {
   // 1. Verify Authentication & Admin Role
   const { user, error: authError } = await verifyAuth(req);
   const userEmail = (user?.email || '').toLowerCase().trim();
-  const userRole = user?.app_metadata?.role || user?.user_metadata?.role || user?.role;
-
-  const isAdmin =
-    (user && ADMIN_EMAILS.has(userEmail)) ||
-    userRole === 'admin' ||
-    userRole === 'superadmin' ||
-    (process.env.NODE_ENV === 'development' && user);
+  const isAdmin = Boolean(user && await hasDatabaseRole(user.id, ['admin', 'superadmin']));
 
   if (!isAdmin || !user) {
     return res.status(401).json({ error: 'Unauthorized: Admin access required.' });
