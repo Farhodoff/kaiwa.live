@@ -12,7 +12,6 @@ import { PracticeExercise } from '../../types/lesson';
 import { FuriganaText, FuriganaMode } from '../jlpt/FuriganaText';
 import { LessonAudioPlayer } from './LessonAudioPlayer';
 import { SentenceOrderingQuestion } from '../jlpt/SentenceOrderingQuestion';
-import { useTTS } from '../../hooks/useTTS';
 
 interface PracticeStepViewProps {
   instructions: string;
@@ -40,18 +39,7 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
   const [isCompleted, setIsCompleted] = useState(false);
   const [attemptSeed, setAttemptSeed] = useState(0);
   const [furiganaMode, setFuriganaMode] = useState<FuriganaMode>('hover');
-  const [audioError, setAudioError] = useState('');
-  const [speaking, setSpeaking] = useState(false);
   const autoAdvanceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const { speakText, stopSpeaking, unlockAudio, isPreparingAudio } = useTTS({
-    language: 'ja',
-    onSpeakStart: () => setSpeaking(true),
-    onSpeakEnd: () => setSpeaking(false),
-    onSpeakError: () =>
-      setAudioError(
-        'Ovozni ijro qilib bo‘lmadi. Ovoz va internetni tekshirib, qayta urinib ko‘ring.',
-      ),
-  });
 
   // Clear auto-advance timer on unmount
   useEffect(() => {
@@ -61,12 +49,6 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
       }
     };
   }, []);
-
-  useEffect(() => {
-    stopSpeaking();
-    setAudioError('');
-    setSpeaking(false);
-  }, [currentIdx, isCompleted, stopSpeaking]);
 
   // Dynamic shuffle for multiple-choice exercise options per attempt
   const activeExercises = useMemo(() => {
@@ -324,7 +306,7 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
 
         {/* Exercise Card */}
         <div className="space-y-4 rounded-2xl border border-border bg-card p-4 shadow-sm sm:space-y-6 sm:rounded-3xl sm:p-6">
-          {(currentExercise.audioUrl || currentExercise.audioScript) && (
+          {currentExercise.audioUrl && (
             <div className="space-y-2">
               <div className="flex items-center justify-between rounded-xl border border-amber-500/25 bg-amber-500/10 px-3 py-1.5 text-amber-700 dark:text-amber-300">
                 <div className="flex items-center gap-2 text-xs font-bold">
@@ -335,56 +317,18 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
                   Audioni tinglang va mos javobni belgilang
                 </span>
               </div>
-              {currentExercise.audioScript ? (
-                <div className="space-y-2">
-                  <button
-                    type="button"
-                    disabled={isPreparingAudio}
-                    onClick={() => {
-                      setAudioError('');
-                      if (speaking) {
-                        stopSpeaking();
-                        setSpeaking(false);
-                        return;
-                      }
-                      unlockAudio();
-                      void speakText(currentExercise.audioScript!);
-                    }}
-                    className="rounded-xl bg-primary px-4 py-2 font-bold text-primary-foreground disabled:opacity-60"
-                  >
-                    {isPreparingAudio
-                      ? 'Ovoz tayyorlanmoqda…'
-                      : speaking
-                        ? 'Ovozni to‘xtatish'
-                        : 'Ovozni tinglash'}
-                  </button>
-                  <p className="text-xs text-muted-foreground">
-                    Savol uchun yaratilgan sun’iy yaponcha ovoz
-                  </p>
-                  {audioError && (
-                    <p role="alert" className="text-sm text-rose-500">
-                      {audioError}
-                    </p>
-                  )}
-                </div>
-              ) : (
-                currentExercise.audioUrl && (
-                  <LessonAudioPlayer
-                    key={`audio-ex-${currentExercise.id}-${currentIdx}`}
-                    audioUrl={currentExercise.audioUrl}
-                    audioTitle={currentExercise.audioTitle || 'Mondai Mashq Audiosi'}
-                  />
-                )
-              )}
+              <LessonAudioPlayer
+                key={`audio-ex-${currentExercise.id}-${currentIdx}`}
+                audioUrl={currentExercise.audioUrl}
+                audioTitle={currentExercise.audioTitle || 'Mondai Mashq Audiosi'}
+              />
             </div>
           )}
 
           {/* Prompt Header with Furigana Peek Controls */}
           <div className="flex items-center justify-between gap-2 border-b border-border/40 pb-2">
             <span className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
-              {currentExercise.audioUrl || currentExercise.audioScript
-                ? '🎧 Savol:'
-                : 'Savol matni:'}
+              {currentExercise.audioUrl ? '🎧 Savol:' : 'Savol matni:'}
             </span>
 
             {/* Furigana Mode Pills */}
