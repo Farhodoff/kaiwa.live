@@ -18,6 +18,7 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:seo": "node scripts/validate-seo.mjs",
+    "audit:jlpt-content": "node scripts/audit-jlpt-content.mjs",
     "sync:flashcards": "node scripts/sync_flashcard_overrides.mjs"
   },
   "lint-staged": {
