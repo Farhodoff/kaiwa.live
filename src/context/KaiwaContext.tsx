@@ -8,4 +8,5 @@ export {
   StudyPlannerContext as KaiwaContext,
   StudyPlannerProvider as KaiwaProvider,
   useStudyData as useKaiwaData,
+  useOptionalStudyData as useOptionalKaiwaData,
 } from './StudyPlannerContext';

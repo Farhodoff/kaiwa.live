@@ -1266,9 +1266,108 @@ export const StudyPlannerProvider: React.FC<{ children: React.ReactNode }> = ({ 
   );
 };
 
-export const useStudyData = () => {
+const DEFAULT_FALLBACK_SETTINGS: Settings = {
+  theme: 'light',
+  notificationsEnabled: true,
+  totalXp: 0,
+  level: 1,
+  currentStreak: 0,
+  lastActivityDate: null,
+  dailyStudyGoalMinutes: 30,
+  showFurigana: true,
+  showRomaji: false,
+};
+
+export const FALLBACK_STUDY_CONTEXT: StudyPlannerContextType = {
+  goals: [],
+  tasks: [],
+  flashcards: [],
+  subjects: [],
+  notes: [],
+  studyNotes: [],
+  sessions: [],
+  whiteboards: [],
+  events: [],
+  coachSessions: [],
+  googleEvents: [],
+  settings: DEFAULT_FALLBACK_SETTINGS,
+  loading: false,
+  user: null,
+
+  addTask: async () => {},
+  addTasksBatch: async () => [],
+  updateTask: async () => {},
+  deleteTask: async () => {},
+  restoreTask: async () => {},
+  toggleTask: async () => {},
+  updateTaskStatus: async () => {},
+
+  addFlashcard: async () => null,
+  addFlashcardsBatch: async () => [],
+  updateFlashcard: async () => {},
+  deleteFlashcard: async () => {},
+  restoreFlashcard: async () => {},
+  reviewFlashcard: async () => {},
+  importFlashcards: async () => false,
+
+  addSubject: async () => null,
+  updateSubject: async () => {},
+  deleteSubject: async () => {},
+
+  addGoal: async () => null,
+  updateGoal: async () => {},
+  deleteGoal: async () => {},
+
+  addNote: async () => null,
+  updateNote: async () => {},
+  deleteNote: async () => {},
+
+  addStudyNote: async () => {},
+  addStudyNotesBatch: async () => [],
+  updateStudyNote: async () => {},
+  deleteStudyNote: async () => {},
+
+  addWhiteboard: async () => null,
+  deleteWhiteboard: async () => {},
+  updateWhiteboardTitle: async () => {},
+
+  addEvent: async () => null,
+  updateEvent: async () => {},
+  deleteEvent: async () => {},
+  syncGoogleEvents: async () => {},
+
+  addSession: async () => {},
+  addCoachSession: async () => {},
+
+  primaryLanguage: 'ja',
+  enabledLanguages: ['ja', 'en'],
+  targetLevel: 'N5',
+  targetGoal: 'Speaking',
+  setPrimaryFocus: async () => {},
+  addSecondaryLanguage: async () => {},
+  removeSecondaryLanguage: async () => {},
+
+  refreshData: async () => {},
+  updateSettings: async () => {},
+  awardXP: async () => {},
+  resetXP: async () => {},
+  getRank: () => 'Beginner',
+};
+
+export const useOptionalStudyData = (): StudyPlannerContextType | undefined => {
+  return useContext(StudyPlannerContext);
+};
+
+export const useStudyData = (): StudyPlannerContextType => {
   const context = useContext(StudyPlannerContext);
-  if (!context) throw new Error('useStudyData must be used within StudyPlannerProvider');
+  if (!context) {
+    if (import.meta.env.DEV) {
+      console.warn(
+        '[StudyPlannerContext] useStudyData was called outside of StudyPlannerProvider. Providing resilient fallback context to prevent crash.',
+      );
+    }
+    return FALLBACK_STUDY_CONTEXT;
+  }
   return context;
 };
 
@@ -1277,3 +1376,4 @@ export { StudyPlannerContext };
 export const KaiwaContext = StudyPlannerContext;
 export const KaiwaProvider = StudyPlannerProvider;
 export const useKaiwaData = useStudyData;
+export const useOptionalKaiwaData = useOptionalStudyData;
