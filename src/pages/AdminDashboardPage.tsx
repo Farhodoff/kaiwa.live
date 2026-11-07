@@ -55,6 +55,9 @@ const AdminContentQualityDashboard = lazy(() =>
     default: m.AdminContentQualityDashboard,
   })),
 );
+const CurriculumQualityQueue = lazy(() =>
+  import('../components/admin/CurriculumQualityQueue').then((m) => ({ default: m.CurriculumQualityQueue })),
+);
 const AdminDatasetVaultModal = lazy(() =>
   import('../components/admin/AdminDatasetVaultModal').then((m) => ({
     default: m.AdminDatasetVaultModal,
@@ -1802,6 +1805,7 @@ export default function AdminDashboardPage() {
       {activeSection === 'quality' && (
         <Suspense fallback={<AdminTabFallback />}>
           <AdminContentQualityDashboard />
+          <CurriculumQualityQueue />
         </Suspense>
       )}
 
