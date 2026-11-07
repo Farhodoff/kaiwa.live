@@ -62,6 +62,8 @@ import {
 import { JlptTimingConfigService } from '../services/JlptTimingConfigService';
 import { resolveAudioUrl } from '../utils/audioUrl';
 import { speakJapaneseText, stopAllAudio } from '../utils/audioTts';
+import { TimedSkillAssessmentService, TimedSkill } from '../services/TimedSkillAssessmentService';
+import { getListeningAudioPolicy } from '../utils/mockListeningAudioPolicy';
 
 const DRAFT_EXAM_STORAGE_KEY = 'jlpt_mock_exam_draft_v1';
 
@@ -111,6 +113,8 @@ export const JlptMockExamPage: React.FC = () => {
     null,
   );
   const examStartTimeRef = useRef<number>(Date.now());
+  const questionStartedAtRef = useRef<Map<number, number>>(new Map());
+  const recordedQuestionIdsRef = useRef<Set<number>>(new Set());
 
   // Interactive Question Matrix & Flagging State
   const [flaggedQuestions, setFlaggedQuestions] = useState<Set<number>>(new Set());
@@ -202,6 +206,7 @@ export const JlptMockExamPage: React.FC = () => {
   // Audio Playback
   const [isPlaying, setIsPlaying] = useState(false);
   const [playingAudioId, setPlayingAudioId] = useState<number | null>(null);
+  const [syntheticListeningAttempt, setSyntheticListeningAttempt] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // AI Diagnostic Report State
@@ -411,6 +416,9 @@ export const JlptMockExamPage: React.FC = () => {
 
   const handleStartExam = async () => {
     setIsStartingExam(true);
+    setSyntheticListeningAttempt(false);
+    questionStartedAtRef.current.clear();
+    recordedQuestionIdsRef.current.clear();
     try {
       const examData = await ExamService.getExamWithQuestions(
         selectedExamId || `builtin_${level.toLowerCase()}`,
@@ -519,12 +527,39 @@ export const JlptMockExamPage: React.FC = () => {
     }
   };
 
-  const handleOptionSelect = (qId: number, optionIdx: number) => {
+  const handleOptionSelect = (question: ExamQuestion, optionIdx: number) => {
+    const qId = question.id;
+    if (!questionStartedAtRef.current.has(qId)) questionStartedAtRef.current.set(qId, Date.now());
     setUserAnswers((prev) => ({ ...prev, [qId]: optionIdx }));
+    const skill: TimedSkill =
+      question.section === 'reading'
+        ? 'reading'
+        : question.section === 'listening'
+          ? 'listening'
+          : 'grammar';
+    if (!recordedQuestionIdsRef.current.has(qId)) {
+      TimedSkillAssessmentService.record(
+        {
+          level,
+          skill,
+          questionId: question.originalId ?? String(qId),
+          correct: optionIdx === question.correctAnswer,
+          skipped: false,
+          durationMs: Math.max(
+            0,
+            Date.now() - (questionStartedAtRef.current.get(qId) ?? examStartTimeRef.current),
+          ),
+        },
+        user?.id,
+      );
+      recordedQuestionIdsRef.current.add(qId);
+    }
   };
 
-  // Listening Audio with Native Audio Player and Seamless Fallback
+  // Synthetic speech is practice support only. A scored, timed mock must never
+  // silently replace the recorded track because the attempt would not be comparable.
   const handlePlayAudio = (qId: number, url?: string, _script?: string) => {
+    const audioPolicy = getListeningAudioPolicy(examMode, url, _script);
     if (isPlaying && playingAudioId === qId) {
       if (audioRef.current) {
         audioRef.current.pause();
@@ -542,7 +577,7 @@ export const JlptMockExamPage: React.FC = () => {
     }
     stopAllAudio();
 
-    if (url && url.trim() !== '' && !url.includes('soundhelix.com')) {
+    if (audioPolicy === 'original' && url) {
       try {
         const audio = new Audio(resolveAudioUrl(url));
         audioRef.current = audio;
@@ -554,21 +589,30 @@ export const JlptMockExamPage: React.FC = () => {
           })
           .catch((err) => {
             if (err?.name === 'AbortError') return;
-            console.warn('Audio play failed, falling back to speech synthesis:', err);
-            if (_script && _script.trim()) {
+            console.warn('Audio play failed:', err);
+            if (
+              audioPolicy === 'original' &&
+              examMode === 'practice' &&
+              _script &&
+              _script.trim()
+            ) {
               setIsPlaying(true);
               setPlayingAudioId(qId);
+              setSyntheticListeningAttempt(true);
               speakJapaneseText(_script);
               toast({
-                title: 'AI Ovozli Fallback',
-                description: 'Audio trek yuklanmadi, matn sinxron o‘qib berilmoqda.',
+                title: 'Mashq rejimidagi sintetik audio',
+                description: 'Bu tinglash natijasi standart mock imtihon bilan taqqoslanmaydi.',
               });
             } else {
               setIsPlaying(false);
               setPlayingAudioId(null);
               toast({
                 title: 'Audio xatosi',
-                description: 'Ushbu audio trekni ijro etib bo‘lmadi.',
+                description:
+                  examMode === 'official_timed'
+                    ? 'Rasmiy mock uchun original audio kerak. Qayta urinib ko‘ring.'
+                    : 'Ushbu audio trekni ijro etib bo‘lmadi.',
                 variant: 'destructive',
               });
             }
@@ -578,14 +622,15 @@ export const JlptMockExamPage: React.FC = () => {
           setPlayingAudioId(null);
         };
         audio.onerror = () => {
-          console.warn('Audio load error, falling back to speech synthesis');
-          if (_script && _script.trim()) {
+          console.warn('Audio load error');
+          if (examMode === 'practice' && _script && _script.trim()) {
             setIsPlaying(true);
             setPlayingAudioId(qId);
+            setSyntheticListeningAttempt(true);
             speakJapaneseText(_script);
             toast({
-              title: 'AI Ovozli Fallback',
-              description: 'Audio trek yuklanmadi, matn sinxron o‘qib berilmoqda.',
+              title: 'Mashq rejimidagi sintetik audio',
+              description: 'Bu tinglash natijasi standart mock imtihon bilan taqqoslanmaydi.',
             });
           } else {
             setIsPlaying(false);
@@ -601,10 +646,15 @@ export const JlptMockExamPage: React.FC = () => {
         setIsPlaying(false);
         setPlayingAudioId(null);
       }
-    } else if (_script && _script.trim()) {
+    } else if (audioPolicy === 'synthetic_practice' && _script) {
       setIsPlaying(true);
       setPlayingAudioId(qId);
+      setSyntheticListeningAttempt(true);
       speakJapaneseText(_script);
+      toast({
+        title: 'Mashq rejimidagi sintetik audio',
+        description: 'Bu tinglash natijasi standart mock imtihon bilan taqqoslanmaydi.',
+      });
     } else {
       setIsPlaying(false);
       setPlayingAudioId(null);
@@ -624,6 +674,32 @@ export const JlptMockExamPage: React.FC = () => {
     setIsPlaying(false);
     setPlayingAudioId(null);
     setIsTimerRunning(false);
+    // Preserve skips as evidence. They are not silently treated as incorrect
+    // answers, and they make the weakness dashboard explain missing responses.
+    for (const question of levelQuestions) {
+      if (recordedQuestionIdsRef.current.has(question.id)) continue;
+      const skill: TimedSkill =
+        question.section === 'reading'
+          ? 'reading'
+          : question.section === 'listening'
+            ? 'listening'
+            : 'grammar';
+      TimedSkillAssessmentService.record(
+        {
+          level,
+          skill,
+          questionId: question.originalId ?? String(question.id),
+          correct: false,
+          skipped: userAnswers[question.id] === undefined,
+          durationMs: Math.max(
+            0,
+            Date.now() -
+              (questionStartedAtRef.current.get(question.id) ?? examStartTimeRef.current),
+          ),
+        },
+        user?.id,
+      );
+    }
     const timingBlocks = getOrderedSections(level, timingConfig);
     setCompletedTimingModel({
       label: getTimingModelLabel(level, examMode, useFullOfficialTime),
@@ -752,15 +828,17 @@ export const JlptMockExamPage: React.FC = () => {
         type: 'performance',
       });
 
-      // 2. Listening (Choukai) evidence
-      MasteryEngine.recordEvidence(activeUserId, 'ja', {
-        id: `jlpt_mock_${level}_listening_${Date.now()}`,
-        skill: 'listening',
-        score: jlptScoreReport.sections.listening?.percentage ?? 50,
-        timestamp: new Date().toISOString(),
-        details: `JLPT ${level} Mock Choukai: ${jlptScoreReport.sections.listening?.score}/60 ball (${jlptScoreReport.sections.listening?.percentage}%)`,
-        type: 'performance',
-      });
+      // 2. Listening (Choukai) evidence. Synthetic practice audio is excluded
+      // so it cannot appear as comparable scored-listening evidence.
+      if (!syntheticListeningAttempt)
+        MasteryEngine.recordEvidence(activeUserId, 'ja', {
+          id: `jlpt_mock_${level}_listening_${Date.now()}`,
+          skill: 'listening',
+          score: jlptScoreReport.sections.listening?.percentage ?? 50,
+          timestamp: new Date().toISOString(),
+          details: `JLPT ${level} Mock Choukai: ${jlptScoreReport.sections.listening?.score}/60 ball (${jlptScoreReport.sections.listening?.percentage}%)`,
+          type: 'performance',
+        });
 
       // 3. Grammar evidence
       MasteryEngine.recordEvidence(activeUserId, 'ja', {
@@ -1442,7 +1520,7 @@ export const JlptMockExamPage: React.FC = () => {
                         <button
                           key={optIdx}
                           disabled={isOptionDisabled}
-                          onClick={() => handleOptionSelect(q.id, optIdx)}
+                          onClick={() => handleOptionSelect(q, optIdx)}
                           className={`rounded-xl border p-3 text-center text-xs font-bold transition-all ${
                             isSelected
                               ? 'border-rose-500 bg-rose-500/20 text-rose-600 dark:text-rose-400'
@@ -1508,7 +1586,7 @@ export const JlptMockExamPage: React.FC = () => {
                           <button
                             key={optIdx}
                             disabled={isOptionDisabled}
-                            onClick={() => handleOptionSelect(q.id, optIdx)}
+                            onClick={() => handleOptionSelect(q, optIdx)}
                             className={`flex w-full items-center justify-between rounded-xl border p-3 text-left text-xs font-bold transition-all ${
                               isSelected
                                 ? 'border-rose-500 bg-rose-500/20 text-rose-600 dark:text-rose-400'
@@ -1589,7 +1667,7 @@ export const JlptMockExamPage: React.FC = () => {
                           <button
                             key={optIdx}
                             disabled={isOptionDisabled}
-                            onClick={() => handleOptionSelect(q.id, optIdx)}
+                            onClick={() => handleOptionSelect(q, optIdx)}
                             className={`rounded-xl border p-3 text-center text-xs font-bold transition-all ${
                               isSelected
                                 ? 'border-rose-500 bg-rose-500/20 text-rose-600 dark:text-rose-400'

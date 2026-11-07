@@ -57,7 +57,7 @@ describe('Speech Token Security & Edge API Test Suite (/api/speech-token)', () =
       remaining: 0,
     });
 
-    const req = new Request('https://kaiwa.live/api/speech-token', {
+    const req = new Request('https://kaiwa.live/api/speech-token?mode=guest', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${authModule.SUPABASE_ANON_KEY}`,
@@ -81,7 +81,7 @@ describe('Speech Token Security & Edge API Test Suite (/api/speech-token)', () =
       remainingQuota: 34,
     });
 
-    const req = new Request('https://kaiwa.live/api/speech-token', {
+    const req = new Request('https://kaiwa.live/api/speech-token?mode=guest', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${authModule.SUPABASE_ANON_KEY}`,
@@ -118,7 +118,7 @@ describe('Speech Token Security & Edge API Test Suite (/api/speech-token)', () =
       });
     });
 
-    const req = new Request('https://kaiwa.live/api/speech-token', {
+    const req = new Request('https://kaiwa.live/api/speech-token?mode=guest', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${authModule.SUPABASE_ANON_KEY}`,
@@ -151,7 +151,7 @@ describe('Speech Token Security & Edge API Test Suite (/api/speech-token)', () =
       reason: "Bugungi kunlik AI so'rovlar limitingiz (35 ta) tugadi.",
     });
 
-    const req = new Request('https://kaiwa.live/api/speech-token', {
+    const req = new Request('https://kaiwa.live/api/speech-token?mode=guest', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${authModule.SUPABASE_ANON_KEY}`,

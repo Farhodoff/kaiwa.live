@@ -1,6 +1,7 @@
 import { Lesson } from '../../types/lesson';
 import metadata from './curriculumMetadata.json';
 import { attachLessonKanji } from './kanjiCurriculum';
+import { quarantineInvalidExercises } from './contentQuality';
 
 export const ALL_ENGLISH_LESSONS: Lesson[] = [];
 
@@ -55,7 +56,10 @@ export async function loadCurriculumLevel(level: string): Promise<Lesson[]> {
   const norm = level.toUpperCase();
   const loader = LEVEL_LOADERS[norm];
   if (!loader) return [];
-  const lessons = attachLessonKanji(await loader());
+  // The production loaders must apply the same quarantine used by the level
+  // modules. JSON is loaded directly here, so filtering only japaneseN*.ts
+  // would leave invalid distractors visible to production learners.
+  const lessons = quarantineInvalidExercises(attachLessonKanji(await loader()));
   const loadedIds = new Set(lessons.map((lesson) => lesson.id));
   lessons.forEach((lesson) => CURRICULUM_LESSONS_BY_ID.set(lesson.id, lesson));
   const hydratedLessons = [

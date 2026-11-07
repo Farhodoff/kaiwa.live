@@ -1,3 +1,4 @@
+import { setCorsHeaders } from '../_cors.js';
 import { createClient } from '@supabase/supabase-js';
 
 const SUPABASE_URL =
@@ -19,9 +20,7 @@ const BASELINE_RATING = {
 };
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  setCorsHeaders(req, res);
 
   if (req.method === 'OPTIONS') {
     return res.status(204).end();

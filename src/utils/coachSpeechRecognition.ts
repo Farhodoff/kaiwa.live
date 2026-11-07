@@ -57,6 +57,11 @@ export class CoachSpeechRecognition {
           },
           onError: () => {
             if (generation !== this.generation || !this.running) return;
+            if (AzureSpeechService.getAuthState?.() === 'session_expired') {
+              this.abort();
+              this.onerror?.({ error: 'session-expired' });
+              return;
+            }
             this.useBrowser = true;
             this.fallbackReason = 'Azure bilan jonli nutq ulanishi uzildi.';
             this.abort();
@@ -87,6 +92,11 @@ export class CoachSpeechRecognition {
       }
     }
     if (generation !== this.generation || !this.running) return;
+    if (AzureSpeechService.getAuthState?.() === 'session_expired') {
+      this.abort();
+      this.onerror?.({ error: 'session-expired' });
+      return;
+    }
     this.useBrowser = true;
     const win = window as any;
     const BrowserRecognition = win.SpeechRecognition || win.webkitSpeechRecognition;

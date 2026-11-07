@@ -1,6 +1,5 @@
 import { supabase, supabaseUrl, supabaseAnonKey } from '../lib/supabase';
 import { streamChatTokens } from './chatStream';
-import { purgeOversizedCookies } from '../lib/consoleFilter';
 
 export interface DeepSeekRequestOptions {
   systemPrompt?: string;
@@ -109,7 +108,6 @@ export const callDeepSeek = async (
       lower.includes('header too large') ||
       lower.includes('cookie')
     ) {
-      purgeOversizedCookies();
       return "AI_UNAVAILABLE: Brauzer xotirasi sarlavhalari to'ldi (HTTP 494). Kesh avtomatik tozalandi, iltimos sahifani yangilab qayta urinib ko'ring.";
     }
     if (lower.includes('balance') || lower.includes('insufficient')) {
@@ -135,7 +133,6 @@ export const callDeepSeek = async (
 
   // 1. Primary Direct Route: Supabase Edge Function (Low latency, authoritative)
   try {
-    purgeOversizedCookies();
     const response = await fetch(directUrl, {
       method: 'POST',
       headers: {
@@ -215,6 +212,7 @@ export const callDeepSeek = async (
   try {
     const serverlessResponse = await fetch('/api/deepseek', {
       method: 'POST',
+      credentials: 'omit',
       headers: {
         'Content-Type': 'application/json',
         apikey: anonKey,

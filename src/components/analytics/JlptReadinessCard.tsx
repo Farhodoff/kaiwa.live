@@ -240,6 +240,13 @@ export const JlptReadinessCard: React.FC<JlptReadinessCardProps> = ({
                 </span>
               )}
             </div>
+            <p className="mt-2 text-[11px] text-muted-foreground">
+              {language === 'ja'
+                ? `評価データ信頼度: ${report.readinessConfidence}%。推定値は実測値として扱いません。`
+                : language === 'en'
+                  ? `Assessment evidence confidence: ${report.readinessConfidence}%. Estimates are not measured scores.`
+                  : `Baholash dalili ishonchliligi: ${report.readinessConfidence}%. Taxminlar o‘lchangan ball emas.`}
+            </p>
 
             <div className="mt-3 grid grid-cols-1 gap-2.5 sm:grid-cols-3">
               {/* Gengo Chishiki */}
@@ -267,6 +274,13 @@ export const JlptReadinessCard: React.FC<JlptReadinessCardProps> = ({
                     {report.sections.gengoChishiki.isAtRisk ? '< 19 (Xavf)' : '≥ 19 (Oʻtadi)'}
                   </span>
                 </div>
+                {report.sections.dokkai.evidenceState !== 'measured' && (
+                  <p className="mt-1 text-[10px] font-semibold text-amber-600 dark:text-amber-400">
+                    {report.sections.dokkai.evidenceState === 'estimated'
+                      ? "Taxminiy, o'qish testi emas"
+                      : "O'qish bo‘yicha baholash maʼlumoti yo‘q"}
+                  </p>
+                )}
               </div>
 
               {/* Dokkai */}
@@ -292,6 +306,11 @@ export const JlptReadinessCard: React.FC<JlptReadinessCardProps> = ({
                     {report.sections.dokkai.isAtRisk ? '< 19 (Xavf)' : '≥ 19 (Oʻtadi)'}
                   </span>
                 </div>
+                {report.sections.choukai.evidenceState !== 'measured' && (
+                  <p className="mt-1 text-[10px] font-semibold text-amber-600 dark:text-amber-400">
+                    Tinglash bo‘yicha baholash maʼlumoti yo‘q
+                  </p>
+                )}
               </div>
 
               {/* Choukai */}

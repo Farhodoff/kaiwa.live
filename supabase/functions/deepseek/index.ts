@@ -1,16 +1,12 @@
+import { getCorsHeaders } from '../_shared/cors.ts';
 // supabase/functions/deepseek/index.ts
 // Supabase Edge Function (Deno Runtime) — Universal Secure DeepSeek AI Gateway
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-};
-
 Deno.serve(async (req: Request) => {
+  const corsHeaders = getCorsHeaders(req);
   // 1. Handle CORS Preflight
   if (req.method === 'OPTIONS') {
-    return new Response('ok', { headers: corsHeaders });
+    return new Response(null, { status: 204, headers: corsHeaders });
   }
 
   // 2. Health check route

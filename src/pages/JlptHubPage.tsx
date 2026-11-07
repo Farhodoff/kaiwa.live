@@ -16,6 +16,7 @@ import { useStudyData } from '../context/StudyPlannerContext';
 import { useLanguage } from '../context/LanguageContext';
 import { useSEO } from '../hooks/useSEO';
 import { lazyWithRetry } from '../utils/lazyRetry';
+import { JlptWeaknessDashboard } from '../components/analytics/JlptWeaknessDashboard';
 
 const MinnaLessonsExplorer = lazyWithRetry(() => import('../components/jlpt/MinnaLessonsExplorer'));
 const JlptGrammarKanjiMaster = lazyWithRetry(
@@ -257,6 +258,18 @@ export const JlptHubPage: React.FC = () => {
           </button>
 
           <button
+            onClick={() => handleTabChange('insights')}
+            className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
+              activeTab === 'insights'
+                ? 'bg-primary text-primary-foreground shadow-xs'
+                : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
+            }`}
+          >
+            <Target size={15} />
+            <span>{language === 'ja' ? '弱点分析' : 'Zaiflik tahlili'}</span>
+          </button>
+
+          <button
             onClick={() => handleTabChange('n1_mastery')}
             className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
               activeTab === 'n1_mastery'
@@ -385,6 +398,7 @@ export const JlptHubPage: React.FC = () => {
             <JlptMistakeNotebook />
           </div>
         )}
+        {activeTab === 'insights' && <JlptWeaknessDashboard />}
         {activeTab === 'n1_mastery' && (
           <div className="animate-in fade-in">
             <N1AdvancedMasteryHub />
