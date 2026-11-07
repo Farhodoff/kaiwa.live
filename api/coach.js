@@ -1,6 +1,6 @@
 import { verifyAuth, getBearerToken, SUPABASE_ANON_KEY } from './_auth.js';
 import { checkRateLimit } from './_rateLimit.js';
-import { checkDailyQuota } from './_quota.js';
+import { checkDailyQuota, MAX_REQUEST_SIZE_BYTES } from './_quota.js';
 import { setCorsHeaders } from './_cors.js';
 
 export const config = { maxDuration: 60 };
@@ -68,10 +68,13 @@ export default async function handler(req, res) {
   }
   if (!body || !Array.isArray(body.messages) || body.messages.length === 0)
     return res.status(400).json({ error: 'Messages required' });
+  if (new TextEncoder().encode(JSON.stringify(body)).byteLength > MAX_REQUEST_SIZE_BYTES) {
+    return res.status(413).json({ error: { code: 'REQUEST_TOO_LARGE' } });
+  }
   const quota = await checkDailyQuota(
     user?.id || null,
     user?.app_metadata?.role || user?.role || 'user',
-    JSON.stringify(body),
+    '',
     req,
   );
   if (!quota.allowed)

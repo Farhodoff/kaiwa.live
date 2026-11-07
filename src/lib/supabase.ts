@@ -45,22 +45,18 @@ export const isValidAnonKey = (key?: string | null): boolean => {
   return false;
 };
 
-// Direct Supabase requests are the default in development as well. The browser
-// already supports the service's CORS response and this avoids localhost's
-// cookie header limit. The Vite proxy remains available only for an explicitly
-// opted-in embedded browser that blocks cross-origin requests.
+// Local REST/auth requests use the same-origin proxy to avoid browser CORS
+// interference. Cookies are omitted below; identity remains in explicit headers.
 const useLocalSupabaseProxy =
   import.meta.env.DEV &&
-  import.meta.env.VITE_USE_LOCAL_SUPABASE_PROXY === 'true' &&
+  import.meta.env.VITE_USE_LOCAL_SUPABASE_PROXY !== 'false' &&
   typeof window !== 'undefined' &&
-  window.location.hostname === 'localhost';
+  ['localhost', '127.0.0.1', '[::1]'].includes(window.location.hostname);
 
-// Production always uses the real URL. The local proxy is opt-in only.
+const upstreamSupabaseUrl = isValidUrl(rawUrl) ? rawUrl!.trim() : DEFAULT_SUPABASE_URL;
 export const supabaseUrl = useLocalSupabaseProxy
   ? `${window.location.origin}/supabase`
-  : isValidUrl(rawUrl)
-    ? rawUrl!.trim()
-    : DEFAULT_SUPABASE_URL;
+  : upstreamSupabaseUrl;
 export const supabaseAnonKey = isValidAnonKey(rawKey) ? rawKey!.trim() : DEFAULT_SUPABASE_ANON_KEY;
 
 if (!isValidUrl(rawUrl) || !isValidAnonKey(rawKey)) {
@@ -410,6 +406,8 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
     autoRefreshToken: true,
     persistSession: true,
+    // Preserve the existing project session when the request URL becomes localhost.
+    storageKey: `sb-${new URL(upstreamSupabaseUrl).hostname.split('.')[0]}-auth-token`,
     detectSessionInUrl: true,
   },
   realtime: {

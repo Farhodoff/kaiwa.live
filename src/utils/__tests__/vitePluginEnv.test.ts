@@ -109,9 +109,14 @@ describe('Telegram Vite plugin environment loading', () => {
     expect(result.middlewareCount).toBe(1);
   });
 
-  it('skips privileged API initialization when the service key is absent', () => {
-    writeFileSync(join(envDir, '.env'), 'VITE_SUPABASE_URL="https://local.example.com"\n');
+  it('keeps Coach and Speech routes registered without the Telegram service key', () => {
+    writeFileSync(
+      join(envDir, '.env'),
+      'VITE_SUPABASE_URL="https://local.example.com"\nAZURE_SPEECH_KEY=guest-speech-key\n',
+    );
 
-    expect(configure().result.middlewareCount).toBe(0);
+    const { result } = configure();
+    expect(result.middlewareCount).toBe(1);
+    expect(result.speechKey).toBe('guest-speech-key');
   });
 });

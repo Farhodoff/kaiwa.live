@@ -12,6 +12,7 @@ vi.mock('../../../api/_rateLimit.js', () => ({
   checkRateLimit: vi.fn().mockResolvedValue({ allowed: true }),
 }));
 vi.mock('../../../api/_quota.js', () => ({
+  MAX_REQUEST_SIZE_BYTES: 25 * 1024,
   checkDailyQuota: vi.fn().mockResolvedValue({ allowed: true }),
 }));
 vi.mock('../../../api/_cors.js', () => ({ setCorsHeaders: vi.fn() }));
@@ -40,6 +41,21 @@ afterEach(() => {
   vi.unstubAllEnvs();
 });
 describe('Azure-only coach gateway', () => {
+  it('rejects an oversized request before calling Azure with a distinct status', async () => {
+    const fetch = vi.spyOn(globalThis, 'fetch');
+    const res = response();
+    await handler(
+      {
+        ...req,
+        body: { messages: [{ role: 'user', content: '日'.repeat(9000) }] },
+      },
+      res,
+    );
+    expect(res.status).toHaveBeenCalledWith(413);
+    expect(res.json).toHaveBeenCalledWith({ error: { code: 'REQUEST_TOO_LARGE' } });
+    expect(fetch).not.toHaveBeenCalled();
+  });
+
   it('uses the configured Azure deployment and never accepts a client-selected provider', async () => {
     const fetch = vi
       .spyOn(globalThis, 'fetch')
