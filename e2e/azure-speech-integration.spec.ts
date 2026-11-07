@@ -6,13 +6,13 @@ test.skip(process.env.RUN_AZURE_INTEGRATION_TESTS !== 'true', 'Opt-in real Azure
 test('issues a Kaiwa Speech token and synthesizes a Japanese phrase in Azure', async () => {
   const base = process.env.AZURE_INTEGRATION_BASE_URL ?? '';
   const target = URL.canParse(base) ? new URL(base) : null;
+  const hasEmbeddedCredentials = /^https?:\/\/[^/]*@/i.test(base);
   const credential = process.env.AZURE_INTEGRATION_SUPABASE_JWT;
   if (
     !credential ||
     !target ||
     target.protocol !== 'https:' ||
-    target.username ||
-    target.password ||
+    hasEmbeddedCredentials ||
     ['kaiwa.live', 'www.kaiwa.live'].includes(target.hostname)
   ) {
     throw new Error('Configure an authorized HTTPS staging origin and a test-account session.');
