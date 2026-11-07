@@ -1,8 +1,10 @@
-export const SUPER_ADMIN_EMAIL = 'fsoyilov@gmail.com';
+// UI role checks are advisory only. Server-side RLS/RPC is authoritative.
+// Never use a user email as a privilege grant.
+export const SUPER_ADMIN_EMAIL = '';
 
-export const SUPER_ADMIN_EMAILS = ['fsoyilov@gmail.com'];
+export const SUPER_ADMIN_EMAILS: string[] = [];
 
-export const DEFAULT_ADMIN_EMAILS = ['fsoyilov@gmail.com', 'admin@kaiwa.live'];
+export const DEFAULT_ADMIN_EMAILS: string[] = [];
 
 export interface AdminAuditLogEntry {
   id: string;
@@ -38,13 +40,9 @@ export const getLocalAuditLogs = (): AdminAuditLogEntry[] => {
   }
 };
 
-// Check if user is Super Admin
-// STRICT ENFORCEMENT: ONLY fsoyilov@gmail.com is Superadmin.
-// Even if someone provides role='superadmin', if their email is not fsoyilov@gmail.com, they are NOT Superadmin.
-export const isSuperAdmin = (email?: string | null, _role?: string | null): boolean => {
-  if (!email) return false;
-  const e = email.toLowerCase().trim();
-  return e === SUPER_ADMIN_EMAIL;
+// The role must come from a server-authorized profile/API response, not email.
+export const isSuperAdmin = (_email?: string | null, role?: string | null): boolean => {
+  return role === 'superadmin';
 };
 
 // English / IELTS track is strictly disabled in kaiwa.live (single-language isolation)
@@ -53,12 +51,9 @@ export const isEnglishTrackAllowed = (_email?: string | null): boolean => {
 };
 
 // Check if user is Admin or Super Admin
-export const isAdminEmail = (email?: string | null, role?: string | null): boolean => {
+export const isAdminEmail = (_email?: string | null, role?: string | null): boolean => {
   const normalizedRole = role === 'authenticated' ? undefined : role;
   if (normalizedRole === 'admin' || normalizedRole === 'superadmin') return true;
-  if (!email) return false;
-  const e = email.toLowerCase().trim();
-  if (DEFAULT_ADMIN_EMAILS.includes(e)) return true;
   return false;
 };
 
@@ -66,7 +61,7 @@ export const isAdminEmail = (email?: string | null, role?: string | null): boole
 export const isUserAdmin = (user?: any): boolean => {
   if (!user) return false;
   const rawRole = user.role === 'authenticated' ? undefined : user.role;
-  const role = rawRole || user.user_metadata?.role || user.app_metadata?.role;
+  const role = rawRole || user.app_metadata?.role;
   return isAdminEmail(user.email, role);
 };
 
