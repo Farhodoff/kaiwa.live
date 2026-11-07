@@ -12,10 +12,6 @@ import {
   Minimize2,
   Share2,
   Check,
-  Play,
-  Pause,
-  RotateCcw,
-  Timer,
 } from 'lucide-react';
 import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -23,7 +19,6 @@ const RoomWhiteboard = React.lazy(() => import('../components/study-room/RoomWhi
 import { Button } from '../components/ui/Button';
 import { supabase } from '../lib/supabase';
 import { recordTelemetryEvent } from '../lib/errorTracking';
-import { ActivityLoggingService } from '../services/ActivityLoggingService';
 import { useTelegramWebApp } from '../hooks/useTelegramWebApp';
 import { getWebRtcIceServers } from '../config/webrtc';
 
@@ -105,55 +100,10 @@ const StudyRoomPage: React.FC = () => {
   // Realtime channel
   const channelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
 
-  // Sinxron Pomodoro State
-  const [timeLeft, setTimeLeft] = useState(25 * 60);
-  const [isRunning, setIsRunning] = useState(false);
-  const [pomodoroMode, setPomodoroMode] = useState<'focus' | 'short_break' | 'long_break'>('focus');
-  const [connectedPeers, setConnectedPeers] = useState<number>(1);
-
-  const broadcastPomodoroState = (
-    newTime: number,
-    newIsRunning: boolean,
-    newMode: 'focus' | 'short_break' | 'long_break',
-  ) => {
-    if (channelRef.current) {
-      channelRef.current.send({
-        type: 'broadcast',
-        event: 'pomodoro_state_update',
-        payload: {
-          senderId: clientIdRef.current,
-          timeLeft: newTime,
-          isRunning: newIsRunning,
-          mode: newMode,
-        },
-      });
-    }
-  };
-
-  const handleTogglePomodoro = () => {
-    haptics.impact('medium');
-    const nextRunning = !isRunning;
-    setIsRunning(nextRunning);
-    broadcastPomodoroState(timeLeft, nextRunning, pomodoroMode);
-  };
-
-  const handleResetPomodoro = () => {
-    haptics.impact('light');
-    const defaultTime =
-      pomodoroMode === 'focus' ? 25 * 60 : pomodoroMode === 'short_break' ? 5 * 60 : 15 * 60;
-    setTimeLeft(defaultTime);
-    setIsRunning(false);
-    broadcastPomodoroState(defaultTime, false, pomodoroMode);
-  };
+  const [connectedPeers, setConnectedPeers] = useState(1);
 
   // Whiteboard Ref & States
   const editorRef = useRef<any>(null);
-
-  // Refs for closure access in channel event listeners without triggering re-renders
-  const pomodoroStateRef = useRef({ timeLeft, isRunning, mode: pomodoroMode });
-  useEffect(() => {
-    pomodoroStateRef.current = { timeLeft, isRunning, mode: pomodoroMode };
-  }, [timeLeft, isRunning, pomodoroMode]);
 
   const joinedCallRef = useRef(joinedCall);
   useEffect(() => {
@@ -469,81 +419,40 @@ const StudyRoomPage: React.FC = () => {
           });
 
         // Broadcast Message Handlers
-        ch.on('broadcast', { event: 'pomodoro_state_update' }, ({ payload }) => {
+        ch.on('broadcast', { event: 'webrtc_offer' }, async ({ payload }) => {
+          if (!joinedCallRef.current) return;
           const data = payload as {
             senderId: string;
-            timeLeft: number;
-            isRunning: boolean;
-            mode: 'focus' | 'short_break' | 'long_break';
+            targetId: string;
+            offer: RTCSessionDescriptionInit;
           };
-          if (data.senderId !== clientIdRef.current) {
-            setTimeLeft(data.timeLeft);
-            setIsRunning(data.isRunning);
-            setPomodoroMode(data.mode);
-          }
-        })
-          .on('broadcast', { event: 'request_state' }, ({ payload }) => {
-            const data = payload as { requesterId: string };
-            if (data.requesterId !== clientIdRef.current) {
+          if (data.targetId === userProfileRef.current?.id) {
+            console.log(`Received WebRTC offer from ${data.senderId}`);
+            const pc = createPeerConnection(data.senderId);
+            try {
+              await pc.setRemoteDescription(new RTCSessionDescription(data.offer));
+              const pendingCandidates = pendingIceCandidatesRef.current[data.senderId] || [];
+              for (const candidate of pendingCandidates) {
+                await pc.addIceCandidate(new RTCIceCandidate(candidate));
+              }
+              delete pendingIceCandidatesRef.current[data.senderId];
+              const answer = await pc.createAnswer();
+              await pc.setLocalDescription(answer);
+
               ch.send({
                 type: 'broadcast',
-                event: 'pomodoro_state_response',
+                event: 'webrtc_answer',
                 payload: {
-                  timeLeft: pomodoroStateRef.current.timeLeft,
-                  isRunning: pomodoroStateRef.current.isRunning,
-                  mode: pomodoroStateRef.current.mode,
-                  targetId: data.requesterId,
+                  senderId: userProfileRef.current?.id,
+                  targetId: data.senderId,
+                  answer,
                 },
               });
+            } catch (e) {
+              console.error('Failed to handle offer:', e);
             }
-          })
-          .on('broadcast', { event: 'pomodoro_state_response' }, ({ payload }) => {
-            const data = payload as {
-              targetId: string;
-              timeLeft: number;
-              isRunning: boolean;
-              mode: 'focus' | 'short_break' | 'long_break';
-            };
-            if (data.targetId === clientIdRef.current) {
-              setTimeLeft(data.timeLeft);
-              setIsRunning(data.isRunning);
-              setPomodoroMode(data.mode);
-            }
-          })
-          .on('broadcast', { event: 'webrtc_offer' }, async ({ payload }) => {
-            if (!joinedCallRef.current) return;
-            const data = payload as {
-              senderId: string;
-              targetId: string;
-              offer: RTCSessionDescriptionInit;
-            };
-            if (data.targetId === userProfileRef.current?.id) {
-              console.log(`Received WebRTC offer from ${data.senderId}`);
-              const pc = createPeerConnection(data.senderId);
-              try {
-                await pc.setRemoteDescription(new RTCSessionDescription(data.offer));
-                const pendingCandidates = pendingIceCandidatesRef.current[data.senderId] || [];
-                for (const candidate of pendingCandidates) {
-                  await pc.addIceCandidate(new RTCIceCandidate(candidate));
-                }
-                delete pendingIceCandidatesRef.current[data.senderId];
-                const answer = await pc.createAnswer();
-                await pc.setLocalDescription(answer);
-
-                ch.send({
-                  type: 'broadcast',
-                  event: 'webrtc_answer',
-                  payload: {
-                    senderId: userProfileRef.current?.id,
-                    targetId: data.senderId,
-                    answer,
-                  },
-                });
-              } catch (e) {
-                console.error('Failed to handle offer:', e);
-              }
-            }
-          })
+          }
+        })
           .on('broadcast', { event: 'webrtc_answer' }, async ({ payload }) => {
             if (!joinedCallRef.current) return;
             const data = payload as {
@@ -600,12 +509,6 @@ const StudyRoomPage: React.FC = () => {
               name: userProfile.name,
               joined_at: new Date().toISOString(),
             });
-
-            ch.send({
-              type: 'broadcast',
-              event: 'request_state',
-              payload: { requesterId: clientIdRef.current },
-            });
           }
         });
       };
@@ -627,59 +530,7 @@ const StudyRoomPage: React.FC = () => {
       });
       pendingIceCandidatesRef.current = {};
     };
-  }, [userProfile, roomId]); // Removed timeLeft, isRunning, pomodoroMode, joinedCall to prevent continuous channel recreation
-
-  // Local Pomodoro Ticking
-  useEffect(() => {
-    let intervalId: ReturnType<typeof setInterval> | null = null;
-    if (isRunning) {
-      intervalId = setInterval(() => {
-        setTimeLeft((prev) => {
-          if (prev <= 1) {
-            setIsRunning(false);
-            haptics.notification('success');
-            try {
-              const audio = new Audio(
-                'https://assets.mixkit.co/active_storage/sfx/2869/2869-500.wav',
-              );
-              audio.play();
-            } catch (e) {
-              console.log('Audio blocked', e);
-            }
-
-            // Record completed focus session in focus mode
-            if (pomodoroStateRef.current.mode === 'focus') {
-              const activeUid =
-                userProfileRef.current?.id && !userProfileRef.current.id.startsWith('guest-')
-                  ? userProfileRef.current.id
-                  : null;
-              ActivityLoggingService.logActivity(
-                {
-                  activityType: 'focus',
-                  activityTitle: `Study Room (${roomDisplayName}) Pomodoro Fokus`,
-                  durationMinutes: 25,
-                  itemsCount: 1,
-                  xpEarned: 250,
-                  metadata: {
-                    roomId: roomId || 'library',
-                    roomName: roomDisplayName,
-                    peersCount: connectedPeers,
-                  },
-                },
-                activeUid,
-              ).catch((err) => console.warn('[StudyRoomPage] logActivity error:', err));
-            }
-
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    }
-    return () => {
-      if (intervalId) clearInterval(intervalId);
-    };
-  }, [isRunning, haptics, roomDisplayName, roomId, connectedPeers]);
+  }, [userProfile, roomId]);
 
   // Media Controllers
   const toggleAudio = () => {
@@ -816,38 +667,6 @@ const StudyRoomPage: React.FC = () => {
               </span>
             </div>
           </div>
-        </div>
-
-        {/* Synchronized Pomodoro Live Widget */}
-        <div className="hidden items-center gap-2 rounded-2xl border border-slate-700/80 bg-slate-900/90 px-3.5 py-1.5 shadow-inner sm:flex">
-          <Timer
-            size={16}
-            className={isRunning ? 'animate-pulse text-emerald-400' : 'text-amber-400'}
-          />
-          <span className="font-mono text-xs font-black tracking-wider text-white sm:text-sm">
-            {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
-          </span>
-          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-            {pomodoroMode === 'focus' ? 'Fokus' : 'Tanaffus'}
-          </span>
-          <button
-            onClick={handleTogglePomodoro}
-            className={`rounded-lg border p-1.5 transition-all active:scale-95 ${
-              isRunning
-                ? 'border-amber-500/40 bg-amber-500/20 text-amber-300 hover:bg-amber-500/30'
-                : 'border-emerald-500/40 bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30'
-            }`}
-            title={isRunning ? 'Pauza' : 'Boshlash'}
-          >
-            {isRunning ? <Pause size={13} /> : <Play size={13} />}
-          </button>
-          <button
-            onClick={handleResetPomodoro}
-            className="rounded-lg p-1.5 text-slate-400 transition-colors hover:bg-slate-800 hover:text-white"
-            title="Qayta o'rnatish"
-          >
-            <RotateCcw size={13} />
-          </button>
         </div>
 
         <div className="flex items-center gap-2">

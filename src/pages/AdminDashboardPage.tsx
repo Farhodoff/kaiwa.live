@@ -147,6 +147,7 @@ export interface DatabaseResourceMetrics {
 export default function AdminDashboardPage() {
   const navigate = useNavigate();
   const { user } = useStudyData();
+  const [deletingUserId, setDeletingUserId] = useState<string | null>(null);
   const { language } = useLanguage();
   const isJa = language === 'ja';
 
@@ -1319,6 +1320,46 @@ export default function AdminDashboardPage() {
     }
   };
 
+  const handleDeleteUser = async (target: UserRecord) => {
+    if (deletingUserId || target.id === user?.id) return;
+    if (
+      !window.confirm(
+        `${target.email || target.id} hisobini bazadan butunlay o‘chirasizmi? Bu amalni bekor qilib bo‘lmaydi.`,
+      )
+    )
+      return;
+    setDeletingUserId(target.id);
+    try {
+      const { data } = await supabase.auth.getSession();
+      if (!data.session?.access_token) throw new Error('Hisobingizga qayta kiring.');
+      const response = await fetch('/api/admin/delete-user', {
+        method: 'POST',
+        credentials: 'omit',
+        headers: {
+          Authorization: `Bearer ${data.session.access_token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId: target.id }),
+      });
+      const result = await response.json().catch(() => null);
+      if (!response.ok || result?.success !== true) {
+        throw new Error(result?.error || 'Hisobni o‘chirib bo‘lmadi.');
+      }
+      setUsersList((previous) => previous.filter((record) => record.id !== target.id));
+      setUsersPage(1);
+      toast({ title: 'Hisob o‘chirildi' });
+      await fetchAdminData();
+    } catch (error) {
+      toast({
+        title: 'Hisobni o‘chirib bo‘lmadi',
+        description: error instanceof Error ? error.message : undefined,
+        variant: 'destructive',
+      });
+    } finally {
+      setDeletingUserId(null);
+    }
+  };
+
   const exportUsersToCSV = () => {
     if (usersList.length === 0) {
       toast({
@@ -1728,6 +1769,12 @@ export default function AdminDashboardPage() {
             onSelectDetailUser={setSelectedDetailUser}
             onMessageModalUser={setMessageModalUser}
             onToggleAdmin={handleToggleAdmin}
+            onDeleteUser={
+              isSuperAdmin(user?.email) || user?.app_metadata?.role === 'superadmin'
+                ? handleDeleteUser
+                : undefined
+            }
+            deletingUserId={deletingUserId}
             isSuperAdmin={isSuperAdmin}
             isAdminEmail={isAdminEmail}
             usersPerPage={USERS_PER_PAGE}

@@ -200,6 +200,7 @@ export function useSpeakingSessionOrchestrator({
     ttsAudioVolume,
   } = useTTS({
     language,
+    useAzure: true,
     isLiveSessionRef,
     isProcessingRef,
     onSpeakStart: handleSpeakStart,

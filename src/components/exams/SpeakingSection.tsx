@@ -12,10 +12,6 @@ import {
 } from 'lucide-react';
 import { aiEvaluationService, AiEvaluationResult } from '../../services/aiEvaluationService';
 import { ErrorNotificationService } from '../../services/ErrorNotificationService';
-import {
-  AzureSpeechService,
-  AzureContinuousRecognizerController,
-} from '../../services/AzureSpeechService';
 
 interface SpeakingSectionProps {
   examType: 'IELTS' | 'JLPT';
@@ -39,18 +35,12 @@ export const SpeakingSection: React.FC<SpeakingSectionProps> = ({
   const [error, setError] = useState<string | null>(null);
 
   const recognitionRef = useRef<any>(null);
-  const azureRecognizerRef = useRef<AzureContinuousRecognizerController | null>(null);
 
   useEffect(() => {
     return () => {
       if (recognitionRef.current) {
         try {
           recognitionRef.current.stop();
-        } catch {}
-      }
-      if (azureRecognizerRef.current) {
-        try {
-          azureRecognizerRef.current.close();
         } catch {}
       }
     };
@@ -86,36 +76,11 @@ export const SpeakingSection: React.FC<SpeakingSectionProps> = ({
         setIsRecording(true);
         return;
       } catch (err) {
-        console.warn('Native SpeechRecognition failed, falling back to Azure Speech:', err);
+        console.warn('Browser speech recognition failed:', err);
       }
     }
 
-    // Fallback to Azure Neural Speech-to-Text (e.g. iOS Safari or unsupported browsers)
-    try {
-      const recognizer = await AzureSpeechService.createContinuousRecognizer({
-        language: examType === 'JLPT' ? 'ja-JP' : 'en-US',
-        onRecognizing: (text) => setTranscript(text),
-        onRecognized: (text) => setTranscript((prev) => (prev ? prev.trim() + ' ' : '') + text),
-        onError: (errMsg) => {
-          setError(errMsg);
-          setIsRecording(false);
-        },
-      });
-
-      if (!recognizer) {
-        setError(
-          "Brauzeringiz nutqni tanib olishni qo'llab-quvvatlamaydi. Javobingizni matn ko'rinishida yozib kiriting.",
-        );
-        return;
-      }
-
-      azureRecognizerRef.current = recognizer;
-      await recognizer.start();
-      setIsRecording(true);
-    } catch (azureErr) {
-      console.error('Azure STT start error:', azureErr);
-      setError('Mikrofonni ishga tushirishda xatolik yuz berdi.');
-    }
+    setError('Brauzer nutqni tanib olmadi. Javobingizni matn ko‘rinishida yozib kiriting.');
   };
 
   const stopRecording = () => {
@@ -124,13 +89,6 @@ export const SpeakingSection: React.FC<SpeakingSectionProps> = ({
         recognitionRef.current.stop();
       } catch {}
       recognitionRef.current = null;
-    }
-    if (azureRecognizerRef.current) {
-      try {
-        azureRecognizerRef.current.stop();
-        azureRecognizerRef.current.close();
-      } catch {}
-      azureRecognizerRef.current = null;
     }
     setIsRecording(false);
   };

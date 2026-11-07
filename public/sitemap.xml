@@ -90,15 +90,6 @@
   </url>
 
   <!-- Diagnostic Level Test (Placement Exam) -->
-  <url>
-    <loc>https://kaiwa.live/diagnostic</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://kaiwa.live/diagnostic?lang=uz" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://kaiwa.live/diagnostic?lang=ja" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://kaiwa.live/diagnostic" />
-  </url>
 
   <!-- 100% Free Open Educational Model / Pricing -->
   <url>

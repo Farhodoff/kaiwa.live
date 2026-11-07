@@ -13,7 +13,6 @@ Allow: /scenarios
 Allow: /flashcards
 Allow: /roadmap
 Allow: /monologue
-Allow: /diagnostic
 Allow: /pricing
 Allow: /llms.txt
 Disallow: /api/
@@ -32,7 +31,6 @@ Allow: /scenarios
 Allow: /flashcards
 Allow: /roadmap
 Allow: /monologue
-Allow: /diagnostic
 Allow: /pricing
 Allow: /llms.txt
 Disallow: /api/
@@ -47,7 +45,6 @@ Allow: /scenarios
 Allow: /flashcards
 Allow: /roadmap
 Allow: /monologue
-Allow: /diagnostic
 Allow: /pricing
 Allow: /llms.txt
 Disallow: /api/
@@ -62,7 +59,6 @@ Allow: /scenarios
 Allow: /flashcards
 Allow: /roadmap
 Allow: /monologue
-Allow: /diagnostic
 Allow: /pricing
 Allow: /llms.txt
 Disallow: /api/
@@ -77,7 +73,6 @@ Allow: /scenarios
 Allow: /flashcards
 Allow: /roadmap
 Allow: /monologue
-Allow: /diagnostic
 Allow: /pricing
 Allow: /llms.txt
 
@@ -90,7 +85,6 @@ Allow: /scenarios
 Allow: /flashcards
 Allow: /roadmap
 Allow: /monologue
-Allow: /diagnostic
 Allow: /pricing
 Allow: /llms.txt
 

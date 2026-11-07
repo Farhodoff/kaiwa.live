@@ -72,13 +72,9 @@ export const LearningPathEngine = {
     const skillAllocations = this.evalSkillAllocations(workingState, totalMinutes);
 
     // 5. Daily plan assembly
-    const todayPlan = this.evalTodayPlan(
-      workingState,
-      totalMinutes,
-      nextAction,
-      skillAllocations,
-      options,
-    );
+    const todayPlan = options?.skipDailyPlan
+      ? { totalMinutes: 0, activities: [] }
+      : this.evalTodayPlan(workingState, totalMinutes, nextAction, skillAllocations, options);
 
     // 6. Optional detailed sub-components
     const srsSummary = workingState.reviewSummary;

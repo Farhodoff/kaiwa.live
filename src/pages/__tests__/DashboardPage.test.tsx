@@ -122,7 +122,7 @@ describe('Phase 8.8 — Dashboard Page Render & UX Hardening Tests', () => {
   it('1. should render dashboard successfully with all main sections', async () => {
     await renderDashboard();
     expect(screen.getByText('Present Perfect practice')).toBeInTheDocument();
-    expect(screen.getByText('New Grammar Lesson')).toBeInTheDocument();
+    expect(screen.queryByText('New Grammar Lesson')).not.toBeInTheDocument();
     expect(screen.getByText('Level Progression Status')).toBeInTheDocument();
   });
 
@@ -164,53 +164,11 @@ describe('Phase 8.8 — Dashboard Page Render & UX Hardening Tests', () => {
     expect(getSpy).toHaveBeenCalledTimes(2);
   });
 
-  // 5. Empty plan
-  it('5. should gracefully bypass plan activities if activities list is empty', async () => {
-    const emptyState = {
-      ...mockEngineState,
-      todayPlan: { totalMinutes: 0, activities: [] },
-    };
-    vi.spyOn(LearningPathEngine, 'getLearningPathState').mockResolvedValue(emptyState as any);
-    await renderDashboard();
-    expect(screen.queryByText("Today's Adaptive Plan")).not.toBeInTheDocument();
-  });
-
-  // 6. Completed daily plan
-  it('6. should render completed status state when all activities are completed', async () => {
-    const completedState = {
-      ...mockEngineState,
-      todayPlan: {
-        totalMinutes: 30,
-        activities: mockEngineState.todayPlan.activities.map((a) => ({ ...a, isCompleted: true })),
-      },
-    };
-    vi.spyOn(LearningPathEngine, 'getLearningPathState').mockResolvedValue(completedState as any);
-    await renderDashboard();
-    expect(screen.getByText("Today's Plan Completed!")).toBeInTheDocument();
-  });
-
   // 7. Hero CTA render
   it('7. should render Next Best Action Hero card with proper titles and cta label', async () => {
     await renderDashboard();
     expect(screen.getByText('Continue lesson')).toBeInTheDocument();
     expect(screen.getByText('Hozirgi Eng Muhim Qadam')).toBeInTheDocument();
-  });
-
-  // 8. Daily activity render
-  it('8. should render correct step headers and title per plan activity', async () => {
-    await renderDashboard();
-    expect(screen.getByText('1-Qadam')).toBeInTheDocument();
-    expect(screen.getByText('2-Qadam')).toBeInTheDocument();
-    expect(screen.getByText('New Grammar Lesson')).toBeInTheDocument();
-    expect(screen.getByText('SRS Vocabulary')).toBeInTheDocument();
-  });
-
-  // 9. Activity route navigation
-  it('9. should link plan activities to correct router paths', async () => {
-    await renderDashboard();
-    const links = screen.getAllByRole('link');
-    const lessonLink = links.find((l) => l.getAttribute('href') === '/lesson/new-grammar');
-    expect(lessonLink).toBeDefined();
   });
 
   // 10. Progression render
@@ -263,7 +221,7 @@ describe('Phase 8.8 — Dashboard Page Render & UX Hardening Tests', () => {
   // 14. SRS activity rendering
   it('14. should render SRS card with expected labels and targets', async () => {
     await renderDashboard();
-    expect(screen.getByText('SRS Vocabulary')).toBeInTheDocument();
+    expect(screen.queryByText('SRS Vocabulary')).not.toBeInTheDocument();
   });
 
   // 15. Accessibility-critical attributes

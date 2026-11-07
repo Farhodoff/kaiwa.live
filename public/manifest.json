@@ -63,13 +63,6 @@
       "description": "Anki SM-2 aqlli takrorlash to'plamlari",
       "url": "/decks",
       "icons": [{ "src": "/pwa-192x192.png", "sizes": "192x192", "type": "image/png" }]
-    },
-    {
-      "name": "Focus Taymer",
-      "short_name": "Focus",
-      "description": "Pomodoro o'quv taymeri va statistikasi",
-      "url": "/focus",
-      "icons": [{ "src": "/pwa-192x192.png", "sizes": "192x192", "type": "image/png" }]
     }
   ]
 }

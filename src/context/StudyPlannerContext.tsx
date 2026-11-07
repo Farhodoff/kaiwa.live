@@ -41,7 +41,6 @@ import {
   DatabaseNote,
   DatabaseStudyNote,
   DatabaseWhiteboard,
-  DatabaseEvent,
   DatabaseProfile,
 } from '../types/supabase-types';
 import { isUuid } from '../utils/uuid';
@@ -269,7 +268,7 @@ export const StudyPlannerProvider: React.FC<{ children: React.ReactNode }> = ({ 
 
   // 5. Events Hook
   const { events, setEvents, googleEvents, addEvent, updateEvent, deleteEvent, syncGoogleEvents } =
-    useEvents(appSettings.notificationsEnabled);
+    useEvents(false);
 
   const fetchSeqRef = useRef<number>(0);
   const lastFetchTimeRef = useRef<number>(0);
@@ -522,7 +521,6 @@ export const StudyPlannerProvider: React.FC<{ children: React.ReactNode }> = ({ 
           sessionsSettled,
           studyNotesSettled,
           whiteboardsSettled,
-          eventsSettled,
           profileSettled,
           coachSessionsSettled,
           speakingSessionsSettled,
@@ -536,7 +534,6 @@ export const StudyPlannerProvider: React.FC<{ children: React.ReactNode }> = ({ 
             .from('whiteboards')
             .select('id, subject_id, user_id, title, updated_at')
             .eq('user_id', currentUser.id),
-          supabase.from('events').select('*').eq('user_id', currentUser.id),
           supabase.from('profiles').select('*').eq('id', currentUser.id).limit(1),
           supabase
             .from('speaking_coach_sessions')
@@ -565,7 +562,6 @@ export const StudyPlannerProvider: React.FC<{ children: React.ReactNode }> = ({ 
           studyNotesSettled.status === 'fulfilled' ? studyNotesSettled.value : null;
         const whiteboardsRes =
           whiteboardsSettled.status === 'fulfilled' ? whiteboardsSettled.value : null;
-        const eventsRes = eventsSettled.status === 'fulfilled' ? eventsSettled.value : null;
         const profileRes = profileSettled.status === 'fulfilled' ? profileSettled.value : null;
         const coachSessionsRes =
           coachSessionsSettled.status === 'fulfilled' ? coachSessionsSettled.value : null;
@@ -711,30 +707,6 @@ export const StudyPlannerProvider: React.FC<{ children: React.ReactNode }> = ({ 
         setWhiteboards(mergedWhiteboards);
         safeLocalStorage.setJSON(userWhiteboardsKey, mergedWhiteboards);
 
-        // Events sync
-        const userEventsKey = 'study_planner_events_cache_' + (currentUser?.id || 'guest');
-        const localEvents = safeLocalStorage.getJSON<Event[]>(userEventsKey, []);
-        const dbEvents = (eventsRes?.data || []).map((e: DatabaseEvent) => ({
-          id: e.id,
-          userId: e.user_id,
-          title: e.title,
-          description: e.description,
-          eventType: e.event_type,
-          eventDate: e.event_date,
-          notifyBeforeMinutes: e.notify_before_minutes,
-          isNotified: e.is_notified,
-          repetitionType: e.repetition_type,
-          repetitionEndDate: e.repetition_end_date,
-          repetitionDays: e.repetition_days,
-          googleEventId: e.google_event_id,
-          createdAt: e.created_at,
-          updatedAt: e.updated_at,
-        }));
-        const dbEventIds = new Set(dbEvents.map((e) => e.id));
-        const mergedEvents = [...dbEvents, ...localEvents.filter((e) => !dbEventIds.has(e.id))];
-        setEvents(mergedEvents);
-        safeLocalStorage.setJSON(userEventsKey, mergedEvents);
-
         // Combined Coach & Speaking Sessions sync
         const mergedCoachSessions: CoachSession[] = [];
         if (coachSessionsRes?.data && Array.isArray(coachSessionsRes.data)) {
@@ -860,7 +832,6 @@ export const StudyPlannerProvider: React.FC<{ children: React.ReactNode }> = ({ 
     setStudyNotes,
     setSessions,
     setWhiteboards,
-    setEvents,
     setCoachSessions,
     setGamificationState,
     syncGoogleEvents,

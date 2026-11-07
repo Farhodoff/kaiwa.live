@@ -301,6 +301,7 @@ export interface LearningPathOptions {
   customMinutes?: number;
   goalWeightingEnabled?: boolean;
   skipSrs?: boolean;
+  skipDailyPlan?: boolean;
   skipRemediation?: boolean;
 }
 

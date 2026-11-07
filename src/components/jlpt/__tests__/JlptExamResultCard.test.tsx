@@ -2,7 +2,6 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { JlptExamResultCard } from '../JlptExamResultCard';
 import { JlptScoreReport } from '../../../utils/jlptScoring';
-import { PersonalLearningPlanService } from '../../../services/PersonalLearningPlanService';
 
 const mockAddFlashcardsBatch = vi.fn();
 const mockUser = { id: 'test-user-123', email: 'test@example.com' };
@@ -256,15 +255,12 @@ describe('JlptExamResultCard', () => {
       accuracyPercentage: 67,
     };
 
-    const mockNavigateToPlan = vi.fn();
-
     render(
       <JlptExamResultCard
         report={{ ...sampleReport, jlptScoreReport: failedCutoffReport }}
         level="N1"
         onRetry={vi.fn()}
         onBackToHub={vi.fn()}
-        onNavigateToPlan={mockNavigateToPlan}
       />,
     );
 
@@ -275,10 +271,7 @@ describe('JlptExamResultCard', () => {
     expect(screen.getByText(/Diqqat \(Sectional Cutoff qoidasi\):/i)).toBeInTheDocument();
     expect(screen.getAllByText(/Tinglab tushunish \(Choukai\)/i)[0]).toBeInTheDocument();
 
-    // Weakness adjustment button triggers callback
-    const planBtn = screen.getByRole('button', { name: /Shaxsiy Rejani Moslashtirish/i });
-    fireEvent.click(planBtn);
-    expect(mockNavigateToPlan).toHaveBeenCalledTimes(1);
+    expect(screen.queryByRole('button', { name: /Shaxsiy Rejani Moslashtirish/i })).toBeNull();
   });
 
   it('renders listening dialog script in mistake view if present', () => {
@@ -436,22 +429,6 @@ describe('JlptExamResultCard', () => {
     expect(screen.getByText(/Zaif Bo'limlar Bo'yicha Maxsus Mashqlar/i)).toBeInTheDocument();
     expect(screen.getByText(/📖 JLPT N4 Dokkai: Matnlarni Tahlil Qilish/i)).toBeInTheDocument();
 
-    const injectSpy = vi
-      .spyOn(PersonalLearningPlanService, 'injectRemediationTasks')
-      .mockResolvedValue({
-        success: true,
-        addedCount: 1,
-        targetDays: ['dushanba'],
-      });
-
-    // Click "⚡ Shaxsiy Rejamga Biriktirish" button
-    const injectBtn = screen.getByText(/⚡ Shaxsiy Rejamga Biriktirish/i);
-    expect(injectBtn).toBeInTheDocument();
-    fireEvent.click(injectBtn);
-
-    await waitFor(() => {
-      expect(injectSpy).toHaveBeenCalledTimes(1);
-      expect(screen.getByText(/Rejangizga Biriktirildi!/i)).toBeInTheDocument();
-    });
+    expect(screen.queryByText(/Shaxsiy Rejamga Biriktirish/i)).toBeNull();
   });
 });

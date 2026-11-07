@@ -2,13 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Search,
-  CheckSquare,
-  Calendar,
   BookOpen,
   Copy,
   GraduationCap,
   Mic,
-  Clock,
   Settings,
   ArrowRight,
   X,
@@ -34,15 +31,6 @@ interface CommandItem {
 const COMMANDS: CommandItem[] = [
   // Boshqaruv
   {
-    id: 'plan',
-    title: "O'quv Rejasi & Roadmap 🎯",
-    description: "Shaxsiy o'rganish yo'l xaritasi",
-    category: 'Boshqaruv',
-    path: '/personal-plan',
-    icon: CheckSquare,
-    keywords: ['plan', 'maqsad', 'reja', 'roadmap'],
-  },
-  {
     id: 'progress',
     title: "O'quv Statistikasi & Progress 📊",
     description: 'Haftalik faoliyat, heatmap va tahlillar',
@@ -50,15 +38,6 @@ const COMMANDS: CommandItem[] = [
     path: '/progress',
     icon: BarChart3,
     keywords: ['progress', 'statistika', 'analitika', 'heatmap', 'grafik', 'tahlil'],
-  },
-  {
-    id: 'calendar',
-    title: "O'quv Kalendari",
-    description: 'Dars jadvali va voqealar',
-    category: 'Boshqaruv',
-    path: '/calendar',
-    icon: Calendar,
-    keywords: ['jadval', 'timetable', 'events', 'kun'],
   },
   {
     id: 'subjects',
@@ -129,15 +108,6 @@ const COMMANDS: CommandItem[] = [
   },
 
   // Fokus
-  {
-    id: 'focus',
-    title: 'Fokus Taymer (Pomodoro) ⏱️',
-    description: 'Diqqatni jamlash va tanaffus',
-    category: 'Fokus',
-    path: '/focus',
-    icon: Clock,
-    keywords: ['pomodoro', 'timer', 'vaqt', 'diqqat'],
-  },
   {
     id: 'study-room',
     title: "Jonli O'quv Xonasi (Study Room) 📚",
@@ -256,7 +226,7 @@ export const QuickCommandPalette: React.FC<QuickCommandPaletteProps> = ({ isOpen
                   setQuery(e.target.value);
                   setSelectedIndex(0);
                 }}
-                placeholder="Sahifa yoki qurol qidirish... (masalan: Fleshkartalar, Kanji, JLPT, Pomodoro)"
+                placeholder="Sahifa yoki qurol qidirish... (masalan: Fleshkartalar, Kanji, JLPT)"
                 className="w-full bg-transparent text-base text-foreground outline-none placeholder:text-muted-foreground"
               />
               {query && (

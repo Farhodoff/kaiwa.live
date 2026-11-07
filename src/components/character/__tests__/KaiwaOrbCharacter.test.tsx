@@ -1,7 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import { KaiwaOrbCharacter } from '../KaiwaOrbCharacter';
-import { KaiwaOrbShowcase } from '../KaiwaOrbShowcase';
 
 describe('KaiwaOrbCharacter Component', () => {
   beforeEach(() => {
@@ -100,36 +99,5 @@ describe('KaiwaOrbCharacter Component', () => {
       vi.advanceTimersByTime(100);
     });
     expect(screen.getByRole('img')).toBeDefined();
-  });
-});
-
-describe('KaiwaOrbShowcase Component', () => {
-  it('renders showcase header, character, and controls', () => {
-    render(<KaiwaOrbShowcase />);
-
-    expect(screen.getByText(/Yumshoq Gradient Sharcha & Jonli Ko'zlar/i)).toBeDefined();
-    expect(screen.getByRole('button', { name: 'Idle' })).toBeDefined();
-    expect(screen.getByRole('button', { name: 'Listening' })).toBeDefined();
-    expect(screen.getByRole('button', { name: 'Speaking' })).toBeDefined();
-  });
-
-  it('allows clicking Listening and Speaking buttons to switch active state', () => {
-    render(<KaiwaOrbShowcase />);
-
-    const listeningBtn = screen.getByRole('button', { name: /Listening/i });
-    fireEvent.click(listeningBtn);
-    expect(screen.getByText(/listening rejimida/i)).toBeDefined();
-
-    const speakingBtn = screen.getByRole('button', { name: /Speaking/i });
-    fireEvent.click(speakingBtn);
-    expect(screen.getByText(/speaking rejimida/i)).toBeDefined();
-  });
-
-  it('allows changing orb size in showcase', () => {
-    render(<KaiwaOrbShowcase />);
-
-    const size320Btn = screen.getByRole('button', { name: /320px/i });
-    fireEvent.click(size320Btn);
-    expect(size320Btn.className).toContain('font-bold');
   });
 });

@@ -37,6 +37,7 @@ export function clearTTSAudioCache(): void {
 }
 
 interface UseTTSOptions {
+  useAzure?: boolean;
   language: 'en' | 'ja';
   isLiveSessionRef?: React.MutableRefObject<boolean>;
   isProcessingRef?: React.MutableRefObject<boolean>;
@@ -373,6 +374,7 @@ export async function fetchTTSAudioBlob(text: string, lang: 'ja' | 'en'): Promis
 
 export const useTTS = ({
   language,
+  useAzure = false,
   onSpeakStart,
   onSpeakEnd,
   onSpeakError,
@@ -807,13 +809,14 @@ export const useTTS = ({
    */
   const playNetworkClause = useCallback(
     async (clause: string, isJa: boolean, playbackId: number): Promise<boolean> => {
-      if (activePlaybackIdRef.current !== playbackId || isCancelledRef.current) return false;
+      if (!useAzure || activePlaybackIdRef.current !== playbackId || isCancelledRef.current)
+        return false;
       const blob = await fetchTTSAudioBlob(clause, isJa ? 'ja' : 'en');
       if (activePlaybackIdRef.current !== playbackId || isCancelledRef.current || !blob)
         return false;
       return await playAudioBlob(blob, playbackId);
     },
-    [playAudioBlob],
+    [playAudioBlob, useAzure],
   );
 
   /**
@@ -1031,9 +1034,10 @@ export const useTTS = ({
 
       const chunks = splitIntoTTSChunks(textToPlay, 170);
       // Immediately prefetch audio blobs in parallel so upcoming sentences have 0ms delay
-      chunks.forEach((chunk) => {
-        fetchTTSAudioBlob(chunk, isJa ? 'ja' : 'en').catch(() => {});
-      });
+      if (useAzure)
+        chunks.forEach((chunk) => {
+          fetchTTSAudioBlob(chunk, isJa ? 'ja' : 'en').catch(() => {});
+        });
       streamQueueRef.current.push(...chunks);
 
       if (!isStreamingPlaybackActiveRef.current) {
@@ -1043,7 +1047,7 @@ export const useTTS = ({
         processStreamQueue();
       }
     },
-    [processStreamQueue],
+    [processStreamQueue, useAzure],
   );
 
   const endStreamPlayback = useCallback(() => {
@@ -1134,7 +1138,7 @@ export const useTTS = ({
         : (currentVoices || []).some((v) => v.lang.toLowerCase().startsWith('en'));
 
       // High-Quality Network Google TTS is ALWAYS used for Japanese to avoid 12s silent-hang and robotic audio
-      const useNetworkTTS = isJa || !synth || !hasLanguageVoice;
+      const useNetworkTTS = useAzure && (isJa || !synth || !hasLanguageVoice);
 
       onSpeakStartRef.current();
       startVolumeSimulation();
@@ -1188,7 +1192,7 @@ export const useTTS = ({
         onSpeechFinish(playbackSucceeded, playbackSucceeded ? undefined : 'Audio playback failed');
       }
     },
-    [stopSpeaking, playSingleClause, playAudioBlob, reportAudioFailure],
+    [stopSpeaking, playSingleClause, playAudioBlob, reportAudioFailure, useAzure],
   );
 
   return {

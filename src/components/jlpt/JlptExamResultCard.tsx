@@ -15,14 +15,11 @@ import {
   Headphones,
   CheckCircle2,
   Award,
-  Zap,
-  ArrowRight,
   ExternalLink,
 } from 'lucide-react';
 import { ExamDiagnosticReport, ExamQuestionAnswer } from '../../utils/ai/examEvaluator';
 import { JlptScoreReport } from '../../utils/jlptScoring';
 import { useStudyData } from '../../context/StudyPlannerContext';
-import { PersonalLearningPlanService } from '../../services/PersonalLearningPlanService';
 import { toast } from '../../hooks/use-toast';
 
 interface JlptExamResultCardProps {
@@ -32,7 +29,6 @@ interface JlptExamResultCardProps {
   jlptReport?: JlptScoreReport;
   onRetry: () => void;
   onBackToHub: () => void;
-  onNavigateToPlan?: () => void;
   onViewCertificate?: () => void;
 }
 
@@ -43,69 +39,12 @@ export const JlptExamResultCard: React.FC<JlptExamResultCardProps> = ({
   jlptReport: propJlptReport,
   onRetry,
   onBackToHub,
-  onNavigateToPlan,
   onViewCertificate,
 }) => {
-  const { user, addFlashcardsBatch } = useStudyData();
+  const { addFlashcardsBatch } = useStudyData();
   const [isExporting, setIsExporting] = useState(false);
   const [isExported, setIsExported] = useState(false);
   const [showAllMistakes, setShowAllMistakes] = useState(false);
-  const [isInjectingPlan, setIsInjectingPlan] = useState(false);
-  const [isInjectedPlan, setIsInjectedPlan] = useState(false);
-  const [injectedDays, setInjectedDays] = useState<string[]>([]);
-
-  const handleGoToPlan = () => {
-    if (onNavigateToPlan) {
-      onNavigateToPlan();
-    } else if (typeof window !== 'undefined') {
-      window.location.href = '/personal-plan';
-    }
-  };
-
-  const handleInjectToPersonalPlan = async () => {
-    const tasks = report.diagnosticAnalysis?.weeklyTasks || [];
-    if (tasks.length === 0) {
-      toast({
-        title: 'Tavsiyalar mavjud emas',
-        description: 'Ushbu imtihon uchun alohida zaiflik vazifalari aniqlanmadi.',
-      });
-      return;
-    }
-
-    setIsInjectingPlan(true);
-    try {
-      const activeUserId = user?.id || 'guest';
-      const result = await PersonalLearningPlanService.injectRemediationTasks(
-        activeUserId,
-        tasks,
-        level,
-      );
-
-      if (result.success) {
-        setIsInjectedPlan(true);
-        setInjectedDays(result.targetDays);
-        toast({
-          title: "🎯 Shaxsiy Rejaga Qo'shildi!",
-          description: `${result.addedCount} ta maxsus amaliy mashg'ulot haftalik o'rganish rejangizga biriktirildi.`,
-        });
-      } else {
-        toast({
-          title: 'Xatolik',
-          description: "Rejaga qo'shishda xatolik yuz berdi.",
-          variant: 'destructive',
-        });
-      }
-    } catch (err) {
-      console.error(err);
-      toast({
-        title: 'Xatolik',
-        description: "Rejaga qo'shishda kutilmagan xatolik yuz berdi.",
-        variant: 'destructive',
-      });
-    } finally {
-      setIsInjectingPlan(false);
-    }
-  };
 
   const jlptReport = propJlptReport || report.jlptScoreReport;
 
@@ -366,12 +305,6 @@ export const JlptExamResultCard: React.FC<JlptExamResultCardProps> = ({
                   </strong>
                 </span>
               </div>
-              <button
-                onClick={handleGoToPlan}
-                className="flex shrink-0 items-center gap-1.5 rounded-xl bg-primary px-3.5 py-1.5 text-xs font-bold text-primary-foreground shadow-xs transition-all hover:bg-primary/90"
-              >
-                <span>Shaxsiy Rejani Moslashtirish</span>
-              </button>
             </div>
           )}
         </div>
@@ -464,7 +397,7 @@ export const JlptExamResultCard: React.FC<JlptExamResultCardProps> = ({
         </div>
       )}
 
-      {/* Targeted Remediation & One-Click Plan Integration */}
+      {/* Targeted Remediation */}
       {report.diagnosticAnalysis?.remediations &&
         report.diagnosticAnalysis.remediations.length > 0 && (
           <div className="space-y-4 rounded-3xl border border-indigo-500/30 bg-gradient-to-br from-indigo-500/10 via-purple-500/5 to-card p-5 shadow-xs sm:p-6">
@@ -482,53 +415,7 @@ export const JlptExamResultCard: React.FC<JlptExamResultCardProps> = ({
                   </p>
                 </div>
               </div>
-
-              <button
-                onClick={handleInjectToPersonalPlan}
-                disabled={isInjectingPlan || isInjectedPlan}
-                className={`flex shrink-0 items-center justify-center gap-2 rounded-2xl px-4 py-2.5 text-xs font-black shadow-md transition-all ${
-                  isInjectedPlan
-                    ? 'cursor-default bg-emerald-600 text-white shadow-emerald-500/20'
-                    : 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-indigo-500/25 hover:scale-[1.02] active:scale-95'
-                }`}
-              >
-                {isInjectedPlan ? (
-                  <>
-                    <CheckCircle size={15} />
-                    <span>Rejangizga Biriktirildi!</span>
-                  </>
-                ) : (
-                  <>
-                    <Zap size={15} className="fill-current text-amber-300" />
-                    <span>
-                      {isInjectingPlan
-                        ? "Rejaga qo'shilmoqda..."
-                        : '⚡ Shaxsiy Rejamga Biriktirish'}
-                    </span>
-                  </>
-                )}
-              </button>
             </div>
-
-            {/* Injected banner */}
-            {isInjectedPlan && (
-              <div className="flex flex-col items-center justify-between gap-2 rounded-2xl border border-emerald-500/40 bg-emerald-500/10 p-3 text-xs text-emerald-700 dark:text-emerald-300 sm:flex-row">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 size={16} className="shrink-0 text-emerald-500" />
-                  <span>
-                    Vazifalar joriy haftalik rejangizga muvaffaqiyatli qo'shildi{' '}
-                    {injectedDays.length > 0 ? `(${injectedDays.join(', ')})` : ''}!
-                  </span>
-                </div>
-                <button
-                  onClick={handleGoToPlan}
-                  className="inline-flex items-center gap-1 font-bold underline hover:text-emerald-900 dark:hover:text-emerald-100"
-                >
-                  <span>Rejani ochish</span>
-                  <ArrowRight size={13} />
-                </button>
-              </div>
-            )}
 
             {/* Remediation Cards Grid */}
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">

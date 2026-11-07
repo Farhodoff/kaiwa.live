@@ -1,4 +1,4 @@
-import { Trophy, ArrowRight, Clock, Map, Sparkles, Loader2, PenTool } from 'lucide-react';
+import { Trophy, ArrowRight, Map, Sparkles, Loader2, PenTool } from 'lucide-react';
 import React, { useMemo, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useStudyData } from '../context/StudyPlannerContext';
@@ -8,12 +8,7 @@ import { LearningPathEngine } from '../services/LearningPathEngine';
 import { LearningOrchestrator } from '../services/LearningOrchestrator';
 import { LearningProgressionService } from '../services/LearningProgressionService';
 import { RoadmapService } from '../services/RoadmapService';
-import {
-  NextBestAction,
-  DailyLearningPlan,
-  ProgressionState,
-  LevelPromotionCandidate,
-} from '../types/learningPath';
+import { NextBestAction, ProgressionState, LevelPromotionCandidate } from '../types/learningPath';
 import { RoadmapSummary } from '../types/curriculum';
 import { LevelUpModal } from '../components/gamification/LevelUpModal';
 import { JlptReadinessService, UserSkillStats, JlptLevel } from '../services/JlptReadinessService';
@@ -41,9 +36,6 @@ const DashboardPage: React.FC = () => {
 
   const [nextAction, setNextAction] = useState<NextBestAction | null>(
     () => initialCached?.nextAction || null,
-  );
-  const [dailyPlan, setDailyPlan] = useState<DailyLearningPlan | null>(
-    () => initialCached?.dailyPlan || null,
   );
   const [progression, setProgression] = useState<ProgressionState | null>(
     () => initialCached?.progression || null,
@@ -89,22 +81,6 @@ const DashboardPage: React.FC = () => {
     return route;
   };
 
-  // Daily progress comes only from the JLPT adaptive plan.
-  // Calendar tasks live in Personal Plan / Calendar and are not counted here.
-  const todayPlanActivities = dailyPlan?.activities || [];
-  const totalDailyPlanCount = todayPlanActivities.length;
-  const completedDailyPlanCount = todayPlanActivities.filter(
-    (a) => a.isCompleted || a.status === 'completed',
-  ).length;
-  const pendingDailyPlanCount = totalDailyPlanCount - completedDailyPlanCount;
-
-  const totalTodayItems = totalDailyPlanCount;
-  const totalCompletedItems = completedDailyPlanCount;
-  const totalPendingItems = pendingDailyPlanCount;
-
-  const progressPercentage =
-    totalTodayItems > 0 ? Math.round((totalCompletedItems / totalTodayItems) * 100) : 0;
-
   const nowForDue = new Date();
   const srsDueCount = flashcards.filter(
     (c) => c.nextReviewDate && new Date(c.nextReviewDate) <= nowForDue,
@@ -149,21 +125,12 @@ const DashboardPage: React.FC = () => {
     return JlptReadinessService.calculateReadiness(stats, targetLvl);
   }, [flashcards, targetLevel, user?.id, lessonKanjiSummary]);
 
-  const greetingSubtitle = useMemo(() => {
-    if (totalTodayItems === 0) {
-      if (language === 'ja') return '今日の学習を始めましょう 🚀';
-      if (language === 'en') return "Ready to start today's study journey? 🚀";
-      return "Bugungi o'quv rejangizni boshlang 🚀";
-    }
-    if (totalPendingItems === 0) {
-      if (language === 'ja') return '素晴らしい！今日の学習はすべて完了しました 🎉';
-      if (language === 'en') return "Great job! All of today's tasks and lessons are completed 🎉";
-      return 'Ajoyib! Bugungi barcha dars va vazifalar bajarildi 🎉';
-    }
-    if (language === 'ja') return `今日は ${totalPendingItems} 件の学習アクティビティがあります`;
-    if (language === 'en') return `You have ${totalPendingItems} activities scheduled for today`;
-    return `Bugun sizda ${totalPendingItems} ta dars va vazifa rejalashtirilgan`;
-  }, [language, totalTodayItems, totalPendingItems]);
+  const greetingSubtitle =
+    language === 'ja'
+      ? '今日の学習を始めましょう 🚀'
+      : language === 'en'
+        ? "Ready to start today's study journey? 🚀"
+        : 'Bugungi mashg‘ulotni boshlang 🚀';
 
   const greeting = useMemo(() => {
     const hour = new Date().getHours();
@@ -258,7 +225,7 @@ const DashboardPage: React.FC = () => {
     setPromotionCandidate(null);
   };
 
-  // Load Next Best Action & Adaptive Daily Plan dynamically in background
+  // Load Next Best Action dynamically in background
   useEffect(() => {
     let isMounted = true;
     setLoadingState('loading');
@@ -269,18 +236,17 @@ const DashboardPage: React.FC = () => {
     // Background load of learning path state
     const pathPromise = LearningPathEngine.getLearningPathState(activeUserId, {
       forceLanguage: effectiveTrack,
+      skipDailyPlan: true,
       cachedFlashcards: flashcards,
       cachedSubjects: subjects,
     }).then(async (pathState) => {
       if (isMounted) {
         setNextAction(pathState.nextAction);
-        setDailyPlan(pathState.todayPlan);
         setProgression(pathState.progression);
 
         // Update cache for next instant load
         safeLocalStorage.setJSON(cachedStateKey, {
           nextAction: pathState.nextAction,
-          dailyPlan: pathState.todayPlan,
           progression: pathState.progression,
         });
 
@@ -338,13 +304,6 @@ const DashboardPage: React.FC = () => {
     retryTrigger,
     cachedStateKey,
   ]);
-
-  const isPlanCompleted = useMemo(() => {
-    if (!dailyPlan || !dailyPlan.activities || dailyPlan.activities.length === 0) return false;
-    return dailyPlan.activities.every(
-      (activity) => activity.isCompleted || activity.status === 'completed',
-    );
-  }, [dailyPlan]);
 
   const effectiveTargetLevel = useMemo(() => {
     return ['ZERO', 'N5', 'N4', 'N3', 'N2', 'N1'].includes(targetLevel?.toUpperCase())
@@ -443,46 +402,9 @@ const DashboardPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Progress Card — single today fraction */}
-          <div
-            className="glass-card flex items-center gap-4 rounded-2xl border-border p-3 px-5"
-            title={
-              language === 'ja'
-                ? '今日のプランとタスクの完了数'
-                : 'Bugungi reja va vazifalar: bajarilgan / jami'
-            }
-          >
-            <div className="rounded-xl bg-primary/10 p-3 text-primary">
-              <Trophy size={24} />
-            </div>
-            <div>
-              <div className="mb-1 flex items-end justify-between">
-                <span className="text-sm font-medium text-muted-foreground">
-                  {language === 'en' ? 'Today' : 'Bugun'}
-                </span>
-                <span className="ml-4 text-sm font-bold text-foreground">
-                  {totalCompletedItems}/{totalTodayItems} • {progressPercentage}%
-                </span>
-              </div>
-              <div className="h-2 w-32 overflow-hidden rounded-full bg-secondary">
-                <div
-                  className="h-full rounded-full bg-primary transition-all duration-1000 ease-out"
-                  style={{ width: `${progressPercentage}%` }}
-                />
-              </div>
-              <div className="mt-1 text-[10px] leading-none text-muted-foreground">
-                {language === 'ja'
-                  ? 'プラン＋タスク'
-                  : language === 'en'
-                    ? 'plan + tasks'
-                    : 'reja + vazifalar'}
-              </div>
-            </div>
-          </div>
-
           {/* JLPT Readiness Mini Card */}
           <Link
-            to="/personal-plan"
+            to="/jlpt"
             className="glass-card group flex items-center gap-3 rounded-2xl border border-rose-500/30 bg-rose-500/5 p-2.5 px-4 shadow-xs transition-all hover:border-rose-500/60 hover:bg-rose-500/10"
             title={
               language === 'ja'
@@ -669,11 +591,6 @@ const DashboardPage: React.FC = () => {
             <span>🧠</span> SRS: <strong className="text-foreground">{srsDueCount}</strong>{' '}
             {language === 'ja' ? '件' : 'ta'}
           </span>
-          {dailyPlan && (
-            <span className="inline-flex items-center gap-1 rounded-xl border border-border/80 bg-background/60 px-2.5 py-1 text-muted-foreground">
-              <Clock size={13} className="text-amber-500" /> {dailyPlan.totalMinutes} daq
-            </span>
-          )}
         </div>
         <Link
           to="/progress"
@@ -685,119 +602,6 @@ const DashboardPage: React.FC = () => {
       </div>
 
       {/* Daily quests live in Progress > Achievements; Dashboard keeps only Streak header */}
-
-      {/* Today's Adaptive Daily Plan */}
-      {dailyPlan && dailyPlan.activities && dailyPlan.activities.length > 0 && (
-        <div className="glass-card space-y-4 rounded-3xl border border-border p-6 shadow-sm md:p-7">
-          <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
-            <div className="flex items-center gap-2.5">
-              <span className="rounded-2xl bg-primary/10 p-2.5 text-primary">
-                <Clock size={20} />
-              </span>
-              <div>
-                <h3 className="flex items-center gap-2 text-base font-bold text-foreground duration-300 animate-in fade-in">
-                  {language === 'ja'
-                    ? 'きょうの がくしゅうプラン'
-                    : language === 'en'
-                      ? "Today's Adaptive Plan"
-                      : 'Bugungi Adaptiv Reja'}
-                  <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-bold text-primary">
-                    ⏱️ {dailyPlan.totalMinutes}{' '}
-                    {language === 'ja' ? 'ふん' : language === 'en' ? 'mins' : 'daqiqa'}
-                  </span>
-                </h3>
-                <p className="text-xs text-muted-foreground">
-                  {dailyPlan.summary?.reason ||
-                    (language === 'ja'
-                      ? 'きょうの あなた専用 がくしゅうプラン'
-                      : language === 'en'
-                        ? 'Your customized route for today.'
-                        : "Bugungi moslashtirilgan o'quv rejangiz.")}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {isPlanCompleted ? (
-            <div className="space-y-3 rounded-2xl border border-green-500/30 bg-green-500/10 p-8 text-center">
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-green-500/20 text-xl font-bold text-green-600 dark:text-green-400">
-                🎉
-              </div>
-              <h4 className="text-base font-bold text-green-700 dark:text-green-400">
-                {language === 'ja'
-                  ? 'きょうの プランを かんりょうしました！'
-                  : language === 'en'
-                    ? "Today's Plan Completed!"
-                    : 'Bugungi reja bajarildi!'}
-              </h4>
-              <p className="mx-auto max-w-md text-xs text-green-600 dark:text-green-500">
-                {language === 'ja'
-                  ? 'きょうの レッスンと ふくしゅうは すべて おわりました。あしたの プランも じどうで さくせいされます。'
-                  : language === 'en'
-                    ? "All scheduled tasks for today have been completed. Tomorrow's customized plan will be automatically generated."
-                    : 'Bugun uchun rejalashtirilgan barcha dars va takrorlashlar yakunlandi. Ertangi reja avtomatik tayyorlanadi.'}
-              </p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 gap-3 pt-1 sm:grid-cols-2 lg:grid-cols-3">
-              {dailyPlan.activities.map((item, idx) => (
-                <Link
-                  key={item.id || idx}
-                  to={resolveDashboardRoute(item.route)}
-                  className={`group relative flex flex-col justify-between gap-3 overflow-hidden rounded-2xl border p-4 transition-all ${
-                    item.isCompleted || item.status === 'completed'
-                      ? 'border-green-500/20 bg-green-500/5 opacity-70 hover:opacity-90'
-                      : 'border-border/50 bg-secondary/30 hover:border-primary/40 hover:bg-secondary/60'
-                  }`}
-                  aria-label={`Step ${idx + 1}: ${item.title}, ${item.estimatedMinutes} minutes, ${
-                    item.isCompleted || item.status === 'completed' ? 'Completed' : 'Pending'
-                  }`}
-                >
-                  <div className="space-y-1.5">
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="rounded-md border border-border bg-card px-2 py-0.5 text-xs font-black uppercase tracking-wider text-muted-foreground">
-                        {idx + 1}-{language === 'ja' ? 'ステップ' : 'Qadam'}
-                      </span>
-                      {item.isCompleted || item.status === 'completed' ? (
-                        <span className="flex items-center gap-1 text-xs font-bold text-green-600">
-                          ✓{' '}
-                          {language === 'ja'
-                            ? 'かんりょう'
-                            : language === 'en'
-                              ? 'Done'
-                              : 'Bajarildi'}
-                        </span>
-                      ) : (
-                        <span className="flex items-center gap-1 text-xs font-bold text-primary">
-                          <Clock size={12} /> {item.estimatedMinutes}{' '}
-                          {language === 'ja' ? 'ふん' : language === 'en' ? 'min' : 'daq'}
-                        </span>
-                      )}
-                    </div>
-                    <h4 className="line-clamp-1 text-sm font-bold text-foreground transition-colors group-hover:text-primary">
-                      {item.title}
-                    </h4>
-                    <p className="line-clamp-2 text-xs leading-snug text-muted-foreground">
-                      {typeof item.reason === 'string'
-                        ? item.reason
-                        : item.reason?.description || item.reason?.message || ''}
-                    </p>
-                  </div>
-                  <div className="flex items-center justify-end gap-1 pt-1 text-xs font-bold text-primary">
-                    <span>
-                      {language === 'ja' ? 'スタート' : language === 'en' ? 'Start' : 'Boshlash'}
-                    </span>
-                    <ArrowRight
-                      size={14}
-                      className="transition-transform group-hover:translate-x-1"
-                    />
-                  </div>
-                </Link>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
 
       {/* Learning map teaser — full details live in Roadmap & Progress */}
       {roadmapSummary && (
@@ -1034,29 +838,6 @@ const DashboardPage: React.FC = () => {
           )}
         </div>
       )}
-
-      {/* Quick navigation to Personal Plan and Calendar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border/70 bg-card/60 p-3.5 px-4 text-xs">
-        <span className="text-muted-foreground">
-          {language === 'ja'
-            ? '個人プランとカレンダーで自由な学習管理'
-            : 'Shaxsiy reja va kalendar bilan mustaqil rejalashtirish'}
-        </span>
-        <div className="flex shrink-0 items-center gap-2">
-          <Link
-            to="/personal-plan"
-            className="rounded-xl border border-border bg-secondary/60 px-3 py-1.5 text-xs font-semibold text-foreground transition-all hover:border-primary/40 hover:text-primary"
-          >
-            {language === 'ja' ? '個人プラン' : 'Shaxsiy reja'}
-          </Link>
-          <Link
-            to="/calendar"
-            className="rounded-xl border border-border bg-secondary/60 px-3 py-1.5 text-xs font-semibold text-foreground transition-all hover:border-primary/40 hover:text-primary"
-          >
-            {language === 'ja' ? 'カレンダー' : 'Kalendar'}
-          </Link>
-        </div>
-      </div>
     </div>
   );
 };
