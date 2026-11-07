@@ -1,4 +1,4 @@
-import { supabase } from '../lib/supabase';
+import { supabase, supabaseAnonKey } from '../lib/supabase';
 import { purgeOversizedCookies } from '../lib/consoleFilter';
 
 export interface AzurePronunciationWord {
@@ -40,8 +40,6 @@ export interface AzureContinuousRecognizerController {
 let lastConnectionError: string | null = null;
 let cachedSpeechToken: AzureSpeechToken | null = null;
 let tokenFetchPromise: Promise<AzureSpeechToken | null> | null = null;
-
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
 
 async function getClientAuthToken(): Promise<string> {
   try {

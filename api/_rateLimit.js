@@ -1,3 +1,5 @@
+import { LOCAL_QUOTA_REQUEST } from './_quota.js';
+
 /**
  * Distributed Rate Limiter for Vercel Serverless & Edge Runtime.
  * 
@@ -50,6 +52,13 @@ export async function checkRateLimit(req, userId = null, customMaxLimit = null) 
     customMaxLimit !== null
       ? (userId ? customMaxLimit : Math.max(2, Math.floor(customMaxLimit / 2)))
       : (userId ? MAX_REQUESTS_PER_WINDOW : Math.floor(MAX_REQUESTS_PER_WINDOW / 2));
+
+  if (req?.[LOCAL_QUOTA_REQUEST] === true) {
+    const route = req.url?.split('?')[0] || '/api/unknown';
+    const store = userId ? localUserStore : localIpStore;
+    const key = `local:${route}:${userId || clientIp}`;
+    return { ...checkLocalFallback(store, key, maxLimit), isDistributed: false };
+  }
 
   // 1. If Upstash Redis is configured, execute atomic distributed INCR + EXPIRE
   if (redisUrl && redisToken) {

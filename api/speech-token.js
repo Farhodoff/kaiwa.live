@@ -103,11 +103,11 @@ export default async function handler(req) {
         'Ocp-Apim-Subscription-Key': azureKey,
         'Content-Length': '0',
       },
+      signal: AbortSignal.timeout(15000),
     });
 
     if (!stsResponse.ok) {
-      const errText = await stsResponse.text().catch(() => '');
-      console.error('[speech-token] Azure STS failed:', stsResponse.status, errText);
+      console.error('[speech-token] Azure STS failed:', stsResponse.status);
       return jsonResponse(req, {
         error: 'Bad Gateway',
         message: 'Azure Speech tokenini olishda xatolik yuz berdi.',
@@ -126,8 +126,8 @@ export default async function handler(req) {
     }, 200, {
       'X-Speech-Provider': 'azure',
     });
-  } catch (err) {
-    console.error('[speech-token] Unexpected error:', err);
+  } catch {
+    console.error('[speech-token] Unexpected upstream failure');
     return jsonResponse(req, {
       error: 'Internal Server Error',
       message: 'Azure Speech xizmatiga ulanishda kutilmagan xatolik yuz berdi.',

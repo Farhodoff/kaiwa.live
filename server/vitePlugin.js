@@ -4,6 +4,7 @@
  * trying to reach Supabase directly (which may be blocked by adblockers/VPN).
  */
 import { loadEnv } from 'vite';
+import { LOCAL_QUOTA_REQUEST } from '../api/_quota.js';
 import { createClient } from '@supabase/supabase-js';
 
 
@@ -35,17 +36,16 @@ export function telegramApiPlugin() {
 
       if (!serviceRole) {
         console.error('⚠️  SERVICE_ROLE not found in .env — Telegram API routes will not work');
-        return;
       }
 
-      const supabase = createClient(supabaseUrl, serviceRole);
+      const supabase = serviceRole ? createClient(supabaseUrl, serviceRole) : null;
       if (env.DEEPSEEK_API_KEY) {
         process.env.DEEPSEEK_API_KEY = env.DEEPSEEK_API_KEY;
       }
       for (const name of ['AZURE_OPENAI_API_KEY','AZURE_OPENAI_ENDPOINT','AZURE_OPENAI_DEPLOYMENT','AZURE_SPEECH_KEY','AZURE_SPEECH_REGION','VITE_SUPABASE_URL','VITE_SUPABASE_ANON_KEY']) {
         if (env[name]) process.env[name] = env[name];
       }
-      console.log('✅ Telegram API plugin loaded (SERVICE_ROLE found)');
+      console.log('Local API routes loaded');
 
       server.middlewares.use(async (req, res, next) => {
         const url = new URL(req.url, `http://${req.headers.host}`);
@@ -82,6 +82,7 @@ export function telegramApiPlugin() {
             headers,
             ...(['GET', 'HEAD'].includes(req.method) ? {} : { body: Buffer.concat(chunks) }),
           });
+          request[LOCAL_QUOTA_REQUEST] = true;
           const response = await handler(request);
           res.statusCode = response.status;
           response.headers.forEach((value, key) => res.setHeader(key, value));
@@ -266,15 +267,14 @@ export function telegramApiPlugin() {
               get headersSent() { return res.headersSent; },
               end: () => res.end(),
             };
-            // This header is created only by the local Vite proxy. It lets the
-            // quota guard distinguish a real local coaching session from
-            // production traffic and from unit-test request objects.
             return await deepseekHandler(
               {
                 ...req,
                 body: payload,
                 method: req.method,
-                headers: { ...req.headers, 'x-kaiwa-local-dev': 'true' },
+                url: pathname,
+                headers: req.headers,
+                [LOCAL_QUOTA_REQUEST]: true,
               },
               mockRes,
             );
@@ -381,6 +381,13 @@ export function telegramApiPlugin() {
 
         if (!url.pathname.startsWith('/api/telegram')) {
           return next();
+        }
+
+        if (!supabase) {
+          res.statusCode = 503;
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({ error: 'Telegram service is not configured' }));
+          return;
         }
 
         if (req.method !== 'POST') {

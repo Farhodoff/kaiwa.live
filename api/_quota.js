@@ -3,13 +3,14 @@
  * Enforces per-user and per-guest daily limits to prevent cost explosion and token draining.
  */
 
-const MAX_REQUEST_SIZE_BYTES = 25 * 1024; // 25 KB max request body size
+export const MAX_REQUEST_SIZE_BYTES = 25 * 1024; // 25 KB max request body size
 const DEFAULT_DAILY_QUOTA_GUEST = 5; // 5 AI requests per day for unauthenticated guest IP
 const DEFAULT_DAILY_QUOTA_FREE = 35; // 35 AI requests per day for standard logged-in users
 const DEFAULT_DAILY_QUOTA_ADMIN = 500; // 500 AI requests per day for admin/power users
 
 // In-memory fallback for daily quota (keyed by user ID or guest IP)
 const localDailyQuotaStore = new Map();
+export const LOCAL_QUOTA_REQUEST = Symbol.for('kaiwa.localQuotaRequest');
 
 function getTodayKey() {
   const now = new Date();
@@ -42,12 +43,7 @@ export async function checkDailyQuota(userId, userRole = 'user', bodyString = ''
   const isAdmin = userRole === 'admin' || userRole === 'superadmin';
   const isGuest = !userId;
 
-  // Never rely on a process-wide development flag: Vitest may load the Vite
-  // plugin in the same process. The header is added exclusively by our local
-  // Vite middleware immediately before it invokes an API handler.
-  const isLocalDevelopment =
-    req?.headers?.['x-kaiwa-local-dev'] === 'true' ||
-    req?.headers?.get?.('x-kaiwa-local-dev') === 'true';
+  const isLocalDevelopment = req?.[LOCAL_QUOTA_REQUEST] === true;
   const maxQuota = isAdmin
     ? DEFAULT_DAILY_QUOTA_ADMIN
     // Local Vite testing has no durable quota store. Give guests the same
@@ -67,7 +63,7 @@ export async function checkDailyQuota(userId, userRole = 'user', bodyString = ''
   const quotaKey = `quota:ai:${targetIdentifier}:${todayStr}`;
 
   // 1. If Redis is available, check and increment atomic daily count
-  if (redisUrl && redisToken) {
+  if (!isLocalDevelopment && redisUrl && redisToken) {
     try {
       const response = await fetch(`${redisUrl}/pipeline`, {
         method: 'POST',
@@ -106,7 +102,7 @@ export async function checkDailyQuota(userId, userRole = 'user', bodyString = ''
   }
 
   // 2. In-memory fallback
-  const memoryKey = `${targetIdentifier}:${todayStr}`;
+  const memoryKey = `${isLocalDevelopment ? 'local:' : ''}${targetIdentifier}:${todayStr}`;
   const currentCount = (localDailyQuotaStore.get(memoryKey) || 0) + 1;
   localDailyQuotaStore.set(memoryKey, currentCount);
 

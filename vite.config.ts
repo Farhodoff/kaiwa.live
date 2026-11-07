@@ -53,7 +53,9 @@ function versionGeneratorPlugin() {
 export default defineConfig(({ mode }) => {
   const isProd = mode === 'production';
   const localEnv = loadEnv(mode, process.cwd(), '');
-  const localSupabaseUrl = localEnv.VITE_SUPABASE_URL || 'https://qmuimxnknxwarvnkpnlo.supabase.co';
+  const localSupabaseUrl =
+    (localEnv.VITE_SUPABASE_URL || localEnv.NEXT_PUBLIC_SUPABASE_URL)?.trim() ||
+    'https://qmuimxnknxwarvnkpnlo.supabase.co';
   return {
     define: {
       __APP_BUILD_TIMESTAMP__: buildTimestamp,
