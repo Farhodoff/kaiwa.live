@@ -1,3 +1,5 @@
+// UI role checks are advisory only for UI rendering & navigation.
+// Server-side RLS and RPC policies are authoritative and strictly enforced in Supabase.
 export const SUPER_ADMIN_EMAIL = 'fsoyilov@gmail.com';
 
 export const SUPER_ADMIN_EMAILS = ['fsoyilov@gmail.com'];
@@ -66,7 +68,7 @@ export const isAdminEmail = (email?: string | null, role?: string | null): boole
 export const isUserAdmin = (user?: any): boolean => {
   if (!user) return false;
   const rawRole = user.role === 'authenticated' ? undefined : user.role;
-  const role = rawRole || user.user_metadata?.role || user.app_metadata?.role;
+  const role = rawRole || user.app_metadata?.role || user.user_metadata?.role;
   return isAdminEmail(user.email, role);
 };
 

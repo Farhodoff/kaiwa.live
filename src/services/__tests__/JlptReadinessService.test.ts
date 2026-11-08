@@ -150,4 +150,41 @@ describe('JlptReadinessService', () => {
     expect(penalisedReport.unresolvedMistakesCount).toBe(8);
     expect(penalisedReport.actionableRecommendation.uz).toContain('Xatolar daftarchangizda');
   });
+
+  it('labels missing reading and listening evidence instead of presenting it as measured', () => {
+    const report = JlptReadinessService.calculateReadiness(
+      {
+        vocabCount: 800,
+        kanjiCount: 100,
+        grammarMasteredCount: 40,
+        listeningCompletedCount: 0,
+        speakingSessionsCount: 10,
+      },
+      'N5',
+    );
+    expect(report.sections.dokkai.evidenceState).toBe('estimated');
+    expect(report.sections.choukai.evidenceState).toBe('insufficient_data');
+    expect(report.sections.choukai.score).toBe(0);
+    expect(report.readinessConfidence).toBe(0);
+    expect(report.evidenceSummary.join(' ')).toContain('Speaking is tracked separately');
+  });
+
+  it('marks completed reading and listening assessments as measured', () => {
+    const report = JlptReadinessService.calculateReadiness(
+      {
+        vocabCount: 800,
+        kanjiCount: 100,
+        grammarMasteredCount: 40,
+        readingCompletedCount: 8,
+        readingAccuracy: 80,
+        listeningCompletedCount: 10,
+        listeningAccuracy: 80,
+        speakingSessionsCount: 0,
+      },
+      'N5',
+    );
+    expect(report.sections.dokkai.evidenceState).toBe('measured');
+    expect(report.sections.choukai.evidenceState).toBe('measured');
+    expect(report.readinessConfidence).toBe(100);
+  });
 });

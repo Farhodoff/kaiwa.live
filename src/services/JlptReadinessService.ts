@@ -99,6 +99,8 @@ export interface SkillPillarScore {
   currentCount: number;
   targetCount: number;
   status: 'beginner' | 'developing' | 'proficient' | 'mastered';
+  evidenceState: 'measured' | 'estimated' | 'insufficient_data';
+  evidenceNote: string;
 }
 
 export interface SectionalScoreEstimate {
@@ -107,6 +109,8 @@ export interface SectionalScoreEstimate {
   maxScore: number; // 60
   floor: number; // 19
   isAtRisk: boolean; // score < 19
+  evidenceState: 'measured' | 'estimated' | 'insufficient_data';
+  evidenceNote: string;
 }
 
 export interface JlptReadinessReport {
@@ -130,6 +134,8 @@ export interface JlptReadinessReport {
   weakestPillar: SkillPillarScore;
   actionableRecommendation: { uz: string; ja: string; en: string };
   unresolvedMistakesCount: number;
+  readinessConfidence: number; // 0-100. Completeness of direct assessment evidence.
+  evidenceSummary: string[];
 }
 
 export class JlptReadinessService {
@@ -173,12 +179,23 @@ export class JlptReadinessService {
       ? Math.min(100, Math.round(readingRatio * readingAcc * 100))
       : Math.round(grammarScore * 0.6 + vocabScore * 0.4);
     const readingScore = Math.max(0, rawReadingScore - mistakePenalty('reading'));
+    const readingEvidenceState: SkillPillarScore['evidenceState'] = hasRealReading
+      ? 'measured'
+      : stats.grammarMasteredCount > 0 || stats.vocabCount > 0
+        ? 'estimated'
+        : 'insufficient_data';
 
     // Listening (Choukai)
-    const listeningRatio = Math.min(1.2, stats.listeningCompletedCount / benchmark.listeningTarget);
-    const listeningAcc = (stats.listeningAccuracy ?? 75) / 100;
+    const hasRealListening = stats.listeningCompletedCount > 0;
+    const listeningRatio = hasRealListening
+      ? Math.min(1.2, stats.listeningCompletedCount / benchmark.listeningTarget)
+      : 0;
+    const listeningAcc = hasRealListening ? (stats.listeningAccuracy ?? 75) / 100 : 0;
     const rawListeningScore = Math.min(100, Math.round(listeningRatio * listeningAcc * 100));
     const listeningScore = Math.max(0, rawListeningScore - mistakePenalty('listening'));
+    const listeningEvidenceState: SkillPillarScore['evidenceState'] = hasRealListening
+      ? 'measured'
+      : 'insufficient_data';
 
     // Speaking / Pronunciation (Kaiwa / Pitch)
     const speakingRatio = Math.min(1.2, stats.speakingSessionsCount / benchmark.speakingTarget);
@@ -205,6 +222,8 @@ export class JlptReadinessService {
         currentCount: stats.vocabCount,
         targetCount: benchmark.vocabTarget,
         status: getStatus(vocabScore),
+        evidenceState: 'measured',
+        evidenceNote: 'Vocabulary progress and retention',
       },
       {
         key: 'kanji',
@@ -214,6 +233,8 @@ export class JlptReadinessService {
         currentCount: stats.lessonKanjiMasteredCount ?? stats.kanjiCount,
         targetCount: stats.lessonKanjiTotalCount ?? benchmark.kanjiTarget,
         status: getStatus(kanjiScore),
+        evidenceState: 'measured',
+        evidenceNote: 'Kanji progress',
       },
       {
         key: 'grammar',
@@ -223,6 +244,8 @@ export class JlptReadinessService {
         currentCount: stats.grammarMasteredCount,
         targetCount: benchmark.grammarTarget,
         status: getStatus(grammarScore),
+        evidenceState: 'measured',
+        evidenceNote: 'Grammar progress',
       },
       {
         key: 'listening',
@@ -232,6 +255,10 @@ export class JlptReadinessService {
         currentCount: stats.listeningCompletedCount,
         targetCount: benchmark.listeningTarget,
         status: getStatus(listeningScore),
+        evidenceState: listeningEvidenceState,
+        evidenceNote: hasRealListening
+          ? 'Completed listening assessments'
+          : 'No scored listening assessment yet',
       },
       {
         key: 'speaking',
@@ -241,6 +268,8 @@ export class JlptReadinessService {
         currentCount: stats.speakingSessionsCount,
         targetCount: benchmark.speakingTarget,
         status: getStatus(speakingScore),
+        evidenceState: stats.speakingSessionsCount > 0 ? 'measured' : 'insufficient_data',
+        evidenceNote: 'Speaking practice only. Not used as listening evidence.',
       },
     ];
 
@@ -254,6 +283,8 @@ export class JlptReadinessService {
         currentCount: stats.vocabCount + stats.kanjiCount,
         targetCount: benchmark.vocabTarget + benchmark.kanjiTarget,
         status: getStatus(mojiGoiScore),
+        evidenceState: 'measured',
+        evidenceNote: 'Vocabulary and kanji progress',
       },
       {
         key: 'grammar',
@@ -263,6 +294,8 @@ export class JlptReadinessService {
         currentCount: stats.grammarMasteredCount,
         targetCount: benchmark.grammarTarget,
         status: getStatus(grammarScore),
+        evidenceState: 'measured',
+        evidenceNote: 'Grammar progress',
       },
       {
         key: 'reading',
@@ -272,6 +305,10 @@ export class JlptReadinessService {
         currentCount: stats.readingCompletedCount ?? 0,
         targetCount: benchmark.readingTarget,
         status: getStatus(readingScore),
+        evidenceState: readingEvidenceState,
+        evidenceNote: hasRealReading
+          ? 'Completed reading assessments'
+          : 'Estimated from vocabulary and grammar progress',
       },
       {
         key: 'listening',
@@ -281,6 +318,10 @@ export class JlptReadinessService {
         currentCount: stats.listeningCompletedCount,
         targetCount: benchmark.listeningTarget,
         status: getStatus(listeningScore),
+        evidenceState: listeningEvidenceState,
+        evidenceNote: hasRealListening
+          ? 'Completed listening assessments'
+          : 'No scored listening assessment yet',
       },
     ];
 
@@ -307,10 +348,7 @@ export class JlptReadinessService {
       : Math.min(60, Math.round(((grammarScore * 0.6 + vocabScore * 0.4) / 100) * 60));
 
     // Section 3: Listening (Choukai) = Listening (80%) + Speaking/Pitch (20%)
-    const choukaiScore = Math.min(
-      60,
-      Math.round(((listeningScore * 0.8 + speakingScore * 0.2) / 100) * 60),
-    );
+    const choukaiScore = Math.min(60, Math.round((listeningScore / 100) * 60));
 
     const gengoSection: SectionalScoreEstimate = {
       name: {
@@ -322,6 +360,8 @@ export class JlptReadinessService {
       maxScore: 60,
       floor: benchmark.sectionalFloor,
       isAtRisk: gengoChishikiScore < benchmark.sectionalFloor,
+      evidenceState: 'measured',
+      evidenceNote: 'Vocabulary, kanji and grammar progress',
     };
 
     const dokkaiSection: SectionalScoreEstimate = {
@@ -330,6 +370,10 @@ export class JlptReadinessService {
       maxScore: 60,
       floor: benchmark.sectionalFloor,
       isAtRisk: dokkaiScore < benchmark.sectionalFloor,
+      evidenceState: readingEvidenceState,
+      evidenceNote: hasRealReading
+        ? 'Reading assessment data'
+        : 'Estimated from vocabulary and grammar progress',
     };
 
     const choukaiSection: SectionalScoreEstimate = {
@@ -338,6 +382,10 @@ export class JlptReadinessService {
       maxScore: 60,
       floor: benchmark.sectionalFloor,
       isAtRisk: choukaiScore < benchmark.sectionalFloor,
+      evidenceState: listeningEvidenceState,
+      evidenceNote: hasRealListening
+        ? 'Listening assessment data'
+        : 'No scored listening assessment yet',
     };
 
     const hasSectionalFailureRisk =
@@ -398,6 +446,16 @@ export class JlptReadinessService {
       (stats.mistakesByCategory
         ? Object.values(stats.mistakesByCategory).reduce((acc, n) => acc + (n || 0), 0)
         : 0);
+
+    const evidenceStates = [readingEvidenceState, listeningEvidenceState];
+    const readinessConfidence = Math.round(
+      (evidenceStates.filter((state) => state === 'measured').length / evidenceStates.length) * 100,
+    );
+    const evidenceSummary = [
+      `Reading: ${readingEvidenceState.replace('_', ' ')}`,
+      `Listening: ${listeningEvidenceState.replace('_', ' ')}`,
+      'Speaking is tracked separately and is not listening evidence.',
+    ];
 
     // 6. Actionable Recommendation
     let actionableRecommendation = {
@@ -461,6 +519,8 @@ export class JlptReadinessService {
       weakestPillar,
       actionableRecommendation,
       unresolvedMistakesCount,
+      readinessConfidence,
+      evidenceSummary,
     };
   }
 }

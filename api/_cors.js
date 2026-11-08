@@ -1,59 +1,74 @@
-/**
- * Centralized CORS & Origin Protection Utility
- * Restricts cross-origin requests to trusted kaiwa.live domains, Telegram WebApp, and local dev.
- */
-
-const ALLOWED_ORIGIN_PATTERNS = [
-  /^https:\/\/(www\.)?kaiwa\.live$/,
-  /^https:\/\/[a-zA-Z0-9_-]+\.vercel\.app$/,
-  /^https:\/\/(web\.)?telegram\.org$/,
-  /^capacitor:\/\/localhost$/,
-  /^http:\/\/localhost(:\d+)?$/,
-  /^http:\/\/127\.0\.0\.1(:\d+)?$/,
-];
+const LOCAL_ORIGIN = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
+const STATIC_ALLOWED = new Set([
+  'https://kaiwa.live',
+  'https://www.kaiwa.live',
+  'https://web.telegram.org',
+  'capacitor://localhost',
+]);
 
 export function isAllowedOrigin(origin) {
   if (!origin || typeof origin !== 'string') return false;
-  const cleanOrigin = origin.trim();
-  return ALLOWED_ORIGIN_PATTERNS.some((pattern) => pattern.test(cleanOrigin));
+  const clean = origin.trim();
+
+  // 1. Static trusted production origins
+  if (STATIC_ALLOWED.has(clean)) return true;
+
+  // 2. Localhost origins (permitted in development or test, blocked if VERCEL_ENV is preview/production)
+  if (LOCAL_ORIGIN.test(clean)) {
+    if (process.env.VERCEL_ENV && process.env.VERCEL_ENV !== 'development') {
+      return false;
+    }
+    return (
+      process.env.NODE_ENV === 'development' ||
+      process.env.NODE_ENV === 'test' ||
+      !process.env.VERCEL_ENV
+    );
+  }
+
+  // 3. Explicitly configured ALLOWED_ORIGINS environment variable
+  const envAllowed = (process.env.ALLOWED_ORIGINS || '')
+    .split(',')
+    .map((entry) => entry.trim())
+    .filter(Boolean);
+  if (envAllowed.includes(clean)) return true;
+
+  // 4. Project-specific Vercel preview deployments (e.g. https://kaiwa-preview-123.vercel.app)
+  // Rejects arbitrary untrusted *.vercel.app subdomains while permitting kaiwa-* deployments.
+  if (/^https:\/\/kaiwa(-[a-zA-Z0-9_-]+)?\.vercel\.app$/.test(clean)) {
+    if (process.env.VERCEL_ENV === 'preview' && envAllowed.length > 0) {
+      return envAllowed.includes(clean);
+    }
+    return true;
+  }
+
+  return false;
 }
 
 export function extractOrigin(req) {
-  if (!req) return '';
-  if (typeof req.headers?.get === 'function') {
-    return req.headers.get('origin') || req.headers.get('Origin') || '';
-  }
-  if (req.headers) {
-    return req.headers['origin'] || req.headers['Origin'] || '';
-  }
-  return '';
+  if (typeof req?.headers?.get === 'function') return req.headers.get('origin') || '';
+  return req?.headers?.origin || req?.headers?.Origin || '';
 }
 
-export function setCorsHeaders(req, resOrHeaders) {
+export function setCorsHeaders(req, target) {
   const origin = extractOrigin(req);
-  const allowOrigin = isAllowedOrigin(origin) ? origin : 'https://kaiwa.live';
-
-  if (!resOrHeaders) return allowOrigin;
-
-  if (typeof resOrHeaders.setHeader === 'function') {
-    // Node.js Serverless (Vercel Node runtime)
-    resOrHeaders.setHeader('Access-Control-Allow-Origin', allowOrigin);
-    resOrHeaders.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    resOrHeaders.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, apikey');
-    resOrHeaders.setHeader('Vary', 'Origin');
-  } else if (typeof resOrHeaders.set === 'function') {
-    // Fetch Headers object (Edge runtime)
-    resOrHeaders.set('Access-Control-Allow-Origin', allowOrigin);
-    resOrHeaders.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    resOrHeaders.set('Access-Control-Allow-Headers', 'Content-Type, Authorization, apikey');
-    resOrHeaders.set('Vary', 'Origin');
-  } else if (typeof resOrHeaders === 'object') {
-    // Plain object headers dictionary
-    resOrHeaders['Access-Control-Allow-Origin'] = allowOrigin;
-    resOrHeaders['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS';
-    resOrHeaders['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, apikey';
-    resOrHeaders['Vary'] = 'Origin';
+  const allowed = isAllowedOrigin(origin);
+  if (!target) return allowed ? origin : undefined;
+  const set =
+    typeof target.setHeader === 'function'
+      ? target.setHeader.bind(target)
+      : typeof target.set === 'function'
+        ? target.set.bind(target)
+        : (name, value) => {
+            target[name] = value;
+          };
+  const vary = target.getHeader?.('Vary') ?? target.get?.('Vary') ?? target.Vary;
+  if (!String(vary ?? '').split(',').some((value) => /^(origin|\*)$/i.test(value.trim()))) {
+    set('Vary', vary ? `${vary}, Origin` : 'Origin');
   }
-
-  return allowOrigin;
+  if (!allowed) return undefined;
+  set('Access-Control-Allow-Origin', origin);
+  set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  set('Access-Control-Allow-Headers', 'Content-Type, Authorization, apikey');
+  return origin;
 }
+

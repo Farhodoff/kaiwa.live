@@ -7,7 +7,7 @@ import {
 } from '../../services/AzureSpeechService';
 
 vi.mock('../../services/AzureSpeechService', () => ({
-  AzureSpeechService: { createContinuousRecognizer: vi.fn() },
+  AzureSpeechService: { createContinuousRecognizer: vi.fn(), getAuthState: vi.fn() },
 }));
 
 describe('Coach speech recognition provider integration', () => {
@@ -15,6 +15,7 @@ describe('Coach speech recognition provider integration', () => {
   let controller: AzureContinuousRecognizerController;
   beforeEach(() => {
     vi.clearAllMocks();
+    vi.mocked(AzureSpeechService.getAuthState).mockReturnValue('authenticated');
     controller = {
       start: vi.fn().mockResolvedValue(undefined),
       stop: vi.fn().mockResolvedValue(undefined),
@@ -100,6 +101,21 @@ describe('Coach speech recognition provider integration', () => {
       expect(provider).toHaveBeenLastCalledWith('browser', expect.any(String)),
     );
     recognition.abort();
+  });
+
+  it('closes an active recognizer on session expiry without switching providers', async () => {
+    const provider = vi.fn();
+    const recognition = new CoachSpeechRecognition(provider);
+    recognition.onstart = vi.fn();
+    recognition.onerror = vi.fn();
+    recognition.start();
+    await vi.waitFor(() => expect(recognition.onstart).toHaveBeenCalledOnce());
+
+    vi.mocked(AzureSpeechService.getAuthState).mockReturnValue('session_expired');
+    options.onError?.('fixture');
+    expect(controller.close).toHaveBeenCalledOnce();
+    expect(recognition.onerror).toHaveBeenCalledWith({ error: 'session-expired' });
+    expect(provider.mock.calls.map(([name]) => name)).not.toContain('browser');
   });
 
   it('reports unavailable without a restart loop when neither provider works', async () => {

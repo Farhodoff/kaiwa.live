@@ -1,3 +1,5 @@
+import { SPEECH_SESSION_EXPIRED } from '../services/AzureSpeechService';
+import AuthService from '../services/AuthService';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
@@ -537,6 +539,15 @@ const SpeakingCoachPage: React.FC = () => {
               <X size={16} />
             </button>
           </div>
+          {error === SPEECH_SESSION_EXPIRED && (
+            <button
+              type="button"
+              onClick={() => void AuthService.signOut()}
+              className="mt-2 min-h-10 rounded-lg bg-rose-600 px-3 font-semibold text-white"
+            >
+              Qayta kirish
+            </button>
+          )}
           {replyError && (
             <button
               type="button"
@@ -619,7 +630,9 @@ const SpeakingCoachPage: React.FC = () => {
                   aria-live="polite"
                   className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-950/60 px-4 py-1.5 text-xs font-medium backdrop-blur"
                 >
-                  {isMuted ? (
+                  {error === SPEECH_SESSION_EXPIRED ? (
+                    <span className="text-rose-300">Mikrofon to‘xtatildi</span>
+                  ) : isMuted ? (
                     <span className="flex items-center gap-2 text-slate-300">
                       <MicOff size={14} />
                       Mikrofon pauzada

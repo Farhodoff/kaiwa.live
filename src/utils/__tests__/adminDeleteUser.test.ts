@@ -8,7 +8,15 @@ const mocks = vi.hoisted(() => ({
   deleteUser: vi.fn(),
   profile: vi.fn(),
 }));
-vi.mock('../../../api/_auth.js', () => ({ verifyAuth: mocks.verify }));
+vi.mock('../../../api/_auth.js', () => ({
+  verifyAuth: mocks.verify,
+  hasDatabaseRole: vi.fn(async (_userId, roles) => {
+    const verified = await mocks.verify();
+    return Boolean(
+      verified?.user?.app_metadata?.role && roles.includes(verified.user.app_metadata.role),
+    );
+  }),
+}));
 vi.mock('../../../api/_cors.js', () => ({ setCorsHeaders: vi.fn() }));
 vi.mock('@supabase/supabase-js', () => ({
   createClient: () => ({

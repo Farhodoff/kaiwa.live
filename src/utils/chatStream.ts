@@ -1,5 +1,4 @@
 import { supabase, supabaseAnonKey } from '../lib/supabase';
-import { purgeOversizedCookies } from '../lib/consoleFilter';
 import { AIServiceError } from './aiServiceError';
 
 export const streamChatTokens = async (
@@ -9,8 +8,6 @@ export const streamChatTokens = async (
   signal?: AbortSignal,
   gateway = '/api/deepseek',
 ): Promise<string> => {
-  purgeOversizedCookies();
-
   const anonKey = supabaseAnonKey;
   let bearerToken = anonKey;
   try {

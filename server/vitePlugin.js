@@ -1,3 +1,4 @@
+import { setCorsHeaders } from '../api/_cors.js';
 /**
  * Vite plugin that adds server-side API middleware for Telegram operations.
  * Routes /api/telegram/* requests to the local API handler instead of the browser
@@ -42,7 +43,7 @@ export function telegramApiPlugin() {
       if (env.DEEPSEEK_API_KEY) {
         process.env.DEEPSEEK_API_KEY = env.DEEPSEEK_API_KEY;
       }
-      for (const name of ['AZURE_OPENAI_API_KEY','AZURE_OPENAI_ENDPOINT','AZURE_OPENAI_DEPLOYMENT','AZURE_SPEECH_KEY','AZURE_SPEECH_REGION','VITE_SUPABASE_URL','VITE_SUPABASE_ANON_KEY']) {
+      for (const name of ['AZURE_OPENAI_API_KEY','AZURE_OPENAI_ENDPOINT','AZURE_OPENAI_DEPLOYMENT','AZURE_SPEECH_KEY','AZURE_SPEECH_REGION','VITE_SUPABASE_URL','VITE_SUPABASE_ANON_KEY','ALLOWED_ORIGINS']) {
         if (env[name]) process.env[name] = env[name];
       }
       console.log('Local API routes loaded');
@@ -53,12 +54,9 @@ export function telegramApiPlugin() {
 
         // Handle CORS preflight for all /api/
         if (pathname.startsWith('/api/')) {
-          res.setHeader('Access-Control-Allow-Origin', '*');
-          res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-          res.setHeader(
-            'Access-Control-Allow-Headers',
-            'Content-Type, Authorization, X-Kaiwa-Live-Key',
-          );
+          if (setCorsHeaders(req, res)) {
+            res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, apikey, X-Kaiwa-Live-Key');
+          }
           if (req.method === 'OPTIONS') {
             res.statusCode = 204;
             res.end();

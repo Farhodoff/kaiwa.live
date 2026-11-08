@@ -1,9 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
-import { verifyAuth } from '../_auth.js';
+import { hasDatabaseRole, verifyAuth } from '../_auth.js';
 import { setCorsHeaders } from '../_cors.js';
-
-const protectedEmails = new Set(['fsoyilov@gmail.com', 'admin@kaiwa.live']);
-const role = (user) => user.app_metadata?.role;
 
 export default async function handler(req, res) {
   setCorsHeaders(req, res);
@@ -13,10 +10,7 @@ export default async function handler(req, res) {
 
   const { user } = await verifyAuth(req);
   if (!user) return res.status(401).json({ error: 'Kirish sessiyasi talab qilinadi.' });
-  if (
-    role(user) !== 'superadmin' &&
-    !(user.email_confirmed_at && user.email?.toLowerCase() === 'fsoyilov@gmail.com')
-  ) {
+  if (!(await hasDatabaseRole(user.id, ['superadmin']))) {
     return res.status(403).json({ error: 'Super admin ruxsati talab qilinadi.' });
   }
 
@@ -45,14 +39,10 @@ export default async function handler(req, res) {
         .status(error?.status === 404 ? 404 : 502)
         .json({ error: 'Hisobni tekshirib bo‘lmadi.' });
     }
-    const target = data.user;
     const profile = await client.from('profiles').select('role').eq('id', userId).maybeSingle();
     if (profile.error) return res.status(502).json({ error: 'Hisob rolini tekshirib bo‘lmadi.' });
     if (
-      protectedEmails.has(target.email?.toLowerCase()) ||
-      [role(target), profile.data?.role].some(
-        (value) => value === 'admin' || value === 'superadmin',
-      )
+      ['admin', 'superadmin'].includes(profile.data?.role)
     ) {
       return res.status(403).json({ error: 'Admin hisobini bu yerda o‘chirib bo‘lmaydi.' });
     }

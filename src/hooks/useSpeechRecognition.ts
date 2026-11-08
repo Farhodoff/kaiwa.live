@@ -1,3 +1,4 @@
+import { SPEECH_SESSION_EXPIRED } from '../services/AzureSpeechService';
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { playConversationChime } from '../utils/audioChime';
 import { CoachSpeechRecognition, CoachSpeechProvider } from '../utils/coachSpeechRecognition';
@@ -556,7 +557,13 @@ export const useSpeechRecognition = ({
         )
       )
         fatalErrorRef.current = true;
-      if (event.error === 'service-unavailable') {
+      if (event.error === 'session-expired') {
+        fatalErrorRef.current = true;
+        setError(SPEECH_SESSION_EXPIRED);
+        setIsListening(false);
+        stopVolumeMeter();
+        stopMicrophoneStream();
+      } else if (event.error === 'service-unavailable') {
         setError(
           'Azure nutqni tanish xizmati bilan bog‘lanib bo‘lmadi. Qayta urinib ko‘ring yoki Chrome brauzerida oching.',
         );

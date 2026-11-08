@@ -1,3 +1,4 @@
+import { setCorsHeaders } from '../_cors.js';
 import { createClient } from '@supabase/supabase-js';
 import { getRandomBattleQuestion } from './battle-questions.js';
 
@@ -31,8 +32,7 @@ export async function sendGroupPoll(chatId, question, options, correctOptionId, 
 }
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  setCorsHeaders(req, res);
 
   if (req.method === 'OPTIONS') {
     return res.status(204).end();

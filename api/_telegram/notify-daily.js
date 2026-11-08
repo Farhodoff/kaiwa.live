@@ -1,3 +1,4 @@
+import { setCorsHeaders } from '../_cors.js';
 import { createClient } from '@supabase/supabase-js';
 import { getDailyKanji, getDailyVocab } from './daily-content.js';
 
@@ -34,9 +35,7 @@ async function sendTelegramMessage(chatId, text, replyMarkup = null) {
 }
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, x-cron-secret');
+  setCorsHeaders(req, res);
 
   if (req.method === 'OPTIONS') {
     return res.status(204).end();

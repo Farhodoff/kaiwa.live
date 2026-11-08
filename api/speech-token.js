@@ -48,15 +48,15 @@ export default async function handler(req) {
   let userRole = 'user';
 
   if (token === SUPABASE_ANON_KEY) {
-    authenticatedUserId = null;
-    userRole = 'user';
+    if (new URL(req.url).searchParams.get('mode') !== 'guest') {
+      return jsonResponse(req, { error: 'Unauthorized' }, 401);
+    }
   } else {
     const { user, error: authError } = await verifyAuth(req);
     if (authError || !user) {
       return jsonResponse(req, {
         error: 'Unauthorized',
         message: "Yaroqsiz yoki muddati o'tgan autentifikatsiya sessiyasi.",
-        details: authError,
       }, 401);
     }
     authenticatedUserId = user.id;

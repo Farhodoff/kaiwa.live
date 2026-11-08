@@ -77,14 +77,10 @@ serve(async (req: Request) => {
       }
       const { data: profile } = await supabase
         .from('profiles')
-        .select('role, email')
+        .select('role')
         .eq('id', user.id)
         .maybeSingle();
-      const isAdmin =
-        profile &&
-        (profile.role === 'admin' ||
-          profile.role === 'superadmin' ||
-          profile.email === 'fsoyilov@gmail.com');
+      const isAdmin = profile && (profile.role === 'admin' || profile.role === 'superadmin');
       if (!isAdmin) {
         return new Response(JSON.stringify({ error: 'Forbidden: admin only' }), {
           status: 403,

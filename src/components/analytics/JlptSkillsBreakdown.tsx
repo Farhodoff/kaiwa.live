@@ -141,6 +141,21 @@ export const JlptSkillsBreakdown: React.FC<JlptSkillsBreakdownProps> = ({
                     {pillar.currentCount} / {pillar.targetCount}
                   </span>
                 </div>
+                {pillar.evidenceState !== 'measured' && (
+                  <p className="mt-1 text-[10px] font-semibold text-amber-600 dark:text-amber-400">
+                    {pillar.evidenceState === 'estimated'
+                      ? language === 'ja'
+                        ? '推定値'
+                        : language === 'en'
+                          ? 'Estimated from related practice'
+                          : "Bog'liq mashqlardan taxmin"
+                      : language === 'ja'
+                        ? '評価データ不足'
+                        : language === 'en'
+                          ? 'Insufficient assessment data'
+                          : 'Baholash maʼlumoti yetarli emas'}
+                  </p>
+                )}
 
                 <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-muted">
                   <div
