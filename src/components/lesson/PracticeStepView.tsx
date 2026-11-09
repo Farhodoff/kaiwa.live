@@ -7,12 +7,14 @@ import {
   Sparkles,
   ChevronRight,
   Headphones,
+  Mic,
 } from 'lucide-react';
 import { PracticeExercise } from '../../types/lesson';
 import { FuriganaText, FuriganaMode } from '../jlpt/FuriganaText';
 import { LessonAudioPlayer } from './LessonAudioPlayer';
 import { SentenceOrderingQuestion } from '../jlpt/SentenceOrderingQuestion';
 import { useTTS } from '../../hooks/useTTS';
+import { ShadowingTrainerModal, ShadowingTarget } from '../speaking/ShadowingTrainerModal';
 
 interface PracticeStepViewProps {
   instructions: string;
@@ -42,6 +44,7 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
   const [furiganaMode, setFuriganaMode] = useState<FuriganaMode>('hover');
   const [audioError, setAudioError] = useState('');
   const [speaking, setSpeaking] = useState(false);
+  const [shadowingTarget, setShadowingTarget] = useState<ShadowingTarget | null>(null);
   const autoAdvanceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { speakText, stopSpeaking, unlockAudio, isPreparingAudio } = useTTS({
     language: 'ja',
@@ -387,44 +390,63 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
                 : 'Savol matni:'}
             </span>
 
-            {/* Furigana Mode Pills */}
-            <div className="flex items-center rounded-lg border border-border/60 bg-muted/40 p-0.5 text-xs font-medium">
+            <div className="flex items-center gap-1.5">
               <button
                 type="button"
-                onClick={() => setFuriganaMode('always')}
-                className={`rounded-md px-2 py-0.5 text-[11px] font-bold transition-all ${
-                  furiganaMode === 'always'
-                    ? 'bg-background text-foreground shadow-xs'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-                title="Barcha furiganani ko'rsatish"
+                onClick={() =>
+                  setShadowingTarget({
+                    id: currentExercise.id,
+                    japanese: currentExercise.prompt,
+                    uzbek: currentExercise.explanation,
+                    audioUrl: currentExercise.audioUrl,
+                  })
+                }
+                className="flex items-center gap-1 rounded-lg border border-border/60 bg-muted/40 px-2 py-0.5 text-[11px] font-bold text-muted-foreground transition-all hover:bg-primary/15 hover:text-primary"
+                title="Shadowing: Gapni eshitib qaytarish va talaffuzni tekshirish"
               >
-                振 ON
+                <Mic size={11} />
+                <span>Shadowing</span>
               </button>
-              <button
-                type="button"
-                onClick={() => setFuriganaMode('hover')}
-                className={`rounded-md px-2 py-0.5 text-[11px] font-bold transition-all ${
-                  furiganaMode === 'hover'
-                    ? 'bg-background text-foreground shadow-xs'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-                title="Faqat ustiga borganda ko'rsatish"
-              >
-                👁️ Hover
-              </button>
-              <button
-                type="button"
-                onClick={() => setFuriganaMode('never')}
-                className={`rounded-md px-2 py-0.5 text-[11px] font-bold transition-all ${
-                  furiganaMode === 'never'
-                    ? 'bg-background text-foreground shadow-xs'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-                title="Furiganani yashirish"
-              >
-                🚫 OFF
-              </button>
+
+              {/* Furigana Mode Pills */}
+              <div className="flex items-center rounded-lg border border-border/60 bg-muted/40 p-0.5 text-xs font-medium">
+                <button
+                  type="button"
+                  onClick={() => setFuriganaMode('always')}
+                  className={`rounded-md px-2 py-0.5 text-[11px] font-bold transition-all ${
+                    furiganaMode === 'always'
+                      ? 'bg-background text-foreground shadow-xs'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                  title="Barcha furiganani ko'rsatish"
+                >
+                  振 ON
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setFuriganaMode('hover')}
+                  className={`rounded-md px-2 py-0.5 text-[11px] font-bold transition-all ${
+                    furiganaMode === 'hover'
+                      ? 'bg-background text-foreground shadow-xs'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                  title="Faqat ustiga borganda ko'rsatish"
+                >
+                  👁️ Hover
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setFuriganaMode('never')}
+                  className={`rounded-md px-2 py-0.5 text-[11px] font-bold transition-all ${
+                    furiganaMode === 'never'
+                      ? 'bg-background text-foreground shadow-xs'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                  title="Furiganani yashirish"
+                >
+                  🚫 OFF
+                </button>
+              </div>
             </div>
           </div>
 
@@ -688,6 +710,26 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
                     <FuriganaText text={ex.explanation} mode={furiganaMode} />
                   </div>
                 )}
+
+                {/* Shadowing Practice Action */}
+                <div className="flex items-center justify-end gap-2 pt-1">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setShadowingTarget({
+                        id: `review-${ex.id || idx}`,
+                        japanese: ex.prompt,
+                        uzbek: ex.explanation,
+                        audioUrl: ex.audioUrl,
+                      })
+                    }
+                    className="flex items-center gap-1.5 rounded-xl bg-secondary/80 px-3 py-1.5 text-xs font-semibold text-muted-foreground transition-all hover:bg-primary/15 hover:text-primary"
+                    title="Ushbu gapni eshitib qaytarish va talaffuzni tekshirish"
+                  >
+                    <Mic size={13} />
+                    <span>Shadowing Mashqi</span>
+                  </button>
+                </div>
               </div>
             );
           })}
@@ -716,6 +758,13 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
           </button>
         )}
       </div>
+
+      {/* Interactive Shadowing Modal */}
+      <ShadowingTrainerModal
+        isOpen={!!shadowingTarget}
+        onClose={() => setShadowingTarget(null)}
+        target={shadowingTarget}
+      />
     </div>
   );
 };

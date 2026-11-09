@@ -17,9 +17,11 @@ import {
   Clock,
   User,
   Bot,
+  Mic,
 } from 'lucide-react';
 import { SpeakingSessionItem } from '../../services/HistoryService';
 import { speakJapaneseText, speakText, stopAllAudio } from '../../utils/audioTts';
+import { ShadowingTrainerModal, ShadowingTarget } from './ShadowingTrainerModal';
 
 export interface ConversationReviewModalProps {
   isOpen: boolean;
@@ -61,6 +63,9 @@ export const ConversationReviewModal: React.FC<ConversationReviewModalProps> = (
   const [playingTurnId, setPlayingTurnId] = useState<string | null>(null);
   const [copiedTurnId, setCopiedTurnId] = useState<string | null>(null);
   const [shadowingTurn, setShadowingTurn] = useState<ParsedTurn | null>(null);
+  const [activeShadowModalTarget, setActiveShadowModalTarget] = useState<ShadowingTarget | null>(
+    null,
+  );
 
   // Parse turns from session transcript (supports JSON array or plain text)
   const parsedTurns: ParsedTurn[] = useMemo(() => {
@@ -175,7 +180,12 @@ export const ConversationReviewModal: React.FC<ConversationReviewModalProps> = (
 
   const handleShadowTurn = (turn: ParsedTurn) => {
     setShadowingTurn(turn);
-    handlePlayAudio(turn);
+    setActiveShadowModalTarget({
+      id: turn.id,
+      japanese: turn.text,
+      romaji: turn.romaji,
+      uzbek: turn.translation,
+    });
   };
 
   const formattedDate = new Date(session.createdAt).toLocaleDateString('uz-UZ', {
@@ -312,6 +322,21 @@ export const ConversationReviewModal: React.FC<ConversationReviewModalProps> = (
                         title="Tinglash"
                       >
                         <Volume2 size={16} />
+                      </button>
+                      <button
+                        onClick={() =>
+                          setActiveShadowModalTarget({
+                            id: shadowingTurn.id,
+                            japanese: shadowingTurn.text,
+                            romaji: shadowingTurn.romaji,
+                            uzbek: shadowingTurn.translation,
+                          })
+                        }
+                        className="rounded-xl bg-primary p-2 text-primary-foreground shadow-md transition-all hover:bg-primary/90 active:scale-95"
+                        title="Talaffuzni qaytarib mashq qilish (Shadowing)"
+                        aria-label="Mikrofonda gapirish"
+                      >
+                        <Mic size={16} />
                       </button>
                       <button
                         onClick={() => setShadowingTurn(null)}
@@ -632,6 +657,13 @@ export const ConversationReviewModal: React.FC<ConversationReviewModalProps> = (
           </button>
         </div>
       </div>
+
+      {/* Interactive Shadowing & Pronunciation Evaluation Modal */}
+      <ShadowingTrainerModal
+        isOpen={!!activeShadowModalTarget}
+        onClose={() => setActiveShadowModalTarget(null)}
+        target={activeShadowModalTarget}
+      />
     </div>
   );
 };
