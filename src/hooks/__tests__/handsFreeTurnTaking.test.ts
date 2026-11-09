@@ -109,6 +109,13 @@ describe('Speaking Coach Hands-Free 5-Turn Real-Time Simulation', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    vi.spyOn(console, 'warn').mockImplementation(() => {});
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+    vi.spyOn(console, 'log').mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
   });
 
   it('runs 5 alternating voice turns without acoustic interruption and saves history upon completion', async () => {

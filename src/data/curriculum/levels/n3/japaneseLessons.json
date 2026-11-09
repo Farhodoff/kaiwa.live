@@ -234,8 +234,8 @@
               "options": [
                 "先生[せんせい]に 褒[ほ]められました。",
                 "部長[ぶちょう]に 叱[しか]られました。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現"
+                "先生[せんせい]に 努力[どりょく]を 褒[ほ]められました。",
+                "母[はは]に 部屋[へや]が 汚[きたな]いと 叱[しか]られました。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Majhul nisbat (Ukemi) va yapon tiliga xos \"zararlangan/noqulaylik his qilgan majhul\" shakli.」に基づきます。"
@@ -262,8 +262,8 @@
               "options": [
                 "先生[せんせい]に 褒[ほ]められました。",
                 "部長[ぶちょう]に 叱[しか]られました。",
-                "文脈と無関係な文",
-                "意味の異なる文"
+                "先生[せんせい]に 努力[どりょく]を 褒[ほ]められました。",
+                "母[はは]に 部屋[へや]が 汚[きたな]いと 叱[しか]られました。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Passive Voice (受身形): Direct & Suffering Passive (迷惑の受身)」を使い、提示された文脈に合う文を選びます。"
@@ -276,8 +276,8 @@
               "options": [
                 "Ustoz tomonidan maqtaldim.",
                 "Bo'lim boshlig'idan dakki yedim.",
-                "本文にない情報である",
-                "反対の内容である"
+                "Oʻqituvchi tomonidan harakatim maqtovga sazovor boʻldi.",
+                "Xonam iflosligi sababli onam meni koyidilar."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Majhul nisbat (Ukemi) va yapon tiliga xos \"zararlangan/noqulaylik his qilgan majhul\" shakli.」を照合します。"
@@ -609,9 +609,9 @@
               "prompt": "文法ドリル: Causative Voice (使役形): 〜(さ)せる (Make / Let someone do) の用法を選んでください。 [ja-n3-u1-l2]",
               "options": [
                 "子供[こども]を 塾[じゅく]へ 行[い]かせます。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "子供[こども]に ピアノを 習[なら]わせています。",
+                "後輩[こうはい]に 重[おも]い 荷物[にもつ]を 運[はこ]ばせました。",
+                "生徒[せいと]全員[ぜんいん]を 発表会[はっぴょうかい]に 参加[さんか]させます。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Orttirma nisbat (Shieki): birovni qilishga majburlash yoki ruxsat berish.」に基づきます。"
@@ -637,9 +637,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Orttirma nisbat (Shieki): birovni qilishga majburlash yoki ruxsat berish. [ja-n3-u1-l2]",
               "options": [
                 "子供[こども]を 塾[じゅく]へ 行[い]かせます。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "子供[こども]に ピアノを 習[なら]わせています。",
+                "後輩[こうはい]に 重[おも]い 荷物[にもつ]を 運[はこ]ばせました。",
+                "生徒[せいと]全員[ぜんいん]を 発表会[はっぴょうかい]に 参加[さんか]させます。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Causative Voice (使役形): 〜(さ)せる (Make / Let someone do)」を使い、提示された文脈に合う文を選びます。"
@@ -651,9 +651,9 @@
               "prompt": "読解応用: 子供[こども]を 塾[じゅく]へ 行[い]かせます。 この文脈から正しく読み取れる内容はどれですか。 [ja-n3-u1-l2]",
               "options": [
                 "Bolani o'quv markaziga yuboraman.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Farzandimga pianino oʻrgatyapman.",
+                "Kichik hamkasbimga ogʻir yukni tashitdim.",
+                "Barcha oʻquvchilarni taqdimotga qatnashtiraman."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Orttirma nisbat (Shieki): birovni qilishga majburlash yoki ruxsat berish.」を照合します。"
@@ -994,9 +994,9 @@
               "prompt": "文法ドリル: Causative-Passive Voice (使役受身形): 〜(さ)せられる (Forced to do) の用法を選んでください。 [ja-n3-u1-l3]",
               "options": [
                 "先生[せんせい]に 日本語[にほんご]を 勉強[べんきょう]させられました。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "カラオケで 先輩[せんぱい]に 歌[うた]わせられました。",
+                "病院[びょういん]で 2時間[にじかん]も 待[ま]たせられました。",
+                "部活[ぶかつ]の 練習[れんしゅう]で 何度[なんど]も 走[はし]らせられました。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Majburan qildirildi: xohlamasa ham biror ishni qilishga majbur bo'lish (Shieki-Ukemi).」に基づきます。"
@@ -1022,9 +1022,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Majburan qildirildi: xohlamasa ham biror ishni qilishga majbur bo'lish (Shieki-Ukemi). [ja-n3-u1-l3]",
               "options": [
                 "先生[せんせい]に 日本語[にほんご]を 勉強[べんきょう]させられました。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "カラオケで 先輩[せんぱい]に 歌[うた]わせられました。",
+                "病院[びょういん]で 2時間[にじかん]も 待[ま]たせられました。",
+                "部活[ぶかつ]の 練習[れんしゅう]で 何度[なんど]も 走[はし]らせられました。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Causative-Passive Voice (使役受身形): 〜(さ)せられる (Forced to do)」を使い、提示された文脈に合う文を選びます。"
@@ -1036,9 +1036,9 @@
               "prompt": "読解応用: 先生[せんせい]に 日本語[にほんご]を 勉強[べんきょう]させられました。 この文脈から正しく読み取れる内容はどれですか。 [ja-n3-u1-l3]",
               "options": [
                 "Ustoz meni yapon tilini o‘rganishga majbur qildi.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Karaokeda katta hamkasblarim meni qoʻshiq aytishga majbur qildilar.",
+                "Kasalxonada rosa 2 soat kutishga majbur boʻldim.",
+                "Toʻgarak mashgʻulotida koʻp marta yugurtirildim."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Majburan qildirildi: xohlamasa ham biror ishni qilishga majbur bo'lish (Shieki-Ukemi).」を照合します。"
@@ -1380,9 +1380,9 @@
               "prompt": "文法ドリル: Preparatory Action: 〜ておく vs Resultant State: 〜てある の用法を選んでください。 [ja-n3-u1-l4]",
               "options": [
                 "チケットを 予約[よやく]して おきます。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "人気[にんき]の レストランを あらかじめ 予約[よやく]して おきました。",
+                "友達[ともだち]が 来[く]る 前[まえ]に 部屋[へや]を 片付[かたづ]けて おきます。",
+                "壁[かべ]に 綺麗[きれい]な 絵[え]が 飾[かざ]って あります。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Oldindan tayyorlab qo'yish (Te oku) va kimdir tomonidan bajarilgan tayyor holat (Te aru).」に基づきます。"
@@ -1408,9 +1408,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Oldindan tayyorlab qo'yish (Te oku) va kimdir tomonidan bajarilgan tayyor holat (Te aru). [ja-n3-u1-l4]",
               "options": [
                 "チケットを 予約[よやく]して おきます。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "人気[にんき]の レストランを あらかじめ 予約[よやく]して おきました。",
+                "友達[ともだち]が 来[く]る 前[まえ]に 部屋[へや]を 片付[かたづ]けて おきます。",
+                "壁[かべ]に 綺麗[きれい]な 絵[え]が 飾[かざ]って あります。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Preparatory Action: 〜ておく vs Resultant State: 〜てある」を使い、提示された文脈に合う文を選びます。"
@@ -1422,9 +1422,9 @@
               "prompt": "読解応用: チケットを 予約[よやく]して おきます。 この文脈から正しく読み取れる内容はどれですか。 [ja-n3-u1-l4]",
               "options": [
                 "Chiptalarni oldindan band qilib qo'yaman.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Mashhur restoranni oldindan band qilib qoʻydim.",
+                "Doʻstim kelishidan oldin xonani yigʻishtirib qoʻyaman.",
+                "Devorga chiroyli rasm ilib qoʻyilgan."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Oldindan tayyorlab qo'yish (Te oku) va kimdir tomonidan bajarilgan tayyor holat (Te aru).」を照合します。"
@@ -1761,9 +1761,9 @@
               "prompt": "文法ドリル: Spontaneous Occurrence: 〜てしまう (Regret & Completion) の用法を選んでください。 [ja-n3-u1-l5]",
               "options": [
                 "鍵[かぎ]を 落[お]として しまいました。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "階段[かいだん]で スマホを 落[お]として しまいました。",
+                "電車[でんしゃ]の 中[なか]に 傘[かさ]を 忘[わす]れて しまいました。",
+                "渋滞[じゅうたい]の せいで 約束[やくそく]に 遅[おく]れて しまいました。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Tugallanganlik va afsuslanish ma'nolari (Te shimau / Chatte).」に基づきます。"
@@ -1789,9 +1789,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Tugallanganlik va afsuslanish ma'nolari (Te shimau / Chatte). [ja-n3-u1-l5]",
               "options": [
                 "鍵[かぎ]を 落[お]として しまいました。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "階段[かいだん]で スマホを 落[お]として しまいました。",
+                "電車[でんしゃ]の 中[なか]に 傘[かさ]を 忘[わす]れて しまいました。",
+                "渋滞[じゅうたい]の せいで 約束[やくそく]に 遅[おく]れて しまいました。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Spontaneous Occurrence: 〜てしまう (Regret & Completion)」を使い、提示された文脈に合う文を選びます。"
@@ -1803,9 +1803,9 @@
               "prompt": "読解応用: 鍵[かぎ]を 落[お]として しまいました。 この文脈から正しく読み取れる内容はどれですか。 [ja-n3-u1-l5]",
               "options": [
                 "Kalitimni tushirib qo'ydim.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Zinapoyada telefonimni tushirib yubordim.",
+                "Poyezd ichida soyabonimni unutib qoldiribman.",
+                "Tirbandlik sababli uchrashuvga kechikib qoldim."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Tugallanganlik va afsuslanish ma'nolari (Te shimau / Chatte).」を照合します。"
@@ -2132,9 +2132,9 @@
               "prompt": "文法ドリル: Decision & Rules: 〜ことにする vs 〜ことになる の用法を選んでください。 [ja-n3-u2-l1]",
               "options": [
                 "大阪[おおさか]へ 転勤[てんきん]に なりました。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "今年[ことし]こそ JLPT N3に 合格[ごうかく]する ことに しました。",
+                "来月[らいげつ]から 大阪[おおさか]支社[ししゃ]へ 転勤[てんきん]する ことに なりました。",
+                "日本[にほん]の 大学[だいがく]に 留学[りゅうがく]する ことに しました。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Shaxsiy qat'iy qaror (koto ni suru) va tashqi qaror/qoida (koto ni naru).」に基づきます。"
@@ -2160,9 +2160,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Shaxsiy qat'iy qaror (koto ni suru) va tashqi qaror/qoida (koto ni naru). [ja-n3-u2-l1]",
               "options": [
                 "大阪[おおさか]へ 転勤[てんきん]に なりました。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "今年[ことし]こそ JLPT N3に 合格[ごうかく]する ことに しました。",
+                "来月[らいげつ]から 大阪[おおさか]支社[ししゃ]へ 転勤[てんきん]する ことに なりました。",
+                "日本[にほん]の 大学[だいがく]に 留学[りゅうがく]する ことに しました。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Decision & Rules: 〜ことにする vs 〜ことになる」を使い、提示された文脈に合う文を選びます。"
@@ -2174,9 +2174,9 @@
               "prompt": "読解応用: 大阪[おおさか]へ 転勤[てんきん]に なりました。 この文脈から正しく読み取れる内容はどれですか。 [ja-n3-u2-l1]",
               "options": [
                 "Osakaga ishga o'tkazildim.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Aynan shu yil JLPT N3 dan oʻtishga qaror qildim.",
+                "Kelasi oydan Osaka filialiga koʻchib ishlaydigan boʻldim.",
+                "Yaponiya universitetida oʻqishga qaror qildim."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Shaxsiy qat'iy qaror (koto ni suru) va tashqi qaror/qoida (koto ni naru).」を照合します。"
@@ -2498,9 +2498,9 @@
               "prompt": "文法ドリル: Conscious Effort & Purpose: 〜ようにする vs 〜ように (In order that) の用法を選んでください。 [ja-n3-u2-l2]",
               "options": [
                 "メモを 取[と]ります。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "毎朝[まいあさ] 散歩[さんぽ]する ように 心[こころ]がけて います。",
+                "始発[しはつ]に 間[ま]に合[あ]う ように 早起[はやお]き しました。",
+                "寝[ね]る 前[まえ]に 単語[たんご]を 復習[ふくしゅう]する 習慣[しゅうかん]を つけました。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Harakat qilishga tirishish (you ni suru) va maqsad ergash gap (you ni).」に基づきます。"
@@ -2526,9 +2526,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Harakat qilishga tirishish (you ni suru) va maqsad ergash gap (you ni). [ja-n3-u2-l2]",
               "options": [
                 "メモを 取[と]ります。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "毎朝[まいあさ] 散歩[さんぽ]する ように 心[こころ]がけて います。",
+                "始発[しはつ]に 間[ま]に合[あ]う ように 早起[はやお]き しました。",
+                "寝[ね]る 前[まえ]に 単語[たんご]を 復習[ふくしゅう]する 習慣[しゅうかん]を つけました。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Conscious Effort & Purpose: 〜ようにする vs 〜ように (In order that)」を使い、提示された文脈に合う文を選びます。"
@@ -2540,9 +2540,9 @@
               "prompt": "読解応用: メモを 取[と]ります。 この文脈から正しく読み取れる内容はどれですか。 [ja-n3-u2-l2]",
               "options": [
                 "Eslatma yozib olaman.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Har tong sayr qilishga harakat qilyapman.",
+                "Birinchi poyezdga ulgurish uchun erta uygʻondim.",
+                "Uxlashdan oldin yangi soʻzlarni takrorlash odatini shakllantirdim."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Harakat qilishga tirishish (you ni suru) va maqsad ergash gap (you ni).」を照合します。"
@@ -2874,9 +2874,9 @@
               "prompt": "文法ドリル: Appearance & Hearsay: 〜そうだ (Looks like vs I heard that) の用法を選んでください。 [ja-n3-u2-l3]",
               "options": [
                 "雨[あめ]が 降[ふ]りそうです。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "強風[きょうふう]で 古[ふる]い 木[き]が 倒[たお]れそうです。",
+                "この 椅子[いす]は もう 壊[こわ]れそうです。",
+                "彼[かれ]が 転職[てんしょく]する という 噂[うわさ]を 聞[き]きました。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Tashqi ko'rinishdan xulosa (sou da - o'xshaydi) va eshitilgan xabar (sou da - deyishyapti).」に基づきます。"
@@ -2902,9 +2902,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Tashqi ko'rinishdan xulosa (sou da - o'xshaydi) va eshitilgan xabar (sou da - deyishyapti). [ja-n3-u2-l3]",
               "options": [
                 "雨[あめ]が 降[ふ]りそうです。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "強風[きょうふう]で 古[ふる]い 木[き]が 倒[たお]れそうです。",
+                "この 椅子[いす]は もう 壊[こわ]れそうです。",
+                "彼[かれ]が 転職[てんしょく]する という 噂[うわさ]を 聞[き]きました。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Appearance & Hearsay: 〜そうだ (Looks like vs I heard that)」を使い、提示された文脈に合う文を選びます。"
@@ -2916,9 +2916,9 @@
               "prompt": "読解応用: 雨[あめ]が 降[ふ]りそうです。 この文脈から正しく読み取れる内容はどれですか。 [ja-n3-u2-l3]",
               "options": [
                 "Yomg'ir yog'adiganga o'xshaydi.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Kuchli shamolda eski daraxt agʻdarilayotgandek koʻrinadi.",
+                "Bu stul hoziroq sinib ketadigandek koʻrinadi.",
+                "Uning boshqa ishga oʻtishi haqidagi gap-soʻzni eshitdim."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Tashqi ko'rinishdan xulosa (sou da - o'xshaydi) va eshitilgan xabar (sou da - deyishyapti).」を照合します。"
@@ -3235,9 +3235,9 @@
               "prompt": "文法ドリル: Nuanced Reasoning & Contrast: 〜わりに(は) vs 〜くせに の用法を選んでください。 [ja-n3-u2-l4]",
               "options": [
                 "値段[ねだん]が 安[やす]い。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "この 店[みせ]の 料理[りょうり]は 値段[ねだん]の わりには 量[りょう]が 多[おお]いです。",
+                "祖母[そぼ]は 年齢[ねんれい]の わりには とても 若[わか]く 見[み]えます。",
+                "給料[きゅうりょう]が 安[やす]い わりには 仕事[しごと]が 忙[いそが]しすぎます。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Kutilganiga zid holat (warini - qaramay) va tanqidiy norozilik (kuseni - bo'la turib).」に基づきます。"
@@ -3263,9 +3263,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Kutilganiga zid holat (warini - qaramay) va tanqidiy norozilik (kuseni - bo'la turib). [ja-n3-u2-l4]",
               "options": [
                 "値段[ねだん]が 安[やす]い。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "この 店[みせ]の 料理[りょうり]は 値段[ねだん]の わりには 量[りょう]が 多[おお]いです。",
+                "祖母[そぼ]は 年齢[ねんれい]の わりには とても 若[わか]く 見[み]えます。",
+                "給料[きゅうりょう]が 安[やす]い わりには 仕事[しごと]が 忙[いそが]しすぎます。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Nuanced Reasoning & Contrast: 〜わりに(は) vs 〜くせに」を使い、提示された文脈に合う文を選びます。"
@@ -3277,9 +3277,9 @@
               "prompt": "読解応用: 値段[ねだん]が 安[やす]い。 この文脈から正しく読み取れる内容はどれですか。 [ja-n3-u2-l4]",
               "options": [
                 "Narxi arzon.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Bu restoranning taomi narxiga yarasha ancha koʻp.",
+                "Buvim yoshlariga nisbatan ancha yosh koʻrinadilar.",
+                "Oylik kamligiga qaramay ish haddan tashqari koʻp."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Kutilganiga zid holat (warini - qaramay) va tanqidiy norozilik (kuseni - bo'la turib).」を照合します。"
@@ -3599,8 +3599,8 @@
               "options": [
                 "新[あたら]しい システムを 導入[どうにゅう]する。",
                 "多[おお]くの 課題[かだい]が ある。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現"
+                "在宅[ざいたく]勤務[きんむ]で 通勤[つうきん]の ストレスが 減[へ]る。",
+                "社員[しゃいん]同士[どうし]の コミュニケーションが 減[へ]る。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Yaponiyadagi zamonaviy ish madaniyati (Telework, Work-Life Balance) haqidagi N3 o'qish matni.」に基づきます。"
@@ -3627,8 +3627,8 @@
               "options": [
                 "新[あたら]しい システムを 導入[どうにゅう]する。",
                 "多[おお]くの 課題[かだい]が ある。",
-                "文脈と無関係な文",
-                "意味の異なる文"
+                "在宅[ざいたく]勤務[きんむ]で 通勤[つうきん]の ストレスが 減[へ]る。",
+                "社員[しゃいん]同士[どうし]の コミュニケーションが 減[へ]る。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「N3 Reading: Essay on Modern Work Culture in Japan」を使い、提示された文脈に合う文を選びます。"
@@ -3641,8 +3641,8 @@
               "options": [
                 "Yangi tizimni joriy qilmoq.",
                 "Ko'plab muammolar bor.",
-                "本文にない情報である",
-                "反対の内容である"
+                "Masofaviy ish sababli qatnov stressi kamayadi.",
+                "Xodimlar o'rtasida muloqot kamayadi."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Yaponiyadagi zamonaviy ish madaniyati (Telework, Work-Life Balance) haqidagi N3 o'qish matni.」を照合します。"
@@ -4007,8 +4007,8 @@
               "options": [
                 "社長[しゃちょう]が そう おっしゃいました。",
                 "どうぞ 召[め]し上[あ]がって ください。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現"
+                "社長[しゃちょう]が そのように おっしゃいました。",
+                "先生[せんせい]は 研究室[けんきゅうしつ]に いらっしゃいます。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Mijoz va ustoz harakatini ulug'lovchi hurmat tili (Sonkeigo: いらっしゃる, おっしゃる, なさる).」に基づきます。"
@@ -4035,8 +4035,8 @@
               "options": [
                 "社長[しゃちょう]が そう おっしゃいました。",
                 "どうぞ 召[め]し上[あ]がって ください。",
-                "文脈と無関係な文",
-                "意味の異なる文"
+                "社長[しゃちょう]が そのように おっしゃいました。",
+                "先生[せんせい]は 研究室[けんきゅうしつ]に いらっしゃいます。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Keigo 1: Honorific Language (尊敬語 - Sonkeigo)」を使い、提示された文脈に合う文を選びます。"
@@ -4049,8 +4049,8 @@
               "options": [
                 "Prezident shunday dedilar.",
                 "Marhamat, tanovul qiling.",
-                "本文にない情報である",
-                "反対の内容である"
+                "Prezident shunday deb aytdilar.",
+                "Ustoz xonalarida oʻtiribdilar."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Mijoz va ustoz harakatini ulug'lovchi hurmat tili (Sonkeigo: いらっしゃる, おっしゃる, なさる).」を照合します。"
@@ -4397,8 +4397,8 @@
               "options": [
                 "アリと 申[もう]します。",
                 "メールを 拝見[はいけん]しました。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現"
+                "私[わたし]は 田中[たなか]と 申[もう]します。",
+                "明日[あした]の 10時[じゅうじ]に 御社[おんしゃ]へ 参[まい]ります。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「O'z harakatini kamtar tutib suhbatdoshni yuksaltirish tili (Kenjougo: 参る, 申す, いたす, 拝見する).」に基づきます。"
@@ -4425,8 +4425,8 @@
               "options": [
                 "アリと 申[もう]します。",
                 "メールを 拝見[はいけん]しました。",
-                "文脈と無関係な文",
-                "意味の異なる文"
+                "私[わたし]は 田中[たなか]と 申[もう]します。",
+                "明日[あした]の 10時[じゅうじ]に 御社[おんしゃ]へ 参[まい]ります。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Keigo 2: Humble Language (謙譲語 - Kenjougo)」を使い、提示された文脈に合う文を選びます。"
@@ -4439,8 +4439,8 @@
               "options": [
                 "Ismim Alidir.",
                 "Xatingizni ko'rib chiqdim.",
-                "本文にない情報である",
-                "反対の内容である"
+                "Mening ismim Tanaka deyiladi.",
+                "Ertaga soat 10 da kompaniyangizga boraman."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「O'z harakatini kamtar tutib suhbatdoshni yuksaltirish tili (Kenjougo: 参る, 申す, いたす, 拝見する).」を照合します。"
@@ -4757,8 +4757,8 @@
               "options": [
                 "世界[せかい]の 経済[けいざい]。",
                 "大[おお]きな 影響[えいきょう]を 与[あた]える。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現"
+                "世界[せかい]の 経済[けいざい]情勢[じょうせい]について 勉強[べんきょう]して います。",
+                "今年[ことし]に 入[はい]ってから 景気[けいき]が 回復[かいふく]し 始[はじ]めました。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Iqtisodiyot, jamiyat, ta'sir va munosabatlarni ifodalovchi N3 iyerogliflari.」に基づきます。"
@@ -4785,8 +4785,8 @@
               "options": [
                 "世界[せかい]の 経済[けいざい]。",
                 "大[おお]きな 影響[えいきょう]を 与[あた]える。",
-                "文脈と無関係な文",
-                "意味の異なる文"
+                "世界[せかい]の 経済[けいざい]情勢[じょうせい]について 勉強[べんきょう]して います。",
+                "今年[ことし]に 入[はい]ってから 景気[けいき]が 回復[かいふく]し 始[はじ]めました。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「N3 Intermediate Kanji: Abstract Concepts & Economy (経済, 政治, 影響, 関係, 相談)」を使い、提示された文脈に合う文を選びます。"
@@ -4799,8 +4799,8 @@
               "options": [
                 "Jahon iqtisodiyoti.",
                 "Katta ta'sir o'tkazmoq.",
-                "本文にない情報である",
-                "反対の内容である"
+                "Dunyo iqtisodiy vaziyati boʻyicha taʼlim olyapman.",
+                "Shu yil boshidan bozor holati tiklana boshladi."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Iqtisodiyot, jamiyat, ta'sir va munosabatlarni ifodalovchi N3 iyerogliflari.」を照合します。"
@@ -5112,8 +5112,8 @@
               "options": [
                 "大[おお]きな 地震[じしん]が 起[お]きた。",
                 "台風[たいふう]が 近[ちか]づいている。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現"
+                "昨夜[さくや] 関東[かんとう]地方[ちほう]で 大[おお]きな 地震[じしん]が ありました。",
+                "台風[たいふう]の 接近[せっきん]に 伴[ともな]い、電車[でんしゃ]が 運休[うんきゅう]しました。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Zilzila, to'fon, harorat o'zgarishi va tabiiy ofatlar kanjilari.」に基づきます。"
@@ -5140,8 +5140,8 @@
               "options": [
                 "大[おお]きな 地震[じしん]が 起[お]きた。",
                 "台風[たいふう]が 近[ちか]づいている。",
-                "文脈と無関係な文",
-                "意味の異なる文"
+                "昨夜[さくや] 関東[かんとう]地方[ちほう]で 大[おお]きな 地震[じしん]が ありました。",
+                "台風[たいふう]の 接近[せっきん]に 伴[ともな]い、電車[でんしゃ]が 運休[うんきゅう]しました。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「N3 Intermediate Kanji: Nature, Weather & Disasters (地震, 台風, 気温, 変化, 被害)」を使い、提示された文脈に合う文を選びます。"
@@ -5154,8 +5154,8 @@
               "options": [
                 "Katta zilzila sodir bo'ldi.",
                 "Tayfun yaqinlashmoqda.",
-                "本文にない情報である",
-                "反対の内容である"
+                "Kecha tunda Kanto viloyatida kuchli zilzila yuz berdi.",
+                "Tayfun yaqinlashishi munosabati bilan poyezdlar toʻxtatildi."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Zilzila, to'fon, harorat o'zgarishi va tabiiy ofatlar kanjilari.」を照合します。"
@@ -5491,9 +5491,9 @@
               "prompt": "文法ドリル: N3 Choukai: Quick Response (即時応答) Mastery の用法を選んでください。 [ja-n3-u3-l5]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "質問[しつもん]に とっさに 答[こた]える 練習[れんしゅう]を します。",
+                "適切[てきせつ]な 相づち[あいづち]を 打[う]つことで 会話[かいわ]が 弾[はず]みます。",
+                "わからない ことが あれば 遠慮[えんりょ]なく 聞[き]いて ください。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「JLPT N3 eshitish imtihonining eng tezkor bo'limi: qisqa iboraga bir zumda to'g'ri javob qaytarish.」に基づきます。"
@@ -5519,9 +5519,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: JLPT N3 eshitish imtihonining eng tezkor bo'limi: qisqa iboraga bir zumda to'g'ri javob qaytarish. [ja-n3-u3-l5]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "質問[しつもん]に とっさに 答[こた]える 練習[れんしゅう]を します。",
+                "適切[てきせつ]な 相づち[あいづち]を 打[う]つことで 会話[かいわ]が 弾[はず]みます。",
+                "わからない ことが あれば 遠慮[えんりょ]なく 聞[き]いて ください。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「N3 Choukai: Quick Response (即時応答) Mastery」を使い、提示された文脈に合う文を選びます。"
@@ -5533,9 +5533,9 @@
               "prompt": "読解応用: 日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。 この文脈から正しく読み取れる内容はどれですか。 [ja-n3-u3-l5]",
               "options": [
                 "Har kuni yapon tilini o'rganaman.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Savollarga bir lahzada javob berishni mashq qilamiz.",
+                "Munosib tasdiq reaksiyalari orqali suhbat maroqli kechadi.",
+                "Tushunarsiz joyi boʻlsa, tortinmasdan soʻrang."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「JLPT N3 eshitish imtihonining eng tezkor bo'limi: qisqa iboraga bir zumda to'g'ri javob qaytarish.」を照合します。"
@@ -5920,9 +5920,9 @@
               "prompt": "文法ドリル: Contrast & Opposites: 〜に対して vs 〜反面 (In contrast to vs On the flip side) の用法を選んでください。 [ja-n3-u4-l1]",
               "options": [
                 "社交的[しゃこうてき]な 人[ひと]。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "彼[かれ]は 授業[じゅぎょう]で 積極的[せっきょくてき]に 発言[はつげん]します。",
+                "兄[あに]は 外向的[がいこうてき]なのに 対[たい]して、弟[おとうと]は 消極的[しょうきょくてき]です。",
+                "便利[べんり]な 反面[はんめん]、危険[きけん]な 面[めん]も あります。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Taqqoslashdagi keskin farq (taishite) va bir narsaning ikki qarama-qarshi tomoni (hanmen).」に基づきます。"
@@ -5948,9 +5948,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Taqqoslashdagi keskin farq (taishite) va bir narsaning ikki qarama-qarshi tomoni (hanmen). [ja-n3-u4-l1]",
               "options": [
                 "社交的[しゃこうてき]な 人[ひと]。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "彼[かれ]は 授業[じゅぎょう]で 積極的[せっきょくてき]に 発言[はつげん]します。",
+                "兄[あに]は 外向的[がいこうてき]なのに 対[たい]して、弟[おとうと]は 消極的[しょうきょくてき]です。",
+                "便利[べんり]な 反面[はんめん]、危険[きけん]な 面[めん]も あります。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Contrast & Opposites: 〜に対して vs 〜反面 (In contrast to vs On the flip side)」を使い、提示された文脈に合う文を選びます。"
@@ -5962,9 +5962,9 @@
               "prompt": "読解応用: 社交的[しゃこうてき]な 人[ひと]。 この文脈から正しく読み取れる内容はどれですか。 [ja-n3-u4-l1]",
               "options": [
                 "Kirishimli inson.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "U darslarda faol tarzda oʻz fikrini bildiradi.",
+                "Akasi kirishimli boʻlganiga zid tarzda, ukasi tortinchoq va passiv.",
+                "Qulay boʻlishi bilan birga, xavfli tomonlari ham bor."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Taqqoslashdagi keskin farq (taishite) va bir narsaning ikki qarama-qarshi tomoni (hanmen).」を照合します。"
@@ -6296,9 +6296,9 @@
               "prompt": "文法ドリル: Cause & Spontaneous Emotion: 〜によって (Means & Cause) & 〜せいで の用法を選んでください。 [ja-n3-u4-l2]",
               "options": [
                 "試合[しあい]が 中止[ちゅうし]に なった。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "事故[じこ]の 原因[げんいん]は スピードの 出[だ]しすぎでした。",
+                "インターネットの 普及[ふきゅう]に よって 生活[せいかつ]が 変[か]わりました。",
+                "事故[じこ]の せいで 道路[どうろ]が ひどく 渋滞[じゅうたい]して います。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Sabab va vosita (ni yotte - orqali/sababli) hamda ayblovchi salbiy sabab (sei de - dastidan).」に基づきます。"
@@ -6324,9 +6324,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Sabab va vosita (ni yotte - orqali/sababli) hamda ayblovchi salbiy sabab (sei de - dastidan). [ja-n3-u4-l2]",
               "options": [
                 "試合[しあい]が 中止[ちゅうし]に なった。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "事故[じこ]の 原因[げんいん]は スピードの 出[だ]しすぎでした。",
+                "インターネットの 普及[ふきゅう]に よって 生活[せいかつ]が 変[か]わりました。",
+                "事故[じこ]の せいで 道路[どうろ]が ひどく 渋滞[じゅうたい]して います。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Cause & Spontaneous Emotion: 〜によって (Means & Cause) & 〜せいで」を使い、提示された文脈に合う文を選びます。"
@@ -6338,9 +6338,9 @@
               "prompt": "読解応用: 試合[しあい]が 中止[ちゅうし]に なった。 この文脈から正しく読み取れる内容はどれですか。 [ja-n3-u4-l2]",
               "options": [
                 "O'yin bekor bo'ldi.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Halokatning sababi meʼyordan ortiq tezlik boʻldi.",
+                "Internet ommalashuvi tufayli turmush tarzi oʻzgardi.",
+                "Avariya sababli yoʻlda qattiq tirbandlik vujudga keldi."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Sabab va vosita (ni yotte - orqali/sababli) hamda ayblovchi salbiy sabab (sei de - dastidan).」を照合します。"
@@ -6662,9 +6662,9 @@
               "prompt": "文法ドリル: Limitation & Scope: 〜ばかり vs 〜だけ vs 〜のみ の用法を選んでください。 [ja-n3-u4-l3]",
               "options": [
                 "遊[あそ]んでばかり いないで、勉強[べんきょう]しなさい。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "彼[かれ]は 仕事[しごと]も せずに 文句[もんく]ばかり 言[い]って います。",
+                "一度[いちど]の 失敗[しっぱい]だけで あきらめては いけません。",
+                "この セールは 本日[ほんじつ]限[げん]りの 開催[かいさい]です。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Faqatgina (dake - aniq chegara), faqat shu ishni qilaverish (bakari - salbiy ko'p takrorlanish).」に基づきます。"
@@ -6690,9 +6690,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Faqatgina (dake - aniq chegara), faqat shu ishni qilaverish (bakari - salbiy ko'p takrorlanish). [ja-n3-u4-l3]",
               "options": [
                 "遊[あそ]んでばかり いないで、勉強[べんきょう]しなさい。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "彼[かれ]は 仕事[しごと]も せずに 文句[もんく]ばかり 言[い]って います。",
+                "一度[いちど]の 失敗[しっぱい]だけで あきらめては いけません。",
+                "この セールは 本日[ほんじつ]限[げん]りの 開催[かいさい]です。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Limitation & Scope: 〜ばかり vs 〜だけ vs 〜のみ」を使い、提示された文脈に合う文を選びます。"
@@ -6704,9 +6704,9 @@
               "prompt": "読解応用: 遊[あそ]んでばかり いないで、勉強[べんきょう]しなさい。 この文脈から正しく読み取れる内容はどれですか。 [ja-n3-u4-l3]",
               "options": [
                 "Faqat o'ynayvermasdan, dars qil.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "U ish ham qilmasdan faqat noliyveradi.",
+                "Birgina muvaffaqiyatsizlik tufayli taslim boʻlmaslik kerak.",
+                "Ushbu chegirma faqat bugungi kun uchungina amal qiladi."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Faqatgina (dake - aniq chegara), faqat shu ishni qilaverish (bakari - salbiy ko'p takrorlanish).」を照合します。"
@@ -7048,8 +7048,8 @@
               "options": [
                 "スマホの 普及[ふきゅう]。",
                 "筆者[ひっしゃ]の 考[かんが]え。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現"
+                "筆者[ひっしゃ]の 主張[しゅちょう]を 50字[じ]以内[いない]で まとめて ください。",
+                "自分[じぶん]の 意見[いけん]を 論理的[ろんりてき]に 主張[しゅちょう]します。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「O'rta hajmdagi tahliliy matnlarni o'qib muallifning asosiy xulosasini topish.」に基づきます。"
@@ -7076,8 +7076,8 @@
               "options": [
                 "スマホの 普及[ふきゅう]。",
                 "筆者[ひっしゃ]の 考[かんが]え。",
-                "文脈と無関係な文",
-                "意味の異なる文"
+                "筆者[ひっしゃ]の 主張[しゅちょう]を 50字[じ]以内[いない]で まとめて ください。",
+                "自分[じぶん]の 意見[いけん]を 論理的[ろんりてき]に 主張[しゅちょう]します。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「JLPT N3 Dokkai: Mid-Length Reading & Logic Extraction」を使い、提示された文脈に合う文を選びます。"
@@ -7090,8 +7090,8 @@
               "options": [
                 "Smartfonlarning ommalashishi.",
                 "Muallifning fikri.",
-                "本文にない情報である",
-                "反対の内容である"
+                "Muallifning asosiy fikrini 50 harf ichida xulosalang.",
+                "Oʻz fikrini mantiqiy asoslab ilgari suradi."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「O'rta hajmdagi tahliliy matnlarni o'qib muallifning asosiy xulosasini topish.」を照合します。"
@@ -7463,9 +7463,9 @@
               "prompt": "文法ドリル: Nuanced Expectations: 〜はずだ vs 〜わけだ vs 〜べきだ の用法を選んでください。 [ja-n3-u4-l5]",
               "options": [
                 "ルールを 守[まも]る。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "毎日[まいにち] 練習[れんしゅう]したのだから、合格[ごうかく]する はずです。",
+                "約束[やくそく]は きちんと 守[まも]るべきです。",
+                "理由[りゆう]を 聞[き]いて ようやく 納得[なっとく]が いきました。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Mantiqiy ishonch (hazu da - bo'lishi kerak), tabiiy xulosa (wake da - shunday ekanda), axloqiy burch (beki da).」に基づきます。"
@@ -7491,9 +7491,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Mantiqiy ishonch (hazu da - bo'lishi kerak), tabiiy xulosa (wake da - shunday ekanda), axloqiy burch (beki da). [ja-n3-u4-l5]",
               "options": [
                 "ルールを 守[まも]る。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "毎日[まいにち] 練習[れんしゅう]したのだから、合格[ごうかく]する はずです。",
+                "約束[やくそく]は きちんと 守[まも]るべきです。",
+                "理由[りゆう]を 聞[き]いて ようやく 納得[なっとく]が いきました。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Nuanced Expectations: 〜はずだ vs 〜わけだ vs 〜べきだ」を使い、提示された文脈に合う文を選びます。"
@@ -7505,9 +7505,9 @@
               "prompt": "読解応用: ルールを 守[まも]る。 この文脈から正しく読み取れる内容はどれですか。 [ja-n3-u4-l5]",
               "options": [
                 "Qoidaga amal qilmoq.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Har kuni mashq qilgani uchun, albatta oʻtishi tayin.",
+                "Vaʼdaga qatʼiy vafo qilish shartdir.",
+                "Sababini eshitgach, nihoyat qoniqdim va tushundim."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Mantiqiy ishonch (hazu da - bo'lishi kerak), tabiiy xulosa (wake da - shunday ekanda), axloqiy burch (beki da).」を照合します。"
@@ -7844,8 +7844,8 @@
               "options": [
                 "現代[げんだい]の 科学[かがく]。",
                 "先端[せんたん] 技術[ぎじゅつ]。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現"
+                "最新[さいしん]の 科学[かがく]技術[ぎじゅつ]が 医療[いりょう]を 変[か]えています。",
+                "日本[にほん]の 建築[けんちく]技術[ぎじゅつ]は 世界[せかい]で 高[たか]く 評価[ひょうか]されています。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Fan, texnika, ixtiro va tadqiqotlarni ifodalovchi N3 iyerogliflari.」に基づきます。"
@@ -7872,8 +7872,8 @@
               "options": [
                 "現代[げんだい]の 科学[かがく]。",
                 "先端[せんたん] 技術[ぎじゅつ]。",
-                "文脈と無関係な文",
-                "意味の異なる文"
+                "最新[さいしん]の 科学[かがく]技術[ぎじゅつ]が 医療[いりょう]を 変[か]えています。",
+                "日本[にほん]の 建築[けんちく]技術[ぎじゅつ]は 世界[せかい]で 高[たか]く 評価[ひょうか]されています。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「N3 Kanji 1: Technology & Science (科学, 技術, 発明, 研究, 実験)」を使い、提示された文脈に合う文を選びます。"
@@ -7886,8 +7886,8 @@
               "options": [
                 "Zamonaviy ilm-fan.",
                 "Ilg'or texnologiya.",
-                "本文にない情報である",
-                "反対の内容である"
+                "Eng soʻnggi fan-texnika tibbiyotni oʻzgartirmoqda.",
+                "Yaponiya qurilish texnologiyasi jahonda yuqori baholanadi."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Fan, texnika, ixtiro va tadqiqotlarni ifodalovchi N3 iyerogliflari.」を照合します。"
@@ -8219,8 +8219,8 @@
               "options": [
                 "面接[めんせつ]で 緊張[きんちょう]した。",
                 "複雑[ふくざつ]な 問題[もんだい]。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現"
+                "面接[めんせつ]の 前[まえ]は 誰[だれ]でも 緊張[きんちょう]する ものです。",
+                "新[あたら]しい 環境[かんきょう]に 不安[ふあん]を 感[かん]じる 必要[ひつよう]は ありません。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Tug'g'ular, asabiylashish, murakkablik va oddiylik iyerogliflari.」に基づきます。"
@@ -8247,8 +8247,8 @@
               "options": [
                 "面接[めんせつ]で 緊張[きんちょう]した。",
                 "複雑[ふくざつ]な 問題[もんだい]。",
-                "文脈と無関係な文",
-                "意味の異なる文"
+                "面接[めんせつ]の 前[まえ]は 誰[だれ]でも 緊張[きんちょう]する ものです。",
+                "新[あたら]しい 環境[かんきょう]に 不安[ふあん]を 感[かん]じる 必要[ひつよう]は ありません。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「N3 Kanji 2: Health, Body & Feelings (感情, 緊張, 複雑, 単純, 苦痛)」を使い、提示された文脈に合う文を選びます。"
@@ -8261,8 +8261,8 @@
               "options": [
                 "Suhbatda hayajonlandim.",
                 "Murakkab masala.",
-                "本文にない情報である",
-                "反対の内容である"
+                "Suhbatdan oldin har qanday inson hayajonlanishi tabiiy.",
+                "Yangi muhitda xavotirga tushishga hech qanday hojat yoʻq."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Tug'g'ular, asabiylashish, murakkablik va oddiylik iyerogliflari.」を照合します。"
@@ -8604,9 +8604,9 @@
               "prompt": "文法ドリル: N3 Conditionals Deep Dive: 〜と vs 〜たら vs 〜ば vs 〜なら の用法を選んでください。 [ja-n3-u5-l3]",
               "options": [
                 "春[はる]に なると、花[はな]が 咲[さ]く。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "良[よ]い 条件[じょうけん]が そろえば、すぐに行動[こうどう]します。",
+                "もし 雨[あめ]が 降[ふ]ったら どうするか、仮定[かてい]して 話[はな]し合[あ]います。",
+                "努力[どりょく]すれば、必[かなら]ず 良[よ]い 結果[けっか]が 出[で]ます。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「To'rtta yapon shart ergash shaklining aniq chegaralari va nozik farqlari.」に基づきます。"
@@ -8632,9 +8632,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: To'rtta yapon shart ergash shaklining aniq chegaralari va nozik farqlari. [ja-n3-u5-l3]",
               "options": [
                 "春[はる]に なると、花[はな]が 咲[さ]く。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "良[よ]い 条件[じょうけん]が そろえば、すぐに行動[こうどう]します。",
+                "もし 雨[あめ]が 降[ふ]ったら どうするか、仮定[かてい]して 話[はな]し合[あ]います。",
+                "努力[どりょく]すれば、必[かなら]ず 良[よ]い 結果[けっか]が 出[で]ます。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「N3 Conditionals Deep Dive: 〜と vs 〜たら vs 〜ば vs 〜なら」を使い、提示された文脈に合う文を選びます。"
@@ -8646,9 +8646,9 @@
               "prompt": "読解応用: 春[はる]に なると、花[はな]が 咲[さ]く。 この文脈から正しく読み取れる内容はどれですか。 [ja-n3-u5-l3]",
               "options": [
                 "Bahor kelsa, gullar ochiladi.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Qulay shartlar paydo boʻlsa, darhol harakat qilaman.",
+                "Agar yomgʻir yogʻsa nima qilishimizni taxmin qilib kelishib olamiz.",
+                "Harakat qilsangiz, albatta ajoyib natijaga erishasiz."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「To'rtta yapon shart ergash shaklining aniq chegaralari va nozik farqlari.」を照合します。"
@@ -8978,9 +8978,9 @@
               "prompt": "文法ドリル: Formal Writing Style (普通体 / だ・である調) & Academic Register の用法を選んでください。 [ja-n3-u5-l4]",
               "options": [
                 "事実[じじつ]が 明[あき]らかに なった。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "大学院[だいがくいん]で 修士[しゅうし]論文[ろんぶん]を 執筆[しっぴつ]して います。",
+                "調査[ちょうさ]の 結果[けっか]を 報告書[ほうこくしょ]に まとめました。",
+                "実験[じっけん]データに 基[もと]づいて 慎重[しんちょう]に 考察[こうさつ]します。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Insholar, ilmiy maqolalar va gazetalarning rasmiy yozma tili (Da / Dearu).」に基づきます。"
@@ -9006,9 +9006,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Insholar, ilmiy maqolalar va gazetalarning rasmiy yozma tili (Da / Dearu). [ja-n3-u5-l4]",
               "options": [
                 "事実[じじつ]が 明[あき]らかに なった。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "大学院[だいがくいん]で 修士[しゅうし]論文[ろんぶん]を 執筆[しっぴつ]して います。",
+                "調査[ちょうさ]の 結果[けっか]を 報告書[ほうこくしょ]に まとめました。",
+                "実験[じっけん]データに 基[もと]づいて 慎重[しんちょう]に 考察[こうさつ]します。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Formal Writing Style (普通体 / だ・である調) & Academic Register」を使い、提示された文脈に合う文を選びます。"
@@ -9020,9 +9020,9 @@
               "prompt": "読解応用: 事実[じじつ]が 明[あき]らかに なった。 この文脈から正しく読み取れる内容はどれですか。 [ja-n3-u5-l4]",
               "options": [
                 "Haqiqat oydinlashdi.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Magistraturada ilmiy dissertatsiya yozmoqdaman.",
+                "Tadqiqot natijalarini hisobot shaklida jamladim.",
+                "Tajriba maʼlumotlari asosida sinchkovlik bilan tahlil qilamiz."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Insholar, ilmiy maqolalar va gazetalarning rasmiy yozma tili (Da / Dearu).」を照合します。"
@@ -9374,9 +9374,9 @@
               "prompt": "文法ドリル: N3 Long Dokkai: Comparative Reading (統合読解) の用法を選んでください。 [ja-n3-u5-l5]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "二[ふた]つの 文章[ぶんしょう]を 比較[ひかく]して 読[よ]み取[と]ります。",
+                "両者[りょうしゃ]の 意見[いけん]には 多[おお]くの 共通点[きょうつうてん]が あります。",
+                "従来[じゅうらい]の 方式[ほうしき]との 相違点[そういてん]を 明確[めいかく]に します。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Ikki xil muallifning bir mavzudagi fikrlarini qiyosiy tahlil qilish.」に基づきます。"
@@ -9402,9 +9402,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Ikki xil muallifning bir mavzudagi fikrlarini qiyosiy tahlil qilish. [ja-n3-u5-l5]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "二[ふた]つの 文章[ぶんしょう]を 比較[ひかく]して 読[よ]み取[と]ります。",
+                "両者[りょうしゃ]の 意見[いけん]には 多[おお]くの 共通点[きょうつうてん]が あります。",
+                "従来[じゅうらい]の 方式[ほうしき]との 相違点[そういてん]を 明確[めいかく]に します。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「N3 Long Dokkai: Comparative Reading (統合読解)」を使い、提示された文脈に合う文を選びます。"
@@ -9416,9 +9416,9 @@
               "prompt": "読解応用: 日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。 この文脈から正しく読み取れる内容はどれですか。 [ja-n3-u5-l5]",
               "options": [
                 "Har kuni yapon tilini o'rganaman.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Ikki matnni qiyoslagan holda mazmunini anglaymiz.",
+                "Har ikki tomonning fikrida koʻplab oʻxshash jihatlar mavjud.",
+                "Oldingi usul bilan hozirgisi oʻrtasidagi farqni aniqlaymiz."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Ikki xil muallifning bir mavzudagi fikrlarini qiyosiy tahlil qilish.」を照合します。"
@@ -9795,9 +9795,9 @@
               "prompt": "文法ドリル: N3 Choukai: Summary & Gist Comprehension (概要理解) の用法を選んでください。 [ja-n3-u6-l1]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "話[はなし]の 概要[がいよう]を つかむ ことが 聴解[ちょうかい]の コツです。",
+                "今日[きょう]の 講義[こうぎ]の テーマは 環境[かんきょう]保護[ほご]です。",
+                "話[はな]し手[て]の 意図[いと]を 正[ただ]しく 読[よ]み取[と]りましょう。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Eshitishning umumiy mazmun tushunish qismi: batafsil raqamlar emas, balki asosiy mavzuni anglash.」に基づきます。"
@@ -9823,9 +9823,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Eshitishning umumiy mazmun tushunish qismi: batafsil raqamlar emas, balki asosiy mavzuni anglash. [ja-n3-u6-l1]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "話[はなし]の 概要[がいよう]を つかむ ことが 聴解[ちょうかい]の コツです。",
+                "今日[きょう]の 講義[こうぎ]の テーマは 環境[かんきょう]保護[ほご]です。",
+                "話[はな]し手[て]の 意図[いと]を 正[ただ]しく 読[よ]み取[と]りましょう。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「N3 Choukai: Summary & Gist Comprehension (概要理解)」を使い、提示された文脈に合う文を選びます。"
@@ -9837,9 +9837,9 @@
               "prompt": "読解応用: 日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。 この文脈から正しく読み取れる内容はどれですか。 [ja-n3-u6-l1]",
               "options": [
                 "Har kuni yapon tilini o'rganaman.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Nutqning asosiy mazmunini ilgʻab olish tinglashning siridir.",
+                "Bugungi maʼruzaning mavzusi atrof-muhitni muhofaza qilishdir.",
+                "Soʻzlovchining asl niyatini toʻgʻri tushunishga harakat qiling."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Eshitishning umumiy mazmun tushunish qismi: batafsil raqamlar emas, balki asosiy mavzuni anglash.」を照合します。"
@@ -10576,9 +10576,9 @@
               "prompt": "文法ドリル: N3 Business Etiquette: Phone Calls & Appointment Confirmation の用法を選んでください。 [ja-n3-u6-l3]",
               "options": [
                 "いつも お世話[せわ]に なっております。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "部長[ぶちょう]に 伝言[でんごん]を お願[ねが]い できますか。",
+                "後[のち]ほど 折[お]り返[かえ]し お電話[でんわ] いたします。",
+                "担当者[たんとうしゃ]が ただいま 席[せき]を 外[はず]して おります。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Yapon kompaniyasida telefon orqali muloqot va uchrashuvlarni tasdiqlash Keigosi.」に基づきます。"
@@ -10604,9 +10604,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Yapon kompaniyasida telefon orqali muloqot va uchrashuvlarni tasdiqlash Keigosi. [ja-n3-u6-l3]",
               "options": [
                 "いつも お世話[せわ]に なっております。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "部長[ぶちょう]に 伝言[でんごん]を お願[ねが]い できますか。",
+                "後[のち]ほど 折[お]り返[かえ]し お電話[でんわ] いたします。",
+                "担当者[たんとうしゃ]が ただいま 席[せき]を 外[はず]して おります。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「N3 Business Etiquette: Phone Calls & Appointment Confirmation」を使い、提示された文脈に合う文を選びます。"
@@ -10618,9 +10618,9 @@
               "prompt": "読解応用: いつも お世話[せわ]に なっております。 この文脈から正しく読み取れる内容はどれですか。 [ja-n3-u6-l3]",
               "options": [
                 "Doimiy hamkorligingiz uchun rahmat.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Boʻlim boshligʻiga xabarimni yetkaza olasizmi?",
+                "Birozdan soʻng oʻzim qaytadan qoʻngʻiroq qilaman.",
+                "Masʼul xodimimiz ayni daqiqada oʻz joyida emas edi."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Yapon kompaniyasida telefon orqali muloqot va uchrashuvlarni tasdiqlash Keigosi.」を照合します。"
@@ -10980,9 +10980,9 @@
               "prompt": "文法ドリル: Full JLPT N3 Simulation Exam: Moji, Goi, Bunpou & Dokkai の用法を選んでください。 [ja-n3-u6-l4]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "毎日[まいにち]の 積[つ]み重[かさ]ねで N3に 合格[ごうかく]しました。",
+                "試験[しけん]では 時間[じかん]配分[はいぶん]が 最[もっと]も 重要[じゅうよう]です。",
+                "全[すべ]ての 問題[もんだい]で 正解[せいかい]を 目指[めざ]しましょう。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「JLPT N3 imtihonining to'liq formatli va vaqt chegaralangan simulatsiya testi.」に基づきます。"
@@ -11008,9 +11008,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: JLPT N3 imtihonining to'liq formatli va vaqt chegaralangan simulatsiya testi. [ja-n3-u6-l4]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "毎日[まいにち]の 積[つ]み重[かさ]ねで N3に 合格[ごうかく]しました。",
+                "試験[しけん]では 時間[じかん]配分[はいぶん]が 最[もっと]も 重要[じゅうよう]です。",
+                "全[すべ]ての 問題[もんだい]で 正解[せいかい]を 目指[めざ]しましょう。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Full JLPT N3 Simulation Exam: Moji, Goi, Bunpou & Dokkai」を使い、提示された文脈に合う文を選びます。"
@@ -11022,9 +11022,9 @@
               "prompt": "読解応用: 日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。 この文脈から正しく読み取れる内容はどれですか。 [ja-n3-u6-l4]",
               "options": [
                 "Har kuni yapon tilini o'rganaman.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Kundalik tinimsiz oʻrganish orqali N3 imtihonidan oʻtdim.",
+                "Imtihonda vaqtni toʻgʻri taqsimlash eng muhim omildir.",
+                "Barcha savollarda toʻgʻri javobga erishishga intiling."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「JLPT N3 imtihonining to'liq formatli va vaqt chegaralangan simulatsiya testi.」を照合します。"
@@ -11361,9 +11361,9 @@
               "prompt": "文法ドリル: JLPT N3 Capstone Grand Examination & N2 Promotion Certification の用法を選んでください。 [ja-n3-u6-l5]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "これまでに 培[つちか]った 実力[じつりょく]を 存分[ぞんぶん]に 発揮[はっき]します。",
+                "毎日[まいにち]の 学習[がくしゅう]目標[もくひょう]を 見事[みごと]に 達成[たっせい]しました。",
+                "学[まな]んだ 文法[ぶんぽう]を 会話[かいわ]に 応用[おうよう]します。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「JLPT N3 darajasini to'liq yakunlash va N2 darajasiga o'tish rasmiy sertifikatsiya sinovi.」に基づきます。"
@@ -11389,9 +11389,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: JLPT N3 darajasini to'liq yakunlash va N2 darajasiga o'tish rasmiy sertifikatsiya sinovi. [ja-n3-u6-l5]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "これまでに 培[つちか]った 実力[じつりょく]を 存分[ぞんぶん]に 発揮[はっき]します。",
+                "毎日[まいにち]の 学習[がくしゅう]目標[もくひょう]を 見事[みごと]に 達成[たっせい]しました。",
+                "学[まな]んだ 文法[ぶんぽう]を 会話[かいわ]に 応用[おうよう]します。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「JLPT N3 Capstone Grand Examination & N2 Promotion Certification」を使い、提示された文脈に合う文を選びます。"
@@ -11403,9 +11403,9 @@
               "prompt": "読解応用: 日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。 この文脈から正しく読み取れる内容はどれですか。 [ja-n3-u6-l5]",
               "options": [
                 "Har kuni yapon tilini o'rganaman.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Shu paytgacha toʻplagan haqiqiy bilimimni toʻliq namoyon qilaman.",
+                "Kunlik oʻrganish maqsadiga aʼlo darajada erishdim.",
+                "Oʻrgangan grammatikani jonli suhbatda qoʻllayman."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「JLPT N3 darajasini to'liq yakunlash va N2 darajasiga o'tish rasmiy sertifikatsiya sinovi.」を照合します。"

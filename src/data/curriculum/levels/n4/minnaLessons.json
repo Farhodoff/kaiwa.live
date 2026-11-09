@@ -440,21 +440,21 @@
           "questions": [
             {
               "id": "ja-minna-l26-q1",
-              "question": "【Mondai 1: Moji/Goi】「遅刻（ちこく）」の 意[い]味[み]は どれですか。",
+              "question": "【26-dars · Mondai 1: Moji/Goi】「遅刻（ちこく）」の 意[い]味[み]は どれですか。",
               "options": ["Erta kelish", "Qatnashish", "Kechikish", "Dam olish"],
               "correctAnswerIndex": 2,
               "explanation": "「遅刻 (ちこく)」 — belgilangan vaqtdan kechikish."
             },
             {
               "id": "ja-minna-l26-q2",
-              "question": "【Mondai 1: Moji/Goi】「ごみ捨て場」の 読[よ]み方[かた]は どれですか。",
+              "question": "【26-dars · Mondai 1: Moji/Goi】「ごみ捨て場」の 読[よ]み方[かた]は どれですか。",
               "options": ["ごみすてじょう", "ごみとりば", "ごみおきば", "ごみすてば"],
               "correctAnswerIndex": 3,
               "explanation": "「ごみ捨て場」 ning to'g'ri o'qilishi: 「ごみすてば」 (chiqindi tashlash joyi)."
             },
             {
               "id": "ja-minna-l26-q3",
-              "question": "【Mondai 1: Moji/Goi】「電車の 時間に （　）。走ったから 大丈夫でした。」",
+              "question": "【26-dars · Mondai 1: Moji/Goi】「電車の 時間に （　）。走ったから 大丈夫でした。」",
               "options": ["間に合いました", "遅れました", "忘れました", "落ちました"],
               "correctAnswerIndex": 0,
               "explanation": "Yugurganim sababli ulgurdim: 「間に合いました (まにあいました)」."
@@ -539,7 +539,7 @@
               "id": "ja-minna-l26-m1-q1",
               "audioScript": "「どうして 遅[おく]れたんですか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【26-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "道[みち]が 混[こ]んでいたんです。",
                 "駅[えき]に 行[い]きます。",
@@ -553,7 +553,7 @@
               "id": "ja-minna-l26-m1-q2",
               "audioScript": "「日本語[にほんご]が お上手[じょうず]ですね。どこで 習[なら]ったんですか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【26-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "大学[だいがく]で 勉強[べんきょう]したんです。",
                 "いいえ、下手[へた]です。",
@@ -567,7 +567,7 @@
               "id": "ja-minna-l26-m1-q3",
               "audioScript": "「頭[あたま]が 痛[いた]いんですが、どうしたら いいですか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【26-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "薬[くすり]を 飲[の]んで、休[やす]んだら いいですよ。",
                 "痛[いた]くないです。",
@@ -1007,14 +1007,14 @@
           "questions": [
             {
               "id": "ja-minna-l27-q1",
-              "question": "【Mondai 1: Moji/Goi】「景色」の 読[よ]み方[かた]は どれですか。",
+              "question": "【27-dars · Mondai 1: Moji/Goi】「景色」の 読[よ]み方[かた]は どれですか。",
               "options": ["けいしき", "けしき", "ふうけい", "ばしょ"],
               "correctAnswerIndex": 1,
               "explanation": "「景色」 ning to'g'ri o'qilishi: 「けしき」 (manzara)."
             },
             {
               "id": "ja-minna-l27-q2",
-              "question": "【Mondai 1: Moji/Goi】「声（こえ）」と「音（おと）」の 使い分けとして 正しいものは？",
+              "question": "【27-dars · Mondai 1: Moji/Goi】「声（こえ）」と「音（おと）」の 使い分けとして 正しいものは？",
               "options": [
                 "Jonsiz narsalar tovushi: 声 / Inson ovozi: 音",
                 "Ikkalasi har qanday holatda bir xil",
@@ -1026,7 +1026,7 @@
             },
             {
               "id": "ja-minna-l27-q3",
-              "question": "【Mondai 1: Moji/Goi】「昔（むかし）」の 反対（はんたい）の 言葉は どれですか。",
+              "question": "【27-dars · Mondai 1: Moji/Goi】「昔（むかし）」の 反対（はんたい）の 言葉は どれですか。",
               "options": ["昨日", "未来", "毎日", "今 (現在)"],
               "correctAnswerIndex": 3,
               "explanation": "「昔 (qadimda/ilgari)」 so'zining ziddi — 「今 (hozir)」."
@@ -1116,7 +1116,7 @@
               "id": "ja-minna-l27-m1-q1",
               "audioScript": "「漢字[かんじ]が 書[か]けますか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【27-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "はい、少[すこ]し 書[か]けます。",
                 "いいえ、書[か]きません。",
@@ -1130,7 +1130,7 @@
               "id": "ja-minna-l27-m1-q2",
               "audioScript": "「富士山[ふじさん]が 見[み]えますか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【27-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "はい、きれいに 見[み]えます。",
                 "いいえ、見[み]ません。",
@@ -1144,7 +1144,7 @@
               "id": "ja-minna-l27-m1-q3",
               "audioScript": "「お金[かね]は いくら ありますか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【27-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "1000円[えん]しか ありません。",
                 "たくさん ありません。",
@@ -1583,21 +1583,21 @@
           "questions": [
             {
               "id": "ja-minna-l28-q1",
-              "question": "【Mondai 1: Moji/Goi】「真面目（まじめ）な」の 意[い]味[み]は どれですか。",
+              "question": "【28-dars · Mondai 1: Moji/Goi】「真面目（まじめ）な」の 意[い]味[み]は どれですか。",
               "options": ["Mas'uliyatli / Jiddiy", "Quvnoq", "Qiziqarli", "Qo'rqoq"],
               "correctAnswerIndex": 0,
               "explanation": "「真面目な (まじめな)」 — jiddiy, mas'uliyatli, vijdoni pok."
             },
             {
               "id": "ja-minna-l28-q2",
-              "question": "【Mondai 1: Moji/Goi】「経験」の 読[よ]み方[かた]は どれですか。",
+              "question": "【28-dars · Mondai 1: Moji/Goi】「経験」の 読[よ]み方[かた]は どれですか。",
               "options": ["けいかん", "けいけん", "げんけん", "こうけん"],
               "correctAnswerIndex": 1,
               "explanation": "「経験」 ning to'g'ri o'qilishi: 「けいけん」 (tajriba)."
             },
             {
               "id": "ja-minna-l28-q3",
-              "question": "【Mondai 1: Moji/Goi】「給料（きゅうりょう）」の 意[い]味[み]は どれですか。",
+              "question": "【28-dars · Mondai 1: Moji/Goi】「給料（きゅうりょう）」の 意[い]味[み]は どれですか。",
               "options": ["Soliq", "Chipta narxi", "Oylik maosh", "Mukofot puli"],
               "correctAnswerIndex": 2,
               "explanation": "「給料 (きゅうりょう)」 — oylik ish haqi (maosh)."
@@ -1682,7 +1682,7 @@
               "id": "ja-minna-l28-m1-q1",
               "audioScript": "「いつも 音楽[おんがく]を 聞[き]きながら 勉強[べんきょう]するんですか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【28-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "はい、いつも そうして います。",
                 "いいえ、音楽[おんがく]は 聞[き]きません。",
@@ -1696,7 +1696,7 @@
               "id": "ja-minna-l28-m1-q2",
               "audioScript": "「どうして この レストランに よく 来[く]るんですか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【28-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "おいしいし、値段[ねだん]も 安[やす]いからです。",
                 "高[たか]いからです。",
@@ -1710,7 +1710,7 @@
               "id": "ja-minna-l28-m1-q3",
               "audioScript": "「休[やす]みの 日[ひ]は いつも 何[なに]を して いますか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【28-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "本[ほん]を 読[よ]んだり、テレビを 見[み]たり して います。",
                 "働[はたら]きます。",
@@ -2152,21 +2152,21 @@
           "questions": [
             {
               "id": "ja-minna-l29-q1",
-              "question": "【Mondai 1: Moji/Goi】「壊（こわ）れます」の 意[い]味[み]は どれですか。",
+              "question": "【29-dars · Mondai 1: Moji/Goi】「壊（こわ）れます」の 意[い]味[み]は どれですか。",
               "options": ["Yirtilmoq", "Sinmoq", "O'chmoq", "Buzilmoq / Ishdan chiqmoq"],
               "correctAnswerIndex": 3,
               "explanation": "「壊れます (こわれます)」 — mashina, soat, televizor buzilishi."
             },
             {
               "id": "ja-minna-l29-q2",
-              "question": "【Mondai 1: Moji/Goi】「財布を （　）しまいました。」と「財布が （　）ています。」に入る 正しい 組み合わせは？",
+              "question": "【29-dars · Mondai 1: Moji/Goi】「財布を （　）しまいました。」と「財布が （　）ています。」に入る 正しい 組み合わせは？",
               "options": ["落として / 落ち", "落ちて / 落とし", "壊して / 割れ", "閉めて / 開い"],
               "correctAnswerIndex": 0,
               "explanation": "Ega ob'ekt bo'lsa (財布を) o'zgalik fe'l: 落とします; ega sub'ekt bo'lsa (財布が) o'zlik fe'l: 落ちます ishlatiladi."
             },
             {
               "id": "ja-minna-l29-q3",
-              "question": "【Mondai 1: Moji/Goi】「消（き）えます」の 反対（はんたい）の 自動詞は？",
+              "question": "【29-dars · Mondai 1: Moji/Goi】「消（き）えます」の 反対（はんたい）の 自動詞は？",
               "options": ["点けます", "点（つ）きます", "開きます", "閉まります"],
               "correctAnswerIndex": 1,
               "explanation": "Chiroq o'chishi (消えます) ning ziddi — yonishi (点きます)."
@@ -2251,7 +2251,7 @@
               "id": "ja-minna-l29-m1-q1",
               "audioScript": "「窓[まど]が 開[あ]いて いますね。寒[さむ]いですか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【29-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "はい、閉[し]めて ください。",
                 "はい、開[あ]けました。",
@@ -2265,7 +2265,7 @@
               "id": "ja-minna-l29-m1-q2",
               "audioScript": "「電車[でんしゃ]の 中[なか]に かばんを 忘[わす]れて しまったんです。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【29-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "それは 大変[たいへん]でしたね。すぐ 駅員[えきいん]に 言[い]いましょう。",
                 "おめでとうございます。",
@@ -2279,7 +2279,7 @@
               "id": "ja-minna-l29-m1-q3",
               "audioScript": "「この パソコンは 壊[こわ]れて いますか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【29-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "はい、動[うご]きません。",
                 "いいえ、壊[こわ]しました。",
@@ -2730,7 +2730,7 @@
           "questions": [
             {
               "id": "ja-minna-l30-q1",
-              "question": "【Mondai 1: Moji/Goi】「予定表（よていひょう）」の 意[い]味[み]は どれですか。",
+              "question": "【30-dars · Mondai 1: Moji/Goi】「予定表（よていひょう）」の 意[い]味[み]は どれですか。",
               "options": [
                 "Hisobot daftari",
                 "Kundalik darslik",
@@ -2742,14 +2742,14 @@
             },
             {
               "id": "ja-minna-l30-q2",
-              "question": "【Mondai 1: Moji/Goi】「並べます」の 読[よ]み方[かた]は どれですか。",
+              "question": "【30-dars · Mondai 1: Moji/Goi】「並べます」の 読[よ]み方[かた]は どれですか。",
               "options": ["くらべます", "しらべます", "えらびます", "ならべます"],
               "correctAnswerIndex": 3,
               "explanation": "「並べます」 ning to'g'ri o'qilishi: 「ならべます」 (qator qilib termoq)."
             },
             {
               "id": "ja-minna-l30-q3",
-              "question": "【Mondai 1: Moji/Goi】「相談（そうだん）します」の 意[い]味[み]は どれですか。",
+              "question": "【30-dars · Mondai 1: Moji/Goi】「相談（そうだん）します」の 意[い]味[み]は どれですか。",
               "options": [
                 "Maslahatlashmoq / Fikr almashmoq",
                 "Kechikmoq",
@@ -2839,7 +2839,7 @@
               "id": "ja-minna-l30-m1-q1",
               "audioScript": "「カレンダーに 何[なに]か 書[か]いて ありますか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【30-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "はい、今月[こんげつ]の 予定[よてい]が 書[か]いて あります。",
                 "いいえ、カレンダーは ありません。",
@@ -2853,7 +2853,7 @@
               "id": "ja-minna-l30-m1-q2",
               "audioScript": "「会議[かいぎ]の 前[まえ]に 資料[しりょう]を コピーして おきましょうか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【30-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "ええ、20部[ぶ] コピーして おいて ください。",
                 "いいえ、コピーしました。",
@@ -2867,7 +2867,7 @@
               "id": "ja-minna-l30-m1-q3",
               "audioScript": "「ハサミを 使[つか]った 後[あと]で、どこに 置[お]きますか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【30-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "元[もと]の 所[ところ]に 戻[もど]して おいて ください。",
                 "ゴミ箱[ばこ]に 捨[す]てます。",
@@ -3293,14 +3293,14 @@
           "questions": [
             {
               "id": "ja-minna-l31-q1",
-              "question": "【Mondai 1: Moji/Goi】「展覧会」の 読[よ]み方[かた]は どれですか。",
+              "question": "【31-dars · Mondai 1: Moji/Goi】「展覧会」の 読[よ]み方[かた]は どれですか。",
               "options": ["てんらかい", "てんらんかい", "けんらんかい", "てんかんかい"],
               "correctAnswerIndex": 1,
               "explanation": "「展覧会」 ning to'g'ri o'qilishi: 「てんらんかい」 (ko'rgazma)."
             },
             {
               "id": "ja-minna-l31-q2",
-              "question": "【Mondai 1: Moji/Goi】「案内（あんない）します」の 意[い]味[み]は どれですか。",
+              "question": "【31-dars · Mondai 1: Moji/Goi】「案内（あんない）します」の 意[い]味[み]は どれですか。",
               "options": [
                 "Taklif qilmoq",
                 "Yordam bermoq",
@@ -3312,7 +3312,7 @@
             },
             {
               "id": "ja-minna-l31-q3",
-              "question": "【Mondai 1: Moji/Goi】「本社（ほんしゃ）」の 反対（はんたい）の 言葉は？",
+              "question": "【31-dars · Mondai 1: Moji/Goi】「本社（ほんしゃ）」の 反対（はんたい）の 言葉は？",
               "options": [
                 "会社（かいしゃ）",
                 "社会（しゃかい）",
@@ -3402,7 +3402,7 @@
               "id": "ja-minna-l31-m1-q1",
               "audioScript": "「夏休[なつやす]みは どこか 行[い]くの？」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【31-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "北海道[ほっかいどう]へ 行[い]こうと 思[おも]って いるんだ。",
                 "行[い]きませんでした。",
@@ -3416,7 +3416,7 @@
               "id": "ja-minna-l31-m1-q2",
               "audioScript": "「週末[しゅうまつ]は 何[なに]を する つもりですか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【31-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "家[いえ]で ゆっくり 休[やす]む つもりです。",
                 "はい、休[やす]みます。",
@@ -3430,7 +3430,7 @@
               "id": "ja-minna-l31-m1-q3",
               "audioScript": "「飛行機[ひこうき]の 時間[じかん]は 何時[なんじ]の 予定[よてい]ですか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【31-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "午後[ごご] 3時[さんじ]に 出発[しゅっぱつ]する 予定[よてい]です。",
                 "昨日[きのう] 乗[の]りました。",
@@ -3851,7 +3851,7 @@
           "questions": [
             {
               "id": "ja-minna-l32-q1",
-              "question": "【Mondai 1: Moji/Goi】「成功（せいこう）」の 反対（はんたい）の 言葉は？",
+              "question": "【32-dars · Mondai 1: Moji/Goi】「成功（せいこう）」の 反対（はんたい）の 言葉は？",
               "options": [
                 "失敗（しっぱい）",
                 "合格（ごうかく）",
@@ -3863,14 +3863,14 @@
             },
             {
               "id": "ja-minna-l32-q2",
-              "question": "【Mondai 1: Moji/Goi】「晴（は）れます」の 意[い]味[み]は どれですか。",
+              "question": "【32-dars · Mondai 1: Moji/Goi】「晴（は）れます」の 意[い]味[み]は どれですか。",
               "options": ["Yomg'ir yog'moq", "Havo ochilmoq", "Shamol esmoq", "Qor tushmoq"],
               "correctAnswerIndex": 1,
               "explanation": "「晴れます (はれます)」 — havo ochiq va quyoshli bo'lmoq."
             },
             {
               "id": "ja-minna-l32-q3",
-              "question": "【Mondai 1: Moji/Goi】「咳（せき）が 出（で）ます」の 意[い]味[み]は？",
+              "question": "【32-dars · Mondai 1: Moji/Goi】「咳（せき）が 出（で）ます」の 意[い]味[み]は？",
               "options": ["Boshtoshog'i tutmoq", "Ko'ngil aynimoq", "Yo'talmoq", "Qon ketmoq"],
               "correctAnswerIndex": 2,
               "explanation": "「咳が出る」 — yo'tal tutmoq, yo'talmoq."
@@ -3955,7 +3955,7 @@
               "id": "ja-minna-l32-m1-q1",
               "audioScript": "「風邪[かぜ]を ひいたんですが、どうしたら いいですか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【32-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "温[あたた]かくして、早[はや]く 寝[ね]たほうが いいですよ。",
                 "元気[げんき]ですね。",
@@ -3969,7 +3969,7 @@
               "id": "ja-minna-l32-m1-q2",
               "audioScript": "「明日[あした]は 雨[あめ]が 降[ふ]るでしょうか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【32-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "ええ、天気予報[てんきよほう]に よると、降[ふ]るそうですよ。",
                 "降[ふ]りませんでした。",
@@ -3983,7 +3983,7 @@
               "id": "ja-minna-l32-m1-q3",
               "audioScript": "「約束[やくそく]の 時間[じかん]に 間[ま]に合[あ]いますか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【32-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "道[みち]が 混[こ]んで いますから、遅[おく]れるかもしれません。",
                 "間[ま]に合[あ]いました。",
@@ -4395,7 +4395,7 @@
           "questions": [
             {
               "id": "ja-minna-l33-q1",
-              "question": "【Mondai 1: Moji/Goi】「規則（きそく）を 守（まも）ります」の 意[い]味[み]は？",
+              "question": "【33-dars · Mondai 1: Moji/Goi】「規則（きそく）を 守（まも）ります」の 意[い]味[み]は？",
               "options": [
                 "Qoidalarni buzmoq",
                 "Qoida yozmoq",
@@ -4407,7 +4407,7 @@
             },
             {
               "id": "ja-minna-l33-q2",
-              "question": "【Mondai 1: Moji/Goi】「本日休業（ほんじつきゅうぎょう）」の 意[い]味[み]は？",
+              "question": "【33-dars · Mondai 1: Moji/Goi】「本日休業（ほんじつきゅうぎょう）」の 意[い]味[み]は？",
               "options": [
                 "Bugun dam olish kuni",
                 "Bugun bayram",
@@ -4419,7 +4419,7 @@
             },
             {
               "id": "ja-minna-l33-q3",
-              "question": "【Mondai 1: Moji/Goi】「諦（あきら）めます」の 意[い]味[み]は どれですか。",
+              "question": "【33-dars · Mondai 1: Moji/Goi】「諦（あきら）めます」の 意[い]味[み]は どれですか。",
               "options": [
                 "G'alaba qozonmoq",
                 "Taslim bo'lmoq / Umidni uzmoq",
@@ -4509,7 +4509,7 @@
               "id": "ja-minna-l33-m1-q1",
               "audioScript": "「あそこに「止[と]まれ」と 書[か]いて ありますよ。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【33-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "はい、車[くるま]を 止[と]めましょう。",
                 "走[はし]りましょう。",
@@ -4523,7 +4523,7 @@
               "id": "ja-minna-l33-m1-q2",
               "audioScript": "「この マークは どういう 意味[いみ]ですか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【33-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "ここで 写真[しゃしん]を 撮[と]るなという 意味[いみ]です。",
                 "写真[しゃしん]を 撮[と]って ください。",
@@ -4537,7 +4537,7 @@
               "id": "ja-minna-l33-m1-q3",
               "audioScript": "「部長[ぶちょう]は 何[なに]と おっしゃいましたか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【33-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "明日[あした] 9時[くじ]に 集[あつ]まれと 言[い]っていました。",
                 "集[あつ]まりました。",
@@ -4920,21 +4920,21 @@
           "questions": [
             {
               "id": "ja-minna-l34-q1",
-              "question": "【Mondai 1: Moji/Goi】「矢印（やじるし）」の 意[い]味[み]は どれですか。",
+              "question": "【34-dars · Mondai 1: Moji/Goi】「矢印（やじるし）」の 意[い]味[み]は どれですか。",
               "options": ["Doira belgisi", "To'rtburchak", "Ko'rsatkich strelka", "Chiziq"],
               "correctAnswerIndex": 2,
               "explanation": "「矢印 (やじるし)」 — ko'rsatkich nayza/strelka belgisi."
             },
             {
               "id": "ja-minna-l34-q2",
-              "question": "【Mondai 1: Moji/Goi】「細（ほそ）い」の 反対（はんたい）の 言葉は？",
+              "question": "【34-dars · Mondai 1: Moji/Goi】「細（ほそ）い」の 反対（はんたい）の 言葉は？",
               "options": ["長（なが）い", "短（みじか）い", "広（ひろ）い", "太（ふと）い"],
               "correctAnswerIndex": 3,
               "explanation": "Ingichka (細い) ning ziddi — yo'g'on / semiz (太い)."
             },
             {
               "id": "ja-minna-l34-q3",
-              "question": "【Mondai 1: Moji/Goi】「説明書」の 読[よ]み方[かた]は どれですか。",
+              "question": "【34-dars · Mondai 1: Moji/Goi】「説明書」の 読[よ]み方[かた]は どれですか。",
               "options": ["せつめいしょ", "せつめいほん", "しょうめいしょ", "あんないしょ"],
               "correctAnswerIndex": 0,
               "explanation": "「説明書」 ning to'g'ri o'qilishi: 「せつめいしょ」 (yo'riqnoma)."
@@ -5014,7 +5014,7 @@
               "id": "ja-minna-l34-m1-q1",
               "audioScript": "「この プラモデルは どうやって 作[つく]るんですか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【34-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "説明書[せつめいしょ]の とおりに 作[つく]って ください。",
                 "上手に 作[つく]りました。",
@@ -5028,7 +5028,7 @@
               "id": "ja-minna-l34-m1-q2",
               "audioScript": "「いつ ジョギングを しますか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【34-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "仕事[しごと]が 終[お]わった あとで、走[はし]ります。",
                 "仕事[しごと]の 前[まえ]です。",
@@ -5042,7 +5042,7 @@
               "id": "ja-minna-l34-m1-q3",
               "audioScript": "「コーヒーに 砂糖[さとう]を 入[い]れますか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【34-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "いいえ、砂糖[さとう]を 入[い]れないで 飲[の]みます。",
                 "はい、入[い]れません。",
@@ -5440,7 +5440,7 @@
           "questions": [
             {
               "id": "ja-minna-l35-q1",
-              "question": "【Mondai 1: Moji/Goi】「困（こま）ります」の 意[い]味[み]は どれですか。",
+              "question": "【35-dars · Mondai 1: Moji/Goi】「困（こま）ります」の 意[い]味[み]は どれですか。",
               "options": [
                 "Xursand bo'lmoq",
                 "Qiyin ahvolda qolmoq / Xijolat bo'lmoq",
@@ -5452,14 +5452,14 @@
             },
             {
               "id": "ja-minna-l35-q2",
-              "question": "【Mondai 1: Moji/Goi】「島」の 読[よ]み方[かた]は どれですか。",
+              "question": "【35-dars · Mondai 1: Moji/Goi】「島」の 読[よ]み方[かた]は どれですか。",
               "options": ["やま", "かわ", "しま", "まち"],
               "correctAnswerIndex": 2,
               "explanation": "「島」 ning to'g'ri o'qilishi: 「しま」 (orol)."
             },
             {
               "id": "ja-minna-l35-q3",
-              "question": "【Mondai 1: Moji/Goi】「近所（きんじょ）」の 意[い]味[み]は どれですか。",
+              "question": "【35-dars · Mondai 1: Moji/Goi】「近所（きんじょ）」の 意[い]味[み]は どれですか。",
               "options": ["Uzoq shahar", "Kasalxona", "Vokzal", "Mahalla / Qo'shnichilik hududi"],
               "correctAnswerIndex": 3,
               "explanation": "「近所 (きんじょ)」 — yaqin atrofdagi qo'shnilar/mahalla."
@@ -5534,7 +5534,7 @@
               "id": "ja-minna-l35-m1-q1",
               "audioScript": "「ボタンを 押[お]せば、切符[きっぷ]が 出[で]ますか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【35-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "はい、お釣[つ]りも 一緒[いっしょ]に 出[で]ますよ。",
                 "押[お]しませんでした。",
@@ -5548,7 +5548,7 @@
               "id": "ja-minna-l35-m1-q2",
               "audioScript": "「安[やす]い パソコンを 買[か]いたいんですが、どこが いいですか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【35-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "パソコンなら、秋葉原[あきはばら]が 安[やす]くて いいですよ。",
                 "高[たか]いです。",
@@ -5562,7 +5562,7 @@
               "id": "ja-minna-l35-m1-q3",
               "audioScript": "「明日[あした] 雨[あめ]が 降[ふ]れば、試合[しあい]は どうなりますか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【35-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "中止[ちゅうし]に なります。",
                 "試合[しあい]を します。",
@@ -6015,21 +6015,21 @@
           "questions": [
             {
               "id": "ja-minna-l36-q1",
-              "question": "【Mondai 1: Moji/Goi】「届（とど）きます」の 意[い]味[み]は どれですか。",
+              "question": "【36-dars · Mondai 1: Moji/Goi】「届（とど）きます」の 意[い]味[み]は どれですか。",
               "options": ["Yetib bormoq / Topshirilmoq", "Jo'natmoq", "Kechikmoq", "Qaytarmoq"],
               "correctAnswerIndex": 0,
               "explanation": "「届きます (とどきます)」 — pochta yoki yuk manziliga yetib bormoq."
             },
             {
               "id": "ja-minna-l36-q2",
-              "question": "【Mondai 1: Moji/Goi】「工場」の 読[よ]み方[かた]は どれですか。",
+              "question": "【36-dars · Mondai 1: Moji/Goi】「工場」の 読[よ]み方[かた]は どれですか。",
               "options": ["こうば", "こうじょう", "こうばしょ", "さぎょうじょう"],
               "correctAnswerIndex": 1,
               "explanation": "「工場」 ning asosiy rasmiy o'qilishi: 「こうじょう」 (zavod, fabrika)."
             },
             {
               "id": "ja-minna-l36-q3",
-              "question": "【Mondai 1: Moji/Goi】「健康（けんこう）」の 意[い]味[み]は どれですか。",
+              "question": "【36-dars · Mondai 1: Moji/Goi】「健康（けんこう）」の 意[い]味[み]は どれですか。",
               "options": ["Boylik", "Xotirjamlik", "Salomatlik / Sog'liq", "Baxt"],
               "correctAnswerIndex": 2,
               "explanation": "「健康 (けんこう)」 — inson sog'lig'i va salomatligi."
@@ -6119,7 +6119,7 @@
               "id": "ja-minna-l36-m1-q1",
               "audioScript": "「健康[けんこう]のために、何[なに]を して いますか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【36-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "毎日[まいにち] 野菜[やさい]を 食[た]べるように して います。",
                 "野菜[やさい]が 嫌[きら]いです。",
@@ -6133,7 +6133,7 @@
               "id": "ja-minna-l36-m1-q2",
               "audioScript": "「日本[にほん]の 刺身[さしみ]が 食[た]べられるように なりましたか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【36-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "はい、初[はじ]めは だめでしたが、今[いま]は 大好[だいす]きです。",
                 "いいえ、食[た]べました。",
@@ -6147,7 +6147,7 @@
               "id": "ja-minna-l36-m1-q3",
               "audioScript": "「約束[やくそく]の 時間[じかん]に 遅[おく]れないように して くださいね。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【36-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "はい、気[き]を つけます。",
                 "遅[おく]れました。",
@@ -6554,7 +6554,7 @@
           "questions": [
             {
               "id": "ja-minna-l37-q1",
-              "question": "【Mondai 1: Moji/Goi】「輸出（ゆしゅつ）」の 反対（はんたい）の 言葉は？",
+              "question": "【37-dars · Mondai 1: Moji/Goi】「輸出（ゆしゅつ）」の 反対（はんたい）の 言葉は？",
               "options": [
                 "出発（しゅっぱつ）",
                 "到着（とうちゃく）",
@@ -6566,7 +6566,7 @@
             },
             {
               "id": "ja-minna-l37-q2",
-              "question": "【Mondai 1: Moji/Goi】「翻訳（ほんやく）します」の 意[い]味[み]は？",
+              "question": "【37-dars · Mondai 1: Moji/Goi】「翻訳（ほんやく）します」の 意[い]味[み]は？",
               "options": [
                 "Yozma tarjima qilmoq",
                 "Og'zaki tarjima qilmoq",
@@ -6578,7 +6578,7 @@
             },
             {
               "id": "ja-minna-l37-q3",
-              "question": "【Mondai 1: Moji/Goi】「踏（ふ）みます」の 意[い]味[み]は どれですか。",
+              "question": "【37-dars · Mondai 1: Moji/Goi】「踏（ふ）みます」の 意[い]味[み]は どれですか。",
               "options": ["Urmoq", "Bosmoq", "Chaqirmoq", "Ochmoq"],
               "correctAnswerIndex": 1,
               "explanation": "「踏みます (ふみます)」 — oyoq bilan bosmoq."
@@ -6658,7 +6658,7 @@
               "id": "ja-minna-l37-m1-q1",
               "audioScript": "「どうして 嬉[うれ]しそうな 顔[かお]を して いるの？」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【37-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "先生[せんせい]に スピーチを 褒[ほ]められたんだ。",
                 "先生[せんせい]を 褒[ほ]めました。",
@@ -6672,7 +6672,7 @@
               "id": "ja-minna-l37-m1-q2",
               "audioScript": "「電車[でんしゃ]の 中[なか]で 足[あし]を 踏[ふ]まれて しまいました。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【37-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "それは 痛[いた]かったですね。",
                 "よかったですね。",
@@ -6686,7 +6686,7 @@
               "id": "ja-minna-l37-m1-q3",
               "audioScript": "「この 寺[てら]は いつ 建[た]てられたんですか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【37-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "500年[ねん]前[まえ]に 建[た]てられました。",
                 "建[た]てました。",
@@ -7074,21 +7074,21 @@
           "questions": [
             {
               "id": "ja-minna-l38-q1",
-              "question": "【Mondai 1: Moji/Goi】「海岸」の 読[よ]み方[かた]は どれですか。",
+              "question": "【38-dars · Mondai 1: Moji/Goi】「海岸」の 読[よ]み方[かた]は どれですか。",
               "options": ["うみがん", "かいきし", "かいがん", "うみきし"],
               "correctAnswerIndex": 2,
               "explanation": "「海岸」 ning to'g'ri o'qilishi: 「かいがん」 (dengiz sohili/qirg'og'i)."
             },
             {
               "id": "ja-minna-l38-q2",
-              "question": "【Mondai 1: Moji/Goi】「書類（しょるい）」の 意[い]味[み]は どれですか。",
+              "question": "【38-dars · Mondai 1: Moji/Goi】「書類（しょるい）」の 意[い]味[み]は どれですか。",
               "options": ["Kitob", "Daftar", "Xat", "Hujjatlar / Qog'ozlar"],
               "correctAnswerIndex": 3,
               "explanation": "「書類 (しょるい)」 — rasmiy hujjatlar to'plami."
             },
             {
               "id": "ja-minna-l38-q3",
-              "question": "【Mondai 1: Moji/Goi】「嘘（うそ）を つきます」の 意[い]味[み]は？",
+              "question": "【38-dars · Mondai 1: Moji/Goi】「嘘（うそ）を つきます」の 意[い]味[み]は？",
               "options": [
                 "Yolg'on gapirmoq / Aldamoq",
                 "Rost gapirmoq",
@@ -7178,7 +7178,7 @@
               "id": "ja-minna-l38-m1-q1",
               "audioScript": "「趣味[しゅみ]は 何[なに]ですか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【38-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "写真[しゃしん]を 撮[と]るのが 好[す]きです。",
                 "写真[しゃしん]を 撮[と]りました。",
@@ -7192,7 +7192,7 @@
               "id": "ja-minna-l38-m1-q2",
               "audioScript": "「薬[くすり]を 飲[の]むのを 忘[わす]れないで くださいね。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【38-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "はい、食後[しょくご]に 飲[の]みます。",
                 "忘[わす]れました。",
@@ -7206,7 +7206,7 @@
               "id": "ja-minna-l38-m1-q3",
               "audioScript": "「一人[ひとり]で 外国[がいこく]へ 行[い]くのは 不安[ふあん]ですか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【38-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "ええ、少[すこ]し 不安[ふあん]ですが、楽[たの]しみです。",
                 "いいえ、行[い]きません。",
@@ -7614,14 +7614,14 @@
           "questions": [
             {
               "id": "ja-minna-l39-q1",
-              "question": "【Mondai 1: Moji/Goi】「倒（たお）れます」の 意[い]味[み]は どれですか。",
+              "question": "【39-dars · Mondai 1: Moji/Goi】「倒（たお）れます」の 意[い]味[み]は どれですか。",
               "options": ["Qurilmoq", "Yiqilmoq / Qulamoq (bino, daraxt)", "Buzilmoq", "Yonmoq"],
               "correctAnswerIndex": 1,
               "explanation": "「倒れます (たおれます)」 — daraxt yoki binoning qulab tushishi."
             },
             {
               "id": "ja-minna-l39-q2",
-              "question": "【Mondai 1: Moji/Goi】「複雑（ふくざつ）な」の 反対（はんたい）の 言葉は？",
+              "question": "【39-dars · Mondai 1: Moji/Goi】「複雑（ふくざつ）な」の 反対（はんたい）の 言葉は？",
               "options": [
                 "困難（こんなん）な",
                 "危険（きけん）な",
@@ -7633,7 +7633,7 @@
             },
             {
               "id": "ja-minna-l39-q3",
-              "question": "【Mondai 1: Moji/Goi】「お見舞（みま）い」の 意[い]味[み]は どれですか。",
+              "question": "【39-dars · Mondai 1: Moji/Goi】「お見舞（みま）い」の 意[い]味[み]は どれですか。",
               "options": [
                 "To'y sovg'asi",
                 "Tug'ilgan kun",
@@ -7723,7 +7723,7 @@
               "id": "ja-minna-l39-m1-q1",
               "audioScript": "「どうして パーティーに 来[こ]られなかったんですか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【39-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "用事[ようじ]が あって、行[い]けなかったんです。",
                 "パーティーは 楽[たの]しかったです。",
@@ -7737,7 +7737,7 @@
               "id": "ja-minna-l39-m1-q2",
               "audioScript": "「地震[じしん]の ニュースを 聞[き]いて、驚[おどろ]きました。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【39-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "本当[ほんとう]に びっくりしましたね。",
                 "面白[おもしろ]かったですね。",
@@ -7751,7 +7751,7 @@
               "id": "ja-minna-l39-m1-q3",
               "audioScript": "「危[あぶ]ないので、機械[きかい]に 触[さわ]らないで ください。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【39-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "はい、分[わ]かりました。",
                 "触[さわ]ります。",
@@ -8155,21 +8155,21 @@
           "questions": [
             {
               "id": "ja-minna-l40-q1",
-              "question": "【Mondai 1: Moji/Goi】「表（おもて）」の 反対（はんたい）の 言葉は？",
+              "question": "【40-dars · Mondai 1: Moji/Goi】「表（おもて）」の 反対（はんたい）の 言葉は？",
               "options": ["裏（うら）", "上（うえ）", "下（した）", "中（なか）"],
               "correctAnswerIndex": 0,
               "explanation": "Old tomon (表) ning ziddi — orqa tomon / teskari tomon (裏 - うら)."
             },
             {
               "id": "ja-minna-l40-q2",
-              "question": "【Mondai 1: Moji/Goi】「返事（へんじ）」の 意[い]味[み]は どれですか。",
+              "question": "【40-dars · Mondai 1: Moji/Goi】「返事（へんじ）」の 意[い]味[み]は どれですか。",
               "options": ["Savol", "Javob (chaqiruvga / xatga)", "Xato", "Maktub"],
               "correctAnswerIndex": 1,
               "explanation": "「返事 (へんじ)」 — chaqirilganda yoki xatga beriladigan javob."
             },
             {
               "id": "ja-minna-l40-q3",
-              "question": "【Mondai 1: Moji/Goi】「傷（きず）」の 意[い]味[み]は どれですか。",
+              "question": "【40-dars · Mondai 1: Moji/Goi】「傷（きず）」の 意[い]味[み]は どれですか。",
               "options": ["Dori", "Shifoxona", "Yara / Jarohat / Tirnalish", "Sovg'a"],
               "correctAnswerIndex": 2,
               "explanation": "「傷 (きず)」 — jarohat yoki buyumdagi tirnalgan joy."
@@ -8254,7 +8254,7 @@
               "id": "ja-minna-l40-m1-q1",
               "audioScript": "「明日[あした] 雨[あめ]が 降[ふ]るかどうか、分[わ]かりますか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【40-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "いいえ、天気予報[てんきよほう]を 見[み]て みます。",
                 "降[ふ]りません。",
@@ -8268,7 +8268,7 @@
               "id": "ja-minna-l40-m1-q2",
               "audioScript": "「鍵[かぎ]が どこに あるか、知[し]って いますか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【40-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "机[つくえ]の 引[ひ]き出[だ]しを 調[しら]べて みて ください。",
                 "鍵[かぎ]を かけました。",
@@ -8282,7 +8282,7 @@
               "id": "ja-minna-l40-m1-q3",
               "audioScript": "「この 靴[くつ]を 履[は]いて みても いいですか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【40-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "はい、どうぞ サイズを 確[たし]かめて ください。",
                 "脱[ぬ]いで ください。",
@@ -8669,21 +8669,21 @@
           "questions": [
             {
               "id": "ja-minna-l41-q1",
-              "question": "【Mondai 1: Moji/Goi】「珍（めずら）しい」の 意[い]味[み]は どれですか。",
+              "question": "【41-dars · Mondai 1: Moji/Goi】「珍（めずら）しい」の 意[い]味[み]は どれですか。",
               "options": ["Oddiy", "Katta", "Qimmat", "Nodir / Kamyob / Qiziq"],
               "correctAnswerIndex": 3,
               "explanation": "「珍しい」 — kamdan-kam ko'riladigan, nodir."
             },
             {
               "id": "ja-minna-l41-q2",
-              "question": "【Mondai 1: Moji/Goi】「猿（さる）」に えさを （　）。",
+              "question": "【41-dars · Mondai 1: Moji/Goi】「猿（さる）」に えさを （　）。",
               "options": ["やりました", "いただきました", "くださいました", "もらいしました"],
               "correctAnswerIndex": 0,
               "explanation": "Hayvonga yemish berish: 「えさを やりました」."
             },
             {
               "id": "ja-minna-l41-q3",
-              "question": "【Mondai 1: Moji/Goi】「発音（はつおん）」の 意[い]味[み]は どれですか。",
+              "question": "【41-dars · Mondai 1: Moji/Goi】「発音（はつおん）」の 意[い]味[み]は どれですか。",
               "options": ["Imlo qoidasi", "Talaffuz", "Tovush balandligi", "Tezlik"],
               "correctAnswerIndex": 1,
               "explanation": "「発音 (はつおん)」 — tovushlarning talaffuz qilinishi."
@@ -8763,7 +8763,7 @@
               "id": "ja-minna-l41-m1-q1",
               "audioScript": "「部長[ぶちょう]に お土産[みやげ]を いただきました。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【41-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "どんな お土産[みやげ]でしたか。",
                 "部長[ぶちょう]に あげました。",
@@ -8777,7 +8777,7 @@
               "id": "ja-minna-l41-m1-q2",
               "audioScript": "「先生[せんせい]が 本[ほん]を 貸[か]して くださったんです。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【41-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "親切[しんせつ]な 先生[せんせい]ですね。",
                 "先生[せんせい]に 貸[か]しました。",
@@ -8791,7 +8791,7 @@
               "id": "ja-minna-l41-m1-q3",
               "audioScript": "「犬[いぬ]に 餌[えさ]を やりましたか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【41-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "はい、さっき やりましたよ。",
                 "犬[いぬ]に もらいました。",
@@ -9178,21 +9178,21 @@
           "questions": [
             {
               "id": "ja-minna-l42-q1",
-              "question": "【Mondai 1: Moji/Goi】「法律」の 読[よ]み方[かた]は どれですか。",
+              "question": "【42-dars · Mondai 1: Moji/Goi】「法律」の 読[よ]み方[かた]は どれですか。",
               "options": ["ほうりく", "ほりつ", "ほうりつ", "ほうりき"],
               "correctAnswerIndex": 2,
               "explanation": "「法律」 ning to'g'ri o'qilishi: 「ほうりつ」 (qonun)."
             },
             {
               "id": "ja-minna-l42-q2",
-              "question": "【Mondai 1: Moji/Goi】「混（ま）ぜます」の 意[い]味[み]は どれですか。",
+              "question": "【42-dars · Mondai 1: Moji/Goi】「混（ま）ぜます」の 意[い]味[み]は どれですか。",
               "options": ["Bo'lmoq", "Pishirmoq", "Yuvmoq", "Aralashtirmoq"],
               "correctAnswerIndex": 3,
               "explanation": "「混ぜます (まぜます)」 — qorishmoq, aralashtirmoq."
             },
             {
               "id": "ja-minna-l42-q3",
-              "question": "【Mondai 1: Moji/Goi】「平和（へいわ）」の 反対（はんたい）の 言葉は？",
+              "question": "【42-dars · Mondai 1: Moji/Goi】「平和（へいわ）」の 反対（はんたい）の 言葉は？",
               "options": ["戦争（せんそう）", "喧嘩（けんか）", "危険（きけん）", "事件（じけん）"],
               "correctAnswerIndex": 0,
               "explanation": "Tinchlik (平和) ning ziddi — urush (戦争 - せんそう)."
@@ -9277,7 +9277,7 @@
               "id": "ja-minna-l42-m1-q1",
               "audioScript": "「何[なに]のために 貯金[ちょきん]して いるんですか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【42-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "将来[しょうらい] 家[いえ]を 買[か]うために 貯金[ちょきん]して います。",
                 "お金[かね]が ありません。",
@@ -9291,7 +9291,7 @@
               "id": "ja-minna-l42-m1-q2",
               "audioScript": "「この ハサミは 何[なに]に 使[つか]うんですか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【42-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "花[はな]を 切[き]るのに 使[つか]います。",
                 "花[はな]を 買[か]います。",
@@ -9305,7 +9305,7 @@
               "id": "ja-minna-l42-m1-q3",
               "audioScript": "「日本[にほん]で アパートを 探[さが]すのに 時間[じかん]が かかりましたか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【42-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "ええ、2週間[にしゅうかん]ぐらい かかりました。",
                 "探[さが]しませんでした。",
@@ -9686,21 +9686,21 @@
           "questions": [
             {
               "id": "ja-minna-l43-q1",
-              "question": "【Mondai 1: Moji/Goi】「丈夫（じょうぶ）な」の 反対（はんたい）の 言葉は？",
+              "question": "【43-dars · Mondai 1: Moji/Goi】「丈夫（じょうぶ）な」の 反対（はんたい）の 言葉は？",
               "options": ["強い", "壊れやすい / 弱い", "重い", "硬い"],
               "correctAnswerIndex": 1,
               "explanation": "Pishiq, baquvvat (丈夫な) ning ziddi — mo'rt, tez sinadigan / zaif."
             },
             {
               "id": "ja-minna-l43-q2",
-              "question": "【Mondai 1: Moji/Goi】「変（へん）な」の 意[い]味[み]は どれですか。",
+              "question": "【43-dars · Mondai 1: Moji/Goi】「変（へん）な」の 意[い]味[み]は どれですか。",
               "options": ["Oddiy", "Chiroyli", "G'alati / Noodatiy", "Qimmat"],
               "correctAnswerIndex": 2,
               "explanation": "「変な (へんな)」 — g'alati, beo'xshov, odatdagidan farqli."
             },
             {
               "id": "ja-minna-l43-q3",
-              "question": "【Mondai 1: Moji/Goi】「荷物が （　）そうです。」",
+              "question": "【43-dars · Mondai 1: Moji/Goi】「荷物が （　）そうです。」",
               "options": ["落とす", "落ちる", "落とした", "落ち"],
               "correctAnswerIndex": 3,
               "explanation": "Tushib ketay deyapti: 「落ちそうです」."
@@ -9780,7 +9780,7 @@
               "id": "ja-minna-l43-m1-q1",
               "audioScript": "「空[そら]が 暗[くら]く なって きましたね。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【43-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "ええ、今[いま]にも 雨[あめ]が 降[ふ]りそうですね。",
                 "雨[あめ]が 降[ふ]りました。",
@@ -9794,7 +9794,7 @@
               "id": "ja-minna-l43-m1-q2",
               "audioScript": "「この ケーキ、とても おいしそうですね。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【43-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "ええ、有名[ゆうめい]な 店[みせ]の ケーキなんですよ。",
                 "まずいです。",
@@ -9808,7 +9808,7 @@
               "id": "ja-minna-l43-m1-q3",
               "audioScript": "「ちょっと 喉[のど]が 渇[かわ]きましたね。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【43-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "自販機[じはんき]で ジュースを 買[か]って 来[き]ますね。",
                 "水[みず]を 飲[の]みませんでした。",
@@ -10242,14 +10242,14 @@
           "questions": [
             {
               "id": "ja-minna-l44-q1",
-              "question": "【Mondai 1: Moji/Goi】「濃（こ）い」の 反対（はんたい）の 言葉は？",
+              "question": "【44-dars · Mondai 1: Moji/Goi】「濃（こ）い」の 反対（はんたい）の 言葉は？",
               "options": ["薄（うす）い", "厚（あつ）い", "深（ふか）い", "浅（あさ）い"],
               "correctAnswerIndex": 0,
               "explanation": "Quyuq / o'tkir (濃い) ning ziddi — suyuk / och rang (薄い - うすい)."
             },
             {
               "id": "ja-minna-l44-q2",
-              "question": "【Mondai 1: Moji/Goi】「安全（あんぜん）な」の 反対（はんたい）の 言葉は？",
+              "question": "【44-dars · Mondai 1: Moji/Goi】「安全（あんぜん）な」の 反対（はんたい）の 言葉は？",
               "options": [
                 "不便（ふべん）な",
                 "危険（きけん）な",
@@ -10261,7 +10261,7 @@
             },
             {
               "id": "ja-minna-l44-q3",
-              "question": "【Mondai 1: Moji/Goi】「空気」の 読[よ]み方[かた]は どれですか。",
+              "question": "【44-dars · Mondai 1: Moji/Goi】「空気」の 読[よ]み方[かた]は どれですか。",
               "options": ["そらき", "くうげ", "くうき", "からき"],
               "correctAnswerIndex": 2,
               "explanation": "「空気」 ning to'g'ri o'qilishi: 「くうき」 (havo/atmosfera)."
@@ -10341,7 +10341,7 @@
               "id": "ja-minna-l44-m1-q1",
               "audioScript": "「夕べ[ゆうべ] お酒[さけ]を 飲[の]みすぎました。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【44-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "お酒[さけ]は ほどほどに したほうが いいですよ。",
                 "たくさん 飲[の]みましょう。",
@@ -10355,7 +10355,7 @@
               "id": "ja-minna-l44-m1-q2",
               "audioScript": "「この ペンは とても 書[か]きやすいですね。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【44-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "ええ、手[て]が 疲[つか]れませんよ。",
                 "書[か]けません。",
@@ -10369,7 +10369,7 @@
               "id": "ja-minna-l44-m1-q3",
               "audioScript": "「東京[とうきょう]の 地下鉄[ちかてつ]は 乗[の]り換[か]えが 複雑[ふくざつ]で、分[わ]かりにくいです。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【44-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "慣[な]れるまで 大変[たいへん]ですね。",
                 "簡単[かんたん]ですね。",
@@ -10769,14 +10769,14 @@
           "questions": [
             {
               "id": "ja-minna-l45-q1",
-              "question": "【Mondai 1: Moji/Goi】「係員（かかりいん）」の 意[い]味[み]は どれですか。",
+              "question": "【45-dars · Mondai 1: Moji/Goi】「係員（かかりいん）」の 意[い]味[み]は どれですか。",
               "options": ["Boshliq", "Mijoz", "Haydovchi", "Mas'ul xodim / Navbatchi xodim"],
               "correctAnswerIndex": 3,
               "explanation": "「係員 (かかりいん)」 — biror tadbir yoki joydagi mas'ul/navbatchi xodim."
             },
             {
               "id": "ja-minna-l45-q2",
-              "question": "【Mondai 1: Moji/Goi】「案内状（あんないじょう）」の 意[い]味[み]は？",
+              "question": "【45-dars · Mondai 1: Moji/Goi】「案内状（あんないじょう）」の 意[い]味[み]は？",
               "options": [
                 "Taklifnoma / E'lon xati",
                 "Rahmatnoma",
@@ -10788,7 +10788,7 @@
             },
             {
               "id": "ja-minna-l45-q3",
-              "question": "【Mondai 1: Moji/Goi】「信（しん）じます」の 意[い]味[み]は どれですか。",
+              "question": "【45-dars · Mondai 1: Moji/Goi】「信（しん）じます」の 意[い]味[み]は どれですか。",
               "options": ["Shubhalanmoq", "Ishonmoq", "Aldamoq", "Bosh tortmoq"],
               "correctAnswerIndex": 1,
               "explanation": "「信じます (しんじます)」 — ishonmoq, iymon keltirmoq."
@@ -10873,7 +10873,7 @@
               "id": "ja-minna-l45-m1-q1",
               "audioScript": "「火事[かじ]や 地震[じしん]の 場合[ばあい]は、どうしますか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【45-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "エレベーターを 使[つか]わないで、階段[かいだん]で 避難[ひなん]します。",
                 "エレベーターに 乗[の]ります。",
@@ -10887,7 +10887,7 @@
               "id": "ja-minna-l45-m1-q2",
               "audioScript": "「約束[やくそく]したのに、どうして 来[こ]なかったんですか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【45-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "すみません、急[きゅう]な 用事[ようじ]が 入[はい]って しまったんです。",
                 "楽[たの]しかったです。",
@@ -10901,7 +10901,7 @@
               "id": "ja-minna-l45-m1-q3",
               "audioScript": "「一生懸命[いっしょうけんめい] 勉強[べんきょう]したのに、不合格[ふごうかく]でした。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【45-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "それは 残念[ざんねん]でしたね。次回[じかい] 頑張[がんば]りましょう。",
                 "おめでとうございます。",
@@ -11284,21 +11284,21 @@
           "questions": [
             {
               "id": "ja-minna-l46-q1",
-              "question": "【Mondai 1: Moji/Goi】「原因」の 読[よ]み方[かた]は どれですか。",
+              "question": "【46-dars · Mondai 1: Moji/Goi】「原因」の 読[よ]み方[かた]は どれですか。",
               "options": ["げんじん", "もといん", "げんいん", "げんおん"],
               "correctAnswerIndex": 2,
               "explanation": "「原因」 ning to'g'ri o'qilishi: 「げんいん」 (sabab)."
             },
             {
               "id": "ja-minna-l46-q2",
-              "question": "【Mondai 1: Moji/Goi】「渡（わた）します」の 意[い]味[み]は どれですか。",
+              "question": "【46-dars · Mondai 1: Moji/Goi】「渡（わた）します」の 意[い]味[み]は どれですか。",
               "options": ["O'tmoq", "Sotib olmoq", "Qabul qilmoq", "Topshirmoq / Qo'liga bermoq"],
               "correctAnswerIndex": 3,
               "explanation": "「渡します (わたします)」 — narsani egasiga topshirmoq."
             },
             {
               "id": "ja-minna-l46-q3",
-              "question": "【Mondai 1: Moji/Goi】「焼（や）きます」の 意[い]味[み]は どれですか。",
+              "question": "【46-dars · Mondai 1: Moji/Goi】「焼（や）きます」の 意[い]味[み]は どれですか。",
               "options": ["Pishirmoq (kabob, go'sht, non)", "Qaynatmoq", "Kesmoq", "Muzlatmoq"],
               "correctAnswerIndex": 0,
               "explanation": "「焼きます (やきます)」 — qovurmoq, olovda pishirmoq."
@@ -11378,7 +11378,7 @@
               "id": "ja-minna-l46-m1-q1",
               "audioScript": "「昼[ひる]ご飯[はん]は もう 食[た]べましたか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【46-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "今[いま]から 食[た]べるところです。一緒[いっしょ]に いかがですか。",
                 "昨日[きのう] 食[た]べました。",
@@ -11392,7 +11392,7 @@
               "id": "ja-minna-l46-m1-q2",
               "audioScript": "「田中[たなか]さんは まだ 会議室[かいぎしつ]に いますか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【46-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "いえ、たった今[いま] 帰[かえ]ったところですよ。",
                 "はい、会議[かいぎ]は 始[はじ]まりません。",
@@ -11406,7 +11406,7 @@
               "id": "ja-minna-l46-m1-q3",
               "audioScript": "「先月[せんげつ] 車[くるま]を 買[か]ったばかりなのに、もう 故障[こしょう]して しまいました。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【46-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "それは ひどいですね。保証[ほしょう]は ありますか。",
                 "よかったですね。",
@@ -11800,21 +11800,21 @@
           "questions": [
             {
               "id": "ja-minna-l47-q1",
-              "question": "【Mondai 1: Moji/Goi】「人口」の 読[よ]み方[かた]は どれですか。",
+              "question": "【47-dars · Mondai 1: Moji/Goi】「人口」の 読[よ]み方[かた]は どれですか。",
               "options": ["にんこう", "じんこう", "じんぐち", "ひとぐち"],
               "correctAnswerIndex": 1,
               "explanation": "「人口」 ning to'g'ri o'qilishi: 「じんこう」 (aholi soni)."
             },
             {
               "id": "ja-minna-l47-q2",
-              "question": "【Mondai 1: Moji/Goi】「集（あつ）まります」の 意[い]味[み]は どれですか。",
+              "question": "【47-dars · Mondai 1: Moji/Goi】「集（あつ）まります」の 意[い]味[み]は どれですか。",
               "options": ["Tarqalmoq", "Kechikmoq", "Yig'ilmoq / To'planmoq", "Ketmoq"],
               "correctAnswerIndex": 2,
               "explanation": "「集まります (あつまります)」 — insonlar yoki buyumlar yig'ilishi."
             },
             {
               "id": "ja-minna-l47-q3",
-              "question": "【Mondai 1: Moji/Goi】「別（わか）れます」の 意[い]味[み]は どれですか。",
+              "question": "【47-dars · Mondai 1: Moji/Goi】「別（わか）れます」の 意[い]味[み]は どれですか。",
               "options": ["Uchrashmoq", "Qo'shilmoq", "Do'stlashmoq", "Xayrlashmoq / Ajralmoq"],
               "correctAnswerIndex": 3,
               "explanation": "「別れます (わかれます)」 — odamlarning ajralishi/xayrlashuvi."
@@ -11899,7 +11899,7 @@
               "id": "ja-minna-l47-m1-q1",
               "audioScript": "「天気予報[てんきよほう]に よると、明日[あした]は 寒[さむ]く なるそうですね。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【47-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "ええ、コートを 着[き]て 行[い]ったほうが いいですね。",
                 "寒[さむ]くなかったです。",
@@ -11913,7 +11913,7 @@
               "id": "ja-minna-l47-m1-q2",
               "audioScript": "「外[そと]が 騒[さわ]がしいですね。何[なに]か あったんでしょうか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【47-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "事故[じこ]が あったようですよ。パトカーが 来[き]て います。",
                 "静[しず]かですね。",
@@ -11927,7 +11927,7 @@
               "id": "ja-minna-l47-m1-q3",
               "audioScript": "「山田[やまだ]さんは 来月[らいげつ] 会社[かいしゃ]を 辞[や]めるそうですよ。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【47-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "えっ、本当[ほんとう]ですか。全然[ぜんぜん] 知[し]りませんでした。",
                 "辞[や]めました。",
@@ -12307,21 +12307,21 @@
           "questions": [
             {
               "id": "ja-minna-l48-q1",
-              "question": "【Mondai 1: Moji/Goi】「生徒（せいと）」の 意[い]味[み]は どれですか。",
+              "question": "【48-dars · Mondai 1: Moji/Goi】「生徒（せいと）」の 意[い]味[み]は どれですか。",
               "options": ["O'quvchi", "Talaba", "O'qituvchi", "Xodim"],
               "correctAnswerIndex": 0,
               "explanation": "「生徒 (せいと)」 — o'rta/katta maktab o'quvchisi."
             },
             {
               "id": "ja-minna-l48-q2",
-              "question": "【Mondai 1: Moji/Goi】「運びます」の 読[よ]み方[かた]は どれですか。",
+              "question": "【48-dars · Mondai 1: Moji/Goi】「運びます」の 読[よ]み方[かた]は どれですか。",
               "options": ["えらびます", "はこびます", "ならびます", "あそびます"],
               "correctAnswerIndex": 1,
               "explanation": "「運びます」 ning to'g'ri o'qilishi: 「はこびます」 (tashimoq)."
             },
             {
               "id": "ja-minna-l48-q3",
-              "question": "【Mondai 1: Moji/Goi】「届（とど）けます」の 意[い]味[み]は どれですか。",
+              "question": "【48-dars · Mondai 1: Moji/Goi】「届（とど）けます」の 意[い]味[み]は どれですか。",
               "options": ["Qabul qilmoq", "Yo'qotmoq", "Yetkazib bermoq", "Kechiktirmoq"],
               "correctAnswerIndex": 2,
               "explanation": "「届けます (とどけます)」 — manziliga yetkazib topshirmoq."
@@ -12406,7 +12406,7 @@
               "id": "ja-minna-l48-m1-q1",
               "audioScript": "「部長[ぶちょう]、この 仕事[しごと]は 私[わたし]に やらせて いただけませんか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【48-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "ええ、じゃ、君[きみ]に 任[まか]せよう。",
                 "やりませんでした。",
@@ -12420,7 +12420,7 @@
               "id": "ja-minna-l48-m1-q2",
               "audioScript": "「お母[かあ]さんは 子供[こども]に 毎日[まいにち] ピアノを 練習[れんしゅう]させて います。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【48-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "熱心[ねっしん]な お母[かあ]さんですね。",
                 "ピアノを 弾[ひ]きません。",
@@ -12434,7 +12434,7 @@
               "id": "ja-minna-l48-m1-q3",
               "audioScript": "「気分[きぶん]が 悪[わる]いので、早[はや]く 帰[かえ]らせて ください。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【48-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "無理[むり]を しないで、早[はや]く 病院[びょういん]へ 行[い]きなさい。",
                 "帰[かえ]りました。",
@@ -12820,21 +12820,21 @@
           "questions": [
             {
               "id": "ja-minna-l49-q1",
-              "question": "【Mondai 1: Moji/Goi】「旅館」の 読[よ]み方[かた]は どれですか。",
+              "question": "【49-dars · Mondai 1: Moji/Goi】「旅館」の 読[よ]み方[かた]は どれですか。",
               "options": ["りょけん", "りょこう", "ホテル", "りょかん"],
               "correctAnswerIndex": 3,
               "explanation": "「旅館」 ning to'g'ri o'qilishi: 「りょかん」 (an'anaviy yapon mehmonxonasi)."
             },
             {
               "id": "ja-minna-l49-q2",
-              "question": "【Mondai 1: Moji/Goi】「勤（つと）めます」の 意[い]味[み]は どれですか。",
+              "question": "【49-dars · Mondai 1: Moji/Goi】「勤（つと）めます」の 意[い]味[み]は どれですか。",
               "options": ["Ishlamoq / Xizmat qilmoq", "Dam olmoq", "O'qimoq", "Topmoq"],
               "correctAnswerIndex": 0,
               "explanation": "「勤めます (つとめます)」 — kompaniya yoki muassasada xizmat qilmoq."
             },
             {
               "id": "ja-minna-l49-q3",
-              "question": "【Mondai 1: Moji/Goi】「寄（よ）ります」の 意[い]味[み]は どれですか。",
+              "question": "【49-dars · Mondai 1: Moji/Goi】「寄（よ）ります」の 意[い]味[み]は どれですか。",
               "options": [
                 "Uzoqlashmoq",
                 "Yo'l-yo'lakay kirib o'tmoq",
@@ -12924,7 +12924,7 @@
               "id": "ja-minna-l49-m1-q1",
               "audioScript": "「社長[しゃちょう]は もう お帰[かえ]りに なりましたか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【49-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "はい、先[さき]ほど お帰[かえ]りに なりました。",
                 "はい、帰[かえ]ります。",
@@ -12938,7 +12938,7 @@
               "id": "ja-minna-l49-m1-q2",
               "audioScript": "「何[なに]を 召[め]し上[あ]がりますか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【49-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "コーヒーを お願[ねが]いします。",
                 "召[め]し上[あ]がります。",
@@ -12952,7 +12952,7 @@
               "id": "ja-minna-l49-m1-q3",
               "audioScript": "「先生[せんせい]は 明日[あした] 研究室[けんきゅうしつ]に いらっしゃいますか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【49-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "ええ、午後[ごご]なら ずっと おりますよ。",
                 "来[き]ません。",
@@ -13336,21 +13336,21 @@
           "questions": [
             {
               "id": "ja-minna-l50-q1",
-              "question": "【Mondai 1: Moji/Goi】「乾杯（かんぱい）」の 意[い]味[み]は どれですか。",
+              "question": "【50-dars · Mondai 1: Moji/Goi】「乾杯（かんぱい）」の 意[い]味[み]は どれですか。",
               "options": ["Xayrlashuv", "Kechirim", "Qadah so'zi / Qadah ko'tarish", "Tabrik"],
               "correctAnswerIndex": 2,
               "explanation": "「乾杯 (かんぱい)」 — qadah so'zi aytib ko'tarish."
             },
             {
               "id": "ja-minna-l50-q2",
-              "question": "【Mondai 1: Moji/Goi】「お礼（れい）」の 意[い]味[み]は どれですか。",
+              "question": "【50-dars · Mondai 1: Moji/Goi】「お礼（れい）」の 意[い]味[み]は どれですか。",
               "options": ["Xabar", "Salom", "Uchrashuv", "Minnatdorlik / Tashakkur sovg'asi"],
               "correctAnswerIndex": 3,
               "explanation": "「お礼 (おれい)」 — minnatdorlik yoki tashakkur sifatida berilgan sovg'a."
             },
             {
               "id": "ja-minna-l50-q3",
-              "question": "【Mondai 1: Moji/Goi】「存（ぞん）じます」の 意[い]味[み]は どれですか。",
+              "question": "【50-dars · Mondai 1: Moji/Goi】「存（ぞん）じます」の 意[い]味[み]は どれですか。",
               "options": ["Bilmoq / O'ylamoq", "Eshatmoq", "Yozmoq", "Bormoq"],
               "correctAnswerIndex": 0,
               "explanation": "「存じます (ぞんじます)」 — 知っています / 思います ning kamtarlik shakli."
@@ -13440,7 +13440,7 @@
               "id": "ja-minna-l50-m1-q1",
               "audioScript": "「お名前[なまえ]は 何[なん]と おっしゃいますか。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
+              "question": "【50-dars · Mondai 1 - Savol 1】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "スミスと 申[もう]します。どうぞ よろしく お願[ねが]いします。",
                 "スミスさんです。",
@@ -13454,7 +13454,7 @@
               "id": "ja-minna-l50-m1-q2",
               "audioScript": "「明日[あした] 10時[じゅうじ]に そちらへ 伺[うかが]います。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
+              "question": "【50-dars · Mondai 1 - Savol 2】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "お待[ま]ちして おります。気[き]を つけて お越[こ]しください。",
                 "参[まい]りません。",
@@ -13468,7 +13468,7 @@
               "id": "ja-minna-l50-m1-q3",
               "audioScript": "「先生[せんせい]の 新[あたら]しい ご著書[ちょしょ]を 拝見[はいけん]しました。」",
               "audioTitle": "Sun’iy yaponcha ovoz",
-              "question": "【Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
+              "question": "【50-dars · Mondai 1 - Savol 3】Audioni tinglang va mos javobni tanlang:",
               "options": [
                 "読[よ]んで くださって ありがとうございます。",
                 "見[み]ませんでした。",
