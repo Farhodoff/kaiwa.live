@@ -5,7 +5,6 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   Mic,
   MicOff,
-  Loader2,
   ShieldAlert,
   X,
   ExternalLink,
@@ -564,8 +563,8 @@ const SpeakingCoachPage: React.FC = () => {
       <main className="relative z-10 mx-auto flex min-h-0 w-full max-w-4xl flex-1 flex-col gap-3 overflow-y-auto px-3 py-3 sm:px-6 lg:py-5">
         {/* UPPER HERO: ProjectOrb (KaiwaOrbCharacter) */}
         <div className="flex min-h-[360px] flex-1 shrink-0 flex-col items-center justify-center px-3 py-4 text-center lg:min-h-0 lg:py-8">
-          {/* Clean title */}
-          <h2 className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-rose-200 sm:text-sm">
+          {/* Accessible title (screen readers only) */}
+          <h2 className="sr-only">
             Yuki Sensei · {activeScenario ? targetJlptLevel : 'Erkin muloqot'}
           </h2>
           <div className="rounded-full">
@@ -586,8 +585,8 @@ const SpeakingCoachPage: React.FC = () => {
             />
           </div>
 
-          {/* Action / Status Pill (Requirement 1) */}
-          <div className="mt-2 flex flex-col items-center gap-1">
+          {/* Action / Controls */}
+          <div className="mt-4 flex flex-col items-center gap-1">
             {!isLiveSession ? (
               <button
                 type="button"
@@ -598,39 +597,22 @@ const SpeakingCoachPage: React.FC = () => {
                 <Mic size={26} aria-hidden="true" />
               </button>
             ) : (
-              <div className="flex flex-col items-center gap-2">
-                <div
-                  role="status"
-                  aria-live="polite"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-950/60 px-4 py-1.5 text-xs font-medium backdrop-blur"
-                >
+              <div className="flex flex-col items-center gap-3">
+                <div role="status" aria-live="polite" className="sr-only">
                   {error === SPEECH_SESSION_EXPIRED ? (
-                    <span className="text-rose-300">Mikrofon to‘xtatildi</span>
+                    <span>Mikrofon to‘xtatildi</span>
                   ) : isMuted ? (
-                    <span className="flex items-center gap-2 text-slate-300">
-                      <MicOff size={14} />
-                      Mikrofon pauzada
-                    </span>
+                    <span>Mikrofon pauzada</span>
                   ) : isSpeaking && !isPreparingAudio ? (
-                    <span className="flex items-center gap-2 font-bold text-amber-300">
-                      <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-amber-400 shadow-sm shadow-amber-400/50" />
-                      Murabbiy gapiryapti
-                    </span>
+                    <span>Murabbiy gapiryapti</span>
                   ) : isThinking || isPreparingAudio ? (
-                    <span className="flex items-center gap-2 font-bold text-purple-300">
-                      <span className="h-2.5 w-2.5 animate-ping rounded-full bg-purple-400 shadow-sm shadow-purple-400/50" />
+                    <span>
                       {isPreparingAudio ? 'Ovoz tayyorlanmoqda...' : 'Javob tayyorlanmoqda...'}
                     </span>
                   ) : isListening ? (
-                    <span className="flex items-center gap-2 font-bold text-emerald-400">
-                      <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-emerald-400 shadow-sm shadow-emerald-400/50" />
-                      Tinglayapman...
-                    </span>
+                    <span>Tinglayapman...</span>
                   ) : (
-                    <span className="flex items-center gap-2 text-slate-300">
-                      <Loader2 size={14} className="animate-spin" />
-                      Mikrofonga ulanmoqda...
-                    </span>
+                    <span>Mikrofonga ulanmoqda...</span>
                   )}
                 </div>
 
@@ -663,11 +645,6 @@ const SpeakingCoachPage: React.FC = () => {
               </div>
             )}
           </div>
-          {isLiveSession && (
-            <p className="mt-3 max-w-xs text-xs leading-relaxed text-slate-300">
-              Siz gapirganda murabbiy tinglaydi. Murabbiy gapirganda mikrofon kutadi.
-            </p>
-          )}
           {isLiveSession && (currentTranscript || chatHistory.length > 0) && (
             <p
               className="mt-4 max-w-xl whitespace-pre-wrap px-2 text-sm leading-relaxed text-slate-100"
@@ -692,17 +669,6 @@ const SpeakingCoachPage: React.FC = () => {
                 Azure’ni qayta ulash
               </button>
             </div>
-          )}
-          {isLiveSession && speechProvider && (
-            <p role="status" className="mt-2 text-[11px] text-slate-400">
-              {speechProvider === 'azure'
-                ? 'Nutqni tanish: Azure Speech'
-                : speechProvider === 'browser'
-                  ? 'Nutqni tanish: brauzer · Azure ulanmagan'
-                  : speechProvider === 'connecting'
-                    ? 'Ovoz xizmatiga ulanmoqda…'
-                    : ''}
-            </p>
           )}
         </div>
 
