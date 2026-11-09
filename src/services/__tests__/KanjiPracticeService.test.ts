@@ -54,7 +54,7 @@ describe('KanjiPracticeService Unit Tests', () => {
   });
 
   it('verifies all curated quick kanjis exist and have valid stroke paths and coordinates', () => {
-    const levels = ['ALL', 'N5', 'N4', 'N3', 'N2', 'N1'] as const;
+    const levels = ['ALL', 'HIRAGANA', 'KATAKANA', 'N5', 'N4', 'N3', 'N2', 'N1'] as const;
     levels.forEach((lvl) => {
       const quickList = KanjiPracticeService.getQuickKanjis(lvl);
       expect(quickList.length).toBeGreaterThan(0);
@@ -69,5 +69,28 @@ describe('KanjiPracticeService Unit Tests', () => {
         expect(strokeData!.numbers.length).toBeGreaterThan(0);
       });
     });
+  });
+
+  it('supports Hiragana and Katakana alphabet practice with authentic strokes', () => {
+    const hiraganaItems = KanjiPracticeService.getKanjisByLevel('HIRAGANA');
+    expect(hiraganaItems.length).toBe(46);
+    expect(hiraganaItems[0].kanji).toBe('あ');
+    expect(hiraganaItems[0].meaningUz).toContain('Misol:');
+
+    const katakanaItems = KanjiPracticeService.getKanjisByLevel('KATAKANA');
+    expect(katakanaItems.length).toBeGreaterThanOrEqual(15);
+    expect(katakanaItems[0].kanji).toBe('ア');
+
+    // Check stroke paths for 'あ'
+    const aStrokes = KanjiPracticeService.getStrokeData('あ');
+    expect(aStrokes).not.toBeNull();
+    expect(aStrokes!.paths.length).toBe(3);
+    expect(aStrokes!.numbers.length).toBe(3);
+
+    // Check stroke paths for 'ア'
+    const aKataStrokes = KanjiPracticeService.getStrokeData('ア');
+    expect(aKataStrokes).not.toBeNull();
+    expect(aKataStrokes!.paths.length).toBe(2);
+    expect(aKataStrokes!.numbers.length).toBe(2);
   });
 });

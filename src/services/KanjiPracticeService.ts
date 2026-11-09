@@ -1,6 +1,7 @@
 import kanjiDataRaw from '../data/kanji/jlptKanjiDatabase.json';
 import type { JlptKanjiItem } from '../data/jlptGrammarKanji';
 import { DatasetStorageService } from './DatasetStorageService';
+import { HIRAGANA_CHARACTERS, KATAKANA_CHARACTERS, KanaCharacter } from '../data/kanaStrokesData';
 
 export interface KanjiStrokeNumber {
   x: number;
@@ -13,7 +14,7 @@ export interface KanjiStrokeData {
   numbers: KanjiStrokeNumber[];
 }
 
-export type JlptLevelFilter = 'ALL' | 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
+export type JlptLevelFilter = 'ALL' | 'HIRAGANA' | 'KATAKANA' | 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
 
 // Curated quick kanji recommendations verified from jlptKanjiDatabase & kanjiStrokes
 export const CURATED_QUICK_KANJIS: Record<JlptLevelFilter, string[]> = {
@@ -38,6 +39,71 @@ export const CURATED_QUICK_KANJIS: Record<JlptLevelFilter, string[]> = {
     '高',
     '大',
     '小',
+  ],
+  HIRAGANA: [
+    'あ',
+    'い',
+    'う',
+    'え',
+    'お',
+    'か',
+    'き',
+    'く',
+    'け',
+    'こ',
+    'さ',
+    'し',
+    'す',
+    'せ',
+    'そ',
+    'た',
+    'ち',
+    'つ',
+    'て',
+    'と',
+    'な',
+    'に',
+    'ぬ',
+    'ね',
+    'の',
+    'は',
+    'ひ',
+    'ふ',
+    'へ',
+    'ほ',
+    'ま',
+    'み',
+    'む',
+    'め',
+    'も',
+    'や',
+    'ゆ',
+    'よ',
+    'ら',
+    'り',
+    'る',
+    'れ',
+    'ろ',
+    'わ',
+    'を',
+    'ん',
+  ],
+  KATAKANA: [
+    'ア',
+    'イ',
+    'ウ',
+    'エ',
+    'オ',
+    'カ',
+    'サ',
+    'タ',
+    'ナ',
+    'ハ',
+    'マ',
+    'ヤ',
+    'ラ',
+    'ワ',
+    'ン',
   ],
   N5: [
     '日',
@@ -161,6 +227,29 @@ export const CURATED_QUICK_KANJIS: Record<JlptLevelFilter, string[]> = {
 
 const kanjiList: JlptKanjiItem[] = kanjiDataRaw as JlptKanjiItem[];
 
+const kanaToKanjiItem = (k: KanaCharacter): JlptKanjiItem => ({
+  id: `kana-${k.type}-${k.romaji}`,
+  kanji: k.char,
+  onyomi: k.type === 'katakana' ? k.romaji.toUpperCase() : '-',
+  kunyomi: k.type === 'hiragana' ? k.romaji : '-',
+  meaningUz: `${k.meaningUz}. Misol: ${k.sampleWord} (${k.sampleWordUz})`,
+  strokeCount: k.strokeCount,
+  level: (k.type === 'hiragana' ? 'HIRAGANA' : 'KATAKANA') as any,
+  examples: [
+    {
+      word: k.sampleWord,
+      reading: k.sampleWord,
+      meaning: k.sampleWordUz,
+    },
+  ],
+});
+
+const hiraganaList: JlptKanjiItem[] = HIRAGANA_CHARACTERS.map(kanaToKanjiItem);
+const katakanaList: JlptKanjiItem[] = KATAKANA_CHARACTERS.map(kanaToKanjiItem);
+
+const allKanaMap = new Map<string, KanaCharacter>();
+[...HIRAGANA_CHARACTERS, ...KATAKANA_CHARACTERS].forEach((k) => allKanaMap.set(k.char, k));
+
 let cachedStrokeMap: Record<string, KanjiStrokeData> | null = null;
 let strokePromise: Promise<Record<string, KanjiStrokeData>> | null = null;
 
@@ -198,15 +287,17 @@ export class KanjiPracticeService {
   }
 
   /**
-   * Filter kanjis by JLPT level
+   * Filter kanjis by JLPT level or Kana alphabet
    */
   static getKanjisByLevel(level: JlptLevelFilter): JlptKanjiItem[] {
     if (level === 'ALL') return kanjiList;
+    if (level === 'HIRAGANA') return hiraganaList;
+    if (level === 'KATAKANA') return katakanaList;
     return kanjiList.filter((k) => k.level === level);
   }
 
   /**
-   * Search kanjis by character, reading (onyomi/kunyomi), or Uzbek meaning
+   * Search kanjis or kana by character, reading (onyomi/kunyomi), or Uzbek meaning
    */
   static searchKanjis(query: string, level: JlptLevelFilter = 'ALL'): JlptKanjiItem[] {
     const list = this.getKanjisByLevel(level);
@@ -223,9 +314,11 @@ export class KanjiPracticeService {
   }
 
   /**
-   * Retrieve a specific kanji by character
+   * Retrieve a specific kanji or kana by character
    */
   static getKanjiByChar(char: string): JlptKanjiItem | undefined {
+    const kana = allKanaMap.get(char);
+    if (kana) return kanaToKanjiItem(kana);
     return kanjiList.find((k) => k.kanji === char);
   }
 
@@ -240,6 +333,10 @@ export class KanjiPracticeService {
    * Retrieve authentic KanjiVG SVG stroke paths and numbering coordinates asynchronously (lazy-loaded)
    */
   static async getStrokeDataAsync(kanji: string): Promise<KanjiStrokeData | null> {
+    const kana = allKanaMap.get(kanji);
+    if (kana) {
+      return { paths: kana.paths, numbers: kana.numbers };
+    }
     const strokes = await loadKanjiStrokes();
     return strokes[kanji] || null;
   }
@@ -248,6 +345,10 @@ export class KanjiPracticeService {
    * Retrieve authentic KanjiVG SVG stroke paths from memory cache if already loaded
    */
   static getStrokeData(kanji: string): KanjiStrokeData | null {
+    const kana = allKanaMap.get(kanji);
+    if (kana) {
+      return { paths: kana.paths, numbers: kana.numbers };
+    }
     if (!cachedStrokeMap) {
       void loadKanjiStrokes();
       return null;

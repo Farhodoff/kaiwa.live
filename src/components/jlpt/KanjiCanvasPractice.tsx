@@ -14,6 +14,7 @@ import {
   Search,
   Award,
   PenTool,
+  Sparkles,
 } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { useLanguage } from '../../context/LanguageContext';
@@ -29,6 +30,10 @@ import { useGamificationStore } from '../../stores/useGamificationStore';
 import { ActivityLoggingService } from '../../services/ActivityLoggingService';
 import { useTelegramWebApp } from '../../hooks/useTelegramWebApp';
 import type { JlptKanjiItem } from '../../data/jlptGrammarKanji';
+import {
+  StrokeRecognitionService,
+  StrokeRecognitionResult,
+} from '../../services/StrokeRecognitionService';
 
 interface DrawnStroke {
   points: { x: number; y: number }[];
@@ -93,6 +98,7 @@ export const KanjiCanvasPractice: React.FC = () => {
   const [userStrokes, setUserStrokes] = useState<DrawnStroke[]>([]);
   const [isDrawing, setIsDrawing] = useState(false);
   const [completedSuccess, setCompletedSuccess] = useState(false);
+  const [recognitionResult, setRecognitionResult] = useState<StrokeRecognitionResult | null>(null);
 
   // Canvas Refs
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -201,6 +207,7 @@ export const KanjiCanvasPractice: React.FC = () => {
     setIsAnimPlaying(false);
     setAnimStep(0);
     setCompletedSuccess(false);
+    setRecognitionResult(null);
   }, [activeKanji.kanji]);
 
   // Animation timer
@@ -316,6 +323,7 @@ export const KanjiCanvasPractice: React.FC = () => {
   const handleClear = () => {
     setUserStrokes([]);
     currentStrokePoints.current = [];
+    setRecognitionResult(null);
     redrawCanvas();
     haptics.impact('medium');
   };
@@ -347,6 +355,19 @@ export const KanjiCanvasPractice: React.FC = () => {
         currentUserId,
       );
     } catch {}
+  };
+
+  const handleRecognizeStrokes = () => {
+    const result = StrokeRecognitionService.evaluate(userStrokes, totalStrokes);
+    setRecognitionResult(result);
+    if (result.isAccepted) {
+      haptics.notification('success');
+      if (!completedSuccess) {
+        handleFinishPractice();
+      }
+    } else {
+      haptics.notification('warning');
+    }
   };
 
   return (
@@ -386,25 +407,27 @@ export const KanjiCanvasPractice: React.FC = () => {
       {/* Level Filters & Search Bar */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-wrap items-center gap-1.5">
-          {(['ALL', 'N5', 'N4', 'N3', 'N2', 'N1'] as JlptLevelFilter[]).map((lvl) => (
-            <button
-              key={lvl}
-              onClick={() => {
-                setLevel(lvl);
-                const quicks = KanjiPracticeService.getQuickKanjis(lvl);
-                if (quicks.length > 0 && !quicks.includes(selectedKanjiChar)) {
-                  setSelectedKanjiChar(quicks[0]);
-                }
-              }}
-              className={`rounded-xl px-3 py-1.5 text-xs font-black transition-all ${
-                level === lvl
-                  ? 'bg-primary text-primary-foreground shadow-xs'
-                  : 'border border-border bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground'
-              }`}
-            >
-              {lvl}
-            </button>
-          ))}
+          {(['ALL', 'HIRAGANA', 'KATAKANA', 'N5', 'N4', 'N3', 'N2', 'N1'] as JlptLevelFilter[]).map(
+            (lvl) => (
+              <button
+                key={lvl}
+                onClick={() => {
+                  setLevel(lvl);
+                  const quicks = KanjiPracticeService.getQuickKanjis(lvl);
+                  if (quicks.length > 0 && !quicks.includes(selectedKanjiChar)) {
+                    setSelectedKanjiChar(quicks[0]);
+                  }
+                }}
+                className={`rounded-xl px-3 py-1.5 text-xs font-black transition-all ${
+                  level === lvl
+                    ? 'bg-primary text-primary-foreground shadow-xs'
+                    : 'border border-border bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground'
+                }`}
+              >
+                {lvl === 'HIRAGANA' ? 'Hiragana (あ)' : lvl === 'KATAKANA' ? 'Katakana (ア)' : lvl}
+              </button>
+            ),
+          )}
         </div>
 
         <div className="relative min-w-[200px]">
@@ -708,6 +731,45 @@ export const KanjiCanvasPractice: React.FC = () => {
                 <Trash2 size={14} />
               </button>
             </div>
+          </div>
+
+          {/* Stroke Recognition Evaluation Action */}
+          <div className="w-full max-w-[340px] space-y-2.5">
+            <button
+              onClick={handleRecognizeStrokes}
+              disabled={userStrokes.length === 0}
+              className="flex w-full items-center justify-center gap-2 rounded-2xl bg-secondary py-2.5 text-xs font-black text-secondary-foreground shadow-xs transition-all hover:bg-secondary/80 disabled:opacity-40"
+            >
+              <PenTool size={14} className="text-primary" />
+              <span>Chizilgan belgini tekshirish (AI Aniqlovchi)</span>
+            </button>
+
+            {recognitionResult && (
+              <div
+                className={`animate-fade-in space-y-2 rounded-2xl border p-3.5 ${
+                  recognitionResult.isAccepted
+                    ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300'
+                    : 'border-amber-500/30 bg-amber-500/10 text-amber-700 dark:text-amber-300'
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5 text-sm font-black">
+                    {recognitionResult.isAccepted ? (
+                      <CheckCircle2 size={16} className="text-emerald-500" />
+                    ) : (
+                      <Sparkles size={16} className="text-amber-500" />
+                    )}
+                    <span>{recognitionResult.badgeUz}</span>
+                  </div>
+                  <span className="rounded-full border border-border/50 bg-background/80 px-2 py-0.5 text-xs font-black">
+                    {recognitionResult.score}%
+                  </span>
+                </div>
+                <p className="text-xs font-medium leading-relaxed">
+                  {recognitionResult.feedbackUz}
+                </p>
+              </div>
+            )}
           </div>
         </div>
 
