@@ -563,7 +563,7 @@ const SpeakingCoachPage: React.FC = () => {
       {/* MAIN SINGLE VIEW CONTENT */}
       <main className="relative z-10 mx-auto flex min-h-0 w-full max-w-4xl flex-1 flex-col gap-3 overflow-y-auto px-3 py-3 sm:px-6 lg:py-5">
         {/* UPPER HERO: ProjectOrb (KaiwaOrbCharacter) */}
-        <div className="flex min-h-[360px] flex-1 shrink-0 flex-col items-center justify-center rounded-2xl border border-white/10 bg-slate-950/45 px-3 py-4 text-center backdrop-blur-sm lg:min-h-0 lg:py-8">
+        <div className="flex min-h-[360px] flex-1 shrink-0 flex-col items-center justify-center px-3 py-4 text-center lg:min-h-0 lg:py-8">
           {/* Clean title */}
           <h2 className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-rose-200 sm:text-sm">
             Yuki Sensei · {activeScenario ? targetJlptLevel : 'Erkin muloqot'}
@@ -572,7 +572,7 @@ const SpeakingCoachPage: React.FC = () => {
             <ProjectOrb
               state={orbState}
               audioVolume={audioLevel}
-              size={140}
+              size={168}
               interactive={false}
               ariaLabel={
                 !isLiveSession
@@ -592,14 +592,13 @@ const SpeakingCoachPage: React.FC = () => {
               <button
                 type="button"
                 onClick={handleStartSession}
-
-                className="group inline-flex items-center gap-2 rounded-full border border-primary/50 bg-gradient-to-r from-rose-600 to-indigo-600 px-5 py-2 text-xs font-bold uppercase tracking-wider text-white shadow-xl shadow-rose-600/25 backdrop-blur transition-all hover:scale-105 hover:opacity-95 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+                aria-label="Suhbatni boshlash"
+                className="inline-flex size-14 items-center justify-center rounded-full border border-primary/50 bg-gradient-to-r from-rose-600 to-indigo-600 text-white shadow-xl shadow-rose-600/25 transition-transform hover:scale-105 active:scale-95"
               >
-                <Mic size={14} className="text-white transition-transform group-hover:scale-110" />
-                <span>Suhbatni boshlash</span>
+                <Mic size={26} aria-hidden="true" />
               </button>
             ) : (
-              <div className="flex flex-wrap items-center justify-center gap-2">
+              <div className="flex flex-col items-center gap-2">
                 <div
                   role="status"
                   aria-live="polite"
@@ -640,10 +639,17 @@ const SpeakingCoachPage: React.FC = () => {
                   onClick={() => setIsMuted(!isMuted)}
                   aria-label={isMuted ? 'Mikrofonni yoqish' : 'Mikrofonni pauza qilish'}
                   aria-pressed={isMuted}
-                  className="inline-flex min-h-10 items-center gap-1.5 rounded-full border border-white/20 bg-slate-900/80 px-3 text-xs text-white hover:bg-slate-800"
+                  className={`inline-flex size-14 items-center justify-center rounded-full border text-white transition-transform hover:scale-105 active:scale-95 ${
+                    isMuted
+                      ? 'border-white/20 bg-slate-900/80 hover:bg-slate-800'
+                      : 'border-primary/50 bg-gradient-to-r from-rose-600 to-indigo-600'
+                  }`}
                 >
-                  {isMuted ? <MicOff size={14} /> : <Mic size={14} />}
-                  {isMuted ? 'Davom etish' : 'Pauza'}
+                  {isMuted ? (
+                    <MicOff size={26} aria-hidden="true" />
+                  ) : (
+                    <Mic size={26} aria-hidden="true" />
+                  )}
                 </button>
                 <button
                   type="button"
