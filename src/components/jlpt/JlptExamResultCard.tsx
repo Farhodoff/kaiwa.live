@@ -21,6 +21,11 @@ import { ExamDiagnosticReport, ExamQuestionAnswer } from '../../utils/ai/examEva
 import { JlptScoreReport } from '../../utils/jlptScoring';
 import { useStudyData } from '../../context/StudyPlannerContext';
 import { toast } from '../../hooks/use-toast';
+import {
+  MistakeVaultService,
+  MistakeLevel,
+  MistakeCategory,
+} from '../../services/MistakeVaultService';
 
 interface JlptExamResultCardProps {
   report: ExamDiagnosticReport;
@@ -61,6 +66,31 @@ export const JlptExamResultCard: React.FC<JlptExamResultCardProps> = ({
       });
       await addFlashcardsBatch(cards);
       setIsExported(true);
+
+      // Ensure all mistakes are recorded into MistakeVaultService
+      try {
+        const mapSection = (sec?: string): MistakeCategory => {
+          if (sec === 'choukai' || sec === 'listening') return 'listening';
+          if (sec === 'dokkai' || sec === 'reading') return 'reading';
+          if (sec === 'moji_goi' || sec === 'vocab') return 'vocab';
+          return 'grammar';
+        };
+        MistakeVaultService.recordBatch(
+          mistakes.map((q) => ({
+            source: 'mock_exam',
+            level: (level || 'N5') as MistakeLevel,
+            category: mapSection(q.section),
+            title: `JLPT ${level} Mock — ${q.section || 'General'}`,
+            questionText: q.questionText,
+            passageText: q.script || undefined,
+            options: [q.correctAnswer, q.userAnswer].filter(Boolean),
+            userAnswer: q.userAnswer,
+            correctAnswer: q.correctAnswer,
+            explanationUzbek: q.explanationUzbek || '',
+          })),
+        );
+      } catch {}
+
       toast({
         title: '🎴 Fleshkartalarga Saqlandi!',
         description: `${cards.length} ta xato qilingan savol Anki SRS fleshkartalar to'plamiga qo'shildi.`,

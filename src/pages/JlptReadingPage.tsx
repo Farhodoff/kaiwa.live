@@ -20,7 +20,10 @@ import {
   Target,
   Play,
   Pause,
+  Sparkles,
+  CheckCircle,
 } from 'lucide-react';
+import { toast } from '../hooks/use-toast';
 import { Button } from '../components/ui/Button';
 import FuriganaText, { FuriganaMode } from '../components/jlpt/FuriganaText';
 import { JlptReadingPassage } from '../data/jlptReadingData';
@@ -43,10 +46,13 @@ export const JlptReadingPage: React.FC = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const location = useLocation();
-  const { awardXP, addSession, user } = useStudyData();
+  const { awardXP, addSession, addFlashcardsBatch, user } = useStudyData();
   const { haptics } = useTelegramWebApp();
   const { language } = useLanguage();
   const langKey = language === 'ja' ? 'ja' : language === 'en' ? 'en' : 'uz';
+
+  const [isExporting, setIsExporting] = useState(false);
+  const [isExported, setIsExported] = useState(false);
 
   const urlLevel = (
     searchParams.get('level') ||
@@ -203,6 +209,7 @@ export const JlptReadingPage: React.FC = () => {
     if (!currentPassage || isSubmitted) return;
     setIsSubmitted(true);
     setIsTimerActive(false);
+    setIsExported(false);
 
     // Calculate score
     let correctCount = 0;
@@ -335,6 +342,43 @@ export const JlptReadingPage: React.FC = () => {
       }
     } catch (e) {
       console.warn('Failed to save JLPT reading score or mistakes:', e);
+    }
+  };
+
+  const handleExportMistakes = async () => {
+    if (!currentPassage) return;
+    const wrongQs = currentPassage.questions.filter(
+      (q) => userAnswers[q.id] !== undefined && userAnswers[q.id] !== q.correctIndex,
+    );
+    if (wrongQs.length === 0) return;
+    setIsExporting(true);
+    try {
+      const cards = wrongQs.map((q) => {
+        const correctText = q.options[q.correctIndex] || `Variant ${q.correctIndex + 1}`;
+        const userText =
+          userAnswers[q.id] !== undefined
+            ? q.options[userAnswers[q.id]] || `Variant ${userAnswers[q.id] + 1}`
+            : 'Javob berilmagan';
+        return {
+          front: `📖 JLPT ${selectedLevel} O'qish (DOKKAI) Savoli:\n\n${q.questionText}\n\n📄 Matn qisqartmasi:\n${currentPassage.japaneseContent.slice(0, 160)}...`,
+          back: `✅ To'g'ri javob:\n${correctText}\n\n❌ Sizning javobingiz:\n${userText}\n\n💡 Izoh:\n${q.explanation || currentPassage.uzbekTranslation || "Matn mazmuni bo'yicha to'g'ri javob."}`,
+        };
+      });
+      await addFlashcardsBatch(cards);
+      setIsExported(true);
+      haptics.notification('success');
+      toast({
+        title: '🎴 Fleshkartalarga Saqlandi!',
+        description: `${cards.length} ta o'qish xatosi Anki SRS fleshkartalar to'plamiga qo'shildi.`,
+      });
+    } catch {
+      toast({
+        title: 'Xatolik',
+        description: 'Fleshkartalarga saqlashda xatolik yuz berdi.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsExporting(false);
     }
   };
 
@@ -981,26 +1025,75 @@ export const JlptReadingPage: React.FC = () => {
                     Javoblarni Tekshirish 🚀
                   </Button>
                 ) : (
-                  <Button
-                    variant="outline"
-                    onClick={() => {
-                      setUserAnswers({});
-                      setIsSubmitted(false);
-                      setSokudokuPhase('reading');
-                      setReadingTimeElapsed(0);
-                      setSokudokuMetrics(null);
-                      if (currentPassage) {
-                        setTimeLeftSeconds(
-                          Math.round(
-                            (currentPassage.recommendedTimeMinutes || 3) * 60 * speedDifficulty,
-                          ),
-                        );
-                      }
-                    }}
-                    className="w-full cursor-pointer rounded-2xl border-slate-700 text-slate-300 hover:bg-slate-800"
-                  >
-                    <RotateCcw className="mr-2 h-4 w-4" /> Qayta O'rinib Ko'rish
-                  </Button>
+                  <div className="space-y-3">
+                    {currentPassage &&
+                      currentPassage.questions.some(
+                        (q) =>
+                          userAnswers[q.id] !== undefined && userAnswers[q.id] !== q.correctIndex,
+                      ) && (
+                        <div className="flex flex-col items-center justify-between gap-3 rounded-2xl border border-rose-500/30 bg-rose-500/10 p-4 text-left sm:flex-row">
+                          <div className="flex items-center gap-2.5">
+                            <div className="rounded-xl bg-rose-500/20 p-2 text-rose-500">
+                              <Sparkles size={18} />
+                            </div>
+                            <div>
+                              <h4 className="text-xs font-black text-slate-100">
+                                Xatolarni Anki SRS fleshkartalariga saqlash
+                              </h4>
+                              <p className="text-[11px] text-slate-400">
+                                O&apos;qish xatolari Xatolar Daftarchangizga kiritildi. Bir marta
+                                bosish orqali SRS takrorlash rejangizga qo&apos;shing.
+                              </p>
+                            </div>
+                          </div>
+
+                          <button
+                            onClick={handleExportMistakes}
+                            disabled={isExporting || isExported}
+                            className={`flex shrink-0 items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-black transition-all ${
+                              isExported
+                                ? 'bg-emerald-600 text-white'
+                                : 'cursor-pointer bg-rose-600 text-white shadow-sm hover:bg-rose-700 active:scale-95'
+                            }`}
+                          >
+                            {isExported ? (
+                              <>
+                                <CheckCircle size={14} />
+                                <span>Saqlandi (Anki SRS)</span>
+                              </>
+                            ) : (
+                              <>
+                                <BookOpen size={14} />
+                                <span>
+                                  {isExporting ? 'Saqlanmoqda...' : 'Fleshkartaga saqlash'}
+                                </span>
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      )}
+
+                    <Button
+                      variant="outline"
+                      onClick={() => {
+                        setUserAnswers({});
+                        setIsSubmitted(false);
+                        setSokudokuPhase('reading');
+                        setReadingTimeElapsed(0);
+                        setSokudokuMetrics(null);
+                        if (currentPassage) {
+                          setTimeLeftSeconds(
+                            Math.round(
+                              (currentPassage.recommendedTimeMinutes || 3) * 60 * speedDifficulty,
+                            ),
+                          );
+                        }
+                      }}
+                      className="w-full cursor-pointer rounded-2xl border-slate-700 text-slate-300 hover:bg-slate-800"
+                    >
+                      <RotateCcw className="mr-2 h-4 w-4" /> Qayta O'rinib Ko'rish
+                    </Button>
+                  </div>
                 )
               ) : null}
             </div>
