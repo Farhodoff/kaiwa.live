@@ -31,6 +31,7 @@ export const isAuthStorageKey = (key: string): boolean => {
     'study_planner_admin_api_key',
     'role',
     'admin_role',
+    'kaiwa_admin_2fa_verified',
   ];
 
   return authIdentityKeys.includes(key);

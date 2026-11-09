@@ -115,11 +115,12 @@ describe('Speaking Coach Hands-Free 5-Turn Real-Time Simulation', () => {
   });
 
   afterEach(() => {
+    vi.clearAllTimers();
     vi.restoreAllMocks();
   });
 
   it('runs 5 alternating voice turns without acoustic interruption and saves history upon completion', async () => {
-    const { result } = renderHook(() => useSpeakingSessionOrchestrator(defaultProps));
+    const { result, unmount } = renderHook(() => useSpeakingSessionOrchestrator(defaultProps));
 
     // Step 1: User clicks Start ONCE to initiate session
     act(() => {
@@ -232,5 +233,6 @@ describe('Speaking Coach Hands-Free 5-Turn Real-Time Simulation', () => {
     const sessions = SpeakingConversationHistoryService.getSessions();
     expect(sessions.length).toBeGreaterThan(0);
     expect(sessions[0].messages.length).toBe(11);
+    unmount();
   });
 });
