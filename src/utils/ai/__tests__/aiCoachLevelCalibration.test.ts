@@ -94,4 +94,25 @@ describe('AI Coach JLPT Level Calibration & Prompt Engineering', () => {
     expect(boundary).toContain('〜なければなりません');
     expect(boundary).toContain('〜たり〜たりします');
   });
+
+  it('allows natural free conversation without N5 restrictions in default casual mode', () => {
+    const { systemPrompt } = buildCoachPrompts(
+      '最近どんな映画を見ましたか？',
+      [],
+      'ja',
+      'casual',
+      null,
+    );
+
+    expect(systemPrompt).toContain('Target Level: Free Conversation (フリートーク・自由会話)');
+    expect(systemPrompt).toContain('NATURAL FREE CONVERSATION');
+    expect(systemPrompt).not.toContain('JLPT N5 (BEGINNER / 初級1) STRICT BOUNDARY');
+    expect(systemPrompt).not.toContain('NO Keigo / Sonkeigo / Kenjougo');
+  });
+
+  it('correctly provides free natural conversation boundary when FREE level is requested', () => {
+    const boundary = getJlptLevelPromptBoundary('FREE', 'ja', 'casual');
+    expect(boundary).toContain('NATURAL FREE CONVERSATION (フリートーク・自由会話)');
+    expect(boundary).not.toContain('CRITICAL PEDAGOGICAL LAW — JLPT N5');
+  });
 });

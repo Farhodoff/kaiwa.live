@@ -41,7 +41,7 @@ import { getCoachConversationOpener } from '../components/speaking/speakingConst
 export interface UseSpeakingSessionOrchestratorOptions {
   language?: 'en' | 'ja';
   persona: CoachPersona;
-  targetJlptLevel?: 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
+  targetJlptLevel?: 'N5' | 'N4' | 'N3' | 'N2' | 'N1' | 'FREE' | string;
   activeScenario: ConversationScenario | null;
   user: any;
   subjects: any[];
@@ -55,7 +55,7 @@ export interface UseSpeakingSessionOrchestratorOptions {
 export function useSpeakingSessionOrchestrator({
   language = 'ja',
   persona,
-  targetJlptLevel = 'N5',
+  targetJlptLevel = 'FREE',
   activeScenario,
   user,
   subjects,
@@ -309,11 +309,12 @@ export function useSpeakingSessionOrchestrator({
         let accumulatedSpeech = '';
 
         const scenarioDiff = activeScenarioRef.current?.difficulty?.toUpperCase();
-        const effectiveDialogueLevel = (
-          scenarioDiff && ['N5', 'N4', 'N3', 'N2', 'N1'].includes(scenarioDiff)
+        const isFreeConversation = !activeScenarioRef.current && personaRef.current === 'casual';
+        const effectiveDialogueLevel = isFreeConversation
+          ? 'FREE'
+          : scenarioDiff && ['N5', 'N4', 'N3', 'N2', 'N1'].includes(scenarioDiff)
             ? scenarioDiff
-            : targetJlptLevelRef.current || 'N5'
-        ) as 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
+            : targetJlptLevelRef.current || 'N3';
 
         try {
           structured = await streamCoachDialogue(
