@@ -374,7 +374,7 @@ const DashboardPage: React.FC = () => {
     (user?.email ? user.email.split('@')[0] : language === 'ja' ? '学習者' : 'Talaba');
 
   return (
-    <div className="mx-auto max-w-7xl space-y-8 p-4 duration-200 animate-in fade-in md:p-8">
+    <div className="mx-auto max-w-7xl space-y-8 p-4 duration-200 animate-in fade-in md:p-8 3xl:max-w-8xl 3xl:p-12">
       <LevelUpModal />
       {/* Top Greeting & Quick Stats */}
       <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">

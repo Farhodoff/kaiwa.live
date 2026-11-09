@@ -11,9 +11,20 @@ export default {
             padding: "2rem",
             screens: {
                 "2xl": "1400px",
+                "3xl": "1720px",
+                "4xl": "2048px",
             },
         },
         extend: {
+            screens: {
+                '3xl': '1920px',
+                '4xl': '2560px',
+            },
+            maxWidth: {
+                '8xl': '90rem',
+                '9xl': '105rem',
+                'ultrawide': '120rem',
+            },
             colors: {
                 // Primary palette (HSL vars)
                 border: "hsl(var(--border))",

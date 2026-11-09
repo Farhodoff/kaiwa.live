@@ -71,7 +71,7 @@ export const JlptHubPage: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto max-w-7xl space-y-4 overflow-x-hidden p-3 pb-28 sm:p-4 sm:pb-24 md:space-y-8 md:p-8">
+    <div className="mx-auto max-w-7xl space-y-4 overflow-x-hidden p-3 pb-28 sm:p-4 sm:pb-24 md:space-y-8 md:p-8 3xl:max-w-8xl 3xl:p-12">
       {/* Header — Desktop only; mobile already has top header with title */}
       <div className="hidden overflow-hidden rounded-3xl border border-border bg-card p-4 shadow-xs md:block md:p-6">
         <div className="relative z-10 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">

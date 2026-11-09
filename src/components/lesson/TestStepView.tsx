@@ -171,7 +171,7 @@ export const TestStepView: React.FC<TestStepViewProps> = ({
   const isPassed = scorePercentage >= passingScorePercentage;
 
   return (
-    <div className="mx-auto max-w-2xl space-y-6 duration-200 animate-in fade-in">
+    <div className="mx-auto max-w-2xl space-y-6 duration-200 animate-in fade-in xl:max-w-3xl 2xl:max-w-4xl 3xl:max-w-5xl">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>

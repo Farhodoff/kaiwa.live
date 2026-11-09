@@ -56,7 +56,9 @@ const AdminContentQualityDashboard = lazy(() =>
   })),
 );
 const CurriculumQualityQueue = lazy(() =>
-  import('../components/admin/CurriculumQualityQueue').then((m) => ({ default: m.CurriculumQualityQueue })),
+  import('../components/admin/CurriculumQualityQueue').then((m) => ({
+    default: m.CurriculumQualityQueue,
+  })),
 );
 const AdminDatasetVaultModal = lazy(() =>
   import('../components/admin/AdminDatasetVaultModal').then((m) => ({
@@ -1587,7 +1589,7 @@ export default function AdminDashboardPage() {
     : [];
 
   return (
-    <div className="mx-auto max-w-6xl space-y-5 px-3 pb-24 duration-300 animate-in fade-in sm:px-6 md:pb-12">
+    <div className="mx-auto max-w-6xl space-y-5 px-3 pb-24 duration-300 animate-in fade-in sm:px-6 md:pb-12 2xl:max-w-7xl 3xl:max-w-8xl 3xl:px-12">
       {/* Top Bar Header */}
       <div className="flex flex-col justify-between gap-3.5 border-b border-border pb-4 sm:flex-row sm:items-center">
         <div>

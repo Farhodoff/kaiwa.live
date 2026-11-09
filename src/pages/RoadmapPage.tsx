@@ -130,7 +130,7 @@ const RoadmapPage: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto max-w-6xl space-y-8 p-4 duration-200 animate-in fade-in md:p-8">
+    <div className="mx-auto max-w-6xl space-y-8 p-4 duration-200 animate-in fade-in md:p-8 2xl:max-w-7xl 3xl:max-w-8xl 3xl:p-12">
       {/* Header Hero Banner */}
       <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-xl md:p-8">
         <div className="relative z-10 flex flex-col justify-between gap-6 lg:flex-row lg:items-center">

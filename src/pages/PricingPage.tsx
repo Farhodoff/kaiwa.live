@@ -29,7 +29,7 @@ export const PricingPage: React.FC = () => {
   return (
     <div className="flex min-h-screen flex-col justify-between bg-background p-4 text-foreground md:p-8">
       {/* Top Navigation Bar */}
-      <div className="mx-auto flex w-full max-w-4xl items-center justify-between py-4">
+      <div className="mx-auto flex w-full max-w-4xl items-center justify-between py-4 xl:max-w-5xl 2xl:max-w-6xl 3xl:max-w-7xl">
         <div className="cursor-pointer" onClick={() => navigate('/')}>
           <AppLogo size="md" />
         </div>
@@ -138,7 +138,7 @@ export const PricingPage: React.FC = () => {
       </div>
 
       {/* Simple footer */}
-      <div className="mx-auto w-full max-w-4xl py-4 text-center text-xs text-muted-foreground">
+      <div className="mx-auto w-full max-w-4xl py-4 text-center text-xs text-muted-foreground xl:max-w-5xl 2xl:max-w-6xl 3xl:max-w-7xl">
         © 2026 kaiwa.live · Barcha o'quvchilar uchun 100% bepul
       </div>
     </div>

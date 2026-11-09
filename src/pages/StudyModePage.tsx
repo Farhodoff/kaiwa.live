@@ -596,7 +596,7 @@ const StudyModePage: React.FC = () => {
   }
 
   return (
-    <div className="relative mx-auto max-w-4xl space-y-6 p-4 pb-[max(2rem,env(safe-area-inset-bottom,24px))] md:p-8">
+    <div className="relative mx-auto max-w-4xl space-y-6 p-4 pb-[max(2rem,env(safe-area-inset-bottom,24px))] md:p-8 xl:max-w-5xl 2xl:max-w-6xl 3xl:max-w-7xl 3xl:p-12">
       {isEditingCard && (
         <div className="backdrop-blur-xs fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
           <div className="w-full max-w-lg space-y-4 rounded-3xl border border-border bg-card p-6 shadow-2xl">

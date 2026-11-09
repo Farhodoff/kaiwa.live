@@ -257,7 +257,7 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
       };
 
       return (
-        <div className="mx-auto max-w-2xl space-y-6 duration-200 animate-in fade-in">
+        <div className="mx-auto max-w-2xl space-y-6 duration-200 animate-in fade-in xl:max-w-3xl 2xl:max-w-4xl 3xl:max-w-5xl">
           <div className="flex items-center justify-between">
             <div>
               <span className="flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-primary">
@@ -308,7 +308,7 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
     }
 
     return (
-      <div className="mx-auto max-w-2xl space-y-6 duration-200 animate-in fade-in">
+      <div className="mx-auto max-w-2xl space-y-6 duration-200 animate-in fade-in xl:max-w-3xl 2xl:max-w-4xl 3xl:max-w-5xl">
         {/* Header / Subtitle */}
         <div className="flex items-center justify-between">
           <div>
@@ -538,7 +538,7 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
 
   // 2. YAKUNIY TAHLIL VA NATIJALAR EKRANI (End of Practice Summary & Itemized Review)
   return (
-    <div className="mx-auto max-w-2xl space-y-6 duration-200 animate-in fade-in">
+    <div className="mx-auto max-w-2xl space-y-6 duration-200 animate-in fade-in xl:max-w-3xl 2xl:max-w-4xl 3xl:max-w-5xl">
       {/* Score Hero Banner */}
       <div
         className={`space-y-3 rounded-3xl border p-6 text-center shadow-md ${

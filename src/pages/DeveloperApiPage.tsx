@@ -164,7 +164,7 @@ print("Keyingi takrorlash:", response.json())`;
         </div>
       </div>
 
-      <div className="mx-auto max-w-6xl space-y-8 px-4 md:px-8">
+      <div className="mx-auto max-w-6xl space-y-8 px-4 md:px-8 2xl:max-w-7xl 3xl:max-w-8xl 3xl:px-12">
         {/* Header */}
         <div className="flex flex-col items-start justify-between gap-4 border-b border-border pb-6 md:flex-row md:items-center">
           <div>

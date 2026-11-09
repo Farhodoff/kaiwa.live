@@ -901,7 +901,7 @@ const LandingPage: React.FC = () => {
         id="features"
         className="border-t border-border/60 px-4 py-20 sm:px-6 lg:px-8 lg:py-24"
       >
-        <div className="mx-auto max-w-6xl space-y-14">
+        <div className="mx-auto max-w-6xl space-y-14 2xl:max-w-7xl 3xl:max-w-8xl">
           <FadeIn className="mx-auto max-w-2xl space-y-3 text-center">
             <div className="flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-widest text-primary">
               <span>{t('landing.navFeatures')}</span>
@@ -975,7 +975,7 @@ const LandingPage: React.FC = () => {
 
       {/* ======== 3-STEP FLOW SECTION ======== */}
       <section className="border-y border-border/60 bg-muted/20 px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
-        <div className="mx-auto max-w-5xl space-y-14">
+        <div className="mx-auto max-w-5xl space-y-14 2xl:max-w-6xl 3xl:max-w-7xl">
           <FadeIn className="mx-auto max-w-2xl space-y-3 text-center">
             <div className="flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-widest text-primary">
               <span>QANDAY ISHLAYDI</span>
@@ -1036,7 +1036,7 @@ const LandingPage: React.FC = () => {
 
       {/* ======== PRODUCT UI SHOWCASE ======== */}
       <section id="app" className="px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-        <div className="mx-auto max-w-6xl space-y-12">
+        <div className="mx-auto max-w-6xl space-y-12 2xl:max-w-7xl 3xl:max-w-8xl">
           <FadeIn className="mx-auto max-w-2xl space-y-3 text-center">
             <div className="flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-widest text-primary">
               <span>MAHSULOT</span>
@@ -1061,7 +1061,7 @@ const LandingPage: React.FC = () => {
         id="lessons"
         className="border-y border-border/60 bg-muted/20 px-4 py-20 sm:px-6 lg:px-8 lg:py-24"
       >
-        <div className="mx-auto max-w-5xl space-y-10">
+        <div className="mx-auto max-w-5xl space-y-10 2xl:max-w-6xl 3xl:max-w-7xl">
           <FadeIn className="mx-auto max-w-2xl space-y-3 text-center">
             <div className="flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-widest text-primary">
               <span>DARSLAR</span>
@@ -1161,7 +1161,7 @@ const LandingPage: React.FC = () => {
         id="final-cta"
         className="border-t border-border/60 px-4 py-20 sm:px-6 lg:px-8 lg:py-28"
       >
-        <div className="mx-auto max-w-4xl space-y-6 text-center">
+        <div className="mx-auto max-w-4xl space-y-6 text-center 2xl:max-w-5xl 3xl:max-w-6xl">
           <FadeIn offsetY={20} delay={0.1} className="space-y-3">
             <h2 className="font-display text-3xl font-black tracking-tight text-foreground sm:text-4xl lg:text-5xl">
               {t('landing.finalCtaTitle')}
@@ -1183,7 +1183,7 @@ const LandingPage: React.FC = () => {
 
       {/* ======== FOOTER ======== */}
       <footer className="border-t border-border bg-card/40 px-4 py-12 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl space-y-8">
+        <div className="mx-auto max-w-7xl space-y-8 3xl:max-w-8xl">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
             {/* Brand Column */}
             <div className="space-y-3 md:col-span-1">

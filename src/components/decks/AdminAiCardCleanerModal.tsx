@@ -96,7 +96,7 @@ export const AdminAiCardCleanerModal: React.FC<AdminAiCardCleanerModalProps> = (
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 backdrop-blur-md animate-in fade-in">
-      <div className="relative flex h-[85vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-2xl">
+      <div className="relative flex h-[85vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-2xl 2xl:max-w-5xl 3xl:max-w-6xl">
         {/* Header */}
         <div className="flex items-center justify-between bg-gradient-to-r from-amber-600 via-rose-600 to-indigo-700 p-6 text-white">
           <div className="space-y-1">

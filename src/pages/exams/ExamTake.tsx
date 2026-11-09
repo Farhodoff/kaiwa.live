@@ -574,7 +574,7 @@ export const ExamTake: React.FC = () => {
   const activeSection = sections.find((s) => s.id === activeSectionId);
 
   return (
-    <div className="mx-auto max-w-6xl space-y-6 px-4 py-8 duration-300 animate-in fade-in">
+    <div className="mx-auto max-w-6xl space-y-6 px-4 py-8 duration-300 animate-in fade-in 2xl:max-w-7xl 3xl:max-w-8xl 3xl:px-12">
       {/* Header */}
       <div className="flex items-center gap-4 rounded-3xl border border-border bg-card p-5 shadow-xs">
         <button

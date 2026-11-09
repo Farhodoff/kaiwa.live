@@ -282,7 +282,7 @@ export const PitchAccentTrainer: React.FC<PitchAccentTrainerProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-2 backdrop-blur-md duration-200 animate-in fade-in sm:p-4">
-      <div className="flex h-[92vh] max-h-[850px] w-full max-w-4xl flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-2xl duration-200 animate-in zoom-in-95">
+      <div className="flex h-[92vh] max-h-[850px] w-full max-w-4xl flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-2xl duration-200 animate-in zoom-in-95 2xl:max-w-5xl 3xl:max-w-6xl">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-border bg-gradient-to-r from-primary/10 via-purple-500/10 to-transparent p-4 sm:p-5">
           <div className="flex items-center gap-3">

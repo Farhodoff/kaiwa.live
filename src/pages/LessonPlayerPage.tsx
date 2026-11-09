@@ -460,7 +460,7 @@ export const LessonPlayerPage: React.FC = () => {
     <div className="flex h-full w-full flex-col justify-between overflow-hidden bg-background">
       {/* Top Navigation Bar */}
       <div className="z-20 shrink-0 border-b border-border bg-background/80 px-3.5 py-2.5 pt-[max(env(safe-area-inset-top),0.75rem)] backdrop-blur-xl sm:px-4 sm:py-3">
-        <div className="mx-auto flex max-w-4xl items-center justify-between gap-3 sm:gap-4">
+        <div className="mx-auto flex max-w-4xl items-center justify-between gap-3 sm:gap-4 xl:max-w-5xl 2xl:max-w-6xl 3xl:max-w-7xl">
           {/* Left: Exit & Title */}
           <div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
             <button
@@ -592,7 +592,7 @@ export const LessonPlayerPage: React.FC = () => {
       </div>
 
       {/* Main Content Area - Scrollable Container with bottom buffer */}
-      <div className="mx-auto w-full max-w-4xl flex-1 overflow-y-auto overscroll-contain p-3.5 pb-24 sm:p-5 sm:pb-28 md:p-8">
+      <div className="mx-auto w-full max-w-4xl flex-1 overflow-y-auto overscroll-contain p-3.5 pb-24 sm:p-5 sm:pb-28 md:p-8 xl:max-w-5xl 2xl:max-w-6xl 3xl:max-w-7xl 3xl:p-12">
         {isLessonCompleted ? (
           <LessonCompletionView
             lesson={lesson}
@@ -660,7 +660,7 @@ export const LessonPlayerPage: React.FC = () => {
       {/* Bottom Step Controller Footer */}
       {!isLessonCompleted && (
         <div className="z-20 shrink-0 border-t border-border bg-background/90 p-3 pb-[max(env(safe-area-inset-bottom),0.875rem)] backdrop-blur-xl sm:p-4">
-          <div className="mx-auto flex max-w-4xl items-center justify-between gap-2.5 sm:gap-4">
+          <div className="mx-auto flex max-w-4xl items-center justify-between gap-2.5 sm:gap-4 xl:max-w-5xl 2xl:max-w-6xl 3xl:max-w-7xl">
             <button
               onClick={handlePrevStep}
               disabled={currentStepIdx === 0}

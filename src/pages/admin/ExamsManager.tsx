@@ -269,7 +269,7 @@ export const ExamsManager: React.FC = () => {
     );
 
   return (
-    <div className="mx-auto max-w-7xl space-y-8 px-4 py-8 duration-300 animate-in fade-in">
+    <div className="mx-auto max-w-7xl space-y-8 px-4 py-8 duration-300 animate-in fade-in 3xl:max-w-8xl 3xl:px-12">
       {/* Header Banner */}
       <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-rose-600 via-purple-600 to-indigo-600 p-8 text-white shadow-xl shadow-rose-500/10">
         <div className="relative z-10 flex flex-col justify-between gap-6 md:flex-row md:items-center">
