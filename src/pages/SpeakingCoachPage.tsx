@@ -126,7 +126,7 @@ const SpeakingCoachPage: React.FC = () => {
     if (['N5', 'N4', 'N3', 'N2', 'N1'].includes(raw)) {
       return raw as any;
     }
-    return 'N5';
+    return 'N3';
   });
 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -590,9 +590,13 @@ const SpeakingCoachPage: React.FC = () => {
         <div className="flex min-h-[360px] flex-1 shrink-0 flex-col items-center justify-center rounded-2xl border border-white/10 bg-slate-950/45 px-3 py-4 text-center backdrop-blur-sm lg:min-h-0 lg:py-8">
           {/* Clickable Orb triggers start/stop in same window without navigation */}
           <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-rose-200">
-            Yuki Sensei · {targetJlptLevel}
+            Yuki Sensei · {activeScenario ? targetJlptLevel : 'Erkin muloqot'}
           </p>
-          <p className="mb-2 text-xs text-slate-300">Yaponcha gapiring, birga mashq qilamiz</p>
+          <p className="mb-2 text-xs text-slate-300">
+            {activeScenario
+              ? 'Yaponcha gapiring, birga mashq qilamiz'
+              : 'Xohlagan mavzuda erkin gapiring, birga suhbatlashamiz'}
+          </p>
           <div className="rounded-full">
             <ProjectOrb
               state={orbState}

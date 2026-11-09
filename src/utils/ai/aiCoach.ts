@@ -521,6 +521,16 @@ export function getJlptLevelPromptBoundary(
 
   // Japanese JLPT calibration
   const normLevel = (level || 'N3').toUpperCase();
+  if (normLevel === 'FREE' || normLevel === 'NATURAL') {
+    return `
+    ✨ NATURAL FREE CONVERSATION (フリートーク・自由会話):
+    - Speak natural, authentic, and fluent conversational Japanese without artificial JLPT level boundaries or word limits.
+    - Respond naturally in polite Japanese (です・ます) or friendly conversational Japanese matching the student's tone.
+    - Feel free to discuss everyday life, thoughts, culture, work, hobbies, or questions with rich, natural Japanese vocabulary.
+    - Keep responses conversational (1-3 natural sentences) with warm empathy (相槌: そうですね、なるほど、確かに、いいですね、わかります) and engaging follow-up questions to keep the conversation flowing.
+    `;
+  }
+
   if (normLevel === 'N5') {
     return `
     🚨 CRITICAL PEDAGOGICAL LAW — JLPT N5 (BEGINNER / 初級1) STRICT BOUNDARY:
@@ -611,12 +621,16 @@ export const buildCoachPrompts = (
     .map((h) => `${h.role === 'user' ? 'Student' : 'Coach'}: ${h.content}`)
     .join('\n');
 
-  // Determine effective level: if scenario specifies a JLPT level (e.g. N5), respect scenario unless level is explicitly set
-  const effectiveLevel = (
-    scenario?.difficulty && scenario.difficulty.toUpperCase().startsWith('N')
-      ? scenario.difficulty
-      : level || 'N3'
-  ).toUpperCase();
+  // Determine effective level: if scenario specifies a JLPT level (e.g. N5), respect scenario unless level is explicitly set.
+  // In default casual free talk (no scenario selected), ensure natural free conversation without N5 restrictions.
+  const isFreeConversation =
+    !scenario && (persona === 'casual' || (level || '').toUpperCase() === 'FREE');
+  const effectiveLevel = isFreeConversation
+    ? 'FREE'
+    : (scenario?.difficulty && scenario.difficulty.toUpperCase().startsWith('N')
+        ? scenario.difficulty
+        : level || 'N3'
+      ).toUpperCase();
 
   const levelBoundary = getJlptLevelPromptBoundary(effectiveLevel, language, persona);
 
@@ -761,7 +775,7 @@ You MUST respond with a VALID JSON object matching this schema exactly:
   const systemPrompt = `
       ${personaPrompt}
       Target Language: ${language === 'ja' ? 'Japanese (日本語)' : 'English'}
-      Target Level: ${effectiveLevel}
+      Target Level: ${effectiveLevel === 'FREE' ? 'Free Conversation (フリートーク・自由会話)' : effectiveLevel}
       ${levelBoundary}
       ${weakItemsSnippet}
 
@@ -769,14 +783,20 @@ You MUST respond with a VALID JSON object matching this schema exactly:
 
       PEDAGOGICAL & DIALOGUE RULES:
       1. ONLY return a valid JSON object matching the contract. Do not include any text, preamble, or markdown outside the JSON.
-      2. Keep responses brief (1-2 sentences maximum, strictly adhering to ${effectiveLevel} linguistic and sentence length limits). Act as an active conversation partner and coach. Always encourage the student to speak more by asking a natural, relevant follow-up question strictly within their level. Even in realistic roleplays (waiter, clerk, station staff, friend), NEVER escalate vocabulary or use business Keigo above ${effectiveLevel}.
+      2. ${
+        effectiveLevel === 'FREE'
+          ? 'Keep responses natural, lively, and conversational (1-3 sentences). Act as an active conversation partner and coach. Discuss topics freely and naturally, and ask engaging follow-up questions to encourage the student to speak more.'
+          : `Keep responses brief (1-2 sentences maximum, strictly adhering to ${effectiveLevel} linguistic and sentence length limits). Act as an active conversation partner and coach. Always encourage the student to speak more by asking a natural, relevant follow-up question strictly within their level. Even in realistic roleplays (waiter, clerk, station staff, friend), NEVER escalate vocabulary or use business Keigo above ${effectiveLevel}.`
+      }
       3. For Japanese: "reply" and "ttsText" MUST be 100% Japanese (Kanji/Kana). NEVER mix Romaji or English into reply or ttsText. Romaji goes ONLY in "romaji" field for UI display.
       4. For English: "reply" and "ttsText" MUST be 100% English. "romaji" must be an empty string.
       5. Error Correction & Critique Policy:
          ${
-           persona === 'roast'
-             ? `ROAST MODE IS ACTIVE: Call out errors with playful strictness and witty sarcasm calibrated strictly to ${effectiveLevel}. If the student gives an overly short answer, drops particles, or makes a grammar slip, roast them sharply using vocabulary and explanations suited for ${effectiveLevel}. Do NOT demand grammar or words beyond ${effectiveLevel}!`
-             : `Correct ONLY meaningful mistakes matching ${effectiveLevel} expectations (incorrect particles は/が/に/で/を, wrong verb/adjective forms, incorrect tenses, or unnatural vocabulary). Do NOT nitpick minor stylistic variations. If the student made no mistake, set "hasError": false. Keep explanations concise (1 short sentence).`
+           effectiveLevel === 'FREE'
+             ? `Supportive correction: Only gently correct noticeable grammatical mistakes or unnatural phrasing while keeping the conversation flowing naturally. If the student speaks naturally, celebrate it ("hasError": false). Keep any explanation brief in Uzbek.`
+             : persona === 'roast'
+               ? `ROAST MODE IS ACTIVE: Call out errors with playful strictness and witty sarcasm calibrated strictly to ${effectiveLevel}. If the student gives an overly short answer, drops particles, or makes a grammar slip, roast them sharply using vocabulary and explanations suited for ${effectiveLevel}. Do NOT demand grammar or words beyond ${effectiveLevel}!`
+               : `Correct ONLY meaningful mistakes matching ${effectiveLevel} expectations (incorrect particles は/が/に/で/を, wrong verb/adjective forms, incorrect tenses, or unnatural vocabulary). Do NOT nitpick minor stylistic variations. If the student made no mistake, set "hasError": false. Keep explanations concise (1 short sentence).`
          }
       6. Vocabulary Engine: Provide 1 to 3 truly useful, contextual words or collocations with reading, meaning, and contextual example.
          CRITICAL REQUIREMENT FOR "meaning" FIELD:
