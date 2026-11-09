@@ -3,6 +3,7 @@ import {
   Plus,
   Sparkles,
   Upload,
+  Download,
   Library,
   Layers,
   FileText,
@@ -38,6 +39,7 @@ import { useSEO } from '../hooks/useSEO';
 import { isUserAdmin } from '../utils/admin';
 import { PRESET_DECKS, PresetDeck, PresetSubDeck } from '../data/presetDecks';
 import { PresetDeckService, DeckPart } from '../services/PresetDeckService';
+import { exportImportService } from '../services/ExportImportService';
 import { toast } from '../hooks/use-toast';
 import { ErrorNotificationService } from '../services/ErrorNotificationService';
 import { isFlashcardForLanguage } from '../utils/subjectResolver';
@@ -130,6 +132,30 @@ const DecksPage: React.FC = () => {
   const onImport = async (subjectId: string, file: File) => {
     await handleImport(subjectId, file);
     setImportModalOpen(false);
+  };
+
+  const handleExportAnki = async () => {
+    if (!user) {
+      toast({
+        variant: 'destructive',
+        title: 'Tizimga kiring',
+        description: 'Eksport qilish uchun profilingizga kiring.',
+      });
+      return;
+    }
+    try {
+      await exportImportService.exportFlashcardsToAnki(user.id, activeStudySubjectId || undefined);
+      toast({
+        title: 'Anki eksport qilindi',
+        description: "Anki SRS (.txt) kartalar to'plami muvaffaqiyatli yuklandi.",
+      });
+    } catch (err) {
+      toast({
+        variant: 'destructive',
+        title: 'Xatolik',
+        description: err instanceof Error ? err.message : 'Eksportda xatolik yuz berdi.',
+      });
+    }
   };
 
   const getCleanTitle = (title: string) => {
@@ -632,10 +658,19 @@ const DecksPage: React.FC = () => {
                 onClick={() => setImportModalOpen(true)}
                 className="flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-extrabold text-muted-foreground transition-all hover:bg-muted/60 hover:text-foreground"
                 title={
-                  language === 'ja' ? 'JSONファイルをインポート' : 'JSON formatida fayl yuklash'
+                  language === 'ja'
+                    ? 'Anki/JSONファイルをインポート'
+                    : 'Anki (.apkg/.txt), JSON yoki CSV fayl yuklash'
                 }
               >
                 <Upload size={15} /> Import
+              </button>
+              <button
+                onClick={handleExportAnki}
+                className="flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-extrabold text-muted-foreground transition-all hover:bg-muted/60 hover:text-foreground"
+                title="Anki uchun eksport qilish (.txt)"
+              >
+                <Download size={15} /> Anki Eksport
               </button>
               {isAdmin && (
                 <button

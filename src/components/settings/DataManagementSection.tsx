@@ -130,6 +130,26 @@ const DataManagementSection: React.FC<DataManagementSectionProps> = ({ onClearDa
     }
   };
 
+  const handleExportAnki = async () => {
+    if (!user) return;
+    setIsExporting(true);
+    try {
+      await exportImportService.exportFlashcardsToAnki(user.id);
+      toast({
+        title: 'Eksport qilindi',
+        description: "Anki SRS (.txt) kartalar to'plami yuklab olindi.",
+      });
+    } catch (err) {
+      toast({
+        variant: 'destructive',
+        title: 'Xatolik',
+        description: err instanceof Error ? err.message : 'Xatolik yuz berdi.',
+      });
+    } finally {
+      setIsExporting(false);
+    }
+  };
+
   const handleImportFlashcardsCSV = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!user || !e.target.files || e.target.files.length === 0 || !selectedSubjectId) return;
     const file = e.target.files[0];
@@ -306,6 +326,35 @@ const DataManagementSection: React.FC<DataManagementSectionProps> = ({ onClearDa
                 className="flex items-center gap-1 px-3 py-1.5 text-xs"
               >
                 <Download size={14} /> Eksport
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Anki (.txt / TSV) Export */}
+        <div className="border-b border-gray-100 p-4 transition-colors hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-800/30">
+          <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+            <div className="flex items-center gap-3">
+              <div className="rounded-lg bg-emerald-100 p-2 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400">
+                <FileText size={20} />
+              </div>
+              <div>
+                <span className="block font-semibold text-gray-900 dark:text-white">
+                  Anki SRS Fleshkartalar (.txt / TSV)
+                </span>
+                <span className="text-xs text-gray-500 dark:text-gray-400">
+                  Anki Desktop, AnkiDroid va AnkiMobile uchun 100% mos formatda eksport qilish
+                </span>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="default"
+                onClick={handleExportAnki}
+                disabled={isImporting || isExporting}
+                className="flex items-center gap-1 bg-emerald-600 px-3 py-1.5 text-xs text-white hover:bg-emerald-700 dark:bg-emerald-600 dark:hover:bg-emerald-700"
+              >
+                <Download size={14} /> Anki Eksport
               </Button>
             </div>
           </div>
