@@ -6,6 +6,7 @@ import {
   Mail,
   User as UserIcon,
   Shield,
+  ShieldCheck,
   KeyRound,
   LogOut,
   RotateCcw,
@@ -22,6 +23,7 @@ import { toast } from '../../hooks/use-toast';
 import { isAdminEmail, isSuperAdmin } from '../../utils/admin';
 
 import { PersonalizedOnboardingModal } from '../onboarding/PersonalizedOnboardingModal';
+import { Admin2FaSetupModal } from '../admin/Admin2FaSetupModal';
 import { LearningTrackStorage } from '../../utils/storage/LearningTrackStorage';
 import { useRatingModalStore } from '../../stores';
 import { AuthService } from '../../services/AuthService';
@@ -36,6 +38,7 @@ const AccountSection: React.FC = () => {
 
   const [isEditingName, setIsEditingName] = useState(false);
   const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
+  const [is2FaModalOpen, setIs2FaModalOpen] = useState(false);
   const [fullName, setFullName] = useState<string>(
     user?.user_metadata?.full_name || localStorage.getItem('study_planner_user_name') || '',
   );
@@ -386,6 +389,36 @@ const AccountSection: React.FC = () => {
             </Button>
           </div>
 
+          {/* 2FA Authenticator Security Row */}
+          <div className="flex flex-col justify-between gap-4 rounded-xl border border-indigo-500/20 bg-indigo-500/5 p-4 sm:flex-row sm:items-center">
+            <div className="flex items-center gap-3">
+              <ShieldCheck size={18} className="text-indigo-600 dark:text-indigo-400" />
+              <div>
+                <div className="flex items-center gap-2">
+                  <h5 className="text-sm font-bold text-foreground">
+                    Ikki Bosqichli Himoya (2FA / TOTP)
+                  </h5>
+                  {isCurrentAdmin && (
+                    <span className="rounded-md bg-indigo-100 px-1.5 py-0.5 text-[10px] font-extrabold text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300">
+                      Admin: Majburiy
+                    </span>
+                  )}
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  Google Authenticator yoki 1Password ilovasi orqali hisobingizni himoyalang
+                </p>
+              </div>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setIs2FaModalOpen(true)}
+              className="shrink-0 border-indigo-500/30 text-xs font-bold text-indigo-600 hover:bg-indigo-500/10 dark:text-indigo-400"
+            >
+              2FA Sozlamalari
+            </Button>
+          </div>
+
           <div className="flex flex-col justify-between gap-4 rounded-xl border border-amber-500/20 bg-amber-500/5 p-4 sm:flex-row sm:items-center">
             <div className="flex items-center gap-3">
               <RotateCcw size={18} className="text-amber-600 dark:text-amber-400" />
@@ -418,6 +451,12 @@ const AccountSection: React.FC = () => {
           </Button>
         </div>
       </div>
+
+      <Admin2FaSetupModal
+        isOpen={is2FaModalOpen}
+        onClose={() => setIs2FaModalOpen(false)}
+        user={user}
+      />
     </div>
   );
 };

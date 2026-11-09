@@ -43,6 +43,7 @@ const AuthPage = lazyWithRetry(() => import('./pages/AuthPage'));
 const TelegramMiniAppPage = lazyWithRetry(() => import('./pages/TelegramMiniAppPage'));
 
 import { isUserAdmin } from './utils/admin';
+import { AdminTwoFactorGate } from './components/admin/AdminTwoFactorGate';
 import { useAuthStore } from './stores';
 import { safeLocalStorage } from './utils/storage/safeLocalStorage';
 import { isPublicPreviewActive, MOCK_PREVIEW_SESSION } from './config/previewMode';
@@ -123,7 +124,7 @@ const AdminRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return <PageLoader />;
   }
   if (isUserAdmin(effectiveUser) || isDbAdmin === true) {
-    return <>{children}</>;
+    return <AdminTwoFactorGate user={effectiveUser}>{children}</AdminTwoFactorGate>;
   }
   if (isDbAdmin === false || !isUserAdmin(effectiveUser)) {
     return <Navigate to="/jlpt" replace />;
