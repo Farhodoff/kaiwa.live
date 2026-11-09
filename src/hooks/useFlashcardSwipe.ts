@@ -75,8 +75,6 @@ export function useFlashcardSwipe({
 
     deltaXRef.current = currentDeltaX;
     deltaYRef.current = currentDeltaY;
-    setDeltaX(currentDeltaX);
-    setDeltaY(currentDeltaY);
 
     if (Math.abs(currentDeltaX) >= threshold && !hasTriggeredThresholdHapticRef.current) {
       hasTriggeredThresholdHapticRef.current = true;
@@ -84,6 +82,9 @@ export function useFlashcardSwipe({
     } else if (Math.abs(currentDeltaX) < threshold) {
       hasTriggeredThresholdHapticRef.current = false;
     }
+
+    setDeltaX(currentDeltaX);
+    setDeltaY(currentDeltaY);
   };
 
   const handleEnd = useCallback(() => {
@@ -194,11 +195,13 @@ export function useFlashcardSwipe({
 
   const cardStyle: CSSProperties = {
     transform: isDragging
-      ? `translateX(${deltaX}px) rotate(${deltaX * 0.04}deg)`
-      : 'translateX(0px) rotate(0deg)',
-    transition: isDragging ? 'none' : 'transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1)',
-    touchAction: 'pan-y',
+      ? `translate3d(${deltaX}px, ${deltaY * 0.15}px, 0px) rotate(${deltaX * 0.045}deg)`
+      : 'translate3d(0px, 0px, 0px) rotate(0deg)',
+    transition: isDragging ? 'none' : 'transform 0.26s cubic-bezier(0.16, 1, 0.3, 1)',
+    willChange: isDragging ? 'transform' : 'auto',
+    touchAction: 'none',
     userSelect: 'none',
+    WebkitUserSelect: 'none',
     cursor: isDragging ? 'grabbing' : 'pointer',
   };
 
