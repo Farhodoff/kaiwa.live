@@ -165,12 +165,66 @@ export const JlptMockExamPage: React.FC = () => {
       try {
         const list = await ExamService.getPublishedJlptExams(level);
         if (isMounted) {
-          setAvailableExams(list);
+          const defaultVariants: ExamListItem[] = [
+            {
+              id: `builtin_${level.toLowerCase()}`,
+              title: `JLPT ${level} Rasmiy Mock Test — Variant A (1-to'plam)`,
+              description: `Rasmiy formatdagi ${level} daraja yapon tili imtihoni (Variant A).`,
+              type: `JLPT ${level}`,
+              level,
+              isPublished: true,
+              createdAt: new Date().toISOString(),
+              totalQuestions: 25,
+              isOfficialJlpt: true,
+            },
+            {
+              id: `builtin_${level.toLowerCase()}_set2`,
+              title: `JLPT ${level} Rasmiy Mock Test — Variant B (2-to'plam: 500 Mon & Shin Kanzen)`,
+              description: `500 Mon va Shin Kanzen asosidagi ${level} daraja imtihon simulyatori (Variant B).`,
+              type: `JLPT ${level}`,
+              level,
+              isPublished: true,
+              createdAt: new Date().toISOString(),
+              totalQuestions: 25,
+              isOfficialJlpt: true,
+            },
+            {
+              id: `builtin_${level.toLowerCase()}_set3`,
+              title: `JLPT ${level} Rasmiy Mock Test — Variant C (3-to'plam: Speed Master & Choukai Masterclass)`,
+              description: `Speed Master va Choukai Masterclass asosidagi ${level} daraja imtihon simulyatori (Variant C).`,
+              type: `JLPT ${level}`,
+              level,
+              isPublished: true,
+              createdAt: new Date().toISOString(),
+              totalQuestions: 25,
+              isOfficialJlpt: true,
+            },
+            {
+              id: `builtin_${level.toLowerCase()}_random`,
+              title: `JLPT ${level} 🎲 Aqlli Dinamik Variant (Smart Dynamic Simulator)`,
+              description: `Barcha to'plamlardan saralangan, takrorlanmaydigan savollar bilan tuzilgan yangi simulyatsiya.`,
+              type: `JLPT ${level}`,
+              level,
+              isPublished: true,
+              createdAt: new Date().toISOString(),
+              totalQuestions: 25,
+              isOfficialJlpt: false,
+            },
+          ];
+
+          const combinedList = [...list];
+          defaultVariants.forEach((v) => {
+            if (!combinedList.some((e) => e.id === v.id)) {
+              combinedList.push(v);
+            }
+          });
+
+          setAvailableExams(combinedList);
           const urlExamId = searchParams.get('examId');
-          if (urlExamId && list.some((e) => e.id === urlExamId)) {
+          if (urlExamId && combinedList.some((e) => e.id === urlExamId)) {
             setSelectedExamId(urlExamId);
-          } else if (list.length > 0) {
-            setSelectedExamId(list[0].id);
+          } else if (combinedList.length > 0) {
+            setSelectedExamId(combinedList[0].id);
           }
         }
       } catch (err) {
@@ -967,6 +1021,32 @@ export const JlptMockExamPage: React.FC = () => {
               <span className="text-[11px] font-medium text-muted-foreground">
                 {availableExams.length} ta test mavjud
               </span>
+            </div>
+
+            {/* Quick Variant Switcher Pills */}
+            <div className="flex flex-wrap items-center gap-1.5">
+              {[
+                { id: `builtin_${level.toLowerCase()}`, label: 'Variant A' },
+                { id: `builtin_${level.toLowerCase()}_set2`, label: 'Variant B' },
+                { id: `builtin_${level.toLowerCase()}_set3`, label: 'Variant C' },
+                { id: `builtin_${level.toLowerCase()}_random`, label: '🎲 Dinamik' },
+              ].map((v) => {
+                const isActive = selectedExamId === v.id;
+                return (
+                  <button
+                    key={v.id}
+                    type="button"
+                    onClick={() => setSelectedExamId(v.id)}
+                    className={`cursor-pointer rounded-xl border px-3 py-1.5 text-xs font-black transition-all ${
+                      isActive
+                        ? 'border-rose-500 bg-rose-500 text-white shadow-xs'
+                        : 'border-border bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground'
+                    }`}
+                  >
+                    {v.label}
+                  </button>
+                );
+              })}
             </div>
 
             {loadingExams ? (

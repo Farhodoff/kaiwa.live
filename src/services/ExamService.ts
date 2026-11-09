@@ -152,8 +152,8 @@ export class ExamService {
     for (const lvl of fallbackLevels) {
       items.push({
         id: `builtin_${lvl.toLowerCase()}`,
-        title: `JLPT ${lvl} Rasmiy Mock Test - 1-to'plam`,
-        description: `Rasmiy formatdagi ${lvl} daraja yapon tili imtihoni (1-to'liq sinov).`,
+        title: `JLPT ${lvl} Rasmiy Mock Test — Variant A (1-to'plam)`,
+        description: `Rasmiy formatdagi ${lvl} daraja yapon tili imtihoni (Variant A).`,
         type: `JLPT ${lvl}`,
         level: lvl,
         isPublished: true,
@@ -162,8 +162,8 @@ export class ExamService {
       });
       items.push({
         id: `builtin_${lvl.toLowerCase()}_set2`,
-        title: `JLPT ${lvl} Rasmiy Mock Test - 2-to'plam (500 Mon & Shin Kanzen)`,
-        description: `500 Mon va Shin Kanzen asosidagi ${lvl} daraja imtihon simulyatori (2-to'liq sinov).`,
+        title: `JLPT ${lvl} Rasmiy Mock Test — Variant B (2-to'plam: 500 Mon & Shin Kanzen)`,
+        description: `500 Mon va Shin Kanzen asosidagi ${lvl} daraja imtihon simulyatori (Variant B).`,
         type: `JLPT ${lvl}`,
         level: lvl,
         isPublished: true,
@@ -172,8 +172,8 @@ export class ExamService {
       });
       items.push({
         id: `builtin_${lvl.toLowerCase()}_set3`,
-        title: `JLPT ${lvl} Rasmiy Mock Test - 3-to'plam (Speed Master & Choukai Masterclass)`,
-        description: `Speed Master va Choukai Masterclass asosidagi ${lvl} daraja imtihon simulyatori (3-to'liq sinov).`,
+        title: `JLPT ${lvl} Rasmiy Mock Test — Variant C (3-to'plam: Speed Master & Choukai Masterclass)`,
+        description: `Speed Master va Choukai Masterclass asosidagi ${lvl} daraja imtihon simulyatori (Variant C).`,
         type: `JLPT ${lvl}`,
         level: lvl,
         isPublished: true,
