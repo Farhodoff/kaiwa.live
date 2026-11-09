@@ -194,8 +194,8 @@
               "options": [
                 "体力[たいりょく]が 衰[おとろ]える。",
                 "問題[もんだい]が 深刻[しんこく]化する。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現"
+                "年[とし]を 取[と]るにつれて、体力[たいりょく]が 衰[おとろ]えて きた。",
+                "少子[しょうし]高齢[こうれい]化が ますます 深刻[しんこく]化 している。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Boshqa biror hodisa o'zgargani sari ikkinchi hodisaning parallel o'zgarishi.」に基づきます。"
@@ -222,8 +222,8 @@
               "options": [
                 "体力[たいりょく]が 衰[おとろ]える。",
                 "問題[もんだい]が 深刻[しんこく]化する。",
-                "文脈と無関係な文",
-                "意味の異なる文"
+                "年[とし]を 取[と]るにつれて、体力[たいりょく]が 衰[おとろ]えて きた。",
+                "少子[しょうし]高齢[こうれい]化が ますます 深刻[しんこく]化 している。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Proportional Change: 〜につれて vs 〜にしたがって vs 〜に伴って」を使い、提示された文脈に合う文を選びます。"
@@ -236,8 +236,8 @@
               "options": [
                 "Jismoniy quvvat zaiflashmoqda.",
                 "Muammo jiddiylashmoqda.",
-                "本文にない情報である",
-                "反対の内容である"
+                "Yosh oʻtgan sari jismoniy quvvat pasayib bordi.",
+                "Aholining keksayishi tobora jiddiylashmoqda."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Boshqa biror hodisa o'zgargani sari ikkinchi hodisaning parallel o'zgarishi.」を照合します。"
@@ -539,8 +539,8 @@
               "options": [
                 "予算[よさん]を 立[た]てる。",
                 "冷静[れいせい]に 判断[はんだん]する。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現"
+                "新規[しんき]事業[じぎょう]の 予算[よさん]を 獲得[かくとく]する。",
+                "状況[じょうきょう]に 応[おう]じた 迅速[じんそく]な 判断[はんだん]が 求[もと]められる。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Talab va ehtiyojga mos holda (ni oujite), qoida va reja bo'yicha (ni sotte), dalilga asoslanib (ni motozuite).」に基づきます。"
@@ -567,8 +567,8 @@
               "options": [
                 "予算[よさん]を 立[た]てる。",
                 "冷静[れいせい]に 判断[はんだん]する。",
-                "文脈と無関係な文",
-                "意味の異なる文"
+                "新規[しんき]事業[じぎょう]の 予算[よさん]を 獲得[かくとく]する。",
+                "状況[じょうきょう]に 応[おう]じた 迅速[じんそく]な 判断[はんだん]が 求[もと]められる。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Compliance & Basis: 〜に応じて vs 〜に沿って vs 〜に基づいて」を使い、提示された文脈に合う文を選びます。"
@@ -581,8 +581,8 @@
               "options": [
                 "Byudjet tuzmoq.",
                 "Vazminlik bilan baholamoq.",
-                "本文にない情報である",
-                "反対の内容である"
+                "Yangi loyiha uchun budjetni qoʻlga kiritish.",
+                "Vaziyatga qarab tezkor xulosa chiqarish talab etiladi."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Talab va ehtiyojga mos holda (ni oujite), qoida va reja bo'yicha (ni sotte), dalilga asoslanib (ni motozuite).」を照合します。"
@@ -879,9 +879,9 @@
               "prompt": "文法ドリル: Psychological Inability & Risk: 〜かねる vs 〜かねない の用法を選んでください。 [ja-n2-u1-l3]",
               "options": [
                 "ご期待[きたい]には 添[そ]いかねます。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "重要[じゅうよう]な 件[けん]なので 口頭[こうとう]で 伝[つた]えます。",
+                "最終[さいしゅう]確認[かくにん]を 怠[おこた]った ために ミスが 生[しょう]じた。",
+                "契約[けいやく]には 慎重[しんちょう]な 態度[たいど]が 必要[ひつよう]だ。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Rad etish muloyimligi (kaneru - qila olmayman) va xavfli ehtimol (kanenai - bo'lib qolishi mumkin!).」に基づきます。"
@@ -907,9 +907,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Rad etish muloyimligi (kaneru - qila olmayman) va xavfli ehtimol (kanenai - bo'lib qolishi mumkin!). [ja-n2-u1-l3]",
               "options": [
                 "ご期待[きたい]には 添[そ]いかねます。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "重要[じゅうよう]な 件[けん]なので 口頭[こうとう]で 伝[つた]えます。",
+                "最終[さいしゅう]確認[かくにん]を 怠[おこた]った ために ミスが 生[しょう]じた。",
+                "契約[けいやく]には 慎重[しんちょう]な 態度[たいど]が 必要[ひつよう]だ。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Psychological Inability & Risk: 〜かねる vs 〜かねない」を使い、提示された文脈に合う文を選びます。"
@@ -921,9 +921,9 @@
               "prompt": "読解応用: ご期待[きたい]には 添[そ]いかねます。 この文脈から正しく読み取れる内容はどれですか。 [ja-n2-u1-l3]",
               "options": [
                 "Umidlaringizni oqlay olmasak kerak.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Muhim masala boʻlgani uchun ogʻzaki yetkazaman.",
+                "Yakuniy tekshirishga beparvo boʻlingani tufayli xato kelib chiqdi.",
+                "Shartnoma tuzishda ehtiyotkorlik zarur."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Rad etish muloyimligi (kaneru - qila olmayman) va xavfli ehtimol (kanenai - bo'lib qolishi mumkin!).」を照合します。"
@@ -1216,9 +1216,9 @@
               "prompt": "文法ドリル: Absolute Impossibility: 〜っこない & Subjective Guess: 〜げ の用法を選んでください。 [ja-n2-u1-l4]",
               "options": [
                 "明[あか]るい 表情[ひょうじょう]。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "彼[かれ]は 自信[じしん]ありげな 態度[たいど]で ステージに 立[た]った。",
+                "路地裏[ろじうら]で 怪[あや]しげな 人影[ひとかげ]を 見[み]かけた。",
+                "彼[かれ]は 惜[お]しげもなく 自身[じしん]の ノウハウを 公開[こうかい]した。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Mutlaqo ilojsiz ekanini qat'iy ta'kidlash (kkonai) va tuyg'u belgisi (ge: sabishige, ureshige).」に基づきます。"
@@ -1244,9 +1244,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Mutlaqo ilojsiz ekanini qat'iy ta'kidlash (kkonai) va tuyg'u belgisi (ge: sabishige, ureshige). [ja-n2-u1-l4]",
               "options": [
                 "明[あか]るい 表情[ひょうじょう]。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "彼[かれ]は 自信[じしん]ありげな 態度[たいど]で ステージに 立[た]った。",
+                "路地裏[ろじうら]で 怪[あや]しげな 人影[ひとかげ]を 見[み]かけた。",
+                "彼[かれ]は 惜[お]しげもなく 自身[じしん]の ノウハウを 公開[こうかい]した。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Absolute Impossibility: 〜っこない & Subjective Guess: 〜げ」を使い、提示された文脈に合う文を選びます。"
@@ -1258,9 +1258,9 @@
               "prompt": "読解応用: 明[あか]るい 表情[ひょうじょう]。 この文脈から正しく読み取れる内容はどれですか。 [ja-n2-u1-l4]",
               "options": [
                 "Ochiq yuz ifodasi.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "U o'ziga ishongan qiyofada sahnaga chiqdi.",
+                "Tor ko'chada shubhali bir odam sharpasini ko'rib qoldim.",
+                "U o'zining nou-xausini (sir-asrorini) hech ayamay ommaga ulashdi."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Mutlaqo ilojsiz ekanini qat'iy ta'kidlash (kkonai) va tuyg'u belgisi (ge: sabishige, ureshige).」を照合します。"
@@ -1553,8 +1553,8 @@
               "options": [
                 "人間[にんげん]の 尊厳[そんげん]。",
                 "倫理的[りんりてき]な 葛藤[かっとう]。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現"
+                "予想[よそう]外[がい]の 事態[じたい]にも 臨機[りんき]応変[おうへん]に 対応[たいおう]する。",
+                "上司[じょうし]から 的確[てきかく]な 指示[しじ]を 受[う]けました。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Sun'iy intellekt, avtomatlashtirish va insoniyat axloqi haqidagi gazeta tahririyat maqolasi tahlili.」に基づきます。"
@@ -1581,8 +1581,8 @@
               "options": [
                 "人間[にんげん]の 尊厳[そんげん]。",
                 "倫理的[りんりてき]な 葛藤[かっとう]。",
-                "文脈と無関係な文",
-                "意味の異なる文"
+                "予想[よそう]外[がい]の 事態[じたい]にも 臨機[りんき]応変[おうへん]に 対応[たいおう]する。",
+                "上司[じょうし]から 的確[てきかく]な 指示[しじ]を 受[う]けました。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「N2 Editorial Dokkai: Column Analysis on AI & Ethics」を使い、提示された文脈に合う文を選びます。"
@@ -1595,8 +1595,8 @@
               "options": [
                 "Inson qadr-qimmati.",
                 "Axloqiy ichki kurash.",
-                "本文にない情報である",
-                "反対の内容である"
+                "Kutilmagan vaziyatda ham vaziyatga qarab epchillik bilan ish koʻriladi.",
+                "Boshliqdan aniq koʻrsatma oldim."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Sun'iy intellekt, avtomatlashtirish va insoniyat axloqi haqidagi gazeta tahririyat maqolasi tahlili.」を照合します。"
@@ -1899,9 +1899,9 @@
               "prompt": "文法ドリル: Advanced Business Correspondence: 〜申し上げます & 〜存じます の用法を選んでください。 [ja-n2-u2-l1]",
               "options": [
                 "深[ふか]く お詫[わ]び 申[もう]し上[あ]げます。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "社長[しゃちょう]の お名前[なまえ]は かねてより 存[ぞん]じ上[あ]げております。",
+                "ご指示[しじ]の 件[けん]、確[たし]かに 承知[しょうち]いたしました。",
+                "担当者[たんとうしゃ]が 戻[もど]り 次第[しだい]、申[もう]し伝[つた]えます。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Rasmiy korporativ yozishmalar va diplomatik ehtirom formulalari.」に基づきます。"
@@ -1927,9 +1927,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Rasmiy korporativ yozishmalar va diplomatik ehtirom formulalari. [ja-n2-u2-l1]",
               "options": [
                 "深[ふか]く お詫[わ]び 申[もう]し上[あ]げます。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "社長[しゃちょう]の お名前[なまえ]は かねてより 存[ぞん]じ上[あ]げております。",
+                "ご指示[しじ]の 件[けん]、確[たし]かに 承知[しょうち]いたしました。",
+                "担当者[たんとうしゃ]が 戻[もど]り 次第[しだい]、申[もう]し伝[つた]えます。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Advanced Business Correspondence: 〜申し上げます & 〜存じます」を使い、提示された文脈に合う文を選びます。"
@@ -1941,9 +1941,9 @@
               "prompt": "読解応用: 深[ふか]く お詫[わ]び 申[もう]し上[あ]げます。 この文脈から正しく読み取れる内容はどれですか。 [ja-n2-u2-l1]",
               "options": [
                 "Chuqur uzr so'raymiz.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Hurmatli prezidentimizning nomlarini anchadan beri yaxshi bilaman.",
+                "Ko'rsatma berilgan masalani to'liq tushundim va qabul qildim.",
+                "Mas'ul xodim qaytishi bilanoq, unga xabaringizni yetkazib qo'yaman."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Rasmiy korporativ yozishmalar va diplomatik ehtirom formulalari.」を照合します。"
@@ -2255,8 +2255,8 @@
               "options": [
                 "銀行[ぎんこう]から 融資[ゆうし]を 受[う]ける。",
                 "景気[けいき]が 回復[かいふく]する。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現"
+                "新[あたら]しい 工場[こうじょう]の ために 銀行[ぎんこう]から 融資[ゆうし]を 受[う]ける。",
+                "政府[せいふ]の 経済[けいざい]政策[せいさく]によって 景気[けいき]が 回復[かいふく]した。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Bank krediti, bozor konyunkturasi, shartnomalar va huquqiy javobgarlik kanjilari.」に基づきます。"
@@ -2283,8 +2283,8 @@
               "options": [
                 "銀行[ぎんこう]から 融資[ゆうし]を 受[う]ける。",
                 "景気[けいき]が 回復[かいふく]する。",
-                "文脈と無関係な文",
-                "意味の異なる文"
+                "新[あたら]しい 工場[こうじょう]の ために 銀行[ぎんこう]から 融資[ゆうし]を 受[う]ける。",
+                "政府[せいふ]の 経済[けいざい]政策[せいさく]によって 景気[けいき]が 回復[かいふく]した。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「N2 Advanced Kanji: Macroeconomics, Commerce & Law (融資, 景気, 契約, 義務, 損害)」を使い、提示された文脈に合う文を選びます。"
@@ -2297,8 +2297,8 @@
               "options": [
                 "Bankdan kredit olmoq.",
                 "Iqtisodiy vaziyat tiklanmoqda.",
-                "本文にない情報である",
-                "反対の内容である"
+                "Yangi zavod qurilishi uchun bankdan kredit olmoq.",
+                "Hukumatning iqtisodiy siyosati tufayli bozor konyunkturasi tiklandi."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Bank krediti, bozor konyunkturasi, shartnomalar va huquqiy javobgarlik kanjilari.」を照合します。"
@@ -2605,9 +2605,9 @@
               "prompt": "文法ドリル: Formal Negation & Concession: 〜ざるを得ない vs 〜わけにはいかない の用法を選んでください。 [ja-n2-u2-l3]",
               "options": [
                 "失敗[しっぱい]を 認[みと]める。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "待遇[たいぐう]に ついて 不満[ふまん]を 漏[も]らした。",
+                "業務[ぎょうむ]効率[こうりつ]の 改善[かいぜん]に 取[と]り組[く]む。",
+                "労働[ろうどう]条件[じょうけん]の 改善[かいぜん]を 会社[かいしゃ]に 要求[ようきゅう]する。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Majburlikdan qilishdan o'zga chora yo'qligi (zaru o enai) va axloqan/vaziyat sababli qila olmaslik (wake ni wa ikanai).」に基づきます。"
@@ -2633,9 +2633,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Majburlikdan qilishdan o'zga chora yo'qligi (zaru o enai) va axloqan/vaziyat sababli qila olmaslik (wake ni wa ikanai). [ja-n2-u2-l3]",
               "options": [
                 "失敗[しっぱい]を 認[みと]める。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "待遇[たいぐう]に ついて 不満[ふまん]を 漏[も]らした。",
+                "業務[ぎょうむ]効率[こうりつ]の 改善[かいぜん]に 取[と]り組[く]む。",
+                "労働[ろうどう]条件[じょうけん]の 改善[かいぜん]を 会社[かいしゃ]に 要求[ようきゅう]する。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Formal Negation & Concession: 〜ざるを得ない vs 〜わけにはいかない」を使い、提示された文脈に合う文を選びます。"
@@ -2647,9 +2647,9 @@
               "prompt": "読解応用: 失敗[しっぱい]を 認[みと]める。 この文脈から正しく読み取れる内容はどれですか。 [ja-n2-u2-l3]",
               "options": [
                 "Xatoni tan olmoq.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Shart-sharoitlar borasida noroziligini bildirdi.",
+                "Ish samaradorligini takomillashtirish ustida ishlamoqdamiz.",
+                "Kompaniyadan mehnat sharoitlarini yaxshilashni talab qilishdi."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Majburlikdan qilishdan o'zga chora yo'qligi (zaru o enai) va axloqan/vaziyat sababli qila olmaslik (wake ni wa ikanai).」を照合します。"
@@ -2952,9 +2952,9 @@
               "prompt": "文法ドリル: N2 Choukai: Integrated Information Listening (統合理解) の用法を選んでください。 [ja-n2-u2-l4]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "作業[さぎょう]の 効率[こうりつ]を 上[あ]げる 工夫[くふう]を する。",
+                "正[ただ]しい 手順[てじゅん]に 沿[そ]って 機械[きかい]を 操作[そうさ]する。",
+                "無駄[むだ]な 手間[てま]を 省[はぶ]いて 時間[じかん]を 節約[せつやく]する。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Bir nechta shaxslarning fikrlari va jadvalli variantlarni solishtirib yakuniy yechimni topish.」に基づきます。"
@@ -2980,9 +2980,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: N2 課題理解 va 統合理解: audio orqali vazifa, shartlar va keyingi harakatni aniqlash. [ja-n2-u2-l4]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "作業[さぎょう]の 効率[こうりつ]を 上[あ]げる 工夫[くふう]を する。",
+                "正[ただ]しい 手順[てじゅん]に 沿[そ]って 機械[きかい]を 操作[そうさ]する。",
+                "無駄[むだ]な 手間[てま]を 省[はぶ]いて 時間[じかん]を 節約[せつやく]する。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「N2 Choukai: Integrated Information Listening (統合理解)」を使い、提示された文脈に合う文を選びます。"
@@ -2994,9 +2994,9 @@
               "prompt": "読解応用: 日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。 この文脈から正しく読み取れる内容はどれですか。 [ja-n2-u2-l4]",
               "options": [
                 "Har kuni yapon tilini o'rganaman.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Ish samaradorligini oshirish choralarini koʻrmoq.",
+                "Toʻgʻri ketma-ketlikka rioya qilgan holda texnikani boshqarish.",
+                "Ortiqcha zahmatni qisqartirib vaqtni tejaymiz."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Bir nechta shaxslarning fikrlari va jadvalli variantlarni solishtirib yakuniy yechimni topish.」を照合します。"
@@ -3312,9 +3312,9 @@
               "prompt": "文法ドリル: Unit 2 Checkpoint の用法を選んでください。 [ja-n2-u2-l5]",
               "options": [
                 "状況[じょうきょう]に 応[おう]じて、計画[けいかく]を 見直[みなお]します。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "長[なが]い 論文[ろんぶん]の 要約[ようやく]を 100字[じ]以内で 書[か]く。",
+                "論理[ろんり]的[てき]な 思考[しこう]力[りょく]を 鍛[きた]える。",
+                "発言[はつげん]と 行動[こうどう]の 間[あいだ]に 矛盾[むじゅん]が ある。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「1–10-darslardagi bilimlarni oraliq nazorat qilish.」に基づきます。"
@@ -3340,9 +3340,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: 1–10-darslarda o‘rganilgan N2 grammatikasi, biznes yapon tili, kanji va tinglab tushunish strategiyalarini mustahkamlash. [ja-n2-u2-l5]",
               "options": [
                 "状況[じょうきょう]に 応[おう]じて、計画[けいかく]を 見直[みなお]します。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "長[なが]い 論文[ろんぶん]の 要約[ようやく]を 100字[じ]以内で 書[か]く。",
+                "論理[ろんり]的[てき]な 思考[しこう]力[りょく]を 鍛[きた]える。",
+                "発言[はつげん]と 行動[こうどう]の 間[あいだ]に 矛盾[むじゅん]が ある。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Unit 2 Checkpoint」を使い、提示された文脈に合う文を選びます。"
@@ -3354,9 +3354,9 @@
               "prompt": "読解応用: 状況[じょうきょう]に 応[おう]じて、計画[けいかく]を 見直[みなお]します。 この文脈から正しく読み取れる内容はどれですか。 [ja-n2-u2-l5]",
               "options": [
                 "Vaziyatga qarab rejani qayta ko‘rib chiqamiz.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Uzun maqolaning qisqacha xulosasini 100 belgida yozing.",
+                "Mantiqiy fikrlash qobiliyatini charxlamoq.",
+                "Gap va harakat oʻrtasida ziddiyat bor."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「1–10-darslardagi bilimlarni oraliq nazorat qilish.」を照合します。"
@@ -3652,9 +3652,9 @@
               "prompt": "文法ドリル: 〜にすぎない (Nothing more than / Merely) の用法を選んでください。 [ja-n2-u3-l1]",
               "options": [
                 "単なる偶然です。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "相手[あいて]の 実力[じつりょく]を 過小[かしょう]評価[ひょうか]しては ならない。",
+                "彼[かれ]は 多忙[たぼう]を 口実[こうじつ]に 会議[かいぎ]を 欠席[けっせき]した。",
+                "ミスを したら、言[い]い訳[わけ]を せずに 謝罪[しゃざい]すべきだ。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Cheklov va kamtarinlik ifodasi: \"Shunchaki ...dan iborat, xolos\".」に基づきます。"
@@ -3680,9 +3680,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Cheklov va kamtarinlik ifodasi: \"Shunchaki ...dan iborat, xolos\". [ja-n2-u3-l1]",
               "options": [
                 "単なる偶然です。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "相手[あいて]の 実力[じつりょく]を 過小[かしょう]評価[ひょうか]しては ならない。",
+                "彼[かれ]は 多忙[たぼう]を 口実[こうじつ]に 会議[かいぎ]を 欠席[けっせき]した。",
+                "ミスを したら、言[い]い訳[わけ]を せずに 謝罪[しゃざい]すべきだ。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「〜にすぎない (Nothing more than / Merely)」を使い、提示された文脈に合う文を選びます。"
@@ -3694,9 +3694,9 @@
               "prompt": "読解応用: 単なる偶然です。 この文脈から正しく読み取れる内容はどれですか。 [ja-n2-u3-l1]",
               "options": [
                 "Shunchaki tasodif xolos.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Raqibning mahoratini keragidan past baholamaslik kerak.",
+                "U ish ko'pligini bahona qilib yig'ilishga kelmadi.",
+                "Xatoga yo'l qo'yilsa, bahona qilmasdan uzr so'rash lozim."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Cheklov va kamtarinlik ifodasi: \"Shunchaki ...dan iborat, xolos\".」を照合します。"
@@ -4002,9 +4002,9 @@
               "prompt": "文法ドリル: 〜をめぐって (Surrounding / Concerning a dispute) の用法を選んでください。 [ja-n2-u3-l2]",
               "options": [
                 "活発な議論が行われた。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "新入[しんにゅう]社員[しゃいん]としての 心得[こころえ]を 学[まな]ぶ。",
+                "公式[こうしき]な 場[ば]に ふさわしい 振[ふ]る舞[ま]いが 求[もと]められる。",
+                "日本[にほん]の 伝統[でんとう]的[てき]な 礼儀[れいぎ]作法[さほう]を 身[み]につける。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Muammo yoki munozara atrofida bahslashish: \"...atrofida / ...xususida\".」に基づきます。"
@@ -4030,9 +4030,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Muammo yoki munozara atrofida bahslashish: \"...atrofida / ...xususida\". [ja-n2-u3-l2]",
               "options": [
                 "活発な議論が行われた。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "新入[しんにゅう]社員[しゃいん]としての 心得[こころえ]を 学[まな]ぶ。",
+                "公式[こうしき]な 場[ば]に ふさわしい 振[ふ]る舞[ま]いが 求[もと]められる。",
+                "日本[にほん]の 伝統[でんとう]的[てき]な 礼儀[れいぎ]作法[さほう]を 身[み]につける。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「〜をめぐって (Surrounding / Concerning a dispute)」を使い、提示された文脈に合う文を選びます。"
@@ -4044,9 +4044,9 @@
               "prompt": "読解応用: 活発な議論が行われた。 この文脈から正しく読み取れる内容はどれですか。 [ja-n2-u3-l2]",
               "options": [
                 "Qizg'in munozara bo'lib o'tdi.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Yangi xodim sifatida burch va odob-axloq qoidalarini oʻrganamiz.",
+                "Rasmiy doirada munosib xulq-atvor talab qilinadi.",
+                "Yaponiyaning anʼanaviy etiket qoidalarini oʻzlashtirmoq."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Muammo yoki munozara atrofida bahslashish: \"...atrofida / ...xususida\".」を照合します。"
@@ -4342,9 +4342,9 @@
               "prompt": "文法ドリル: 〜に際して (On the occasion of / Prior to) の用法を選んでください。 [ja-n2-u3-l3]",
               "options": [
                 "規約に同意する。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "最新[さいしん]の 市場[しじょう]動向[どうこう]を 分析[ぶんせき]して 戦略[せんりゃく]を 立[た]てる。",
+                "好業績[こうぎょうせき]を 受[う]けて 株価[かぶか]が 急上昇[きゅうじょうしょう]した。",
+                "為替[かわせ]変動[へんどう]の リスクを 回避[かいひ]する 手段[しゅだん]を 講[こう]じる。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Rasmiy tadbir yoki muhim hodisa munosabati bilan: \"...munosabati bilan / ...olida\".」に基づきます。"
@@ -4370,9 +4370,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Rasmiy tadbir yoki muhim hodisa munosabati bilan: \"...munosabati bilan / ...olida\". [ja-n2-u3-l3]",
               "options": [
                 "規約に同意する。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "最新[さいしん]の 市場[しじょう]動向[どうこう]を 分析[ぶんせき]して 戦略[せんりゃく]を 立[た]てる。",
+                "好業績[こうぎょうせき]を 受[う]けて 株価[かぶか]が 急上昇[きゅうじょうしょう]した。",
+                "為替[かわせ]変動[へんどう]の リスクを 回避[かいひ]する 手段[しゅだん]を 講[こう]じる。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「〜に際して (On the occasion of / Prior to)」を使い、提示された文脈に合う文を選びます。"
@@ -4384,9 +4384,9 @@
               "prompt": "読解応用: 規約に同意する。 この文脈から正しく読み取れる内容はどれですか。 [ja-n2-u3-l3]",
               "options": [
                 "Nizomga rozi bo'lmoq.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Eng soʻnggi bozor tendensiyalarini tahlil qilib strategiya tuzamiz.",
+                "Muvaffaqiyatli moliyaviy natijalar sababli aksiya narxi keskin koʻtarildi.",
+                "Valyuta tebranishi xavfini kamaytirish choralarini koʻrmoqdamiz."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Rasmiy tadbir yoki muhim hodisa munosabati bilan: \"...munosabati bilan / ...olida\".」を照合します。"
@@ -4692,8 +4692,8 @@
               "options": [
                 "資格[しかく]は 取[と]ったものの、実務[じつむ]経験[けいけん]が ない。",
                 "春[はる]になったとはいうものの、まだ 寒[さむ]い。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現"
+                "新制度[しんせいど]を 導入[どうにゅう]したものの、問題[もんだい]は 残[のこ]っている。",
+                "期待[きたい]していたものの、結果[けっか]は 普通[ふつう]だった。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Faktni tan olib, unga zid yoki kutilmagan natijani ko‘rsatish.」に基づきます。"
@@ -4720,8 +4720,8 @@
               "options": [
                 "資格[しかく]は 取[と]ったものの、実務[じつむ]経験[けいけん]が ない。",
                 "春[はる]になったとはいうものの、まだ 寒[さむ]い。",
-                "文脈と無関係な文",
-                "意味の異なる文"
+                "新制度[しんせいど]を 導入[どうにゅう]したものの、問題[もんだい]は 残[のこ]っている。",
+                "期待[きたい]していたものの、結果[けっか]は 普通[ふつう]だった。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「普通形 + ものの / 〜とはいうものの」を使い、提示された文脈に合う文を選びます。"
@@ -4734,8 +4734,8 @@
               "options": [
                 "Malaka sertifikatini olgan bo‘lsam-da, amaliy tajribam yo‘q.",
                 "Bahor keldi deyilsa-da, hali ham sovuq.",
-                "本文にない情報である",
-                "反対の内容である"
+                "Yangi tizim joriy etilgan bo‘lsa-da, muammolar qolmoqda.",
+                "Umid qilgan bo‘lsam-da, natija oddiy bo‘ldi."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Faktni tan olib, unga zid yoki kutilmagan natijani ko‘rsatish.」を照合します。"
@@ -5031,9 +5031,9 @@
               "prompt": "文法ドリル: 〜にほかならない (Nothing other than / Must be precisely) の用法を選んでください。 [ja-n2-u3-l5]",
               "options": [
                 "努力の成果が出た。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "時間[じかん]が ないので 手短[てみじか]に 報告[ほうこく]します。",
+                "話[はな]しの 要点[ようてん]を 簡潔[かんけつ]に まとめてください。",
+                "分[わ]かりやすく 言[い]い換[か]えると こういうことです。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Qat'iy xulosa: \"...dan boshqa narsa emas / aynan ...dir\".」に基づきます。"
@@ -5059,9 +5059,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Qat'iy xulosa: \"...dan boshqa narsa emas / aynan ...dir\". [ja-n2-u3-l5]",
               "options": [
                 "努力の成果が出た。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "時間[じかん]が ないので 手短[てみじか]に 報告[ほうこく]します。",
+                "話[はな]しの 要点[ようてん]を 簡潔[かんけつ]に まとめてください。",
+                "分[わ]かりやすく 言[い]い換[か]えると こういうことです。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「〜にほかならない (Nothing other than / Must be precisely)」を使い、提示された文脈に合う文を選びます。"
@@ -5073,9 +5073,9 @@
               "prompt": "読解応用: 努力の成果が出た。 この文脈から正しく読み取れる内容はどれですか。 [ja-n2-u3-l5]",
               "options": [
                 "Mehnat mevasini berdi.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Vaqt oz boʻlgani uchun qisqacha hisobot beraman.",
+                "Mavzuning asosiy nuqtasini londa qilib jamlang.",
+                "Osonroq tushuntirganda mana bu maʼnoni bildiradi."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Qat'iy xulosa: \"...dan boshqa narsa emas / aynan ...dir\".」を照合します。"
@@ -5377,9 +5377,9 @@
               "prompt": "文法ドリル: Environmental & Technological Reading (環境・技術の読解) の用法を選んでください。 [ja-n2-u4-l1]",
               "options": [
                 "持続可能な社会を目指す。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "新[あたら]しい 法案[ほうあん]に ついて 賛否[さんぴ]両論[りょうろん]が 巻[ま]き起[お]こった。",
+                "双子[ふたご]なのに 性格[せいかく]は 対照[たいしょう]的[てき]だ。",
+                "議論[ぎろん]を 重[かさ]ねて 妥協[だきょう]点[てん]を 模索[もさく]する。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Ekologiya va texnologiyaga oid N2 uzun matnlarni tahlil qilish va muallif g'oyasini topish.」に基づきます。"
@@ -5405,9 +5405,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Ekologiya va texnologiyaga oid N2 uzun matnlarni tahlil qilish va muallif g'oyasini topish. [ja-n2-u4-l1]",
               "options": [
                 "持続可能な社会を目指す。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "新[あたら]しい 法案[ほうあん]に ついて 賛否[さんぴ]両論[りょうろん]が 巻[ま]き起[お]こった。",
+                "双子[ふたご]なのに 性格[せいかく]は 対照[たいしょう]的[てき]だ。",
+                "議論[ぎろん]を 重[かさ]ねて 妥協[だきょう]点[てん]を 模索[もさく]する。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Environmental & Technological Reading (環境・技術の読解)」を使い、提示された文脈に合う文を選びます。"
@@ -5419,9 +5419,9 @@
               "prompt": "読解応用: 持続可能な社会を目指す。 この文脈から正しく読み取れる内容はどれですか。 [ja-n2-u4-l1]",
               "options": [
                 "Barqaror jamiyat sari intilish.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Yangi qonun loyihasi yuzasidan ikki xil qarama-qarshi fikrlar paydo boʻldi.",
+                "Egizak boʻlishsa-da feʼl-atvorlari butunlay qarama-qarshi.",
+                "Muzokaralar olib borib oʻzaro murosa yoʻlini qidirmoqdamiz."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Ekologiya va texnologiyaga oid N2 uzun matnlarni tahlil qilish va muallif g'oyasini topish.」を照合します。"
@@ -5732,9 +5732,9 @@
               "prompt": "文法ドリル: 〜に先立って (Prior to / In advance of) の用法を選んでください。 [ja-n2-u4-l2]",
               "options": [
                 "年次総会を開催する。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "今回[こんかい]の 事故[じこ]は 整備[せいび]不良[ふりょう]に 起因[きいん]している。",
+                "過度[かど]な ストレスが 胃潰瘍[いかいよう]を 誘発[ゆうはつ]する。",
+                "成功[せいこう]の 主要[しゅよう]な 要因[よういん]を 分析[ぶんせき]する。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Tadbir yoki loyiha oldidan tayyorgarlik ko'rish: \"...dan oldin / ...ga tayyorgarlik ko'rib\".」に基づきます。"
@@ -5760,9 +5760,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Tadbir yoki loyiha oldidan tayyorgarlik ko'rish: \"...dan oldin / ...ga tayyorgarlik ko'rib\". [ja-n2-u4-l2]",
               "options": [
                 "年次総会を開催する。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "今回[こんかい]の 事故[じこ]は 整備[せいび]不良[ふりょう]に 起因[きいん]している。",
+                "過度[かど]な ストレスが 胃潰瘍[いかいよう]を 誘発[ゆうはつ]する。",
+                "成功[せいこう]の 主要[しゅよう]な 要因[よういん]を 分析[ぶんせき]する。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「〜に先立って (Prior to / In advance of)」を使い、提示された文脈に合う文を選びます。"
@@ -5774,9 +5774,9 @@
               "prompt": "読解応用: 年次総会を開催する。 この文脈から正しく読み取れる内容はどれですか。 [ja-n2-u4-l2]",
               "options": [
                 "Yillik bosh assambleyani o'tkazmoq.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Bu galgi halokat texnik xizmat koʻrsatilmaganidan kelib chiqqan.",
+                "Haddan ortiq stress oshqozon yarasi kelib chiqishiga sabab boʻladi.",
+                "Muvaffaqiyatning asosiy omillarini tahlil qilmoq."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Tadbir yoki loyiha oldidan tayyorgarlik ko'rish: \"...dan oldin / ...ga tayyorgarlik ko'rib\".」を照合します。"
@@ -6082,9 +6082,9 @@
               "prompt": "文法ドリル: 〜を契機に (Triggered by / Taking the opportunity of) の用法を選んでください。 [ja-n2-u4-l3]",
               "options": [
                 "発展の契機となる。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "対象[たいしょう]を 大学生[だいがくせい]に 限定[げんてい]して アンケートを 行[おこな]う。",
+                "私[わたし]の 一存[いちぞん]では 決[き]めかねます。",
+                "AI開発[かいはつ]に 特化[とっか]した 専門[せんもん]チームを 編成[へんせい]した。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Katta o'zgarishga turtki bo'lgan hodisa: \"...munosabati bilan / ...turtki bo'lib\".」に基づきます。"
@@ -6110,9 +6110,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Katta o'zgarishga turtki bo'lgan hodisa: \"...munosabati bilan / ...turtki bo'lib\". [ja-n2-u4-l3]",
               "options": [
                 "発展の契機となる。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "対象[たいしょう]を 大学生[だいがくせい]に 限定[げんてい]して アンケートを 行[おこな]う。",
+                "私[わたし]の 一存[いちぞん]では 決[き]めかねます。",
+                "AI開発[かいはつ]に 特化[とっか]した 専門[せんもん]チームを 編成[へんせい]した。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「〜を契機に (Triggered by / Taking the opportunity of)」を使い、提示された文脈に合う文を選びます。"
@@ -6124,9 +6124,9 @@
               "prompt": "読解応用: 発展の契機となる。 この文脈から正しく読み取れる内容はどれですか。 [ja-n2-u4-l3]",
               "options": [
                 "Rivojlanishga turtki bo'lmoq.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Ishtirokchilarni talabalar bilan cheklab soʻrovnoma oʻtkazamiz.",
+                "Mening bir oʻzimning xohishim bilan hal qilib boʻlmaydi.",
+                "Sunʼiy intellektga ixtisoslashgan maxsus jamoa tuzildi."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Katta o'zgarishga turtki bo'lgan hodisa: \"...munosabati bilan / ...turtki bo'lib\".」を照合します。"
@@ -6418,9 +6418,9 @@
               "prompt": "文法ドリル: 〜を込めて (With all one's heart / Filled with) の用法を選んでください。 [ja-n2-u4-l4]",
               "options": [
                 "心を込めて作りました。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "この 研究[けんきゅう]結果[けっか]は 新[あたら]しい 可能性[かのうせい]を 示唆[しさ]している。",
+                "スピーチの 中[なか]で 環境[かんきょう]問題[もんだい]に 言及[げんきゅう]した。",
+                "問題[もんだい]の 核心[かくしん]を 突[つ]く 質問[しつもん]を する。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Hissiyot va tilaklarni bag'ishlash: \"...mehr bilan / ...tilaklar bilan\".」に基づきます。"
@@ -6446,9 +6446,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Hissiyot va tilaklarni bag'ishlash: \"...mehr bilan / ...tilaklar bilan\". [ja-n2-u4-l4]",
               "options": [
                 "心を込めて作りました。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "この 研究[けんきゅう]結果[けっか]は 新[あたら]しい 可能性[かのうせい]を 示唆[しさ]している。",
+                "スピーチの 中[なか]で 環境[かんきょう]問題[もんだい]に 言及[げんきゅう]した。",
+                "問題[もんだい]の 核心[かくしん]を 突[つ]く 質問[しつもん]を する。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「〜を込めて (With all one's heart / Filled with)」を使い、提示された文脈に合う文を選びます。"
@@ -6460,9 +6460,9 @@
               "prompt": "読解応用: 心を込めて作りました。 この文脈から正しく読み取れる内容はどれですか。 [ja-n2-u4-l4]",
               "options": [
                 "Samimiy qalb bilan tayyorladim.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Ushbu tadqiqot natijasi yangi imkoniyatlarga ishora qilmoqda.",
+                "Nutq davomida ekologik muammolarni tilga oldi.",
+                "Masalaning tub mohiyatiga yetib boradigan savol bermoq."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Hissiyot va tilaklarni bag'ishlash: \"...mehr bilan / ...tilaklar bilan\".」を照合します。"
@@ -6760,9 +6760,9 @@
               "prompt": "文法ドリル: N2 Listening Comprehension (聴解 - 即時応答 & 概要理解) の用法を選んでください。 [ja-n2-u4-l5]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "努力[どりょく]を 続[つづ]けた 結果[けっか]としての 成功[せいこう]は 必然[ひつぜん]だ。",
+                "約束[やくそく]を 破[やぶ]れば 信頼[しんらい]を 失[うしな]うのは 当然[とうぜん]だ。",
+                "今回[こんかい]の 判断[はんだん]は 極[きわ]めて 妥当[だとう]だと 評価[ひょうか]された。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「JLPT N2 Chokkai tinglab tushunish ko'nikmasi: Tezkor javob (Sokuji outou) va Asosiy g'oya (Gaiyou rikai).」に基づきます。"
@@ -6788,9 +6788,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: JLPT N2 即時応答・ポイント理解・概要理解 bo‘yicha real audio trekli mashqlar. [ja-n2-u4-l5]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "努力[どりょく]を 続[つづ]けた 結果[けっか]としての 成功[せいこう]は 必然[ひつぜん]だ。",
+                "約束[やくそく]を 破[やぶ]れば 信頼[しんらい]を 失[うしな]うのは 当然[とうぜん]だ。",
+                "今回[こんかい]の 判断[はんだん]は 極[きわ]めて 妥当[だとう]だと 評価[ひょうか]された。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「N2 Listening Comprehension (聴解 - 即時応答 & 概要理解)」を使い、提示された文脈に合う文を選びます。"
@@ -6802,9 +6802,9 @@
               "prompt": "読解応用: 日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。 この文脈から正しく読み取れる内容はどれですか。 [ja-n2-u4-l5]",
               "options": [
                 "Har kuni yapon tilini o'rganaman.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Toʻxtovsiz mehnat natijasidagi zafar bu muqarrar haqiqatdir.",
+                "Vaʼdani buzsa ishonchni yoʻqotish tabiiy hol.",
+                "Bu galgi qaror juda oʻrinli deb baholandi."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「JLPT N2 Chokkai tinglab tushunish ko'nikmasi: Tezkor javob (Sokuji outou) va Asosiy g'oya (Gaiyou rikai).」を照合します。"
@@ -7119,9 +7119,9 @@
               "prompt": "文法ドリル: N2 Business Kanji (職・企・業・採) の用法を選んでください。 [ja-n2-u5-l1]",
               "options": [
                 "新卒を採用する。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "適性[てきせい]に 合[あ]った 職業[しょくぎょう]を 選[えら]ぶことが 重要[じゅうよう]だ。",
+                "多国籍[たこくせき]企業[きぎょう]が 新興[しんこう]市場[しじょう]に 進出[しんしゅつ]する。",
+                "新商品[しんしょうひん]の 企画[きかく]が 社内[しゃない]で 採択[さいたく]された。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Ish va biznesga oid N2 kanjilar: 職、企、業、採。」に基づきます。"
@@ -7147,9 +7147,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Ish va biznesga oid N2 kanjilar (職, 企, 業, 採). [ja-n2-u5-l1]",
               "options": [
                 "新卒を採用する。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "適性[てきせい]に 合[あ]った 職業[しょくぎょう]を 選[えら]ぶことが 重要[じゅうよう]だ。",
+                "多国籍[たこくせき]企業[きぎょう]が 新興[しんこう]市場[しじょう]に 進出[しんしゅつ]する。",
+                "新商品[しんしょうひん]の 企画[きかく]が 社内[しゃない]で 採択[さいたく]された。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「N2 Business Kanji (職・企・業・採)」を使い、提示された文脈に合う文を選びます。"
@@ -7161,9 +7161,9 @@
               "prompt": "読解応用: 新卒を採用する。 この文脈から正しく読み取れる内容はどれですか。 [ja-n2-u5-l1]",
               "options": [
                 "Bitiruvchilarni ishga olmoq.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Qobiliyatga mos kasb tanlash juda muhimdir.",
+                "Transmilliy korxona yangi rivojlanayotgan bozorga kirib bormoqda.",
+                "Yangi tovar loyihasi kompaniya ichida ma'qullandi."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Ish va biznesga oid N2 kanjilar: 職、企、業、採。」を照合します。"
@@ -7471,9 +7471,9 @@
               "prompt": "文法ドリル: N2 Legal & Government Kanji (法・律・規・政) の用法を選んでください。 [ja-n2-u5-l2]",
               "options": [
                 "政府の方針。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "憲法[けんぽう]に 定[さだ]められた 基本的[きほんてき]人権[じんけん]を 尊重[そんちょう]する。",
+                "新[あたら]しい 法律[ほうりつ]が 国会[こっかい]で 可決[かけつ]された。",
+                "社内[しゃない]規定[きてい]に 従[したが]って 手続き[てつづき]を 進[すす]める。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Qonunchilik va davlat boshqaruvi kanjilari: 法、律、規、政。」に基づきます。"
@@ -7497,7 +7497,12 @@
               "type": "multiple-choice",
               "category": "sentence-building",
               "prompt": "文脈に合わせて一文を組み立ててください: Qonunchilik va davlat boshqaruvi kanjilari (法, 律, 規, 政). [ja-n2-u5-l2]",
-              "options": ["政府の方針。", "文脈と無関係な文", "意味の異なる文", "文法の誤った文"],
+              "options": [
+                "政府の方針。",
+                "憲法[けんぽう]に 定[さだ]められた 基本的[きほんてき]人権[じんけん]を 尊重[そんちょう]する。",
+                "新[あたら]しい 法律[ほうりつ]が 国会[こっかい]で 可決[かけつ]された。",
+                "社内[しゃない]規定[きてい]に 従[したが]って 手続き[てつづき]を 進[すす]める。"
+              ],
               "correctAnswer": 0,
               "explanation": "学習した「N2 Legal & Government Kanji (法・律・規・政)」を使い、提示された文脈に合う文を選びます。"
             },
@@ -7508,9 +7513,9 @@
               "prompt": "読解応用: 政府の方針。 この文脈から正しく読み取れる内容はどれですか。 [ja-n2-u5-l2]",
               "options": [
                 "Hukumat yo'nalishi.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Konstitutsiyada belgilangan asosiy inson huquqlarini hurmat qilish lozim.",
+                "Yangi qonun parlament tomonidan qabul qilindi.",
+                "Kompaniya ichki qoidalariga rioya qilgan holda rasmiylashtirishni davom ettirmoq."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Qonunchilik va davlat boshqaruvi kanjilari: 法、律、規、政。」を照合します。"
@@ -7813,8 +7818,8 @@
               "options": [
                 "報告書[ほうこくしょ]を 書[か]き直[なお]した。",
                 "困難[こんなん]な 仕事[しごと]を 最後[さいご]まで やり抜[ぬ]いた。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現"
+                "合意[ごうい]を 前提[ぜんてい]として 交渉[こうしょう]を 開始[かいし]する。",
+                "仮[かり]に 失敗[しっぱい]したとしても、次[つぎ]の 策[さく]が ある。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Harakatning qayta bajarilishi, yakunlanishi yoki oxirigacha davom etishini ifodalovchi qo‘shma fe’llar.」に基づきます。"
@@ -7841,8 +7846,8 @@
               "options": [
                 "報告書[ほうこくしょ]を 書[か]き直[なお]した。",
                 "困難[こんなん]な 仕事[しごと]を 最後[さいご]まで やり抜[ぬ]いた。",
-                "文脈と無関係な文",
-                "意味の異なる文"
+                "合意[ごうい]を 前提[ぜんてい]として 交渉[こうしょう]を 開始[かいし]する。",
+                "仮[かり]に 失敗[しっぱい]したとしても、次[つぎ]の 策[さく]が ある。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「Vます + 直す / 終える / 切る / 抜く」を使い、提示された文脈に合う文を選びます。"
@@ -7855,8 +7860,8 @@
               "options": [
                 "Hisobotni qaytadan yozdim.",
                 "Qiyin ishni oxirigacha bajardim.",
-                "本文にない情報である",
-                "反対の内容である"
+                "Kelishuvni boshlangʻich shart deb olib muzokarani boshlaymiz.",
+                "Deylik, hatto oʻxshamagan taqdirda ham, zaxira rejamiz bor."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Harakatning qayta bajarilishi, yakunlanishi yoki oxirigacha davom etishini ifodalovchi qo‘shma fe’llar.」を照合します。"
@@ -8173,9 +8178,9 @@
               "prompt": "文法ドリル: N2 Onomatopoeia & Mimetic Words (擬音語・擬態語) の用法を選んでください。 [ja-n2-u5-l4]",
               "options": [
                 "電車にぎりぎり間に合った。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "お風呂[ふろ]に 入[はい]って 疲[つか]れが 取[と]れ、気分[きぶん]が すっきりした。",
+                "発車[はっしゃ]時刻[じこく] ぎりぎりで 電車[でんしゃ]に 間[ま]に合[あ]った。",
+                "渋滞[じゅうたい]で 車[くるま]が 動[うご]かず、いらいらしてしまう。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Tavsifiy taqlid so'zlar: \"Sukkiri\", \"Giri-giri\", \"Waku-waku\", \"Ira-ira\".」に基づきます。"
@@ -8201,9 +8206,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Tavsifiy taqlid so'zlar: \"Sukkiri\", \"Giri-giri\", \"Waku-waku\", \"Ira-ira\". [ja-n2-u5-l4]",
               "options": [
                 "電車にぎりぎり間に合った。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "お風呂[ふろ]に 入[はい]って 疲[つか]れが 取[と]れ、気分[きぶん]が すっきりした。",
+                "発車[はっしゃ]時刻[じこく] ぎりぎりで 電車[でんしゃ]に 間[ま]に合[あ]った。",
+                "渋滞[じゅうたい]で 車[くるま]が 動[うご]かず、いらいらしてしまう。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「N2 Onomatopoeia & Mimetic Words (擬音語・擬態語)」を使い、提示された文脈に合う文を選びます。"
@@ -8215,9 +8220,9 @@
               "prompt": "読解応用: 電車にぎりぎり間に合った。 この文脈から正しく読み取れる内容はどれですか。 [ja-n2-u5-l4]",
               "options": [
                 "Poyezdga zo'rg'a ulgurdim.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Issiq vannada cho'milib charchoq yozildi va kayfiyatim yengillashdi.",
+                "Poyezd jo'nashiga sanoqli soniyalar qolganida zo'rg'a ulgurdim.",
+                "Tirbandlikda mashina yurmagani sababli asabiylashib ketdim."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Tavsifiy taqlid so'zlar: \"Sukkiri\", \"Giri-giri\", \"Waku-waku\", \"Ira-ira\".」を照合します。"
@@ -8519,9 +8524,9 @@
               "prompt": "文法ドリル: N2 Vocabulary Synthesis & Synonym Practice の用法を選んでください。 [ja-n2-u5-l5]",
               "options": [
                 "計画を断念する。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "両者[りょうしゃ]の 主張[しゅちょう]の 相違[そうい]点を 表[ひょう]に まとめる。",
+                "2つの 事件[じけん]には 多[おお]くの 類似[るいじ]点が 認[みと]められる。",
+                "名簿[めいぼ]と 身分[みぶん]証明[しょうめい]書を 照合[しょうごう]する。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Sinonimlar va ma'nodosh N2 so'zlarni moslashtirish mashg'uloti.」に基づきます。"
@@ -8547,9 +8552,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Sinonimlar va ma'nodosh N2 so'zlarni moslashtirish mashg'uloti. [ja-n2-u5-l5]",
               "options": [
                 "計画を断念する。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "両者[りょうしゃ]の 主張[しゅちょう]の 相違[そうい]点を 表[ひょう]に まとめる。",
+                "2つの 事件[じけん]には 多[おお]くの 類似[るいじ]点が 認[みと]められる。",
+                "名簿[めいぼ]と 身分[みぶん]証明[しょうめい]書を 照合[しょうごう]する。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「N2 Vocabulary Synthesis & Synonym Practice」を使い、提示された文脈に合う文を選びます。"
@@ -8561,9 +8566,9 @@
               "prompt": "読解応用: 計画を断念する。 この文脈から正しく読み取れる内容はどれですか。 [ja-n2-u5-l5]",
               "options": [
                 "Rejadan voz kechmoq.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Har ikki tomon qarashlaridagi farqli jihatlarni jadvalga joylaymiz.",
+                "Bu ikki hodisada koʻplab oʻxshash jihatlar koʻzga tashlanadi.",
+                "Roʻyxat bilan shaxsni tasdiqlovchi hujjatni bir-biriga solishtirib tekshirmoq."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Sinonimlar va ma'nodosh N2 so'zlarni moslashtirish mashg'uloti.」を照合します。"
@@ -8870,9 +8875,9 @@
               "prompt": "文法ドリル: N2 Keigo Mastery (尊敬語・謙譲語の総復習) の用法を選んでください。 [ja-n2-u6-l1]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "新[あたら]しい 提案[ていあん]の 骨子[こっし]を 説明[せつめい]する。",
+                "イベントの 趣旨[しゅし]を ご理解[りかい]いただき ご協力[きょうりょく]ください。",
+                "まず 全体[ぜんたい]の 概要[がいよう]を 掴[つか]んでから 細部[さいぶ]に 入[はい]る。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Hurmat va kamtarinlik iboralarining biznes darajasidagi to'liq sinovidan o'tish.」に基づきます。"
@@ -8898,9 +8903,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: Hurmat va kamtarinlik iboralarining biznes darajasidagi to'liq sinovidan o'tish. [ja-n2-u6-l1]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "新[あたら]しい 提案[ていあん]の 骨子[こっし]を 説明[せつめい]する。",
+                "イベントの 趣旨[しゅし]を ご理解[りかい]いただき ご協力[きょうりょく]ください。",
+                "まず 全体[ぜんたい]の 概要[がいよう]を 掴[つか]んでから 細部[さいぶ]に 入[はい]る。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「N2 Keigo Mastery (尊敬語・謙譲語の総復習)」を使い、提示された文脈に合う文を選びます。"
@@ -8912,9 +8917,9 @@
               "prompt": "読解応用: 日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。 この文脈から正しく読み取れる内容はどれですか。 [ja-n2-u6-l1]",
               "options": [
                 "Har kuni yapon tilini o'rganaman.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Yangi taklifning asosiy magʻzini tushuntirib berish.",
+                "Tadbirning maqsadini toʻgʻri tushunib hamkorlik qilishingizni soʻraymiz.",
+                "Avval umumiy mazmunni anglab olib, soʻng detallarga oʻtamiz."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Hurmat va kamtarinlik iboralarining biznes darajasidagi to'liq sinovidan o'tish.」を照合します。"
@@ -9221,9 +9226,9 @@
               "prompt": "文法ドリル: N2 Grammar Integration (文法総合問題) の用法を選んでください。 [ja-n2-u6-l2]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "前後の 文脈[ぶんみゃく]から 単語[たんご]の 意味[いみ]を 推測[すいそく]する。",
+                "形容詞[けいようし]が 名詞[めいし]を 修飾[しゅうしょく]している。",
+                "副詞[ふくし]と 文末[ぶんまつ]の 否定[ひてい]表現[ひょうげん]が 呼応[こおう]する。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「JLPT N2 darajasidagi barcha 50+ grammatik qoidalarni aralash test orqali tekshirish.」に基づきます。"
@@ -9249,9 +9254,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: JLPT N2 darajasidagi barcha 50+ grammatik qoidalarni aralash test orqali tekshirish. [ja-n2-u6-l2]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "前後の 文脈[ぶんみゃく]から 単語[たんご]の 意味[いみ]を 推測[すいそく]する。",
+                "形容詞[けいようし]が 名詞[めいし]を 修飾[しゅうしょく]している。",
+                "副詞[ふくし]と 文末[ぶんまつ]の 否定[ひてい]表現[ひょうげん]が 呼応[こおう]する。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「N2 Grammar Integration (文法総合問題)」を使い、提示された文脈に合う文を選びます。"
@@ -9263,9 +9268,9 @@
               "prompt": "読解応用: 日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。 この文脈から正しく読み取れる内容はどれですか。 [ja-n2-u6-l2]",
               "options": [
                 "Har kuni yapon tilini o'rganaman.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Oldi-orqasidagi matn kontekstidan soʻz maʼnosini taxmin qilish.",
+                "Sifat otni aniqlab kelmoqda.",
+                "Ravish bilan gap oxiridagi inkor bir-biriga mos keladi."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「JLPT N2 darajasidagi barcha 50+ grammatik qoidalarni aralash test orqali tekshirish.」を照合します。"
@@ -9558,9 +9563,9 @@
               "prompt": "文法ドリル: N2 Information Retrieval (情報検索の読解) の用法を選んでください。 [ja-n2-u6-l3]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "海外[かいがい]の クライアントと 商談[しょうだん]を 行[おこな]う。",
+                "工事[こうじ]の 見積[みつ]もりを 取引[とりひき]先[さき]に 依頼[いらい]した。",
+                "納期[のうき]に 間[ま]に合[あ]わせるために 残業[ざんぎょう]した。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「JLPT N2 \"Jouhou Kensaku\" — E'lonlar, jadval va hujjatlardan tezkor ma'lumot qidirish.」に基づきます。"
@@ -9586,9 +9591,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: JLPT N2 \"Jouhou Kensaku\" — E'lonlar, jadval va hujjatlardan tezkor ma'lumot qidirish. [ja-n2-u6-l3]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "海外[かいがい]の クライアントと 商談[しょうだん]を 行[おこな]う。",
+                "工事[こうじ]の 見積[みつ]もりを 取引[とりひき]先[さき]に 依頼[いらい]した。",
+                "納期[のうき]に 間[ま]に合[あ]わせるために 残業[ざんぎょう]した。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「N2 Information Retrieval (情報検索の読解)」を使い、提示された文脈に合う文を選びます。"
@@ -9600,9 +9605,9 @@
               "prompt": "読解応用: 日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。 この文脈から正しく読み取れる内容はどれですか。 [ja-n2-u6-l3]",
               "options": [
                 "Har kuni yapon tilini o'rganaman.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Xorijiy mijoz bilan biznes muzokaralarini oʻtkazish.",
+                "Hamkor kompaniyaga qurilish smetasini hisoblab berishni soʻrab murojaat qildik.",
+                "Topshirish muddatiga ulgurish uchun ishdan keyin qolib ishladim."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「JLPT N2 \"Jouhou Kensaku\" — E'lonlar, jadval va hujjatlardan tezkor ma'lumot qidirish.」を照合します。"
@@ -9901,9 +9906,9 @@
               "prompt": "文法ドリル: N2 Mini Mock Exam の用法を選んでください。 [ja-n2-u6-l4]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "N2合格[ごうかく]には 豊富[ほうふ]な 語彙[ごい]力が 欠[か]かせない。",
+                "毎日[まいにち] 新聞[しんぶん]を 読[よ]んで 読解[どっかい]スピードを 上[あ]げる。",
+                "本番[ほんばん]の 試験[しけん]では 時間[じかん]配分[はいぶん]が 合否[ごうひ]を 分[わ]ける。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「N2 bo‘limlari bo‘yicha qisqa integratsiyalashgan tayyorgarlik testi.」に基づきます。"
@@ -9929,9 +9934,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: JLPT N2 bo‘limlari bo‘yicha qisqa formatdagi integratsiyalashgan sinov va vaqt boshqaruvi mashqi. [ja-n2-u6-l4]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "N2合格[ごうかく]には 豊富[ほうふ]な 語彙[ごい]力が 欠[か]かせない。",
+                "毎日[まいにち] 新聞[しんぶん]を 読[よ]んで 読解[どっかい]スピードを 上[あ]げる。",
+                "本番[ほんばん]の 試験[しけん]では 時間[じかん]配分[はいぶん]が 合否[ごうひ]を 分[わ]ける。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「N2 Mini Mock Exam」を使い、提示された文脈に合う文を選びます。"
@@ -9943,9 +9948,9 @@
               "prompt": "読解応用: 日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。 この文脈から正しく読み取れる内容はどれですか。 [ja-n2-u6-l4]",
               "options": [
                 "Har kuni yapon tilini o'rganaman.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "N2 imtihonidan oʻtish uchun boy soʻz zaxirasi shart.",
+                "Har kuni gazeta oʻqib matn tushunish tezligini oshirmoqdaman.",
+                "Haqiqiy imtihonda vaqtni toʻgʻri taqsimlash natijani hal qiladi."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「N2 bo‘limlari bo‘yicha qisqa integratsiyalashgan tayyorgarlik testi.」を照合します。"
@@ -10242,9 +10247,9 @@
               "prompt": "文法ドリル: N2 Final Assessment & N1 Readiness の用法を選んでください。 [ja-n2-u6-l5]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈に合わない表現",
-                "文法的に不自然な表現",
-                "意味が異なる表現"
+                "毎日[まいにち]の 努力[どりょく]で 日本語[にほんご]能力[のうりょく]が 飛躍[ひやく]的[てき]に 向上[こうじょう]した。",
+                "努力[どりょく]の 結晶[けっしょう]である JLPT N2 合格[ごうかく]証書を 手[て]に 入[い]れた。",
+                "次[つぎ]の 目標[もくひょう]である N1へ 向[む]けて 学習[がくしゅう]意欲[いよく]を 高[たか]める。"
               ],
               "correctAnswer": 0,
               "explanation": "本文の文法説明「Kurs materiallarini yakuniy takrorlash va keyingi darajaga tayyorlikni baholash.」に基づきます。"
@@ -10270,9 +10275,9 @@
               "prompt": "文脈に合わせて一文を組み立ててください: N2 kursi bo‘yicha yakuniy ichki baholash va N1 materiallariga tayyorlikni tekshirish. [ja-n2-u6-l5]",
               "options": [
                 "日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。",
-                "文脈と無関係な文",
-                "意味の異なる文",
-                "文法の誤った文"
+                "毎日[まいにち]の 努力[どりょく]で 日本語[にほんご]能力[のうりょく]が 飛躍[ひやく]的[てき]に 向上[こうじょう]した。",
+                "努力[どりょく]の 結晶[けっしょう]である JLPT N2 合格[ごうかく]証書を 手[て]に 入[い]れた。",
+                "次[つぎ]の 目標[もくひょう]である N1へ 向[む]けて 学習[がくしゅう]意欲[いよく]を 高[たか]める。"
               ],
               "correctAnswer": 0,
               "explanation": "学習した「N2 Final Assessment & N1 Readiness」を使い、提示された文脈に合う文を選びます。"
@@ -10284,9 +10289,9 @@
               "prompt": "読解応用: 日本語[にほんご]を 毎日[まいにち] 勉強[べんきょう]します。 この文脈から正しく読み取れる内容はどれですか。 [ja-n2-u6-l5]",
               "options": [
                 "Har kuni yapon tilini o'rganaman.",
-                "本文にない情報である",
-                "反対の内容である",
-                "文法形式だけを述べた選択肢"
+                "Har kungi muntazam mehnat evaziga yapon tili mahoratim ulkan darajada koʻtarildi.",
+                "Tirishqoqlik mevasi boʻlgan JLPT N2 diplomini qoʻlga kiritdim.",
+                "Keyingi choʻqqi boʻlgan N1 tomon oʻrganish ishtiyoqimni oshiraman."
               ],
               "correctAnswer": 0,
               "explanation": "本文の文脈と「Kurs materiallarini yakuniy takrorlash va keyingi darajaga tayyorlikni baholash.」を照合します。"
