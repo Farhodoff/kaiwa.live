@@ -120,9 +120,9 @@ test('hands-free conversation resumes after a reply and after microphone pause',
   await expect(page.getByRole('dialog', { name: 'Speaking Coach Sozlamalari' })).toBeVisible();
   await page.keyboard.press('Escape');
   await page.getByRole('button', { name: 'Suhbatni boshlash', exact: true }).click();
-  await expect(page.getByText('Murabbiy gapiryapti', { exact: true })).toBeVisible();
+  await expect(page.getByRole('status')).toContainText('Murabbiy gapiryapti');
   expect(await page.evaluate(() => (window as any).__coachRecognitionActive || false)).toBe(false);
-  await expect(page.getByText('Tinglayapman...', { exact: true })).toBeVisible({ timeout: 30000 });
+  await expect(page.getByRole('status')).toContainText('Tinglayapman...', { timeout: 30000 });
   await page.evaluate(() => {
     const result = Object.assign([{ transcript: '今日は本を読みました。' }], { isFinal: true });
     (window as any).__coachRecognition.onresult({ results: [result] });
@@ -131,17 +131,17 @@ test('hands-free conversation resumes after a reply and after microphone pause',
   await expect(page.getByRole('log')).toContainText(/いいですね。\s*今日は何をしましたか？/, {
     timeout: 25000,
   });
-  await expect(page.getByText('Tinglayapman...', { exact: true })).toBeVisible({ timeout: 25000 });
+  await expect(page.getByRole('status')).toContainText('Tinglayapman...', { timeout: 25000 });
   await page.getByRole('button', { name: 'Mikrofonni pauza qilish' }).click();
-  await expect(page.getByText('Mikrofon pauzada', { exact: true })).toBeVisible();
+  await expect(page.getByRole('status')).toContainText('Mikrofon pauzada');
   await page.getByRole('button', { name: 'Mikrofonni yoqish' }).click();
-  await expect(page.getByText('Tinglayapman...', { exact: true })).toBeVisible();
+  await expect(page.getByRole('status')).toContainText('Tinglayapman...');
   await page.getByRole('button', { name: 'Suhbatni yakunlash', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Suhbatni boshlash', exact: true })).toBeVisible();
   await expect.poll(() => page.evaluate(() => (window as any).__coachTracksStopped())).toBe(true);
   await page.getByRole('button', { name: 'Tushunarli, Yopish' }).click();
   await page.getByRole('button', { name: 'Suhbatni boshlash', exact: true }).click();
-  await expect(page.getByText('Tinglayapman...', { exact: true })).toBeVisible({ timeout: 25000 });
+  await expect(page.getByRole('status')).toContainText('Tinglayapman...', { timeout: 25000 });
   await page.getByRole('button', { name: 'Suhbatni yakunlash', exact: true }).click();
   await expect.poll(() => page.evaluate(() => (window as any).__coachTracksStopped())).toBe(true);
 });
@@ -186,13 +186,13 @@ test('blocked audio pauses the conversation and can be retried with a user click
   await expect(page.getByRole('button', { name: 'Ovozni qayta yoqish' })).toBeVisible({
     timeout: 30000,
   });
-  await expect(page.getByText('Mikrofon pauzada', { exact: true })).toBeVisible();
+  await expect(page.getByRole('status')).toContainText('Mikrofon pauzada');
   expect(await page.evaluate(() => (window as any).__coachRecognitionActive || false)).toBe(false);
   await page.evaluate(() => {
     (window as any).__blockCoachAudio = false;
   });
   await page.getByRole('button', { name: 'Ovozni qayta yoqish' }).click();
-  await expect(page.getByText('Tinglayapman...', { exact: true })).toBeVisible({ timeout: 25000 });
+  await expect(page.getByRole('status')).toContainText('Tinglayapman...', { timeout: 25000 });
 });
 
 test('voice-first screen has one start control on desktop and mobile', async ({ page }) => {
@@ -242,7 +242,7 @@ test('shows a permission error and leaves the microphone inactive when capture i
   await expect(page.getByRole('alert')).toContainText('Mikrofon ruxsati berilmadi', {
     timeout: 25000,
   });
-  await expect(page.getByText('Tinglayapman...', { exact: true })).toHaveCount(0);
+  await expect(page.getByRole('status')).not.toContainText('Tinglayapman...');
   await page.getByRole('button', { name: 'Suhbatni yakunlash', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Suhbatni boshlash', exact: true })).toBeVisible();
 });
