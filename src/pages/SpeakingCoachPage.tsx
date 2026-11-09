@@ -645,7 +645,8 @@ const SpeakingCoachPage: React.FC = () => {
               </div>
             )}
           </div>
-          {isLiveSession && (currentTranscript || chatHistory.length > 0) && (
+          {/* Subtitle: faqat transkripsiya paneli yopiq bo'lganda ko'rinadi (ustma-ust xiralashuvni oldini olish uchun) */}
+          {isLiveSession && !showTranscript && (currentTranscript || chatHistory.length > 0) && (
             <p
               className="mt-4 max-w-xl whitespace-pre-wrap px-2 text-sm leading-relaxed text-slate-100"
               aria-live="polite"
@@ -676,29 +677,24 @@ const SpeakingCoachPage: React.FC = () => {
           type="button"
           onClick={() => setShowTranscript((visible) => !visible)}
           aria-expanded={showTranscript}
-          className="min-h-10 shrink-0 self-center rounded-lg px-3 text-xs text-slate-300 hover:bg-white/5"
+          className="min-h-10 shrink-0 self-center rounded-lg px-3 text-xs text-slate-300 transition-colors hover:bg-white/5"
         >
           {showTranscript ? 'Suhbat matnini yashirish' : 'Suhbat matnini ko‘rsatish'}
         </button>
-        {/* Optional transcript; the primary interaction is spoken turn-taking. */}
+
+        {/* Suhbat matnlari: to'rtburchak fremda emas, bevosita ekranning o'zida tabiiy oqim sifatida chiqadi */}
         {showTranscript && (
-          <div className="relative flex max-h-[320px] min-h-[240px] flex-1 shrink-0 flex-col overflow-hidden rounded-2xl border border-white/10 bg-slate-950/40 shadow-inner backdrop-blur-md">
-            <div className="flex shrink-0 items-center justify-between gap-2 border-b border-white/10 px-4 py-3">
-              <h2 className="text-sm font-semibold text-slate-100">Suhbat</h2>
-              <span className="text-[11px] text-slate-400">
-                {isLiveSession ? formatTimer(sessionSeconds) : 'Jonli transkripsiya'}
-              </span>
-            </div>
+          <div className="mx-auto flex w-full max-w-2xl flex-col gap-4 pb-8 duration-200 animate-in fade-in">
             <div
               ref={chatContainerRef}
               role="log"
               aria-label="Suhbat transkripsiyasi"
               aria-live="polite"
-              className="scrollbar-thin scrollbar-thumb-white/10 max-h-[45dvh] min-h-0 flex-1 space-y-3 overflow-y-auto p-3.5 sm:p-4 lg:max-h-none"
+              className="space-y-3 px-2 sm:px-4"
             >
               {chatHistory.length === 0 && !currentTranscript && (
-                <div className="flex h-full flex-col items-center justify-center py-6 text-center text-slate-400">
-                  <Sparkles size={28} className="mb-2 text-rose-400/80" />
+                <div className="flex flex-col items-center justify-center py-6 text-center text-slate-400">
+                  <Sparkles size={24} className="mb-2 text-rose-400/80" />
                   <p className="text-xs font-medium text-slate-200 sm:text-sm">
                     Suhbat transkripsiyasi shu yerda chiqadi
                   </p>
@@ -718,7 +714,7 @@ const SpeakingCoachPage: React.FC = () => {
                     className={`max-w-[85%] rounded-2xl p-3 text-xs shadow-md transition-all sm:max-w-[75%] sm:text-sm ${
                       msg.role === 'user'
                         ? 'rounded-tr-xs border border-primary/40 bg-primary/25 text-white shadow-primary/10'
-                        : 'rounded-tl-xs border border-white/10 bg-slate-900/90 text-slate-100'
+                        : 'rounded-tl-xs border border-white/10 bg-slate-900/80 text-slate-100 backdrop-blur-sm'
                     }`}
                   >
                     {/* Bubble Header */}
@@ -782,8 +778,8 @@ const SpeakingCoachPage: React.FC = () => {
 
             {/* YANGI SO'ZLAR RO'YXATI (Transkripsiya pastida) */}
             {accumulatedNewWords.length > 0 && (
-              <div className="border-t border-white/10 bg-slate-950/70 p-2.5 sm:p-3">
-                <div className="mb-1.5 flex items-center justify-between text-xs font-bold text-rose-300">
+              <div className="mx-2 rounded-2xl border border-white/10 bg-slate-950/40 p-3 backdrop-blur-md sm:mx-4">
+                <div className="mb-2 flex items-center justify-between text-xs font-bold text-rose-300">
                   <div className="flex items-center gap-1.5">
                     <BookOpen size={13} />
                     <span>Yangi so&apos;zlar ({accumulatedNewWords.length})</span>
@@ -792,7 +788,7 @@ const SpeakingCoachPage: React.FC = () => {
                     Suhbat davomida to‘plangan
                   </span>
                 </div>
-                <div className="flex max-h-24 flex-wrap gap-1.5 overflow-y-auto">
+                <div className="flex flex-wrap gap-1.5">
                   {accumulatedNewWords.map((wordItem, idx) => (
                     <div
                       key={idx}
