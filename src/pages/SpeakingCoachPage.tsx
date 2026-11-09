@@ -13,11 +13,6 @@ import {
   Sparkles,
   Volume2,
   BookOpen,
-  Home,
-  Plane,
-  Utensils,
-  Briefcase,
-  Check,
   Plus,
 } from 'lucide-react';
 import { useStudyData } from '../context/StudyPlannerContext';
@@ -43,21 +38,11 @@ import { ProjectOrb, OrbState } from '../components/character/ProjectOrb';
 import { useAudioLevel } from '../hooks/useAudioLevel';
 import { SpeakingHistoryModal } from '../components/speaking/SpeakingHistoryModal';
 import { SpeakingConversationHistoryService } from '../services/SpeakingConversationHistoryService';
-import {
-  PROMPT_SUGGESTIONS_BY_LANG,
-  getCoachInitialGreeting,
-} from '../components/speaking/speakingConstants';
+import { getCoachInitialGreeting } from '../components/speaking/speakingConstants';
 import { SessionAnalysisReport } from '../utils/ai';
 import { toast } from '../hooks/use-toast';
 
 export { getCoachInitialGreeting };
-
-const TOPIC_PRESETS = [
-  { label: 'Kundalik hayot', icon: Home, id: 'daily_life' },
-  { label: 'Sayohat', icon: Plane, id: 'travel' },
-  { label: 'Restoran', icon: Utensils, id: 'restaurant' },
-  { label: 'Ish', icon: Briefcase, id: 'work' },
-];
 
 const SpeakingCoachPage: React.FC = () => {
   useSEO({
@@ -111,8 +96,6 @@ const SpeakingCoachPage: React.FC = () => {
     const immediate = ScenarioService.getImmediateScenarios();
     return immediate.find((s) => s.id === scenarioIdParam || s.id === normalizedParam) || null;
   });
-
-  const [selectedTopicTitle, setSelectedTopicTitle] = useState<string | null>(null);
 
   const [persona] = useState<CoachPersona>('casual');
   const [targetJlptLevel, setTargetJlptLevel] = useState<'N5' | 'N4' | 'N3' | 'N2' | 'N1'>(() => {
@@ -216,7 +199,6 @@ const SpeakingCoachPage: React.FC = () => {
   const chatHistoryRef = useRef(chatHistory);
   const accumulatedNewWordsRef = useRef(accumulatedNewWords);
   const activeScenarioRef = useRef(activeScenario);
-  const selectedTopicTitleRef = useRef(selectedTopicTitle);
 
   useEffect(() => {
     isLiveSessionRef.current = isLiveSession;
@@ -238,10 +220,6 @@ const SpeakingCoachPage: React.FC = () => {
     activeScenarioRef.current = activeScenario;
   }, [activeScenario]);
 
-  useEffect(() => {
-    selectedTopicTitleRef.current = selectedTopicTitle;
-  }, [selectedTopicTitle]);
-
   // Save session to history helper
   const endSessionAndSave = useCallback(
     (reason: 'manual' | 'pagehide' | 'unmount') => {
@@ -251,8 +229,7 @@ const SpeakingCoachPage: React.FC = () => {
       const durSecs = sessionSecondsRef.current;
       const history = [...chatHistoryRef.current];
       const newWords = [...accumulatedNewWordsRef.current];
-      const scenarioTitle =
-        activeScenarioRef.current?.title_uz || selectedTopicTitleRef.current || 'Erkin suhbat';
+      const scenarioTitle = activeScenarioRef.current?.title_uz || 'Erkin suhbat';
       const scenarioId = activeScenarioRef.current?.id;
 
       // 1. Immediately shut off speech and cancel AI requests
@@ -421,7 +398,7 @@ const SpeakingCoachPage: React.FC = () => {
 
   const handleStartSession = () => {
     haptics.impact('medium');
-    const topic = activeScenario?.title_uz || selectedTopicTitle || undefined;
+    const topic = activeScenario?.title_uz || undefined;
     startSession(topic);
   };
 
@@ -435,7 +412,6 @@ const SpeakingCoachPage: React.FC = () => {
   const audioLevel = useAudioLevel(audioVolume);
 
   const PERSONAS = PERSONAS_BY_LANG[language];
-  const PROMPT_SUGGESTIONS = PROMPT_SUGGESTIONS_BY_LANG[language];
   const isMicPermissionError = !!error && /mikrofon/iu.test(error);
 
   return (
@@ -588,15 +564,10 @@ const SpeakingCoachPage: React.FC = () => {
       <main className="relative z-10 mx-auto flex min-h-0 w-full max-w-4xl flex-1 flex-col gap-3 overflow-y-auto px-3 py-3 sm:px-6 lg:py-5">
         {/* UPPER HERO: ProjectOrb (KaiwaOrbCharacter) */}
         <div className="flex min-h-[360px] flex-1 shrink-0 flex-col items-center justify-center rounded-2xl border border-white/10 bg-slate-950/45 px-3 py-4 text-center backdrop-blur-sm lg:min-h-0 lg:py-8">
-          {/* Clickable Orb triggers start/stop in same window without navigation */}
-          <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-rose-200">
+          {/* Clean title */}
+          <h2 className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-rose-200 sm:text-sm">
             Yuki Sensei · {activeScenario ? targetJlptLevel : 'Erkin muloqot'}
-          </p>
-          <p className="mb-2 text-xs text-slate-300">
-            {activeScenario
-              ? 'Yaponcha gapiring, birga mashq qilamiz'
-              : 'Xohlagan mavzuda erkin gapiring, birga suhbatlashamiz'}
-          </p>
+          </h2>
           <div className="rounded-full">
             <ProjectOrb
               state={orbState}
@@ -686,11 +657,11 @@ const SpeakingCoachPage: React.FC = () => {
               </div>
             )}
           </div>
-          <p className="mt-3 max-w-xs text-xs leading-relaxed text-slate-300">
-            {isLiveSession
-              ? 'Siz gapirganda murabbiy tinglaydi. Murabbiy gapirganda mikrofon kutadi.'
-              : 'Bir marta boshlang. Murabbiy javobidan so‘ng bemalol gapirishda davom eting.'}
-          </p>
+          {isLiveSession && (
+            <p className="mt-3 max-w-xs text-xs leading-relaxed text-slate-300">
+              Siz gapirganda murabbiy tinglaydi. Murabbiy gapirganda mikrofon kutadi.
+            </p>
+          )}
           {isLiveSession && (currentTranscript || chatHistory.length > 0) && (
             <p
               className="mt-4 max-w-xl whitespace-pre-wrap px-2 text-sm leading-relaxed text-slate-100"
@@ -716,15 +687,17 @@ const SpeakingCoachPage: React.FC = () => {
               </button>
             </div>
           )}
-          <p role="status" className="mt-2 text-[11px] text-slate-400">
-            {speechProvider === 'azure'
-              ? 'Nutqni tanish: Azure Speech'
-              : speechProvider === 'browser'
-                ? 'Nutqni tanish: brauzer · Azure ulanmagan'
-                : speechProvider === 'connecting'
-                  ? 'Ovoz xizmatiga ulanmoqda…'
-                  : 'Mikrofonga ruxsat suhbat boshlanganda so‘raladi'}
-          </p>
+          {isLiveSession && speechProvider && (
+            <p role="status" className="mt-2 text-[11px] text-slate-400">
+              {speechProvider === 'azure'
+                ? 'Nutqni tanish: Azure Speech'
+                : speechProvider === 'browser'
+                  ? 'Nutqni tanish: brauzer · Azure ulanmagan'
+                  : speechProvider === 'connecting'
+                    ? 'Ovoz xizmatiga ulanmoqda…'
+                    : ''}
+            </p>
+          )}
         </div>
 
         <button
@@ -887,72 +860,6 @@ const SpeakingCoachPage: React.FC = () => {
             )}
           </div>
         )}
-
-        {/* SSENARIYLAR BLOKI (Joyida qoladi, tanlangan ssenariy suhbat mavzusi bo'ladi) */}
-        <div className="shrink-0 rounded-2xl border border-white/10 bg-slate-950/40 p-2.5 backdrop-blur-md sm:p-3 lg:col-start-1 lg:row-start-2">
-          <div className="mb-2 flex flex-wrap items-center justify-between gap-1">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-300">
-              Ssenariylar
-            </span>
-            <span className="text-[11px] text-slate-400">
-              {activeScenario
-                ? `Mavzu: ${activeScenario.title_uz}`
-                : isLiveSession
-                  ? 'Mavzuni yangi suhbatda almashtirish mumkin'
-                  : 'Mavzuni tanlang yoki erkin gapiring'}
-            </span>
-          </div>
-
-          <div className="flex flex-wrap gap-2 pb-1">
-            {TOPIC_PRESETS.map((preset, index) => {
-              const promptTitle = PROMPT_SUGGESTIONS[index]?.title || preset.label;
-              const isSelected =
-                activeScenario?.title_uz === promptTitle ||
-                activeScenario?.title_ja === promptTitle ||
-                selectedTopicTitle === promptTitle;
-              const PresetIcon = preset.icon;
-
-              return (
-                <button
-                  key={preset.id}
-                  type="button"
-                  disabled={isLiveSession}
-                  aria-pressed={isSelected}
-                  onClick={() => {
-                    if (isSelected) {
-                      setSelectedTopicTitle(null);
-                      setActiveScenario(null);
-                    } else {
-                      setSelectedTopicTitle(promptTitle);
-                      const immediate = ScenarioService.getImmediateScenarios();
-                      setActiveScenario(null);
-                      const match = immediate.find(
-                        (s) =>
-                          s.title_uz.toLowerCase().includes(preset.label.toLowerCase()) ||
-                          s.id === preset.id,
-                      );
-                      if (match) {
-                        setActiveScenario(match);
-                      }
-                    }
-                  }}
-                  className={`flex min-h-[40px] shrink-0 items-center gap-2 rounded-xl border px-3 text-xs font-medium transition active:scale-95 disabled:cursor-not-allowed disabled:opacity-60 ${
-                    isSelected
-                      ? 'border-primary/80 bg-primary/20 text-white shadow-md'
-                      : 'border-white/10 bg-white/5 text-slate-200 hover:border-white/20 hover:bg-white/10'
-                  }`}
-                >
-                  <PresetIcon
-                    size={14}
-                    className={isSelected ? 'text-primary' : 'text-slate-400'}
-                  />
-                  <span>{preset.label}</span>
-                  {isSelected && <Check size={12} className="text-primary" />}
-                </button>
-              );
-            })}
-          </div>
-        </div>
       </main>
 
       {/* MODALS */}
