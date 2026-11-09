@@ -426,7 +426,7 @@ export const JlptReadingPage: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto max-w-6xl space-y-6 p-4 pb-[max(6.5rem,calc(env(safe-area-inset-bottom)+5rem))] md:p-6 md:pb-8">
+    <div className="mx-auto max-w-6xl space-y-6 p-4 pb-[max(6.5rem,calc(env(safe-area-inset-bottom)+5rem))] md:p-6 md:pb-8 2xl:max-w-7xl 3xl:max-w-8xl 3xl:p-12">
       {/* Top Header Card */}
       <div className="flex flex-wrap items-center justify-between gap-4 rounded-3xl border border-slate-800 bg-slate-900/90 p-5 backdrop-blur-xl md:p-6">
         <div className="flex items-center gap-3.5">

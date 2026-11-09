@@ -207,7 +207,7 @@ export const JlptMistakeNotebook: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto max-w-4xl space-y-6 duration-200 animate-in fade-in">
+    <div className="mx-auto max-w-4xl space-y-6 duration-200 animate-in fade-in xl:max-w-5xl 2xl:max-w-6xl 3xl:max-w-7xl">
       {/* Top Banner & Stats Bar */}
       <div className="rounded-3xl border border-border bg-gradient-to-br from-card via-card to-rose-500/5 p-6 shadow-sm sm:p-8">
         <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">

@@ -68,7 +68,7 @@ export const WritingSection: React.FC<WritingSectionProps> = ({
   };
 
   return (
-    <div className="mx-auto max-w-4xl space-y-6 duration-300 animate-in fade-in">
+    <div className="mx-auto max-w-4xl space-y-6 duration-300 animate-in fade-in xl:max-w-5xl 2xl:max-w-6xl 3xl:max-w-7xl">
       {/* Prompt Card */}
       <div className="space-y-3 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
         <div className="flex items-center gap-2">

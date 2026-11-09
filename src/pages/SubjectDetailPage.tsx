@@ -57,7 +57,7 @@ const SubjectDetailPage: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto max-w-7xl p-4 md:p-8">
+    <div className="mx-auto max-w-7xl p-4 md:p-8 3xl:max-w-8xl 3xl:p-12">
       <div className="mb-8 flex items-center justify-between">
         <button
           onClick={() => navigate('/subjects')}

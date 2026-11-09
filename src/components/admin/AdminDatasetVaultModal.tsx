@@ -262,7 +262,7 @@ export const AdminDatasetVaultModal: React.FC<AdminDatasetVaultModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-3 backdrop-blur-md duration-200 animate-in fade-in md:p-6">
-      <div className="flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-2xl duration-200 animate-in zoom-in-95">
+      <div className="flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-2xl duration-200 animate-in zoom-in-95 2xl:max-w-5xl 3xl:max-w-6xl">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-border bg-card p-5 text-foreground">
           <div className="flex items-center gap-3">

@@ -144,7 +144,7 @@ export const JlptWritingPage: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto max-w-4xl space-y-6 p-4 pb-[max(6.5rem,calc(env(safe-area-inset-bottom)+5rem))] md:p-8 md:pb-8">
+    <div className="mx-auto max-w-4xl space-y-6 p-4 pb-[max(6.5rem,calc(env(safe-area-inset-bottom)+5rem))] md:p-8 md:pb-8 xl:max-w-5xl 2xl:max-w-6xl 3xl:max-w-7xl 3xl:p-12">
       <div className="flex items-center justify-between">
         <button
           onClick={() => navigate('/jlpt')}

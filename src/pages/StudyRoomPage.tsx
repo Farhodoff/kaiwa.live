@@ -784,10 +784,10 @@ const StudyRoomPage: React.FC = () => {
               <div
                 className={`grid h-full min-h-0 w-full auto-rows-fr items-center justify-center gap-4 overflow-y-auto p-1 ${
                   Object.keys(remoteStreams).length === 0
-                    ? 'mx-auto max-w-4xl grid-cols-1'
+                    ? 'mx-auto max-w-4xl grid-cols-1 2xl:max-w-5xl 3xl:max-w-6xl'
                     : Object.keys(remoteStreams).length === 1
-                      ? 'mx-auto max-w-5xl grid-cols-1 sm:grid-cols-2'
-                      : 'mx-auto max-w-6xl grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+                      ? 'mx-auto max-w-5xl grid-cols-1 sm:grid-cols-2 2xl:max-w-6xl 3xl:max-w-7xl'
+                      : 'mx-auto max-w-6xl grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-7xl 2xl:grid-cols-4 3xl:max-w-8xl'
                 }`}
               >
                 {/* Local Video */}

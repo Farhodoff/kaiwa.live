@@ -212,7 +212,7 @@ export const ScenarioPickerPage: React.FC = () => {
   const jaLevels = ['all', 'N5', 'N4', 'N3', 'N2', 'N1'] as const;
 
   return (
-    <div className="mx-auto max-w-6xl space-y-5 p-3 pb-16 animate-in fade-in sm:p-6">
+    <div className="mx-auto max-w-6xl space-y-5 p-3 pb-16 animate-in fade-in sm:p-6 2xl:max-w-7xl 3xl:max-w-8xl 3xl:p-10">
       {/* Header Banner */}
       <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-4 text-foreground shadow-sm sm:rounded-3xl sm:p-6 md:p-8">
         <div className="pointer-events-none absolute right-0 top-0 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
@@ -295,7 +295,7 @@ export const ScenarioPickerPage: React.FC = () => {
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5">
           {filteredScenarios.map((scenario) => {
             const lastSession = history.find((h) => h.scenario_id === scenario.id);
             const title = scenario.title_ja || scenario.title_uz;

@@ -554,7 +554,7 @@ export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({ init
       </p>
 
       {/* Lessons Grid */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5">
         {filteredLessons.map((lesson) => {
           const prog = lessonProgressMap[lesson.id];
           const vocabCount = lesson.steps[0]?.learnData?.vocabulary?.length || 0;

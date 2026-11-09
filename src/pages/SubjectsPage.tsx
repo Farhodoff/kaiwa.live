@@ -82,7 +82,7 @@ const SubjectsPage: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto max-w-7xl p-4 md:p-8">
+    <div className="mx-auto max-w-7xl p-4 md:p-8 3xl:max-w-8xl 3xl:p-12">
       <div className="mb-4 flex flex-col gap-2 rounded-2xl border border-primary/25 bg-primary/5 p-3 text-xs sm:flex-row sm:items-center sm:justify-between">
         <span className="leading-relaxed text-muted-foreground">
           <span className="font-bold text-foreground">Asosiy yo&apos;l:</span> JLPT darslar va

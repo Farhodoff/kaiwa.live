@@ -957,7 +957,7 @@ export const JlptMockExamPage: React.FC = () => {
   const isCriticalTime = examMode === 'official_timed' ? sectionTimeLeft <= 60 : timeLeft <= 60;
 
   return (
-    <div className="mx-auto max-w-5xl space-y-6 p-4 pb-[max(6.5rem,calc(env(safe-area-inset-bottom)+5rem))] md:p-8 md:pb-8">
+    <div className="mx-auto max-w-5xl space-y-6 p-4 pb-[max(6.5rem,calc(env(safe-area-inset-bottom)+5rem))] md:p-8 md:pb-8 2xl:max-w-6xl 3xl:max-w-7xl 3xl:p-12">
       {/* Navigation Header */}
       <div className="flex items-center justify-between border-b border-border pb-4">
         <button
@@ -1905,7 +1905,7 @@ export const JlptMockExamPage: React.FC = () => {
                 isOfficialJlpt: activeExam?.isOfficialJlpt,
               });
               return (
-                <div className="mx-auto mt-6 max-w-4xl rounded-2xl border border-border bg-card/60 p-4 text-xs text-muted-foreground shadow-sm">
+                <div className="mx-auto mt-6 max-w-4xl rounded-2xl border border-border bg-card/60 p-4 text-xs text-muted-foreground shadow-sm 2xl:max-w-5xl 3xl:max-w-6xl">
                   <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/60 pb-2">
                     <div className="flex flex-wrap items-center gap-2">
                       <span

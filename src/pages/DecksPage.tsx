@@ -569,7 +569,7 @@ const DecksPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="mx-auto max-w-7xl space-y-6 p-3.5 sm:p-4 md:space-y-8 md:p-8">
+    <div className="mx-auto max-w-7xl space-y-6 p-3.5 sm:p-4 md:space-y-8 md:p-8 3xl:max-w-8xl 3xl:p-12">
       <div className="flex flex-col gap-2 rounded-2xl border border-primary/25 bg-primary/5 p-3 text-xs sm:flex-row sm:items-center sm:justify-between">
         <span className="leading-relaxed text-muted-foreground">
           <span className="font-bold text-foreground">Takrorlash inbox:</span>{' '}
@@ -850,7 +850,7 @@ const DecksPage: React.FC = () => {
             )}
           </div>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5">
             {currentList.map((subject, index) => {
               const deckCards = flashcards.filter(
                 (c) => c.subjectId === subject.id || (!c.subjectId && index === 0),
@@ -974,7 +974,7 @@ const DecksPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5">
                 {standaloneGroups.map((group) => (
                   <StandaloneDeckCard
                     key={group.baseTitle}
@@ -1025,7 +1025,7 @@ const DecksPage: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5">
               {[...visiblePresetDecks]
                 .filter((deck) => deck.level.startsWith('JLPT'))
                 .sort((a, b) => {

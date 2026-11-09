@@ -38,7 +38,7 @@ export const CoachWelcomeScreen: React.FC<CoachWelcomeScreenProps> = ({
         </button>
       </div>
 
-      <div className="w-full max-w-4xl rounded-2xl border border-white/10 bg-slate-950/55 p-4 text-left shadow-xl backdrop-blur-md sm:p-5">
+      <div className="w-full max-w-4xl rounded-2xl border border-white/10 bg-slate-950/55 p-4 text-left shadow-xl backdrop-blur-md sm:p-5 xl:max-w-5xl 2xl:max-w-6xl">
         <div className="mb-3 flex items-baseline justify-between gap-3">
           <h2 className="text-sm font-semibold text-white sm:text-base">Ssenariylar</h2>
           <span className="text-xs text-slate-300/75">

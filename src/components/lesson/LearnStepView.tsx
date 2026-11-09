@@ -350,7 +350,7 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
   const isDialoguePlaying = isPlayingStudioAudio || isAutoPlayingDialogue;
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6 duration-200 animate-in fade-in">
+    <div className="mx-auto max-w-3xl space-y-6 duration-200 animate-in fade-in xl:max-w-4xl 2xl:max-w-5xl 3xl:max-w-6xl">
       {/* Header / Intro Card */}
       <div className="rounded-2xl border border-border bg-gradient-to-br from-card to-secondary/30 p-4 shadow-sm sm:rounded-3xl sm:p-6">
         <div className="mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary">

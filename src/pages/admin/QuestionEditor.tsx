@@ -760,7 +760,7 @@ export const QuestionEditor: React.FC = () => {
   const isExamPublished = currentExamStatus === 'published' || Boolean(exam.is_published);
 
   return (
-    <div className="mx-auto max-w-5xl space-y-8 px-4 py-8 duration-300 animate-in fade-in">
+    <div className="mx-auto max-w-5xl space-y-8 px-4 py-8 duration-300 animate-in fade-in 2xl:max-w-6xl 3xl:max-w-7xl 3xl:px-12">
       {/* Header Area */}
       <div className="flex flex-col justify-between gap-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:flex-row sm:items-center">
         <div className="flex items-center gap-4">

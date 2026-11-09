@@ -560,7 +560,7 @@ const SpeakingCoachPage: React.FC = () => {
       )}
 
       {/* MAIN SINGLE VIEW CONTENT */}
-      <main className="relative z-10 mx-auto flex min-h-0 w-full max-w-4xl flex-1 flex-col gap-3 overflow-y-auto px-3 py-3 sm:px-6 lg:py-5">
+      <main className="relative z-10 mx-auto flex min-h-0 w-full max-w-4xl flex-1 flex-col gap-3 overflow-y-auto px-3 py-3 sm:px-6 lg:py-5 xl:max-w-5xl 2xl:max-w-6xl 3xl:max-w-7xl 3xl:py-8">
         {/* UPPER HERO: ProjectOrb (KaiwaOrbCharacter) */}
         <div className="flex min-h-[360px] flex-1 shrink-0 flex-col items-center justify-center px-3 py-4 text-center lg:min-h-0 lg:py-8">
           {/* Accessible title (screen readers only) */}

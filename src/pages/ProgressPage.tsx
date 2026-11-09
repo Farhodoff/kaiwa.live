@@ -36,7 +36,7 @@ const ProgressPage: React.FC = () => {
   const completedTasks = tasks.filter((t) => t.completed || t.status === 'done').length;
 
   return (
-    <div className="mx-auto max-w-7xl space-y-6 p-4 pb-28 duration-200 animate-in fade-in sm:pb-24 md:p-8 md:pb-12">
+    <div className="mx-auto max-w-7xl space-y-6 p-4 pb-28 duration-200 animate-in fade-in sm:pb-24 md:p-8 md:pb-12 3xl:max-w-8xl 3xl:p-12">
       {/* Header */}
       <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
         <div>
