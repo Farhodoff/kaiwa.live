@@ -44,6 +44,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { toast } from '../hooks/use-toast';
 import { ErrorNotificationService } from '../services/ErrorNotificationService';
 import { resolveAudioUrl } from '../utils/audioUrl';
+import { MistakeVaultService, MistakeLevel } from '../services/MistakeVaultService';
 
 const DRAFT_CHOUKAI_STORAGE_KEY = 'jlpt_choukai_draft_v1';
 
@@ -597,6 +598,32 @@ export const JlptListeningMockPage: React.FC = () => {
 
     setScore(correctCount);
     setStep('report');
+
+    // Auto-persist wrong questions into Mistake Vault Notebook
+    try {
+      const wrongQs = activeQuestions.filter((q) => userAnswers[q.id] !== q.correctAnswer);
+      if (wrongQs.length > 0) {
+        MistakeVaultService.recordBatch(
+          wrongQs.map((q) => ({
+            userId: user?.id,
+            source: 'mock_exam',
+            level: (level || 'N5') as MistakeLevel,
+            category: 'listening',
+            title: `JLPT ${level} Choukai Mock — Q${q.id}`,
+            questionText: q.questionText,
+            passageText: q.script || undefined,
+            audioUrl: q.audioUrl,
+            options: q.options,
+            userAnswer: userAnswers[q.id] !== undefined ? userAnswers[q.id] : -1,
+            correctAnswer: q.correctAnswer,
+            explanationUzbek: q.explanationUzbek || '',
+          })),
+          user?.id,
+        );
+      }
+    } catch (e) {
+      console.warn('Failed to record mistakes to MistakeVaultService:', e);
+    }
 
     // Award XP (25 XP per correct question)
     try {

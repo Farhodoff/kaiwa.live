@@ -11,6 +11,9 @@ import {
   CheckCircle2,
   XCircle,
   Award,
+  BookOpen,
+  Sparkles,
+  CheckCircle,
 } from 'lucide-react';
 import { WritingSection } from '../../components/exams/WritingSection';
 import { SpeakingSection } from '../../components/exams/SpeakingSection';
@@ -19,6 +22,12 @@ import { ExamCertificateModal } from '../../components/exams/ExamCertificateModa
 import { useStudyData } from '../../context/StudyPlannerContext';
 import { HistoryService } from '../../services/HistoryService';
 import { publicAudioUrl } from '../../services/ListeningAudioService';
+import {
+  MistakeVaultService,
+  MistakeLevel,
+  MistakeCategory,
+} from '../../services/MistakeVaultService';
+import { toast } from '../../hooks/use-toast';
 
 // Built-in standalone exams catalog when DB records do not exist
 const BUILTIN_EXAMS: Record<
@@ -280,7 +289,7 @@ const BUILTIN_EXAMS: Record<
 export const ExamTake: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { user, awardXP } = useStudyData();
+  const { user, awardXP, addFlashcardsBatch } = useStudyData();
   const [exam, setExam] = useState<any>(null);
   const [sections, setSections] = useState<any[]>([]);
   const [activeSectionId, setActiveSectionId] = useState<string | null>(null);
@@ -293,6 +302,10 @@ export const ExamTake: React.FC = () => {
   const [submittedResults, setSubmittedResults] = useState<{ score: number; total: number } | null>(
     null,
   );
+
+  // Export mistakes to flashcards state
+  const [isExporting, setIsExporting] = useState(false);
+  const [isExported, setIsExported] = useState(false);
 
   // Certificate modal state
   const [showCertificate, setShowCertificate] = useState(false);
@@ -434,6 +447,44 @@ export const ExamTake: React.FC = () => {
     const result = { score: correctCount, total: questions.length };
     setSubmittedResults(result);
     setShowCertificate(true);
+    setIsExported(false);
+
+    // Persist wrong questions automatically into Mistake Vault Notebook
+    try {
+      const wrongQuestions = questions.filter((q) => userAnswers[q.id] !== q.correct_answer);
+      if (wrongQuestions.length > 0) {
+        const activeSec = sections.find((s) => s.id === activeSectionId);
+        const isListening = activeSec?.type === 'Listening';
+        const isReading = activeSec?.type === 'Reading';
+        const category: MistakeCategory = isListening
+          ? 'listening'
+          : isReading
+            ? 'reading'
+            : 'grammar';
+        const parsedLevel: MistakeLevel =
+          (exam?.type?.match(/N[1-5]/i)?.[0]?.toUpperCase() as MistakeLevel) || 'N5';
+
+        MistakeVaultService.recordBatch(
+          wrongQuestions.map((q) => ({
+            userId: user?.id,
+            source: 'mock_exam',
+            level: parsedLevel,
+            category,
+            title: `${exam.title || 'Imtihon'} — ${activeSec?.title || "Bo'lim"}`,
+            questionText: q.question_text || q.text || '',
+            passageText: q.passage || undefined,
+            audioUrl: q.audio_url || undefined,
+            options: q.options || [],
+            userAnswer: userAnswers[q.id] || '',
+            correctAnswer: q.correct_answer || '',
+            explanationUzbek: q.explanation || '',
+          })),
+          user?.id,
+        );
+      }
+    } catch (e) {
+      console.warn('Failed to record mistakes to MistakeVaultService:', e);
+    }
 
     // Award XP
     try {
@@ -470,6 +521,32 @@ export const ExamTake: React.FC = () => {
       } catch (e) {
         console.warn('Session record warning:', e);
       }
+    }
+  };
+
+  const handleExportMistakes = async () => {
+    const wrongQuestions = questions.filter((q) => userAnswers[q.id] !== q.correct_answer);
+    if (wrongQuestions.length === 0) return;
+    setIsExporting(true);
+    try {
+      const cards = wrongQuestions.map((q) => ({
+        front: `🎌 ${exam?.title || 'Imtihon'} Savoli:\n\n${q.question_text || q.text || ''}`,
+        back: `✅ To'g'ri javob:\n${q.correct_answer}\n\n❌ Sizning javobingiz:\n${userAnswers[q.id] || 'Javob berilmagan'}\n\n💡 Izoh:\n${q.explanation || 'Imtihon tahlili'}`,
+      }));
+      await addFlashcardsBatch(cards);
+      setIsExported(true);
+      toast({
+        title: '🎴 Fleshkartalarga Saqlandi!',
+        description: `${cards.length} ta xato savol Anki SRS fleshkartalar to'plamiga qo'shildi.`,
+      });
+    } catch {
+      toast({
+        title: 'Xatolik',
+        description: 'Fleshkartalarga saqlashda xatolik yuz berdi.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsExporting(false);
     }
   };
 
@@ -776,13 +853,58 @@ export const ExamTake: React.FC = () => {
                           {Object.keys(userAnswers).length}/{questions.length})
                         </Button>
                       ) : (
-                        <Button
-                          variant="outline"
-                          onClick={() => setSubmittedResults(null)}
-                          className="w-full rounded-2xl py-3.5 font-bold"
-                        >
-                          Qayta Urinish
-                        </Button>
+                        <div className="space-y-3">
+                          {questions.some((q) => userAnswers[q.id] !== q.correct_answer) && (
+                            <div className="flex flex-col items-center justify-between gap-3 rounded-2xl border border-rose-500/30 bg-rose-500/10 p-4 text-left sm:flex-row">
+                              <div className="flex items-center gap-2.5">
+                                <div className="rounded-xl bg-rose-500/20 p-2 text-rose-500">
+                                  <Sparkles size={18} />
+                                </div>
+                                <div>
+                                  <h4 className="text-xs font-black text-foreground">
+                                    Xatolarni Anki SRS fleshkartalariga saqlash
+                                  </h4>
+                                  <p className="text-[11px] text-muted-foreground">
+                                    Xato savollar avtomatik Xatolar Daftarchangizga saqlandi. Bir
+                                    marta bosish orqali takrorlash rejangizga qo&apos;shing.
+                                  </p>
+                                </div>
+                              </div>
+
+                              <button
+                                onClick={handleExportMistakes}
+                                disabled={isExporting || isExported}
+                                className={`flex shrink-0 items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-black transition-all ${
+                                  isExported
+                                    ? 'bg-emerald-600 text-white'
+                                    : 'cursor-pointer bg-rose-600 text-white shadow-sm hover:bg-rose-700 active:scale-95'
+                                }`}
+                              >
+                                {isExported ? (
+                                  <>
+                                    <CheckCircle size={14} />
+                                    <span>Saqlandi (Anki SRS)</span>
+                                  </>
+                                ) : (
+                                  <>
+                                    <BookOpen size={14} />
+                                    <span>
+                                      {isExporting ? 'Saqlanmoqda...' : 'Fleshkartaga saqlash'}
+                                    </span>
+                                  </>
+                                )}
+                              </button>
+                            </div>
+                          )}
+
+                          <Button
+                            variant="outline"
+                            onClick={() => setSubmittedResults(null)}
+                            className="w-full rounded-2xl py-3.5 font-bold"
+                          >
+                            Qayta Urinish
+                          </Button>
+                        </div>
                       )}
                     </div>
                   ) : (
