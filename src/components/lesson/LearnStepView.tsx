@@ -9,6 +9,7 @@ import {
   Play,
   Pause,
   Disc,
+  Mic,
 } from 'lucide-react';
 import { LearnContent, Lesson, LessonKanji, SupportedLanguage } from '../../types/lesson';
 import { speakText, speakJapaneseText } from '../../utils/audioTts';
@@ -17,6 +18,7 @@ import { ListeningAudioSyncService } from '../../services/ListeningAudioSyncServ
 import { resolveAudioUrl } from '../../utils/audioUrl';
 import { LessonKanjiService, LessonKanjiProgress } from '../../services/LessonKanjiService';
 import { KanjiStrokeOrderModal } from '../jlpt/KanjiStrokeOrderModal';
+import { ShadowingTrainerModal, ShadowingTarget } from '../speaking/ShadowingTrainerModal';
 
 const formatAudioTime = (seconds: number) => {
   if (isNaN(seconds) || seconds <= 0) return '00:00';
@@ -49,6 +51,7 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
   );
   const [kanjiProgress, setKanjiProgress] = useState<LessonKanjiProgress[]>([]);
   const [strokeModalKanji, setStrokeModalKanji] = useState<LessonKanji | null>(null);
+  const [shadowingTarget, setShadowingTarget] = useState<ShadowingTarget | null>(null);
 
   useEffect(() => {
     if (!lesson || lessonKanji.length === 0) {
@@ -620,13 +623,29 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
                         <span>
                           <FuriganaText text={vocab.exampleSentence} />
                         </span>
-                        <button
-                          onClick={() => handleSpeak(vocab.exampleSentence!)}
-                          className="p-0.5 text-muted-foreground hover:text-primary"
-                          title="Jumlani tinglash"
-                        >
-                          <Volume2 size={12} />
-                        </button>
+                        <div className="flex shrink-0 items-center gap-1">
+                          <button
+                            onClick={() => handleSpeak(vocab.exampleSentence!)}
+                            className="p-0.5 text-muted-foreground transition-colors hover:text-primary"
+                            title="Jumlani tinglash"
+                          >
+                            <Volume2 size={12} />
+                          </button>
+                          <button
+                            onClick={() =>
+                              setShadowingTarget({
+                                id: `vocab-ex-${vocab.term}`,
+                                japanese: vocab.exampleSentence!,
+                                uzbek: vocab.exampleTranslation,
+                              })
+                            }
+                            className="p-0.5 text-muted-foreground transition-colors hover:text-primary"
+                            title="Shadowing: talaffuzni qaytarish va solishtirish"
+                            aria-label="Shadowing mashqi"
+                          >
+                            <Mic size={12} />
+                          </button>
+                        </div>
                       </div>
                       {vocab.exampleTranslation && (
                         <div className="mt-0.5 text-[11px] text-muted-foreground">
@@ -756,13 +775,29 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
                               {ex.translation}
                             </div>
                           </div>
-                          <button
-                            onClick={() => handleSpeak(ex.sentence)}
-                            className="shrink-0 p-1 text-muted-foreground transition-all hover:text-primary"
-                            title="Tinglash"
-                          >
-                            <Volume2 size={14} />
-                          </button>
+                          <div className="flex shrink-0 items-center gap-1">
+                            <button
+                              onClick={() => handleSpeak(ex.sentence)}
+                              className="p-1 text-muted-foreground transition-all hover:text-primary"
+                              title="Tinglash"
+                            >
+                              <Volume2 size={14} />
+                            </button>
+                            <button
+                              onClick={() =>
+                                setShadowingTarget({
+                                  id: `grammar-ex-${idx}-${exIdx}`,
+                                  japanese: ex.sentence,
+                                  uzbek: ex.translation,
+                                })
+                              }
+                              className="p-1 text-muted-foreground transition-all hover:text-primary"
+                              title="Shadowing: talaffuzni qaytarib tekshirish"
+                              aria-label="Shadowing mashqi"
+                            >
+                              <Mic size={14} />
+                            </button>
+                          </div>
                         </div>
                       ))}
                     </div>
@@ -950,18 +985,35 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
                         </div>
                       </div>
 
-                      <button
-                        onClick={() => handlePlaySingleLine(idx, line.japanese)}
-                        className={`shrink-0 rounded-xl p-2 transition-all ${
-                          isPlaying
-                            ? 'bg-primary text-primary-foreground shadow-sm'
-                            : 'bg-secondary/80 text-muted-foreground hover:bg-primary/15 hover:text-primary'
-                        }`}
-                        title="Ushbu gapni tinglash"
-                        aria-label={`Tinglash: ${line.speaker}`}
-                      >
-                        <Volume2 size={16} />
-                      </button>
+                      <div className="flex shrink-0 items-center gap-1.5">
+                        <button
+                          onClick={() => handlePlaySingleLine(idx, line.japanese)}
+                          className={`rounded-xl p-2 transition-all ${
+                            isPlaying
+                              ? 'bg-primary text-primary-foreground shadow-sm'
+                              : 'bg-secondary/80 text-muted-foreground hover:bg-primary/15 hover:text-primary'
+                          }`}
+                          title="Ushbu gapni tinglash"
+                          aria-label={`Tinglash: ${line.speaker}`}
+                        >
+                          <Volume2 size={16} />
+                        </button>
+                        <button
+                          onClick={() =>
+                            setShadowingTarget({
+                              id: `dialogue-line-${idx}`,
+                              japanese: line.japanese,
+                              romaji: line.romaji,
+                              uzbek: line.uzbek,
+                            })
+                          }
+                          className="rounded-xl bg-secondary/80 p-2 text-muted-foreground transition-all hover:bg-primary/15 hover:text-primary"
+                          title="Shadowing mashqi (talaffuzni qaytarish)"
+                          aria-label={`Shadowing: ${line.speaker}`}
+                        >
+                          <Mic size={16} />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 );
@@ -980,6 +1032,13 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
           </div>
         </div>
       )}
+
+      {/* Shadowing Pronunciation Trainer Modal */}
+      <ShadowingTrainerModal
+        isOpen={!!shadowingTarget}
+        onClose={() => setShadowingTarget(null)}
+        target={shadowingTarget}
+      />
     </div>
   );
 };

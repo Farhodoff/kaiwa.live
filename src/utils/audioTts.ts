@@ -28,11 +28,11 @@ export function stopAllAudio(): void {
   }
 }
 
-export function speakJapaneseText(text: string): void {
-  speakText(text, 'ja-JP');
+export function speakJapaneseText(text: string, rate?: number): void {
+  speakText(text, 'ja-JP', rate);
 }
 
-export function speakText(text: string, accent: string = 'en-US'): void {
+export function speakText(text: string, accent: string = 'en-US', rate?: number): void {
   stopAllAudio();
 
   const hasJapaneseChars =
@@ -79,7 +79,7 @@ export function speakText(text: string, accent: string = 'en-US'): void {
 
       const utterance = new UtteranceClass(textToSpeak);
       utterance.lang = targetLang;
-      utterance.rate = targetLang.startsWith('ja') ? 0.9 : 0.85;
+      utterance.rate = rate ?? (targetLang.startsWith('ja') ? 0.9 : 0.85);
       utterance.pitch = 1.0;
 
       if (matchedVoice) {
@@ -104,6 +104,7 @@ export function speakText(text: string, accent: string = 'en-US'): void {
       const url = URL.createObjectURL(blob);
       globalObjectUrl = url;
       const audio = new Audio(url);
+      if (rate) audio.playbackRate = rate;
       globalAudioPlayer = audio;
       audio.onended = () => {
         if (globalObjectUrl === url) {
