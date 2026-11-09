@@ -53,9 +53,9 @@ describe('JLPT N2 curriculum structure', () => {
       expect(lesson.title).not.toMatch(/graduation|official|N1 transition/i);
     }
 
-    expect(JAPANESE_N2_LESSONS[9].title).toContain('Checkpoint');
-    expect(JAPANESE_N2_LESSONS[28].title).toContain('Mini Mock');
-    expect(JAPANESE_N2_LESSONS[29].title).toContain('Final Assessment');
+    expect(JAPANESE_N2_LESSONS[9].title).toMatch(/Checkpoint|xulosasi/i);
+    expect(JAPANESE_N2_LESSONS[28].title).toMatch(/Mini Mock|Kichik sinov/i);
+    expect(JAPANESE_N2_LESSONS[29].title).toMatch(/Final Assessment|yakuniy imtihoni/i);
   });
 
   it('does not repeat the dedicated 〜っこない lesson', () => {
@@ -69,7 +69,7 @@ describe('JLPT N2 curriculum structure', () => {
 
   it('uses real N2 audio assets in listening lessons', () => {
     const listeningLessons = JAPANESE_N2_LESSONS.filter((lesson) =>
-      lesson.title.match(/Listening|Choukai|聴解/i),
+      lesson.title.match(/Listening|Choukai|聴解|Tinglab tushunish/i),
     );
 
     expect(listeningLessons).toHaveLength(2);

@@ -51,15 +51,15 @@ describe('JLPT N1 curriculum structure', () => {
     const titles = JAPANESE_N1_LESSONS.map((lesson) => lesson.title);
     expect(new Set(titles).size).toBe(titles.length);
 
-    expect(JAPANESE_N1_LESSONS[8].title).toContain('Mock Exam');
-    expect(JAPANESE_N1_LESSONS[9].title).toContain('Pinnacle Capstone');
-    expect(JAPANESE_N1_LESSONS[23].title).toContain('Mock Exam');
-    expect(JAPANESE_N1_LESSONS[29].title).toContain('Final Review');
+    expect(JAPANESE_N1_LESSONS[8].title).toMatch(/Mock Exam|Sinov imtihoni/i);
+    expect(JAPANESE_N1_LESSONS[9].title).toMatch(/Pinnacle Capstone|Oliy cho'qqi/i);
+    expect(JAPANESE_N1_LESSONS[23].title).toMatch(/Mock Exam|Sinov imtihoni/i);
+    expect(JAPANESE_N1_LESSONS[29].title).toMatch(/Final Review|Yakuniy takrorlash/i);
   });
 
   it('uses authentic N1 audio assets in listening lessons that exist on disk', () => {
     const listeningLessons = JAPANESE_N1_LESSONS.filter((lesson) =>
-      lesson.title.match(/Listening|Choukai|聴解/i),
+      lesson.title.match(/Listening|Choukai|聴解|Tinglab tushunish/i),
     );
 
     expect(listeningLessons).toHaveLength(2);
