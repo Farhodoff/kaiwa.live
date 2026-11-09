@@ -1,5 +1,190 @@
+import JSZip from 'jszip';
 import { supabase } from '../lib/supabase';
 import { Task, Flashcard, Subject, Goal, Note } from '../types';
+
+export function cleanAnkiHtml(html: string): string {
+  if (!html) return '';
+  return html
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<div>/gi, '\n')
+    .replace(/<\/div>/gi, '')
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/&amp;/gi, '&')
+    .replace(/<[^>]+>/g, '')
+    .trim();
+}
+
+export function formatAnkiText(
+  cards: Array<{ front: string; back: string; example?: string }>,
+  deckName = 'Kaiwa JLPT',
+): string {
+  const sanitize = (val?: string | null) =>
+    (val || '').replace(/\t/g, ' ').replace(/\r?\n/g, '<br>').trim();
+
+  const lines = [
+    '#separator:tab',
+    '#html:true',
+    '#tags column:4',
+    `#deck:Kaiwa::${deckName.replace(/:/g, '_')}`,
+  ];
+
+  for (const card of cards) {
+    const front = sanitize(card.front);
+    const back = sanitize(card.back);
+    const example = sanitize(card.example);
+    const tag = `Kaiwa_${deckName.replace(/\s+/g, '_')}`;
+    lines.push(`${front}\t${back}\t${example}\t${tag}`);
+  }
+
+  return lines.join('\n');
+}
+
+export function parseAnkiText(
+  text: string,
+): Array<{ front: string; back: string; example?: string }> {
+  if (text.startsWith('\uFEFF')) {
+    text = text.substring(1);
+  }
+
+  const lines = text.split(/\r?\n/);
+  const cards: Array<{ front: string; back: string; example?: string }> = [];
+  let delimiter = '\t';
+
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+    if (!line) continue;
+
+    if (line.startsWith('#separator:')) {
+      const sep = line.split(':')[1]?.trim().toLowerCase();
+      if (sep === 'comma') delimiter = ',';
+      else if (sep === 'semicolon') delimiter = ';';
+      else if (sep === 'space') delimiter = ' ';
+      else delimiter = '\t';
+      continue;
+    }
+    if (line.startsWith('#')) {
+      continue;
+    }
+
+    const parts = delimiter === '\t' ? rawLine.split('\t') : rawLine.split(delimiter);
+    if (parts.length >= 2) {
+      const front = cleanAnkiHtml(parts[0]);
+      const back = cleanAnkiHtml(parts[1]);
+      const example = parts[2] ? cleanAnkiHtml(parts[2]) : '';
+
+      if (front && back) {
+        cards.push({ front, back, example });
+      }
+    }
+  }
+
+  return cards;
+}
+
+export function parseSqliteCards(
+  uint8Arr: Uint8Array,
+): Array<{ front: string; back: string; example?: string }> {
+  if (uint8Arr.length < 100) return [];
+
+  const view = new DataView(uint8Arr.buffer, uint8Arr.byteOffset, uint8Arr.byteLength);
+  const decoder = new TextDecoder('utf-8');
+
+  let pageSize = view.getUint16(16);
+  if (pageSize === 1) pageSize = 65536;
+  if (pageSize < 512) pageSize = 4096;
+
+  function readVarint(offset: number): [number, number] {
+    let res = 0;
+    let len = 0;
+    while (len < 8) {
+      if (offset + len >= uint8Arr.length) return [0, 0];
+      const b = uint8Arr[offset + len];
+      res = (res << 7) | (b & 0x7f);
+      len++;
+      if ((b & 0x80) === 0) return [res, len];
+    }
+    if (offset + len >= uint8Arr.length) return [0, 0];
+    const b = uint8Arr[offset + len];
+    res = (res << 8) | b;
+    return [res, len + 1];
+  }
+
+  const cards: Array<{ front: string; back: string; example?: string }> = [];
+
+  for (let pageOffset = 0; pageOffset < uint8Arr.length; pageOffset += pageSize) {
+    const isPage1 = pageOffset === 0;
+    const headerOffset = isPage1 ? 100 : 0;
+    if (pageOffset + headerOffset + 8 > uint8Arr.length) break;
+
+    const pageType = uint8Arr[pageOffset + headerOffset];
+    if (pageType !== 0x0d) continue; // 0x0D = b-tree table leaf page
+
+    const cellCount = view.getUint16(pageOffset + headerOffset + 3);
+    const ptrArrayOffset = pageOffset + headerOffset + 8;
+
+    for (let c = 0; c < cellCount; c++) {
+      if (ptrArrayOffset + c * 2 + 2 > uint8Arr.length) break;
+      const cellPtr = view.getUint16(ptrArrayOffset + c * 2);
+      let cur = pageOffset + cellPtr;
+
+      const [, payloadLenBytes] = readVarint(cur);
+      if (payloadLenBytes === 0) continue;
+      cur += payloadLenBytes;
+
+      const [, rowidLenBytes] = readVarint(cur);
+      if (rowidLenBytes === 0) continue;
+      cur += rowidLenBytes;
+
+      const recordStart = cur;
+      const [hdrSize, hdrLenBytes] = readVarint(cur);
+      if (hdrLenBytes === 0) continue;
+      cur += hdrLenBytes;
+
+      const serialTypes: number[] = [];
+      while (cur < recordStart + hdrSize && cur < uint8Arr.length) {
+        const [st, stBytes] = readVarint(cur);
+        if (stBytes === 0) break;
+        serialTypes.push(st);
+        cur += stBytes;
+      }
+
+      let dataCur = recordStart + hdrSize;
+      for (const st of serialTypes) {
+        if (st >= 13 && st % 2 === 1) {
+          const strLen = (st - 13) / 2;
+          if (dataCur + strLen <= uint8Arr.length) {
+            const sub = uint8Arr.subarray(dataCur, dataCur + strLen);
+            const str = decoder.decode(sub);
+            if (str.includes('\x1f')) {
+              const parts = str.split('\x1f');
+              if (parts.length >= 2) {
+                const front = cleanAnkiHtml(parts[0]);
+                const back = cleanAnkiHtml(parts[1]);
+                const example = parts[2] ? cleanAnkiHtml(parts[2]) : '';
+
+                if (front && back) {
+                  cards.push({ front, back, example });
+                }
+              }
+            }
+          }
+          dataCur += strLen;
+        } else if (st >= 12 && st % 2 === 0) {
+          dataCur += (st - 12) / 2;
+        } else if (st === 1) dataCur += 1;
+        else if (st === 2) dataCur += 2;
+        else if (st === 3) dataCur += 3;
+        else if (st === 4) dataCur += 4;
+        else if (st === 5) dataCur += 6;
+        else if (st === 6 || st === 7) dataCur += 8;
+      }
+    }
+  }
+
+  return cards;
+}
 
 interface BackupData {
   version: string;
@@ -420,6 +605,125 @@ class ExportImportService {
       };
       reader.readAsText(file);
     });
+  }
+
+  /**
+   * Export flashcards to standard Anki tab-delimited text format (.txt)
+   */
+  async exportFlashcardsToAnki(userId: string, subjectId?: string): Promise<void> {
+    try {
+      let query = supabase
+        .from('flashcards')
+        .select('front, back, example, subject_id')
+        .eq('user_id', userId);
+
+      if (subjectId) {
+        query = query.eq('subject_id', subjectId);
+      }
+
+      const { data: cards, error } = await query;
+      if (error) throw error;
+
+      let deckName = 'Kaiwa JLPT';
+      if (subjectId) {
+        const { data: subject } = await supabase
+          .from('subjects')
+          .select('name')
+          .eq('id', subjectId)
+          .maybeSingle();
+        if (subject?.name) {
+          deckName = subject.name;
+        }
+      }
+
+      const content = formatAnkiText(cards || [], deckName);
+      const safeName = deckName.toLowerCase().replace(/[^a-z0-9_-]/g, '_');
+      const dateStr = new Date().toISOString().split('T')[0];
+      this.downloadFile(
+        content,
+        `kaiwa_anki_${safeName}_${dateStr}.txt`,
+        'text/plain;charset=utf-8;',
+      );
+    } catch (error) {
+      console.error('Anki export error:', error);
+      throw new Error('Anki uchun eksport qilishda xatolik yuz berdi.');
+    }
+  }
+
+  /**
+   * Parse an Anki Package (.apkg) file containing collection.anki2
+   */
+  async parseAnkiPackage(
+    buffer: ArrayBuffer | Uint8Array,
+  ): Promise<Array<{ front: string; back: string; example?: string }>> {
+    const zip = await JSZip.loadAsync(buffer);
+    const ankiDbFile =
+      zip.file('collection.anki2') ||
+      zip.file('collection.anki21') ||
+      zip.file('collection.anki21b');
+
+    if (!ankiDbFile) {
+      // Check if there is any text file inside
+      const txtFile = Object.values(zip.files).find(
+        (f) => !f.dir && (f.name.endsWith('.txt') || f.name.endsWith('.tsv')),
+      );
+      if (txtFile) {
+        const text = await txtFile.async('text');
+        const fallbackCards = parseAnkiText(text);
+        if (fallbackCards.length > 0) {
+          return fallbackCards;
+        }
+      }
+      throw new Error("Noto'g'ri .apkg formati: collection.anki2 ma'lumotlar bazasi topilmadi.");
+    }
+
+    const rawBytes = await ankiDbFile.async('uint8array');
+    return parseSqliteCards(rawBytes);
+  }
+
+  /**
+   * Parse Anki tab-delimited text
+   */
+  parseAnkiText(text: string): Array<{ front: string; back: string; example?: string }> {
+    return parseAnkiText(text);
+  }
+
+  /**
+   * Import flashcards from Anki file (.apkg or .txt)
+   */
+  async importFlashcardsFromAnki(file: File, userId: string, subjectId: string): Promise<number> {
+    let cards: Array<{ front: string; back: string; example?: string }> = [];
+
+    if (file.name.toLowerCase().endsWith('.apkg')) {
+      const buffer = await file.arrayBuffer();
+      cards = await this.parseAnkiPackage(buffer);
+    } else {
+      const text = await file.text();
+      cards = this.parseAnkiText(text);
+    }
+
+    if (cards.length === 0) {
+      throw new Error(
+        'Faylda mos kartochkalar topilmadi. Fayl formati yoki tuzilishini tekshiring.',
+      );
+    }
+
+    const cardsToInsert = cards.map((c) => ({
+      user_id: userId,
+      subject_id: subjectId,
+      front: c.front,
+      back: c.back,
+      example: c.example || '',
+      next_review_date: new Date().toISOString(),
+      interval: 0,
+      ease_factor: 2.5,
+      repetitions: 0,
+    }));
+
+    const { error } = await supabase.from('flashcards').upsert(cardsToInsert);
+    if (error) throw error;
+
+    return cardsToInsert.length;
   }
 }
 

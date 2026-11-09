@@ -47,9 +47,15 @@ const ImportModal: React.FC<ImportModalProps> = ({
         <h3 className="mb-1 text-xl font-bold text-gray-900 dark:text-white">
           Anki / CSV / JSON Orqali Yuklash
         </h3>
-        <p className="mb-6 text-sm text-gray-500 dark:text-gray-400">
-          Anki (.apkg/.txt), CSV, TSV yoki JSON tayyor kartochkalar to'plamini yuklash.
+        <p className="mb-4 text-sm text-gray-500 dark:text-gray-400">
+          Anki (.apkg / .txt), CSV, TSV yoki JSON tayyor kartochkalar to'plamini yuklash.
         </p>
+
+        <div className="mb-5 rounded-xl border border-indigo-100 bg-indigo-50/70 p-3 text-xs text-indigo-700 dark:border-indigo-900/40 dark:bg-indigo-950/30 dark:text-indigo-300">
+          💡 <strong>Anki mosligi:</strong> Tashqi Anki ilovangizdan eksport qilingan{' '}
+          <code>.apkg</code> paketlari yoki <code>.txt</code> matnli fayllarini to'g'ridan-to'g'ri
+          yuklashingiz mumkin.
+        </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -95,13 +101,29 @@ const ImportModal: React.FC<ImportModalProps> = ({
             </div>
           </div>
 
-          <div className="flex items-center justify-between text-sm">
+          <div className="flex flex-col gap-1.5 text-xs sm:flex-row sm:items-center sm:justify-between">
             <button
               type="button"
               onClick={downloadTemplate}
-              className="flex items-center gap-1 font-medium text-indigo-600 hover:underline"
+              className="flex items-center gap-1 font-medium text-indigo-600 hover:underline dark:text-indigo-400"
             >
-              <Download size={14} /> JSON Namunasini yuklab olish
+              <Download size={13} /> JSON Namuna
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                const template = `#separator:tab\n#html:true\n#tags column:4\n#deck:Kaiwa::Misol_Lugat\nMizu (水)\tSuv\tMizu o nomimasu (Suv ichaman)\tKaiwa_N5\nHon (本)\tKitob\tHon o yomimasu (Kitob o'qiyman)\tKaiwa_N5`;
+                const blob = new Blob([template], { type: 'text/plain;charset=utf-8;' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'anki_flashcards_template.txt';
+                a.click();
+                URL.revokeObjectURL(url);
+              }}
+              className="flex items-center gap-1 font-medium text-emerald-600 hover:underline dark:text-emerald-400"
+            >
+              <Download size={13} /> Anki (.txt) Namuna
             </button>
           </div>
 
