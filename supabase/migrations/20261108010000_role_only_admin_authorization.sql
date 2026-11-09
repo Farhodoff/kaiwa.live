@@ -24,7 +24,7 @@ RETURNS boolean LANGUAGE sql STABLE SECURITY DEFINER SET search_path = public, a
 $$;
 
 CREATE OR REPLACE FUNCTION public.profile_role_is_unchanged(p_id uuid, p_role text)
-RETURNS boolean LANGUAGE sql STABLE SECURITY DEFINER STABLE SET search_path = public AS $$
+RETURNS boolean LANGUAGE sql STABLE SECURITY DEFINER SET search_path = public AS $$
   SELECT EXISTS (SELECT 1 FROM public.profiles WHERE id = p_id AND role = p_role);
 $$;
 
@@ -33,6 +33,8 @@ DROP POLICY IF EXISTS "Admins can update any profile" ON public.profiles;
 DROP POLICY IF EXISTS "Users and admins update profiles" ON public.profiles;
 DROP POLICY IF EXISTS "Users update own profile except role" ON public.profiles;
 DROP POLICY IF EXISTS "Users can insert own profile" ON public.profiles;
+DROP POLICY IF EXISTS "Authenticated users insert own unprivileged profile" ON public.profiles;
+DROP POLICY IF EXISTS "Users and admins update profile without role change" ON public.profiles;
 
 CREATE POLICY "Authenticated users insert own unprivileged profile" ON public.profiles
   FOR INSERT TO authenticated WITH CHECK (auth.uid() = id AND role = 'user');
