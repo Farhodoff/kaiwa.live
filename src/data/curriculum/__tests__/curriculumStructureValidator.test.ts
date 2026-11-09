@@ -107,7 +107,7 @@ describe('curriculum structure validator', () => {
   });
 
   it('keeps the N1 review before the last unit without calling it graduation', () => {
-    expect(n1Lessons[24].title).toMatch(/Review/);
+    expect(n1Lessons[24].title).toMatch(/Review|takrorlash/i);
     expect(n1Lessons[24].title).not.toMatch(/Graduation|Certification/i);
     expect(n1Lessons[29].lessonNumber).toBe(30);
   });

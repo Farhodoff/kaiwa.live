@@ -7,7 +7,7 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 1,
-    "title": "Proportional Change: 〜につれて vs 〜にしたがって vs 〜に伴って",
+    "title": "Parallel o'zgarishlar: 〜につれて vs 〜にしたがって vs 〜に伴って",
     "description": "Boshqa biror hodisa o'zgargani sari ikkinchi hodisaning parallel o'zgarishi.",
     "estimatedDurationMinutes": 23,
     "icon": "📈",
@@ -18,7 +18,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "Proportional Change (〜につれて / 〜に伴って)",
+          "title": "Mutanosib o'zgarishlar (〜につれて / 〜に伴って / 〜にしたがって)",
           "explanation": "1. 〜につれて: A o'zgargan sari tabiiy ravishda B ham o'zgarishi (bir yo'nalishda): 台風[たいふう]が 近[ちか]づくにつれて、風[かぜ]が 強[つよ]く なってきた (Tayfun yaqinlashgani sari shamol kuchayib bordi). 2. 〜にしたがって: Tabiiy yoki qoidaga ko'ra parallel o'zgarish: 年[とし]を 取[と]るにしたがって、記憶力[きおくりょく]が 衰[おとろ]える (Yosh o'tgan sari xotira pasayadi). 3. 〜に伴[ともな]って: Katta ijtimoiy/iqtisodiy hodisalar va unga hamroh bo'lgan o'zgarishlar: 経済[けいざい]の 発展[はってん]に伴って、公害[こうがい]が 深刻[しんこく]化した (Iqtisodiyot rivojlanishi bilan birga ekologik ifloslanish chuqurlashdi).",
           "vocabulary": [
             {
@@ -372,7 +372,7 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 2,
-    "title": "Compliance & Basis: 〜に応じて vs 〜に沿って vs 〜に基づいて",
+    "title": "Moslik va asoslanish: 〜に応じて vs 〜に沿って vs 〜に基づいて",
     "description": "Talab va ehtiyojga mos holda (ni oujite), qoida va reja bo'yicha (ni sotte), dalilga asoslanib (ni motozuite).",
     "estimatedDurationMinutes": 23,
     "icon": "📐",
@@ -383,7 +383,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "〜に応じて vs 〜に沿って vs 〜に基づいて",
+          "title": "〜に応じて vs 〜に沿って vs 〜に基づいて qoidalari",
           "explanation": "1. 〜に応[おう]じて: Ehtiyoj, yosh yoki darajaga moslab moslashtirish: 予算[よさん]に応[おう]じて プランを 選[えら]ぶ (Byudjetga moslab rejani tanlash). 2. 〜に沿[そ]って: Reja, qoida yoki yo'nalish bo'ylab bormoq: マニュアルに沿[そ]って 作業[さぎょう]を 進[すす]める (Qo'llanmaga amal qilib ishni davom ettirish). 3. 〜に基[もと]づいて: Aniq ma'lumot, qonun yoki faktga asoslanib: 調査[ちょうさ]結果[けっか]に基[もと]づいて 判断[はんだん]する (Tekshiruv natijalariga asoslanib xulosa chiqarish).",
           "vocabulary": [
             {
@@ -712,7 +712,7 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 3,
-    "title": "Psychological Inability & Risk: 〜かねる vs 〜かねない",
+    "title": "Muloyim rad etish va xavfli ehtimol: 〜かねる vs 〜かねない",
     "description": "Rad etish muloyimligi (kaneru - qila olmayman) va xavfli ehtimol (kanenai - bo'lib qolishi mumkin!).",
     "estimatedDurationMinutes": 23,
     "icon": "⚠️",
@@ -723,7 +723,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "Polite Inability (〜かねる) vs Dangerous Potential (〜かねない)",
+          "title": "Muloyim rad etish (〜かねる) va xavf ehtimoli (〜かねない)",
           "explanation": "1. 〜かねる (Muloyim rasmiy rad etish / Masu asosi + kaneru): Sharoit yoki mas'uliyat sababli \"... qila olmayman\": そのような ご要望[ようぼう]には 応[おう]じかねます (Bunday talabni qondira olmaymiz). 2. 〜かねない (Salbiy/xatarli narsaning sodir bo'lish xavfi / Masu asosi + kanenai): \"... bo'lib qolishi xavfi bor\": スピードを 出[だ]しすぎると、大[おお]きな 事故[じこ]を 起[お]こしかねない (Juda tez yursa, katta avariyaga sabab bo'lib qolishi mumkin!).",
           "vocabulary": [
             {
@@ -1058,7 +1058,7 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 4,
-    "title": "Absolute Impossibility: 〜っこない & Subjective Guess: 〜げ",
+    "title": "Mutlaq imkonsizlik: 〜っこない va subyektiv belgi: 〜げ",
     "description": "Mutlaqo ilojsiz ekanini qat'iy ta'kidlash (kkonai) va tuyg'u belgisi (ge: sabishige, ureshige).",
     "estimatedDurationMinutes": 23,
     "icon": "❌",
@@ -1069,7 +1069,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "Impossibility (〜っこない) vs Outward Nuance (〜げ)",
+          "title": "Qat'iy imkonsizlik (〜っこない) va tashqi ko'rinish (〜げ)",
           "explanation": "1. 〜っこない (Masu asosi + kkonai): Gapiruvchining sub'ektiv ishonchi bo'yicha \"mutlaqo iloji yo'q / imkonsiz\": こんな難[むずか]しい 本[ほん]、1日[いちにち]で 読[よ]めっこない (Bunday qiyin kitobni 1 kunda o'qib bo'larmidi!). 2. 〜げ (Sifat asosi + ge): Tashqaridan sezilayotgan holat/tuyg'u: 寂[さび]しげな 表情[ひょうじょう] (G'amgin ko'ringan yuz ifodasi), 自信[じしん]ありげに 話[はな]す (Ishonchi komilligi sezilib gapirish).",
           "vocabulary": [
             {
@@ -1390,7 +1390,7 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 5,
-    "title": "N2 Editorial Dokkai: Column Analysis on AI & Ethics",
+    "title": "N2 Gazeta tahririyati mutolaasi: Sun'iy intellekt va axloq",
     "description": "Sun'iy intellekt, avtomatlashtirish va insoniyat axloqi haqidagi gazeta tahririyat maqolasi tahlili.",
     "estimatedDurationMinutes": 23,
     "icon": "🤖",
@@ -1401,7 +1401,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "Editorial: AI Evolution and Human Autonomy",
+          "title": "Tahririyat maqolasi: Sun'iy intellekt evolyutsiyasi va inson irodasi",
           "explanation": "人文学的[じんぶんがくてき]な 視点[してん]から 見[み]れば、生[せい]成[せい]AIの 急速[きゅうそく]な 進化[しんか]は 単[たん]なる 生産性[せいさんせい]の 向上[こうじょう]に 留[とど]まらず、人間[にんげん]の 尊厳[そんげん]や 意思[いし]決定[けってい]の 主体性[しゅたいせい]そのものを 根底[こんてい]から 問[と]い直[なお]す 契機[けいき]と なっている。\n\n質[しつ]の 高[たか]い 文章[ぶんしょう]や 絵画[かいが]を 数秒[すうびょう]で 出力[しゅつりょく]できる 利便性[りべんせい]は 疑[うたが]いようも ない。しかし、アルゴリズムに よる 最適化[さいてきか]の 快適[かいてき]さに 過度[かど]に 依存[いぞん]するあまり、人間[にんげん]が 試行[しこう]錯誤[さくご]を 重[かさ]ねる 中[なか]で 培[つちか]うべき 倫理的[りんりてき]な 葛藤[かっとう]や 洞察力[どうさつりょく]を 放棄[ほうき]しては ならない。悩[なや]み、迷[まよ]い、失敗[しっぱい]を 乗[の]り越[こ]える 精神的[せいしんてき]な 摩擦[まさつ]の 中[なか]にこそ、他者[たしゃ]への 共感[きょうかん]や 創造性[そうぞうせい]の 本質[ほんしつ]が 宿[やど]るからである。\n\nAIが もたらす 答えは、どこまで いっても 過去[かこ]の 統計[とうけい]的[てき]な 集積[しゅうせき]に 過[す]ぎない。新[あら]たな 価値[かち]を 切[き]り拓[ひら]くのは、自[みずか]らの 良心[りょうしん]と 責任[せきにん]に おいて 選択[せんたく]を 下[くだ]す 生身[なまみ]の 人間[にんげん]で なければ ならないのである。",
           "keyPoints": [
             "Muallif fikri: Algoritmik optimallashuvga haddan tashqari tayanib (依存するあまり), inson o'zining axloqiy izlanishi, hamdardligi va chuqur tahlil (洞察力) qobiliyatidan voz kechmasligi shart.",
@@ -1726,7 +1726,7 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 6,
-    "title": "Advanced Business Correspondence: 〜申し上げます & 〜存じます",
+    "title": "Yuqori biznes muloqoti: 〜申し上げます va 〜存じます",
     "description": "Rasmiy korporativ yozishmalar va diplomatik ehtirom formulalari.",
     "estimatedDurationMinutes": 23,
     "icon": "💼",
@@ -1737,7 +1737,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "Corporate Honorifics: 申し上げます & 存じます",
+          "title": "Korporativ ehtirom iboralari: 申し上げます va 存じます",
           "explanation": "1. お/ご + Fe'l asosi + 申[もう]し上[あ]げます (Chuqur ehtirom bilan bildiramiz): 心[こころ]より お礼[れい] 申[もう]し上[あ]げます (Chin qalbimizdan minnatdorchilik bildiramiz); お詫[わ]び 申[もう]し上[あ]げます (Kechirim so'raymiz). 2. 〜と 存[ぞん]じます (Deb hisoblaymiz / O'ylaymiz - omou ning oliy Kenjougo shakli): 幸[さいわ]いに 存[ぞん]じます (Baxtiyor bo'lardik).",
           "vocabulary": [
             {
@@ -2088,7 +2088,7 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 7,
-    "title": "N2 Advanced Kanji: Macroeconomics, Commerce & Law (融資, 景気, 契約, 義務, 損害)",
+    "title": "N2 Murakkab kanjilar: Iqtisodiyot, savdo va huquq (融資, 景気, 契約, 義務, 損害)",
     "description": "Bank krediti, bozor konyunkturasi, shartnomalar va huquqiy javobgarlik kanjilari.",
     "estimatedDurationMinutes": 23,
     "icon": "🈴",
@@ -2099,7 +2099,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "Commerce & Law Kanji",
+          "title": "Tijorat, moliya va qonunchilik kanjilari",
           "explanation": "融 (yuu - erish/moliya), 資 (shi - resurs/mablag'), 景 (kei - manzara/iqtisodiy vaziyat), 契 (kei - bitim/shartnoma), 約 (yaku - va'da/chegara), 損 (son - ziyon), 害 (gai - zarar).",
           "vocabulary": [
             {
@@ -2428,7 +2428,7 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 8,
-    "title": "Formal Negation & Concession: 〜ざるを得ない vs 〜わけにはいかない",
+    "title": "Rasmiy majburiyat va cheklov: 〜ざるを得ない vs 〜わけにはいかない",
     "description": "Majburlikdan qilishdan o'zga chora yo'qligi (zaru o enai) va axloqan/vaziyat sababli qila olmaslik (wake ni wa ikanai).",
     "estimatedDurationMinutes": 23,
     "icon": "⚖️",
@@ -2439,7 +2439,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "Forced Choice (〜ざるを得ない) vs Ethical Restraint (〜わけにはいかない)",
+          "title": "Majburiy tanlov (〜ざるを得ない) va ma'naviy to'siq (〜わけにはいかない)",
           "explanation": "1. 〜ざるを得[え]ない (Nai asosi + zaru o enai / する -> せざるを得ない): Xohlamasa ham sharoit taqozosi bilan \"... qilishdan o'zga chora yo'q\": 事実[じじつ]を 認[みと]めざるを得ない (Haqiqatni tan olishdan boshqa chora yo'q). 2. 〜わけにはいかない: Axloq, burch yoki ijtimoiy qoida sababli \"... qila olmayman / qilishga haqqim yo'q\": 大事[だいじ]な 会議[かいぎ]だから、休[やす]むわけには いかない (Muhim majlis bo'lgani uchun, bormay qola olmayman).",
           "vocabulary": [
             {
@@ -2779,7 +2779,7 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 9,
-    "title": "N2 Choukai: Integrated Information Listening (統合理解)",
+    "title": "N2 Tinglab tushunish: Kompleks axborotni anglash (統合理解)",
     "description": "N2 課題理解 va 統合理解: audio orqali vazifa, shartlar va keyingi harakatni aniqlash.",
     "estimatedDurationMinutes": 23,
     "icon": "🎧",
@@ -2790,7 +2790,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "Integrated Information Listening",
+          "title": "Kompleks axborotni tinglab tushunish (統合理解) strategiyasi",
           "explanation": "Audio boshlanishidan oldin variantlarni ko‘zdan kechiring. Tinglash paytida bajarilgan ishlar, yangi topshiriq, cheklov va yakuniy qarorni alohida belgilang.",
           "keyPoints": [
             "Savolni oldindan o‘qib, kim nima qilishi kerakligini aniqlash",
@@ -3139,7 +3139,7 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 10,
-    "title": "Unit 2 Checkpoint: Professional Japanese & Applied Skills",
+    "title": "2-bo'lim xulosasi: Professional yapon tili va amaliy ko'nikmalar",
     "description": "1–10-darslarda o‘rganilgan N2 grammatikasi, biznes yapon tili, kanji va tinglab tushunish strategiyalarini mustahkamlash.",
     "estimatedDurationMinutes": 23,
     "icon": "✅",
@@ -3150,7 +3150,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "N2 Unit 2 Consolidation",
+          "title": "N2 2-bo'lim bilimlarni mustahkamlash",
           "explanation": "Ushbu checkpoint N2 kursini yakunlamaydi. U 1–10-darslardagi parallel o‘zgarish, asos va muvofiqlik, xavf-ehtimol, rasmiy inkor, biznes yozishmalari hamda integratsiyalashgan tinglash strategiyalarini takrorlaydi.",
           "keyPoints": [
             "〜につれて / 〜にしたがって / 〜に伴って orasidagi farqni ajratish",
@@ -3486,7 +3486,7 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 11,
-    "title": "〜にすぎない (Nothing more than / Merely)",
+    "title": "〜にすぎない (...dan boshqa narsa emas / shunchaki ... xolos)",
     "description": "Cheklov va kamtarinlik ifodasi: \"Shunchaki ...dan iborat, xolos\".",
     "estimatedDurationMinutes": 23,
     "icon": "📌",
@@ -3497,7 +3497,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "〜にすぎない (Ni suginai) Usage",
+          "title": "〜にすぎない (Ni suginai) qo'llanilishi",
           "explanation": "Oddiy taxmin yoki kamtarona fikr bildirishda \"shunchaki ... xolos\" degan ma'noni beradi.",
           "keyPoints": [
             "これは私の個人的な意見にすぎない。 (Bu shunchaki mening shaxsiy fikrim xolos.)",
@@ -3826,7 +3826,7 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 12,
-    "title": "〜をめぐって (Surrounding / Concerning a dispute)",
+    "title": "〜をめぐって (...atrofida / ...masalasida bahs)",
     "description": "Muammo yoki munozara atrofida bahslashish: \"...atrofida / ...xususida\".",
     "estimatedDurationMinutes": 23,
     "icon": "💬",
@@ -3837,7 +3837,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "〜をめぐって (O megutte)",
+          "title": "〜をめぐって (O megutte) qoidasi",
           "explanation": "Biror masala, miras yoki siyosat atrofida kelishmovchilik, munozara bo'lganda ishlatiladi.",
           "keyPoints": [
             "遺産をめぐって兄弟が争っている。 (Meros atrofida aka-ukalar urishishmoqda.)",
@@ -4176,7 +4176,7 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 13,
-    "title": "〜に際して (On the occasion of / Prior to)",
+    "title": "〜に際して (...munosabati bilan / ...qilish arafasida)",
     "description": "Rasmiy tadbir yoki muhim hodisa munosabati bilan: \"...munosabati bilan / ...olida\".",
     "estimatedDurationMinutes": 23,
     "icon": "🎉",
@@ -4187,7 +4187,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "〜に際して (Ni saishite)",
+          "title": "〜に際して (Ni saishite) qo'llanilishi",
           "explanation": "Shartnoma tuzish, ish boshlash, to'y yoki tantana kabi muhim voqealar oldidan qo'llanadigan rasmiy ibora.",
           "keyPoints": [
             "契約に際して、いくつかの注意点があります。 (Shartnoma munosabati bilan bir nechta muhim nuqtalar bor.)",
@@ -4516,18 +4516,18 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 14,
-    "title": "Concession & Contrast: 〜ものの vs 〜とはいうものの",
+    "title": "Chekinish va zidlov: 〜ものの vs 〜とはいうものの",
     "description": "Kutilgan natijaga zid holatni rasmiy va yozma uslubda ifodalash: “... bo‘lsa-da / shunday deyilsa-da”.",
     "estimatedDurationMinutes": 23,
     "icon": "⚖️",
     "steps": [
       {
         "id": "ja-n2-u3-l4-s1",
-        "title": "〜ものの / 〜とはいうものの Qoidalari",
+        "title": "Zidlov va Chekinish Qoidasi",
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "Concession and Contrast",
+          "title": "Zidlov va chekinish (〜ものの / 〜とはいうものの)",
           "explanation": "〜ものの faktni tan olib, undan kutilgan natijaga zid holatni bildiradi. 〜とはいうものの esa oldingi fikr yoki umumiy qarashni tan olgan holda kuchliroq izoh va qarama-qarshilik kiritadi.",
           "keyPoints": [
             "Oddiy shakl + ものの: fakt tan olinadi, ammo natija kutilganidek emas.",
@@ -4865,7 +4865,7 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 15,
-    "title": "〜にほかならない (Nothing other than / Must be precisely)",
+    "title": "〜にほかならない (...dan boshqa narsa emas / aynan ...dir)",
     "description": "Qat'iy xulosa: \"...dan boshqa narsa emas / aynan ...dir\".",
     "estimatedDurationMinutes": 23,
     "icon": "🎯",
@@ -4876,7 +4876,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "〜にほかならない (Ni hokaranarai)",
+          "title": "〜にほかならない (Ni hokanaranai) qoidasi",
           "explanation": "Sabab yoki xulosaning yagona va haqiqiy ekanligini uzil-kesil ta'kidlash.",
           "keyPoints": [
             "彼の成功は努力の成果にほかならない。 (Mening muvaffaqiyatim mehnat mevasidan boshqa narsa emas.)",
@@ -5205,18 +5205,18 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 16,
-    "title": "Environmental & Technological Reading (環境・技術の読解)",
+    "title": "Atrof-muhit va texnologiya matnlari mutolaasi (環境・技術の読解)",
     "description": "Ekologiya va texnologiyaga oid N2 uzun matnlarni tahlil qilish va muallif g'oyasini topish.",
     "estimatedDurationMinutes": 24,
     "icon": "🌱",
     "steps": [
       {
         "id": "ja-n2-u4-l1-s1",
-        "title": "Ekologiya va Texnologiya Matni",
+        "title": "Ekologik Matnlar Mutolaasi",
         "type": "learn",
         "estimatedMinutes": 6,
         "learnData": {
-          "title": "Environmental Literacy & Dokkai",
+          "title": "Ekologik savodxonlik va matn tahlili (読解)",
           "explanation": "現代[げんだい]社会[しゃかい]が 直面[ちょくめん]する 気候[きこう]変動[へんどう]と 資源[しげん]枯渇[こかつ]の 危機[きき]に 対処[たいしょ]するため、従来の「大量[たいりょう]生産[せいさん]・大量[たいりょう]消費[しょうひ]・大量[たいりょう]廃棄[はいき]」という 一方[いっぽう]通行[つうこう]型[がた]の 経済[けいざい]モデルは、根本的[こんぽんてき]な 転換[てんかん]を 迫[せま]られている。持続[じぞく]可能[かのう]な 社会[しゃかい]を 構築[こうちく]する うえで、今[いま] 最[もっと]も 注目[ちゅうもく]されているのが「サーキュラー・エコノミー（循環[じゅんかん]型[がた]経済[けいざい]）」の 概念[がいねん]である。\n\nこの 仕組み[しくみ]では、製品[せいひん]の 設計[せっけい]段階[だんかい]から リサイクルや 修理[しゅうり]が 容易[ようい]に できるよう 配慮[はいりょ]され、資源[しげん]を 廃棄物[はいきぶつ]と せずに 永久[えいきゅう]に 循環[じゅんかん]させることを 目指[めざ]す。特[とく]に 脱炭素[だつたんそ]社会[しゃかい]の 実現[じつげん]には、再生[さいせい]可能[かのう]エネルギーの 普及[ふきゅう]と ともに、高度[こうど]な 省[しょう]エネ技術[ぎじゅつ]を 駆使[くし]した 産業[さんぎょう]構造[こうぞう]の 改革[かいかく]が 不可欠[ふかけつ]である。\n\n一方で、経済[けいざい]成長[せいちょう]と 環境[かんきょう]保護[ほご]の 両立[りょうりつ]には、企業[きぎょう]の コスト負担[ふたん]や 消費者[しょうひしゃ]の 意識[いしき]改革[かいかく]など、多[おお]くの 課題[かだい]が 残[のこ]されている。行政[ぎょうせい]と 企業[きぎょう]、そして 市民[しみん]が 議論[ぎろん]を 重[かさ]ねて 妥協[だきょう]点[てん]を 模索[もさく]し、包括的[ほうかつてき]な 協調[きょうちょう]体制[たいせい]を 築[きず]くことこそが、未来[みらい]への 唯一[ゆいいつ]の 道[みち]と 言[い]えよう。",
           "keyPoints": [
             "Asosiy g'oya: Barqaror jamiyat (持続可能な社会) faqat aylanma iqtisodiyot va dekarbonizatsiya (脱炭素) orqali shakllanadi.",
@@ -5556,7 +5556,7 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 17,
-    "title": "〜に先立って (Prior to / In advance of)",
+    "title": "〜に先立って (...dan oldin / ...boshlanishidan avval)",
     "description": "Tadbir yoki loyiha oldidan tayyorgarlik ko'rish: \"...dan oldin / ...ga tayyorgarlik ko'rib\".",
     "estimatedDurationMinutes": 23,
     "icon": "📅",
@@ -5567,7 +5567,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "〜に先立って (Ni sakadatte)",
+          "title": "〜に先立って (Ni sakadatte) qoidasi",
           "explanation": "Loyiha yoki yirik tadbir boshlanishidan oldin zarur tayyorgarlik yoki uchrashuv o'tkazish.",
           "keyPoints": [
             "開店に先立ち、関係者向けの内覧会が行われた。 (Do'kon ochilishidan oldin taklif etilganlar uchun ko'rgazma bo'ldi.)",
@@ -5906,7 +5906,7 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 18,
-    "title": "〜を契機に (Triggered by / Taking the opportunity of)",
+    "title": "〜を契機に (...turtki bo'lib / ...munosabati bilan)",
     "description": "Katta o'zgarishga turtki bo'lgan hodisa: \"...munosabati bilan / ...turtki bo'lib\".",
     "estimatedDurationMinutes": 23,
     "icon": "🚀",
@@ -5917,7 +5917,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "〜を契機に (O keiki ni)",
+          "title": "〜を契機に (O keiki ni) qoidasi",
           "explanation": "Biror muhim hodisa hayotda yoki jamiyatda burilish yasaganda turtki sifatida ko'rsatish.",
           "keyPoints": [
             "病気を契機に、健康的な生活を始めた。 (Kasal bo'lganim hayotimni sog'lom tomonga o'zgartirishga turtki bo'ldi.)",
@@ -6256,7 +6256,7 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 19,
-    "title": "〜を込めて (With all one's heart / Filled with)",
+    "title": "〜を込めて (...ni bag'ishlab / chin dildan ... bilan)",
     "description": "Hissiyot va tilaklarni bag'ishlash: \"...mehr bilan / ...tilaklar bilan\".",
     "estimatedDurationMinutes": 23,
     "icon": "💖",
@@ -6267,7 +6267,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "〜を込めて (O komete)",
+          "title": "〜を込めて (O komete) qoidasi",
           "explanation": "Yurakdan chiqqan tuyg'u (mehr, tilak, duo, raxmat) bilan biror ish qilish.",
           "keyPoints": [
             "感謝の気持ちを込めて、プレゼントを贈る。 (Minnetdorchilik tuyg'usi bilan sovg'a taqdim etmoq.)",
@@ -6592,18 +6592,18 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 20,
-    "title": "N2 Listening Comprehension (聴解 - 即時応答 & 概要理解)",
+    "title": "N2 Tinglab tushunish (聴解 - Tezkor javob va umumiy mazmun)",
     "description": "JLPT N2 即時応答・ポイント理解・概要理解 bo‘yicha real audio trekli mashqlar.",
     "estimatedDurationMinutes": 24,
     "icon": "🎧",
     "steps": [
       {
         "id": "ja-n2-u4-l5-s1",
-        "title": "Chokkai Strategiyasi",
+        "title": "Chokkai Tinglab Tushunish Strategiyasi",
         "type": "learn",
         "estimatedMinutes": 6,
         "learnData": {
-          "title": "N2 Chokkai Audio Listening",
+          "title": "N2 Tinglab tushunish audio mashqlari (聴解)",
           "explanation": "Tezkor javobda vaziyat va suhbatdosh maqomiga mos reaksiyani, point/summary savollarida esa burilish va xulosa signallarini aniqlang.",
           "keyPoints": [
             "即時応答 — vaziyatga tabiiy va ijtimoiy jihatdan mos javobni tanlash",
@@ -6952,18 +6952,18 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 21,
-    "title": "N2 Business Kanji (職・企・業・採)",
+    "title": "N2 Biznes kanjilari (職・企・業・採)",
     "description": "Ish va biznesga oid N2 kanjilar (職, 企, 業, 採).",
     "estimatedDurationMinutes": 23,
     "icon": "🏢",
     "steps": [
       {
         "id": "ja-n2-u5-l1-s1",
-        "title": "Biznes Kanjilar",
+        "title": "Biznes Kanjilari",
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "Kanji for Employment & Business",
+          "title": "Kasb-hunar va korporativ biznes kanjilari",
           "explanation": "N2 darajadagi 1000 ta kanjidan biznes sohasida eng faol qism.",
           "keyPoints": [
             "職業 (Shokugyou) — kasb-kor",
@@ -7313,7 +7313,7 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 22,
-    "title": "N2 Legal & Government Kanji (法・律・規・政)",
+    "title": "N2 Huquq va davlat boshqaruvi kanjilari (法・律・規・政)",
     "description": "Qonunchilik va davlat boshqaruvi kanjilari (法, 律, 規, 政).",
     "estimatedDurationMinutes": 23,
     "icon": "🏛️",
@@ -7324,7 +7324,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "Kanji for Law & Governance",
+          "title": "Qonun va davlat boshqaruvi kanjilari",
           "explanation": "N2 matn va yangiliklarda ko'p uchraydigan qonunchilik kanjilari.",
           "keyPoints": [
             "法律 (Houritsu) — qonun",
@@ -7645,7 +7645,7 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 23,
-    "title": "N2 Compound Verbs (〜直す, 〜終える, 〜切る, 〜抜く)",
+    "title": "N2 Qo'shma fe'llar (〜直す, 〜終える, 〜切る, 〜抜く)",
     "description": "Qo‘shma fe’llar: harakatni qaytadan bajarish, yakunlash, oxirigacha bajarish va qiyinchilikka qaramay davom ettirish.",
     "estimatedDurationMinutes": 23,
     "icon": "🔄",
@@ -7656,7 +7656,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "N2 Compound Verb Mastery",
+          "title": "N2 Qo'shma fe'llar (複合動詞) qoidalari",
           "explanation": "Fe’lning ます-o‘zagiga ikkinchi fe’l qo‘shilib, harakatning qayta bajarilishi, tugallanishi yoki oxirigacha davom etishini bildiradi.",
           "keyPoints": [
             "〜直す — qaytadan qilish yoki qayta ko‘rib chiqish",
@@ -8011,18 +8011,18 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 24,
-    "title": "N2 Onomatopoeia & Mimetic Words (擬音語・擬態語)",
+    "title": "N2 Taqlid va holat so'zlari (擬音語・擬態語)",
     "description": "Tavsifiy taqlid so'zlar: \"Sukkiri\", \"Giri-giri\", \"Waku-waku\", \"Ira-ira\".",
     "estimatedDurationMinutes": 23,
     "icon": "✨",
     "steps": [
       {
         "id": "ja-n2-u5-l4-s1",
-        "title": "Giongo & Gitaigo",
+        "title": "Taqlid So'zlar (Onomatopeya)",
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "N2 Onomatopoeic Expressions",
+          "title": "N2 Taqlid va obrazli ifodalar (オノマトペ)",
           "explanation": "Yapon tilidagi ruhiy va jismoniy holatlarni ifodalovchi taqlid so'zlar.",
           "keyPoints": [
             "すっきり (Sukkiri) — yengil tortured, tinchlanganda",
@@ -8357,18 +8357,18 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 25,
-    "title": "N2 Vocabulary Synthesis & Synonym Practice",
+    "title": "N2 Leksika integratsiyasi va sinonimlar amaliyoti",
     "description": "Sinonimlar va ma'nodosh N2 so'zlarni moslashtirish mashg'uloti.",
     "estimatedDurationMinutes": 23,
     "icon": "📚",
     "steps": [
       {
         "id": "ja-n2-u5-l5-s1",
-        "title": "N2 Sinonimlar",
+        "title": "N2 Sinonimlar va Ibora Boyligi",
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "N2 Synonyms & Paraphrasing",
+          "title": "N2 Sinonimlar va so'zlarni qayta ifodalash (言い換え)",
           "explanation": "N2 imtihonidagi \"Iikae ruiyaku\" (ma'nodosh almashtirish) bo'limi.",
           "keyPoints": [
             "抽象的 (Chuushouteki) = 具体的ではない (Aniqlikdan yiroq)",
@@ -8708,18 +8708,18 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 26,
-    "title": "N2 Keigo Mastery (尊敬語・謙譲語の総復習)",
+    "title": "N2 Keigo mahorati (Hurmat va kamtarlik shakllari umumiy takrori)",
     "description": "Hurmat va kamtarinlik iboralarining biznes darajasidagi to'liq sinovidan o'tish.",
     "estimatedDurationMinutes": 24,
     "icon": "🙇",
     "steps": [
       {
         "id": "ja-n2-u6-l1-s1",
-        "title": "Keigo General Mastery",
+        "title": "Keigo Umumiy Mahorati",
         "type": "learn",
         "estimatedMinutes": 6,
         "learnData": {
-          "title": "Sonkeigo & Kenjougo Review",
+          "title": "Sonkeigo va Kenjougo umumiy takrori",
           "explanation": "N2 Keigo grammatikasida eng ko'p adashtiriladigan fe'llar integratsiyasi.",
           "keyPoints": [
             "行く/来る -> 拝察する (xatda), お越しになる (mijozga), 伺う (o'zi borishi)",
@@ -9069,7 +9069,7 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 27,
-    "title": "N2 Grammar Integration (文法総合問題)",
+    "title": "N2 Grammatika integratsiyasi (Umumiy grammatika masalalari)",
     "description": "JLPT N2 darajasidagi barcha 50+ grammatik qoidalarni aralash test orqali tekshirish.",
     "estimatedDurationMinutes": 24,
     "icon": "📝",
@@ -9080,7 +9080,7 @@
         "type": "learn",
         "estimatedMinutes": 6,
         "learnData": {
-          "title": "N2 Grammar Comprehensive Rules",
+          "title": "N2 Grammatikasining to'liq qoidalari",
           "explanation": "〜に際して, 〜を契機に, 〜ざるを得ない, 〜にほかならない kabi N2 birikmalari.",
           "keyPoints": [
             "Rasmiy grammatika qo'shimchalari",
@@ -9405,7 +9405,7 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 28,
-    "title": "N2 Information Retrieval (情報検索の読解)",
+    "title": "N2 Axborot qidirish va tezkor mutolaa (情報検索の読解)",
     "description": "JLPT N2 \"Jouhou Kensaku\" — E'lonlar, jadval va hujjatlardan tezkor ma'lumot qidirish.",
     "estimatedDurationMinutes": 24,
     "icon": "🔍",
@@ -9416,7 +9416,7 @@
         "type": "learn",
         "estimatedMinutes": 6,
         "learnData": {
-          "title": "Information Retrieval Techniques",
+          "title": "Axborot qidirish usullari va tezkor tahlil",
           "explanation": "【中央[ちゅうおう]市民[しみん] 生涯[しょうがい]学習[がくしゅう]センター 秋季[しゅうき]特別[とくべつ]講座[こうざ] 受講生[じゅこうせい]募集[ぼしゅう]】\n\n当[とう]センターでは、市民[しみん]の 皆様[みなさま]の 文化[ぶんか]・教養[きょうよう]向上[こうじょう]を 目指[めざ]し、以下[いか]の 講座[こうざ]を 開講[かいこう]いたします。\n\n■ 開講[かいこう]コース一覧[いちらん]：\n・Aコース：ビジネス実務[じつむ]日本語[にほんご]（水曜[すいよう] 19:00〜20:30） 受講料[じゅこうりょう]：12,000円\n・Bコース：日本[にほん]の 伝統[でんとう]文化[ぶんか]体験[たいけん]（土曜[どよう] 14:00〜16:00） 受講料[じゅこうりょう]：15,000円\n・Cコース：デジタル・マーケティング入門[にゅうもん]（木曜[もくよう] 19:00〜21:00） 受講料[じゅこうりょう]：18,000円\n\n■ 割引[わりびき]制度[せいど]：\n1. 学生[がくせい]割引[わりびき]：受講料[じゅこうりょう]の20％引[び]き（※平日[へいじつ]開講[かいこう]の 講座[こうざ]のみ 適用[てきよう]。学生証[がくせいしょう]提示[ていじ]が 必要[ひつよう]）\n2. 区民[くみん]割引[わりびき]：受講料[じゅこうりょう]の10％引[び]き（全講座[ぜんこうざ]適用[てきよう]可[か]）\n※各種[かくしゅ] 割引[わりびき]の 重複[じゅうふく]適用[てきよう]は できません。\n\n■ 申込[もうしこみ]期間[きかん]および 注意[ちゅうい]事項[じこう]：\n・申込[もうしこみ]締切[しめきり]：9月[くがつ]25日[にじゅうごにち]（金[きん]）17:00必着[ひっちゃく]\n・定員[ていいん]（各[かく]20名[めい]）に 達[たっ]し 次第[しだい]、締[し]め切[き]らせていただきます。\n・キャンセルによる 返金[へんきん]は、開講[かいこう]初日[しょにち]の7日前[なのかまえ]までに 事務局[じむきょく]へ 連絡[れんらく]した 場合[ばあい]のみ 全額[ぜんがく]返金[へんきん]いたします。",
           "keyPoints": [
             "Jouhou Kensaku strategiyasi: Matnni boshidan oxirigacha to'liq o'qimasdan, savoldagi shartlar (masalan: talaba, kun, kurs turi) bo'yicha jadval va cheklovlarni skaner qilish.",
@@ -9752,7 +9752,7 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 29,
-    "title": "N2 Mini Mock Exam (模擬ミニテスト)",
+    "title": "N2 Kichik sinov imtihoni (模擬ミニテスト)",
     "description": "JLPT N2 bo‘limlari bo‘yicha qisqa formatdagi integratsiyalashgan sinov va vaqt boshqaruvi mashqi.",
     "estimatedDurationMinutes": 24,
     "icon": "📊",
@@ -9763,7 +9763,7 @@
         "type": "learn",
         "estimatedMinutes": 6,
         "learnData": {
-          "title": "N2 Mini Mock Readiness",
+          "title": "N2 Kichik sinov imtihoniga tayyorgarlik",
           "explanation": "Bu to‘liq rasmiy JLPT simulyatsiyasi emas. U grammatika, lug‘at va o‘qib tushunishni qisqa formatda tekshiradigan tayyorgarlik testidir.",
           "keyPoints": ["Vaqtni to'g'ri taqsimlash", "N1 darajasiga o'tish ko'rsatkichi (75%+)"],
           "grammarRules": [
@@ -10085,7 +10085,7 @@
     "language": "ja",
     "level": "N2",
     "lessonNumber": 30,
-    "title": "N2 Course Final Assessment & N1 Readiness Check",
+    "title": "N2 Kursining yakuniy imtihoni va N1 ga tayyorgarlik sinovi",
     "description": "N2 kursi bo‘yicha yakuniy ichki baholash va N1 materiallariga tayyorlikni tekshirish.",
     "estimatedDurationMinutes": 24,
     "icon": "🏆",
@@ -10096,7 +10096,7 @@
         "type": "learn",
         "estimatedMinutes": 6,
         "learnData": {
-          "title": "N2 Course Completion Review",
+          "title": "N2 Kursini to'liq yakunlash xulosasi",
           "explanation": "Ushbu dars ilova ichidagi kurs yakuniy baholashidir. U rasmiy JLPT sertifikati o‘rnini bosmaydi va N1’ga tayyorlanish uchun kuchli hamda zaif tomonlarni aniqlaydi.",
           "keyPoints": [
             "1000 Kanji va 6000 Vocabulary bazasiga ega bo'ldingiz.",
