@@ -7,7 +7,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 1,
-    "title": "Classical Concessions: 〜であれ / 〜であろうと (No Matter What / Be it)",
+    "title": "Klassik chekinish: 〜であれ / 〜であろうと (Qanday bo'lishidan qat'i nazar)",
     "description": "Mumtoz yapon tili grammatikasining oliy ifodasi: qanday holat bo'lishidan qat'i nazar (De are / Dearou to).",
     "estimatedDurationMinutes": 23,
     "icon": "📜",
@@ -18,7 +18,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "Universal Concession (〜であれ / 〜であろうと)",
+          "title": "Umumiy shart va chekinish (〜であれ / 〜であろうと)",
           "explanation": "Qadimgi mumtoz bungo (文語) uslubidan saqlanib qolgan yuksak adabiy konstruksiya: \"Kim yoki nima bo'lishidan qat'i nazar, qoida o'zgarmasdir\".",
           "keyPoints": [
             "たとえ 国王[こくおう]であれ、法[ほう]の 前[まえ]には 平等[びょうどう]で ある。 (Hatto podshoh bo'lsa ham, qonun oldida tengdir.)",
@@ -356,7 +356,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 2,
-    "title": "Status & Duty: 〜たるもの vs 〜まじき (Fit for a leader vs Unforgivable for)",
+    "title": "Maqom va mas'uliyat: 〜たるもの vs 〜まじき (Yetakchiga xos vs Kechirilmas)",
     "description": "Sharafli maqomga loyiqlik (tarumono - mavqeiga xos) va mutlaqo yarashmaydigan xatti-harakat (majiki).",
     "estimatedDurationMinutes": 23,
     "icon": "⚖️",
@@ -367,7 +367,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "Status Expectation (〜たるもの) vs Unpardonable Act (〜まじき)",
+          "title": "Maqom mas'uliyati (〜たるもの) va kechirilmas harakat (〜まじき)",
           "explanation": "1. 〜たるもの (Ot + taru mono): Boshqaruvchi, olim yoki rahbar kabi yuqori maqom egasi qanday bo'lishi shartligini bildiradi: 医者[いしゃ]たるもの、患者[かんじゃ]の 命[いのち]を 最優先[さいゆうせん]に すべきだ (Shifokor degan zot bemor hayotini eng birinchi o'ringa qo'yishi shart). 2. 〜まじき (Fe'l lug'at shakli + majiki + Ot): Ushbu kasb yoki maqomdagi inson uchun mutlaqo kechirib bo'lmas xato: 政治家[せいじか]として あるまじき 発言[はつげん] (Siyosatchi uchun mutlaqo yarashmaydigan/kechirilmas bayonot).",
           "vocabulary": [
             {
@@ -683,7 +683,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 3,
-    "title": "Uniqueness & Supreme Exclusivity: 〜ならでは vs 〜をおいて他にない",
+    "title": "Noyoblik va mutlaq xoslik: 〜ならでは vs 〜をおいて他にない",
     "description": "Faqat shu narsaga xos yagona fazilat (naradehawa) va undan o'zga muqobil yo'qligi (o oite hoka ni nai).",
     "estimatedDurationMinutes": 23,
     "icon": "💎",
@@ -694,7 +694,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "Supreme Exclusivity (〜ならでは / 〜をおいて他にない)",
+          "title": "Yuksak mutlaqlik va xoslik (〜ならでは / 〜をおいて他にない)",
           "explanation": "1. 〜ならでは (Ot + narade wa): Faqat shu joy, inson yoki san'atga xos takrorlanmas ajoyib xususiyat: 京都[きょうと]ならではの 伝統[でんとう]美[び] (Faqat Kiotoga xos an'anaviy go'zallik). 2. 〜をおいて他[ほか]にない: Bu vazifani bajarishga undan o'zga munosib yo'q: この大役[たいやく]を 果[は]たせるのは、彼[かれ]をおいて他[ほか]にない (Bu ulkan mas'uliyatni uddalay oladigan undan boshqa hech kim yo'q).",
           "vocabulary": [
             {
@@ -1010,7 +1010,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 4,
-    "title": "Extreme Completeness: 〜ずくめ vs 〜まみれ vs 〜だらけ",
+    "title": "Mutlaq qamrov va to'liqlik: 〜ずくめ vs 〜まみれ vs 〜だらけ",
     "description": "Mutlaqo qamrab olganlik (zukume - faqat shunday hodisalar), kirlanganlik (mamire - qonga/loyga belanish), tartibsizlik (darake).",
     "estimatedDurationMinutes": 23,
     "icon": "✨",
@@ -1021,7 +1021,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "Total Immersion & Contamination Nuances",
+          "title": "To'liq qoplanish va kirlanish nozikliklari (〜ずくめ / 〜まみれ / 〜だらけ)",
           "explanation": "1. 〜ずくめ: Butunlay shu narsalardan iborat (ijobiy yoki qora rang kabi abstrakt hodisalar): 結構[けっこう]ずくめ (Faqat quvonchli xabarlar), 黒[くろ]ずくめの 服[ふく] (Toza qora kiyim). 2. 〜まみれ: Suyuqlik yoki ifloslikka badanning to'liq belanishi (yopishib qolish): 泥[どろ]まみれ (Loyga belangan), 血[ち]まみれ (Qonga belangan). 3. 〜だらけ: Yuzada juda ko'p tarqoq salbiy narsalar bo'lishi: 間違[まちが]いだらけ (Xatolarga to'la), ゴミだらけ (Chiqindiga to'la).",
           "vocabulary": [
             {
@@ -1346,7 +1346,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 5,
-    "title": "N1 Deep Hermeneutics: Philosophical Treatise on Epistemology & Language",
+    "title": "N1 Chuqur germenevtika: Epistemologiya va til falsafasi risolasi",
     "description": "Til falsafasi, Vitgenshteyn va strukturalizm bo'yicha yapon tilidagi chuqur ilmiy traktat mutolaasi.",
     "estimatedDurationMinutes": 23,
     "icon": "🏛️",
@@ -1357,7 +1357,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "Treatise: The Limits of Language and Ontological Reality",
+          "title": "Falsafiy risola: Til chegaralari va borliq haqiqati",
           "explanation": "言語[げんご]とは 単[たん]に 既存[きぞん]の 客観的[きゃっかんてき] 実在[じつざい]を 模写[もしゃ]する 記号[きごう]体系[たいけい]では なく、むしろ 世界[せかい]そのものを 分節化[ぶんせつか]し、人間[にんげん]の 認識[にんしき]の 地平[ちへい]を 規定[きてい]する 構造的[こうぞうてき] 枠組[わくぐ]みに 他[ほか]ならない。 言語[げんご]の 限界[げんかい]が 思考[しこう]の 限界[げんかい]を 画定[かくてい]するが ゆえに、私[わたし]たちが 自明[じめい]と 見[み]なす 現実[げんじつ]は、常[つね]に 文化的[ぶんかてき] コンテクストに 媒介[ばいかい]された 表象[ひょうしょう]の 集積[しゅうせき]で ある。",
           "keyPoints": [
             "Epistemologik xulosa: Til borliqni shunchaki nusxalamaydi, balki inson tafakkur chegaralarini shakllantiradi."
@@ -1689,7 +1689,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 6,
-    "title": "N1 Master Kanji 1: Cognitive Discrepancy & Ambiguity (齟齬, 乖離, 曖昧, 葛藤, 矛盾)",
+    "title": "N1 Oliy kanjilar 1: Ziddiyat va noaniqlik (齟齬, 乖離, 曖昧, 葛藤, 矛盾)",
     "description": "Tafakkurdagi kelishmovchilik, uzilish, noaniqlik va ziddiyatlarni ifodalovchi N1 iyerogliflari.",
     "estimatedDurationMinutes": 23,
     "icon": "🈴",
@@ -1700,7 +1700,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "N1 High-Register Kanji",
+          "title": "N1 Yuqori akademik kanjilar",
           "explanation": "齟齬 (sogo - kelishmovchilik / uzviy ziddiyat), 乖離 (kairi - keskin uzilish / begonalashuv), 曖昧 (aimai - noaniq / mavhum), 矛盾 (mujun - ziddiyat / paradoks), 葛藤 (kattou - ichki ruhiy kurash).",
           "vocabulary": [
             {
@@ -2034,7 +2034,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 7,
-    "title": "N1 Master Kanji 2: Statecraft, Vulnerability & Anxiety (憂慮, 脆弱, 覇権, 諮問, 隠蔽)",
+    "title": "N1 Oliy kanjilar 2: Davlat boshqaruvi va xavfsizlik (憂慮, 脆弱, 覇権, 諮問, 隠蔽)",
     "description": "Davlat xavfsizligi, chuqur xavotir, zaiflik, gegemoniya va yashirish kanjilari.",
     "estimatedDurationMinutes": 23,
     "icon": "🈴",
@@ -2045,7 +2045,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "High Statecraft & Epistemic Terms",
+          "title": "Davlat siyosati va strategik terminlar",
           "explanation": "憂慮 (yuuryo - chuqur tashvish/xavotir), 脆弱 (zeijaku - zaiflik/himoyasizlik), 覇権 (haken - gegemoniya/hukmronlik), 諮問 (shimon - rasmiy konsultatsiya/ekspert maslahati), 隠蔽 (inpei - faktlarni qasddan yashirish).",
           "vocabulary": [
             {
@@ -2369,7 +2369,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 8,
-    "title": "N1 Choukai: Integrated Lecture Synthesis (統合学術講義)",
+    "title": "N1 Tinglab tushunish: Kompleks akademik ma'ruza sintezi (統合学術講義)",
     "description": "Universitet professori ma'ruzasidagi ko'p o'lchovli ilmiy sintezni to'liq tushunish.",
     "estimatedDurationMinutes": 23,
     "icon": "🎓",
@@ -2380,7 +2380,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "Doctoral Lecture Synthesis",
+          "title": "Akademik doktorlik ma'ruzasi sintezi",
           "explanation": "Choukai bo'limida Kvant fizikasi, neyrobiologiya yoki konstitutsiyaviy huquq bo'yicha 3 daqiqalik ma'ruza tinglanadi. Savollar ma'ruzadagi paradoksal xulosalar va gipotezalarni sinovdan o'tkazadi.",
           "keyPoints": [
             "No visual questions on test sheet; everything is processed aurally with rapid note-taking."
@@ -2716,18 +2716,18 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 9,
-    "title": "JLPT N1 Mock Exam: Grammar & Reading Checkpoint",
+    "title": "JLPT N1 Sinov imtihoni: Grammatika va o'qish oraliq nazorati",
     "description": "N1 grammatika va o‘qish bo‘yicha 10 savollik checkpoint; xatolarni tahlil qilish uchun.",
     "estimatedDurationMinutes": 23,
     "icon": "📝",
     "steps": [
       {
         "id": "ja-n1-u2-l4-s1",
-        "title": "N1 Mock Exam Strategy",
+        "title": "N1 Sinov Imtihoni Strategiyasi",
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "JLPT N1 Grand Blueprint",
+          "title": "JLPT N1 Imtihonining bosh strategiyasi",
           "explanation": "N1 imtihoni 2000+ kanji, 10,000+ so'z boyligi va 110 daqiqalik intensiv Language Knowledge/Reading bo'limidan iborat.",
           "keyPoints": [
             "Moji/Goi/Bunpou: 40 minutes max",
@@ -3052,7 +3052,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 10,
-    "title": "JLPT N1 Pinnacle Capstone: Advanced Kanji and Academic Register Review",
+    "title": "JLPT N1 Oliy cho'qqi: Murakkab kanjilar va akademik uslub takrori",
     "description": "N1 kanji va akademik uslub mavzularini takrorlash mashqlari.",
     "estimatedDurationMinutes": 23,
     "icon": "👑",
@@ -3063,7 +3063,7 @@
         "type": "learn",
         "estimatedMinutes": 5,
         "learnData": {
-          "title": "Pinnacle of Japanese Language Mastery (JLPT N1)",
+          "title": "Yapon tili oliy cho'qqisi xulosasi (JLPT N1)",
           "explanation": "N1 kanji va akademik uslub bo‘yicha o‘rganganlaringizni keyingi darslardan oldin takrorlang.",
           "keyPoints": [
             "2000+ Kanji absolute fluency",
@@ -3389,7 +3389,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 11,
-    "title": "〜たる者 (As a person in the position of / Being a...)",
+    "title": "〜たる者 (...dek maqomdagi inson sifatida / ...bo'la turib)",
     "description": "Burch va mas'uliyat: \"Ma'lum oliy maqom egasi sifatida...\".",
     "estimatedDurationMinutes": 24,
     "icon": "👑",
@@ -3400,7 +3400,7 @@
         "type": "learn",
         "estimatedMinutes": 6,
         "learnData": {
-          "title": "〜たる者 (Taru mono)",
+          "title": "〜たる者 (Taru mono) qo'llanilishi",
           "explanation": "Oliy mas'uliyatli shaxs (O'qituvchi, Davlat arbobi, Shifokor) o'z burchiga sodiq bo'lishi kerakligini ta'kidlash.",
           "keyPoints": [
             "指導者たる者は、常に冷静でなければならない。 (Etakchi bo'lgan shaxs doim bosiq bo'lishi shart.)",
@@ -3730,7 +3730,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 12,
-    "title": "〜に至る / 〜に至るまで (Reaching the point of / Down to)",
+    "title": "〜に至る / 〜に至るまで (...darajagacha yetib borish / ...gacha)",
     "description": "Chegara va yakuniy bosqich: \"...darajasigacha yetib borish\".",
     "estimatedDurationMinutes": 24,
     "icon": "📍",
@@ -3741,7 +3741,7 @@
         "type": "learn",
         "estimatedMinutes": 6,
         "learnData": {
-          "title": "〜に至る (Ni itaru)",
+          "title": "〜に至る / 〜に至るまで (Ni itaru) qoidasi",
           "explanation": "Hodisalarning taraqqiyoti natijasida muayyan oliy yoki keskin bosqichga yetib kelishi.",
           "keyPoints": [
             "事態がここに至っては、解散せざるを得ない。 (Vaziyat shunday darajaga yetgan ekan, tarqalishga majburmiz.)",
@@ -4085,7 +4085,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 13,
-    "title": "〜を余儀なくされる (To be forced to / Compelled to)",
+    "title": "〜を余儀なくされる (...ga majbur bo'lmoq / ilojsiz qolmoq)",
     "description": "Vaziyat taqozo etgan noiloj majburiyat: \"...majburiyatida qolmoq\".",
     "estimatedDurationMinutes": 24,
     "icon": "⚠️",
@@ -4096,7 +4096,7 @@
         "type": "learn",
         "estimatedMinutes": 6,
         "learnData": {
-          "title": "〜を余儀なくされる (O yoginaku sareru)",
+          "title": "〜を余儀なくされる (O yoginaku sareru) qoidasi",
           "explanation": "Tashqi muqarrar holatlar (tabiiy ofat, urush, inqiroz) tufayli rejadan voz kechishga majbur bo'lish.",
           "keyPoints": [
             "台風のため、飛行機は欠航を余儀なくされた。 (Tayfun sababli parvoz bekor qilinishga majbur bo'lindi.)",
@@ -4460,7 +4460,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 14,
-    "title": "〜が早いか (No sooner had... than / As soon as)",
+    "title": "〜が早いか (...ishi bilanoq / ...gan zahoti)",
     "description": "Vaqt bo'yicha ketma-ket dalahol sodir bo'lgan shiddatli harakat: \"...bahamanoz / ...bilan birga\".",
     "estimatedDurationMinutes": 24,
     "icon": "⚡",
@@ -4471,7 +4471,7 @@
         "type": "learn",
         "estimatedMinutes": 6,
         "learnData": {
-          "title": "〜が早いか (Ga hayai ka)",
+          "title": "〜が早いか (Ga hayai ka) qoidasi",
           "explanation": "Birinchi harakat tugashi bilanoq ikkinchisi lahzada yuz berganda.",
           "keyPoints": [
             "チャイムが鳴るが早いか、生徒たちは飛び出した。 (Qo'ng'iroq chalinishi bilan o'quvchilar otilib chiqishdi.)",
@@ -4796,7 +4796,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 15,
-    "title": "〜まじき (Unforgivable / Must not / Unbecoming)",
+    "title": "〜まじき (...ga aslo yarashmaydigan / qilib bo'lmas)",
     "description": "Ahloqiy va kasbiy nuqtai nazardan aslo yo'l qo'yib bo'lmaydigan harakat.",
     "estimatedDurationMinutes": 24,
     "icon": "🛑",
@@ -4807,7 +4807,7 @@
         "type": "learn",
         "estimatedMinutes": 6,
         "learnData": {
-          "title": "〜まじき (Majiki)",
+          "title": "〜まじき (Majiki) qoidasi",
           "explanation": "Muayyan mavqedagi inson qilishi aslo mumkin bo'lmagan nojoiz harakat.",
           "keyPoints": [
             "プロとしてあるまじき行為だ。 (Professional odam qilishi aslo mumkin bo'lmagan xatti-harakatdir.)",
@@ -5137,18 +5137,18 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 16,
-    "title": "N1 Critical Philosophy Reading (哲学・思想の論説文)",
+    "title": "N1 Tanqidiy falsafa mutolaasi (Falsafa va tafakkur publitsistikasi)",
     "description": "Falsafiy va sotsiologik murakkab N1 matnlarini chuqur tahlil qilish.",
     "estimatedDurationMinutes": 24,
     "icon": "📖",
     "steps": [
       {
         "id": "ja-n1-u4-l1-s1",
-        "title": "Falsafiy Matn Tahlili",
+        "title": "Falsafiy Mutolaa Tahlili",
         "type": "learn",
         "estimatedMinutes": 6,
         "learnData": {
-          "title": "N1 Philosophical Prose Analysis",
+          "title": "N1 Falsafiy nasr va publitsistika tahlili",
           "explanation": "近代[きんだい]合理[ごうり]主義[しゅぎ]の 思考[しこう]枠組み[わくぐみ]に おいて、言語[げんご]は 長[なが]い 間[あいだ]、客観的[きゃっかんてき]な 事実[じじつ]や 概念[がいねん]を 伝達[でんたつ]するための 中立的[ちゅうりつてき]な 道具[どうぐ]に 過[す]ぎないと 見[み]なされてきた。しかし、言語[げんご]は 単[たん]なる 伝達[でんたつ]ツールに とどまらず、私[わたし]たちが 世界[せかい]を 認識[にんしき]し 構築[こうちく]する 思考[しこう]の 枠組み[わくぐみ]そのものなのである。\n\nさらに 深[ふか]く 洞察[どうさつ]するならば、私[わたし]たちの 認識[にんしき]の 根底[こんてい]には、明文化[めいぶんか]された 体系的[たいけいてき]な 知識[ちしき]の 背後[はいご]に 潜[ひそ]む「身体[しんたい]知[ち]」や「暗黙[あんもく]知[ち]」の 広大[こうだい]な 領域[りょういき]が 存在[そんざい]している。熟練[じゅくれん]した 職人[しょくにん]の 技[わざ]や 芸術家[げいじゅつか]の 研[と]ぎ澄[す]まされた 審美眼[しんびがん]、あるいは 危機[きき]的[てき]な 状況[じょうきょう]下[か]で 計画[けいかく]の 変更[へんこう]を 余儀[よぎ]なくされた 際[さい]の 直観的[ちょっかんてき]な 判断[はんだん]は、いかに 精緻[せいち]な 論理[ろんり]を もってしても 完全[かんぜん]に 言語化[げんごか]することは 叶[かな]わない。\n\n普遍的[ふへんてき]価値[かち]と 称[しょう]される 理念[りねん]であっても、それらが 具体的[ぐたいてき]な 歴史[れきし]的[てき]文脈[ぶんみゃく]や 身体的[しんたいてき]な 実感[じっかん]から 切[き]り離[はな]された 瞬間[しゅんかん]、空虚[くうきょ]な 記号[きごう]へと 堕[だ]してしまう。私[わたし]たちが 自明[じめい]と 信[しん]じる「言葉[ことば]の 秩序[ちつじょ]」を 絶[た]えず 疑[うたが]い、沈黙[ちんもく]の 中[なか]に 息[いき]づく 生[なま]の 現実[げんじつ]に 耳[みみ]を 傾[かたむ]ける 謙虚[けんきょ]さこそが、真[しん]の 哲学的[てつがくてき]営為[えいい]に ほかならないのである。",
           "keyPoints": [
             "Muallifning falsafiy tezisi: Til oddiygina axborot vositasi bo'lib qolmay (とどまらず), inson tafakkurining poydevoridir.",
@@ -5474,7 +5474,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 17,
-    "title": "〜んがため / 〜んがために (In order to / For the purpose of)",
+    "title": "〜んがため / 〜んがために (...maqsadida / ...ni ko'zlab)",
     "description": "Yuksak maqsad yo'lida harakat qilish: \"...maqsadida / ...ni niyat qilib\".",
     "estimatedDurationMinutes": 24,
     "icon": "🎯",
@@ -5485,7 +5485,7 @@
         "type": "learn",
         "estimatedMinutes": 6,
         "learnData": {
-          "title": "〜んがため (N ga tame)",
+          "title": "〜んがため (N ga tame) qoidasi",
           "explanation": "Nai-stem + んがため. Yuksak g'oya yoki niyat yo'lida borini berib harakat qilish.",
           "keyPoints": [
             "夢を叶えんがため、昼夜を問わず勉強した。 (Orzusini ushalish niyatida tunu kun o'qidi.)",
@@ -5824,7 +5824,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 18,
-    "title": "〜をおいて (Apart from / Excluding)",
+    "title": "〜をおいて (...dan boshqa / ...dan o'zga)",
     "description": "Tengsiz va yagona ekanligini ta'kidlash: \"...dan bo'lak / ...dan o'zga yo'q\".",
     "estimatedDurationMinutes": 24,
     "icon": "🌟",
@@ -5835,7 +5835,7 @@
         "type": "learn",
         "estimatedMinutes": 6,
         "learnData": {
-          "title": "〜をおいて (O oite)",
+          "title": "〜をおいて (O oite) qoidasi",
           "explanation": "Ushbu inson yoki narsadan bo'lak munosibi yo'qligini yuksak baholash.",
           "keyPoints": [
             "この仕事を任せられる人は、彼をおいて他にいない。 (Bu ishni topshirsa bo'ladigan inson undan bo'lak yo'q.)",
@@ -6170,7 +6170,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 19,
-    "title": "〜極まる / 〜極まりない (Extremely / In the extreme)",
+    "title": "〜極まる / 〜極まりない (O'ta darajada ... / Cheksiz darajada ...)",
     "description": "Juda yuqori darajadagi holat yoki hissiyot: \"O'ta ... / Cheksiz ...\".",
     "estimatedDurationMinutes": 24,
     "icon": "🌋",
@@ -6181,7 +6181,7 @@
         "type": "learn",
         "estimatedMinutes": 6,
         "learnData": {
-          "title": "〜極まる (Kiwamaru) / 〜極まりない (Kiwamarinai)",
+          "title": "〜極まる / 〜極まりない (Kiwamaru / Kiwamarinai) qoidasi",
           "explanation": "Salbiy yoki ijobiy holatning chekka va eng cho'qqi darajasini ifodalash.",
           "keyPoints": [
             "彼の態度は失礼極まる。 (Mening munosabati o'ta behurmatlikning o'zidir.)",
@@ -6506,18 +6506,18 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 20,
-    "title": "N1 Listening Mastery (聴解 - 統合理解 & 主張理解)",
+    "title": "N1 Tinglab tushunish mahorati (聴解 - Kompleks va muallif g'oyasini anglash)",
     "description": "JLPT N1 Chokkai tinglab tushunish: Murakkab bir nechta spikerlar bahsi va muallifning yashirin g'oyasi.",
     "estimatedDurationMinutes": 24,
     "icon": "🎧",
     "steps": [
       {
         "id": "ja-n1-u4-l5-s1",
-        "title": "N1 Chokkai Strategiyasi",
+        "title": "N1 Tinglab Tushunish Strategiyasi",
         "type": "learn",
         "estimatedMinutes": 6,
         "learnData": {
-          "title": "N1 Tougou Rikai & Shuchou Rikai",
+          "title": "N1 Kompleks va muallif g'oyasini anglash (統合理解・主張理解)",
           "explanation": "N1 tinglab tushunish bo'limidagi 2 ta matnni solishtirish va yashirin g'oyalarni topish.",
           "keyPoints": [
             "Tougou rikai — Ikki kishining qarama-qarshi fikrini solishtirish",
@@ -6864,7 +6864,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 21,
-    "title": "N1 Super-Advanced Kanji (2000+ Level)",
+    "title": "N1 Oliy darajadagi kanjilar (2000+ iyeroglif)",
     "description": "JLPT N1 ning 2000 ta kanji bazasidagi eng murakkab akademik va adabiy kanjilar.",
     "estimatedDurationMinutes": 24,
     "icon": "✒️",
@@ -6875,7 +6875,7 @@
         "type": "learn",
         "estimatedMinutes": 6,
         "learnData": {
-          "title": "N1 Advanced Kanji & Compounds",
+          "title": "N1 Murakkab kanjilar va birikmalar",
           "explanation": "Adabiyot va huquqda qo'llanadigan oliy kanjilar.",
           "keyPoints": [
             "概念 (Gainen) — tushuncha",
@@ -7215,7 +7215,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 22,
-    "title": "N1 Four-Character Idioms (四字熟語 Mastery)",
+    "title": "N1 To'rt iyeroglifli klassik idiomalar (四字熟語 - Yojijukugo)",
     "description": "4 ta kanjidan iborat yapon klassik idiomalar: \"Ichi-go ichi-e\", \"Shin-ro ku-kurou\", \"Ki-ten ret-tsu\".",
     "estimatedDurationMinutes": 24,
     "icon": "🀄",
@@ -7226,7 +7226,7 @@
         "type": "learn",
         "estimatedMinutes": 6,
         "learnData": {
-          "title": "Classical Four-Character Idioms",
+          "title": "Klassik to'rt iyeroglifli iboralar (四字熟語 - Yojijukugo)",
           "explanation": "N1 nutqi va yozuvini ziynatlovchi 4 kanjili qadimiy donolik iboralari.",
           "keyPoints": [
             "一期一会 (Ichigo ichie) — Hayotdagi har bir uchrashuv yagona va takrorlanmasdir",
@@ -7576,7 +7576,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 23,
-    "title": "N1 Full Grammar Integration & Exceptions",
+    "title": "N1 Grammatika to'liq integratsiyasi va istisnolar",
     "description": "N1 darajasidagi barcha 100+ grammatik qoidalarning kompleks sinovi.",
     "estimatedDurationMinutes": 24,
     "icon": "📚",
@@ -7587,7 +7587,7 @@
         "type": "learn",
         "estimatedMinutes": 6,
         "learnData": {
-          "title": "N1 Master Grammar Review",
+          "title": "N1 Grammatikasining to'liq master takrori",
           "explanation": "〜たる者, 〜に至る, 〜を余儀なくされる, 〜んがため, 〜極まる kabi barcha N1 shakllari.",
           "keyPoints": ["Klassik grammatik qo'shimchalar", "Literary va formal uslubiy istisnolar"],
           "grammarRules": [
@@ -7914,7 +7914,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 24,
-    "title": "JLPT N1 Mock Exam: Comprehensive Practice",
+    "title": "JLPT N1 Sinov imtihoni: Keng qamrovli amaliyot",
     "description": "N1 bo‘limlari bo‘yicha 10 savollik kompleks mashq va natijani tahlil qilish.",
     "estimatedDurationMinutes": 24,
     "icon": "📊",
@@ -7925,7 +7925,7 @@
         "type": "learn",
         "estimatedMinutes": 6,
         "learnData": {
-          "title": "N1 Full Mock Readiness",
+          "title": "N1 To'liq imtihon simulyatsiyasiga tayyorgarlik",
           "explanation": "N1 bo'limlarini 10 savollik checkpoint orqali takrorlash mashqi.",
           "keyPoints": [
             "Gengo Chishiki + Dokkai + Chokkai integratsiyasi",
@@ -8245,18 +8245,18 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 25,
-    "title": "JLPT N1 Comprehensive Review & Practice",
+    "title": "JLPT N1 Umumiy takrorlash va mustahkamlash",
     "description": "N1 mavzularini takrorlash va keyingi darslarga tayyorgarlik mashqlari.",
     "estimatedDurationMinutes": 27,
     "icon": "👑",
     "steps": [
       {
         "id": "ja-n1-u5-l5-s1",
-        "title": "N1 mavzularini takrorlash",
+        "title": "N1 Mavzularini Takrorlash",
         "type": "learn",
         "estimatedMinutes": 7,
         "learnData": {
-          "title": "N1 umumiy takrorlash",
+          "title": "N1 Umumiy takrorlash darsi",
           "explanation": "N1 mavzularini takrorlang va keyingi darslarga tayyorlaning.",
           "keyPoints": [
             "Native-level academic and professional Japanese mastery",
@@ -8587,7 +8587,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 26,
-    "title": "N1 Dokkai: Media, Artificial Intelligence & Ethics (AIと倫理・科学論説文)",
+    "title": "N1 Mutolaa: OAV, Sun'iy intellekt va etika (AI va axloqiy ilmiy maqola)",
     "description": "Sun'iy intellekt, axborot asri etikasi va inson ongi haqidagi ilmiy-falsafiy maqolalar tahlili.",
     "estimatedDurationMinutes": 26,
     "icon": "🤖",
@@ -8598,7 +8598,7 @@
         "type": "learn",
         "estimatedMinutes": 8,
         "learnData": {
-          "title": "人工知能[じんこうちのう]の 発展[はってん]と 人間性[にんげんせい]の 危機[きき]",
+          "title": "Sun'iy intellekt rivoji va insoniylik inqirozi",
           "explanation": "先端[せんたん]人工[じんこう]知能[ちのう]（AI）が 医療[いりょう]診断[しんだん]から 司法[しほう]判断[はんだん]、金融[きんゆう]取引[とりひき]に 至[いた]るまで 社会[しゃかい]の 中枢[ちゅうすう]へと 浸透[しんとう]しつつある 現在[げんだい]、私[わたし]たちは 未知[みち]の 可能性[かのうせい]を 秘[ひ]めた 新[しん]技術[ぎじゅつ]の 恩恵[おんけい]に 浴[よく]している。膨大[ぼうだい]な ビッグデータを 瞬時[しゅんじ]に 解析[かいせき]し、人間[にんげん]の 認知的[にんちてき]限界[げんかい]を 遥[はる]かに 超[こ]える 精度[せいど]で 予測[よそく]を 下[くだ]す アルゴリズムは、一見[いっけん]すると 主観[しゅかん]や 偏見[へんけん]を 排[はい]した「究極[きゅうきょく]の 公平[こうへい]性[せい]」を 体現[たいげん]しているかの ように 見[み]える。\n\nしかしながら、技術[ぎじゅつ]の 進歩[しんぽ]は、常[つね]に 人間[にんげん]の 尊厳[そんげん]や 自律性[じりつせい]を 脅[おびや]かす 危険性[きけんせい]を 孕[はら]んでいることを 忘[わす]れては ならない。深層[しんそう]学習[がくしゅう]の ブラックボックス化[か]に 伴[ともな]い、「なぜ その 結論[けつろん]に 達[たっ]したのか」という 理由[りゆう]の 説明[せつめい]が 不可能[ふかのう]になる 中[なか]で、AIの 判断[はんだん]に 全[ぜん]責任[せきにん]を 委[ゆだ]ねることは、倫理的[りんりてき]怠惰[たいだ]に 他[ほか]ならない。\n\n人間[にんげん]が 長[なが]い 歴史[れきし]の 試練[しれん]を 経[へ]て 培[つちか]ってきた 審美眼[しんびがん]や 道徳的[どうとくてき]直観[ちょっかん]は、数値化[すうちか]できない 多面性[ためんせい]を 持[も]っている。テクノロジーの 効率[こうりつ]に 盲従[もうじゅう]することなく、システムが 導[みちび]き出[だ]した 解[かい]に 対[たい]して 常[つね]に 人間的[にんげんてき]な 批判[ひはん]精神[せいしん]を もって 介入[かいにゅう]し 続[つづ]けることこそが、知性[ちせい]ある 主体[しゅたい]としての 私[わたし]たちに 課[か]された 責務[せきむ]なのである。",
           "keyPoints": [
             "Muallif fikri: Algoritmik xulosalarga ko'r-ko'rona tayanib, axloqiy mas'uliyatni mashinaga yuklash insonning ma'naviy dangasaligidan (倫理的怠惰に他ならない) boshqa narsa emas.",
@@ -8958,7 +8958,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 27,
-    "title": "High-Register Grammar: 〜にかまけて / 〜を皮切りに (In the wake of / Absorbed in)",
+    "title": "Yuqori uslub grammatikasi: 〜にかまけて va 〜を皮切りに (Chalg'ish va boshlanish nuqtasi)",
     "description": "N1 darajasining muhim grammatik konstruksiyalari: chalg'ish oqibatlari va katta tadbirlarning boshlanishi.",
     "estimatedDurationMinutes": 25,
     "icon": "⚡",
@@ -8969,7 +8969,7 @@
         "type": "learn",
         "estimatedMinutes": 7,
         "learnData": {
-          "title": "Chalg'ish va Boshlang'ich Nuqta",
+          "title": "Chalg'ish va boshlang'ich nuqta qoidalari",
           "explanation": "«〜にかまけて» — bir narsaga haddan tashqari chalg'ib, boshqa muhim narsani unutish. «〜を皮切りに» — bitta hodisa turtki bo'lib, keng qamrovli ketma-ketlik boshlanishi.",
           "keyPoints": [
             "忙しさ[いそがしさ]に かまけて、健康[けんこう]管理[かんり]を おろそかに しては ならない。",
@@ -9334,7 +9334,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 28,
-    "title": "Absolute Emotions: 〜てやまない / 〜を禁じ得ない (Cannot help but feel / Ceaselessly)",
+    "title": "Kuchli his-tuyg'ular: 〜てやまない va 〜を禁じ得ない (To'xtovsiz his qilish va tiyib bo'lmaslik)",
     "description": "Ichki his-tuyg'ularning to'lib-toshishi: to'xtovsiz samimiy tilaklar va o'zini tiyib bo'lmas tuyg'ular.",
     "estimatedDurationMinutes": 25,
     "icon": "💖",
@@ -9345,7 +9345,7 @@
         "type": "learn",
         "estimatedMinutes": 7,
         "learnData": {
-          "title": "Samimiy Tuyg'ular va Kuchli Hissiyotlar",
+          "title": "Samimiy tuyg'ular va kuchli his-tuyg'ular qoidalari",
           "explanation": "«〜てやまない» — yurak tubidan chiqayotgan, hech qachon so'nmaydigan tilaklar. «〜を禁じ得ない» — o'zini tiyib bo'lmaydigan g'azab, hayrat yoki hamdardlik hissi.",
           "keyPoints": [
             "皆様[みなさま]の ご健勝[ごけんしょう]と ご多幸[ごたこう]を 祈って[いのって] やみません。",
@@ -9695,7 +9695,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 29,
-    "title": "N1 Speed Reading & Information Retrieval (長文読解・情報検索総合マスター)",
+    "title": "N1 Tezkor o'qish va axborot qidirish (Katta matnlar va axborot qidirish)",
     "description": "Murakkab reklamalar, shartnomalar, biznes hisobotlari va qiyosiy matnlarni tezkor skanerlash strategiyalari.",
     "estimatedDurationMinutes": 26,
     "icon": "⚡",
@@ -9706,7 +9706,7 @@
         "type": "learn",
         "estimatedMinutes": 8,
         "learnData": {
-          "title": "Shartnoma va Rasmiy E'lonlarni Skim/Scan Qilish",
+          "title": "Shartnoma va rasmiy e'lonlarni tezkor tahlil qilish",
           "explanation": "【先端[せんたん]科学[かがく]技術[ぎじゅつ]研究[けんきゅう]機構[きこう] 国際[こくさい]学術[がくじゅつ]シンポジウム 参加[さんか]登録[とうろく]および 研究[けんきゅう]助成金[じょせいきん]申請[しんせい]要項[ようこう]】\n\n本[ほん]機構[きこう]では、次世代[じせだい]イノベーションの 創出[そうしゅつ]を 目的[もくてき]として、年次[ねんじ]シンポジウムを 開催[かいさい]いたします。併[あわ]せて 若手[わかて]研究者[けんきゅうしゃ]向[む]け 助成金[じょせいきん]の 公募[こうぼ]を 行[おこな]います。\n\n■ シンポジウム開催[かいさい]概要[がいよう]：\n・日時[にちじ]：11月[じゅういちがつ]15日[じゅうごにち]（土[ど]）10:00〜18:00\n・会場[かいじょう]：東京[とうきょう]国際[こくさい]フォーラム ホールB（※現地[げんち]参加[さんか]および オンライン同時[どうじ]配信[はいしん]）\n・備考[びこう]：屋外[おくがい]ポスターセッションは 雨天[うてん]につき 順延[じゅんえん]（翌日[よくじつ]16日[じゅうろくにち]同時刻[どうじこく]に 実施[じっし]）。\n\n■ 参加[さんか]登録[とうろく]規定[きてい]：\n・登録[とうろく]期日[きじつ]：10月[じゅうがつ]31日[さんじゅういちにち]（金[きん]）23:59（日本[にほん]時間[じかん]）\n・定員[ていいん]：現地[げんち]参加[さんか]枠[わく] 150名[めい]（※定員[ていいん]に なり次第[しだい]、締[し]め切[き]らせていただきます）。\n\n■ 研究[けんきゅう]助成金[じょせいきん] 申請[しんせい]資格[しかく]および 特記事項[とっきじこう]：\n1. 申請[しんせい]資格[しかく]：博士号[はくしごう]取得[しゅとく]後[ご] 7年[ななねん]以内[いない]の 若手[わかて]研究者[けんきゅうしゃ]であること。\n2. 審査[しんさ]規定[きてい]：厳正[げんせい]な ピアレビュー審査[しんさ]の 結果[けっか]、基準[きじゅん]に 満[み]たない 場合[ばあい]は「該当者[がいとうしゃ]なし」となる 場合[ばあい]が あります。\n3. 注意[ちゅうい]事項[じこう]：提出[ていしゅつ]書類[しょるい]の 不備[ふび]が ある 申請[しんせい]は 一切[いっさい] 受理[じゅり]いたしかねます。締切[しめきり]後[ご]の 差[さ]し替[か]えは 認[みと]められません。",
           "keyPoints": [
             "N1 Axborot qidiruvi uslubi: Hujjatdagi rasmiy kanselyariya jumlalarini tezkor ilg'ash va shartlarni tekshirish.",
@@ -10061,7 +10061,7 @@
     "language": "ja",
     "level": "N1",
     "lessonNumber": 30,
-    "title": "JLPT N1 Final Review & Completion (全領域総仕上げ)",
+    "title": "JLPT N1 Yakuniy takrorlash va kurs tamomlanishi (Barcha sohalar xulosasi)",
     "description": "N1 mavzularini yakuniy takrorlash va keyingi mustaqil tayyorgarlik uchun yo‘nalish.",
     "estimatedDurationMinutes": 27,
     "icon": "👑",
@@ -10072,7 +10072,7 @@
         "type": "learn",
         "estimatedMinutes": 8,
         "learnData": {
-          "title": "Oliy Cho'qqi Falsafasi: 日常から学術・ビジネスの極みへ",
+          "title": "Oliy cho'qqi falsafasi: Kundalik hayotdan akademik cho'qqigacha",
           "explanation": "Siz JLPT N5 dan boshlab N1 gacha bo'lgan barcha bosqichlarni bosib o'tdingiz. Endilikda yapon tilida ilmiy maqola yozish, korporativ boshqaruv olib borish va oliy adabiyotni tahlil qilish salohiyatiga egasiz.",
           "keyPoints": [
             "N1 darajasi 10,000+ so'z, 2,136 ta Jouyou kanji va barcha mumtoz grammatik konstruksiyalarni birlashtiradi.",
