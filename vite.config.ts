@@ -179,9 +179,6 @@ export default defineConfig(({ mode }) => {
               if (id.includes('framer-motion')) {
                 return 'framer-motion';
               }
-              if (id.includes('@dnd-kit')) {
-                return 'dnd-kit';
-              }
             }
             if (id.includes('minnaN5') || id.includes('levels/n5/minnaLessons')) {
               return 'curriculum-minna-n5';

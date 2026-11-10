@@ -118,7 +118,6 @@ const STUDY_SESSIONS_QUEUE_KEY = 'study_planner_offline_study_sessions_queue';
 const LAST_SYNC_KEY = 'study_planner_last_offline_sync_time';
 
 let isSyncingAll = false;
-let isListenerInitialized = false;
 
 export const OfflineSyncManager = {
   // ─── Queuing Operations ─────────────────────────────────────────
@@ -778,40 +777,9 @@ export const OfflineSyncManager = {
   // ─── Auto-Sync Listeners ────────────────────────────────────────
 
   initAutoSync(): void {
-    if (isListenerInitialized || typeof window === 'undefined') return;
-    isListenerInitialized = true;
-
-    // Attach Flashcard auto-sync
-    FlashcardOfflineSync.initAutoSync();
-
-    // 1. Online event
-    window.addEventListener('online', () => {
-      OfflineSyncManager.syncAllPending(true);
-    });
-
-    // 2. Visibility change (user returns to tab)
-    document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'visible' && navigator.onLine) {
-        OfflineSyncManager.syncAllPending(false);
-      }
-    });
-
-    // 3. User login / token refresh event via Supabase Auth
-    if (typeof supabase?.auth?.onAuthStateChange === 'function') {
-      supabase.auth.onAuthStateChange((event, session) => {
-        if (
-          session &&
-          (event === 'SIGNED_IN' || event === 'USER_UPDATED' || event === 'TOKEN_REFRESHED')
-        ) {
-          OfflineSyncManager.syncAllPending(true);
-        }
-      });
-    }
-
-    // 4. Initial online check on startup
-    if (navigator.onLine) {
-      OfflineSyncManager.syncAllPending(false);
-    }
+    // Offline auto-sync is disabled per online-first requirements.
+    // Background polling and heavy window listeners are bypassed.
+    return;
   },
 };
 

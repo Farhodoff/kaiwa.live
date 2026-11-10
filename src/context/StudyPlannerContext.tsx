@@ -30,19 +30,10 @@ import { useNotes } from '../hooks/useNotes';
 import { useStudyNotes } from '../hooks/useStudyNotes';
 import { useSessions } from '../hooks/useSessions';
 import { useWhiteboards } from '../hooks/useWhiteboards';
-import { useEvents } from '../hooks/useEvents';
-import { TaskService } from '../services/TaskService';
 import { FlashcardService } from '../services/FlashcardService';
 import { GlobalFlashcardOverrideService } from '../services/GlobalFlashcardOverrideService';
 import { GoogleCalendarEvent } from '../services/GoogleCalendarService';
-import {
-  DatabaseSubject,
-  DatabaseSession,
-  DatabaseNote,
-  DatabaseStudyNote,
-  DatabaseWhiteboard,
-  DatabaseProfile,
-} from '../types/supabase-types';
+import { DatabaseSubject, DatabaseSession, DatabaseProfile } from '../types/supabase-types';
 import { isUuid } from '../utils/uuid';
 import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
 import { LearningTrackStorage } from '../utils/storage/LearningTrackStorage';
@@ -266,9 +257,13 @@ export const StudyPlannerProvider: React.FC<{ children: React.ReactNode }> = ({ 
     };
   });
 
-  // 5. Events Hook
-  const { events, setEvents, googleEvents, addEvent, updateEvent, deleteEvent, syncGoogleEvents } =
-    useEvents(false);
+  // 5. Events Stubs (Legacy calendar removed to eliminate auto-queries)
+  const [events, setEvents] = useState<Event[]>([]);
+  const googleEvents: any[] = [];
+  const addEvent = useCallback(async () => null, []);
+  const updateEvent = useCallback(async (): Promise<void> => {}, []);
+  const deleteEvent = useCallback(async (): Promise<void> => {}, []);
+  const syncGoogleEvents = useCallback(async () => {}, []);
 
   const fetchSeqRef = useRef<number>(0);
   const lastFetchTimeRef = useRef<number>(0);
@@ -495,45 +490,37 @@ export const StudyPlannerProvider: React.FC<{ children: React.ReactNode }> = ({ 
         // Pre-fetch global flashcard dictionary overrides from DB so all users get corrected cards
         GlobalFlashcardOverrideService.initGlobalOverrides().catch(() => {});
 
-        // Batch 1: Core learning data
-        const [tasksSettled, flashcardsSettled, subjectsSettled] = await Promise.allSettled([
-          TaskService.fetchTasks(currentUser.id),
+        // Batch 1: Core learning data (Flashcards & Deck folders)
+        const [flashcardsSettled, subjectsSettled] = await Promise.allSettled([
           FlashcardService.fetchFlashcards(currentUser.id),
           supabase.from('subjects').select('*').eq('user_id', currentUser.id),
         ]);
 
         if (fetchSeqRef.current !== currentSeq) return;
 
-        if (tasksSettled.status === 'fulfilled' && tasksSettled.value) {
-          setTasks(tasksSettled.value);
-        }
+        setTasks([]);
+        setNotes([]);
+        setStudyNotes([]);
+        setWhiteboards([]);
+
         if (flashcardsSettled.status === 'fulfilled' && flashcardsSettled.value) {
           setFlashcards(flashcardsSettled.value);
         }
 
-        // Batch 2: Secondary workspace data (staggered by 150ms)
+        // Batch 2: Profile & sessions data (staggered by 150ms)
         await new Promise((r) => setTimeout(r, 150));
         if (fetchSeqRef.current !== currentSeq) return;
 
         const [
           goalsSettled,
-          notesSettled,
           sessionsSettled,
-          studyNotesSettled,
-          whiteboardsSettled,
           profileSettled,
           coachSessionsSettled,
           speakingSessionsSettled,
           aiCoachSessionsSettled,
         ] = await Promise.allSettled([
           supabase.from('goals').select('*').eq('user_id', currentUser.id),
-          supabase.from('notes').select('*').eq('user_id', currentUser.id),
           supabase.from('study_sessions').select('*').eq('user_id', currentUser.id),
-          supabase.from('study_notes').select('*').eq('user_id', currentUser.id),
-          supabase
-            .from('whiteboards')
-            .select('id, subject_id, user_id, title, updated_at')
-            .eq('user_id', currentUser.id),
           supabase.from('profiles').select('*').eq('id', currentUser.id).limit(1),
           supabase
             .from('speaking_coach_sessions')
@@ -556,12 +543,7 @@ export const StudyPlannerProvider: React.FC<{ children: React.ReactNode }> = ({ 
 
         const subjectsRes = subjectsSettled.status === 'fulfilled' ? subjectsSettled.value : null;
         const goalsRes = goalsSettled.status === 'fulfilled' ? goalsSettled.value : null;
-        const notesRes = notesSettled.status === 'fulfilled' ? notesSettled.value : null;
         const sessionsRes = sessionsSettled.status === 'fulfilled' ? sessionsSettled.value : null;
-        const studyNotesRes =
-          studyNotesSettled.status === 'fulfilled' ? studyNotesSettled.value : null;
-        const whiteboardsRes =
-          whiteboardsSettled.status === 'fulfilled' ? whiteboardsSettled.value : null;
         const profileRes = profileSettled.status === 'fulfilled' ? profileSettled.value : null;
         const coachSessionsRes =
           coachSessionsSettled.status === 'fulfilled' ? coachSessionsSettled.value : null;
@@ -633,39 +615,6 @@ export const StudyPlannerProvider: React.FC<{ children: React.ReactNode }> = ({ 
         setSessions(mergedSessions);
         safeLocalStorage.setJSON(userSessionsKey, mergedSessions);
 
-        // Notes sync
-        const userNotesKey = 'study_planner_notes_cache_' + (currentUser?.id || 'guest');
-        const localNotes = safeLocalStorage.getJSON<Note[]>(userNotesKey, []);
-        const dbNotes = (notesRes?.data || []).map((n: DatabaseNote) => ({
-          ...n,
-          subjectId: n.subject_id,
-          isPinned: n.is_pinned || false,
-          createdAt: n.created_at,
-          updatedAt: n.updated_at,
-        }));
-        const dbNoteIds = new Set(dbNotes.map((n: any) => n.id));
-        const mergedNotes = [...dbNotes, ...localNotes.filter((n) => !dbNoteIds.has(n.id))];
-        setNotes(mergedNotes);
-        safeLocalStorage.setJSON(userNotesKey, mergedNotes);
-
-        // Study Notes (Konspektlar) sync
-        const userStudyNotesKey = 'study_planner_study_notes_cache_' + (currentUser?.id || 'guest');
-        const localStudyNotes = safeLocalStorage.getJSON<StudyNote[]>(userStudyNotesKey, []);
-        const dbStudyNotes = (studyNotesRes?.data || []).map((n: DatabaseStudyNote) => ({
-          ...n,
-          userId: n.user_id,
-          subjectId: n.subject_id,
-          createdAt: n.created_at,
-          updatedAt: n.updated_at,
-        }));
-        const dbStudyNoteIds = new Set(dbStudyNotes.map((n: any) => n.id));
-        const mergedStudyNotes = [
-          ...dbStudyNotes,
-          ...localStudyNotes.filter((n) => !dbStudyNoteIds.has(n.id)),
-        ];
-        setStudyNotes(mergedStudyNotes);
-        safeLocalStorage.setJSON(userStudyNotesKey, mergedStudyNotes);
-
         // Goals sync
         const userGoalsKey = 'study_planner_goals_cache_' + (currentUser?.id || 'guest');
         const localGoals = safeLocalStorage.getJSON<Goal[]>(userGoalsKey, []);
@@ -684,28 +633,6 @@ export const StudyPlannerProvider: React.FC<{ children: React.ReactNode }> = ({ 
         const mergedGoals = [...dbGoals, ...localGoals.filter((g) => !dbGoalIds.has(g.id))];
         setGoals(mergedGoals);
         safeLocalStorage.setJSON(userGoalsKey, mergedGoals);
-
-        // Whiteboards sync
-        const userWhiteboardsKey =
-          'study_planner_whiteboards_cache_' + (currentUser?.id || 'guest');
-        const localWhiteboards = safeLocalStorage.getJSON<WhiteboardMetadata[]>(
-          userWhiteboardsKey,
-          [],
-        );
-        const dbWhiteboards = (whiteboardsRes?.data || []).map((w: DatabaseWhiteboard) => ({
-          id: w.id,
-          subjectId: w.subject_id,
-          userId: w.user_id,
-          title: w.title || 'Adsiz Doska',
-          updatedAt: w.updated_at || new Date().toISOString(),
-        }));
-        const dbWbIds = new Set(dbWhiteboards.map((w) => w.id));
-        const mergedWhiteboards = [
-          ...dbWhiteboards,
-          ...localWhiteboards.filter((w) => !dbWbIds.has(w.id)),
-        ];
-        setWhiteboards(mergedWhiteboards);
-        safeLocalStorage.setJSON(userWhiteboardsKey, mergedWhiteboards);
 
         // Combined Coach & Speaking Sessions sync
         const mergedCoachSessions: CoachSession[] = [];

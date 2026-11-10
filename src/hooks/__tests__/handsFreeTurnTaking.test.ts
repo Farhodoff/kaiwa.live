@@ -7,6 +7,12 @@ vi.mock('react-router-dom', () => ({
   useNavigate: () => vi.fn(),
 }));
 
+vi.mock('../../services/MasteryEngine', () => ({
+  MasteryEngine: {
+    recordEvidence: vi.fn().mockResolvedValue(undefined),
+  },
+}));
+
 vi.mock('../../utils/ai', () => ({
   streamCoachDialogue: vi.fn(async (_text, _history, _lang, _persona, _scenario, onSentence) => {
     onSentence('はい、よく分かりました！', 0);
