@@ -6,8 +6,10 @@ import {
 } from '../../services/JlptMockDiagnosticService';
 
 export interface ExamQuestionAnswer {
+  questionId?: string | number;
   questionText: string;
   section?: string;
+  options?: string[];
   userAnswer: string;
   correctAnswer: string;
   isCorrect: boolean;

@@ -431,4 +431,45 @@ describe('JlptExamResultCard', () => {
 
     expect(screen.queryByText(/Shaxsiy Rejamga Biriktirish/i)).toBeNull();
   });
+
+  it('starts interactive mistake drill mode and allows submitting answer', async () => {
+    render(
+      <JlptExamResultCard
+        report={sampleReport}
+        level="N5"
+        mistakes={sampleMistakes}
+        onRetry={vi.fn()}
+        onBackToHub={vi.fn()}
+      />,
+    );
+
+    const drillBtn = screen.getByRole('button', { name: /Xatolarni mashq qilish/i });
+    expect(drillBtn).toBeInTheDocument();
+    fireEvent.click(drillBtn);
+
+    // Verify drill interface is mounted
+    expect(screen.getByText(/Xatolar Ustida Interaktiv Mashq/i)).toBeInTheDocument();
+    expect(screen.getByText(/Savol 1 \/ 2/i)).toBeInTheDocument();
+    expect(screen.getByText(/毎朝、パン _____ 食べます。/i)).toBeInTheDocument();
+
+    // Select correct option 'を'
+    const correctOpt = screen.getByRole('button', { name: /1.*を/i });
+    fireEvent.click(correctOpt);
+
+    const checkBtn = screen.getByRole('button', { name: /Tekshirish/i });
+    fireEvent.click(checkBtn);
+
+    // Verify feedback and explanation
+    expect(screen.getByText(/To'g'ri topdingiz! Barakalla./i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Vositasiz to'ldiruvchi uchun 'を' yuklamasi kerak./i),
+    ).toBeInTheDocument();
+
+    // Next question
+    const nextBtn = screen.getByRole('button', { name: /Keyingi savol/i });
+    fireEvent.click(nextBtn);
+
+    expect(screen.getByText(/Savol 2 \/ 2/i)).toBeInTheDocument();
+    expect(screen.getByText(/学校 _____ バスで行きます。/i)).toBeInTheDocument();
+  });
 });

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import {
   AlertTriangle,
   Lightbulb,
@@ -16,6 +16,11 @@ import {
   CheckCircle2,
   Award,
   ExternalLink,
+  Play,
+  Pause,
+  RotateCcw,
+  Check,
+  ArrowRight,
 } from 'lucide-react';
 import { ExamDiagnosticReport, ExamQuestionAnswer } from '../../utils/ai/examEvaluator';
 import { JlptScoreReport } from '../../utils/jlptScoring';
@@ -46,10 +51,79 @@ export const JlptExamResultCard: React.FC<JlptExamResultCardProps> = ({
   onBackToHub,
   onViewCertificate,
 }) => {
-  const { addFlashcardsBatch } = useStudyData();
+  const { addFlashcardsBatch, user } = useStudyData();
   const [isExporting, setIsExporting] = useState(false);
   const [isExported, setIsExported] = useState(false);
   const [showAllMistakes, setShowAllMistakes] = useState(false);
+
+  // Interactive Drill State
+  const [isDrilling, setIsDrilling] = useState(false);
+  const [drillIndex, setDrillIndex] = useState(0);
+  const [selectedDrillOption, setSelectedDrillOption] = useState<string | null>(null);
+  const [isDrillSubmitted, setIsDrillSubmitted] = useState(false);
+  const [drillMasteredCount, setDrillMasteredCount] = useState(0);
+  const [isDrillFinished, setIsDrillFinished] = useState(false);
+  const [playingAudio, setPlayingAudio] = useState<string | null>(null);
+  const [sectionFilter, setSectionFilter] = useState<string>('ALL');
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const toggleAudio = (url: string) => {
+    if (playingAudio === url) {
+      audioRef.current?.pause();
+      setPlayingAudio(null);
+    } else {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+      const audio = new Audio(url);
+      audioRef.current = audio;
+      audio.onended = () => setPlayingAudio(null);
+      audio.onerror = () => setPlayingAudio(null);
+      audio.play().catch(() => setPlayingAudio(null));
+      setPlayingAudio(url);
+    }
+  };
+
+  const handleNavigateMistakes = () => {
+    if (typeof window !== 'undefined') {
+      window.location.href = '/jlpt?tab=mistakes';
+    }
+  };
+
+  const currentMistake = mistakes[drillIndex] || null;
+
+  const drillOptions = useMemo(() => {
+    if (!currentMistake) return [];
+    if (currentMistake.options && currentMistake.options.length > 0) {
+      return currentMistake.options;
+    }
+    const set = new Set<string>();
+    if (currentMistake.correctAnswer) set.add(currentMistake.correctAnswer);
+    if (currentMistake.userAnswer && currentMistake.userAnswer !== 'Javob berilmagan') {
+      set.add(currentMistake.userAnswer);
+    }
+    return Array.from(set);
+  }, [currentMistake]);
+
+  const displayedMistakes = useMemo(() => {
+    if (sectionFilter === 'ALL') return mistakes;
+    return mistakes.filter((m) => {
+      const sec = (m.section || '').toLowerCase();
+      if (sectionFilter === 'knowledge') {
+        return (
+          sec.includes('knowledge') ||
+          sec.includes('vocab') ||
+          sec.includes('moji') ||
+          sec.includes('grammar') ||
+          sec.includes('bunpou')
+        );
+      }
+      if (sectionFilter === 'reading') return sec.includes('reading') || sec.includes('dokkai');
+      if (sectionFilter === 'listening')
+        return sec.includes('listening') || sec.includes('choukai');
+      return true;
+    });
+  }, [mistakes, sectionFilter]);
 
   const jlptReport = propJlptReport || report.jlptScoreReport;
 
@@ -83,11 +157,16 @@ export const JlptExamResultCard: React.FC<JlptExamResultCardProps> = ({
             title: `JLPT ${level} Mock — ${q.section || 'General'}`,
             questionText: q.questionText,
             passageText: q.script || undefined,
-            options: [q.correctAnswer, q.userAnswer].filter(Boolean),
+            audioUrl: q.audioUrl,
+            options:
+              q.options && q.options.length > 0
+                ? q.options
+                : [q.correctAnswer, q.userAnswer].filter(Boolean),
             userAnswer: q.userAnswer,
             correctAnswer: q.correctAnswer,
             explanationUzbek: q.explanationUzbek || '',
           })),
+          user?.id,
         );
       } catch {}
 
@@ -494,76 +573,405 @@ export const JlptExamResultCard: React.FC<JlptExamResultCardProps> = ({
           </div>
         )}
 
-      {/* Mistakes to Flashcards Export Action */}
+      {/* Interactive Mistake Drill Mode View */}
+      {mistakes.length > 0 && isDrilling && currentMistake && (
+        <div className="space-y-5 rounded-3xl border border-primary/40 bg-card p-5 shadow-lg sm:p-7">
+          <div className="flex flex-col justify-between gap-3 border-b border-border/60 pb-4 sm:flex-row sm:items-center">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                <Target size={20} />
+              </div>
+              <div>
+                <h3 className="text-base font-black text-foreground">
+                  🎯 Xatolar Ustida Interaktiv Mashq
+                </h3>
+                <p className="text-xs text-muted-foreground">
+                  Imtihon xatolarini birma-bir qayta ishlab, mustahkamlang ({drillIndex + 1}/
+                  {mistakes.length})
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={() => setIsDrilling(false)}
+              className="flex items-center gap-1.5 self-end rounded-xl border border-border bg-muted/60 px-3 py-1.5 text-xs font-bold text-muted-foreground hover:bg-muted hover:text-foreground sm:self-auto"
+            >
+              <span>Mashqdan chiqish</span>
+            </button>
+          </div>
+
+          {/* Progress Bar */}
+          <div className="space-y-1.5">
+            <div className="flex justify-between text-xs font-bold text-muted-foreground">
+              <span>
+                Savol {drillIndex + 1} / {mistakes.length}
+              </span>
+              <span className="font-black text-primary">
+                {drillMasteredCount} ta o'zlashtirildi
+              </span>
+            </div>
+            <div className="h-2 w-full overflow-hidden rounded-full bg-muted">
+              <div
+                className="h-full bg-primary transition-all duration-300"
+                style={{ width: `${Math.round(((drillIndex + 1) / mistakes.length) * 100)}%` }}
+              />
+            </div>
+          </div>
+
+          {isDrillFinished ? (
+            <div className="space-y-4 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-6 text-center">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-500">
+                <Award size={28} />
+              </div>
+              <div className="space-y-1">
+                <h4 className="text-lg font-black text-foreground">
+                  🎉 Barakalla! Barcha xatolar qayta ko'rib chiqildi!
+                </h4>
+                <p className="text-xs text-muted-foreground">
+                  Jami {mistakes.length} ta savoldan {drillMasteredCount} tasini muvaffaqiyatli
+                  to'g'irlab o'zlashtirdingiz.
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+                <button
+                  onClick={() => {
+                    setDrillIndex(0);
+                    setSelectedDrillOption(null);
+                    setIsDrillSubmitted(false);
+                    setDrillMasteredCount(0);
+                    setIsDrillFinished(false);
+                  }}
+                  className="flex items-center gap-2 rounded-xl border border-border bg-card px-4 py-2 text-xs font-bold text-foreground shadow-xs hover:bg-muted"
+                >
+                  <RotateCcw size={14} />
+                  <span>Qaytadan boshlash</span>
+                </button>
+                <button
+                  onClick={() => setIsDrilling(false)}
+                  className="flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-xs font-bold text-primary-foreground shadow-xs hover:bg-primary/90"
+                >
+                  <Check size={14} />
+                  <span>Natijalarga qaytish</span>
+                </button>
+                <button
+                  onClick={handleNavigateMistakes}
+                  className="flex items-center gap-2 rounded-xl border border-indigo-500/30 bg-indigo-500/10 px-4 py-2 text-xs font-bold text-indigo-600 hover:bg-indigo-500/20 dark:text-indigo-400"
+                >
+                  <BookOpen size={14} />
+                  <span>Xatolar daftarini ochish</span>
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-4 rounded-2xl border border-border bg-background/60 p-4 sm:p-5">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-[10px] font-black uppercase text-primary">
+                  {currentMistake.section || 'Savol'}
+                </span>
+                {currentMistake.audioUrl && (
+                  <button
+                    onClick={() => toggleAudio(currentMistake.audioUrl!)}
+                    className="flex items-center gap-1.5 rounded-xl border border-primary/30 bg-primary/10 px-3 py-1.5 text-xs font-bold text-primary transition-all hover:bg-primary/20"
+                  >
+                    {playingAudio === currentMistake.audioUrl ? (
+                      <>
+                        <Pause size={13} />
+                        <span>To'xtatish</span>
+                      </>
+                    ) : (
+                      <>
+                        <Play size={13} className="fill-current" />
+                        <span>Audioni tinglash</span>
+                      </>
+                    )}
+                  </button>
+                )}
+              </div>
+
+              {/* Question Text */}
+              <div className="font-serif text-base font-bold leading-relaxed text-foreground sm:text-lg">
+                {currentMistake.questionText}
+              </div>
+
+              {/* Listening Script toggle if exists */}
+              {currentMistake.script && (
+                <div className="rounded-xl border border-border/50 bg-muted/40 p-3 text-xs text-muted-foreground">
+                  <span className="font-bold text-foreground">🎧 Matn (Script):</span>
+                  <p className="mt-1 whitespace-pre-line font-serif">{currentMistake.script}</p>
+                </div>
+              )}
+
+              {/* Options */}
+              <div className="space-y-2 pt-2">
+                {drillOptions.map((opt, oIdx) => {
+                  const isSelected = selectedDrillOption === opt;
+                  const isCorrect = opt === currentMistake.correctAnswer;
+                  let optStyle = 'border-border/80 bg-card hover:bg-muted/80 text-foreground';
+
+                  if (isDrillSubmitted) {
+                    if (isCorrect) {
+                      optStyle =
+                        'border-emerald-500 bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold';
+                    } else if (isSelected && !isCorrect) {
+                      optStyle =
+                        'border-rose-500 bg-rose-500/15 text-rose-600 dark:text-rose-400 font-bold';
+                    } else {
+                      optStyle = 'border-border/40 opacity-50 text-muted-foreground';
+                    }
+                  } else if (isSelected) {
+                    optStyle = 'border-primary bg-primary/10 text-primary font-bold shadow-xs';
+                  }
+
+                  return (
+                    <button
+                      key={oIdx}
+                      disabled={isDrillSubmitted}
+                      onClick={() => setSelectedDrillOption(opt)}
+                      className={`flex w-full items-center justify-between rounded-xl border p-3 text-left text-xs transition-all sm:text-sm ${optStyle}`}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-border/60 bg-muted/50 text-[11px] font-bold">
+                          {oIdx + 1}
+                        </span>
+                        <span className="font-serif">{opt}</span>
+                      </div>
+                      {isDrillSubmitted && isCorrect && (
+                        <Check size={16} className="text-emerald-500" />
+                      )}
+                      {isDrillSubmitted && isSelected && !isCorrect && (
+                        <XCircle size={16} className="text-rose-500" />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Submitted Feedback & Explanation */}
+              {isDrillSubmitted && (
+                <div
+                  className={`space-y-2 rounded-2xl border p-4 text-xs animate-in fade-in ${
+                    selectedDrillOption === currentMistake.correctAnswer
+                      ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-950 dark:text-emerald-100'
+                      : 'border-rose-500/40 bg-rose-500/10 text-rose-950 dark:text-rose-100'
+                  }`}
+                >
+                  <div className="flex items-center gap-2 text-sm font-black">
+                    {selectedDrillOption === currentMistake.correctAnswer ? (
+                      <>
+                        <CheckCircle2 size={18} className="text-emerald-500" />
+                        <span>To'g'ri topdingiz! Barakalla.</span>
+                      </>
+                    ) : (
+                      <>
+                        <XCircle size={18} className="text-rose-500" />
+                        <span>
+                          Noto'g'ri. To'g'ri javob:{' '}
+                          <strong className="underline">{currentMistake.correctAnswer}</strong>
+                        </span>
+                      </>
+                    )}
+                  </div>
+                  {currentMistake.explanationUzbek && (
+                    <p className="border-t border-border/40 pt-2 text-[11px] leading-relaxed opacity-90">
+                      💡 {currentMistake.explanationUzbek}
+                    </p>
+                  )}
+                </div>
+              )}
+
+              {/* Action Buttons: Check / Next */}
+              <div className="flex items-center justify-end gap-3 pt-2">
+                {!isDrillSubmitted ? (
+                  <button
+                    disabled={!selectedDrillOption}
+                    onClick={() => {
+                      if (!selectedDrillOption) return;
+                      setIsDrillSubmitted(true);
+                      if (selectedDrillOption === currentMistake.correctAnswer) {
+                        setDrillMasteredCount((c) => c + 1);
+                        try {
+                          MistakeVaultService.markAsMastered(
+                            String(currentMistake.questionId || currentMistake.questionText),
+                            user?.id,
+                          );
+                        } catch {}
+                      }
+                    }}
+                    className="flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-xs font-black text-primary-foreground shadow-xs transition-all hover:bg-primary/90 disabled:opacity-50"
+                  >
+                    <span>Tekshirish</span>
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      if (drillIndex + 1 < mistakes.length) {
+                        setDrillIndex(drillIndex + 1);
+                        setSelectedDrillOption(null);
+                        setIsDrillSubmitted(false);
+                      } else {
+                        setIsDrillFinished(true);
+                      }
+                    }}
+                    className="flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-xs font-black text-primary-foreground shadow-xs transition-all hover:bg-primary/90 active:scale-95"
+                  >
+                    <span>
+                      {drillIndex + 1 < mistakes.length ? 'Keyingi savol' : 'Natijani yakunlash'}
+                    </span>
+                    <ArrowRight size={14} />
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Mistakes to Flashcards and Interactive Drill Actions */}
       {mistakes.length > 0 && (
         <div className="space-y-4 rounded-3xl border border-rose-500/30 bg-gradient-to-r from-rose-500/10 via-purple-500/10 to-indigo-500/10 p-5 shadow-xs sm:p-6">
-          <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
+          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
             <div className="flex items-center gap-3">
               <div className="rounded-2xl bg-rose-500/20 p-2.5 text-rose-500 dark:text-rose-400">
                 <Sparkles size={22} />
               </div>
               <div>
                 <h3 className="text-sm font-black text-foreground">
-                  Xatolarni Fleshkartaga Saqlash ({mistakes.length} ta savol)
+                  Xatolarni Fleshkartaga Saqlash va Mashq Qilish ({mistakes.length} ta savol)
                 </h3>
                 <p className="text-xs text-muted-foreground">
-                  Xato qilingan barcha savollarni 1 tugma bilan Anki SRS fleshkartalarga yuklab,
-                  keyinroq takrorlang.
+                  Xato qilingan savollarni interaktiv qayta yeching, Anki kartalariga yuklang yoki
+                  daftarda tahlil qiling.
                 </p>
               </div>
             </div>
-            <button
-              onClick={handleExportMistakes}
-              disabled={isExporting || isExported}
-              className={`flex shrink-0 items-center justify-center gap-2 rounded-2xl px-4 py-2.5 text-xs font-black shadow-xs transition-all ${
-                isExported
-                  ? 'cursor-default bg-emerald-600 text-white'
-                  : 'bg-rose-600 text-white shadow-rose-500/20 hover:bg-rose-700 active:scale-95'
-              }`}
-            >
-              {isExported ? (
-                <>
-                  <CheckCircle size={15} />
-                  <span>Saqlandi (Anki SRS)</span>
-                </>
-              ) : (
-                <>
-                  <BookOpen size={15} />
-                  <span>{isExporting ? 'Saqlanmoqda...' : 'Fleshkartalarga saqlash'}</span>
-                </>
-              )}
-            </button>
+
+            <div className="flex flex-wrap items-center gap-2.5">
+              {/* Primary Interactive Drill Button */}
+              <button
+                onClick={() => {
+                  setDrillIndex(0);
+                  setSelectedDrillOption(null);
+                  setIsDrillSubmitted(false);
+                  setDrillMasteredCount(0);
+                  setIsDrillFinished(false);
+                  setIsDrilling(true);
+                }}
+                className="flex items-center gap-1.5 rounded-2xl bg-primary px-4 py-2.5 text-xs font-black text-primary-foreground shadow-xs transition-all hover:bg-primary/90 active:scale-95"
+              >
+                <Play size={14} className="fill-current" />
+                <span>Xatolarni mashq qilish</span>
+              </button>
+
+              {/* Flashcards Batch Export */}
+              <button
+                onClick={handleExportMistakes}
+                disabled={isExporting || isExported}
+                className={`flex shrink-0 items-center justify-center gap-2 rounded-2xl px-4 py-2.5 text-xs font-black shadow-xs transition-all ${
+                  isExported
+                    ? 'cursor-default bg-emerald-600 text-white'
+                    : 'bg-rose-600 text-white shadow-rose-500/20 hover:bg-rose-700 active:scale-95'
+                }`}
+              >
+                {isExported ? (
+                  <>
+                    <CheckCircle size={15} />
+                    <span>Saqlandi (Anki SRS)</span>
+                  </>
+                ) : (
+                  <>
+                    <BookOpen size={15} />
+                    <span>{isExporting ? 'Saqlanmoqda...' : 'Fleshkartalarga saqlash'}</span>
+                  </>
+                )}
+              </button>
+
+              {/* Open Mistake Notebook Button */}
+              <button
+                onClick={handleNavigateMistakes}
+                className="flex items-center gap-1.5 rounded-2xl border border-border bg-card/80 px-3.5 py-2.5 text-xs font-bold text-foreground transition-all hover:bg-muted active:scale-95"
+              >
+                <BookOpen size={14} className="text-primary" />
+                <span>Xatolar daftari</span>
+              </button>
+            </div>
           </div>
 
           {/* Expandable list of all mistakes */}
           <div className="border-t border-border/50 pt-2">
-            <button
-              onClick={() => setShowAllMistakes(!showAllMistakes)}
-              className="flex items-center gap-1.5 text-xs font-bold text-muted-foreground transition-colors hover:text-foreground"
-            >
-              <span>
-                {showAllMistakes
-                  ? "Xatolar ro'yxatini yashirish"
-                  : `Barcha ${mistakes.length} ta xatolarni ko'rish`}
-              </span>
-              {showAllMistakes ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-            </button>
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-2">
+              <button
+                onClick={() => setShowAllMistakes(!showAllMistakes)}
+                className="flex items-center gap-1.5 text-xs font-bold text-muted-foreground transition-colors hover:text-foreground"
+              >
+                <span>
+                  {showAllMistakes
+                    ? "Xatolar ro'yxatini yashirish"
+                    : `Barcha ${mistakes.length} ta xatolarni ko'rish`}
+                </span>
+                {showAllMistakes ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+              </button>
+
+              {showAllMistakes && (
+                <div className="flex items-center gap-1 overflow-x-auto text-[11px]">
+                  {(['ALL', 'knowledge', 'reading', 'listening'] as const).map((filterKey) => (
+                    <button
+                      key={filterKey}
+                      onClick={() => setSectionFilter(filterKey)}
+                      className={`rounded-lg px-2.5 py-1 font-bold transition-all ${
+                        sectionFilter === filterKey
+                          ? 'bg-primary text-primary-foreground shadow-xs'
+                          : 'bg-muted/60 text-muted-foreground hover:text-foreground'
+                      }`}
+                    >
+                      {filterKey === 'ALL'
+                        ? 'Barchasi'
+                        : filterKey === 'knowledge'
+                          ? 'Til bilimi'
+                          : filterKey === 'reading'
+                            ? "O'qish"
+                            : 'Tinglash'}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
 
             {showAllMistakes && (
-              <div className="mt-3 max-h-80 space-y-2.5 overflow-y-auto pr-1">
-                {mistakes.map((m, idx) => (
+              <div className="mt-2 max-h-96 space-y-2.5 overflow-y-auto pr-1">
+                {displayedMistakes.map((m, idx) => (
                   <div
                     key={idx}
-                    className="space-y-1.5 rounded-2xl border border-border/60 bg-background/80 p-3.5 text-xs"
+                    className="space-y-2 rounded-2xl border border-border/60 bg-background/80 p-3.5 text-xs transition-all hover:border-border"
                   >
-                    <div className="flex items-center justify-between text-[11px] font-semibold text-muted-foreground">
-                      <span>
-                        Savol #{idx + 1} ({m.section || 'Umumiy'})
-                      </span>
-                      {m.section === 'listening' && (
-                        <span className="flex items-center gap-1 text-[10px] text-primary">
-                          <Headphones size={12} /> Tinglash savoli
+                    <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] font-semibold text-muted-foreground">
+                      <div className="flex items-center gap-2">
+                        <span className="font-bold text-foreground">Savol #{idx + 1}</span>
+                        <span className="rounded-md bg-muted px-2 py-0.5 text-[10px] font-bold uppercase text-muted-foreground">
+                          {m.section || 'Umumiy'}
                         </span>
+                        {(m.section === 'listening' || m.section === 'choukai') && (
+                          <span className="flex items-center gap-1 text-[10px] font-bold text-primary">
+                            <Headphones size={12} /> Tinglash savoli
+                          </span>
+                        )}
+                      </div>
+                      {m.audioUrl && (
+                        <button
+                          type="button"
+                          onClick={() => toggleAudio(m.audioUrl!)}
+                          className="flex items-center gap-1 rounded-lg border border-primary/30 bg-primary/10 px-2 py-1 text-[10px] font-bold text-primary hover:bg-primary/20"
+                        >
+                          {playingAudio === m.audioUrl ? (
+                            <>
+                              <Pause size={11} />
+                              <span>To'xtatish</span>
+                            </>
+                          ) : (
+                            <>
+                              <Play size={11} className="fill-current" />
+                              <span>Audio eshitish</span>
+                            </>
+                          )}
+                        </button>
                       )}
                     </div>
                     <div className="font-serif font-bold text-foreground">{m.questionText}</div>
@@ -577,7 +985,7 @@ export const JlptExamResultCard: React.FC<JlptExamResultCardProps> = ({
                     )}
 
                     <div className="flex flex-wrap gap-2 pt-1 text-[11px]">
-                      <span className="rounded-lg bg-rose-500/10 px-2.5 py-1 text-rose-500">
+                      <span className="rounded-lg bg-rose-500/10 px-2.5 py-1 font-medium text-rose-500">
                         ❌ Sizning javob: {m.userAnswer}
                       </span>
                       <span className="rounded-lg bg-emerald-500/10 px-2.5 py-1 font-bold text-emerald-600 dark:text-emerald-400">

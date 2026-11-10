@@ -58,16 +58,33 @@ export const JlptHubPage: React.FC = () => {
   });
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const { settings, updateSettings } = useStudyData();
+  const { settings, updateSettings, targetLevel, setPrimaryFocus } = useStudyData();
   const { language } = useLanguage();
 
   const activeTab = searchParams.get('tab') || 'lessons';
+  const rawLevel = searchParams.get('level')?.toUpperCase();
+  const activeLevel: 'N5' | 'N4' | 'N3' | 'N2' | 'N1' =
+    rawLevel && ['N5', 'N4', 'N3', 'N2', 'N1'].includes(rawLevel)
+      ? (rawLevel as any)
+      : targetLevel && ['N5', 'N4', 'N3', 'N2', 'N1'].includes(targetLevel.toUpperCase())
+        ? (targetLevel.toUpperCase() as any)
+        : 'N5';
+
   const [showCanvasPractice, setShowCanvasPractice] = useState(false);
 
   const handleTabChange = (tab: string) => {
     const newParams = new URLSearchParams(searchParams);
     newParams.set('tab', tab);
     setSearchParams(newParams);
+  };
+
+  const handleLevelChange = (lvl: 'N5' | 'N4' | 'N3' | 'N2' | 'N1') => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set('level', lvl);
+    setSearchParams(newParams);
+    try {
+      setPrimaryFocus('ja', lvl);
+    } catch {}
   };
 
   return (
@@ -143,6 +160,54 @@ export const JlptHubPage: React.FC = () => {
           >
             <span>Romaji</span>
           </button>
+        </div>
+      </div>
+
+      {/* Target Level Quick Selector Bar (Optimizes rendering to current level only) */}
+      <div className="flex flex-wrap items-center justify-between gap-2.5 rounded-2xl border border-border bg-card/70 p-2.5 shadow-xs sm:p-3">
+        <div className="flex items-center gap-2 px-1">
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 text-primary">
+            <Target size={15} />
+          </div>
+          <div>
+            <div className="text-xs font-black text-foreground">
+              {language === 'ja' ? '学習レベル' : 'O‘rganish darajangiz:'}
+            </div>
+            <div className="hidden text-[10px] text-muted-foreground sm:block">
+              {language === 'ja'
+                ? '選択したレベルのみ高速読み込み'
+                : 'Faqat tanlangan daraja resurslari yuklanadi (tezkor render)'}
+            </div>
+          </div>
+        </div>
+
+        <div className="no-scrollbar flex items-center gap-1.5 overflow-x-auto">
+          {(['N5', 'N4', 'N3', 'N2', 'N1'] as const).map((lvl) => {
+            const isSelected = activeLevel === lvl;
+            const levelLabels = {
+              N5: "N5 Boshlang'ich",
+              N4: 'N4 Elementar',
+              N3: "N3 O'rta",
+              N2: 'N2 Yuqori',
+              N1: 'N1 Professional',
+            };
+            return (
+              <button
+                key={lvl}
+                onClick={() => handleLevelChange(lvl)}
+                className={`flex min-h-[38px] items-center gap-1 rounded-xl px-3 py-1.5 text-xs font-black transition-all active:scale-95 ${
+                  isSelected
+                    ? 'scale-102 bg-primary text-primary-foreground shadow-sm ring-2 ring-primary/20'
+                    : 'bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground'
+                }`}
+              >
+                <span>{lvl}</span>
+                <span className="hidden text-[10px] font-normal opacity-85 lg:inline">
+                  ({levelLabels[lvl].split(' ')[1]})
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -301,7 +366,7 @@ export const JlptHubPage: React.FC = () => {
         {/* Tab 1: Bunpou (Grammar) Master */}
         {activeTab === 'grammar' && (
           <div className="space-y-6 animate-in fade-in">
-            <JlptGrammarKanjiMaster initialTab="grammar" />
+            <JlptGrammarKanjiMaster initialTab="grammar" initialLevel={activeLevel} />
           </div>
         )}
 
@@ -352,7 +417,7 @@ export const JlptHubPage: React.FC = () => {
             </div>
 
             <div>
-              <JlptGrammarKanjiMaster initialTab="kanji" />
+              <JlptGrammarKanjiMaster initialTab="kanji" initialLevel={activeLevel} />
             </div>
           </div>
         )}
@@ -360,7 +425,7 @@ export const JlptHubPage: React.FC = () => {
         {/* Tab 3: Goi (Vocabulary) Master */}
         {activeTab === 'goi' && (
           <div className="space-y-6 animate-in fade-in">
-            <JlptGrammarKanjiMaster initialTab="goi" />
+            <JlptGrammarKanjiMaster initialTab="goi" initialLevel={activeLevel} />
           </div>
         )}
 

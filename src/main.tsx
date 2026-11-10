@@ -4,7 +4,6 @@ import App from './App.tsx';
 import { registerSW } from 'virtual:pwa-register';
 import { initErrorTracking } from './lib/errorTracking';
 import { installConsoleShield } from './lib/consoleFilter';
-import { OfflineSyncManager } from './services/OfflineSyncManager';
 import { VersionUpdateService } from './services/VersionUpdateService';
 
 import './index.css';
@@ -14,9 +13,6 @@ installConsoleShield();
 
 // Sentry / Error tracking tizimini ishga tushirish
 initErrorTracking();
-
-// Offline-first ko'p tarmoqli avtomatik sinxronizatsiya
-OfflineSyncManager.initAutoSync();
 
 // Real-time kesh tozalash va yangi versiyani kuzatish xizmatlarini ishga tushirish
 VersionUpdateService.startPeriodicCheck(30000);

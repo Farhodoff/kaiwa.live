@@ -781,8 +781,10 @@ export const JlptMockExamPage: React.FC = () => {
       const userIdx = userAnswers[q.id];
       const isCorr = userIdx === q.correctAnswer;
       return {
+        questionId: String(q.id),
         questionText: q.questionText,
         section: q.section,
+        options: q.options,
         userAnswer: userIdx !== undefined ? q.options[userIdx] : 'Javob berilmagan',
         correctAnswer: q.options[q.correctAnswer],
         isCorrect: isCorr,

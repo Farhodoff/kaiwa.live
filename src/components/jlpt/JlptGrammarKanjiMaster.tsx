@@ -41,18 +41,33 @@ import { useTelegramWebApp } from '../../hooks/useTelegramWebApp';
 
 interface JlptGrammarKanjiMasterProps {
   initialTab?: 'grammar' | 'kanji' | 'goi' | 'quiz' | 'confusing';
+  initialLevel?: 'ALL' | 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
 }
 
 export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
   initialTab = 'grammar',
+  initialLevel: propInitialLevel,
 }) => {
   const { haptics } = useTelegramWebApp();
   const [searchParams] = useSearchParams();
+  const { user, addFlashcardsBatch, subjects, addSubject, awardXP, addSession, targetLevel } =
+    useStudyData();
   const urlLevel = searchParams.get('level')?.toUpperCase();
-  const initialLevel: 'ALL' | 'N5' | 'N4' | 'N3' | 'N2' | 'N1' =
-    urlLevel && ['N5', 'N4', 'N3', 'N2', 'N1'].includes(urlLevel) ? (urlLevel as any) : 'ALL';
 
-  const { user, addFlashcardsBatch, subjects, addSubject, awardXP, addSession } = useStudyData();
+  const resolvedDefaultLevel: 'ALL' | 'N5' | 'N4' | 'N3' | 'N2' | 'N1' = useMemo(() => {
+    if (propInitialLevel && ['ALL', 'N5', 'N4', 'N3', 'N2', 'N1'].includes(propInitialLevel)) {
+      return propInitialLevel;
+    }
+    if (urlLevel && ['N5', 'N4', 'N3', 'N2', 'N1', 'ALL'].includes(urlLevel)) {
+      return urlLevel as any;
+    }
+    const cleanTarget = (targetLevel || '').toUpperCase();
+    if (['N5', 'N4', 'N3', 'N2', 'N1'].includes(cleanTarget)) {
+      return cleanTarget as any;
+    }
+    return 'N5';
+  }, [propInitialLevel, urlLevel, targetLevel]);
+
   const { getItemStatus, setItemStatus, getStatsForLevel } = useJlptMastery();
   const { language } = useLanguage();
 
@@ -60,7 +75,7 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
     initialTab,
   );
   const [selectedLevel, setSelectedLevel] = useState<'ALL' | 'N5' | 'N4' | 'N3' | 'N2' | 'N1'>(
-    initialLevel,
+    resolvedDefaultLevel,
   );
 
   useEffect(() => {
@@ -68,6 +83,12 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
       setActiveTab(initialTab);
     }
   }, [initialTab]);
+
+  useEffect(() => {
+    if (propInitialLevel && ['ALL', 'N5', 'N4', 'N3', 'N2', 'N1'].includes(propInitialLevel)) {
+      setSelectedLevel(propInitialLevel);
+    }
+  }, [propInitialLevel]);
 
   useEffect(() => {
     if (urlLevel && ['N5', 'N4', 'N3', 'N2', 'N1', 'ALL'].includes(urlLevel)) {
