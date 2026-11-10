@@ -146,28 +146,16 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
       try {
         setTabLoading(true);
         const vocabModule = await import('../../data/jlptVocabData');
-        if (selectedLevel === 'ALL') {
-          // Instant initial paint: load N5 first (<50ms) so user never sees a stalled screen
-          const n5 = await vocabModule.loadVocabByLevel('N5');
-          if (!isMounted) return;
-          setVocabData(n5);
+        const targetToLoad =
+          selectedLevel === 'ALL'
+            ? resolvedDefaultLevel === 'ALL'
+              ? 'N5'
+              : resolvedDefaultLevel
+            : selectedLevel;
+        const data = await vocabModule.loadVocabByLevel(targetToLoad);
+        if (isMounted) {
+          setVocabData(data);
           setTabLoading(false);
-
-          // Stream N4 and N3 in the background seamlessly
-          const [n4, n3] = await Promise.all([
-            vocabModule.loadVocabByLevel('N4'),
-            vocabModule.loadVocabByLevel('N3'),
-          ]);
-          if (isMounted) {
-            setVocabData([...n5, ...n4, ...n3]);
-          }
-        } else {
-          // Single level on-demand (N5, N4, N3, N2, or N1)
-          const data = await vocabModule.loadVocabByLevel(selectedLevel);
-          if (isMounted) {
-            setVocabData(data);
-            setTabLoading(false);
-          }
         }
       } catch (err) {
         console.error('Failed to load vocab for level', err);
@@ -178,22 +166,7 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
     return () => {
       isMounted = false;
     };
-  }, [activeTab, selectedLevel]);
-
-  // Background prefetch for instant tab switching when idle
-  useEffect(() => {
-    const timer = setTimeout(async () => {
-      try {
-        if (kanjiData.length === 0) {
-          const m = await import('../../data/jlptKanjiDatabase');
-          setKanjiData(m.JLPT_KANJI_DATABASE);
-        }
-      } catch {
-        // Non-blocking prefetch
-      }
-    }, 2500);
-    return () => clearTimeout(timer);
-  }, [kanjiData.length]);
+  }, [activeTab, selectedLevel, resolvedDefaultLevel]);
 
   // Stroke Modal State
   const [strokeModalKanji, setStrokeModalKanji] = useState<JlptKanjiItem | null>(null);
