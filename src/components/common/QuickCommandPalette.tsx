@@ -13,7 +13,6 @@ import {
   Languages,
   Code2,
   BarChart3,
-  Users,
   PenTool,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -107,16 +106,6 @@ const COMMANDS: CommandItem[] = [
     keywords: ['sakubun', 'insho', 'writing', 'essay', 'yozish', 'mojisuu'],
   },
 
-  // Fokus
-  {
-    id: 'study-room',
-    title: "Jonli O'quv Xonasi (Study Room) 📚",
-    description: "Do'stlar bilan birga video/audio o'rganish va oq doska",
-    category: 'Fokus',
-    path: '/room/library',
-    icon: Users,
-    keywords: ['room', 'xona', 'study', 'webrtc', 'doska', 'whiteboard', 'video', 'kutubxona'],
-  },
   {
     id: 'developers',
     title: 'Dasturchilar & Ochiq API 💻',

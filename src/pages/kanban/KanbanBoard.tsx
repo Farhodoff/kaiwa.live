@@ -1,92 +1,124 @@
-import React from 'react';
-import { MoreHorizontal } from 'lucide-react';
-import { Task, TaskStatus } from '../../types';
+import { CheckCircle2, Circle, Clock } from 'lucide-react';
 
-interface KanbanBoardProps {
-  tasks: Task[];
-  onStatusChange: (taskId: string, newStatus: TaskStatus) => void;
+export interface KanbanTask {
+  id: string;
+  title: string;
+  status?: 'todo' | 'in_progress' | 'done' | string;
+  completed?: boolean;
+  priority?: 'low' | 'medium' | 'high' | string;
+  dueDate?: string;
 }
 
-const columns: { id: TaskStatus; title: string }[] = [
-  { id: 'todo', title: 'To Do' },
-  { id: 'in_progress', title: 'In Progress' },
-  { id: 'done', title: 'Done' },
+interface KanbanBoardProps {
+  tasks: KanbanTask[];
+  onStatusChange: (taskId: string, newStatus: 'todo' | 'in_progress' | 'done') => void;
+}
+
+const COLUMNS: Array<{
+  id: 'todo' | 'in_progress' | 'done';
+  title: string;
+  color: string;
+  icon: any;
+}> = [
+  {
+    id: 'todo',
+    title: 'Rejada',
+    color: 'border-zinc-500/30 bg-zinc-500/10 text-zinc-400',
+    icon: Circle,
+  },
+  {
+    id: 'in_progress',
+    title: 'Jarayonda',
+    color: 'border-sky-500/30 bg-sky-500/10 text-sky-400',
+    icon: Clock,
+  },
+  {
+    id: 'done',
+    title: 'Bajarildi',
+    color: 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400',
+    icon: CheckCircle2,
+  },
 ];
 
-const KanbanBoard: React.FC<KanbanBoardProps> = ({ tasks, onStatusChange }) => {
-  const handleDragStart = (e: React.DragEvent<HTMLDivElement>, taskId: string) => {
-    e.dataTransfer.setData('taskId', taskId);
-  };
-
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>, status: TaskStatus) => {
-    const taskId = e.dataTransfer.getData('taskId');
-    if (taskId) {
-      onStatusChange(taskId, status);
-    }
-  };
-
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
+export default function KanbanBoard({ tasks, onStatusChange }: KanbanBoardProps) {
+  const getTasksByColumn = (colId: 'todo' | 'in_progress' | 'done') => {
+    return tasks.filter((t) => {
+      if (colId === 'done') return t.status === 'done' || t.completed === true;
+      if (colId === 'in_progress') return t.status === 'in_progress' && !t.completed;
+      return !t.completed && (t.status === 'todo' || !t.status);
+    });
   };
 
   return (
-    <div className="custom-scrollbar flex h-full snap-x snap-mandatory gap-4 overflow-x-auto pb-4 md:gap-6">
-      {columns.map((column) => (
-        <div
-          key={column.id}
-          className="flex min-w-[85vw] max-w-[85vw] snap-center flex-col rounded-2xl border border-border/50 bg-muted/30 p-4 md:min-w-[300px] md:max-w-[300px] md:flex-1 md:snap-align-none"
-          onDrop={(e) => handleDrop(e, column.id)}
-          onDragOver={handleDragOver}
-        >
-          <div className="mb-4 flex items-center justify-between">
-            <h3 className="font-semibold text-foreground">{column.title}</h3>
-            <span className="rounded-full bg-muted px-2 py-1 text-xs font-medium text-muted-foreground">
-              {
-                tasks.filter((t) => (t.status || (t.completed ? 'done' : 'todo')) === column.id)
-                  .length
-              }
-            </span>
-          </div>
+    <div className="grid grid-cols-1 gap-4 pt-2 md:grid-cols-3">
+      {COLUMNS.map((col) => {
+        const colTasks = getTasksByColumn(col.id);
+        const Icon = col.icon;
+        return (
+          <div
+            key={col.id}
+            className="flex flex-col rounded-2xl border border-border/80 bg-card/40 p-4"
+          >
+            <div className="flex items-center justify-between border-b border-border/60 pb-3">
+              <div className="flex items-center gap-2">
+                <Icon size={16} className={col.color} />
+                <h4 className="text-sm font-bold text-foreground">{col.title}</h4>
+              </div>
+              <span className="rounded-full bg-muted px-2 py-0.5 text-xs font-semibold text-muted-foreground">
+                {colTasks.length}
+              </span>
+            </div>
 
-          <div className="min-h-[100px] flex-1 space-y-3">
-            {tasks
-              .filter((t) => (t.status || (t.completed ? 'done' : 'todo')) === column.id)
-              .map((task) => (
-                <div
-                  key={task.id}
-                  draggable
-                  onDragStart={(e) => handleDragStart(e, task.id)}
-                  className="glass-card group transform cursor-grab rounded-xl p-4 transition-all hover:-translate-y-0.5 hover:border-primary/50 active:cursor-grabbing"
-                >
-                  <div className="mb-2 flex items-start justify-between">
-                    <span
-                      className={`rounded-md px-2 py-1 text-[10px] font-bold uppercase tracking-wider ${
-                        task.priority === 'high'
-                          ? 'bg-destructive/10 text-destructive'
-                          : task.priority === 'medium'
-                            ? 'bg-orange-500/10 text-orange-500'
-                            : 'bg-blue-500/10 text-blue-500'
-                      }`}
-                    >
-                      {task.priority}
-                    </span>
-                    <button className="text-muted-foreground transition-colors hover:text-foreground">
-                      <MoreHorizontal size={16} />
-                    </button>
-                  </div>
-                  <h4 className="mb-1 font-semibold text-foreground">{task.title}</h4>
-                  {task.deadline && (
-                    <p className="text-xs font-medium text-muted-foreground">
-                      Due: {new Date(task.deadline).toLocaleDateString()}
-                    </p>
-                  )}
+            <div className="min-h-[140px] flex-1 space-y-2.5 pt-3">
+              {colTasks.length === 0 ? (
+                <div className="flex h-24 items-center justify-center text-xs italic text-muted-foreground/60">
+                  Vazifalar yo'q
                 </div>
-              ))}
+              ) : (
+                colTasks.map((task) => (
+                  <div
+                    key={task.id}
+                    className="group rounded-xl border border-border bg-card p-3 shadow-sm transition hover:border-primary/40"
+                  >
+                    <p className="text-sm font-medium leading-snug text-foreground">{task.title}</p>
+                    <div className="mt-2.5 flex items-center justify-between text-xs text-muted-foreground">
+                      <span className="text-[11px] font-semibold capitalize text-muted-foreground/80">
+                        {task.priority || 'Oddiy'}
+                      </span>
+                      <div className="flex items-center gap-1 opacity-80 group-hover:opacity-100">
+                        {col.id !== 'todo' && (
+                          <button
+                            onClick={() => onStatusChange(task.id, 'todo')}
+                            className="rounded px-1.5 py-0.5 text-[10px] hover:bg-muted"
+                          >
+                            Rejaga
+                          </button>
+                        )}
+                        {col.id !== 'in_progress' && (
+                          <button
+                            onClick={() => onStatusChange(task.id, 'in_progress')}
+                            className="rounded px-1.5 py-0.5 text-[10px] text-sky-400 hover:bg-muted"
+                          >
+                            Jarayonga
+                          </button>
+                        )}
+                        {col.id !== 'done' && (
+                          <button
+                            onClick={() => onStatusChange(task.id, 'done')}
+                            className="rounded px-1.5 py-0.5 text-[10px] text-emerald-400 hover:bg-muted"
+                          >
+                            Tugallash
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
-};
-
-export default KanbanBoard;
+}

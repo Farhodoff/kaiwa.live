@@ -51,7 +51,6 @@ export const pwaGlobIgnores = [
   '**/Admin*.js',
   '**/*Modal-*.js',
   '**/*Page-*.js',
-  '**/dnd-kit-*.js',
   '**/analytics-*.js',
   '**/framer-motion-*.js',
   '**/JlptGrammarKanjiMaster-*.js',
@@ -77,7 +76,7 @@ export const pwaGlobIgnores = [
 export const pwaRuntimeCaching: WorkboxRuntimeCachingRule[] = [
   {
     urlPattern:
-      /assets\/(?:kanji-strokes|jlpt-vocab|jlpt-deck|curriculum-|jlpt_n[1-5]|jlpt-grammar-kanji-data|Admin|.*Modal|.*Page|dnd-kit|analytics|framer-motion|JlptGrammarKanjiMaster|minna_shokyu|pdf|.*_500_mon|.*_thematic_.*|.*_collocations|.*_yojijukugo|listening_data|Exam|CustomContent|JlptMockExam|JlptListeningMock|kanji_master|n1AdvancedContent|japaneseDiagnosticBank).*\.(?:js|mjs)$/i,
+      /assets\/(?:kanji-strokes|jlpt-vocab|jlpt-deck|curriculum-|jlpt_n[1-5]|jlpt-grammar-kanji-data|Admin|.*Modal|.*Page|analytics|framer-motion|JlptGrammarKanjiMaster|minna_shokyu|pdf|.*_500_mon|.*_thematic_.*|.*_collocations|.*_yojijukugo|listening_data|Exam|CustomContent|JlptMockExam|JlptListeningMock|kanji_master|n1AdvancedContent|japaneseDiagnosticBank).*\.(?:js|mjs)$/i,
     handler: 'StaleWhileRevalidate',
     options: {
       cacheName: 'large-data-chunks-cache',

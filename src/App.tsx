@@ -15,9 +15,6 @@ import { getSafeRedirectUrl } from './utils/redirect';
 const DecksPage = lazyWithRetry(() => import('./pages/DecksPage'));
 const FlashcardForm = lazyWithRetry(() => import('./pages/FlashcardForm'));
 const SettingsPage = lazyWithRetry(() => import('./pages/SettingsPage'));
-const StudyRoomPage = lazyWithRetry(() => import('./pages/StudyRoomPage'));
-const SubjectDetailPage = lazyWithRetry(() => import('./pages/SubjectDetailPage'));
-const SubjectsPage = lazyWithRetry(() => import('./pages/SubjectsPage'));
 const AdminDashboardPage = lazyWithRetry(() => import('./pages/AdminDashboardPage'));
 const SpeakingCoachPage = lazyWithRetry(() => import('./pages/SpeakingCoachPage'));
 const MonologuePage = lazyWithRetry(() =>
@@ -386,8 +383,8 @@ const App: React.FC = () => {
                       element={<Navigate to="/jlpt?tab=mock" replace />}
                     />
                     <Route path="exams" element={<Navigate to="/jlpt?tab=mock" replace />} />
-                    <Route path="subjects" element={<SubjectsPage />} />
-                    <Route path="subjects/:id" element={<SubjectDetailPage />} />
+                    <Route path="subjects" element={<Navigate to="/dashboard" replace />} />
+                    <Route path="subjects/:id" element={<Navigate to="/dashboard" replace />} />
                     <Route path="ai" element={<Navigate to="/speaking-coach" replace />} />
                     <Route path="flashcards" element={<DecksPage />} />
                     <Route path="deck" element={<Navigate to="/flashcards" replace />} />
@@ -400,7 +397,7 @@ const App: React.FC = () => {
                     <Route path="flashcards/study/:subjectId" element={<StudyModePage />} />
                     <Route path="progress" element={<ProgressPage />} />
                     <Route path="pricing" element={<PricingPage />} />
-                    <Route path="room/:roomId" element={<StudyRoomPage />} />
+                    <Route path="room/:roomId" element={<Navigate to="/dashboard" replace />} />
                     <Route path="settings" element={<SettingsPage />} />
                     <Route path="twa" element={<TelegramMiniAppPage />} />
                     <Route path="telegram-app" element={<TelegramMiniAppPage />} />
