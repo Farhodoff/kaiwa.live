@@ -1,5 +1,3 @@
-import { DatasetStorageService } from '../services/DatasetStorageService';
-
 export type JlptVocabLevel = 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
 
 export interface JlptVocabItem {
@@ -19,53 +17,36 @@ export interface JlptVocabItem {
 
 const vocabCache: Partial<Record<JlptVocabLevel, JlptVocabItem[]>> = {};
 
+const levelLoaders: Record<JlptVocabLevel, () => Promise<{ default: unknown }>> = {
+  N5: () => import('./vocab/jlptVocabN5.json'),
+  N4: () => import('./vocab/jlptVocabN4.json'),
+  N3: () => import('./vocab/jlptVocabN3.json'),
+  N2: () => import('./vocab/jlptVocabN2.json'),
+  N1: () => import('./vocab/jlptVocabN1.json'),
+};
+
 /**
- * Asynchronously loads vocabulary dataset for a specific JLPT level on-demand.
- * Integrates DatasetStorageService for fast IndexedDB offline access and CDN fetch.
- * Enables granular code-splitting so users download only the level they are actively studying.
+ * Asynchronously loads vocabulary dataset for a specific JLPT level strictly on-demand.
+ * Loads directly via Vite chunked dynamic imports with instant in-memory caching.
+ * Prevents heavy network waterfalls and eliminates mobile thread blocking.
  */
-export async function loadVocabByLevel(level: JlptVocabLevel): Promise<JlptVocabItem[]> {
-  if (vocabCache[level]) return vocabCache[level]!;
+export async function loadVocabByLevel(level: JlptVocabLevel | string): Promise<JlptVocabItem[]> {
+  const normalized = (level || 'N5').toUpperCase() as JlptVocabLevel;
+  if (vocabCache[normalized]) return vocabCache[normalized]!;
 
-  // 1. Instant static fetch (C++ native streaming JSON parsing, instant in browser)
+  const loader = levelLoaders[normalized];
+  if (!loader) return [];
+
   try {
-    const res = await fetch(`/data/vocab/jlptVocab${level}.json`);
-    if (res.ok) {
-      const items = (await res.json()) as JlptVocabItem[];
-      if (Array.isArray(items) && items.length > 0) {
-        vocabCache[level] = items;
-        return items;
-      }
-    }
-  } catch {
-    // Fall back to DatasetStorageService if offline or custom environment
+    const mod = await loader();
+    const rawData = (mod as { default?: unknown }).default || mod;
+    const items = (Array.isArray(rawData) ? rawData : []) as JlptVocabItem[];
+    vocabCache[normalized] = items;
+    return items;
+  } catch (err) {
+    console.error(`[jlptVocabData] Failed to lazy-load vocab for ${normalized}:`, err);
+    return [];
   }
-
-  const items = await DatasetStorageService.loadDataset<JlptVocabItem[]>({
-    datasetKey: `jlpt_vocab_${level.toLowerCase()}`,
-    localPath: `/data/vocab/jlptVocab${level}.json`,
-    supabaseBucket: 'datasets',
-    supabasePath: `vocab/jlptVocab${level}.json`,
-    fallbackLoader: async () => {
-      switch (level) {
-        case 'N5':
-          return ((await import('./vocab/jlptVocabN5.json')).default || []) as JlptVocabItem[];
-        case 'N4':
-          return ((await import('./vocab/jlptVocabN4.json')).default || []) as JlptVocabItem[];
-        case 'N3':
-          return ((await import('./vocab/jlptVocabN3.json')).default || []) as JlptVocabItem[];
-        case 'N2':
-          return ((await import('./vocab/jlptVocabN2.json')).default || []) as JlptVocabItem[];
-        case 'N1':
-          return ((await import('./vocab/jlptVocabN1.json')).default || []) as JlptVocabItem[];
-        default:
-          return [];
-      }
-    },
-  });
-
-  vocabCache[level] = items;
-  return items;
 }
 
 /**

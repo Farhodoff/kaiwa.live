@@ -1,9 +1,5 @@
 import { Subject, Flashcard } from '../types';
-import {
-  loadPresetDecksByLevel,
-  loadAllJlptPresetDecks,
-  JlptDeckLevel,
-} from '../data/jlptPresetDecks';
+import { loadPresetDecksByLevel, JlptDeckLevel } from '../data/jlptPresetDecks';
 
 export const ensureJlptSubjectAndDecks = async (
   _currentLevel: string,
@@ -28,10 +24,10 @@ export const ensureJlptSubjectAndDecks = async (
 
   if (!subjectId) return null;
 
-  // Filter relevant JLPT decks based on targetLevel, falling back to all
+  // Filter relevant JLPT decks based on targetLevel, falling back to N5
   let decks = await loadPresetDecksByLevel(targetLevel as JlptDeckLevel);
   if (!decks || decks.length === 0) {
-    decks = await loadAllJlptPresetDecks();
+    decks = await loadPresetDecksByLevel('N5');
   }
 
   decks.forEach((deck) => {
