@@ -501,16 +501,16 @@ export const useSpeechRecognition = ({
       const isMidConjunction = isMidSentenceConjunction(cleanText, languageRef.current);
 
       // Adaptive Smart Silence Delay:
-      // - Clearly complete terminal sentences: 1000ms (fast conversational turn)
-      // - Mid-sentence clause / connective particle: 1800ms (comfortable thinking time)
-      // - General neutral pause: 1200ms (~1.2 seconds as requested)
-      let silenceThreshold = 1200;
+      // - Clearly complete terminal sentences: 650ms (fast conversational turn)
+      // - Mid-sentence clause / connective particle: 1400ms (comfortable thinking time)
+      // - General neutral pause: 900ms (~0.9s responsive turn-taking)
+      let silenceThreshold = 900;
       if (userCustomDelay > 0) {
         silenceThreshold = userCustomDelay;
       } else if (isMidConjunction) {
-        silenceThreshold = 1800;
+        silenceThreshold = 1400;
       } else if (isTerminal) {
-        silenceThreshold = 1000;
+        silenceThreshold = 650;
       }
 
       if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
