@@ -1,4 +1,5 @@
 import * as Sentry from '@sentry/react';
+export { Sentry };
 import { sanitizeErrorMessage } from '../components/ErrorBoundary';
 import { ApiLoggingService } from '../services/ApiLoggingService';
 
@@ -168,12 +169,16 @@ export const captureException = (error: any, context?: Record<string, any>) => {
     metadata: safeCtx,
   });
 
-  if (ENV === 'development') {
+  if (
+    ENV === 'development' ||
+    (typeof window !== 'undefined' && window.location?.search?.includes('debug'))
+  ) {
     console.error('❌ [Kuzatilgan Xatolik]:', safeMsg, safeCtx || '');
   }
 
   if (SENTRY_DSN) {
-    Sentry.captureException(new Error(safeMsg), {
+    const errorObject = error instanceof Error ? error : new Error(safeMsg);
+    Sentry.captureException(errorObject, {
       extra: safeCtx,
     });
   }

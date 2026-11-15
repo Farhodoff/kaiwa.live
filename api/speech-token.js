@@ -29,19 +29,27 @@ export default async function handler(req) {
   }
 
   if (req.method !== 'GET' && req.method !== 'POST') {
-    return jsonResponse(req, {
-      error: 'Method Not Allowed',
-      message: "Faqat GET yoki POST so'rovlari qo'llab-quvvatlanadi.",
-    }, 405);
+    return jsonResponse(
+      req,
+      {
+        error: 'Method Not Allowed',
+        message: "Faqat GET yoki POST so'rovlari qo'llab-quvvatlanadi.",
+      },
+      405,
+    );
   }
 
   // 2. Authentication: strictly verify Supabase JWT or Anon Key
   const token = getBearerToken(req);
   if (!token) {
-    return jsonResponse(req, {
-      error: 'Unauthorized',
-      message: 'Autentifikatsiya talab qilinadi. Authorization Bearer token yuborilishi shart.',
-    }, 401);
+    return jsonResponse(
+      req,
+      {
+        error: 'Unauthorized',
+        message: 'Autentifikatsiya talab qilinadi. Authorization Bearer token yuborilishi shart.',
+      },
+      401,
+    );
   }
 
   let authenticatedUserId = null;
@@ -54,10 +62,14 @@ export default async function handler(req) {
   } else {
     const { user, error: authError } = await verifyAuth(req);
     if (authError || !user) {
-      return jsonResponse(req, {
-        error: 'Unauthorized',
-        message: "Yaroqsiz yoki muddati o'tgan autentifikatsiya sessiyasi.",
-      }, 401);
+      return jsonResponse(
+        req,
+        {
+          error: 'Unauthorized',
+          message: "Yaroqsiz yoki muddati o'tgan autentifikatsiya sessiyasi.",
+        },
+        401,
+      );
     }
     authenticatedUserId = user.id;
     userRole = user.app_metadata?.role || user.role || 'user';
@@ -66,21 +78,30 @@ export default async function handler(req) {
   // 3. Distributed Rate Limiter (30 token requests/min per client)
   const rateCheck = await checkRateLimit(req, authenticatedUserId, 30);
   if (!rateCheck.allowed) {
-    return jsonResponse(req, {
-      error: 'Too Many Requests',
-      message: `Speech token so'rovlar tezligi oshdi. Iltimos ${rateCheck.retryAfter} soniyadan so'ng qayta urinib ko'ring.`,
-      retryAfter: rateCheck.retryAfter,
-    }, 429, { 'Retry-After': String(rateCheck.retryAfter) });
+    return jsonResponse(
+      req,
+      {
+        error: 'Too Many Requests',
+        message: `Speech token so'rovlar tezligi oshdi. Iltimos ${rateCheck.retryAfter} soniyadan so'ng qayta urinib ko'ring.`,
+        retryAfter: rateCheck.retryAfter,
+      },
+      429,
+      { 'Retry-After': String(rateCheck.retryAfter) },
+    );
   }
 
   // 4. Daily quota check (evaluated per-user or per-client IP for guest)
   const quotaCheck = await checkDailyQuota(authenticatedUserId, userRole, '', req);
   if (!quotaCheck.allowed) {
-    return jsonResponse(req, {
-      error: 'Quota Exceeded',
-      message: quotaCheck.reason || 'Kunlik so‘rovlar limiti tugadi.',
-      remainingQuota: quotaCheck.remainingQuota ?? 0,
-    }, 403);
+    return jsonResponse(
+      req,
+      {
+        error: 'Quota Exceeded',
+        message: quotaCheck.reason || 'Kunlik so‘rovlar limiti tugadi.',
+        remainingQuota: quotaCheck.remainingQuota ?? 0,
+      },
+      403,
+    );
   }
 
   // 5. Azure Speech Credentials Verification
@@ -88,10 +109,14 @@ export default async function handler(req) {
   const azureRegion = (process.env.AZURE_SPEECH_REGION || 'swedencentral').trim();
 
   if (!azureKey) {
-    return jsonResponse(req, {
-      error: 'Service Unavailable',
-      message: 'Azure Speech xizmati sozlanmagan.',
-    }, 503);
+    return jsonResponse(
+      req,
+      {
+        error: 'Service Unavailable',
+        message: 'Azure Speech xizmati sozlanmagan.',
+      },
+      503,
+    );
   }
 
   // 6. Fetch Ephemeral Token from Azure Cognitive Services STS
@@ -108,10 +133,14 @@ export default async function handler(req) {
 
     if (!stsResponse.ok) {
       console.error('[speech-token] Azure STS failed:', stsResponse.status);
-      return jsonResponse(req, {
-        error: 'Bad Gateway',
-        message: 'Azure Speech tokenini olishda xatolik yuz berdi.',
-      }, 502);
+      return jsonResponse(
+        req,
+        {
+          error: 'Bad Gateway',
+          message: 'Azure Speech tokenini olishda xatolik yuz berdi.',
+        },
+        502,
+      );
     }
 
     const speechToken = await stsResponse.text();
@@ -119,18 +148,27 @@ export default async function handler(req) {
       throw new Error('Azure STS returned empty token');
     }
 
-    return jsonResponse(req, {
-      token: speechToken.trim(),
-      region: azureRegion,
-      expiresIn: 600, // Azure STS tokens are valid for 10 minutes (600s)
-    }, 200, {
-      'X-Speech-Provider': 'azure',
-    });
+    return jsonResponse(
+      req,
+      {
+        token: speechToken.trim(),
+        region: azureRegion,
+        expiresIn: 600, // Azure STS tokens are valid for 10 minutes (600s)
+      },
+      200,
+      {
+        'X-Speech-Provider': 'azure',
+      },
+    );
   } catch {
     console.error('[speech-token] Unexpected upstream failure');
-    return jsonResponse(req, {
-      error: 'Internal Server Error',
-      message: 'Azure Speech xizmatiga ulanishda kutilmagan xatolik yuz berdi.',
-    }, 500);
+    return jsonResponse(
+      req,
+      {
+        error: 'Internal Server Error',
+        message: 'Azure Speech xizmatiga ulanishda kutilmagan xatolik yuz berdi.',
+      },
+      500,
+    );
   }
 }

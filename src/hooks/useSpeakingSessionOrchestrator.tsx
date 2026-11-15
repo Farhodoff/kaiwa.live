@@ -28,6 +28,7 @@ import { useSpeechRecognition } from './useSpeechRecognition';
 import { useTTS } from './useTTS';
 import { useVoiceRecorder } from './useVoiceRecorder';
 import { toast } from './use-toast';
+import { captureException } from '../lib/errorTracking';
 import { supabase } from '../lib/supabase';
 import {
   CoachPersona,
@@ -552,7 +553,17 @@ export function useSpeakingSessionOrchestrator({
         if (err?.name === 'AbortError' || abortController.signal.aborted) {
           return;
         }
-        console.error('[SpeakingCoach] Dialogue request failed:', err?.name, err?.status);
+        console.error(
+          '[SpeakingCoach] Dialogue request failed:',
+          err?.name,
+          err?.status,
+          err?.message,
+        );
+        captureException(err, {
+          context: 'SpeakingCoach.dialogueRequest',
+          language: languageRef.current,
+          persona: personaRef.current,
+        });
         const message =
           err instanceof AIServiceError
             ? err.message

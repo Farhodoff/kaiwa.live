@@ -2,7 +2,7 @@ import { Component, ReactNode, ErrorInfo } from 'react';
 import { AlertTriangle, Check, Copy, Home, RefreshCw } from 'lucide-react';
 import { Button } from './ui/Button';
 import { logger } from '../utils/logger';
-import { recordTelemetryEvent } from '../lib/errorTracking';
+import { recordTelemetryEvent, captureException } from '../lib/errorTracking';
 
 interface Props {
   children: ReactNode;
@@ -58,6 +58,10 @@ class ErrorBoundary extends Component<Props, State> {
     }
     logger.error('ErrorBoundary', safeMessage, error);
     try {
+      captureException(error, {
+        componentStack: errorInfo?.componentStack?.slice(0, 500),
+        url: typeof window !== 'undefined' ? window.location?.href : '',
+      });
       recordTelemetryEvent('unhandled', `[ErrorBoundary] ${safeMessage}`, {
         success: false,
         metadata: {
