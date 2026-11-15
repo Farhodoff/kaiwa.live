@@ -659,7 +659,7 @@ const SpeakingCoachPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleStopSession}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-rose-500/40 bg-rose-500/20 px-3.5 py-1.5 text-xs font-bold text-rose-300 shadow transition hover:bg-rose-500/30 active:scale-95"
+                  className="relative z-20 inline-flex items-center gap-1.5 rounded-full border border-rose-500/40 bg-rose-500/20 px-3.5 py-1.5 text-xs font-bold text-rose-300 shadow transition hover:bg-rose-500/30 active:scale-95"
                   title="Suhbatni yakunlash va saqlash"
                 >
                   <Square size={12} className="fill-current text-rose-400" />
@@ -700,7 +700,7 @@ const SpeakingCoachPage: React.FC = () => {
           type="button"
           onClick={() => setShowTranscript((visible) => !visible)}
           aria-expanded={showTranscript}
-          className="min-h-10 shrink-0 self-center rounded-lg px-3 text-xs text-slate-300 transition-colors hover:bg-white/5"
+          className="relative z-10 mt-4 min-h-10 shrink-0 self-center rounded-lg px-3 text-xs text-slate-300 transition-colors hover:bg-white/5"
         >
           {showTranscript ? 'Suhbat matnini yashirish' : 'Suhbat matnini ko‘rsatish'}
         </button>
