@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { buildCoachPrompts } from '../aiCoach';
 import { MINNA_SCENARIOS } from '../../../data/minnaScenarios';
+import { N3_SCENARIOS } from '../../../data/n3Scenarios';
 
 describe('AI Coach Anti-Loop & Conversational Progression Verification', () => {
   it('injects strict anti-loop and progression rules into system prompt for Japanese', () => {
@@ -68,6 +69,16 @@ describe('AI Coach Anti-Loop & Conversational Progression Verification', () => {
       const scenario = MINNA_SCENARIOS.find((s) => s.id.startsWith(`minna_l${i}_`));
       expect(scenario, `Minna lesson ${i} scenario should exist`).toBeDefined();
       expect(scenario?.context_prompt).toContain('進行ステップ');
+    }
+  });
+
+  it('verifies all 30 JLPT N3 lessons are present and have progressive steps', () => {
+    expect(N3_SCENARIOS.length).toBe(30);
+    for (let i = 1; i <= 30; i++) {
+      const scenario = N3_SCENARIOS.find((s) => s.id.startsWith(`n3_l${i}_`));
+      expect(scenario, `N3 lesson ${i} scenario should exist`).toBeDefined();
+      expect(scenario?.context_prompt).toContain('進行ステップ');
+      expect(scenario?.difficulty).toBe('N3');
     }
   });
 });

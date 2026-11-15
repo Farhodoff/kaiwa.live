@@ -242,6 +242,40 @@ const SCENARIO_MAP_BY_UNIT: Record<string, string> = {
   'ja-n1-u6': 'cross_cultural_conflict_resolution',
 };
 
+const SCENARIO_MAP_BY_LESSON_ID: Record<string, string> = {
+  // JLPT N3 Lesson-specific scenarios
+  'ja-n3-u1-l1': 'n3_l1_ukemi',
+  'ja-n3-u1-l2': 'n3_l2_shieki',
+  'ja-n3-u1-l3': 'n3_l3_shieki_ukemi',
+  'ja-n3-u1-l4': 'n3_l4_teoku_tearu',
+  'ja-n3-u1-l5': 'n3_l5_teshimau',
+  'ja-n3-u2-l1': 'n3_l6_kotoni_suru',
+  'ja-n3-u2-l2': 'n3_l7_youni_suru',
+  'ja-n3-u2-l3': 'n3_l8_souda',
+  'ja-n3-u2-l4': 'n3_l9_warini_kuseni',
+  'ja-n3-u2-l5': 'n3_l10_work_culture',
+  'ja-n3-u3-l1': 'n3_l11_sonkeigo',
+  'ja-n3-u3-l2': 'n3_l12_kenjougo',
+  'ja-n3-u3-l3': 'n3_l13_economy_kanji',
+  'ja-n3-u3-l4': 'n3_l14_disaster_safety',
+  'ja-n3-u3-l5': 'n3_l15_quick_response',
+  'ja-n3-u4-l1': 'n3_l16_taishite_hanmen',
+  'ja-n3-u4-l2': 'n3_l17_niyotte_seide',
+  'ja-n3-u4-l3': 'n3_l18_bakari_dake',
+  'ja-n3-u4-l4': 'n3_l19_reading_logic',
+  'ja-n3-u4-l5': 'n3_l20_hazuda_wakeda_bekida',
+  'ja-n3-u5-l1': 'n3_l21_technology_science',
+  'ja-n3-u5-l2': 'n3_l22_stress_feelings',
+  'ja-n3-u5-l3': 'n3_l23_conditionals_mastery',
+  'ja-n3-u5-l4': 'n3_l24_academic_style',
+  'ja-n3-u5-l5': 'n3_l25_comparative_reading',
+  'ja-n3-u6-l1': 'n3_l26_gist_summary',
+  'ja-n3-u6-l2': 'n3_l27_scrambled_logic',
+  'ja-n3-u6-l3': 'n3_l28_phone_appointment',
+  'ja-n3-u6-l4': 'n3_l29_exam_review',
+  'ja-n3-u6-l5': 'n3_l30_capstone',
+};
+
 const LEVEL_CONFIGS = {
   n5: {
     key: 'n5' as JlptLevel,
@@ -449,7 +483,7 @@ export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({ init
     if (activeLevel === 'n5' || activeLevel === 'n4') {
       return SCENARIO_MAP_BY_LESSON_NUMBER[lesson.lessonNumber] || '';
     }
-    return SCENARIO_MAP_BY_UNIT[lesson.unitId] || '';
+    return SCENARIO_MAP_BY_LESSON_ID[lesson.id] || SCENARIO_MAP_BY_UNIT[lesson.unitId] || '';
   };
 
   return (
