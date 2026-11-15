@@ -1,4 +1,5 @@
 import { supabase, supabaseAnonKey } from '../lib/supabase';
+import { captureException } from '../lib/errorTracking';
 
 export interface AzurePronunciationWord {
   word: string;
@@ -121,6 +122,19 @@ export const AzureSpeechService = {
           authState = 'authenticated';
         }
 
+        if (!res.ok && !guest) {
+          // Gracefully fallback to guest token if user token failed (e.g. 401 or network glitch)
+          console.warn(
+            `[AzureSpeechService] User token returned HTTP ${res.status}, trying guest fallback...`,
+          );
+          const guestRes = await requestSpeechToken(supabaseAnonKey, true);
+          if (guestRes.ok) {
+            res = guestRes;
+            accessToken = supabaseAnonKey;
+            authState = 'anonymous';
+          }
+        }
+
         if (!res.ok) {
           authState = 'error';
           cachedSpeechToken = null;
@@ -134,7 +148,15 @@ export const AzureSpeechService = {
                   : res.status === 431
                     ? 'Brauzer sessiyasi haddan tashqari katta. Sahifani yangilang; davom etsa, localhost sayt ma’lumotlarini tozalang.'
                     : 'Azure tokenini olib bo‘lmadi. Xizmat ulanishini tekshirish kerak.';
-          console.warn(`[AzureSpeechService] Failed to obtain speech token: HTTP ${res.status}`);
+          console.error(`[AzureSpeechService] Failed to obtain speech token: HTTP ${res.status}`);
+          captureException(
+            new Error(`[AzureSpeechService] Speech token failed: HTTP ${res.status}`),
+            {
+              status: res.status,
+              guest,
+              authState,
+            },
+          );
           return null;
         }
 
@@ -143,6 +165,9 @@ export const AzureSpeechService = {
         if (!issued?.token || !issued?.region) {
           authState = 'error';
           lastConnectionError = 'Azure token javobi yaroqsiz.';
+          captureException(new Error('[AzureSpeechService] Invalid STS token response payload'), {
+            issued,
+          });
           return null;
         }
 
@@ -154,11 +179,13 @@ export const AzureSpeechService = {
           expiresAt: Date.now() + (issued.expiresIn || 600) * 1000,
         };
         return cachedSpeechToken;
-      } catch {
+      } catch (err: any) {
         if (generation !== sessionGeneration) return null;
         if (authState === 'refreshing') return expireSession();
         authState = 'error';
         lastConnectionError = 'Azure token serveriga ulanish uzildi.';
+        console.error('[AzureSpeechService] Unexpected error getting speech token:', err);
+        captureException(err, { context: 'AzureSpeechService.getSpeechToken.catch' });
         return null;
       } finally {
         tokenFetchPromise = null;

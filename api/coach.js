@@ -16,14 +16,12 @@ export default async function handler(req, res) {
   const endpoint = (process.env.AZURE_OPENAI_ENDPOINT || '').trim().replace(/\/+$/, '');
   const deployment = (process.env.AZURE_OPENAI_DEPLOYMENT || '').trim();
   if (!key || !endpoint || !deployment) {
-    return res
-      .status(503)
-      .json({
-        error: {
-          code: 'AZURE_AI_NOT_CONFIGURED',
-          message: 'Azure suhbat modeli hali sozlanmagan.',
-        },
-      });
+    return res.status(503).json({
+      error: {
+        code: 'AZURE_AI_NOT_CONFIGURED',
+        message: 'Azure suhbat modeli hali sozlanmagan.',
+      },
+    });
   }
   let url;
   try {
@@ -36,22 +34,20 @@ export default async function handler(req, res) {
     )
       throw new Error('Invalid Azure endpoint');
   } catch {
-    return res
-      .status(503)
-      .json({
-        error: {
-          code: 'AZURE_AI_NOT_CONFIGURED',
-          message: 'Azure suhbat manzili noto‘g‘ri sozlangan.',
-        },
-      });
+    return res.status(503).json({
+      error: {
+        code: 'AZURE_AI_NOT_CONFIGURED',
+        message: 'Azure suhbat manzili noto‘g‘ri sozlangan.',
+      },
+    });
   }
 
-  const { user, error } = await verifyAuth(req);
+  let { user, error } = await verifyAuth(req);
   const token = getBearerToken(req);
   if (token && token !== SUPABASE_ANON_KEY && (error || !user)) {
-    return res
-      .status(401)
-      .json({ error: { code: 'SESSION_EXPIRED', message: 'Kirish sessiyasini yangilang.' } });
+    // Graceful degrade: do not fail live voice turns on stale JWT; treat as guest
+    console.warn('[coach] Expired or invalid user token; falling back to guest mode');
+    user = null;
   }
   const rate = await checkRateLimit(req, user?.id || null);
   if (!rate.allowed) {
@@ -145,14 +141,12 @@ export default async function handler(req, res) {
     return res.status(200).json(await upstream.json());
   } catch {
     if (res.headersSent) return res.end();
-    return res
-      .status(controller.signal.aborted ? 504 : 502)
-      .json({
-        error: {
-          code: 'AZURE_AI_UNAVAILABLE',
-          message: 'Azure suhbat xizmatiga ulanish uzildi. Qayta urinib ko‘ring.',
-        },
-      });
+    return res.status(controller.signal.aborted ? 504 : 502).json({
+      error: {
+        code: 'AZURE_AI_UNAVAILABLE',
+        message: 'Azure suhbat xizmatiga ulanish uzildi. Qayta urinib ko‘ring.',
+      },
+    });
   } finally {
     clearTimeout(timeout);
     reader?.releaseLock();

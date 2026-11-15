@@ -57,7 +57,37 @@ function sanitizeArg(arg: any): any {
 }
 
 function isBenignNetworkNoise(args: any[]): boolean {
+  if (typeof window !== 'undefined') {
+    // Never suppress if debug mode is active in URL or localStorage
+    try {
+      if (
+        window.location?.search?.includes('debug') ||
+        window.localStorage?.getItem('kaiwa_debug') === 'true'
+      ) {
+        return false;
+      }
+    } catch {
+      // Ignore storage/location access issues
+    }
+  }
+
   const text = args.map((a) => (typeof a === 'string' ? a : a?.message || '')).join(' ');
+
+  // NEVER suppress critical diagnostic logs from services/components
+  const CRITICAL_LOG_PREFIXES = [
+    '[SpeakingCoach]',
+    '[AzureSpeechService]',
+    '[API',
+    '[Coach]',
+    '[Speech]',
+    '[Sentry]',
+    '[Auth]',
+    '[AI]',
+  ];
+  if (CRITICAL_LOG_PREFIXES.some((prefix) => text.includes(prefix))) {
+    return false;
+  }
+
   return BENIGN_NETWORK_ERRORS.some((err) => text.includes(err));
 }
 
@@ -103,8 +133,15 @@ export function installConsoleShield(): void {
   window.addEventListener('unhandledrejection', (event) => {
     const reason = event.reason;
     const msg = reason?.message || String(reason || '');
-    if (BENIGN_NETWORK_ERRORS.some((err) => msg.includes(err))) {
-      event.preventDefault(); // Stop noisy browser red box in console
+    const isDebug =
+      window.location?.search?.includes('debug') ||
+      window.localStorage?.getItem('kaiwa_debug') === 'true';
+    if (
+      !isDebug &&
+      !msg.includes('/api/') &&
+      BENIGN_NETWORK_ERRORS.some((err) => msg.includes(err))
+    ) {
+      event.preventDefault(); // Stop noisy browser red box in console for truly benign drops
     }
   });
 }

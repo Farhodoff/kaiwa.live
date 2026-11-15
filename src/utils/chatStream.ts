@@ -1,5 +1,6 @@
 import { supabase, supabaseAnonKey } from '../lib/supabase';
 import { AIServiceError } from './aiServiceError';
+import { captureException } from '../lib/errorTracking';
 
 export const streamChatTokens = async (
   messages: { role: string; content: string }[],
@@ -29,7 +30,7 @@ export const streamChatTokens = async (
     payload.response_format = { type: 'json_object' };
   }
 
-  const response = await fetch(gateway, {
+  let response = await fetch(gateway, {
     method: 'POST',
     // Auth is sent below; unrelated localhost cookies can cause HTTP 431.
     credentials: 'omit',
@@ -42,7 +43,32 @@ export const streamChatTokens = async (
     signal,
   });
 
+  if (
+    !response.ok &&
+    (response.status === 401 || response.status === 403) &&
+    bearerToken !== anonKey
+  ) {
+    // If bearer token failed, retry with anonKey so user dialogue is never disrupted
+    console.warn('[chatStream] Bearer token rejected, retrying with anonKey...');
+    response = await fetch(gateway, {
+      method: 'POST',
+      credentials: 'omit',
+      headers: {
+        apikey: anonKey,
+        Authorization: `Bearer ${anonKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+      signal,
+    });
+  }
+
   if (!response.ok) {
+    console.error(`[chatStream] AI stream gateway returned HTTP ${response.status}`);
+    captureException(new Error(`[chatStream] AI Gateway returned HTTP ${response.status}`), {
+      gateway,
+      status: response.status,
+    });
     throw new AIServiceError(response.status);
   }
 
