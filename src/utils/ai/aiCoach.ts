@@ -33,10 +33,7 @@ export const analyzeSpeech = async (
     `;
 
   try {
-    const text = await callDeepSeek(prompt, {
-      isJson: true,
-      modelName: 'deepseek-chat',
-    });
+    const text = await callCoachAI(prompt, undefined, true);
     const cleanedText = text
       .replace(/```json/g, '')
       .replace(/```/g, '')

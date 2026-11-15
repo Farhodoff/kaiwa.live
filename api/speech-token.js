@@ -39,7 +39,7 @@ export default async function handler(req) {
     );
   }
 
-  // 2. Authentication: strictly verify Supabase JWT or Anon Key, with graceful degrade for expired tokens
+  // 2. Authentication: strictly verify Supabase JWT or Anon Key
   const token = getBearerToken(req);
   if (!token) {
     return jsonResponse(
@@ -55,15 +55,24 @@ export default async function handler(req) {
   let authenticatedUserId = null;
   let userRole = 'user';
 
-  if (token !== SUPABASE_ANON_KEY) {
-    const { user, error: authError } = await verifyAuth(req);
-    if (user && !authError) {
-      authenticatedUserId = user.id;
-      userRole = user.app_metadata?.role || user.role || 'user';
-    } else {
-      // Graceful degrade: do not break live speech recognition on stale session; treat as guest
-      console.warn('[speech-token] Stale or invalid user token; falling back to guest mode');
+  if (token === SUPABASE_ANON_KEY) {
+    if (new URL(req.url).searchParams.get('mode') !== 'guest') {
+      return jsonResponse(req, { error: 'Unauthorized' }, 401);
     }
+  } else {
+    const { user, error: authError } = await verifyAuth(req);
+    if (authError || !user) {
+      return jsonResponse(
+        req,
+        {
+          error: 'Unauthorized',
+          message: "Yaroqsiz yoki muddati o'tgan autentifikatsiya sessiyasi.",
+        },
+        401,
+      );
+    }
+    authenticatedUserId = user.id;
+    userRole = user.app_metadata?.role || user.role || 'user';
   }
 
   // 3. Distributed Rate Limiter (skip for admin, 60 token requests/min per client)
