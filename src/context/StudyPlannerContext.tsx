@@ -789,8 +789,17 @@ export const StudyPlannerProvider: React.FC<{ children: React.ReactNode }> = ({ 
           setWhiteboards([]);
           setEvents([]);
           setCoachSessions([]);
-        } else if (event === 'SIGNED_IN' || event === 'USER_UPDATED') {
+        } else if (
+          event === 'SIGNED_IN' ||
+          event === 'USER_UPDATED' ||
+          event === 'TOKEN_REFRESHED'
+        ) {
           if (session?.user) {
+            setUser((prev) =>
+              prev?.id === session.user.id ? { ...prev, ...session.user } : session.user,
+            );
+            useAuthStore.getState().setUser(session.user);
+            safeLocalStorage.setJSON('study_planner_user_cache', session.user);
             fetchData();
           }
         }

@@ -195,6 +195,9 @@ const App: React.FC = () => {
         clearTimeout(safetyTimer);
         if (fetchedSession) {
           setSession(fetchedSession);
+          useAuthStore.getState().setUser(fetchedSession.user);
+          useAuthStore.getState().setLoading(false);
+          safeLocalStorage.setJSON('study_planner_user_cache', fetchedSession.user);
         } else if (isTelegramWebApp()) {
           const tgAuth = initTelegramAuth();
           if (tgAuth?.session) {
@@ -248,6 +251,9 @@ const App: React.FC = () => {
         safeLocalStorage.removeItem('study_planner_user_cache');
       } else if (newSession) {
         setSession(newSession);
+        useAuthStore.getState().setUser(newSession.user);
+        useAuthStore.getState().setLoading(false);
+        safeLocalStorage.setJSON('study_planner_user_cache', newSession.user);
       } else if (isTelegramWebApp()) {
         const tgAuth = initTelegramAuth();
         if (tgAuth?.session) {
