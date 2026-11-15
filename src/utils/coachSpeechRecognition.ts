@@ -170,7 +170,7 @@ export class CoachSpeechRecognition {
     this.abort();
     this.useBrowser = false;
     this.fallbackReason = '';
-    AzureSpeechService.clearTokenCache?.();
+    AzureSpeechService.clearTokenCache?.(true);
   }
 
   private finish(aborted: boolean) {
