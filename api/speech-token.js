@@ -53,23 +53,26 @@ export default async function handler(req) {
   }
 
   let authenticatedUserId = null;
-  let userRole = 'guest';
+  let userRole = 'user';
 
   if (token === SUPABASE_ANON_KEY) {
-    // Guest access using public Supabase anon key
-    authenticatedUserId = null;
-    userRole = 'guest';
+    if (new URL(req.url).searchParams.get('mode') !== 'guest') {
+      return jsonResponse(req, { error: 'Unauthorized' }, 401);
+    }
   } else {
     const { user, error: authError } = await verifyAuth(req);
     if (authError || !user) {
-      // If auth token is expired, allow graceful fallback as guest rather than blocking speech
-      console.warn('[speech-token] Invalid/expired user JWT, proceeding as guest');
-      authenticatedUserId = null;
-      userRole = 'guest';
-    } else {
-      authenticatedUserId = user.id;
-      userRole = user.app_metadata?.role || user.role || 'user';
+      return jsonResponse(
+        req,
+        {
+          error: 'Unauthorized',
+          message: "Yaroqsiz yoki muddati o'tgan autentifikatsiya sessiyasi.",
+        },
+        401,
+      );
     }
+    authenticatedUserId = user.id;
+    userRole = user.app_metadata?.role || user.role || 'user';
   }
 
   // 3. Distributed Rate Limiter (30 token requests/min per client)
