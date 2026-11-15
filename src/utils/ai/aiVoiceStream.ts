@@ -145,7 +145,7 @@ export const streamCoachDialogue = async (
   ];
 
   const isJa = language === 'ja';
-  const extractor = onSentenceReady ? new IncrementalReplyExtractor(isJa, onSentenceReady) : null;
+  let extractor = onSentenceReady ? new IncrementalReplyExtractor(isJa, onSentenceReady) : null;
 
   let fullRaw = '';
   try {
@@ -167,6 +167,8 @@ export const streamCoachDialogue = async (
       '[streamCoachDialogue] Primary stream failed, trying DeepSeek backup stream:',
       primaryErr?.message,
     );
+    // Reinitialize extractor with a clean buffer so partial tokens from primary attempt don't corrupt the backup
+    extractor = onSentenceReady ? new IncrementalReplyExtractor(isJa, onSentenceReady) : null;
     fullRaw = await streamChatTokens(
       messages,
       (token) => {

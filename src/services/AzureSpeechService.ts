@@ -143,14 +143,14 @@ export const AzureSpeechService = {
           cachedSpeechToken = null;
           lastConnectionError =
             res.status === 401
-              ? 'Azure uchun kirish sessiyasi tasdiqlanmadi.'
+              ? 'Kirish sessiyasi tasdiqlanmadi.'
               : res.status === 403
-                ? 'Azure nutqni tanish so‘rovlari limiti tugagan.'
+                ? 'Nutqni tanish so‘rovlari limiti tugagan.'
                 : res.status === 429
-                  ? 'Azure so‘rovlari juda tez yuborildi. Biroz kuting.'
+                  ? 'So‘rovlar juda tez yuborildi. Biroz kuting.'
                   : res.status === 431
-                    ? 'Brauzer sessiyasi haddan tashqari katta. Sahifani yangilang; davom etsa, localhost sayt ma’lumotlarini tozalang.'
-                    : 'Azure tokenini olib bo‘lmadi. Xizmat ulanishini tekshirish kerak.';
+                    ? 'Brauzer keshini tozalab qayta urinib ko‘ring.'
+                    : 'Ovoz xizmatiga ulanib bo‘lmadi. Qayta urinib ko‘ring.';
           console.error(`[AzureSpeechService] Failed to obtain speech token: HTTP ${res.status}`);
           captureException(
             new Error(`[AzureSpeechService] Speech token failed: HTTP ${res.status}`),
@@ -186,7 +186,7 @@ export const AzureSpeechService = {
         if (generation !== sessionGeneration) return null;
         if (authState === 'refreshing') return expireSession();
         authState = 'error';
-        lastConnectionError = 'Azure token serveriga ulanish uzildi.';
+        lastConnectionError = 'Ovozli xizmatga ulanishda vaqtinchalik uzilish yuz berdi.';
         console.error('[AzureSpeechService] Unexpected error getting speech token:', err);
         captureException(err, { context: 'AzureSpeechService.getSpeechToken.catch' });
         return null;
