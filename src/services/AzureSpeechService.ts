@@ -319,8 +319,12 @@ export const AzureSpeechService = {
     recognizer.canceled = (_sender: any, event: any) => {
       active = false;
       clearRefreshTimer();
-      if (event?.errorDetails) {
-        console.warn('[AzureSpeechService] Recognizer canceled/error:', event.errorDetails);
+      const isCancellationError =
+        event?.reason === SpeechSDK.CancellationReason?.Error ||
+        event?.reason === 1 ||
+        (Boolean(event?.errorCode) && event.errorCode !== SpeechSDK.CancellationErrorCode?.NoError);
+      if (isCancellationError && event?.errorDetails) {
+        console.warn('[AzureSpeechService] Recognizer error details:', event.errorDetails);
         options.onError?.(event.errorDetails);
       }
     };

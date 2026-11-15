@@ -13,16 +13,22 @@ export function lazyWithRetry<T extends ComponentType<any>>(
 
     try {
       const module = await factory();
+      if (!module || (typeof module !== 'object' && typeof module !== 'function')) {
+        throw new Error('Dynamically imported module is not an object or function');
+      }
       sessionStorage.removeItem('chunk_retry_refreshed');
-      return 'default' in module ? module : { default: module };
+      return 'default' in module ? (module as { default: T }) : { default: module as T };
     } catch (error: any) {
       console.error('[lazyWithRetry] Dynamic import failed:', error);
 
+      const errorMsg = String(error?.message || error || '');
       const isChunkError =
-        error?.message?.includes('Failed to fetch dynamically imported module') ||
-        error?.message?.includes('Importing a module script failed') ||
-        error?.name === 'ChunkLoadError' ||
-        error?.message?.includes('loading chunk');
+        errorMsg.includes('Failed to fetch dynamically imported module') ||
+        errorMsg.includes('Importing a module script failed') ||
+        errorMsg.includes('not an object') ||
+        errorMsg.includes('not an Object') ||
+        errorMsg.includes('loading chunk') ||
+        error?.name === 'ChunkLoadError';
 
       if (isChunkError && !hasRefreshed) {
         sessionStorage.setItem('chunk_retry_refreshed', 'true');

@@ -563,9 +563,18 @@ export const useTTS = ({
           if (!sharedAudioCtxRef.current || sharedAudioCtxRef.current.state === 'closed') {
             sharedAudioCtxRef.current = new AudioCtx();
           }
-          if (String(sharedAudioCtxRef.current.state) !== 'running') {
-            sharedAudioCtxRef.current.resume().catch(() => {});
+          const ctx = sharedAudioCtxRef.current;
+          if (String(ctx.state) !== 'running') {
+            ctx.resume().catch(() => {});
           }
+          // Prime Safari audio pipeline with a 1-sample silent buffer during user gesture
+          try {
+            const silentBuf = ctx.createBuffer(1, 1, 22050);
+            const source = ctx.createBufferSource();
+            source.buffer = silentBuf;
+            source.connect(ctx.destination);
+            source.start(0);
+          } catch {}
         }
 
         // Pre-activate audioPlayerRef singleton under active user gesture only if not actively playing
@@ -687,8 +696,9 @@ export const useTTS = ({
         }
         // WebKit also uses "interrupted" after audio-session interruptions.
         if (String(ctx.state) !== 'running') {
-          await ctx.resume();
-          if (String(ctx.state) !== 'running') throw new Error('Audio context is blocked');
+          try {
+            await ctx.resume();
+          } catch {}
         }
         if (activePlaybackIdRef.current !== playbackId) {
           onDone(false);
@@ -915,18 +925,18 @@ export const useTTS = ({
           resolve(success);
         };
 
-        // Fast 800ms start watchdog: if native speech synthesis hasn't fired onstart within 800ms, finish
+        // 1200ms start watchdog: if native speech synthesis hasn't fired onstart within 1200ms, finish gracefully
         startWatchdog = setTimeout(() => {
           if (!hasStarted && !isFinished) {
             console.warn(
-              '[useTTS] Native speech failed to start within 800ms, finishing gracefully.',
+              '[useTTS] Native speech failed to start within 1200ms, finishing gracefully.',
             );
             try {
               synth.cancel();
             } catch {}
-            finish();
+            finish(true);
           }
-        }, 800);
+        }, 1200);
 
         const maxDurationMs = Math.max(3500, clause.length * 350);
         watchdogTimer = setTimeout(() => {
