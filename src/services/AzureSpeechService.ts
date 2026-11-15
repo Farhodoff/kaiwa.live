@@ -56,6 +56,9 @@ function expireSession(): null {
   cachedSpeechToken = null;
   authState = 'session_expired';
   lastConnectionError = SPEECH_SESSION_EXPIRED;
+  if (typeof supabase.auth?.signOut === 'function') {
+    supabase.auth.signOut({ scope: 'local' }).catch(() => {});
+  }
   return null;
 }
 
@@ -122,7 +125,7 @@ export const AzureSpeechService = {
           authState = 'authenticated';
         }
 
-        if (!res.ok && !guest) {
+        if (!res.ok && !guest && res.status !== 503 && typeof window !== 'undefined') {
           // Gracefully fallback to guest token if user token failed (e.g. 401 or network glitch)
           console.warn(
             `[AzureSpeechService] User token returned HTTP ${res.status}, trying guest fallback...`,
@@ -214,12 +217,15 @@ export const AzureSpeechService = {
     return authState;
   },
 
-  clearTokenCache(): void {
+  clearTokenCache(resetLock = false): void {
     sessionGeneration++;
     authState = 'error';
     cachedAuthorization = null;
     cachedSpeechToken = null;
     lastConnectionError = null;
+    if (resetLock) {
+      requiresSignIn = false;
+    }
   },
 
   /**

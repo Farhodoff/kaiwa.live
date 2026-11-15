@@ -104,8 +104,8 @@ export default async function handler(req, res) {
       signal: controller.signal,
     });
     if (!upstream.ok) {
-      // Keep provider details and credentials out of browser logs.
-      console.error('[AzureCoach] Upstream rejection', upstream.status);
+      const errText = await upstream.text().catch(() => '');
+      console.error('[AzureCoach] Upstream rejection', upstream.status, errText);
       return res
         .status(upstream.status === 401 || upstream.status === 403 ? 503 : upstream.status)
         .json({

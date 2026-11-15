@@ -3,8 +3,8 @@ export { Sentry };
 import { sanitizeErrorMessage } from '../components/ErrorBoundary';
 import { ApiLoggingService } from '../services/ApiLoggingService';
 
-const SENTRY_DSN = import.meta.env.VITE_SENTRY_DSN || '';
-const ENV = import.meta.env.MODE || 'development';
+const SENTRY_DSN = import.meta?.env?.VITE_SENTRY_DSN || '';
+const ENV = import.meta?.env?.MODE || 'development';
 
 export interface TelemetryEvent {
   id: string;

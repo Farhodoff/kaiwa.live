@@ -205,6 +205,10 @@ const attemptTokenRefresh = async (): Promise<string | null> => {
             `Session refresh failed: ${error?.message || 'No active session found'}`,
           );
           notifyAuthExpired();
+          // Clean up corrupt/dead local session so invalid tokens don't poison subsequent API calls
+          try {
+            await supabase.auth.signOut({ scope: 'local' });
+          } catch {}
         }
         return null;
       }
@@ -214,6 +218,9 @@ const attemptTokenRefresh = async (): Promise<string | null> => {
       if (!isSigningOut) {
         logger.error('SupabaseClient', 'Session refresh exception:', err);
         notifyAuthExpired();
+        try {
+          await supabase.auth.signOut({ scope: 'local' });
+        } catch {}
       }
       return null;
     } finally {
