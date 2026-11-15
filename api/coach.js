@@ -49,7 +49,11 @@ export default async function handler(req, res) {
     console.warn('[coach] Expired or invalid user token; falling back to guest mode');
     user = null;
   }
-  const rate = await checkRateLimit(req, user?.id || null);
+  const userRole = user?.app_metadata?.role || user?.role || 'user';
+  const isAdmin = userRole === 'admin' || userRole === 'superadmin';
+  const rate = isAdmin
+    ? { allowed: true, remaining: 999999, retryAfter: 0 }
+    : await checkRateLimit(req, user?.id || null, 60);
   if (!rate.allowed) {
     res.setHeader('Retry-After', String(rate.retryAfter));
     return res

@@ -190,8 +190,11 @@ export default async function handler(req) {
     userRole = user.app_metadata?.role || user.role || 'user';
   }
 
-  // 3. Distributed Rate Limiter (80 req/min for conversational dialogue chunk streaming)
-  const rateCheck = await checkRateLimit(req, authenticatedUserId, 80);
+  // 3. Distributed Rate Limiter (skip for admin, 120 req/min for conversational dialogue chunk streaming)
+  const isAdmin = userRole === 'admin' || userRole === 'superadmin';
+  const rateCheck = isAdmin
+    ? { allowed: true, remaining: 999999, retryAfter: 0 }
+    : await checkRateLimit(req, authenticatedUserId, 120);
   if (!rateCheck.allowed) {
     return jsonResponse(req, {
       error: 'Too Many Requests',
