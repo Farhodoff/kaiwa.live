@@ -49,6 +49,7 @@ export interface UseSpeakingSessionOrchestratorOptions {
   addSubject: any;
   flashcards: any[];
   addFlashcardsBatch: any;
+  onEvaluationStart?: () => void;
   onScenarioEvaluated?: (result: ScenarioSessionResult) => void;
   onSessionAnalyzed?: (report: SessionAnalysisReport) => void;
 }
@@ -63,6 +64,7 @@ export function useSpeakingSessionOrchestrator({
   addSubject,
   flashcards,
   addFlashcardsBatch,
+  onEvaluationStart,
   onScenarioEvaluated,
   onSessionAnalyzed,
 }: UseSpeakingSessionOrchestratorOptions) {
@@ -1003,23 +1005,25 @@ export function useSpeakingSessionOrchestrator({
         return;
       }
 
-      let uploadedAudioPath: string | undefined;
-      if (audioBlob && audioBlob.size > 0 && user?.id) {
-        try {
-          const uploadResult = await AudioStorageService.uploadSpeakingAudio(
-            user.id,
-            sessionUuid || `rec_${Date.now()}`,
-            audioBlob,
-          );
-          if (uploadResult) {
-            uploadedAudioPath = uploadResult;
-          }
-        } catch (storageErr) {
-          console.warn('[SpeakingCoach] Audio upload skipped (non-blocking):', storageErr);
-        }
-      }
+      // Start audio upload in the background (non-blocking) so evaluation starts immediately
+      const audioUploadPromise: Promise<string | null | undefined> =
+        audioBlob && audioBlob.size > 0 && user?.id
+          ? AudioStorageService.uploadSpeakingAudio(
+              user.id,
+              sessionUuid || `rec_${Date.now()}`,
+              audioBlob,
+            ).catch((storageErr) => {
+              console.warn('[SpeakingCoach] Audio upload skipped (non-blocking):', storageErr);
+              return undefined;
+            })
+          : Promise.resolve(undefined);
 
       if (userSpoke) {
+        // Instantly notify UI that evaluation has started so results modal opens with loading skeleton
+        if (!skipEval && onEvaluationStart) {
+          onEvaluationStart();
+        }
+
         if (activeScenarioRef.current) {
           try {
             const evalResult = await evaluateScenarioSession({
@@ -1035,34 +1039,41 @@ export function useSpeakingSessionOrchestrator({
               timestamp: h.timestamp,
               translation: h.translation,
             }));
-            evalResult.audio_path = uploadedAudioPath;
-            evalResult.audio_url = uploadedAudioPath;
             if (sessionUuid) {
               evalResult.id = sessionUuid;
             }
 
+            // Immediately display results to user (Zero delay!)
             if (onScenarioEvaluated) {
               onScenarioEvaluated(evalResult);
             }
-            await ScenarioService.saveSessionResult(evalResult, user?.id);
 
-            try {
-              await HistoryService.saveSpeakingSession({
-                language: languageRef.current,
-                persona: evalResult.scenario_title || 'Ssenariy suhbati',
-                durationSeconds: durSecs,
-                fluencyScore: evalResult.fluency_score || 7.0,
-                pronunciationScore: evalResult.pronunciation_score || 7.0,
-                transcript: JSON.stringify(chatHistoryRef.current),
-                feedback: JSON.stringify(evalResult),
-              });
-            } catch (e) {
-              console.warn('[SpeakingOrchestrator] Save speaking session history warning:', e);
-            }
+            // Asynchronously attach audio URL and persist in background
+            audioUploadPromise.then(async (uploadedAudioPath) => {
+              if (uploadedAudioPath) {
+                evalResult.audio_path = uploadedAudioPath;
+                evalResult.audio_url = uploadedAudioPath;
+              }
+              await ScenarioService.saveSessionResult(evalResult, user?.id).catch((e) =>
+                console.warn('[SpeakingOrchestrator] Save session result error:', e),
+              );
+            });
+
+            HistoryService.saveSpeakingSession({
+              language: languageRef.current,
+              persona: evalResult.scenario_title || 'Ssenariy suhbati',
+              durationSeconds: durSecs,
+              fluencyScore: evalResult.fluency_score || 7.0,
+              pronunciationScore: evalResult.pronunciation_score || 7.0,
+              transcript: JSON.stringify(chatHistoryRef.current),
+              feedback: JSON.stringify(evalResult),
+            }).catch((e) =>
+              console.warn('[SpeakingOrchestrator] Save speaking session history warning:', e),
+            );
 
             const { xp: scenarioXp, badge: scenarioBadge } =
               ActivityLoggingService.calculateSpeakingXP(durSecs, evalResult.fluency_score);
-            await ActivityLoggingService.logActivity({
+            ActivityLoggingService.logActivity({
               id: sessionUuid,
               activityType: 'speaking',
               activityTitle: `AI Coach: ${evalResult.scenario_title || 'Ssenariy suhbati'}`,
@@ -1075,7 +1086,7 @@ export function useSpeakingSessionOrchestrator({
                 overallScore: evalResult.overall_score,
                 badge: scenarioBadge,
               },
-            });
+            }).catch((e) => console.warn('[SpeakingOrchestrator] Log activity error:', e));
           } catch (err) {
             console.error('Scenario evaluation error:', err);
           }
@@ -1099,29 +1110,29 @@ export function useSpeakingSessionOrchestrator({
               );
             }
 
+            // Immediately display results to user (Zero delay!)
             if (onSessionAnalyzed) {
               onSessionAnalyzed(report);
             }
 
-            try {
-              await HistoryService.saveSpeakingSession({
-                language: languageRef.current,
-                persona:
-                  PERSONAS_BY_LANG[languageRef.current]?.[personaRef.current]?.name ||
-                  personaRef.current,
-                durationSeconds: durSecs,
-                fluencyScore: report.fluency_score || report.overall_score || 7.0,
-                pronunciationScore: report.pronunciation_score || 7.0,
-                transcript: JSON.stringify(chatHistoryRef.current),
-                feedback: JSON.stringify(report),
-              });
-            } catch (e) {
-              console.warn('[SpeakingOrchestrator] Save speaking session history warning:', e);
-            }
+            // Asynchronously persist session and activity in background
+            HistoryService.saveSpeakingSession({
+              language: languageRef.current,
+              persona:
+                PERSONAS_BY_LANG[languageRef.current]?.[personaRef.current]?.name ||
+                personaRef.current,
+              durationSeconds: durSecs,
+              fluencyScore: report.fluency_score || report.overall_score || 7.0,
+              pronunciationScore: report.pronunciation_score || 7.0,
+              transcript: JSON.stringify(chatHistoryRef.current),
+              feedback: JSON.stringify(report),
+            }).catch((e) =>
+              console.warn('[SpeakingOrchestrator] Save speaking session history warning:', e),
+            );
 
             const { xp: sessionXp, badge: sessionBadge } =
               ActivityLoggingService.calculateSpeakingXP(durSecs, report.overall_score * 10);
-            await ActivityLoggingService.logActivity({
+            ActivityLoggingService.logActivity({
               id: sessionUuid,
               activityType: 'speaking',
               activityTitle: `AI Coach: ${PERSONAS_BY_LANG[languageRef.current]?.[personaRef.current]?.name || 'Suhbat'}`,
@@ -1133,7 +1144,7 @@ export function useSpeakingSessionOrchestrator({
                 badge: sessionBadge,
                 correctionsCount: report.grammar_corrections?.length || 0,
               },
-            });
+            }).catch((e) => console.warn('[SpeakingOrchestrator] Log activity error:', e));
           } catch (err) {
             console.error('Session analysis error:', err);
           }

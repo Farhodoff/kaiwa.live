@@ -5,6 +5,66 @@ import { setCorsHeaders } from './_cors.js';
 
 export const config = { maxDuration: 60 };
 
+async function fallbackToDeepSeekEdge(payload, res) {
+  try {
+    const edgeUrl = process.env.VITE_SUPABASE_URL
+      ? `${process.env.VITE_SUPABASE_URL.replace(/\/$/, '')}/functions/v1/deepseek`
+      : 'https://qmuimxnknxwarvnkpnlo.supabase.co/functions/v1/deepseek';
+    const anonKey =
+      process.env.VITE_SUPABASE_ANON_KEY || 'sb_publishable_6g0Ei_1Cw46e1mJLKj_1Ug_sOmhlgoI';
+
+    const fallbackPayload = {
+      ...payload,
+      model: 'deepseek-chat',
+    };
+
+    const edgeRes = await fetch(edgeUrl, {
+      method: 'POST',
+      headers: {
+        apikey: anonKey,
+        Authorization: `Bearer ${anonKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(fallbackPayload),
+      signal: AbortSignal.timeout(30000),
+    });
+
+    if (edgeRes.ok) {
+      if (
+        payload.stream &&
+        edgeRes.body &&
+        edgeRes.headers.get('content-type')?.includes('text/event-stream')
+      ) {
+        res.status(200);
+        res.setHeader('Content-Type', 'text/event-stream; charset=utf-8');
+        res.setHeader('Cache-Control', 'no-cache, no-transform');
+        res.setHeader('X-Accel-Buffering', 'no');
+        res.setHeader('X-AI-Provider', 'deepseek-fallback');
+        res.flushHeaders?.();
+        const reader = edgeRes.body.getReader();
+        try {
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done || res.destroyed) break;
+            res.write(Buffer.from(value));
+          }
+        } finally {
+          reader.releaseLock();
+          res.end();
+        }
+        return true;
+      }
+      const data = await edgeRes.json();
+      res.setHeader('X-AI-Provider', 'deepseek-fallback');
+      res.status(200).json(data);
+      return true;
+    }
+  } catch (err) {
+    console.warn('[AzureCoach] Fallback to DeepSeek edge failed:', err?.message);
+  }
+  return false;
+}
+
 export default async function handler(req, res) {
   setCorsHeaders(req, res);
   res.setHeader('Cache-Control', 'no-store');
@@ -109,7 +169,10 @@ export default async function handler(req, res) {
     });
     if (!upstream.ok) {
       const errText = await upstream.text().catch(() => '');
-      console.error('[AzureCoach] Upstream rejection', upstream.status, errText);
+      console.warn('[AzureCoach] Upstream rejection, trying DeepSeek edge fallback:', upstream.status, errText);
+      const fallbackHandled = await fallbackToDeepSeekEdge(payload, res);
+      if (fallbackHandled) return;
+
       return res
         .status(upstream.status === 401 || upstream.status === 403 ? 503 : upstream.status)
         .json({
@@ -143,8 +206,12 @@ export default async function handler(req, res) {
       return res.end();
     }
     return res.status(200).json(await upstream.json());
-  } catch {
+  } catch (err) {
     if (res.headersSent) return res.end();
+    console.warn('[AzureCoach] Azure connection failed, trying DeepSeek edge fallback:', err?.message);
+    const fallbackHandled = await fallbackToDeepSeekEdge(payload, res);
+    if (fallbackHandled) return;
+
     return res.status(controller.signal.aborted ? 504 : 502).json({
       error: {
         code: 'AZURE_AI_UNAVAILABLE',

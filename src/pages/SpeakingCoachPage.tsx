@@ -33,6 +33,7 @@ import { PitchAccentModal } from '../components/speaking/PitchAccentModal';
 import { PitchAccentTrainer } from '../components/speaking/PitchAccentTrainer';
 import { useSpeakingSessionOrchestrator } from '../hooks/useSpeakingSessionOrchestrator';
 import { SpeakingScenarioBanner } from '../components/speaking/SpeakingScenarioBanner';
+import { TopicInspirationCard } from '../components/speaking/TopicInspirationCard';
 import { ProjectOrb, OrbState } from '../components/character/ProjectOrb';
 import { useAudioLevel } from '../hooks/useAudioLevel';
 import { SpeakingHistoryModal } from '../components/speaking/SpeakingHistoryModal';
@@ -144,6 +145,15 @@ const SpeakingCoachPage: React.FC = () => {
     addSubject,
     flashcards,
     addFlashcardsBatch,
+    onEvaluationStart: () => {
+      if (activeScenarioRef.current) {
+        setIsScenarioReportOpen(true);
+        setIsScenarioEvalLoading(true);
+      } else {
+        setIsReportOpen(true);
+        setIsReportLoading(true);
+      }
+    },
     onScenarioEvaluated: (result) => {
       setScenarioEvalResult(result);
       setIsScenarioReportOpen(true);
@@ -164,7 +174,6 @@ const SpeakingCoachPage: React.FC = () => {
     isMuted,
     setIsMuted,
     speechProvider,
-    speechConnectionIssue,
     retrySpeechConnection,
     isPreparingAudio,
     audioError,
@@ -234,6 +243,18 @@ const SpeakingCoachPage: React.FC = () => {
       // 1. Immediately shut off speech and cancel AI requests
       stopSpeaking();
       const skipEval = reason !== 'manual';
+
+      // Immediately open report modal in loading state if manual end with speech
+      if (!skipEval && history.some((m) => m.role === 'user')) {
+        if (activeScenarioRef.current) {
+          setIsScenarioReportOpen(true);
+          setIsScenarioEvalLoading(true);
+        } else {
+          setIsReportOpen(true);
+          setIsReportLoading(true);
+        }
+      }
+
       endSession({ skipEvaluation: skipEval }).catch(() => {});
 
       // 2. Save only if user spoke
@@ -458,6 +479,8 @@ const SpeakingCoachPage: React.FC = () => {
         }}
       />
 
+      <TopicInspirationCard activeScenario={activeScenario} language={language} />
+
       {/* Browser Speech API Warning if unsupported */}
       {!isSupported && (
         <div
@@ -656,18 +679,18 @@ const SpeakingCoachPage: React.FC = () => {
             </p>
           )}
           {speechProvider === 'browser' && (
-            <div className="mt-3 max-w-md text-xs text-amber-200">
-              <p>
-                {speechConnectionIssue ||
-                  'Azure ulanishi ishga tushmagan; zaxira nutq xizmati ishlayapti.'}
+            <div className="mt-3 max-w-md text-xs text-slate-300">
+              <p className="flex items-center justify-center gap-1.5 text-slate-400">
+                <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-emerald-400/80" />
+                <span>Brauzer ovozli xizmati faol (gapirishingiz mumkin)</span>
               </p>
               <button
                 type="button"
                 disabled={!isLiveSession || isSpeaking || isThinking || isMuted}
                 onClick={retrySpeechConnection}
-                className="mt-1 min-h-10 rounded-lg border border-amber-300/30 px-3 disabled:opacity-50"
+                className="mt-1.5 text-[11px] text-slate-400 underline decoration-slate-600 underline-offset-4 hover:text-slate-200 disabled:opacity-40"
               >
-                Azure’ni qayta ulash
+                Bulutli ovoz xizmatini qayta ulash
               </button>
             </div>
           )}

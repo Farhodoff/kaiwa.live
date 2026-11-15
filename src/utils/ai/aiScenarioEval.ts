@@ -2,7 +2,7 @@ import {
   ConversationScenario,
   ScenarioSessionResult,
 } from '../../components/speaking/scenarioTypes';
-import { callCoachAI } from '../coachAI';
+import { callDeepSeek } from '../deepseek';
 
 export interface EvaluateScenarioParams {
   scenario: ConversationScenario;
@@ -17,52 +17,52 @@ export const evaluateScenarioSession = async ({
   durationSeconds,
   recordedUrl,
 }: EvaluateScenarioParams): Promise<ScenarioSessionResult> => {
-  // Limit to the most recent 30 user turns to avoid token limit overflow on extended sessions
+  // Limit to the most recent 20 user turns to keep prompt token size small and evaluation fast (< 2 seconds)
   const userMessages = chatHistory
     .filter((h) => h.role === 'user')
     .map((h) => h.content)
-    .slice(-30);
+    .slice(-20);
   const transcript = userMessages.join('\n');
 
   const prompt = `
-      Act as an expert Japanese Language Oral Examiner & Pronunciation Coach.
-      Scenario Context: "${scenario.title_ja}" (${scenario.title_uz})
-      Target JLPT Difficulty: ${scenario.difficulty}
-      Required Key Phrases: ${JSON.stringify(scenario.key_phrases)}
+Act as an expert Japanese Language Oral Examiner.
+Scenario: "${scenario.title_ja}" (${scenario.title_uz})
+Target JLPT: ${scenario.difficulty}
+Key Phrases: ${JSON.stringify(scenario.key_phrases)}
 
-      Here is the complete student speech transcript during the conversation:
-      """
-      ${transcript}
-      """
+Student transcript:
+"""
+${transcript}
+"""
 
-      Task: Analyze the student's Japanese speech performance strictly.
-      Calculate 5 scores from 0 to 100 based on Japanese phonetics, grammar, and scenario key phrase usage:
-      1. "pronunciation_score": Estimated accuracy of pitch accent, mora timing, particle pronunciation (e.g. は/が/に/で), and sound clarity from transcript (0-100).
-      2. "fluency_score": Smoothness, response speed, and conversational flow (0-100).
-      3. "grammar_score": Correct particle usage, verb conjugations (e.g. Te-form, Masu-form), and honorifics (0-100).
-      4. "vocabulary_score": Richness of vocabulary and usage of key scenario phrases (0-100).
-      5. "overall_score": Weighted average score (0-100).
-
-      Identify:
-      - "key_phrases_used": Array of strings from the required key phrases that the student successfully used or correctly adapted in Japanese.
-      - "key_phrases_missed": Array of strings from the required key phrases that the student forgot or missed.
-      - "ai_feedback": Constructive feedback paragraph IN UZBEK LANGUAGE detailing strengths, pronunciation/grammar tips, and encouraging advice for Japanese learning.
-
-      Return ONLY a VALID JSON object with these exact keys:
-      {
-        "pronunciation_score": number,
-        "fluency_score": number,
-        "grammar_score": number,
-        "vocabulary_score": number,
-        "overall_score": number,
-        "key_phrases_used": string[],
-        "key_phrases_missed": string[],
-        "ai_feedback": string
-      }
-    `;
+Task: Rapidly evaluate speech performance.
+Output STRICT VALID JSON ONLY (no markdown):
+{
+  "pronunciation_score": 85,
+  "fluency_score": 80,
+  "grammar_score": 82,
+  "vocabulary_score": 80,
+  "overall_score": 82,
+  "key_phrases_used": ["ishlatilgan iboralar"],
+  "key_phrases_missed": ["ishlatilmagan iboralar"],
+  "ai_feedback": "O'zbek tilida 2 ta lo'nda, rag'batlantiruvchi jumla."
+}
+`;
 
   try {
-    const response = await callCoachAI(prompt, undefined, true);
+    const deepSeekCall = callDeepSeek(prompt, {
+      isJson: true,
+      modelName: 'deepseek-chat',
+    });
+
+    // Enforce strict 3.2s timeout guarantee for blazing-fast user feedback
+    const response = await Promise.race([
+      deepSeekCall,
+      new Promise<string>((_, reject) =>
+        setTimeout(() => reject(new Error('SCENARIO_EVAL_TIMEOUT')), 3200),
+      ),
+    ]);
+
     const cleanedText = response
       .replace(/```json/g, '')
       .replace(/```/g, '')
