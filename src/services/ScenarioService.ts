@@ -2,6 +2,7 @@ import { ConversationScenario, ScenarioSessionResult } from '../components/speak
 import { DEFAULT_SCENARIOS } from '../data/defaultScenarios';
 import { MINNA_SCENARIOS } from '../data/minnaScenarios';
 import { N3_SCENARIOS } from '../data/n3Scenarios';
+import { N2_SCENARIOS } from '../data/n2Scenarios';
 import { supabase } from '../lib/supabase';
 import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
 
@@ -45,6 +46,7 @@ export class ScenarioService {
       ...DEFAULT_SCENARIOS,
       ...MINNA_SCENARIOS,
       ...N3_SCENARIOS,
+      ...N2_SCENARIOS,
       ...customScenarios,
     ].filter((s) => !deletedIds.has(s.id));
     return _cachedScenarios;
@@ -120,6 +122,7 @@ export class ScenarioService {
       ...DEFAULT_SCENARIOS,
       ...MINNA_SCENARIOS,
       ...N3_SCENARIOS,
+      ...N2_SCENARIOS,
       ...customScenarios,
     ].filter((s) => !deletedIds.has(s.id));
     return _cachedScenarios;
