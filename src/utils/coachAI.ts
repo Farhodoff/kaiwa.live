@@ -57,11 +57,19 @@ export async function callCoachAI(
   }
 
   if (!response.ok) {
-    console.error(`[callCoachAI] Coach API returned HTTP ${response.status}`);
-    captureException(new Error(`[callCoachAI] Coach API returned HTTP ${response.status}`), {
-      status: response.status,
-    });
-    throw new AIServiceError(response.status);
+    let customMsg = '';
+    try {
+      const errJson = await response.json();
+      customMsg = errJson?.error?.message || errJson?.message || '';
+    } catch {}
+    console.error(`[callCoachAI] Coach API returned HTTP ${response.status}: ${customMsg}`);
+    captureException(
+      new Error(`[callCoachAI] Coach API returned HTTP ${response.status}: ${customMsg}`),
+      {
+        status: response.status,
+      },
+    );
+    throw new AIServiceError(response.status, customMsg);
   }
   const body = await response.json();
   const text = body.choices?.[0]?.message?.content;

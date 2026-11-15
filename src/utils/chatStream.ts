@@ -64,12 +64,20 @@ export const streamChatTokens = async (
   }
 
   if (!response.ok) {
-    console.error(`[chatStream] AI stream gateway returned HTTP ${response.status}`);
-    captureException(new Error(`[chatStream] AI Gateway returned HTTP ${response.status}`), {
-      gateway,
-      status: response.status,
-    });
-    throw new AIServiceError(response.status);
+    let customMsg = '';
+    try {
+      const errJson = await response.json();
+      customMsg = errJson?.error?.message || errJson?.message || '';
+    } catch {}
+    console.error(`[chatStream] AI stream gateway returned HTTP ${response.status}`, customMsg);
+    captureException(
+      new Error(`[chatStream] AI Gateway returned HTTP ${response.status}: ${customMsg}`),
+      {
+        gateway,
+        status: response.status,
+      },
+    );
+    throw new AIServiceError(response.status, customMsg);
   }
 
   let accumulated = '';
