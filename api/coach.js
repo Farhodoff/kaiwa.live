@@ -131,14 +131,21 @@ export default async function handler(req, res) {
       res.flushHeaders?.();
       reader = upstream.body.getReader();
       let done = false;
-      while (!done) {
-        const chunk = await reader.read();
-        done = chunk.done;
-        if (res.destroyed) {
-          await reader.cancel();
-          break;
+      try {
+        while (!done) {
+          const chunk = await reader.read();
+          done = chunk.done;
+          if (res.destroyed) {
+            await reader.cancel();
+            break;
+          }
+          if (!done) {
+            res.write(Buffer.from(chunk.value));
+            if (typeof res.flush === 'function') res.flush();
+          }
         }
-        if (!done) res.write(Buffer.from(chunk.value));
+      } catch (streamReadErr) {
+        console.warn('[AzureCoach] Stream reading interrupted:', streamReadErr);
       }
       return res.end();
     }
