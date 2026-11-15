@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { logger } from '../utils/logger';
 import { toast } from '../hooks/use-toast';
+import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
 
 const rawUrl = import.meta.env.VITE_SUPABASE_URL || import.meta.env.NEXT_PUBLIC_SUPABASE_URL;
 const rawKey =
@@ -208,6 +209,7 @@ const attemptTokenRefresh = async (): Promise<string | null> => {
           // Clean up corrupt/dead local session so invalid tokens don't poison subsequent API calls
           try {
             await supabase.auth.signOut({ scope: 'local' });
+            safeLocalStorage.removeItem('study_planner_user_cache');
           } catch {}
         }
         return null;
@@ -220,6 +222,7 @@ const attemptTokenRefresh = async (): Promise<string | null> => {
         notifyAuthExpired();
         try {
           await supabase.auth.signOut({ scope: 'local' });
+          safeLocalStorage.removeItem('study_planner_user_cache');
         } catch {}
       }
       return null;
