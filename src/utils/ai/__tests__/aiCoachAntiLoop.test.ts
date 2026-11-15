@@ -63,8 +63,8 @@ describe('AI Coach Anti-Loop & Conversational Progression Verification', () => {
     expect(systemPrompt).toContain('柔軟に目的地を聞いてください');
   });
 
-  it('verifies all 25 Minna no Nihongo Shokyu 1 lessons are present and have progressive steps', () => {
-    for (let i = 1; i <= 25; i++) {
+  it('verifies all 50 Minna no Nihongo lessons (Shokyu 1 & 2, Lessons 1–50) are present and have progressive steps', () => {
+    for (let i = 1; i <= 50; i++) {
       const scenario = MINNA_SCENARIOS.find((s) => s.id.startsWith(`minna_l${i}_`));
       expect(scenario, `Minna lesson ${i} scenario should exist`).toBeDefined();
       expect(scenario?.context_prompt).toContain('進行ステップ');

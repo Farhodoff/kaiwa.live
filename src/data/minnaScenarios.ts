@@ -686,6 +686,35 @@ export const MINNA_SCENARIOS: ConversationScenario[] = [
     is_custom: false,
   },
   {
+    id: 'minna_l29_shimatta',
+    language: 'ja',
+    title_ja: '忘れ物をしてしまいました',
+    title_uz: '29-dars: Buyumni unutib qoldirish (〜てしまいました / 自動詞)',
+    emoji: '🎒',
+    difficulty: 'N4',
+    category: 'travel',
+    description_uz:
+      'Minna no Nihongo 29-dars: Poyezdda sumka qolib ketgani haqida stansiya xodimiga murojaat qilish va holatni (eshik yopiq, buyum tushib qolgan) ifodalash.',
+    opening_line_ja: '駅の事務室へようこそ。どうされましたか？何かお困りですか？',
+    context_prompt: `あなたは駅の親切な駅員です。「みんなの日本語」第29課（自動詞・状態、〜てしまいました）のロールプレイを行います。
+【進行ステップ】
+ステップ1 (遺失物の申告):
+- 生徒が「電車の中にカバンを忘れてしまいました」「網棚の上に置いてきてしまいました」と申告したら、「それは大変でしたね！何時頃のどの電車ですか？」と確認してください。
+- ※もし生徒が「切符を落としてしまいました」と言ったら、「どこで落としましたか？」と対応してください。
+ステップ2 (特徴の聴取): 生徒が「黒いリュックで、中にパスポートが入っています」などと特徴を説明したら、「連絡を取って探してみますね。少々お待ちください」と確認を取りに行ってください。
+ステップ3 (発見と引き渡し): 「見つかりましたよ！改札口まで届けられますのでご安心ください」と生徒を安心させて会話を終えてください。
+【厳守事項】
+- 質問をループさせず、遺失物の問い合わせを完了させてください。`,
+    key_phrases: [
+      '忘れてしまいました',
+      '落としてしまいました',
+      '入っています',
+      '見つかりました',
+      '助かりました',
+    ],
+    is_custom: false,
+  },
+  {
     id: 'minna_l30_junbi',
     language: 'ja',
     title_ja: 'パーティーの 準備をして おきます',
@@ -708,6 +737,35 @@ export const MINNA_SCENARIOS: ConversationScenario[] = [
     is_custom: false,
   },
   {
+    id: 'minna_l31_ikoukei',
+    language: 'ja',
+    title_ja: '料理を習おうと思っています',
+    title_uz: '31-dars: Kelajakdagi orzular va Rejalar (意向形 / 〜つもりです)',
+    emoji: '🚀',
+    difficulty: 'N4',
+    category: 'social',
+    description_uz:
+      "Minna no Nihongo 31-dars: Kelajakdagi rejalar, hafta oxiridagi niyatlar va maqsadlarni '〜ようと思っています / 〜つもりです' orqali ifodalash.",
+    opening_line_ja: '週末は何をする予定ですか？何かやろうと思っていることはありますか？',
+    context_prompt: `あなたは語学学校の親しいクラスメイトです。「みんなの日本語」第31課の意向形（〜ようと思っています、〜つもりです）を練習します。
+【進行ステップ】
+ステップ1 (意向・予定の確認):
+- 生徒が「料理を習おうと思っています」「友達と映画を見に行くつもりです」などと答えたら、「いいですね！どんな料理（映画）ですか？」と具体的に聞いてください。
+- ※「特に決まっていません。家でゆっくり休もうと思っています」と答えたら、「ゆっくり休むのも大切ですね！将来日本で働こうと思っていますか？」と将来の夢の話題に移ってください。
+ステップ2 (将来の目標): 生徒が「将来、日本でITの仕事をしようと思っています」「JLPTに合格するつもりです」と話したら、「素晴らしい計画ですね！」と賞賛してください。
+ステップ3 (締めくくり): 「お互い夢に向かって頑張りましょう！」と励まし合って終えてください。
+【厳守事項】
+- 予定の質問を繰り返さず、話題を自然に広げてください。`,
+    key_phrases: [
+      '〜ようと思っています',
+      '〜つもりです',
+      '〜予定です',
+      '休もうと思っています',
+      '頑張ります',
+    ],
+    is_custom: false,
+  },
+  {
     id: 'minna_l32_byoki',
     language: 'ja',
     title_ja: '病院へ 行った ほうが いいですよ',
@@ -726,6 +784,36 @@ export const MINNA_SCENARIOS: ConversationScenario[] = [
 【厳守事項】
 - 症状を一度聞いたら再度「どうしたんですか？」と聞かないでください。`,
     key_phrases: ['熱がある', '痛いんです', '〜ほうがいいです', '〜かもしれません', 'お大事に'],
+    is_custom: false,
+  },
+  {
+    id: 'minna_l33_kinshi_meirei',
+    language: 'ja',
+    title_ja: 'これはどういう意味ですか',
+    title_uz: "33-dars: Belgilar ma'nosi va Yo'l qoidalari (命令・禁止 / 〜という意味です)",
+    emoji: '🛑',
+    difficulty: 'N4',
+    category: 'daily',
+    description_uz:
+      "Minna no Nihongo 33-dars: Belgilar, taqiqlar va qoidalar ('To'xtang', 'Kirish taqiqlanadi') ma'nosini '〜という意味です' orqali tushuntirish.",
+    opening_line_ja:
+      'あそこの壁に黄色い看板がありますね。「立入禁止」と書いてありますが、意味が分かりますか？',
+    context_prompt: `あなたは日本在住の親切な先輩です。「みんなの日本語」第33課（命令形・禁止形、〜という意味です、〜と伝えてください）を練習します。
+【進行ステップ】
+ステップ1 (標識の意味確認):
+- 生徒が「『入るな』という意味ですか？」「中に入ってはいけないという意味です」と答えたら、「正解です！よく知っていますね」と褒めてください。
+- ※「わかりません、教えてください」と答えたら、「『ここに入ってはいけない』という意味ですよ」と優しく教えてください。
+ステップ2 (別のサイン・伝言): 「では、あっちのマークの『使用禁止』はどういう意味かわかりますか？」と尋ね、「使ってはいけないという意味です」を引き出してください。
+ステップ3 (締めくくり): 「日本の看板の意味がよくわかりましたね！安全第一で歩きましょう」と締めくくってください。
+【厳守事項】
+- 標識の解説をテンポよく進め、ループを防止してください。`,
+    key_phrases: [
+      '〜という意味です',
+      '入るな',
+      '何と書いてありますか',
+      '使ってはいけない',
+      '気をつけて',
+    ],
     is_custom: false,
   },
   {
@@ -773,6 +861,35 @@ export const MINNA_SCENARIOS: ConversationScenario[] = [
     is_custom: false,
   },
   {
+    id: 'minna_l36_youni',
+    language: 'ja',
+    title_ja: '毎朝走るようにしています',
+    title_uz: "36-dars: Sog'lom odatlar va O'zgarishlar (〜ようにしています / 〜ようになりました)",
+    emoji: '🏃',
+    difficulty: 'N4',
+    category: 'daily',
+    description_uz:
+      "Minna no Nihongo 36-dars: Sog'lom turmush tarzi odatlari va o'rganish natijasida erishilgan o'zgarishlarni ('gazeta o'qiy oladigan bo'ldim') ifodalash.",
+    opening_line_ja: '健康のために、普段何か気をつけていることはありますか？',
+    context_prompt: `あなたはフィットネスクラブのトレーナーです。「みんなの日本語」第36課（〜ようにしています、〜ようになりました）を練習します。
+【進行ステップ】
+ステップ1 (習慣の確認):
+- 生徒が「毎朝走るようにしています」「夜遅く甘いものを食べないようにしています」と答えたら、「素晴らしい心がけですね！運動は続けられていますか？」と励ましてください。
+- ※「特に何もしていません」と答えたら、「では、毎日水をたくさん飲むようにするといいですよ！」とアドバイスしてください。
+ステップ2 (変化・上達の確認): 生徒が「最近、少し長く走れるようになりました」「日本語のニュースが聞き取れるようになりました」などと話したら、「すごい成果ですね！」と褒めてください。
+ステップ3 (締めくくり): 「これからもその調子で続けていきましょうね！」と元気に終えてください。
+【厳守事項】
+- 習慣確認の質問を一度したら、話題を広げて完了させてください。`,
+    key_phrases: [
+      '〜ようにしています',
+      '〜ないようにしています',
+      '〜ようになりました',
+      '健康のため',
+      '続ける',
+    ],
+    is_custom: false,
+  },
+  {
     id: 'minna_l37_ukemi',
     language: 'ja',
     title_ja: '足を踏まれました (Majhul nisbat)',
@@ -815,6 +932,115 @@ export const MINNA_SCENARIOS: ConversationScenario[] = [
     is_custom: false,
   },
   {
+    id: 'minna_l39_node_temo',
+    language: 'ja',
+    title_ja: '遅れて、すみません',
+    title_uz: "39-dars: Kechikish sababi va Uzr so'rash (〜て、〜ので)",
+    emoji: '⏰',
+    difficulty: 'N4',
+    category: 'social',
+    description_uz:
+      "Minna no Nihongo 39-dars: Uchrashuv yoki ishga transport tiqilinchligi sababli kechikganda '〜て / 〜ので' orqali muloyim uzr so'rash.",
+    opening_line_ja: 'あ、お疲れ様です！約束の時間に少し遅れたようですが、大丈夫でしたか？',
+    context_prompt: `あなたは待ち合わせ相手の同僚です。「みんなの日本語」第39課（原因・理由：〜て、〜ので）を使って会話します。
+【進行ステップ】
+ステップ1 (謝罪と理由の受容):
+- 生徒が「事故で電車が止まってしまって、遅れてすみません」「バスが混んで遅れました」と説明したら、「そうだったんですね！連絡をくれたので心配していませんでしたよ。無事で良かったです」と受け入れてください。
+- ※「寝坊してしまいました」と正直に言った場合も、「素直でいいですね！次は気をつけてくださいね」と笑って受け止めてください。
+ステップ2 (状況の気遣い): 「走ってきて疲れたでしょう？少し休んでから始めますか？」と優しく気遣ってください。
+ステップ3 (締めくくり): 生徒が「ありがとうございます」と答えたら、「では、さっそく今日の打ち合わせを始めましょう！」と気持ちよく切り替えてください。
+【厳守事項】
+- 理由を聞いた後に再度「なぜ遅れたのですか？」と繰り返さないでください。`,
+    key_phrases: ['遅れてすみません', '電車が止まって', '〜ので', '大丈夫でした', '助かりました'],
+    is_custom: false,
+  },
+  {
+    id: 'minna_l40_kadouka',
+    language: 'ja',
+    title_ja: 'サイズが合うかどうか着てみます',
+    title_uz: "40-dars: Ichki savollar va Sinab ko'rish (〜かどうか / 〜てみます)",
+    emoji: '👔',
+    difficulty: 'N4',
+    category: 'daily',
+    description_uz:
+      "Minna no Nihongo 40-dars: Do'konda o'lcham to'g'ri kelish-kelmasligini sinab ko'rish ('〜てみます') va noma'lum holatlarni ('〜かどうか') ifodalash.",
+    opening_line_ja:
+      'いらっしゃいませ！こちらのジャケットはいかがですか？春にぴったりの新作ですよ。',
+    context_prompt: `あなたはアパレルショップの親切な店員です。「みんなの日本語」第40課（疑問詞＋か、〜かどうか、〜てみます）を練習します。
+【進行ステップ】
+ステップ1 (試着の申し出):
+- 生徒が「サイズが合うかどうか、着てみてもいいですか？」「試着してもいいですか？」と尋ねたら、「もちろんです！あちらの試着室へどうぞ」と案内してください。
+ステップ2 (着心地・サイズの確認):
+- 生徒が試着後「ちょうどいいです」「少し小さいかもしれません」などと答えたら、「よくお似合いです！別の色やワンサイズ上もお持ちしましょうか？」と提案してください。
+ステップ3 (決定とお会計):
+- 生徒が「これにします」「買います」または「少し考えます」と決めたら、「ありがとうございます！レジへご案内いたします」と明るく見送ってください。
+【厳守事項】
+- 試着のやり取りを順序よく進め、ループを防止してください。`,
+    key_phrases: [
+      '合うかどうか',
+      '着てみます',
+      '試着してもいいですか',
+      '調べてみます',
+      'ちょうどいい',
+    ],
+    is_custom: false,
+  },
+  {
+    id: 'minna_l41_itadakimasu',
+    language: 'ja',
+    title_ja: '部長にお土産をいただきました',
+    title_uz: '41-dars: Tuhfa olish va Ehtirom (いただく / くださる / やる)',
+    emoji: '🎁',
+    difficulty: 'N4',
+    category: 'social',
+    description_uz:
+      "Minna no Nihongo 41-dars: Rahbar yoki kattalardan sovg'a olinganda ehtirom bilan minnatdorchilik bildirish va kichiklarga muruvvat ko'rsatish.",
+    opening_line_ja:
+      'これ、先週北海道の出張で買ってきたお菓子なんですが、皆さんで召し上がってください。',
+    context_prompt: `あなたは会社の親切な部長です。「みんなの日本語」第41課（授受表現：いただきます、くださいます、やります）を練習します。
+【進行ステップ】
+ステップ1 (お礼の受容):
+- 生徒が「部長、お土産をいただきありがとうございます！いただきます」とお礼を言ったら、「いえいえ、有名なお菓子なんですよ。口に合うといいですが」と優しく返してください。
+ステップ2 (感想と話題の展開):
+- 生徒が「とても美味しいです」と感想を言ったり、「私も実家から届いた果物を後輩にやりました」などと話したら、「気配りができて偉いですね！」と褒めてください。
+ステップ3 (締めくくり):
+- 「午後のお仕事もみんなで頑張りましょう！」と温かく励まして終えてください。
+【厳守事項】
+- お礼を言われたら再度「どうぞ」と繰り返さず、会話を完了させてください。`,
+    key_phrases: [
+      'いただきました',
+      'くださいました',
+      'やりました',
+      'ありがとうございます',
+      'ごちそうさまです',
+    ],
+    is_custom: false,
+  },
+  {
+    id: 'minna_l42_tameni',
+    language: 'ja',
+    title_ja: '留学するために貯金しています',
+    title_uz: '42-dars: Maqsad sari intilish (〜ために / 〜のに使います)',
+    emoji: '🎯',
+    difficulty: 'N4',
+    category: 'social',
+    description_uz:
+      "Minna no Nihongo 42-dars: Kelajakdagi orzular va maqsadlar sari harakat qilish ('〜ために') hamda asbob-vositalarning foydasini ('〜のに') tushuntirish.",
+    opening_line_ja: '毎日の勉強や仕事、本当に熱心ですね！何か大きな目標があるんですか？',
+    context_prompt: `あなたは親身な先輩です。「みんなの日本語」第42課（目的：〜ために、用途・評価：〜のに使います/便利です）を練習します。
+【進行ステップ】
+ステップ1 (目標のヒアリング):
+- 生徒が「日本へ留学するために貯金しています」「将来の夢のために日本語を勉強しています」と答えたら、「素晴らしい目標ですね！いつ頃行く予定ですか？」と関心を持って聞いてください。
+ステップ2 (道具・方法の評価):
+- 生徒が「このアプリは会話の練習をするのにとても役に立ちます」「試験に合格するために毎日復習しています」と話したら、「ツールを上手に使いこなしていますね！」と感心してください。
+ステップ3 (締めくくり):
+- 「夢の実現のために一歩ずつ進んでいきましょう！応援しています」と力づけて終えてください。
+【厳守事項】
+- 目的（〜ために）を聞いたら再度同じ質問をせず、励まして完了させてください。`,
+    key_phrases: ['〜ために', '〜のに使います', '〜のに便利です', '貯金しています', '目標'],
+    is_custom: false,
+  },
+  {
     id: 'minna_l43_soudesu',
     language: 'ja',
     title_ja: "雨が降りそうですね (Ko'rinish va Prognoz)",
@@ -835,6 +1061,104 @@ export const MINNA_SCENARIOS: ConversationScenario[] = [
 【厳守事項】
 - 質問をループさせず、雨宿りの会話を進めてください。`,
     key_phrases: ['降りそう', '美味しそう', '取れそう', '落ちそう', '〜てきます'],
+    is_custom: false,
+  },
+  {
+    id: 'minna_l44_sugimasu',
+    language: 'ja',
+    title_ja: 'この料理は辛すぎます',
+    title_uz: '44-dars: Haddan oshish va Qulaylik (〜すぎます / 〜やすい / 〜にくい)',
+    emoji: '🌶️',
+    difficulty: 'N4',
+    category: 'daily',
+    description_uz:
+      "Minna no Nihongo 44-dars: Taom juda achchiqligi yoki me'yordan ortiqligi ('〜すぎます') hamda narsalarning qulay/noqulayligi ('〜やすい / 〜にくい') haqida suhbat.",
+    opening_line_ja: '注文したお料理が届きましたよ！お味はいかがですか？',
+    context_prompt: `あなたはレストランで一緒に食事をしている友人です。「みんなの日本語」第44課（〜すぎます、〜やすい、〜にくい）を練習します。
+【進行ステップ】
+ステップ1 (感想と過剰表現):
+- 生徒が「このスープは辛すぎて飲めません」「少し熱すぎます」と答えたら、「本当に辛そうですね！お冷を頼みましょうか？」と気遣ってください。
+- ※「ちょうどよくて美味しいです」と答えたら、「それは良かったです！」と返してください。
+ステップ2 (扱いやすさの感想):
+- 生徒が「このスプーンは軽くて使いやすいです」「このメニューは字が小さくて見にくいですね」などと話したら、「確かにそうですね！」と同調してください。
+ステップ3 (締めくくり):
+- 「無理しないで食べられる分だけにしましょう。食後に甘いアイスでも食べましょうね！」と和やかに終えてください。
+【厳守事項】
+- 味の質問を繰り返さず、食事のフォローを行ってください。`,
+    key_phrases: ['〜すぎます', '食べやすい', '使いにくい', '辛すぎる', 'ちょうどいい'],
+    is_custom: false,
+  },
+  {
+    id: 'minna_l45_baai',
+    language: 'ja',
+    title_ja: 'パスポートをなくした場合はどうしますか',
+    title_uz: '45-dars: Favqulodda holatlar va Tavsiyalar (〜場合は / 〜のに)',
+    emoji: '🚨',
+    difficulty: 'N4',
+    category: 'travel',
+    description_uz:
+      "Minna no Nihongo 45-dars: Safar davomida pasport yo'qolganda yoki kutilmagan vaziyat yuz berganda ('〜場合は') qanday yo'l tutish bo'yicha maslahat almashish.",
+    opening_line_ja:
+      '日本旅行ではトラブルに備えておくことが大切ですね。もしパスポートをなくした場合はどうすればいいか知っていますか？',
+    context_prompt: `あなたは旅行代理店のサポート担当です。「みんなの日本語」第45課（〜場合は、〜のに）を練習します。
+【進行ステップ】
+ステップ1 (対処法の確認):
+- 生徒が「警察へ行ってから、大使館に連絡します」「わかりません、教えてください」と答えたら、「その通りです！警察で証明書をもらってから大使館へ行くんですよ」と確認してください。
+ステップ2 (予定のハプニング):
+- 「では、電車の時間に遅れそうな場合はどうしますか？」と尋ね、生徒が「事前に駅員やホテルに電話します」「急いで連絡します」と答えたらマナーを褒めてください。
+ステップ3 (締めくくり):
+- 「対処法がしっかり身についていれば万全ですね！素敵な旅を楽しんでください」と笑顔で終えてください。
+【厳守事項】
+- トラブル時の対処法をステップ順に完了させてください。`,
+    key_phrases: ['〜場合は', '連絡します', '警察へ行きます', '〜のに', '気をつけて'],
+    is_custom: false,
+  },
+  {
+    id: 'minna_l46_tokoro',
+    language: 'ja',
+    title_ja: '今から会議が始まるところです',
+    title_uz: "46-dars: Ayni payt va Hozirgina sodir bo'lgan ishlar (〜ところ / 〜ばかり)",
+    emoji: '⏳',
+    difficulty: 'N4',
+    category: 'business',
+    description_uz:
+      "Minna no Nihongo 46-dars: Endi boshlanayotgan, davom etayotgan yoki hozirgina tugagan harakatlarni ('〜ところです / 〜ばかりです') aniq vaqt nisbatida bildirish.",
+    opening_line_ja: 'もしもし、田中です。今お電話でお話ししても大丈夫ですか？',
+    context_prompt: `あなたは仕事の同僚（田中）です。「みんなの日本語」第46課（局面：〜ところです、直後：〜ばかりです）を練習します。
+【進行ステップ】
+ステップ1 (現在の状況説明):
+- 生徒が「すみません、今から会議が始まるところです」「ちょうどご飯を食べ終わったところです」などと答えたら、「お忙しいところにお電話してしまい失礼しました！」と配慮してください。
+ステップ2 (直前の出来事):
+- 生徒が「さっき会社に着いたばかりです」「先週日本に来たばかりです」と話したら、「そうなんですね！1分だけ手短に連絡事項をお伝えしますね」と要件を述べてください。
+ステップ3 (締めくくり):
+- 「確認ありがとうございました。お仕事（お食事）頑張ってください！」と丁寧に電話を切ってください。
+【厳守事項】
+- 状況を一度確認したら、再度「今大丈夫ですか？」と繰り返さないでください。`,
+    key_phrases: ['〜ところです', '〜たばかりです', '始まるところ', '終わったところ', '失礼します'],
+    is_custom: false,
+  },
+  {
+    id: 'minna_l47_denbun',
+    language: 'ja',
+    title_ja: '明日は大雪が降るそうです',
+    title_uz: '47-dars: Xabar va mish-mishlarni yetkazish (〜そうです / 〜ようです)',
+    emoji: '📰',
+    difficulty: 'N4',
+    category: 'daily',
+    description_uz:
+      "Minna no Nihongo 47-dars: Ob-havo, yangiliklar yoki boshqalardan eshitilgan axborotlarni '〜そうです (eshitishimcha)' va '〜ようです' bilan suhbatda qo'llash.",
+    opening_line_ja: '天気予報を見ましたか？明日の天気はどうだと言っていましたか？',
+    context_prompt: `あなたは語学学校のクラスメイトです。「みんなの日本語」第47課（伝聞：〜そうです、推量：〜ようです）を練習します。
+【進行ステップ】
+ステップ1 (伝聞の報告):
+- 生徒が「明日は大雪が降るそうです」「午後からとても寒くなるそうです」と報告したら、「えっ、雪ですか！明日は暖かいコートを着て出かけたほうがよさそうですね」と返してください。
+ステップ2 (噂や街のニュース):
+- 生徒が「駅前に新しいパン屋ができたそうですよ」「先生は風邪を引いたようです」などと話したら、「へえ、本当ですか！今度行ってみましょう」と関心を示してください。
+ステップ3 (締めくくり):
+- 「明日は道が滑りやすいそうなので足元に気をつけて登校しましょうね！」と気遣って終えてください。
+【厳守事項】
+- 天気や噂の話題をスムーズに広げ、質問を繰り返さないでください。`,
+    key_phrases: ['〜そうです', '〜ようです', '天気予報によると', '寒いそうです', '気をつけて'],
     is_custom: false,
   },
   {
