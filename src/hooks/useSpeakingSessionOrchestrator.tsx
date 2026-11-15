@@ -555,6 +555,7 @@ export function useSpeakingSessionOrchestrator({
         if (err?.name === 'AbortError' || abortController.signal.aborted) {
           return;
         }
+
         console.error(
           '[SpeakingCoach] Dialogue request failed:',
           err?.name,
@@ -569,7 +570,7 @@ export function useSpeakingSessionOrchestrator({
         const message =
           err instanceof AIServiceError
             ? err.message
-            : 'AI javobini olib bo‘lmadi. Suhbat pauzada; qayta urinib ko‘ring.';
+            : 'AI javobini olib bo‘lmadi. Suhbat pauzada: qayta urinib ko‘ring.';
         isMutedRef.current = true;
         setIsMuted(true);
         setReplyError(message);

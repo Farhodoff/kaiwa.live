@@ -63,7 +63,7 @@ export class CoachSpeechRecognition {
               return;
             }
             this.useBrowser = true;
-            this.fallbackReason = 'Azure bilan jonli nutq ulanishi uzildi.';
+            this.fallbackReason = 'Bulutli ovoz xizmatiga ulanish uzildi.';
             this.abort();
             this.onend?.();
           },
@@ -84,9 +84,9 @@ export class CoachSpeechRecognition {
           return;
         }
         this.fallbackReason =
-          AzureSpeechService.getLastConnectionError?.() || 'Azure nutq xizmati ishga tushmadi.';
+          AzureSpeechService.getLastConnectionError?.() || 'Bulutli ovoz xizmati ishga tushmadi.';
       } catch {
-        this.fallbackReason = 'Azure nutq xizmati ishga tushmadi.';
+        this.fallbackReason = 'Bulutli ovoz xizmati ishga tushmadi.';
         this.controller?.close();
         this.controller = null;
       }
