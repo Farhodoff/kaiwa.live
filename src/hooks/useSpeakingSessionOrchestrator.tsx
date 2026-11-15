@@ -556,6 +556,21 @@ export function useSpeakingSessionOrchestrator({
           return;
         }
 
+        // Silent single retry on transient network/socket glitches (NOT for blocked AI gateway responses)
+        const isBlocked = isBlockedAIRequest(err);
+        if (!retry && !isBlocked && !abortController.signal.aborted && isLiveSessionRef.current) {
+          console.warn(
+            '[SpeakingCoach] Transient dialogue error on first attempt, scheduling silent auto-retry...',
+            err?.message,
+          );
+          setTimeout(() => {
+            if (isLiveSessionRef.current && !abortController.signal.aborted) {
+              void handleSendUserText(cleanText, true);
+            }
+          }, 600);
+          return;
+        }
+
         console.error(
           '[SpeakingCoach] Dialogue request failed:',
           err?.name,
@@ -842,6 +857,7 @@ export function useSpeakingSessionOrchestrator({
   const startSession = useCallback(
     (topicTitle?: unknown) => {
       unlockAudio();
+      recognitionRef.current?.resetProvider?.();
       if (isLiveSessionRef.current) return;
       setIsMuted(false);
       isMutedRef.current = false;

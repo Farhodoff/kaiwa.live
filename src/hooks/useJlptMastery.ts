@@ -94,13 +94,8 @@ export const useJlptMastery = () => {
             .then(({ error }) => {
               if (error) console.warn('[useJlptMastery] DB upsert error:', error);
             });
-
-          // Fallback to user_metadata
-          supabase.auth
-            .updateUser({
-              data: { jlpt_mastery: updated },
-            })
-            .catch((err) => console.warn('Failed to sync JLPT mastery to metadata:', err));
+          // Do NOT mirror the mastery map into auth user_metadata: it is embedded in the
+          // JWT, so a growing map bloats every request header and causes HTTP 431/494.
         }
       });
 

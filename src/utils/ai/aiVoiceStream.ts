@@ -4,7 +4,7 @@
  * a sentence boundary is formed, achieving sub-600ms conversational turn latency.
  */
 
-import { streamCoachTokens } from '../coachAI';
+import { streamCoachTokens, callCoachAI } from '../coachAI';
 import { streamChatTokens } from '../chatStream';
 import { buildCoachPrompts, parseCoachResponse, CoachStructuredResponse } from './aiCoach';
 import { ConversationScenario } from '../../components/speaking/scenarioTypes';
@@ -164,22 +164,34 @@ export const streamCoachDialogue = async (
       throw primaryErr;
     }
     console.warn(
-      '[streamCoachDialogue] Primary stream failed, trying DeepSeek backup stream:',
+      '[streamCoachDialogue] Primary stream failed, trying non-streaming Azure Coach retry:',
       primaryErr?.message,
     );
-    // Reinitialize extractor with a clean buffer so partial tokens from primary attempt don't corrupt the backup
-    extractor = onSentenceReady ? new IncrementalReplyExtractor(isJa, onSentenceReady) : null;
-    fullRaw = await streamChatTokens(
-      messages,
-      (token) => {
-        if (extractor) {
-          extractor.feed(token);
-        }
-      },
-      true,
-      signal,
-      '/api/deepseek',
-    );
+    // 1. Direct resilient retry with primary Azure Coach non-streaming endpoint
+    try {
+      fullRaw = await callCoachAI(userPrompt, systemPrompt, true);
+    } catch (coachRetryErr: any) {
+      if (signal?.aborted || coachRetryErr?.name === 'AbortError') {
+        throw coachRetryErr;
+      }
+      console.warn(
+        '[streamCoachDialogue] Azure non-streaming retry failed, trying DeepSeek backup stream:',
+        coachRetryErr?.message,
+      );
+      // 2. Secondary fallback: DeepSeek backup stream
+      extractor = onSentenceReady ? new IncrementalReplyExtractor(isJa, onSentenceReady) : null;
+      fullRaw = await streamChatTokens(
+        messages,
+        (token) => {
+          if (extractor) {
+            extractor.feed(token);
+          }
+        },
+        true,
+        signal,
+        '/api/deepseek',
+      );
+    }
   }
 
   if (extractor) {

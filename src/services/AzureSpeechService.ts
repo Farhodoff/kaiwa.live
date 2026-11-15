@@ -56,9 +56,6 @@ function expireSession(): null {
   cachedSpeechToken = null;
   authState = 'session_expired';
   lastConnectionError = SPEECH_SESSION_EXPIRED;
-  if (typeof supabase.auth?.signOut === 'function') {
-    supabase.auth.signOut({ scope: 'local' }).catch(() => {});
-  }
   return null;
 }
 
