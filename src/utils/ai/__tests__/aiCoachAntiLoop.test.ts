@@ -3,6 +3,7 @@ import { buildCoachPrompts } from '../aiCoach';
 import { MINNA_SCENARIOS } from '../../../data/minnaScenarios';
 import { N3_SCENARIOS } from '../../../data/n3Scenarios';
 import { N2_SCENARIOS } from '../../../data/n2Scenarios';
+import { N1_SCENARIOS } from '../../../data/n1Scenarios';
 
 describe('AI Coach Anti-Loop & Conversational Progression Verification', () => {
   it('injects strict anti-loop and progression rules into system prompt for Japanese', () => {
@@ -90,6 +91,16 @@ describe('AI Coach Anti-Loop & Conversational Progression Verification', () => {
       expect(scenario, `N2 lesson ${i} scenario should exist`).toBeDefined();
       expect(scenario?.context_prompt).toContain('進行ステップ');
       expect(scenario?.difficulty).toBe('N2');
+    }
+  });
+
+  it('verifies all 30 JLPT N1 lessons are present and have progressive steps', () => {
+    expect(N1_SCENARIOS.length).toBe(30);
+    for (let i = 1; i <= 30; i++) {
+      const scenario = N1_SCENARIOS.find((s) => s.id.startsWith(`n1_l${i}_`));
+      expect(scenario, `N1 lesson ${i} scenario should exist`).toBeDefined();
+      expect(scenario?.context_prompt).toContain('進行ステップ');
+      expect(scenario?.difficulty).toBe('N1');
     }
   });
 });

@@ -3,6 +3,7 @@ import { DEFAULT_SCENARIOS } from '../data/defaultScenarios';
 import { MINNA_SCENARIOS } from '../data/minnaScenarios';
 import { N3_SCENARIOS } from '../data/n3Scenarios';
 import { N2_SCENARIOS } from '../data/n2Scenarios';
+import { N1_SCENARIOS } from '../data/n1Scenarios';
 import { supabase } from '../lib/supabase';
 import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
 
@@ -47,6 +48,7 @@ export class ScenarioService {
       ...MINNA_SCENARIOS,
       ...N3_SCENARIOS,
       ...N2_SCENARIOS,
+      ...N1_SCENARIOS,
       ...customScenarios,
     ].filter((s) => !deletedIds.has(s.id));
     return _cachedScenarios;
@@ -123,6 +125,7 @@ export class ScenarioService {
       ...MINNA_SCENARIOS,
       ...N3_SCENARIOS,
       ...N2_SCENARIOS,
+      ...N1_SCENARIOS,
       ...customScenarios,
     ].filter((s) => !deletedIds.has(s.id));
     return _cachedScenarios;
