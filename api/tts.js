@@ -85,7 +85,8 @@ function jsonResponse(req, data, status = 200, extraHeaders = {}) {
 
 async function synthesizeWithAzure(text, lang, key, region, signal) {
   const voiceConfig = AZURE_VOICE_MAP[lang] || { voice: 'ja-JP-NanamiNeural', locale: 'ja-JP' };
-  const ssml = `<speak version='1.0' xml:lang='${voiceConfig.locale}'>` +
+  const ssml =
+    `<speak version='1.0' xml:lang='${voiceConfig.locale}'>` +
     `<voice xml:lang='${voiceConfig.locale}' name='${voiceConfig.voice}'>` +
     escapeXml(text) +
     `</voice></speak>`;
@@ -156,19 +157,27 @@ export default async function handler(req) {
   }
 
   if (req.method !== 'GET' && req.method !== 'POST' && req.method !== 'HEAD') {
-    return jsonResponse(req, {
-      error: 'Method Not Allowed',
-      message: "Faqat GET yoki POST so'rovlari qo'llab-quvvatlanadi.",
-    }, 405);
+    return jsonResponse(
+      req,
+      {
+        error: 'Method Not Allowed',
+        message: "Faqat GET yoki POST so'rovlari qo'llab-quvvatlanadi.",
+      },
+      405,
+    );
   }
 
   // 2. Authentication: strictly verify Supabase JWT or Anon Key
   const token = getBearerToken(req);
   if (!token) {
-    return jsonResponse(req, {
-      error: 'Unauthorized',
-      message: 'Autentifikatsiya talab qilinadi. Authorization Bearer token yuborilishi shart.',
-    }, 401);
+    return jsonResponse(
+      req,
+      {
+        error: 'Unauthorized',
+        message: 'Autentifikatsiya talab qilinadi. Authorization Bearer token yuborilishi shart.',
+      },
+      401,
+    );
   }
 
   let authenticatedUserId = null;
@@ -180,27 +189,36 @@ export default async function handler(req) {
   } else {
     const { user, error: authError } = await verifyAuth(req);
     if (authError || !user) {
-      return jsonResponse(req, {
-        error: 'Unauthorized',
-        message: "Yaroqsiz yoki muddati o'tgan autentifikatsiya sessiyasi.",
-        details: authError,
-      }, 401);
+      return jsonResponse(
+        req,
+        {
+          error: 'Unauthorized',
+          message: "Yaroqsiz yoki muddati o'tgan autentifikatsiya sessiyasi.",
+          details: authError,
+        },
+        401,
+      );
     }
     authenticatedUserId = user.id;
     userRole = user.app_metadata?.role || user.role || 'user';
   }
 
-  // 3. Distributed Rate Limiter (skip for admin, 120 req/min for conversational dialogue chunk streaming)
+  // 3. Distributed Rate Limiter (skip for admin, 300 req/min for conversational dialogue chunk streaming)
   const isAdmin = userRole === 'admin' || userRole === 'superadmin';
   const rateCheck = isAdmin
     ? { allowed: true, remaining: 999999, retryAfter: 0 }
-    : await checkRateLimit(req, authenticatedUserId, 120);
+    : await checkRateLimit(req, authenticatedUserId, 300);
   if (!rateCheck.allowed) {
-    return jsonResponse(req, {
-      error: 'Too Many Requests',
-      message: `TTS so'rovlar tezligi oshdi. Iltimos ${rateCheck.retryAfter} soniyadan so'ng qayta urinib ko'ring.`,
-      retryAfter: rateCheck.retryAfter,
-    }, 429, { 'Retry-After': String(rateCheck.retryAfter) });
+    return jsonResponse(
+      req,
+      {
+        error: 'Too Many Requests',
+        message: `TTS so'rovlar tezligi oshdi. Iltimos ${rateCheck.retryAfter} soniyadan so'ng qayta urinib ko'ring.`,
+        retryAfter: rateCheck.retryAfter,
+      },
+      429,
+      { 'Retry-After': String(rateCheck.retryAfter) },
+    );
   }
 
   // 4. Input Extraction & Request Size Limit
@@ -218,7 +236,11 @@ export default async function handler(req) {
     }
 
     if (!body || typeof body !== 'object' || Array.isArray(body)) {
-      return jsonResponse(req, { error: 'Bad Request', message: "Request body ob'ekt bo'lishi shart." }, 400);
+      return jsonResponse(
+        req,
+        { error: 'Bad Request', message: "Request body ob'ekt bo'lishi shart." },
+        400,
+      );
     }
 
     rawText = body.text;
@@ -233,25 +255,37 @@ export default async function handler(req) {
   // 5. Daily AI/TTS Quota Check (evaluated before hitting upstream provider)
   const quotaCheck = await checkDailyQuota(authenticatedUserId, userRole, payloadForQuota, req);
   if (!quotaCheck.allowed) {
-    return jsonResponse(req, {
-      error: 'Quota Exceeded',
-      message: quotaCheck.reason,
-    }, 403);
+    return jsonResponse(
+      req,
+      {
+        error: 'Quota Exceeded',
+        message: quotaCheck.reason,
+      },
+      403,
+    );
   }
 
   // 6. Strict Input Validation
   if (typeof rawText !== 'string') {
-    return jsonResponse(req, {
-      error: 'Bad Request',
-      message: "Matn (text) maydoni satr (string) bo'lishi shart.",
-    }, 400);
+    return jsonResponse(
+      req,
+      {
+        error: 'Bad Request',
+        message: "Matn (text) maydoni satr (string) bo'lishi shart.",
+      },
+      400,
+    );
   }
 
   if (rawText.length > 200) {
-    return jsonResponse(req, {
-      error: 'Bad Request',
-      message: 'Matn uzunligi maksimal 200 belgidan oshmasligi kerak.',
-    }, 400);
+    return jsonResponse(
+      req,
+      {
+        error: 'Bad Request',
+        message: 'Matn uzunligi maksimal 200 belgidan oshmasligi kerak.',
+      },
+      400,
+    );
   }
 
   const cleanText = rawText
@@ -259,22 +293,34 @@ export default async function handler(req) {
     .replace(/\s+/g, ' ')
     .trim();
   if (cleanText.length === 0) {
-    return jsonResponse(req, { error: 'Bad Request', message: "Bo'sh matnni ovozlashtirib bo'lmaydi." }, 400);
+    return jsonResponse(
+      req,
+      { error: 'Bad Request', message: "Bo'sh matnni ovozlashtirib bo'lmaydi." },
+      400,
+    );
   }
 
   if (cleanText.length > 200) {
-    return jsonResponse(req, {
-      error: 'Bad Request',
-      message: 'Matn uzunligi maksimal 200 belgidan oshmasligi kerak.',
-    }, 400);
+    return jsonResponse(
+      req,
+      {
+        error: 'Bad Request',
+        message: 'Matn uzunligi maksimal 200 belgidan oshmasligi kerak.',
+      },
+      400,
+    );
   }
 
   const validatedLang = normalizeAndValidateLanguage(rawLang);
   if (!validatedLang) {
-    return jsonResponse(req, {
-      error: 'Bad Request',
-      message: `Qo'llab-quvvatlanmaydigan til: "${String(rawLang).substring(0, 20)}". Ruxsat etilgan tillar: ${Array.from(ALLOWED_LANGUAGES).join(', ')}`,
-    }, 400);
+    return jsonResponse(
+      req,
+      {
+        error: 'Bad Request',
+        message: `Qo'llab-quvvatlanmaydigan til: "${String(rawLang).substring(0, 20)}". Ruxsat etilgan tillar: ${Array.from(ALLOWED_LANGUAGES).join(', ')}`,
+      },
+      400,
+    );
   }
 
   // 7. Resilient Multi-Provider Speech Synthesis (Primary: Azure Neural TTS, Fallback: Google TTS)
@@ -291,13 +337,22 @@ export default async function handler(req) {
     // 7A. Primary: Azure Neural TTS
     if (azureKey && azureKey.trim().length > 10) {
       try {
-        audioBuffer = await synthesizeWithAzure(cleanText, validatedLang, azureKey, azureRegion, controller.signal);
+        audioBuffer = await synthesizeWithAzure(
+          cleanText,
+          validatedLang,
+          azureKey,
+          azureRegion,
+          controller.signal,
+        );
         activeProvider = 'azure-neural';
       } catch (azureError) {
         if (controller.signal.aborted || azureError?.name === 'AbortError') {
           throw azureError;
         }
-        console.warn('[TTS] Azure Neural synthesis failed, falling back to Google TTS:', azureError?.message);
+        console.warn(
+          '[TTS] Azure Neural synthesis failed, falling back to Google TTS:',
+          azureError?.message,
+        );
       }
     }
 
@@ -325,28 +380,40 @@ export default async function handler(req) {
     clearTimeout(timeoutId);
 
     if (error?.name === 'AbortError' || error?.message?.includes('aborted')) {
-      return jsonResponse(req, {
-        error: 'Gateway Timeout',
-        message: 'TTS provayderi belgilangan vaqt ichida javob bermadi (10s timeout).',
-      }, 504);
+      return jsonResponse(
+        req,
+        {
+          error: 'Gateway Timeout',
+          message: 'TTS provayderi belgilangan vaqt ichida javob bermadi (10s timeout).',
+        },
+        504,
+      );
     }
 
     const isBadGateway =
       error?.message?.includes('HTTP') ||
       error?.message?.includes('format') ||
       error?.message?.includes('empty') ||
-      error?.message?.includes('bo\'sh');
+      error?.message?.includes("bo'sh");
 
     if (isBadGateway) {
-      return jsonResponse(req, {
-        error: 'Bad Gateway',
-        message: "TTS provayderidan audio qabul qilib bo'lmadi.",
-      }, 502);
+      return jsonResponse(
+        req,
+        {
+          error: 'Bad Gateway',
+          message: "TTS provayderidan audio qabul qilib bo'lmadi.",
+        },
+        502,
+      );
     }
 
-    return jsonResponse(req, {
-      error: 'Internal Server Error',
-      message: 'Audio sintez jarayonida server xatoligi yuz berdi.',
-    }, 500);
+    return jsonResponse(
+      req,
+      {
+        error: 'Internal Server Error',
+        message: 'Audio sintez jarayonida server xatoligi yuz berdi.',
+      },
+      500,
+    );
   }
 }

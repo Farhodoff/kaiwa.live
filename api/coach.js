@@ -53,7 +53,7 @@ export default async function handler(req, res) {
   const isAdmin = userRole === 'admin' || userRole === 'superadmin';
   const rate = isAdmin
     ? { allowed: true, remaining: 999999, retryAfter: 0 }
-    : await checkRateLimit(req, user?.id || null, 60);
+    : await checkRateLimit(req, user?.id || null, 180);
   if (!rate.allowed) {
     res.setHeader('Retry-After', String(rate.retryAfter));
     return res

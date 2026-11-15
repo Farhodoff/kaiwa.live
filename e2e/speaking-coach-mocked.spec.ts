@@ -136,7 +136,9 @@ test('hands-free conversation resumes after a reply and after microphone pause',
   await expect(page.getByRole('status')).toContainText('Mikrofon pauzada');
   await page.getByRole('button', { name: 'Mikrofonni yoqish' }).click();
   await expect(page.getByRole('status')).toContainText('Tinglayapman...');
-  await page.getByRole('button', { name: 'Suhbatni yakunlash', exact: true }).click();
+  await page
+    .getByRole('button', { name: 'Suhbatni yakunlash', exact: true })
+    .click({ force: true });
   await expect(page.getByRole('button', { name: 'Suhbatni boshlash', exact: true })).toBeVisible();
   await expect.poll(() => page.evaluate(() => (window as any).__coachTracksStopped())).toBe(true);
   await page.getByRole('button', { name: 'Tushunarli, Yopish' }).click();

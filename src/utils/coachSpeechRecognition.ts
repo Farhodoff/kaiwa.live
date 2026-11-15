@@ -30,6 +30,10 @@ export class CoachSpeechRecognition {
     this.running = true;
     this.finalResults = [];
     const generation = ++this.generation;
+    // Azure Speech is always the primary provider. Reset fallback on each turn unless auth is hard-expired.
+    if (AzureSpeechService.getAuthState?.() !== 'session_expired') {
+      this.useBrowser = false;
+    }
     void this.startProvider(generation);
   }
 

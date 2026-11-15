@@ -2,7 +2,7 @@ import { LOCAL_QUOTA_REQUEST } from './_quota.js';
 
 /**
  * Distributed Rate Limiter for Vercel Serverless & Edge Runtime.
- * 
+ *
  * Primary: Upstash Redis REST API (Multi-instance & cold-start safe)
  * Fallback: Sliding-window In-Memory Map (Local dev / testing environment)
  */
@@ -17,7 +17,7 @@ const localUserStore = new Map();
 function checkLocalFallback(store, key, maxLimit) {
   const now = Date.now();
   const windowMs = WINDOW_SECONDS * 1000;
-  const timestamps = (store.get(key) || []).filter(t => now - t < windowMs);
+  const timestamps = (store.get(key) || []).filter((t) => now - t < windowMs);
 
   if (timestamps.length >= maxLimit) {
     const oldest = timestamps[0];
@@ -47,14 +47,27 @@ export async function checkRateLimit(req, userId = null, customMaxLimit = null) 
   }
   clientIp = clientIp.split(',')[0].trim();
 
-  const rateLimitKey = userId ? `ratelimit:user:${userId}` : `ratelimit:ip:${clientIp}`;
+  let route = 'global';
+  try {
+    const rawUrl = req?.url || '';
+    if (rawUrl.startsWith('http')) {
+      route = new URL(rawUrl).pathname;
+    } else if (rawUrl.startsWith('/')) {
+      route = rawUrl.split('?')[0];
+    }
+  } catch {}
+
+  const rateLimitKey = userId
+    ? `ratelimit:${route}:user:${userId}`
+    : `ratelimit:${route}:ip:${clientIp}`;
   const maxLimit =
     customMaxLimit !== null
-      ? (userId ? customMaxLimit : Math.max(2, Math.floor(customMaxLimit / 2)))
-      : (userId ? MAX_REQUESTS_PER_WINDOW : Math.floor(MAX_REQUESTS_PER_WINDOW / 2));
+      ? customMaxLimit
+      : userId
+        ? MAX_REQUESTS_PER_WINDOW
+        : Math.floor(MAX_REQUESTS_PER_WINDOW / 2);
 
-  if (req?.[LOCAL_QUOTA_REQUEST] === true) {
-    const route = req.url?.split('?')[0] || '/api/unknown';
+  if (req?.[LOCAL_QUOTA_REQUEST] === true || !redisUrl || !redisToken) {
     const store = userId ? localUserStore : localIpStore;
     const key = `local:${route}:${userId || clientIp}`;
     return { ...checkLocalFallback(store, key, maxLimit), isDistributed: false };
@@ -98,7 +111,10 @@ export async function checkRateLimit(req, userId = null, customMaxLimit = null) 
         };
       }
     } catch (err) {
-      console.warn('[RateLimit] Upstash Redis call failed, failing open with local fallback:', err?.message);
+      console.warn(
+        '[RateLimit] Upstash Redis call failed, failing open with local fallback:',
+        err?.message,
+      );
     }
   }
 
