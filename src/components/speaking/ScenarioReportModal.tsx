@@ -115,13 +115,15 @@ export const ScenarioReportModal: React.FC<ScenarioReportModalProps> = ({
         </button>
         {isLoading || !result ? (
           <div className="space-y-4 py-16 text-center">
-            <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+            <div className="relative inline-flex items-center justify-center">
+              <div className="h-14 w-14 animate-spin rounded-full border-4 border-[#C9A961]/20 border-t-[#C9A961]" />
+              <Sparkles size={22} className="absolute animate-pulse text-[#C9A961]" />
+            </div>
             <h3 className="text-base font-extrabold text-foreground">
-              AI Scenario va Pronunciation Tahlil qilinmoqda...
+              Natijalar tahlil qilinmoqda...
             </h3>
             <p className="mx-auto max-w-sm text-xs text-muted-foreground">
-              Talaffuzingiz, yaponcha key iboralar ishlatilishi va grammatikangiz AI tomonidan
-              baholanmoqda.
+              Suhbatingiz va talaffuzingiz bo'yicha tahlil tayyorlanmoqda.
             </p>
           </div>
         ) : (

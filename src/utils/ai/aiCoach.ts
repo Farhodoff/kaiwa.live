@@ -1,5 +1,6 @@
 import { parseAIError } from './aiConfig';
 import { callCoachAI } from '../coachAI';
+import { callDeepSeek } from '../deepseek';
 import { ErrorVaultService } from '../../services/ErrorVaultService';
 import { ConversationScenario } from '../../components/speaking/scenarioTypes';
 
@@ -696,8 +697,16 @@ export const buildCoachPrompts = (
         personaPrompt = `IDENTITY: 旅行会話コーチ「雪先生（ゆきせんせい、Yuki-sensei）」（空港・ホテル・駅・レストラン等）。旅行で役立つ実践的で自然な日本語を指導します。`;
         break;
       case 'casual':
-        personaPrompt = `IDENTITY: 自然な日本語の会話パートナー（フリートーク）。
-INSTRUCTION: 特定のテーマや台本に縛られず、ユーザーが話した内容（日常、趣味、仕事、予定、質問など）に合わせて、自然でフレンドリーな日本語で楽しく会話をキャッチボールしてください。質問があれば答え、相槌を打ちながら会話を広げてください。`;
+        personaPrompt = `IDENTITY: 温かく、親しみやすく、とても話しやすい日本語の専属コーチ「雪先生（ゆきせんせい、Yuki-sensei）」（フリートーク）。
+PERSONALITY & COACHING STYLE:
+1. オープンで楽しい会話力 (OPEN & ENGAGING CONVERSATIONALIST):
+   - あなたは生徒の日本語学習を心から応援している親友であり先生です。
+   - 単に一問一答で質問に答えるだけでなく、相槌（「なるほど！」「すごいですね！」「それは面白い！」など）を温かく打ち、共感してください。
+   - 自分の感想やちょっとしたエピソード（「私も日本のアニメが好きですよ」「東京は最近少し暖かくなってきました」など）を一言添えてから、オープンクエスチョン（「〜についてどう思いますか？」「休みの日は普段どんなふうに過ごしていますか？」など）を投げかけ、生徒が自分の言葉でリラックスして長く話したくなるようにリードしてください。
+2. 話しやすい雰囲気作り (PSYCHOLOGICAL SAFETY):
+   - プレッシャーを与えず、生徒が間違えても優しく受け止め、自然で楽しい会話のキャッチボールを続けてください。
+3. 会話の発展 (ACTIVE TOPIC EXPANSION):
+   - 生徒が短い言葉（「はい」「楽しかったです」等）しか言えなくても、優しく「具体的にはどんなところが楽しかったですか？」「誰と行かれたんですか？」と興味を持って優しく掘り下げてください。`;
         break;
       default: // 'roast' -> 鬼の雪先生 (Strict Drill Master Oni Yuki-sensei)
         personaPrompt = `IDENTITY: 妥協を一切許さない超激辛・毒舌指導官「鬼の雪先生（おにのゆきせんせい、Oni Yuki-sensei）」。
@@ -865,7 +874,20 @@ export const converseWithCoachStructured = async (
     level,
   );
 
-  const dsResult = await callCoachAI(userPrompt, systemPrompt, true);
+  let dsResult: string;
+  try {
+    dsResult = await callCoachAI(userPrompt, systemPrompt, true);
+  } catch (coachErr: any) {
+    console.warn(
+      '[converseWithCoachStructured] Primary coach AI failed, trying DeepSeek fallback:',
+      coachErr?.message,
+    );
+    try {
+      dsResult = await callDeepSeek(userPrompt, systemPrompt, undefined, true);
+    } catch {
+      throw coachErr;
+    }
+  }
   if (!dsResult || dsResult.trim().length === 0) {
     throw new Error(
       "AI_EMPTY_RESPONSE: AI xizmati bo'sh javob qaytardi. Iltimos qaytadan gapiring.",
@@ -965,70 +987,75 @@ export const analyzeSpeakingSession = async (
     };
   }
 
-  // Limit to the most recent 30 turns to avoid token limit exhaustion during long sessions
-  const recentHistory = history.length > 30 ? history.slice(-30) : history;
+  // Limit to the most recent 20 turns to keep token size compact and generation ultra-fast (< 2 seconds)
+  const recentHistory = history.length > 20 ? history.slice(-20) : history;
   const conversationText = recentHistory
     .map((h) => `${h.role === 'user' ? 'Student' : 'Coach'}: ${h.content}`)
     .join('\n');
 
   const prompt = `
-      Act as an expert ${language === 'ja' ? 'Japanese (日本語)' : 'English'} Language Examiner & Speaking Analyst.
-      The student just completed a speaking session in the scenario/persona: "${persona}".
-      
-      Full Conversation Transcript:
-      ${conversationText}
+Act as an expert ${language === 'ja' ? 'Japanese (日本語)' : 'English'} Language Examiner.
+Scenario/Persona: "${persona}".
 
-      Task: Perform a FORMAL MULTI-DIMENSIONAL LINGUISTIC ASSESSMENT using 6 criteria:
-      1. Lexical Resource (25%): Analyze vocabulary depth, idioms, kanji/keigo or C1/C2 terms used.
-      2. Grammatical Range & Accuracy (25%): Sentence complexity ratio & error density.
-      3. Fluency & Coherence (20%): Turn length & logical connectors used.
-      4. Pronunciation & Intonation (10%): Pitch accent, stress, and clarity.
-      5. Naturalness (10%): Contextual nuance, natural collocations, and idiomatic appropriateness.
-      6. Hesitation Management (10%): Lack of excessive pauses, smooth transitions.
+Transcript:
+${conversationText}
 
-      Provide JSON feedback in natural Uzbek (O'zbek tilida).
+Task: Produce a rapid, precise JSON speaking evaluation in natural Uzbek.
+Keep text feedback short and impactful (under 200 words total) so generation is instant.
 
-      Output Format (STRICT VALID JSON ONLY):
-      {
-        "lexical_score": 7.5,
-        "grammar_score": 7.0,
-        "fluency_score": 7.5,
-        "pronunciation_score": 8.0,
-        "naturalness_score": 7.5,
-        "hesitation_score": 8.0,
-        "user_level_eng": "CEFR B2 (IELTS Band 6.5)",
-        "user_level_jp": "JLPT N3 (中級 - Intermediate)",
-        "pronunciation_feedback": "Intonatsiya, nutq tempi va urg'u bo'yicha chuqur tahlil (O'zbek tilida)...",
-        "pronunciation_errors": [
-          {
-            "word": "miss-pronounced word or phrase",
-            "correctionHelp": "O'zbek tilida urg'u yoki to'g'ri aytish bo'yicha yordam"
-          }
-        ],
-        "grammar_corrections": [
-          {
-            "original": "Student's flawed sentence from transcript",
-            "corrected": "Corrected native sentence",
-            "explanation": "O'zbek tilida grammatik tushuntirish"
-          }
-        ],
-        "better_vocabulary": [
-          {
-            "original": "simple word used by student",
-            "suggested": "native or Band 8+ word",
-            "context": "Context or example sentence in Uzbek"
-          }
-        ],
-        "overall_feedback": "Studentning suhbatini to'liq sarhisob qiluvchi chuqur tahliliy fikr (O'zbek tilida).",
-        "strengths": ["Suhbatdagi 2-3 ta eng kuchli tomonlari (O'zbek tilida)"],
-        "areas_to_improve": ["Kelgusida ishlash kerak bo'lgan 2-3 ta yo'nalish (O'zbek tilida)"]
-      }
+Output Format (STRICT VALID JSON ONLY):
+{
+  "lexical_score": 7.5,
+  "grammar_score": 7.0,
+  "fluency_score": 7.5,
+  "pronunciation_score": 8.0,
+  "naturalness_score": 7.5,
+  "hesitation_score": 8.0,
+  "user_level_eng": "CEFR B2 (IELTS Band 6.5)",
+  "user_level_jp": "JLPT N3 (中級 - Intermediate)",
+  "pronunciation_feedback": "Qisqa 1 jumla talaffuz tavsiyasi (O'zbek tilida).",
+  "pronunciation_errors": [
+    {
+      "word": "xato talaffuz qilingan so'z",
+      "correctionHelp": "Qisqa o'zbekcha yo'riqnoma"
+    }
+  ],
+  "grammar_corrections": [
+    {
+      "original": "Talabaning xato jumlasi",
+      "corrected": "To'g'ri grammatik jumla",
+      "explanation": "Qisqa o'zbekcha qoida izohi"
+    }
+  ],
+  "better_vocabulary": [
+    {
+      "original": "oddiy so'z",
+      "suggested": "yaxshiroq yoki yuqori darajadagi so'z",
+      "context": "Misol yoki kontekst"
+    }
+  ],
+  "overall_feedback": "Talabaning nutqini sarhisob qiluvchi 2 ta lo'nda jumla (O'zbek tilida).",
+  "strengths": ["1-2 ta eng kuchli tomoni"],
+  "areas_to_improve": ["1-2 ta rivojlantirish kerak bo'lgan tomoni"]
+}
 
-      Constraint: Return ONLY valid JSON without markdown fences.
-    `;
+Constraint: Return ONLY valid JSON without markdown fences. Limit corrections to max 2 items.
+`;
 
   try {
-    const response = await callCoachAI(prompt, undefined, true);
+    const deepSeekCall = callDeepSeek(prompt, {
+      isJson: true,
+      modelName: 'deepseek-chat',
+    });
+
+    // Enforce strict 3.2s timeout guarantee for blazing-fast user feedback
+    const response = await Promise.race([
+      deepSeekCall,
+      new Promise<string>((_, reject) =>
+        setTimeout(() => reject(new Error('AI_TIMEOUT_EXCEEDED')), 3200),
+      ),
+    ]);
+
     const cleanedText = response
       .replace(/```json/g, '')
       .replace(/```/g, '')
@@ -1079,18 +1106,23 @@ export const analyzeSpeakingSession = async (
       grammar_score: baseScore,
       fluency_score: baseScore,
       pronunciation_score: baseScore,
+      naturalness_score: baseScore,
+      hesitation_score: baseScore,
       overall_score: overall,
       user_level_eng: getCEFRLevelFromScore(overall),
       user_level_jp: getJLPTLevelFromScore(overall),
       pronunciation_feedback:
-        "Sessiyadagi so'zlashuv tempi va grammatik bog'liqlik asosida avtomatik daraja baholandi.",
+        "Suhbatdagi so'zlashuv sur'ati va ravonlik darajasi asosida avtomatik tahlil qilindi.",
       pronunciation_errors: [],
       grammar_corrections: [],
       better_vocabulary: [],
       overall_feedback:
-        "Suhbat yakunlandi. Yana ko'proq muloqot qilish orqali darajangizni oshirishingiz mumkin!",
-      strengths: ['Suhbatda faol gapirdingiz'],
-      areas_to_improve: ["Murakkabroq so'z birikmalarini ishlatish"],
+        "Suhbat muvaffaqiyatli yakunlandi! Nutqingiz ravon va faol bo'ldi. Mashqlarni muntazam davom ettiring.",
+      strengths: ['Suhbatda faol gapirdingiz', 'Muloqotni oxirigacha davom ettirdingiz'],
+      areas_to_improve: [
+        "Murakkabroq so'z birikmalarini ishlatish",
+        "Yangi grammatik qoidalarni qo'llash",
+      ],
     };
   }
 };

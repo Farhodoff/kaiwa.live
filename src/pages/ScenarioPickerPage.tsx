@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ConversationScenario, ScenarioSessionResult } from '../components/speaking/scenarioTypes';
 import { ScenarioService } from '../services/ScenarioService';
+import { ScenarioAttemptsModal } from '../components/speaking/ScenarioAttemptsModal';
 import {
   Sparkles,
   Play,
@@ -40,6 +41,8 @@ export const ScenarioPickerPage: React.FC = () => {
 
   // Create Modal State
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [viewingAttemptsScenario, setViewingAttemptsScenario] =
+    useState<ConversationScenario | null>(null);
   const [deletingScenario, setDeletingScenario] = useState<ConversationScenario | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -297,7 +300,13 @@ export const ScenarioPickerPage: React.FC = () => {
       ) : (
         <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5">
           {filteredScenarios.map((scenario) => {
-            const lastSession = history.find((h) => h.scenario_id === scenario.id);
+            const scenarioAttempts = history.filter((h) => h.scenario_id === scenario.id);
+            const attemptsCount = scenarioAttempts.length;
+            const bestScore =
+              attemptsCount > 0
+                ? Math.max(...scenarioAttempts.map((s) => s.overall_score || 0))
+                : 0;
+            const lastSession = scenarioAttempts[0];
             const title = scenario.title_ja || scenario.title_uz;
 
             return (
@@ -372,19 +381,27 @@ export const ScenarioPickerPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="mt-6 flex items-center justify-between gap-3 border-t border-border/40 pt-4">
-                  {lastSession ? (
-                    <div className="flex items-center gap-2 text-xs">
-                      <Award size={16} className="text-[#C9A961]" />
+                <div className="mt-5 flex items-center justify-between gap-2 border-t border-border/40 pt-3.5">
+                  {attemptsCount > 0 ? (
+                    <button
+                      type="button"
+                      onClick={() => setViewingAttemptsScenario(scenario)}
+                      className="group/btn flex cursor-pointer items-center gap-2 rounded-xl border border-border/80 bg-muted/40 px-2.5 py-1.5 text-left text-xs transition hover:border-[#C9A961]/40 hover:bg-[#C9A961]/10"
+                      title="Barcha urinishlar va javoblarni ko'rish"
+                    >
+                      <Award size={15} className="shrink-0 text-[#C9A961]" />
                       <div>
-                        <span className="font-bold text-foreground">
-                          {lastSession.overall_score}%
-                        </span>
-                        <span className="ml-1 text-[10px] text-muted-foreground">
-                          {language === 'ja' ? '前回のスコア' : 'oxirgi natija'}
+                        <div className="flex items-center gap-1.5">
+                          <span className="font-extrabold text-foreground">{bestScore}%</span>
+                          <span className="rounded bg-[#C9A961]/20 px-1.5 py-0.5 text-[9px] font-bold text-[#C9A961]">
+                            {attemptsCount} ta urinish
+                          </span>
+                        </div>
+                        <span className="text-[10px] text-muted-foreground group-hover/btn:text-foreground">
+                          Oxirgi: {lastSession?.overall_score}% • Tarix ➔
                         </span>
                       </div>
-                    </div>
+                    </button>
                   ) : (
                     <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
                       <History size={12} />
@@ -394,10 +411,16 @@ export const ScenarioPickerPage: React.FC = () => {
 
                   <button
                     onClick={() => handleSelectScenario(scenario)}
-                    className="flex cursor-pointer items-center gap-1.5 rounded-2xl bg-primary px-4 py-2 text-xs font-bold text-primary-foreground shadow-md shadow-primary/20 transition-all hover:bg-primary/90 active:scale-95 group-hover:scale-105"
+                    className="flex cursor-pointer items-center gap-1.5 rounded-2xl bg-primary px-3.5 py-2 text-xs font-bold text-primary-foreground shadow-md shadow-primary/20 transition-all hover:bg-primary/90 active:scale-95 group-hover:scale-105"
                   >
-                    <Play size={14} className="fill-current" />
-                    <span>{language === 'ja' ? '会話を開始' : 'Boshlash'}</span>
+                    <Play size={13} className="fill-current" />
+                    <span>
+                      {language === 'ja'
+                        ? '会話を開始'
+                        : attemptsCount > 0
+                          ? 'Qayta urinish'
+                          : 'Boshlash'}
+                    </span>
                   </button>
                 </div>
               </div>
@@ -658,6 +681,15 @@ export const ScenarioPickerPage: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Scenario Attempts & User Answers History Modal */}
+      <ScenarioAttemptsModal
+        isOpen={Boolean(viewingAttemptsScenario)}
+        onClose={() => setViewingAttemptsScenario(null)}
+        scenario={viewingAttemptsScenario}
+        attempts={history.filter((h) => h.scenario_id === viewingAttemptsScenario?.id)}
+        onStartScenario={(sc) => handleSelectScenario(sc)}
+      />
     </div>
   );
 };

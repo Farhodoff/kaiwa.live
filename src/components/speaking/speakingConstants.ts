@@ -52,20 +52,21 @@ export const PROMPT_SUGGESTIONS_BY_LANG: Record<
 
 export const getCoachInitialGreeting = (lang: 'en' | 'ja', _p?: CoachPersona): string => {
   if (lang === 'ja') {
-    return 'こんにちは！調子はどうですか？今日はどんなことについて話しましょうか？';
+    return 'こんにちは！雪先生です。今日はどんなことについて話しましょうか？';
   } else {
     return 'Hello! How are you doing today? What would you like to talk about?';
   }
 };
 
-// Short openings invite a real spoken answer instead of waiting for a typed topic.
+// Open, inviting conversational openers from Yuki Sensei
 export const COACH_CONVERSATION_OPENERS = {
   ja: [
-    'こんにちは！今日はどんな一日でしたか？',
-    'こんにちは！休みの日は何をするのが好きですか？',
-    'こんにちは！今日、何かおいしいものを食べましたか？',
-    'こんにちは！日本で行ってみたい場所はどこですか？',
-    'こんにちは！最近、何か楽しいことがありましたか？',
+    'こんにちは！雪先生です。今日はどんな一日でしたか？',
+    'こんにちは！雪先生です。今日はどんなことについて話しましょうか？',
+    'こんにちは！雪先生です。最近、何か楽しかったことや気になっていることはありますか？',
+    'こんにちは！雪先生です。今日何かおいしいものを食べましたか？',
+    'こんにちは！雪先生です。日本で行ってみたい場所や、気になっている日本の文化はありますか？',
+    'こんにちは！雪先生です。リラックスして楽しくお話ししましょう！最近の調子はどうですか？',
   ],
   en: [
     'Hello! How has your day been?',

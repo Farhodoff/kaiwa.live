@@ -247,11 +247,17 @@ export const SessionReportModal: React.FC<SessionReportModalProps> = ({
 
         {/* Body Content */}
         <div className="flex-1 space-y-6 overflow-y-auto p-6">
-          {isLoading ? (
-            <div className="flex flex-col items-center justify-center space-y-4 py-16">
-              <div className="h-12 w-12 animate-spin rounded-full border-4 border-indigo-500/30 border-t-indigo-500" />
-              <p className="font-medium text-gray-500 dark:text-gray-400">
-                Sun'iy intellekt suhbatingizni tahlil qilmoqda...
+          {isLoading || !report ? (
+            <div className="flex flex-col items-center justify-center space-y-4 py-16 text-center">
+              <div className="relative inline-flex items-center justify-center">
+                <div className="h-14 w-14 animate-spin rounded-full border-4 border-indigo-500/20 border-t-indigo-500" />
+                <Sparkles size={22} className="absolute animate-pulse text-indigo-500" />
+              </div>
+              <h3 className="text-base font-extrabold text-gray-900 dark:text-white">
+                Natijalar tahlil qilinmoqda...
+              </h3>
+              <p className="mx-auto max-w-sm text-xs text-gray-500 dark:text-gray-400">
+                Suhbatingiz va grammatikangiz bo'yicha tahlil tayyorlanmoqda.
               </p>
             </div>
           ) : report ? (

@@ -175,16 +175,20 @@ export default async function handler(req, res) {
         body: JSON.stringify(payload),
       });
 
-      if (
-        payload.stream === true &&
-        upstreamRes.ok &&
-        upstreamRes.body &&
-        upstreamRes.headers.get('content-type')?.includes('text/event-stream')
-      ) {
-        return await forwardStream(upstreamRes, res);
+      if (upstreamRes.ok) {
+        if (
+          payload.stream === true &&
+          upstreamRes.body &&
+          upstreamRes.headers.get('content-type')?.includes('text/event-stream')
+        ) {
+          return await forwardStream(upstreamRes, res);
+        }
+        const upstreamData = await upstreamRes.json();
+        return res.status(upstreamRes.status).json(upstreamData);
       }
-      const upstreamData = await upstreamRes.json();
-      return res.status(upstreamRes.status).json(upstreamData);
+      console.warn(
+        `[deepseek] Direct upstream returned HTTP ${upstreamRes.status}, falling back to Supabase Edge...`,
+      );
     } catch (upstreamErr) {
       console.warn('Direct DeepSeek upstream failed, trying Supabase Edge fallback:', upstreamErr);
     }

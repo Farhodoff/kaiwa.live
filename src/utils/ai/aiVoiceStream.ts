@@ -5,6 +5,7 @@
  */
 
 import { streamCoachTokens } from '../coachAI';
+import { streamChatTokens } from '../chatStream';
 import { buildCoachPrompts, parseCoachResponse, CoachStructuredResponse } from './aiCoach';
 import { ConversationScenario } from '../../components/speaking/scenarioTypes';
 
@@ -146,16 +147,38 @@ export const streamCoachDialogue = async (
   const isJa = language === 'ja';
   const extractor = onSentenceReady ? new IncrementalReplyExtractor(isJa, onSentenceReady) : null;
 
-  const fullRaw = await streamCoachTokens(
-    messages,
-    (token) => {
-      if (extractor) {
-        extractor.feed(token);
-      }
-    },
-    true,
-    signal,
-  );
+  let fullRaw = '';
+  try {
+    fullRaw = await streamCoachTokens(
+      messages,
+      (token) => {
+        if (extractor) {
+          extractor.feed(token);
+        }
+      },
+      true,
+      signal,
+    );
+  } catch (primaryErr: any) {
+    if (signal?.aborted || primaryErr?.name === 'AbortError') {
+      throw primaryErr;
+    }
+    console.warn(
+      '[streamCoachDialogue] Primary stream failed, trying DeepSeek backup stream:',
+      primaryErr?.message,
+    );
+    fullRaw = await streamChatTokens(
+      messages,
+      (token) => {
+        if (extractor) {
+          extractor.feed(token);
+        }
+      },
+      true,
+      signal,
+      '/api/deepseek',
+    );
+  }
 
   if (extractor) {
     extractor.flush();
