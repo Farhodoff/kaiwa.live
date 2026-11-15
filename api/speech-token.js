@@ -75,8 +75,11 @@ export default async function handler(req) {
     userRole = user.app_metadata?.role || user.role || 'user';
   }
 
-  // 3. Distributed Rate Limiter (30 token requests/min per client)
-  const rateCheck = await checkRateLimit(req, authenticatedUserId, 30);
+  // 3. Distributed Rate Limiter (skip for admin, 60 token requests/min per client)
+  const isAdmin = userRole === 'admin' || userRole === 'superadmin';
+  const rateCheck = isAdmin
+    ? { allowed: true, remaining: 999999, retryAfter: 0 }
+    : await checkRateLimit(req, authenticatedUserId, 60);
   if (!rateCheck.allowed) {
     return jsonResponse(
       req,

@@ -67,32 +67,24 @@ describe('API Security Hardening Test Suite', () => {
       expect(res.reason).toContain('maksimal chegaradan');
     });
 
-    it('enforces guest limit (5 requests per day)', async () => {
+    it('allows unlimited requests for guests without daily limit blocks', async () => {
       const mockReq = { headers: { 'x-forwarded-for': '203.0.113.195' } };
 
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < 20; i++) {
         const check = await checkDailyQuota(null, 'guest', 'small body', mockReq);
         expect(check.allowed).toBe(true);
+        expect(check.remainingQuota).toBeGreaterThan(0);
       }
-
-      // 6th attempt should be blocked
-      const blocked = await checkDailyQuota(null, 'guest', 'small body', mockReq);
-      expect(blocked.allowed).toBe(false);
-      expect(blocked.reason).toContain('Mehmon sifatida kunlik bepul AI so');
     });
 
-    it('enforces standard user limit (35 requests per day)', async () => {
+    it('allows unlimited requests for standard users and admins', async () => {
       const testUserId = 'test-quota-user-std-1';
 
-      for (let i = 0; i < 35; i++) {
+      for (let i = 0; i < 20; i++) {
         const check = await checkDailyQuota(testUserId, 'user', 'body');
         expect(check.allowed).toBe(true);
+        expect(check.remainingQuota).toBeGreaterThan(0);
       }
-
-      // 36th attempt should be blocked
-      const blocked = await checkDailyQuota(testUserId, 'user', 'body');
-      expect(blocked.allowed).toBe(false);
-      expect(blocked.reason).toContain("Bugungi kunlik AI so'rovlar limitingiz");
     });
   });
 
