@@ -217,24 +217,29 @@ const SCENARIO_MAP_BY_LESSON_NUMBER: Record<number, string> = {
 };
 
 const SCENARIO_MAP_BY_UNIT: Record<string, string> = {
+  // JLPT N3 Units (Shin Kanzen & Sou Matome N3)
   'ja-n3-u1': 'byouin',
-  'ja-n3-u2': 'gakko_no_ichinichi',
-  'ja-n3-u3': 'business_koushou',
+  'ja-n3-u2': 'tomodachi_soudan',
+  'ja-n3-u3': 'fudousan_apartment_rental',
   'ja-n3-u4': 'gakko_soudan',
   'ja-n3-u5': 'ryokou_toukou',
   'ja-n3-u6': 'restaurant_kinenbi',
+
+  // JLPT N2 Units (Shin Kanzen Master N2)
   'ja-n2-u1': 'presentation_kekka',
   'ja-n2-u2': 'torihikisaki_denwa_keigo',
   'ja-n2-u3': 'shakai_mondai_iken',
   'ja-n2-u4': 'shokuba_email_followup',
-  'ja-n2-u5': 'shokuba_teammeeting',
+  'ja-n2-u5': 'shokuba_shinki_teian',
   'ja-n2-u6': 'mensetsu_it',
-  'ja-n1-u1': 'shakai_mondai_iken',
-  'ja-n1-u2': 'presentation_kekka',
+
+  // JLPT N1 Units (Shin Kanzen & Sou Matome N1)
+  'ja-n1-u1': 'debate_shakai',
+  'ja-n1-u2': 'mendan_keigo',
   'ja-n1-u3': 'business_koushou',
-  'ja-n1-u4': 'torihikisaki_denwa_keigo',
-  'ja-n1-u5': 'shokuba_email_followup',
-  'ja-n1-u6': 'mensetsu_it',
+  'ja-n1-u4': 'executive_board_briefing',
+  'ja-n1-u5': 'm_and_a_due_diligence',
+  'ja-n1-u6': 'cross_cultural_conflict_resolution',
 };
 
 const LEVEL_CONFIGS = {
