@@ -615,11 +615,20 @@ export const buildCoachPrompts = (
   scenario?: ConversationScenario | null,
   level: string = 'N3',
 ): { systemPrompt: string; userPrompt: string } => {
-  // Keep last 6 messages to optimize token usage & ensure fast responses
-  const recentHistory = history.slice(-6);
-  const historyText = recentHistory
-    .map((h) => `${h.role === 'user' ? 'Student' : 'Coach'}: ${h.content}`)
-    .join('\n');
+  // Prior dialogue history (excluding the current incoming user turn to avoid repeating it in prompt context)
+  const priorHistory =
+    history.length > 0 &&
+    history[history.length - 1].role === 'user' &&
+    history[history.length - 1].content.trim() === message.trim()
+      ? history.slice(0, -1)
+      : history;
+  const recentHistory = priorHistory.slice(-6);
+  const historyText =
+    recentHistory.length > 0
+      ? recentHistory
+          .map((h) => `${h.role === 'user' ? 'Student' : 'Coach'}: ${h.content}`)
+          .join('\n')
+      : '(Suhbat boshi / Conversation start)';
 
   // Determine effective level: if scenario specifies a JLPT level (e.g. N5), respect scenario unless level is explicitly set.
   // In default casual free talk (no scenario selected), ensure natural free conversation without N5 restrictions.
@@ -730,6 +739,28 @@ INSTRUCTION: 特定のテーマや台本に縛られず、ユーザーが話し�
 
   const weakItemsSnippet = ErrorVaultService.getWeakItemsPromptSnippet(language);
 
+  const antiLoopDirective =
+    language === 'ja'
+      ? `
+      【🚨 ループ完全防止＆対話進行ルール (STRICT PROGRESSION & ANTI-LOOP)】
+      1. 質問の反復禁止 (NEVER REPEAT QUESTIONS):
+         - 過去のやり取りで既に聞いた質問や、生徒が答えた質問を【絶対に繰り返してはいけません】。
+         - 例: 生徒が「甲子園へ行きます」「いいえ、行きません」「別の場所へ行きます」などと答えた後に、再び「どこへ行きますか？」「甲子園へ行きますか？」と聞いては絶対になりません。
+      2. 否定・不一致への柔軟な対応 (HANDLING NEGATIVE OR ALTERNATIVE ANSWERS):
+         - 生徒が「いいえ」「行きません」「違います」「好きじゃないです」など否定的な返答をした場合、無理に同じ台本を押し付けず、その答えを受け止めて自然に次の展開へ進めてください（例：「そうですか！ではどちらの駅へ行かれますか？」「わかりました。では何が好きですか？」）。
+      3. 会話を必ず前進させる (ALWAYS ADVANCE TO THE NEXT LOGICAL STAGE):
+         - 1発話ごとに【生徒の答えにリアクション】＋【会話を次の論理的ステップに進める新しい質問または案内】を行ってください。決して同じ場所で堂々巡りしないでください。
+      4. KEY PHRASES（重要語彙）の正しい扱い:
+         - KEY PHRASESは生徒が使うことを促すためのものであり、Coach自身がロボットのようにオウム返し・連続質問するためのものではありません。自然な対話の中で生徒がその表現を言えるようにリードしてください。
+      `
+      : `
+      STRICT PROGRESSION & ANTI-LOOP RULES:
+      1. NEVER REPEAT QUESTIONS: Never repeat a question that was already asked or answered earlier in the dialogue.
+      2. ADAPT TO 'NO' & DISAGREEMENTS: If the student answers "No", "I don't", or gives an unexpected/alternative answer, acknowledge it warmly and pivot naturally. Never re-ask the initial prompt.
+      3. ALWAYS ADVANCE THE DIALOGUE: Every turn must (1) react directly to the student's answer, and (2) take the conversation to the NEXT logical stage with a fresh follow-up.
+      4. KEY PHRASES: These are targets for the STUDENT to practice. Do NOT repeat them as scripted questions yourself.
+      `;
+
   const jsonContract =
     language === 'ja'
       ? `STRICT JSON OUTPUT CONTRACT:
@@ -778,6 +809,7 @@ You MUST respond with a VALID JSON object matching this schema exactly:
       Target Level: ${effectiveLevel === 'FREE' ? 'Free Conversation (フリートーク・自由会話)' : effectiveLevel}
       ${levelBoundary}
       ${weakItemsSnippet}
+      ${antiLoopDirective}
 
       ${jsonContract}
 
@@ -785,8 +817,8 @@ You MUST respond with a VALID JSON object matching this schema exactly:
       1. ONLY return a valid JSON object matching the contract. Do not include any text, preamble, or markdown outside the JSON.
       2. ${
         effectiveLevel === 'FREE'
-          ? 'Keep responses natural, lively, and conversational (1-3 sentences). Act as an active conversation partner and coach. Discuss topics freely and naturally, and ask engaging follow-up questions to encourage the student to speak more.'
-          : `Keep responses brief (1-2 sentences maximum, strictly adhering to ${effectiveLevel} linguistic and sentence length limits). Act as an active conversation partner and coach. Always encourage the student to speak more by asking a natural, relevant follow-up question strictly within their level. Even in realistic roleplays (waiter, clerk, station staff, friend), NEVER escalate vocabulary or use business Keigo above ${effectiveLevel}.`
+          ? 'Keep responses natural, lively, and conversational (1-3 sentences). Act as an active conversation partner and coach. Discuss topics freely and naturally, and ask engaging, progressive follow-up questions that build on what the student said. NEVER repeat a question that was already asked or answered.'
+          : `Keep responses brief (1-2 sentences maximum, strictly adhering to ${effectiveLevel} linguistic and sentence length limits). Act as an active conversation partner and coach. Always encourage the student to speak more by asking a natural, progressive follow-up question strictly within their level that directly acknowledges their previous answer and moves the interaction forward. NEVER repeat a question already asked or answered. Even in realistic roleplays (waiter, clerk, station staff, friend), NEVER escalate vocabulary or use business Keigo above ${effectiveLevel}.`
       }
       3. For Japanese: "reply" and "ttsText" MUST be 100% Japanese (Kanji/Kana). NEVER mix Romaji or English into reply or ttsText. Romaji goes ONLY in "romaji" field for UI display.
       4. For English: "reply" and "ttsText" MUST be 100% English. "romaji" must be an empty string.

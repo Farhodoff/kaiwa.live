@@ -239,10 +239,13 @@ export const useSpeechRecognition = ({
         } catch {}
       }
       setIsListening(false);
-      stopVolumeMeter();
-      stopMicrophoneStream();
+      // NOTE: Do NOT call stopMicrophoneStream() or stopVolumeMeter() here.
+      // Keeping mediaStreamRef.current alive in warm-standby ensures:
+      // 1) 0ms turn handoff when coach finishes speaking (no getUserMedia delay)
+      // 2) The user's very first words (e.g. "Yo'q", "いいえ") are NEVER clipped
+      // 3) Acoustic barge-in interruption detection continues to function
     }
-  }, [isSpeaking, isSpeakingRef, stopVolumeMeter, stopMicrophoneStream]);
+  }, [isSpeaking, isSpeakingRef]);
 
   useEffect(() => {
     isThinkingRef.current = isThinking;
@@ -282,7 +285,7 @@ export const useSpeechRecognition = ({
   const commitSpeechNow = useCallback(() => {
     if (isProcessingRef.current || isSpeakingRef.current || isThinkingRef.current) return;
     const text = transcriptBufferRef.current.trim();
-    if (!text) return;
+    if (!text || text.length < 2 || /^[\s.,?!。、！？・…\-_/\\~`]+$/.test(text)) return;
 
     playConversationChime('commit');
     if (silenceTimerRef.current) {
@@ -290,13 +293,28 @@ export const useSpeechRecognition = ({
       silenceTimerRef.current = null;
     }
 
+    transcriptBufferRef.current = '';
+    setCurrentTranscript('');
     isSilenceTimeoutRef.current = true;
+    speechStartTimeRef.current = 0;
+    lastSpeechTimeRef.current = 0;
+
     if (recognitionRef.current) {
       try {
         recognitionRef.current.stop();
       } catch (e) {
         console.debug('Recognition stop failed:', e);
       }
+    }
+
+    if (
+      isLiveSessionRef.current &&
+      !isProcessingRef.current &&
+      !isMutedRef.current &&
+      !isSpeakingRef.current &&
+      !isThinkingRef.current
+    ) {
+      onValidSpeechRef.current(text);
     }
   }, [isProcessingRef]);
 
@@ -501,45 +519,51 @@ export const useSpeechRecognition = ({
       const isMidConjunction = isMidSentenceConjunction(cleanText, languageRef.current);
 
       // Adaptive Smart Silence Delay:
-      // - Clearly complete terminal sentences: 650ms (fast conversational turn)
-      // - Mid-sentence clause / connective particle: 1400ms (comfortable thinking time)
-      // - General neutral pause: 900ms (~0.9s responsive turn-taking)
-      let silenceThreshold = 900;
+      // - Clearly complete terminal sentences: 480ms (instant real-time responsiveness)
+      // - Mid-sentence clause / connective particle: 1300ms (comfortable thinking time)
+      // - General neutral pause: 750ms (~0.75s responsive turn-taking)
+      let silenceThreshold = 750;
       if (userCustomDelay > 0) {
         silenceThreshold = userCustomDelay;
       } else if (isMidConjunction) {
-        silenceThreshold = 1400;
+        silenceThreshold = 1300;
       } else if (isTerminal) {
-        silenceThreshold = 650;
+        silenceThreshold = 480;
       }
 
-      if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
-      silenceTimerRef.current = setTimeout(() => {
-        // Acoustic VAD check: if user is still vocalizing actively (volume > 20),
-        // give an additional 400ms grace period to prevent cutting off mid-speech
-        if (audioVolumeRef.current > 20) {
-          silenceTimerRef.current = setTimeout(() => {
-            if (
-              isLiveSessionRef.current &&
-              !isProcessingRef.current &&
-              transcriptBufferRef.current.trim().length > 0
-            ) {
-              isSilenceTimeoutRef.current = true;
-              try {
-                recognition.stop();
-              } catch (e) {
-                console.debug('Recognition stop failed:', e);
-              }
-            }
-          }, 400);
-          return;
-        }
-
+      const finalizeAndCommit = () => {
         if (
           isLiveSessionRef.current &&
           !isProcessingRef.current &&
-          transcriptBufferRef.current.trim().length > 0
+          !isSpeakingRef.current &&
+          !isThinkingRef.current &&
+          !isMutedRef.current
         ) {
+          const spokenText = transcriptBufferRef.current.trim();
+          const isNoiseOrEmpty =
+            spokenText.length < 2 || /^[\s.,?!。、！？・…\-_/\\~`]+$/.test(spokenText);
+
+          if (!isNoiseOrEmpty) {
+            // Clear buffers immediately so onend won't duplicate the submission
+            transcriptBufferRef.current = '';
+            setCurrentTranscript('');
+            isSilenceTimeoutRef.current = true;
+            speechStartTimeRef.current = 0;
+            lastSpeechTimeRef.current = 0;
+
+            try {
+              recognition.stop();
+            } catch (e) {
+              console.debug('Recognition stop failed:', e);
+            }
+
+            // Fire onValidSpeech immediately without awaiting socket teardown!
+            onValidSpeechRef.current(spokenText);
+            return;
+          }
+        }
+
+        if (isLiveSessionRef.current && !isProcessingRef.current) {
           isSilenceTimeoutRef.current = true;
           try {
             recognition.stop();
@@ -547,6 +571,18 @@ export const useSpeechRecognition = ({
             console.debug('Recognition stop failed:', e);
           }
         }
+      };
+
+      if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
+      silenceTimerRef.current = setTimeout(() => {
+        // Acoustic VAD check: if user is still vocalizing actively (volume > 20),
+        // give an additional 350ms grace period to prevent cutting off mid-speech
+        if (audioVolumeRef.current > 20) {
+          silenceTimerRef.current = setTimeout(finalizeAndCommit, 350);
+          return;
+        }
+
+        finalizeAndCommit();
       }, silenceThreshold);
     };
 
