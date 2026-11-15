@@ -523,7 +523,11 @@ export const useTTS = ({
 
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
-        if (sharedAudioCtxRef.current && sharedAudioCtxRef.current.state === 'suspended') {
+        if (
+          sharedAudioCtxRef.current &&
+          String(sharedAudioCtxRef.current.state) !== 'running' &&
+          sharedAudioCtxRef.current.state !== 'closed'
+        ) {
           sharedAudioCtxRef.current.resume().catch(() => {});
         }
         if (typeof window !== 'undefined' && window.speechSynthesis?.paused) {
@@ -559,7 +563,7 @@ export const useTTS = ({
           if (!sharedAudioCtxRef.current || sharedAudioCtxRef.current.state === 'closed') {
             sharedAudioCtxRef.current = new AudioCtx();
           }
-          if (sharedAudioCtxRef.current.state === 'suspended') {
+          if (String(sharedAudioCtxRef.current.state) !== 'running') {
             sharedAudioCtxRef.current.resume().catch(() => {});
           }
         }
@@ -569,9 +573,11 @@ export const useTTS = ({
           audioPlayerRef.current = new Audio();
         }
         const audio = audioPlayerRef.current;
-        if (audio.paused && (!audio.src || audio.src === '')) {
+        // Re-prime on every explicit retry: a failed blob URL remains in src,
+        // but iOS still needs play() inside this new user gesture.
+        if (audio.paused) {
           audio.src =
-            'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA';
+            'data:audio/wav;base64,UklGRsQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
           audio.volume = 0.01;
           const primingSource = audio.src;
           audio
@@ -679,7 +685,8 @@ export const useTTS = ({
           ctx = new AudioCtx();
           sharedAudioCtxRef.current = ctx;
         }
-        if (ctx.state === 'suspended') {
+        // WebKit also uses "interrupted" after audio-session interruptions.
+        if (String(ctx.state) !== 'running') {
           await ctx.resume();
           if (String(ctx.state) !== 'running') throw new Error('Audio context is blocked');
         }

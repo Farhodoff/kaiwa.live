@@ -165,7 +165,7 @@ export function useSpeakingSessionOrchestrator({
 
     // Continuous Hands-Free Turn-Taking:
     // Once AI Coach finishes speaking, hand the turn automatically to the user and start listening.
-    // 180ms acoustic delay ensures speaker audio & room reverberation have cleared while keeping response fast.
+    // 120ms acoustic delay ensures speaker audio & room reverberation have cleared while keeping response ultra-fast.
     if (isLiveSessionRef.current && !isMutedRef.current) {
       autoListenTimerRef.current = setTimeout(() => {
         if (
@@ -176,7 +176,7 @@ export function useSpeakingSessionOrchestrator({
         ) {
           startListeningRef.current?.();
         }
-      }, 180);
+      }, 120);
     }
   }, []);
 

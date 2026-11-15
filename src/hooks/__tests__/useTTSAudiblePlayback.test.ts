@@ -28,6 +28,37 @@ afterEach(() => {
 });
 
 describe('Audible coach playback', () => {
+  it('re-primes a paused element with a stale failed URL during a retry gesture', async () => {
+    const audio: any = {
+      src: 'blob:failed-coach-audio',
+      paused: true,
+      volume: 1,
+      currentTime: 0,
+      pause: vi.fn(),
+      play: vi.fn().mockResolvedValue(undefined),
+    };
+    const resume = vi.fn().mockResolvedValue(undefined);
+    vi.stubGlobal(
+      'AudioContext',
+      class {
+        state = 'interrupted';
+        resume = resume;
+      },
+    );
+    const { result } = renderHook(() =>
+      useTTS({ language: 'ja', onSpeakStart: vi.fn(), onSpeakEnd: vi.fn() }),
+    );
+    result.current.audioPlayerRef.current = audio;
+    act(() => result.current.unlockAudio());
+    // play must happen synchronously, while the click still grants activation.
+    expect(audio.play).toHaveBeenCalledOnce();
+    expect(audio.src).toMatch(/^data:audio\/wav;base64,/);
+    expect(resume).toHaveBeenCalledOnce();
+    await act(async () => {});
+    expect(audio.pause).toHaveBeenCalledOnce();
+    expect(audio.volume).toBe(1);
+  });
+
   it('does not pause a greeting when the earlier unlock promise resolves late', async () => {
     let unlockDone!: () => void;
     const priming = new Promise<void>((resolve) => {
