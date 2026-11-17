@@ -1043,18 +1043,32 @@ Constraint: Return ONLY valid JSON without markdown fences. Limit corrections to
 `;
 
   try {
-    const deepSeekCall = callDeepSeek(prompt, {
-      isJson: true,
-      modelName: 'deepseek-chat',
-    });
-
-    // Enforce strict 3.2s timeout guarantee for blazing-fast user feedback
-    const response = await Promise.race([
-      deepSeekCall,
-      new Promise<string>((_, reject) =>
-        setTimeout(() => reject(new Error('AI_TIMEOUT_EXCEEDED')), 3200),
-      ),
-    ]);
+    let response: string;
+    try {
+      // 1. Primary: Azure OpenAI for ultra-low latency & reliable evaluation
+      response = await Promise.race([
+        callCoachAI(prompt, undefined, true),
+        new Promise<string>((_, reject) =>
+          setTimeout(() => reject(new Error('AI_TIMEOUT_EXCEEDED')), 5000),
+        ),
+      ]);
+    } catch (azureErr) {
+      console.warn(
+        '[quickEvaluateSpeechPerformance] Primary Azure AI failed, trying DeepSeek fallback:',
+        azureErr,
+      );
+      // 2. Secondary fallback: DeepSeek
+      const deepSeekCall = callDeepSeek(prompt, {
+        isJson: true,
+        modelName: 'deepseek-chat',
+      });
+      response = await Promise.race([
+        deepSeekCall,
+        new Promise<string>((_, reject) =>
+          setTimeout(() => reject(new Error('AI_TIMEOUT_EXCEEDED')), 5000),
+        ),
+      ]);
+    }
 
     const cleanedText = response
       .replace(/```json/g, '')

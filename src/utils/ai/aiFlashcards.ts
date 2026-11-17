@@ -66,7 +66,7 @@ export const generateFlashcardsWithAI = async (
     `;
 
   try {
-    const response = await callSelectedAIProvider(prompt, undefined, true);
+    const response = (await callSelectedAIProvider(prompt, undefined, true)) || '';
     const cleanedText = response
       .replace(/```json/g, '')
       .replace(/```/g, '')
@@ -108,7 +108,7 @@ export const generateFlashcardsFromNote = async (
     `;
 
   try {
-    const response = await callSelectedAIProvider(prompt, undefined, true);
+    const response = (await callSelectedAIProvider(prompt, undefined, true)) || '';
     const cleanedText = response
       .replace(/```json/g, '')
       .replace(/```/g, '')

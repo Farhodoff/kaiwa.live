@@ -1,3 +1,4 @@
+import { callCoachAI } from '../coachAI';
 import { callDeepSeek } from '../deepseek';
 import { trackAITelemetry } from '../../lib/errorTracking';
 import { parseAIError } from './aiConfig';
@@ -38,7 +39,12 @@ export const callAI = async (
   prompt: string,
   systemPrompt?: string,
   isJson: boolean = false,
-  options?: { skipCache?: boolean; ttlMs?: number; maxRetries?: number },
+  options?: {
+    skipCache?: boolean;
+    ttlMs?: number;
+    maxRetries?: number;
+    provider?: 'azure' | 'deepseek';
+  },
 ): Promise<string> => {
   const normalizedKey = `[${isJson ? 'json' : 'text'}]::${(systemPrompt || '').trim()}::${prompt.trim()}`;
 
@@ -66,18 +72,46 @@ export const callAI = async (
 
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
       try {
-        const result = await callDeepSeek(
-          prompt,
-          systemPrompt,
-          undefined,
-          isJson,
-          'deepseek-chat',
-          false,
-        );
+        let result: string;
+        let activeProvider: 'azure-openai' | 'deepseek' = 'azure-openai';
+        let activeModel = 'kaiwa-coach';
+
+        if (options?.provider !== 'deepseek') {
+          try {
+            const coachRes = await callCoachAI(prompt, systemPrompt, isJson);
+            if (typeof coachRes !== 'string' || !coachRes.trim()) {
+              throw new Error('Azure Coach returned empty or invalid response');
+            }
+            result = coachRes;
+          } catch (azureErr) {
+            console.warn('[callAI] Primary Azure AI failed, falling back to DeepSeek:', azureErr);
+            result = await callDeepSeek(
+              prompt,
+              systemPrompt,
+              undefined,
+              isJson,
+              'deepseek-chat',
+              false,
+            );
+            activeProvider = 'deepseek';
+            activeModel = 'deepseek-chat';
+          }
+        } else {
+          result = await callDeepSeek(
+            prompt,
+            systemPrompt,
+            undefined,
+            isJson,
+            'deepseek-chat',
+            false,
+          );
+          activeProvider = 'deepseek';
+          activeModel = 'deepseek-chat';
+        }
 
         trackAITelemetry({
-          provider: 'deepseek',
-          model: 'deepseek-chat',
+          provider: activeProvider,
+          model: activeModel,
           durationMs: Date.now() - startTime,
           success: true,
         });

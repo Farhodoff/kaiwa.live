@@ -307,7 +307,7 @@
     "front": "無理 (むり)",
     "back": "Imkonsiz, uddalab bo'lmaydigan",
     "phonetic": "muri",
-    "example": "今日は無理です。",
+    "example": "無理をしないでください。",
     "category": "N3 Tematik: Ish va Kasb (CV, Suhbat, Mehnat)",
     "level": "N3"
   },
@@ -355,7 +355,7 @@
     "front": "恥ずかしい (はずかしい)",
     "back": "Uyalmok, noqulay his qilmoq",
     "phonetic": "hazukashii",
-    "example": "ちょっと恥ずかしいです。",
+    "example": "人の前で話すのは恥ずかしいです。",
     "category": "N3 Tematik: Hissiyot va Tuyg'ular (Uyalish, Xursandlik)",
     "level": "N3"
   },
@@ -363,7 +363,7 @@
     "front": "次 (つぎ)",
     "back": "Keyingi, navbatdagi",
     "phonetic": "tsugi",
-    "example": "次は私です。",
+    "example": "次の駅で降ります。",
     "category": "N3 Tematik: Hissiyot va Tuyg'ular (Uyalish, Xursandlik)",
     "level": "N3"
   },
@@ -844,14 +844,6 @@
     "back": "Yana bir stakan/kosa",
     "phonetic": "mō ippai",
     "example": "もう一杯ください。",
-    "category": "N3 Tematik: Hissiyot va Tuyg'ular (Uyalish, Xursandlik)",
-    "level": "N3"
-  },
-  {
-    "front": "もう一度聞こう (もういちどきこう)",
-    "back": "Yana bir marta eshitaylik",
-    "phonetic": "mō ichido kikō",
-    "example": "もう一度聞きましょう。",
     "category": "N3 Tematik: Hissiyot va Tuyg'ular (Uyalish, Xursandlik)",
     "level": "N3"
   },
@@ -1376,14 +1368,6 @@
     "level": "N3"
   },
   {
-    "front": "もう一度聞こう (もういちどきこう)",
-    "back": "Yana bir marta eshitaylik",
-    "phonetic": "mō ichido kikō",
-    "example": "もう一度聞きましょう。",
-    "category": "N3 Tematik: Inson qiyofasi va Munosabatlar (Tabassum, Do'stlik)",
-    "level": "N3"
-  },
-  {
     "front": "通訳 (つうやく)",
     "back": "Og'zaki tarjima, tarjimonlik",
     "phonetic": "tsūyaku",
@@ -1736,14 +1720,6 @@
     "level": "N3"
   },
   {
-    "front": "次 (つぎ)",
-    "back": "Keyingi",
-    "phonetic": "tsugi",
-    "example": "次の駅で降ります。",
-    "category": "N3 Tematik: Taom, Lazzat va Oshxona",
-    "level": "N3"
-  },
-  {
     "front": "坂 (さか)",
     "back": "Qiya yo'l, tepalik",
     "phonetic": "saka",
@@ -1796,14 +1772,6 @@
     "back": "Avtomobilni park qilmoq",
     "phonetic": "chūsha suru",
     "example": "ここに車を駐車します。",
-    "category": "N3 Tematik: Taom, Lazzat va Oshxona",
-    "level": "N3"
-  },
-  {
-    "front": "もう一度聞こう (もういちどきこう)",
-    "back": "Yana bir marta eshitaylik",
-    "phonetic": "mō ichido kikō",
-    "example": "もう一度聞きましょう。",
     "category": "N3 Tematik: Taom, Lazzat va Oshxona",
     "level": "N3"
   },
@@ -2329,7 +2297,7 @@
   },
   {
     "front": "取る (とる)",
-    "back": "Olmoq",
+    "back": "Yengillashtirmoq, xalos bo'lmoq",
     "phonetic": "toru",
     "example": "休みを取ります。",
     "category": "N3 Tematik: Ruhiy holat va Reaksiyalar (Hayrat, Qiziqish)",
@@ -2428,14 +2396,6 @@
     "back": "Qo'pollik, odobsizlik",
     "phonetic": "shitsurei",
     "example": "失礼なことを言いました。",
-    "category": "N3 Tematik: Jamiyat va Muloqot (Suhbatdosh, Xulq-atvor)",
-    "level": "N3"
-  },
-  {
-    "front": "もう一度 (もういちど)",
-    "back": "Yana bir marta",
-    "phonetic": "mō ichido",
-    "example": "もう一度お願いします。",
     "category": "N3 Tematik: Jamiyat va Muloqot (Suhbatdosh, Xulq-atvor)",
     "level": "N3"
   },
@@ -2592,14 +2552,6 @@
     "level": "N3"
   },
   {
-    "front": "ジャガイモ",
-    "back": "Kartoshka",
-    "phonetic": "jagaimo",
-    "example": "ジャガイモを洗います。",
-    "category": "N3 Tematik: Jamiyat va Muloqot (Suhbatdosh, Xulq-atvor)",
-    "level": "N3"
-  },
-  {
     "front": "大根 (だいこん)",
     "back": "Yapon rediska",
     "phonetic": "daikon",
@@ -2664,14 +2616,6 @@
     "level": "N3"
   },
   {
-    "front": "ソース",
-    "back": "Sous",
-    "phonetic": "sōsu",
-    "example": "ソースを作ります。",
-    "category": "N3 Tematik: Jamiyat va Muloqot (Suhbatdosh, Xulq-atvor)",
-    "level": "N3"
-  },
-  {
     "front": "パスタのソースを作る (パスタのソースをつくる)",
     "back": "Pasta sousini tayyorlamoq",
     "phonetic": "pasuta no sōsu o tsukuru",
@@ -2684,14 +2628,6 @@
     "back": "Makaron, pasta",
     "phonetic": "pasuta",
     "example": "パスタを食べます。",
-    "category": "N3 Tematik: Jamiyat va Muloqot (Suhbatdosh, Xulq-atvor)",
-    "level": "N3"
-  },
-  {
-    "front": "味 (あじ)",
-    "back": "Ta'm, maza",
-    "phonetic": "aji",
-    "example": "味を見ます。",
     "category": "N3 Tematik: Jamiyat va Muloqot (Suhbatdosh, Xulq-atvor)",
     "level": "N3"
   },
@@ -2880,14 +2816,6 @@
     "level": "N3"
   },
   {
-    "front": "まず",
-    "back": "Avvalo, birinchi navbatda",
-    "phonetic": "mazu",
-    "example": "まず野菜を切ります。",
-    "category": "N3 Tematik: Jamiyat va Muloqot (Suhbatdosh, Xulq-atvor)",
-    "level": "N3"
-  },
-  {
     "front": "次に (つぎに)",
     "back": "Keyin, navbatdagi bosqichda",
     "phonetic": "tsugi ni",
@@ -2900,14 +2828,6 @@
     "back": "Oxirida, nihoyat",
     "phonetic": "saigo ni",
     "example": "最後に味を見ます。",
-    "category": "N3 Tematik: Jamiyat va Muloqot (Suhbatdosh, Xulq-atvor)",
-    "level": "N3"
-  },
-  {
-    "front": "もう一度聞こう (もういちどきこう)",
-    "back": "Yana bir marta eshitaylik",
-    "phonetic": "mō ichido kikō",
-    "example": "もう一度聞きましょう。",
     "category": "N3 Tematik: Jamiyat va Muloqot (Suhbatdosh, Xulq-atvor)",
     "level": "N3"
   },
@@ -2931,7 +2851,7 @@
     "front": "肉じゃが (にくじゃが)",
     "back": "Go'sht va kartoshkali yapon taomi",
     "phonetic": "nikujaga",
-    "example": "肉じゃがを作ります。",
+    "example": "肉じゃがを作りました。",
     "category": "N3 Tematik: Jamiyat va Muloqot (Suhbatdosh, Xulq-atvor)",
     "level": "N3"
   },
@@ -2984,26 +2904,10 @@
     "level": "N3"
   },
   {
-    "front": "うれしい",
-    "back": "Xursand, mamnun",
-    "phonetic": "ureshii",
-    "example": "プレゼントをもらって、うれしいです。",
-    "category": "N3 Tematik: Xarakter va Fe'l-atvor (Quvnoqlik, Samimiylik)",
-    "level": "N3"
-  },
-  {
     "front": "（お）団子 (おだんご)",
     "back": "Dango, guruchli shirinlik",
     "phonetic": "odango",
     "example": "お団子を食べます。",
-    "category": "N3 Tematik: Xarakter va Fe'l-atvor (Quvnoqlik, Samimiylik)",
-    "level": "N3"
-  },
-  {
-    "front": "肉じゃが (にくじゃが)",
-    "back": "Go'sht va kartoshkali yapon taomi",
-    "phonetic": "nikujaga",
-    "example": "肉じゃがを作りました。",
     "category": "N3 Tematik: Xarakter va Fe'l-atvor (Quvnoqlik, Samimiylik)",
     "level": "N3"
   },
@@ -3232,14 +3136,6 @@
     "level": "N3"
   },
   {
-    "front": "もう一度聞こう (もういちどきこう)",
-    "back": "Yana bir marta eshitaylik",
-    "phonetic": "mō ichido kikō",
-    "example": "もう一度聞きましょう。",
-    "category": "N3 Tematik: Xarakter va Fe'l-atvor (Quvnoqlik, Samimiylik)",
-    "level": "N3"
-  },
-  {
     "front": "チヂミ",
     "back": "Chijimi, koreyscha quymoq",
     "phonetic": "chijimi",
@@ -3268,14 +3164,6 @@
     "back": "Muhimlik, ahamiyat",
     "phonetic": "taisetsusa",
     "example": "仕事の大切さが分かりました。",
-    "category": "N3 Tematik: Qadriyatlar va Hayot falsafasi (Muhimlik, Mas'uliyat)",
-    "level": "N3"
-  },
-  {
-    "front": "恥ずかしい (はずかしい)",
-    "back": "Uyatli, noqulay",
-    "phonetic": "hazukashii",
-    "example": "人の前で話すのは恥ずかしいです。",
     "category": "N3 Tematik: Qadriyatlar va Hayot falsafasi (Muhimlik, Mas'uliyat)",
     "level": "N3"
   },
@@ -3808,14 +3696,6 @@
     "level": "N3"
   },
   {
-    "front": "鍋 (なべ)",
-    "back": "Qozon, kastryulka",
-    "phonetic": "nabe",
-    "example": "鍋を洗います。",
-    "category": "N3 Tematik: Qadriyatlar va Hayot falsafasi (Muhimlik, Mas'uliyat)",
-    "level": "N3"
-  },
-  {
     "front": "瓶 (びん)",
     "back": "Shisha idish, butilka",
     "phonetic": "bin",
@@ -3836,14 +3716,6 @@
     "back": "~ xalta, paket",
     "phonetic": "~bukuro",
     "example": "ごみ袋を使います。",
-    "category": "N3 Tematik: Qadriyatlar va Hayot falsafasi (Muhimlik, Mas'uliyat)",
-    "level": "N3"
-  },
-  {
-    "front": "かける",
-    "back": "O'tirmoq; ilib qo'ymoq",
-    "phonetic": "kakeru",
-    "example": "いすにかけてください。",
     "category": "N3 Tematik: Qadriyatlar va Hayot falsafasi (Muhimlik, Mas'uliyat)",
     "level": "N3"
   },
@@ -3956,14 +3828,6 @@
     "back": "Kechirasiz-u, ammo...",
     "phonetic": "mōshiwake nain desu ga",
     "example": "申し訳ないんですが、もう一度お願いします。",
-    "category": "N3 Tematik: Qadriyatlar va Hayot falsafasi (Muhimlik, Mas'uliyat)",
-    "level": "N3"
-  },
-  {
-    "front": "もう一度聞こう (もういちどきこう)",
-    "back": "Yana bir marta eshitaylik",
-    "phonetic": "mō ichido kikō",
-    "example": "もう一度聞きましょう。",
     "category": "N3 Tematik: Qadriyatlar va Hayot falsafasi (Muhimlik, Mas'uliyat)",
     "level": "N3"
   },
@@ -4104,22 +3968,6 @@
     "level": "N3"
   },
   {
-    "front": "違い (ちがい)",
-    "back": "Farq",
-    "phonetic": "chigai",
-    "example": "文化の違いがあります。",
-    "category": "N3 Tematik: Shahar hayoti va Savdo-sotiq (Bozor, Do'konlar)",
-    "level": "N3"
-  },
-  {
-    "front": "無理 (むり)",
-    "back": "Ortiqcha zo'riqish; imkonsiz",
-    "phonetic": "muri",
-    "example": "無理をしないでください。",
-    "category": "N3 Tematik: Shahar hayoti va Savdo-sotiq (Bozor, Do'konlar)",
-    "level": "N3"
-  },
-  {
     "front": "～代 (～だい)",
     "back": "~ xarajat, ~ to'lovi",
     "phonetic": "~dai",
@@ -4212,14 +4060,6 @@
     "back": "Unchalik, ko'p emas",
     "phonetic": "anmari",
     "example": "あんまり食べません。",
-    "category": "N3 Tematik: Shahar hayoti va Savdo-sotiq (Bozor, Do'konlar)",
-    "level": "N3"
-  },
-  {
-    "front": "だいたい",
-    "back": "Taxminan, asosan",
-    "phonetic": "daitai",
-    "example": "だいたい分かりました。",
     "category": "N3 Tematik: Shahar hayoti va Savdo-sotiq (Bozor, Do'konlar)",
     "level": "N3"
   },
@@ -4704,14 +4544,6 @@
     "level": "N3"
   },
   {
-    "front": "取る (とる)",
-    "back": "Yengillashtirmoq, xalos bo'lmoq",
-    "phonetic": "toru",
-    "example": "疲れを取ります。",
-    "category": "N3 Tematik: Oziq-ovqat va Ro'zg'or buyumlari",
-    "level": "N3"
-  },
-  {
     "front": "疲れを取る (つかれをとる)",
     "back": "Charchoqni yo'qotmoq",
     "phonetic": "tsukare o toru",
@@ -4808,14 +4640,6 @@
     "level": "N3"
   },
   {
-    "front": "もう一度聞こう (もういちどきこう)",
-    "back": "Yana bir marta eshitaylik",
-    "phonetic": "mō ichido kikō",
-    "example": "もう一度聞きましょう。",
-    "category": "N3 Tematik: Oziq-ovqat va Ro'zg'or buyumlari",
-    "level": "N3"
-  },
-  {
     "front": "グレープフルーツ",
     "back": "Greypfrut",
     "phonetic": "gurēpufurūtsu",
@@ -4837,22 +4661,6 @@
     "phonetic": "atatameru",
     "example": "ご飯を温めます。",
     "category": "N3 Tematik: Oziq-ovqat va Ro'zg'or buyumlari",
-    "level": "N3"
-  },
-  {
-    "front": "気をつける (きをつける)",
-    "back": "Ehtiyot bo'lmoq",
-    "phonetic": "ki o tsukeru",
-    "example": "健康に気をつけます。",
-    "category": "N3 Tematik: Oziq-ovqat va Ro'zg'or buyumlari",
-    "level": "N3"
-  },
-  {
-    "front": "自然 (しぜん)",
-    "back": "Tabiat",
-    "phonetic": "shizen",
-    "example": "自然が好きです。",
-    "category": "N3 Tematik: Tabiat va Atrof-muhit (Fasllar, Iqlim)",
     "level": "N3"
   },
   {
@@ -4984,14 +4792,6 @@
     "level": "N3"
   },
   {
-    "front": "～ずつ",
-    "back": "Har biridan, bittadan",
-    "phonetic": "~zutsu",
-    "example": "一人に二つずつあげます。",
-    "category": "N3 Tematik: Tabiat va Atrof-muhit (Fasllar, Iqlim)",
-    "level": "N3"
-  },
-  {
     "front": "騒ぐ (さわぐ)",
     "back": "Shovqin qilmoq, bezovta qilmoq",
     "phonetic": "sawagu",
@@ -5112,14 +4912,6 @@
     "level": "N3"
   },
   {
-    "front": "残す (のこす)",
-    "back": "Qoldirmoq",
-    "phonetic": "nokosu",
-    "example": "ご飯を残さないでください。",
-    "category": "N3 Tematik: Tabiat va Atrof-muhit (Fasllar, Iqlim)",
-    "level": "N3"
-  },
-  {
     "front": "やる",
     "back": "Qilmoq",
     "phonetic": "yaru",
@@ -5140,14 +4932,6 @@
     "back": "Qattiqqo'l, talabchan, og'ir",
     "phonetic": "kibishii",
     "example": "父は厳しいです。",
-    "category": "N3 Tematik: Tabiat va Atrof-muhit (Fasllar, Iqlim)",
-    "level": "N3"
-  },
-  {
-    "front": "うれしい",
-    "back": "Xursand, mamnun",
-    "phonetic": "ureshii",
-    "example": "プレゼントをもらって、うれしいです。",
     "category": "N3 Tematik: Tabiat va Atrof-muhit (Fasllar, Iqlim)",
     "level": "N3"
   },

@@ -39,11 +39,22 @@ async function loadAndApplyOverrides(
   importPromise: Promise<{ default: any }>,
 ): Promise<PresetCard[]> {
   const data = await importPromise;
+  let rawCards: PresetCard[];
   try {
-    return GlobalFlashcardOverrideService.applyOverridesToCards(data.default as PresetCard[]);
+    rawCards = GlobalFlashcardOverrideService.applyOverridesToCards(data.default as PresetCard[]);
   } catch {
-    return data.default as PresetCard[];
+    rawCards = data.default as PresetCard[];
   }
+  // Deduplicate cards strictly by front text to ensure duplicate cards never reach the learner
+  const seen = new Set<string>();
+  const deduped: PresetCard[] = [];
+  for (const card of rawCards) {
+    const key = (card.front || '').trim().toLowerCase();
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    deduped.push(card);
+  }
+  return deduped;
 }
 
 export const PRESET_DECKS: PresetDeck[] = [
@@ -51,12 +62,12 @@ export const PRESET_DECKS: PresetDeck[] = [
     id: 'deck_minna_shokyu1',
     title: "🌸 Minna no Nihongo Shokyu 1 (1–25 Darslar To'liq Lug'ati)",
     description:
-      "Minna no Nihongo Shokyu 1 darsligining barcha 25 ta darsidan 1,111 ta so'z va iboralar to'plami (O'zbekcha tarjima va grammatik belgilar bilan).",
+      "Minna no Nihongo Shokyu 1 darsligining barcha 25 ta darsidan 1,078 ta so'z va iboralar to'plami (O'zbekcha tarjima va grammatik belgilar bilan).",
     language: 'ja',
     level: 'JLPT N5',
     badgeColor: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20',
     icon: '🌸',
-    cardCount: 1111,
+    cardCount: 1078,
     isPremiumOnly: false,
     loadCards: () => loadAndApplyOverrides(import('./decks/minna_shokyu1.json')),
   },
@@ -64,12 +75,12 @@ export const PRESET_DECKS: PresetDeck[] = [
     id: 'deck_minna_shokyu2',
     title: "🌿 Minna no Nihongo Shokyu 2 (26–50 Darslar To'liq Lug'ati)",
     description:
-      "Minna no Nihongo Shokyu 2 darsligining barcha 25 ta darsidan 451 ta so'z va iboralar to'plami (O'zbekcha tarjima va grammatik belgilar bilan).",
+      "Minna no Nihongo Shokyu 2 darsligining barcha 25 ta darsidan 427 ta so'z va iboralar to'plami (O'zbekcha tarjima va grammatik belgilar bilan).",
     language: 'ja',
     level: 'JLPT N4',
     badgeColor: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20',
     icon: '🌿',
-    cardCount: 451,
+    cardCount: 427,
     isPremiumOnly: false,
     loadCards: () => loadAndApplyOverrides(import('./decks/minna_shokyu2.json')),
   },
@@ -177,14 +188,14 @@ export const PRESET_DECKS: PresetDeck[] = [
   },
   {
     id: 'deck_n3_thematic_vocab',
-    title: '📖 JLPT N3 Tematik Leksika Master (テーマ別 語彙 699)',
+    title: '📖 JLPT N3 Tematik Leksika Master (テーマ別 語彙 672)',
     description:
-      "12 ta hayotiy mavzu (Ish va kasb, his-tuyg'ular, jamiyat, taomlar, xarakter, tabiat) bo'yicha 699 ta muhim N3 so'zlari va namunaviy gaplar to'plami.",
+      "12 ta hayotiy mavzu (Ish va kasb, his-tuyg'ular, jamiyat, taomlar, xarakter, tabiat) bo'yicha 672 ta muhim N3 so'zlari va namunaviy gaplar to'plami.",
     language: 'ja',
     level: 'JLPT N3',
     badgeColor: 'bg-cyan-500/10 text-cyan-600 border-cyan-500/20',
     icon: '📖',
-    cardCount: 699,
+    cardCount: 672,
     isPremiumOnly: false,
     loadCards: () => loadAndApplyOverrides(import('./decks/n3_thematic_vocab.json')),
   },

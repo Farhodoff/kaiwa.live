@@ -2,6 +2,7 @@ import {
   ConversationScenario,
   ScenarioSessionResult,
 } from '../../components/speaking/scenarioTypes';
+import { callCoachAI } from '../coachAI';
 import { callDeepSeek } from '../deepseek';
 
 export interface EvaluateScenarioParams {
@@ -50,18 +51,32 @@ Output STRICT VALID JSON ONLY (no markdown):
 `;
 
   try {
-    const deepSeekCall = callDeepSeek(prompt, {
-      isJson: true,
-      modelName: 'deepseek-chat',
-    });
-
-    // Enforce strict 3.2s timeout guarantee for blazing-fast user feedback
-    const response = await Promise.race([
-      deepSeekCall,
-      new Promise<string>((_, reject) =>
-        setTimeout(() => reject(new Error('SCENARIO_EVAL_TIMEOUT')), 3200),
-      ),
-    ]);
+    let response: string;
+    try {
+      // 1. Primary: Azure OpenAI
+      response = await Promise.race([
+        callCoachAI(prompt, undefined, true),
+        new Promise<string>((_, reject) =>
+          setTimeout(() => reject(new Error('SCENARIO_EVAL_TIMEOUT')), 5000),
+        ),
+      ]);
+    } catch (azureErr) {
+      console.warn(
+        '[evaluateScenarioSession] Primary Azure AI failed, trying DeepSeek fallback:',
+        azureErr,
+      );
+      // 2. Secondary fallback: DeepSeek
+      const deepSeekCall = callDeepSeek(prompt, {
+        isJson: true,
+        modelName: 'deepseek-chat',
+      });
+      response = await Promise.race([
+        deepSeekCall,
+        new Promise<string>((_, reject) =>
+          setTimeout(() => reject(new Error('SCENARIO_EVAL_TIMEOUT')), 5000),
+        ),
+      ]);
+    }
 
     const cleanedText = response
       .replace(/```json/g, '')
