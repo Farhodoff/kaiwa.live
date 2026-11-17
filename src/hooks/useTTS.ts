@@ -374,7 +374,7 @@ export async function fetchTTSAudioBlob(text: string, lang: 'ja' | 'en'): Promis
 
 export const useTTS = ({
   language,
-  useAzure = false,
+  useAzure = true,
   onSpeakStart,
   onSpeakEnd,
   onSpeakError,

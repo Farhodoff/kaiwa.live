@@ -65,7 +65,7 @@
   },
   {
     "front": "～君",
-    "back": "erkalash qo'shimchasi",
+    "back": "( ～さん ning og'zaki shakli, odatda yoshi kichik yoki mavqei yuqori bo'lmagan erkak kishilarning ismiga qo'shib qo'llaniladi)",
     "phonetic": "～くん - kun",
     "example": "山田くんは サッカーが 好きです。 (Yamada-kun futbolni yaxshi ko'radi.)",
     "category": "Minna no Nihongo 1-dars",
@@ -89,7 +89,7 @@
   },
   {
     "front": "先生",
-    "back": "ustoz",
+    "back": "doktor (shifokorga murojaat etish)",
     "phonetic": "せんせい - sensei",
     "example": "木村先生は 日本語の 先生です。 (Kimura ustoz yapon tili o'qituvchisi.)",
     "category": "Minna no Nihongo 1-dars",
@@ -1161,7 +1161,7 @@
   },
   {
     "front": "休みます",
-    "back": "dam olmoq",
+    "back": "dam olmoq; qoldirmoq",
     "phonetic": "やすみます - yasumimasu",
     "example": "日曜日に 休みます。 (Yakshanba kuni dam olaman.)",
     "category": "Minna no Nihongo 4-dars",
@@ -1512,14 +1512,6 @@
     "level": "N5"
   },
   {
-    "front": "そちら",
-    "back": "u yer, u taraf (そこ ning xushmuomala shakli)",
-    "phonetic": "そちら - sochira",
-    "example": "エレベーターは そちらで ございます。 (Lift u tomonda.)",
-    "category": "Minna no Nihongo 4-dars",
-    "level": "N5"
-  },
-  {
     "front": "大変ですね",
     "back": "Qiyin bo'libdi / Og'ir ish ekan",
     "phonetic": "たいへんですね。 - taihendesune",
@@ -1540,14 +1532,6 @@
     "back": "104 raqami (ma'lumot xizmati)",
     "phonetic": "１０４ - ",
     "example": "電話番号を 104で 調べます。 (Telefon raqamini 104 xizmatidan bilib olaman.)",
-    "category": "Minna no Nihongo 4-dars",
-    "level": "N5"
-  },
-  {
-    "front": "お願いします",
-    "back": "iltimos, so'rayman",
-    "phonetic": "おねがいします - onegaishimasu",
-    "example": "これを お願いします。 (Buni iltimos qilaman.)",
     "category": "Minna no Nihongo 4-dars",
     "level": "N5"
   },
@@ -2480,14 +2464,6 @@
     "level": "N5"
   },
   {
-    "front": "何",
-    "back": "nima",
-    "phonetic": "なに - nani",
-    "example": "それは 何ですか。 (U nima?)",
-    "category": "Minna no Nihongo 6-dars",
-    "level": "N5"
-  },
-  {
     "front": "いっしょに",
     "back": "birga",
     "phonetic": "いっしょに - ishoni",
@@ -2593,7 +2569,7 @@
   },
   {
     "front": "送ります",
-    "back": "jo'natmoq",
+    "back": "jo'natmoq; olib borib qo'ymoq",
     "phonetic": "おくります - okurimasu",
     "example": "雨が 降っていますから、車で 駅まで 送りましょう。 (Yomg'ir yog'yapti, mashinada bekatgacha kuzatib qo'yay.)",
     "category": "Minna no Nihongo 7-dars",
@@ -2633,7 +2609,7 @@
   },
   {
     "front": "教えます",
-    "back": "o'rgatmoq, saboq bermoq",
+    "back": "o'rgatmoq, aytmoq, tushuntirmoq",
     "phonetic": "おしえます - oshiemasu",
     "example": "駅までの 道を 親切に 教えてくれました。 (Bekatgacha bo'lgan yo'lni yaxshilab tushuntirib berdi.)",
     "category": "Minna no Nihongo 7-dars",
@@ -3089,7 +3065,7 @@
   },
   {
     "front": "いい (よい)",
-    "back": "yaxshi",
+    "back": "yaxshi, soz",
     "phonetic": "いい (よい) - ii (yoi)",
     "example": "あの 先生は とても いい 先生です。 (U ustoz juda yaxshi o'qituvchi.)",
     "category": "Minna no Nihongo 8-dars",
@@ -3481,7 +3457,7 @@
   },
   {
     "front": "あります",
-    "back": "bor (bo'lmoq)",
+    "back": "bor (bo'lmoq) (jonsiz narsalarga)",
     "phonetic": "あります - arimasu",
     "example": "机の 上に 辞書が あります。 (Stol ustida lug'at bor.)",
     "category": "Minna no Nihongo 9-dars",
@@ -3792,14 +3768,6 @@
     "level": "N5"
   },
   {
-    "front": "～から",
-    "back": "~dan",
-    "phonetic": "～から - kara",
-    "example": "時間が ありませんから、タクシーで 行きましょう。 (Vaqt yo'q, shuning uchun taksida boraylik.)",
-    "category": "Minna no Nihongo 9-dars",
-    "level": "N5"
-  },
-  {
     "front": "どうして",
     "back": "nima uchun",
     "phonetic": "どうして - doushite",
@@ -3812,14 +3780,6 @@
     "back": "Afsus / Attang",
     "phonetic": "ざんねんですね。 - zannendesune",
     "example": "いっしょに 行けなくて、残念ですね。 (Birga bora olmasligingiz afsus-a.)",
-    "category": "Minna no Nihongo 9-dars",
-    "level": "N5"
-  },
-  {
-    "front": "すみません",
-    "back": "Kechirasiz",
-    "phonetic": "すみません。 - sumimasen",
-    "example": "すみません、駅は どちらですか。 (Kechirasiz, bekat qaysi tomonda?)",
     "category": "Minna no Nihongo 9-dars",
     "level": "N5"
   },
@@ -3884,14 +3844,6 @@
     "back": "bor (bo'lmoq) (jonli narsalarga)",
     "phonetic": "います - imasu",
     "example": "庭に かわいい 子犬が います。 (Hovlida yoqimtoy kuchukcha bor.)",
-    "category": "Minna no Nihongo 10-dars",
-    "level": "N5"
-  },
-  {
-    "front": "あります",
-    "back": "bor (bo'lmoq) (jonsiz narsalarga)",
-    "phonetic": "あります - arimasu",
-    "example": "机の 上に 辞書が あります。 (Stol ustida lug'at bor.)",
     "category": "Minna no Nihongo 10-dars",
     "level": "N5"
   },
@@ -4091,7 +4043,7 @@
     "front": "～屋",
     "back": "~ do'koni, ~xona",
     "phonetic": "～や - ya",
-    "example": "パン屋で サンドイッチを 買いました。 (Novvoyxonadan sendvich sotib oldim.)",
+    "example": "八百屋で 新鮮な 野菜を 買いました。 (Sabzavot do'konidan yangi sabzavot oldim.)",
     "category": "Minna no Nihongo 10-dars",
     "level": "N5"
   },
@@ -4272,14 +4224,6 @@
     "level": "N5"
   },
   {
-    "front": "います",
-    "back": "bor (bo'lmoq)",
-    "phonetic": "います - imasu",
-    "example": "庭に かわいい 子犬が います。 (Hovlida yoqimtoy kuchukcha bor.)",
-    "category": "Minna no Nihongo 11-dars",
-    "level": "N5"
-  },
-  {
     "front": "子供がいます",
     "back": "bolasi bor",
     "phonetic": "こどもがいます - kodomo ga imasu",
@@ -4300,14 +4244,6 @@
     "back": "sarf bo'lmoq, ketmoq (pul yoki vaqt)",
     "phonetic": "かかります - kakarimasu",
     "example": "ここから 東京まで 電車で 1時間 かかります。 (Bu yerdan Tokiogacha poyezdda 1 soat ketadi.)",
-    "category": "Minna no Nihongo 11-dars",
-    "level": "N5"
-  },
-  {
-    "front": "休みます",
-    "back": "dam olmoq; qoldirmoq",
-    "phonetic": "やすみます - yasumimasu",
-    "example": "日曜日に 休みます。 (Yakshanba kuni dam olaman.)",
     "category": "Minna no Nihongo 11-dars",
     "level": "N5"
   },
@@ -4420,14 +4356,6 @@
     "back": "ikki kishi, ikkovlon",
     "phonetic": "ふたり - futari",
     "example": "2人で 映画を 見に 行きました。 (Ikkovlon kino ko'rgani bordik.)",
-    "category": "Minna no Nihongo 11-dars",
-    "level": "N5"
-  },
-  {
-    "front": "～人",
-    "back": "~ kishi (odamlar sanoq suffiksi)",
-    "phonetic": "～にん - nin",
-    "example": "教室に 学生が 5人 います。 (Sinfxonada 5 nafar talaba bor.)",
     "category": "Minna no Nihongo 11-dars",
     "level": "N5"
   },
@@ -4768,14 +4696,6 @@
     "level": "N5"
   },
   {
-    "front": "それから",
-    "back": "yana",
-    "phonetic": "それから - sorekara",
-    "example": "スーパーで パンを 買いました。それから 映画を 見ました。 (Supermarketdan non sotib oldim. So'ngra kino ko'rdim.)",
-    "category": "Minna no Nihongo 11-dars",
-    "level": "N5"
-  },
-  {
     "front": "オーストラリア",
     "back": "Avstraliya",
     "phonetic": "オーストラリア - o-sutoraria",
@@ -4892,14 +4812,6 @@
     "back": "yengil",
     "phonetic": "かるい - karui",
     "example": "この ノートパソコンは 軽くて 便利です。 (Bu noutbuk yengil va qulay.)",
-    "category": "Minna no Nihongo 12-dars",
-    "level": "N5"
-  },
-  {
-    "front": "いい (よい)",
-    "back": "yaxshi, soz",
-    "phonetic": "いい - ii",
-    "example": "あしたは 天気が いいでしょう。 (Ertaga havo yaxshi bo'lsa kerak.)",
     "category": "Minna no Nihongo 12-dars",
     "level": "N5"
   },
@@ -5088,14 +5000,6 @@
     "level": "N5"
   },
   {
-    "front": "どちら",
-    "back": "qayer, qaysi tomon (どこ ning xushmuomala shakli)",
-    "phonetic": "どちら - dochira",
-    "example": "お手洗いは どちらで ございますか。 (Hojatxona qaysi tomonda?)",
-    "category": "Minna no Nihongo 12-dars",
-    "level": "N5"
-  },
-  {
     "front": "どちらも",
     "back": "ikkalasi ham",
     "phonetic": "どちらも - dochiramo",
@@ -5241,7 +5145,7 @@
   },
   {
     "front": "出します",
-    "back": "jo'natmoq",
+    "back": "chiqarmoq, olmoq (biror narasa ichidan)",
     "phonetic": "だします - dashimasu",
     "example": "郵便局で 手紙を 出しました。 (Pochtadan xat jo'natdim.)",
     "category": "Minna no Nihongo 13-dars",
@@ -5273,7 +5177,7 @@
   },
   {
     "front": "出ます",
-    "back": "chiqmoq",
+    "back": "bitirmoq, tugatmoq",
     "phonetic": "でます - demasu",
     "example": "切符を 買うと、お釣りが 出ます。 (Chipta sotib olsangiz qaytim chiqadi.)",
     "category": "Minna no Nihongo 13-dars",
@@ -5496,14 +5400,6 @@
     "level": "N5"
   },
   {
-    "front": "そうですね",
-    "back": "Shunday-a / Rostdan ham",
-    "phonetic": "そうですね。 - soudesune",
-    "example": "きょうは いい 天気ですね。― そうですね。 (Bugun havo yaxshi-ya. - Shunday-a.)",
-    "category": "Minna no Nihongo 13-dars",
-    "level": "N5"
-  },
-  {
     "front": "そうしましょう",
     "back": "Shunday qilaylik",
     "phonetic": "そうしましょう。 - soushimashou",
@@ -5657,7 +5553,7 @@
   },
   {
     "front": "取ります",
-    "back": "olmoq",
+    "back": "ulg'aymoq; qarimoq",
     "phonetic": "とります - torimasu",
     "example": "きれいな 花の 写真を 撮りました。 (Chiroyli gulning suratini oldim.)",
     "category": "Minna no Nihongo 14-dars",
@@ -5692,14 +5588,6 @@
     "back": "ko'rsatmoq",
     "phonetic": "みせます - misemasu",
     "example": "旅行の 写真を 見せて ください。 (Sayohat rasmlarini ko'rsating, iltimos.)",
-    "category": "Minna no Nihongo 14-dars",
-    "level": "N5"
-  },
-  {
-    "front": "教えます",
-    "back": "o'rgatmoq, aytmoq, tushuntirmoq",
-    "phonetic": "おしえます - oshiemasu",
-    "example": "駅までの 道を 親切に 教えてくれました。 (Bekatgacha bo'lgan yo'lni yaxshilab tushuntirib berdi.)",
     "category": "Minna no Nihongo 14-dars",
     "level": "N5"
   },
@@ -6176,14 +6064,6 @@
     "level": "N5"
   },
   {
-    "front": "降ります",
-    "back": "tushmoq",
-    "phonetic": "おります - orimasu",
-    "example": "次の バス停で 降ります。 (Keyingi avtobus bekatida tushaman.)",
-    "category": "Minna no Nihongo 16-dars",
-    "level": "N5"
-  },
-  {
     "front": "電車を降ります",
     "back": "poyezddan tushmoq",
     "phonetic": "でんしゃをおります - densha o orimasu",
@@ -6224,34 +6104,10 @@
     "level": "N5"
   },
   {
-    "front": "出します",
-    "back": "chiqarmoq, olmoq (biror narasa ichidan)",
-    "phonetic": "だします - dashimasu",
-    "example": "郵便局で 手紙を 出しました。 (Pochtadan xat jo'natdim.)",
-    "category": "Minna no Nihongo 16-dars",
-    "level": "N5"
-  },
-  {
-    "front": "入ります",
-    "back": "kirmoq",
-    "phonetic": "はいります - hairimasu",
-    "example": "寒いので、温かい お風呂に 入りました。 (Sovuq bo'lgani sababli issiq vannaga tushdim.)",
-    "category": "Minna no Nihongo 16-dars",
-    "level": "N5"
-  },
-  {
     "front": "大学に入ります",
     "back": "universitetga kirmoq",
     "phonetic": "だいがくにはいります - daigaku ni hairimasu",
     "example": "来年 東京の 大学に 入ります。 (Kelasi yili Tokiodagi universitetga kiraman.)",
-    "category": "Minna no Nihongo 16-dars",
-    "level": "N5"
-  },
-  {
-    "front": "出ます",
-    "back": "bitirmoq, tugatmoq",
-    "phonetic": "でます - demasu",
-    "example": "切符を 買うと、お釣りが 出ます。 (Chipta sotib olsangiz qaytim chiqadi.)",
     "category": "Minna no Nihongo 16-dars",
     "level": "N5"
   },
@@ -6664,14 +6520,6 @@
     "level": "N5"
   },
   {
-    "front": "出します",
-    "back": "topshirmoq",
-    "phonetic": "だします - dashimasu",
-    "example": "郵便局で 手紙を 出しました。 (Pochtadan xat jo'natdim.)",
-    "category": "Minna no Nihongo 17-dars",
-    "level": "N5"
-  },
-  {
     "front": "レポートを出します",
     "back": "hisobot topshirmoq",
     "phonetic": "レポートをだします - repooto o dashimasu",
@@ -6752,26 +6600,10 @@
     "level": "N5"
   },
   {
-    "front": "飲みます",
-    "back": "ichmoq",
-    "phonetic": "のみます - nomimasu",
-    "example": "毎朝 冷たい 牛乳を 飲みます。 (Har ertalab sovuq sut ichaman.)",
-    "category": "Minna no Nihongo 17-dars",
-    "level": "N5"
-  },
-  {
     "front": "薬を飲みます",
     "back": "dori ichmoq",
     "phonetic": "くすりをのみます - kusuri o nomimasu",
     "example": "食後に この 薬を 飲んで ください。 (Ovqatdan keyin ushbu dorini iching.)",
-    "category": "Minna no Nihongo 17-dars",
-    "level": "N5"
-  },
-  {
-    "front": "入ります",
-    "back": "kirmoq",
-    "phonetic": "はいります - hairimasu",
-    "example": "寒いので、温かい お風呂に 入りました。 (Sovuq bo'lgani sababli issiq vannaga tushdim.)",
     "category": "Minna no Nihongo 17-dars",
     "level": "N5"
   },
@@ -6892,14 +6724,6 @@
     "back": "ichki kiyim",
     "phonetic": "したぎ - shitagi",
     "example": "汗を かいたので、下着を 着替えました。 (Terlaganim sababli ichki kiyimimni almashtirdim.)",
-    "category": "Minna no Nihongo 17-dars",
-    "level": "N5"
-  },
-  {
-    "front": "先生",
-    "back": "doktor (shifokorga murojaat etish)",
-    "phonetic": "せんせい - sensei",
-    "example": "木村先生は 日本語の 先生です。 (Kimura ustoz yapon tili o'qituvchisi.)",
     "category": "Minna no Nihongo 17-dars",
     "level": "N5"
   },
@@ -7336,14 +7160,6 @@
     "level": "N5"
   },
   {
-    "front": "お茶",
-    "back": "choy",
-    "phonetic": "おちゃ - ocha",
-    "example": "日本の 伝統的な お茶（茶道）を 体験しました。 (Yapon an'anaviy choy marosimini sinab ko'rdim.)",
-    "category": "Minna no Nihongo 19-dars",
-    "level": "N5"
-  },
-  {
     "front": "日",
     "back": "kun",
     "phonetic": "ひ - hi",
@@ -7524,14 +7340,6 @@
     "back": "sen (tengdoshlarga)",
     "phonetic": "きみ - kimi",
     "example": "君の 意見を 聞かせて ほしい。 (Sening fikringni eshitgim keladi.)",
-    "category": "Minna no Nihongo 20-dars",
-    "level": "N5"
-  },
-  {
-    "front": "～君",
-    "back": "( ～さん ning og'zaki shakli, odatda yoshi kichik yoki mavqei yuqori bo'lmagan erkak kishilarning ismiga qo'shib qo'llaniladi)",
-    "phonetic": "～くん - kun",
-    "example": "山田くんは サッカーが 好きです。 (Yamada-kun futbolni yaxshi ko'radi.)",
     "category": "Minna no Nihongo 20-dars",
     "level": "N5"
   },
@@ -7740,14 +7548,6 @@
     "back": "mag'lub bo'lmoq, yutqazmoq",
     "phonetic": "まけます - makemasu",
     "example": "決勝戦で 負けて、とても 悔しかったです。 (Finalda yutqazib juda afsuslandim.)",
-    "category": "Minna no Nihongo 21-dars",
-    "level": "N5"
-  },
-  {
-    "front": "あります",
-    "back": "bor bo'lmoq",
-    "phonetic": "あります - arimasu",
-    "example": "机の 上に 辞書が あります。 (Stol ustida lug'at bor.)",
     "category": "Minna no Nihongo 21-dars",
     "level": "N5"
   },
@@ -8064,14 +7864,6 @@
     "level": "N5"
   },
   {
-    "front": "かけます",
-    "back": "Taqmoq",
-    "phonetic": "かけます - kakemasu",
-    "example": "暗い ところで 本を 読む とき、眼鏡を かけます。 (Qorong'i joyda kitob o'qiganda ko'zoynak taqaman.)",
-    "category": "Minna no Nihongo 22-dars",
-    "level": "N5"
-  },
-  {
     "front": "眼鏡をかけます",
     "back": "ko'zoynak taqmoq",
     "phonetic": "めがねをかけます - megane o kakemasu",
@@ -8128,26 +7920,10 @@
     "level": "N5"
   },
   {
-    "front": "よく",
-    "back": "tez-tez, rosa",
-    "phonetic": "よく - yoku",
-    "example": "この 喫茶店には よく 来ます。 (Bu qahvaxonaga tez-tez kelib turaman.)",
-    "category": "Minna no Nihongo 22-dars",
-    "level": "N5"
-  },
-  {
     "front": "おめでとうございます",
     "back": "Tabriklayman! / Qutlayman!",
     "phonetic": "おめでとうございます。 - omedetougozaimasu",
     "example": "ご結婚 おめでとうございます！ (Turmush qurganingiz muborak bo'lsin!)",
-    "category": "Minna no Nihongo 22-dars",
-    "level": "N5"
-  },
-  {
-    "front": "こちら",
-    "back": "bu kishi / bu tomon (biz taraf)",
-    "phonetic": "こちら - kochira",
-    "example": "こちらは わたしの 親友の サントスさんです。 (Bu kishi mening qadrdon do'stim janob Santos.)",
     "category": "Minna no Nihongo 22-dars",
     "level": "N5"
   },
@@ -8240,14 +8016,6 @@
     "level": "N5"
   },
   {
-    "front": "聞きます",
-    "back": "so'ramoq",
-    "phonetic": "ききます - kikimasu",
-    "example": "毎朝 ラジオで ニュースを 聞きます。 (Har ertalab radioda yangiliklarni tinglayman.)",
-    "category": "Minna no Nihongo 23-dars",
-    "level": "N5"
-  },
-  {
     "front": "先生に聞きます",
     "back": "o'qituvchidan so'ramoq",
     "phonetic": "せんせいにききます - sensei ni kikimasu",
@@ -8292,14 +8060,6 @@
     "back": "eshikka tegmoq",
     "phonetic": "ドアにさわります - doa ni sawarimasu",
     "example": "ペンキを 塗ったばかりですから、ドアに 触らないで ください。 (Bo'yoq endi surtildi, eshikka tegmang.)",
-    "category": "Minna no Nihongo 23-dars",
-    "level": "N5"
-  },
-  {
-    "front": "出ます",
-    "back": "qaytmoq, chiqmoq",
-    "phonetic": "でます - demasu",
-    "example": "切符を 買うと、お釣りが 出ます。 (Chipta sotib olsangiz qaytim chiqadi.)",
     "category": "Minna no Nihongo 23-dars",
     "level": "N5"
   },
@@ -8388,14 +8148,6 @@
     "back": "elektr jihozlari do'koni",
     "phonetic": "でんきや - denkiya",
     "example": "電気屋で 新しい 電池を 買いました。 (Elektr do'konidan yangi batareyka sotib oldim.)",
-    "category": "Minna no Nihongo 23-dars",
-    "level": "N5"
-  },
-  {
-    "front": "～屋",
-    "back": "~ do'koni",
-    "phonetic": "～や - ya",
-    "example": "八百屋で 新鮮な 野菜を 買いました。 (Sabzavot do'konidan yangi sabzavot oldim.)",
     "category": "Minna no Nihongo 23-dars",
     "level": "N5"
   },
@@ -8592,14 +8344,6 @@
     "level": "N5"
   },
   {
-    "front": "送ります",
-    "back": "jo'natmoq; olib borib qo'ymoq",
-    "phonetic": "おくります - okurimasu",
-    "example": "雨が 降っていますから、車で 駅まで 送りましょう。 (Yomg'ir yog'yapti, mashinada bekatgacha kuzatib qo'yay.)",
-    "category": "Minna no Nihongo 24-dars",
-    "level": "N5"
-  },
-  {
     "front": "人を送ります",
     "back": "odamni kuzatib qo'ymoq / olib borib qo'ymoq",
     "phonetic": "ひとをおくります - hito o okurimasu",
@@ -8764,14 +8508,6 @@
     "back": "chet elda ta'lim olmoq",
     "phonetic": "りゅうがくします - ryuugakushimasu",
     "example": "来年 日本の 大学に 留学する 予定です。 (Kelasi yili Yaponiya universitetiga o'qishga borishni rejalashtiryapman.)",
-    "category": "Minna no Nihongo 25-dars",
-    "level": "N5"
-  },
-  {
-    "front": "取ります",
-    "back": "ulg'aymoq; qarimoq",
-    "phonetic": "とります - torimasu",
-    "example": "きれいな 花の 写真を 撮りました。 (Chiroyli gulning suratini oldim.)",
     "category": "Minna no Nihongo 25-dars",
     "level": "N5"
   },

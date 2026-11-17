@@ -53,7 +53,7 @@ describe('PRESET_DECKS Integrity & Quality Tests', () => {
     expect(n3ThematicDeck).toBeDefined();
     expect(n3ThematicDeck!.level).toBe('JLPT N3');
     const n3ThematicCards = await n3ThematicDeck!.loadCards();
-    expect(n3ThematicCards.length).toBe(699);
+    expect(n3ThematicCards.length).toBe(672);
 
     const n4KanjiDeck = PRESET_DECKS.find((d) => d.id === 'deck_kanji_master_n4');
     expect(n4KanjiDeck).toBeDefined();

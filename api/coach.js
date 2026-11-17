@@ -101,12 +101,22 @@ export default async function handler(req, res) {
   const timeout = setTimeout(() => controller.abort(), 45000);
   let reader;
   try {
-    const upstream = await fetch(`${base}/chat/completions`, {
+    let upstream = await fetch(`${base}/chat/completions`, {
       method: 'POST',
       headers: { 'api-key': key, 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
       signal: controller.signal,
     });
+    // Fallback to standard Azure deployments URL if v1 returns 404
+    if (upstream.status === 404 && !endpoint.includes('/deployments/')) {
+      const standardUrl = `${endpoint}/openai/deployments/${deployment}/chat/completions?api-version=2024-02-15-preview`;
+      upstream = await fetch(standardUrl, {
+        method: 'POST',
+        headers: { 'api-key': key, 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        signal: controller.signal,
+      });
+    }
     if (!upstream.ok) {
       const errText = await upstream.text().catch(() => '');
       console.error('[AzureCoach] Upstream rejection', upstream.status, errText);
