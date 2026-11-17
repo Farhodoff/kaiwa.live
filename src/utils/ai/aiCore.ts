@@ -78,7 +78,11 @@ export const callAI = async (
 
         if (options?.provider !== 'deepseek') {
           try {
-            result = await callCoachAI(prompt, systemPrompt, isJson);
+            const coachRes = await callCoachAI(prompt, systemPrompt, isJson);
+            if (typeof coachRes !== 'string' || !coachRes.trim()) {
+              throw new Error('Azure Coach returned empty or invalid response');
+            }
+            result = coachRes;
           } catch (azureErr) {
             console.warn('[callAI] Primary Azure AI failed, falling back to DeepSeek:', azureErr);
             result = await callDeepSeek(
