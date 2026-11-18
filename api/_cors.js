@@ -4,6 +4,11 @@ const STATIC_ALLOWED = new Set([
   'https://www.kaiwa.live',
   'https://web.telegram.org',
   'capacitor://localhost',
+  'kaiwa://localhost',
+  'ionic://localhost',
+  'http://localhost:8081',
+  'http://localhost:8099',
+  'http://localhost:19006',
 ]);
 
 export function isAllowedOrigin(origin) {

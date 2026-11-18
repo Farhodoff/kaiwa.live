@@ -427,6 +427,8 @@ const App: React.FC = () => {
                   </Route>
                   <Route path="/auth/reset-password" element={<AuthPage />} />
                   <Route path="/reset-password" element={<AuthPage />} />
+                  <Route path="/auth/google" element={<AuthenticatedAuthRedirect />} />
+                  <Route path="/login/google" element={<AuthenticatedAuthRedirect />} />
                   <Route path="/auth" element={<AuthenticatedAuthRedirect />} />
                   <Route path="/admin/login" element={<AuthenticatedAuthRedirect />} />
                   <Route path="/login" element={<AuthenticatedAuthRedirect />} />

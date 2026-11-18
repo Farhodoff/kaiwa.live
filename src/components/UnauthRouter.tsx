@@ -104,6 +104,8 @@ export const UnauthRouter: React.FC = () => (
 
               {/* Auth routes */}
               <Route path="/auth" element={<AuthPage />} />
+              <Route path="/auth/google" element={<AuthPage />} />
+              <Route path="/login/google" element={<AuthPage />} />
               <Route path="/auth/reset-password" element={<AuthPage />} />
               <Route path="/reset-password" element={<AuthPage />} />
               <Route path="/login" element={<AuthPage />} />

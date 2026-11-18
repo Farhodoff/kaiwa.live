@@ -63,3 +63,7 @@ src/data/decks/backups/
 scripts/live_session.json
 backups/**/test_users.json
 test_users.json
+
+# Mobile app (standalone development)
+mobile/
+
