@@ -317,8 +317,8 @@ async function generateOgImage() {
       </div>
       <div class="brand-names">
         <div class="brand-title-wrap">
-          <span class="brand-title">Nihongo <span class="crimson">Talk</span></span>
-          <span class="brand-kanji">日本語トーク</span>
+          <span class="brand-title">Kaiwa <span class="crimson">Live</span></span>
+          <span class="brand-kanji">会話ライブ</span>
           <span class="brand-pill">JLPT N5–N1 & KAIWA</span>
         </div>
         <span class="brand-tagline">AI Yordamida Yapon Tilini Tizimli O'rganish Platformasi</span>
@@ -380,7 +380,7 @@ async function generateOgImage() {
   </div>
 
   <div class="footer">
-    <span>© 2026 Nihongo Talk. Barcha huquqlar himoyalangan.</span>
+    <span>© 2026 Kaiwa Live. Barcha huquqlar himoyalangan.</span>
     <span class="url-chip">kaiwa.live</span>
   </div>
 </body>
@@ -397,7 +397,7 @@ async function generateOgImage() {
   await page.screenshot({ path: jpgPath, type: 'jpeg', quality: 88 });
   await page.screenshot({ path: pngPath, type: 'png' });
 
-  console.log('✅ Generated Nihongo Talk og-image.jpg and og-image.png successfully in:', publicDir);
+  console.log('✅ Generated Kaiwa Live og-image.jpg and og-image.png successfully in:', publicDir);
   await browser.close();
 }
 

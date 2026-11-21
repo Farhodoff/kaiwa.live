@@ -222,7 +222,7 @@ export default async function handler(req, res) {
         reply_markup: {
           inline_keyboard: [
             [{ text: '🈁 Kanji Canvasda Mashq', web_app: { url: `${APP_URL}/curriculum` } }],
-            [{ text: '🚀 Nihongo Talk Ilovasi', url: APP_URL }],
+            [{ text: '🚀 Kaiwa Live Ilovasi', url: APP_URL }],
           ],
         },
       });
@@ -241,7 +241,7 @@ export default async function handler(req, res) {
         reply_markup: {
           inline_keyboard: [
             [{ text: '📚 Fleshkartalarda Takrorlash', web_app: { url: `${APP_URL}/decks` } }],
-            [{ text: '🌐 Nihongo Talk Web', url: APP_URL }],
+            [{ text: '🌐 Kaiwa Live Web', url: APP_URL }],
           ],
         },
       });
@@ -314,7 +314,7 @@ export default async function handler(req, res) {
 
           const welcomeText =
             `🎌 <b>JLPT Quiz Battle Guruhga Xush Kelibsiz!</b> ⚔️\n\n` +
-            `Men <b>Nihongo Talk</b> botiman. Ushbu guruhda talabalar o'rtasida JLPT (N5 - N2) bilimi bo'yicha jonli viktorina boshlandi!\n\n` +
+            `Men <b>Kaiwa Live</b> botiman. Ushbu guruhda talabalar o'rtasida JLPT (N5 - N2) bilimi bo'yicha jonli viktorina boshlandi!\n\n` +
             `⚡ <b>Imkoniyatlar:</b>\n` +
             `• Har 2 soatda bot avtomatik yangi JLPT savolini tashlaydi.\n` +
             `• To'g'ri javob bergan ishtirokchilar <b>+10 XP</b> oladi!\n` +
@@ -451,7 +451,7 @@ export default async function handler(req, res) {
           const nextMarkup = {
             inline_keyboard: [
               [{ text: "🎲 Keyingi savol ➡️", callback_data: "quiz_next" }],
-              [{ text: "🌐 Nihongo Talk Webda o'rganish", url: `${APP_URL}/jlpt` }]
+              [{ text: "🌐 Kaiwa Live Webda o'rganish", url: `${APP_URL}/jlpt` }]
             ]
           };
           await sendTelegramMessage(chatId, replyText, nextMarkup);
@@ -616,7 +616,7 @@ export default async function handler(req, res) {
         `• /start_battle — Har 2 soatda avtomatik savol yuborishni yoqish\n` +
         `• /stop_battle — Avtomatik savollarni to'xtatish\n` +
         `• /battle_help — Ushbu yordam xabari\n\n` +
-        `🚀 <b>Nihongo Talk:</b> ${APP_URL}/`;
+        `🚀 <b>Kaiwa Live:</b> ${APP_URL}/`;
       await sendTelegramMessage(chatId, battleHelpText, null);
       return res.status(200).json({ ok: true });
     }
@@ -688,7 +688,7 @@ export default async function handler(req, res) {
     }
 
     // B. Handle /app or 'Mini App'
-    if (text === '/app' || text.includes('Mini App') || text.includes('kaiwa.live') || text.includes('Nihongo Talk')) {
+    if (text === '/app' || text.includes('Mini App') || text.includes('kaiwa.live') || text.includes('Kaiwa Live') || text.includes('Nihongo Talk')) {
       await setTelegramMenuButton(chatId);
       const appMarkup = {
         inline_keyboard: [
@@ -881,7 +881,7 @@ export default async function handler(req, res) {
         `• /flashcards — Fleshkartalar (Anki SRS) takrorlash\n` +
         `• /speaking — Speaking Coach suhbat mashqlari\n\n` +
         `💬 <b>Inline rejim:</b>\n` +
-        `Istalgan guruh yoki chatda <code>@nihongotalk_bot quiz</code> yoki <code>@nihongotalk_bot kanji</code> deb yozsangiz, do'stlaringizga viktorina yoki kanji kartasini yuborishingiz mumkin!\n\n` +
+        `Istalgan guruh yoki chatda <code>@kaiwa_superapp_bot quiz</code> yoki <code>@kaiwa_superapp_bot kanji</code> deb yozsangiz, do'stlaringizga viktorina yoki kanji kartasini yuborishingiz mumkin!\n\n` +
         `🌐 Veb platforma: <a href="https://kaiwa.live">kaiwa.live</a>`;
       await sendTelegramMessage(chatId, helpText, defaultKeyboard);
       return res.status(200).json({ ok: true });
