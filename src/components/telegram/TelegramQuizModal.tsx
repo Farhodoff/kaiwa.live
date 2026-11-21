@@ -118,7 +118,7 @@ export const TelegramQuizModal: React.FC<TelegramQuizModalProps> = ({
   const handleShareResult = () => {
     triggerHaptic('light');
     const pct = Math.round((correctCount / roundQuestions.length) * 100);
-    const text = `🎌 Nihongo Talk Telegram Mini Quizda ${roundQuestions.length} ta savoldan ${correctCount} tasiga to'g'ri javob berdim (${pct}%)! 🔥\nSiz ham o'z bilmingizni sinab ko'ring:`;
+    const text = `🎌 Kaiwa Live Telegram Mini Quizda ${roundQuestions.length} ta savoldan ${correctCount} tasiga to'g'ri javob berdim (${pct}%)! 🔥\nSiz ham o'z bilmingizni sinab ko'ring:`;
     const shareUrl = `https://t.me/share/url?url=${encodeURIComponent('https://kaiwa.live')}&text=${encodeURIComponent(text)}`;
     if (typeof window !== 'undefined') {
       window.open(shareUrl, '_blank');
