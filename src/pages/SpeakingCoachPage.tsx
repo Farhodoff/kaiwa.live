@@ -8,7 +8,7 @@ import {
   ShieldAlert,
   X,
   ExternalLink,
-  Square,
+  PhoneOff,
   Sparkles,
   Volume2,
   BookOpen,
@@ -33,7 +33,6 @@ import { PitchAccentModal } from '../components/speaking/PitchAccentModal';
 import { PitchAccentTrainer } from '../components/speaking/PitchAccentTrainer';
 import { useSpeakingSessionOrchestrator } from '../hooks/useSpeakingSessionOrchestrator';
 import { SpeakingScenarioBanner } from '../components/speaking/SpeakingScenarioBanner';
-import { TopicInspirationCard } from '../components/speaking/TopicInspirationCard';
 import { ProjectOrb, OrbState } from '../components/character/ProjectOrb';
 import { useAudioLevel } from '../hooks/useAudioLevel';
 import { SpeakingHistoryModal } from '../components/speaking/SpeakingHistoryModal';
@@ -479,8 +478,6 @@ const SpeakingCoachPage: React.FC = () => {
         }}
       />
 
-      <TopicInspirationCard activeScenario={activeScenario} language={language} />
-
       {/* Browser Speech API Warning if unsupported */}
       {!isSupported && (
         <div
@@ -583,18 +580,22 @@ const SpeakingCoachPage: React.FC = () => {
       )}
 
       {/* MAIN SINGLE VIEW CONTENT */}
-      <main className="relative z-10 mx-auto flex min-h-0 w-full max-w-4xl flex-1 flex-col gap-3 overflow-y-auto px-3 py-3 sm:px-6 lg:py-5 xl:max-w-5xl 2xl:max-w-6xl 3xl:max-w-7xl 3xl:py-8">
+      <main className="relative z-10 mx-auto flex min-h-0 w-full max-w-4xl flex-1 flex-col overflow-hidden px-3 py-2 sm:px-6 lg:py-3 xl:max-w-5xl 2xl:max-w-6xl 3xl:max-w-7xl">
         {/* UPPER HERO: ProjectOrb (KaiwaOrbCharacter) */}
-        <div className="flex min-h-[360px] flex-1 shrink-0 flex-col items-center justify-center px-3 py-4 text-center lg:min-h-0 lg:py-8">
+        <div
+          className={`flex shrink-0 flex-col items-center justify-center transition-all duration-300 ${
+            showTranscript ? 'py-1 sm:py-2' : 'flex-1 py-4 sm:py-8'
+          }`}
+        >
           {/* Accessible title (screen readers only) */}
           <h2 className="sr-only">
             Yuki Sensei · {activeScenario ? targetJlptLevel : 'Erkin muloqot'}
           </h2>
-          <div className="rounded-full">
+          <div className="rounded-full transition-transform duration-300">
             <ProjectOrb
               state={orbState}
               audioVolume={audioLevel}
-              size={168}
+              size={showTranscript ? 116 : 168}
               interactive={false}
               ariaLabel={
                 !isLiveSession
@@ -608,200 +609,141 @@ const SpeakingCoachPage: React.FC = () => {
             />
           </div>
 
-          {/* Action / Controls */}
-          <div className="mt-4 flex flex-col items-center gap-1">
-            {!isLiveSession ? (
-              <button
-                type="button"
-                onClick={handleStartSession}
-                aria-label="Suhbatni boshlash"
-                className="inline-flex size-14 items-center justify-center rounded-full border border-primary/50 bg-gradient-to-r from-rose-600 to-indigo-600 text-white shadow-xl shadow-rose-600/25 transition-transform hover:scale-105 active:scale-95"
-              >
-                <Mic size={26} aria-hidden="true" />
-              </button>
-            ) : (
-              <div className="flex flex-col items-center gap-3">
-                <div role="status" aria-live="polite" className="sr-only">
-                  {error === SPEECH_SESSION_EXPIRED ? (
-                    <span>Mikrofon to‘xtatildi</span>
-                  ) : isMuted ? (
-                    <span>Mikrofon pauzada</span>
-                  ) : isSpeaking && !isPreparingAudio ? (
-                    <span>Murabbiy gapiryapti</span>
-                  ) : isThinking || isPreparingAudio ? (
-                    <span>
-                      {isPreparingAudio ? 'Ovoz tayyorlanmoqda...' : 'Javob tayyorlanmoqda...'}
-                    </span>
-                  ) : isListening ? (
-                    <span>Tinglayapman...</span>
-                  ) : (
-                    <span>Mikrofonga ulanmoqda...</span>
-                  )}
+          {/* Subtitle: faqat transkripsiya paneli yopiq bo'lganda markazda ko'rinadi */}
+          {!showTranscript && (
+            <>
+              {isLiveSession && (currentTranscript || chatHistory.length > 0) && (
+                <p
+                  className="mt-4 max-w-xl whitespace-pre-wrap px-2 text-center text-sm leading-relaxed text-slate-100 animate-in fade-in"
+                  aria-live="polite"
+                  lang="ja"
+                >
+                  {currentTranscript || chatHistory[chatHistory.length - 1]?.content}
+                </p>
+              )}
+              {speechProvider === 'browser' && (
+                <div className="mt-3 max-w-md text-center text-xs text-slate-300">
+                  <p className="flex items-center justify-center gap-1.5 text-slate-400">
+                    <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-emerald-400/80" />
+                    <span>Brauzer ovozli xizmati faol (gapirishingiz mumkin)</span>
+                  </p>
+                  <button
+                    type="button"
+                    disabled={!isLiveSession || isSpeaking || isThinking || isMuted}
+                    onClick={retrySpeechConnection}
+                    className="mt-1.5 text-[11px] text-slate-400 underline decoration-slate-600 underline-offset-4 hover:text-slate-200 disabled:opacity-40"
+                  >
+                    Bulutli ovoz xizmatini qayta ulash
+                  </button>
                 </div>
+              )}
+            </>
+          )}
 
-                <button
-                  type="button"
-                  onClick={() => setIsMuted(!isMuted)}
-                  aria-label={isMuted ? 'Mikrofonni yoqish' : 'Mikrofonni pauza qilish'}
-                  aria-pressed={isMuted}
-                  className={`inline-flex size-14 items-center justify-center rounded-full border text-white transition-transform hover:scale-105 active:scale-95 ${
-                    isMuted
-                      ? 'border-white/20 bg-slate-900/80 hover:bg-slate-800'
-                      : 'border-primary/50 bg-gradient-to-r from-rose-600 to-indigo-600'
-                  }`}
-                >
-                  {isMuted ? (
-                    <MicOff size={26} aria-hidden="true" />
-                  ) : (
-                    <Mic size={26} aria-hidden="true" />
-                  )}
-                </button>
-                <button
-                  type="button"
-                  onClick={handleStopSession}
-                  className="relative z-20 inline-flex items-center gap-1.5 rounded-full border border-rose-500/40 bg-rose-500/20 px-3.5 py-1.5 text-xs font-bold text-rose-300 shadow transition hover:bg-rose-500/30 active:scale-95"
-                  title="Suhbatni yakunlash va saqlash"
-                >
-                  <Square size={12} className="fill-current text-rose-400" />
-                  <span>Suhbatni yakunlash</span>
-                </button>
-              </div>
-            )}
-          </div>
-          {/* Subtitle: faqat transkripsiya paneli yopiq bo'lganda ko'rinadi (ustma-ust xiralashuvni oldini olish uchun) */}
-          {isLiveSession && !showTranscript && (currentTranscript || chatHistory.length > 0) && (
-            <p
-              className="mt-4 max-w-xl whitespace-pre-wrap px-2 text-sm leading-relaxed text-slate-100"
-              aria-live="polite"
-              lang="ja"
-            >
-              {currentTranscript || chatHistory[chatHistory.length - 1]?.content}
-            </p>
-          )}
-          {speechProvider === 'browser' && (
-            <div className="mt-3 max-w-md text-xs text-slate-300">
-              <p className="flex items-center justify-center gap-1.5 text-slate-400">
-                <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-emerald-400/80" />
-                <span>Brauzer ovozli xizmati faol (gapirishingiz mumkin)</span>
-              </p>
-              <button
-                type="button"
-                disabled={!isLiveSession || isSpeaking || isThinking || isMuted}
-                onClick={retrySpeechConnection}
-                className="mt-1.5 text-[11px] text-slate-400 underline decoration-slate-600 underline-offset-4 hover:text-slate-200 disabled:opacity-40"
-              >
-                Bulutli ovoz xizmatini qayta ulash
-              </button>
-            </div>
-          )}
+          {/* Toggle Transcript button */}
+          <button
+            type="button"
+            onClick={() => setShowTranscript((visible) => !visible)}
+            aria-expanded={showTranscript}
+            className="relative z-10 mt-3 min-h-8 shrink-0 self-center rounded-full border border-white/10 bg-white/5 px-4 text-xs font-medium text-slate-300 backdrop-blur-sm transition-colors hover:bg-white/10 hover:text-white active:scale-95"
+          >
+            {showTranscript ? 'Suhbat matnini yashirish' : 'Suhbat matnini ko‘rsatish'}
+          </button>
         </div>
 
-        <button
-          type="button"
-          onClick={() => setShowTranscript((visible) => !visible)}
-          aria-expanded={showTranscript}
-          className="relative z-10 mt-4 min-h-10 shrink-0 self-center rounded-lg px-3 text-xs text-slate-300 transition-colors hover:bg-white/5"
-        >
-          {showTranscript ? 'Suhbat matnini yashirish' : 'Suhbat matnini ko‘rsatish'}
-        </button>
-
-        {/* Suhbat matnlari: to'rtburchak fremda emas, bevosita ekranning o'zida tabiiy oqim sifatida chiqadi */}
+        {/* Suhbat matnlari ro'yxati: ekranga sig'adigan o'ziga xos scroll oynasi */}
         {showTranscript && (
-          <div className="mx-auto flex w-full max-w-2xl flex-col gap-4 pb-8 duration-200 animate-in fade-in">
-            <div
-              ref={chatContainerRef}
-              role="log"
-              aria-label="Suhbat transkripsiyasi"
-              aria-live="polite"
-              className="space-y-3 px-2 sm:px-4"
-            >
-              {chatHistory.length === 0 && !currentTranscript && (
-                <div className="flex flex-col items-center justify-center py-6 text-center text-slate-400">
-                  <Sparkles size={24} className="mb-2 text-rose-400/80" />
-                  <p className="text-xs font-medium text-slate-200 sm:text-sm">
-                    Suhbat transkripsiyasi shu yerda chiqadi
-                  </p>
-                  <p className="mt-1 max-w-xs text-[11px] text-slate-400">
-                    Suhbatni boshlang va yapon tilida erkin so‘zlang. Xatolaringiz shu yerda yashil
-                    rangda to‘g‘rilanadi.
-                  </p>
-                </div>
-              )}
+          <div
+            ref={chatContainerRef}
+            role="log"
+            aria-label="Suhbat transkripsiyasi"
+            aria-live="polite"
+            className="mx-auto flex min-h-0 w-full max-w-2xl flex-1 flex-col space-y-3 overflow-y-auto scroll-smooth px-2 pb-4 pt-1 duration-200 animate-in fade-in sm:px-4"
+          >
+            {chatHistory.length === 0 && !currentTranscript && (
+              <div className="flex flex-col items-center justify-center py-6 text-center text-slate-400">
+                <Sparkles size={24} className="mb-2 text-rose-400/80" />
+                <p className="text-xs font-medium text-slate-200 sm:text-sm">
+                  Suhbat transkripsiyasi shu yerda chiqadi
+                </p>
+                <p className="mt-1 max-w-xs text-[11px] text-slate-400">
+                  Suhbatni boshlang va yapon tilida erkin so‘zlang. Xatolaringiz shu yerda yashil
+                  rangda to‘g‘rilanadi.
+                </p>
+              </div>
+            )}
 
-              {chatHistory.map((msg, idx) => (
+            {chatHistory.map((msg, idx) => (
+              <div
+                key={idx}
+                className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'} animate-in fade-in slide-in-from-bottom-1`}
+              >
                 <div
-                  key={idx}
-                  className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'} animate-in fade-in slide-in-from-bottom-1`}
+                  className={`max-w-[85%] rounded-2xl p-3 text-xs shadow-md transition-all sm:max-w-[75%] sm:text-sm ${
+                    msg.role === 'user'
+                      ? 'rounded-tr-xs border border-primary/40 bg-primary/25 text-white shadow-primary/10'
+                      : 'rounded-tl-xs border border-white/10 bg-slate-900/80 text-slate-100 backdrop-blur-sm'
+                  }`}
                 >
-                  <div
-                    className={`max-w-[85%] rounded-2xl p-3 text-xs shadow-md transition-all sm:max-w-[75%] sm:text-sm ${
-                      msg.role === 'user'
-                        ? 'rounded-tr-xs border border-primary/40 bg-primary/25 text-white shadow-primary/10'
-                        : 'rounded-tl-xs border border-white/10 bg-slate-900/80 text-slate-100 backdrop-blur-sm'
-                    }`}
-                  >
-                    {/* Bubble Header */}
-                    <div className="mb-1 flex items-center justify-between gap-2 text-[10px] opacity-75">
-                      <span className="font-semibold">
-                        {msg.role === 'user' ? 'Siz' : PERSONAS[persona].name}
-                      </span>
-                      <div className="flex items-center gap-1.5">
-                        <span>{msg.timestamp}</span>
-                        {msg.role === 'assistant' && (
-                          <button
-                            type="button"
-                            onClick={() => speakText(msg.ttsText || msg.content)}
-                            className="p-0.5 transition hover:text-primary"
-                            title="Qayta tinglash"
-                          >
-                            <Volume2 size={12} />
-                          </button>
-                        )}
-                      </div>
+                  {/* Bubble Header */}
+                  <div className="mb-1 flex items-center justify-between gap-2 text-[10px] opacity-75">
+                    <span className="font-semibold">
+                      {msg.role === 'user' ? 'Siz' : PERSONAS[persona].name}
+                    </span>
+                    <div className="flex items-center gap-1.5">
+                      <span>{msg.timestamp}</span>
+                      {msg.role === 'assistant' && (
+                        <button
+                          type="button"
+                          onClick={() => speakText(msg.ttsText || msg.content)}
+                          className="p-0.5 transition hover:text-primary"
+                          title="Qayta tinglash"
+                        >
+                          <Volume2 size={12} />
+                        </button>
+                      )}
                     </div>
+                  </div>
 
-                    {/* Japanese Content */}
-                    <p className="whitespace-pre-wrap font-medium leading-relaxed">{msg.content}</p>
+                  {/* Japanese Content */}
+                  <p className="whitespace-pre-wrap font-medium leading-relaxed">{msg.content}</p>
 
-                    {/* Romaji for Assistant if available */}
-                    {msg.role === 'assistant' && msg.romaji && (
-                      <p className="mt-1 font-mono text-[10px] italic text-slate-400">
-                        {msg.romaji}
-                      </p>
-                    )}
+                  {/* Romaji for Assistant if available */}
+                  {msg.role === 'assistant' && msg.romaji && (
+                    <p className="mt-1 font-mono text-[10px] italic text-slate-400">{msg.romaji}</p>
+                  )}
 
-                    {/* XATONI TUZATISH (Foydalanuvchi gapi tagida yashil rangda va 1 qator o'zbekcha izoh) */}
-                    {msg.role === 'user' && msg.corrected && (
-                      <div className="mt-2 space-y-0.5 border-t border-white/10 pt-2 text-[11px]">
-                        <div className="flex items-start gap-1 font-semibold text-emerald-400">
-                          <span>✓</span>
-                          <span>{msg.corrected}</span>
-                        </div>
-                        {msg.explanation_uz && (
-                          <div className="pl-3 text-[10px] italic text-slate-300">
-                            {msg.explanation_uz}
-                          </div>
-                        )}
+                  {/* XATONI TUZATISH (Foydalanuvchi gapi tagida yashil rangda va 1 qator o'zbekcha izoh) */}
+                  {msg.role === 'user' && msg.corrected && (
+                    <div className="mt-2 space-y-0.5 border-t border-white/10 pt-2 text-[11px]">
+                      <div className="flex items-start gap-1 font-semibold text-emerald-400">
+                        <span>✓</span>
+                        <span>{msg.corrected}</span>
                       </div>
-                    )}
-                  </div>
+                      {msg.explanation_uz && (
+                        <div className="pl-3 text-[10px] italic text-slate-300">
+                          {msg.explanation_uz}
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
-              ))}
+              </div>
+            ))}
 
-              {/* Live recognized transcript while speaking */}
-              {currentTranscript && (
-                <div className="flex justify-end animate-in fade-in">
-                  <div className="rounded-tr-xs flex max-w-[85%] items-center gap-2 rounded-2xl border border-primary/50 bg-primary/20 p-3 text-xs italic text-white sm:text-sm">
-                    <Mic size={14} className="shrink-0 animate-pulse text-primary" />
-                    <span>{currentTranscript}</span>
-                  </div>
+            {/* Live recognized transcript while speaking */}
+            {currentTranscript && (
+              <div className="flex justify-end animate-in fade-in">
+                <div className="rounded-tr-xs flex max-w-[85%] items-center gap-2 rounded-2xl border border-primary/50 bg-primary/20 p-3 text-xs italic text-white sm:text-sm">
+                  <Mic size={14} className="shrink-0 animate-pulse text-primary" />
+                  <span>{currentTranscript}</span>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
 
             {/* YANGI SO'ZLAR RO'YXATI (Transkripsiya pastida) */}
             {accumulatedNewWords.length > 0 && (
-              <div className="mx-2 rounded-2xl border border-white/10 bg-slate-950/40 p-3 backdrop-blur-md sm:mx-4">
+              <div className="mt-2 rounded-2xl border border-white/10 bg-slate-950/40 p-3 backdrop-blur-md">
                 <div className="mb-2 flex items-center justify-between text-xs font-bold text-rose-300">
                   <div className="flex items-center gap-1.5">
                     <BookOpen size={13} />
@@ -852,6 +794,89 @@ const SpeakingCoachPage: React.FC = () => {
           </div>
         )}
       </main>
+
+      {/* DOCKED BOTTOM CONTROL BAR */}
+      <footer className="relative z-20 shrink-0 border-t border-white/10 bg-slate-950/80 px-4 py-3 pb-[max(env(safe-area-inset-bottom),0.75rem)] backdrop-blur-xl sm:px-8">
+        <div className="mx-auto flex max-w-md items-center justify-between gap-4">
+          {!isLiveSession ? (
+            <div className="flex w-full items-center justify-center">
+              <button
+                type="button"
+                onClick={handleStartSession}
+                aria-label="Suhbatni boshlash"
+                className="inline-flex size-14 items-center justify-center rounded-full border border-primary/50 bg-gradient-to-r from-rose-600 to-indigo-600 text-white shadow-xl shadow-rose-600/25 transition-transform hover:scale-105 active:scale-95"
+              >
+                <Mic size={26} aria-hidden="true" />
+              </button>
+            </div>
+          ) : (
+            <>
+              {/* Left: Microphone Mute/Unmute */}
+              <div className="flex flex-col items-center gap-1">
+                <button
+                  type="button"
+                  onClick={() => setIsMuted(!isMuted)}
+                  aria-label={isMuted ? 'Mikrofonni yoqish' : 'Mikrofonni pauza qilish'}
+                  aria-pressed={isMuted}
+                  className={`inline-flex size-14 items-center justify-center rounded-full border text-white shadow-lg transition-transform hover:scale-105 active:scale-95 ${
+                    isMuted
+                      ? 'border-amber-500/40 bg-slate-900/90 text-amber-300 hover:bg-slate-800'
+                      : 'border-primary/50 bg-gradient-to-r from-rose-600 to-indigo-600 text-white shadow-rose-600/25'
+                  }`}
+                  title={isMuted ? 'Mikrofonni yoqish' : 'Mikrofonni o‘chirish (pauza)'}
+                >
+                  {isMuted ? (
+                    <MicOff size={26} aria-hidden="true" />
+                  ) : (
+                    <Mic size={26} aria-hidden="true" />
+                  )}
+                </button>
+                <span className="text-[10px] font-medium text-slate-400">
+                  {isMuted ? "Ovoz o'chiq" : 'Mikrofon'}
+                </span>
+              </div>
+
+              {/* Center: Live Call Status & Timer */}
+              <div className="flex flex-1 flex-col items-center justify-center px-2 text-center">
+                <div role="status" aria-live="polite" className="text-xs font-semibold">
+                  {error === SPEECH_SESSION_EXPIRED ? (
+                    <span className="text-rose-400">Mikrofon to‘xtatildi</span>
+                  ) : isMuted ? (
+                    <span className="text-amber-400">Mikrofon pauzada</span>
+                  ) : isSpeaking && !isPreparingAudio ? (
+                    <span className="text-indigo-300">Murabbiy gapiryapti</span>
+                  ) : isThinking || isPreparingAudio ? (
+                    <span className="text-purple-300">
+                      {isPreparingAudio ? 'Ovoz tayyorlanmoqda...' : 'Javob tayyorlanmoqda...'}
+                    </span>
+                  ) : isListening ? (
+                    <span className="text-emerald-400">Tinglayapman...</span>
+                  ) : (
+                    <span className="text-slate-400">Mikrofonga ulanmoqda...</span>
+                  )}
+                </div>
+                <span className="mt-0.5 font-mono text-[11px] text-slate-400">
+                  {formatTimer(sessionSeconds)}
+                </span>
+              </div>
+
+              {/* Right: End Call Button (Red phone off button) */}
+              <div className="flex flex-col items-center gap-1">
+                <button
+                  type="button"
+                  onClick={handleStopSession}
+                  aria-label="Suhbatni yakunlash"
+                  title="Suhbatni yakunlash va saqlash"
+                  className="inline-flex size-14 items-center justify-center rounded-full border border-rose-500/60 bg-rose-600 text-white shadow-xl shadow-rose-600/35 transition-transform hover:scale-105 hover:bg-rose-500 active:scale-95"
+                >
+                  <PhoneOff size={24} className="text-white" aria-hidden="true" />
+                </button>
+                <span className="text-[10px] font-medium text-rose-300">Yakunlash</span>
+              </div>
+            </>
+          )}
+        </div>
+      </footer>
 
       {/* MODALS */}
       <SpeakingHistoryModal

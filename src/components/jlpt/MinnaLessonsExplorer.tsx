@@ -23,6 +23,7 @@ export type JlptLevel = 'n5' | 'n4' | 'n3' | 'n2' | 'n1';
 
 interface MinnaLessonsExplorerProps {
   initialLevel?: 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
+  hideLevelSwitcher?: boolean;
 }
 
 const UNIT_TABS_N5 = [
@@ -428,7 +429,10 @@ const LEVEL_CONFIGS = {
   },
 };
 
-export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({ initialLevel }) => {
+export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({
+  initialLevel,
+  hideLevelSwitcher = false,
+}) => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const { user } = useStudyData();
@@ -437,7 +441,9 @@ export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({ init
   const urlLevel = searchParams.get('level')?.toLowerCase();
 
   const resolveInitialLevel = (): JlptLevel => {
-    if (initialLevel) return initialLevel.toLowerCase() as JlptLevel;
+    if (initialLevel && ['n5', 'n4', 'n3', 'n2', 'n1'].includes(initialLevel.toLowerCase())) {
+      return initialLevel.toLowerCase() as JlptLevel;
+    }
     if (urlLevel && ['n5', 'n4', 'n3', 'n2', 'n1'].includes(urlLevel)) return urlLevel as JlptLevel;
     return 'n5';
   };
@@ -445,6 +451,14 @@ export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({ init
   const [activeLevel, setActiveLevel] = useState<JlptLevel>(resolveInitialLevel);
   const [selectedUnit, setSelectedUnit] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
+
+  // Sync if initialLevel changes
+  useEffect(() => {
+    if (initialLevel && ['n5', 'n4', 'n3', 'n2', 'n1'].includes(initialLevel.toLowerCase())) {
+      setActiveLevel(initialLevel.toLowerCase() as JlptLevel);
+      setSelectedUnit('all');
+    }
+  }, [initialLevel]);
 
   // Sync if url level changes
   useEffect(() => {
@@ -552,97 +566,69 @@ export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({ init
 
   return (
     <div className="space-y-6 animate-in fade-in">
-      {/* 5-Level Switcher: N5, N4, N3, N2, N1 */}
-      <div className="scrollbar-none flex touch-pan-x items-center gap-1.5 overflow-x-auto rounded-2xl border border-border bg-card/60 p-1.5 backdrop-blur-sm sm:w-fit sm:gap-2">
-        {(['n5', 'n4', 'n3', 'n2', 'n1'] as JlptLevel[]).map((lvl) => {
-          const lCfg = LEVEL_CONFIGS[lvl];
-          const isActive = activeLevel === lvl;
-          return (
-            <button
-              key={lvl}
-              onClick={() => {
-                setActiveLevel(lvl);
-                setSelectedUnit('all');
-                setSearchQuery('');
-                const newParams = new URLSearchParams(searchParams);
-                newParams.set('level', lvl);
-                setSearchParams(newParams, { replace: true });
-              }}
-              aria-pressed={isActive}
-              className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center justify-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:px-3.5 sm:py-2 sm:text-sm ${
-                isActive
-                  ? 'border border-border bg-card text-foreground shadow-xs'
-                  : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground'
-              }`}
-            >
-              <span className="sm:hidden">{lCfg.name}</span>
-              <span className="hidden sm:inline">{lCfg.tabLabel}</span>
-              <span
-                className={`hidden rounded-md px-1.5 py-0.5 text-[10px] font-black sm:inline ${
-                  isActive ? lCfg.badgeClass : 'bg-muted text-muted-foreground'
+      {/* 5-Level Switcher: N5, N4, N3, N2, N1 (hidden when embedded inside JlptHubPage with shared level switcher) */}
+      {!hideLevelSwitcher && (
+        <div className="scrollbar-none flex touch-pan-x items-center gap-1.5 overflow-x-auto rounded-2xl border border-border bg-card/60 p-1.5 backdrop-blur-sm sm:w-fit sm:gap-2">
+          {(['n5', 'n4', 'n3', 'n2', 'n1'] as JlptLevel[]).map((lvl) => {
+            const lCfg = LEVEL_CONFIGS[lvl];
+            const isActive = activeLevel === lvl;
+            return (
+              <button
+                key={lvl}
+                onClick={() => {
+                  setActiveLevel(lvl);
+                  setSelectedUnit('all');
+                  setSearchQuery('');
+                  const newParams = new URLSearchParams(searchParams);
+                  newParams.set('level', lvl);
+                  setSearchParams(newParams, { replace: true });
+                }}
+                aria-pressed={isActive}
+                className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center justify-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:px-3.5 sm:py-2 sm:text-sm ${
+                  isActive
+                    ? 'border border-border bg-card text-foreground shadow-xs'
+                    : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground'
                 }`}
               >
-                {lCfg.name}
-              </span>
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Course Hero Banner */}
-      <div
-        className={`relative overflow-hidden rounded-2xl border p-3.5 shadow-xs transition-colors duration-300 sm:rounded-3xl sm:p-6 ${cfg.bannerGradient}`}
-      >
-        <div className="relative z-10 flex items-center justify-between gap-3 sm:gap-4">
-          <div className="min-w-0 space-y-1.5 sm:space-y-2">
-            <div
-              className={`hidden items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] font-bold sm:inline-flex sm:px-3 sm:py-1 sm:text-xs ${cfg.badgeClass}`}
-            >
-              <Sparkles size={12} />
-              <span>{cfg.badge}</span>
-            </div>
-            <h2 className="text-sm font-bold leading-snug text-foreground sm:text-2xl sm:font-black">
-              {cfg.title}
-            </h2>
-            <p className="hidden max-w-2xl text-xs leading-relaxed text-muted-foreground sm:block sm:text-sm">
-              {cfg.description}
-            </p>
-          </div>
-
-          {/* Stats card */}
-          <div className="flex shrink-0 items-center gap-2.5 rounded-xl border border-border bg-card/80 p-2.5 sm:rounded-2xl sm:p-3.5">
-            <div
-              className={`hidden items-center justify-center rounded-lg text-base sm:flex sm:h-12 sm:w-12 sm:rounded-xl sm:text-xl ${cfg.numberBadgeClass}`}
-            >
-              🎓
-            </div>
-            <div>
-              <div className="flex items-center gap-1.5 text-[11px] font-semibold text-muted-foreground sm:text-xs">
-                <CheckCircle2 size={12} className="text-emerald-500" />
-                <span>O'zlashtirish:</span>
-              </div>
-              <div className="text-sm font-black text-foreground sm:text-lg">
-                {completedCount} / {cfg.totalLessons}{' '}
-                <span className="text-[11px] font-medium text-muted-foreground sm:text-xs">
-                  dars
+                <span className="sm:hidden">{lCfg.name}</span>
+                <span className="hidden sm:inline">{lCfg.tabLabel}</span>
+                <span
+                  className={`hidden rounded-md px-1.5 py-0.5 text-[10px] font-black sm:inline ${
+                    isActive ? lCfg.badgeClass : 'bg-muted text-muted-foreground'
+                  }`}
+                >
+                  {lCfg.name}
                 </span>
-              </div>
-            </div>
-          </div>
+              </button>
+            );
+          })}
+        </div>
+      )}
+
+      {/* Course Progress Header (clean & compact) */}
+      <div className="shadow-2xs flex flex-col gap-2 rounded-xl border border-border/80 bg-card/60 px-3.5 py-2.5 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex min-w-0 items-center gap-2">
+          <span
+            className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-xs font-black ${cfg.badgeClass}`}
+          >
+            {cfg.name}
+          </span>
+          <span className="truncate text-xs font-bold text-foreground">{cfg.subLabel}</span>
+          <span className="hidden text-xs text-muted-foreground sm:inline">
+            • {completedCount}/{cfg.totalLessons} dars yakunlandi
+          </span>
         </div>
 
-        {/* Progress Bar */}
-        <div className="mt-3 sm:mt-4">
-          <div className="mb-1 flex items-center justify-between text-[11px] font-semibold text-muted-foreground sm:text-xs">
-            <span>Umumiy {cfg.name} Jarayoni</span>
-            <span>{Math.round((completedCount / cfg.totalLessons) * 100)}%</span>
-          </div>
-          <div className="h-2 w-full overflow-hidden rounded-full bg-muted/60">
+        <div className="flex shrink-0 items-center gap-2.5">
+          <div className="h-1.5 w-28 overflow-hidden rounded-full bg-muted sm:w-40">
             <div
-              className={`h-full transition-all duration-500 ${cfg.progressBarGradient}`}
+              className={`h-full rounded-full transition-all duration-300 ${cfg.progressBarGradient}`}
               style={{ width: `${(completedCount / cfg.totalLessons) * 100}%` }}
             />
           </div>
+          <span className="min-w-[36px] text-right text-xs font-bold text-muted-foreground">
+            {Math.round((completedCount / cfg.totalLessons) * 100)}%
+          </span>
         </div>
       </div>
 
