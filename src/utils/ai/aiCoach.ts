@@ -942,23 +942,31 @@ export const calculateWeightedOverallScore = (
   fluency: number,
   pronunciation: number,
 ): number => {
-  const overall = 0.3 * lexical + 0.3 * grammar + 0.25 * fluency + 0.15 * pronunciation;
-  return Math.round(overall * 2) / 2; // Round to nearest 0.5
+  const overall = 0.25 * lexical + 0.25 * grammar + 0.25 * fluency + 0.25 * pronunciation;
+  return Math.round(overall);
+};
+
+export const normalizeScoreTo100 = (score?: number): number => {
+  if (score === undefined || score === null || isNaN(score)) return 75;
+  if (score <= 10) return Math.min(100, Math.max(0, Math.round((score / 9) * 100)));
+  return Math.min(100, Math.max(0, Math.round(score)));
 };
 
 export const getCEFRLevelFromScore = (score: number): string => {
-  if (score >= 8.5) return 'CEFR C2 (IELTS Band 8.5 - 9.0)';
-  if (score >= 7.5) return 'CEFR C1 (IELTS Band 7.5 - 8.0)';
-  if (score >= 6.0) return 'CEFR B2 (IELTS Band 6.0 - 7.0)';
-  if (score >= 5.0) return 'CEFR B1 (IELTS Band 5.0 - 5.5)';
+  const s = normalizeScoreTo100(score);
+  if (s >= 90) return 'CEFR C2 (IELTS 8.5-9.0)';
+  if (s >= 80) return 'CEFR C1 (IELTS 7.5-8.0)';
+  if (s >= 65) return 'CEFR B2 (IELTS 6.0-7.0)';
+  if (s >= 50) return 'CEFR B1 (IELTS 5.0-5.5)';
   return 'CEFR A1/A2 (Basic / Elementary)';
 };
 
 export const getJLPTLevelFromScore = (score: number): string => {
-  if (score >= 8.5) return 'JLPT N1 (超上級 - Expert)';
-  if (score >= 7.5) return 'JLPT N2 (上級 - Advanced)';
-  if (score >= 6.0) return 'JLPT N3 (中級 - Intermediate)';
-  if (score >= 5.0) return 'JLPT N4 (初級 - Pre-Intermediate)';
+  const s = normalizeScoreTo100(score);
+  if (s >= 88) return 'JLPT N1 (超上級 - Expert)';
+  if (s >= 74) return 'JLPT N2 (上級 - Advanced)';
+  if (s >= 60) return 'JLPT N3 (中級 - Intermediate)';
+  if (s >= 45) return 'JLPT N4 (初級 - Pre-Intermediate)';
   return 'JLPT N5 (入門 - Beginner)';
 };
 
@@ -994,52 +1002,63 @@ export const analyzeSpeakingSession = async (
     .join('\n');
 
   const prompt = `
-Act as an expert ${language === 'ja' ? 'Japanese (日本語)' : 'English'} Language Examiner.
+Act as an expert ${language === 'en' ? 'English' : 'Japanese (日本語能力試験 - JLPT)'} Language Examiner.
 Scenario/Persona: "${persona}".
 
 Transcript:
 ${conversationText}
 
-Task: Produce a rapid, precise JSON speaking evaluation in natural Uzbek.
-Keep text feedback short and impactful (under 200 words total) so generation is instant.
+Task: Produce an in-depth, highly constructive JSON speaking evaluation in natural Uzbek on a 0-100 scale (JLPT criteria).
+Do NOT use IELTS or CEFR terminology. Levels must strictly be JLPT levels (N1, N2, N3, N4, N5).
+
+Rubric criteria (Score 0 to 100 for each):
+- lexical_score: So'z boyligi (語彙力) - Yaponcha so'z va iboralarning rang-barangligi (0-100)
+- grammar_score: Grammatika (文法力) - Zarrachalar (は/が/を/に/で/と) va zamonlar aniqligi (0-100)
+- fluency_score: Ravonlik (流暢さ) - Nutqning ravonligi va fikrni erkin bayon qila olishi (0-100)
+- pronunciation_score: Talaffuz va Ohang (発音・アクセント) - Tovushlar va cho'ziq unlilar to'g'riligi (0-100)
+- naturalness_score: Nyuans va Tabiiylik (自然さ・ニュアンス) - Vaziyatga mos tabiiy so'zlashuv me'yori (0-100)
+- hesitation_score: Pauza nazorati (ポーズ・テンポ) - Noo'rin to'xtalishlarsiz, ravon sur'at (0-100)
 
 Output Format (STRICT VALID JSON ONLY):
 {
-  "lexical_score": 7.5,
-  "grammar_score": 7.0,
-  "fluency_score": 7.5,
-  "pronunciation_score": 8.0,
-  "naturalness_score": 7.5,
-  "hesitation_score": 8.0,
-  "user_level_eng": "CEFR B2 (IELTS Band 6.5)",
+  "lexical_score": 80,
+  "grammar_score": 75,
+  "fluency_score": 85,
+  "pronunciation_score": 80,
+  "naturalness_score": 78,
+  "hesitation_score": 82,
   "user_level_jp": "JLPT N3 (中級 - Intermediate)",
-  "pronunciation_feedback": "Qisqa 1 jumla talaffuz tavsiyasi (O'zbek tilida).",
+  "overall_feedback": "Talabaning yapon tilidagi umumiy nutqi bo'yicha 2-3 ta lo'nda, xolis va ruhlantiruvchi xulosa (O'zbek tilida).",
+  "strengths": [
+    "Suhbatda talaba to'g'ri va muvaffaqiyatli qo'llagan 2-3 ta aniq jihat"
+  ],
+  "areas_to_improve": [
+    "Keyingi suhbatlarda yaxshilash kerak bo'lgan 2-3 ta aniq amaliy maslahat (masalan: zarrachalar yoki fe'l shakllari)"
+  ],
+  "pronunciation_feedback": "Yaponcha talaffuz va aksent bo'yicha 1-2 ta aniq amaliy tavsiya (O'zbek tilida).",
   "pronunciation_errors": [
     {
-      "word": "xato talaffuz qilingan so'z",
-      "correctionHelp": "Qisqa o'zbekcha yo'riqnoma"
+      "word": "xato yoki noaniq aytilgan so'z",
+      "correctionHelp": "Qanday to'g'ri talaffuz qilish kerakligi haqida tushuntirish"
     }
   ],
   "grammar_corrections": [
     {
       "original": "Talabaning xato jumlasi",
-      "corrected": "To'g'ri grammatik jumla",
-      "explanation": "Qisqa o'zbekcha qoida izohi"
+      "corrected": "Grammatik to'g'ri yaponcha jumla",
+      "explanation": "Qoidaning o'zbek tilidagi tushunarli izohi (masalan, 'ni' o'rniga 'de' ishlatiladi, chunki...)"
     }
   ],
   "better_vocabulary": [
     {
-      "original": "oddiy so'z",
-      "suggested": "yaxshiroq yoki yuqori darajadagi so'z",
-      "context": "Misol yoki kontekst"
+      "original": "Suhbatda talaba aytgan oddiy so'z",
+      "suggested": "Aynan shu suhbat mavzusi uchun tavsiya etiladigan yaxshiroq yaponcha so'z",
+      "context": "Qanday vaziyatda ishlatilishi va ma'nosi"
     }
-  ],
-  "overall_feedback": "Talabaning nutqini sarhisob qiluvchi 2 ta lo'nda jumla (O'zbek tilida).",
-  "strengths": ["1-2 ta eng kuchli tomoni"],
-  "areas_to_improve": ["1-2 ta rivojlantirish kerak bo'lgan tomoni"]
+  ]
 }
 
-Constraint: Return ONLY valid JSON without markdown fences. Limit corrections to max 2 items.
+Constraint: Return ONLY valid JSON without markdown fences. Provide genuine corrections and vocabulary drawn strictly from the conversation context.
 `;
 
   try {
@@ -1076,13 +1095,19 @@ Constraint: Return ONLY valid JSON without markdown fences. Limit corrections to
       .trim();
     const data = JSON.parse(cleanedText);
 
-    const lexical = typeof data.lexical_score === 'number' ? data.lexical_score : 7.0;
-    const grammar = typeof data.grammar_score === 'number' ? data.grammar_score : 7.0;
-    const fluency = typeof data.fluency_score === 'number' ? data.fluency_score : 7.0;
-    const pronunciation =
-      typeof data.pronunciation_score === 'number' ? data.pronunciation_score : 7.5;
-    const naturalness = typeof data.naturalness_score === 'number' ? data.naturalness_score : 7.5;
-    const hesitation = typeof data.hesitation_score === 'number' ? data.hesitation_score : 7.5;
+    const rawLex = typeof data.lexical_score === 'number' ? data.lexical_score : 75;
+    const rawGram = typeof data.grammar_score === 'number' ? data.grammar_score : 75;
+    const rawFlu = typeof data.fluency_score === 'number' ? data.fluency_score : 75;
+    const rawPron = typeof data.pronunciation_score === 'number' ? data.pronunciation_score : 75;
+    const rawNat = typeof data.naturalness_score === 'number' ? data.naturalness_score : 75;
+    const rawHes = typeof data.hesitation_score === 'number' ? data.hesitation_score : 75;
+
+    const lexical = normalizeScoreTo100(rawLex);
+    const grammar = normalizeScoreTo100(rawGram);
+    const fluency = normalizeScoreTo100(rawFlu);
+    const pronunciation = normalizeScoreTo100(rawPron);
+    const naturalness = normalizeScoreTo100(rawNat);
+    const hesitation = normalizeScoreTo100(rawHes);
     const overall = calculateWeightedOverallScore(lexical, grammar, fluency, pronunciation);
 
     return {
@@ -1112,7 +1137,7 @@ Constraint: Return ONLY valid JSON without markdown fences. Limit corrections to
   } catch (err) {
     console.error('Session Analysis Error:', err);
     const totalWords = userMessages.join(' ').split(/\s+/).length;
-    const baseScore = Math.min(9.0, Math.max(5.0, 5.0 + Math.floor(totalWords / 20) * 0.5));
+    const baseScore = Math.min(95, Math.max(55, 55 + Math.floor(totalWords / 10) * 5));
     const overall = calculateWeightedOverallScore(baseScore, baseScore, baseScore, baseScore);
 
     return {

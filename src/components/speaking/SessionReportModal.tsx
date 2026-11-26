@@ -11,7 +11,7 @@ import {
   Copy,
   Image as ImageIcon,
 } from 'lucide-react';
-import { SessionAnalysisReport, cleanJapaneseTTS } from '../../utils/ai';
+import { SessionAnalysisReport, cleanJapaneseTTS, normalizeScoreTo100 } from '../../utils/ai';
 import { ErrorVaultService } from '../../services/ErrorVaultService';
 import { useStudyData } from '../../context/StudyPlannerContext';
 import { toast } from '../../hooks/use-toast';
@@ -147,9 +147,9 @@ export const SessionReportModal: React.FC<SessionReportModalProps> = ({
                 <div class="subtitle">Ssenariy: <strong>${eT}</strong> | Sana: ${new Date().toLocaleDateString('uz-UZ')}</div>
 
                 <div class="score-card">
-                    <div>Umumiy Band / Fluency Bali</div>
-                    <div class="score">${(report.overall_score || report.fluency_score || 7.0).toFixed(1)} / 9.0</div>
-                    <div style="font-size: 13px; opacity: 0.9;">${report.user_level_jp || report.user_level_eng || 'CEFR B2'}</div>
+                    <div>Umumiy JLPT Bali</div>
+                    <div class="score">${normalizeScoreTo100(report.overall_score || report.fluency_score || 75)} / 100</div>
+                    <div style="font-size: 13px; opacity: 0.9;">${report.user_level_jp || 'JLPT N4'}</div>
                 </div>
 
                 <div class="section-title">💡 Umumiy Xulosa</div>
@@ -272,16 +272,21 @@ export const SessionReportModal: React.FC<SessionReportModalProps> = ({
                     </div>
                     <div>
                       <span className="text-xs font-semibold uppercase tracking-wider opacity-90">
-                        Umumiy Natija va Daraja
+                        Umumiy JLPT Natijasi va Daraja
                       </span>
                       <h3 className="text-2xl font-extrabold">
-                        {report.user_level_jp || 'JLPT N4'}
+                        {report.user_level_jp || 'JLPT N4 (初級)'}
                       </h3>
                     </div>
                   </div>
-                  <div className="rounded-2xl bg-white/20 px-5 py-2.5 text-2xl font-black tracking-tight backdrop-blur-md">
-                    {(report.overall_score || report.fluency_score || 7.0).toFixed(1)}{' '}
-                    <span className="text-xs font-normal opacity-80">/ 9.0</span>
+                  <div className="rounded-2xl bg-white/20 px-5 py-2.5 text-center backdrop-blur-md">
+                    <div className="text-3xl font-black tracking-tight">
+                      {normalizeScoreTo100(report.overall_score || report.fluency_score || 75)}
+                      <span className="text-sm font-normal opacity-85"> / 100</span>
+                    </div>
+                    <span className="text-[10px] font-semibold uppercase tracking-wider opacity-90">
+                      Umumiy Ball
+                    </span>
                   </div>
                 </div>
 
@@ -289,11 +294,11 @@ export const SessionReportModal: React.FC<SessionReportModalProps> = ({
                 <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 md:grid-cols-6">
                   <div className="rounded-2xl border border-blue-500/20 bg-blue-500/10 p-3 text-center">
                     <span className="mb-1 block text-[10px] font-extrabold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-                      📚 Lexical
+                      📚 Leksika
                     </span>
                     <div className="text-xl font-black text-gray-900 dark:text-white">
-                      {(report.lexical_score || 7.0).toFixed(1)}{' '}
-                      <span className="text-[10px] font-normal text-gray-400">/ 9.0</span>
+                      {normalizeScoreTo100(report.lexical_score || 75)}
+                      <span className="text-[10px] font-normal text-gray-400"> / 100</span>
                     </div>
                     <span className="mt-0.5 block text-[10px] text-gray-500 dark:text-gray-400">
                       So'z boyligi
@@ -302,37 +307,37 @@ export const SessionReportModal: React.FC<SessionReportModalProps> = ({
 
                   <div className="rounded-2xl border border-purple-500/20 bg-purple-500/10 p-3 text-center">
                     <span className="mb-1 block text-[10px] font-extrabold uppercase tracking-wider text-purple-600 dark:text-purple-400">
-                      ⚖️ Grammar
+                      ⚖️ Grammatika
                     </span>
                     <div className="text-xl font-black text-gray-900 dark:text-white">
-                      {(report.grammar_score || 7.0).toFixed(1)}{' '}
-                      <span className="text-[10px] font-normal text-gray-400">/ 9.0</span>
+                      {normalizeScoreTo100(report.grammar_score || 75)}
+                      <span className="text-[10px] font-normal text-gray-400"> / 100</span>
                     </div>
                     <span className="mt-0.5 block text-[10px] text-gray-500 dark:text-gray-400">
-                      Grammatika
+                      Grammatik aniqlik
                     </span>
                   </div>
 
                   <div className="rounded-2xl border border-indigo-500/20 bg-indigo-500/10 p-3 text-center">
                     <span className="mb-1 block text-[10px] font-extrabold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
-                      🗣️ Fluency
+                      🗣️ Ravonlik
                     </span>
                     <div className="text-xl font-black text-gray-900 dark:text-white">
-                      {(report.fluency_score || 7.0).toFixed(1)}{' '}
-                      <span className="text-[10px] font-normal text-gray-400">/ 9.0</span>
+                      {normalizeScoreTo100(report.fluency_score || 75)}
+                      <span className="text-[10px] font-normal text-gray-400"> / 100</span>
                     </div>
                     <span className="mt-0.5 block text-[10px] text-gray-500 dark:text-gray-400">
-                      Ravonlik
+                      Nutq ravonligi
                     </span>
                   </div>
 
                   <div className="rounded-2xl border border-pink-500/20 bg-pink-500/10 p-3 text-center">
                     <span className="mb-1 block text-[10px] font-extrabold uppercase tracking-wider text-pink-600 dark:text-pink-400">
-                      🎙️ Accent
+                      🎙️ Aksent & Ohang
                     </span>
                     <div className="text-xl font-black text-gray-900 dark:text-white">
-                      {(report.pronunciation_score || 7.5).toFixed(1)}{' '}
-                      <span className="text-[10px] font-normal text-gray-400">/ 9.0</span>
+                      {normalizeScoreTo100(report.pronunciation_score || 75)}
+                      <span className="text-[10px] font-normal text-gray-400"> / 100</span>
                     </div>
                     <span className="mt-0.5 block text-[10px] text-gray-500 dark:text-gray-400">
                       Talaffuz
@@ -341,24 +346,24 @@ export const SessionReportModal: React.FC<SessionReportModalProps> = ({
 
                   <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-center">
                     <span className="mb-1 block text-[10px] font-extrabold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
-                      ✨ Nuance
+                      ✨ Nyuans
                     </span>
                     <div className="text-xl font-black text-gray-900 dark:text-white">
-                      {(report.naturalness_score || 7.5).toFixed(1)}{' '}
-                      <span className="text-[10px] font-normal text-gray-400">/ 9.0</span>
+                      {normalizeScoreTo100(report.naturalness_score || 75)}
+                      <span className="text-[10px] font-normal text-gray-400"> / 100</span>
                     </div>
                     <span className="mt-0.5 block text-[10px] text-gray-500 dark:text-gray-400">
-                      Tabiiylik
+                      Tabiiy ifodalar
                     </span>
                   </div>
 
                   <div className="rounded-2xl border border-amber-500/20 bg-amber-500/10 p-3 text-center">
                     <span className="mb-1 block text-[10px] font-extrabold uppercase tracking-wider text-amber-600 dark:text-amber-400">
-                      ⏱️ Pauses
+                      ⏱️ Pauza nazorati
                     </span>
                     <div className="text-xl font-black text-gray-900 dark:text-white">
-                      {(report.hesitation_score || 7.5).toFixed(1)}{' '}
-                      <span className="text-[10px] font-normal text-gray-400">/ 9.0</span>
+                      {normalizeScoreTo100(report.hesitation_score || 75)}
+                      <span className="text-[10px] font-normal text-gray-400"> / 100</span>
                     </div>
                     <span className="mt-0.5 block text-[10px] text-gray-500 dark:text-gray-400">
                       Duduqlanishsiz

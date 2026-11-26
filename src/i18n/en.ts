@@ -2,7 +2,7 @@ export const en = {
   nav: {
     dashboard: 'Dashboard',
     vocabulary: 'Vocabulary',
-    jlptHub: 'JLPT Master',
+    jlptHub: 'JLPT',
     scenarios: 'Scenarios',
     aiCoach: 'Speaking',
     flashcards: 'Flashcards',

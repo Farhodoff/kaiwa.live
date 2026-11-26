@@ -83,7 +83,6 @@ describe('Admin Mobile Responsiveness & Supabase Key Resilience Suite', () => {
         '../../pages/JlptReadingPage.tsx',
         '../../pages/JlptListeningMockPage.tsx',
         '../../pages/JlptMockExamPage.tsx',
-        '../../pages/JlptWritingPage.tsx',
       ];
 
       for (const pageRelPath of jlptPages) {

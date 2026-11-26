@@ -114,6 +114,46 @@ describe('Speaking Coach session and controls', () => {
       'true',
     );
   });
+
+  it('renders left mic button and right red end-call button in docked bottom bar during active session without inspiration card', () => {
+    state.isLiveSession = true;
+    render(renderPage());
+    // Inspiration prompts removed
+    expect(screen.queryByText(/Namunaviy gaplar/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Ilhomlanish/i)).not.toBeInTheDocument();
+
+    // Left mic button
+    const micButton = screen.getByRole('button', { name: 'Mikrofonni pauza qilish' });
+    expect(micButton).toBeVisible();
+
+    // Right end call button
+    const endButton = screen.getByRole('button', { name: 'Suhbatni yakunlash' });
+    expect(endButton).toBeVisible();
+    expect(endButton).toHaveClass('bg-rose-600');
+
+    // Clicking end call triggers session termination
+    fireEvent.click(endButton);
+    expect(state.stopSpeaking).toHaveBeenCalled();
+    expect(state.endSession).toHaveBeenCalled();
+  });
+
+  it('toggles transcript showing scrollable log while keeping character orb', () => {
+    state.isLiveSession = true;
+    state.chatHistory = [
+      { role: 'user', content: 'Konnichiwa', timestamp: '12:00' },
+      { role: 'assistant', content: 'Konnichiwa! Ogenki desu ka?', timestamp: '12:00' },
+    ];
+    render(renderPage());
+    expect(screen.getByText('Sensei')).toBeVisible();
+
+    const toggleButton = screen.getByRole('button', { name: 'Suhbat matnini ko‘rsatish' });
+    fireEvent.click(toggleButton);
+
+    expect(screen.getByRole('log', { name: 'Suhbat transkripsiyasi' })).toBeVisible();
+    expect(screen.getByText('Konnichiwa')).toBeVisible();
+    expect(screen.getByText('Konnichiwa! Ogenki desu ka?')).toBeVisible();
+    expect(screen.getByText('Sensei')).toBeVisible();
+  });
 });
 
 it('keeps a conversation alive when switching tabs', () => {

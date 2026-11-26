@@ -3,7 +3,7 @@
  * High-resolution canvas PNG image generator and popup-safe PDF printing for speaking session reports.
  */
 
-import { SessionAnalysisReport } from './ai';
+import { SessionAnalysisReport, normalizeScoreTo100 } from './ai';
 import { escapeHtml } from './escapeHtml';
 
 /**
@@ -76,17 +76,17 @@ export function generateReportShareCard(
   ctx.font = 'bold 15px -apple-system, BlinkMacSystemFont, sans-serif';
   ctx.fillText('UMUMIY NATIJA', 90, 180);
 
-  const overallScore = (report.overall_score || report.fluency_score || 7.0).toFixed(1);
+  const overallScore = `${normalizeScoreTo100(report.overall_score || report.fluency_score || 75)}`;
   ctx.fillStyle = '#ffffff';
-  ctx.font = 'bold 68px -apple-system, BlinkMacSystemFont, sans-serif';
+  ctx.font = 'bold 64px -apple-system, BlinkMacSystemFont, sans-serif';
   ctx.fillText(overallScore, 90, 260);
 
-  ctx.font = '24px -apple-system, BlinkMacSystemFont, sans-serif';
+  ctx.font = '22px -apple-system, BlinkMacSystemFont, sans-serif';
   ctx.fillStyle = '#94a3b8';
-  ctx.fillText('/ 9.0', 210, 250);
+  ctx.fillText('/ 100', 215, 250);
 
   // Level Badge
-  const levelText = report.user_level_jp || report.user_level_eng || 'CEFR B2 (IELTS 6.5)';
+  const levelText = report.user_level_jp || 'JLPT N4';
   ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
   ctx.roundRect(90, 290, 300, 48, 12);
   ctx.fill();
@@ -236,9 +236,9 @@ export function printReportViaIframe(report: SessionAnalysisReport, personaTitle
       <div class="subtitle">Ssenariy: <strong>${eT}</strong> | Sana: ${new Date().toLocaleDateString('uz-UZ')}</div>
 
       <div class="score-card">
-        <div>Umumiy Band / Fluency Bali</div>
-        <div class="score">${(report.overall_score || report.fluency_score || 7.0).toFixed(1)} / 9.0</div>
-        <div style="font-size: 13px; opacity: 0.9;">${report.user_level_jp || report.user_level_eng || 'CEFR B2'}</div>
+        <div>Umumiy JLPT Bali</div>
+        <div class="score">${normalizeScoreTo100(report.overall_score || report.fluency_score || 75)} / 100</div>
+        <div style="font-size: 13px; opacity: 0.9;">${report.user_level_jp || 'JLPT N4'}</div>
       </div>
 
       <div class="section-title">💡 Umumiy Xulosa</div>

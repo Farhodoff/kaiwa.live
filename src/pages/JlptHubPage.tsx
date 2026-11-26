@@ -89,261 +89,198 @@ export const JlptHubPage: React.FC = () => {
 
   return (
     <div className="mx-auto max-w-7xl space-y-4 overflow-x-hidden p-3 pb-28 sm:p-4 sm:pb-24 md:space-y-8 md:p-8 3xl:max-w-8xl 3xl:p-12">
-      {/* Header — Desktop only; mobile already has top header with title */}
-      <div className="hidden overflow-hidden rounded-3xl border border-border bg-card p-4 shadow-xs md:block md:p-6">
-        <div className="relative z-10 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
-          <h1 className="font-display text-2xl font-black tracking-tight text-foreground md:text-3xl">
-            {language === 'ja' ? '日本語マスターハブ' : 'JLPT Master Hub'}
+      {/* Unified Top Bar: Title 'JLPT', Level Selector & Reading Controls in ONE clean row */}
+      <div className="flex flex-col gap-3 rounded-2xl border border-border bg-card/80 p-3 shadow-xs sm:flex-row sm:items-center sm:justify-between sm:p-4">
+        <div className="flex items-center gap-3">
+          <h1 className="font-display text-xl font-black tracking-tight text-foreground sm:text-2xl">
+            JLPT
           </h1>
-
-          <div className="flex w-full flex-wrap items-center gap-3 md:w-auto">
-            {/* Furigana & Romaji Controls */}
-            <div className="hidden items-center rounded-xl border border-border bg-muted/50 p-1 md:flex">
-              <button
-                onClick={() => updateSettings({ showFurigana: !settings.showFurigana })}
-                className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold transition-all ${
-                  settings.showFurigana
-                    ? 'bg-primary text-primary-foreground shadow-xs'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                <Languages size={13} />
-                <span>Furigana</span>
-                <span className="text-[10px] opacity-75">
-                  {settings.showFurigana ? 'ON' : 'OFF'}
-                </span>
-              </button>
-              <button
-                onClick={() => updateSettings({ showRomaji: !settings.showRomaji })}
-                className={`rounded-lg px-3 py-1.5 text-xs font-bold transition-all ${
-                  settings.showRomaji
-                    ? 'border border-amber-500/30 bg-amber-500/15 text-amber-600 dark:text-amber-400'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                <span>Romaji</span>
-                <span className="ml-1 text-[10px] opacity-75">
-                  {settings.showRomaji ? 'ON' : 'OFF'}
-                </span>
-              </button>
-            </div>
+          <div className="h-5 w-[1px] bg-border" />
+          {/* Level Selector Pills */}
+          <div className="no-scrollbar flex items-center gap-1 overflow-x-auto">
+            {(['N5', 'N4', 'N3', 'N2', 'N1'] as const).map((lvl) => {
+              const isSelected = activeLevel === lvl;
+              return (
+                <button
+                  key={lvl}
+                  onClick={() => handleLevelChange(lvl)}
+                  aria-pressed={isSelected}
+                  className={`flex min-h-[34px] items-center justify-center rounded-lg px-2.5 text-xs font-black transition-all active:scale-95 sm:px-3 ${
+                    isSelected
+                      ? 'bg-primary text-primary-foreground shadow-xs'
+                      : 'bg-muted/40 text-muted-foreground hover:bg-muted hover:text-foreground'
+                  }`}
+                >
+                  {lvl}
+                </button>
+              );
+            })}
           </div>
         </div>
-      </div>
 
-      {/* Reading controls for mobile — desktop header is hidden on small screens */}
-      <div className="flex items-center gap-2 md:hidden">
-        <span className="px-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/70">
-          {language === 'ja' ? '読み方' : "O'qish"}
-        </span>
-        <div className="flex items-center rounded-xl border border-border bg-muted/50 p-1">
+        {/* Furigana & Romaji Controls */}
+        <div className="flex items-center gap-1.5 self-end sm:self-center">
           <button
             onClick={() => updateSettings({ showFurigana: !settings.showFurigana })}
             aria-pressed={settings.showFurigana}
-            className={`flex min-h-[44px] items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-bold transition-all ${
+            className={`flex min-h-[32px] items-center gap-1 rounded-lg px-2.5 py-1 text-xs font-bold transition-all ${
               settings.showFurigana
-                ? 'bg-primary text-primary-foreground shadow-xs'
-                : 'text-muted-foreground'
+                ? 'border border-primary/30 bg-primary/15 text-primary'
+                : 'bg-muted/40 text-muted-foreground hover:text-foreground'
             }`}
           >
             <Languages size={13} />
-            <span>がな</span>
+            <span>Furigana</span>
+            <span className="text-[10px] opacity-75">{settings.showFurigana ? 'ON' : 'OFF'}</span>
           </button>
           <button
             onClick={() => updateSettings({ showRomaji: !settings.showRomaji })}
             aria-pressed={settings.showRomaji}
-            className={`min-h-[44px] rounded-lg px-3 py-1.5 text-xs font-bold transition-all ${
+            className={`flex min-h-[32px] items-center gap-1 rounded-lg px-2.5 py-1 text-xs font-bold transition-all ${
               settings.showRomaji
                 ? 'border border-amber-500/30 bg-amber-500/15 text-amber-600 dark:text-amber-400'
-                : 'text-muted-foreground'
+                : 'bg-muted/40 text-muted-foreground hover:text-foreground'
             }`}
           >
             <span>Romaji</span>
+            <span className="text-[10px] opacity-75">{settings.showRomaji ? 'ON' : 'OFF'}</span>
           </button>
         </div>
       </div>
 
-      {/* Target Level Quick Selector Bar (Optimizes rendering to current level only) */}
-      <div className="flex flex-wrap items-center justify-between gap-2.5 rounded-2xl border border-border bg-card/70 p-2.5 shadow-xs sm:p-3">
-        <div className="flex items-center gap-2 px-1">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 text-primary">
-            <Target size={15} />
-          </div>
-          <div>
-            <div className="text-xs font-black text-foreground">
-              {language === 'ja' ? '学習レベル' : 'O‘rganish darajangiz:'}
-            </div>
-            <div className="hidden text-[10px] text-muted-foreground sm:block">
-              {language === 'ja'
-                ? '選択したレベルのみ高速読み込み'
-                : 'Faqat tanlangan daraja resurslari yuklanadi (tezkor render)'}
-            </div>
-          </div>
-        </div>
-
-        <div className="no-scrollbar flex items-center gap-1.5 overflow-x-auto">
-          {(['N5', 'N4', 'N3', 'N2', 'N1'] as const).map((lvl) => {
-            const isSelected = activeLevel === lvl;
-            const levelLabels = {
-              N5: "N5 Boshlang'ich",
-              N4: 'N4 Elementar',
-              N3: "N3 O'rta",
-              N2: 'N2 Yuqori',
-              N1: 'N1 Professional',
-            };
-            return (
-              <button
-                key={lvl}
-                onClick={() => handleLevelChange(lvl)}
-                className={`flex min-h-[38px] items-center gap-1 rounded-xl px-3 py-1.5 text-xs font-black transition-all active:scale-95 ${
-                  isSelected
-                    ? 'scale-102 bg-primary text-primary-foreground shadow-sm ring-2 ring-primary/20'
-                    : 'bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground'
-                }`}
-              >
-                <span>{lvl}</span>
-                <span className="hidden text-[10px] font-normal opacity-85 lg:inline">
-                  ({levelLabels[lvl].split(' ')[1]})
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Tabs Strip — Clean, Single-Row, Minimalist Navigation */}
-      <div className="border-b border-border/80 px-1 pb-3">
-        <div className="no-scrollbar flex items-center gap-2 overflow-x-auto pb-1">
+      {/* Tabs Strip — Clean, Single-Row Navigation */}
+      <div className="border-b border-border/80 pb-1">
+        <div className="no-scrollbar flex items-center gap-1 overflow-x-auto">
           <button
             onClick={() => handleTabChange('lessons')}
-            className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
+            className={`flex min-h-[38px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-bold transition-all active:scale-95 ${
               activeTab === 'lessons'
                 ? 'bg-primary text-primary-foreground shadow-xs'
-                : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
+                : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
             }`}
           >
-            <BookOpen size={15} />
+            <BookOpen size={14} />
             <span>{language === 'ja' ? 'レッスン' : 'Darsliklar'}</span>
           </button>
 
           <button
             onClick={() => handleTabChange('grammar')}
-            className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
+            className={`flex min-h-[38px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-bold transition-all active:scale-95 ${
               activeTab === 'grammar'
                 ? 'bg-primary text-primary-foreground shadow-xs'
-                : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
+                : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
             }`}
           >
-            <Sparkles size={15} />
+            <Sparkles size={14} />
             <span>{language === 'ja' ? '文法' : 'Grammatika'}</span>
           </button>
 
           <button
             onClick={() => handleTabChange('kanji')}
-            className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
+            className={`flex min-h-[38px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-bold transition-all active:scale-95 ${
               activeTab === 'kanji'
                 ? 'bg-primary text-primary-foreground shadow-xs'
-                : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
+                : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
             }`}
           >
-            <GraduationCap size={15} />
+            <GraduationCap size={14} />
             <span>{language === 'ja' ? '漢字' : 'Kanji'}</span>
           </button>
 
           <button
             onClick={() => handleTabChange('goi')}
-            className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
+            className={`flex min-h-[38px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-bold transition-all active:scale-95 ${
               activeTab === 'goi'
                 ? 'bg-primary text-primary-foreground shadow-xs'
-                : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
+                : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
             }`}
           >
-            <Languages size={15} />
+            <Languages size={14} />
             <span>{language === 'ja' ? '語彙' : 'Lug‘at'}</span>
           </button>
 
           <button
             onClick={() => handleTabChange('reading')}
-            className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
+            className={`flex min-h-[38px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-bold transition-all active:scale-95 ${
               activeTab === 'reading'
                 ? 'bg-primary text-primary-foreground shadow-xs'
-                : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
+                : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
             }`}
           >
-            <FileText size={15} />
+            <FileText size={14} />
             <span>{language === 'ja' ? '読解' : 'O‘qish'}</span>
           </button>
 
           <button
             onClick={() => handleTabChange('listening')}
-            className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
+            className={`flex min-h-[38px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-bold transition-all active:scale-95 ${
               activeTab === 'listening'
                 ? 'bg-primary text-primary-foreground shadow-xs'
-                : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
+                : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
             }`}
           >
-            <Headphones size={15} />
+            <Headphones size={14} />
             <span>{language === 'ja' ? '聴解' : 'Tinglash'}</span>
           </button>
 
           <button
             onClick={() => handleTabChange('writing')}
-            className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
+            className={`flex min-h-[38px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-bold transition-all active:scale-95 ${
               activeTab === 'writing'
                 ? 'bg-primary text-primary-foreground shadow-xs'
-                : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
+                : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
             }`}
           >
-            <FileText size={15} />
+            <FileText size={14} />
             <span>{language === 'ja' ? '作文' : 'Yozish'}</span>
           </button>
 
           <button
             onClick={() => handleTabChange('mock')}
-            className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
+            className={`flex min-h-[38px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-bold transition-all active:scale-95 ${
               activeTab === 'mock'
                 ? 'bg-primary text-primary-foreground shadow-xs'
-                : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
+                : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
             }`}
           >
-            <Target size={15} />
+            <Target size={14} />
             <span>{language === 'ja' ? 'JLPT模擬' : 'JLPT imtihoni'}</span>
           </button>
 
           <button
             onClick={() => handleTabChange('mistakes')}
-            className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
+            className={`flex min-h-[38px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-bold transition-all active:scale-95 ${
               activeTab === 'mistakes'
                 ? 'bg-primary text-primary-foreground shadow-xs'
-                : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
+                : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
             }`}
           >
-            <BookOpen size={15} />
+            <BookOpen size={14} />
             <span>{language === 'ja' ? '間違いノート' : 'Xatolar daftari'}</span>
           </button>
 
           <button
             onClick={() => handleTabChange('insights')}
-            className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
+            className={`flex min-h-[38px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-bold transition-all active:scale-95 ${
               activeTab === 'insights'
                 ? 'bg-primary text-primary-foreground shadow-xs'
-                : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
+                : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
             }`}
           >
-            <Target size={15} />
+            <Target size={14} />
             <span>{language === 'ja' ? '弱点分析' : 'Zaiflik tahlili'}</span>
           </button>
 
           <button
             onClick={() => handleTabChange('n1_mastery')}
-            className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
+            className={`flex min-h-[38px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-bold transition-all active:scale-95 ${
               activeTab === 'n1_mastery'
                 ? 'border border-primary/30 bg-primary/10 font-black text-primary shadow-xs'
-                : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
+                : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
             }`}
           >
-            <Crown size={15} className="text-amber-500" />
-            <span>{language === 'ja' ? 'N1至高マスター' : 'N1 Mastery (社説・敬語)'}</span>
+            <Crown size={14} className="text-amber-500" />
+            <span>{language === 'ja' ? 'N1マスター' : 'N1 Mastery'}</span>
           </button>
         </div>
       </div>
@@ -359,7 +296,7 @@ export const JlptHubPage: React.FC = () => {
         {/* Tab 0: Minna no Nihongo Shokyu 1 Lessons (1–25) */}
         {activeTab === 'lessons' && (
           <div className="animate-in fade-in">
-            <MinnaLessonsExplorer />
+            <MinnaLessonsExplorer initialLevel={activeLevel} hideLevelSwitcher={true} />
           </div>
         )}
 

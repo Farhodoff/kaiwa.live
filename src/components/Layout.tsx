@@ -125,7 +125,7 @@ const Layout: React.FC = () => {
     // 100% Japanese (JLPT) Navigation — Dashboard is canonical home (single entry)
     return [
       { name: isJa ? 'ホーム' : isEn ? 'Home' : 'Bosh sahifa', path: '/dashboard', icon: Home },
-      { name: isJa ? 'JLPTマスター' : 'JLPT Master', path: '/jlpt', icon: BookOpen },
+      { name: 'JLPT', path: '/jlpt', icon: BookOpen },
       {
         name: isJa ? '会話シナリオ' : isEn ? 'Scenarios' : 'Ssenariylar',
         path: '/scenarios?lang=ja',
@@ -190,7 +190,7 @@ const Layout: React.FC = () => {
     if (location.pathname.startsWith('/speaking-coach'))
       return isJa ? 'AIスピーキング' : 'Speaking';
     if (location.pathname.startsWith('/monologue')) return isJa ? 'モノローグ' : 'Monolog';
-    if (location.pathname === '/jlpt') return isJa ? 'JLPTマスター' : 'JLPT Master';
+    if (location.pathname === '/jlpt') return 'JLPT';
     if (location.pathname === '/dashboard') return isJa ? 'ホーム' : isEn ? 'Home' : 'Bosh sahifa';
     if (location.pathname === '/progress')
       return isJa
