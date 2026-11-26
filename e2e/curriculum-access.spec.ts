@@ -33,6 +33,24 @@ test('search finds grammar and gives a way to clear empty filters', async ({ pag
 });
 
 test('N4 listening opens directly without showing the audio transcript', async ({ page }) => {
+  await page.addInitScript(() => {
+    window.localStorage.setItem(
+      'study_planner_lesson_progress_guest_ja-minna-l26',
+      JSON.stringify({
+        lessonId: 'ja-minna-l26',
+        userId: 'guest',
+        currentStepIndex: 3,
+        completedStepIds: ['ja-minna-l26-s1', 'ja-minna-l26-s2', 'ja-minna-l26-s3'],
+        isCompleted: false,
+        progressionVersion: 1,
+        stepResults: {
+          'ja-minna-l26-s1': { passed: true, score: 100 },
+          'ja-minna-l26-s2': { passed: true, score: 100 },
+          'ja-minna-l26-s3': { passed: true, score: 100 },
+        },
+      }),
+    );
+  });
   await page.goto('/jlpt?level=n4');
   await page.getByRole('button', { name: /26-Dars.*tinglash mashqi/i }).click();
   await expect(page).toHaveURL(/\/lesson\/ja-minna-l26\?step=mondai/);

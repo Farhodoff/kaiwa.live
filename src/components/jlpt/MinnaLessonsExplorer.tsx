@@ -663,7 +663,7 @@ export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({
                 ? 'レッスンを検索'
                 : language === 'en'
                   ? 'Search lessons'
-                  : 'Dars qidirish'
+                  : 'Dars yoki grammatikani qidirish'
             }
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
