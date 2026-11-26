@@ -494,6 +494,60 @@ describe('Personal Learning Plan System Tests', () => {
   });
 
   describe('5. Isolation & Route Security', () => {
+    it('does not schedule the retired essay feature', () => {
+      const goal: PersonalLearningGoal = {
+        id: 'retired-essay',
+        userId: 'test_user',
+        language: 'ja',
+        goalType: 'jlpt',
+        currentLevel: 'N5',
+        targetGoal: 'JLPT N4',
+        targetLevel: 'N4',
+        deadline: new Date(Date.now() + 86400000 * 90).toISOString(),
+        dailyMinutes: 60,
+        totalWeeks: 12,
+        currentWeek: 1,
+        status: 'active',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+      const raw = JSON.stringify({
+        days: [
+          {
+            day: 'monday',
+            tasks: [
+              {
+                title: 'Essay',
+                type: 'writing',
+                skill: 'writing',
+                route: '/jlpt-writing',
+                estimatedMinutes: 15,
+              },
+              {
+                title: 'Sakubun',
+                type: 'practice',
+                skill: 'sakubun',
+                route: '/jlpt?tab=writing',
+                estimatedMinutes: 15,
+              },
+              {
+                title: 'Reading',
+                type: 'reading',
+                skill: 'reading',
+                route: '/jlpt?tab=reading',
+                estimatedMinutes: 15,
+              },
+            ],
+          },
+        ],
+      });
+      const plan = PersonalLearningPlanEngine.parseAndValidateWeeklyPlan(raw, goal, 1, 'test_user');
+      expect(plan).not.toBeNull();
+      const tasks = plan!.days.flatMap((day) => day.tasks);
+      expect(tasks.some((task) => task.title === 'Essay' || task.title === 'Sakubun')).toBe(false);
+      expect(tasks.some((task) => task.skill === 'reading')).toBe(true);
+    });
+
     it('should enforce strict route validation and avoid mixing language resources', () => {
       const sampleGoalJa: PersonalLearningGoal = {
         id: 'goal-ja-123',

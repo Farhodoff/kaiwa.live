@@ -642,7 +642,7 @@ export class SkillMatrixService {
       kanji: '/jlpt?tab=kanji',
       reading: '/jlpt?tab=reading',
       listening: '/jlpt?tab=listening',
-      writing: '/jlpt?tab=writing',
+      writing: '/jlpt/grammar',
       speaking: '/coach',
     };
 

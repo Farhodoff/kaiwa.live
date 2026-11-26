@@ -130,7 +130,6 @@ export function getLevelPedagogicalDirectives(
     if (goalType === 'ielts') {
       return `IELTS TARGET DIRECTIVES (Target Band: ${levelCode}):
 - Speaking: Part 1 fluency, Part 2 sustained 2-min talk, Part 3 abstract discussion. Route: /speaking-coach?lang=ja
-- Writing: Task 1 academic report synthesis & Task 2 250-word balanced essays. Route: /jlpt?tab=writing
 - Reading: Skimming & scanning, comprehension speed drills under timed conditions. Route: /jlpt?tab=reading
 - Listening: Focus on keyword prediction, dialogues, and audio comprehension. Route: /jlpt?tab=listening
 - Grammar & Vocab: Complex sentence structures and vocabulary drill. Route: /jlpt?tab=grammar`;
@@ -333,7 +332,6 @@ export const PersonalLearningPlanEngine = {
             `/jlpt?tab=listening&level=${targetLevelCode}`,
             `/jlpt?tab=mock&level=${targetLevelCode}`,
             `/jlpt?tab=mistakes`,
-            `/jlpt-writing?level=${targetLevelCode}`,
             '/speaking-coach?lang=ja',
             '/scenarios',
             '/study-mode?lang=ja',
@@ -345,7 +343,6 @@ export const PersonalLearningPlanEngine = {
             '/scenarios',
             '/speaking-coach?lang=ja',
             '/jlpt?tab=reading',
-            '/jlpt?tab=writing',
             '/vocabulary',
             '/study-mode',
           ];
@@ -434,7 +431,7 @@ monday, tuesday, wednesday, thursday, friday, saturday, sunday.
 ${
   isJa
     ? '- JLPT plans must balance grammar, vocabulary, kanji, reading, and listening according to level and weakness.'
-    : '- IELTS target 7.0+ must include speaking, writing, reading/listening, and mock/exam practice across the week when DAILY_MINUTES permits.'
+    : '- Plans must include speaking, grammar, reading/listening, and mock/exam practice across the week when DAILY_MINUTES permits.'
 }
 - Do not give beginner material to an advanced learner unless it is explicitly a review/remediation task.
 
@@ -462,8 +459,8 @@ OUTPUT JSON SCHEMA:
       "tasks": [
         {
           "title": "string in Uzbek",
-          "type": "lesson | grammar | vocabulary | srs | speaking | reading | listening | writing | practice | mock_test | review",
-          "skill": "grammar | vocabulary | reading | listening | speaking | writing | kanji",
+          "type": "lesson | grammar | vocabulary | srs | speaking | reading | listening | practice | mock_test | review",
+          "skill": "grammar | vocabulary | reading | listening | speaking | kanji",
           "estimatedMinutes": 20,
           "contentId": "only if included in AVAILABLE_CONTENT_IDS",
           "route": "one route from ALLOWED_ROUTES"
@@ -652,6 +649,9 @@ ${prompt}`;
         for (let taskIndex = 0; taskIndex < rawTasks.length; taskIndex++) {
           const t = rawTasks[taskIndex];
           if (!t || typeof t !== 'object') continue;
+          // Essay practice has been retired; do not generate unusable plan tasks.
+          if (['writing', 'sakubun'].includes(t.skill) || ['writing', 'sakubun'].includes(t.type))
+            continue;
 
           // Clamp task minutes between 5 and 60 minutes
           let minutes = Number(t.estimatedMinutes || t.minutes || 15);
@@ -764,11 +764,6 @@ ${prompt}`;
               (resolvedRoute === '/jlpt' || !resolvedRoute.includes('speaking-coach'))
             ) {
               resolvedRoute = '/speaking-coach?lang=ja';
-            } else if (
-              (effectiveSkill === 'writing' || effectiveSkill === 'sakubun') &&
-              !resolvedRoute.includes('jlpt-writing')
-            ) {
-              resolvedRoute = `/jlpt-writing?level=${targetLvl}`;
             } else if (
               (actualType === 'srs' || effectiveSkill === 'vocabulary') &&
               resolvedRoute.startsWith('/study-mode') &&
