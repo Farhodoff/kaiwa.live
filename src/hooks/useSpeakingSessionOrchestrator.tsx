@@ -147,11 +147,9 @@ export function useSpeakingSessionOrchestrator({
     }
     setIsSpeaking(true);
     isSpeakingRef.current = true;
-    if (recognitionRef.current) {
-      try {
-        recognitionRef.current.abort();
-      } catch {}
-    }
+    // Keep the recognizer connection warm while TTS is playing. Speech results are
+    // already ignored while isSpeakingRef is true, so closing it here only adds an
+    // Azure reconnect delay and clips the learner's first words after playback.
     transcriptBufferRef.current = '';
     setCurrentTranscript('');
   }, []);
@@ -168,18 +166,10 @@ export function useSpeakingSessionOrchestrator({
 
     // Continuous Hands-Free Turn-Taking:
     // Once AI Coach finishes speaking, hand the turn automatically to the user and start listening.
-    // 120ms acoustic delay ensures speaker audio & room reverberation have cleared while keeping response ultra-fast.
+    // The recognizer stays connected during playback, so the learner can answer
+    // immediately without waiting for a new cloud recognition session.
     if (isLiveSessionRef.current && !isMutedRef.current) {
-      autoListenTimerRef.current = setTimeout(() => {
-        if (
-          isLiveSessionRef.current &&
-          !isSpeakingRef.current &&
-          !isProcessingRef.current &&
-          !isMutedRef.current
-        ) {
-          startListeningRef.current?.();
-        }
-      }, 120);
+      startListeningRef.current?.();
     }
   }, []);
 
@@ -895,6 +885,10 @@ export function useSpeakingSessionOrchestrator({
 
       setChatHistory(initHistory);
       chatHistoryRef.current = initHistory;
+
+      // Establish STT while the greeting plays. Its results stay suppressed during
+      // TTS, but the cloud recognizer is ready the instant the greeting ends.
+      startListeningRef.current?.();
 
       const speechAudio = extractSpeechAudioText(greeting);
       lastCoachSpokenTextRef.current = speechAudio;

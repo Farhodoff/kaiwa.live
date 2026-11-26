@@ -26,7 +26,12 @@ export class CoachSpeechRecognition {
   constructor(private onProvider: (provider: CoachSpeechProvider, reason?: string) => void) {}
 
   start() {
-    if (this.running) return;
+    if (this.running) {
+      // The continuous provider remains connected while the coach speaks. Re-enter
+      // listening mode instantly instead of waiting for a fresh Azure connection.
+      this.onstart?.();
+      return;
+    }
     this.running = true;
     this.finalResults = [];
     const generation = ++this.generation;

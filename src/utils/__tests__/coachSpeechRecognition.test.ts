@@ -64,6 +64,21 @@ describe('Coach speech recognition provider integration', () => {
     expect(controller.close).toHaveBeenCalledOnce();
   });
 
+  it('hands listening back instantly without reconnecting an active Azure recognizer', async () => {
+    const recognition = new CoachSpeechRecognition(vi.fn());
+    recognition.onstart = vi.fn();
+    recognition.start();
+    await vi.waitFor(() => expect(recognition.onstart).toHaveBeenCalledOnce());
+
+    recognition.start();
+
+    expect(recognition.onstart).toHaveBeenCalledTimes(2);
+    expect(AzureSpeechService.createContinuousRecognizer).toHaveBeenCalledOnce();
+    expect(controller.start).toHaveBeenCalledOnce();
+    expect(controller.close).not.toHaveBeenCalled();
+    recognition.abort();
+  });
+
   it('does not restart or emit results after abort during Azure initialization', async () => {
     let resolve!: (value: typeof controller) => void;
     vi.mocked(AzureSpeechService.createContinuousRecognizer).mockReturnValue(

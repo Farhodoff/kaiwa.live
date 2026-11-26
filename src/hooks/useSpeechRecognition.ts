@@ -233,11 +233,6 @@ export const useSpeechRecognition = ({
       }
       transcriptBufferRef.current = '';
       setCurrentTranscript('');
-      if (recognitionRef.current) {
-        try {
-          recognitionRef.current.abort();
-        } catch {}
-      }
       setIsListening(false);
       // NOTE: Do NOT call stopMicrophoneStream() or stopVolumeMeter() here.
       // Keeping mediaStreamRef.current alive in warm-standby ensures:
@@ -256,11 +251,6 @@ export const useSpeechRecognition = ({
       }
       transcriptBufferRef.current = '';
       setCurrentTranscript('');
-      if (recognitionRef.current) {
-        try {
-          recognitionRef.current.abort();
-        } catch {}
-      }
       setIsListening(false);
     }
   }, [isThinking]);
