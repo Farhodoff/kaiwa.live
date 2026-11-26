@@ -24,7 +24,7 @@ jobs:
       SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Check Supabase Secrets Availability
         id: check_secrets
@@ -40,7 +40,7 @@ jobs:
 
       - name: Setup Node.js 20
         if: steps.check_secrets.outputs.has_secrets == 'true'
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 20
           cache: 'npm'
