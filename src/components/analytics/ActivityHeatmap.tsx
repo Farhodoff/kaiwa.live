@@ -117,6 +117,7 @@ const ActivityHeatmap: React.FC<ActivityHeatmapProps> = ({
   // Modal State for Day Details
   const [selectedDay, setSelectedDay] = useState<HeatmapDay | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [focusedDate, setFocusedDate] = useState(() => format(new Date(), 'yyyy-MM-dd'));
 
   // 2026 yil to'liq: January - December
   const year2026 = new Date(2026, 0, 1);
@@ -239,20 +240,22 @@ const ActivityHeatmap: React.FC<ActivityHeatmapProps> = ({
   }, [days, startDate]);
 
   const getColor = (level: number, isSelected: boolean) => {
-    const borderExtra = isSelected ? 'ring-2 ring-[#C9A961] scale-110 z-10' : '';
+    const borderExtra = isSelected
+      ? 'ring-2 ring-foreground ring-offset-2 ring-offset-background z-10'
+      : '';
     switch (level) {
       case 0:
-        return `bg-[#161b22] border border-white/5 hover:border-white/25 ${borderExtra}`;
+        return `bg-muted hover:bg-muted-foreground/40 ${borderExtra}`;
       case 1:
-        return `bg-[#0e4429] shadow-[0_0_8px_rgba(14,68,41,0.4)] hover:bg-[#135936] ${borderExtra}`;
+        return `bg-primary/25 hover:bg-primary/[0.35] ${borderExtra}`;
       case 2:
-        return `bg-[#006d32] shadow-[0_0_10px_rgba(0,109,50,0.5)] hover:bg-[#00873e] ${borderExtra}`;
+        return `bg-primary/[0.45] hover:bg-primary/60 ${borderExtra}`;
       case 3:
-        return `bg-[#26a641] shadow-[0_0_12px_rgba(38,166,65,0.6)] hover:bg-[#2ecc51] ${borderExtra}`;
+        return `bg-primary/70 hover:bg-primary/[0.85] ${borderExtra}`;
       case 4:
-        return `bg-[#39d353] shadow-[0_0_15px_rgba(57,211,83,0.8)] hover:bg-[#48ee65] ${borderExtra}`;
+        return `bg-primary hover:bg-primary/[0.85] ${borderExtra}`;
       default:
-        return `bg-[#161b22] ${borderExtra}`;
+        return `bg-muted ${borderExtra}`;
     }
   };
 
@@ -337,59 +340,45 @@ const ActivityHeatmap: React.FC<ActivityHeatmapProps> = ({
   const yearRange = '2026';
 
   return (
-    <div
-      ref={containerRef}
-      className="relative mb-8 overflow-hidden rounded-[24px] border border-white/10 bg-[#0d1117] p-6 font-sans sm:p-8"
-    >
+    <div ref={containerRef} className="relative min-w-0 py-2 font-sans">
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <div className="flex items-center gap-3">
-            <h3 className="text-xl font-bold tracking-tight text-white sm:text-2xl">
+            <h3 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
               {language === 'ja'
                 ? '学習のアクティビティ'
                 : language === 'en'
-                  ? 'Study Activity'
+                  ? 'Study activity'
                   : "O'quv Faolligi"}
             </h3>
-            <span className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-0.5 text-[11px] font-bold text-emerald-400">
-              Supabase Live
-            </span>
           </div>
-          <p className="mt-1 text-xs text-gray-400">
+          <p className="mt-1 text-sm text-muted-foreground">
             {language === 'ja'
               ? `${yearRange}年 • 各セルをクリックすると当日の詳細が確認できます`
-              : `${yearRange}-yil • Istalgan kunga bosib, o'sha kungi barcha ishlarni ko'rishingiz mumkin`}
+              : language === 'en'
+                ? `${yearRange} · Your study days`
+                : `${yearRange}-yil · O‘qishga ajratgan kunlaringiz`}
           </p>
         </div>
 
         {/* Legend */}
-        <div className="flex items-center gap-3 text-xs text-gray-400">
-          <span className="opacity-60">
-            {language === 'ja' ? 'すくない' : language === 'en' ? 'Less' : 'Kam'}
-          </span>
+        <div className="flex items-center gap-3 text-sm text-muted-foreground">
+          <span>{language === 'ja' ? 'すくない' : language === 'en' ? 'Less' : 'Kam'}</span>
           <div className="flex gap-[4px]">
-            <div
-              className="h-[12px] w-[12px] rounded-[3px] border border-white/10 bg-[#161b22]"
-              title="0 faollik"
-            />
-            <div className="h-[12px] w-[12px] rounded-[3px] bg-[#0e4429]" title="<25 ball" />
-            <div className="h-[12px] w-[12px] rounded-[3px] bg-[#006d32]" title="<60 ball" />
-            <div className="h-[12px] w-[12px] rounded-[3px] bg-[#26a641]" title="<120 ball" />
-            <div
-              className="h-[12px] w-[12px] rounded-[3px] bg-[#39d353] shadow-[0_0_10px_rgba(57,211,83,0.5)]"
-              title="≥120 ball"
-            />
+            <div className="h-[12px] w-[12px] rounded-full bg-muted" title="0 faollik" />
+            <div className="h-[12px] w-[12px] rounded-full bg-primary/25" title="<25 ball" />
+            <div className="h-[12px] w-[12px] rounded-full bg-primary/[0.45]" title="<60 ball" />
+            <div className="h-[12px] w-[12px] rounded-full bg-primary/70" title="<120 ball" />
+            <div className="h-[12px] w-[12px] rounded-full bg-primary" title="≥120 ball" />
           </div>
-          <span className="opacity-60">
-            {language === 'ja' ? 'おおい' : language === 'en' ? 'More' : "Ko'p"}
-          </span>
+          <span>{language === 'ja' ? 'おおい' : language === 'en' ? 'More' : "Ko'p"}</span>
         </div>
       </div>
 
-      <div className="scrollbar-hide overflow-x-auto pb-4">
+      <div className="overflow-x-auto pb-4">
         <div className="inline-block min-w-full">
           {/* Month Labels */}
-          <div className="relative ml-[36px] h-6 text-[11px] font-medium text-gray-400">
+          <div className="relative ml-[36px] h-6 text-[11px] font-medium text-muted-foreground">
             {monthLabels.map((m, i) => (
               <div
                 key={i}
@@ -405,7 +394,7 @@ const ActivityHeatmap: React.FC<ActivityHeatmapProps> = ({
 
           <div className="relative flex gap-3">
             {/* Day Labels */}
-            <div className="flex h-[104px] w-7 flex-col justify-between py-1 text-[10px] font-medium text-gray-400">
+            <div className="flex h-[104px] w-7 flex-col justify-between py-1 text-[10px] font-medium text-muted-foreground">
               <span className="leading-none">Mon</span>
               <span className="leading-none">Wed</span>
               <span className="leading-none">Fri</span>
@@ -421,8 +410,42 @@ const ActivityHeatmap: React.FC<ActivityHeatmapProps> = ({
                       onMouseEnter={day ? (e) => handleMouseEnter(e, day) : undefined}
                       onMouseLeave={day ? handleMouseLeave : undefined}
                       onClick={day ? () => handleDayClick(day) : undefined}
+                      role={day ? 'button' : undefined}
+                      tabIndex={day ? (day.dateStr === focusedDate ? 0 : -1) : undefined}
+                      onFocus={day ? () => setFocusedDate(day.dateStr) : undefined}
+                      aria-label={
+                        day
+                          ? `${day.dateStr}: ${day.minutes} ${language === 'ja' ? '分' : language === 'en' ? 'minutes' : 'daqiqa'}`
+                          : undefined
+                      }
+                      onKeyDown={
+                        day
+                          ? (event) => {
+                              const offset = {
+                                ArrowLeft: -7,
+                                ArrowRight: 7,
+                                ArrowUp: -1,
+                                ArrowDown: 1,
+                              }[event.key];
+                              if (offset !== undefined) {
+                                event.preventDefault();
+                                const nextDate = new Date(day.date);
+                                nextDate.setDate(nextDate.getDate() + offset);
+                                containerRef.current
+                                  ?.querySelector<HTMLElement>(
+                                    `[data-date="${format(nextDate, 'yyyy-MM-dd')}"]`,
+                                  )
+                                  ?.focus();
+                              }
+                              if (event.key === 'Enter' || event.key === ' ') {
+                                event.preventDefault();
+                                handleDayClick(day);
+                              }
+                            }
+                          : undefined
+                      }
                       data-date={day?.dateStr}
-                      className={`h-[11px] w-[11px] rounded-[3px] transition-all duration-200 ${
+                      className={`h-[11px] w-[11px] rounded-full transition-all duration-200 ${
                         day
                           ? `${getColor(day.level, selectedDay?.dateStr === day.dateStr)} cursor-pointer`
                           : 'cursor-default bg-transparent'
@@ -454,7 +477,7 @@ const ActivityHeatmap: React.FC<ActivityHeatmapProps> = ({
               <div className="whitespace-nowrap rounded-xl border border-[#3d444d] bg-[#1b1f23] px-3.5 py-2.5 shadow-[0_12px_28px_rgba(0,0,0,0.5)]">
                 <p className="text-[12px] font-bold leading-tight text-white">{mainActivity}</p>
                 <p className="mt-1 text-[11px] leading-tight text-[#C9A961]">{subActivity}</p>
-                <p className="mt-1 text-[10px] leading-tight text-gray-400">{date}</p>
+                <p className="mt-1 text-[10px] leading-tight text-muted-foreground">{date}</p>
               </div>
               {/* Tooltip Arrow */}
               <div className="flex justify-center">
@@ -471,16 +494,13 @@ const ActivityHeatmap: React.FC<ActivityHeatmapProps> = ({
           );
         })()}
 
-      <div className="mt-6 flex flex-col items-center justify-between gap-3 border-t border-white/5 pt-5 text-xs text-gray-400 sm:flex-row">
-        <p className="font-light italic">
-          {language === 'ja'
-            ? '💡 セルをクリックして、その日のフラッシュカードやスピーキングの成果を確認できます'
-            : "💡 Har bir katakchani bosing va o'sha kungi barcha o'quv ishlaringizni ko'ring"}
-        </p>
-        <p className="font-medium text-gray-500">
-          {language === 'ja' ? '※ 過去1年間の記録' : "* 2026-yil to'liq kalendari"}
-        </p>
-      </div>
+      <p className="mt-3 text-sm text-muted-foreground">
+        {language === 'ja'
+          ? '日付を選ぶと学習の記録を確認できます。'
+          : language === 'en'
+            ? 'Choose a day to see your study record.'
+            : 'Kun ustiga bosib, o‘quv faoliyatingizni ko‘ring.'}
+      </p>
 
       {/* Day Activity Details Modal */}
       <DayActivityDetailModal

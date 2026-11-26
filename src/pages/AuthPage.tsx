@@ -5,10 +5,13 @@ import { supabase } from '../lib/supabase';
 import ForgotPasswordModal from '../components/auth/ForgotPasswordModal';
 import { AppLogo } from '../components/AppLogo';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
+import InterfaceLanguageSelect from '../components/settings/InterfaceLanguageSelect';
 import { getSafeRedirectUrl } from '../utils/redirect';
 
 const AuthPage: React.FC = () => {
   const navigate = useNavigate();
+  const { language, setLanguage } = useLanguage();
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const redirectParam = searchParams.get('redirect');
@@ -88,6 +91,7 @@ const AuthPage: React.FC = () => {
 
   const handleGoogleSignIn = async () => {
     try {
+      if (!isLogin) setLanguage(language);
       setGoogleLoading(true);
       setError('');
       const target = targetPath || '/';
@@ -170,6 +174,7 @@ const AuthPage: React.FC = () => {
           return;
         }
       } else {
+        setLanguage(language);
         const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
           email,
           password,
@@ -343,25 +348,34 @@ const AuthPage: React.FC = () => {
             {/* Form */}
             <form onSubmit={handleAuth} className="space-y-4">
               {/* Full Name field (Register only) */}
+              {!isLogin && !isResetPassword && <InterfaceLanguageSelect />}
               {!isLogin && !isResetPassword && (
                 <motion.div
                   initial={{ opacity: 0, y: -8 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="space-y-1.5"
                 >
-                  <label className="block text-xs font-semibold text-foreground">To'liq ism</label>
+                  <label
+                    htmlFor="auth-full-name"
+                    className="block text-xs font-semibold text-foreground"
+                  >
+                    To'liq ism
+                  </label>
                   <div className="relative">
                     <User
                       size={18}
                       className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground"
                     />
                     <input
+                      id="auth-full-name"
+                      name="name"
+                      autoComplete="name"
                       type="text"
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
                       placeholder="Ism Familiyangizni kiriting"
                       required
-                      className="h-12 w-full rounded-xl border border-border bg-background pl-11 pr-4 text-sm text-foreground shadow-xs outline-none transition-all placeholder:text-muted-foreground/60 hover:border-border/80 focus:border-primary"
+                      className="h-12 w-full rounded-xl border border-input bg-background pl-11 pr-4 text-base text-foreground shadow-xs outline-none transition-all placeholder:text-muted-foreground hover:border-border/80 focus:border-primary md:text-sm"
                     />
                   </div>
                 </motion.div>
@@ -370,7 +384,10 @@ const AuthPage: React.FC = () => {
               {/* Email field */}
               {!isResetPassword && (
                 <div className="space-y-1.5">
-                  <label className="block text-xs font-semibold text-foreground">
+                  <label
+                    htmlFor="auth-email"
+                    className="block text-xs font-semibold text-foreground"
+                  >
                     Email manzil
                   </label>
                   <div className="relative">
@@ -379,13 +396,16 @@ const AuthPage: React.FC = () => {
                       className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground"
                     />
                     <input
+                      id="auth-email"
+                      name="email"
+                      spellCheck={false}
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Email manzilingizni kiriting"
                       autoComplete="email"
                       required
-                      className="h-12 w-full rounded-xl border border-border bg-background pl-11 pr-4 text-sm text-foreground shadow-xs outline-none transition-all placeholder:text-muted-foreground/60 hover:border-border/80 focus:border-primary"
+                      className="h-12 w-full rounded-xl border border-input bg-background pl-11 pr-4 text-base text-foreground shadow-xs outline-none transition-all placeholder:text-muted-foreground hover:border-border/80 focus:border-primary md:text-sm"
                     />
                   </div>
                 </div>
@@ -393,7 +413,10 @@ const AuthPage: React.FC = () => {
 
               {/* Password field */}
               <div className="space-y-1.5">
-                <label className="block text-xs font-semibold text-foreground">
+                <label
+                  htmlFor="auth-password"
+                  className="block text-xs font-semibold text-foreground"
+                >
                   {isResetPassword ? 'Yangi parol' : 'Parol'}
                 </label>
                 <div className="relative">
@@ -402,6 +425,8 @@ const AuthPage: React.FC = () => {
                     className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground"
                   />
                   <input
+                    id="auth-password"
+                    name="password"
                     type={showPassword ? 'text' : 'password'}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -413,13 +438,14 @@ const AuthPage: React.FC = () => {
                     autoComplete={isLogin && !isResetPassword ? 'current-password' : 'new-password'}
                     required
                     minLength={6}
-                    className="h-12 w-full rounded-xl border border-border bg-background pl-11 pr-11 text-sm text-foreground shadow-xs outline-none transition-all placeholder:text-muted-foreground/60 hover:border-border/80 focus:border-primary"
+                    className="h-12 w-full rounded-xl border border-input bg-background pl-11 pr-14 text-base text-foreground shadow-xs outline-none transition-all placeholder:text-muted-foreground hover:border-border/80 focus:border-primary md:text-sm"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3.5 top-1/2 -translate-y-1/2 cursor-pointer text-muted-foreground transition-colors hover:text-foreground"
-                    tabIndex={-1}
+                    className="absolute right-1 top-1/2 flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground"
+                    aria-label={showPassword ? 'Parolni yashirish' : 'Parolni ko‘rsatish'}
+                    aria-pressed={showPassword}
                   >
                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
@@ -433,7 +459,10 @@ const AuthPage: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="space-y-1.5"
                 >
-                  <label className="block text-xs font-semibold text-foreground">
+                  <label
+                    htmlFor="auth-confirm-password"
+                    className="block text-xs font-semibold text-foreground"
+                  >
                     {isResetPassword ? 'Yangi parolni tasdiqlang' : 'Parolni tasdiqlang'}
                   </label>
                   <div className="relative">
@@ -442,6 +471,8 @@ const AuthPage: React.FC = () => {
                       className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground"
                     />
                     <input
+                      id="auth-confirm-password"
+                      name="confirmPassword"
                       type={showConfirmPassword ? 'text' : 'password'}
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
@@ -453,13 +484,18 @@ const AuthPage: React.FC = () => {
                       autoComplete="new-password"
                       required
                       minLength={6}
-                      className="h-12 w-full rounded-xl border border-border bg-background pl-11 pr-11 text-sm text-foreground shadow-xs outline-none transition-all placeholder:text-muted-foreground/60 hover:border-border/80 focus:border-primary"
+                      className="h-12 w-full rounded-xl border border-input bg-background pl-11 pr-14 text-base text-foreground shadow-xs outline-none transition-all placeholder:text-muted-foreground hover:border-border/80 focus:border-primary md:text-sm"
                     />
                     <button
                       type="button"
                       onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                      className="absolute right-3.5 top-1/2 -translate-y-1/2 cursor-pointer text-muted-foreground transition-colors hover:text-foreground"
-                      tabIndex={-1}
+                      className="absolute right-1 top-1/2 flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground"
+                      aria-label={
+                        showConfirmPassword
+                          ? 'Tasdiq parolini yashirish'
+                          : 'Tasdiq parolini ko‘rsatish'
+                      }
+                      aria-pressed={showConfirmPassword}
                     >
                       {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                     </button>

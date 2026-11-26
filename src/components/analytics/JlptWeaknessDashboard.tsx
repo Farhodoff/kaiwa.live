@@ -3,6 +3,7 @@ import { AlertTriangle, Clock3, Target } from 'lucide-react';
 import { TimedSkillAssessmentService } from '../../services/TimedSkillAssessmentService';
 
 const label: Record<string, string> = {
+  knowledge: 'Til bilimi',
   vocabulary: 'Lug‘at',
   grammar: 'Grammatika',
   reading: 'O‘qish',

@@ -93,8 +93,8 @@ export const en = {
   flashcards: {
     title: 'Flashcards & Vocabulary',
     subtitle: 'Boost your vocabulary with Anki SM-2 SRS algorithm & preset decks',
-    myDecks: 'My Decks',
-    library: 'Preset Library',
+    myDecks: 'My decks',
+    library: 'Library',
     createDeck: '+ Add Subject Deck',
     addManual: '+ Add Manually',
     createAlbum: '+ Create Custom Album',

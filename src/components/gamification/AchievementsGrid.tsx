@@ -111,69 +111,52 @@ export const AchievementsGrid: React.FC = () => {
   ];
 
   return (
-    <div className="space-y-6">
-      {/* Header KPI Overview */}
-      <div className="flex flex-col gap-4 rounded-3xl border border-border bg-card p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
-        <div className="flex items-center gap-3">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-amber-500/30 bg-amber-500/10 text-2xl">
-            🎖️
-          </div>
-          <div>
-            <h3 className="text-lg font-black tracking-tight text-foreground sm:text-xl">
-              {language === 'ja'
-                ? '実績・バッジコレクション'
-                : language === 'en'
-                  ? 'Achievements & Badges'
-                  : 'Yutuqlar & Nishonlar Vitrinasi'}
-            </h3>
-            <p className="text-xs text-muted-foreground">
-              {language === 'ja'
-                ? '学習マイルストーンを達成して名誉あるバッジとXPを獲得'
-                : language === 'en'
-                  ? 'Unlock pedagogical milestones and collect prestigious badges'
-                  : "O'quv marralarini egallab maxsus nishonlar va mukofot XP'larini to'plang"}
-            </p>
-          </div>
+    <section className="space-y-6" aria-labelledby="achievements-heading">
+      <header className="flex flex-wrap items-baseline justify-between gap-3">
+        <div>
+          <h3 id="achievements-heading" className="text-xl font-semibold tracking-tight">
+            {language === 'ja' ? '実績とバッジ' : language === 'en' ? 'Achievements' : 'Yutuqlar'}
+          </h3>
+          <p className="mt-2 text-sm text-muted-foreground">
+            {language === 'ja'
+              ? '学習を続けて、新しいバッジを集めましょう。'
+              : language === 'en'
+                ? 'Keep learning and earn your next badge.'
+                : 'O‘qishni davom ettiring va yangi nishonlarga erishing.'}
+          </p>
         </div>
-
-        <div className="flex items-center gap-3">
-          <div className="rounded-2xl border border-border bg-muted/40 px-4 py-2 text-right">
-            <span className="text-[11px] font-bold text-muted-foreground">
-              {language === 'ja' ? '獲得バッジ' : language === 'en' ? 'Unlocked' : 'Ochilgan'}
-            </span>
-            <p className="text-lg font-black text-foreground">
-              {unlockedCount} / {totalAchievements}
-            </p>
-          </div>
-          <div className="h-2 w-28 overflow-hidden rounded-full bg-muted">
-            <div
-              className="h-full bg-gradient-to-r from-amber-500 to-orange-500 transition-all duration-500"
-              style={{ width: `${Math.round((unlockedCount / totalAchievements) * 100)}%` }}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Category Tabs */}
-      <div className="no-scrollbar flex items-center gap-2 overflow-x-auto pb-1">
+        <p className="text-sm text-muted-foreground">
+          <span className="mr-1 text-xl font-semibold tabular-nums text-foreground">
+            {unlockedCount}
+          </span>
+          / {totalAchievements}{' '}
+          {language === 'ja' ? '獲得' : language === 'en' ? 'earned' : 'ta ochilgan'}
+        </p>
+      </header>
+      <div
+        className="flex flex-wrap gap-x-5 gap-y-1 border-b border-border/60"
+        role="group"
+        aria-label={
+          language === 'ja'
+            ? 'バッジの種類'
+            : language === 'en'
+              ? 'Achievement categories'
+              : 'Yutuq yo‘nalishlari'
+        }
+      >
         {categories.map((cat) => (
           <button
             key={cat.id}
-            onClick={() => setSelectedCategory(cat.id as any)}
-            className={`flex shrink-0 cursor-pointer items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-bold transition-all active:scale-95 ${
-              selectedCategory === cat.id
-                ? 'bg-primary text-primary-foreground shadow-xs'
-                : 'bg-muted/40 text-muted-foreground hover:bg-muted'
-            }`}
+            type="button"
+            aria-pressed={selectedCategory === cat.id}
+            onClick={() => setSelectedCategory(cat.id as AchievementCategory | 'all')}
+            className={`min-h-11 border-b-2 py-2 text-sm font-medium transition-colors ${selectedCategory === cat.id ? 'border-primary text-foreground' : 'border-transparent text-muted-foreground hover:text-foreground'}`}
           >
-            <span>{cat.icon}</span>
-            <span>{cat.label}</span>
+            {cat.label}
           </button>
         ))}
       </div>
-
-      {/* Achievements Cards Grid */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-x-10 sm:grid-cols-2">
         {filteredAchievements.map((ach) => {
           const userAch = unlockedMap.get(ach.id);
           const isUnlocked = !!userAch;
@@ -182,87 +165,49 @@ export const AchievementsGrid: React.FC = () => {
           const progressPercent = isUnlocked
             ? 100
             : Math.min(100, Math.round((curVal / ach.target) * 100));
-
-          const tierColor =
-            ach.tier === 'diamond'
-              ? 'border-sky-500/50 bg-sky-500/5 dark:bg-sky-950/20'
-              : ach.tier === 'gold'
-                ? 'border-amber-500/50 bg-amber-500/5 dark:bg-amber-950/20'
-                : ach.tier === 'silver'
-                  ? 'border-slate-400/50 bg-slate-400/5 dark:bg-slate-900/20'
-                  : 'border-orange-700/40 bg-orange-700/5 dark:bg-orange-950/20';
-
-          const tierBadge =
-            ach.tier === 'diamond'
-              ? '💎 Diamond'
-              : ach.tier === 'gold'
-                ? '🥇 Gold'
-                : ach.tier === 'silver'
-                  ? '🥈 Silver'
-                  : '🥉 Bronze';
-
           return (
-            <div
+            <article
               key={ach.id}
-              className={`relative flex flex-col justify-between rounded-3xl border p-5 transition-all duration-200 ${
-                isUnlocked
-                  ? `${tierColor} shadow-sm hover:shadow-md`
-                  : 'border-border/60 bg-muted/20 opacity-75 hover:opacity-90'
-              }`}
+              className="flex min-w-0 items-start gap-4 border-b border-border/50 py-6"
             >
-              <div>
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-background text-2xl shadow-xs">
-                    {isUnlocked ? ach.icon : '🔒'}
-                  </div>
-
-                  <div className="flex flex-col items-end gap-1">
-                    <span className="rounded-full bg-muted px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-muted-foreground">
-                      {tierBadge}
-                    </span>
-                    <span className="rounded-lg bg-amber-500/10 px-2 py-0.5 text-[11px] font-black text-amber-600 dark:text-amber-400">
-                      +{ach.xpReward} XP
-                    </span>
-                  </div>
-                </div>
-
-                <div className="mt-3">
-                  <h4 className="text-sm font-black tracking-tight text-foreground">
-                    {ach.title[langKey]}
-                  </h4>
-                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                    {ach.description[langKey]}
-                  </p>
-                </div>
+              <div
+                aria-hidden="true"
+                className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-2xl ${isUnlocked ? 'bg-primary/10' : 'bg-muted/60 grayscale'}`}
+              >
+                {ach.icon}
               </div>
-
-              {/* Footer: Progress or Unlocked status */}
-              <div className="mt-5 border-t border-border/50 pt-3">
+              <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+                  <h4 className="text-sm font-semibold leading-relaxed">{ach.title[langKey]}</h4>
+                  <span className="text-xs tabular-nums text-muted-foreground">
+                    +{ach.xpReward} XP
+                  </span>
+                </div>
+                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                  {ach.description[langKey]}
+                </p>
                 {isUnlocked ? (
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-600 dark:text-emerald-400">
-                      <CheckCircle2 size={15} />
-                      <span>
-                        {language === 'ja'
-                          ? '達成済み'
-                          : language === 'en'
-                            ? 'Achieved'
-                            : 'Erishildi'}
-                      </span>
-                    </div>
-
+                  <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+                    <span className="flex items-center gap-1.5 text-xs font-medium text-primary">
+                      <CheckCircle2 size={14} />
+                      {language === 'ja'
+                        ? '達成済み'
+                        : language === 'en'
+                          ? 'Achieved'
+                          : 'Erishildi'}
+                    </span>
                     {!isClaimed ? (
                       <button
                         onClick={() => handleClaim(ach.id)}
-                        className="flex cursor-pointer items-center gap-1 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 px-3 py-1 text-xs font-black text-white shadow-xs transition-all hover:opacity-90 active:scale-95"
+                        type="button"
+                        aria-label={`${ach.title[langKey]}: ${language === 'ja' ? '受取る' : language === 'en' ? 'Claim' : 'Olish'}`}
+                        className="flex min-h-11 items-center gap-2 rounded-full bg-primary px-4 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
                       >
-                        <Sparkles size={12} />
-                        <span>
-                          {language === 'ja' ? '受取る' : language === 'en' ? 'Claim' : 'Olish'}
-                        </span>
+                        <Sparkles size={14} />
+                        {language === 'ja' ? '受取る' : language === 'en' ? 'Claim' : 'Olish'}
                       </button>
                     ) : (
-                      <span className="text-[11px] font-bold text-muted-foreground">
+                      <span className="text-xs text-muted-foreground">
                         {language === 'ja'
                           ? '受取完了'
                           : language === 'en'
@@ -272,28 +217,30 @@ export const AchievementsGrid: React.FC = () => {
                     )}
                   </div>
                 ) : (
-                  <div className="space-y-1.5">
-                    <div className="flex items-center justify-between text-[11px] font-semibold text-muted-foreground">
-                      <span>
-                        {language === 'ja' ? '進捗' : language === 'en' ? 'Progress' : 'Progress'}
-                      </span>
-                      <span>
-                        {curVal} / {ach.target}
-                      </span>
-                    </div>
-                    <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
+                  <div className="mt-3 flex items-center gap-3">
+                    <div
+                      className="h-1 flex-1 overflow-hidden rounded-full bg-muted"
+                      role="progressbar"
+                      aria-label={ach.title[langKey]}
+                      aria-valuenow={progressPercent}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                    >
                       <div
-                        className="h-full bg-primary/70 transition-all duration-300"
+                        className="h-full rounded-full bg-primary/70 transition-[width]"
                         style={{ width: `${progressPercent}%` }}
                       />
                     </div>
+                    <span className="shrink-0 text-xs tabular-nums text-muted-foreground">
+                      {curVal} / {ach.target}
+                    </span>
                   </div>
                 )}
               </div>
-            </div>
+            </article>
           );
         })}
       </div>
-    </div>
+    </section>
   );
 };

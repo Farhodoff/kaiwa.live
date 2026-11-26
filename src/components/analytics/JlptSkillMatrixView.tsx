@@ -106,7 +106,6 @@ export const JlptSkillMatrixView: React.FC<JlptSkillMatrixViewProps> = ({
     'kanji',
     'reading',
     'listening',
-    'writing',
     'speaking',
   ];
 

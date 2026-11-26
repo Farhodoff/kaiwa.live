@@ -31,10 +31,10 @@
         }
         const lang = localStorage.getItem('kaiwa_lang') || localStorage.getItem('study_planner_lang');
         const urlLang = new URLSearchParams(window.location.search).get('lang');
-        if (urlLang === 'ja' || urlLang === 'uz' || urlLang === 'en') {
-          document.documentElement.lang = urlLang;
-        } else if (lang) {
+        if (lang === 'ja' || lang === 'uz' || lang === 'en') {
           document.documentElement.lang = lang;
+        } else if (urlLang === 'ja' || urlLang === 'uz' || urlLang === 'en') {
+          document.documentElement.lang = urlLang;
         }
 
         // Self-healing recovery for stale module scripts, MIME type mismatch, or PWA cache errors
@@ -82,9 +82,9 @@
   <meta name="author" content="kaiwa.live Team" />
 
   <!-- Primary SEO Meta Tags -->
-  <title>Kaiwa Live — Yapon Tili O'rganish (JLPT N5–N1, AI Speaking Sensei, Minna no Nihongo)</title>
+  <title>JLPT N5–N1 ga aniq reja bilan tayyorlaning — kaiwa.live</title>
   <meta name="title" content="Kaiwa Live — Yapon Tili O'rganish (JLPT N5–N1, AI Speaking Sensei, Minna no Nihongo)" />
-  <meta name="description" content="Yapon tilini noldan o'rganing va JLPT N5–N1 imtihonlariga tizimli tayyorlaning. AI Speaking Sensei, 1000+ Kanji yozish animatsiyalari, Minna no Nihongo lug'ati va Anki SM-2 fleshkartalar." />
+  <meta name="description" content="Darajangizga mos darslar, aqlli takrorlash va sinov imtihonlari. JLPT N5–N1 ga tayyorlaning va nimani qayta mashq qilish kerakligini biling." />
   <meta name="keywords" content="yapon tili, yapon tili o'rganish, yapon tili noldan, JLPT N5, JLPT N4, JLPT N3, JLPT N2, JLPT N1, Minna no Nihongo o'zbekcha, yaponcha so'zlashuv, AI Speaking Sensei, Anki SM-2, fleshkartalar, kanji yozish tartibi, JLPT mock exam, kaiwa.live, Kaiwa Live" />
   <link rel="canonical" href="https://kaiwa.live/" />
 
@@ -92,8 +92,8 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://kaiwa.live/" />
   <meta property="og:site_name" content="Kaiwa Live" />
-  <meta property="og:title" content="Kaiwa Live — Yapon Tili O'rganish (JLPT N5–N1, AI Speaking Sensei)" />
-  <meta property="og:description" content="Yapon tilini noldan o'rganing va JLPT N5–N1 ga tayyorlaning. AI Speaking Sensei, Minna no Nihongo, Kanji animatsiyalari va Anki SM-2 fleshkartalar." />
+  <meta property="og:title" content="JLPT N5–N1 ga aniq reja bilan tayyorlaning — kaiwa.live" />
+  <meta property="og:description" content="Darajangizga mos darslar, aqlli takrorlash va sinov imtihonlari. JLPT N5–N1 ga tayyorlaning va nimani qayta mashq qilish kerakligini biling." />
   <meta property="og:image" content="https://kaiwa.live/og-image.jpg?v=5" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -104,8 +104,8 @@
   <!-- Twitter Card Tags -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://kaiwa.live/" />
-  <meta name="twitter:title" content="Kaiwa Live — Yapon Tili O'rganish (JLPT N5–N1, AI Speaking Sensei)" />
-  <meta name="twitter:description" content="Yapon tilini noldan o'rganing va JLPT N5–N1 ga tayyorlaning. AI Speaking Sensei va Anki SM-2 fleshkartalar." />
+  <meta name="twitter:title" content="JLPT N5–N1 ga aniq reja bilan tayyorlaning — kaiwa.live" />
+  <meta name="twitter:description" content="Darajangizga mos darslar, aqlli takrorlash va sinov imtihonlari. JLPT N5–N1 ga tayyorlaning va nimani qayta mashq qilish kerakligini biling." />
   <meta name="twitter:image" content="https://kaiwa.live/og-image.jpg?v=5" />
 
   <!-- Preconnect & DNS-Prefetch for Fast Loading -->
@@ -144,20 +144,13 @@
         "url": "https://kaiwa.live",
         "applicationCategory": "EducationalApplication",
         "operatingSystem": "Web, iOS, Android",
-        "inLanguage": ["uz", "ja"],
-        "description": "JLPT N5-N1 imtihonlariga tizimli tayyorgarlik uchun aqlli ta'lim platformasi. AI Speaking Sensei, Minna no Nihongo lug'ati, Anki SM-2 fleshkartalari va dars jadvali.",
+        "inLanguage": ["uz", "ja", "en"],
+        "description": "JLPT N5–N1 tayyorgarligi: darajaga mos darslar, lug‘at, kanji, grammatika, o‘qish va tinglash mashqlari, takrorlash va sinov imtihonlari.",
         "offers": {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "USD",
           "category": "FreeTier"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "ratingCount": "12480",
-          "bestRating": "5",
-          "worstRating": "1"
         }
       },
       {
@@ -165,7 +158,7 @@
         "@id": "https://kaiwa.live/#website",
         "url": "https://kaiwa.live",
         "name": "kaiwa.live",
-        "inLanguage": ["uz", "ja"],
+        "inLanguage": ["uz", "ja", "en"],
         "publisher": {
           "@id": "https://kaiwa.live/#organization"
         },
@@ -233,7 +226,7 @@
         "provider": {
           "@id": "https://kaiwa.live/#organization"
         },
-        "inLanguage": ["uz", "ja"],
+        "inLanguage": ["uz", "ja", "en"],
         "isAccessibleForFree": true
       },
       {
@@ -244,7 +237,7 @@
         "provider": {
           "@id": "https://kaiwa.live/#organization"
         },
-        "inLanguage": ["uz", "ja"],
+        "inLanguage": ["uz", "ja", "en"],
         "isAccessibleForFree": true
       },
       {
@@ -255,7 +248,7 @@
         "provider": {
           "@id": "https://kaiwa.live/#organization"
         },
-        "inLanguage": ["uz", "ja"],
+        "inLanguage": ["uz", "ja", "en"],
         "isAccessibleForFree": true
       },
       {
@@ -266,7 +259,7 @@
         "provider": {
           "@id": "https://kaiwa.live/#organization"
         },
-        "inLanguage": ["uz", "ja"],
+        "inLanguage": ["uz", "ja", "en"],
         "isAccessibleForFree": true
       },
       {
@@ -274,50 +267,42 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "kaiwa.live xizmatlari bepulmi?",
+            "name": "Akkauntsiz sinab ko‘rsam bo‘ladimi?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Ha, platformadagi barcha xizmatlar — AI suhbatdoshi (Yuki-sensei), 180 ballik JLPT mock testlari, Kanji yozish animatsiyalari, Minna no Nihongo lug'atlari va SRS fleshkartalar 100% bepul."
+              "text": "Ha. Shu sahifadagi namunaviy savolni yechish va ochiq darslarni ko‘rish uchun ro‘yxatdan o‘tish shart emas. Shaxsiy o‘quv jarayonini hisobingizda davom ettirish uchun akkaunt oching."
             }
           },
           {
             "@type": "Question",
-            "name": "Yapon tilini noldan o'rganish mumkinmi?",
+            "name": "Foydalanish bepulmi?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Ha, kaiwa.live yangi boshlovchilar uchun Hiragana, Katakana, Minna no Nihongo 1-50 darslari, audio dialoglar va bosqichma-bosqich o'quv yo'l xaritasini (Roadmap) taqdim etadi."
+              "text": "Hozir platformadan foydalanish bepul. AI va audio xizmatlari internet ulanishi hamda xizmat mavjudligiga bog‘liq. Foydalanish shartlari uchun narxlar sahifasini ko‘ring."
             }
           },
           {
             "@type": "Question",
-            "name": "JLPT imtihoniga qanday tayyorlanish mumkin?",
+            "name": "Qaysi darajadan boshlashim kerak?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Platformada JLPT N5, N4, N3, N2 va N1 darajalariga mos rasmiy formatdagi 180 ballik mock imtihonlar, grammatika viktorinalari va audio eshitish (Choukai) testlari mavjud."
+              "text": "Boshlovchi bo‘lsangiz N5 darslarini ko‘ring. Oldin o‘qigan bo‘lsangiz, tanish darajangizdagi namunani sinang. Bu sahifadagi bitta savol darajangizni aniqlovchi diagnostik test emas."
             }
           },
           {
             "@type": "Question",
-            "name": "AI Speaking Coach qanday ishlaydi?",
+            "name": "Sinov bali rasmiy JLPT natijasimi?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "AI Speaking Coach real audio ovozli muloqot orqali talaffuz, ravonlik va grammatikani jonli tekshiradi hamda xatolarni o'zbek va yapon tillarida tushuntiradi."
+              "text": "Yo‘q. Platformadagi sinovlar mashq qilish uchun. Ular JLPT sertifikati bermaydi va natijasi rasmiy imtihon baliga teng deb olinmaydi."
             }
           },
           {
             "@type": "Question",
-            "name": "Telegram orqali foydalanish mumkinmi?",
+            "name": "Telefonda ham ishlaydimi?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Ha, kaiwa.live Telegram Mini App orqali alohida ilova o'rnatmasdan to'g'ridan-to'g'ri Telegram ichida ishlaydi: @kaiwa_superapp_bot"
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "日本語会話とJLPT対策は無料で利用できますか？",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "はい、すべての機能（AI会話パートナー、JLPT模擬試験、漢字書き順、単語帳）を完全無料でご利用いただけます。"
+              "text": "Ha. Platformani telefon brauzerida ochishingiz mumkin. Ovozli mashqlar uchun mos brauzer va mikrofon ruxsati kerak bo‘lishi mumkin."
             }
           }
         ]
@@ -325,6 +310,14 @@
     ]
   }
   </script>
+<script>
+if(location.hash.includes('figmacapture')){
+ document.documentElement.setAttribute('data-design-capture','true');
+ const st=document.createElement('style');st.textContent=`html[data-design-capture] *,html[data-design-capture] *::before,html[data-design-capture] *::after{animation:none!important;transition:none!important} html[data-design-capture] [style*="opacity: 0"]{opacity:1!important;transform:none!important}`;
+ if(location.pathname==='/landing')st.textContent+=`html,body,#root{height:auto!important;overflow:visible!important} [style*="opacity"]{opacity:1!important}`;
+ document.head.appendChild(st);
+}
+</script><script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
 </head>
 
 <body>

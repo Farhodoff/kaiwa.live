@@ -56,33 +56,41 @@ const FlashcardAnalytics: React.FC<FlashcardAnalyticsProps> = memo(({ flashcards
   }, [flashcards]);
 
   return (
-    <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+    <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-12">
       {/* Daily Reviews */}
-      <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
+      <div className="min-w-0 py-4">
         <h3 className="mb-4 flex items-center gap-2 text-sm font-extrabold text-foreground">
           <TrendingUp size={16} className="text-purple-500" /> Kunlik Fleshkartalar Takrori
         </h3>
-        <div className="h-64 w-full">
-          <SvgBarChart
-            data={dailyReviewsData}
-            xKey="name"
-            series={[{ dataKey: 'cards', fill: '#a855f7' }]}
-            height={240}
-            unit="ta karta"
-          />
-        </div>
-        <p className="mt-2 text-center text-[11px] text-muted-foreground">
-          Oxirgi 7 kunda ko'rib chiqilgan kartalar
-        </p>
+        {dailyReviewsData.some((day) => day.cards > 0) ? (
+          <>
+            <div className="w-full">
+              <SvgBarChart
+                data={dailyReviewsData}
+                xKey="name"
+                series={[{ dataKey: 'cards', fill: '#a855f7' }]}
+                height={200}
+                unit="ta karta"
+              />
+            </div>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Oxirgi 7 kunda ko‘rib chiqilgan kartalar
+            </p>
+          </>
+        ) : (
+          <p className="max-w-sm py-6 text-sm leading-relaxed text-muted-foreground">
+            Hali takrorlash qayd etilmagan. Kartalarni takrorlaganingizdan keyin bu yerda ko‘rinadi.
+          </p>
+        )}
       </div>
 
       {/* Status Distribution */}
-      <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
+      <div className="min-w-0 py-4">
         <h3 className="mb-4 text-sm font-extrabold text-foreground">
           Fleshkartalar O'zlashtirish Holati
         </h3>
-        <div className="flex h-64 w-full items-center justify-center">
-          <SvgPieChart data={statusData} height={220} innerRadius={0.55} />
+        <div className="flex min-h-48 w-full items-center justify-center">
+          <SvgPieChart data={statusData} height={180} innerRadius={0.65} />
         </div>
       </div>
     </div>

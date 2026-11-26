@@ -1,8 +1,9 @@
 import { ArrowLeft } from 'lucide-react';
 import React, { useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
 import { useStudyData } from '../context/StudyPlannerContext';
+import { isUserAdmin } from '../utils/admin';
 import { toast } from '../hooks/use-toast';
 
 const FlashcardForm: React.FC = () => {
@@ -14,10 +15,10 @@ const FlashcardForm: React.FC = () => {
   const [newSubName, setNewSubName] = useState('');
   const [newSubColor, setNewSubColor] = useState('#8b5cf6');
 
-  const { addFlashcard, addSubject, subjects } = useStudyData();
+  const { user, addFlashcard, addSubject, subjects } = useStudyData();
 
   const handleCreateSubjectInline = async () => {
-    if (!newSubName.trim()) return;
+    if (!isUserAdmin(user) || !newSubName.trim()) return;
     const created = await addSubject({
       name: newSubName.trim(),
       color: newSubColor,
@@ -37,7 +38,7 @@ const FlashcardForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!front || !back || isSubmitting) return;
+    if (!isUserAdmin(user) || !front || !back || isSubmitting) return;
 
     const targetSubId = subjectId || subjects.find((s) => !s.isArchived)?.id || '';
 
@@ -64,6 +65,8 @@ const FlashcardForm: React.FC = () => {
       setIsSubmitting(false);
     }
   };
+
+  if (!isUserAdmin(user)) return <Navigate to="/flashcards" replace />;
 
   return (
     <div className="mx-auto max-w-xl">

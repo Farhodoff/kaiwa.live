@@ -1,4 +1,5 @@
 import { supabase } from '../lib/supabase';
+import { publicAudioUrl } from './ListeningAudioService';
 import {
   JLPT_MOCK_EXAM_DATA,
   JLPT_MOCK_EXAM_SET2_DATA,
@@ -196,12 +197,49 @@ export class ExamService {
 
   /**
    * Fetch an exam with its sections and questions, normalized into standard ExamQuestion[] format.
-   * If not found or if offline, safely falls back to local JLPT_MOCK_EXAM_DATA.
+   * Explicit exam IDs never silently switch to a different exam on failure.
    */
   static async getExamWithQuestions(
     examId: string,
-    fallbackLevel: JlptLevel = 'N5',
+    _fallbackLevel: JlptLevel = 'N5',
   ): Promise<NormalizedExam> {
+    if (examId.startsWith('exam_jlpt_')) {
+      const { LEGACY_STANDALONE_EXAMS } = await import('../data/legacyStandaloneExams');
+      const legacy = LEGACY_STANDALONE_EXAMS[examId];
+      if (!legacy) throw new Error('Imtihon topilmadi. Boshqa sinovni tanlang.');
+      const level = this.parseLevelFromType(legacy.exam.type);
+      const questions = legacy.sections
+        .flatMap((section) =>
+          (legacy.questionsBySection[section.id] || []).map((q: any) => ({
+            id: 0,
+            originalId: String(q.id),
+            section: (section.type === 'Listening'
+              ? 'listening'
+              : 'reading') as ExamQuestion['section'],
+            questionText: q.question_text || '',
+            passageText: q.passage || section.content || undefined,
+            audioUrl: q.audio_url || section.audio_url || undefined,
+            script: section.content,
+            options: q.options as string[],
+            correctAnswer: q.options.indexOf(q.correct_answer),
+            explanationUzbek: q.explanation || '',
+          })),
+        )
+        .map((q, index) => ({ ...q, id: index + 1, displayNumber: index + 1 }));
+      if (!questions.length || questions.some((q) => q.correctAnswer < 0))
+        throw new Error('Sinov savollarini tekshirish kerak.');
+      return {
+        id: examId,
+        title: `JLPT ${level} — mashq sinovi`,
+        description: legacy.exam.description,
+        level,
+        type: legacy.exam.type,
+        questions,
+        timeLimitSeconds: DEFAULT_TIME_LIMITS[level],
+        isFromDb: false,
+        isOfficialJlpt: false,
+      };
+    }
     // If ID is a built-in slug
     if (examId.startsWith('builtin_')) {
       const lvl = this.parseLevelFromType(examId);
@@ -236,7 +274,7 @@ export class ExamService {
       const sections = sectionsData || [];
 
       if (sections.length === 0) {
-        return this.buildFallbackExam(lvl, examData);
+        throw new Error('Tanlangan imtihonda savollar topilmadi.');
       }
 
       // 3. Fetch Questions
@@ -251,8 +289,23 @@ export class ExamService {
       const rawQuestions = questionsData || [];
 
       if (rawQuestions.length === 0) {
-        return this.buildFallbackExam(lvl, examData);
+        throw new Error('Tanlangan imtihonda savollar topilmadi.');
       }
+
+      // Keep linked reading passages and audio when old exam URLs use the common runner.
+      const passageIds = [...new Set(rawQuestions.map((q) => q.passage_id).filter(Boolean))];
+      const audioIds = [...new Set(rawQuestions.map((q) => q.listening_audio_id).filter(Boolean))];
+      const [passages, audios] = await Promise.all([
+        passageIds.length
+          ? supabase.from('reading_passages').select('id, content').in('id', passageIds)
+          : Promise.resolve({ data: [], error: null }),
+        audioIds.length
+          ? supabase.from('listening_audios').select('id, audio_url, transcript').in('id', audioIds)
+          : Promise.resolve({ data: [], error: null }),
+      ]);
+      if (passages.error || audios.error) throw passages.error || audios.error;
+      const passageMap = new Map((passages.data || []).map((p) => [p.id, p]));
+      const audioMap = new Map((audios.data || []).map((a) => [a.id, a]));
 
       // 4. Map sections dictionary
       const sectionMap = new Map<string, any>();
@@ -261,6 +314,10 @@ export class ExamService {
       // 5. Convert to normalized ExamQuestion[]
       const questions: ExamQuestion[] = rawQuestions.map((q, idx) => {
         const sec = sectionMap.get(q.section_id);
+        const passage = passageMap.get(q.passage_id);
+        const audio = audioMap.get(q.listening_audio_id);
+        if ((q.passage_id && !passage) || (q.listening_audio_id && !audio))
+          throw new Error('Savolga biriktirilgan matn yoki audio topilmadi.');
         const secType = (sec?.type || '').toLowerCase();
         const secTitle = (sec?.title || '').toLowerCase();
 
@@ -288,13 +345,13 @@ export class ExamService {
         }
 
         // Resolve correct answer index (0..3)
-        let correctAnswerIndex = 0;
+        let correctAnswerIndex = -1;
         if (typeof q.correct_answer === 'string') {
           const matchedIdx = options.findIndex((opt) => opt.trim() === q.correct_answer.trim());
           if (matchedIdx !== -1) {
             correctAnswerIndex = matchedIdx;
           } else {
-            const parsed = parseInt(q.correct_answer, 10);
+            const parsed = /^\d+$/.test(q.correct_answer) ? Number(q.correct_answer) : NaN;
             if (!isNaN(parsed) && parsed >= 0 && parsed < options.length) {
               correctAnswerIndex = parsed;
             }
@@ -303,16 +360,36 @@ export class ExamService {
           correctAnswerIndex = q.correct_answer;
         }
 
+        if (
+          !Array.isArray(options) ||
+          options.length < 2 ||
+          !Number.isInteger(correctAnswerIndex) ||
+          correctAnswerIndex < 0 ||
+          correctAnswerIndex >= options.length
+        ) {
+          throw new Error('Savol javoblari tekshirilishi kerak.');
+        }
         return {
           id: idx + 1,
           originalId: String(q.id),
           displayNumber: idx + 1,
           section: sectionCategory,
           questionText: q.question_text || '',
-          passageText: sectionCategory === 'reading' ? sec?.content || undefined : undefined,
-          audioUrl: sectionCategory === 'listening' ? sec?.audio_url || undefined : undefined,
-          script: sectionCategory === 'listening' ? sec?.content || undefined : undefined,
-          options: options.length > 0 ? options : ['A', 'B', 'C', 'D'],
+          passageText:
+            sectionCategory === 'reading'
+              ? q.passage || passage?.content || sec?.content || undefined
+              : undefined,
+          audioUrl:
+            sectionCategory === 'listening'
+              ? audio?.audio_url
+                ? publicAudioUrl(audio.audio_url)
+                : q.audio_url || sec?.audio_url || undefined
+              : undefined,
+          script:
+            sectionCategory === 'listening'
+              ? audio?.transcript || q.script || sec?.content || undefined
+              : undefined,
+          options,
           correctAnswer: correctAnswerIndex,
           explanationUzbek: q.explanation || "Rasmiy JLPT mezonlari bo'yicha to'g'ri javob.",
         };
@@ -335,8 +412,8 @@ export class ExamService {
         isOfficialJlpt: Boolean(examData.is_official_jlpt),
       };
     } catch (err) {
-      console.warn('ExamService: Falling back to local dataset for exam', examId, err);
-      return this.buildFallbackExam(fallbackLevel);
+      console.warn('ExamService: Could not load selected exam', examId, err);
+      throw new Error('Tanlangan imtihonni yuklab bo‘lmadi. Qayta urinib ko‘ring.');
     }
   }
 

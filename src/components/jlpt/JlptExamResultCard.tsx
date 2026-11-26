@@ -241,7 +241,7 @@ export const JlptExamResultCard: React.FC<JlptExamResultCardProps> = ({
         <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
           {jlptReport ? (
             <div className="rounded-2xl border border-border bg-background/80 px-4 py-2 shadow-xs">
-              <span className="text-xs text-muted-foreground">Rasmiy Ball: </span>
+              <span className="text-xs text-muted-foreground">Taxminiy ball: </span>
               <span className="font-mono text-2xl font-black text-foreground">
                 {jlptReport.totalScore}
               </span>
@@ -258,23 +258,6 @@ export const JlptExamResultCard: React.FC<JlptExamResultCardProps> = ({
               {report.percentage}%
             </span>
           </div>
-
-          {jlptReport?.passProbability !== undefined && (
-            <div className="rounded-2xl border border-border bg-background/80 px-4 py-2 shadow-xs">
-              <span className="text-xs text-muted-foreground">O'tish Ehtimoli: </span>
-              <span
-                className={`font-mono text-2xl font-black ${
-                  jlptReport.passProbability >= 75
-                    ? 'text-emerald-500'
-                    : jlptReport.passProbability >= 50
-                      ? 'text-amber-500'
-                      : 'text-rose-500'
-                }`}
-              >
-                {jlptReport.passProbability}%
-              </span>
-            </div>
-          )}
         </div>
 
         {/* Status text badge */}
@@ -290,7 +273,7 @@ export const JlptExamResultCard: React.FC<JlptExamResultCardProps> = ({
               className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 px-5 py-2.5 text-xs font-black text-white shadow-lg shadow-amber-500/25 transition-all hover:scale-105 active:scale-95"
             >
               <Award className="h-4 w-4" />
-              <span>🏆 Rasmiy Sertifikatni Ko'rish / Yuklab Olish</span>
+              <span>Sinov natijasini yuklab olish</span>
             </button>
           </div>
         )}
@@ -322,7 +305,7 @@ export const JlptExamResultCard: React.FC<JlptExamResultCardProps> = ({
           <div className="flex flex-col justify-between gap-1 sm:flex-row sm:items-center">
             <div>
               <h3 className="text-sm font-black text-foreground">
-                🎌 Bo'limlar bo'yicha Rasmiy Baholar (得点区分)
+                Bo‘limlar bo‘yicha taxminiy ballar
               </h3>
               <p className="text-xs text-muted-foreground">
                 Har bir bo'lim maksimal 60 ball. Minimal o'tish chegarasi: 19 ball.

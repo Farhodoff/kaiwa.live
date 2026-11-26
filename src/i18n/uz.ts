@@ -93,8 +93,8 @@ export const uz = {
   flashcards: {
     title: "Fleshkartalar & Lug'at",
     subtitle: "Anki SM-2 algoritmi va tayyor to'plamlar bilan lug'at boyligingizni oshiring",
-    myDecks: "Mening To'plamlarim",
-    library: 'Standart Kutubxona',
+    myDecks: 'To‘plamlarim',
+    library: 'Kutubxona',
     createDeck: "+ Fan Qo'shish",
     addManual: "+ Qo'lda Qo'shish",
     createAlbum: '+ Yangi Albom Yaratish',

@@ -49,11 +49,11 @@ describe('SpacedRepetitionSchedule task synchronization', () => {
 
   it('creates one planner task across repeated clicks and remounts', async () => {
     const view = renderSchedule();
-    fireEvent.click(screen.getByRole('button', { name: 'Rejaga Vazifa Qilish' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Rejaga qo‘shish' }));
     await waitFor(() => expect(refreshData).toHaveBeenCalledTimes(1));
-    await screen.findByRole('button', { name: 'Rejaga Vazifa Qilish' });
+    await screen.findByRole('button', { name: 'Rejaga qo‘shish' });
 
-    fireEvent.click(screen.getByRole('button', { name: 'Rejaga Vazifa Qilish' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Rejaga qo‘shish' }));
     await waitFor(() =>
       expect(toast).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -67,7 +67,7 @@ describe('SpacedRepetitionSchedule task synchronization', () => {
     view.unmount();
     toast.mockClear();
     renderSchedule();
-    fireEvent.click(screen.getByRole('button', { name: 'Rejaga Vazifa Qilish' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Rejaga qo‘shish' }));
     await waitFor(() =>
       expect(toast).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -82,7 +82,7 @@ describe('SpacedRepetitionSchedule task synchronization', () => {
     vi.spyOn(console, 'error').mockImplementation(() => {});
     vi.mocked(TaskService.addReviewTask).mockRejectedValueOnce(new Error('Migration required'));
     renderSchedule();
-    fireEvent.click(screen.getByRole('button', { name: 'Rejaga Vazifa Qilish' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Rejaga qo‘shish' }));
     await waitFor(() =>
       expect(toast).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -92,7 +92,7 @@ describe('SpacedRepetitionSchedule task synchronization', () => {
       ),
     );
     expect(refreshData).not.toHaveBeenCalled();
-    expect(screen.getByRole('button', { name: 'Rejaga Vazifa Qilish' })).toBeEnabled();
+    expect(screen.getByRole('button', { name: 'Rejaga qo‘shish' })).toBeEnabled();
   });
 
   it('disables synchronization while task creation is pending', async () => {
@@ -109,7 +109,7 @@ describe('SpacedRepetitionSchedule task synchronization', () => {
         }),
     );
     renderSchedule();
-    fireEvent.click(screen.getByRole('button', { name: 'Rejaga Vazifa Qilish' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Rejaga qo‘shish' }));
 
     const pendingButton = screen.getByRole('button', { name: "Bog'lanmoqda..." });
     expect(pendingButton).toBeDisabled();
@@ -119,7 +119,7 @@ describe('SpacedRepetitionSchedule task synchronization', () => {
     await act(async () => {
       finishCreation();
     });
-    expect(screen.getByRole('button', { name: 'Rejaga Vazifa Qilish' })).toBeEnabled();
+    expect(screen.getByRole('button', { name: 'Rejaga qo‘shish' })).toBeEnabled();
     expect(refreshData).toHaveBeenCalledTimes(1);
   });
 });

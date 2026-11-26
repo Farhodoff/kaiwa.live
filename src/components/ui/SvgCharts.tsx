@@ -514,9 +514,30 @@ export const SvgPieChart: React.FC<SvgPieChartProps> = ({
     <div className="flex h-full w-full flex-col items-center justify-center gap-6 sm:flex-row">
       {/* SVG Donut */}
       <div className="relative shrink-0" style={{ width: size, height: size }}>
-        <svg viewBox={`0 0 ${size} ${size}`} className="h-full w-full overflow-visible">
+        <svg
+          role="img"
+          aria-label={data.map((item) => `${item.name}: ${item.value}`).join(', ')}
+          viewBox={`0 0 ${size} ${size}`}
+          className="h-full w-full overflow-visible"
+        >
           {slices.map((slice, i) => {
             const isHovered = hoveredIndex === i;
+            // A full SVG arc has identical endpoints and collapses; draw the full ring directly.
+            if (slice.value === total) {
+              return (
+                <circle
+                  key={i}
+                  cx={center}
+                  cy={center}
+                  r={innerRadius > 0 ? (outerR + innerR) / 2 : outerR}
+                  fill={innerRadius > 0 ? 'none' : slice.color}
+                  stroke={innerRadius > 0 ? slice.color : 'none'}
+                  strokeWidth={innerRadius > 0 ? outerR - innerR : 0}
+                  onMouseEnter={() => setHoveredIndex(i)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                />
+              );
+            }
             return (
               <path
                 key={i}

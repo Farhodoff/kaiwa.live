@@ -301,6 +301,26 @@ describe('HistoryService', () => {
   });
 
   describe('saveMockExam & getMockExamsHistory', () => {
+    it('retains a guest mobile attempt after reopening history', async () => {
+      vi.mocked(supabase.auth.getUser).mockResolvedValue({
+        data: { user: null },
+        error: null,
+      } as any);
+      const result = await HistoryService.saveMockExam({
+        examType: 'jlpt',
+        level: 'N5',
+        score: 1,
+        totalQuestions: 25,
+        bandScore: 5,
+      });
+      const history = await HistoryService.getMockExamsHistory();
+      expect(history).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ id: result.id, score: 1, totalQuestions: 25 }),
+        ]),
+      );
+    });
+
     it('saves mock exam with level & bandScore and retrieves history', async () => {
       const mockUpsert = vi.fn().mockResolvedValue({ error: null });
       vi.mocked(supabase.auth.getUser).mockResolvedValue({
