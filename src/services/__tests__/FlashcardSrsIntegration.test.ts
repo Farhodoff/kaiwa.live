@@ -83,6 +83,26 @@ describe('SRS Flashcards & Spaced Repetition Integration Tests', () => {
       const cache = getLocalFlashcardCache('guest');
       expect(cache.some((c) => c.front === '桜')).toBe(true);
     });
+
+    it('preserves supplied SRS state during batch persistence', async () => {
+      const [saved] = await FlashcardService.addFlashcardsBatch('local_user', [
+        {
+          front: '復習',
+          back: 'takrorlash',
+          interval: 6,
+          repetitions: 2,
+          easeFactor: 2.7,
+          nextReviewDate: '2026-12-02T00:00:00.000Z',
+        },
+      ]);
+
+      expect(saved).toMatchObject({
+        interval: 6,
+        repetitions: 2,
+        easeFactor: 2.7,
+        nextReviewDate: '2026-12-02T00:00:00.000Z',
+      });
+    });
   });
 
   describe('3. SM-2 Spaced Repetition Algorithm & Calculations', () => {

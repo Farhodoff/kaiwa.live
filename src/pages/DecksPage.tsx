@@ -44,7 +44,6 @@ import { PresetDeckService, DeckPart } from '../services/PresetDeckService';
 import { exportImportService } from '../services/ExportImportService';
 import { toast } from '../hooks/use-toast';
 import { ErrorNotificationService } from '../services/ErrorNotificationService';
-import { isFlashcardForLanguage } from '../utils/subjectResolver';
 
 import { getDeckFlashcards, getStudyFlashcards } from '../utils/flashcardScope';
 import { isDue } from '../utils/srs';
@@ -248,14 +247,9 @@ const DecksPage: React.FC = () => {
       if (targetSubjectId) {
         const loadedCards = await preset.loadCards();
         if (loadedCards && loadedCards.length > 0) {
-          const isJapanesePreset = preset.language === 'ja';
           const existingFronts = new Set(
             flashcards
-              .filter(
-                (c) =>
-                  c.subjectId === targetSubjectId ||
-                  (isJapanesePreset && isFlashcardForLanguage(c, subjects, 'ja')),
-              )
+              .filter((c) => c.subjectId === targetSubjectId)
               .map((c) => c.front.trim().toLowerCase()),
           );
           const newCards = loadedCards.filter(
