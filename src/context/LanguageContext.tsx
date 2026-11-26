@@ -53,19 +53,13 @@ const LanguageContext = createContext<LanguageContextType>({
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguageState] = useState<Language>(() => {
-    // Check URL query parameter first
+    // Explicit interface choices win over content-language links such as ?lang=ja.
+    const saved =
+      safeLocalStorage.getItem('kaiwa_lang') || safeLocalStorage.getItem('study_planner_lang');
+    if (saved === 'ja' || saved === 'uz' || saved === 'en') return saved;
     if (typeof window !== 'undefined') {
-      const urlParams = new URLSearchParams(window.location.search);
-      const langParam = urlParams.get('lang');
-      if (langParam === 'ja' || langParam === 'uz' || langParam === 'en') {
-        return langParam as Language;
-      }
-      // Fallback to safeLocalStorage
-      const saved =
-        safeLocalStorage.getItem('kaiwa_lang') || safeLocalStorage.getItem('study_planner_lang');
-      if (saved === 'ja' || saved === 'uz' || saved === 'en') {
-        return saved as Language;
-      }
+      const initial = new URLSearchParams(window.location.search).get('lang');
+      if (initial === 'ja' || initial === 'uz' || initial === 'en') return initial;
     }
     return 'uz';
   });
@@ -84,22 +78,8 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }
   }, []);
 
-  // Handle browser back/forward and initial sync
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    document.documentElement.lang = language;
-
-    const handlePopState = () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const langParam = urlParams.get('lang');
-      if (langParam === 'ja' || langParam === 'uz' || langParam === 'en') {
-        setLanguageState(langParam as Language);
-      }
-    };
-
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
+    if (typeof document !== 'undefined') document.documentElement.lang = language;
   }, [language]);
 
   const t = useCallback(

@@ -34,6 +34,18 @@ describe('LanguageContext Unit & Fallback Tests', () => {
     expect(safeLocalStorage.getItem('study_planner_lang')).toBe('en');
   });
 
+  it('keeps the chosen interface language when opening a Japanese-content link', () => {
+    safeLocalStorage.setItem('kaiwa_lang', 'en');
+    window.history.replaceState({}, '', '/study-mode?lang=ja');
+    const { result } = renderHook(() => useLanguage(), { wrapper });
+    expect(result.current.language).toBe('en');
+    act(() => {
+      window.history.replaceState({}, '', '/jlpt?lang=uz');
+      window.dispatchEvent(new PopStateEvent('popstate'));
+    });
+    expect(result.current.language).toBe('en');
+  });
+
   it('4. translates known nested keys in selected language', () => {
     const { result } = renderHook(() => useLanguage(), { wrapper });
     act(() => {
