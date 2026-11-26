@@ -13,7 +13,6 @@ import {
   Languages,
   Code2,
   BarChart3,
-  PenTool,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -95,15 +94,6 @@ const COMMANDS: CommandItem[] = [
     path: '/scenarios',
     icon: Compass,
     keywords: ['dialog', 'suhbat', 'restoran', 'aeroport'],
-  },
-  {
-    id: 'sakubun',
-    title: 'JLPT Sakubun (Yaponcha Insho) 📝',
-    description: 'Yapon tilida insho yozish va AI baholash',
-    category: 'Til & Imtihonlar',
-    path: '/jlpt-writing',
-    icon: PenTool,
-    keywords: ['sakubun', 'insho', 'writing', 'essay', 'yozish', 'mojisuu'],
   },
 
   {

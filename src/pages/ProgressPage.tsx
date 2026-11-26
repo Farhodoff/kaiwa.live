@@ -1,214 +1,287 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import SmartInsight from '../components/SmartInsight';
-import StudyStatsCards from '../components/analytics/StudyStatsCards';
-import ActivityAnalytics from '../components/analytics/ActivityAnalytics';
-import ActivityHeatmap from '../components/analytics/ActivityHeatmap';
-import WeeklyStudyDigest from '../components/analytics/WeeklyStudyDigest';
-import SubjectAnalytics from '../components/analytics/SubjectAnalytics';
-import FlashcardAnalytics from '../components/analytics/FlashcardAnalytics';
-import ExamHistoryAnalytics from '../components/analytics/ExamHistoryAnalytics';
-import CoachAnalytics from '../components/analytics/CoachAnalytics';
-import JlptProgressAnalytics from '../components/analytics/JlptProgressAnalytics';
-import { JlptSkillMatrixView } from '../components/analytics/JlptSkillMatrixView';
+import { practiceResult } from '../utils/practiceResult';
+import { formatStudyDate } from '../utils/studyDate';
+import { Suspense, useEffect, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useStudyData } from '../context/StudyPlannerContext';
-import Skeleton from '../components/ui/Skeleton';
-import ShareCardModal from '../components/ShareCardModal';
-import { Share2, BarChart3, Globe2, BookOpen, Trophy, Activity } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { useGamificationInfo } from '../stores';
-import { DailyQuestsWidget } from '../components/gamification/DailyQuestsWidget';
-import { AchievementsGrid } from '../components/gamification/AchievementsGrid';
-import RealTimeAnalyticsDashboard from '../components/analytics/RealTimeAnalyticsDashboard';
+import { AssessmentSummary } from '../components/learning/AssessmentSummary';
+import { HistoryService, MockExamItem } from '../services/HistoryService';
+import { lazyWithRetry } from '../utils/lazyRetry';
 
-const ProgressPage: React.FC = () => {
-  const navigate = useNavigate();
-  const { sessions, subjects, tasks, settings, flashcards, coachSessions, loading, user } =
-    useStudyData();
-  const { totalXp, level } = useGamificationInfo();
+const ActivityHeatmap = lazyWithRetry(() => import('../components/analytics/ActivityHeatmap'));
+const FlashcardAnalytics = lazyWithRetry(
+  () => import('../components/analytics/FlashcardAnalytics'),
+);
+const AchievementsGrid = lazyWithRetry(() =>
+  import('../components/gamification/AchievementsGrid').then((m) => ({
+    default: m.AchievementsGrid,
+  })),
+);
+
+export default function ProgressPage() {
+  const { user, sessions, flashcards, targetLevel } = useStudyData();
   const { language } = useLanguage();
-  const [activeTab, setActiveTab] = useState<
-    'overview' | 'realtime' | 'language' | 'subjects' | 'achievements'
-  >('overview');
-  const [isShareOpen, setIsShareOpen] = useState(false);
-
-  const totalHours = (sessions.reduce((acc, s) => acc + s.duration, 0) / 60).toFixed(1);
-  const completedTasks = tasks.filter((t) => t.completed || t.status === 'done').length;
-
+  const lang = language === 'ja' ? 'ja' : language === 'en' ? 'en' : 'uz';
+  const [params] = useSearchParams();
+  const activeTab =
+    params.get('tab') === 'history'
+      ? 'history'
+      : params.get('tab') === 'activity'
+        ? 'activity'
+        : 'skills';
+  const [history, setHistory] = useState<MockExamItem[]>([]);
+  const [historyState, setHistoryState] = useState<'loading' | 'success' | 'error'>('loading');
+  const [retry, setRetry] = useState(0);
+  const [showExtras, setShowExtras] = useState(false);
+  const level = ['N5', 'N4', 'N3', 'N2', 'N1'].includes(targetLevel) ? targetLevel : 'N5';
+  useEffect(() => {
+    let cancelled = false;
+    setHistory([]);
+    setHistoryState('loading');
+    HistoryService.getMockExamsHistory()
+      .then((items) => {
+        if (!cancelled) {
+          setHistory(
+            items
+              .filter(
+                (item) =>
+                  item.examType === 'jlpt' &&
+                  item.level?.toUpperCase().match(/N[1-5]/)?.[0] === level &&
+                  Number.isFinite(item.score) &&
+                  item.score >= 0 &&
+                  Number.isFinite(item.totalQuestions) &&
+                  item.totalQuestions > 0,
+              )
+              .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()),
+          );
+          setHistoryState('success');
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setHistoryState('error');
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [user?.id, level, retry]);
+  const latest = history[0];
+  const latestResult = latest ? practiceResult(latest) : null;
+  const previous = history
+    .slice(1)
+    .find((item) => latestResult?.basis && practiceResult(item).basis === latestResult.basis);
+  const formatDate = (date: string) => formatStudyDate(new Date(date), lang);
   return (
-    <div className="mx-auto max-w-7xl space-y-6 p-4 pb-28 duration-200 animate-in fade-in sm:pb-24 md:p-8 md:pb-12 3xl:max-w-8xl 3xl:p-12">
-      {/* Header */}
-      <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+    <div className="study-page">
+      <header>
+        <p className="mb-2 text-sm font-medium text-primary">JLPT {level}</p>
+        <h1 className="text-3xl font-semibold tracking-tight">
+          {lang === 'uz' ? 'Natijalar' : lang === 'ja' ? '学習結果' : 'Results'}
+        </h1>
+        <p className="mt-2 text-muted-foreground">
+          {lang === 'uz'
+            ? 'Natijalaringiz va mashq qilish kerak bo‘lgan yo‘nalishlar.'
+            : lang === 'ja'
+              ? '上達した分野と、復習が必要な分野を確認しましょう。'
+              : 'See where you are improving and what needs more practice.'}
+        </p>
+      </header>
+      <section
+        className="flex flex-wrap items-center justify-between gap-5 border-y border-border/60 py-6"
+        aria-labelledby="latest-exam-heading"
+      >
         <div>
-          <h2 className="text-2xl font-black tracking-tight text-foreground sm:text-3xl">
-            {language === 'ja'
-              ? '学習進捗 & アナリティクス'
-              : language === 'en'
-                ? 'Study Progress & Analytics'
-                : "O'quv Statistikasi & Progress"}
+          <h2 id="latest-exam-heading" className="text-lg font-semibold">
+            {lang === 'uz'
+              ? 'Oxirgi sinov natijasi'
+              : lang === 'ja'
+                ? '最新の練習結果'
+                : 'Latest practice result'}
           </h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            {language === 'ja'
-              ? '日々の学習成果、科目別アクティビティ、弱点克服の記録'
-              : language === 'en'
-                ? 'Daily study performance, activity heatmap, and learning insights'
-                : "Kunlik o'rganish natijalari, faollik xaritasi va o'sish ko'rsatkichlari"}
-          </p>
+          <div
+            className="mt-2 flex flex-wrap items-baseline gap-x-3 gap-y-2 text-sm text-muted-foreground"
+            aria-live="polite"
+          >
+            {historyState === 'loading' ? (
+              lang === 'uz' ? (
+                'Natijalar yuklanmoqda…'
+              ) : lang === 'ja' ? (
+                '結果を読み込み中…'
+              ) : (
+                'Loading results…'
+              )
+            ) : historyState === 'error' ? (
+              <>
+                {lang === 'uz'
+                  ? 'Natijalar yuklanmadi.'
+                  : lang === 'ja'
+                    ? '結果を読み込めませんでした。'
+                    : 'Results could not load.'}
+                <button
+                  className="ml-2 min-h-11 text-primary hover:underline"
+                  onClick={() => setRetry((n) => n + 1)}
+                >
+                  {lang === 'uz' ? 'Qayta urinish' : lang === 'ja' ? '再試行' : 'Retry'}
+                </button>
+              </>
+            ) : latest ? (
+              <>
+                <span className="text-2xl font-semibold tabular-nums text-foreground">
+                  {latestResult?.label}
+                </span>
+                <span>{formatDate(latest.createdAt)}</span>
+                {previous && (
+                  <span className="tabular-nums">
+                    {latest.score - previous.score > 0 ? '+' : ''}
+                    {latest.score - previous.score}{' '}
+                    {lang === 'uz'
+                      ? 'ball oldingi sinovga nisbatan'
+                      : lang === 'ja'
+                        ? '点（前回比）'
+                        : 'points from the previous exam'}
+                  </span>
+                )}
+              </>
+            ) : lang === 'uz' ? (
+              'Hali sinov natijasi yo‘q. Birinchi test bilan boshlang.'
+            ) : lang === 'ja' ? (
+              '模擬試験の結果はまだありません。最初の試験を受けましょう。'
+            ) : (
+              'No exam results yet. Start with your first practice exam.'
+            )}
+          </div>
+          {latest && (
+            <p className="mt-2 text-sm text-muted-foreground">
+              {lang === 'uz'
+                ? 'Bu mashq natijasi, rasmiy JLPT bahosi emas.'
+                : lang === 'ja'
+                  ? 'このアプリの模擬試験の得点です。公式JLPTの結果ではありません。'
+                  : 'A saved practice result. Older results with unknown scoring formats show only their saved value.'}
+            </p>
+          )}
         </div>
-        <button
-          onClick={() => setIsShareOpen(true)}
-          className="flex cursor-pointer items-center gap-2 rounded-2xl bg-primary px-4 py-2.5 text-xs font-bold text-primary-foreground shadow-sm transition-all hover:opacity-90 active:scale-95"
+        <Link
+          to={`/exams?level=${level}`}
+          className="inline-flex min-h-11 items-center rounded-full bg-primary/10 px-5 text-sm font-medium text-primary transition-colors hover:bg-primary/20"
         >
-          <Share2 size={16} />
-          <span>{language === 'ja' ? 'シェアする' : language === 'en' ? 'Share' : 'Ulashish'}</span>
-        </button>
-      </div>
-
-      {/* Smart Insight AI recommendation */}
-      <SmartInsight />
-
-      {/* KPI Cards */}
-      {loading ? (
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
-          {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="rounded-2xl border border-border bg-card p-5">
-              <Skeleton width={40} height={40} className="mb-2 rounded-lg" />
-              <Skeleton width={80} height={28} className="mb-1" />
-              <Skeleton width={100} height={14} />
+          {lang === 'uz'
+            ? 'Sinov imtihonini ochish →'
+            : lang === 'ja'
+              ? '模擬試験を開く →'
+              : 'Open practice exams →'}
+        </Link>
+      </section>
+      <nav
+        className="flex flex-wrap gap-x-6 gap-y-1 border-b border-border/60"
+        aria-label={
+          lang === 'uz' ? 'Natija bo‘limlari' : lang === 'ja' ? '学習結果の項目' : 'Result sections'
+        }
+      >
+        {[
+          { tab: 'skills', uz: 'Ko‘nikmalar', en: 'Skills', ja: '分野別' },
+          { tab: 'history', uz: 'Imtihonlar tarixi', en: 'Exam history', ja: '試験履歴' },
+          { tab: 'activity', uz: 'O‘qish odati', en: 'Study activity', ja: '学習記録' },
+        ].map((tab) => (
+          <Link
+            key={tab.tab}
+            to={`?tab=${tab.tab}`}
+            aria-current={activeTab === tab.tab ? 'page' : undefined}
+            className={`inline-flex min-h-12 items-center border-b-2 py-3 text-sm font-medium transition-colors ${activeTab === tab.tab ? 'border-primary text-foreground' : 'border-transparent text-muted-foreground hover:text-foreground'}`}
+          >
+            {tab[lang]}
+          </Link>
+        ))}
+      </nav>
+      {activeTab === 'skills' && <AssessmentSummary />}
+      {activeTab === 'history' && (
+        <section className="space-y-4 py-2">
+          <h2 className="text-xl font-semibold">
+            {lang === 'uz'
+              ? 'JLPT sinovlari'
+              : lang === 'ja'
+                ? 'JLPT模擬試験'
+                : 'JLPT practice exams'}
+          </h2>
+          {historyState === 'loading' ? (
+            <p role="status" className="text-sm text-muted-foreground">
+              {lang === 'uz'
+                ? 'Natijalar yuklanmoqda…'
+                : lang === 'ja'
+                  ? '結果を読み込み中…'
+                  : 'Loading results…'}
+            </p>
+          ) : historyState === 'error' ? (
+            <div className="space-y-2">
+              <p role="alert" className="text-sm text-destructive">
+                {lang === 'uz'
+                  ? 'Imtihonlar tarixi yuklanmadi.'
+                  : lang === 'ja'
+                    ? '試験履歴を読み込めませんでした。'
+                    : 'Exam history could not load.'}
+              </p>
+              <button
+                onClick={() => setRetry((n) => n + 1)}
+                className="min-h-11 text-sm font-medium text-primary hover:underline"
+              >
+                {lang === 'uz'
+                  ? 'Tarixni qayta yuklash'
+                  : lang === 'ja'
+                    ? '再読み込み'
+                    : 'Reload history'}
+              </button>
             </div>
-          ))}
-        </div>
-      ) : (
-        <StudyStatsCards
-          totalHours={totalHours}
-          completedTasks={completedTasks}
-          currentStreak={settings.currentStreak}
-          totalXp={totalXp}
-          level={level}
-        />
+          ) : history.length === 0 ? (
+            <p className="text-sm text-muted-foreground">
+              {lang === 'uz'
+                ? 'Natijalar testni tugatganingizdan keyin shu yerda ko‘rinadi.'
+                : lang === 'ja'
+                  ? '試験を完了すると結果がここに表示されます。'
+                  : 'Completed exam results will appear here.'}
+            </p>
+          ) : (
+            <ol className="divide-y divide-border">
+              {history.map((exam) => (
+                <li
+                  key={exam.id}
+                  className="flex flex-wrap items-center justify-between gap-3 py-4"
+                >
+                  <div className="text-sm">
+                    <span className="font-medium">JLPT {exam.level}</span>
+                    <span className="ml-3 text-muted-foreground">{formatDate(exam.createdAt)}</span>
+                  </div>
+                  <span className="font-semibold tabular-nums">{practiceResult(exam).label}</span>
+                </li>
+              ))}
+            </ol>
+          )}
+        </section>
       )}
-
-      {/* Tab Navigation */}
-      <div className="no-scrollbar flex items-center gap-2 overflow-x-auto border-b border-border pb-3">
-        <button
-          onClick={() => setActiveTab('overview')}
-          className={`flex min-h-[44px] shrink-0 cursor-pointer items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-extrabold transition-all active:scale-95 ${
-            activeTab === 'overview'
-              ? 'bg-primary text-primary-foreground shadow-sm'
-              : 'bg-muted/40 text-muted-foreground hover:bg-muted'
-          }`}
+      <Suspense
+        fallback={
+          <p role="status" className="text-sm text-muted-foreground">
+            {lang === 'uz' ? 'Yuklanmoqda…' : lang === 'ja' ? '読み込み中…' : 'Loading…'}
+          </p>
+        }
+      >
+        {activeTab === 'activity' && <ActivityHeatmap sessions={sessions} />}
+        <details
+          onToggle={(e) => setShowExtras(e.currentTarget.open)}
+          className="border-t border-border/60 pt-5"
         >
-          <BarChart3 size={15} />
-          <span>{language === 'ja' ? '総合' : language === 'en' ? 'Overview' : 'Umumiy'}</span>
-        </button>
-        <button
-          onClick={() => setActiveTab('realtime')}
-          className={`flex min-h-[44px] shrink-0 cursor-pointer items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-extrabold transition-all active:scale-95 ${
-            activeTab === 'realtime'
-              ? 'bg-primary text-primary-foreground shadow-sm'
-              : 'bg-muted/40 text-muted-foreground hover:bg-muted'
-          }`}
-        >
-          <Activity size={15} />
-          <span>
-            {language === 'ja'
-              ? 'リアルタイム & AI'
-              : language === 'en'
-                ? 'Real-Time & AI'
-                : 'Real-Vaqt & AI'}
-          </span>
-        </button>
-        <button
-          onClick={() => setActiveTab('language')}
-          className={`flex min-h-[44px] shrink-0 cursor-pointer items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-extrabold transition-all active:scale-95 ${
-            activeTab === 'language'
-              ? 'bg-primary text-primary-foreground shadow-sm'
-              : 'bg-muted/40 text-muted-foreground hover:bg-muted'
-          }`}
-        >
-          <Globe2 size={15} />
-          <span>
-            {language === 'ja' ? '言語・JLPT' : language === 'en' ? 'Language & JLPT' : 'Til, JLPT'}
-          </span>
-        </button>
-        <button
-          onClick={() => setActiveTab('subjects')}
-          className={`flex min-h-[44px] shrink-0 cursor-pointer items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-extrabold transition-all active:scale-95 ${
-            activeTab === 'subjects'
-              ? 'bg-primary text-primary-foreground shadow-sm'
-              : 'bg-muted/40 text-muted-foreground hover:bg-muted'
-          }`}
-        >
-          <BookOpen size={15} />
-          <span>{language === 'ja' ? '科目' : language === 'en' ? 'Subjects' : 'Fanlar'}</span>
-        </button>
-        <button
-          onClick={() => setActiveTab('achievements')}
-          className={`flex min-h-[44px] shrink-0 cursor-pointer items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-extrabold transition-all active:scale-95 ${
-            activeTab === 'achievements'
-              ? 'bg-primary text-primary-foreground shadow-sm'
-              : 'bg-muted/40 text-muted-foreground hover:bg-muted'
-          }`}
-        >
-          <Trophy size={15} />
-          <span>
-            {language === 'ja' ? '実績' : language === 'en' ? 'Achievements' : 'Yutuqlar'}
-          </span>
-        </button>
-      </div>
-
-      {/* Tab: Real-Time Analytics & Personalized AI Feedback */}
-      {activeTab === 'realtime' && (
-        <div className="space-y-8 duration-300 animate-in fade-in">
-          <RealTimeAnalyticsDashboard />
-        </div>
-      )}
-
-      {/* Tab 1: Overview & Time Activity */}
-      {activeTab === 'overview' && (
-        <div className="space-y-8 duration-300 animate-in fade-in">
-          <WeeklyStudyDigest
-            onNavigateToDecks={() => navigate('/decks')}
-            onNavigateToSpeaking={() => navigate('/speaking')}
-          />
-          <ActivityAnalytics sessions={sessions} />
-          <ActivityHeatmap
-            sessions={sessions}
-            onStartFlashcards={() => navigate('/decks')}
-            onStartSpeaking={() => navigate('/speaking')}
-          />
-        </div>
-      )}
-
-      {/* Tab 2: Language, JLPT & Coach */}
-      {activeTab === 'language' && (
-        <div className="space-y-8 duration-300 animate-in fade-in">
-          <JlptSkillMatrixView />
-          <JlptProgressAnalytics userId={user?.id} />
-          <CoachAnalytics sessions={coachSessions} />
-          <ExamHistoryAnalytics />
-        </div>
-      )}
-
-      {/* Tab 3: Subjects & Flashcards */}
-      {activeTab === 'subjects' && (
-        <div className="space-y-8 duration-300 animate-in fade-in">
-          <SubjectAnalytics subjects={subjects} sessions={sessions} flashcards={flashcards} />
-          <FlashcardAnalytics flashcards={flashcards} />
-        </div>
-      )}
-
-      {/* Tab 4: Achievements & Daily Quests */}
-      {activeTab === 'achievements' && (
-        <div className="space-y-8 duration-300 animate-in fade-in">
-          <DailyQuestsWidget />
-          <AchievementsGrid />
-        </div>
-      )}
-
-      <ShareCardModal isOpen={isShareOpen} onClose={() => setIsShareOpen(false)} />
+          <summary className="min-h-11 cursor-pointer text-sm font-medium text-muted-foreground hover:text-foreground">
+            {lang === 'uz'
+              ? 'Kartalar statistikasi va yutuqlar'
+              : lang === 'ja'
+                ? 'カードの統計と実績'
+                : 'Card statistics and achievements'}
+          </summary>
+          {showExtras && (
+            <div className="mt-5 space-y-6">
+              <FlashcardAnalytics flashcards={flashcards} />
+              <AchievementsGrid />
+            </div>
+          )}
+        </details>
+      </Suspense>
     </div>
   );
-};
-
-export default ProgressPage;
+}
