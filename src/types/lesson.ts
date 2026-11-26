@@ -1,3 +1,5 @@
+import type { IncorrectAnswerSignal } from './learningSignals';
+
 export type SupportedLanguage = 'en' | 'ja';
 
 export type LessonStepType = 'learn' | 'practice' | 'test';
@@ -157,7 +159,19 @@ export interface Lesson {
   steps: LessonStep[];
 }
 
+export interface LessonStepResult {
+  type: LessonStepType;
+  score: number;
+  total: number;
+  percentage: number;
+  passed: boolean;
+  completedAt: string;
+}
+
 export interface UserLessonProgress {
+  progressionVersion?: 1;
+  stepResults?: Record<string, LessonStepResult>;
+  mistakes?: IncorrectAnswerSignal[];
   lessonId: string;
   userId: string;
   currentStepIndex: number;

@@ -9,6 +9,7 @@ import {
   Headphones,
   BookOpen,
   Edit3,
+  LockKeyhole,
 } from 'lucide-react';
 import { useStudyData } from '../context/StudyPlannerContext';
 import { LessonService } from '../services/LessonService';
@@ -24,8 +25,16 @@ import { useGamificationStore } from '../stores/useGamificationStore';
 import { useSEO } from '../hooks/useSEO';
 import { toast } from '../hooks/use-toast';
 import { ErrorNotificationService } from '../services/ErrorNotificationService';
+import {
+  completedLessonSteps,
+  unlockedLessonStep,
+  recordLessonStep,
+  validStepResult,
+  verifiedLessonCompletion,
+  lessonAggregateScore,
+} from '../utils/lessonProgression';
 
-export const LessonPlayerPage: React.FC = () => {
+const LessonPlayerContent: React.FC = () => {
   const { lessonId } = useParams<{ lessonId: string }>();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -49,12 +58,40 @@ export const LessonPlayerPage: React.FC = () => {
   });
   const [loadError, setLoadError] = useState(false);
   const [loadAttempt, setLoadAttempt] = useState(0);
-  const [sessionErrors, setSessionErrors] = useState<IncorrectAnswerSignal[]>([]);
+  const sessionErrorsRef = useRef<IncorrectAnswerSignal[]>([]);
   const [srsSummary, setSrsSummary] = useState<{ newCardsCount: number; mistakesCount: number }>({
     newCardsCount: 0,
     mistakesCount: 0,
   });
   const completionInFlightRef = useRef(false);
+  const [progress, setProgress] = useState<UserLessonProgress | null>(null);
+  const progressRef = useRef<UserLessonProgress | null>(null);
+  const [savingProgress, setSavingProgress] = useState(false);
+  const savingProgressRef = useRef(false);
+  const [saveError, setSaveError] = useState('');
+  const pendingProgressRef = useRef<UserLessonProgress | null>(null);
+
+  const persistProgress = async (next: UserLessonProgress) => {
+    if (savingProgressRef.current) return false;
+    savingProgressRef.current = true;
+    setSavingProgress(true);
+    setSaveError('');
+    next = { ...next, mistakes: [...sessionErrorsRef.current] };
+    pendingProgressRef.current = next;
+    try {
+      await LessonService.saveLessonProgress(user?.id || '', next);
+      progressRef.current = next;
+      setProgress(next);
+      pendingProgressRef.current = null;
+      return true;
+    } catch {
+      setSaveError('Natija saqlanmadi. Keyingi bosqichni ochishdan oldin qayta saqlang.');
+      return false;
+    } finally {
+      savingProgressRef.current = false;
+      setSavingProgress(false);
+    }
+  };
 
   useSEO({
     title: lesson ? `${lesson.title} - Dars Mashg'uloti` : "O'quv Darsi - kaiwa.live",
@@ -124,20 +161,40 @@ export const LessonPlayerPage: React.FC = () => {
         }
       }
 
-      // Load saved progress
-      const savedProgress = LessonService.getLessonProgress(user?.id || '', lessonId);
-      if (targetStepIdx !== null) {
-        setCurrentStepIdx(targetStepIdx);
-        if (savedProgress?.isCompleted && savedProgress.quizScore) {
-          setQuizResult(savedProgress.quizScore);
-        }
-      } else if (savedProgress) {
-        if (savedProgress.isCompleted) {
-          setIsLessonCompleted(true);
-          setQuizResult(savedProgress.quizScore);
-        } else if (savedProgress.currentStepIndex !== undefined) {
-          setCurrentStepIdx(Math.min(savedProgress.currentStepIndex, foundLesson.steps.length - 1));
-        }
+      const savedProgress = LessonService.getLessonProgress(user?.id || '', foundLesson.id);
+      const initialProgress: UserLessonProgress = savedProgress || {
+        lessonId: foundLesson.id,
+        userId: user?.id || 'guest',
+        currentStepIndex: 0,
+        completedStepIds: [],
+        isCompleted: false,
+        lastAttemptedAt: new Date().toISOString(),
+        progressionVersion: 1,
+        stepResults: {},
+      };
+      sessionErrorsRef.current = initialProgress.mistakes || [];
+      progressRef.current = initialProgress;
+      setProgress(initialProgress);
+      const unlocked = unlockedLessonStep(foundLesson, initialProgress);
+      const savedIndex = initialProgress.currentStepIndex ?? 0;
+      const savedStepIsDone = completedLessonSteps(foundLesson, initialProgress).includes(
+        foundLesson.steps[savedIndex]?.id,
+      );
+      const requested = targetStepIdx ?? (savedStepIsDone ? unlocked : savedIndex);
+      setCurrentStepIdx(Math.max(0, Math.min(requested, unlocked)));
+      if (targetStepIdx !== null && targetStepIdx > unlocked)
+        toast({
+          title: 'Avval oldingi bosqichni yakunlang',
+          description: 'Mashq va testlarni tartib bilan bajaring.',
+        });
+      // Preserve historical completed lessons, while all new attempts require per-step evidence.
+      const historicalCompletion = savedProgress?.isCompleted && !savedProgress.progressionVersion;
+      if (
+        targetStepIdx === null &&
+        (verifiedLessonCompletion(foundLesson, savedProgress) || historicalCompletion)
+      ) {
+        setIsLessonCompleted(true);
+        setQuizResult(savedProgress?.quizScore);
       }
       setLoading(false);
     };
@@ -170,12 +227,17 @@ export const LessonPlayerPage: React.FC = () => {
   }, [lessonId, user?.id, searchParams, navigate, loadAttempt]);
 
   const totalSteps = lesson ? lesson.steps.length : 0;
+  const completedIds = lesson ? completedLessonSteps(lesson, progress) : [];
+  const unlockedStepIdx = lesson ? unlockedLessonStep(lesson, progress) : 0;
   const progressPercentage =
     totalSteps > 0
-      ? Math.round(((currentStepIdx + (isLessonCompleted ? 1 : 0)) / totalSteps) * 100)
+      ? Math.round(((isLessonCompleted ? totalSteps : completedIds.length) / totalSteps) * 100)
       : 0;
-
   const currentStep: LessonStep | undefined = lesson?.steps[currentStepIdx];
+  const canContinue =
+    !!currentStep &&
+    (currentStep.type === 'learn' ||
+      validStepResult(currentStep, progress?.stepResults?.[currentStep.id]));
 
   const handlePracticeIncorrectAnswer = (
     exerciseId: string,
@@ -200,54 +262,58 @@ export const LessonPlayerPage: React.FC = () => {
       attemptCount: 1,
       timestamp: new Date().toISOString(),
     };
-    setSessionErrors((prev) => [...prev, errSig]);
+    sessionErrorsRef.current = [...sessionErrorsRef.current, errSig];
   };
 
   const handleNextStep = async () => {
-    if (!lesson) return;
-
-    if (currentStepIdx < totalSteps - 1) {
-      const nextIdx = currentStepIdx + 1;
-      setCurrentStepIdx(nextIdx);
-
-      // Save progress
-      const progress: UserLessonProgress = {
-        lessonId: lesson.id,
-        userId: user?.id || 'guest',
-        currentStepIndex: nextIdx,
-        completedStepIds: lesson.steps.slice(0, nextIdx).map((s) => s.id),
-        isCompleted: false,
-        lastAttemptedAt: new Date().toISOString(),
-      };
-      await LessonService.saveLessonProgress(user?.id || '', progress);
-    } else {
-      // Reached completion
-      await handleCompleteLesson(
-        quizResult || { score: totalSteps, total: totalSteps, percentage: 100 },
-      );
-    }
+    if (
+      !lesson ||
+      !currentStep ||
+      !progressRef.current ||
+      savingProgressRef.current ||
+      completionInFlightRef.current
+    )
+      return;
+    if (
+      currentStep.type !== 'learn' &&
+      !validStepResult(currentStep, progressRef.current.stepResults?.[currentStep.id])
+    )
+      return;
+    let next = progressRef.current;
+    if (currentStep.type === 'learn') next = recordLessonStep(lesson, next, currentStepIdx);
+    next = { ...next, currentStepIndex: Math.min(currentStepIdx + 1, totalSteps - 1) };
+    if (!(await persistProgress(next))) return;
+    if (verifiedLessonCompletion(lesson, next))
+      await handleCompleteLesson(lessonAggregateScore(lesson, next));
+    else setCurrentStepIdx(next.currentStepIndex);
   };
 
   const handlePrevStep = () => {
-    if (currentStepIdx > 0) {
-      setCurrentStepIdx((prev) => prev - 1);
-    }
+    if (currentStepIdx > 0 && !savingProgressRef.current) setCurrentStepIdx((prev) => prev - 1);
   };
 
   const handleJumpToStep = async (idx: number) => {
-    if (!lesson || idx < 0 || idx >= totalSteps || idx === currentStepIdx) return;
-    setCurrentStepIdx(idx);
+    if (
+      !lesson ||
+      !progressRef.current ||
+      savingProgressRef.current ||
+      idx < 0 ||
+      idx > unlockedStepIdx ||
+      idx === currentStepIdx
+    )
+      return;
+    const next = { ...progressRef.current, currentStepIndex: idx };
+    if (await persistProgress(next)) {
+      setIsLessonCompleted(false);
+      setCurrentStepIdx(idx);
+    }
+  };
 
-    // Save progress (same shape as sequential navigation)
-    const progress: UserLessonProgress = {
-      lessonId: lesson.id,
-      userId: user?.id || 'guest',
-      currentStepIndex: idx,
-      completedStepIds: lesson.steps.slice(0, idx).map((s) => s.id),
-      isCompleted: false,
-      lastAttemptedAt: new Date().toISOString(),
-    };
-    await LessonService.saveLessonProgress(user?.id || '', progress);
+  const handlePracticeCompletion = async (result: { score: number; total: number }) => {
+    if (!lesson || !progressRef.current || currentStep?.type !== 'practice') return;
+    await persistProgress(
+      recordLessonStep(lesson, progressRef.current, currentStepIdx, result.score, result.total),
+    );
   };
 
   const handleTestCompletion = async (result: {
@@ -274,93 +340,47 @@ export const LessonPlayerPage: React.FC = () => {
       timestamp: new Date().toISOString(),
     }));
 
-    const allErrors = [...sessionErrors, ...testErrors];
-    setSessionErrors(allErrors);
+    const allErrors = [...sessionErrorsRef.current, ...testErrors];
+    sessionErrorsRef.current = allErrors;
 
-    const passingScore = currentStep.testData?.passingScorePercentage ?? 75;
-    const isPassed = result.percentage >= passingScore;
-
-    // Failed test attempt should remain incomplete (do not mark lesson completed).
-    if (!isPassed) {
-      setQuizResult({
-        score: result.score,
-        total: result.total,
-        percentage: result.percentage,
-      });
-
-      // Persist attempt progress without completing the lesson.
-      const progress: UserLessonProgress = {
-        lessonId: lesson.id,
-        userId: user?.id || 'guest',
-        currentStepIndex: currentStepIdx,
-        completedStepIds: lesson.steps.slice(0, currentStepIdx).map((s) => s.id),
-        isCompleted: false,
-        quizScore: {
-          score: result.score,
-          total: result.total,
-          percentage: result.percentage,
-        },
-        lastAttemptedAt: new Date().toISOString(),
-      };
-      await LessonService.saveLessonProgress(user?.id || '', progress);
-      return;
-    }
-
-    // If there are subsequent steps remaining (e.g. Step 4: Mondai Tinglash Testi), advance smoothly!
-    if (currentStepIdx < totalSteps - 1) {
-      const nextIdx = currentStepIdx + 1;
-      setCurrentStepIdx(nextIdx);
-      const progress: UserLessonProgress = {
-        lessonId: lesson.id,
-        userId: user?.id || 'guest',
-        currentStepIndex: nextIdx,
-        completedStepIds: lesson.steps.slice(0, nextIdx).map((s) => s.id),
-        isCompleted: false,
-        quizScore: {
-          score: result.score,
-          total: result.total,
-          percentage: result.percentage,
-        },
-        lastAttemptedAt: new Date().toISOString(),
-      };
-      await LessonService.saveLessonProgress(user?.id || '', progress);
-      return;
-    }
-
-    await handleCompleteLesson(
-      {
-        score: result.score,
-        total: result.total,
-        percentage: result.percentage,
-      },
-      allErrors,
+    if (!progressRef.current || currentStep.type !== 'test' || savingProgressRef.current) return;
+    const next = recordLessonStep(
+      lesson,
+      progressRef.current,
+      currentStepIdx,
+      result.score,
+      result.total,
     );
+    const passed = validStepResult(currentStep, next.stepResults?.[currentStep.id]);
+    next.currentStepIndex = passed ? Math.min(currentStepIdx + 1, totalSteps - 1) : currentStepIdx;
+    if (!(await persistProgress(next)) || !passed) return;
+    if (verifiedLessonCompletion(lesson, next))
+      await handleCompleteLesson(lessonAggregateScore(lesson, next), allErrors);
+    else setCurrentStepIdx(next.currentStepIndex);
   };
 
   const handleCompleteLesson = async (
     score: { score: number; total: number; percentage: number },
-    mistakes: IncorrectAnswerSignal[] = sessionErrors,
+    mistakes: IncorrectAnswerSignal[] = sessionErrorsRef.current,
   ) => {
-    if (!lesson || completionInFlightRef.current) return;
+    if (
+      !lesson ||
+      completionInFlightRef.current ||
+      !verifiedLessonCompletion(lesson, progressRef.current)
+    )
+      return;
     completionInFlightRef.current = true;
 
     const activeUserId = user?.id || 'guest';
     const existingProgress = LessonService.getLessonProgress(activeUserId, lesson.id);
-    const alreadyCompleted = !!existingProgress?.isCompleted;
+    const alreadyCompleted = !!(existingProgress?.isCompleted || existingProgress?.completedAt);
 
-    setQuizResult(score);
-    setIsLessonCompleted(true);
-
-    // Award XP
+    setSavingProgress(true);
     try {
-      if (!alreadyCompleted && awardXP) {
-        await awardXP(50);
-      }
-    } catch (e) {}
-
-    try {
-      // Persist lesson completion first, then emit canonical learning signals/mastery evidence.
       await LessonService.completeLesson(activeUserId, lesson.id, score);
+      setQuizResult(score);
+      setIsLessonCompleted(true);
+      if (!alreadyCompleted && awardXP) await awardXP(50);
 
       const summary = await LearningSignalService.processLessonCompletion(
         activeUserId,
@@ -395,7 +415,7 @@ export const LessonPlayerPage: React.FC = () => {
           s.title.toLowerCase().includes('mondai') ||
           s.title.toLowerCase().includes('choukai'),
       );
-      if (hasListeningStep) {
+      if (hasListeningStep && !alreadyCompleted) {
         useGamificationStore.getState().recordQuestProgress('listening', 1);
       }
     } catch (err) {
@@ -409,6 +429,7 @@ export const LessonPlayerPage: React.FC = () => {
       });
     } finally {
       completionInFlightRef.current = false;
+      setSavingProgress(false);
     }
   };
 
@@ -457,9 +478,9 @@ export const LessonPlayerPage: React.FC = () => {
   }
 
   return (
-    <div className="flex h-full w-full flex-col justify-between overflow-hidden bg-background">
+    <div className="lesson-player flex h-full w-full flex-col justify-between overflow-hidden bg-background">
       {/* Top Navigation Bar */}
-      <div className="z-20 shrink-0 border-b border-border bg-background/80 px-3.5 py-2.5 pt-[max(env(safe-area-inset-top),0.75rem)] backdrop-blur-xl sm:px-4 sm:py-3">
+      <div className="z-20 shrink-0 border-b border-border/70 bg-background/95 px-3.5 py-2.5 pt-[max(env(safe-area-inset-top),0.75rem)] backdrop-blur-xl sm:px-4 sm:py-3">
         <div className="mx-auto flex max-w-4xl items-center justify-between gap-3 sm:gap-4 xl:max-w-5xl 2xl:max-w-6xl 3xl:max-w-7xl">
           {/* Left: Exit & Title */}
           <div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
@@ -473,7 +494,7 @@ export const LessonPlayerPage: React.FC = () => {
             </button>
             <div className="min-w-0">
               <div className="flex items-center gap-1.5">
-                <span className="rounded-md border border-primary/20 bg-primary/10 px-1.5 py-0.5 text-[10px] font-black uppercase text-primary sm:px-2 sm:text-xs">
+                <span className="text-[11px] font-semibold text-primary sm:text-xs">
                   {lesson.language === 'ja'
                     ? `🇯🇵 JLPT ${lesson.level}`
                     : `🇬🇧 English ${lesson.level}`}
@@ -516,8 +537,8 @@ export const LessonPlayerPage: React.FC = () => {
 
             {!isLessonCompleted && (
               <div className="text-right">
-                <div className="text-[11px] font-bold uppercase text-muted-foreground">Qadam</div>
-                <div className="text-xs font-black text-foreground">
+                <div className="text-[11px] font-medium text-muted-foreground">Bosqich</div>
+                <div className="text-xs font-semibold tabular-nums text-foreground">
                   {currentStepIdx + 1} / {totalSteps}
                 </div>
               </div>
@@ -526,19 +547,20 @@ export const LessonPlayerPage: React.FC = () => {
         </div>
 
         {/* Progress Line */}
-        <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-secondary">
+        <div className="mt-3 h-px w-full overflow-hidden bg-border">
           <div
-            className="h-full rounded-full bg-primary transition-all duration-500 ease-out"
-            style={{ width: `${Math.min(100, Math.max(5, progressPercentage))}%` }}
+            className="h-full bg-primary transition-all duration-500 ease-out"
+            style={{ width: `${Math.min(100, Math.max(0, progressPercentage))}%` }}
           />
         </div>
 
         {/* Interactive Step Navigation Pills */}
         {lesson && totalSteps > 1 && (
-          <div className="mt-2.5 flex items-center gap-1.5 overflow-x-auto pb-0.5 [scrollbar-width:none] sm:gap-2 [&::-webkit-scrollbar]:hidden">
+          <div className="mt-2 flex items-center overflow-x-auto border-b border-border/60 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {lesson.steps.map((step, idx) => {
               const isActive = currentStepIdx === idx && !isLessonCompleted;
-              const isPast = currentStepIdx > idx || isLessonCompleted;
+              const isPast = completedIds.includes(step.id) || isLessonCompleted;
+              const isLocked = idx > unlockedStepIdx;
               const isMondai =
                 step.id.includes('s4') ||
                 step.title.toLowerCase().includes('tinglash') ||
@@ -549,19 +571,23 @@ export const LessonPlayerPage: React.FC = () => {
                   key={step.id}
                   type="button"
                   onClick={() => handleJumpToStep(idx)}
-                  className={`group flex shrink-0 items-center gap-1.5 rounded-xl border px-2.5 py-1 text-xs font-bold transition-all active:scale-95 sm:px-3 sm:py-1.5 ${
+                  disabled={isLocked || savingProgress}
+                  aria-current={isActive ? 'step' : undefined}
+                  className={`group relative flex min-h-10 shrink-0 items-center gap-1.5 border-b-2 px-3 py-1 text-xs font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${
                     isActive
                       ? isMondai
-                        ? 'border-amber-500 bg-amber-500/15 text-amber-600 shadow-xs ring-2 ring-amber-500/30 dark:text-amber-300'
-                        : 'border-primary bg-primary/15 text-primary shadow-xs ring-2 ring-primary/30'
+                        ? 'border-amber-500 text-amber-600 dark:text-amber-300'
+                        : 'border-primary text-primary'
                       : isPast
-                        ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/20 dark:text-emerald-400'
-                        : 'border-border bg-card text-muted-foreground hover:border-primary/40 hover:bg-secondary hover:text-foreground'
+                        ? 'border-transparent text-emerald-600 hover:text-emerald-500 dark:text-emerald-400'
+                        : 'border-transparent text-muted-foreground hover:text-foreground'
                   }`}
                   title={`${idx + 1}-qadam: ${step.title}`}
                 >
                   <span className="flex items-center justify-center text-xs">
-                    {isPast && !isActive ? (
+                    {isLocked ? (
+                      <LockKeyhole size={13} />
+                    ) : isPast && !isActive ? (
                       <CheckCircle2 size={13} className="text-emerald-500" />
                     ) : isMondai ? (
                       <Headphones
@@ -581,9 +607,6 @@ export const LessonPlayerPage: React.FC = () => {
                   <span className="max-w-[100px] truncate sm:max-w-[150px]">
                     {step.title.replace(/\s*\(CD Audio\)/i, '')}
                   </span>
-                  {isActive && (
-                    <span className="h-1.5 w-1.5 animate-ping rounded-full bg-current" />
-                  )}
                 </button>
               );
             })}
@@ -592,12 +615,13 @@ export const LessonPlayerPage: React.FC = () => {
       </div>
 
       {/* Main Content Area - Scrollable Container with bottom buffer */}
-      <div className="mx-auto w-full max-w-4xl flex-1 overflow-y-auto overscroll-contain p-3.5 pb-24 sm:p-5 sm:pb-28 md:p-8 xl:max-w-5xl 2xl:max-w-6xl 3xl:max-w-7xl 3xl:p-12">
+      <div className="mx-auto w-full max-w-4xl flex-1 overflow-y-auto overscroll-contain px-4 py-5 pb-24 sm:px-6 sm:py-7 sm:pb-28 md:px-8 xl:max-w-5xl 2xl:max-w-6xl 3xl:max-w-7xl">
         {isLessonCompleted ? (
           <LessonCompletionView
             lesson={lesson}
             userId={user?.id}
             scoreData={quizResult}
+            progress={progress}
             newCardsCount={srsSummary.newCardsCount}
             mistakesCount={srsSummary.mistakesCount}
             onExit={handleExit}
@@ -605,18 +629,18 @@ export const LessonPlayerPage: React.FC = () => {
         ) : currentStep ? (
           <div className="space-y-4 sm:space-y-6">
             {/* Step Type Pill Header */}
-            <div className="mb-2 flex items-center justify-center">
+            <div className="mb-2 flex items-center border-b border-border/70 pb-3">
               <span
-                className={`flex items-center gap-1.5 rounded-full px-3.5 py-1 text-xs font-bold ${
+                className={`flex items-center gap-1.5 border-l-2 pl-3 text-sm font-semibold ${
                   currentStep.type === 'learn'
-                    ? 'border border-blue-500/20 bg-blue-500/10 text-blue-500'
+                    ? 'border-blue-500 text-blue-500'
                     : currentStep.type === 'practice'
-                      ? 'border border-purple-500/20 bg-purple-500/10 text-purple-500'
+                      ? 'border-purple-500 text-purple-500'
                       : currentStep.id.includes('s4') ||
                           currentStep.title.toLowerCase().includes('tinglash') ||
                           currentStep.title.toLowerCase().includes('mondai')
-                        ? 'border border-amber-500/30 bg-amber-500/15 text-amber-600 shadow-xs dark:text-amber-400'
-                        : 'border border-emerald-500/20 bg-emerald-500/10 text-emerald-500'
+                        ? 'border-amber-500 text-amber-600 dark:text-amber-400'
+                        : 'border-emerald-500 text-emerald-500'
                 }`}
               >
                 {(currentStep.id.includes('s4') ||
@@ -629,6 +653,7 @@ export const LessonPlayerPage: React.FC = () => {
             {/* Step Renderers */}
             {currentStep.type === 'learn' && currentStep.learnData && (
               <LearnStepView
+                key={currentStep.id}
                 content={currentStep.learnData}
                 language={lesson.language}
                 lesson={lesson}
@@ -638,6 +663,8 @@ export const LessonPlayerPage: React.FC = () => {
 
             {currentStep.type === 'practice' && currentStep.practiceData && (
               <PracticeStepView
+                key={currentStep.id}
+                onCompletePractice={handlePracticeCompletion}
                 instructions={currentStep.practiceData.instructions}
                 exercises={currentStep.practiceData.exercises}
                 onIncorrectAnswer={handlePracticeIncorrectAnswer}
@@ -647,6 +674,7 @@ export const LessonPlayerPage: React.FC = () => {
 
             {currentStep.type === 'test' && currentStep.testData && (
               <TestStepView
+                key={currentStep.id}
                 instructions={currentStep.testData.instructions}
                 questions={currentStep.testData.questions}
                 passingScorePercentage={currentStep.testData.passingScorePercentage}
@@ -657,14 +685,34 @@ export const LessonPlayerPage: React.FC = () => {
         ) : null}
       </div>
 
+      {saveError && (
+        <div role="alert" className="border-t border-destructive/30 p-3 text-sm text-destructive">
+          {saveError}{' '}
+          <button
+            className="min-h-11 underline"
+            onClick={() => {
+              if (pendingProgressRef.current) void persistProgress(pendingProgressRef.current);
+            }}
+          >
+            Qayta saqlash
+          </button>
+        </div>
+      )}
+      {!isLessonCompleted && currentStep?.type !== 'learn' && !canContinue && (
+        <p className="px-4 py-2 text-center text-xs text-muted-foreground">
+          {currentStep?.type === 'practice'
+            ? 'Barcha mashqlarni bajaring va kamida 70% oling.'
+            : `Testni yakunlang va kamida ${currentStep?.testData?.passingScorePercentage ?? 75}% oling.`}
+        </p>
+      )}
       {/* Bottom Step Controller Footer */}
       {!isLessonCompleted && (
-        <div className="z-20 shrink-0 border-t border-border bg-background/90 p-3 pb-[max(env(safe-area-inset-bottom),0.875rem)] backdrop-blur-xl sm:p-4">
+        <div className="z-20 shrink-0 border-t border-border bg-background/95 p-3 pb-[max(env(safe-area-inset-bottom),0.875rem)] backdrop-blur-xl sm:p-4">
           <div className="mx-auto flex max-w-4xl items-center justify-between gap-2.5 sm:gap-4 xl:max-w-5xl 2xl:max-w-6xl 3xl:max-w-7xl">
             <button
               onClick={handlePrevStep}
-              disabled={currentStepIdx === 0}
-              className="h-11 shrink-0 cursor-pointer touch-manipulation select-none rounded-2xl border border-border px-3 text-xs font-bold text-muted-foreground transition-all hover:bg-secondary hover:text-foreground active:scale-95 disabled:cursor-not-allowed disabled:opacity-30 sm:px-4"
+              disabled={currentStepIdx === 0 || savingProgress}
+              className="h-11 shrink-0 cursor-pointer touch-manipulation select-none rounded-xl px-3 text-xs font-semibold text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground disabled:cursor-not-allowed disabled:opacity-30 sm:px-4"
             >
               <span className="sm:hidden">Oldingi</span>
               <span className="hidden sm:inline">Oldingi qadam</span>
@@ -673,12 +721,13 @@ export const LessonPlayerPage: React.FC = () => {
             {lesson && totalSteps > 1 && (
               <select
                 value={currentStepIdx}
+                disabled={savingProgress}
                 onChange={(e) => handleJumpToStep(Number(e.target.value))}
                 aria-label="Qadamga sakrash"
-                className="h-11 min-w-0 flex-1 cursor-pointer truncate rounded-2xl border border-border bg-card px-2 text-center text-xs font-bold text-foreground focus:border-primary focus:outline-none sm:flex-none sm:px-3"
+                className="h-11 min-w-0 flex-1 cursor-pointer truncate rounded-xl border border-border bg-background px-2 text-center text-xs font-semibold text-foreground focus:border-primary focus:outline-none sm:flex-none sm:px-3"
               >
                 {lesson.steps.map((s, i) => (
-                  <option key={s.id} value={i}>
+                  <option key={s.id} value={i} disabled={i > unlockedStepIdx}>
                     {i + 1}/{totalSteps} · {s.title}
                   </option>
                 ))}
@@ -687,13 +736,16 @@ export const LessonPlayerPage: React.FC = () => {
 
             <button
               onClick={handleNextStep}
+              disabled={!canContinue || savingProgress}
               aria-label={
                 currentStepIdx === totalSteps - 1 ? 'Darsni Yakunlash' : "Keyingi Qadamga O'tish"
               }
-              className="flex h-11 cursor-pointer touch-manipulation select-none items-center gap-1.5 rounded-2xl bg-primary px-4 text-xs font-bold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:opacity-90 active:scale-95 sm:gap-2 sm:px-6 md:text-sm"
+              className="flex h-11 cursor-pointer touch-manipulation select-none items-center gap-1.5 rounded-xl bg-primary px-4 text-xs font-semibold text-primary-foreground transition-colors hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40 sm:gap-2 sm:px-6 md:text-sm"
             >
               <span>
-                {currentStepIdx === totalSteps - 1 ? (
+                {savingProgress ? (
+                  'Saqlanmoqda…'
+                ) : currentStepIdx === totalSteps - 1 ? (
                   <>
                     <span className="sm:hidden">Yakunlash 🎉</span>
                     <span className="hidden sm:inline">Darsni Yakunlash 🎉</span>
@@ -712,6 +764,12 @@ export const LessonPlayerPage: React.FC = () => {
       )}
     </div>
   );
+};
+
+export const LessonPlayerPage: React.FC = () => {
+  const { lessonId } = useParams<{ lessonId: string }>();
+  const { user } = useStudyData();
+  return <LessonPlayerContent key={`${user?.id || 'guest'}:${lessonId}`} />;
 };
 
 export default LessonPlayerPage;

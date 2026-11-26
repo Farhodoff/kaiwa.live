@@ -10,6 +10,7 @@ import {
   Mic,
 } from 'lucide-react';
 import { PracticeExercise } from '../../types/lesson';
+import { practiceAnswerCorrect } from '../../utils/practiceAnswer';
 import { FuriganaText, FuriganaMode } from '../jlpt/FuriganaText';
 import { LessonAudioPlayer } from './LessonAudioPlayer';
 import { SentenceOrderingQuestion } from '../jlpt/SentenceOrderingQuestion';
@@ -28,6 +29,7 @@ interface PracticeStepViewProps {
     explanation?: string,
   ) => void;
   onNextStep?: () => void;
+  onCompletePractice?: (result: { score: number; total: number }) => void;
 }
 
 export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
@@ -36,6 +38,7 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
   onCompleteExercise,
   onIncorrectAnswer,
   onNextStep,
+  onCompletePractice,
 }) => {
   const [currentIdx, setCurrentIdx] = useState(0);
   const [userAnswers, setUserAnswers] = useState<Record<number, number | string>>({});
@@ -74,7 +77,7 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
   // Dynamic shuffle for multiple-choice exercise options per attempt
   const activeExercises = useMemo(() => {
     return exercises.map((ex) => {
-      if (ex.type !== 'multiple-choice' || !ex.options || ex.options.length < 2) {
+      if (ex.type === 'sentence-order' || !ex.options || ex.options.length < 2) {
         return ex;
       }
       const correctText =
@@ -137,32 +140,25 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
       clearTimeout(autoAdvanceTimerRef.current);
     }
 
+    if (Object.keys(answers).length !== totalExercises || totalExercises === 0) return;
+    let correctCount = 0;
+
     // Natijalarni baholash va parent listenerlarga xabar berish
     activeExercises.forEach((ex, idx) => {
       const selected = answers[idx];
-      let correct = false;
+      const correct = practiceAnswerCorrect(ex, selected);
 
-      if (ex.type === 'multiple-choice') {
-        if (typeof ex.correctAnswer === 'number') {
-          correct = selected === ex.correctAnswer;
-        } else {
-          correct =
-            String(selected).trim().toLowerCase() === String(ex.correctAnswer).trim().toLowerCase();
-        }
-      } else if (ex.type === 'sentence-order') {
-        correct = selected === 'correct';
-      }
-
+      if (correct) correctCount++;
       onCompleteExercise?.(ex.id, correct);
 
       if (!correct && selected !== undefined) {
         const userDisplay =
-          ex.type === 'multiple-choice' && typeof selected === 'number' && ex.options
+          typeof selected === 'number' && ex.options
             ? ex.options[selected] || 'Nomaʼlum'
             : String(selected);
 
         const expectedDisplay =
-          ex.type === 'multiple-choice' && typeof ex.correctAnswer === 'number' && ex.options
+          typeof ex.correctAnswer === 'number' && ex.options
             ? ex.options[ex.correctAnswer]
             : String(ex.correctAnswer);
 
@@ -171,9 +167,11 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
     });
 
     setIsCompleted(true);
+    onCompletePractice?.({ score: correctCount, total: totalExercises });
   };
 
   const handleNextExercise = () => {
+    if (userAnswers[currentIdx] === undefined) return;
     if (autoAdvanceTimerRef.current) {
       clearTimeout(autoAdvanceTimerRef.current);
     }
@@ -208,17 +206,7 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
     let correctCount = 0;
     activeExercises.forEach((ex, idx) => {
       const selected = userAnswers[idx];
-      if (ex.type === 'multiple-choice') {
-        if (typeof ex.correctAnswer === 'number') {
-          if (selected === ex.correctAnswer) correctCount++;
-        } else if (
-          String(selected).trim().toLowerCase() === String(ex.correctAnswer).trim().toLowerCase()
-        ) {
-          correctCount++;
-        }
-      } else if (ex.type === 'sentence-order') {
-        if (selected === 'correct') correctCount++;
-      }
+      if (practiceAnswerCorrect(ex, selected)) correctCount++;
     });
 
     const percentage = totalExercises > 0 ? Math.round((correctCount / totalExercises) * 100) : 0;
@@ -226,7 +214,7 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
       correctCount,
       totalCount: totalExercises,
       percentage,
-      isPassed: percentage >= 70,
+      isPassed: totalExercises > 0 && (correctCount / totalExercises) * 100 >= 70,
     };
   }, [activeExercises, userAnswers, totalExercises]);
 
@@ -260,7 +248,7 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
         <div className="mx-auto max-w-2xl space-y-6 duration-200 animate-in fade-in xl:max-w-3xl 2xl:max-w-4xl 3xl:max-w-5xl">
           <div className="flex items-center justify-between">
             <div>
-              <span className="flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-primary">
+              <span className="flex items-center gap-1.5 text-xs font-semibold text-primary">
                 <Sparkles size={14} />
                 <span>★ Gap tartibini tuzish (文の組み立て)</span>
               </span>
@@ -273,7 +261,7 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
             </div>
           </div>
 
-          <div className="rounded-2xl border border-border bg-card p-4 shadow-sm sm:rounded-3xl sm:p-6">
+          <div className="border-y border-border py-5 sm:py-6">
             <SentenceOrderingQuestion
               key={currentExercise.id}
               question={questionData}
@@ -312,7 +300,7 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
         {/* Header / Subtitle */}
         <div className="flex items-center justify-between">
           <div>
-            <span className="flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-primary">
+            <span className="flex items-center gap-1.5 text-xs font-semibold text-primary">
               <Sparkles size={14} />
               <span>Interaktiv Amaliy Mashq</span>
             </span>
@@ -326,7 +314,7 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
         </div>
 
         {/* Exercise Card */}
-        <div className="space-y-4 rounded-2xl border border-border bg-card p-4 shadow-sm sm:space-y-6 sm:rounded-3xl sm:p-6">
+        <div className="space-y-5 border-y border-border py-5 sm:space-y-6 sm:py-6">
           {(currentExercise.audioUrl || currentExercise.audioScript) && (
             <div className="space-y-2">
               <div className="flex items-center justify-between rounded-xl border border-amber-500/25 bg-amber-500/10 px-3 py-1.5 text-amber-700 dark:text-amber-300">
@@ -469,15 +457,15 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
                     key={optIdx}
                     type="button"
                     onClick={() => handleSelectOption(optIdx)}
-                    className={`flex min-h-[50px] w-full cursor-pointer touch-manipulation select-none items-center justify-between gap-2 rounded-2xl border p-3 text-left text-sm transition-all active:scale-[0.99] sm:min-h-[56px] sm:gap-3 sm:p-4 sm:text-base ${
+                    className={`flex min-h-[50px] w-full cursor-pointer touch-manipulation select-none items-center justify-between gap-2 rounded-xl border px-3 py-3 text-left text-sm transition-colors sm:min-h-[56px] sm:gap-3 sm:px-4 sm:text-base ${
                       isSelected
-                        ? 'scale-[1.01] border-primary bg-primary/10 font-bold text-primary shadow-sm ring-1 ring-primary/40'
-                        : 'border-border bg-secondary/30 text-foreground hover:border-primary/40 hover:bg-secondary'
+                        ? 'border-primary bg-primary/[0.08] font-semibold text-primary'
+                        : 'border-border/80 bg-transparent text-foreground hover:border-primary/40 hover:bg-secondary/40'
                     }`}
                   >
                     <div className="flex min-w-0 items-center gap-2 sm:gap-3">
                       <span
-                        className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-xl text-xs font-black sm:h-8 sm:w-8 sm:text-sm ${
+                        className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold sm:h-8 sm:w-8 sm:text-sm ${
                           isSelected
                             ? 'bg-primary text-primary-foreground'
                             : 'border border-border bg-card text-muted-foreground'
@@ -541,14 +529,14 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
     <div className="mx-auto max-w-2xl space-y-6 duration-200 animate-in fade-in xl:max-w-3xl 2xl:max-w-4xl 3xl:max-w-5xl">
       {/* Score Hero Banner */}
       <div
-        className={`space-y-3 rounded-3xl border p-6 text-center shadow-md ${
+        className={`space-y-3 border-y py-6 text-center ${
           scoreStats.isPassed
             ? 'border-emerald-500/30 bg-emerald-500/10 text-foreground'
             : 'border-amber-500/30 bg-amber-500/10 text-foreground'
         }`}
       >
-        <div className="text-3xl">{scoreStats.isPassed ? '🎉' : '📖'}</div>
-        <h3 className="text-xl font-black">
+        <div className="text-2xl">{scoreStats.isPassed ? '✓' : '↻'}</div>
+        <h3 className="text-xl font-bold">
           {scoreStats.isPassed ? 'Amaliy Mashqlar Yakunlandi!' : "Mashqlarni Qayta Ko'rib Chiqing"}
         </h3>
         <div className="flex items-center justify-center gap-3">
@@ -617,18 +605,16 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
         <div className="space-y-3">
           {activeExercises.map((ex, idx) => {
             const selected = userAnswers[idx];
-            let isItemCorrect = false;
+            let isItemCorrect = practiceAnswerCorrect(ex, selected);
             let userDisplay = 'Tanlanmadi';
             let expectedDisplay = '';
 
-            if (ex.type === 'multiple-choice') {
+            if (ex.type !== 'sentence-order') {
               if (typeof ex.correctAnswer === 'number') {
                 isItemCorrect = selected === ex.correctAnswer;
                 expectedDisplay = ex.options ? ex.options[ex.correctAnswer] : '';
               } else {
-                isItemCorrect =
-                  String(selected).trim().toLowerCase() ===
-                  String(ex.correctAnswer).trim().toLowerCase();
+                isItemCorrect = practiceAnswerCorrect(ex, selected);
                 expectedDisplay = String(ex.correctAnswer);
               }
               if (typeof selected === 'number' && ex.options) {
@@ -643,7 +629,7 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
             return (
               <div
                 key={ex.id || idx}
-                className={`space-y-3 rounded-2xl border p-4 shadow-sm transition-all sm:p-5 ${
+                className={`space-y-3 border-b p-4 transition-colors sm:p-5 ${
                   isItemCorrect
                     ? 'border-emerald-500/25 bg-card'
                     : 'border-rose-500/30 bg-rose-500/5'
@@ -751,7 +737,8 @@ export const PracticeStepView: React.FC<PracticeStepViewProps> = ({
           <button
             type="button"
             onClick={onNextStep}
-            className="flex h-11 w-full cursor-pointer touch-manipulation select-none items-center justify-center gap-2 rounded-xl bg-primary px-5 text-xs font-bold text-primary-foreground shadow-md transition-all hover:opacity-90 active:scale-95 sm:w-auto sm:text-sm"
+            disabled={!scoreStats.isPassed}
+            className="flex h-11 w-full cursor-pointer touch-manipulation select-none items-center justify-center gap-2 rounded-xl bg-primary px-5 text-xs font-bold text-primary-foreground shadow-md transition-all hover:opacity-90 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto sm:text-sm"
           >
             <span>Dars Testiga O'tish</span>
             <ArrowRight size={16} />

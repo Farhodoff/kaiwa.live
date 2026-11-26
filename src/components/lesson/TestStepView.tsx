@@ -125,6 +125,8 @@ export const TestStepView: React.FC<TestStepViewProps> = ({
   };
 
   const handleFinishTest = () => {
+    if (isCompleted || totalQuestions === 0 || answeredCount !== totalQuestions) return;
+    if (autoAdvanceTimerRef.current) clearTimeout(autoAdvanceTimerRef.current);
     let correctCount = 0;
     const missedQuestions: MissedQuestionInfo[] = [];
 
@@ -168,14 +170,14 @@ export const TestStepView: React.FC<TestStepViewProps> = ({
     });
   }
   const scorePercentage = totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0;
-  const isPassed = scorePercentage >= passingScorePercentage;
+  const isPassed = totalQuestions > 0 && (score / totalQuestions) * 100 >= passingScorePercentage;
 
   return (
     <div className="mx-auto max-w-2xl space-y-6 duration-200 animate-in fade-in xl:max-w-3xl 2xl:max-w-4xl 3xl:max-w-5xl">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <span className="flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-primary">
+          <span className="flex items-center gap-1.5 text-xs font-semibold text-primary">
             <Award size={14} />
             <span>Dars Testi (Quiz)</span>
           </span>
@@ -210,12 +212,12 @@ export const TestStepView: React.FC<TestStepViewProps> = ({
                     if (autoAdvanceTimerRef.current) clearTimeout(autoAdvanceTimerRef.current);
                     setCurrentIdx(idx);
                   }}
-                  className={`flex h-8 items-center justify-center gap-1.5 rounded-xl px-3 text-xs font-bold transition-all active:scale-95 ${
+                  className={`flex h-8 items-center justify-center gap-1.5 border-b-2 px-3 text-xs font-semibold transition-colors ${
                     isCurrent
-                      ? 'border-2 border-primary bg-primary/15 text-primary shadow-xs ring-1 ring-primary/40'
+                      ? 'border-primary text-primary'
                       : isSelected
-                        ? 'border border-emerald-500/40 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
-                        : 'border border-border bg-card text-muted-foreground hover:bg-secondary hover:text-foreground'
+                        ? 'border-transparent text-emerald-600 dark:text-emerald-400'
+                        : 'border-transparent text-muted-foreground hover:text-foreground'
                   }`}
                   title={`${idx + 1}-savol`}
                 >
@@ -227,7 +229,7 @@ export const TestStepView: React.FC<TestStepViewProps> = ({
           </div>
 
           {/* Active Question Card */}
-          <div className="space-y-4 rounded-2xl border border-border bg-card p-4 shadow-sm sm:space-y-6 sm:rounded-3xl sm:p-6">
+          <div className="space-y-5 border-y border-border py-5 sm:space-y-6 sm:py-6">
             {(currentQuestion.audioUrl || currentQuestion.audioScript) && (
               <div className="space-y-2">
                 <div className="flex items-center justify-between rounded-xl border border-amber-500/25 bg-amber-500/10 px-3 py-1.5 text-amber-700 dark:text-amber-300">
@@ -347,15 +349,15 @@ export const TestStepView: React.FC<TestStepViewProps> = ({
                   <button
                     key={optIdx}
                     onClick={() => handleSelectOption(optIdx)}
-                    className={`flex min-h-[50px] w-full cursor-pointer touch-manipulation select-none items-center justify-between gap-2 rounded-2xl border p-3 text-left text-sm transition-all active:scale-[0.99] sm:min-h-[56px] sm:gap-3 sm:p-4 sm:text-base ${
+                    className={`flex min-h-[50px] w-full cursor-pointer touch-manipulation select-none items-center justify-between gap-2 rounded-xl border px-3 py-3 text-left text-sm transition-colors sm:min-h-[56px] sm:gap-3 sm:px-4 sm:text-base ${
                       isSelected
-                        ? 'border-primary bg-primary/10 font-bold text-primary shadow-sm'
-                        : 'border-border bg-secondary/30 text-foreground hover:bg-secondary'
+                        ? 'border-primary bg-primary/[0.08] font-semibold text-primary'
+                        : 'border-border/80 bg-transparent text-foreground hover:bg-secondary/40'
                     }`}
                   >
                     <div className="flex min-w-0 items-center gap-2 sm:gap-3">
                       <span
-                        className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-xl text-xs font-black sm:h-8 sm:w-8 sm:text-sm ${
+                        className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold sm:h-8 sm:w-8 sm:text-sm ${
                           isSelected
                             ? 'bg-primary text-primary-foreground'
                             : 'border border-border bg-card text-muted-foreground'
@@ -412,14 +414,14 @@ export const TestStepView: React.FC<TestStepViewProps> = ({
         <div className="space-y-6">
           {/* Score Hero Banner */}
           <div
-            className={`space-y-3 rounded-3xl border p-6 text-center shadow-md ${
+            className={`space-y-3 border-y py-6 text-center ${
               isPassed
                 ? 'border-emerald-500/30 bg-emerald-500/10 text-foreground'
                 : 'border-amber-500/30 bg-amber-500/10 text-foreground'
             }`}
           >
-            <div className="text-3xl">{isPassed ? '🎉' : '📖'}</div>
-            <h3 className="text-xl font-black">
+            <div className="text-2xl">{isPassed ? '✓' : '↻'}</div>
+            <h3 className="text-xl font-bold">
               {isPassed ? 'Test Muvaffaqiyatli Topshirildi!' : "Qayta urinib ko'ring"}
             </h3>
             <div className="flex items-center justify-center gap-3">
@@ -490,7 +492,7 @@ export const TestStepView: React.FC<TestStepViewProps> = ({
               return (
                 <div
                   key={qIdx}
-                  className={`space-y-2 rounded-2xl border bg-card p-4 ${
+                  className={`space-y-2 border-b p-4 ${
                     isUserCorrect ? 'border-emerald-500/30' : 'border-rose-500/30'
                   }`}
                 >
