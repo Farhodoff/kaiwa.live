@@ -13,6 +13,97 @@ describe('ExamService Unit Tests', () => {
     vi.clearAllMocks();
   });
 
+  it('normalizes every legacy standalone exam for the common runner', async () => {
+    for (const level of ['n5', 'n4', 'n3', 'n2', 'n1']) {
+      const exam = await ExamService.getExamWithQuestions(`exam_jlpt_${level}_1`);
+      expect(exam.level).toBe(level.toUpperCase());
+      expect(exam.questions.length).toBeGreaterThan(0);
+      expect(
+        exam.questions.every((q) => q.correctAnswer >= 0 && q.correctAnswer < q.options.length),
+      ).toBe(true);
+    }
+    expect(supabase.from).not.toHaveBeenCalled();
+  });
+  it('does not silently replace an unavailable selected exam with N5', async () => {
+    (supabase.from as any).mockReturnValue({
+      select: () => ({
+        eq: () => ({ single: async () => ({ data: null, error: new Error('offline') }) }),
+      }),
+    });
+    await expect(ExamService.getExamWithQuestions('missing-exam', 'N1')).rejects.toThrow(
+      'Tanlangan imtihonni',
+    );
+  });
+  it('preserves linked reading and listening content in the shared question model', async () => {
+    (supabase.from as any).mockImplementation((table: string) => ({
+      select: () => ({
+        eq: () => ({
+          single: async () => ({
+            data: { id: 'linked', title: 'Linked exam', type: 'JLPT N3' },
+            error: null,
+          }),
+          order: async () => ({
+            data: [
+              { id: 'reading', type: 'Reading' },
+              { id: 'listening', type: 'Listening' },
+            ],
+            error: null,
+          }),
+        }),
+        in: async () => ({
+          data:
+            table === 'reading_passages'
+              ? [{ id: 'passage', content: 'Linked passage text' }]
+              : [
+                  {
+                    id: 'audio',
+                    audio_url: 'https://example.com/track.mp3',
+                    transcript: 'Linked transcript',
+                  },
+                ],
+          error: null,
+        }),
+      }),
+    }));
+    // Questions require ordering after filtering, unlike linked asset lookups.
+    const original = (supabase.from as any).getMockImplementation();
+    (supabase.from as any).mockImplementation((table: string) =>
+      table === 'exam_questions'
+        ? {
+            select: () => ({
+              in: () => ({
+                order: async () => ({
+                  data: [
+                    {
+                      id: 'q-read',
+                      section_id: 'reading',
+                      question_text: 'Read',
+                      options: ['A', 'B'],
+                      correct_answer: 'B',
+                      passage_id: 'passage',
+                    },
+                    {
+                      id: 'q-listen',
+                      section_id: 'listening',
+                      question_text: 'Listen',
+                      options: ['A', 'B'],
+                      correct_answer: 'A',
+                      listening_audio_id: 'audio',
+                    },
+                  ],
+                  error: null,
+                }),
+              }),
+            }),
+          }
+        : original(table),
+    );
+    const exam = await ExamService.getExamWithQuestions('linked');
+    expect(exam.questions[0].passageText).toBe('Linked passage text');
+    expect(exam.questions[1].audioUrl).toBe('https://example.com/track.mp3');
+    expect(exam.questions[1].script).toBe('Linked transcript');
+  });
+
   it('parseLevelFromType correctly identifies JLPT levels', () => {
     expect(ExamService.parseLevelFromType('JLPT N1')).toBe('N1');
     expect(ExamService.parseLevelFromType('jlpt n2 advanced')).toBe('N2');
