@@ -60,6 +60,14 @@ test('N4 listening opens directly without showing the audio transcript', async (
   await expect(page.getByText('どうして 遅れたんですか。')).not.toBeVisible();
 });
 
+test('a direct lesson-step URL cannot skip unfinished prerequisites', async ({ page }) => {
+  await page.goto('/lesson/ja-minna-l26?step=mondai');
+
+  await expect(page.getByText("Lug'at va Qoidalar").first()).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Ovozni tinglash' })).toHaveCount(0);
+  await expect(page.getByText('Avval oldingi bosqichni yakunlang')).toBeVisible();
+});
+
 test('a learner can open the N3 course and its first lesson', async ({ page }) => {
   await page.goto('/jlpt?level=n3');
   await page.getByRole('button', { name: /^Passive Voice.*darsni boshlash/i }).click();

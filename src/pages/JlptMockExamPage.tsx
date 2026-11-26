@@ -125,6 +125,12 @@ const JlptMockExamContent: React.FC<{ embedded?: boolean }> = ({ embedded = fals
   const [step, setStep] = useState<'intro' | 'exam' | 'report'>('intro');
   const [showCertificate, setShowCertificate] = useState<boolean>(false);
 
+  // Auth can resolve after the page's first render. Refresh the resumable draft
+  // for the resolved account so a signed-in learner never sees the guest draft.
+  useEffect(() => {
+    if (step === 'intro') setSavedDraft(readExamDraft(owner));
+  }, [owner, step]);
+
   // Available Exams from Supabase DB
   const [availableExams, setAvailableExams] = useState<ExamListItem[]>([]);
   const [selectedExamId, setSelectedExamId] = useState<string>('');

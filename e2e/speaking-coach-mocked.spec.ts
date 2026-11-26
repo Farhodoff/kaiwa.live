@@ -103,6 +103,7 @@ test('hands-free conversation resumes after a reply and after microphone pause',
       onend?: () => void;
       start() {
         win.__coachRecognition = this;
+        win.__coachRecognitionStartCount = (win.__coachRecognitionStartCount || 0) + 1;
         win.__coachRecognitionActive = true;
         setTimeout(() => this.onstart?.(), 0);
       }
@@ -121,8 +122,18 @@ test('hands-free conversation resumes after a reply and after microphone pause',
   await page.keyboard.press('Escape');
   await page.getByRole('button', { name: 'Suhbatni boshlash', exact: true }).click();
   await expect(page.getByRole('status')).toContainText('Murabbiy gapiryapti');
-  expect(await page.evaluate(() => (window as any).__coachRecognitionActive || false)).toBe(false);
+  // Recognition must warm up during TTS instead of connecting only after playback.
+  await expect
+    .poll(() => page.evaluate(() => (window as any).__coachRecognitionActive || false))
+    .toBe(true);
+  const warmStartCount = await page.evaluate(
+    () => (window as any).__coachRecognitionStartCount || 0,
+  );
   await expect(page.getByRole('status')).toContainText('Tinglayapman...', { timeout: 30000 });
+  // Hand-off reuses the same provider session; a reconnect would clip first words.
+  expect(await page.evaluate(() => (window as any).__coachRecognitionStartCount || 0)).toBe(
+    warmStartCount,
+  );
   await page.evaluate(() => {
     const result = Object.assign([{ transcript: '今日は本を読みました。' }], { isFinal: true });
     (window as any).__coachRecognition.onresult({ results: [result] });
