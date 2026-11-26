@@ -13,6 +13,9 @@ const PricingPage = lazyWithRetry(() =>
   import('../pages/PricingPage').then((m) => ({ default: m.PricingPage })),
 );
 const JlptHubPage = lazyWithRetry(() => import('../pages/JlptHubPage'));
+const JlptVocabularyPage = lazyWithRetry(() => import('../pages/JlptVocabularyPage'));
+const JlptKanjiPage = lazyWithRetry(() => import('../pages/JlptKanjiPage'));
+const JlptGrammarPage = lazyWithRetry(() => import('../pages/JlptGrammarPage'));
 const SpeakingCoachPage = lazyWithRetry(() => import('../pages/SpeakingCoachPage'));
 const MonologuePage = lazyWithRetry(() =>
   import('../pages/MonologuePage').then((m) => ({ default: m.MonologuePage })),
@@ -21,6 +24,7 @@ const ScenarioPickerPage = lazyWithRetry(() => import('../pages/ScenarioPickerPa
 const LessonPlayerPage = lazyWithRetry(() => import('../pages/LessonPlayerPage'));
 const RoadmapPage = lazyWithRetry(() => import('../pages/RoadmapPage'));
 const DecksPage = lazyWithRetry(() => import('../pages/DecksPage'));
+const ExamsPage = lazyWithRetry(() => import('../pages/ExamsPage'));
 const StudyModePage = lazyWithRetry(() => import('../pages/StudyModePage'));
 const ExamTake = lazyWithRetry(() => import('../pages/exams/ExamTake'));
 const TelegramMiniAppPage = lazyWithRetry(() => import('../pages/TelegramMiniAppPage'));
@@ -52,6 +56,8 @@ export const UnauthRouter: React.FC = () => (
               {/* Educational pages wrapped in Layout (with sidebar navigation) */}
               <Route element={<Layout />}>
                 <Route path="/jlpt" element={<JlptHubPage />} />
+                <Route path="/jlpt/kanji" element={<JlptKanjiPage />} />
+                <Route path="/jlpt/vocabulary" element={<JlptVocabularyPage />} />
                 <Route path="/speaking-coach" element={<SpeakingCoachPage />} />
                 <Route path="/monologue" element={<MonologuePage />} />
                 <Route
@@ -64,7 +70,7 @@ export const UnauthRouter: React.FC = () => (
                   path="/jlpt-speaking"
                   element={<Navigate to="/speaking-coach?lang=ja" replace />}
                 />
-                <Route path="/jlpt-writing" element={<Navigate to="/jlpt?tab=writing" replace />} />
+                <Route path="/jlpt-writing" element={<Navigate to="/jlpt" replace />} />
                 <Route path="/roadmap" element={<RoadmapPage />} />
                 <Route path="/flashcards" element={<DecksPage />} />
                 <Route path="/deck" element={<Navigate to="/flashcards" replace />} />
@@ -79,16 +85,16 @@ export const UnauthRouter: React.FC = () => (
                   path="/jlpt/listening"
                   element={<Navigate to="/jlpt?tab=listening" replace />}
                 />
-                <Route path="/jlpt/grammar" element={<Navigate to="/jlpt?tab=grammar" replace />} />
+                <Route path="/jlpt/grammar" element={<JlptGrammarPage />} />
                 <Route
                   path="/jlpt/grammar-quiz"
                   element={<Navigate to="/jlpt?tab=grammar" replace />}
                 />
-                <Route path="/jlpt/writing" element={<Navigate to="/jlpt?tab=writing" replace />} />
-                <Route path="/jlpt/sakubun" element={<Navigate to="/jlpt?tab=writing" replace />} />
+                <Route path="/jlpt/writing" element={<Navigate to="/jlpt" replace />} />
+                <Route path="/jlpt/sakubun" element={<Navigate to="/jlpt" replace />} />
                 <Route path="/jlpt/reading" element={<Navigate to="/jlpt?tab=reading" replace />} />
                 <Route path="/jlpt/mock-exam" element={<Navigate to="/jlpt?tab=mock" replace />} />
-                <Route path="/exams" element={<Navigate to="/jlpt?tab=mock" replace />} />
+                <Route path="/exams" element={<ExamsPage />} />
                 <Route path="/ai" element={<Navigate to="/speaking-coach" replace />} />
               </Route>
 

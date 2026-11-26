@@ -2,6 +2,8 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { format } from 'date-fns';
 import { SpacedRepetitionEngine } from '../SpacedRepetitionEngine';
 import { LessonService } from '../LessonService';
+import { recordLessonStep, lessonStepTotal } from '../../utils/lessonProgression';
+import type { UserLessonProgress } from '../../types/lesson';
 import { TaskService } from '../TaskService';
 import { Rating } from '../../utils/srs';
 import { Flashcard, Task } from '../../types';
@@ -507,6 +509,20 @@ describe('SpacedRepetitionEngine (SM-2 / MF2M)', () => {
 
   describe('7. LessonService Automatic Integration', () => {
     it('automatically schedules lesson review when completeLesson is called', async () => {
+      const lesson = await LessonService.loadLessonById('ja-n3-u1-l1');
+      let evidence: UserLessonProgress = {
+        lessonId: lesson!.id,
+        userId: testUserId,
+        currentStepIndex: 0,
+        completedStepIds: [],
+        isCompleted: false,
+        lastAttemptedAt: new Date().toISOString(),
+      };
+      lesson!.steps.forEach((step, index) => {
+        const total = lessonStepTotal(step);
+        evidence = recordLessonStep(lesson!, evidence, index, total, total);
+      });
+      await LessonService.saveLessonProgress(testUserId, evidence);
       const progress = await LessonService.completeLesson(testUserId, 'ja-n3-u1-l1', {
         score: 9,
         total: 10,
@@ -519,7 +535,7 @@ describe('SpacedRepetitionEngine (SM-2 / MF2M)', () => {
       expect(review).not.toBeNull();
       expect(review?.interval).toBe(4); // score 90% -> EASY -> 4 days
       expect(review?.repetitions).toBe(1);
-      expect(review?.quizScorePercentage).toBe(90);
+      expect(review?.quizScorePercentage).toBe(100);
     });
 
     it('ensures schedule is created when saveLessonProgress is called with isCompleted: true', async () => {

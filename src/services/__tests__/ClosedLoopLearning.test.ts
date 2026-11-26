@@ -11,7 +11,8 @@ import {
   getLocalFlashcardCache,
   setLocalFlashcardCache,
 } from '../FlashcardService';
-import { Lesson } from '../../types/lesson';
+import { Lesson, UserLessonProgress } from '../../types/lesson';
+import { recordLessonStep, lessonStepTotal } from '../../utils/lessonProgression';
 import { Flashcard } from '../../types';
 
 // Mock Supabase to prevent unhandled background rejections / teardown console logs
@@ -183,7 +184,21 @@ describe('Phase 8.11 — Real-Time Closed Loop Learning', () => {
 
   // 3. Lesson → next action
   it('3. Completing a lesson advances curriculum state and updates NextBestAction', async () => {
-    // Complete lesson 1
+    // Complete the actual stages before recording the lesson completion.
+    const lesson = await LessonService.loadLessonById('en-a1-u1-l1');
+    let evidence: UserLessonProgress = {
+      lessonId: lesson!.id,
+      userId: testUserId,
+      currentStepIndex: 0,
+      completedStepIds: [],
+      isCompleted: false,
+      lastAttemptedAt: new Date().toISOString(),
+    };
+    lesson!.steps.forEach((step, index) => {
+      const total = lessonStepTotal(step);
+      evidence = recordLessonStep(lesson!, evidence, index, total, total);
+    });
+    await LessonService.saveLessonProgress(testUserId, evidence);
     await LessonService.completeLesson(testUserId, 'en-a1-u1-l1', {
       score: 10,
       total: 10,

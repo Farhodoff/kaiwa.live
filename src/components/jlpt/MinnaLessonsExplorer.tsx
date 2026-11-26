@@ -27,140 +27,135 @@ interface MinnaLessonsExplorerProps {
 }
 
 const UNIT_TABS_N5 = [
-  { id: 'all', title: 'Barcha Darslar (1–25)', titleJa: 'すべての課 (1–25)' },
-  { id: 'mondai_listening', title: '🎧 Mondai Tinglash (1–25)', titleJa: '🎧 問題 聴解テスト' },
-  { id: 'ja-minna-u1', title: 'Unit 1: 1–5 Darslar (Tanishuv & Harakat)', titleJa: '第1課〜第5課' },
+  { id: 'mondai_listening', title: 'Tinglash', titleJa: '聴解' },
+  { id: 'ja-minna-u1', title: '1–5-darslar', titleJa: '第1課〜第5課' },
   {
     id: 'ja-minna-u2',
-    title: 'Unit 2: 6–10 Darslar (Hayot & Mavjudlik)',
+    title: '6–10-darslar',
     titleJa: '第6課〜第10課',
   },
   {
     id: 'ja-minna-u3',
-    title: 'Unit 3: 11–15 Darslar (Sanoq & Te-shakli)',
+    title: '11–15-darslar',
     titleJa: '第11課〜第15課',
   },
   {
     id: 'ja-minna-u4',
-    title: 'Unit 4: 16–20 Darslar (Ketma-ketlik & Futsuugo)',
+    title: '16–20-darslar',
     titleJa: '第16課〜第20課',
   },
-  { id: 'ja-minna-u5', title: 'Unit 5: 21–25 Darslar (Fikr & Shart)', titleJa: '第21課〜第25課' },
+  { id: 'ja-minna-u5', title: '21–25-darslar', titleJa: '第21課〜第25課' },
 ];
 
 const UNIT_TABS_N4 = [
-  { id: 'all', title: 'Barcha Darslar (26–50)', titleJa: 'すべての課 (26–50)' },
-  { id: 'mondai_listening', title: '🎧 Mondai Tinglash (26–50)', titleJa: '🎧 問題 聴解テスト' },
-  { id: 'ja-minna-u6', title: 'Unit 6: 26–30 Darslar (Holat & Izoh)', titleJa: '第26課〜第30課' },
-  { id: 'ja-minna-u7', title: 'Unit 7: 31–35 Darslar (Reja & Shart)', titleJa: '第31課〜第35課' },
+  { id: 'mondai_listening', title: 'Tinglash', titleJa: '聴解' },
+  { id: 'ja-minna-u6', title: '26–30-darslar', titleJa: '第26課〜第30課' },
+  { id: 'ja-minna-u7', title: '31–35-darslar', titleJa: '第31課〜第35課' },
   {
     id: 'ja-minna-u8',
-    title: "Unit 8: 36–40 Darslar (Ko'nikma & Sabab)",
+    title: '36–40-darslar',
     titleJa: '第36課〜第40課',
   },
-  { id: 'ja-minna-u9', title: 'Unit 9: 41–45 Darslar (Hadya & Maqsad)', titleJa: '第41課〜第45課' },
+  { id: 'ja-minna-u9', title: '41–45-darslar', titleJa: '第41課〜第45課' },
   {
     id: 'ja-minna-u10',
-    title: 'Unit 10: 46–50 Darslar (Keigo & Nisbatlar)',
+    title: '46–50-darslar',
     titleJa: '第46課〜第50課',
   },
 ];
 
 const UNIT_TABS_N3 = [
-  { id: 'all', title: 'Barcha Darslar (1–30)', titleJa: 'すべての課 (1–30)' },
   {
     id: 'ja-n3-u1',
-    title: 'Unit 1: Passive & Causative (受身・使役)',
-    titleJa: '第1章：受身・使役',
+    title: '1-bo‘lim',
+    titleJa: '第1章',
   },
   {
     id: 'ja-n3-u2',
-    title: 'Unit 2: Decisions & Habits (決定・習慣)',
-    titleJa: '第2章：決定・習慣',
+    title: '2-bo‘lim',
+    titleJa: '第2章',
   },
   {
     id: 'ja-n3-u3',
-    title: 'Unit 3: Keigo & Business (敬語・ビジネス)',
-    titleJa: '第3章：敬語・実務',
+    title: '3-bo‘lim',
+    titleJa: '第3章',
   },
   {
     id: 'ja-n3-u4',
-    title: 'Unit 4: Advanced Reasoning (論理・対比)',
-    titleJa: '第4章：論理・対比',
+    title: '4-bo‘lim',
+    titleJa: '第4章',
   },
-  { id: 'ja-n3-u5', title: 'Unit 5: Kanji & Reading (漢字・読解)', titleJa: '第5章：漢字・読解' },
+  { id: 'ja-n3-u5', title: '5-bo‘lim', titleJa: '第5章' },
   {
     id: 'ja-n3-u6',
-    title: 'Unit 6: Capstone Mastery (総合演習・試験対策)',
-    titleJa: '第6章：総合演習',
+    title: '6-bo‘lim',
+    titleJa: '第6章',
   },
 ];
 
 const UNIT_TABS_N2 = [
-  { id: 'all', title: 'Barcha Darslar (1–30)', titleJa: 'すべての課 (1–30)' },
   {
     id: 'ja-n2-u1',
-    title: 'Unit 1: Connectors & Progression (接続・変化)',
-    titleJa: '第1章：接続・変化',
+    title: '1-bo‘lim',
+    titleJa: '第1章',
   },
   {
     id: 'ja-n2-u2',
-    title: 'Unit 2: Professional Japanese & Applied Skills (実務日本語・応用)',
-    titleJa: '第2章：実務日本語・応用',
+    title: '2-bo‘lim',
+    titleJa: '第2章',
   },
   {
     id: 'ja-n2-u3',
-    title: 'Unit 3: N2 Advanced Grammar (重要文法・表現)',
-    titleJa: '第3章：重要文法',
+    title: '3-bo‘lim',
+    titleJa: '第3章',
   },
   {
     id: 'ja-n2-u4',
-    title: 'Unit 4: Reading & Listening in Social Context (社会読解・聴解)',
-    titleJa: '第4章：社会読解・聴解',
+    title: '4-bo‘lim',
+    titleJa: '第4章',
   },
   {
     id: 'ja-n2-u5',
-    title: 'Unit 5: N2 Kanji & Vocabulary (漢字・重要語彙)',
-    titleJa: '第5章：漢字・語彙',
+    title: '5-bo‘lim',
+    titleJa: '第5章',
   },
   {
     id: 'ja-n2-u6',
-    title: 'Unit 6: Final Assessment & N1 Bridge (総復習・N1架け橋)',
-    titleJa: '第6章：総仕上げ',
+    title: '6-bo‘lim',
+    titleJa: '第6章',
   },
 ];
 
 const UNIT_TABS_N1 = [
-  { id: 'all', title: 'Barcha Darslar (1–30)', titleJa: 'すべての課 (1–30)' },
   {
     id: 'ja-n1-u1',
-    title: 'Unit 1: Classical & Literary Grammar (文語・格調表現)',
-    titleJa: '第1章：古典・文語',
+    title: '1-bo‘lim',
+    titleJa: '第1章',
   },
   {
     id: 'ja-n1-u2',
-    title: 'Unit 2: Academic Vocabulary & Discourse (学術語彙・論理構成)',
-    titleJa: '第2章：学術語彙',
+    title: '2-bo‘lim',
+    titleJa: '第2章',
   },
   {
     id: 'ja-n1-u3',
-    title: 'Unit 3: Cause, Trigger & Consequence (起因・不可避・即時)',
-    titleJa: '第3章：起因・即時',
+    title: '3-bo‘lim',
+    titleJa: '第3章',
   },
   {
     id: 'ja-n1-u4',
-    title: 'Unit 4: Extreme States & Nuances (極限・評価・限定)',
-    titleJa: '第4章：極限・評価',
+    title: '4-bo‘lim',
+    titleJa: '第4章',
   },
   {
     id: 'ja-n1-u5',
-    title: 'Unit 5: Advanced Kanji & Grammar Synthesis (学術漢字・四字熟語)',
-    titleJa: '第5章：漢字・熟語',
+    title: '5-bo‘lim',
+    titleJa: '第5章',
   },
   {
     id: 'ja-n1-u6',
-    title: 'Unit 6: Dokkai & Ultimate Capstone (社会評論・N1卒業検定)',
-    titleJa: '第6章：総仕上げ',
+    title: '6-bo‘lim',
+    titleJa: '第6章',
   },
 ];
 
@@ -633,15 +628,15 @@ export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({
       </div>
 
       {/* Filters & Search */}
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3 xl:flex-row xl:items-start xl:justify-between">
         {/* Unit Selector Tabs */}
-        <div className="scrollbar-none flex touch-pan-x items-center gap-1.5 overflow-x-auto pb-1">
+        <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2">
           {currentUnitTabs.map((tab) => {
             const isActive = selectedUnit === tab.id;
             return (
               <button
                 key={tab.id}
-                onClick={() => setSelectedUnit(tab.id)}
+                onClick={() => setSelectedUnit(isActive ? 'all' : tab.id)}
                 aria-pressed={isActive}
                 className={`flex min-h-[44px] shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-bold transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${
                   isActive
@@ -656,24 +651,37 @@ export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({
         </div>
 
         {/* Search box */}
-        <div className="relative w-full sm:w-64">
+        <div className="relative w-full shrink-0 xl:w-64">
           <Search
             size={15}
             className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
           />
           <input
             type="text"
-            aria-label="Dars yoki grammatikani qidirish"
+            aria-label={
+              language === 'ja'
+                ? 'レッスンを検索'
+                : language === 'en'
+                  ? 'Search lessons'
+                  : 'Dars qidirish'
+            }
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Dars yoki qoidani qidirish..."
-            className="focus:outline-hidden w-full rounded-xl border border-border bg-card py-2 pl-9 pr-3 text-xs text-foreground placeholder:text-muted-foreground/60 focus:border-primary focus:ring-1 focus:ring-primary"
+            placeholder={
+              language === 'ja'
+                ? 'レッスンを検索…'
+                : language === 'en'
+                  ? 'Search lessons…'
+                  : 'Dars qidirish…'
+            }
+            className="min-h-11 w-full rounded-xl border border-input bg-card py-2 pl-9 pr-3 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:text-sm"
           />
         </div>
       </div>
 
       <p aria-live="polite" className="text-sm text-muted-foreground">
-        {filteredLessons.length} ta dars ko‘rsatilmoqda
+        {filteredLessons.length}{' '}
+        {language === 'ja' ? 'レッスン' : language === 'en' ? 'lessons' : 'ta dars'}
       </p>
 
       {/* Lessons Grid */}
@@ -770,11 +778,11 @@ export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({
               </div>
 
               {/* Action Buttons */}
-              <div className="mt-5 flex items-center justify-between gap-2 border-t border-border pt-4">
+              <div className="mt-5 grid grid-cols-[1fr_auto] items-center gap-2 border-t border-border pt-4">
                 <button
                   onClick={() => navigate(`/lesson/${lesson.id}`)}
                   aria-label={`${lesson.title}: ${prog?.completed ? 'qayta o‘qish' : 'darsni boshlash'}`}
-                  className="flex h-10 flex-1 cursor-pointer touch-manipulation select-none items-center justify-center gap-1.5 rounded-xl bg-primary px-3 py-2 text-xs font-bold text-primary-foreground shadow-xs transition-all hover:bg-primary/90 active:scale-95"
+                  className="col-span-2 flex min-h-11 min-w-0 cursor-pointer touch-manipulation select-none items-center justify-center gap-1.5 rounded-xl bg-primary px-3 py-2 text-xs font-bold text-primary-foreground shadow-xs transition-all hover:bg-primary/90 active:scale-95"
                 >
                   <Play size={13} fill="currentColor" />
                   <span className="truncate">
@@ -787,7 +795,7 @@ export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({
                     onClick={() => navigate(`/lesson/${lesson.id}?step=mondai`)}
                     title="Tinglash mashqini ochish"
                     aria-label={`${lesson.title}: tinglash mashqi`}
-                    className="flex h-10 shrink-0 cursor-pointer touch-manipulation select-none items-center justify-center gap-1.5 rounded-xl border border-rose-500/30 bg-rose-500/10 px-3 text-xs font-bold text-rose-600 transition-all hover:bg-rose-500/20 active:scale-95 dark:text-rose-400"
+                    className="flex min-h-11 min-w-0 cursor-pointer touch-manipulation select-none items-center justify-center gap-1.5 rounded-xl border border-rose-500/30 bg-rose-500/10 px-3 text-xs font-bold text-rose-600 transition-all hover:bg-rose-500/20 active:scale-95 dark:text-rose-400"
                   >
                     <Headphones size={14} />
                     <span>Tinglash</span>
@@ -804,7 +812,7 @@ export const MinnaLessonsExplorer: React.FC<MinnaLessonsExplorerProps> = ({
                   }
                   title="AI Speaking Coach bilan suhbat"
                   aria-label={`${lesson.title}: Speaking Coach`}
-                  className="flex h-10 w-10 shrink-0 cursor-pointer touch-manipulation select-none items-center justify-center rounded-xl border border-border bg-muted/50 text-muted-foreground transition-all hover:bg-muted hover:text-foreground active:scale-95"
+                  className="flex h-11 w-11 shrink-0 cursor-pointer touch-manipulation select-none items-center justify-center rounded-xl border border-border bg-muted/50 text-muted-foreground transition-all hover:bg-muted hover:text-foreground active:scale-95"
                 >
                   <MessageSquare size={15} />
                 </button>

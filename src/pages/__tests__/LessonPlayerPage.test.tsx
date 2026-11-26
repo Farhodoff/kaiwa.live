@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { LessonPlayerPage } from '../LessonPlayerPage';
 import { LearningSignalService } from '../../services/LearningSignalService';
@@ -134,7 +134,7 @@ describe('LessonPlayerPage', () => {
     fireEvent.click(nextBtn);
 
     // Now in Practice step (real curriculum content)
-    expect(screen.getByText(/To'g'ri majhul nisbat shaklini tanlang/i)).toBeInTheDocument();
+    expect(await screen.findByText(/To'g'ri majhul nisbat shaklini tanlang/i)).toBeInTheDocument();
 
     // Select the first option for Exercise 1
     const optButtons1 = screen.getAllByRole('button').filter((b) => b.textContent?.includes('A'));
@@ -172,12 +172,8 @@ describe('LessonPlayerPage', () => {
     expect(screen.getByRole('button', { name: /Darslarga qaytish/i })).toBeInTheDocument();
   });
 
-  it('processes lesson completion and displays SRS summary badge', async () => {
-    const srsSpy = vi.spyOn(LearningSignalService, 'processLessonCompletion').mockResolvedValue({
-      newCardsCount: 4,
-      mistakesCount: 1,
-    });
-
+  it('does not issue completion signals when the practice is skipped', async () => {
+    const srsSpy = vi.spyOn(LearningSignalService, 'processLessonCompletion');
     render(
       <MemoryRouter initialEntries={['/lesson/ja-n3-u1-l1']}>
         <Routes>
@@ -185,25 +181,15 @@ describe('LessonPlayerPage', () => {
         </Routes>
       </MemoryRouter>,
     );
-
-    // Advance to step 2
     fireEvent.click(screen.getByRole('button', { name: /Keyingi Qadamga O'tish/i }));
-    // Advance to step 3
+    await screen.findByText(/To'g'ri majhul nisbat shaklini tanlang/i);
+    expect(screen.getByRole('button', { name: /Keyingi Qadamga O'tish/i })).toBeDisabled();
     fireEvent.click(screen.getByRole('button', { name: /Keyingi Qadamga O'tish/i }));
-
-    // Finish lesson
-    fireEvent.click(screen.getByRole('button', { name: /Darsni Yakunlash/i }));
-
-    await waitFor(() => {
-      expect(srsSpy).toHaveBeenCalled();
-    });
-    expect(await screen.findByText(/Dars Yakunlandi! 🎉/i)).toBeInTheDocument();
-    expect(
-      await screen.findByText(/4 ta yangi so'z Fleshkartalarga qo'shildi/i),
-    ).toBeInTheDocument();
+    expect(srsSpy).not.toHaveBeenCalled();
+    expect(LessonService.completeLesson).not.toHaveBeenCalled();
   });
 
-  it('navigates directly to Mondai listening step via ?step=mondai query parameter', async () => {
+  it('blocks a direct Mondai URL until preceding steps are passed', async () => {
     render(
       <MemoryRouter initialEntries={['/lesson/ja-minna-l1?step=mondai']}>
         <Routes>
@@ -216,9 +202,10 @@ describe('LessonPlayerPage', () => {
     // (step title also appears in the footer jump-select options)
     const mondaiMatches = await screen.findAllByText(/Mondai Tinglash Testi/i);
     expect(mondaiMatches.length).toBeGreaterThanOrEqual(1);
-    expect(screen.getByText(/4 \/ 4/)).toBeInTheDocument();
+    expect(screen.queryByText(/4 \/ 4/)).toBeNull();
     // Footer jump-select reflects the current step
     const jumpSelect = screen.getByRole('combobox', { name: /Qadamga sakrash/i });
-    expect(jumpSelect).toHaveValue('3');
+    expect(jumpSelect).toHaveValue('0');
+    expect(jumpSelect.querySelector('option[value="3"]')).toBeDisabled();
   });
 });

@@ -93,7 +93,7 @@ export const ja = {
   flashcards: {
     title: 'フラッシュカード・単語帳',
     subtitle: 'SM-2アルゴリズムと公式デッキで語彙力を最大化',
-    myDecks: 'マイトレーニング',
+    myDecks: 'マイカード',
     library: '公式ライブラリ',
     createDeck: '+ デッキを作成',
     addManual: '+ 手動で追加',

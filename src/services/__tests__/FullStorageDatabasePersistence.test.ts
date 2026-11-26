@@ -233,7 +233,20 @@ describe('Full Storage Database Persistence Tests', () => {
           current_step_index: 3,
           is_completed: true,
           score: 100,
-          answers: { completedStepIds: ['s1', 's2', 's3'] },
+          answers: {
+            completedStepIds: ['s1', 's2', 's3'],
+            progressionVersion: 1,
+            stepResults: {
+              s3: {
+                type: 'test',
+                score: 4,
+                total: 5,
+                percentage: 80,
+                passed: true,
+                completedAt: new Date().toISOString(),
+              },
+            },
+          },
           completed_at: new Date().toISOString(),
           updated_at: new Date().toISOString(),
         },
@@ -252,6 +265,8 @@ describe('Full Storage Database Persistence Tests', () => {
       expect(cached).toBeTruthy();
       expect(cached?.isCompleted).toBe(true);
       expect(cached?.currentStepIndex).toBe(3);
+      expect(cached?.progressionVersion).toBe(1);
+      expect(cached?.stepResults?.s3.score).toBe(4);
     });
   });
 

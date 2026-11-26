@@ -18,7 +18,7 @@ describe('ActivityHeatmap Component', () => {
     );
 
     expect(screen.getByText(/O'quv Faolligi/i)).toBeInTheDocument();
-    expect(screen.getByText(/Supabase Live/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Supabase Live/i)).toBeNull();
     expect(screen.getAllByText(/2026-yil/i).length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText(/Kam/i)).toBeInTheDocument();
     expect(screen.getByText(/Ko'p/i)).toBeInTheDocument();
@@ -54,5 +54,17 @@ describe('ActivityHeatmap Component', () => {
     await waitFor(() => {
       expect(screen.getByRole('button', { name: /Yopish/i })).toBeInTheDocument();
     });
+  });
+  it('lets keyboard users move between days and open a day record', () => {
+    render(
+      <MemoryRouter>
+        <ActivityHeatmap activities={[]} sessions={[]} />
+      </MemoryRouter>,
+    );
+    const day = screen.getByRole('button', { name: /^2026-05-15:/ });
+    fireEvent.keyDown(day, { key: 'ArrowDown' });
+    expect(screen.getByRole('button', { name: /^2026-05-16:/ })).toHaveFocus();
+    fireEvent.keyDown(document.activeElement!, { key: 'Enter' });
+    expect(screen.getByRole('button', { name: /Yopish/i })).toBeInTheDocument();
   });
 });

@@ -1,3 +1,4 @@
+import { getInitialTheme, saveThemePreference } from '../hooks/useTheme';
 import React, {
   createContext,
   useContext,
@@ -245,7 +246,7 @@ export const StudyPlannerProvider: React.FC<{ children: React.ReactNode }> = ({ 
     }
 
     return {
-      theme: 'dark',
+      theme: getInitialTheme(),
       notificationsEnabled: true,
       aiModel: 'deepseek',
       deepseekModel: dsModel,
@@ -829,8 +830,7 @@ export const StudyPlannerProvider: React.FC<{ children: React.ReactNode }> = ({ 
 
   // Update Settings Handler
   const updateSettings = async (updates: Partial<Settings>) => {
-    safeLocalStorage.setItem('study_planner_theme', 'dark');
-    document.documentElement.classList.add('dark');
+    if (updates.theme !== undefined) saveThemePreference(updates.theme);
 
     if (updates.totalXp !== undefined || updates.level !== undefined) {
       setGamificationState((prev) => ({

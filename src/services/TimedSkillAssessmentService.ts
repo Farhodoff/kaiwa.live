@@ -1,6 +1,6 @@
 import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
 
-export type TimedSkill = 'vocabulary' | 'grammar' | 'reading' | 'listening';
+export type TimedSkill = 'knowledge' | 'vocabulary' | 'grammar' | 'reading' | 'listening';
 
 export interface TimedSkillAttempt {
   id: string;
@@ -23,7 +23,7 @@ export interface TimedSkillSummary {
 }
 
 const storageKey = (userId?: string | null) => `kaiwa_timed_skill_attempts_${userId || 'guest'}`;
-const skills: TimedSkill[] = ['vocabulary', 'grammar', 'reading', 'listening'];
+const skills: TimedSkill[] = ['knowledge', 'vocabulary', 'grammar', 'reading', 'listening'];
 
 export class TimedSkillAssessmentService {
   static record(

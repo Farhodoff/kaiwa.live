@@ -1,16 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  Trophy,
-  Zap,
-  ArrowRight,
-  Home,
-  CheckCircle2,
-  Layers,
-  AlertCircle,
-  Calendar,
-} from 'lucide-react';
-import { Lesson } from '../../types/lesson';
+import { Trophy, Zap, ArrowRight, Home, Layers, AlertCircle, Calendar } from 'lucide-react';
+import { Lesson, UserLessonProgress } from '../../types/lesson';
 import { LessonService } from '../../services/LessonService';
 import { SpacedRepetitionEngine } from '../../services/SpacedRepetitionEngine';
 import { useTelegramWebApp } from '../../hooks/useTelegramWebApp';
@@ -23,6 +14,7 @@ interface LessonCompletionViewProps {
     total: number;
     percentage: number;
   };
+  progress?: UserLessonProgress | null;
   newCardsCount?: number;
   mistakesCount?: number;
   onExit: () => void;
@@ -32,6 +24,7 @@ export const LessonCompletionView: React.FC<LessonCompletionViewProps> = ({
   lesson,
   userId,
   scoreData,
+  progress,
   newCardsCount = 0,
   mistakesCount = 0,
   onExit,
@@ -57,57 +50,73 @@ export const LessonCompletionView: React.FC<LessonCompletionViewProps> = ({
   };
 
   return (
-    <div className="mx-auto max-w-lg space-y-8 px-4 py-8 text-center duration-300 animate-in fade-in zoom-in-95">
-      {/* Celebration Icon */}
-      <div className="relative inline-block">
-        <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-3xl bg-gradient-to-tr from-amber-500 to-yellow-400 text-white shadow-xl shadow-amber-500/30">
-          <Trophy size={48} className="animate-bounce" />
-        </div>
-        <div className="absolute -right-2 -top-2 rounded-full bg-emerald-500 p-2 text-white shadow-md">
-          <CheckCircle2 size={16} />
-        </div>
+    <div className="mx-auto max-w-2xl space-y-7 px-1 py-4 text-center duration-300 animate-in fade-in sm:px-4 sm:py-8">
+      <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-500">
+        <Trophy size={30} />
       </div>
 
       {/* Title & Subtitle */}
       <div className="space-y-2">
-        <span className="text-xs font-black uppercase tracking-widest text-primary">
+        <span className="text-xs font-semibold text-primary">
           {lesson.language === 'ja'
             ? `🇯🇵 JLPT ${lesson.level || 'N3'} O'quv Darsi`
             : `🇬🇧 English ${lesson.level || 'B2'} Lesson`}
         </span>
-        <h1 className="text-3xl font-black tracking-tight text-foreground">Dars Yakunlandi! 🎉</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-foreground">Dars yakunlandi</h1>
         <p className="text-sm text-muted-foreground">
           «{lesson.title}» darsini muvaffaqiyatli yakunladingiz.
         </p>
       </div>
 
-      {/* Stats Summary Cards */}
-      <div className="grid grid-cols-3 gap-3">
-        {/* Score */}
-        <div className="space-y-1 rounded-2xl border border-border bg-card p-4">
-          <div className="text-[11px] font-bold uppercase text-muted-foreground">Test Balli</div>
-          <div className="text-lg font-black text-primary">
-            {scoreData ? `${scoreData.score}/${scoreData.total}` : '100%'}
+      <div className="grid grid-cols-3 divide-x divide-border border-y border-border py-4">
+        <div className="space-y-1 px-2">
+          <div className="text-[11px] font-medium text-muted-foreground">Umumiy natija</div>
+          <div className="text-lg font-bold tabular-nums text-primary">
+            {scoreData ? `${scoreData.score}/${scoreData.total}` : '—'}
           </div>
         </div>
 
-        {/* Steps */}
-        <div className="space-y-1 rounded-2xl border border-border bg-card p-4">
-          <div className="text-[11px] font-bold uppercase text-muted-foreground">Qadamlar</div>
-          <div className="text-lg font-black text-foreground">
+        <div className="space-y-1 px-2">
+          <div className="text-[11px] font-medium text-muted-foreground">Bosqichlar</div>
+          <div className="text-lg font-bold tabular-nums text-foreground">
             {lesson.steps.length}/{lesson.steps.length}
           </div>
         </div>
 
-        {/* XP */}
-        <div className="space-y-1 rounded-2xl border border-border bg-card p-4">
-          <div className="text-[11px] font-bold uppercase text-muted-foreground">XP Bonus</div>
-          <div className="flex items-center justify-center gap-1 text-lg font-black text-amber-500">
+        <div className="space-y-1 px-2">
+          <div className="text-[11px] font-medium text-muted-foreground">XP</div>
+          <div className="flex items-center justify-center gap-1 text-lg font-bold text-amber-500">
             <Zap size={14} />
             <span>+50 XP</span>
           </div>
         </div>
       </div>
+
+      {progress?.stepResults && (
+        <section className="text-left" aria-label="Bosqichlar bo‘yicha natija">
+          <h2 className="mb-2 text-base font-semibold">Bosqichlar natijasi</h2>
+          <dl className="divide-y divide-border">
+            {lesson.steps.map((step) => {
+              const result = progress.stepResults?.[step.id];
+              return (
+                <div key={step.id} className="flex items-center justify-between gap-3 py-3 text-sm">
+                  <dt>{step.title}</dt>
+                  <dd className="shrink-0 font-semibold tabular-nums">
+                    {step.type === 'learn'
+                      ? 'O‘rganildi'
+                      : result
+                        ? `${result.score}/${result.total} · ${result.percentage}%`
+                        : '—'}
+                  </dd>
+                </div>
+              );
+            })}
+          </dl>
+          <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+            Umumiy foiz barcha mashq va testlardagi to‘g‘ri javoblar yig‘indisidan hisoblanadi.
+          </p>
+        </section>
+      )}
 
       {/* Automated SRS & Learning Signals Notice */}
       <div className="space-y-2 text-left">

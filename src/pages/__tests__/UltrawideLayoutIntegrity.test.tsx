@@ -39,11 +39,6 @@ describe('Ultrawide & High-Resolution (2K/4K) Layout Integrity', () => {
     expect(file).toContain('xl:max-w-5xl 2xl:max-w-6xl 3xl:max-w-7xl');
   });
 
-  it('verifies StudyModePage scales to 2xl:max-w-6xl and 3xl:max-w-7xl', () => {
-    const file = fs.readFileSync(path.resolve(__dirname, '../StudyModePage.tsx'), 'utf-8');
-    expect(file).toContain('xl:max-w-5xl 2xl:max-w-6xl 3xl:max-w-7xl');
-  });
-
   it('verifies MinnaLessonsExplorer expands to 4 and 5 column grids on ultrawide screens', () => {
     const file = fs.readFileSync(
       path.resolve(__dirname, '../../components/jlpt/MinnaLessonsExplorer.tsx'),

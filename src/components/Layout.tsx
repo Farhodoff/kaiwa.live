@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useRef } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   BookOpen,
   ChevronLeft,
@@ -10,21 +10,17 @@ import {
   Mic,
   Settings as SettingsIcon,
   BarChart3,
-  Star,
   Radio,
-  Sun,
-  Moon,
+  ClipboardCheck,
 } from 'lucide-react';
-import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { RatingReviewModal } from './feedback';
 import { useRatingModalStore } from '../stores';
 import { useLanguage } from '../context/LanguageContext';
-import { useTheme } from '../hooks/useTheme';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Sheet, SheetContent } from './ui/sheet';
+import { AnimatePresence, motion, MotionConfig } from 'framer-motion';
+import { Sheet, SheetContent, SheetTitle } from './ui/sheet';
 import { Button } from './ui/Button';
 import { AppLogo } from './AppLogo';
-import { UzbekistanFlag, JapanFlag, UKFlag } from './common/FlagIcons';
 import ErrorBoundary from './ErrorBoundary';
 import { GlobalAnnouncementBanner } from './GlobalAnnouncementBanner';
 import { useKeyboardOffset } from '../hooks/useKeyboardOffset';
@@ -44,32 +40,10 @@ const Layout: React.FC = () => {
     const saved = localStorage.getItem('study_planner_sidebar_collapsed');
     return saved === 'true';
   });
-  const previousSidebarState = useRef<boolean | null>(null);
-  const isSpeakingRoute =
-    location.pathname === '/speaking-coach' || location.pathname === '/speaking';
-
-  useEffect(() => {
-    if (isSpeakingRoute) {
-      if (previousSidebarState.current === null) {
-        previousSidebarState.current = isCollapsed;
-        if (!isCollapsed) setIsCollapsed(true);
-      }
-      return;
-    }
-
-    if (previousSidebarState.current !== null) {
-      const previousState = previousSidebarState.current;
-      previousSidebarState.current = null;
-      if (isCollapsed !== previousState) setIsCollapsed(previousState);
-    }
-  }, [isSpeakingRoute, isCollapsed]);
-
-  const { language, setLanguage, t } = useLanguage();
-  const { isDark, toggleTheme } = useTheme();
+  const { language } = useLanguage();
   const isRatingOpen = useRatingModalStore((s) => s.isOpen);
   const isRatingSubmitting = useRatingModalStore((s) => s.isSubmitting);
   const closeRatingModal = useRatingModalStore((s) => s.closeModal);
-  const openRatingModal = useRatingModalStore((s) => s.openModal);
   const submitRatingReview = useRatingModalStore((s) => s.submitReview);
   const initialRating = useRatingModalStore((s) => s.initialRating);
   const initialCategory = useRatingModalStore((s) => s.initialCategory);
@@ -122,69 +96,61 @@ const Layout: React.FC = () => {
   const navItems: NavItem[] = useMemo(() => {
     const isJa = language === 'ja';
     const isEn = language === 'en';
-    // 100% Japanese (JLPT) Navigation — Dashboard is canonical home (single entry)
     return [
-      { name: isJa ? 'ホーム' : isEn ? 'Home' : 'Bosh sahifa', path: '/dashboard', icon: Home },
-      { name: 'JLPT', path: '/jlpt', icon: BookOpen },
+      { name: isJa ? '今日' : isEn ? 'Today' : 'Bugun', path: '/dashboard', icon: Home },
+      { name: isJa ? 'レッスン' : isEn ? 'Lessons' : 'Darslar', path: '/jlpt', icon: BookOpen },
+      { name: isJa ? '復習' : isEn ? 'Review' : 'Takrorlash', path: '/flashcards', icon: Copy },
       {
-        name: isJa ? '会話シナリオ' : isEn ? 'Scenarios' : 'Ssenariylar',
-        path: '/scenarios?lang=ja',
-        icon: MessageSquare,
+        name: isJa ? '模擬試験' : isEn ? 'Exams' : 'Imtihonlar',
+        path: '/exams',
+        icon: ClipboardCheck,
       },
       {
-        name: isJa ? 'AIスピーキング' : isEn ? 'Speaking Coach' : 'Speaking',
-        path: '/speaking-coach?lang=ja',
-        icon: Mic,
+        name: isJa ? '学習結果' : isEn ? 'Results' : 'Natijalar',
+        path: '/progress',
+        icon: BarChart3,
       },
-      {
-        name: isJa ? 'モノローグ' : 'Monolog',
-        path: '/monologue',
-        icon: Radio,
-      },
-      {
-        name: isJa ? '復習・フラッシュカード' : isEn ? 'Review' : 'Takrorlash',
-        path: '/flashcards',
-        icon: Copy,
-      },
-      { name: isJa ? '進捗・分析' : 'Progress', path: '/progress', icon: BarChart3 },
     ];
   }, [language]);
 
-  const cycleLanguage = () => {
-    if (language === 'uz') setLanguage('ja');
-    else if (language === 'ja') setLanguage('en');
-    else setLanguage('uz');
-  };
-
-  const renderLanguageFlagAndCode = (flagClass: string) => {
-    if (language === 'uz') {
+  const isNavActive = (path: string) => {
+    const pathname = path.split('?')[0];
+    if (path === '/speaking-coach?lang=ja')
+      return ['/speaking-coach', '/speaking'].includes(location.pathname);
+    if (path === '/jlpt') {
       return (
-        <>
-          <UzbekistanFlag className={flagClass} />
-          <span>UZ</span>
-        </>
+        location.pathname.startsWith('/lesson/') ||
+        location.pathname === '/roadmap' ||
+        ['/jlpt/vocabulary', '/jlpt/kanji', '/jlpt/grammar'].includes(location.pathname) ||
+        (location.pathname === '/jlpt' &&
+          !['mock', 'mistakes', 'insights'].includes(
+            new URLSearchParams(location.search).get('tab') || '',
+          ))
       );
     }
-    if (language === 'ja') {
+    if (path === '/exams')
       return (
-        <>
-          <JapanFlag className={flagClass} />
-          <span>JA</span>
-        </>
+        location.pathname.startsWith('/exams') ||
+        (location.pathname === '/jlpt' &&
+          new URLSearchParams(location.search).get('tab') === 'mock')
       );
-    }
-    return (
-      <>
-        <UKFlag className={flagClass} />
-        <span>EN</span>
-      </>
-    );
+    if (path === '/flashcards')
+      return (
+        location.pathname.startsWith('/flashcards') || location.pathname.startsWith('/study-mode')
+      );
+    return location.pathname === pathname || (path === '/dashboard' && location.pathname === '/');
   };
 
   const getPageTitle = () => {
     const isJa = language === 'ja';
     const isEn = language === 'en';
-    const found = navItems.find((item) => item.path === location.pathname);
+    const topicTitles: Record<string, string> = {
+      '/jlpt/vocabulary': isJa ? '語彙' : isEn ? 'Vocabulary' : 'Lug‘at',
+      '/jlpt/kanji': isJa ? '漢字' : 'Kanji',
+      '/jlpt/grammar': isJa ? '文法' : isEn ? 'Grammar' : 'Grammatika',
+    };
+    if (topicTitles[location.pathname]) return topicTitles[location.pathname];
+    const found = navItems.find((item) => isNavActive(item.path));
     if (found) return found.name;
     if (location.pathname.startsWith('/scenarios')) return isJa ? '会話シナリオ' : 'Scenarios';
     if (location.pathname.startsWith('/speaking-coach'))
@@ -208,412 +174,274 @@ const Layout: React.FC = () => {
     return 'kaiwa.live';
   };
 
-  const NavLinks = ({ onClick }: { onClick?: () => void }) => {
+  const NavLinks = ({
+    onClick,
+    expanded = false,
+  }: {
+    onClick?: () => void;
+    expanded?: boolean;
+  }) => {
+    const collapsed = isCollapsed && !expanded;
+    const sidebarItems: NavItem[] = [
+      ...navItems,
+      {
+        path: '/speaking-coach?lang=ja',
+        icon: Mic,
+        name: language === 'ja' ? 'AI会話' : language === 'en' ? 'AI conversation' : 'AI suhbat',
+      },
+      {
+        path: '/scenarios?lang=ja',
+        icon: MessageSquare,
+        name: language === 'ja' ? 'シナリオ' : language === 'en' ? 'Scenarios' : 'Ssenariylar',
+      },
+      {
+        path: '/monologue',
+        icon: Radio,
+        name: language === 'ja' ? 'モノローグ' : language === 'en' ? 'Monologue' : 'Monolog',
+      },
+    ];
     return (
-      <div className="scrollbar-hide flex-1 space-y-1 overflow-y-auto px-3.5 py-3">
-        {navItems.map((item) => {
-          const itemPathname = item.path.split('?')[0];
+      <nav
+        aria-label={
+          language === 'ja'
+            ? 'メインメニュー'
+            : language === 'en'
+              ? 'Main menu'
+              : 'Asosiy bo‘limlar'
+        }
+        className="sidebar-navigation scrollbar-hide flex-1 overflow-y-auto"
+      >
+        {sidebarItems.map((item) => {
+          const active = isNavActive(item.path);
           return (
-            <NavLink
+            <Link
               key={item.path}
               to={item.path}
               onClick={onClick}
+              className="app-sidebar-link"
+              data-active={active}
+              data-collapsed={collapsed}
               aria-label={item.name}
-              className={({ isActive }) => {
-                const active =
-                  isActive ||
-                  location.pathname === itemPathname ||
-                  (itemPathname === '/dashboard' && location.pathname === '/');
-                return `group relative flex items-center ${isCollapsed ? 'justify-center' : ''} gap-3.5 rounded-xl px-3.5 py-2.5 text-sm font-medium transition-all duration-200 ${
-                  active
-                    ? 'bg-primary/10 font-bold text-primary shadow-xs'
-                    : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
-                }`;
-              }}
-              title={isCollapsed ? item.name : ''}
+              aria-current={active ? 'page' : undefined}
+              title={item.name}
             >
-              {({ isActive }) => {
-                const active =
-                  isActive ||
-                  location.pathname === itemPathname ||
-                  (itemPathname === '/dashboard' && location.pathname === '/');
-                return (
-                  <>
-                    {active && (
-                      <motion.div
-                        layoutId="activeNavIndicator"
-                        className="absolute left-0 h-6 w-1.5 rounded-r-full bg-primary"
-                        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                      />
-                    )}
-                    <item.icon
-                      size={19}
-                      className={`shrink-0 transition-transform duration-200 ${isCollapsed ? '' : 'group-hover:scale-105'} ${active ? 'text-primary' : 'text-muted-foreground'}`}
-                      strokeWidth={active ? 2.5 : 2}
-                    />
-                    {!isCollapsed && (
-                      <span className="truncate font-medium tracking-tight">{item.name}</span>
-                    )}
-                  </>
-                );
-              }}
-            </NavLink>
+              <item.icon
+                size={20}
+                strokeWidth={active ? 2.2 : 1.8}
+                className="shrink-0"
+                aria-hidden="true"
+              />
+              {!collapsed && <span className="min-w-0 truncate">{item.name}</span>}
+            </Link>
           );
         })}
-      </div>
+      </nav>
     );
   };
 
   return (
-    <div className="flex h-screen w-full max-w-[100vw] flex-col overflow-hidden bg-background font-sans text-foreground transition-colors duration-300 md:flex-row">
-      {/* Mobile Header (Hidden on immersive fullscreen activity pages) */}
-      {!isFullScreenPage && (
-        <header className="glass-card relative z-30 flex items-center justify-between border-b px-3.5 py-2 pt-[max(env(safe-area-inset-top),0.5rem)] md:hidden">
-          <div className="flex min-w-0 items-center gap-2">
-            <AppLogo size="sm" showText={false} />
-            <h1 className="text-gradient truncate pb-0.5 pr-1 text-base font-bold">
-              {getPageTitle()}
-            </h1>
-          </div>
-
-          <div className="flex shrink-0 items-center gap-1.5">
-            <button
-              type="button"
-              onClick={toggleTheme}
-              className="flex h-8 w-8 items-center justify-center rounded-xl border border-border/80 bg-muted/70 text-muted-foreground shadow-xs transition-all hover:bg-muted hover:text-foreground active:scale-95"
-              title={isDark ? "Yorug' rejim (Light mode)" : "Qorong'u rejim (Dark mode)"}
-              aria-label="Mavzuni almashtirish"
-            >
-              {isDark ? (
-                <Sun size={15} className="text-amber-400 transition-transform hover:rotate-45" />
-              ) : (
-                <Moon size={15} className="text-indigo-400 transition-transform hover:-rotate-12" />
-              )}
-            </button>
-
-            <button
-              type="button"
-              onClick={cycleLanguage}
-              className="flex items-center gap-1 rounded-xl border border-border/80 bg-muted/80 px-2.5 py-1 text-[11px] font-bold text-muted-foreground shadow-xs transition-all hover:bg-muted hover:text-foreground active:scale-95"
-              title={
-                language === 'uz'
-                  ? '日本語 (JA)'
-                  : language === 'ja'
-                    ? 'English (EN)'
-                    : "O'zbekcha (UZ)"
-              }
-            >
-              {renderLanguageFlagAndCode('h-2.5 w-3.5')}
-            </button>
-          </div>
-        </header>
-      )}
-
-      {/* Desktop Sidebar */}
-      <aside
-        className={`relative hidden shrink-0 translate-x-0 flex-col md:flex ${isCollapsed ? 'w-20' : 'w-64'} z-30 border-r border-border/70 bg-card/95 backdrop-blur-md transition-all duration-300 ease-in-out`}
-      >
-        {/* Logo Area */}
-        <div
-          className={`flex shrink-0 items-center ${isCollapsed ? 'flex-col gap-1.5 px-2 py-2.5' : 'h-16 justify-between px-4 py-3'} border-b border-border bg-card`}
+    <MotionConfig reducedMotion="user">
+      <div className="flex h-dvh w-full max-w-[100vw] flex-col overflow-hidden bg-background font-sans text-foreground transition-colors duration-300 md:flex-row">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-xl focus:bg-card focus:p-4 focus:text-foreground"
         >
-          <AppLogo size="md" collapsed={isCollapsed} />
-
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setIsCollapsed(!isCollapsed)}
-            className={`hidden shrink-0 rounded-xl text-muted-foreground hover:bg-muted/80 hover:text-foreground md:flex ${isCollapsed ? 'h-8 w-10' : ''}`}
-            aria-label={isCollapsed ? 'Sidebar-ni ochish' : 'Sidebar-ni yopish'}
-          >
-            {isCollapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
-          </Button>
-        </div>
-
-        {/* Navigation Links */}
-        <NavLinks />
-
-        {/* Bottom Section: Settings, Theme & Language */}
-        <div
-          className={`shrink-0 space-y-2 border-t border-border/60 bg-card/80 ${isCollapsed ? 'px-2 py-2.5' : 'p-3.5'}`}
-        >
-          {/* Quick Rate App & Feedback Button */}
-          <button
-            type="button"
-            onClick={() => openRatingModal()}
-            className={`flex w-full items-center ${isCollapsed ? 'justify-center' : ''} gap-2.5 rounded-xl border border-amber-500/25 bg-amber-500/10 px-3 py-2 text-xs font-semibold text-amber-600 shadow-xs transition-all hover:bg-amber-500/20 active:scale-95 dark:text-amber-400`}
-            title={
-              language === 'ja'
-                ? 'アプリを評価・フィードバック'
-                : language === 'en'
-                  ? 'Rate & Feedback (5★)'
-                  : 'Ilovani baholash (5★)'
-            }
-          >
-            <Star size={16} className="shrink-0 fill-amber-400 text-amber-500" />
-            {!isCollapsed && (
-              <span>
-                {language === 'ja' ? 'アプリ評価' : language === 'en' ? 'Rate App' : 'Baholash'}
-              </span>
-            )}
-          </button>
-
-          <div
-            className={`flex items-center gap-1.5 ${isCollapsed ? 'flex-col [&>*]:min-h-9 [&>*]:w-full [&>*]:justify-center' : ''}`}
-          >
-            <NavLink
-              to="/settings"
-              className={({ isActive }) =>
-                `flex flex-1 items-center ${isCollapsed ? 'justify-center' : ''} gap-2 rounded-xl px-2.5 py-1.5 text-xs font-semibold transition-all duration-200 ${
-                  isActive
-                    ? 'bg-primary/10 font-bold text-primary shadow-xs'
-                    : 'text-muted-foreground hover:bg-muted/80 hover:text-foreground'
-                }`
-              }
-              title={
-                isCollapsed
-                  ? language === 'ja'
-                    ? '設定'
-                    : language === 'en'
-                      ? 'Settings'
-                      : 'Sozlamalar'
-                  : ''
-              }
-            >
-              <SettingsIcon size={16} className="shrink-0" />
-              {!isCollapsed && (
-                <span className="truncate">
-                  {language === 'ja' ? '設定' : language === 'en' ? 'Settings' : 'Sozlamalar'}
-                </span>
-              )}
-            </NavLink>
-
-            {/* Theme Toggle Button */}
-            <button
-              type="button"
-              onClick={toggleTheme}
-              className="flex shrink-0 items-center justify-center rounded-xl border border-border/80 bg-muted/80 p-2 text-muted-foreground shadow-xs transition-all hover:bg-muted hover:text-foreground active:scale-95"
-              title={isDark ? "Yorug' rejim (Light mode)" : "Qorong'u rejim (Dark mode)"}
-              aria-label="Mavzuni almashtirish"
-            >
-              {isDark ? (
-                <Sun size={15} className="text-amber-400" />
-              ) : (
-                <Moon size={15} className="text-indigo-400" />
-              )}
-            </button>
-
-            {/* Language Cycle Button */}
-            <button
-              onClick={cycleLanguage}
-              className="flex shrink-0 items-center gap-1 rounded-xl border border-border/80 bg-muted/80 px-2 py-1.5 text-[11px] font-bold text-muted-foreground shadow-xs transition-all hover:bg-muted hover:text-foreground active:scale-95"
-              title={
-                language === 'uz'
-                  ? '日本語に切り替え (Switch to Japanese)'
-                  : language === 'ja'
-                    ? 'Switch to English'
-                    : "O'zbek tiliga o'tish"
-              }
-            >
-              {renderLanguageFlagAndCode('h-2.5 w-3.5')}
-            </button>
-          </div>
-        </div>
-      </aside>
-
-      {/* Main Content */}
-      <main className="relative flex w-full max-w-full flex-1 flex-col overflow-hidden bg-background">
-        {!isFullScreenPage && <GlobalAnnouncementBanner />}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={location.pathname}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            // Lift content above the virtual keyboard (var set by useKeyboardOffset).
-            // marginBottom stacks with the class padding instead of overriding it.
-            style={{ marginBottom: 'var(--keyboard-offset, 0px)' }}
-            className={`w-full max-w-full overflow-x-hidden ${
-              isFullScreenPage
-                ? 'flex h-full flex-col overflow-hidden'
-                : 'h-full overflow-y-auto pb-[max(6.5rem,calc(env(safe-area-inset-bottom)+5rem))] md:pb-8'
-            }`}
-          >
-            <ErrorBoundary inline={true} key={location.pathname}>
-              <Outlet />
-            </ErrorBoundary>
-          </motion.div>
-        </AnimatePresence>
-      </main>
-
-      {/* Mobile Bottom Navigation */}
-      {!isFullScreenPage && (
-        <nav
-          aria-label="Mobil asosiy navigatsiya"
-          className={`glass-card fixed bottom-0 z-40 flex w-full items-center justify-around border-t border-border bg-background/95 px-2 pb-[max(env(safe-area-inset-bottom),0.5rem)] pt-1.5 backdrop-blur-md transition-transform duration-200 md:hidden ${
-            isKeyboardOpen ? 'pointer-events-none translate-y-full' : 'translate-y-0'
-          }`}
-        >
-          {[
-            {
-              name: language === 'ja' ? 'ホーム' : language === 'en' ? 'Home' : 'Bosh sahifa',
-              path: '/dashboard',
-              icon: Home,
-            },
-            {
-              name: 'JLPT',
-              path: '/jlpt',
-              icon: BookOpen,
-            },
-            { name: t('nav.aiCoach') || 'Speaking', path: '/speaking-coach', icon: Mic },
-            {
-              name: language === 'ja' ? '復習' : language === 'en' ? 'Review' : 'Takrorlash',
-              path: '/flashcards',
-              icon: Copy,
-            },
-            {
-              name: language === 'ja' ? '進捗' : language === 'en' ? 'Progress' : 'Progress',
-              path: '/progress',
-              icon: BarChart3,
-            },
-          ].map((item) => {
-            const isItemActive =
-              location.pathname.startsWith(item.path) ||
-              (item.path === '/dashboard' && location.pathname === '/') ||
-              (item.path === '/speaking-coach' && location.pathname.startsWith('/speaking')) ||
-              (item.path === '/flashcards' &&
-                (location.pathname.startsWith('/flashcards') ||
-                  location.pathname.startsWith('/study-mode')));
-
-            return (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                aria-label={item.name}
-                aria-current={isItemActive ? 'page' : undefined}
-                className={`flex h-12 w-14 cursor-pointer flex-col items-center justify-center rounded-xl p-1 transition-all duration-200 active:scale-95 ${
-                  isItemActive
-                    ? 'bg-primary/10 font-bold text-primary shadow-xs'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
+          {language === 'uz'
+            ? 'Asosiy mazmunga o‘tish'
+            : language === 'ja'
+              ? '本文へスキップ'
+              : 'Skip to main content'}
+        </a>
+        {/* Mobile Header (Hidden on immersive fullscreen activity pages) */}
+        {!isFullScreenPage && (
+          <header className="glass-card relative z-30 flex items-center justify-between border-b px-3.5 py-2 pt-[max(env(safe-area-inset-top),0.5rem)] md:hidden">
+            <div className="flex min-w-0 items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setSidebarOpen(true)}
+                aria-label={
+                  language === 'uz'
+                    ? 'Barcha bo‘limlar'
+                    : language === 'ja'
+                      ? 'メニューを開く'
+                      : 'Open menu'
+                }
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-muted-foreground hover:bg-muted"
               >
-                <item.icon size={20} className="mb-1" strokeWidth={isItemActive ? 2.5 : 2} />
-                <span className="max-w-full truncate text-[10px] font-medium leading-none">
-                  {item.name}
-                </span>
-              </NavLink>
-            );
-          })}
-
-          <button
-            type="button"
-            onClick={() => setSidebarOpen(true)}
-            aria-label="Barcha bo'limlar"
-            className={`flex h-12 w-14 cursor-pointer flex-col items-center justify-center rounded-xl p-1 transition-all duration-200 active:scale-95 ${
-              isSidebarOpen
-                ? 'bg-primary/10 font-bold text-primary shadow-xs'
-                : 'text-muted-foreground hover:text-foreground'
-            }`}
-          >
-            <Menu size={20} className="mb-1" />
-            <span className="text-[10px] font-medium leading-none">
-              {language === 'ja' ? 'すべて' : 'Barchasi'}
-            </span>
-          </button>
-        </nav>
-      )}
-
-      {/* Mobile Drawer (Sheet) */}
-      <Sheet open={isSidebarOpen} onOpenChange={setSidebarOpen}>
-        <SheetContent side="left" className="flex w-72 flex-col bg-card p-0">
-          <div className="flex h-16 items-center justify-between border-b border-border p-4">
-            <div className="flex items-center gap-2">
-              <AppLogo size="sm" />
+                <Menu size={20} aria-hidden="true" />
+              </button>
+              <AppLogo size="sm" showText={false} />
+              <p className="truncate pb-0.5 pr-1 text-base font-bold">{getPageTitle()}</p>
             </div>
-          </div>
-          <div className="flex-1 overflow-y-auto">
-            <NavLinks onClick={() => setSidebarOpen(false)} />
-          </div>
-          <div className="space-y-2 border-t border-border/60 bg-card/80 p-3.5">
-            <button
-              type="button"
-              onClick={() => {
-                setSidebarOpen(false);
-                openRatingModal();
-              }}
-              className="flex w-full items-center gap-2.5 rounded-xl border border-amber-500/25 bg-amber-500/10 px-3 py-2 text-xs font-bold text-amber-600 transition hover:bg-amber-500/20 active:scale-95 dark:text-amber-400"
-            >
-              <Star size={16} className="shrink-0 fill-amber-400 text-amber-500" />
-              <span>
-                {language === 'ja'
-                  ? 'アプリを評価する'
-                  : language === 'en'
-                    ? 'Rate App'
-                    : 'Ilovani baholash'}
-              </span>
-            </button>
+          </header>
+        )}
 
-            <div className="flex items-center gap-1.5 pt-1">
+        {/* Desktop Sidebar */}
+        <aside
+          className={`relative hidden shrink-0 translate-x-0 flex-col md:flex ${isCollapsed ? 'w-16' : 'w-52'} z-30 border-r border-border/70 bg-card/95 backdrop-blur-md transition-all duration-300 ease-in-out`}
+        >
+          {/* Logo Area */}
+          <div
+            className={`flex shrink-0 items-center ${isCollapsed ? 'flex-col gap-1.5 px-2 py-2.5' : 'h-[60px] justify-between px-3 py-2'} border-b border-border bg-card`}
+          >
+            <AppLogo size="sm" showText={false} />
+
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsCollapsed(!isCollapsed)}
+              className={`hidden shrink-0 rounded-xl text-muted-foreground hover:bg-muted/80 hover:text-foreground md:flex ${isCollapsed ? 'h-8 w-10' : ''}`}
+              aria-label={isCollapsed ? 'Sidebar-ni ochish' : 'Sidebar-ni yopish'}
+            >
+              {isCollapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
+            </Button>
+          </div>
+
+          {/* Navigation Links */}
+          <NavLinks />
+
+          {/* Bottom Section: Settings */}
+          <div
+            className={`shrink-0 space-y-2 border-t border-border/60 bg-card/80 ${isCollapsed ? 'px-2 py-2.5' : 'p-2.5'}`}
+          >
+            <div
+              className={`flex items-center gap-1.5 ${isCollapsed ? 'flex-col [&>*]:min-h-9 [&>*]:w-full [&>*]:justify-center' : ''}`}
+            >
               <NavLink
                 to="/settings"
-                onClick={() => setSidebarOpen(false)}
-                className={({ isActive }) =>
-                  `flex flex-1 items-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold transition-all duration-200 ${
-                    isActive
-                      ? 'bg-primary/10 font-bold text-primary shadow-xs'
-                      : 'text-muted-foreground hover:bg-muted/80 hover:text-foreground'
-                  }`
+                className="app-sidebar-link w-full"
+                data-active={location.pathname === '/settings'}
+                data-collapsed={isCollapsed}
+                aria-label={
+                  language === 'ja' ? '設定' : language === 'en' ? 'Settings' : 'Sozlamalar'
+                }
+                title={
+                  isCollapsed
+                    ? language === 'ja'
+                      ? '設定'
+                      : language === 'en'
+                        ? 'Settings'
+                        : 'Sozlamalar'
+                    : ''
                 }
               >
                 <SettingsIcon size={16} className="shrink-0" />
-                <span>
-                  {language === 'ja' ? '設定' : language === 'en' ? 'Settings' : 'Sozlamalar'}
-                </span>
-              </NavLink>
-
-              <button
-                type="button"
-                onClick={toggleTheme}
-                className="flex shrink-0 items-center justify-center rounded-xl border border-border/80 bg-muted/80 p-2 text-muted-foreground shadow-xs transition-all hover:bg-muted hover:text-foreground active:scale-95"
-                title={isDark ? "Yorug' rejim (Light mode)" : "Qorong'u rejim (Dark mode)"}
-                aria-label="Mavzuni almashtirish"
-              >
-                {isDark ? (
-                  <Sun size={15} className="text-amber-400" />
-                ) : (
-                  <Moon size={15} className="text-indigo-400" />
+                {!isCollapsed && (
+                  <span className="truncate">
+                    {language === 'ja' ? '設定' : language === 'en' ? 'Settings' : 'Sozlamalar'}
+                  </span>
                 )}
-              </button>
-
-              <button
-                onClick={cycleLanguage}
-                className="flex shrink-0 items-center gap-1 rounded-xl border border-border/80 bg-muted/80 px-2 py-2 text-[11px] font-bold text-muted-foreground shadow-xs transition-all hover:bg-muted hover:text-foreground active:scale-95"
-                title={
-                  language === 'uz'
-                    ? '日本語に切り替え (Switch to Japanese)'
-                    : language === 'ja'
-                      ? 'Switch to English'
-                      : "O'zbek tiliga o'tish"
-                }
-              >
-                {renderLanguageFlagAndCode('h-2.5 w-3.5')}
-              </button>
+              </NavLink>
             </div>
           </div>
-        </SheetContent>
-      </Sheet>
+        </aside>
 
-      {/* Global Modals */}
-      <RatingReviewModal
-        isOpen={isRatingOpen}
-        onClose={closeRatingModal}
-        onSubmit={submitRatingReview}
-        isSubmitting={isRatingSubmitting}
-        initialRating={initialRating}
-        initialCategory={initialCategory}
-      />
-    </div>
+        {/* Main Content */}
+        <main className="relative flex w-full max-w-full flex-1 flex-col overflow-hidden bg-background">
+          {!isFullScreenPage && <GlobalAnnouncementBanner />}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={location.pathname}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              // Lift content above the virtual keyboard (var set by useKeyboardOffset).
+              // marginBottom stacks with the class padding instead of overriding it.
+              style={{ marginBottom: 'var(--keyboard-offset, 0px)' }}
+              className={`w-full max-w-full overflow-x-hidden ${
+                isFullScreenPage
+                  ? 'flex h-full flex-col overflow-hidden'
+                  : 'h-full overflow-y-auto pb-[max(6.5rem,calc(env(safe-area-inset-bottom)+5rem))] md:pb-8'
+              }`}
+            >
+              <ErrorBoundary inline={true} key={location.pathname}>
+                <Outlet />
+              </ErrorBoundary>
+            </motion.div>
+          </AnimatePresence>
+        </main>
+
+        {/* Mobile Bottom Navigation */}
+        {!isFullScreenPage && (
+          <nav
+            aria-label="Mobil asosiy navigatsiya"
+            className={`glass-card fixed bottom-0 z-40 flex w-full items-center justify-around border-t border-border bg-background/95 px-2 pb-[max(env(safe-area-inset-bottom),0.5rem)] pt-1.5 backdrop-blur-md transition-transform duration-200 md:hidden ${
+              isKeyboardOpen ? 'pointer-events-none translate-y-full' : 'translate-y-0'
+            }`}
+          >
+            {navItems.map((item) => {
+              const isItemActive = isNavActive(item.path);
+
+              return (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  aria-label={item.name}
+                  aria-current={isItemActive ? 'page' : undefined}
+                  className={`flex min-h-14 min-w-0 flex-1 cursor-pointer flex-col items-center justify-center rounded-xl px-0.5 py-1 transition-colors duration-200 active:scale-95 ${
+                    isItemActive
+                      ? 'bg-primary/10 font-bold text-primary shadow-xs'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  <item.icon size={20} className="mb-1" strokeWidth={isItemActive ? 2.5 : 2} />
+                  <span className="max-w-full text-[11px] font-medium leading-none sm:text-xs">
+                    {item.name}
+                  </span>
+                </NavLink>
+              );
+            })}
+          </nav>
+        )}
+
+        {/* Mobile Drawer (Sheet) */}
+        <Sheet open={isSidebarOpen} onOpenChange={setSidebarOpen}>
+          <SheetContent
+            side="left"
+            className="flex w-64 max-w-[85vw] flex-col bg-card p-0"
+            aria-describedby={undefined}
+          >
+            <SheetTitle className="sr-only">
+              {language === 'uz' ? 'Barcha bo‘limlar' : language === 'ja' ? 'メニュー' : 'Menu'}
+            </SheetTitle>
+            <div className="flex h-16 items-center justify-between border-b border-border p-4">
+              <div className="flex items-center gap-2">
+                <AppLogo size="sm" showText={false} />
+              </div>
+            </div>
+            <div className="flex-1 overflow-y-auto">
+              <NavLinks expanded onClick={() => setSidebarOpen(false)} />
+            </div>
+            <div className="space-y-2 border-t border-border/60 bg-card/80 p-3.5">
+              <div className="flex items-center gap-1.5 pt-1">
+                <NavLink
+                  to="/settings"
+                  onClick={() => setSidebarOpen(false)}
+                  className="app-sidebar-link w-full"
+                  data-active={location.pathname === '/settings'}
+                >
+                  <SettingsIcon size={16} className="shrink-0" />
+                  <span>
+                    {language === 'ja' ? '設定' : language === 'en' ? 'Settings' : 'Sozlamalar'}
+                  </span>
+                </NavLink>
+              </div>
+            </div>
+          </SheetContent>
+        </Sheet>
+
+        {/* Global Modals */}
+        <RatingReviewModal
+          isOpen={isRatingOpen}
+          onClose={closeRatingModal}
+          onSubmit={submitRatingReview}
+          isSubmitting={isRatingSubmitting}
+          initialRating={initialRating}
+          initialCategory={initialCategory}
+        />
+      </div>
+    </MotionConfig>
   );
 };
 

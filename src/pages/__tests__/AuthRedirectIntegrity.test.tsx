@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import AuthPage from '../AuthPage';
+import { LanguageProvider } from '../../context/LanguageContext';
 import { supabase } from '../../lib/supabase';
 
 // Mock supabase auth
@@ -42,6 +43,24 @@ vi.mock('react-router-dom', async () => {
 describe('Auth Page & Redirect Flow Integrity (P1-3 Audit Fix)', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+  });
+
+  it('offers an interface language at registration and remembers the choice', () => {
+    localStorage.clear();
+    render(
+      <MemoryRouter initialEntries={['/register']}>
+        <LanguageProvider>
+          <Routes>
+            <Route path="/register" element={<AuthPage />} />
+          </Routes>
+        </LanguageProvider>
+      </MemoryRouter>,
+    );
+    fireEvent.change(screen.getByRole('combobox', { name: 'Ilova tili' }), {
+      target: { value: 'en' },
+    });
+    expect(screen.getByRole('combobox', { name: 'App language' })).toHaveValue('en');
+    expect(localStorage.getItem('kaiwa_lang')).toBe('en');
   });
 
   it('navigates to legitimate requested route (?redirect=/dashboard) on successful login', async () => {
