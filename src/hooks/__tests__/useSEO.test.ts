@@ -82,7 +82,7 @@ describe('useSEO & Dynamic Google Rich Results Schema', () => {
         source: 'live',
         aggregateRating: {
           ratingValue: '4.92',
-          ratingCount: 12488,
+          ratingCount: 8,
           bestRating: '5',
           worstRating: '1',
           reviewCount: 8,
@@ -97,6 +97,33 @@ describe('useSEO & Dynamic Google Rich Results Schema', () => {
 
     const parsed = JSON.parse(script.textContent || '{}');
     expect(parsed.aggregateRating.ratingValue).toBe('4.92');
-    expect(parsed.aggregateRating.ratingCount).toBe('12488');
+    expect(parsed.aggregateRating.ratingCount).toBe('8');
+  });
+  it('removes stale ratings when the server reports no real reviews', async () => {
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify({
+      '@type': 'WebApplication',
+      aggregateRating: { ratingValue: '4.9', ratingCount: 12480 },
+    });
+    document.head.appendChild(script);
+    global.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({ success: true, source: 'empty', aggregateRating: null }),
+    });
+    expect(await syncLiveAggregateRating(true)).toBeNull();
+    expect(JSON.parse(script.textContent || '{}').aggregateRating).toBeUndefined();
+  });
+
+  it('rejects a cached baseline response from the previous API', async () => {
+    global.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        success: true,
+        source: 'baseline',
+        aggregateRating: { ratingValue: '4.9', ratingCount: 12480 },
+      }),
+    });
+    expect(await syncLiveAggregateRating(true)).toBeNull();
   });
 });
