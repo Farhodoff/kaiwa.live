@@ -133,7 +133,7 @@ export default async function handler(req) {
 
   // 7. Invoke DeepSeek AI
   try {
-    const systemPrompt = `You are an elite Japanese language mentor and learning analytics expert for the Nihongo Talk platform.
+    const systemPrompt = `You are an elite Japanese language mentor and learning analytics expert for the Kaiwa Live platform.
 Analyze the student's real-time metrics and return ONLY a strict JSON object (no markdown fences) matching:
 {
   "overallScore": <0-100>,

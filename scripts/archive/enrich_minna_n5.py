@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 enrich_minna_n5.py
-Comprehensive pedagogical enrichment pipeline for Minna no Nihongo Shokyu 1 (Lessons 1-25) in Nihongo Talk.
+Comprehensive pedagogical enrichment pipeline for Minna no Nihongo Shokyu 1 (Lessons 1-25) in Kaiwa Live.
 """
 
 import json
