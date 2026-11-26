@@ -60,7 +60,7 @@ describe('PracticeStepView (Seamless Test & Exercise Flow)', () => {
     // Answer Ex 1 (select Option A)
     const optionsEx1 = screen.getAllByRole('button').filter((b) => b.textContent?.includes('A'));
     expect(optionsEx1.length).toBeGreaterThan(0);
-    fireEvent.click(optionsEx1[0]);
+    fireEvent.click(screen.getByRole('button', { name: /私/ }));
 
     // Navigate to Ex 2 via Davom etish
     const continueBtn = screen.getByRole('button', { name: /Davom etish/i });
@@ -71,7 +71,7 @@ describe('PracticeStepView (Seamless Test & Exercise Flow)', () => {
     // Answer Ex 2 (select Option B)
     const optionsEx2 = screen.getAllByRole('button').filter((b) => b.textContent?.includes('B'));
     expect(optionsEx2.length).toBeGreaterThan(0);
-    fireEvent.click(optionsEx2[0]);
+    fireEvent.click(screen.getByRole('button', { name: /ペン/ }));
 
     // Finish exercises
     const finishBtn = screen.getByRole('button', { name: /Natijalarni Ko'rish/i });

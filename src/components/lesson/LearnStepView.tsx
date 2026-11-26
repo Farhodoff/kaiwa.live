@@ -350,14 +350,14 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
   const isDialoguePlaying = isPlayingStudioAudio || isAutoPlayingDialogue;
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6 duration-200 animate-in fade-in xl:max-w-4xl 2xl:max-w-5xl 3xl:max-w-6xl">
+    <div className="mx-auto max-w-3xl space-y-8 duration-200 animate-in fade-in xl:max-w-4xl 2xl:max-w-5xl 3xl:max-w-6xl">
       {/* Header / Intro Card */}
-      <div className="rounded-2xl border border-border bg-gradient-to-br from-card to-secondary/30 p-4 shadow-sm sm:rounded-3xl sm:p-6">
-        <div className="mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary">
+      <div className="border-b border-border pb-6">
+        <div className="mb-2 flex items-center gap-2 text-xs font-semibold text-primary">
           <BookOpen size={16} />
           <span>{content.subtitle || 'Dars Mavzusi'}</span>
         </div>
-        <h2 className="mb-2 break-words text-xl font-black tracking-tight text-foreground sm:mb-3 sm:text-2xl md:text-3xl">
+        <h2 className="mb-2 break-words text-2xl font-bold tracking-tight text-foreground sm:mb-3 md:text-3xl">
           <FuriganaText text={content.title} />
         </h2>
         <p className="break-words text-xs leading-relaxed text-muted-foreground sm:text-sm">
@@ -366,7 +366,7 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
 
         {/* Key Takeaways */}
         {content.keyPoints && content.keyPoints.length > 0 && (
-          <div className="mt-4 space-y-2 rounded-xl border border-primary/15 bg-primary/5 p-3.5 sm:mt-5 sm:rounded-2xl sm:p-4">
+          <div className="mt-5 space-y-2 border-l-2 border-primary pl-4">
             <div className="flex items-center gap-1.5 text-xs font-bold text-primary">
               <Lightbulb size={14} />
               <span>Muhim Qoidalar:</span>
@@ -389,13 +389,13 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
       {((content.vocabulary && content.grammarRules) ||
         content.dialogue ||
         lessonKanji.length > 0) && (
-        <div className="scrollbar-none flex touch-pan-x items-center gap-1.5 overflow-x-auto border-b border-border pb-2 sm:gap-2">
+        <div className="scrollbar-none flex touch-pan-x items-center overflow-x-auto border-b border-border">
           <button
             onClick={() => setActiveTab('all')}
-            className={`shrink-0 cursor-pointer touch-manipulation select-none rounded-xl px-3 py-1.5 text-xs font-bold transition-all sm:px-3.5 ${
+            className={`shrink-0 cursor-pointer touch-manipulation select-none border-b-2 px-3 py-2.5 text-xs font-semibold transition-colors sm:px-3.5 ${
               activeTab === 'all'
-                ? 'bg-primary text-primary-foreground shadow-sm'
-                : 'text-muted-foreground hover:bg-secondary hover:text-foreground'
+                ? 'border-primary text-primary'
+                : 'border-transparent text-muted-foreground hover:text-foreground'
             }`}
           >
             Barchasi
@@ -403,10 +403,10 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
           {content.vocabulary && content.vocabulary.length > 0 && (
             <button
               onClick={() => setActiveTab('vocab')}
-              className={`shrink-0 cursor-pointer touch-manipulation select-none rounded-xl px-3 py-1.5 text-xs font-bold transition-all sm:px-3.5 ${
+              className={`shrink-0 cursor-pointer touch-manipulation select-none border-b-2 px-3 py-2.5 text-xs font-semibold transition-colors sm:px-3.5 ${
                 activeTab === 'vocab'
-                  ? 'bg-primary text-primary-foreground shadow-sm'
-                  : 'text-muted-foreground hover:bg-secondary hover:text-foreground'
+                  ? 'border-primary text-primary'
+                  : 'border-transparent text-muted-foreground hover:text-foreground'
               }`}
             >
               Lug'at ({content.vocabulary.length})
@@ -415,10 +415,10 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
           {content.grammarRules && content.grammarRules.length > 0 && (
             <button
               onClick={() => setActiveTab('grammar')}
-              className={`shrink-0 cursor-pointer touch-manipulation select-none rounded-xl px-3 py-1.5 text-xs font-bold transition-all sm:px-3.5 ${
+              className={`shrink-0 cursor-pointer touch-manipulation select-none border-b-2 px-3 py-2.5 text-xs font-semibold transition-colors sm:px-3.5 ${
                 activeTab === 'grammar'
-                  ? 'bg-primary text-primary-foreground shadow-sm'
-                  : 'text-muted-foreground hover:bg-secondary hover:text-foreground'
+                  ? 'border-primary text-primary'
+                  : 'border-transparent text-muted-foreground hover:text-foreground'
               }`}
             >
               Grammatika ({content.grammarRules.length})
@@ -427,10 +427,10 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
           {lessonKanji.length > 0 && (
             <button
               onClick={() => setActiveTab('kanji')}
-              className={`shrink-0 cursor-pointer touch-manipulation select-none rounded-xl px-3 py-1.5 text-xs font-bold transition-all sm:px-3.5 ${
+              className={`shrink-0 cursor-pointer touch-manipulation select-none border-b-2 px-3 py-2.5 text-xs font-semibold transition-colors sm:px-3.5 ${
                 activeTab === 'kanji'
-                  ? 'bg-primary text-primary-foreground shadow-sm'
-                  : 'text-muted-foreground hover:bg-secondary hover:text-foreground'
+                  ? 'border-primary text-primary'
+                  : 'border-transparent text-muted-foreground hover:text-foreground'
               }`}
             >
               Kanji ({lessonKanji.length})
@@ -439,10 +439,10 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
           {content.dialogue && (
             <button
               onClick={() => setActiveTab('dialogue')}
-              className={`flex shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold transition-all sm:px-3.5 ${
+              className={`flex shrink-0 cursor-pointer touch-manipulation select-none items-center gap-1.5 border-b-2 px-3 py-2.5 text-xs font-semibold transition-colors sm:px-3.5 ${
                 activeTab === 'dialogue'
-                  ? 'bg-primary text-primary-foreground shadow-sm'
-                  : 'text-muted-foreground hover:bg-secondary hover:text-foreground'
+                  ? 'border-primary text-primary'
+                  : 'border-transparent text-muted-foreground hover:text-foreground'
               }`}
             >
               <MessageSquare size={13} />
@@ -591,7 +591,7 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
               {content.vocabulary.slice(0, visibleVocabulary).map((vocab, idx) => (
                 <div
                   key={idx}
-                  className="group flex flex-col justify-between rounded-2xl border border-border bg-card p-4 shadow-sm transition-all hover:border-primary/40"
+                  className="group flex flex-col justify-between border-b border-border px-1 py-4 transition-colors hover:border-primary/50 sm:px-3"
                 >
                   <div>
                     <div className="mb-1 flex items-start justify-between gap-2">
@@ -676,7 +676,7 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
           </h3>
           <div className="grid gap-3 sm:grid-cols-2">
             {content.kanji.map((item) => (
-              <article key={item.id} className="rounded-2xl border border-border bg-card p-4">
+              <article key={item.id} className="border-b border-border px-1 py-4 sm:px-3">
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <div className="text-5xl font-black" lang="ja">
@@ -736,14 +736,9 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
 
             <div className="space-y-3">
               {content.grammarRules.map((grammar, idx) => (
-                <div
-                  key={idx}
-                  className="space-y-3 rounded-2xl border border-border bg-card p-5 shadow-sm"
-                >
+                <div key={idx} className="space-y-3 border-b border-border px-1 py-5 sm:px-3">
                   <div className="flex items-center gap-2">
-                    <span className="rounded-lg bg-primary/10 px-2.5 py-1 text-xs font-black text-primary">
-                      Qolip #{idx + 1}
-                    </span>
+                    <span className="text-xs font-semibold text-primary">Qolip #{idx + 1}</span>
                     <div className="text-base font-bold text-foreground">
                       <FuriganaText text={grammar.pattern} />
                     </div>
@@ -754,7 +749,7 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
                   </div>
 
                   {grammar.usageNotes && (
-                    <p className="rounded-xl bg-secondary/50 p-2.5 text-xs text-muted-foreground">
+                    <p className="border-l-2 border-border pl-3 text-xs text-muted-foreground">
                       <FuriganaText text={grammar.usageNotes} />
                     </p>
                   )}
@@ -765,7 +760,7 @@ export const LearnStepView: React.FC<LearnStepViewProps> = ({
                       {grammar.examples.map((ex, exIdx) => (
                         <div
                           key={exIdx}
-                          className="flex items-start justify-between gap-2 rounded-xl bg-secondary/30 p-2.5 text-xs"
+                          className="flex items-start justify-between gap-2 border-b border-border/60 py-2.5 text-xs last:border-0"
                         >
                           <div>
                             <div className="font-semibold text-foreground">

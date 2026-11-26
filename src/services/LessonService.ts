@@ -11,21 +11,25 @@ import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
 import { OfflineSyncManager, type QueuedLessonProgress } from './OfflineSyncManager';
 import { LessonKanjiService } from './LessonKanjiService';
 import { SpacedRepetitionEngine } from './SpacedRepetitionEngine';
+import {
+  completedLessonSteps,
+  unlockedLessonStep,
+  lessonAggregateScore,
+  verifiedLessonCompletion,
+} from '../utils/lessonProgression';
 
 const PROGRESS_STORAGE_PREFIX = 'study_planner_lesson_progress_';
 
-function normalizeQuizScore(quizScore: { score: number; total: number; percentage?: number }) {
-  const total =
-    Number.isFinite(quizScore.total) && quizScore.total > 0 ? Math.round(quizScore.total) : 1;
-  const score = Number.isFinite(quizScore.score)
-    ? Math.max(0, Math.min(total, Math.round(quizScore.score)))
-    : 0;
-  const percentage =
-    typeof quizScore.percentage === 'number' && Number.isFinite(quizScore.percentage)
-      ? Math.max(0, Math.min(100, Math.round(quizScore.percentage)))
-      : Math.round((score / total) * 100);
-
-  return { score, total, percentage };
+async function boundedProgressWrite(request: any) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8000);
+  try {
+    return await (typeof request.abortSignal === 'function'
+      ? request.abortSignal(controller.signal)
+      : request);
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
 export const LessonService = {
@@ -117,8 +121,24 @@ export const LessonService = {
    */
   async saveLessonProgress(userId: string, progress: UserLessonProgress): Promise<void> {
     const activeUserId = userId || 'guest';
+    progress = { ...progress, userId: activeUserId, lastAttemptedAt: new Date().toISOString() };
     const storageKey = `${PROGRESS_STORAGE_PREFIX}${activeUserId}_${progress.lessonId}`;
-    safeLocalStorage.setJSON(storageKey, progress);
+    const lessonForValidation = this.getLessonById(progress.lessonId);
+    if (progress.progressionVersion === 1 && lessonForValidation?.steps.length) {
+      progress = {
+        ...progress,
+        completedStepIds: completedLessonSteps(lessonForValidation, progress),
+        currentStepIndex: Math.max(
+          0,
+          Math.min(progress.currentStepIndex, unlockedLessonStep(lessonForValidation, progress)),
+        ),
+        quizScore: lessonAggregateScore(lessonForValidation, progress),
+        isCompleted:
+          progress.isCompleted && verifiedLessonCompletion(lessonForValidation, progress),
+      };
+    }
+    if (!safeLocalStorage.setJSON(storageKey, progress))
+      throw new Error('Dars natijasini qurilmada saqlab bo‘lmadi.');
 
     // Auto-schedule spaced repetition review if completed and not already scheduled
     if (progress.isCompleted) {
@@ -157,6 +177,9 @@ export const LessonService = {
         answers: {
           quizScore: progress.quizScore,
           completedStepIds: progress.completedStepIds,
+          stepResults: progress.stepResults,
+          mistakes: progress.mistakes,
+          progressionVersion: progress.progressionVersion,
         },
         completedAt: progress.completedAt || null,
         updatedAt: new Date().toISOString(),
@@ -166,21 +189,26 @@ export const LessonService = {
         await OfflineSyncManager.enqueueLessonProgress(queuedPayload);
       } else {
         try {
-          const { error } = await supabase.from('lesson_progress').upsert({
-            id: uuid,
-            user_id: activeUserId,
-            lesson_id: progress.lessonId,
-            language,
-            current_step_index: progress.currentStepIndex || 0,
-            is_completed: progress.isCompleted || false,
-            score: progress.quizScore?.score ?? 0,
-            answers: {
-              quizScore: progress.quizScore,
-              completedStepIds: progress.completedStepIds,
-            },
-            completed_at: progress.completedAt || null,
-            updated_at: new Date().toISOString(),
-          });
+          const { error } = await boundedProgressWrite(
+            supabase.from('lesson_progress').upsert({
+              id: uuid,
+              user_id: activeUserId,
+              lesson_id: progress.lessonId,
+              language,
+              current_step_index: progress.currentStepIndex || 0,
+              is_completed: progress.isCompleted || false,
+              score: progress.quizScore?.score ?? 0,
+              answers: {
+                quizScore: progress.quizScore,
+                completedStepIds: progress.completedStepIds,
+                stepResults: progress.stepResults,
+                mistakes: progress.mistakes,
+                progressionVersion: progress.progressionVersion,
+              },
+              completed_at: progress.completedAt || null,
+              updated_at: new Date().toISOString(),
+            }),
+          );
           if (error) {
             await OfflineSyncManager.enqueueLessonProgress(queuedPayload);
           }
@@ -190,6 +218,9 @@ export const LessonService = {
         }
       }
     }
+
+    // Step evidence is persisted in the DB/offline queue; avoid an extra auth round trip per step.
+    if (progress.progressionVersion === 1) return;
 
     // 2. Backward compatibility fallback in user_metadata
     try {
@@ -220,13 +251,17 @@ export const LessonService = {
   async completeLesson(
     userId: string,
     lessonId: string,
-    quizScore: { score: number; total: number; percentage: number },
+    _quizScore: { score: number; total: number; percentage: number },
   ): Promise<UserLessonProgress> {
-    const lesson = this.getLessonById(lessonId);
-    const allStepIds = lesson ? lesson.steps.map((s) => s.id) : [];
-    const normalizedScore = normalizeQuizScore(quizScore);
+    const lesson = await this.loadLessonById(lessonId);
+    const existing = this.getLessonProgress(userId, lessonId);
+    if (!lesson || !verifiedLessonCompletion(lesson, existing))
+      throw new Error('Darsning barcha bosqichlarini muvaffaqiyatli yakunlang.');
+    const allStepIds = lesson.steps.map((step) => step.id);
+    const normalizedScore = lessonAggregateScore(lesson, existing!);
 
     const completedProgress: UserLessonProgress = {
+      ...existing!,
       lessonId,
       userId: userId || 'guest',
       currentStepIndex: Math.max(0, allStepIds.length - 1),
@@ -265,6 +300,9 @@ export const LessonService = {
             userId: row.user_id,
             currentStepIndex: row.current_step_index || 0,
             completedStepIds: answersData.completedStepIds || [],
+            stepResults: answersData.stepResults,
+            mistakes: answersData.mistakes,
+            progressionVersion: answersData.progressionVersion,
             isCompleted: row.is_completed || false,
             quizScore: answersData.quizScore || {
               score: Number(row.score || 0),
@@ -274,6 +312,13 @@ export const LessonService = {
             completedAt: row.completed_at || undefined,
             lastAttemptedAt: row.updated_at || undefined,
           };
+          const local = safeLocalStorage.getJSON<UserLessonProgress | null>(storageKey, null);
+          if (
+            local &&
+            new Date(local.lastAttemptedAt).getTime() >
+              new Date(mappedProgress.lastAttemptedAt).getTime()
+          )
+            continue;
           safeLocalStorage.setJSON(storageKey, mappedProgress);
         }
       }

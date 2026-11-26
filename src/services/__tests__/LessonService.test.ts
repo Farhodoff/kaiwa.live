@@ -1,5 +1,11 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { LessonService } from '../LessonService';
+import {
+  lessonStepTotal,
+  recordLessonStep,
+  lessonAggregateScore,
+} from '../../utils/lessonProgression';
+import type { UserLessonProgress } from '../../types/lesson';
 
 describe('LessonService', () => {
   beforeEach(() => {
@@ -81,13 +87,37 @@ describe('LessonService', () => {
     const userId = 'test-user-456';
     const quizScore = { score: 4, total: 4, percentage: 100 };
 
+    const lesson = await LessonService.loadLessonById('ja-n3-u1-l1');
+    let progress: UserLessonProgress = {
+      lessonId: lesson!.id,
+      userId,
+      currentStepIndex: 0,
+      completedStepIds: [],
+      isCompleted: false,
+      lastAttemptedAt: new Date().toISOString(),
+    };
+    lesson!.steps.forEach((step, index) => {
+      const total = lessonStepTotal(step);
+      progress = recordLessonStep(lesson!, progress, index, total, total);
+    });
+    await LessonService.saveLessonProgress(userId, progress);
     const result = await LessonService.completeLesson(userId, 'ja-n3-u1-l1', quizScore);
     expect(result.isCompleted).toBe(true);
-    expect(result.quizScore).toEqual(quizScore);
+    expect(result.quizScore).toEqual(lessonAggregateScore(lesson!, progress));
     expect(result.completedAt).toBeDefined();
 
     const stored = LessonService.getLessonProgress(userId, 'ja-n3-u1-l1');
     expect(stored?.isCompleted).toBe(true);
     expect(stored?.quizScore?.percentage).toBe(100);
+  });
+  it('rejects a completion call without successful step results', async () => {
+    await expect(
+      LessonService.completeLesson('guest', 'ja-n3-u1-l1', {
+        score: 99,
+        total: 99,
+        percentage: 100,
+      }),
+    ).rejects.toThrow('barcha bosqichlarini');
+    expect(LessonService.getLessonProgress('guest', 'ja-n3-u1-l1')).toBeNull();
   });
 });
