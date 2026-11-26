@@ -26,7 +26,7 @@ export const WeaknessEngine = {
         case 'speaking':
           return '/speaking-coach?lang=ja';
         case 'writing':
-          return '/jlpt-writing';
+          return '/jlpt/grammar';
         case 'vocabulary':
         default:
           return '/study-mode';
