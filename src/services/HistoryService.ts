@@ -365,7 +365,7 @@ export class HistoryService {
                 level: newItem.level || null,
                 score: newItem.score,
                 total_questions: newItem.totalQuestions,
-                band_score: newItem.bandScore || null,
+                band_score: newItem.bandScore ?? null,
                 created_at: newItem.createdAt,
               },
               { onConflict: 'id' },
