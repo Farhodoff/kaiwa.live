@@ -39,17 +39,22 @@ import { MistakeVaultService, MistakeLevel } from '../../services/MistakeVaultSe
 import { ActivityLoggingService } from '../../services/ActivityLoggingService';
 import { useTelegramWebApp } from '../../hooks/useTelegramWebApp';
 
+type TopicSection = 'grammar' | 'kanji' | 'goi';
+type MasterView = TopicSection | 'quiz' | 'confusing';
+
 interface JlptGrammarKanjiMasterProps {
+  section?: TopicSection;
   initialTab?: 'grammar' | 'kanji' | 'goi' | 'quiz' | 'confusing';
   initialLevel?: 'ALL' | 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
 }
 
 export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
+  section,
   initialTab = 'grammar',
   initialLevel: propInitialLevel,
 }) => {
   const { haptics } = useTelegramWebApp();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { user, addFlashcardsBatch, subjects, addSubject, awardXP, addSession, targetLevel } =
     useStudyData();
   const urlLevel = searchParams.get('level')?.toUpperCase();
@@ -71,18 +76,33 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
   const { getItemStatus, setItemStatus, getStatsForLevel } = useJlptMastery();
   const { language } = useLanguage();
 
-  const [activeTab, setActiveTab] = useState<'grammar' | 'kanji' | 'goi' | 'quiz' | 'confusing'>(
-    initialTab,
-  );
+  const [legacyTab, setLegacyTab] = useState<MasterView>(initialTab);
+  const mode = searchParams.get('mode');
+  const activeTab: MasterView = section
+    ? section === 'grammar' && mode === 'quiz'
+      ? 'quiz'
+      : section === 'kanji' && mode === 'compare'
+        ? 'confusing'
+        : section
+    : legacyTab;
+  const setActiveTab = (view: MasterView) => {
+    if (!section) {
+      setLegacyTab(view);
+      return;
+    }
+    const params = new URLSearchParams(searchParams);
+    if (section === 'grammar' && view === 'quiz') params.set('mode', 'quiz');
+    else if (section === 'kanji' && view === 'confusing') params.set('mode', 'compare');
+    else params.delete('mode');
+    setSearchParams(params);
+  };
   const [selectedLevel, setSelectedLevel] = useState<'ALL' | 'N5' | 'N4' | 'N3' | 'N2' | 'N1'>(
     resolvedDefaultLevel,
   );
 
   useEffect(() => {
-    if (initialTab) {
-      setActiveTab(initialTab);
-    }
-  }, [initialTab]);
+    if (!section) setLegacyTab(initialTab);
+  }, [initialTab, section]);
 
   useEffect(() => {
     if (propInitialLevel && ['ALL', 'N5', 'N4', 'N3', 'N2', 'N1'].includes(propInitialLevel)) {
@@ -183,6 +203,14 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
   const [quizFlashcardsSaved, setQuizFlashcardsSaved] = useState(false);
   const [quizMode, setQuizMode] = useState<'standard' | 'sentence_order'>('standard');
   const [soIndex, setSoIndex] = useState(0);
+
+  useEffect(() => {
+    setQuizIndex(0);
+    setSelectedOption(null);
+    setScore(0);
+    setIsQuizCompleted(false);
+    setSoIndex(0);
+  }, [propInitialLevel]);
 
   const soQuestions = useMemo(() => {
     if (selectedLevel === 'ALL') return SENTENCE_ORDERING_QUESTIONS;
@@ -461,192 +489,234 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
   return (
     <div className="space-y-6">
       {/* Header Banner — Sumi-e & Hanko */}
-      <div className="relative max-w-full overflow-hidden rounded-2xl border border-border bg-card p-2.5 shadow-xs sm:p-4 md:rounded-3xl md:p-8">
-        {/* Desktop Top Header Info */}
-        <div className="hidden flex-col justify-between gap-6 md:flex md:flex-row md:items-center">
-          <div>
-            <div className="badge-gold mb-3">
-              <Sparkles className="h-3.5 w-3.5" />{' '}
-              {language === 'ja'
-                ? 'こうしき きょうかしょ＆テストの データベース'
-                : 'Rasmiy Darsliklar & Imtihonlar Bazasi'}
-            </div>
-            <h1 className="flex items-center gap-3 font-display text-2xl font-black tracking-tight text-foreground md:text-3xl">
-              {language === 'ja'
-                ? 'JLPT ぶんぽう・かんじ・ごい マスター'
-                : 'JLPT Grammar, Kanji & Goi Master'}
-            </h1>
-            <p className="mt-1 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-              {language === 'ja'
-                ? 'N5〜N1の こうしき ぶんぽう、かんじ、ごい。かきじゅん アニメーション、ふりがな ひょうじ、ワンクリックで たんごちょうへ ほぞんできます！'
-                : "N5-N1 rasmiy darsliklar va imtihonlar bazasi. Kanji Stroke Order animatsiyalari, Goi lug'at boyligi, Furigana o'qilishlari hamda 1-Bosing bilan Flashcards eksporti!"}
-            </p>
-          </div>
-
-          {/* Quick Stats Widget */}
-          <div className="flex items-center gap-3 rounded-2xl border border-border bg-muted/40 p-3.5">
-            <div className="rounded-xl border border-amber-500/20 bg-amber-500/10 p-3 text-amber-600 dark:text-amber-400">
-              <Flame className="h-6 w-6" />
-            </div>
+      {!section && (
+        <div className="relative max-w-full overflow-hidden rounded-2xl border border-border bg-card p-2.5 shadow-xs sm:p-4 md:rounded-3xl md:p-8">
+          {/* Desktop Top Header Info */}
+          <div className="hidden flex-col justify-between gap-6 md:flex md:flex-row md:items-center">
             <div>
-              <div className="text-xs font-medium text-muted-foreground">
-                {language === 'ja' ? '学習データ数' : 'Baza hajmi'}
+              <div className="badge-gold mb-3">
+                <Sparkles className="h-3.5 w-3.5" />{' '}
+                {language === 'ja'
+                  ? 'こうしき きょうかしょ＆テストの データベース'
+                  : 'Rasmiy Darsliklar & Imtihonlar Bazasi'}
               </div>
-              <div className="flex items-center gap-1.5 text-lg font-black text-foreground">
-                <span>
-                  {grammarSource.length} {language === 'ja' ? '文法項目' : 'Qoida'}
-                </span>{' '}
-                •{' '}
-                <span className="text-rose-600 dark:text-rose-400">
-                  {kanjiSource.length} {language === 'ja' ? '漢字' : 'Kanji'}
-                </span>{' '}
-                •{' '}
-                <span className="text-emerald-600 dark:text-emerald-400">
-                  {vocabSource.length} {language === 'ja' ? '語彙' : 'Goi'}
-                </span>
+              <h1 className="flex items-center gap-3 font-display text-2xl font-black tracking-tight text-foreground md:text-3xl">
+                {language === 'ja'
+                  ? 'JLPT ぶんぽう・かんじ・ごい マスター'
+                  : 'JLPT Grammar, Kanji & Goi Master'}
+              </h1>
+              <p className="mt-1 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                {language === 'ja'
+                  ? 'N5〜N1の こうしき ぶんぽう、かんじ、ごい。かきじゅん アニメーション、ふりがな ひょうじ、ワンクリックで たんごちょうへ ほぞんできます！'
+                  : "N5-N1 rasmiy darsliklar va imtihonlar bazasi. Kanji Stroke Order animatsiyalari, Goi lug'at boyligi, Furigana o'qilishlari hamda 1-Bosing bilan Flashcards eksporti!"}
+              </p>
+            </div>
+
+            {/* Quick Stats Widget */}
+            <div className="flex items-center gap-3 rounded-2xl border border-border bg-muted/40 p-3.5">
+              <div className="rounded-xl border border-amber-500/20 bg-amber-500/10 p-3 text-amber-600 dark:text-amber-400">
+                <Flame className="h-6 w-6" />
+              </div>
+              <div>
+                <div className="text-xs font-medium text-muted-foreground">
+                  {language === 'ja' ? '学習データ数' : 'Baza hajmi'}
+                </div>
+                <div className="flex items-center gap-1.5 text-lg font-black text-foreground">
+                  <span>
+                    {grammarSource.length} {language === 'ja' ? '文法項目' : 'Qoida'}
+                  </span>{' '}
+                  •{' '}
+                  <span className="text-rose-600 dark:text-rose-400">
+                    {kanjiSource.length} {language === 'ja' ? '漢字' : 'Kanji'}
+                  </span>{' '}
+                  •{' '}
+                  <span className="text-emerald-600 dark:text-emerald-400">
+                    {vocabSource.length} {language === 'ja' ? '語彙' : 'Goi'}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
+
+          {/* Sub-Tabs Bar */}
+          <div className="scrollbar-none flex touch-pan-x items-center gap-1.5 overflow-x-auto md:mt-6 md:border-t md:border-border md:pt-4">
+            <button
+              onClick={() => {
+                haptics.selection();
+                setActiveTab('grammar');
+              }}
+              className={`flex shrink-0 cursor-pointer touch-manipulation select-none items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-bold transition-all sm:px-4 ${
+                activeTab === 'grammar'
+                  ? 'scale-[1.02] bg-primary text-primary-foreground shadow-xs'
+                  : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
+              }`}
+            >
+              <BookOpen className="h-4 w-4" />
+              <span>
+                {language === 'ja'
+                  ? `文法マスター (${grammarSource.length})`
+                  : `Grammatika (${grammarSource.length})`}
+              </span>
+            </button>
+
+            <button
+              onClick={() => {
+                haptics.selection();
+                setActiveTab('kanji');
+              }}
+              className={`flex shrink-0 cursor-pointer touch-manipulation select-none items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-bold transition-all sm:px-4 ${
+                activeTab === 'kanji'
+                  ? 'scale-[1.02] bg-primary text-primary-foreground shadow-xs'
+                  : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
+              }`}
+            >
+              <GraduationCap className="h-4 w-4" />
+              <span>
+                {language === 'ja'
+                  ? `漢字 (${kanjiSource.length})`
+                  : `Kanji (${kanjiSource.length})`}
+              </span>
+            </button>
+
+            <button
+              onClick={() => {
+                haptics.selection();
+                setActiveTab('goi');
+              }}
+              className={`flex shrink-0 cursor-pointer touch-manipulation select-none items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-bold transition-all sm:px-4 ${
+                activeTab === 'goi'
+                  ? 'scale-[1.02] bg-primary text-primary-foreground shadow-xs'
+                  : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
+              }`}
+            >
+              <BookOpen className="h-4 w-4" />
+              <span>
+                {language === 'ja' ? `語彙 (${vocabSource.length})` : `Goi (${vocabSource.length})`}
+              </span>
+            </button>
+
+            <button
+              onClick={() => {
+                haptics.selection();
+                setActiveTab('quiz');
+                setQuizIndex(0);
+                setSelectedOption(null);
+                setScore(0);
+                setIsQuizCompleted(false);
+              }}
+              className={`flex shrink-0 cursor-pointer touch-manipulation select-none items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-bold transition-all sm:px-4 ${
+                activeTab === 'quiz'
+                  ? 'scale-[1.02] bg-primary text-primary-foreground shadow-xs'
+                  : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
+              }`}
+            >
+              <Flame className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+              <span>
+                {language === 'ja'
+                  ? `テスト (${quizSource.length})`
+                  : `Test Banki (${quizSource.length})`}
+              </span>
+            </button>
+
+            <button
+              onClick={() => {
+                haptics.selection();
+                setActiveTab('confusing');
+              }}
+              className={`flex shrink-0 cursor-pointer touch-manipulation select-none items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-bold transition-all sm:px-4 ${
+                activeTab === 'confusing'
+                  ? 'scale-[1.02] bg-primary text-primary-foreground shadow-xs'
+                  : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
+              }`}
+            >
+              <Layers className="h-4 w-4" />
+              <span>{language === 'ja' ? '類似漢字' : "O'xshash Kanjilar"}</span>
+            </button>
+          </div>
         </div>
+      )}
 
-        {/* Sub-Tabs Bar */}
-        <div className="scrollbar-none flex touch-pan-x items-center gap-1.5 overflow-x-auto md:mt-6 md:border-t md:border-border md:pt-4">
+      {section && section !== 'goi' && (
+        <div
+          className="flex flex-wrap gap-2"
+          role="group"
+          aria-label={language === 'uz' ? 'Mashqlar' : language === 'ja' ? '練習' : 'Practice'}
+        >
           <button
-            onClick={() => {
-              haptics.selection();
-              setActiveTab('grammar');
-            }}
-            className={`flex shrink-0 cursor-pointer touch-manipulation select-none items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-bold transition-all sm:px-4 ${
-              activeTab === 'grammar'
-                ? 'scale-[1.02] bg-primary text-primary-foreground shadow-xs'
-                : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
-            }`}
+            onClick={() => setActiveTab(section)}
+            aria-pressed={activeTab === section}
+            className={`min-h-11 rounded-xl border px-4 text-sm font-medium ${activeTab === section ? 'border-primary/30 bg-primary/10 text-primary' : 'border-border hover:bg-muted'}`}
           >
-            <BookOpen className="h-4 w-4" />
-            <span>
-              {language === 'ja'
-                ? `文法マスター (${grammarSource.length})`
-                : `Grammatika (${grammarSource.length})`}
-            </span>
+            {language === 'ja' ? '一覧' : language === 'en' ? 'Browse' : 'Ro‘yxat'}
           </button>
-
           <button
             onClick={() => {
-              haptics.selection();
-              setActiveTab('kanji');
+              setActiveTab(section === 'grammar' ? 'quiz' : 'confusing');
+              resetQuiz();
             }}
-            className={`flex shrink-0 cursor-pointer touch-manipulation select-none items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-bold transition-all sm:px-4 ${
-              activeTab === 'kanji'
-                ? 'scale-[1.02] bg-primary text-primary-foreground shadow-xs'
-                : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
-            }`}
+            aria-pressed={activeTab !== section}
+            className={`min-h-11 rounded-xl border px-4 text-sm font-medium ${activeTab !== section ? 'border-primary/30 bg-primary/10 text-primary' : 'border-border hover:bg-muted'}`}
           >
-            <GraduationCap className="h-4 w-4" />
-            <span>
-              {language === 'ja' ? `漢字 (${kanjiSource.length})` : `Kanji (${kanjiSource.length})`}
-            </span>
-          </button>
-
-          <button
-            onClick={() => {
-              haptics.selection();
-              setActiveTab('goi');
-            }}
-            className={`flex shrink-0 cursor-pointer touch-manipulation select-none items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-bold transition-all sm:px-4 ${
-              activeTab === 'goi'
-                ? 'scale-[1.02] bg-primary text-primary-foreground shadow-xs'
-                : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
-            }`}
-          >
-            <BookOpen className="h-4 w-4" />
-            <span>
-              {language === 'ja' ? `語彙 (${vocabSource.length})` : `Goi (${vocabSource.length})`}
-            </span>
-          </button>
-
-          <button
-            onClick={() => {
-              haptics.selection();
-              setActiveTab('quiz');
-              setQuizIndex(0);
-              setSelectedOption(null);
-              setScore(0);
-              setIsQuizCompleted(false);
-            }}
-            className={`flex shrink-0 cursor-pointer touch-manipulation select-none items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-bold transition-all sm:px-4 ${
-              activeTab === 'quiz'
-                ? 'scale-[1.02] bg-primary text-primary-foreground shadow-xs'
-                : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
-            }`}
-          >
-            <Flame className="h-4 w-4 text-amber-600 dark:text-amber-400" />
-            <span>
-              {language === 'ja'
-                ? `テスト (${quizSource.length})`
-                : `Test Banki (${quizSource.length})`}
-            </span>
-          </button>
-
-          <button
-            onClick={() => {
-              haptics.selection();
-              setActiveTab('confusing');
-            }}
-            className={`flex shrink-0 cursor-pointer touch-manipulation select-none items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-bold transition-all sm:px-4 ${
-              activeTab === 'confusing'
-                ? 'scale-[1.02] bg-primary text-primary-foreground shadow-xs'
-                : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
-            }`}
-          >
-            <Layers className="h-4 w-4" />
-            <span>{language === 'ja' ? '類似漢字' : "O'xshash Kanjilar"}</span>
+            {section === 'grammar'
+              ? language === 'ja'
+                ? '練習問題'
+                : language === 'en'
+                  ? 'Practice'
+                  : 'Mashq qilish'
+              : language === 'ja'
+                ? '類似漢字'
+                : language === 'en'
+                  ? 'Compare kanji'
+                  : 'O‘xshash kanjilar'}
           </button>
         </div>
-      </div>
-
+      )}
       {/* Level & Search Controls (for Grammar & Kanji & Goi) */}
       {activeTab !== 'quiz' && activeTab !== 'confusing' && (
         <div className="max-w-full space-y-4 overflow-hidden rounded-2xl border border-border bg-card p-3.5 shadow-xs sm:p-4">
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
             {/* Level Pills */}
-            <div className="scrollbar-none flex max-w-full touch-pan-x items-center gap-1.5 overflow-x-auto pb-1 md:pb-0">
-              {(['ALL', 'N5', 'N4', 'N3', 'N2', 'N1'] as const).map((lvl) => (
-                <button
-                  key={lvl}
-                  onClick={() => {
-                    haptics.selection();
-                    setSelectedLevel(lvl);
-                  }}
-                  className={`shrink-0 cursor-pointer touch-manipulation select-none whitespace-nowrap rounded-xl px-3.5 py-1.5 text-xs font-bold transition-all ${
-                    selectedLevel === lvl
-                      ? 'bg-primary text-primary-foreground shadow-xs'
-                      : 'border border-border bg-muted/60 text-muted-foreground hover:bg-muted hover:text-foreground'
-                  }`}
-                >
-                  {lvl === 'ALL' ? (language === 'ja' ? 'すべて' : 'BARCHASI') : lvl}
-                </button>
-              ))}
-            </div>
+            {!section && (
+              <div className="scrollbar-none flex max-w-full touch-pan-x items-center gap-1.5 overflow-x-auto pb-1 md:pb-0">
+                {(['ALL', 'N5', 'N4', 'N3', 'N2', 'N1'] as const).map((lvl) => (
+                  <button
+                    key={lvl}
+                    onClick={() => {
+                      haptics.selection();
+                      setSelectedLevel(lvl);
+                    }}
+                    className={`shrink-0 cursor-pointer touch-manipulation select-none whitespace-nowrap rounded-xl px-3.5 py-1.5 text-xs font-bold transition-all ${
+                      selectedLevel === lvl
+                        ? 'bg-primary text-primary-foreground shadow-xs'
+                        : 'border border-border bg-muted/60 text-muted-foreground hover:bg-muted hover:text-foreground'
+                    }`}
+                  >
+                    {lvl === 'ALL' ? (language === 'ja' ? 'すべて' : 'BARCHASI') : lvl}
+                  </button>
+                ))}
+              </div>
+            )}
 
             {/* Search Bar */}
             <div className="relative max-w-md flex-1">
               <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <input
                 type="text"
+                aria-label={language === 'ja' ? '検索' : language === 'en' ? 'Search' : 'Qidirish'}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={
                   activeTab === 'grammar'
                     ? language === 'ja'
                       ? '文法・キーワード・意味で検索...'
-                      : 'Grammatika, romaji yoki uzbekcha izlash...'
+                      : 'Grammatika qidirish…'
                     : activeTab === 'kanji'
                       ? language === 'ja'
                         ? '漢字・読み方・意味で検索...'
-                        : "Kanji iyeroglif, o'qilishi yoki ma'nosi..."
+                        : 'Kanji qidirish…'
                       : language === 'ja'
                         ? '単語・読み方・意味で検索...'
-                        : "So'z, romaji yoki uzbekcha ma'nosi..."
+                        : 'So‘z qidirish…'
                 }
                 className="w-full rounded-xl border border-border bg-muted/30 py-2.5 pl-10 pr-4 text-sm text-foreground transition placeholder:text-muted-foreground focus:border-primary focus:outline-none"
               />
@@ -1248,41 +1318,43 @@ export const JlptGrammarKanjiMaster: React.FC<JlptGrammarKanjiMasterProps> = ({
           </div>
 
           {/* Level Switcher for Quiz */}
-          <div className="flex items-center justify-between gap-2 overflow-x-auto rounded-2xl border border-border bg-card p-3 shadow-xs">
-            <div className="scrollbar-none flex items-center gap-1.5 overflow-x-auto">
-              {(['ALL', 'N5', 'N4', 'N3', 'N2', 'N1'] as const).map((lvl) => {
-                const count =
-                  quizMode === 'standard'
-                    ? lvl === 'ALL'
-                      ? quizSource.length
-                      : quizSource.filter((q) => q.level === lvl).length
-                    : lvl === 'ALL'
-                      ? SENTENCE_ORDERING_QUESTIONS.length
-                      : SENTENCE_ORDERING_QUESTIONS.filter((q) => q.level === lvl).length;
-                return (
-                  <button
-                    key={lvl}
-                    onClick={() => {
-                      haptics.selection();
-                      setSelectedLevel(lvl);
-                      setQuizIndex(0);
-                      setSoIndex(0);
-                      setSelectedOption(null);
-                      setScore(0);
-                      setIsQuizCompleted(false);
-                    }}
-                    className={`shrink-0 whitespace-nowrap rounded-xl px-3.5 py-1.5 text-xs font-bold transition-all ${
-                      selectedLevel === lvl
-                        ? 'bg-primary text-primary-foreground shadow-xs'
-                        : 'border border-border bg-muted/60 text-muted-foreground hover:bg-muted hover:text-foreground'
-                    }`}
-                  >
-                    {lvl === 'ALL' ? (language === 'ja' ? 'すべて' : 'BARCHASI') : lvl} ({count})
-                  </button>
-                );
-              })}
+          {!section && (
+            <div className="flex items-center justify-between gap-2 overflow-x-auto rounded-2xl border border-border bg-card p-3 shadow-xs">
+              <div className="scrollbar-none flex items-center gap-1.5 overflow-x-auto">
+                {(['ALL', 'N5', 'N4', 'N3', 'N2', 'N1'] as const).map((lvl) => {
+                  const count =
+                    quizMode === 'standard'
+                      ? lvl === 'ALL'
+                        ? quizSource.length
+                        : quizSource.filter((q) => q.level === lvl).length
+                      : lvl === 'ALL'
+                        ? SENTENCE_ORDERING_QUESTIONS.length
+                        : SENTENCE_ORDERING_QUESTIONS.filter((q) => q.level === lvl).length;
+                  return (
+                    <button
+                      key={lvl}
+                      onClick={() => {
+                        haptics.selection();
+                        setSelectedLevel(lvl);
+                        setQuizIndex(0);
+                        setSoIndex(0);
+                        setSelectedOption(null);
+                        setScore(0);
+                        setIsQuizCompleted(false);
+                      }}
+                      className={`shrink-0 whitespace-nowrap rounded-xl px-3.5 py-1.5 text-xs font-bold transition-all ${
+                        selectedLevel === lvl
+                          ? 'bg-primary text-primary-foreground shadow-xs'
+                          : 'border border-border bg-muted/60 text-muted-foreground hover:bg-muted hover:text-foreground'
+                      }`}
+                    >
+                      {lvl === 'ALL' ? (language === 'ja' ? 'すべて' : 'BARCHASI') : lvl} ({count})
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-          </div>
+          )}
 
           {quizMode === 'sentence_order' ? (
             <div className="rounded-3xl border border-border bg-card p-6 shadow-xs md:p-8">
