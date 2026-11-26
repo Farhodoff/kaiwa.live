@@ -19,18 +19,21 @@ const sampleCards = [
   },
 ];
 
+let currentMockCards = sampleCards;
+let currentMockLoading = false;
+
 let currentMockUser: any = { id: 'u1', email: 'test@example.com' };
 const mockUpdateFlashcard = vi.fn().mockResolvedValue(true);
 
 vi.mock('../../../context/StudyPlannerContext', () => ({
   useStudyData: () => ({
     user: currentMockUser,
-    flashcards: sampleCards,
+    flashcards: currentMockCards,
     subjects: [{ id: 'subj-1', name: 'JLPT N2 Vocabulary' }],
     reviewFlashcard: mockReviewFlashcard,
     updateFlashcard: mockUpdateFlashcard,
     deleteFlashcard: vi.fn(),
-    loading: false,
+    loading: currentMockLoading,
   }),
 }));
 
@@ -49,6 +52,70 @@ vi.mock('../../../utils/audioTts', () => ({
 describe('FlashcardStudySession Component Live QA', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    currentMockCards = sampleCards;
+    currentMockLoading = false;
+  });
+
+  it('opens the 50 unassigned cards counted in the first active deck', async () => {
+    currentMockCards = Array.from({ length: 50 }, (_, index) => ({
+      ...sampleCards[0],
+      id: `legacy-${index}`,
+      subjectId: '',
+      front: `Legacy ${index}`,
+    }));
+    render(<FlashcardStudySession subjectId="subj-1" onClose={vi.fn()} />);
+    expect(await screen.findByTestId('study-card')).toBeDefined();
+    expect(screen.queryByText(/Barchasi Takrorlandi/)).toBeNull();
+  });
+
+  it('waits for data before selecting the review queue', async () => {
+    currentMockLoading = true;
+    currentMockCards = [];
+    const { rerender } = render(<FlashcardStudySession subjectId="subj-1" onClose={vi.fn()} />);
+    expect(screen.getByText('Kartochkalar tayyorlanmoqda...')).toBeDefined();
+    expect(screen.queryByText('Kartalar topilmadi')).toBeNull();
+    currentMockLoading = false;
+    currentMockCards = sampleCards;
+    rerender(<FlashcardStudySession subjectId="subj-1" onClose={vi.fn()} />);
+    expect(await screen.findByTestId('study-card')).toBeDefined();
+  });
+
+  it('shows an empty state without claiming a review was completed', async () => {
+    currentMockCards = [];
+    render(<FlashcardStudySession subjectId="subj-1" onClose={vi.fn()} />);
+    expect(await screen.findByText('Kartalar topilmadi')).toBeDefined();
+    expect(screen.queryByText(/Barchasi Takrorlandi/)).toBeNull();
+    expect(mockReviewFlashcard).not.toHaveBeenCalled();
+  });
+
+  it('completes a linked task once only after a saved review', async () => {
+    const onComplete = vi.fn();
+    const { rerender } = render(
+      <FlashcardStudySession subjectId="subj-1" onClose={vi.fn()} onComplete={onComplete} />,
+    );
+    expect(onComplete).not.toHaveBeenCalled();
+    fireEvent.click(await screen.findByTestId('study-card'));
+    fireEvent.click(screen.getByRole('button', { name: /Yaxshi \(Good\)/ }));
+    await waitFor(() => expect(onComplete).toHaveBeenCalledTimes(1));
+    rerender(
+      <FlashcardStudySession subjectId="subj-1" onClose={vi.fn()} onComplete={onComplete} />,
+    );
+    expect(onComplete).toHaveBeenCalledTimes(1);
+  });
+
+  it('keeps the current card when saving the rating fails', async () => {
+    const onComplete = vi.fn();
+    mockReviewFlashcard.mockRejectedValueOnce(new Error('save failed'));
+    const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
+    render(<FlashcardStudySession subjectId="subj-1" onClose={vi.fn()} onComplete={onComplete} />);
+    fireEvent.click(await screen.findByTestId('study-card'));
+    fireEvent.click(screen.getByRole('button', { name: /Yaxshi \(Good\)/ }));
+    await waitFor(() =>
+      expect(mockToast).toHaveBeenCalledWith(expect.objectContaining({ variant: 'destructive' })),
+    );
+    expect(screen.getByTestId('study-card')).toBeInTheDocument();
+    expect(onComplete).not.toHaveBeenCalled();
+    consoleError.mockRestore();
   });
 
   it('renders card front and displays calibrated button intervals when flipped', async () => {

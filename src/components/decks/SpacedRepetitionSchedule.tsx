@@ -2,7 +2,6 @@ import React, { useState, useEffect, useMemo } from 'react';
 import {
   Calendar,
   Clock,
-  Sparkles,
   Brain,
   AlertTriangle,
   Play,
@@ -21,25 +20,25 @@ import {
   FlashcardReviewForecastItem,
   SrsQueueSummary,
 } from '../../services/SpacedRepetitionEngine';
-import { Rating, Grade } from '../../utils/srs';
+import { isDue, Rating, Grade } from '../../utils/srs';
 import { toast } from '../../hooks/use-toast';
 import { Button } from '../ui/Button';
 import { useStudyData } from '../../context/StudyPlannerContext';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface SpacedRepetitionScheduleProps {
   flashcards: Flashcard[];
   userId?: string;
   onStartFlashcardReview?: (subjectId?: string) => void;
-  firstDueSubjectId?: string | null;
 }
 
 export const SpacedRepetitionSchedule: React.FC<SpacedRepetitionScheduleProps> = ({
   flashcards,
   userId = 'guest',
   onStartFlashcardReview,
-  firstDueSubjectId,
 }) => {
   const navigate = useNavigate();
+  const { language } = useLanguage();
   const { refreshData } = useStudyData();
   const [lessonReviews, setLessonReviews] = useState<LessonReviewItem[]>([]);
   const [lessonFilter, setLessonFilter] = useState<'all' | 'due' | 'upcoming'>('all');
@@ -60,6 +59,11 @@ export const SpacedRepetitionSchedule: React.FC<SpacedRepetitionScheduleProps> =
   const queueSummary: SrsQueueSummary = useMemo(() => {
     return SpacedRepetitionEngine.getFlashcardQueueSummary(flashcards);
   }, [flashcards]);
+
+  const availableReviewCount = flashcards.filter((card) => !card.deletedAt && isDue(card)).length;
+  const hasReviewedCards = flashcards.some(
+    (card) => !card.deletedAt && (card.repetitions > 0 || card.interval > 0),
+  );
 
   // 7-day forecast
   const forecast: FlashcardReviewForecastItem[] = useMemo(() => {
@@ -138,30 +142,25 @@ export const SpacedRepetitionSchedule: React.FC<SpacedRepetitionScheduleProps> =
       <div className="relative overflow-hidden rounded-3xl border border-border/80 bg-gradient-to-br from-card via-card/90 to-primary/5 p-5 shadow-xs sm:p-7">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-xl space-y-2">
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-black uppercase tracking-wider text-primary">
-              <Sparkles size={13} />
-              <span>MF2M / SM-2 Algoritmi</span>
-            </div>
             <h2 className="text-2xl font-black tracking-tight text-foreground sm:text-3xl">
-              Spaced Repetition Tizimi
+              Takrorlash jadvali
             </h2>
             <p className="text-xs leading-relaxed text-muted-foreground sm:text-sm">
-              Ebbinghaus unutilish egri chizig'i asosida so'zlar va darslarni optimal vaqtda
-              takrorlab, uzoq muddatli xotiraga mustahkamlang.
+              Bugun va keyingi kunlarda takrorlanadigan kartalar hamda darslar.
             </p>
           </div>
 
           {/* Quick CTA Actions */}
           <div className="flex flex-wrap items-center gap-3">
-            {queueSummary.totalDueCount > 0 && onStartFlashcardReview && (
+            {availableReviewCount > 0 && onStartFlashcardReview && (
               <Button
                 variant="default"
                 size="lg"
-                onClick={() => onStartFlashcardReview(firstDueSubjectId || undefined)}
+                onClick={() => onStartFlashcardReview('all')}
                 className="gap-2 rounded-2xl text-sm font-black shadow-lg shadow-primary/25"
               >
                 <Play size={16} fill="currentColor" />
-                <span>Kartochkalarni Takrorlash ({queueSummary.totalDueCount})</span>
+                <span>Takrorlash ({availableReviewCount})</span>
               </Button>
             )}
 
@@ -173,7 +172,7 @@ export const SpacedRepetitionSchedule: React.FC<SpacedRepetitionScheduleProps> =
               className="gap-2 rounded-2xl border-border/80 bg-card/60 text-sm font-black hover:bg-muted/60"
             >
               <ListTodo size={16} />
-              <span>{isSyncingTasks ? "Bog'lanmoqda..." : 'Rejaga Vazifa Qilish'}</span>
+              <span>{isSyncingTasks ? "Bog'lanmoqda..." : 'Rejaga qo‘shish'}</span>
             </Button>
           </div>
         </div>
@@ -182,50 +181,52 @@ export const SpacedRepetitionSchedule: React.FC<SpacedRepetitionScheduleProps> =
         <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
           {/* Overdue */}
           <div className="rounded-2xl border border-rose-500/20 bg-rose-500/5 p-4 transition-all hover:bg-rose-500/10">
-            <div className="flex items-center justify-between text-rose-500">
-              <span className="text-[11px] font-black uppercase tracking-wider">Kechikkan</span>
+            <div className="flex items-center justify-between text-rose-700 dark:text-rose-400">
+              <span className="text-xs font-semibold">Kechikkan</span>
               <AlertTriangle size={16} />
             </div>
             <div className="mt-2 text-2xl font-black text-rose-600 dark:text-rose-400 sm:text-3xl">
               {queueSummary.overdueCount}
             </div>
-            <p className="mt-1 text-[11px] text-muted-foreground">Tezkor e'tibor talab</p>
+            <p className="mt-1 text-xs text-muted-foreground">Tezkor e'tibor talab</p>
           </div>
 
           {/* Due Today */}
           <div className="rounded-2xl border border-amber-500/20 bg-amber-500/5 p-4 transition-all hover:bg-amber-500/10">
-            <div className="flex items-center justify-between text-amber-500">
-              <span className="text-[11px] font-black uppercase tracking-wider">Bugun Rejada</span>
+            <div className="flex items-center justify-between text-amber-700 dark:text-amber-400">
+              <span className="text-xs font-semibold">Bugun rejada</span>
               <Clock size={16} />
             </div>
             <div className="mt-2 text-2xl font-black text-amber-600 dark:text-amber-400 sm:text-3xl">
               {queueSummary.dueTodayCount}
             </div>
-            <p className="mt-1 text-[11px] text-muted-foreground">Bugungi takrorlash</p>
+            <p className="mt-1 text-xs text-muted-foreground">Bugungi takrorlash</p>
           </div>
 
           {/* New Cards */}
           <div className="rounded-2xl border border-sky-500/20 bg-sky-500/5 p-4 transition-all hover:bg-sky-500/10">
-            <div className="flex items-center justify-between text-sky-500">
-              <span className="text-[11px] font-black uppercase tracking-wider">Yangi So'zlar</span>
+            <div className="flex items-center justify-between text-sky-700 dark:text-sky-400">
+              <span className="text-xs font-semibold">Yangi kartalar</span>
               <Layers size={16} />
             </div>
             <div className="mt-2 text-2xl font-black text-sky-600 dark:text-sky-400 sm:text-3xl">
               {queueSummary.newCount}
             </div>
-            <p className="mt-1 text-[11px] text-muted-foreground">Hali boshlanmagan</p>
+            <p className="mt-1 text-xs text-muted-foreground">Hali boshlanmagan</p>
           </div>
 
           {/* Retention Rate */}
           <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-4 transition-all hover:bg-emerald-500/10">
-            <div className="flex items-center justify-between text-emerald-500">
-              <span className="text-[11px] font-black uppercase tracking-wider">Esda Qolish</span>
+            <div className="flex items-center justify-between text-emerald-700 dark:text-emerald-400">
+              <span className="text-xs font-semibold">Esda qolish</span>
               <Brain size={16} />
             </div>
             <div className="mt-2 text-2xl font-black text-emerald-600 dark:text-emerald-400 sm:text-3xl">
-              {queueSummary.averageRetentionRate}%
+              {hasReviewedCards ? `${queueSummary.averageRetentionRate}%` : '—'}
             </div>
-            <p className="mt-1 text-[11px] text-muted-foreground">Ebbinghaus barqarorligi</p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              {hasReviewedCards ? 'Taxminiy ko‘rsatkich' : 'Hali baholanmagan'}
+            </p>
           </div>
         </div>
       </div>
@@ -234,19 +235,17 @@ export const SpacedRepetitionSchedule: React.FC<SpacedRepetitionScheduleProps> =
       {/* 2. 7-DAY FLASHCARD REVIEW FORECAST */}
       {/* ======================================================== */}
       <div className="space-y-4">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <Calendar size={18} className="text-primary" />
-            <h3 className="text-lg font-black tracking-tight text-foreground">
-              7 Kunlik Takrorlash Prognozi
-            </h3>
+            <h3 className="text-lg font-black tracking-tight text-foreground">Keyingi 7 kun</h3>
           </div>
           <span className="text-xs font-semibold text-muted-foreground">
             Kelgusi kunlarda kutilayotgan kartochkalar
           </span>
         </div>
 
-        <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4 md:grid-cols-7">
+        <div className="grid auto-cols-[5.5rem] grid-flow-col gap-2.5 overflow-x-auto pb-2 sm:auto-cols-auto sm:grid-flow-row sm:grid-cols-7">
           {forecast.map((item) => (
             <div
               key={item.date}
@@ -257,18 +256,19 @@ export const SpacedRepetitionSchedule: React.FC<SpacedRepetitionScheduleProps> =
               }`}
             >
               <div className="text-xs font-black uppercase tracking-wider text-muted-foreground">
-                {item.dayLabel}
+                {new Intl.DateTimeFormat(
+                  language === 'ja' ? 'ja' : language === 'en' ? 'en' : 'uz',
+                  { weekday: 'short' },
+                ).format(new Date(`${item.date}T12:00:00`))}
               </div>
-              <div className="mt-0.5 text-[11px] text-muted-foreground/80">
-                {item.date.slice(5)}
-              </div>
+              <div className="mt-0.5 text-xs text-muted-foreground/80">{item.date.slice(5)}</div>
               <div
                 className={`my-3 text-xl font-black ${
                   item.isToday
                     ? 'text-primary'
                     : item.dueCount > 0
                       ? 'text-foreground'
-                      : 'text-muted-foreground/40'
+                      : 'text-muted-foreground'
                 }`}
               >
                 {item.dueCount}
@@ -297,21 +297,19 @@ export const SpacedRepetitionSchedule: React.FC<SpacedRepetitionScheduleProps> =
           <div>
             <div className="flex items-center gap-2">
               <GraduationCap size={18} className="text-primary" />
-              <h3 className="text-lg font-black tracking-tight text-foreground">
-                Darslarni Takrorlash Jadvali (Avtomatik SM-2)
-              </h3>
+              <h3 className="text-lg font-black tracking-tight text-foreground">Darslar jadvali</h3>
             </div>
             <p className="mt-0.5 text-xs text-muted-foreground">
-              Tugatgan darslaringiz o'zlashtirish foiziga ko'ra avtomatik takrorlash vaqti bilan
-              jadvalga kiritiladi.
+              Tugallangan darslar natijangizga qarab takrorlashga qo‘shiladi.
             </p>
           </div>
 
           {/* Filter Pills */}
-          <div className="flex items-center gap-1.5 rounded-2xl border border-border/80 bg-card p-1">
+          <div className="flex flex-wrap items-center gap-1.5 rounded-2xl border border-border/80 bg-card p-1">
             <button
               onClick={() => setLessonFilter('all')}
-              className={`rounded-xl px-3 py-1.5 text-xs font-black transition-all ${
+              aria-pressed={lessonFilter === 'all'}
+              className={`min-h-11 rounded-xl px-3 py-2 text-sm font-semibold transition-colors ${
                 lessonFilter === 'all'
                   ? 'bg-primary text-primary-foreground shadow-xs'
                   : 'text-muted-foreground hover:text-foreground'
@@ -321,23 +319,25 @@ export const SpacedRepetitionSchedule: React.FC<SpacedRepetitionScheduleProps> =
             </button>
             <button
               onClick={() => setLessonFilter('due')}
-              className={`rounded-xl px-3 py-1.5 text-xs font-black transition-all ${
+              aria-pressed={lessonFilter === 'due'}
+              className={`min-h-11 rounded-xl px-3 py-2 text-sm font-semibold transition-colors ${
                 lessonFilter === 'due'
                   ? 'bg-rose-500 text-white shadow-xs'
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
-              Kechikkan / Bugun ({dueLessonCount})
+              Bugun ({dueLessonCount})
             </button>
             <button
               onClick={() => setLessonFilter('upcoming')}
-              className={`rounded-xl px-3 py-1.5 text-xs font-black transition-all ${
+              aria-pressed={lessonFilter === 'upcoming'}
+              className={`min-h-11 rounded-xl px-3 py-2 text-sm font-semibold transition-colors ${
                 lessonFilter === 'upcoming'
                   ? 'bg-primary text-primary-foreground shadow-xs'
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
-              Rejadagi darslar
+              Keyinroq
             </button>
           </div>
         </div>
@@ -354,8 +354,7 @@ export const SpacedRepetitionSchedule: React.FC<SpacedRepetitionScheduleProps> =
                 : 'Hozircha dars takrorlashlari mavjud emas'}
             </h4>
             <p className="mx-auto mt-1 max-w-md text-xs leading-relaxed text-muted-foreground">
-              Darslarni o'qib, yakuniy testlarni topshirganingizdan so'ng, tizim unutilish egri
-              chizig'iga ko'ra avtomatik tarzda takrorlash jadvalini shakllantiradi.
+              Darsni tugating. Qachon takrorlash kerakligi shu yerda ko‘rinadi.
             </p>
             <div className="mt-4">
               <Button
@@ -425,7 +424,7 @@ export const SpacedRepetitionSchedule: React.FC<SpacedRepetitionScheduleProps> =
                       <h4 className="line-clamp-1 text-sm font-black text-foreground transition-colors group-hover:text-primary sm:text-base">
                         {review.lessonTitle}
                       </h4>
-                      <div className="mt-1 flex items-center gap-2 text-[11px] text-muted-foreground">
+                      <div className="mt-1 flex items-center gap-2 text-xs text-muted-foreground">
                         <Calendar size={12} />
                         <span>Reja: {review.dueDate}</span>
                         <span>•</span>
