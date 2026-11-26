@@ -157,11 +157,40 @@ export interface AggregateRatingData {
   reviewCount?: number;
 }
 
+function clearAggregateRatingsFromDOM(): void {
+  for (const script of Array.from(
+    document.querySelectorAll('script[type="application/ld+json"]'),
+  )) {
+    try {
+      const json = JSON.parse(script.textContent || '{}');
+      const items = Array.isArray(json['@graph']) ? json['@graph'] : [json];
+      let changed = false;
+      for (const item of items) {
+        if (item.aggregateRating) {
+          delete item.aggregateRating;
+          changed = true;
+        }
+      }
+      if (changed) script.textContent = JSON.stringify(json, null, 2);
+    } catch {
+      /* Ignore unrelated malformed structured data. */
+    }
+  }
+}
+
 let cachedRating: AggregateRatingData | null = null;
 let isFetchingRating = false;
 
 export function applyAggregateRatingToDOM(rating: AggregateRatingData): boolean {
   if (typeof document === 'undefined') return false;
+  if (
+    !Number.isFinite(Number(rating.ratingCount)) ||
+    Number(rating.ratingCount) <= 0 ||
+    !Number.isFinite(Number(rating.ratingValue)) ||
+    Number(rating.ratingValue) < 1 ||
+    Number(rating.ratingValue) > 5
+  )
+    return false;
 
   let applied = false;
   const scripts = document.querySelectorAll('script[type="application/ld+json"]');
@@ -176,7 +205,7 @@ export function applyAggregateRatingToDOM(rating: AggregateRatingData): boolean 
 
       if (json['@graph'] && Array.isArray(json['@graph'])) {
         for (const item of json['@graph']) {
-          if (item['@type'] === 'WebApplication' || item['@type'] === 'Course') {
+          if (item['@type'] === 'WebApplication') {
             item.aggregateRating = {
               '@type': 'AggregateRating',
               ratingValue: String(rating.ratingValue),
@@ -226,11 +255,24 @@ export async function syncLiveAggregateRating(force = false): Promise<AggregateR
     if (!res.ok) return cachedRating;
 
     const data = await res.json();
-    if (data?.success && data?.aggregateRating) {
-      cachedRating = data.aggregateRating;
+    const rating = data?.aggregateRating;
+    if (
+      data?.success &&
+      data.source === 'live' &&
+      rating &&
+      Number(rating.ratingCount) > 0 &&
+      Number.isFinite(Number(rating.ratingCount)) &&
+      Number(rating.ratingValue) >= 1 &&
+      Number(rating.ratingValue) <= 5 &&
+      (rating.reviewCount === undefined ||
+        Number(rating.reviewCount) === Number(rating.ratingCount))
+    ) {
+      cachedRating = rating;
       applyAggregateRatingToDOM(cachedRating!);
       return cachedRating;
     }
+    cachedRating = null;
+    clearAggregateRatingsFromDOM();
   } catch (err) {
     // Graceful fallback: existing index.html schema remains active
   } finally {
