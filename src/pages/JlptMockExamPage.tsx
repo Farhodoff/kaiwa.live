@@ -1,14 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   ArrowLeft,
   Clock,
-  Award,
   Volume2,
   BookOpen,
   CheckCircle2,
   FileText,
-  Database,
   Loader2,
   Lock,
   AlertTriangle,
@@ -65,7 +63,34 @@ import { speakJapaneseText, stopAllAudio } from '../utils/audioTts';
 import { TimedSkillAssessmentService, TimedSkill } from '../services/TimedSkillAssessmentService';
 import { getListeningAudioPolicy } from '../utils/mockListeningAudioPolicy';
 
-const DRAFT_EXAM_STORAGE_KEY = 'jlpt_mock_exam_draft_v1';
+import { useExamDeadline } from '../hooks/useExamDeadline';
+import {
+  clearExamDraft,
+  countExamAnswers,
+  readExamDraft,
+  saveExamDraft,
+  secondsUntil,
+  ExamDraft,
+} from '../utils/examSession';
+
+function shortExamLabel(exam: ExamListItem, language: string): string {
+  const variant = language === 'ja' ? 'テスト' : language === 'en' ? 'Variant' : 'Variant';
+  if (exam.id.startsWith('builtin_')) {
+    if (exam.id.endsWith('_random'))
+      return language === 'ja'
+        ? 'ランダム'
+        : language === 'en'
+          ? 'Mixed questions'
+          : 'Aralash savollar';
+    return `${variant} ${exam.id.endsWith('_set3') ? 'C' : exam.id.endsWith('_set2') ? 'B' : 'A'}`;
+  }
+  return (
+    exam.title
+      .replace(/^JLPT\s*N[1-5]\s*/i, '')
+      .replace(/^Rasmiy Mock Test/i, 'Sinov')
+      .trim() || exam.title
+  );
+}
 
 interface CompletedTimingModel {
   label: string;
@@ -76,14 +101,25 @@ interface CompletedTimingModel {
   blockCount: number;
 }
 
-export const JlptMockExamPage: React.FC = () => {
+const JlptMockExamContent: React.FC<{ embedded?: boolean }> = ({ embedded = false }) => {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { user, awardXP, targetLevel } = useStudyData();
+  const owner = user?.id || 'guest';
+  const [savedDraft, setSavedDraft] = useState(() => readExamDraft(owner));
+  const [deadline, setDeadline] = useState<number | null>(null);
+  const submissionRef = useRef(false);
+  const sessionRunningRef = useRef(false);
+  const attemptIdRef = useRef(0);
+  const [draftSaveFailed, setDraftSaveFailed] = useState(false);
   const urlLevel = searchParams.get('level')?.toUpperCase();
   const initialLevel: 'N5' | 'N4' | 'N3' | 'N2' | 'N1' =
-    urlLevel && ['N5', 'N4', 'N3', 'N2', 'N1'].includes(urlLevel) ? (urlLevel as any) : 'N5';
+    urlLevel && ['N5', 'N4', 'N3', 'N2', 'N1'].includes(urlLevel)
+      ? (urlLevel as any)
+      : ['N5', 'N4', 'N3', 'N2', 'N1'].includes(targetLevel)
+        ? (targetLevel as 'N5' | 'N4' | 'N3' | 'N2' | 'N1')
+        : 'N5';
 
-  const { user, awardXP } = useStudyData();
   const { language } = useLanguage();
   const [level, setLevel] = useState<'N5' | 'N4' | 'N3' | 'N2' | 'N1'>(initialLevel);
   const [step, setStep] = useState<'intro' | 'exam' | 'report'>('intro');
@@ -101,6 +137,10 @@ export const JlptMockExamPage: React.FC = () => {
 
   // Official Sectioned Exam Mode State
   const [examMode, setExamMode] = useState<JlptExamMode>('official_timed');
+  const isLegacySectionExam = selectedExamId.startsWith('exam_jlpt_');
+  useEffect(() => {
+    if (step === 'intro' && isLegacySectionExam) setExamMode('practice');
+  }, [step, isLegacySectionExam]);
   const [useFullOfficialTime, setUseFullOfficialTime] = useState<boolean>(false);
   const [sealedSections, setSealedSections] = useState<SectionKey[]>([]);
   const [sectionTimeLeft, setSectionTimeLeft] = useState<number>(1200);
@@ -149,7 +189,7 @@ export const JlptMockExamPage: React.FC = () => {
     let mounted = true;
     JlptTimingConfigService.loadConfig()
       .then((config) => {
-        if (mounted) setTimingConfig(config);
+        if (mounted && !sessionRunningRef.current) setTimingConfig(config);
       })
       .catch(() => {});
     return () => {
@@ -221,7 +261,7 @@ export const JlptMockExamPage: React.FC = () => {
 
           setAvailableExams(combinedList);
           const urlExamId = searchParams.get('examId');
-          if (urlExamId && combinedList.some((e) => e.id === urlExamId)) {
+          if (urlExamId) {
             setSelectedExamId(urlExamId);
           } else if (combinedList.length > 0) {
             setSelectedExamId(combinedList[0].id);
@@ -321,7 +361,10 @@ export const JlptMockExamPage: React.FC = () => {
       const nextSection = nextBlock.sections[0];
       setActiveSection(nextSection);
       const nextDuration = getBlockDurationSeconds(nextBlock, useFullOfficialTime);
-      setSectionTimeLeft(nextDuration);
+      const nextDeadline =
+        (automatic && deadline !== null ? deadline : Date.now()) + nextDuration * 1000;
+      setDeadline(nextDeadline);
+      setSectionTimeLeft(secondsUntil(nextDeadline));
       setSectionTotalDuration(nextDuration);
       toast({
         title: automatic ? '⏰ Blok vaqti tugadi!' : '✅ Blok muhrlandi!',
@@ -340,30 +383,18 @@ export const JlptMockExamPage: React.FC = () => {
     handleSubmitExam();
   };
 
-  // Timer Effect (handles both official block timer and practice single timer)
-  useEffect(() => {
-    let timer: any;
-    if (isTimerRunning) {
-      if (examMode === 'official_timed') {
-        if (sectionTimeLeft > 0) {
-          timer = setInterval(() => setSectionTimeLeft((prev) => prev - 1), 1000);
-        } else if (sectionTimeLeft <= 0) {
-          handleSectionTimeExpired();
-        }
-      } else {
-        if (timeLeft > 0) {
-          timer = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
-        } else if (timeLeft <= 0) {
-          handleSubmitExam();
-        }
-      }
-    }
-    return () => clearInterval(timer);
-  }, [isTimerRunning, examMode, sectionTimeLeft, timeLeft]);
-
-  const handleSectionTimeExpired = () => {
-    sealCurrentBlockAndAdvance(true);
-  };
+  useExamDeadline(
+    deadline,
+    isTimerRunning && step === 'exam',
+    (remaining) => {
+      if (examMode === 'official_timed') setSectionTimeLeft(remaining);
+      else setTimeLeft(remaining);
+    },
+    () => {
+      if (examMode === 'official_timed') sealCurrentBlockAndAdvance(true);
+      else void handleSubmitExam();
+    },
+  );
 
   const handleAdvanceSectionClick = () => {
     const nextBlock = getNextTimingBlock(level, activeSection, timingConfig);
@@ -385,88 +416,114 @@ export const JlptMockExamPage: React.FC = () => {
     return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
   };
 
-  // Auto-save active exam draft to localStorage with throttling
-  // Answers, section changes, and transitions save immediately; timer updates save every 15s or on window exit
-  const latestDraftRef = useRef({
-    level,
-    selectedExamId,
-    userAnswers,
-    activeSection,
-    sealedSections,
-    examMode,
-    sectionTimeLeft,
-    timeLeft,
-  });
-
+  const latestDraftRef = useRef<ExamDraft | null>(null);
   useEffect(() => {
-    latestDraftRef.current = {
-      level,
-      selectedExamId,
-      userAnswers,
-      activeSection,
-      sealedSections,
-      examMode,
-      sectionTimeLeft,
-      timeLeft,
-    };
+    latestDraftRef.current =
+      step === 'exam' && activeExam && deadline !== null && !submissionRef.current
+        ? {
+            version: 2,
+            owner,
+            exam: activeExam,
+            answers: userAnswers,
+            flags: [...flaggedQuestions],
+            activeSection,
+            sealedSections,
+            mode: examMode,
+            fullTime: useFullOfficialTime,
+            timingConfig,
+            deadline,
+            startedAt: examStartTimeRef.current,
+            sectionDuration: sectionTotalDuration,
+            syntheticListening: syntheticListeningAttempt,
+          }
+        : null;
   }, [
-    level,
-    selectedExamId,
+    step,
+    owner,
+    activeExam,
+    deadline,
     userAnswers,
+    flaggedQuestions,
     activeSection,
     sealedSections,
     examMode,
-    sectionTimeLeft,
-    timeLeft,
+    useFullOfficialTime,
+    timingConfig,
+    sectionTotalDuration,
+    syntheticListeningAttempt,
   ]);
 
-  const persistDraft = () => {
-    const cur = latestDraftRef.current;
-    if (step === 'exam' && Object.keys(cur.userAnswers).length > 0) {
-      try {
-        if (typeof localStorage !== 'undefined') {
-          localStorage.setItem(
-            DRAFT_EXAM_STORAGE_KEY,
-            JSON.stringify({
-              level: cur.level,
-              examId: cur.selectedExamId,
-              userAnswers: cur.userAnswers,
-              activeSection: cur.activeSection,
-              sealedSections: cur.sealedSections,
-              examMode: cur.examMode,
-              sectionTimeLeft: cur.sectionTimeLeft,
-              timeLeft: cur.timeLeft,
-              timestamp: Date.now(),
-            }),
-          );
-        }
-      } catch {}
-    }
-  };
+  const persistDraft = useCallback(() => {
+    const current = latestDraftRef.current;
+    if (!current || submissionRef.current) return;
+    const saved = saveExamDraft(current);
+    setDraftSaveFailed(!saved);
+  }, []);
 
-  // Immediate save on user interaction or section transition
   useEffect(() => {
     persistDraft();
-  }, [step, level, selectedExamId, userAnswers, activeSection, sealedSections, examMode]);
-
-  // Periodic save for timer updates (every 15 seconds) to avoid writing to disk every second
+  }, [
+    persistDraft,
+    step,
+    activeExam,
+    deadline,
+    userAnswers,
+    flaggedQuestions,
+    activeSection,
+    sealedSections,
+    examMode,
+    useFullOfficialTime,
+    timingConfig,
+    syntheticListeningAttempt,
+  ]);
   useEffect(() => {
-    if (step === 'exam' && (sectionTimeLeft % 15 === 0 || timeLeft % 15 === 0)) {
-      persistDraft();
-    }
-  }, [step, sectionTimeLeft, timeLeft]);
-
-  // Persist on beforeunload or component unmount
-  useEffect(() => {
-    const handleBeforeUnload = () => {
-      persistDraft();
-    };
-    window.addEventListener('beforeunload', handleBeforeUnload);
+    const save = () => persistDraft();
+    window.addEventListener('pagehide', save);
+    window.addEventListener('beforeunload', save);
+    document.addEventListener('visibilitychange', save);
     return () => {
-      persistDraft();
-      window.removeEventListener('beforeunload', handleBeforeUnload);
+      // Avoid setting React state during teardown, and never recreate a submitted draft.
+      if (latestDraftRef.current && !submissionRef.current) saveExamDraft(latestDraftRef.current);
+      window.removeEventListener('pagehide', save);
+      window.removeEventListener('beforeunload', save);
+      document.removeEventListener('visibilitychange', save);
     };
-  }, [step]);
+  }, [persistDraft]);
+
+  const resumeExam = () => {
+    const draft = readExamDraft(owner);
+    if (!draft) {
+      setSavedDraft(null);
+      return;
+    }
+    submissionRef.current = false;
+    sessionRunningRef.current = true;
+    attemptIdRef.current += 1;
+    questionStartedAtRef.current.clear();
+    recordedQuestionIdsRef.current.clear();
+    setLevel(draft.exam.level);
+    setSearchParams({ level: draft.exam.level, examId: draft.exam.id }, { replace: true });
+    setActiveExam(draft.exam);
+    setSelectedExamId(draft.exam.id);
+    setUserAnswers(draft.answers);
+    setFlaggedQuestions(new Set(draft.flags));
+    setActiveSection(draft.activeSection);
+    setSealedSections(draft.sealedSections);
+    setExamMode(draft.mode);
+    setUseFullOfficialTime(draft.fullTime);
+    setTimingConfig(draft.timingConfig);
+    setSectionTotalDuration(draft.sectionDuration);
+    setSyntheticListeningAttempt(draft.syntheticListening);
+    examStartTimeRef.current = draft.startedAt;
+    setDeadline(draft.deadline);
+    setSectionTimeLeft(secondsUntil(draft.deadline));
+    setTimeLeft(secondsUntil(draft.deadline));
+    setMistakes([]);
+    setDiagnosticReport(null);
+    setCompletedTimingModel(null);
+    setStep('exam');
+    setIsTimerRunning(true);
+  };
 
   const handleStartExam = async () => {
     setIsStartingExam(true);
@@ -489,6 +546,8 @@ export const JlptMockExamPage: React.FC = () => {
         return;
       }
       setActiveExam(examData);
+      setLevel(examData.level);
+      setSearchParams({ level: examData.level, examId: examData.id }, { replace: true });
 
       if (examData.generationWarnings && examData.generationWarnings.length > 0) {
         const hasShortage = examData.generationWarnings.some((warning) =>
@@ -501,71 +560,33 @@ export const JlptMockExamPage: React.FC = () => {
         });
       }
 
-      // Check for valid existing draft for this level
-      let restoredAnswers: { [qId: number]: number } = {};
-      let restoredActiveSection: 'knowledge' | 'reading' | 'listening' | null = null;
-      let restoredSealedSections: SectionKey[] | null = null;
-      let restoredSectionTime: number | null = null;
-      let restoredTimeLeft: number | null = null;
-
-      try {
-        if (typeof localStorage !== 'undefined') {
-          const raw = localStorage.getItem(DRAFT_EXAM_STORAGE_KEY);
-          if (raw) {
-            const draft = JSON.parse(raw);
-            const isFresh = Date.now() - (draft.timestamp || 0) < 4 * 60 * 60 * 1000;
-            if (
-              isFresh &&
-              draft.level === level &&
-              draft.userAnswers &&
-              Object.keys(draft.userAnswers).length > 0
-            ) {
-              restoredAnswers = draft.userAnswers;
-              if (draft.activeSection) restoredActiveSection = draft.activeSection;
-              if (Array.isArray(draft.sealedSections))
-                restoredSealedSections = draft.sealedSections;
-              if (typeof draft.sectionTimeLeft === 'number' && draft.sectionTimeLeft > 0) {
-                restoredSectionTime = draft.sectionTimeLeft;
-              }
-              if (typeof draft.timeLeft === 'number' && draft.timeLeft > 0) {
-                restoredTimeLeft = draft.timeLeft;
-              }
-              toast({
-                title: 'Qoralama tiklandi',
-                description: `${Object.keys(restoredAnswers).length} ta belgilangan javobingiz muvaffaqiyatli tiklandi.`,
-              });
-            }
-          }
-        }
-      } catch {}
-
-      setUserAnswers(restoredAnswers);
+      submissionRef.current = false;
+      sessionRunningRef.current = true;
+      attemptIdRef.current += 1;
+      setSavedDraft(null);
+      setUserAnswers({});
+      setFlaggedQuestions(new Set());
       setMistakes([]);
+      setDiagnosticReport(null);
       setCompletedTimingModel(null);
       setStep('exam');
       examStartTimeRef.current = Date.now();
-
-      const ordered = getOrderedSections(level, timingConfig);
-      const firstSec = ordered[0]?.sections[0] || 'knowledge';
-      const restoredSection =
-        restoredActiveSection &&
-        ['knowledge', 'reading', 'listening'].includes(restoredActiveSection)
-          ? restoredActiveSection
-          : firstSec;
-      setActiveSection(restoredSection);
-      setSealedSections(examMode === 'official_timed' ? restoredSealedSections || [] : []);
-
-      if (examMode === 'official_timed') {
-        const duration =
-          restoredSectionTime ??
-          getSectionDurationSeconds(level, restoredSection, useFullOfficialTime, timingConfig);
-        setSectionTimeLeft(duration);
-        setSectionTotalDuration(
-          getSectionDurationSeconds(level, restoredSection, useFullOfficialTime, timingConfig),
-        );
-      } else {
-        setTimeLeft(restoredTimeLeft ?? examData.timeLimitSeconds);
-      }
+      const isPartial = new Set(loadedQuestions.map((q) => q.section)).size < 3;
+      const mode = isPartial ? 'practice' : examMode;
+      setExamMode(mode);
+      const firstSec = isPartial
+        ? loadedQuestions[0].section
+        : getOrderedSections(examData.level, timingConfig)[0]?.sections[0] || 'knowledge';
+      setActiveSection(firstSec);
+      setSealedSections([]);
+      const duration =
+        mode === 'official_timed'
+          ? getSectionDurationSeconds(examData.level, firstSec, useFullOfficialTime, timingConfig)
+          : examData.timeLimitSeconds;
+      setSectionTimeLeft(duration);
+      setTimeLeft(duration);
+      setSectionTotalDuration(duration);
+      setDeadline(Date.now() + duration * 1000);
       setIsTimerRunning(true);
     } catch (err: any) {
       console.error('Failed to load exam:', err);
@@ -585,29 +606,6 @@ export const JlptMockExamPage: React.FC = () => {
     const qId = question.id;
     if (!questionStartedAtRef.current.has(qId)) questionStartedAtRef.current.set(qId, Date.now());
     setUserAnswers((prev) => ({ ...prev, [qId]: optionIdx }));
-    const skill: TimedSkill =
-      question.section === 'reading'
-        ? 'reading'
-        : question.section === 'listening'
-          ? 'listening'
-          : 'grammar';
-    if (!recordedQuestionIdsRef.current.has(qId)) {
-      TimedSkillAssessmentService.record(
-        {
-          level,
-          skill,
-          questionId: question.originalId ?? String(qId),
-          correct: optionIdx === question.correctAnswer,
-          skipped: false,
-          durationMs: Math.max(
-            0,
-            Date.now() - (questionStartedAtRef.current.get(qId) ?? examStartTimeRef.current),
-          ),
-        },
-        user?.id,
-      );
-      recordedQuestionIdsRef.current.add(qId);
-    }
   };
 
   // Synthetic speech is practice support only. A scored, timed mock must never
@@ -720,6 +718,10 @@ export const JlptMockExamPage: React.FC = () => {
   };
 
   const handleSubmitExam = async () => {
+    if (submissionRef.current) return;
+    submissionRef.current = true;
+    const submittedAttempt = attemptIdRef.current;
+    sessionRunningRef.current = false;
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current = null;
@@ -728,8 +730,8 @@ export const JlptMockExamPage: React.FC = () => {
     setIsPlaying(false);
     setPlayingAudioId(null);
     setIsTimerRunning(false);
-    // Preserve skips as evidence. They are not silently treated as incorrect
-    // answers, and they make the weakness dashboard explain missing responses.
+    // Record final answers at submission, so changing a selection does not leave
+    // the first answer recorded as the result. Keep unanswered questions as skips.
     for (const question of levelQuestions) {
       if (recordedQuestionIdsRef.current.has(question.id)) continue;
       const skill: TimedSkill =
@@ -737,13 +739,13 @@ export const JlptMockExamPage: React.FC = () => {
           ? 'reading'
           : question.section === 'listening'
             ? 'listening'
-            : 'grammar';
+            : 'knowledge';
       TimedSkillAssessmentService.record(
         {
           level,
           skill,
           questionId: question.originalId ?? String(question.id),
-          correct: false,
+          correct: userAnswers[question.id] === question.correctAnswer,
           skipped: userAnswers[question.id] === undefined,
           durationMs: Math.max(
             0,
@@ -753,6 +755,7 @@ export const JlptMockExamPage: React.FC = () => {
         },
         user?.id,
       );
+      recordedQuestionIdsRef.current.add(question.id);
     }
     const timingBlocks = getOrderedSections(level, timingConfig);
     setCompletedTimingModel({
@@ -767,11 +770,9 @@ export const JlptMockExamPage: React.FC = () => {
           : Math.round((activeExam?.timeLimitSeconds || 3000) / 60),
       blockCount: examMode === 'official_timed' ? timingBlocks.length : 1,
     });
-    try {
-      if (typeof localStorage !== 'undefined') {
-        localStorage.removeItem(DRAFT_EXAM_STORAGE_KEY);
-      }
-    } catch {}
+    clearExamDraft(owner);
+    latestDraftRef.current = null;
+    setSavedDraft(null);
     setStep('report');
     setIsAnalyzing(true);
 
@@ -840,93 +841,86 @@ export const JlptMockExamPage: React.FC = () => {
       console.warn('Failed to record answered questions in ExamService:', e);
     }
 
-    // Calculate official JLPT score report with sectional cutoffs
     const jlptScoreReport = calculateJlptScore(level, levelQuestions, userAnswers);
-
+    const counts = countExamAnswers(levelQuestions, userAnswers);
+    const completeExam = new Set(levelQuestions.map((q) => q.section)).size === 3;
+    const percentage = counts.total ? Math.round((counts.correct / counts.total) * 100) : 0;
+    const basicReport: ExamDiagnosticReport = {
+      overall_score_text: `${counts.correct}/${counts.total} (${percentage}%)`,
+      percentage,
+      passed: completeExam ? jlptScoreReport.passed : percentage >= 60,
+      top_3_mistakes: [],
+      actionable_recommendation:
+        counts.wrong + counts.skipped > 0
+          ? 'Xato va javobsiz savollarni takrorlang, keyin mavzuga qayting.'
+          : 'Keyingi sinovda bilimingizni mustahkamlang.',
+      jlptScoreReport: completeExam ? jlptScoreReport : undefined,
+    };
+    // Correctness and history never depend on an AI response.
+    setDiagnosticReport(basicReport);
+    setIsAnalyzing(false);
+    try {
+      await HistoryService.saveMockExam({
+        examType: 'jlpt',
+        level,
+        score: counts.correct,
+        totalQuestions: counts.total,
+        bandScore: completeExam ? jlptScoreReport.totalScore : percentage,
+      });
+    } catch (error) {
+      console.error('Could not save exam result:', error);
+      toast({
+        variant: 'destructive',
+        title: 'Natija tarixga saqlanmadi',
+        description: 'Natijangiz ekranda qoladi. Internet ulanishini tekshiring.',
+      });
+    }
+    if (awardXP && counts.correct + counts.wrong > 0) void awardXP(100).catch(() => {});
+    try {
+      DailyQuestService.recordMockScore(owner, percentage);
+    } catch {}
+    const observedSections: SectionKey[] = ['knowledge', 'reading', 'listening'];
+    for (const section of observedSections) {
+      const questions = levelQuestions.filter((question) => question.section === section);
+      if (!questions.length || (section === 'listening' && syntheticListeningAttempt)) continue;
+      const result = countExamAnswers(questions, userAnswers);
+      if (result.correct + result.wrong === 0) continue;
+      const skills: ('grammar' | 'vocabulary' | 'reading' | 'listening')[] =
+        section === 'knowledge' ? ['grammar', 'vocabulary'] : [section];
+      for (const skill of skills) {
+        MasteryEngine.recordEvidence(owner, 'ja', {
+          id: `jlpt_mock_${level}_${skill}_${examStartTimeRef.current}`,
+          skill,
+          score: Math.round((result.correct / result.total) * 100),
+          timestamp: new Date().toISOString(),
+          details: `JLPT ${level} ${section}: ${result.correct}/${result.total}`,
+          type: 'performance',
+        });
+      }
+    }
     try {
       const report = await evaluateMockExamSession(
         `JLPT ${level}`,
         questionAnswers,
         durSecs,
-        jlptScoreReport,
+        completeExam ? jlptScoreReport : undefined,
       );
-      setDiagnosticReport(report);
-
-      await HistoryService.saveMockExam({
-        examType: 'jlpt',
-        level: level,
-        score: jlptScoreReport.totalScore,
-        totalQuestions: levelQuestions.length,
-      });
-
-      // Award XP for completing a full mock exam
-      if (awardXP) {
-        awardXP(100).catch(() => {});
-      }
-      try {
-        DailyQuestService.recordMockScore(
-          user?.id,
-          Math.min(100, Math.round((jlptScoreReport.totalScore / 180) * 100)),
-        );
-      } catch {}
-
-      // Register evidence for JLPT Level Progression (All 4 pillars)
-      const activeUserId = user?.id || 'guest';
-      const diagPillars = report.diagnosticAnalysis?.pillars;
-
-      // 1. Reading (Dokkai) evidence
-      MasteryEngine.recordEvidence(activeUserId, 'ja', {
-        id: `jlpt_mock_${level}_reading_${Date.now()}`,
-        skill: 'reading',
-        score: jlptScoreReport.sections.reading?.percentage ?? 50,
-        timestamp: new Date().toISOString(),
-        details: `JLPT ${level} Mock Dokkai: ${jlptScoreReport.sections.reading?.score}/60 ball (${jlptScoreReport.sections.reading?.percentage}%)`,
-        type: 'performance',
-      });
-
-      // 2. Listening (Choukai) evidence. Synthetic practice audio is excluded
-      // so it cannot appear as comparable scored-listening evidence.
-      if (!syntheticListeningAttempt)
-        MasteryEngine.recordEvidence(activeUserId, 'ja', {
-          id: `jlpt_mock_${level}_listening_${Date.now()}`,
-          skill: 'listening',
-          score: jlptScoreReport.sections.listening?.percentage ?? 50,
-          timestamp: new Date().toISOString(),
-          details: `JLPT ${level} Mock Choukai: ${jlptScoreReport.sections.listening?.score}/60 ball (${jlptScoreReport.sections.listening?.percentage}%)`,
-          type: 'performance',
+      if (attemptIdRef.current === submittedAttempt) {
+        setDiagnosticReport({
+          ...report,
+          percentage,
+          passed: basicReport.passed,
+          jlptScoreReport: basicReport.jlptScoreReport,
         });
-
-      // 3. Grammar evidence
-      MasteryEngine.recordEvidence(activeUserId, 'ja', {
-        id: `jlpt_mock_${level}_grammar_${Date.now()}`,
-        skill: 'grammar',
-        score:
-          diagPillars?.grammar.accuracyPercentage ??
-          jlptScoreReport.sections.knowledge?.percentage ??
-          50,
-        timestamp: new Date().toISOString(),
-        details: `JLPT ${level} Mock Grammar: ${diagPillars?.grammar.accuracyPercentage ?? jlptScoreReport.sections.knowledge?.percentage}% aniqlik`,
-        type: 'performance',
-      });
-
-      // 4. Vocabulary / Kanji evidence
-      MasteryEngine.recordEvidence(activeUserId, 'ja', {
-        id: `jlpt_mock_${level}_vocab_${Date.now()}`,
-        skill: 'vocabulary',
-        score:
-          diagPillars?.kanji_vocab.accuracyPercentage ??
-          jlptScoreReport.sections.knowledge?.percentage ??
-          50,
-        timestamp: new Date().toISOString(),
-        details: `JLPT ${level} Mock Kanji & Vocab: ${diagPillars?.kanji_vocab.accuracyPercentage ?? jlptScoreReport.sections.knowledge?.percentage}% aniqlik`,
-        type: 'performance',
-      });
-    } catch (e) {
-      console.error(e);
+      }
+    } catch (error) {
+      console.error('AI analysis unavailable; keeping scored result:', error);
     } finally {
-      setIsAnalyzing(false);
+      if (attemptIdRef.current === submittedAttempt) setIsAnalyzing(false);
     }
   };
+
+  const answerCounts = countExamAnswers(levelQuestions, userAnswers);
 
   const orderedSections = getOrderedSections(level, timingConfig);
   const currentSectionIndex = getSectionIndex(level, activeSection, timingConfig);
@@ -959,42 +953,82 @@ export const JlptMockExamPage: React.FC = () => {
   const isCriticalTime = examMode === 'official_timed' ? sectionTimeLeft <= 60 : timeLeft <= 60;
 
   return (
-    <div className="mx-auto max-w-5xl space-y-6 p-4 pb-[max(6.5rem,calc(env(safe-area-inset-bottom)+5rem))] md:p-8 md:pb-8 2xl:max-w-6xl 3xl:max-w-7xl 3xl:p-12">
+    <div
+      className={
+        embedded
+          ? 'space-y-6'
+          : 'mx-auto max-w-5xl space-y-6 p-4 pb-[max(6.5rem,calc(env(safe-area-inset-bottom)+5rem))] md:p-8 md:pb-8 2xl:max-w-6xl 3xl:max-w-7xl 3xl:p-12'
+      }
+    >
       {/* Navigation Header */}
-      <div className="flex items-center justify-between border-b border-border pb-4">
-        <button
-          onClick={() => {
-            if (audioRef.current) audioRef.current.pause();
-            stopAllAudio();
-            navigate('/jlpt');
-          }}
-          className="rounded-xl border border-border p-2.5 text-muted-foreground transition-all hover:bg-muted hover:text-foreground"
-        >
-          <ArrowLeft size={20} />
-        </button>
-        <span className="rounded-full border border-rose-500/20 bg-rose-500/10 px-3 py-1 text-xs font-extrabold text-rose-600 dark:text-rose-400">
-          🎌{' '}
-          {language === 'ja'
-            ? 'JLPT こうしき もぎしけん'
-            : 'JLPT Official Mock Simulator (模擬試験)'}
-        </span>
-      </div>
+      {(!embedded || step !== 'intro') && (
+        <div className="flex items-center justify-between border-b border-border pb-4">
+          <button
+            aria-label={
+              language === 'uz'
+                ? 'Darslarga qaytish'
+                : language === 'ja'
+                  ? 'レッスンに戻る'
+                  : 'Back to lessons'
+            }
+            onClick={() => {
+              if (audioRef.current) audioRef.current.pause();
+              stopAllAudio();
+              navigate('/jlpt');
+            }}
+            className="rounded-xl border border-border p-2.5 text-muted-foreground transition-all hover:bg-muted hover:text-foreground"
+          >
+            <ArrowLeft size={20} />
+          </button>
+          <span className="rounded-full border border-rose-500/20 bg-rose-500/10 px-3 py-1 text-xs font-extrabold text-rose-600 dark:text-rose-400">
+            🎌{' '}
+            {language === 'ja'
+              ? 'JLPT こうしき もぎしけん'
+              : 'JLPT Official Mock Simulator (模擬試験)'}
+          </span>
+        </div>
+      )}
 
+      {step === 'intro' && savedDraft && (
+        <section
+          aria-label="Tugallanmagan sinov"
+          className="mx-auto flex w-full max-w-3xl flex-wrap items-center justify-between gap-4 rounded-2xl border border-primary/30 bg-primary/5 p-5"
+        >
+          <div>
+            <h2 className="font-semibold">Tugallanmagan sinov</h2>
+            <p className="mt-1 text-sm text-muted-foreground">
+              {savedDraft.exam.title} · {Object.keys(savedDraft.answers).length}/
+              {savedDraft.exam.questions.length} ta javob
+            </p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              Javoblar shu brauzerda saqlanadi. Sinov vaqti sahifa yopiq bo‘lganda ham davom etadi.
+            </p>
+          </div>
+          <Button onClick={resumeExam}>Davom ettirish</Button>
+        </section>
+      )}
+      {step === 'exam' && draftSaveFailed && (
+        <p
+          role="alert"
+          className="rounded-xl border border-destructive/30 p-3 text-sm text-destructive"
+        >
+          Javoblarni shu brauzerda saqlab bo‘lmadi. Sahifani yopmang.{' '}
+          <button className="underline" onClick={persistDraft}>
+            Qayta saqlash
+          </button>
+        </p>
+      )}
       {/* STEP 1: INTRO */}
       {step === 'intro' && (
-        <div className="mx-auto max-w-2xl space-y-6 rounded-3xl border border-border bg-card p-8 text-center shadow-xl">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-rose-500/10 text-rose-600 shadow-md">
-            <Award size={32} />
-          </div>
+        <div className="mx-auto max-w-3xl space-y-4 rounded-2xl border border-border bg-card p-4 sm:p-6">
           <div>
-            <h2 className="text-2xl font-black text-foreground">
-              {language === 'ja' ? 'JLPT ほんばん もぎしけん' : 'JLPT Full Simulation Exam'}
-            </h2>
-            <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+            <h2 className="text-2xl font-semibold text-foreground">
               {language === 'ja'
-                ? 'げんごちしき（たんご・ぶんぽう）、どっかい、ちょうかいの ほんばん もぎしけん。180てん まんてん。'
-                : "Lug'at/Grammatika (言語知識), O'qish (読解) va Tinglash (聴解) bo'limlaridan iborat rasmiy imtihon simulyatori. 180 ballik reyting tizimi."}
-            </p>
+                ? 'テストの設定'
+                : language === 'en'
+                  ? 'Set up your practice exam'
+                  : 'Sinovni tanlang'}
+            </h2>
           </div>
 
           {/* Level Selector */}
@@ -1002,10 +1036,19 @@ export const JlptMockExamPage: React.FC = () => {
             {(['N5', 'N4', 'N3', 'N2', 'N1'] as const).map((lvl) => (
               <button
                 key={lvl}
-                onClick={() => setLevel(lvl)}
-                className={`rounded-xl border py-3 text-xs font-black transition-all ${
+                aria-pressed={level === lvl}
+                onClick={() => {
+                  setLevel(lvl);
+                  const params = new URLSearchParams(searchParams);
+                  params.set('level', lvl);
+                  params.delete('examId');
+                  setSelectedExamId('');
+                  setLoadingExams(true);
+                  setSearchParams(params);
+                }}
+                className={`min-h-11 rounded-xl border py-3 text-sm font-semibold transition-colors ${
                   level === lvl
-                    ? 'border-rose-500 bg-rose-500 text-white shadow-md shadow-rose-500/20'
+                    ? 'border-rose-500 bg-primary text-primary-foreground shadow-md shadow-rose-500/20'
                     : 'border-border bg-muted/40 text-muted-foreground hover:bg-muted'
                 }`}
               >
@@ -1016,283 +1059,173 @@ export const JlptMockExamPage: React.FC = () => {
 
           {/* Available Mock Exams Selector */}
           <div className="space-y-3 text-left">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-foreground">
-                {language === 'ja' ? 'もぎテストを えらぶ' : 'Mavjud Imtihonni Tanlang:'}
-              </span>
-              <span className="text-[11px] font-medium text-muted-foreground">
-                {availableExams.length} ta test mavjud
-              </span>
-            </div>
-
-            {/* Quick Variant Switcher Pills */}
-            <div className="flex flex-wrap items-center gap-1.5">
-              {[
-                { id: `builtin_${level.toLowerCase()}`, label: 'Variant A' },
-                { id: `builtin_${level.toLowerCase()}_set2`, label: 'Variant B' },
-                { id: `builtin_${level.toLowerCase()}_set3`, label: 'Variant C' },
-                { id: `builtin_${level.toLowerCase()}_random`, label: '🎲 Dinamik' },
-              ].map((v) => {
-                const isActive = selectedExamId === v.id;
-                return (
-                  <button
-                    key={v.id}
-                    type="button"
-                    onClick={() => setSelectedExamId(v.id)}
-                    className={`cursor-pointer rounded-xl border px-3 py-1.5 text-xs font-black transition-all ${
-                      isActive
-                        ? 'border-rose-500 bg-rose-500 text-white shadow-xs'
-                        : 'border-border bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground'
-                    }`}
-                  >
-                    {v.label}
-                  </button>
-                );
-              })}
-            </div>
-
-            {loadingExams ? (
-              <div className="flex items-center justify-center gap-2 py-6 text-xs text-muted-foreground">
-                <Loader2 size={16} className="animate-spin text-rose-500" />
-                <span>Imtihonlar bazadan yuklanmoqda...</span>
-              </div>
-            ) : (
-              <div className="max-h-60 space-y-2 overflow-y-auto pr-1">
-                {availableExams.map((ex) => {
-                  const isSelected = selectedExamId === ex.id;
-                  return (
-                    <div
-                      key={ex.id}
-                      onClick={() => setSelectedExamId(ex.id)}
-                      className={`cursor-pointer rounded-2xl border p-4 transition-all ${
-                        isSelected
-                          ? 'border-rose-500 bg-rose-500/10 shadow-md ring-1 ring-rose-500/30'
-                          : 'border-border bg-muted/20 hover:border-border hover:bg-muted/40'
-                      }`}
-                    >
-                      <div className="flex items-start justify-between gap-2">
-                        <div className="space-y-1">
-                          <div className="flex items-center gap-2">
-                            <span
-                              className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-bold ${
-                                ex.isOfficialJlpt
-                                  ? 'border-rose-500/30 bg-rose-500/10 text-rose-600 dark:text-rose-400'
-                                  : 'border-emerald-500/20 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
-                              }`}
-                            >
-                              <Database size={10} />{' '}
-                              {ex.isOfficialJlpt
-                                ? 'Rasmiy JLPT'
-                                : ex.id.startsWith('builtin_')
-                                  ? 'Oflayn Mock'
-                                  : 'Amaliyot Mock'}
-                            </span>
-                          </div>
-                          <h4 className="line-clamp-1 text-xs font-extrabold text-foreground">
-                            {ex.title}
-                          </h4>
-                          {(ex.sourceName ||
-                            ex.author ||
-                            (ex.licenseType && ex.licenseType !== 'original')) && (
-                            <div className="flex items-center gap-1.5 pt-0.5 text-[11px] text-muted-foreground">
-                              <span>Manba: {ex.sourceName || ex.author || 'Platforma'}</span>
-                              {ex.licenseType && (
-                                <span className="py-0.2 rounded bg-muted px-1.5 font-mono text-[9px] font-bold uppercase">
-                                  {ex.licenseType}
-                                </span>
-                              )}
-                            </div>
-                          )}
-                          {ex.description && (
-                            <p className="line-clamp-1 text-xs text-muted-foreground">
-                              {ex.description}
-                            </p>
-                          )}
-                        </div>
-                        <div
-                          className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${
-                            isSelected ? 'border-rose-500 bg-rose-500 text-white' : 'border-border'
-                          }`}
-                        >
-                          {isSelected && <CheckCircle2 size={13} />}
-                        </div>
-                      </div>
-                      <div className="mt-2.5 flex items-center gap-3 text-[11px] text-muted-foreground">
-                        <span className="flex items-center gap-1">
-                          <FileText size={12} className="text-rose-500" /> 3 bo'lim (Goi, Dokkai,
-                          Choukai)
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Clock size={12} className="text-rose-500" /> 180 ballik rasmiy format
-                        </span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
+            {!loadingExams &&
+              selectedExamId &&
+              !availableExams.some((exam) => exam.id === selectedExamId) && (
+                <p className="rounded-xl border border-primary/30 bg-primary/5 p-3 text-sm">
+                  Havola orqali tanlangan sinov · JLPT {level}
+                  {isLegacySectionExam ? ' · Alohida bo‘lim mashqi' : ''}
+                </p>
+              )}
+            <label className="block space-y-2 text-sm font-medium">
+              <span>{language === 'ja' ? 'テスト' : language === 'en' ? 'Test' : 'Sinov'}</span>
+              <select
+                aria-label={language === 'ja' ? 'テスト' : language === 'en' ? 'Test' : 'Sinov'}
+                value={selectedExamId}
+                disabled={loadingExams}
+                onChange={(event) => setSelectedExamId(event.target.value)}
+                className="min-h-12 w-full min-w-0 rounded-xl border border-input bg-background px-3 pr-8 text-base text-foreground disabled:opacity-50 sm:text-sm"
+              >
+                {loadingExams && <option value="">Yuklanmoqda…</option>}
+                {!loadingExams &&
+                  selectedExamId &&
+                  !availableExams.some((ex) => ex.id === selectedExamId) && (
+                    <option value={selectedExamId}>JLPT {level} · Alohida sinov</option>
+                  )}
+                {availableExams.map((ex) => (
+                  <option key={ex.id} value={ex.id}>
+                    {shortExamLabel(ex, language)}
+                  </option>
+                ))}
+              </select>
+            </label>
+            {(() => {
+              const selected = availableExams.find((ex) => ex.id === selectedExamId);
+              return selected?.sourceName || selected?.author ? (
+                <p className="text-xs text-muted-foreground">
+                  Manba: {selected.sourceName || selected.author}
+                </p>
+              ) : null;
+            })()}
           </div>
 
           {selectedExamId.endsWith('_random') && (
-            <div className="flex flex-col gap-2 rounded-xl border border-border bg-muted/30 p-3 text-left sm:flex-row sm:items-center sm:justify-between">
-              <div className="space-y-0.5">
-                <div className="text-xs font-bold text-foreground">Takrorlanmaslik davri</div>
-                <div className="text-[11px] text-muted-foreground">
-                  So'nggi shu davr ichida ishlangan savollar yangi variantda iloji boricha
-                  takrorlanmaydi.
+            <details className="rounded-xl border border-border p-3">
+              <summary className="min-h-11 cursor-pointer py-3 text-sm font-medium">
+                Aralash variant sozlamalari
+              </summary>
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div className="space-y-0.5">
+                  <div className="text-sm font-bold text-foreground">Takrorlanmaslik davri</div>
+                  <div className="text-sm text-muted-foreground">
+                    So'nggi shu davr ichida ishlangan savollar yangi variantda iloji boricha
+                    takrorlanmaydi.
+                  </div>
                 </div>
+                <select
+                  data-testid="jlpt-no-repeat-period"
+                  aria-label="Takrorlanmaslik davri"
+                  value={noRepeatPeriodDays}
+                  onChange={(event) => {
+                    const days = Number(event.target.value);
+                    setNoRepeatPeriodDays(days);
+                    ExamService.setNoRepeatPeriodDays(days);
+                  }}
+                  className="min-h-11 rounded-lg border border-input bg-card px-3 py-2 text-base font-bold text-foreground sm:text-sm"
+                >
+                  <option value={0}>O'chirilgan</option>
+                  <option value={7}>7 kun</option>
+                  <option value={14}>14 kun</option>
+                  <option value={30}>30 kun</option>
+                  <option value={60}>60 kun</option>
+                  <option value={90}>90 kun</option>
+                </select>
               </div>
-              <select
-                data-testid="jlpt-no-repeat-period"
-                value={noRepeatPeriodDays}
-                onChange={(event) => {
-                  const days = Number(event.target.value);
-                  setNoRepeatPeriodDays(days);
-                  ExamService.setNoRepeatPeriodDays(days);
-                }}
-                className="rounded-lg border border-border bg-card px-3 py-2 text-xs font-bold text-foreground"
-              >
-                <option value={0}>O'chirilgan</option>
-                <option value={7}>7 kun</option>
-                <option value={14}>14 kun</option>
-                <option value={30}>30 kun</option>
-                <option value={60}>60 kun</option>
-                <option value={90}>90 kun</option>
-              </select>
-            </div>
+            </details>
           )}
 
-          {/* Rejimni tanlash (Exam Mode Selection) */}
-          <div className="space-y-3 text-left">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-foreground">
-                {language === 'ja' ? 'しけんモードを えらぶ' : 'Imtihon Rejimini Tanlang:'}
-              </span>
-              <span className="rounded-full bg-rose-500/10 px-2.5 py-0.5 text-[10px] font-extrabold text-rose-600 dark:text-rose-400">
-                {examMode === 'official_timed' ? '🏛️ Rasmiy Rejim' : '⚡ Tezkor Mashq'}
-              </span>
-            </div>
-
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {/* Official Sectioned Timed Mode */}
-              <div
-                onClick={() => setExamMode('official_timed')}
-                className={`cursor-pointer rounded-2xl border p-4 transition-all ${
-                  examMode === 'official_timed'
-                    ? 'border-rose-500 bg-rose-500/10 shadow-md ring-1 ring-rose-500/30'
-                    : 'border-border bg-muted/20 hover:border-border hover:bg-muted/40'
-                }`}
-              >
-                <div className="flex items-start justify-between gap-2">
-                  <div className="flex items-center gap-2">
-                    <span className="text-base">🏛️</span>
-                    <h4 className="text-xs font-extrabold text-foreground">
-                      Rasmiy Bo'limli Taymer
-                    </h4>
-                  </div>
-                  <div
-                    className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full border ${
-                      examMode === 'official_timed'
-                        ? 'border-rose-500 bg-rose-500 text-white'
-                        : 'border-border'
-                    }`}
-                  >
-                    {examMode === 'official_timed' && <CheckCircle2 size={11} />}
-                  </div>
-                </div>
-                <p className="mt-2 text-[11px] leading-relaxed text-muted-foreground">
-                  Japan Foundation qoidalari: N5–N3 da har bir bo‘lim alohida taymerda, N2/N1 da
-                  Language Knowledge va Reading bitta rasmiy blokda. Yakunlangan blok qayta
-                  ochilmaydi.
-                </p>
-                <div className="mt-2 flex flex-wrap gap-1">
-                  <span className="rounded-md bg-amber-500/10 px-2 py-0.5 text-[9px] font-bold text-amber-600 dark:text-amber-400">
-                    🔒 Muhrlash tizimi
-                  </span>
-                  <span className="rounded-md bg-rose-500/10 px-2 py-0.5 text-[9px] font-bold text-rose-600 dark:text-rose-400">
-                    ⏱️ Alohida taymer
-                  </span>
-                </div>
-              </div>
-
-              {/* Practice Mode */}
-              <div
-                onClick={() => setExamMode('practice')}
-                className={`cursor-pointer rounded-2xl border p-4 transition-all ${
-                  examMode === 'practice'
-                    ? 'border-rose-500 bg-rose-500/10 shadow-md ring-1 ring-rose-500/30'
-                    : 'border-border bg-muted/20 hover:border-border hover:bg-muted/40'
-                }`}
-              >
-                <div className="flex items-start justify-between gap-2">
-                  <div className="flex items-center gap-2">
-                    <span className="text-base">⚡</span>
-                    <h4 className="text-xs font-extrabold text-foreground">Erkin Mashq Rejimi</h4>
-                  </div>
-                  <div
-                    className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full border ${
-                      examMode === 'practice'
-                        ? 'border-rose-500 bg-rose-500 text-white'
-                        : 'border-border'
-                    }`}
-                  >
-                    {examMode === 'practice' && <CheckCircle2 size={11} />}
-                  </div>
-                </div>
-                <p className="mt-2 text-[11px] leading-relaxed text-muted-foreground">
-                  Bo'limlar o'rtasida erkin harakatlanish, yagona umumiy taymer va istalgan savolga
-                  qayta javob berish imkoniyati.
-                </p>
-                <div className="mt-2 flex flex-wrap gap-1">
-                  <span className="rounded-md bg-sky-500/10 px-2 py-0.5 text-[9px] font-bold text-sky-600 dark:text-sky-400">
-                    🔄 Erkin navigatsiya
-                  </span>
-                  <span className="rounded-md bg-emerald-500/10 px-2 py-0.5 text-[9px] font-bold text-emerald-600 dark:text-emerald-400">
-                    ⏳ Yagona taymer
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* If official_timed is selected, show timing configuration option */}
-            {examMode === 'official_timed' && (
-              <div className="mt-2 flex items-center justify-between rounded-xl border border-border bg-muted/30 p-3">
-                <div className="space-y-0.5">
-                  <div className="text-xs font-bold text-foreground">Vaqt formati</div>
-                  <div className="text-[11px] text-muted-foreground">
-                    {useFullOfficialTime
-                      ? `To'liq rasmiy JLPT vaqti (${Math.round(getTotalExamSeconds(level, true, timingConfig) / 60)} daqiqa, ${getOrderedSections(level, timingConfig).length} blok)`
-                      : `Moslashtirilgan sinov vaqti (${Math.round(getTotalExamSeconds(level, false, timingConfig) / 60)} daqiqa, ${getOrderedSections(level, timingConfig).length} blok)`}
-                  </div>
-                </div>
+          <fieldset className="space-y-3">
+            <legend className="mb-3 text-sm font-medium">
+              {language === 'ja' ? 'モード' : language === 'en' ? 'Mode' : 'Rejim'}
+            </legend>
+            <div className="grid grid-cols-2 gap-2">
+              {(
+                [
+                  {
+                    mode: 'official_timed',
+                    label: language === 'ja' ? '試験' : language === 'en' ? 'Exam' : 'Imtihon',
+                  },
+                  {
+                    mode: 'practice',
+                    label: language === 'ja' ? '練習' : language === 'en' ? 'Practice' : 'Mashq',
+                  },
+                ] as const
+              ).map((item) => (
                 <button
+                  key={item.mode}
                   type="button"
-                  onClick={() => setUseFullOfficialTime((prev) => !prev)}
-                  className={`rounded-lg px-3 py-1.5 text-xs font-bold transition-all ${
-                    useFullOfficialTime
-                      ? 'bg-rose-600 text-white'
-                      : 'border border-border bg-muted text-foreground hover:bg-muted/80'
-                  }`}
+                  aria-pressed={examMode === item.mode}
+                  disabled={item.mode === 'official_timed' && isLegacySectionExam}
+                  onClick={() => setExamMode(item.mode)}
+                  className={`min-h-12 rounded-xl border px-3 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${examMode === item.mode ? 'border-primary bg-primary/10 text-primary' : 'border-border text-muted-foreground hover:bg-muted'}`}
                 >
-                  {useFullOfficialTime ? 'To‘liq Rasmiy' : 'Tezkor Sinov'}
+                  {item.label}
                 </button>
-              </div>
+              ))}
+            </div>
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              {examMode === 'official_timed'
+                ? language === 'ja'
+                  ? '時間制限あり。終了したブロックには戻れません。'
+                  : language === 'en'
+                    ? 'Timed blocks. Completed blocks cannot be reopened.'
+                    : 'Vaqt cheklangan. Yakunlangan bo‘limga qaytib bo‘lmaydi.'
+                : language === 'ja'
+                  ? 'セクションを自由に切り替えられます。'
+                  : language === 'en'
+                    ? 'Move freely between sections.'
+                    : 'Bo‘limlar orasida erkin o‘tish mumkin.'}
+            </p>
+            {examMode === 'official_timed' && (
+              <label className="block space-y-2 text-sm font-medium">
+                <span>{language === 'ja' ? '時間' : language === 'en' ? 'Time' : 'Vaqt'}</span>
+                <select
+                  aria-label={language === 'ja' ? '時間' : language === 'en' ? 'Time' : 'Vaqt'}
+                  value={useFullOfficialTime ? 'full' : 'short'}
+                  onChange={(event) => setUseFullOfficialTime(event.target.value === 'full')}
+                  className="min-h-12 w-full min-w-0 rounded-xl border border-input bg-background px-3 text-base text-foreground sm:text-sm"
+                >
+                  <option value="short">
+                    {language === 'ja' ? '短縮' : language === 'en' ? 'Short' : 'Qisqa sinov'} ·{' '}
+                    {Math.round(getTotalExamSeconds(level, false, timingConfig) / 60)}{' '}
+                    {language === 'ja' ? '分' : language === 'en' ? 'min' : 'daqiqa'}
+                  </option>
+                  <option value="full">
+                    {language === 'ja'
+                      ? '本番の時間'
+                      : language === 'en'
+                        ? 'Full time'
+                        : 'To‘liq vaqt'}{' '}
+                    · {Math.round(getTotalExamSeconds(level, true, timingConfig) / 60)}{' '}
+                    {language === 'ja' ? '分' : language === 'en' ? 'min' : 'daqiqa'}
+                  </option>
+                </select>
+              </label>
             )}
-          </div>
+          </fieldset>
+          <p className="text-xs leading-relaxed text-muted-foreground">
+            {language === 'ja'
+              ? '結果は練習用の目安であり、公式のJLPT得点ではありません。'
+              : language === 'en'
+                ? 'Results are practice estimates, not official JLPT scores.'
+                : 'Natija mashq uchun. Bu rasmiy JLPT bahosi emas.'}
+          </p>
 
           <Button
-            disabled={isStartingExam}
+            disabled={isStartingExam || loadingExams}
             onClick={handleStartExam}
-            className="w-full rounded-2xl bg-rose-600 py-4 text-sm font-extrabold text-white shadow-lg shadow-rose-500/20 hover:bg-rose-700 disabled:opacity-50"
+            className="w-full rounded-2xl bg-primary py-4 text-sm font-semibold text-primary-foreground shadow-lg shadow-rose-500/20 hover:bg-primary/90 disabled:opacity-50"
           >
             {isStartingExam ? (
               <span className="flex items-center justify-center gap-2">
                 <Loader2 size={16} className="animate-spin" /> Imtihon tayyorlanmoqda...
               </span>
             ) : language === 'ja' ? (
-              'もぎしけんを スタート 🚀'
+              '始める'
+            ) : language === 'en' ? (
+              'Start'
             ) : (
-              'Mock Imtihonni Boshlash 🚀'
+              'Boshlash'
             )}
           </Button>
         </div>
@@ -1509,7 +1442,7 @@ export const JlptMockExamPage: React.FC = () => {
               <div className="flex items-center gap-2">
                 <LayoutGrid size={16} className="text-rose-500" />
                 <h4 className="text-xs font-black text-foreground">
-                  Savollar Matritsasi ({answeredInSection} / {totalInSection} javob berildi)
+                  Savollar ({answeredInSection} / {totalInSection} javob berildi)
                 </h4>
               </div>
               <div className="flex flex-wrap items-center gap-3 text-[10px] font-semibold">
@@ -1542,8 +1475,9 @@ export const JlptMockExamPage: React.FC = () => {
                   <button
                     key={q.id}
                     type="button"
+                    aria-label={`${idx + 1}-savol${isAnswered ? ', javob berilgan' : ''}${isFlagged ? ', belgilangan' : ''}`}
                     onClick={() => scrollToQuestion(q.id)}
-                    className={`relative flex h-8 w-8 items-center justify-center rounded-xl border text-xs font-black transition-all hover:scale-105 active:scale-95 sm:h-9 sm:w-9 ${
+                    className={`relative flex h-11 w-11 items-center justify-center rounded-xl border text-sm font-semibold transition-colors ${
                       isAnswered
                         ? 'border-emerald-500/40 bg-emerald-500/15 text-emerald-600 shadow-xs dark:text-emerald-400'
                         : 'border-border bg-muted/40 text-muted-foreground hover:border-primary/40 hover:bg-muted'
@@ -1863,6 +1797,35 @@ export const JlptMockExamPage: React.FC = () => {
           </div>
         ) : diagnosticReport ? (
           <>
+            <section
+              aria-label="Javoblar natijasi"
+              className="mx-auto w-full max-w-3xl rounded-2xl border border-border bg-card p-5"
+            >
+              <h2 className="text-lg font-semibold">Sinov natijasi</h2>
+              <div className="mt-3 grid grid-cols-3 gap-3 text-sm">
+                <p>
+                  To‘g‘ri <strong className="block text-xl">{answerCounts.correct}</strong>
+                </p>
+                <p>
+                  Xato <strong className="block text-xl">{answerCounts.wrong}</strong>
+                </p>
+                <p>
+                  Javobsiz <strong className="block text-xl">{answerCounts.skipped}</strong>
+                </p>
+              </div>
+              <p className="mt-3 text-xs text-muted-foreground">
+                {answerCounts.total} ta savol asosida. 180 ballik ko‘rsatkich — mashq uchun taxmin,
+                rasmiy JLPT natijasi emas.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-4 text-sm font-medium text-primary">
+                <button onClick={() => navigate('/flashcards?tab=mistakes')}>
+                  Xatolarni mashq qilish →
+                </button>
+                <button onClick={() => navigate('/progress?tab=history')}>
+                  Natijalar tarixi →
+                </button>
+              </div>
+            </section>
             {completedTimingModel && (
               <div
                 data-testid="jlpt-timing-model-summary"
@@ -2048,6 +2011,12 @@ export const JlptMockExamPage: React.FC = () => {
       )}
     </div>
   );
+};
+
+/** Remount on account changes so an in-memory exam cannot cross account boundaries. */
+export const JlptMockExamPage: React.FC<{ embedded?: boolean }> = (props) => {
+  const { user } = useStudyData();
+  return <JlptMockExamContent key={user?.id || 'guest'} {...props} />;
 };
 
 export default JlptMockExamPage;
