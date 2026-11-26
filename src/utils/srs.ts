@@ -361,7 +361,13 @@ export function buildDailyStudyQueue<
   const processedCards = deduplicate ? deduplicateCardsByFront(cards) : cards;
 
   const dueReviewedCards = processedCards.filter((card) => !isNew(card) && isDue(card, now));
-  const newCards = processedCards.filter(isNew).slice(0, maxNewCards);
+  const newCards = processedCards
+    .filter((card) => {
+      if (!isNew(card)) return false;
+      const reviewDate = card.nextReviewDate || card.nextReview || card.dueDate;
+      return !reviewDate || isDue(card, now);
+    })
+    .slice(0, maxNewCards);
   const eligibleCards = sortCardsBySRSPriority([...dueReviewedCards, ...newCards], now);
 
   return eligibleCards.slice(0, maxTotalCards);

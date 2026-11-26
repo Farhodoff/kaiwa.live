@@ -14,6 +14,43 @@ export interface DeckPart {
   isCustomAdminPart?: boolean;
 }
 
+export function splitPresetCardsIntoParts(
+  deck: PresetDeck,
+  cards: PresetCard[],
+  chunkSize: number = 100,
+): DeckPart[] {
+  const categories = new Map<string, PresetCard[]>();
+  for (const card of cards) {
+    const category = card.category?.trim();
+    if (!category) continue;
+    const categoryCards = categories.get(category) || [];
+    categoryCards.push(card);
+    categories.set(category, categoryCards);
+  }
+
+  const groupedCards =
+    categories.size > 1
+      ? Array.from(categories.entries()).map(([title, categoryCards]) => ({
+          title,
+          cards: categoryCards,
+        }))
+      : Array.from({ length: Math.ceil(cards.length / chunkSize) }, (_, index) => ({
+          title: `${deck.level} — ${index + 1}-Qism`,
+          cards: cards.slice(index * chunkSize, (index + 1) * chunkSize),
+        }));
+
+  return groupedCards.map((group, index) => ({
+    id: `${deck.id}_part_${index + 1}`,
+    deckId: deck.id,
+    level: deck.level,
+    partNumber: index + 1,
+    title: `${group.title} (${group.cards.length} ta karta)`,
+    cardCount: group.cards.length,
+    cards: group.cards,
+    isCustomAdminPart: false,
+  }));
+}
+
 export const PresetDeckService = {
   /**
    * Splits a large preset deck into 100-card Parts (1-Qism, 2-Qism, ... N-Qism)
@@ -48,22 +85,10 @@ export const PresetDeckService = {
       allCards = GlobalFlashcardOverrideService.applyOverridesToCards(allCards);
 
       if (allCards && allCards.length > 0) {
-        let partNum = 1;
-        for (let i = 0; i < allCards.length; i += chunkSize) {
-          const chunk = allCards.slice(i, i + chunkSize);
-          const partId = `${deck.id}_part_${partNum}`;
-          parts.push({
-            id: partId,
-            deckId: deck.id,
-            level: deck.level,
-            partNumber: partNum,
-            title: `${deck.level} — ${partNum}-Qism (${chunk.length} ta card)`,
-            cardCount: chunk.length,
-            cards: chunk,
-            isCustomAdminPart: false,
-          });
-          seenIds.add(partId);
-          partNum++;
+        const baseParts = splitPresetCardsIntoParts(deck, allCards, chunkSize);
+        for (const part of baseParts) {
+          parts.push(part);
+          seenIds.add(part.id);
         }
       }
 

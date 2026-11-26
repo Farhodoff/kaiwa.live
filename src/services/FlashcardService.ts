@@ -371,9 +371,9 @@ export const FlashcardService = {
         front: c.front || '',
         back: c.back || '',
         nextReviewDate: c.nextReviewDate || new Date().toISOString(),
-        easeFactor: 2.5,
-        interval: 0,
-        repetitions: 0,
+        easeFactor: c.easeFactor ?? 2.5,
+        interval: c.interval ?? 0,
+        repetitions: c.repetitions ?? 0,
       }));
       const currentCache = getLocalFlashcardCache(userId || 'local_user');
       const merged = [...currentCache];
@@ -394,9 +394,9 @@ export const FlashcardService = {
         front: c.front,
         back: c.back,
         next_review_date: c.nextReviewDate || new Date().toISOString(),
-        ease_factor: 2.5,
-        interval: 0,
-        repetitions: 0,
+        ease_factor: c.easeFactor ?? 2.5,
+        interval: c.interval ?? 0,
+        repetitions: c.repetitions ?? 0,
       };
       return card;
     });

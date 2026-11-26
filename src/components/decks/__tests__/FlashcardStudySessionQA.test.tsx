@@ -88,6 +88,46 @@ describe('FlashcardStudySession Component Live QA', () => {
     expect(mockReviewFlashcard).not.toHaveBeenCalled();
   });
 
+  it('does not surface reviewed cards before their scheduled date', async () => {
+    currentMockCards = [
+      {
+        ...sampleCards[0],
+        id: 'future-card',
+        repetitions: 2,
+        interval: 6,
+        nextReviewDate: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
+      },
+    ];
+
+    render(<FlashcardStudySession subjectId="subj-1" onClose={vi.fn()} />);
+
+    expect(await screen.findByText('Kartalar topilmadi')).toBeDefined();
+    expect(screen.queryByTestId('study-card')).toBeNull();
+  });
+
+  it('limits a daily lesson session to ten new cards', async () => {
+    currentMockCards = Array.from({ length: 15 }, (_, index) => ({
+      ...sampleCards[0],
+      id: `new-card-${index}`,
+      front: `Yangi ${index}`,
+      repetitions: 0,
+      interval: 0,
+      nextReviewDate: new Date(Date.now() - 1000).toISOString(),
+    }));
+
+    render(<FlashcardStudySession subjectId="subj-1" onClose={vi.fn()} />);
+    await screen.findByTestId('study-card');
+
+    for (let index = 0; index < 10; index++) {
+      fireEvent.click(screen.getByTestId('study-card'));
+      fireEvent.click(screen.getByRole('button', { name: /Yaxshi \(Good\)/ }));
+      await waitFor(() => expect(mockReviewFlashcard).toHaveBeenCalledTimes(index + 1));
+    }
+
+    expect(await screen.findByText(/Mashg'ulot Yakunlandi/)).toBeDefined();
+    expect(mockReviewFlashcard).toHaveBeenCalledTimes(10);
+  });
+
   it('completes a linked task once only after a saved review', async () => {
     const onComplete = vi.fn();
     const { rerender } = render(

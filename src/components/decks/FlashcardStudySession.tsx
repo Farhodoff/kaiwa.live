@@ -26,8 +26,7 @@ import {
   Grade,
   getPreviewIntervalLabels,
   calculateReview,
-  sortCardsBySRSPriority,
-  isDue,
+  buildDailyStudyQueue,
 } from '../../utils/srs';
 import { isFlashcardForLanguage } from '../../utils/subjectResolver';
 import { getStudyFlashcards } from '../../utils/flashcardScope';
@@ -253,10 +252,13 @@ export const FlashcardStudySession: React.FC<FlashcardStudySessionProps> = ({
     const availableCards = cardLanguage
       ? scopedCards.filter((card) => isFlashcardForLanguage(card, subjects, cardLanguage))
       : scopedCards;
-    const now = new Date();
-    const due = availableCards.filter((card) => isDue(card, now));
-    const targetSet = due.length > 0 ? due : availableCards;
-    setQueue(sortCardsBySRSPriority(targetSet).slice(0, 30));
+    setQueue(
+      buildDailyStudyQueue(availableCards, {
+        maxNewCards: 10,
+        maxTotalCards: 30,
+        deduplicateByFront: subjectId === 'all' || !subjectId,
+      }),
+    );
     setIsQueueInitialized(true);
   }, [subjectId, flashcards, subjects, cardLanguage, isQueueInitialized, loading]);
 

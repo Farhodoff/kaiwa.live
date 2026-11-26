@@ -238,6 +238,35 @@ describe('SRS (Spaced Repetition System) Utils', () => {
         expect(queue).toEqual([]);
       });
 
+      it('waits until the intra-day time before showing a failed new card again', () => {
+        const queue = buildDailyStudyQueue(
+          [
+            {
+              id: 'again-card',
+              repetitions: 0,
+              interval: 1,
+              nextReviewDate: '2026-09-02T12:10:00.000Z',
+            },
+          ],
+          { now },
+        );
+
+        expect(queue).toEqual([]);
+        expect(
+          buildDailyStudyQueue(
+            [
+              {
+                id: 'again-card',
+                repetitions: 0,
+                interval: 1,
+                nextReviewDate: '2026-09-02T12:10:00.000Z',
+              },
+            ],
+            { now: new Date('2026-09-02T12:11:00.000Z') },
+          ).map((card) => card.id),
+        ).toEqual(['again-card']);
+      });
+
       it('applies the total batch limit after SRS priority ordering', () => {
         const queue = buildDailyStudyQueue(
           [
