@@ -44,9 +44,9 @@ test('N4 listening opens directly without showing the audio transcript', async (
         isCompleted: false,
         progressionVersion: 1,
         stepResults: {
-          'ja-minna-l26-s1': { passed: true, score: 100 },
-          'ja-minna-l26-s2': { passed: true, score: 100 },
-          'ja-minna-l26-s3': { passed: true, score: 100 },
+          'ja-minna-l26-s1': { type: 'learn', passed: true, score: 0, total: 0 },
+          'ja-minna-l26-s2': { type: 'practice', passed: true, score: 10, total: 10 },
+          'ja-minna-l26-s3': { type: 'test', passed: true, score: 10, total: 10 },
         },
       }),
     );
