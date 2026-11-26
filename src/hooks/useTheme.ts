@@ -6,7 +6,7 @@ export type Theme = 'light' | 'dark';
 const THEME_STORAGE_KEY = 'kaiwa_theme';
 const LEGACY_THEME_STORAGE_KEY = 'study_planner_theme';
 
-const getInitialTheme = (): Theme => {
+export const getInitialTheme = (): Theme => {
   if (typeof window === 'undefined') return 'dark';
   try {
     const saved =
@@ -37,15 +37,20 @@ const applyThemeToDOM = (theme: Theme) => {
   }
 };
 
+export const saveThemePreference = (theme: Theme) => {
+  safeLocalStorage.setItem(THEME_STORAGE_KEY, theme);
+  safeLocalStorage.setItem(LEGACY_THEME_STORAGE_KEY, theme);
+  applyThemeToDOM(theme);
+  if (typeof window !== 'undefined')
+    window.dispatchEvent(new CustomEvent('themechange', { detail: theme }));
+};
+
 export const useTheme = () => {
   const [theme, setThemeState] = useState<Theme>(getInitialTheme);
 
   const setTheme = useCallback((newTheme: Theme) => {
     setThemeState(newTheme);
-    safeLocalStorage.setItem(THEME_STORAGE_KEY, newTheme);
-    safeLocalStorage.setItem(LEGACY_THEME_STORAGE_KEY, newTheme);
-    applyThemeToDOM(newTheme);
-    window.dispatchEvent(new CustomEvent('themechange', { detail: newTheme }));
+    saveThemePreference(newTheme);
   }, []);
 
   const toggleTheme = useCallback(() => {

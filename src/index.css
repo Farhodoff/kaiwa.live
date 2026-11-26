@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
+    color-scheme: light;
     /* Sumi-e & Hanko Light theme — Warm Washi Paper Base */
     --background: 43 33% 96%; /* #F8F6F0 */
     --foreground: 214 22% 13%; /* #1A2028 */
@@ -14,23 +15,24 @@
     --popover: 0 0% 100%;
     --popover-foreground: 214 22% 13%;
 
-    --primary: 6 73% 53%; /* #DC4433 Vermillion Hanko Red */
+    --sidebar-accent: 6 70% 43%;
+    --primary: 6 70% 43%; /* Accessible vermillion */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 40 20% 93%; /* #EFECE6 */
     --secondary-foreground: 214 22% 13%;
 
     --muted: 40 18% 92%; /* #EAE7E0 */
-    --muted-foreground: 215 16% 47%; /* #64748B */
+    --muted-foreground: 215 16% 40%;
 
-    --accent: 6 73% 53%; /* #DC4433 */
+    --accent: 6 70% 43%; /* #DC4433 */
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%; /* #F87171 */
+    --destructive: 0 72% 43%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 40 14% 87%; /* #E2DFD8 */
-    --input: 40 14% 87%;
+    --input: 215 12% 55%;
     --ring: 6 73% 53%;
 
     --gold: 42 49% 58%; /* #C9A961 */
@@ -40,6 +42,7 @@
   }
 
   .dark {
+    color-scheme: dark;
     /* Sumi-e & Hanko Dark theme — Deep Ink Navy/Sumi Charcoal Base */
     --background: 210 25% 8%; /* #0F1419 Deep Sumi Charcoal/Navy */
     --foreground: 36 17% 95%; /* #F5F3F0 Warm Off-White */
@@ -50,23 +53,24 @@
     --popover: 214 22% 13%; /* #1A2028 */
     --popover-foreground: 36 17% 95%;
 
-    --primary: 5 79% 57%; /* #E8483A Vermillion Hanko Red */
-    --primary-foreground: 0 0% 100%;
+    --sidebar-accent: 4 100% 67%;
+    --primary: 6 85% 72%; /* Light vermillion for dark surfaces */
+    --primary-foreground: 214 22% 13%;
 
     --secondary: 214 20% 17%; /* #222B36 */
     --secondary-foreground: 36 17% 95%;
 
     --muted: 214 20% 17%; /* #222B36 */
-    --muted-foreground: 35 6% 53%; /* #8B8680 Warm Sumi Gray */
+    --muted-foreground: 35 6% 66%;
 
-    --accent: 5 79% 57%; /* #E8483A */
-    --accent-foreground: 0 0% 100%;
+    --accent: 6 85% 72%; /* #E8483A */
+    --accent-foreground: 214 22% 13%;
 
-    --destructive: 0 84% 60%; /* #F87171 Soft Alert Rose */
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 82% 70%;
+    --destructive-foreground: 214 22% 13%;
 
     --border: 214 20% 19%; /* #26303B Subtle Ink Border */
-    --input: 214 20% 19%;
+    --input: 214 14% 44%;
     --ring: 5 79% 57%;
 
     --gold: 42 49% 58%; /* #C9A961 Japanese Antique Gold */
@@ -305,5 +309,94 @@ a {
 @media (prefers-reduced-motion: reduce) {
   .float-glow {
     animation: none;
+  }
+}
+
+@layer components {
+  .sidebar-navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 8px;
+  }
+  .app-sidebar-link {
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    min-height: 40px;
+    gap: 12px;
+    padding: 8px 12px;
+    border-radius: 12px;
+    color: hsl(var(--muted-foreground));
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    transition:
+      color 160ms,
+      background-color 160ms;
+  }
+  .app-sidebar-link:hover {
+    color: hsl(var(--foreground));
+    background: hsl(var(--muted) / 0.6);
+  }
+  .app-sidebar-link[data-active='true'] {
+    color: hsl(var(--sidebar-accent));
+    background: hsl(var(--sidebar-accent) / 0.1);
+    font-weight: 600;
+  }
+  .app-sidebar-link[data-active='true']::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 3px;
+    height: 22px;
+    transform: translateY(-50%);
+    border-radius: 0 8px 8px 0;
+    background: currentColor;
+  }
+  .app-sidebar-link[data-collapsed='true'] {
+    justify-content: center;
+    padding-inline: 0;
+    gap: 0;
+  }
+  .study-page {
+    background-image: radial-gradient(
+      ellipse 24rem 15rem at 100% 0%,
+      hsl(var(--primary) / 0.055),
+      transparent 72%
+    );
+    background-repeat: no-repeat;
+    @apply mx-auto w-full max-w-6xl space-y-8 p-4 pb-28 md:p-8 md:pb-12 lg:p-10;
+  }
+  .study-panel {
+    @apply rounded-2xl border border-border bg-card p-5 sm:p-6;
+  }
+}
+
+/* Keep touch controls comfortable and respect the user's motion preference. */
+:where(button, a, input, select, textarea) {
+  touch-action: manipulation;
+}
+
+@media (pointer: coarse) {
+  .app-sidebar-link {
+    min-height: 44px;
+  }
+  .ui-button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
