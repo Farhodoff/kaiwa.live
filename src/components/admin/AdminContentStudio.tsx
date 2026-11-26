@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import {
   Plus,
   Trash2,
@@ -14,7 +14,11 @@ import {
   X,
   Sparkles,
   Headphones,
+  BookOpen,
+  ListChecks,
+  Languages,
 } from 'lucide-react';
+import { useSearchParams } from 'react-router-dom';
 import { CustomContentService, BulkImportResult } from '../../services/CustomContentService';
 import type { JlptKanjiItem, JlptGrammarItem } from '../../data/jlptGrammarKanji';
 import type { JlptGrammarQuestion } from '../../data/jlpt/grammar_data';
@@ -33,12 +37,35 @@ import { AdminFlashcardManager } from '../decks/AdminFlashcardManager';
 import { Button } from '../ui/Button';
 import { toast } from '../../hooks/use-toast';
 
+type ContentTab = 'kanji' | 'grammar' | 'dokkai' | 'quiz' | 'choukai' | 'flashcards' | 'scenarios';
+
+const CONTENT_TABS = new Set<ContentTab>([
+  'kanji',
+  'grammar',
+  'dokkai',
+  'quiz',
+  'choukai',
+  'flashcards',
+  'scenarios',
+]);
+
 export const AdminContentStudio: React.FC = () => {
   const { subjects, addSubject, addFlashcardsBatch } = useStudyData();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const requestedTab = searchParams.get('content');
+  const activeSubTab: ContentTab = CONTENT_TABS.has(requestedTab as ContentTab)
+    ? (requestedTab as ContentTab)
+    : 'kanji';
 
-  const [activeSubTab, setActiveSubTab] = useState<
-    'kanji' | 'grammar' | 'dokkai' | 'quiz' | 'choukai' | 'flashcards' | 'scenarios'
-  >('kanji');
+  const setActiveSubTab = useCallback(
+    (tab: ContentTab) => {
+      const nextParams = new URLSearchParams(searchParams);
+      nextParams.set('section', 'content');
+      nextParams.set('content', tab);
+      setSearchParams(nextParams);
+    },
+    [searchParams, setSearchParams],
+  );
 
   const [isSyncing, setIsSyncing] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -497,7 +524,7 @@ export const AdminContentStudio: React.FC = () => {
     if (success) {
       toast({
         title: '✅ Kanji yangilandi',
-        description: `『${editingKanji.kanji}』ma‘lumotlari saqlandi.`,
+        description: `『${editingKanji.kanji}』 ma’lumotlari saqlandi.`,
       });
       setEditingKanji(null);
       reloadContent();
@@ -516,6 +543,12 @@ export const AdminContentStudio: React.FC = () => {
     if (success) {
       toast({ title: '🗑️ Kanji o‘chirildi' });
       reloadContent();
+    } else {
+      toast({
+        variant: 'destructive',
+        title: 'Kanji o‘chirilmadi',
+        description: 'Qayta urinib ko‘ring.',
+      });
     }
   };
 
@@ -574,7 +607,7 @@ export const AdminContentStudio: React.FC = () => {
     if (success) {
       toast({
         title: '✅ Grammatika saqlandi',
-        description: `『${newItem.title}』muvaffaqiyatli qo‘shildi va JLPT bo‘limida faollashdi.`,
+        description: `『${newItem.title}』 muvaffaqiyatli qo‘shildi va JLPT bo‘limida faollashdi.`,
       });
       setGrammarForm({
         title: '',
@@ -613,7 +646,7 @@ export const AdminContentStudio: React.FC = () => {
     if (success) {
       toast({
         title: '✅ Grammatika yangilandi',
-        description: `『${editingGrammar.title}』saqlandi.`,
+        description: `『${editingGrammar.title}』 saqlandi.`,
       });
       setEditingGrammar(null);
       reloadContent();
@@ -633,6 +666,12 @@ export const AdminContentStudio: React.FC = () => {
     if (success) {
       toast({ title: '🗑️ Grammatika o‘chirildi' });
       reloadContent();
+    } else {
+      toast({
+        variant: 'destructive',
+        title: 'Grammatika o‘chirilmadi',
+        description: 'Qayta urinib ko‘ring.',
+      });
     }
   };
 
@@ -842,15 +881,14 @@ export const AdminContentStudio: React.FC = () => {
         className="hidden"
       />
 
-      {/* Top Header Card */}
-      <div className="flex flex-col justify-between gap-4 rounded-2xl border border-border/80 bg-gradient-to-r from-card to-muted/40 p-5 sm:flex-row sm:items-center">
-        <div>
-          <h2 className="flex items-center gap-2 text-lg font-black text-foreground">
-            <Sparkles className="text-primary" size={20} /> Kontent Studiosi (JLPT & Lug‘at)
-          </h2>
-          <p className="mt-1 text-xs text-muted-foreground">
-            Yangi Kanji, Grammatika qoliplari va fleshkarta to‘plamlarini to‘g‘ridan-to‘g‘ri
-            boshqaring.
+      <header className="flex flex-col justify-between gap-4 border-b border-border pb-5 sm:flex-row sm:items-end">
+        <div className="max-w-2xl">
+          <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.16em] text-primary">
+            Admin
+          </p>
+          <h2 className="text-xl font-bold tracking-tight text-foreground">Kontent boshqaruvi</h2>
+          <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+            JLPT materiallarini qo‘shing, tahrirlang va zaxiralang.
           </p>
         </div>
 
@@ -859,104 +897,71 @@ export const AdminContentStudio: React.FC = () => {
           <button
             onClick={handleSyncFromDb}
             disabled={isSyncing}
-            className="flex cursor-pointer items-center gap-1.5 rounded-xl border border-border bg-card px-3 py-1.5 text-xs font-bold text-foreground shadow-xs transition-colors hover:bg-muted"
+            className="flex min-h-9 cursor-pointer items-center gap-1.5 rounded-lg border border-border bg-background px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:border-primary/40 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
             title="Supabase DB dagi yangi kanji va grammatikalarni yuklab olish"
           >
             <RefreshCw size={13} className={isSyncing ? 'animate-spin text-primary' : ''} />
-            {isSyncing ? 'Sinxronlanmoqda...' : 'Serverdan Sinxron'}
+            {isSyncing ? 'Sinxronlanmoqda...' : 'Sinxronlash'}
           </button>
 
           <button
             onClick={handleExportBackup}
-            className="flex cursor-pointer items-center gap-1.5 rounded-xl border border-border bg-card px-3 py-1.5 text-xs font-bold text-foreground shadow-xs transition-colors hover:bg-muted"
+            className="flex min-h-9 cursor-pointer items-center gap-1.5 rounded-lg border border-border bg-background px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:border-primary/40 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
             title="Barcha maxsus kontentni JSON fayl sifatida yuklab olish"
           >
-            <Download size={13} /> JSON Eksport
+            <Download size={13} /> Zaxira olish
           </button>
 
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="flex cursor-pointer items-center gap-1.5 rounded-xl border border-border bg-card px-3 py-1.5 text-xs font-bold text-foreground shadow-xs transition-colors hover:bg-muted"
+            className="flex min-h-9 cursor-pointer items-center gap-1.5 rounded-lg border border-border bg-background px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:border-primary/40 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
             title="Oldingi JSON zaxirani tizimga qayta yuklash"
           >
-            <Upload size={13} /> JSON Tiklash
+            <Upload size={13} /> Zaxirani tiklash
           </button>
         </div>
-      </div>
+      </header>
 
       {/* Sub-tabs Navigation */}
-      <div className="scrollbar-hide flex items-center gap-2 overflow-x-auto border-b border-border pb-2 text-xs font-bold">
-        <button
-          onClick={() => setActiveSubTab('kanji')}
-          className={`flex cursor-pointer items-center gap-1.5 rounded-xl px-4 py-2 transition-all ${
-            activeSubTab === 'kanji'
-              ? 'bg-primary text-primary-foreground shadow-sm'
-              : 'text-muted-foreground hover:text-foreground'
-          }`}
-        >
-          ⛩️ Kanji Boshqaruvi ({customKanjiList.length})
-        </button>
-        <button
-          onClick={() => setActiveSubTab('grammar')}
-          className={`flex cursor-pointer items-center gap-1.5 rounded-xl px-4 py-2 transition-all ${
-            activeSubTab === 'grammar'
-              ? 'bg-primary text-primary-foreground shadow-sm'
-              : 'text-muted-foreground hover:text-foreground'
-          }`}
-        >
-          📝 Grammatika Boshqaruvi ({customGrammarList.length})
-        </button>
-        <button
-          onClick={() => setActiveSubTab('dokkai')}
-          className={`flex cursor-pointer items-center gap-1.5 rounded-xl px-4 py-2 transition-all ${
-            activeSubTab === 'dokkai'
-              ? 'bg-primary text-primary-foreground shadow-sm'
-              : 'text-muted-foreground hover:text-foreground'
-          }`}
-        >
-          📖 Dokkai (O‘qish) ({customDokkaiList.length})
-        </button>
-        <button
-          onClick={() => setActiveSubTab('quiz')}
-          className={`flex cursor-pointer items-center gap-1.5 rounded-xl px-4 py-2 transition-all ${
-            activeSubTab === 'quiz'
-              ? 'bg-primary text-primary-foreground shadow-sm'
-              : 'text-muted-foreground hover:text-foreground'
-          }`}
-        >
-          ⚡ Test & Savollar ({customQuizList.length})
-        </button>
-        <button
-          onClick={() => setActiveSubTab('choukai')}
-          className={`flex cursor-pointer items-center gap-1.5 rounded-xl px-4 py-2 transition-all ${
-            activeSubTab === 'choukai'
-              ? 'bg-primary text-primary-foreground shadow-sm'
-              : 'text-muted-foreground hover:text-foreground'
-          }`}
-        >
-          <Headphones size={14} /> 🎧 Choukai (Eshitish)
-        </button>
-        <button
-          onClick={() => setActiveSubTab('flashcards')}
-          className={`flex cursor-pointer items-center gap-1.5 rounded-xl px-4 py-2 transition-all ${
-            activeSubTab === 'flashcards'
-              ? 'bg-primary text-primary-foreground shadow-sm'
-              : 'text-muted-foreground hover:text-foreground'
-          }`}
-        >
-          🃏 Fleshkarta & Ommaviy Lug‘at
-        </button>
-        <button
-          onClick={() => setActiveSubTab('scenarios')}
-          className={`flex cursor-pointer items-center gap-1.5 rounded-xl px-4 py-2 transition-all ${
-            activeSubTab === 'scenarios'
-              ? 'bg-primary text-primary-foreground shadow-sm'
-              : 'text-muted-foreground hover:text-foreground'
-          }`}
-        >
-          <MessageSquare size={14} /> Suhbat Ssenariylari
-        </button>
-      </div>
+      <nav
+        aria-label="Kontent turlari"
+        role="tablist"
+        className="scrollbar-hide flex items-center gap-1 overflow-x-auto border-b border-border"
+      >
+        {[
+          { id: 'kanji', label: 'Kanji', count: customKanjiList.length, icon: Languages },
+          { id: 'grammar', label: 'Grammatika', count: customGrammarList.length, icon: Sparkles },
+          { id: 'dokkai', label: 'O‘qish', count: customDokkaiList.length, icon: BookOpen },
+          { id: 'quiz', label: 'Testlar', count: customQuizList.length, icon: ListChecks },
+          { id: 'choukai', label: 'Tinglash', icon: Headphones },
+          { id: 'flashcards', label: 'Fleshkartalar', icon: Layers },
+          { id: 'scenarios', label: 'Ssenariylar', icon: MessageSquare },
+        ].map(({ id, label, count, icon: Icon }) => {
+          const tabId = id as ContentTab;
+          const isActive = activeSubTab === tabId;
+
+          return (
+            <button
+              key={id}
+              type="button"
+              role="tab"
+              aria-selected={isActive}
+              onClick={() => setActiveSubTab(tabId)}
+              className={`relative flex min-h-11 shrink-0 cursor-pointer items-center gap-1.5 px-3 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/50 ${
+                isActive
+                  ? 'text-foreground after:absolute after:inset-x-2 after:bottom-0 after:h-0.5 after:bg-primary'
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              <Icon aria-hidden="true" size={14} />
+              <span>{label}</span>
+              {typeof count === 'number' && (
+                <span className="text-[10px] tabular-nums text-muted-foreground">{count}</span>
+              )}
+            </button>
+          );
+        })}
+      </nav>
 
       {/* ==================== 1. KANJI TAB ==================== */}
       {activeSubTab === 'kanji' && (

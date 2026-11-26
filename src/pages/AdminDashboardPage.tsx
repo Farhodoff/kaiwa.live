@@ -20,7 +20,7 @@ import {
   BarChart3,
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   isAdminEmail,
   isSuperAdmin,
@@ -130,6 +130,16 @@ interface TableFetchStatus {
   learningGoals: { ok: boolean; count: number; error: string | null };
 }
 
+type AdminSection = 'users' | 'speech' | 'scenarios' | 'content' | 'quality';
+
+const ADMIN_SECTIONS = new Set<AdminSection>([
+  'users',
+  'speech',
+  'scenarios',
+  'content',
+  'quality',
+]);
+
 export interface DatabaseResourceMetrics {
   flashcards: number;
   studySessions: number;
@@ -151,6 +161,7 @@ export interface DatabaseResourceMetrics {
 
 export default function AdminDashboardPage() {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { user } = useStudyData();
   const [deletingUserId, setDeletingUserId] = useState<string | null>(null);
   const { language } = useLanguage();
@@ -236,9 +247,20 @@ export default function AdminDashboardPage() {
   );
   const [usersPage, setUsersPage] = useState(0);
   const USERS_PER_PAGE = 15;
-  const [activeSection, setActiveSection] = useState<
-    'users' | 'speech' | 'scenarios' | 'content' | 'quality'
-  >('users');
+  const requestedSection = searchParams.get('section');
+  const activeSection: AdminSection = ADMIN_SECTIONS.has(requestedSection as AdminSection)
+    ? (requestedSection as AdminSection)
+    : 'users';
+
+  const setActiveSection = useCallback(
+    (section: AdminSection) => {
+      const nextParams = new URLSearchParams(searchParams);
+      nextParams.set('section', section);
+      if (section !== 'content') nextParams.delete('content');
+      setSearchParams(nextParams);
+    },
+    [searchParams, setSearchParams],
+  );
 
   const [isCleanerOpen, setIsCleanerOpen] = useState(false);
   const [isVaultOpen, setIsVaultOpen] = useState(false);
@@ -1673,13 +1695,13 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* Navigation Tabs */}
-      <div className="scrollbar-hide flex w-full shrink-0 items-center gap-1.5 overflow-x-auto rounded-2xl border border-border bg-muted/60 p-1.5 text-xs font-bold sm:w-fit">
+      <div className="scrollbar-hide flex w-full shrink-0 items-center gap-1 overflow-x-auto border-b border-border text-xs font-semibold">
         <button
           onClick={() => setActiveSection('users')}
-          className={`flex shrink-0 cursor-pointer items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 transition-all ${
+          className={`flex min-h-11 shrink-0 cursor-pointer items-center gap-1.5 whitespace-nowrap border-b-2 px-3 transition-colors ${
             activeSection === 'users'
-              ? 'bg-primary text-primary-foreground shadow-xs'
-              : 'text-muted-foreground hover:text-foreground'
+              ? 'border-primary text-foreground'
+              : 'border-transparent text-muted-foreground hover:text-foreground'
           }`}
         >
           <Users size={14} />{' '}
@@ -1689,10 +1711,10 @@ export default function AdminDashboardPage() {
         </button>
         <button
           onClick={() => setActiveSection('speech')}
-          className={`flex shrink-0 cursor-pointer items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 transition-all ${
+          className={`flex min-h-11 shrink-0 cursor-pointer items-center gap-1.5 whitespace-nowrap border-b-2 px-3 transition-colors ${
             activeSection === 'speech'
-              ? 'bg-primary text-primary-foreground shadow-xs'
-              : 'text-muted-foreground hover:text-foreground'
+              ? 'border-primary text-foreground'
+              : 'border-transparent text-muted-foreground hover:text-foreground'
           }`}
         >
           <Mic size={14} />{' '}
@@ -1702,30 +1724,30 @@ export default function AdminDashboardPage() {
         </button>
         <button
           onClick={() => setActiveSection('scenarios')}
-          className={`flex shrink-0 cursor-pointer items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 transition-all ${
+          className={`flex min-h-11 shrink-0 cursor-pointer items-center gap-1.5 whitespace-nowrap border-b-2 px-3 transition-colors ${
             activeSection === 'scenarios'
-              ? 'bg-primary text-primary-foreground shadow-xs'
-              : 'text-muted-foreground hover:text-foreground'
+              ? 'border-primary text-foreground'
+              : 'border-transparent text-muted-foreground hover:text-foreground'
           }`}
         >
           <MessageSquareText size={14} /> {isJa ? 'シナリオ管理' : 'Yaponcha Ssenariylar'}
         </button>
         <button
           onClick={() => setActiveSection('content')}
-          className={`flex shrink-0 cursor-pointer items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 transition-all ${
+          className={`flex min-h-11 shrink-0 cursor-pointer items-center gap-1.5 whitespace-nowrap border-b-2 px-3 transition-colors ${
             activeSection === 'content'
-              ? 'bg-primary text-primary-foreground shadow-xs'
-              : 'text-muted-foreground hover:text-foreground'
+              ? 'border-primary text-foreground'
+              : 'border-transparent text-muted-foreground hover:text-foreground'
           }`}
         >
-          <BookOpen size={14} /> {isJa ? 'コンテンツ作成・管理' : "Kontent Qo'shish & Boshqaruv"}
+          <BookOpen size={14} /> {isJa ? 'コンテンツ管理' : 'Kontent'}
         </button>
         <button
           onClick={() => setActiveSection('quality')}
-          className={`flex shrink-0 cursor-pointer items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 transition-all ${
+          className={`flex min-h-11 shrink-0 cursor-pointer items-center gap-1.5 whitespace-nowrap border-b-2 px-3 transition-colors ${
             activeSection === 'quality'
-              ? 'bg-primary text-primary-foreground shadow-xs'
-              : 'text-muted-foreground hover:text-foreground'
+              ? 'border-primary text-foreground'
+              : 'border-transparent text-muted-foreground hover:text-foreground'
           }`}
         >
           <BarChart3 size={14} /> {isJa ? 'N3–N1 品質監査' : 'N3–N1 Kontent Sifati'}
