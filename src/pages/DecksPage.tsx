@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+import { lazyWithRetry } from '../utils/lazyRetry';
 import {
   Book,
   Plus,
@@ -17,7 +19,7 @@ import {
   FolderArchive,
 } from 'lucide-react';
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import AIGeneratorModal from '../components/AIGeneratorModal';
 import DeckCard from '../components/decks/DeckCard';
 import { FlashcardStudySession } from '../components/decks/FlashcardStudySession';
@@ -44,7 +46,18 @@ import { toast } from '../hooks/use-toast';
 import { ErrorNotificationService } from '../services/ErrorNotificationService';
 import { isFlashcardForLanguage } from '../utils/subjectResolver';
 
+import { getDeckFlashcards, getStudyFlashcards } from '../utils/flashcardScope';
+import { isDue } from '../utils/srs';
+
+import { PersonalLearningPlanService } from '../services/PersonalLearningPlanService';
+
 import SubjectForm from '../components/subjects/SubjectForm';
+
+const MistakeNotebook = lazyWithRetry(() =>
+  import('../components/jlpt/JlptMistakeNotebook').then((m) => ({
+    default: m.JlptMistakeNotebook,
+  })),
+);
 
 const DecksPage: React.FC = () => {
   useSEO({
@@ -70,25 +83,63 @@ const DecksPage: React.FC = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const location = useLocation();
+  const requestedLanguage = searchParams.get('lang');
+  const cardLanguage =
+    requestedLanguage === 'ja' || requestedLanguage === 'en' ? requestedLanguage : undefined;
   const studyQueryParam = searchParams.get('study');
+  const completePlanTask = useCallback(() => {
+    const task = (
+      location.state as { personalPlanTask?: { planId: string; taskId: string } } | null
+    )?.personalPlanTask;
+    const complete = async () => {
+      const userId = user?.id || 'guest';
+      if (task?.planId && task.taskId) {
+        await PersonalLearningPlanService.completePlanTask(userId, task.planId, task.taskId);
+        return;
+      }
+      const goal = PersonalLearningPlanService.getActiveGoal(userId);
+      if (!goal) return;
+      const plan = PersonalLearningPlanService.getLatestWeeklyPlan(userId, goal.id);
+      const dayName = [
+        'sunday',
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+      ][new Date().getDay()];
+      const reviewTask = plan?.days
+        .find((day) => day.day.toLowerCase() === dayName)
+        ?.tasks.find(
+          (item) => (item.type === 'srs' || item.sourceType === 'srs') && !item.completed,
+        );
+      if (plan && reviewTask) {
+        await PersonalLearningPlanService.completePlanTask(userId, plan.id, reviewTask.id);
+      }
+    };
+    void complete().catch((error) =>
+      console.error('Could not complete linked review task:', error),
+    );
+  }, [location.state, user?.id]);
   const [activeStudySubjectId, setActiveStudySubjectId] = useState<string | null>(studyQueryParam);
 
   useEffect(() => {
-    if (studyQueryParam) {
-      setActiveStudySubjectId(studyQueryParam);
-    }
+    setActiveStudySubjectId(studyQueryParam);
   }, [studyQueryParam]);
 
+  type ReviewTab = 'my' | 'library' | 'srs' | 'mistakes';
   const tabQueryParam = searchParams.get('tab');
-  const [activeTab, setActiveTab] = useState<'my' | 'library' | 'srs'>(
-    tabQueryParam === 'srs' ? 'srs' : tabQueryParam === 'library' ? 'library' : 'my',
-  );
-
-  useEffect(() => {
-    if (tabQueryParam === 'srs' || tabQueryParam === 'library' || tabQueryParam === 'my') {
-      setActiveTab(tabQueryParam);
-    }
-  }, [tabQueryParam]);
+  const activeTab: ReviewTab =
+    tabQueryParam === 'srs' || tabQueryParam === 'library' || tabQueryParam === 'mistakes'
+      ? tabQueryParam
+      : 'my';
+  const setActiveTab = (tab: ReviewTab) => {
+    const params = new URLSearchParams(searchParams);
+    params.set('tab', tab);
+    setSearchParams(params);
+  };
 
   const [subTab, setSubTab] = useState<'active' | 'archived'>('active');
   const [selectedSubjectIds, setSelectedSubjectIds] = useState<string[]>([]);
@@ -116,25 +167,25 @@ const DecksPage: React.FC = () => {
   const archivedSubjects = subjects.filter((s) => !!s.isArchived);
   const currentList = subTab === 'active' ? activeSubjects : archivedSubjects;
 
+  const studyCards = useMemo(
+    () => getStudyFlashcards(flashcards, subjects),
+    [flashcards, subjects],
+  );
   const reviewInbox = useMemo(() => {
     const now = new Date();
-    const isDue = (c: { nextReviewDate?: string; isArchived?: boolean }) =>
-      !c.isArchived && c.nextReviewDate ? new Date(c.nextReviewDate) <= now : false;
-    const totalDue = flashcards.filter(isDue).length;
-    const firstDueSubjectId =
-      activeSubjects.find((s) => flashcards.some((c) => c.subjectId === s.id && isDue(c)))?.id ||
-      null;
-    return { totalDue, firstDueSubjectId };
-  }, [flashcards, activeSubjects]);
+    return { totalDue: studyCards.filter((card) => isDue(card, now)).length };
+  }, [studyCards]);
 
   const { handleImport, downloadTemplate, isImporting } = useFlashcardImport(importFlashcards);
 
   const onImport = async (subjectId: string, file: File) => {
+    if (!isAdmin) return;
     await handleImport(subjectId, file);
     setImportModalOpen(false);
   };
 
   const handleExportAnki = async () => {
+    if (!isAdmin) return;
     if (!user) {
       toast({
         variant: 'destructive',
@@ -569,124 +620,169 @@ const DecksPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="mx-auto max-w-7xl space-y-6 p-3.5 sm:p-4 md:space-y-8 md:p-8 3xl:max-w-8xl 3xl:p-12">
-      <div className="flex flex-col gap-2 rounded-2xl border border-primary/25 bg-primary/5 p-3 text-xs sm:flex-row sm:items-center sm:justify-between">
+    <div className="study-page">
+      {/* Header Area */}
+      <div className="flex flex-col justify-between gap-4 border-b border-border/60 pb-4 lg:flex-row lg:items-center">
+        <div>
+          <h1 className="text-3xl font-semibold tracking-tight text-foreground">
+            {language === 'uz' ? 'Takrorlash' : language === 'ja' ? '復習' : 'Review'}
+          </h1>
+          <p className="mt-2 text-sm text-muted-foreground">
+            {language === 'uz'
+              ? 'Kartalar va oldingi xatolarni bir joyda mustahkamlang.'
+              : language === 'ja'
+                ? 'カードと間違えた問題をまとめて復習しましょう。'
+                : 'Strengthen your knowledge with cards and past mistakes in one place.'}
+          </p>
+        </div>
+
+        {isAdmin && (
+          <details className="lg:max-w-xl">
+            <summary className="min-h-11 cursor-pointer py-3 text-sm font-medium text-muted-foreground">
+              {language === 'uz'
+                ? 'Kartalarni boshqarish'
+                : language === 'ja'
+                  ? 'カード管理'
+                  : 'Manage cards'}
+            </summary>
+            <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+              {/* Add Subject Button */}
+              <Button
+                onClick={() => setIsAddSubjectOpen(true)}
+                className="rounded-xl bg-primary px-3.5 py-2 text-xs font-extrabold text-primary-foreground shadow-md hover:bg-primary/90 sm:rounded-2xl sm:px-5 sm:py-3"
+              >
+                <Plus size={16} className="mr-1.5" /> {t('flashcards.createDeck')}
+              </Button>
+
+              {/* Primary Button */}
+              <Link
+                to="/flashcards/new"
+                className="inline-flex min-h-11 items-center rounded-xl border border-border bg-card px-4 text-sm font-medium hover:bg-muted"
+              >
+                <Plus size={16} className="mr-1.5" aria-hidden="true" /> {t('flashcards.addManual')}
+              </Link>
+
+              {/* AI & Import Action Group */}
+              <div className="no-scrollbar flex max-w-full flex-wrap items-center gap-1 overflow-x-visible rounded-xl border border-border bg-card/80 p-1 sm:flex-nowrap sm:gap-1.5 sm:overflow-x-auto sm:rounded-2xl">
+                <button
+                  onClick={() => setIsDocGeneratorOpen(true)}
+                  className="flex shrink-0 items-center gap-1.5 rounded-xl border border-[#C9A961]/30 bg-[#C9A961]/20 px-3 py-2 text-xs font-extrabold text-[#C9A961] shadow-xs transition-all hover:bg-[#C9A961]/30"
+                  title={
+                    language === 'ja'
+                      ? 'ノートや文章からQ&A・フラッシュカードを生成'
+                      : 'Konspekt yoki matndan Q&A va test fleshkartalari tuzish'
+                  }
+                >
+                  <Sparkles size={15} /> {language === 'ja' ? 'AIノート要約' : 'AI Konspekt & Quiz'}
+                </button>
+                <button
+                  onClick={() => setAiSubjectId('global')}
+                  className="flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-extrabold text-primary transition-all hover:bg-primary/10"
+                  title={language === 'ja' ? 'AIでカードを自動生成' : 'AI bilan kartochka yaratish'}
+                >
+                  <Book size={15} /> {language === 'ja' ? 'AI自動生成' : 'AI Generator'}
+                </button>
+                <button
+                  onClick={() => setIsExtractModalOpen(true)}
+                  className="flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-extrabold text-muted-foreground transition-all hover:bg-muted/60 hover:text-foreground"
+                  title={language === 'ja' ? '文章から単語を抽出' : "Matndan lug'at ajratib olish"}
+                >
+                  <FileText size={15} /> {language === 'ja' ? '単語抽出' : 'Extractor'}
+                </button>
+                <button
+                  onClick={() => setImportModalOpen(true)}
+                  className="flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-extrabold text-muted-foreground transition-all hover:bg-muted/60 hover:text-foreground"
+                  title={
+                    language === 'ja'
+                      ? 'Anki/JSONファイルをインポート'
+                      : 'Anki (.apkg/.txt), JSON yoki CSV fayl yuklash'
+                  }
+                >
+                  <Upload size={15} /> Import
+                </button>
+                <button
+                  onClick={handleExportAnki}
+                  className="flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-extrabold text-muted-foreground transition-all hover:bg-muted/60 hover:text-foreground"
+                  title="Anki uchun eksport qilish (.txt)"
+                >
+                  <Download size={15} /> Anki Eksport
+                </button>
+                {isAdmin && (
+                  <button
+                    onClick={() => setIsAdminModalOpen(true)}
+                    className="flex shrink-0 items-center gap-1.5 rounded-xl border border-rose-500/20 bg-rose-500/10 px-3 py-2 text-xs font-black text-rose-500 transition-all hover:bg-rose-500/20"
+                    title="Buzuq kartalarni saralash va o'chirish"
+                  >
+                    <ShieldAlert size={15} /> Admin Cleaner
+                  </button>
+                )}
+              </div>
+            </div>
+          </details>
+        )}
+      </div>
+
+      {/* Toast/Notice for preset deck import */}
+      <div className="flex flex-col gap-3 border-l-2 border-primary/60 bg-primary/[0.04] p-4 text-sm sm:flex-row sm:items-center sm:justify-between">
         <span className="leading-relaxed text-muted-foreground">
-          <span className="font-bold text-foreground">Takrorlash inbox:</span>{' '}
+          <span className="font-bold text-foreground">
+            {language === 'uz'
+              ? 'Bugungi takrorlash:'
+              : language === 'ja'
+                ? '今日の復習：'
+                : 'Today’s review:'}
+          </span>{' '}
           {reviewInbox.totalDue > 0
-            ? `bugun ${reviewInbox.totalDue} ta karta muddati keldi — Due birinchi.`
-            : 'bugun muddati kelgan karta yo‘q. Kutubxona faqat boshqaruv uchun.'}
+            ? language === 'uz'
+              ? `${reviewInbox.totalDue} ta karta muddati kelgan.`
+              : language === 'ja'
+                ? `${reviewInbox.totalDue}枚のカードを復習しましょう。`
+                : `${reviewInbox.totalDue} cards are due.`
+            : language === 'uz'
+              ? 'Hozircha muddati kelgan karta yo‘q. Xatolarni takrorlang yoki yangi darsni boshlang.'
+              : language === 'ja'
+                ? '復習予定のカードはありません。間違いを復習するか、次のレッスンを始めましょう。'
+                : 'No cards due. Review your mistakes or continue a lesson.'}
         </span>
         <div className="flex flex-wrap items-center gap-2">
-          {reviewInbox.totalDue > 0 && reviewInbox.firstDueSubjectId ? (
+          {reviewInbox.totalDue > 0 ? (
             <button
-              onClick={() => setActiveStudySubjectId(reviewInbox.firstDueSubjectId)}
-              className="shrink-0 cursor-pointer rounded-xl bg-primary px-3 py-1.5 text-xs font-bold text-primary-foreground transition-all hover:bg-primary/90 active:scale-95"
+              onClick={() => setActiveStudySubjectId('all')}
+              className="min-h-11 shrink-0 cursor-pointer rounded-xl bg-primary px-3 py-2 text-sm font-bold text-primary-foreground transition-all hover:bg-primary/90 active:scale-95"
             >
-              Hozir takrorlash ({reviewInbox.totalDue})
+              {language === 'uz'
+                ? 'Hozir takrorlash'
+                : language === 'ja'
+                  ? '復習を始める'
+                  : 'Review now'}{' '}
+              ({reviewInbox.totalDue})
             </button>
           ) : (
             <span className="shrink-0 rounded-xl bg-primary/10 px-3 py-1.5 text-xs font-bold text-primary">
-              Due birinchi
+              {language === 'uz'
+                ? 'Muddati kelgan karta yo‘q'
+                : language === 'ja'
+                  ? '復習予定なし'
+                  : 'No cards due'}
             </span>
           )}
           <button
             onClick={() => setActiveTab('srs')}
-            className={`shrink-0 cursor-pointer rounded-xl px-3 py-1.5 text-xs font-bold transition-all ${
+            aria-pressed={activeTab === 'srs'}
+            className={`min-h-11 shrink-0 cursor-pointer rounded-xl px-3 py-2 text-sm font-bold transition-all ${
               activeTab === 'srs'
                 ? 'bg-primary text-primary-foreground'
                 : 'border border-primary/30 bg-primary/10 text-primary hover:bg-primary/20'
             }`}
           >
-            SRS Jadvali
+            {language === 'uz'
+              ? 'Takrorlash jadvali'
+              : language === 'ja'
+                ? '復習予定'
+                : 'Review schedule'}
           </button>
         </div>
       </div>
-      {/* Header Area */}
-      <div className="flex flex-col justify-between gap-4 border-b border-border/60 pb-4 lg:flex-row lg:items-center">
-        <div>
-          <h2 className="font-display text-2xl font-black tracking-tight text-foreground md:text-3xl">
-            {t('flashcards.title')}
-          </h2>
-        </div>
-
-        {
-          <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
-            {/* Add Subject Button */}
-            <Button
-              onClick={() => setIsAddSubjectOpen(true)}
-              className="rounded-xl bg-primary px-3.5 py-2 text-xs font-extrabold text-primary-foreground shadow-md hover:bg-primary/90 sm:rounded-2xl sm:px-5 sm:py-3"
-            >
-              <Plus size={16} className="mr-1.5" /> {t('flashcards.createDeck')}
-            </Button>
-
-            {/* Primary Button */}
-            <Link to="/flashcards/new">
-              <Button className="rounded-xl border border-border bg-card px-3.5 py-2 text-xs font-extrabold text-foreground shadow-xs hover:bg-muted sm:rounded-2xl sm:px-5 sm:py-3">
-                <Plus size={16} className="mr-1.5" /> {t('flashcards.addManual')}
-              </Button>
-            </Link>
-
-            {/* AI & Import Action Group */}
-            <div className="no-scrollbar flex max-w-full flex-wrap items-center gap-1 overflow-x-visible rounded-xl border border-border bg-card/80 p-1 sm:flex-nowrap sm:gap-1.5 sm:overflow-x-auto sm:rounded-2xl">
-              <button
-                onClick={() => setIsDocGeneratorOpen(true)}
-                className="flex shrink-0 items-center gap-1.5 rounded-xl border border-[#C9A961]/30 bg-[#C9A961]/20 px-3 py-2 text-xs font-extrabold text-[#C9A961] shadow-xs transition-all hover:bg-[#C9A961]/30"
-                title={
-                  language === 'ja'
-                    ? 'ノートや文章からQ&A・フラッシュカードを生成'
-                    : 'Konspekt yoki matndan Q&A va test fleshkartalari tuzish'
-                }
-              >
-                <Sparkles size={15} /> {language === 'ja' ? 'AIノート要約' : 'AI Konspekt & Quiz'}
-              </button>
-              <button
-                onClick={() => setAiSubjectId('global')}
-                className="flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-extrabold text-primary transition-all hover:bg-primary/10"
-                title={language === 'ja' ? 'AIでカードを自動生成' : 'AI bilan kartochka yaratish'}
-              >
-                <Book size={15} /> {language === 'ja' ? 'AI自動生成' : 'AI Generator'}
-              </button>
-              <button
-                onClick={() => setIsExtractModalOpen(true)}
-                className="flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-extrabold text-muted-foreground transition-all hover:bg-muted/60 hover:text-foreground"
-                title={language === 'ja' ? '文章から単語を抽出' : "Matndan lug'at ajratib olish"}
-              >
-                <FileText size={15} /> {language === 'ja' ? '単語抽出' : 'Extractor'}
-              </button>
-              <button
-                onClick={() => setImportModalOpen(true)}
-                className="flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-extrabold text-muted-foreground transition-all hover:bg-muted/60 hover:text-foreground"
-                title={
-                  language === 'ja'
-                    ? 'Anki/JSONファイルをインポート'
-                    : 'Anki (.apkg/.txt), JSON yoki CSV fayl yuklash'
-                }
-              >
-                <Upload size={15} /> Import
-              </button>
-              <button
-                onClick={handleExportAnki}
-                className="flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-extrabold text-muted-foreground transition-all hover:bg-muted/60 hover:text-foreground"
-                title="Anki uchun eksport qilish (.txt)"
-              >
-                <Download size={15} /> Anki Eksport
-              </button>
-              {isAdmin && (
-                <button
-                  onClick={() => setIsAdminModalOpen(true)}
-                  className="flex shrink-0 items-center gap-1.5 rounded-xl border border-rose-500/20 bg-rose-500/10 px-3 py-2 text-xs font-black text-rose-500 transition-all hover:bg-rose-500/20"
-                  title="Buzuq kartalarni saralash va o'chirish"
-                >
-                  <ShieldAlert size={15} /> Admin Cleaner
-                </button>
-              )}
-            </div>
-          </div>
-        }
-      </div>
-
-      {/* Toast/Notice for preset deck import */}
       {isImportingPreset && (
         <div className="space-y-2 rounded-2xl border border-primary/20 bg-primary/10 p-4 text-primary">
           <div className="flex animate-pulse items-center gap-2 text-sm font-extrabold">
@@ -729,7 +825,7 @@ const DecksPage: React.FC = () => {
       )}
 
       {/* SubjectForm Modal */}
-      {isAddSubjectOpen && (
+      {isAdmin && isAddSubjectOpen && (
         <SubjectForm
           onClose={() => setIsAddSubjectOpen(false)}
           onSubmit={async (data) => {
@@ -739,46 +835,72 @@ const DecksPage: React.FC = () => {
         />
       )}
 
-      {/* Navigation Tabs - Sticky */}
-      <div className="sticky top-0 z-20 -my-2 flex flex-wrap items-center justify-between gap-3 border-b border-border/40 bg-background/95 py-2 backdrop-blur-md">
-        <div className="flex w-full items-center gap-1.5 rounded-2xl border border-border/80 bg-card p-1 shadow-xs sm:w-auto sm:gap-2 sm:p-1.5">
+      {/* Review sections */}
+      <div className="-my-2 flex flex-wrap items-center justify-between gap-3 border-b border-border/40 bg-background/95 py-2 backdrop-blur-md">
+        <div className="flex w-full flex-wrap items-center gap-x-5 gap-y-1">
           <button
             onClick={() => setActiveTab('my')}
-            className={`flex min-h-[44px] flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-xl px-3 py-2 text-xs font-black transition-all sm:flex-initial sm:gap-2 sm:px-5 sm:py-2.5 ${
+            aria-pressed={activeTab === 'my'}
+            className={`flex min-h-12 cursor-pointer items-center gap-2 border-b-2 py-3 text-sm font-medium transition-colors ${
               activeTab === 'my'
-                ? 'bg-primary text-primary-foreground shadow-xs'
-                : 'text-muted-foreground hover:text-foreground'
+                ? 'border-primary text-foreground'
+                : 'border-transparent text-muted-foreground hover:text-foreground'
             }`}
           >
             <Layers size={16} /> {t('flashcards.myDecks')} ({subjects.length})
           </button>
           <button
             onClick={() => setActiveTab('library')}
-            className={`flex min-h-[44px] flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-xl px-3 py-2 text-xs font-black transition-all sm:flex-initial sm:gap-2 sm:px-5 sm:py-2.5 ${
+            aria-pressed={activeTab === 'library'}
+            className={`flex min-h-12 cursor-pointer items-center gap-2 border-b-2 py-3 text-sm font-medium transition-colors ${
               activeTab === 'library'
-                ? 'bg-primary text-primary-foreground shadow-xs'
-                : 'text-muted-foreground hover:text-foreground'
+                ? 'border-primary text-foreground'
+                : 'border-transparent text-muted-foreground hover:text-foreground'
             }`}
           >
             <Library size={16} /> {t('flashcards.library')} ({visiblePresetDecks.length})
           </button>
           <button
             onClick={() => setActiveTab('srs')}
-            className={`flex min-h-[44px] flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-xl px-3 py-2 text-xs font-black transition-all sm:flex-initial sm:gap-2 sm:px-5 sm:py-2.5 ${
+            aria-pressed={activeTab === 'srs'}
+            className={`flex min-h-12 cursor-pointer items-center gap-2 border-b-2 py-3 text-sm font-medium transition-colors ${
               activeTab === 'srs'
-                ? 'bg-primary text-primary-foreground shadow-xs'
-                : 'text-muted-foreground hover:text-foreground'
+                ? 'border-primary text-foreground'
+                : 'border-transparent text-muted-foreground hover:text-foreground'
             }`}
           >
-            <Sparkles size={16} /> SRS & Darslar jadvali
+            <Sparkles size={16} />{' '}
+            {language === 'uz' ? 'Jadval' : language === 'ja' ? '復習予定' : 'Schedule'}
+          </button>
+          <button
+            onClick={() => setActiveTab('mistakes')}
+            aria-pressed={activeTab === 'mistakes'}
+            className={`flex min-h-12 items-center border-b-2 py-3 text-sm font-medium ${activeTab === 'mistakes' ? 'border-primary text-foreground' : 'border-transparent text-muted-foreground hover:text-foreground'}`}
+          >
+            {language === 'uz'
+              ? 'Xatolar daftari'
+              : language === 'ja'
+                ? '間違いノート'
+                : 'Mistake notebook'}
           </button>
         </div>
       </div>
+      {activeTab === 'mistakes' && (
+        <Suspense
+          fallback={
+            <p role="status">
+              {language === 'uz' ? 'Yuklanmoqda…' : language === 'ja' ? '読み込み中…' : 'Loading…'}
+            </p>
+          }
+        >
+          <MistakeNotebook />
+        </Suspense>
+      )}
 
       {activeTab === 'my' && (
         <div className="space-y-6">
           {/* Sub-tabs & Multi-select Toolbar */}
-          <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border/80 bg-card/60 p-2.5 sm:p-3">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border/50 pb-4">
             <div className="flex w-full items-center gap-1.5 sm:w-auto sm:gap-2">
               <button
                 onClick={() => {
@@ -813,7 +935,7 @@ const DecksPage: React.FC = () => {
               <div className="flex w-full flex-wrap items-center justify-start gap-2 sm:w-auto sm:justify-end">
                 <button
                   onClick={toggleSelectAll}
-                  className="flex items-center gap-1.5 rounded-xl border border-input bg-background px-2.5 py-1.5 text-xs font-bold text-foreground hover:bg-muted sm:px-3 sm:py-2"
+                  className="flex min-h-11 items-center gap-1.5 rounded-xl border border-input bg-background px-2.5 py-2 text-xs font-bold text-foreground hover:bg-muted sm:px-3 sm:py-2"
                 >
                   {selectedSubjectIds.length === currentList.length && currentList.length > 0 ? (
                     <CheckSquare size={14} className="text-indigo-600 dark:text-indigo-400" />
@@ -850,12 +972,13 @@ const DecksPage: React.FC = () => {
             )}
           </div>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5">
-            {currentList.map((subject, index) => {
-              const deckCards = flashcards.filter(
-                (c) => c.subjectId === subject.id || (!c.subjectId && index === 0),
-              );
-              const dueCards = deckCards.filter((c) => new Date(c.nextReviewDate) <= new Date());
+          <div className="grid grid-cols-1 gap-x-10 gap-y-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5">
+            {currentList.map((subject) => {
+              const deckCards = getDeckFlashcards(flashcards, subjects, subject.id);
+              const now = new Date();
+              const dueCards = subject.isArchived
+                ? []
+                : deckCards.filter((card) => isDue(card, now));
               const matchingPreset = PRESET_DECKS.find((p) => {
                 const cleanTitle = getCleanTitle(p.title).toLowerCase();
                 const cleanSubName = subject.name.toLowerCase().trim();
@@ -886,7 +1009,10 @@ const DecksPage: React.FC = () => {
                       await deleteSubject(subject.id);
                     }
                   }}
-                  onAIGenerate={() => setAiSubjectId(subject.id)}
+                  canManage={isAdmin}
+                  onAIGenerate={() => {
+                    if (isAdmin) setAiSubjectId(subject.id);
+                  }}
                   onStudy={() => setActiveStudySubjectId(subject.id)}
                   onPopulatePreset={
                     matchingPreset ? () => handleImportPresetDeck(matchingPreset) : undefined
@@ -914,7 +1040,7 @@ const DecksPage: React.FC = () => {
                     : "Kutubxonadan tayyor JLPT to'plamlarini saqlab oling."}
                 </p>
                 {subTab === 'active' && (
-                  <div className="flex gap-3">
+                  <div className="flex flex-wrap justify-center gap-3">
                     <Button
                       onClick={() => setActiveTab('library')}
                       variant="secondary"
@@ -922,13 +1048,19 @@ const DecksPage: React.FC = () => {
                     >
                       <Library size={18} className="mr-2" /> Standart Kutubxona
                     </Button>
-                    {
-                      <Link to="/subjects">
-                        <Button className="bg-primary px-6 font-bold text-primary-foreground hover:bg-primary/90">
-                          <Plus size={18} className="mr-2" /> Fan Qo'shish
-                        </Button>
-                      </Link>
-                    }
+                    {isAdmin && (
+                      <Button
+                        onClick={() => setIsAddSubjectOpen(true)}
+                        className="bg-primary px-6 font-bold text-primary-foreground hover:bg-primary/90"
+                      >
+                        <Plus size={18} className="mr-2" aria-hidden="true" />{' '}
+                        {language === 'uz'
+                          ? 'To‘plam yaratish'
+                          : language === 'ja'
+                            ? 'カードセットを作成'
+                            : 'Create a deck'}
+                      </Button>
+                    )}
                   </div>
                 )}
               </div>
@@ -974,7 +1106,7 @@ const DecksPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5">
+              <div className="grid grid-cols-1 gap-x-10 gap-y-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5">
                 {standaloneGroups.map((group) => (
                   <StandaloneDeckCard
                     key={group.baseTitle}
@@ -1025,7 +1157,7 @@ const DecksPage: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5">
+            <div className="grid grid-cols-1 gap-x-10 gap-y-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5">
               {[...visiblePresetDecks]
                 .filter((deck) => deck.level.startsWith('JLPT'))
                 .sort((a, b) => {
@@ -1071,22 +1203,13 @@ const DecksPage: React.FC = () => {
 
       {activeTab === 'srs' && (
         <SpacedRepetitionSchedule
-          flashcards={flashcards}
+          flashcards={studyCards}
           userId={user?.id}
-          firstDueSubjectId={reviewInbox.firstDueSubjectId}
-          onStartFlashcardReview={(subjectId) => {
-            if (subjectId) {
-              setActiveStudySubjectId(subjectId);
-            } else if (reviewInbox.firstDueSubjectId) {
-              setActiveStudySubjectId(reviewInbox.firstDueSubjectId);
-            } else if (activeSubjects.length > 0) {
-              setActiveStudySubjectId(activeSubjects[0].id);
-            }
-          }}
+          onStartFlashcardReview={(subjectId) => setActiveStudySubjectId(subjectId || 'all')}
         />
       )}
 
-      {aiSubjectId && (
+      {isAdmin && aiSubjectId && (
         <AIGeneratorModal
           isOpen={true}
           onClose={() => setAiSubjectId(null)}
@@ -1094,29 +1217,36 @@ const DecksPage: React.FC = () => {
         />
       )}
 
-      <AdminFlashcardManager isOpen={isAdminModalOpen} onClose={() => setIsAdminModalOpen(false)} />
+      {isAdmin && (
+        <>
+          <AdminFlashcardManager
+            isOpen={isAdminModalOpen}
+            onClose={() => setIsAdminModalOpen(false)}
+          />
 
-      <AdminPresetAuditorModal
-        isOpen={!!auditingDeck}
-        deck={auditingDeck}
-        onClose={() => setAuditingDeck(null)}
-      />
+          <AdminPresetAuditorModal
+            isOpen={!!auditingDeck}
+            deck={auditingDeck}
+            onClose={() => setAuditingDeck(null)}
+          />
 
-      <AdminAlbumCreatorModal
-        isOpen={isAlbumCreatorOpen}
-        initialTitle={albumCreatorProps.initialTitle}
-        initialPartName={albumCreatorProps.initialPartName}
-        initialBadge={albumCreatorProps.initialBadge}
-        initialMode={albumCreatorProps.initialMode}
-        onClose={() => {
-          setIsAlbumCreatorOpen(false);
-          setAlbumCreatorProps({});
-          loadStandaloneAlbums();
-        }}
-        onAlbumCreated={() => {
-          loadStandaloneAlbums();
-        }}
-      />
+          <AdminAlbumCreatorModal
+            isOpen={isAlbumCreatorOpen}
+            initialTitle={albumCreatorProps.initialTitle}
+            initialPartName={albumCreatorProps.initialPartName}
+            initialBadge={albumCreatorProps.initialBadge}
+            initialMode={albumCreatorProps.initialMode}
+            onClose={() => {
+              setIsAlbumCreatorOpen(false);
+              setAlbumCreatorProps({});
+              loadStandaloneAlbums();
+            }}
+            onAlbumCreated={() => {
+              loadStandaloneAlbums();
+            }}
+          />
+        </>
+      )}
 
       <LevelFolderExplorerModal
         isOpen={!!explorerDeck}
@@ -1132,30 +1262,37 @@ const DecksPage: React.FC = () => {
         }}
       />
 
-      <ImportModal
-        isOpen={isImportModalOpen}
-        onClose={() => setImportModalOpen(false)}
-        subjects={subjects}
-        onImport={onImport}
-        isImporting={isImporting}
-        downloadTemplate={downloadTemplate}
-      />
+      {isAdmin && (
+        <>
+          <ImportModal
+            isOpen={isImportModalOpen}
+            onClose={() => setImportModalOpen(false)}
+            subjects={subjects}
+            onImport={onImport}
+            isImporting={isImporting}
+            downloadTemplate={downloadTemplate}
+          />
 
-      <ExtractVocabModal
-        isOpen={isExtractModalOpen}
-        onClose={() => setIsExtractModalOpen(false)}
-        subjects={subjects}
-      />
+          <ExtractVocabModal
+            isOpen={isExtractModalOpen}
+            onClose={() => setIsExtractModalOpen(false)}
+            subjects={subjects}
+          />
 
-      <AiDocumentFlashcardModal
-        isOpen={isDocGeneratorOpen}
-        onClose={() => setIsDocGeneratorOpen(false)}
-        subjects={subjects}
-      />
+          <AiDocumentFlashcardModal
+            isOpen={isDocGeneratorOpen}
+            onClose={() => setIsDocGeneratorOpen(false)}
+            subjects={subjects}
+          />
+        </>
+      )}
 
       {activeStudySubjectId && (
         <FlashcardStudySession
+          key={`${activeStudySubjectId}-${cardLanguage || 'all'}`}
           subjectId={activeStudySubjectId}
+          cardLanguage={cardLanguage}
+          onComplete={completePlanTask}
           onClose={() => {
             setActiveStudySubjectId(null);
             setSearchParams({});

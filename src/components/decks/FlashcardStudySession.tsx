@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo, useCallback, useRef } from 'react'
 import { createPortal } from 'react-dom';
 import {
   ArrowLeft,
-  CheckCircle2,
+  Layers,
   Loader2,
   Volume2,
   Trash2,
@@ -27,7 +27,10 @@ import {
   getPreviewIntervalLabels,
   calculateReview,
   sortCardsBySRSPriority,
+  isDue,
 } from '../../utils/srs';
+import { isFlashcardForLanguage } from '../../utils/subjectResolver';
+import { getStudyFlashcards } from '../../utils/flashcardScope';
 import { speakText } from '../../utils/audioTts';
 import { toast } from '../../hooks/use-toast';
 import { safeLocalStorage } from '../../utils/storage/safeLocalStorage';
@@ -96,11 +99,15 @@ export function cleanCardFront(front?: string): string {
 interface FlashcardStudySessionProps {
   subjectId?: string | null; // null or undefined means 'all due cards'
   onClose: () => void;
+  cardLanguage?: 'ja' | 'en';
+  onComplete?: () => void;
 }
 
 export const FlashcardStudySession: React.FC<FlashcardStudySessionProps> = ({
   subjectId,
   onClose,
+  cardLanguage,
+  onComplete,
 }) => {
   const { user, flashcards, subjects, reviewFlashcard, updateFlashcard, deleteFlashcard, loading } =
     useStudyData();
@@ -194,6 +201,7 @@ export const FlashcardStudySession: React.FC<FlashcardStudySessionProps> = ({
   useEffect(() => {
     if (isFinished && !sessionLoggedRef.current && reviewedCount > 0) {
       sessionLoggedRef.current = true;
+      onComplete?.();
       const durationMins = Math.max(
         1,
         Math.round((Date.now() - sessionStartTimeRef.current) / 60000),
@@ -229,6 +237,7 @@ export const FlashcardStudySession: React.FC<FlashcardStudySessionProps> = ({
     }
   }, [
     isFinished,
+    onComplete,
     reviewedCount,
     queue.length,
     currentCardIndex,
@@ -239,23 +248,17 @@ export const FlashcardStudySession: React.FC<FlashcardStudySessionProps> = ({
   ]);
 
   useEffect(() => {
-    if (flashcards.length > 0 && !isQueueInitialized) {
-      let targetSet: Flashcard[] = [];
-      if (subjectId && subjectId !== 'all') {
-        const subjectCards = flashcards.filter((c: Flashcard) => c.subjectId === subjectId);
-        const due = subjectCards.filter((c: Flashcard) => new Date(c.nextReviewDate) <= new Date());
-        targetSet = due.length > 0 ? due : subjectCards;
-      } else {
-        // Global study mode across all decks / subjects
-        const due = flashcards.filter((c: Flashcard) => new Date(c.nextReviewDate) <= new Date());
-        targetSet = due.length > 0 ? due : flashcards;
-      }
-      setQueue(sortCardsBySRSPriority(targetSet).slice(0, 30));
-      setIsQueueInitialized(true);
-    } else if (flashcards.length === 0 && !loading && !isQueueInitialized) {
-      setIsQueueInitialized(true);
-    }
-  }, [subjectId, flashcards, isQueueInitialized, loading]);
+    if (loading || isQueueInitialized) return;
+    const scopedCards = getStudyFlashcards(flashcards, subjects, subjectId || 'all');
+    const availableCards = cardLanguage
+      ? scopedCards.filter((card) => isFlashcardForLanguage(card, subjects, cardLanguage))
+      : scopedCards;
+    const now = new Date();
+    const due = availableCards.filter((card) => isDue(card, now));
+    const targetSet = due.length > 0 ? due : availableCards;
+    setQueue(sortCardsBySRSPriority(targetSet).slice(0, 30));
+    setIsQueueInitialized(true);
+  }, [subjectId, flashcards, subjects, cardLanguage, isQueueInitialized, loading]);
 
   const currentCard = queue[currentCardIndex];
 
@@ -542,7 +545,7 @@ export const FlashcardStudySession: React.FC<FlashcardStudySessionProps> = ({
     );
   }, [currentCard, isJa]);
 
-  if (loading && !isQueueInitialized) {
+  if (!isQueueInitialized) {
     return renderPortal(
       <div className="bg-background/98 fixed inset-0 z-[100] flex items-center justify-center p-4 backdrop-blur-2xl">
         <div className="space-y-4 text-center">
@@ -557,14 +560,16 @@ export const FlashcardStudySession: React.FC<FlashcardStudySessionProps> = ({
     return renderPortal(
       <div className="bg-background/98 fixed inset-0 z-[100] flex items-center justify-center p-4 backdrop-blur-2xl">
         <div className="w-full max-w-md space-y-6 rounded-3xl border border-border bg-card p-8 text-center shadow-2xl animate-in zoom-in-95">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-500">
-            <CheckCircle2 size={36} />
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-muted text-muted-foreground">
+            <Layers size={36} />
           </div>
           <div className="space-y-2">
-            <h2 className="text-2xl font-black text-foreground">Barchasi Takrorlandi! ✨</h2>
+            <h2 className="text-2xl font-black text-foreground">
+              {isJa ? 'カードがありません' : 'Kartalar topilmadi'}
+            </h2>
             <p className="text-xs leading-relaxed text-muted-foreground">
               {currentSubject ? `"${currentSubject.name}" to'plamida` : "Barcha to'plamlarda"}{' '}
-              hozircha takrorlanishi kerak bo'lgan kartochkalar yo'q.
+              o‘rganish uchun karta yo‘q.
             </p>
           </div>
           <Button

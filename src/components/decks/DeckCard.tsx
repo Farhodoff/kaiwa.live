@@ -24,9 +24,11 @@ import {
 import { Link } from 'react-router-dom';
 import { Button } from '../ui/Button';
 import { Subject } from '../../types';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface DeckCardProps {
   subject: Subject;
+  canManage?: boolean;
   cardCount: number;
   dueCount: number;
   isSelected?: boolean;
@@ -71,6 +73,7 @@ const renderSubjectIcon = (iconName?: string) => {
 
 const DeckCard: React.FC<DeckCardProps> = ({
   subject,
+  canManage = false,
   cardCount,
   dueCount,
   isSelected,
@@ -82,22 +85,28 @@ const DeckCard: React.FC<DeckCardProps> = ({
   onPopulatePreset,
   onExploreFolders,
 }) => {
+  const { language } = useLanguage();
+  const copy = (uz: string, en: string, ja: string) =>
+    language === 'ja' ? ja : language === 'en' ? en : uz;
+  const studyLabel =
+    dueCount > 0
+      ? copy('Takrorlash', 'Review', '復習する')
+      : copy('Mashq qilish', 'Practice', '練習する');
   return (
     <div
-      className={`group relative flex flex-col justify-between rounded-2xl border bg-card p-4 transition-all hover:shadow-lg sm:rounded-3xl sm:p-6 ${
-        isSelected
-          ? 'border-primary bg-primary/5 ring-2 ring-primary'
-          : 'border-border hover:border-primary/40'
+      className={`group relative flex flex-col justify-between border-b px-1 py-5 transition-colors ${
+        isSelected ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/40'
       }`}
     >
-      {/* Top Bar with Select Checkbox & Quick Actions */}
-      <div className="mb-4 flex items-center justify-between gap-2">
-        <div className="flex min-w-0 flex-1 items-center gap-2.5 sm:gap-3">
+      {(onToggleSelect || onToggleArchive || onDelete) && (
+        <div className="mb-3 flex items-center justify-between gap-2">
           {onToggleSelect && (
             <button
+              type="button"
               onClick={onToggleSelect}
-              className="shrink-0 text-muted-foreground transition-colors hover:text-foreground"
-              title={isSelected ? 'Tanlovni bekor qilish' : 'Tanlash'}
+              aria-pressed={Boolean(isSelected)}
+              aria-label={`${subject.name}: ${copy('Tanlash', 'Select deck', '選択')}`}
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
               {isSelected ? (
                 <CheckSquare size={20} className="text-primary" />
@@ -106,52 +115,61 @@ const DeckCard: React.FC<DeckCardProps> = ({
               )}
             </button>
           )}
-
-          <div
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-lg font-bold sm:h-12 sm:w-12 sm:rounded-2xl sm:text-xl"
-            style={{ backgroundColor: subject.color + '20', color: subject.color }}
-          >
-            {renderSubjectIcon(subject.icon)}
-          </div>
-
-          <div className="min-w-0 flex-1">
-            <h3 className="truncate text-base font-extrabold leading-snug text-foreground sm:text-lg">
-              {subject.name}
-            </h3>
-            <p className="text-xs font-semibold text-muted-foreground">{cardCount} ta kartochka</p>
+          <div className="ml-auto flex items-center gap-1">
+            {onToggleArchive && (
+              <button
+                type="button"
+                onClick={onToggleArchive}
+                title={
+                  subject.isArchived
+                    ? copy('Arxivdan chiqarish', 'Restore deck', '復元')
+                    : copy('Arxivlash', 'Archive deck', 'アーカイブ')
+                }
+                aria-label={`${subject.name}: ${subject.isArchived ? copy('Arxivdan chiqarish', 'Restore deck', '復元') : copy('Arxivlash', 'Archive deck', 'アーカイブ')}`}
+                className="flex h-11 w-11 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              >
+                {subject.isArchived ? <ArchiveRestore size={18} /> : <Archive size={18} />}
+              </button>
+            )}
+            {onDelete && (
+              <button
+                type="button"
+                onClick={onDelete}
+                title={copy("To'plamni o'chirish", 'Delete deck', '削除')}
+                aria-label={`${subject.name}: ${copy("To'plamni o'chirish", 'Delete deck', '削除')}`}
+                className="flex h-11 w-11 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive"
+              >
+                <Trash2 size={18} />
+              </button>
+            )}
           </div>
         </div>
-
-        {/* Quick Action Icons (Archive / Delete) */}
-        <div className="flex shrink-0 items-center gap-1 opacity-80 transition-opacity group-hover:opacity-100">
-          {onToggleArchive && (
-            <button
-              onClick={onToggleArchive}
-              className="rounded-lg p-1.5 text-muted-foreground transition-all hover:bg-[#C9A961]/10 hover:text-[#C9A961]"
-              title={subject.isArchived ? 'Arxivdan chiqarish' : 'Arxivlash'}
-            >
-              {subject.isArchived ? <ArchiveRestore size={16} /> : <Archive size={16} />}
-            </button>
-          )}
-
-          {onDelete && (
-            <button
-              onClick={onDelete}
-              className="rounded-lg p-1.5 text-muted-foreground transition-all hover:bg-rose-500/10 hover:text-rose-500"
-              title="To'plamni o'chirish"
-            >
-              <Trash2 size={16} />
-            </button>
-          )}
+      )}
+      <div className="mb-5 flex min-w-0 items-start gap-3">
+        <div
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full"
+          style={{ backgroundColor: subject.color + '20', color: subject.color }}
+          aria-hidden="true"
+        >
+          {renderSubjectIcon(subject.icon)}
+        </div>
+        <div className="min-w-0 flex-1">
+          <h3 className="break-words text-lg font-semibold leading-snug text-foreground">
+            {subject.name}
+          </h3>
+          <p className="mt-1 text-sm text-muted-foreground">
+            {cardCount} {copy('ta karta', 'cards', '枚')}
+          </p>
         </div>
       </div>
-
-      <div className="mb-4 flex justify-between text-xs font-bold">
-        <span className="text-muted-foreground">Bugungi takrorlash:</span>
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-2 text-sm">
+        <span className="text-muted-foreground">{copy('Bugun', 'Due today', '今日の復習')}</span>
         <span
-          className={`rounded-full px-2.5 py-0.5 ${dueCount > 0 ? 'bg-[#C9A961]/15 text-[#C9A961]' : 'bg-emerald-500/10 text-emerald-500'}`}
+          className={`rounded-full px-2.5 py-1 font-medium ${dueCount > 0 ? 'bg-primary/10 text-primary' : 'bg-muted text-muted-foreground'}`}
         >
-          {dueCount > 0 ? `${dueCount} ta kutilmoqda` : 'Barchasi bajargan ✨'}
+          {dueCount > 0
+            ? `${dueCount} ${copy('ta karta', 'cards', '枚')}`
+            : copy('Karta yo‘q', 'None due', '予定なし')}
         </span>
       </div>
 
@@ -161,27 +179,32 @@ const DeckCard: React.FC<DeckCardProps> = ({
             onClick={onPopulatePreset}
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-2.5 text-xs font-extrabold text-primary-foreground shadow-xs hover:bg-primary/90"
           >
-            <Download size={15} /> To'plam Kartochkalarini Yuklash ⚡
+            <Download size={15} /> {copy('Kartalarni yuklash', 'Load cards', 'カードを追加')}
           </Button>
         ) : (
-          <div className="flex flex-wrap gap-2 pt-2 sm:flex-nowrap">
+          <div className="flex flex-wrap gap-2 pt-2">
             {onStudy ? (
               <Button
                 onClick={onStudy}
-                className="flex min-w-[120px] flex-1 items-center justify-center gap-2 bg-primary text-xs font-bold text-primary-foreground hover:bg-primary/90"
+                className="flex min-w-0 flex-1 items-center justify-center gap-2 bg-primary text-xs font-bold text-primary-foreground hover:bg-primary/90"
                 disabled={cardCount === 0}
               >
-                <Play size={15} /> {dueCount > 0 ? "O'rganish" : "Qayta Ko'rib Chiqish"}
+                <Play size={15} /> {studyLabel}
               </Button>
             ) : (
-              <Link to={`/flashcards?study=${subject.id}`} className="min-w-[120px] flex-1">
-                <Button
-                  className="flex w-full items-center justify-center gap-2 bg-primary text-xs font-bold text-primary-foreground hover:bg-primary/90"
-                  disabled={cardCount === 0}
+              <Button asChild className="min-w-0 flex-1 text-xs font-bold">
+                <Link
+                  to={`/flashcards?study=${subject.id}`}
+                  aria-disabled={cardCount === 0}
+                  onClick={(event) => {
+                    if (cardCount === 0) event.preventDefault();
+                  }}
+                  className={cardCount === 0 ? 'pointer-events-none opacity-50' : ''}
+                  tabIndex={cardCount === 0 ? -1 : undefined}
                 >
-                  <Play size={15} /> {dueCount > 0 ? "O'rganish" : "Qayta Ko'rib Chiqish"}
-                </Button>
-              </Link>
+                  <Play size={15} /> {studyLabel}
+                </Link>
+              </Button>
             )}
             <div className="flex shrink-0 items-center gap-1.5">
               {onExploreFolders && (
@@ -189,27 +212,38 @@ const DeckCard: React.FC<DeckCardProps> = ({
                   variant="secondary"
                   className="px-2.5 text-foreground hover:text-primary sm:px-3"
                   onClick={onExploreFolders}
-                  title="Keyingi qismlar / Jildlarni ko'rish"
+                  title={copy("Jildlarni ko'rish", 'Explore folders', 'フォルダーを開く')}
+                  aria-label={copy("Jildlarni ko'rish", 'Explore folders', 'フォルダーを開く')}
+                  size="icon"
                 >
                   <BookOpen size={17} />
                 </Button>
               )}
-              <Button
-                variant="secondary"
-                className="px-2.5 text-primary hover:bg-primary/10 sm:px-3"
-                onClick={onAIGenerate}
-                title="AI bilan yaratish"
-              >
-                <Sparkles size={17} />
-              </Button>
-              <Link to={`/flashcards/new?subjectId=${subject.id}`}>
-                <Button
-                  variant="secondary"
-                  className="px-2.5 text-muted-foreground hover:text-foreground sm:px-3"
-                >
-                  <Plus size={17} />
-                </Button>
-              </Link>
+              {canManage && (
+                <>
+                  <Button
+                    variant="secondary"
+                    className="px-2.5 text-primary hover:bg-primary/10 sm:px-3"
+                    onClick={onAIGenerate}
+                    title="AI bilan yaratish"
+                    aria-label={copy('AI bilan yaratish', 'Generate with AI', 'AIで作成')}
+                    size="icon"
+                  >
+                    <Sparkles size={17} />
+                  </Button>
+                  <Button
+                    asChild
+                    size="icon"
+                    aria-label={copy('Karta qo‘shish', 'Add card', 'カードを追加')}
+                    variant="secondary"
+                    className="px-2.5 text-muted-foreground hover:text-foreground sm:px-3"
+                  >
+                    <Link to={`/flashcards/new?subjectId=${subject.id}`}>
+                      <Plus size={17} />
+                    </Link>
+                  </Button>
+                </>
+              )}
             </div>
           </div>
         )}
