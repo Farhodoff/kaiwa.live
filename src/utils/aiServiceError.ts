@@ -12,9 +12,11 @@ export class AIServiceError extends Error {
             ? 'AI so‘rovlari limiti tugagan. Suhbat pauzada; keyinroq qayta urinib ko‘ring.'
             : status === 413
               ? 'Suhbat so‘rovi juda katta. Qisqaroq xabar yuboring yoki yangi suhbat boshlang.'
-              : status === 429
-                ? 'AI so‘rovlar tezligi chegarasiga yetildi. Biroz kutib, qayta urinib ko‘ring.'
-                : 'AI javobini olib bo‘lmadi. Suhbat saqlanib turibdi; qayta urinib ko‘ring.'),
+              : status === 431 || status === 494
+                ? 'Sessiya sarlavhasi hajmi oshib ketdi. Qayta urinib ko‘ring yoki sahifani yangilang.'
+                : status === 429
+                  ? 'AI so‘rovlar tezligi chegarasiga yetildi. Biroz kutib, qayta urinib ko‘ring.'
+                  : 'AI javobini olib bo‘lmadi. Suhbat saqlanib turibdi; qayta urinib ko‘ring.'),
     );
     this.name = 'AIServiceError';
   }

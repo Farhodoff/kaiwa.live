@@ -124,11 +124,13 @@ export async function analyzeAndRebalanceSchedule(
         data: { user },
       } = await supabase.auth.getUser();
       const existingMetadata = user?.user_metadata?.[metadataKey] || {};
+      const { rebalanceHistory: _dropped, ...compactExisting } =
+        typeof existingMetadata === 'object' && existingMetadata !== null ? existingMetadata : {};
       await supabase.auth.updateUser({
         data: {
           [metadataKey]: {
-            ...existingMetadata,
-            rebalanceHistory: [...(existingMetadata.rebalanceHistory || []), rebalancedMetadata],
+            ...compactExisting,
+            ...rebalancedMetadata,
             updatedAt: new Date().toISOString(),
           },
         },

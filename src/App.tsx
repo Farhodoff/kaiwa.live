@@ -50,6 +50,7 @@ import { useAuthStore } from './stores';
 import { safeLocalStorage } from './utils/storage/safeLocalStorage';
 import { isPublicPreviewActive, MOCK_PREVIEW_SESSION } from './config/previewMode';
 import { isTelegramWebApp, initTelegramAuth } from './utils/telegramAuth';
+import { pruneBloatedAuthMetadata } from './utils/authTokenSafety';
 
 const AuthenticatedAuthRedirect: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -204,6 +205,7 @@ const App: React.FC = () => {
           useAuthStore.getState().setUser(fetchedSession.user);
           useAuthStore.getState().setLoading(false);
           safeLocalStorage.setJSON('study_planner_user_cache', fetchedSession.user);
+          void pruneBloatedAuthMetadata(fetchedSession, supabase);
         } else if (isTelegramWebApp()) {
           const tgAuth = initTelegramAuth();
           if (tgAuth?.session) {
@@ -260,6 +262,7 @@ const App: React.FC = () => {
         useAuthStore.getState().setUser(newSession.user);
         useAuthStore.getState().setLoading(false);
         safeLocalStorage.setJSON('study_planner_user_cache', newSession.user);
+        void pruneBloatedAuthMetadata(newSession, supabase);
       } else if (isTelegramWebApp()) {
         const tgAuth = initTelegramAuth();
         if (tgAuth?.session) {
