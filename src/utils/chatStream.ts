@@ -1,6 +1,7 @@
 import { supabase, supabaseAnonKey } from '../lib/supabase';
 import { AIServiceError } from './aiServiceError';
 import { captureException } from '../lib/errorTracking';
+import { resolveSafeApiBearerToken, shouldRetryWithAnonKey } from './authTokenSafety';
 
 export const streamChatTokens = async (
   messages: { role: string; content: string }[],
@@ -10,15 +11,14 @@ export const streamChatTokens = async (
   gateway = '/api/deepseek',
 ): Promise<string> => {
   const anonKey = supabaseAnonKey;
-  let bearerToken = anonKey;
+  let sessionToken: string | null | undefined;
   try {
     const sessionRes = await supabase.auth.getSession();
-    if (sessionRes.data?.session?.access_token) {
-      bearerToken = sessionRes.data.session.access_token;
-    }
+    sessionToken = sessionRes.data?.session?.access_token;
   } catch {
     // Keep anonKey fallback
   }
+  const { token: bearerToken, isUserToken } = resolveSafeApiBearerToken(sessionToken, anonKey);
 
   const payload: Record<string, unknown> = {
     ...(gateway === '/api/deepseek' ? { model: 'deepseek-chat' } : {}),
@@ -43,13 +43,11 @@ export const streamChatTokens = async (
     signal,
   });
 
-  if (
-    !response.ok &&
-    (response.status === 401 || response.status === 403) &&
-    bearerToken !== anonKey
-  ) {
-    // If bearer token failed, retry with anonKey so user dialogue is never disrupted
-    console.warn('[chatStream] Bearer token rejected, retrying with anonKey...');
+  if (!response.ok && shouldRetryWithAnonKey(response.status) && isUserToken) {
+    // If bearer token failed (401/403/431/494), retry with anonKey so user dialogue is never disrupted
+    console.warn(
+      `[chatStream] Bearer token returned HTTP ${response.status}, retrying with anonKey...`,
+    );
     response = await fetch(gateway, {
       method: 'POST',
       credentials: 'omit',

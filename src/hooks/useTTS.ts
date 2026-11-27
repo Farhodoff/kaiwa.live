@@ -3,6 +3,7 @@ import { trackTTSTelemetry } from '../lib/errorTracking';
 import { cleanJapaneseTTS } from '../utils/ai';
 import { supabase, supabaseAnonKey } from '../lib/supabase';
 import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
+import { resolveSafeApiBearerToken, shouldRetryWithAnonKey } from '../utils/authTokenSafety';
 
 // Cached access token to avoid calling getSession() repeatedly on every sentence chunk
 let cachedAuthToken: string | null = null;
@@ -312,24 +313,32 @@ export async function fetchTTSAudioBlob(text: string, lang: 'ja' | 'en'): Promis
 
   const fetchPromise = (async (): Promise<Blob | null> => {
     try {
-      const token = await getAuthToken();
+      const rawToken = await getAuthToken();
+      const { token, isUserToken } = resolveSafeApiBearerToken(rawToken, supabaseAnonKey);
 
-      const response = await fetch('/api/tts', {
-        method: 'POST',
-        credentials: 'omit',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          text,
-          lang,
-        }),
-        signal:
-          typeof AbortSignal !== 'undefined' && 'timeout' in AbortSignal
-            ? AbortSignal.timeout(8000)
-            : undefined,
-      });
+      const postTts = (bearer: string) =>
+        fetch('/api/tts', {
+          method: 'POST',
+          credentials: 'omit',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${bearer}`,
+          },
+          body: JSON.stringify({
+            text,
+            lang,
+          }),
+          signal:
+            typeof AbortSignal !== 'undefined' && 'timeout' in AbortSignal
+              ? AbortSignal.timeout(8000)
+              : undefined,
+        });
+
+      let response = await postTts(token);
+      if (!response.ok && shouldRetryWithAnonKey(response.status) && isUserToken) {
+        if (response.status === 401) cachedAuthToken = null;
+        response = await postTts(supabaseAnonKey);
+      }
 
       if (!response.ok) {
         console.warn('[useTTS] /api/tts HTTP error:', response.status);

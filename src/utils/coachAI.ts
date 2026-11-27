@@ -2,6 +2,7 @@ import { supabase, supabaseAnonKey } from '../lib/supabase';
 import { AIServiceError } from './aiServiceError';
 import { streamChatTokens } from './chatStream';
 import { captureException } from '../lib/errorTracking';
+import { resolveSafeApiBearerToken, shouldRetryWithAnonKey } from './authTokenSafety';
 
 /** Azure-only conversation path. No external-provider fallback. */
 export const streamCoachTokens = (
@@ -17,6 +18,10 @@ export async function callCoachAI(
   isJson = false,
 ): Promise<string> {
   const { data } = await supabase.auth.getSession();
+  const { token: initialToken, isUserToken } = resolveSafeApiBearerToken(
+    data?.session?.access_token,
+    supabaseAnonKey,
+  );
   const messages = [
     ...(systemPrompt ? [{ role: 'system', content: systemPrompt }] : []),
     { role: 'user', content: prompt },
@@ -26,7 +31,7 @@ export async function callCoachAI(
     credentials: 'omit',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${data?.session?.access_token || supabaseAnonKey}`,
+      Authorization: `Bearer ${initialToken}`,
     },
     body: JSON.stringify({
       messages,
@@ -35,12 +40,10 @@ export async function callCoachAI(
     signal: AbortSignal.timeout(45000),
   });
 
-  if (
-    !response.ok &&
-    (response.status === 401 || response.status === 403) &&
-    data?.session?.access_token
-  ) {
-    console.warn('[callCoachAI] User token rejected, retrying with anonKey...');
+  if (!response.ok && shouldRetryWithAnonKey(response.status) && isUserToken) {
+    console.warn(
+      `[callCoachAI] User token returned HTTP ${response.status}, retrying with anonKey...`,
+    );
     response = await fetch('/api/coach', {
       method: 'POST',
       credentials: 'omit',

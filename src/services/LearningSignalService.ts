@@ -11,7 +11,6 @@ import { MasterySkill } from '../types/mastery';
 import { Flashcard } from '../types';
 import { FlashcardService } from './FlashcardService';
 import { MasteryEngine } from './MasteryEngine';
-import { supabase } from '../lib/supabase';
 import { safeLocalStorage } from '../utils/storage/safeLocalStorage';
 
 const SIGNALS_STORAGE_PREFIX = 'study_planner_learning_signals_';
@@ -174,21 +173,8 @@ export const LearningSignalService = {
 
       const updated = [...current, ...uniqueNewSignals].slice(-300);
       safeLocalStorage.setJSON(key, updated);
-
-      if (userId && userId !== 'guest') {
-        try {
-          const {
-            data: { user },
-          } = await supabase.auth.getUser();
-          if (user && user.id === userId) {
-            await supabase.auth.updateUser({
-              data: { learning_signals: updated.slice(-100) },
-            });
-          }
-        } catch (err) {
-          console.warn('[LearningSignalService] Background sync to Supabase failed:', err);
-        }
-      }
+      // Do NOT mirror learning_signals into auth user_metadata: it is embedded in the
+      // JWT, so a growing array bloats every request header and causes HTTP 431/494.
     }
   },
 

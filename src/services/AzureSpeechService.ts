@@ -1,5 +1,6 @@
 import { supabase, supabaseAnonKey } from '../lib/supabase';
 import { captureException } from '../lib/errorTracking';
+import { isOversizedJwt } from '../utils/authTokenSafety';
 
 export interface AzurePronunciationWord {
   word: string;
@@ -83,11 +84,20 @@ export const AzureSpeechService = {
         if (generation !== sessionGeneration) return null;
         if (error) return expireSession();
         let accessToken = data.session?.access_token;
-        const guest = !data.session;
+        let guest = !data.session;
         if (!guest && (!accessToken || accessToken === supabaseAnonKey)) return expireSession();
         if (guest && requiresSignIn) return expireSession();
-        accessToken = accessToken || supabaseAnonKey;
-        if (!guest) requiresSignIn = true;
+        const oversizedToken = !guest && isOversizedJwt(accessToken);
+        if (oversizedToken) {
+          console.warn(
+            '[AzureSpeechService] User JWT exceeds header limit, falling back to guest speech token...',
+          );
+          guest = true;
+          accessToken = supabaseAnonKey;
+        } else {
+          accessToken = accessToken || supabaseAnonKey;
+          if (!guest) requiresSignIn = true;
+        }
         authState = guest ? 'anonymous' : 'authenticated';
         if (
           !forceRefresh &&
@@ -145,7 +155,7 @@ export const AzureSpeechService = {
                 ? 'Nutqni tanish so‘rovlari limiti tugagan.'
                 : res.status === 429
                   ? 'So‘rovlar juda tez yuborildi. Biroz kuting.'
-                  : res.status === 431
+                  : res.status === 431 || res.status === 494
                     ? 'Brauzer keshini tozalab qayta urinib ko‘ring.'
                     : 'Ovoz xizmatiga ulanib bo‘lmadi. Qayta urinib ko‘ring.';
           console.error(`[AzureSpeechService] Failed to obtain speech token: HTTP ${res.status}`);

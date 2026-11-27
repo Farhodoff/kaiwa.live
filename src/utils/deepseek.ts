@@ -1,5 +1,6 @@
 import { supabase, supabaseUrl, supabaseAnonKey } from '../lib/supabase';
 import { streamChatTokens } from './chatStream';
+import { resolveSafeApiBearerToken, shouldRetryWithAnonKey } from './authTokenSafety';
 
 export interface DeepSeekRequestOptions {
   systemPrompt?: string;
@@ -121,15 +122,14 @@ export const callDeepSeek = async (
 
   const directUrl = `${supabaseUrl.replace(/\/$/, '')}/functions/v1/deepseek`;
   const anonKey = supabaseAnonKey;
-  let bearerToken = anonKey;
+  let sessionToken: string | null | undefined;
   try {
     const sessionRes = await supabase.auth.getSession();
-    if (sessionRes.data?.session?.access_token) {
-      bearerToken = sessionRes.data.session.access_token;
-    }
+    sessionToken = sessionRes.data?.session?.access_token;
   } catch {
     // Keep anonKey fallback
   }
+  const { token: bearerToken, isUserToken } = resolveSafeApiBearerToken(sessionToken, anonKey);
 
   // 1. Primary Direct Route: Supabase Edge Function (Low latency, authoritative)
   try {
@@ -210,20 +210,30 @@ export const callDeepSeek = async (
 
   // 3. Fallback Route: Vercel Serverless Gateway (/api/deepseek)
   try {
-    const serverlessResponse = await fetch('/api/deepseek', {
-      method: 'POST',
-      credentials: 'omit',
-      headers: {
-        'Content-Type': 'application/json',
-        apikey: anonKey,
-        Authorization: `Bearer ${bearerToken}`,
-      },
-      body: JSON.stringify(payload),
-      signal:
-        typeof AbortSignal !== 'undefined' && 'timeout' in AbortSignal
-          ? AbortSignal.timeout(35000)
-          : undefined,
-    });
+    const postGateway = (bearer: string) =>
+      fetch('/api/deepseek', {
+        method: 'POST',
+        credentials: 'omit',
+        headers: {
+          'Content-Type': 'application/json',
+          apikey: anonKey,
+          Authorization: `Bearer ${bearer}`,
+        },
+        body: JSON.stringify(payload),
+        signal:
+          typeof AbortSignal !== 'undefined' && 'timeout' in AbortSignal
+            ? AbortSignal.timeout(35000)
+            : undefined,
+      });
+
+    let serverlessResponse = await postGateway(bearerToken);
+    if (
+      !serverlessResponse.ok &&
+      shouldRetryWithAnonKey(serverlessResponse.status) &&
+      isUserToken
+    ) {
+      serverlessResponse = await postGateway(anonKey);
+    }
 
     if (serverlessResponse.ok) {
       const data = await serverlessResponse.json();
